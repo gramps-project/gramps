@@ -5445,6 +5445,15 @@ msgid ""
 msgstr "匹配在收錄的列表中的成員，其祖先未能超過 N 代的"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "預設的成員的祖先 不超過 <N> 代"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr "匹配預設的成員，其祖先 不超過 N 代"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "預設的成員的祖先 不超過 <N> 代"
 
@@ -19523,6 +19532,13 @@ msgstr "未設定主人翁"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30072,6 +30088,17 @@ msgstr "設定為主人翁(_H)"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "前往預設成員"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "前往預設成員"
 
@@ -38458,6 +38485,10 @@ msgstr "無樣式表"
 #~ msgid "Home Person"
 #~ msgstr "未設定主人翁"
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "選中預設人"
+
 #~ msgid "Border Female Alive"
 #~ msgstr "健在女性邊框顏色"
 
@@ -43117,3 +43148,4 @@ msgstr "無樣式表"
 #~ "檢視 %(name)s 未讀取. 參照幫助選單，插件管理了解更多資訊。\n"
 #~ "利用 https://gramps-project.org/bugs/  提交官方檢視的故障報告,  或者聯絡檢"
 #~ "視的作者 (%(firstauthoremail)s) . "
+

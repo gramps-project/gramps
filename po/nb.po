@@ -5646,6 +5646,16 @@ msgstr ""
 "unna"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Ane av standardpersonen, ikke mer enn <N> generasjoner unna"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Samsvarer med aner av standardpersonen, ikke mer enn N generasjoner unna"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Ane av standardpersonen, ikke mer enn <N> generasjoner unna"
 
@@ -19759,6 +19769,15 @@ msgstr "Startperson er ikke valgt"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Du må angi en startperson. Velg personvisningen, velg den personen du vil ha "
+"som startperson og bekreft dette valget i menyen Edit->Angi som startperson."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30029,6 +30048,17 @@ msgstr "Angi som startperson"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Gå til standardpersonen"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Gå til standardpersonen"
 
@@ -38342,6 +38372,10 @@ msgstr "Ingen stilsett"
 #~ msgid "Home Person"
 #~ msgstr "Startperson"
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Samsvarer med standardpersonen"
+
 #~ msgid "Border Female Alive"
 #~ msgstr "Kant kvinne levende"
 
@@ -38384,6 +38418,15 @@ msgstr "Ingen stilsett"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Du må angi en startperson. Velg personvisningen, velg den personen du vil "
+#~ "ha som startperson og bekreft dette valget i menyen Edit->Angi som "
+#~ "startperson."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -39380,3 +39423,4 @@ msgstr "Ingen stilsett"
 
 #~ msgid "Extract Place data"
 #~ msgstr "Hent ut stedsdata"
+

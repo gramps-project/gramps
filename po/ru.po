@@ -5670,6 +5670,18 @@ msgstr ""
 "N поколений"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr ""
+"Предки лица по умолчанию, отстоящие от него не более чем на <N> поколений"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Выбирает предков лица по умолчанию, отстоящих от него не более чем на N "
+"поколений"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr ""
 "Предки лица по умолчанию, отстоящие от него не более чем на <N> поколений"
@@ -19758,6 +19770,16 @@ msgstr "Базовое лицо не назначено"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Нужно назначить «базовое лицо». Выберите вид «Люди», выберите лицо, которое "
+"хотите назначить в качестве базового, затем подтвердите выбор из меню "
+"«Правка -> Установить базовое лицо»."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30128,6 +30150,17 @@ msgstr "У_становить базовое лицо"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Перейти на базовое лицо"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Перейти на базовое лицо"
 
@@ -38484,6 +38517,15 @@ msgstr "Без стилевого листа"
 #~ msgstr "бывший гражданский супруг(-а)"
 
 #~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Нужно назначить «базовое лицо». Выберите вид «Люди», выберите лицо, "
+#~ "которое хотите назначить в качестве базового, затем подтвердите выбор из "
+#~ "меню «Правка -> Установить базовое лицо»."
+
+#~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
@@ -38542,6 +38584,10 @@ msgstr "Без стилевого листа"
 
 #~ msgid "Home Person"
 #~ msgstr "Базовое лицо"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Выбирает базовое лицо"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Рамка для живых женского пола"

@@ -5472,6 +5472,16 @@ msgstr ""
 "frá"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Afkomendur sjálfgefins einstaklings ekki meira en <N> kynslóðir frá"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Samsvarar forfeðrum sjálfgefins einstaklings ekki meira en N kynslóðir frá"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Afkomendur sjálfgefins einstaklings ekki meira en <N> kynslóðir frá"
 
@@ -19285,6 +19295,17 @@ msgstr "Enginn upphafseinstaklingur"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Þú verður að setja einhvern einstakling sem 'sjálfgefinn' til að ganga út "
+"frá. Veldu einstaklingasýnina, veldu þann sem þú vilt að sé þessi "
+"'upphafseinstaklingur', síðan þarftu að staðfesta þetta val með því að fara "
+"í valmyndina Breyta ->Setilla upphafseinstakling."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -29316,6 +29337,17 @@ msgstr "Stilla upphafseinstakling"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Fara á sjálfgefinn einstakling"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Fara á sjálfgefinn einstakling"
 
@@ -37476,6 +37508,10 @@ msgstr "Ekkert stílblað"
 #~ msgid "Home Person"
 #~ msgstr "Enginn upphafseinstaklingur"
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Samsvarar sjálfgefnum upphafseinstaklingi"
+
 #~ msgid "Border Female Alive"
 #~ msgstr "Rammi lifandi kvenmanns"
 
@@ -37522,6 +37558,16 @@ msgstr "Ekkert stílblað"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Þú verður að setja einhvern einstakling sem 'sjálfgefinn' til að ganga út "
+#~ "frá. Veldu einstaklingasýnina, veldu þann sem þú vilt að sé þessi "
+#~ "'upphafseinstaklingur', síðan þarftu að staðfesta þetta val með því að "
+#~ "fara í valmyndina Breyta ->Setilla upphafseinstakling."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -38250,3 +38296,4 @@ msgstr "Ekkert stílblað"
 
 #~ msgid "Adding children"
 #~ msgstr "Bæta við börnum"
+

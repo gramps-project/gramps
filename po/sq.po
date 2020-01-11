@@ -5658,6 +5658,18 @@ msgstr ""
 "se N gjenerata larg"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr ""
+"Paraardhës të personit të parazgjedhur jo më shumë se <N> gjenerata larg"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Përputh paraardhës të personit të parazgjedhur jo më shumë se N gjenerata "
+"larg"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr ""
 "Paraardhës të personit të parazgjedhur jo më shumë se <N> gjenerata larg"
@@ -20182,6 +20194,13 @@ msgstr "Personi shtëpi nuk është vendosur."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30812,6 +30831,17 @@ msgstr "Vendos_Person Shtëpiak"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Shko te personi i parazgjedhur"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Shko te personi i parazgjedhur"
 
@@ -39607,6 +39637,10 @@ msgstr "Nuk ka fletë stili"
 #~ msgid "Home Person"
 #~ msgstr "Personi shtëpi nuk është vendosur."
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Përputh personin e parazgjedhur"
+
 #, fuzzy
 #~ msgid "Border Female Dead"
 #~ msgstr "Mosha kur ka vdek"
@@ -42481,3 +42515,4 @@ msgstr "Nuk ka fletë stili"
 #, fuzzy
 #~ msgid "Include Marriage information"
 #~ msgstr "Përfshij Informacione për Burimin"
+

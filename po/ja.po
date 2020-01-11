@@ -5112,12 +5112,12 @@ msgid ""
 msgstr "ブックマークリストにある人物の<N>世代以内の祖先とマッチする"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
+msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr "デフォルトの <N> 世代以内の人物の祖先"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
-"Matches ancestors of the default person not more than N generations away"
+"Matches ancestors of the Home Person not more than N generations away"
 msgstr "デフォルトの人物のN世代以内の祖先とマッチする"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -18803,6 +18803,13 @@ msgstr "ホームの人物がありません"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -28749,6 +28756,17 @@ msgstr "ホームの人物に指定(_H)"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "デフォルトの人物へ戻る"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "デフォルトの人物へ戻る"
 
@@ -36866,6 +36884,10 @@ msgstr "スタイルシートなし"
 
 #~ msgid "Home Person"
 #~ msgstr "ホームの人物"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "デフォルトの人物にマッチする"
 
 #~ msgid "Web Connect"
 #~ msgstr "ウェブへ接続"

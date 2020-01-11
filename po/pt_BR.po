@@ -5715,6 +5715,16 @@ msgstr ""
 "N gerações de distância"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Ascendentes da pessoa predefinida com até <N> gerações de distância"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Localiza os ascendentes da pessoa predefinida com até N gerações de distância"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Ascendentes da pessoa predefinida com até <N> gerações de distância"
 
@@ -19913,6 +19923,17 @@ msgstr "Não foi definida uma pessoa inicial"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Você precisa de uma \"pessoa predefinida\" para a qual deseja ir. Selecione "
+"a visualização de pessoas, selecione a pessoa que você quer que seja a "
+"\"pessoa inicial\", então confirme a sua escolha por meio do menu Editar -"
+">Definir pessoa inicial."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30357,6 +30378,17 @@ msgstr "_Definir a pessoa inicial"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Ir para a pessoa inicial"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Ir para a pessoa inicial"
 
@@ -38753,6 +38785,10 @@ msgstr "Sem folha de estilo"
 #~ msgid "Home Person"
 #~ msgstr "Pessoa inicial"
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Coincide com a pessoa predefinida"
+
 #~ msgid "Border Female Alive"
 #~ msgstr "Borda para sexo feminino ainda vivo"
 
@@ -38798,6 +38834,16 @@ msgstr "Sem folha de estilo"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Você precisa de uma \"pessoa predefinida\" para a qual deseja ir. "
+#~ "Selecione a visualização de pessoas, selecione a pessoa que você quer que "
+#~ "seja a \"pessoa inicial\", então confirme a sua escolha por meio do menu "
+#~ "Editar ->Definir pessoa inicial."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -41159,3 +41205,4 @@ msgstr "Sem folha de estilo"
 #, fuzzy
 #~ msgid "window1"
 #~ msgstr "Janela principal"
+

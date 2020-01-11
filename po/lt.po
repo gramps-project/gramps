@@ -5601,6 +5601,15 @@ msgstr ""
 "ne daugiau kaip N kartų"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Pagrindinio asmens protėviai, bet iki <N> kartos"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr "Tai pagrindinio asmens protėviai, kurie nutolę ne daugiau kaip N kartų"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Pagrindinio asmens protėviai, bet iki <N> kartos"
 
@@ -19723,6 +19732,17 @@ msgstr "Nepasirinktas pagrindinis asmuo"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Reikia nustatyti \"numatytąjį asmenį\", kad pereiti. Pasirinkite žmonių "
+"peržiūrą, pasirinkite kurį nors asmenį kaip \"Pagrindinis asmuo\", tuomet "
+"patvirtinkite savo pasirinkimą per meniu Taisa -> Nustatyti pagrindinį "
+"asmenį."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30120,6 +30140,17 @@ msgstr "Nustatyti _pagrindinį asmenį"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Nueiti iki asmens pagal nutylėjimą"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Nueiti iki asmens pagal nutylėjimą"
 
@@ -38515,6 +38546,10 @@ msgstr "Jokio stiliaus"
 #~ msgid "Home Person"
 #~ msgstr "Nepasirinktas pagrindinis asmuo"
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Atitinką pagrindinį asmenį"
+
 #~ msgid "Border Female Alive"
 #~ msgstr "Moters amžius, kai gyva"
 
@@ -38566,6 +38601,16 @@ msgstr "Jokio stiliaus"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Reikia nustatyti \"numatytąjį asmenį\", kad pereiti. Pasirinkite žmonių "
+#~ "peržiūrą, pasirinkite kurį nors asmenį kaip \"Pagrindinis asmuo\", tuomet "
+#~ "patvirtinkite savo pasirinkimą per meniu Taisa -> Nustatyti pagrindinį "
+#~ "asmenį."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -41772,3 +41817,4 @@ msgstr "Jokio stiliaus"
 #~ "Tvarkymas.\n"
 #~ "Oficialių vaizdų  klaidas raportuokite  https://gramps-project.org/bugs/, "
 #~ "arba susisiekite su autoriumi  (%(firstauthoremail)s)  kitu atveju. "
+

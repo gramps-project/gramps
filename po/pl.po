@@ -5705,6 +5705,15 @@ msgstr ""
 "Dopasowuje przodków ludzi z listy zakładek nieoddalone dalej niż <N> pokoleń"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Przodkowie domyślnej osoby oddalone nie dalej niż <N> pokoleń"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr "Dopasowuje przodków domyślnej osoby oddalone nie dalej niż N pokoleń"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Przodkowie domyślnej osoby oddalone nie dalej niż <N> pokoleń"
 
@@ -20057,6 +20066,16 @@ msgstr "Brak osoby początkowej"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Musisz wybrać 'domyślną osobę' aby przejść dalej. Wybierz Widok osób, wskaż "
+"osobę którą chcesz jako 'osobę referencyjną', potwierdź swój wybór przez "
+"Edycja->Ustaw osobę początkową."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30467,6 +30486,17 @@ msgstr "Oznacz jako osobę początkową"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Przejdź do domyślnej osoby"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Przejdź do domyślnej osoby"
 
@@ -38990,6 +39020,10 @@ msgstr "Bez arkusza stylów"
 #~ msgid "Home Person"
 #~ msgstr "Brak osoby początkowej"
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Dopasowuj domyślną osobę"
+
 #~ msgid "Border Female Alive"
 #~ msgstr "Granica życia osoby żeńskiej"
 
@@ -39038,6 +39072,15 @@ msgstr "Bez arkusza stylów"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Musisz wybrać 'domyślną osobę' aby przejść dalej. Wybierz Widok osób, "
+#~ "wskaż osobę którą chcesz jako 'osobę referencyjną', potwierdź swój wybór "
+#~ "przez Edycja->Ustaw osobę początkową."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -45141,6 +45184,9 @@ msgstr "Bez arkusza stylów"
 #~ msgid "Default note GRAMPS ID pattern"
 #~ msgstr "Domyślny wzór identyfikatora GRAMPS notatki"
 
+#~ msgid "Home Person GRAMPS ID pattern"
+#~ msgstr "Domyślny wzór identyfikatora GRAMPS osoby"
+
 #~ msgid "Default person GRAMPS ID pattern"
 #~ msgstr "Domyślny wzór identyfikatora GRAMPS osoby"
 
@@ -45914,3 +45960,4 @@ msgstr "Bez arkusza stylów"
 #~ "Użyj https://gramps-project.org/bugs/ aby zgłosić błąd odnośnie "
 #~ "oficjalnych widoków, w innych przypadku skontaktuj się z jego autorem "
 #~ "(%(firstauthoremail)s). "
+

@@ -5638,6 +5638,15 @@ msgstr ""
 "než N generací"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Předci výchozí osoby jsou vzdálení maximálně <N> generací"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr "Vyhovují předci výchozí osoby vzdálení ne více než N generací"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Předci výchozí osoby jsou vzdálení maximálně <N> generací"
 
@@ -19610,6 +19619,16 @@ msgstr "Žádná výchozí osoba"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Pro pokračování musíte nejdříve vybrat 'výchozí osobu'. Zvolte Pohled osoby, "
+"vyberte osobu kterou chcete mít jako výchozí, poté potvrďte volbu "
+"prostřednictvím nabídky Upravit -> Nastavit výchozí osobu."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -29779,6 +29798,17 @@ msgstr "Na_stavit výchozí osobu"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Přejít na výchozí osobu"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Přejít na výchozí osobu"
 
@@ -38076,6 +38106,15 @@ msgstr "Žádná šablona"
 #~ msgstr "Může pomoci vyřešit problémy s písmy."
 
 #~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Pro pokračování musíte nejdříve vybrat 'výchozí osobu'. Zvolte Pohled "
+#~ "osoby, vyberte osobu kterou chcete mít jako výchozí, poté potvrďte volbu "
+#~ "prostřednictvím nabídky Upravit -> Nastavit výchozí osobu."
+
+#~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
@@ -38134,6 +38173,10 @@ msgstr "Žádná šablona"
 
 #~ msgid "Home Person"
 #~ msgstr "Výchozí osoba"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Vyhovuje výchozí osoba"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Ohraničit žijící ženy"
@@ -41055,6 +41098,9 @@ msgstr "Žádná šablona"
 #~ msgid "Right-click to the right of the tab to add a gramplet."
 #~ msgstr "Pravým tlačítkem myši na záložce přidejte gramplety."
 
+#~ msgid "You need to set a 'Home Person' to go to."
+#~ msgstr "Musíte zvolit výchozí osobu"
+
 #~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Musíte zvolit výchozí osobu"
 
@@ -41508,3 +41554,4 @@ msgstr "Žádná šablona"
 
 #~ msgid "Password:"
 #~ msgstr "Heslo:"
+

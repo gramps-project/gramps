@@ -5652,6 +5652,17 @@ msgid ""
 msgstr "Könyvjelzőlistás emberek ősei, akik N-nél nem távolibb generációjúak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr ""
+"Alapértelmezett emberek ősei, akik nem több, mint <N> generációval "
+"távoliabbak"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr "Alapértelmezett emberek ősei, akik N-nél nem távolibb generációjúak"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr ""
 "Alapértelmezett emberek ősei, akik nem több, mint <N> generációval "
@@ -19751,6 +19762,16 @@ msgstr "Nincs kiinduló személy"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
+"nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá a "
+"Szerkesztés -> Kiinduló személy beállítása menün keresztül."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -30127,6 +30148,17 @@ msgstr "A kii_nduló személy beállítása"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "A kiinduló személyhez ugrás"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "A kiinduló személyhez ugrás"
 
@@ -38396,6 +38428,15 @@ msgstr "Nincs stíluslap"
 #~ msgstr "Segíthet megoldani a betűtípusok problémáit."
 
 #~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
+#~ "nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá "
+#~ "a Szerkesztés -> Kiinduló személy beállítása menün keresztül."
+
+#~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
@@ -38454,6 +38495,10 @@ msgstr "Nincs stíluslap"
 
 #~ msgid "Home Person"
 #~ msgstr "Kiinduló személy"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Az alapértelmezettnek megfelelő személy"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Élő nő kerete"
@@ -41672,3 +41717,4 @@ msgstr "Nincs stíluslap"
 
 #~ msgid "Family Sources"
 #~ msgstr "Család források"
+

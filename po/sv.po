@@ -4169,6 +4169,14 @@ msgid "Matches ancestors of the people on the bookmark list not more than N gene
 msgstr "Matchar anor till personer i bokmärkeslistan högst N generationer bort"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Anor till förvald person inte mer än <N> generationer bort"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "Matchar anor till förvald person högst N generationer bort"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Anor till förvald person inte mer än <N> generationer bort"
 
@@ -15239,6 +15247,10 @@ msgid "No Home Person"
 msgstr "Hemperson är inte bestämd"
 
 #: ../gramps/gui/views/navigationview.py:324
+msgid "You need to set a 'Home Person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
+msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
+
+#: ../gramps/gui/views/navigationview.py:324
 msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
 msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
 
@@ -23880,6 +23892,10 @@ msgid "Set _Home Person"
 msgstr "Välj _hemperson"
 
 #: ../gramps/plugins/lib/libpersonview.py:260 ../gramps/plugins/view/fanchartview.py:184 ../gramps/plugins/view/geoclose.py:111 ../gramps/plugins/view/geofamclose.py:109 ../gramps/plugins/view/geomoves.py:108 ../gramps/plugins/view/geoperson.py:109 ../gramps/plugins/view/pedigreeview.py:693 ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Gå till standardpersonen"
+
+#: ../gramps/plugins/lib/libpersonview.py:260 ../gramps/plugins/view/fanchartview.py:184 ../gramps/plugins/view/geoclose.py:111 ../gramps/plugins/view/geofamclose.py:109 ../gramps/plugins/view/geomoves.py:108 ../gramps/plugins/view/geoperson.py:109 ../gramps/plugins/view/pedigreeview.py:693 ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Gå till standardpersonen"
 
@@ -31183,6 +31199,9 @@ msgstr "Inget mallblad"
 #~ msgid "Can help to fix problems with fonts."
 #~ msgstr "Kan avhjälpa problem med typsnitt."
 
+#~ msgid "You need to set a 'Home Person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
+#~ msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
+
 #~ msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
 #~ msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
 
@@ -31218,6 +31237,10 @@ msgstr "Inget mallblad"
 
 #~ msgid "Home Person"
 #~ msgstr "Hemperson"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Matchar standardpersonen"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Kant för levande kvinnoperson"
@@ -33119,6 +33142,9 @@ msgstr "Inget mallblad"
 
 #~ msgid "Invalid longitude (syntax: 18°9'"
 #~ msgstr "Ogiltig longitud (syntax: 18°9'"
+
+#~ msgid "You need to set a 'Home Person' to go to."
+#~ msgstr "Du måste bestämma en 'standardperson' att hoppa till."
 
 #~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Du måste bestämma en 'standardperson' att hoppa till."

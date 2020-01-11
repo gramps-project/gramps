@@ -3,22 +3,6 @@
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd at gmail.com>, 2007-2020.
 
-msgid ""
-msgstr ""
-"Project-Id-Version: gramps 3.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2020-02-25 22:47+0200\n"
-"Last-Translator: Bernard Banko <beernarrd at gmail.com>\n"
-"Language-Team: lugos.si\n"
-"Language: sl\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
-"X-Generator: Virtaal 0.7.1\n"
-
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
@@ -5607,6 +5591,17 @@ msgid ""
 msgstr ""
 "Najde prednike ljudi z določenimi zaznamki, ki od teh ljudi niso oddaljeni "
 "za več kot določeno število rodov"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Predniki privzete osebe znotraj določenega števila rodov"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Najde prednike določene osebe, ki od nje niso oddaljeni več kot določeno "
+"število rodov"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -19644,6 +19639,16 @@ msgstr "Izhodiščna oseba ni nastavljena"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Nastaviti morate 'privzeto osebo'. Izberite pogled Osebe, izberite osebo, ki "
+"bi jo radi nastavili za 'Izhodiščno osebo' in izbiro potrdite v meniju Uredi "
+"-> Nastavi izhodiščno osebo."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -29980,6 +29985,17 @@ msgstr "Nastavi _izhodiščno osebo"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Pojdi na izhodiščno osebo"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Pojdi na izhodiščno osebo"
 
@@ -38391,6 +38407,10 @@ msgstr "Brez lista slogov"
 #~ msgid "Home Person"
 #~ msgstr "Izhodiščna oseba"
 
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Najde privzeto osebo"
+
 #~ msgid "Border Female Alive"
 #~ msgstr "Okvir za žive ženske"
 
@@ -38437,6 +38457,15 @@ msgstr "Brez lista slogov"
 
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s ..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Nastaviti morate 'privzeto osebo'. Izberite pogled Osebe, izberite osebo, "
+#~ "ki bi jo radi nastavili za 'Izhodiščno osebo' in izbiro potrdite v meniju "
+#~ "Uredi -> Nastavi izhodiščno osebo."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -38707,3 +38736,4 @@ msgstr "Brez lista slogov"
 
 #~ msgid "Alphabet Menu: %s"
 #~ msgstr "Abecedni meni: %s"
+
