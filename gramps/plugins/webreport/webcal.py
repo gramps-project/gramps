@@ -63,6 +63,7 @@ from gramps.gen.plug.menu import (BooleanOption, NumberOption, StringOption,
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_death_or_fallback
+from gramps.gen.utils.symbols import Symbols
 from gramps.gen.datehandler import displayer as _dd
 
 from gramps.gen.display.name import displayer as _nd
@@ -2162,12 +2163,14 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
         #age_str.format(precision=1, as_age=False, dlocale=rlocale)
         age_str = age_str.format(precision=1, as_age=False, dlocale=rlocale)
 
+        symbols = Symbols()
+        death_idx = symbols.DEATH_SYMBOL_SHADOWED_LATIN_CROSS
+        death_symbol = symbols.get_death_symbol_for_char(death_idx)
 
         # a birthday
         if event == 'Birthday':
 
             if age_at_death is not None:
-                death_symbol = "&#10014;" # latin cross for html code
                 trans_date = trans_text("Died %(death_date)s.")
                 translated_date = rlocale.get_date(dead_event_date)
                 mess = trans_date % {'death_date' : translated_date}
@@ -2188,7 +2191,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
 
         # a death
         if event == 'Death':
-            txt_str = (text + ', <em>'
+            txt_str = (text + ', ' + death_symbol + ' <em>'
                        + (_('%s since death') % str(age_str) if nyears
                           else _('death'))
                        + '</em>')
