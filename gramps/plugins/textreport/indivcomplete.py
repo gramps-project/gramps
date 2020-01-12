@@ -141,7 +141,7 @@ class IndivCompleteReport(Report):
 
         self.sort = menu.get_option_by_name('sort').get_value()
 
-        self.name_is_title = menu.get_option_by_name('name_is_title').get_value()
+        self.name_is_title = menu.get_option_by_name('name_title').get_value()
 
         self.use_attrs = menu.get_option_by_name('incl_attrs').get_value()
         self.use_census = menu.get_option_by_name('incl_census').get_value()
@@ -1088,7 +1088,7 @@ class IndivCompleteOptions(MenuReportOptions):
         name_is_title = BooleanOption(_("Use name of person as title"), False)
         name_is_title.set_help(_("Whether the title should be the name of the "
                                  "person, or 'Complete Individual Report'"))
-        menu.add_option(category_name, "name_is_title", name_is_title)
+        menu.add_option(category_name, "name_title", name_is_title)
 
         ################################
         category_name = _("Report Options (2)")
