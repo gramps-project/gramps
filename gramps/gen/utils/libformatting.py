@@ -57,10 +57,10 @@ class FormattingHelper:
         self.uistate = uistate
         self._text_cache = {}
         self._markup_cache = {}
-        self.symbols = Symbols()
         self.reload_symbols()
 
     def reload_symbols(self):
+        self.symbols = Symbols()
         self.clear_cache()
         if self.uistate and self.uistate.symbols:
             death_idx = self.uistate.death_symbol

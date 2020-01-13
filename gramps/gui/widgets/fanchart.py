@@ -199,10 +199,10 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.gradcol = None
         self.in_drag = False
         self._mouse_click_cell_address = None
-        self.symbols = Symbols()
         self.reload_symbols()
 
     def reload_symbols(self):
+        self.symbols = Symbols()
         dth_idx = self.uistate.death_symbol
         if self.uistate.symbols:
             self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
