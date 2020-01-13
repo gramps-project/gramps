@@ -35,13 +35,13 @@ from html import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.utils.symbols import Symbols
 from ..lib import EventType
 from ..datehandler import get_date
 from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
 from .db import (get_birth_or_fallback, get_death_or_fallback,
                  get_marriage_or_fallback)
-from gramps.gen.utils.symbols import Symbols
 
 #-------------------------------------------------------------------------
 #
@@ -64,17 +64,19 @@ class FormattingHelper:
         self.clear_cache()
         if self.uistate and self.uistate.symbols:
             death_idx = self.uistate.death_symbol
-            self.male = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_MALE)
-            self.female = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_FEMALE)
-            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
-            self.marr = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_MARRIAGE)
+            gsfs = self.symbols.get_symbol_for_string
+            self.male = gsfs(self.symbols.SYMBOL_MALE)
+            self.female = gsfs(self.symbols.SYMBOL_FEMALE)
+            self.bth = gsfs(self.symbols.SYMBOL_BIRTH)
+            self.marr = gsfs(self.symbols.SYMBOL_MARRIAGE)
             self.dth = self.symbols.get_death_symbol_for_char(death_idx)
         else:
             death_idx = self.symbols.DEATH_SYMBOL_LATIN_CROSS
-            self.male = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_MALE)
-            self.female = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_FEMALE)
-            self.marr = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_MARRIAGE)
-            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
+            gsf = self.symbols.get_symbol_fallback
+            self.male = gsf(self.symbols.SYMBOL_MALE)
+            self.female = gsf(self.symbols.SYMBOL_FEMALE)
+            self.marr = gsf(self.symbols.SYMBOL_MARRIAGE)
+            self.bth = gsf(self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_fallback(death_idx)
 
     def format_relation(self, family, line_count, use_markup=False):
@@ -149,7 +151,7 @@ class FormattingHelper:
                         text = place_title
         return text
 
-    def format_person( self, person, line_count, use_markup=False):
+    def format_person(self, person, line_count, use_markup=False):
         """fromat how info about a person should be presented
         """
         if not person:
@@ -170,7 +172,7 @@ class FormattingHelper:
             if birth and use_markup and birth.get_type() != EventType.BIRTH:
                 bdate = "<i>%s</i>" % escape(get_date(birth))
                 bplace = "<i>%s</i>" % escape(self.get_place_name(
-                                                    birth.get_place_handle()))
+                    birth.get_place_handle()))
             elif birth and use_markup:
                 bdate = escape(get_date(birth))
                 bplace = escape(self.get_place_name(birth.get_place_handle()))
@@ -184,7 +186,7 @@ class FormattingHelper:
             if death and use_markup and death.get_type() != EventType.DEATH:
                 ddate = "<i>%s</i>" % escape(get_date(death))
                 dplace = "<i>%s</i>" % escape(self.get_place_name(
-                                                    death.get_place_handle()))
+                    death.get_place_handle()))
             elif death and use_markup:
                 ddate = escape(get_date(death))
                 dplace = escape(self.get_place_name(death.get_place_handle()))
@@ -212,7 +214,7 @@ class FormattingHelper:
             self._text_cache[person.handle][line_count] = text
         return text
 
-    def clear_cache( self):
+    def clear_cache(self):
         """clear the cache of kept format strings
         """
         self._text_cache = {}

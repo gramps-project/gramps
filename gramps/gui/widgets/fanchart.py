@@ -205,10 +205,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.symbols = Symbols()
         dth_idx = self.uistate.death_symbol
         if self.uistate.symbols:
-            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_for_string(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_for_char(dth_idx)
         else:
-            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_fallback(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_fallback(dth_idx)
 
     def reset(self):
@@ -664,7 +666,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             if self.showid:
                 name += " (" + person.gramps_id + ")"
             if self.uistate.symbols and not alive:
-                    name = self.dth + ' ' + name
+                name = self.dth + ' ' + name
             self.draw_text(ctx, name, radiusin, radiusout, start, stop,
                            draw_radial, fontcolor, bold)
         else:
