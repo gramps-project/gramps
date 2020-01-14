@@ -64,6 +64,7 @@ from .managedwindow import GrampsWindowManager
 from gramps.gen.relationship import get_relationship_calculator
 from .glade import Glade
 from gramps.gen.utils.db import navigation_label
+from gramps.gen.errors import HandleError
 from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 from .dialog import ErrorDialog
 from .uimanager import ActionGroup
@@ -623,31 +624,43 @@ class DisplayState(Callback):
         self.status.clear_filter()
 
     def modify_statusbar(self, dbstate, active=None):
-        view = self.viewmanager.active_page
-        if not isinstance(view, NavigationView) or dbstate is None:
+        """ Update the status bar with current object info.
+
+        Since this is called via GLib.timeout_add it can happen at any time
+        Gtk is idle or processing pending events.  Even in the midst of a
+        multiple delete, before the GUI has been updated for missing objects.
+        So it is susceptible to HandleErrors for missing data, thus the 'try'.
+        """
+        try:
+            view = self.viewmanager.active_page
+            if not isinstance(view, NavigationView) or dbstate is None:
+                return
+
+            nav_type = view.navigation_type()
+            active_handle = self.get_active(nav_type, view.navigation_group())
+
+            self.status.pop(self.status_id)
+
+            if active_handle and dbstate.is_open():
+                name, _obj = navigation_label(dbstate.db, nav_type,
+                                              active_handle)
+                # Append relationship to default person if enabled.
+                if(nav_type == 'Person' and
+                   config.get('interface.statusbar') > 1):
+                    if active_handle != dbstate.db.get_default_handle():
+                        msg = self.display_relationship(dbstate, active_handle)
+                        if msg:
+                            name = '%s (%s)' % (name, msg.strip())
+            else:
+                name = _('No active object')
+
+            if not name:
+                name = self.NAV2MES[nav_type]
+
+            self.status.push(self.status_id, name)
+            process_pending_events()
+        except HandleError:
             return
-
-        nav_type = view.navigation_type()
-        active_handle = self.get_active(nav_type, view.navigation_group())
-
-        self.status.pop(self.status_id)
-
-        if active_handle and dbstate.is_open():
-            name, obj = navigation_label(dbstate.db, nav_type, active_handle)
-            # Append relationship to default person if funtionality is enabled.
-            if nav_type == 'Person' and config.get('interface.statusbar') > 1:
-                if active_handle != dbstate.db.get_default_handle():
-                    msg = self.display_relationship(dbstate, active_handle)
-                    if msg:
-                        name = '%s (%s)' % (name, msg.strip())
-        else:
-            name = _('No active object')
-
-        if not name:
-            name = self.NAV2MES[nav_type]
-
-        self.status.push(self.status_id, name)
-        process_pending_events()
 
     def pulse_progressbar(self, value, text=None):
         self.progress.set_fraction(min(value/100.0, 1.0))
