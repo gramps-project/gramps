@@ -440,7 +440,7 @@ class MissingMediaDialog:
 class MultiSelectDialog:
     def __init__(self, msg1_func, msg2_func, items, lookup,
                  cancel_func=None, no_func=None, yes_func=None,
-                 parent=None):
+                 multi_yes_func=None, parent=None):
         """
         """
         self.xml = Glade(toplevel='multiselectdialog')
@@ -489,6 +489,10 @@ class MultiSelectDialog:
                     response = self.top.run()
 
                 if check_button.get_active():
+                    # run the multiple yes if 'do remainder' is checked
+                    if multi_yes_func and response == 3:
+                        multi_yes_func(items)
+                        break
                     default_action = response
             else:
                 response = default_action

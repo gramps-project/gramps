@@ -462,6 +462,7 @@ class BasePersonView(ListView):
                               handles,
                               self._lookup_person,
                               yes_func=self.delete_person_response,
+                              multi_yes_func=self.delete_multi_person_response,
                               parent=self.uistate.window)
 
     def _message1_format(self, person):
@@ -500,6 +501,30 @@ class BasePersonView(ListView):
             self.dbstate.db.delete_person_from_database(person, trans)
             trans.set_description(active_name)
 
+        self.uistate.set_busy_cursor(False)
+
+    def delete_multi_person_response(self, handles=None):
+        """
+        Deletes multiple persons from the database.
+        """
+        # set the busy cursor, so the user knows that we are working
+        self.uistate.set_busy_cursor(True)
+        self.uistate.progress.show()
+        self.uistate.push_message(self.dbstate, _("Processing..."))
+        hndl_cnt = len(handles) / 100
+        self.dbstate.db.disable_signals()
+
+        # create the transaction
+        with DbTxn('', self.dbstate.db) as trans:
+            for (indx, handle) in enumerate(handles):
+                person = self.dbstate.db.get_person_from_handle(handle)
+                self.dbstate.db.delete_person_from_database(person, trans)
+                self.uistate.pulse_progressbar(indx / hndl_cnt)
+            trans.set_description(_("Multiple Selection Delete"))
+
+        self.dbstate.db.enable_signals()
+        self.dbstate.db.request_rebuild()
+        self.uistate.progress.hide()
         self.uistate.set_busy_cursor(False)
 
     def remove_object_from_handle(self, handle):
