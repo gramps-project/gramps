@@ -96,8 +96,6 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         self.dbstate = dbstate
         self.uistate = uistate
         self.map = {}
-        self.list = []
-        self.index = 0
         self.merger = None
         self.mergee = None
         self.removed = {}
@@ -181,7 +179,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         else:
             try:
                 DuplicatePeopleToolMatches(self.dbstate, self.uistate,
-                                           self.track, self.list, self.map,
+                                           self.track, self.map,
                                            self.update)
             except WindowActiveError:
                 pass
@@ -191,7 +189,6 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                                       _('Looking for duplicate people'),
                                       parent=self.window)
 
-        index = 0
         males = {}
         females = {}
         self.map = {}
@@ -229,28 +226,19 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
             else:
                 remaining = females[key]
 
-            #index = 0
             for p2key in remaining:
-                #index += 1
                 if p1key == p2key:
                     continue
+                tup = (p1key, p2key) if p1key < p2key else (p2key, p1key)
+                if tup in self.map:
+                    # already found that pair
+                    continue
+
                 p2 = self.db.get_person_from_handle(p2key)
-                if p2key in self.map:
-                    (v,c) = self.map[p2key]
-                    if v == p1key:
-                        continue
-
-                chance = self.compare_people(p1,p2)
+                chance = self.compare_people(p1, p2)
                 if chance >= thresh:
-                    if p1key in self.map:
-                        val = self.map[p1key]
-                        if val[1] > chance:
-                            self.map[p1key] = (p2key,chance)
-                    else:
-                        self.map[p1key] = (p2key,chance)
+                    self.map[tup] = chance
 
-        self.list = sorted(self.map)
-        self.length = len(self.list)
         self.progress.close()
 
     def gen_key(self, val):
@@ -539,13 +527,11 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
 
 class DuplicatePeopleToolMatches(ManagedWindow):
 
-    def __init__(self, dbstate, uistate, track, the_list, the_map, callback):
+    def __init__(self, dbstate, uistate, track, the_map, callback):
         ManagedWindow.__init__(self, uistate, track, self.__class__)
 
         self.dellist = set()
-        self.list = the_list
         self.map = the_map
-        self.length = len(self.list)
         self.update = callback
         self.db = dbstate.db
         self.dbstate = dbstate
@@ -586,31 +572,23 @@ class DuplicatePeopleToolMatches(ManagedWindow):
 
     def on_help_clicked(self, _obj):
         """Display the relevant portion of Gramps manual"""
-
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
-    def redraw(self):
-        list = []
-        for p1key, p1data in self.map.items():
-            if p1key in self.dellist:
-                continue
-            (p2key,c) = p1data
-            if p2key in self.dellist:
-                continue
-            if p1key == p2key:
-                continue
-            list.append((c,p1key,p2key))
 
+    def redraw(self):
         self.list.clear()
-        for (c,p1key,p2key) in list:
-            c1 = "%5.2f" % c
-            c2 = "%5.2f" % (100-c)
-            p1 = self.db.get_person_from_handle(p1key)
-            p2 = self.db.get_person_from_handle(p2key)
-            if not p1 or not p2:
+        for tup, chance in self.map.items():
+            if tup[0] in self.dellist:
                 continue
+            if tup[1] in self.dellist:
+                continue
+
+            c1 = "%5.2f" % chance
+            c2 = "%5.2f" % (100 - chance)
+            p1 = self.db.get_person_from_handle(tup[0])
+            p2 = self.db.get_person_from_handle(tup[1])
             pn1 = name_displayer.display(p1)
             pn2 = name_displayer.display(p2)
-            self.list.add([c1, pn1, pn2,c2],(p1key,p2key))
+            self.list.add([c1, pn1, pn2, c2], tup)
 
     def on_do_merge_clicked(self, _obj):
         _store, iter_ = self.list.selection.get_selected()
