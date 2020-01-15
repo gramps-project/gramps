@@ -60,6 +60,7 @@ _val2label = {
     0.25 : _("Low"),
     1.0  : _("Medium"),
     2.0  : _("High"),
+    3.0  : _("Very High")
 }
 
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
@@ -191,7 +192,8 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
 
         males = {}
         females = {}
-        self.map = {}
+        self.map = {}  # key is tuple of handles, value is chance
+        self.uids = {}
 
         length = self.db.get_number_of_people()
 
@@ -212,6 +214,19 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                     females[key].append(p1_id)
                 else:
                     females[key] = [p1_id]
+            for uid in p1.get_uid_list():
+                # check if a uid was already seen
+                hndl = self.uids.get(str(uid))
+                if hndl:
+                    # matches one already there, store match data
+                    tup = (hndl, p1_id) if hndl < p1_id else (p1_id, hndl)
+                    self.map[tup] = 10
+                else:  # store the uid for later comparisons
+                    self.uids[str(uid)] = p1_id
+
+        if self.map and thresh == 3:  # if Very High and found uid matches
+            self.progress.close()     # just display those to speed things up
+            return
 
         self.progress.set_pass(_('Pass 2: Calculating potential matches'),
                                length)
