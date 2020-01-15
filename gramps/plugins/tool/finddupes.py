@@ -191,7 +191,8 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
 
         males = {}
         females = {}
-        self.map = {}
+        self.map = {}  # key is tuple of handles, value is chance
+        self.uids = {}
 
         length = self.db.get_number_of_people()
 
@@ -212,6 +213,9 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                     females[key].append(p1_id)
                 else:
                     females[key] = [p1_id]
+            for attr in p1.get_attribute_list():
+                if attr.get_type() == '_UID':
+                    self.do_uid(attr.get_value(), p1_id)
 
         self.progress.set_pass(_('Pass 2: Calculating potential matches'),
                                length)
@@ -240,6 +244,26 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
                     self.map[tup] = chance
 
         self.progress.close()
+
+    def do_uid(self, uid, handle):
+        """ process a uid and store into a dict.  Because uids may not be
+        in standard format, we store both original string and processed uid in
+        dict """
+        uid = uid.replace('-', '').replace('{', '').replace(
+            '}', '').lower().strip()
+        try:
+            # if lower 32 chars is valid hex string, use it
+            _uid = int(uid[0:32], 16)
+            uid = uid[0:32]
+        except ValueError:
+            # otherwise just use the string as is
+            pass
+        hndl = self.uids.get(uid)
+        if hndl:
+            tup = (hndl, handle) if hndl < handle else (handle, hndl)
+            self.map[tup] = 10
+        else:
+            self.uids[uid] = handle
 
     def gen_key(self, val):
         if self.use_soundex:
