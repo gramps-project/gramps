@@ -34,6 +34,7 @@
 #-------------------------------------------------------------------------
 import os
 import time
+import random
 
 #-------------------------------------------------------------------------
 #
@@ -42,9 +43,10 @@ import time
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import (AttributeType, ChildRefType, Citation, Date,
-                            EventRoleType, EventType, LdsOrd, NameType,
-                            PlaceType, NoteType, Person, UrlType)
+from gramps.gen.lib import (
+    Attribute, AttributeType, ChildRefType, Citation, Date, EventRoleType,
+    EventType, LdsOrd, NameType, NoteType, PlaceType, Person, UrlType)
+from gramps.gen.db import DbTxn
 from gramps.version import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom
 from gramps.gen.errors import DatabaseError
@@ -55,6 +57,7 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as _pd
+from gramps.gen.utils.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -119,7 +122,6 @@ PEDIGREE_TYPES = {
 }
 
 NOTES_PER_PERSON = 104  # fudge factor to make progress meter a bit smoother
-
 
 #-------------------------------------------------------------------------
 #
@@ -199,6 +201,47 @@ def event_has_subordinate_data(event, event_ref):
 
 #-------------------------------------------------------------------------
 #
+# GedcomWriter Options
+#
+#-------------------------------------------------------------------------
+class GedcomWriterOptionBox(WriterOptionBox):
+    """
+    Create a VBox with the option widgets and define methods to retrieve
+    the options.
+
+    """
+    def __init__(self, person, dbstate, uistate, track=[], window=None):
+        WriterOptionBox.__init__(self, person, dbstate, uistate, track=track,
+                                 window=window)
+        self.include_uid = 0
+        self.include_uid_chk = None
+
+    def get_option_box(self):
+        from gi.repository import Gtk
+        option_box = WriterOptionBox.get_option_box(self)
+        self.include_uid_chk = Gtk.CheckButton(
+            label=_("Include unique IDs (GEDCOM _UID) in your db and export"))
+        self.include_uid_chk.set_tooltip_text(
+            _("The unique ID allows Gramps and other programs sharing GEDCOM "
+              "files to more easily match up persons and families for "
+              "merging.\nThe _UID attribute is added to persons and families "
+              "in your db if not already present on those persons and "
+              "families to suport future merging or additional exports."))
+        self.include_uid_chk.set_active(
+            bool(config.get("export.include-uid")))
+        option_box.pack_start(self.include_uid_chk, False, True, 0)
+
+        return option_box
+
+    def parse_options(self):
+        WriterOptionBox.parse_options(self)
+        if self.include_uid_chk:
+            self.include_uid = self.include_uid_chk.get_active()
+            config.set("export.include-uid", self.include_uid)
+
+
+#-------------------------------------------------------------------------
+#
 # GedcomWriter class
 #
 #-------------------------------------------------------------------------
@@ -212,10 +255,14 @@ class GedcomWriter(UpdateCallback):
     def __init__(self, database, user, option_box=None):
         UpdateCallback.__init__(self, user.callback)
         self.dbase = database
+        self.trans = None
         self.dirname = None
         self.gedcom_file = None
         self.progress_cnt = 0
+        self.include_uid = 1
         self.setup(option_box)
+        seed = time.time()
+        self._rand = random.Random(seed)
 
     def setup(self, option_box):
         """
@@ -226,6 +273,9 @@ class GedcomWriter(UpdateCallback):
         if option_box:
             option_box.parse_options()
             self.dbase = option_box.get_filtered_database(self.dbase, self)
+            self.include_uid = option_box.include_uid
+        else:
+            self.include_uid = bool(config.get("export.include-uid"))
 
     def write_gedcom_file(self, filename):
         """
@@ -239,14 +289,19 @@ class GedcomWriter(UpdateCallback):
             source_len = self.dbase.get_number_of_sources()
             repo_len = self.dbase.get_number_of_repositories()
             note_len = self.dbase.get_number_of_notes() / NOTES_PER_PERSON
-
             total_steps = (person_len + family_len + source_len + repo_len +
                            note_len)
             self.set_total(total_steps)
             self._header(filename)
             self._submitter()
-            self._individuals()
-            self._families()
+            if self.include_uid:
+                with DbTxn(_("Add _UID to persons, families"),
+                           self.dbase) as self.trans:
+                    self._individuals()
+                    self._families()
+            else:
+                self._individuals()
+                self._families()
             self._sources()
             self._repos()
             self._notes()
@@ -652,6 +707,7 @@ class GedcomWriter(UpdateCallback):
         attr_list = [attr for attr in person.get_attribute_list()
                      if attr.get_type() != AttributeType.NICKNAME]
 
+        uid = False
         for attr in attr_list:
 
             attr_type = int(attr.get_type())
@@ -661,6 +717,8 @@ class GedcomWriter(UpdateCallback):
 
             if key in ("AFN", "RFN", "REFN", "_UID", "_FSFTID"):
                 self._writeln(1, key, value)
+                if key == "_UID":
+                    uid = True
                 continue
 
             if key == "RESN":
@@ -676,6 +734,33 @@ class GedcomWriter(UpdateCallback):
                 continue
             self._note_references(attr.get_note_list(), 2)
             self._source_references(attr.get_citation_list(), 2)
+        if uid or not self.include_uid:
+            return
+        self._add_uids(person)
+
+    def _add_uids(self, obj):
+        """
+        Add a _UID to the gedcom file and as an attribute to the person
+        or family
+        """
+        check_a = 0
+        check_b = 0
+        uid = ''
+        bits32 = 2 ** 32
+        for _dw_cnt in range(0, 4):
+            dword = self._rand.randint(0, bits32)
+            for cnt4 in range(0, 32, 8):
+                byt = (dword >> cnt4) & 0xff
+                check_a += byt
+                check_b += check_a
+                uid += "%02x" % byt
+        uid += "%02x%02x" % (check_a & 0xff, check_b & 0xff)
+        self._writeln(1, "_UID", uid.upper())
+        attr = Attribute()
+        attr.set_type("_UID")
+        attr.set_value(uid.upper())
+        obj.add_attribute(attr)
+        self.dbase.method("commit_%s", obj.__class__.__name__)(obj, self.trans)
 
     def _source_references(self, citation_list, level):
         """
@@ -838,7 +923,7 @@ class GedcomWriter(UpdateCallback):
 
         self._lds_ords(family, 1)
         self._family_events(family)
-        self._family_attributes(family.get_attribute_list(), 1)
+        self._family_attributes(family, 1)
         self._family_child_list(family.get_child_ref_list())
         self._source_references(family.get_citation_list(), 1)
         self._photos(family.get_media_list(), 1)
@@ -930,7 +1015,7 @@ class GedcomWriter(UpdateCallback):
                 self._writeln(level, 'WIFE')
                 self._writeln(level + 1, 'AGE', attr.get_value())
 
-    def _family_attributes(self, attr_list, level):
+    def _family_attributes(self, family, level):
         """
         Write out the attributes associated with a family to the GEDCOM file.
 
@@ -942,7 +1027,8 @@ class GedcomWriter(UpdateCallback):
 
         """
 
-        for attr in attr_list:
+        uid = False
+        for attr in family.get_attribute_list():
 
             attr_type = int(attr.get_type())
             name = libgedcom.FAMILYCONSTANTATTRIBUTES.get(attr_type)
@@ -951,6 +1037,8 @@ class GedcomWriter(UpdateCallback):
 
             if key in ("AFN", "RFN", "REFN", "_UID"):
                 self._writeln(1, key, value)
+                if key == "_UID":
+                    uid = True
                 continue
 
             if name and name.strip():
@@ -963,6 +1051,9 @@ class GedcomWriter(UpdateCallback):
             self._note_references(attr.get_note_list(), level + 1)
             self._source_references(attr.get_citation_list(),
                                     level + 1)
+        if uid or not self.include_uid:
+            return
+        self._add_uids(family)
 
     def _sources(self):
         """

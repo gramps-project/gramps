@@ -42,6 +42,13 @@ def mock_localtime(*args):
     return strptime("25 Dec 1999", "%d %b %Y")
 
 
+def mock_time(*args):
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    return 0.0
+
+
 def call(*args):
     """ Call Gramps to perform the action with out and err captured """
     #print("call:", args)
@@ -226,12 +233,14 @@ class ExportControl(unittest.TestCase):
         if msg:
             self.fail(tst_file + ': ' + msg)
 
+    @patch('gramps.plugins.export.exportgedcom.time.time', mock_time)
     def test_ged(self):
         """ Run a Gedcom export test """
         config.set('preferences.place-auto', True)
         config.set('database.backend', 'bsddb')
+        config.set('export.include-uid', True)
         src_file = 'exp_sample.gramps'
-        tst_file = 'exp_sample_ged.ged'
+        tst_file = 'exp_sample_ged_uid.ged'
         msg = do_it(src_file, tst_file, gedfilt)
         if msg:
             self.fail(tst_file + ': ' + msg)
@@ -240,6 +249,7 @@ class ExportControl(unittest.TestCase):
         """ Run a Gedcom export test """
         config.set('preferences.place-auto', True)
         config.set('database.backend', 'sqlite')
+        config.set('export.include-uid', False)
         src_file = 'exp_sample.gramps'
         tst_file = 'exp_sample_ged.ged'
         msg = do_it(src_file, tst_file, gedfilt)

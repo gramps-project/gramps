@@ -174,7 +174,8 @@ register('export.proxy-order',
           ["person", 0],
           ["note", 0],
           ["reference", 0]]
-        )
+         )
+register('export.include-uid', True)
 
 register('geography.center-lon', 0.0)
 register('geography.lock', False)

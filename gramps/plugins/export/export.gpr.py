@@ -83,7 +83,7 @@ plg.status = STABLE
 plg.fname = 'exportgedcom.py'
 plg.ptype = EXPORT
 plg.export_function = 'export_data'
-plg.export_options = 'WriterOptionBox'
+plg.export_options = 'GedcomWriterOptionBox'
 plg.export_options_title = _('GEDCOM export options')
 plg.extension = "ged"
 
