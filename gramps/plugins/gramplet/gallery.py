@@ -1,7 +1,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011 Tim G L Lyons
+# Copyright (C) 2020 Giansalvo Gusinu
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,7 +40,8 @@ class Gallery(Gramplet):
     """
     Displays a gallery of media objects.
     """
-    def init(self):
+    def init(self, direction="Horizontal"):
+        self.direction = direction
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
@@ -49,7 +51,10 @@ class Gallery(Gramplet):
         Build the GUI interface.
         """
         self.image_list = []
-        self.top = Gtk.Box(spacing=3)
+        if self.direction == "Horizontal":
+            self.top = Gtk.Box(spacing=3)
+        else:
+            self.top = Gtk.VBox(spacing=3)
         return self.top
 
     def clear_images(self):
@@ -107,6 +112,8 @@ class PersonGallery(Gallery):
     """
     Displays a gallery of media objects for a person.
     """
+    def init(self, direction="Horizontal"):
+        super().init(direction)
     def db_changed(self):
         self.connect(self.dbstate.db, 'person-update', self.update)
 
@@ -132,6 +139,13 @@ class PersonGallery(Gallery):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
+class PersonGalleryVertical(PersonGallery):
+    """
+    Displays a gallery of media objects for a person vertically.
+    """
+    def init(self):
+        super().init(direction="Vertical")
 
 class FamilyGallery(Gallery):
     """

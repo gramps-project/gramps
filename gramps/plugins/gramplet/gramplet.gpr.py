@@ -5,6 +5,7 @@
 # Copyright (C) 2009 Benny Malengier
 # Copyright (C) 2011 Nick Hall
 # Copyright (C) 2011 Tim G L Lyons
+# Copyright (C) 2020 Giansalvo Gusinu
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -503,6 +504,20 @@ register(GRAMPLET,
          height=200,
          gramplet = 'PersonGallery',
          gramplet_title=_("Gallery"),
+         navtypes=["Person"],
+         )
+
+register(GRAMPLET,
+         id="Person Gallery Vertical",
+         name=_("Person Gallery Vertical"),
+         description = _("Gramplet showing media objects for a person vertically"),
+         version="1.0.0",
+         gramps_target_version=MODULE_VERSION,
+         status = STABLE,
+         fname="gallery.py",
+         height=200,
+         gramplet = 'PersonGalleryVertical',
+         gramplet_title=_("Gallery Vertical"),
          navtypes=["Person"],
          )
 
