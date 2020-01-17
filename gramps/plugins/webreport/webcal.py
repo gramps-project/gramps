@@ -63,6 +63,7 @@ from gramps.gen.plug.menu import (BooleanOption, NumberOption, StringOption,
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_death_or_fallback
+from gramps.gen.utils.symbols import Symbols
 from gramps.gen.datehandler import displayer as _dd
 
 from gramps.gen.display.name import displayer as _nd
@@ -464,20 +465,14 @@ class WebCalReport(Report):
                           "if (x.className === \"nav\") { x.className += \""
                           " responsive\"; } else { x.className = \"nav\"; }"
                           " }</script>")
-        if self.multiyear:
-            head += menuscript
+        head += menuscript
 
         # begin header section
-        if self.multiyear:
-            headerdiv = Html("div", id='header') + (
-                Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
-                     " onclick=\"navFunction()\">&#8801;</a>")) + (
-                         Html("h1", html_escape(title),
-                              id="SiteTitle", inline=True))
-        else:
-            headerdiv = Html("div", id='header') + (
-                Html("h1", html_escape(title),
-                     id="SiteTitle", inline=True))
+        headerdiv = Html("div", id='header') + (
+            Html("<button href=\"javascript:void(0);\" class=\"navIcon\""
+                 " onclick=\"navFunction()\">&#8801;</button>")) + (
+                     Html("h1", self.title_text,
+                          id="SiteTitle", inline=True))
         body += headerdiv
 
         # add body id tag if not None
@@ -2168,12 +2163,14 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
         #age_str.format(precision=1, as_age=False, dlocale=rlocale)
         age_str = age_str.format(precision=1, as_age=False, dlocale=rlocale)
 
+        symbols = Symbols()
+        death_idx = symbols.DEATH_SYMBOL_SHADOWED_LATIN_CROSS
+        death_symbol = symbols.get_death_symbol_for_char(death_idx)
 
         # a birthday
         if event == 'Birthday':
 
             if age_at_death is not None:
-                death_symbol = "&#10014;" # latin cross for html code
                 trans_date = trans_text("Died %(death_date)s.")
                 translated_date = rlocale.get_date(dead_event_date)
                 mess = trans_date % {'death_date' : translated_date}
@@ -2194,7 +2191,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
 
         # a death
         if event == 'Death':
-            txt_str = (text + ', <em>'
+            txt_str = (text + ', ' + death_symbol + ' <em>'
                        + (_('%s since death') % str(age_str) if nyears
                           else _('death'))
                        + '</em>')

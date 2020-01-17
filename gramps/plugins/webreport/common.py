@@ -31,6 +31,7 @@ from unicodedata import normalize
 from collections import defaultdict
 from hashlib import md5
 import re
+import locale # Used only with pyICU
 import logging
 from xml.sax.saxutils import escape
 
@@ -439,7 +440,10 @@ def sort_places(dbase, handle_list, rlocale=glocale):
     for name in temp_list:
         if isinstance(name, bytes):
             name = name.decode('utf-8')
-        sorted_lists.append((name, pname_sub[name][0]))
+        slist = sorted(((sortnames[x], x) for x in pname_sub[name]),
+                       key=lambda x: rlocale.sort_key(x[0]))
+        for entry in slist:
+            sorted_lists.append(entry)
 
     return sorted_lists
 
@@ -622,23 +626,42 @@ def first_letter(string, rlocale=glocale):
     # no special case
     return norm_unicode[0].upper()
 
-def primary_difference(prev_key, new_key, rlocale=glocale):
-    """
-    The PyICU collation doesn't work if you want to sort in another language
-    So we use this method to do the work correctly.
 
-    Returns true if there is a primary difference between the two parameters
-    See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
-    letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
-    true then the letters should be grouped together
+try:
+    import PyICU # pylint : disable=wrong-import-position
+    PRIM_COLL = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
+    PRIM_COLL.setStrength(PRIM_COLL.PRIMARY)
 
-    The test characters here must not be any that are used in contractions.
-    """
+    def primary_difference(prev_key, new_key, rlocale=glocale):
+        """
+        Try to use the PyICU collation.
+        If we generate a report for another language, make sure we use the good
+        collation sequence
+        """
+        collation = PRIM_COLL
+        if rlocale.lang != locale.getlocale(locale.LC_COLLATE)[0]:
+            encoding = rlocale.encoding if rlocale.encoding else "UTF-8"
+            collate_lang = PyICU.Locale(rlocale.collation+"."+encoding)
+            collation = PyICU.Collator.createInstance(collate_lang)
+        return collation.compare(prev_key, new_key) != 0
 
-    return rlocale.sort_key(prev_key + "e") >= \
-               rlocale.sort_key(new_key + "f") or \
-               rlocale.sort_key(new_key + "e") >= \
-               rlocale.sort_key(prev_key + "f")
+except:
+    def primary_difference(prev_key, new_key, rlocale=glocale):
+        """
+        The PyICU collation is not available.
+
+        Returns true if there is a primary difference between the two parameters
+        See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
+        letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
+        true then the letters should be grouped together
+
+        The test characters here must not be any that are used in contractions.
+        """
+
+        return rlocale.sort_key(prev_key + "e") >= \
+                   rlocale.sort_key(new_key + "f") or \
+                   rlocale.sort_key(new_key + "e") >= \
+                   rlocale.sort_key(prev_key + "f")
 
 def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     """

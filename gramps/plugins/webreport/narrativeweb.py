@@ -1948,7 +1948,7 @@ class NavWebOptions(MenuReportOptions):
                                            self.__gallery_changed)
 
         self.__unused = BooleanOption(
-            _("Include unused images and media objects"), True)
+            _("Include unused images and media objects"), False)
         self.__unused.set_help(_('Whether to include unused or unreferenced'
                                  ' media objects'))
         addopt("unused", self.__unused)

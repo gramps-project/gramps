@@ -45,9 +45,9 @@ from gramps.plugins.lib.libhtml import Html
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.place import displayer as _pd
-from gramps.plugins.webreport.common import (FULLCLEAR, _EVENTMAP)
+from gramps.plugins.webreport.common import (FULLCLEAR, _EVENTMAP, html_escape)
 from gramps.gen.lib import (Person, Family, Event, Place, Source, Repository,
-                            Media)
+                            Media, Note, Citation)
 from gramps.gen.lib.date import Date
 
 _ = glocale.translation.sgettext
@@ -66,6 +66,12 @@ class UpdatesPage(BasePage):
         """
         BasePage.__init__(self, report, title)
         ldatec = 0
+        self.inc_repository = self.report.options['inc_repository']
+        self.inc_families = self.report.options['inc_families']
+        self.inc_events = self.report.options['inc_events']
+        self.inc_places = self.report.options['inc_places']
+        self.inc_sources = self.report.options['inc_sources']
+        self.inc_gallery = False
 
         output_file, sio = self.report.create_file("updates")
         result = self.write_header(self._('New and updated objects'))
@@ -93,35 +99,35 @@ class UpdatesPage(BasePage):
             if people is not None:
                 section += people
 
-            if self.report.options['inc_families']:
+            if self.inc_families:
                 header = self._("Families")
                 section += Html("h4", header)
                 families = self.list_people_changed(Family)
                 if families is not None:
                     section += families
 
-            if self.report.options['inc_events']:
+            if self.inc_events:
                 header = self._("Events")
                 section += Html("h4", header)
                 events = self.list_people_changed(Event)
                 if events is not None:
                     section += events
 
-            if self.report.options['inc_places']:
+            if self.inc_places:
                 header = self._("Places")
                 section += Html("h4", header)
                 places = self.list_people_changed(Place)
                 if places is not None:
                     section += places
 
-            if self.report.options['inc_sources']:
+            if self.inc_sources:
                 header = self._("Sources")
                 section += Html("h4", header)
                 sources = self.list_people_changed(Source)
                 if sources is not None:
                     section += sources
 
-            if self.report.options['inc_repository']:
+            if self.inc_repository:
                 header = self._("Repositories")
                 section += Html("h4", header)
                 repos = self.list_people_changed(Repository)
@@ -130,11 +136,18 @@ class UpdatesPage(BasePage):
 
             if (self.report.options['gallery'] and not
                     self.report.options['create_thumbs_only']):
+                self.inc_gallery = True
                 header = self._("Media")
                 section += Html("h4", header)
                 media = self.list_people_changed(Media)
                 if media is not None:
                     section += media
+
+            header = self._("Notes")
+            section += Html("h4", header)
+            events = self.list_notes()
+            if events is not None:
+                section += events
 
         # create clear line for proper styling
         # create footer section
@@ -144,6 +157,122 @@ class UpdatesPage(BasePage):
         # send page out for processing
         # and close the file
         self.xhtml_writer(homepage, output_file, sio, ldatec)
+
+    def list_notes(self):
+        """
+        List all notes with last change date
+        """
+        nb_items = 0
+        section = ""
+
+        def sort_on_change(handle):
+            """ sort records based on the last change time """
+            fct = self.report.database.get_note_from_handle
+            obj = fct(handle)
+            timestamp = obj.get_change_time()
+            return timestamp
+
+        note_list = self.report.database.get_note_handles()
+        obj_list = sorted(note_list, key=sort_on_change, reverse=True)
+        with Html("table", class_="list", id="list") as section:
+            for handle in obj_list:
+                show = False
+                date = obj = None
+                obj = self.report.database.get_note_from_handle(handle)
+                if obj:
+                    text = html_escape(obj.get()[:50])
+                    timestamp = obj.get_change_time()
+                    if timestamp - self.maxdays > 0:
+                        handle_list = set(
+                            self.report.database.find_backlink_handles(
+                                handle,
+                                include_classes=['Person', 'Family', 'Event',
+                                                 'Place', 'Media', 'Source',
+                                                 'Citation', 'Repository',
+                                                ]))
+                        tims = localtime(timestamp)
+                        odat = Date(tims.tm_year, tims.tm_mon, tims.tm_mday)
+                        date = self.rlocale.date_displayer.display(odat)
+                        date += strftime(' %X', tims)
+                        if handle_list:
+                            srbd = self.report.database
+                            srbkref = self.report.bkref_dict
+                            for obj_t, r_handle in handle_list:
+                                if obj_t == 'Person':
+                                    if r_handle in srbkref[Person]:
+                                        name = self.new_person_link(r_handle)
+                                        show = True
+                                elif obj_t == 'Family':
+                                    if r_handle in srbkref[Family]:
+                                        fam = srbd.get_family_from_handle(
+                                            r_handle)
+                                        fam = self._("Family")
+                                        name = self.family_link(r_handle, fam)
+                                        if self.inc_families:
+                                            show = True
+                                elif obj_t == 'Place':
+                                    if r_handle in srbkref[Place]:
+                                        plc = srbd.get_place_from_handle(
+                                            r_handle)
+                                        plcn = _pd.display(self.report.database,
+                                                           plc)
+                                        name = self.place_link(r_handle, plcn)
+                                        if self.inc_places:
+                                            show = True
+                                elif obj_t == 'Event':
+                                    if r_handle in srbkref[Event]:
+                                        evt = srbd.get_event_from_handle(
+                                            r_handle)
+                                        evtn = self._(evt.get_type().xml_str())
+                                        name = self.event_link(r_handle, evtn)
+                                        if self.inc_events:
+                                            show = True
+                                elif obj_t == 'Media':
+                                    if r_handle in srbkref[Media]:
+                                        media = srbd.get_media_from_handle(
+                                            r_handle)
+                                        evtn = media.get_description()
+                                        name = self.media_link(r_handle, evtn,
+                                                               evtn,
+                                                               usedescr=False)
+                                        if self.inc_gallery:
+                                            show = True
+                                elif obj_t == 'Citation':
+                                    if r_handle in srbkref[Citation]:
+                                        cit = srbd.get_event_from_handle(
+                                            r_handle)
+                                        citsrc = cit.source_handle
+                                        evtn = self._("Citation")
+                                        name = self.source_link(citsrc, evtn)
+                                        if self.inc_sources:
+                                            show = True
+                                elif obj_t == 'Source':
+                                    if r_handle in srbkref[Source]:
+                                        src = srbd.get_source_from_handle(
+                                            r_handle)
+                                        evtn = src.get_title()
+                                        name = self.source_link(r_handle, evtn)
+                                        if self.inc_sources:
+                                            show = True
+                                elif obj_t == 'Repository':
+                                    if r_handle in srbkref[Repository]:
+                                        rep = srbd.get_repository_from_handle(
+                                            r_handle)
+                                        evtn = rep.get_name()
+                                        name = self.repository_link(r_handle,
+                                                                    evtn)
+                                        if self.inc_repository:
+                                            show = True
+                        if show:
+                            row = Html("tr")
+                            section += row
+                            row += Html("td", date, class_="date")
+                            row += Html("td", text)
+                            row += Html("td", name)
+                            nb_items += 1
+                            if nb_items > self.nbr:
+                                break
+        return section
 
     def list_people_changed(self, object_type):
         """
@@ -180,8 +309,6 @@ class UpdatesPage(BasePage):
                           key=sort_on_change, reverse=True)
         with Html("table", class_="list", id="list") as section:
             for handle in obj_list:
-                row = Html("tr")
-                section += row
                 date = obj = None
                 name = ""
                 obj = fct(handle)
@@ -236,6 +363,8 @@ class UpdatesPage(BasePage):
                         odat = Date(tims.tm_year, tims.tm_mon, tims.tm_mday)
                         date = self.rlocale.date_displayer.display(odat)
                         date += strftime(' %X', tims)
+                        row = Html("tr")
+                        section += row
                         row += Html("td", date, class_="date")
                         row += Html("td", name)
         return section
