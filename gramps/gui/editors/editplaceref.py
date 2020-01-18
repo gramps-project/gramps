@@ -51,6 +51,7 @@ class EditPlaceRef(EditReference):
     def __init__(self, state, uistate, track, place, place_ref, update):
         EditReference.__init__(self, state, uistate, track, place, place_ref,
                                update)
+        self.original = place.serialize()
 
     def _local_init(self):
 
@@ -312,8 +313,10 @@ class EditPlaceRef(EditReference):
             return
 
         if self.source.handle:
-            with DbTxn(_("Modify Place"), self.db) as trans:
-                self.db.commit_place(self.source, trans)
+            # only commit if it has changed
+            if self.source.serialize() != self.original:
+                with DbTxn(_("Modify Place"), self.db) as trans:
+                    self.db.commit_place(self.source, trans)
         else:
             if self.check_for_duplicate_id('Place'):
                 return

@@ -846,6 +846,9 @@ class ListView(NavigationView):
             for cl_name, handle in self.dbstate.db.find_backlink_handles(hndl):
                 if cl_name == nav_type:
                     upd_list.append(handle)
+                    if len(upd_list) > 20:
+                        self.dirty = True
+                        return
                 if (cl_name == 'Place' or cl_name == 'Event' and
                         nav_type == 'Person'):
                     queue.append(handle)
