@@ -35,6 +35,7 @@ import logging
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ..utils.grampslocale import GrampsLocale
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 # import prerequisites for localized handlers
@@ -72,16 +73,20 @@ from . import _date_uk
 from . import _date_zh_CN
 from . import _date_zh_TW
 
+# the following makes sure we use the LC_TIME value for date display & parsing
+dlocale = GrampsLocale(lang=glocale.calendar)
+
+
 # Initialize global parser
 try:
     if LANG in LANG_TO_PARSER:
-        parser = LANG_TO_PARSER[LANG](plocale=glocale)
+        parser = LANG_TO_PARSER[LANG](plocale=dlocale)
     else:
-        parser = LANG_TO_PARSER[LANG_SHORT](plocale=glocale)
+        parser = LANG_TO_PARSER[LANG_SHORT](plocale=dlocale)
 except:
     logging.warning(
         _("Date parser for '%s' not available, using default") % LANG)
-    parser = LANG_TO_PARSER["C"](plocale=glocale)
+    parser = LANG_TO_PARSER["C"](plocale=dlocale)
 
 # Initialize global displayer
 try:
@@ -92,13 +97,13 @@ except:
 
 try:
     if LANG in LANG_TO_DISPLAY:
-        displayer = LANG_TO_DISPLAY[LANG](val, blocale=glocale)
+        displayer = LANG_TO_DISPLAY[LANG](val, blocale=dlocale)
     else:
-        displayer = LANG_TO_DISPLAY[LANG_SHORT](val, blocale=glocale)
+        displayer = LANG_TO_DISPLAY[LANG_SHORT](val, blocale=dlocale)
 except:
     logging.warning(
         _("Date displayer for '%s' not available, using default") % LANG)
-    displayer = LANG_TO_DISPLAY["C"](val, blocale=glocale)
+    displayer = LANG_TO_DISPLAY["C"](val, blocale=dlocale)
 
 
 # Import utility functions
