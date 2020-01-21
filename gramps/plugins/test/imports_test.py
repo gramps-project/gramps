@@ -27,12 +27,14 @@ import sys
 import re
 import locale
 from time import localtime, strptime
+import uuid
 from unittest.mock import patch
 #import logging
 
 from gramps.gen.utils.config import config
 config.set('preferences.date-format', 0)
 from gramps.gen.db.utils import import_as_dict
+from gramps.gen.lib import Uid
 from gramps.gen.merge.diff import diff_dbs, to_struct
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
@@ -68,6 +70,18 @@ def mock_localtime(*args):
     Mock up a dummy to replace the varying 'time string results'
     """
     return strptime("25 Dec 1999", "%d %b %Y")
+
+
+my_uuid = 0
+
+
+def mock_urandom(*arg):
+    """ Mock the urandom used by Uid function
+    """
+    global my_uuid
+    my_uuid += 1
+    return my_uuid.to_bytes(16, byteorder='big')
+
 
 class TestImports(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
@@ -202,6 +216,7 @@ def make_tst_function(tstfile, file_name):
     @patch('gramps.gen.utils.unknown.localtime')
     @patch('gramps.gen.utils.unknown.time')
     @patch('time.localtime')
+    @patch('os.urandom', mock_urandom)
     def tst(self, mockptime, mocktime, mockltime, mockdtime):
         """ This compares the import file with the expected result '.gramps'
         file.
@@ -232,8 +247,11 @@ def make_tst_function(tstfile, file_name):
         set_det_id(True)
         with capture(None) as output:
             self.user = User()
+            global my_uuid
+            my_uuid = 0
             self.database1 = import_as_dict(fn1, self.user,
                                             skp_imp_adds=skp_imp_adds)
+            my_uuid = 0
             set_det_id(True)
             self.database2 = import_as_dict(fn2, self.user)
         self.assertIsNotNone(self.database1,

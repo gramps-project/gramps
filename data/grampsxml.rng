@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.7.1/"
+  ns="http://gramps-project.org/xml/1.8.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -207,6 +207,7 @@
     <zeroOrMore><element name="tagref">
         <ref name="tagref-content"/>
     </element></zeroOrMore>
+    <oneOrMore><element name="uid"><text/></element></oneOrMore>
   </define>
 
   <define name="child-rel">
@@ -377,6 +378,7 @@
     <zeroOrMore><element name="tagref">
         <ref name="tagref-content"/>
     </element></zeroOrMore>
+    <oneOrMore><element name="uid"><text/></element></oneOrMore>
   </define>
 
   <define name="event-content">

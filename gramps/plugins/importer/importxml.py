@@ -55,7 +55,8 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             PersonRef, Place, PlaceName, PlaceRef, PlaceType,
                             RepoRef, Repository, Researcher, Source,
                             SrcAttribute, SrcAttributeType, StyledText,
-                            StyledTextTag, StyledTextTagType, Surname, Tag, Url)
+                            StyledTextTag, StyledTextTagType, Surname, Tag,
+                            Uid, Url)
 from gramps.gen.db import DbTxn
 #from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
@@ -702,6 +703,7 @@ class GrampsParser(UpdateCallback):
             "tagref": (self.start_tagref, None),
             "tags": (None, None),
             "text": (None, self.stop_text),
+            "uid": (None, self.stop_uid),     # new in 1.8.0
             "url": (self.start_url, None),
             "repository": (self.start_repo, self.stop_repo),
             "reporef": (self.start_reporef, self.stop_reporef),
@@ -1331,10 +1333,20 @@ class GrampsParser(UpdateCallback):
     def start_attribute(self, attrs):
         self.attribute = Attribute()
         self.attribute.private = bool(attrs.get("priv"))
+        self.attribute.value = val = attrs.get("value", '')
         self.attribute.type = AttributeType()
         if 'type' in attrs:
+            if attrs["type"] == "_UID" and val:
+                try:
+                    if self.person:
+                        self.person.add_uid(Uid(val))
+                        return
+                    elif self.family:
+                        self.family.add_uid(Uid(val))
+                        return
+                except ValueError:
+                    pass
             self.attribute.type.set_from_xml_str(attrs["type"])
-        self.attribute.value = attrs.get("value", '')
         if self.photo:
             self.photo.add_attribute(self.attribute)
         elif self.object:
@@ -1480,6 +1492,7 @@ class GrampsParser(UpdateCallback):
         self.convert_marker(attrs, self.person)
         if self.default_tag:
             self.person.add_tag(self.default_tag.handle)
+        self.person.set_uid_list([])  # we need to replace the default value
         return self.person
 
     def start_people(self, attrs):
@@ -1619,6 +1632,7 @@ class GrampsParser(UpdateCallback):
         self.convert_marker(attrs, self.family)
         if self.default_tag:
             self.family.add_tag(self.default_tag.handle)
+        self.family.set_uid_list([])  # we need to replace the default list
         return self.family
 
     def start_rel(self, attrs):
@@ -2628,6 +2642,9 @@ class GrampsParser(UpdateCallback):
         self.placeobj = None
 
     def stop_family(self, *tag):
+        if not self.family.get_uid_list():
+            # if list is empty, need to add a default uid
+            self.family.set_uid_list([Uid()])
         self.db.commit_family(self.family, self.trans,
                               self.family.get_change_time())
         self.family = None
@@ -2838,6 +2855,9 @@ class GrampsParser(UpdateCallback):
         self.family = None
 
     def stop_person(self, *tag):
+        if not self.person.get_uid_list():
+            # if list is empty, need to add a default uid
+            self.person.set_uid_list([Uid()])
         self.db.commit_person(self.person, self.trans,
                               self.person.get_change_time())
         self.person = None
@@ -3125,6 +3145,12 @@ class GrampsParser(UpdateCallback):
             self.stext_list.append(tag)
         elif self.in_scomments:
             self.scomments_list.append(tag)
+
+    def stop_uid(self, uid):
+        if self.person:
+            self.person.add_uid(Uid(uid))
+        elif self.family:
+            self.family.add_uid(Uid(uid))
 
     def startElement(self, tag, attrs):
         self.func_list[self.func_index] = (self.func, self.tlist)

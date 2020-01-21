@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
-    <created date="2016-08-29" version="5.0.0-alpha1"/>
+    <created date="1999-12-25" version="5.1.2"/>
     <researcher>
     </researcher>
   </header>
   <events>
-    <event handle="_0000000200000002" change="1472500317" id="E0000">
+    <event handle="_0000000200000002" change="1" id="E0000">
       <type>Birth</type>
       <dateval val="1830"/>
     </event>
-    <event handle="_0000000300000003" change="1472500317" id="E0001">
+    <event handle="_0000000300000003" change="1" id="E0001">
       <type>Death</type>
       <dateval val="1904"/>
     </event>
   </events>
   <people>
-    <person handle="_0000000100000001" change="1472500317" id="I0001">
+    <person handle="_0000000100000001" change="1" id="I0001">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Jean</first>
@@ -27,11 +27,13 @@
       <eventref hlink="_0000000200000002" role="Primary"/>
       <eventref hlink="_0000000300000003" role="Primary"/>
       <noteref hlink="_0000000400000004"/>
+      <uid>00000000-0000-0000-0000-000000000002</uid>
     </person>
   </people>
   <notes>
-    <note handle="_0000000400000004" change="1472500317" id="N0000" type="Person Note">
-      <text>Table de caractères Windows cp1252
+    <note handle="_0000000400000004" change="1" id="N0000" type="Person Note">
+      <text>
+Table de caractères Windows cp1252
 32 [ ]
 33 [!]
 34 [&quot;]

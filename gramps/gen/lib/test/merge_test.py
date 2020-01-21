@@ -21,6 +21,7 @@
 """ Unittest that tests the code involved in merging """
 
 import unittest
+from copy import deepcopy
 
 from  .. import (Person, Surname, Name, NameType, Family, FamilyRelType,
                  Event, EventType, Source, Place, PlaceName, Citation, Date,
@@ -29,7 +30,7 @@ from  .. import (Person, Surname, Name, NameType, Family, FamilyRelType,
                  ChildRef, ChildRefType, Attribute, MediaRef, AttributeType,
                  Url, UrlType, Address, EventRef, EventRoleType, RepoRef,
                  FamilyRelType, LdsOrd, MediaRef, PersonRef, PlaceType,
-                 SrcAttribute, SrcAttributeType)
+                 SrcAttribute, SrcAttributeType, Uid)
 from ..privacybase import PrivacyBase
 from ..urlbase import UrlBase
 from ..addressbase import AddressBase
@@ -410,14 +411,8 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.phoenix.set_father_handle('123456')
         self.phoenix.set_mother_handle('654321')
         self.phoenix.set_relationship(FamilyRelType.MARRIED)
-        self.titanic = Family()
-        self.titanic.set_father_handle('123456')
-        self.titanic.set_mother_handle('654321')
-        self.titanic.set_relationship(FamilyRelType.MARRIED)
-        self.ref_obj = Family()
-        self.ref_obj.set_father_handle('123456')
-        self.ref_obj.set_mother_handle('654321')
-        self.ref_obj.set_relationship(FamilyRelType.MARRIED)
+        self.titanic = deepcopy(self.phoenix)
+        self.ref_obj = deepcopy(self.phoenix)
 
     def test_relation_merge(self):
         self.phoenix.set_relationship(FamilyRelType.UNKNOWN)
@@ -1025,10 +1020,8 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         name = Name()
         name.set_first_name('Adam')
         self.phoenix.set_primary_name(name)
-        self.titanic = Person()
-        self.titanic.set_primary_name(name)
-        self.ref_obj = Person()
-        self.ref_obj.set_primary_name(name)
+        self.titanic = deepcopy(self.phoenix)
+        self.ref_obj = deepcopy(self.phoenix)
 
     def test_replace_eventhandle_nonew(self):
         evtref = EventRef()
@@ -1383,6 +1376,25 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.ref_obj.add_person_ref(personref2)
         self.phoenix._merge_person_ref_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_merge_uids_equal(self):
+        uid = Uid()
+        self.phoenix.add_uid(uid)
+        self.titanic.add_uid(uid)
+        self.ref_obj.add_uid(uid)
+        self.phoenix._merge_uid_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_merge_uids_different(self):
+        uid = Uid()
+        uid2 = Uid()
+        self.phoenix.add_uid(uid2)
+        self.titanic.add_uid(uid)
+        self.ref_obj.add_uid(uid2)
+        self.ref_obj.add_uid(uid)
+        self.phoenix._merge_uid_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
 
 class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         UrlBaseTest, NoteBaseTest, CitationBaseTest):

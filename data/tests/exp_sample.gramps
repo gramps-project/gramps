@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
-    <created date="2016-10-29" version="5.0.0-alpha1"/>
+    <created date="2020-02-07" version="5.1.2"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -656,6 +656,7 @@
         <noteref hlink="_d7042e81dfd1dadee8ef6e5cac4"/>
       </personref>
       <noteref hlink="_d70429bc98a43469b08051816c7"/>
+      <uid>1528b08b-795a-45b9-9c12-13b2c7c12537</uid>
     </person>
     <person handle="_0000000700000007" change="1198222526" id="I0001">
       <gender>M</gender>
@@ -665,6 +666,7 @@
       </name>
       <eventref hlink="_0000000800000008" role="Primary"/>
       <childof hlink="_0000000a0000000a"/>
+      <uid>4c472537-632b-4b5b-ab4d-304aa9368e32</uid>
     </person>
     <person handle="_0000000b0000000b" change="1465075928" id="I0010">
       <gender>M</gender>
@@ -678,6 +680,7 @@
       <childof hlink="_0000000600000006"/>
       <parentin hlink="_0000000f0000000f"/>
       <parentin hlink="_0000001000000010"/>
+      <uid>4ab791fa-a802-4972-bda1-8221297c3317</uid>
     </person>
     <person handle="_0000001100000011" change="1198222526" id="I0011">
       <gender>F</gender>
@@ -687,6 +690,7 @@
       </name>
       <eventref hlink="_0000001200000012" role="Primary"/>
       <childof hlink="_0000001400000014"/>
+      <uid>661dd721-3280-419d-bf37-b6ac60cf739f</uid>
     </person>
     <person handle="_0000001500000015" change="1198222526" id="I0012">
       <gender>M</gender>
@@ -697,6 +701,7 @@
       <eventref hlink="_0000001600000016" role="Primary"/>
       <eventref hlink="_0000001700000017" role="Primary"/>
       <parentin hlink="_0000001800000018"/>
+      <uid>5695853e-f6bb-4ec8-adb7-d5328946b1ec</uid>
     </person>
     <person handle="_0000001900000019" change="1198222526" id="I0013">
       <gender>F</gender>
@@ -706,6 +711,7 @@
       </name>
       <eventref hlink="_0000001a0000001a" role="Primary"/>
       <parentin hlink="_0000001b0000001b"/>
+      <uid>31bc630d-86ef-4344-9478-df579295b560</uid>
     </person>
     <person handle="_0000001c0000001c" change="1198222526" id="I0014">
       <gender>F</gender>
@@ -715,6 +721,7 @@
       </name>
       <eventref hlink="_0000001d0000001d" role="Primary"/>
       <childof hlink="_0000001f0000001f"/>
+      <uid>6d4561cd-f5a7-4d50-b8dd-75963668472d</uid>
     </person>
     <person handle="_0000002000000020" change="1198222526" id="I0015">
       <gender>M</gender>
@@ -726,6 +733,7 @@
       <eventref hlink="_0000002200000022" role="Primary"/>
       <childof hlink="_0000000600000006"/>
       <parentin hlink="_0000001b0000001b"/>
+      <uid>6138b910-3051-47a5-9702-73e3a3f735ee</uid>
     </person>
     <person handle="_0000002300000023" change="1198222526" id="I0016">
       <gender>F</gender>
@@ -736,6 +744,7 @@
       <eventref hlink="_0000002400000024" role="Primary"/>
       <eventref hlink="_0000002500000025" role="Primary"/>
       <parentin hlink="_0000001000000010"/>
+      <uid>030c9be5-52b0-4d13-97e6-d00ccd7d3652</uid>
     </person>
     <person handle="_0000002600000026" change="1198222526" id="I0017">
       <gender>F</gender>
@@ -746,6 +755,7 @@
       <eventref hlink="_0000002700000027" role="Primary"/>
       <eventref hlink="_0000002800000028" role="Primary"/>
       <parentin hlink="_0000000f0000000f"/>
+      <uid>a29858f0-9257-4868-9a73-7c7eb9e17092</uid>
     </person>
     <person handle="_0000002900000029" change="1198222526" id="I0018">
       <gender>M</gender>
@@ -756,6 +766,7 @@
       <eventref hlink="_0000002a0000002a" role="Primary"/>
       <childof hlink="_0000001f0000001f"/>
       <parentin hlink="_0000002b0000002b"/>
+      <uid>f018d20e-ccc6-415f-b860-1b8c2b31e4ea</uid>
     </person>
     <person handle="_0000002c0000002c" change="1465075513" id="I0019">
       <gender>M</gender>
@@ -768,6 +779,7 @@
       <eventref hlink="_0000002e0000002e" role="Primary"/>
       <childof hlink="_0000000a0000000a"/>
       <parentin hlink="_0000002f0000002f"/>
+      <uid>2308a6e1-82f2-440c-b1ec-73c86ae289ae</uid>
     </person>
     <person handle="_0000003000000030" change="1198222526" id="I0002">
       <gender>F</gender>
@@ -778,6 +790,7 @@
       <eventref hlink="_0000003100000031" role="Primary"/>
       <eventref hlink="_0000003300000033" role="Primary"/>
       <childof hlink="_0000003500000035"/>
+      <uid>233a271b-683b-4c72-9623-0d41d5b0971f</uid>
     </person>
     <person handle="_0000003600000036" change="1198222526" id="I0020">
       <gender>M</gender>
@@ -788,6 +801,7 @@
       <eventref hlink="_0000003700000037" role="Primary"/>
       <eventref hlink="_0000003800000038" role="Primary"/>
       <childof hlink="_0000000600000006"/>
+      <uid>dc560023-de1c-48c4-abf1-c8abed38a8bb</uid>
     </person>
     <person handle="_0000003900000039" change="1198222526" id="I0021">
       <gender>M</gender>
@@ -798,6 +812,7 @@
       <eventref hlink="_0000003a0000003a" role="Primary"/>
       <eventref hlink="_0000003b0000003b" role="Primary"/>
       <childof hlink="_0000000600000006"/>
+      <uid>ef9f2f8a-4c0a-4a90-bb43-3fd9d19040eb</uid>
     </person>
     <person handle="_0000003c0000003c" change="1198222526" id="I0022">
       <gender>M</gender>
@@ -811,6 +826,7 @@
       <childof hlink="_0000001400000014"/>
       <parentin hlink="_0000004100000041"/>
       <noteref hlink="_0000004200000042"/>
+      <uid>20580b2f-b8a9-467e-ba6d-cbf7d953d6c8</uid>
     </person>
     <person handle="_0000004300000043" change="1198222526" id="I0023">
       <gender>F</gender>
@@ -822,6 +838,7 @@
       <eventref hlink="_0000004500000045" role="Primary"/>
       <childof hlink="_0000000600000006"/>
       <parentin hlink="_0000001800000018"/>
+      <uid>02f0b2fb-d8a2-4432-9ba8-6d572a3f24a4</uid>
     </person>
     <person handle="_0000004600000046" change="1198222526" id="I0024">
       <gender>M</gender>
@@ -836,6 +853,7 @@
       <eventref hlink="_0000004c0000004c" role="Primary"/>
       <childof hlink="_0000004100000041"/>
       <parentin hlink="_0000000600000006"/>
+      <uid>c3f4cca8-6dd2-41d7-afd2-3629ac05c671</uid>
     </person>
     <person handle="_0000004d0000004d" change="1198222526" id="I0025">
       <gender>F</gender>
@@ -845,6 +863,7 @@
       </name>
       <eventref hlink="_0000004e0000004e" role="Primary"/>
       <parentin hlink="_0000004f0000004f"/>
+      <uid>2ec090d7-13db-494c-befc-5c86816b46d5</uid>
     </person>
     <person handle="_0000005000000050" change="1198222526" id="I0026">
       <gender>F</gender>
@@ -856,6 +875,7 @@
       <eventref hlink="_0000005200000052" role="Primary"/>
       <childof hlink="_0000000600000006"/>
       <parentin hlink="_0000005300000053"/>
+      <uid>f6c4138c-f109-4e64-adfb-a90d80cfa36f</uid>
     </person>
     <person handle="_0000005400000054" change="1198222526" id="I0027">
       <gender>M</gender>
@@ -865,6 +885,7 @@
       </name>
       <eventref hlink="_0000005500000055" role="Primary"/>
       <parentin hlink="_0000004f0000004f"/>
+      <uid>39c68489-94f5-4524-afe9-059fde1f270f</uid>
     </person>
     <person handle="_0000005600000056" change="1198222526" id="I0028">
       <gender>F</gender>
@@ -875,6 +896,7 @@
       <eventref hlink="_0000005700000057" role="Primary"/>
       <eventref hlink="_0000005900000059" role="Primary"/>
       <parentin hlink="_0000005a0000005a"/>
+      <uid>59a5d268-4d70-4cb5-ad6f-fe4401cfda48</uid>
     </person>
     <person handle="_0000005b0000005b" change="1198222526" id="I0029">
       <gender>M</gender>
@@ -885,6 +907,7 @@
       <eventref hlink="_0000005c0000005c" role="Primary"/>
       <eventref hlink="_0000005d0000005d" role="Primary"/>
       <childof hlink="_0000000a0000000a"/>
+      <uid>98d5a27b-e483-4137-a5f1-1463f27ec150</uid>
     </person>
     <person handle="_0000005f0000005f" change="1198222526" id="I0003">
       <gender>M</gender>
@@ -896,6 +919,7 @@
       <eventref hlink="_0000006200000062" role="Primary"/>
       <childof hlink="_0000004100000041"/>
       <parentin hlink="_0000005a0000005a"/>
+      <uid>26c05188-b3c8-42c2-b1e8-72739b9f5610</uid>
     </person>
     <person handle="_0000006300000063" change="1198222526" id="I0030">
       <gender>F</gender>
@@ -907,6 +931,7 @@
       <eventref hlink="_0000006600000066" role="Primary"/>
       <eventref hlink="_0000006700000067" role="Primary"/>
       <parentin hlink="_0000003500000035"/>
+      <uid>3d3ad672-59d2-4643-ab96-523137145bf2</uid>
     </person>
     <person handle="_0000006800000068" change="1198222526" id="I0031">
       <gender>F</gender>
@@ -917,6 +942,7 @@
       <eventref hlink="_0000006900000069" role="Primary"/>
       <eventref hlink="_0000006b0000006b" role="Primary"/>
       <parentin hlink="_0000001f0000001f"/>
+      <uid>77d47bc8-ad42-4cc3-b86e-f925d83545ec</uid>
     </person>
     <person handle="_0000006c0000006c" change="1198222526" id="I0032">
       <gender>F</gender>
@@ -926,6 +952,7 @@
       </name>
       <eventref hlink="_0000006d0000006d" role="Primary"/>
       <parentin hlink="_0000002f0000002f"/>
+      <uid>8634cde8-65bb-4443-88a6-1607f50a6785</uid>
     </person>
     <person handle="_0000006f0000006f" change="1473020233" id="I0033">
       <gender>M</gender>
@@ -936,6 +963,7 @@
       <eventref hlink="_0000007000000070" role="Primary"/>
       <childof hlink="_0000000f0000000f"/>
       <parentin hlink="_0000000a0000000a"/>
+      <uid>dc28317d-c364-44d3-b38a-00738ae628a6</uid>
     </person>
     <person handle="_0000007100000071" change="1198222526" id="I0034">
       <gender>F</gender>
@@ -945,6 +973,7 @@
       </name>
       <eventref hlink="_0000007200000072" role="Primary"/>
       <parentin hlink="_0000002b0000002b"/>
+      <uid>f5f9fb2f-cdac-4f04-895f-2a0d480f5695</uid>
     </person>
     <person handle="_0000007300000073" change="1198222526" id="I0035">
       <gender>M</gender>
@@ -955,6 +984,7 @@
       <eventref hlink="_0000007400000074" role="Primary"/>
       <eventref hlink="_0000007600000076" role="Primary"/>
       <childof hlink="_0000002f0000002f"/>
+      <uid>0a4a9404-1283-46c9-b9a1-074aaf390503</uid>
     </person>
     <person handle="_0000007700000077" change="1198222526" id="I0036">
       <gender>F</gender>
@@ -966,6 +996,7 @@
       <eventref hlink="_0000007900000079" role="Primary"/>
       <eventref hlink="_0000007a0000007a" role="Primary"/>
       <parentin hlink="_0000001400000014"/>
+      <uid>bcc85403-960a-4800-9620-9985c89d2847</uid>
     </person>
     <person handle="_0000007b0000007b" change="1198222526" id="I0037">
       <gender>M</gender>
@@ -982,6 +1013,7 @@
       <eventref hlink="_0000008600000086" role="Primary"/>
       <childof hlink="_0000002b0000002b"/>
       <parentin hlink="_0000003500000035"/>
+      <uid>2211ebad-30fd-4220-ac51-72985ef794e4</uid>
     </person>
     <person handle="_0000008700000087" change="1198222526" id="I0038">
       <gender>F</gender>
@@ -992,6 +1024,7 @@
       <eventref hlink="_0000008800000088" role="Primary"/>
       <eventref hlink="_0000008a0000008a" role="Primary"/>
       <parentin hlink="_0000004100000041"/>
+      <uid>09ced90b-b082-4ec0-a5e1-7d2505513da3</uid>
     </person>
     <person handle="_0000008b0000008b" change="1198222526" id="I0039">
       <gender>M</gender>
@@ -1003,6 +1036,7 @@
       <eventref hlink="_0000008e0000008e" role="Primary"/>
       <childof hlink="_0000004f0000004f"/>
       <parentin hlink="_0000001400000014"/>
+      <uid>9e8cb9cd-3566-499a-95e5-1263906fe0d5</uid>
     </person>
     <person handle="_0000008f0000008f" change="1198222526" id="I0004">
       <gender>M</gender>
@@ -1012,6 +1046,7 @@
       </name>
       <eventref hlink="_0000009000000090" role="Primary"/>
       <childof hlink="_0000001400000014"/>
+      <uid>82fe3c88-1add-452c-b7a8-dde45cea5c8b</uid>
     </person>
     <person handle="_0000009100000091" change="1198222526" id="I0040">
       <gender>F</gender>
@@ -1021,6 +1056,7 @@
       </name>
       <eventref hlink="_0000009200000092" role="Primary"/>
       <childof hlink="_0000002b0000002b"/>
+      <uid>12ee056c-f478-4ff5-a91d-d8167fe48ceb</uid>
     </person>
     <person handle="_0000009300000093" change="1198222526" id="I0041">
       <gender>F</gender>
@@ -1030,6 +1066,7 @@
       </name>
       <eventref hlink="_0000009400000094" role="Primary"/>
       <parentin hlink="_0000000a0000000a"/>
+      <uid>c5de7dec-6d3c-443e-8310-05b97df1fc2a</uid>
     </person>
     <person handle="_0000009500000095" change="1198222526" id="I0005">
       <gender>M</gender>
@@ -1040,6 +1077,7 @@
       <eventref hlink="_0000009600000096" role="Primary"/>
       <eventref hlink="_0000009700000097" role="Primary"/>
       <childof hlink="_0000003500000035"/>
+      <uid>3e5fdf63-be0b-4e51-af2c-070f4d005803</uid>
     </person>
     <person handle="_0000009800000098" change="1198222526" id="I0006">
       <gender>M</gender>
@@ -1049,6 +1087,7 @@
       </name>
       <eventref hlink="_0000009900000099" role="Primary"/>
       <parentin hlink="_0000005300000053"/>
+      <uid>dc7c9489-5dc5-4600-b55c-819eaee3b012</uid>
     </person>
     <person handle="_0000009a0000009a" change="1198222526" id="I0007">
       <gender>F</gender>
@@ -1058,6 +1097,7 @@
       </name>
       <eventref hlink="_0000009b0000009b" role="Primary"/>
       <childof hlink="_0000001400000014"/>
+      <uid>37337828-9d5f-4185-a638-a31f506cf341</uid>
     </person>
     <person handle="_0000009c0000009c" change="1198222526" id="I0008">
       <gender>M</gender>
@@ -1072,6 +1112,7 @@
       <childof hlink="_0000000600000006"/>
       <parentin hlink="_0000001f0000001f"/>
       <noteref hlink="_000000a2000000a2"/>
+      <uid>91bde26e-016d-4f4c-bbc9-568cb4b7fcd7</uid>
     </person>
     <person handle="_000000a3000000a3" change="1198222526" id="I0009">
       <gender>M</gender>
@@ -1081,6 +1122,7 @@
       </name>
       <eventref hlink="_000000a4000000a4" role="Primary"/>
       <childof hlink="_0000004100000041"/>
+      <uid>93f1e19a-043d-4760-8a37-5324cf97b6e4</uid>
     </person>
     <person handle="_d54b1f298d25b543223ca137ad1" change="1466269465" id="I0042">
       <gender>M</gender>
@@ -1095,6 +1137,7 @@
       <objref hlink="_d54c1b52c8636648123580900ca"/>
       <childof hlink="_0000001800000018"/>
       <noteref hlink="_d54e4ed9e6647fcdb37877fedcf"/>
+      <uid>d01e4e13-e289-4e43-be3a-e3f8f1122e76</uid>
     </person>
     <person handle="_d55ebe0a78a7e7841c9edf882a4" change="1466268128" id="I0043">
       <gender>M</gender>
@@ -1102,6 +1145,7 @@
         <first>ピーター</first>
         <surname>リチミシキスイミ</surname>
       </name>
+      <uid>e34e1bd6-5d4b-4ac3-ae63-c7bb9e4f1351</uid>
     </person>
     <person handle="_d65a448167a2736b3dfc08c11d8" change="1477759240" id="I0044">
       <gender>M</gender>
@@ -1129,6 +1173,7 @@
       <childof hlink="_0000000a0000000a"/>
       <parentin hlink="_d65a46d6c0034a50640d7a84213"/>
       <citationref hlink="_d65a448168445feea89cc1499fb"/>
+      <uid>602fecc6-8f95-43ac-8849-170e403a5037</uid>
     </person>
     <person handle="_d65a4481684319731c24a1e105a" change="1477750978" id="I0045">
       <gender>F</gender>
@@ -1151,6 +1196,7 @@
       <parentin hlink="_d65a46d6c0034a50640d7a84213"/>
       <noteref hlink="_d65a448168e1061fc46719b5efa"/>
       <citationref hlink="_d65a448168e27ed358658e331d9"/>
+      <uid>f6066bc7-b6c5-4df8-86ce-279e230bbee1</uid>
     </person>
     <person handle="_d65a448168e2615f26e025aa37c" change="1477758479" id="I0046">
       <gender>M</gender>
@@ -1171,6 +1217,7 @@
       <url  href="" type="FTP"/>
       <childof hlink="_d65a46d6c0034a50640d7a84213"/>
       <citationref hlink="_d65a448169813b50e0fdc0eea70"/>
+      <uid>bb3491cb-c2bb-455b-9fd8-2bd9838aadad</uid>
     </person>
     <person handle="_d70431c6959122e6b45d92a0f79" change="1477758479" id="I0047">
       <gender>U</gender>
@@ -1216,6 +1263,7 @@
       <attribute type="Description" value="A fake description"/>
       <url  href="ftp://whoknows.org" type="FTP" description="A test FTP URL"/>
       <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+      <uid>6870f468-9a83-423f-8d17-5460caf32def</uid>
     </person>
     <person handle="_d704394bd865d87c4e17e0ddb52" change="1477758479" id="I0048">
       <gender>F</gender>
@@ -1224,6 +1272,7 @@
         <surname>Tester</surname>
       </name>
       <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+      <uid>2e7f8981-e071-4976-921b-ac253d589149</uid>
     </person>
     <person handle="_d7043a0d88d6c229604fb03acd8" change="1477758479" id="I0049">
       <gender>F</gender>
@@ -1232,6 +1281,7 @@
         <surname>Tester</surname>
       </name>
       <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+      <uid>04f9fb68-1605-4edc-8774-6e14af21dc36</uid>
     </person>
     <person handle="_d7043e8a06054d316b49becaa9" change="1477758479" id="I0050">
       <gender>M</gender>
@@ -1240,6 +1290,7 @@
         <surname>Tester</surname>
       </name>
       <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+      <uid>9d826c33-b992-460d-ae31-9f42c74ae649</uid>
     </person>
     <person handle="_d70ac994c26790fb000f95f0a31" change="1477758479" id="I0051">
       <gender>M</gender>
@@ -1248,6 +1299,7 @@
         <surname>Tester</surname>
       </name>
       <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+      <uid>5af62ce2-111c-4fae-acba-a54ac9518382</uid>
     </person>
   </people>
   <families>
@@ -1263,6 +1315,7 @@
       <childref hlink="_0000002000000020"/>
       <childref hlink="_0000003600000036"/>
       <childref hlink="_0000000b0000000b"/>
+      <uid>6245291c-6b2e-437e-adfd-4cdbc79d1071</uid>
     </family>
     <family handle="_0000000a0000000a" change="1473020073" id="F0008">
       <rel type="Married"/>
@@ -1273,17 +1326,20 @@
       <childref hlink="_0000000700000007"/>
       <childref hlink="_0000005b0000005b"/>
       <childref hlink="_d65a448167a2736b3dfc08c11d8"/>
+      <uid>56ab0070-a6e4-4fa5-bab0-e505c3cc4c82</uid>
     </family>
     <family handle="_0000000f0000000f" change="1198222526" id="F0009">
       <rel type="Unknown"/>
       <father hlink="_0000000b0000000b"/>
       <mother hlink="_0000002600000026"/>
-      <childref hlink="_0000006f0000006f" frel="Adopted" mrel="Foster"/>
+      <childref hlink="_0000006f0000006f" mrel="Foster" frel="Adopted"/>
+      <uid>18dbdb8e-cd29-4270-87c3-30d8d269bc98</uid>
     </family>
     <family handle="_0000001000000010" change="1198222526" id="F0014">
       <rel type="Unknown"/>
       <father hlink="_0000000b0000000b"/>
       <mother hlink="_0000002300000023"/>
+      <uid>04ac4bda-8a52-4a43-9c2c-62b38c78d77d</uid>
     </family>
     <family handle="_0000001400000014" change="1198222526" id="F0000">
       <rel type="Married"/>
@@ -1294,6 +1350,7 @@
       <childref hlink="_0000009a0000009a"/>
       <childref hlink="_0000008f0000008f"/>
       <childref hlink="_0000003c0000003c"/>
+      <uid>fe501cd0-bc38-4c7c-968f-91bfc1896479</uid>
     </family>
     <family handle="_0000001800000018" change="1465741655" id="F0005">
       <rel type="Married"/>
@@ -1301,12 +1358,14 @@
       <mother hlink="_0000004300000043"/>
       <eventref hlink="_000000b3000000b3" role="Family"/>
       <childref hlink="_d54b1f298d25b543223ca137ad1" mrel="Adopted" frel="Adopted"/>
+      <uid>472f00cd-f2a9-4262-9c02-ff163c3097e1</uid>
     </family>
     <family handle="_0000001b0000001b" change="1198222526" id="F0007">
       <rel type="Married"/>
       <father hlink="_0000002000000020"/>
       <mother hlink="_0000001900000019"/>
       <eventref hlink="_000000b5000000b5" role="Family"/>
+      <uid>650cae06-9b53-416d-b885-7fde9cee6e3e</uid>
     </family>
     <family handle="_0000001f0000001f" change="1198222526" id="F0006">
       <rel type="Married"/>
@@ -1315,6 +1374,7 @@
       <eventref hlink="_000000b4000000b4" role="Family"/>
       <childref hlink="_0000002900000029"/>
       <childref hlink="_0000001c0000001c"/>
+      <uid>1b16a667-7ea8-42e2-9bfa-40b9d3c322d5</uid>
     </family>
     <family handle="_0000002b0000002b" change="1198222526" id="F0012">
       <rel type="Married"/>
@@ -1323,6 +1383,7 @@
       <eventref hlink="_000000aa000000aa" role="Family"/>
       <childref hlink="_0000009100000091"/>
       <childref hlink="_0000007b0000007b"/>
+      <uid>5e1543a1-0aef-4398-a4ec-01c761e4152e</uid>
     </family>
     <family handle="_0000002f0000002f" change="1198222526" id="F0010">
       <rel type="Married"/>
@@ -1330,6 +1391,7 @@
       <mother hlink="_0000006c0000006c"/>
       <eventref hlink="_000000a7000000a7" role="Family"/>
       <childref hlink="_0000007300000073" mrel="Adopted" frel="Adopted"/>
+      <uid>fc686056-0375-4b34-b8d0-286314886398</uid>
     </family>
     <family handle="_0000003500000035" change="1198222526" id="F0013">
       <rel type="Married"/>
@@ -1339,6 +1401,7 @@
       <eventref hlink="_000000af000000af" role="Family"/>
       <childref hlink="_0000009500000095"/>
       <childref hlink="_0000003000000030"/>
+      <uid>eecb398d-b836-46f6-9cf5-2d1e1196546a</uid>
     </family>
     <family handle="_0000004100000041" change="1198222526" id="F0002">
       <rel type="Married"/>
@@ -1348,6 +1411,7 @@
       <childref hlink="_0000005f0000005f"/>
       <childref hlink="_000000a3000000a3"/>
       <childref hlink="_0000004600000046"/>
+      <uid>ca5342c9-2567-4f68-9d40-eab4c8b7af99</uid>
     </family>
     <family handle="_0000004f0000004f" change="1198222526" id="F0001">
       <rel type="Married"/>
@@ -1355,18 +1419,21 @@
       <mother hlink="_0000004d0000004d"/>
       <eventref hlink="_000000a6000000a6" role="Family"/>
       <childref hlink="_0000008b0000008b"/>
+      <uid>2a062175-d389-4c67-8b64-1b010120e6d6</uid>
     </family>
     <family handle="_0000005300000053" change="1198222526" id="F0004">
       <rel type="Married"/>
       <father hlink="_0000009800000098"/>
       <mother hlink="_0000005000000050"/>
       <eventref hlink="_000000b2000000b2" role="Family"/>
+      <uid>737f9c39-a030-493f-8f99-331a6c064cf9</uid>
     </family>
     <family handle="_0000005a0000005a" change="1198222526" id="F0011">
       <rel type="Married"/>
       <father hlink="_0000005f0000005f"/>
       <mother hlink="_0000005600000056"/>
       <eventref hlink="_000000a9000000a9" role="Family"/>
+      <uid>cfbbdfcd-a8b8-467a-8bfb-8f7d6349c43d</uid>
     </family>
     <family handle="_d65a46d6c0034a50640d7a84213" change="1477758479" id="F0016">
       <rel type="Married"/>
@@ -1392,6 +1459,7 @@
       <attribute type="RFN" value="RFN3333"/>
       <attribute type="License Number" value="7532951"/>
       <attribute type="Unknown" value=""/>
+      <uid>2f7c8012-41ce-4195-ba1b-180d5e5aa027</uid>
     </family>
   </families>
   <citations>
@@ -1478,7 +1546,7 @@
       <sauthor>The tester</sauthor>
       <spubinfo>Published when the test was written</spubinfo>
       <sabbrev>TST</sabbrev>
-      <reporef hlink="_d7044c855b91ee04c40e98987e7"/>
+      <reporef hlink="_d7044c855b91ee04c40e98987e7" medium="Book"/>
     </source>
   </sources>
   <places>

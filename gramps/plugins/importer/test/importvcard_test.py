@@ -71,6 +71,13 @@ class VCardCheck(unittest.TestCase):
                 element.text = ''
             if element.tail is not None and not element.tail.strip():
                 element.tail = ''
+            if element.tag == ("{http://gramps-project.org/xml/%s/}"
+                               "person" % GRAMPS_XML_VERSION):
+                for child in element:
+                    if child.tag == ("{http://gramps-project.org/xml/%s/}"
+                                     "uid" % GRAMPS_XML_VERSION):
+                        element.remove(child)
+                        break
 
         return ET.tostring(doc, encoding='utf-8')
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
-    <created date="2016-08-29" version="5.0.0-alpha1"/>
+    <created date="1999-12-25" version="5.1.2"/>
     <researcher>
     </researcher>
   </header>
   <people>
-    <person handle="_0000000100000001" change="1472500306" id="I0001">
+    <person handle="_0000000100000001" change="1" id="I0001">
       <gender>U</gender>
       <name type="Birth Name">
         <first>The</first>
@@ -20,8 +20,9 @@
       <objref hlink="_0000000600000006"/>
       <objref hlink="_0000000700000007"/>
       <noteref hlink="_0000000200000002"/>
+      <uid>00000000-0000-0000-0000-000000000002</uid>
     </person>
-    <person handle="_0000000800000008" change="1472500306" id="I0002">
+    <person handle="_0000000800000008" change="1" id="I0002">
       <gender>U</gender>
       <name type="Birth Name">
         <first>She</first>
@@ -34,8 +35,9 @@
       <objref hlink="_0000000700000007"/>
       <noteref hlink="_0000000900000009"/>
       <noteref hlink="_0000000a0000000a"/>
+      <uid>00000000-0000-0000-0000-000000000004</uid>
     </person>
-    <person handle="_0000001000000010" change="1472500306" id="I0003">
+    <person handle="_0000001000000010" change="1" id="I0003">
       <gender>U</gender>
       <name type="Birth Name">
         <first>Edwin</first>
@@ -46,103 +48,111 @@
       <objref hlink="_0000001300000013"/>
       <noteref hlink="_0000001100000011"/>
       <noteref hlink="_0000001500000015"/>
+      <uid>00000000-0000-0000-0000-000000000006</uid>
     </person>
   </people>
   <objects>
-    <object handle="_0000000300000003" change="1472500306" id="M1">
+    <object handle="_0000000300000003" change="1" id="M1">
       <file src="O1.jpg" mime="image/jpeg" description="Ferry Arriving 1910"/>
       <noteref hlink="_0000000b0000000b"/>
     </object>
-    <object handle="_0000000400000004" change="1472500306" id="M2">
+    <object handle="_0000000400000004" change="1" id="M2">
       <file src="O2.jpg" mime="image/jpeg" description="B&amp;W Kids"/>
       <noteref hlink="_0000000c0000000c"/>
     </object>
-    <object handle="_0000000500000005" change="1472500306" id="M3">
+    <object handle="_0000000500000005" change="1" id="M3">
       <file src="O3.jpg" mime="image/jpeg" description="Sourpuss in Hat"/>
       <noteref hlink="_0000000d0000000d"/>
     </object>
-    <object handle="_0000000600000006" change="1472500306" id="M4">
+    <object handle="_0000000600000006" change="1" id="M4">
       <file src="O4.jpg" mime="image/jpeg" description="Girl Eating"/>
       <noteref hlink="_0000000e0000000e"/>
     </object>
-    <object handle="_0000000700000007" change="1472500306" id="M5">
+    <object handle="_0000000700000007" change="1" id="M5">
       <file src="O5.jpg" mime="image/jpeg" description="Edwin &amp; Janice Smith"/>
       <noteref hlink="_0000000f0000000f"/>
     </object>
-    <object handle="_0000001200000012" change="1472500306" id="O0000">
+    <object handle="_0000001200000012" change="1" id="O0000">
       <file src="O3.jpg" mime="image/jpeg" description="Sourpuss in Hat"/>
     </object>
-    <object handle="_0000001300000013" change="1472500306" id="O0001">
+    <object handle="_0000001300000013" change="1" id="O0001">
       <file src="O4.jpg" mime="image/jpeg" description="Girl Eating"/>
     </object>
-    <object handle="_0000001400000014" change="1472500306" id="O0002">
+    <object handle="_0000001400000014" change="1" id="O0002">
       <file src="O5.jpg" mime="image/jpeg" description="Edwin &amp; Janice Smith"/>
     </object>
   </objects>
   <notes>
-    <note handle="_0000000200000002" change="1472500306" id="N0000" type="Person Note">
+    <note handle="_0000000200000002" change="1" id="N0000" type="Person Note">
       <text>The primary photo should be a male Sourpuss in a Hat 03.jpg or Gid:M3</text>
     </note>
-    <note handle="_0000000900000009" change="1472500306" id="N0001" type="Person Note">
+    <note handle="_0000000900000009" change="1" id="N0001" type="Person Note">
       <text>The primary photo should be a girl eating 04.jpg or Gid:M4</text>
     </note>
-    <note handle="_0000000a0000000a" change="1472500306" id="N0002" type="GEDCOM import">
+    <note handle="_0000000a0000000a" change="1" id="N0002" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0002:
 
-Line ignored as not understood                                      Line    35: 3 WHAT ???</text>
+Line ignored as not understood                                      Line    35: 3 WHAT ???
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="153"/>
       </style>
     </note>
-    <note handle="_0000000b0000000b" change="1472500306" id="N0003" type="GEDCOM import">
+    <note handle="_0000000b0000000b" change="1" id="N0003" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
 
-Could not import O1.jpg                                             Line    38: 1 FILE O1.jpg</text>
+Could not import O1.jpg                                             Line    38: 1 FILE O1.jpg
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="161"/>
       </style>
     </note>
-    <note handle="_0000000c0000000c" change="1472500306" id="N0004" type="GEDCOM import">
+    <note handle="_0000000c0000000c" change="1" id="N0004" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M2:
 
-Could not import O2.jpg                                             Line    41: 1 FILE O2.jpg</text>
+Could not import O2.jpg                                             Line    41: 1 FILE O2.jpg
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="161"/>
       </style>
     </note>
-    <note handle="_0000000d0000000d" change="1472500306" id="N0005" type="GEDCOM import">
+    <note handle="_0000000d0000000d" change="1" id="N0005" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M3:
 
-Could not import O3.jpg                                             Line    44: 1 FILE O3.jpg</text>
+Could not import O3.jpg                                             Line    44: 1 FILE O3.jpg
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="161"/>
       </style>
     </note>
-    <note handle="_0000000e0000000e" change="1472500306" id="N0006" type="GEDCOM import">
+    <note handle="_0000000e0000000e" change="1" id="N0006" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M4:
 
-Could not import O4.jpg                                             Line    47: 1 FILE O4.jpg</text>
+Could not import O4.jpg                                             Line    47: 1 FILE O4.jpg
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="161"/>
       </style>
     </note>
-    <note handle="_0000000f0000000f" change="1472500306" id="N0007" type="GEDCOM import">
+    <note handle="_0000000f0000000f" change="1" id="N0007" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M5:
 
-Could not import O5.jpg                                             Line    50: 1 FILE O5.jpg</text>
+Could not import O5.jpg                                             Line    50: 1 FILE O5.jpg
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="161"/>
       </style>
     </note>
-    <note handle="_0000001100000011" change="1472500306" id="N0008" type="Person Note">
+    <note handle="_0000001100000011" change="1" id="N0008" type="Person Note">
       <text>The primary photo should be a male of pair 05.jpg</text>
     </note>
-    <note handle="_0000001500000015" change="1472500306" id="N0009" type="GEDCOM import">
+    <note handle="_0000001500000015" change="1" id="N0009" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0003:
 
 Could not import O3.jpg                                             Line    55: 1 OBJE 
 Could not import O4.jpg                                             Line    59: 1 OBJE 
-Could not import O5.jpg                                             Line    63: 1 OBJE</text>
+Could not import O5.jpg                                             Line    63: 1 OBJE 
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="326"/>
       </style>

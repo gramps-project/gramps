@@ -24,15 +24,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.7.1
+    This is the Document Type Definition file for v1.8.0
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.7.1//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.8.0//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.7.1//EN"
-                "http://gramps-project.org/xml/1.7.1/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.8.0//EN"
+                "http://gramps-project.org/xml/1.8.0/grampsxml.dtd"
                 [...]>
 -->
 
@@ -61,7 +61,7 @@ DATABASE
 <!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
                     citations?, sources?, places?, objects?, repositories?,
                     notes?, bookmarks?, namemaps?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.7.1/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.8.0/">
 
 
 <!--    ************************************************************
@@ -104,9 +104,9 @@ PEOPLE
         home    IDREF #IMPLIED
 >
 
-<!ELEMENT person (gender, name*, eventref*, lds_ord*,
-                  objref*, address*, attribute*, url*, childof*,
-                  parentin*, personref*, noteref*, citationref*, tagref*)>
+<!ELEMENT person (gender, name*, eventref*, lds_ord*, objref*, address*,
+                  attribute*, url*, childof*, parentin*, personref*, noteref*,
+                  citationref*, tagref*, uid*)>
 <!ATTLIST person
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
@@ -184,7 +184,8 @@ FAMILY
 <!ELEMENT families (family)*>
 
 <!ELEMENT family (rel?, father?, mother?, eventref*, lds_ord*, objref*,
-                  childref*, attribute*, noteref*, citationref*, tagref*)>
+                  childref*, attribute*, noteref*, citationref*, tagref*,
+                  uid*)>
 <!ATTLIST family
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
@@ -319,7 +320,7 @@ REPOSITORIES
 
 <!ELEMENT repositories (repository)*>
 
-<!ELEMENT repository (rname, type, address*, url*, noteref*, tagref*)>
+<!ELEMENT repository (rname?, type, address*, url*, noteref*, tagref*)>
 <!ATTLIST repository
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
@@ -519,6 +520,7 @@ SHARED ELEMENTS
 
 <!ELEMENT cause (#PCDATA)>
 <!ELEMENT description (#PCDATA)>
+<!ELEMENT uid (#PCDATA)>
 
 <!ELEMENT url EMPTY>
 <!ATTLIST url

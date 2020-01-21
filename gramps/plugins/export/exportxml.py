@@ -558,6 +558,8 @@ class GrampsXmlWriter(UpdateCallback):
         for tag_handle in person.get_tag_list():
             self.write_ref("tagref", tag_handle, index+1)
 
+        self.write_uids(person.get_uid_list())
+
         self.g.write("%s</person>\n" % sp)
 
     def write_family(self,family,index=1):
@@ -585,6 +587,8 @@ class GrampsXmlWriter(UpdateCallback):
 
         for tag_handle in family.get_tag_list():
             self.write_ref("tagref", tag_handle, index+1)
+
+        self.write_uids(family.get_uid_list())
 
         self.g.write("%s</family>\n" % sp)
 
@@ -815,6 +819,13 @@ class GrampsXmlWriter(UpdateCallback):
             sp = "  "*index
             self.g.write('%s<%s hlink="_%s"%s%s>\n'
                          % (sp,tagname, handle,extra_text,close_tag))
+
+    def write_uids(self, uid_list):
+        """
+        write out the uids on persons or families
+        """
+        for uid in uid_list:
+            self.g.write('      <uid>%s</uid>\n' % uid)
 
     def write_primary_tag(self, tagname, obj, index=1, close=True):
         """

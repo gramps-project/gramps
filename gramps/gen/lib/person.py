@@ -24,7 +24,6 @@
 """
 Person object for Gramps.
 """
-
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -45,6 +44,8 @@ from .personref import PersonRef
 from .attrtype import AttributeType
 from .eventroletype import EventRoleType
 from .attribute import Attribute
+from .uid import Uid
+from .uidbase import UidBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -54,7 +55,7 @@ _ = glocale.translation.gettext
 # Person class
 #
 #-------------------------------------------------------------------------
-class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
+class Person(CitationBase, NoteBase, AttributeBase, MediaBase, UidBase,
              AddressBase, UrlBase, LdsOrdBase, PrimaryObject):
     """
     The Person record is the Gramps in-memory representation of an
@@ -101,6 +102,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         self.__gender = Person.UNKNOWN
         self.death_ref_index = -1
         self.birth_ref_index = -1
+        UidBase.__init__(self)
         if data:
             self.unserialize(data)
 
@@ -153,8 +155,9 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             self.change,                                         # 17
             TagBase.serialize(self),                             # 18
             self.private,                                        # 19
-            [pr.serialize() for pr in self.person_ref_list]      # 20
-            )
+            [pr.serialize() for pr in self.person_ref_list],     # 20
+            UidBase.serialize(self)                              # 21
+        )
 
     @classmethod
     def get_schema(cls):
@@ -234,7 +237,10 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                             "title": _("Private")},
                 "person_ref_list": {"type": "array",
                                     "items": PersonRef.get_schema(),
-                                    "title": _("Person references")}
+                                    "title": _("Person references")},
+                "uid_list": {"type": "array",
+                             "items": Uid.get_schema(),
+                             "title": _("Uid")}
             }
         }
 
@@ -268,7 +274,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
          tag_list,                # 18
          self.private,            # 19
          person_ref_list,         # 20
-        ) = data
+         uid_list,                # 21
+         ) = data
 
         self.primary_name = Name()
         self.primary_name.unserialize(primary_name)
@@ -278,6 +285,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                                for er in event_ref_list]
         self.person_ref_list = [PersonRef().unserialize(pr)
                                 for pr in person_ref_list]
+        UidBase.unserialize(self, uid_list)
         MediaBase.unserialize(self, media_list)
         LdsOrdBase.unserialize(self, lds_ord_list)
         AddressBase.unserialize(self, address_list)
@@ -551,6 +559,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
+        self._merge_uid_list(acquisition)
 
         list(map(self.add_parent_family_handle,
                  acquisition.get_parent_family_handle_list()))
