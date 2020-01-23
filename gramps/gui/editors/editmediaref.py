@@ -83,7 +83,9 @@ class EditMediaRef(EditReference):
         if not self.source.get_handle():
             #show the addmedia dialog immediately, with track of parent.
             AddMedia(state, self.uistate, self.track, self.source,
-                           self._update_addmedia)
+                     self._update_addmedia)
+        else:
+            self.original = self.source.serialize()
 
     def _local_init(self):
 
@@ -518,9 +520,11 @@ class EditMediaRef(EditReference):
 
         #first save primary object
         if self.source.handle:
-            with DbTxn(_("Edit Media Object (%s)") %
-                       self.source.get_description(), self.db) as trans:
-                self.db.commit_media(self.source, trans)
+            # only commit if it has changed
+            if self.source.serialize() != self.original:
+                with DbTxn(_("Edit Media Object (%s)") %
+                           self.source.get_description(), self.db) as trans:
+                    self.db.commit_media(self.source, trans)
         else:
             if self.check_for_duplicate_id('Media'):
                 return

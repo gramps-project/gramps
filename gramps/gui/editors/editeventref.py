@@ -66,6 +66,7 @@ class EditEventRef(EditReference):
     def __init__(self, state, uistate, track, event, event_ref, update):
         EditReference.__init__(self, state, uistate, track, event, event_ref,
                                update)
+        self.original = event.serialize()
         self._init_event()
 
     def _local_init(self):
@@ -268,8 +269,10 @@ class EditEventRef(EditReference):
     def ok_clicked(self, obj):
 
         if self.source.handle:
-            with DbTxn(_("Modify Event"), self.db) as trans:
-                self.commit_event(self.source,trans)
+            # only commit if it has changed
+            if self.source.serialize() != self.original:
+                with DbTxn(_("Modify Event"), self.db) as trans:
+                    self.commit_event(self.source, trans)
         else:
             if self.check_for_duplicate_id('Event'):
                 return
