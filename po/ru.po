@@ -30272,7 +30272,7 @@ msgstr "Редактор фильтров мест"
 
 #: ../gramps/plugins/lib/libplaceview.py:415
 msgid "_Look up with Map Service"
-msgstr "Посмотреть на катре"
+msgstr "Посмотреть на карте"
 
 #: ../gramps/plugins/lib/libplaceview.py:466
 msgid ""
