@@ -51,6 +51,7 @@ from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.proxy.cache import CacheProxyDb
 
 #-------------------------------------------------------------------------
 #
@@ -101,7 +102,7 @@ class EventRefModel(Gtk.TreeStore):
         self.start_date = kwargs.get("start_date", None)
         typeobjs = (x[1] for x in self.COLS)
         Gtk.TreeStore.__init__(self, *typeobjs)
-        self.db = db
+        self.db = CacheProxyDb(db)
         self.groups = groups
         for index, group in enumerate(event_list):
             parentiter = self.append(None, row=self.row_group(index, group))
