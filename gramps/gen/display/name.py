@@ -60,6 +60,7 @@ Specific symbols for parts of a name are defined:
 import re
 import logging
 from functools import cmp_to_key
+from math import copysign
 
 LOG = logging.getLogger(".gramps.gen")
 
@@ -493,34 +494,32 @@ class NameDisplay:
                         only_custom=False,
                         only_active=True):
         """
-        Get a list of tuples (num, name,fmt_str,act)
+        Returns a list of name formats as tuples on
+        the form (index, name,fmt_str,act).
+        The will contain standard formats followed
+        by custom formats both in ascending order on
+        their indices.
         """
 
-        formats = [
+        custom_formats = sorted([
             (index, name, format_string, active)
             for index, (name, format_string, active, *_) in self.name_formats.items()
-            if (also_default or index) and
-               (not only_custom or index < 0) and
+            if index < 0 and
                (not only_active or active)
-        ]
+        ])
 
-        return self.sort_by_ascending_positives_followed_by_negatives_in_reverse_order(formats)
+        if only_custom:
+            return custom_formats
 
+        standard_formats = sorted([
+            (index, name, format_string, active)
+            for index, (name, format_string, active, *_) in self.name_formats.items()
+            if index >= 0 and
+               (also_default or index) and
+               (not only_active or active)
+        ])
 
-    def sort_by_ascending_positives_followed_by_negatives_in_reverse_order(self, formats):
-        """
-        Sorts the formats with positive keys first,
-        and negative keys last.
-        The positives will be in ascending order and
-        the negatives in the reverse of their original order
-        in the iterable.
-        E.g. key ordering: -3, -1, -2, 1, 0, 2, 3 => 0, 1, 2, 3, -2, -1, -3
-        """
-        def compare_function(t, k):
-            x, y = t[0], k[0]
-            return x - y if x >= 0 and y >= 0 else y
-
-        return sorted(formats, key=cmp_to_key(compare_function))
+        return standard_formats + custom_formats
 
     def _is_format_valid(self, num):
         try:
