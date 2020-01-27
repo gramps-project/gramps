@@ -1023,3 +1023,78 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
+
+    def copy_from_bsddb(self, dirname, user):
+        """
+        Copy the BSDDB database in the given directory into this database.
+        This database should be empty before the copy.
+        """
+        from bsddb3 import db, dbshelve
+
+        for old_t, new_t, class_func in (('person', 'person', Person),
+                                       ('family', 'family', Family),
+                                       ('event', 'event', Event),
+                                       ('place', 'place', Place),
+                                       ('repo', 'repository', Repository),
+                                       ('source', 'source', Source),
+                                       ('citation', 'citation', Citation),
+                                       ('media', 'media', Media),
+                                       ('note', 'note', Note),
+                                       ('tag', 'tag', Tag),
+                                       ('meta_data', 'metadata', None)):
+
+            self._txn_begin()
+            dbmap = dbshelve.DBShelf()
+            file_name = os.path.join(dirname, old_t + '.db')
+            dbmap.open(file_name, old_t, db.DB_HASH, db.DB_RDONLY)
+            with user.progress("Converting BSDDB database",
+                               new_t, len(dbmap.keys())) as step:
+                for key in dbmap.keys():
+                    step()
+                    data = dbmap[key]
+
+                    sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % new_t
+                    if new_t == 'metadata':
+                        sql = "INSERT INTO metadata (setting, value) VALUES (?, ?)"
+
+                    # Upgrade schema version 18 to 19
+                    if new_t == 'metadata' and key == b'default':
+                        if isinstance(data, bytes):
+                            data = data.decode('utf-8')
+
+                    if not (new_t == 'metadata' and key == b'version'):
+                        self.dbapi.execute(sql,
+                                        [key.decode('utf-8'),
+                                         pickle.dumps(data)])
+
+                    if class_func:
+                        obj = class_func.create(data)
+                        self._update_secondary_values(obj)
+                        refs = set(obj.get_referenced_handles_recursively())
+                        for (ref_class_name, ref_handle) in refs:
+                            self.dbapi.execute(
+                                "INSERT INTO reference "
+                                "(obj_handle, obj_class, ref_handle, ref_class) "
+                                "VALUES (?, ?, ?, ?)",
+                                [obj.handle,
+                                 obj.__class__.__name__,
+                                 ref_handle,
+                                 ref_class_name])
+            self._txn_commit()
+
+        self._txn_begin()
+        dbmap = db.DB()
+        dbmap.set_flags(db.DB_DUP)
+        file_name = os.path.join(dirname, 'name_group.db')
+        dbmap.open(file_name, 'name_group', db.DB_HASH, db.DB_RDONLY)
+        with user.progress("Converting BSDDB database",
+                           "name group", len(dbmap.keys())) as step:
+            for key in dbmap.keys():
+                step()
+                data = dbmap[key]
+                name = key.decode('utf-8')
+                grouping = data.decode('utf-8')
+                self.dbapi.execute(
+                    "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
+                    [name, grouping])
+        self._txn_commit()

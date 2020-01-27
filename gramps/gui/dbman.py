@@ -320,10 +320,8 @@ class DbManager(CLIDbManager, ManagedWindow):
             self.repair_btn.set_sensitive(False)
         else:
             self.close_btn.set_sensitive(False)
-            dbid = config.get('database.backend')
-            backend_type = self.get_backend_name_from_dbid(dbid)
             if (store.get_value(node, ICON_COL) in [None, ""] and
-                    store.get_value(node, BACKEND_COL) != backend_type):
+                    store.get_value(node, BACKEND_COL) == "BSDDB"):
                 self.convert_btn.set_sensitive(True)
             else:
                 self.convert_btn.set_sensitive(False)
@@ -777,14 +775,14 @@ class DbManager(CLIDbManager, ManagedWindow):
         store, node = self.selection.get_selected()
         name = store[node][0]
         dirname = store[node][1]
-        dbid = config.get('database.backend')
+        dbid = 'sqlite'
         backend_type = self.get_backend_name_from_dbid(dbid)
         QuestionDialog(
             _("Convert the '%s' database?") % name,
             _("Do you wish to convert this family tree into a "
               "%(database_type)s database?") % {'database_type': backend_type},
             _("Convert"),
-            lambda: self.__convert_db(name, dirname), parent=self.top)
+            lambda: self.__convert_bsddb(name, dirname), parent=self.top)
 
     def __convert_db(self, name, dirname):
         """
@@ -838,6 +836,26 @@ class DbManager(CLIDbManager, ManagedWindow):
             import_function(dbase, xml_file, self.user)
         self.__end_cursor()
         dbase.close(user=self.user)
+        self.__populate()
+        self._select_default()
+
+    def __convert_bsddb(self, name, dirname):
+        """
+        Convert an old BSDDB family tree into SQLite.
+        """
+        dbid = 'sqlite'
+        new_path, newname = self._create_new_db(name, dbid=dbid,
+                                                edit_entry=False)
+        dbase = make_database(dbid)
+        dbase.load(new_path)
+        dbase.copy_from_bsddb(dirname, self.user)
+        dbase.close(user=self.user)
+
+        # Rename the database name file to hide it.
+        old_file = os.path.join(dirname, "name.txt")
+        new_file = os.path.join(dirname, "name.old")
+        os.rename(old_file, new_file)
+
         self.__populate()
         self._select_default()
 
