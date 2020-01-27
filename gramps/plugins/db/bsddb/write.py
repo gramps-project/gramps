@@ -65,12 +65,13 @@ from gramps.gen.lib.tag import Tag
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.lib.researcher import Researcher
 
-from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
-                    DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
-                    DbEnvironmentError, DbUpgradeRequiredError, find_surname,
-                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
+from . import (DbBsddbRead, DbWriteBase, BSDDBTxn, DbTxn, BsddbBaseCursor,
+               BsddbDowngradeError, DbVersionError, DbSupportedError,
+               DbEnvironmentError, DbUpgradeRequiredError, find_surname,
+               find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
 
 from gramps.gen.db import exceptions
+from gramps.gen.db.upgrade import make_zip_backup
 from gramps.gen.db.dbconst import *
 from gramps.gen.db.utils import write_lock_file, clear_lock_file
 from gramps.gen.utils.callback import Callback
@@ -367,30 +368,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 txn.put(b'mediapath', path)
 
-    def __make_zip_backup(self, dirname):
-        import zipfile
-        # In Windows reserved characters is "<>:"/\|?*"
-        reserved_char = r':,<>"/\|?* '
-        replace_char = "-__________"
-        title = self.get_dbname()
-        trans = title.maketrans(reserved_char, replace_char)
-        title = title.translate(trans)
-
-        if not os.access(dirname, os.W_OK):
-            _LOG.warning("Can't write technical DB backup for %s" % title)
-            return
-        (grampsdb_path, db_code) = os.path.split(dirname)
-        dotgramps_path = os.path.dirname(grampsdb_path)
-        zipname = title + time.strftime("_%Y-%m-%d_%H-%M-%S") + ".zip"
-        zippath = os.path.join(dotgramps_path, zipname)
-        with zipfile.ZipFile(zippath, 'w') as myzip:
-            for filename in os.listdir(dirname):
-                pathname = os.path.join(dirname, filename)
-                myzip.write(pathname, os.path.join(db_code, filename))
-        _LOG.warning("If upgrade and loading the Family Tree works, you can "
-                     "delete the zip file at %s" %
-                     zippath)
-
     def __check_bdb_version(self, name, force_bsddb_upgrade=False,
                             force_bsddb_downgrade=False):
         """Older version of Berkeley DB can't read data created by a newer
@@ -431,7 +408,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                              (bsddb_version, str(bdb_version)))
                 self.update_env_version = True
             # Make a backup of the database files anyway
-            self.__make_zip_backup(name)
+            make_zip_backup(self, name)
         elif (env_version[0] > bdb_version[0]) or \
             (env_version[0] == bdb_version[0] and
              env_version[1] > bdb_version[1]):
@@ -453,7 +430,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                              (bsddb_version, str(bdb_version)))
                 self.update_env_version = True
             # Make a backup of the database files anyway
-            self.__make_zip_backup(name)
+            make_zip_backup(self, name)
         elif env_version == bdb_version:
             # Bsddb version is OK
             pass
@@ -498,7 +475,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                              (db_python_version, current_python_version))
                 self.update_python_version = True
             # Make a backup of the database files anyway
-            self.__make_zip_backup(name)
+            make_zip_backup(self, name)
         elif db_python_version == 2 and current_python_version == 2:
             pass
 
@@ -506,6 +483,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def version_supported(self):
         dbversion = self.metadata.get(b'version', default=0)
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
+
+    def get_schema_version(self):
+        return self.metadata.get(b'version', default=0)
 
     @catch_db_error
     def _need_schema_upgrade(self):
@@ -584,7 +564,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if ((not self.readonly and not self.update_pickle_version) and
             (not os.path.isfile(versionpath) or self.update_python_version)):
             _LOG.debug("Make backup in case there is a pickle upgrade")
-            self.__make_zip_backup(name)
+            make_zip_backup(self, name)
             self.update_pickle_version = True
 
         # Check for schema upgrade
@@ -597,7 +577,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not self.readonly and schema_version < _DBVERSION and \
                                  force_schema_upgrade:
             _LOG.debug("Make backup in case there is a schema upgrade")
-            self.__make_zip_backup(name)
+            make_zip_backup(self, name)
 
         # Set up database environment
         self.env = db.DBEnv()
@@ -696,8 +676,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             callback(37)
 
         # Open name grouping database
-        self.name_group = self.__open_db(self.full_name, NAME_GROUP,
-                              db.DB_HASH, db.DB_DUP)
+#         self.name_group = self.__open_db(self.full_name, NAME_GROUP,
+#                               db.DB_HASH, db.DB_DUP)
 
         # We have now successfully opened the database, so if the BSDDB version
         # has changed, we update the DBSDB version file.
@@ -753,15 +733,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             callback(50)
 
         # Connect secondary indices
-        if not self.secondary_connected:
-            self.__connect_secondary()
+#        if not self.secondary_connected:
+#            self.__connect_secondary()
 
         if callback:
             callback(75)
 
         # Open undo database
-        self.__open_undodb()
+#        self.__open_undodb()
         self.db_is_open = True
+
+        raise DbSupportedError(_("BSDDB"))
 
         if callback:
             callback(87)
@@ -1335,23 +1317,23 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.env.txn_checkpoint()
 
         self.__close_metadata()
-        self.name_group.close()
-        self.surnames.close()
-        self.parents.close()
-        self.id_trans.close()
-        self.fid_trans.close()
-        self.eid_trans.close()
-        self.rid_trans.close()
-        self.nid_trans.close()
-        self.oid_trans.close()
-        self.sid_trans.close()
-        self.cid_trans.close()
-        self.pid_trans.close()
-        self.tag_trans.close()
-        self.reference_map_primary_map.close()
-        self.reference_map_referenced_map.close()
-        self.reference_map.close()
-        self.secondary_connected = False
+#         self.name_group.close()
+#         self.surnames.close()
+#         self.parents.close()
+#         self.id_trans.close()
+#         self.fid_trans.close()
+#         self.eid_trans.close()
+#         self.rid_trans.close()
+#         self.nid_trans.close()
+#         self.oid_trans.close()
+#         self.sid_trans.close()
+#         self.cid_trans.close()
+#         self.pid_trans.close()
+#         self.tag_trans.close()
+#         self.reference_map_primary_map.close()
+#         self.reference_map_referenced_map.close()
+#         self.reference_map.close()
+#         self.secondary_connected = False
 
         # primary databases must be closed after secondary indexes, or
         # we run into problems with any active cursors.
@@ -1366,7 +1348,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.event_map.close()
         self.tag_map.close()
         self.env.close()
-        self.__close_undodb()
+#        self.__close_undodb()
 
         self.person_map = None
         self.family_map = None
@@ -2174,15 +2156,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
             self.reset()
             self.set_total(6)
-            self.__connect_secondary()
-            self.rebuild_secondary()
+#            self.__connect_secondary()
+#            self.rebuild_secondary()
             # Open undo database
-            self.__open_undodb()
-            self.db_is_open = True
-            self.reindex_reference_map(self.update)
+#            self.__open_undodb()
+#            self.db_is_open = True
+#            self.reindex_reference_map(self.update)
             self.reset()
             # Close undo database
-            self.__close_undodb()
+#            self.__close_undodb()
             self.db_is_open = False
 
 

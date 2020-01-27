@@ -628,6 +628,32 @@ class DBAPI(DbGeneric):
 
         return old_data
 
+    def _commit_raw(self, data, obj_key, trans):
+        """
+        Commit the specified object to the database, storing the changes as
+        part of the transaction.
+        data is serialized primary object (must have handle in position 0)
+
+        This is intended to be use only for db ugrades.
+        """
+        table = KEY_TO_NAME_MAP[obj_key]
+        handle = data[0]
+
+        if self._has_handle(obj_key, handle):
+            # update the object:
+            sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
+            self.dbapi.execute(sql,
+                               [pickle.dumps(data),
+                                handle])
+        else:
+            # Insert the object:
+            sql = ("INSERT INTO %s (handle, blob_data) VALUES (?, ?)") % table
+            self.dbapi.execute(sql,
+                               [handle,
+                                pickle.dumps(data)])
+
+        return
+
     def _update_backlinks(self, obj, transaction):
 
         # Find existing references

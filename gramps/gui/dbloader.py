@@ -62,14 +62,16 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       DbVersionError,
                                       DbPythonError,
                                       DbEnvironmentError,
+                                      DbSupportedError,
                                       BsddbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
                                       PythonUpgradeRequiredError,
                                       PythonDowngradeError,
                                       DbConnectionError)
+from gramps.gen.db.upgrade import convert_db
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2,
-                            WarningDialog)
+                     WarningDialog, GrampsLoginDialog)
 from .user import User
 from gramps.gen.errors import DbError
 from .managedwindow import ManagedWindow
@@ -163,8 +165,8 @@ class DbLoader(CLIDbLoader):
             if not os.access(filename, os.W_OK):
                 mode = "r"
                 self._warn(_('Read only database'),
-                                             _('You do not have write access '
-                                               'to the selected file.'))
+                           _('You do not have write access '
+                             'to the selected file.'))
             else:
                 mode = "w"
         else:
@@ -179,6 +181,11 @@ class DbLoader(CLIDbLoader):
 
         db = make_database(dbid)
         db.disable_signals()
+
+        if dbid == "bsddb" and mode == "r":
+            self._warn(_("Cannot open database"), _('Read only database'))
+            return True
+
         self.dbstate.no_database()
 
         if db.requires_login() and username is None:
@@ -211,7 +218,28 @@ class DbLoader(CLIDbLoader):
                                       dbstate=self.dbstate))
                     self.dbstate.change_database(db)
                     break
-                except DbUpgradeRequiredError as msg:
+                except DbSupportedError as msg:
+                    if(force_schema_upgrade or
+                       QuestionDialog2(_("Are you sure you want "
+                                         "to upgrade this Family Tree?"),
+                                       str(msg),
+                                       _("I have made a backup,\n"
+                                         "please upgrade my Family Tree"),
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run()):
+                        force_schema_upgrade = True
+                        # need to convert to new db type, returns new type
+                        # username and password for those that require it.
+                        dbid, password, username = convert_db(
+                            db, filename, self.uistate)
+                        # db is closed, so get open again
+                        db = make_database(dbid)
+                        db.disable_signals()
+                    else:
+                        self.dbstate.no_database()
+                        break
+                except (DbUpgradeRequiredError, BsddbUpgradeRequiredError,
+                        PythonUpgradeRequiredError) as msg:
                     if QuestionDialog2(_("Are you sure you want "
                                          "to upgrade this Family Tree?"),
                                        str(msg),
@@ -220,24 +248,9 @@ class DbLoader(CLIDbLoader):
                                        _("Cancel"),
                                        parent=self.uistate.window).run():
                         force_schema_upgrade = True
-                        force_bsddb_upgrade = False
-                        force_bsddb_downgrade = False
-                        force_python_upgrade = False
-                    else:
-                        self.dbstate.no_database()
-                        break
-                except BsddbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want "
-                                         "to upgrade this Family Tree?"),
-                                       str(msg),
-                                       _("I have made a backup,\n"
-                                         "please upgrade my Family Tree"),
-                                       _("Cancel"),
-                                       parent=self.uistate.window).run():
-                        force_schema_upgrade = False
                         force_bsddb_upgrade = True
                         force_bsddb_downgrade = False
-                        force_python_upgrade = False
+                        force_python_upgrade = True
                     else:
                         self.dbstate.no_database()
                         break
@@ -249,24 +262,9 @@ class DbLoader(CLIDbLoader):
                                          "please downgrade my Family Tree"),
                                        _("Cancel"),
                                        parent=self.uistate.window).run():
-                        force_schema_upgrade = False
-                        force_bsddb_upgrade = False
+                        force_schema_upgrade = True
+                        force_bsddb_upgrade = True
                         force_bsddb_downgrade = True
-                        force_python_upgrade = False
-                    else:
-                        self.dbstate.no_database()
-                        break
-                except PythonUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want "
-                                         "to upgrade this Family Tree?"),
-                                       str(msg),
-                                       _("I have made a backup,\n"
-                                         "please upgrade my Family Tree"),
-                                       _("Cancel"),
-                                       parent=self.uistate.window).run():
-                        force_schema_upgrade = False
-                        force_bsddb_upgrade = False
-                        force_bsddb_downgrade = False
                         force_python_upgrade = True
                     else:
                         self.dbstate.no_database()
@@ -371,48 +369,6 @@ def format_maker():
     box.show_all()
     return (box, type_selector)
 
-class GrampsLoginDialog(ManagedWindow):
-
-    def __init__(self, uistate):
-        """
-        A login dialog to obtain credentials to connect to a database
-        """
-        self.title = _("Login")
-        ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
-
-        dialog = Gtk.Dialog(transient_for=uistate.window)
-        grid = Gtk.Grid()
-        grid.set_border_width(6)
-        grid.set_row_spacing(6)
-        grid.set_column_spacing(6)
-        label = Gtk.Label(label=_('Username: '))
-        grid.attach(label, 0, 0, 1, 1)
-        self.username = Gtk.Entry()
-        self.username.set_hexpand(True)
-        grid.attach(self.username, 1, 0, 1, 1)
-        label = Gtk.Label(label=_('Password: '))
-        grid.attach(label, 0, 1, 1, 1)
-        self.password = Gtk.Entry()
-        self.password.set_hexpand(True)
-        self.password.set_visibility(False)
-        self.password.set_input_purpose(Gtk.InputPurpose.PASSWORD)
-        grid.attach(self.password, 1, 1, 1, 1)
-        dialog.vbox.pack_start(grid, True, True, 0)
-        dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                           _('Login'), Gtk.ResponseType.OK)
-        self.set_window(dialog, None, self.title)
-
-    def run(self):
-        self.show()
-        response = self.window.run()
-        username = self.username.get_text()
-        password = self.password.get_text()
-        if response == Gtk.ResponseType.CANCEL:
-            self.close()
-            return None
-        elif response == Gtk.ResponseType.OK:
-            self.close()
-            return (username, password)
 
 class GrampsImportFileDialog(ManagedWindow):
 

@@ -360,6 +360,35 @@ class DbConnectionError(Exception):
                     'message': self.msg,
                     'settings_file': self.settings_file}
 
+
+class DbSupportedError(Exception):
+    """
+    Error used to report that a database is no longer supported.
+    """
+    def __init__(self, msg):
+        Exception.__init__(self)
+        self.msg = msg
+
+    def __str__(self):
+        return _('The Family Tree you are trying to load is in the %(dbtype)s '
+                 'database, which is no longer supported.\nTherefore you '
+                 'cannot load this Family Tree without upgrading.\n\n'
+                 'If you upgrade then you won\'t be able to use the previous '
+                 'version of Gramps, even if you subsequently '
+                 '%(wiki_manual_backup_html_start)sbackup%(html_end)s or '
+                 '%(wiki_manual_export_html_start)sexport%(html_end)s '
+                 'your upgraded Family Tree.\n\n'
+                 'You are strongly advised to backup your Family Tree.\n\n'
+                 'If you have not already made a backup of your Family Tree, '
+                 'then you should start your previous version of Gramps and '
+                 '%(wiki_backup_html_start)smake a backup%(html_end)s '
+                 'of your Family Tree.') % {
+                     'dbtype' : self.msg,
+                     'wiki_manual_backup_html_start' : URL_BACKUP2_START ,
+                     'wiki_manual_export_html_start' : URL_EXPORT_START ,
+                     'wiki_backup_html_start' : URL_BACKUP1_START ,
+                     'html_end'    : '</a>'}
+
 if __name__ == "__main__":
     """
     Call this from the CLI (in order to find the imported modules):
