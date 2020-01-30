@@ -59,8 +59,6 @@ Specific symbols for parts of a name are defined:
 #-------------------------------------------------------------------------
 import re
 import logging
-from functools import cmp_to_key
-from math import copysign
 
 LOG = logging.getLogger(".gramps.gen")
 
