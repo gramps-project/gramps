@@ -1050,8 +1050,8 @@ class StatisticsChartOptions(MenuReportOptions):
 
         gender = EnumeratedListOption(_('Genders included'),
                                       Person.UNKNOWN)
-        for item in enumerate(_options.opt_genders):
-            gender.add_item(item[0], item[2])
+        for first, second, third in _options.opt_genders:
+            gender.add_item(first, third)
         gender.set_help(_("Select which genders are included into "
                           "statistics."))
         add_option("gender", gender)

@@ -154,7 +154,7 @@ class RecentFiles:
         for recent_file in self.gramps_recent_files:
             if recent_file.get_name() == filename:
                 recent_file.set_name(new_filename)
-                break
+                return
 
     def remove_filename(self, filename):
         """
@@ -163,7 +163,7 @@ class RecentFiles:
         for index, recent_file in enumerate(self.gramps_recent_files):
             if recent_file.get_name() == filename:
                 self.gramps_recent_files.pop(index)
-                break
+                return
 
     def check_if_recent(self, filename):
         """

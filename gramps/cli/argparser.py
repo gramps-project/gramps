@@ -343,8 +343,8 @@ class ArgParser:
                 print(_("Gramps config settings from %s:"
                        ) % config.filename)
                 for sect, settings in config.data.items():
-                    for setting, value in settings.items():
-                        print("%s.%s=%s" % (sect, setting, repr(value)))
+                    for settings_index, setting in settings.items():
+                        print("%s.%s=%s" % (sect, settings_index, repr(value)))
                     print()
                 sys.exit(0)
             elif option in ['-c', '--config']:
@@ -434,7 +434,8 @@ class ArgParser:
                 sys.exit(0)  # Done with Default
 
         #clean options list
-        for ind in reversed(cleandbg):
+        cleandbg.reverse()
+        for ind in cleandbg:
             del options[ind]
 
         if (len(options) > 0

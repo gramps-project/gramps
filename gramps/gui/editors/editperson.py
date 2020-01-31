@@ -41,7 +41,6 @@ import pickle
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import Pango
 from gi.repository.GLib import markup_escape_text
 
 #-------------------------------------------------------------------------

@@ -148,14 +148,6 @@ class SurnameTab(EmbeddedList):
         self.columns.append(column)
         self.tree.append_column(column)
 
-##    def by_value(self, first, second):
-##        """
-##        Method for sorting keys based on the values.
-##        """
-##        fvalue = self.cmborigmap[first]
-##        svalue = self.cmborigmap[second]
-##        return glocale.strcoll(fvalue, svalue)
-
     def setup_editable_col(self):
         """
         inherit this and set the variables needed for editable columns
