@@ -2509,8 +2509,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if version < 20:
             gramps_upgrade_20(self)
 
-        self.rebuild_secondary()
-        self.reindex_reference_map(self.update)
+        self.rebuild_secondary(callback)
+        self.reindex_reference_map(callback)
         self.reset()
 
         self.set_schema_version(self.VERSION[0])

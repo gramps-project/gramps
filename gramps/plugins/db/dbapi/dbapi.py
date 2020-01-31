@@ -41,6 +41,7 @@ from gramps.gen.db.dbconst import (DBLOGNAME, DBBACKEND, KEY_TO_NAME_MAP,
                                    TAG_KEY, CITATION_KEY, REPOSITORY_KEY,
                                    REFERENCE_KEY)
 from gramps.gen.db.generic import DbGeneric
+from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.lib import (Tag, Media, Person, Family, Source,
                             Citation, Event, Place, Repository, Note)
 from gramps.gen.lib.genderstats import GenderStats
@@ -809,9 +810,14 @@ class DBAPI(DbGeneric):
         """
         Reindex all primary records in the database.
         """
-        callback(4)
         self._txn_begin()
         self.dbapi.execute("DELETE FROM reference")
+        total = 0
+        for tbl in ('people', 'families', 'events', 'places', 'sources',
+                    'citations', 'media', 'repositories', 'notes', 'tags'):
+            total += self.method("get_number_of_%s", tbl)()
+        UpdateCallback.__init__(self, callback)
+        self.set_total(total)
         primary_table = (
             (self.get_person_cursor, Person),
             (self.get_family_cursor, Family),
@@ -842,8 +848,8 @@ class DBAPI(DbGeneric):
                              obj.__class__.__name__,
                              ref_handle,
                              ref_class_name])
+                    self.update()
         self._txn_commit()
-        callback(5)
 
     def rebuild_secondary(self, callback=None):
         """
@@ -852,26 +858,26 @@ class DBAPI(DbGeneric):
         if self.readonly:
             return
 
+        total = 0
+        for tbl in ('people', 'families', 'events', 'places', 'sources',
+                    'citations', 'media', 'repositories', 'notes', 'tags'):
+            total += self.method("get_number_of_%s", tbl)()
+        UpdateCallback.__init__(self, callback)
+        self.set_total(total)
+
         # First, expand blob to individual fields:
         self._txn_begin()
-        index = 1
         for obj_type in ('Person', 'Family', 'Event', 'Place', 'Repository',
                          'Source', 'Citation', 'Media', 'Note', 'Tag'):
             for handle in self.method('get_%s_handles', obj_type)():
                 obj = self.method('get_%s_from_handle', obj_type)(handle)
                 self._update_secondary_values(obj)
-            if callback:
-                callback(index)
-            index += 1
+                self.update()
         self._txn_commit()
-        if callback:
-            callback(11)
 
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
-        if callback:
-            callback(12)
 
     def _has_handle(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
