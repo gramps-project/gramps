@@ -369,3 +369,5 @@ if not os.path.exists(CONFIGMAN.filename):
 CONFIGMAN.load()
 
 config = CONFIGMAN
+if config.get('database.backend') == 'bsddb':
+    config.set('database.backend', 'sqlite')
