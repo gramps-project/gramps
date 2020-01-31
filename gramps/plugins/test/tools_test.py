@@ -77,7 +77,7 @@ class ToolControl(unittest.TestCase):
     """
     def setUp(self):
         self.db_backend = config.get('database.backend')
-        call("--config=database.backend:bsddb", "-y", "-q", "--remove", TREE_NAME)
+        call("--config=database.backend:sqlite", "-y", "-q", "--remove", TREE_NAME)
 
     def tearDown(self):
         config.set('database.backend', self.db_backend)
