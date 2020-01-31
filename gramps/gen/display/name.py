@@ -501,9 +501,8 @@ class NameDisplay:
 
         custom_formats = sorted([
             (index, name, format_string, active)
-            for index, (name, format_string, active, *_) in self.name_formats.items()
-            if index < 0 and
-               (not only_active or active)
+            for index, (name, format_string, active, *rest) in self.name_formats.items()
+            if index < 0 and (not only_active or active)
         ])
 
         if only_custom:
@@ -511,10 +510,8 @@ class NameDisplay:
 
         standard_formats = sorted([
             (index, name, format_string, active)
-            for index, (name, format_string, active, *_) in self.name_formats.items()
-            if index >= 0 and
-               (also_default or index) and
-               (not only_active or active)
+            for index, (name, format_string, active, *rest) in self.name_formats.items()
+            if index >= 0 and (also_default or index) and (not only_active or active)
         ])
 
         return standard_formats + custom_formats
