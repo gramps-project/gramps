@@ -367,7 +367,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         dbid = config.get('database.backend')
         backend_type = self.get_backend_name_from_dbid(dbid)
         if backend_type == UNAVAILABLE:
-            dbid = 'bsddb'
+            dbid = 'sqlite'
             config.set('database.backend', dbid)
             backend_type = self.get_backend_name_from_dbid(dbid)
         self.new_btn.set_tooltip_text(backend_type)
@@ -938,7 +938,7 @@ class DbManager(CLIDbManager, ManagedWindow):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        dbase = make_database("bsddb")
+        dbase = make_database("sqlite")
         dbase.load(dirname, None)
 
         self.__start_cursor(_("Rebuilding database from backup files"))

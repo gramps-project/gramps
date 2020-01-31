@@ -1809,6 +1809,8 @@ class GrampsPreferences(ConfigureDialog):
         for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
             if plugin.id == default:
                 active = count
+            if plugin.id == 'bsddb':
+                continue  # bsddb is deprecated, so don't allow setting
             model.append(row=[count, plugin.name, plugin.id])
             count += 1
         obox.set_model(model)
