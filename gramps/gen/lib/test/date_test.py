@@ -235,8 +235,8 @@ class ParserDateTest(BaseDateTest):
     Date displayer and parser tests.
     """
     def do_case(self, testset):
-        for date_format in enumerate(get_date_formats()):
-            set_format(date_format)
+        for index, date_format in enumerate(get_date_formats()):
+            set_format(index)
 
             for dateval in date_tests[testset]:
                 datestr = _dd.display(dateval)
@@ -245,7 +245,7 @@ class ParserDateTest(BaseDateTest):
                                 "dateval fails is_equal in format %d:\n"
                                 "   '%s' != '%s'\n"
                                 "   '%s' != '%s'\n" %
-                                (date_format, dateval, ndate,
+                                (index, dateval, ndate,
                                  dateval.__dict__, ndate.__dict__))
 
     def test_basic(self):

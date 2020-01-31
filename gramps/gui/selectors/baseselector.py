@@ -149,7 +149,7 @@ class BaseSelector(ManagedWindow):
                     parent_path = self.model.get_path(parent_iter)
                     if parent_path:
                         parent_path_list = parent_path.get_indices()
-                        for i in enumerate(parent_path_list):
+                        for i, value in enumerate(parent_path_list):
                             expand_path = Gtk.TreePath(
                                     tuple([x for x in parent_path_list[:i+1]]))
                             self.tree.expand_row(expand_path, False)
@@ -301,9 +301,9 @@ class BaseSelector(ManagedWindow):
 
         #sorting arrow in column header (not on start, only on click)
         if not self.setupcols :
-            for i in enumerate(self.columns):
+            for i, column in enumerate(self.columns):
                 enable_sort_flag = (i==self.sort_col)
-                self.columns[i].set_sort_indicator(enable_sort_flag)
+                column.set_sort_indicator(enable_sort_flag)
             self.columns[self.sort_col].set_sort_order(self.sortorder)
 
         # set the search column to be the sorted column

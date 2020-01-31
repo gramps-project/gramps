@@ -556,7 +556,7 @@ class BookList:
                     b_f.write('    <size value="%f %f"/>'
                               '\n' % (size[0], size[1]))
                 if book.get_margins():
-                    for pos in enumerate(book.get_margins()):
+                    for pos, margin in enumerate(book.get_margins()):
                         b_f.write('    <margin number="%s" '
                                   'value="%f"/>\n' % (
                                       pos, book.get_margin(pos)))

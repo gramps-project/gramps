@@ -397,9 +397,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             divs = [x/(steps-1) for x in range(steps)]
             self.gradval = ['%d' % int(self.minperiod + x *
                                        periodrange) for x in divs]
-            for i in range(len(self.gradval)):
-                if i % 2 == 1:
-                    self.gradval[i] = ''
+            for index, value in enumerate(self.gradval):
+                if index % 2 == 1:
+                    self.gradval[index] = ''
             self.gradcol = [colorsys.hsv_to_rgb(
                 (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
                 (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
@@ -422,9 +422,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             divs = [x/(steps-1) for x in range(steps)]
             self.gradval = ['%d' % int(x * MAX_AGE) for x in divs]
             self.gradval[-1] = '%d+' % MAX_AGE
-            for i in enumerate(self.gradval):
-                if i % 2 == 1:
-                    self.gradval[i] = ''
+            for index, value in enumerate(self.gradval):
+                if index % 2 == 1:
+                    self.gradval[index] = ''
             self.gradcol = [colorsys.hsv_to_rgb(
                 (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
                 (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
@@ -1397,7 +1397,7 @@ class FanChartWidget(FanChartBaseWidget):
         """
         #compute the number of generations present
         for generation in range(self.generations - 1, 0, -1):
-            for (person, *rest) in self.data[generation]:
+            for person, *rest in self.data[generation]:
                 if person:
                     return generation
         return 1
@@ -1421,7 +1421,7 @@ class FanChartWidget(FanChartBaseWidget):
         a generator over all people outside of the core person
         """
         for generation in range(self.generations):
-            for (person, dummy_parents, dummy_child, userdata) in self.data[generation]:
+            for person, dummy_parents, dummy_child, userdata in self.data[generation]:
                 yield person, userdata
 
     def innerpeople_generator(self):
