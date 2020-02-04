@@ -66,8 +66,10 @@ from .glade import Glade
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.errors import HandleError
 from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
-from .dialog import ErrorDialog
+from .dialog import ErrorDialog, WarningDialog
 from .uimanager import ActionGroup
+from ..version import VERSION_QUALIFIER, DEV_VERSION
+from gramps.gen.const import VERSION
 
 DISABLED = -1
 
@@ -421,6 +423,7 @@ class DisplayState(Callback):
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
         self.progress = status.get_progress_bar()
+        self.status_ver = status.get_version_btn()
         self.history_lookup = {}
         self.gwm = GrampsWindowManager(uimanager)
         self.widget = None
@@ -443,6 +446,16 @@ class DisplayState(Callback):
         # This call has been moved one level up,
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
+
+        if DEV_VERSION or VERSION_QUALIFIER:
+            ver_btn = status.get_version_btn()
+            ver_btn.set_label(VERSION)
+            if DEV_VERSION:
+                msg = 'master'
+            else:
+                msg = VERSION_QUALIFIER[1:]
+            ver_btn.connect('clicked', self.__develop_warn, msg)
+            ver_btn.show()
 
     def set_backup_timer(self):
         """
@@ -682,3 +695,34 @@ class DisplayState(Callback):
     def reload_symbols(self):
         self.symbols = config.get('utf8.in-use')
         self.death_symbol = config.get('utf8.death-symbol')
+
+    def __develop_warn(self, button, warning_type):
+        """
+        Display a development warning message to the user, with the
+        warning_type in it.
+
+        :param warning_type: the general name of the warning, e.g. "master"
+        :type warning_type: str
+        """
+        WarningDialog(
+            _('Danger: This is unstable code!'),
+            _("This Gramps ('%s') is a development release.\n"
+             ) % warning_type +
+            _("This version is not meant for normal usage. Use "
+              "at your own risk.\n"
+              "\n"
+              "This version may:\n"
+              "1) Work differently than you expect.\n"
+              "2) Fail to run at all.\n"
+              "3) Crash often.\n"
+              "4) Corrupt your data.\n"
+              "5) Save data in a format that is incompatible with the "
+              "official release.\n"
+              "\n"
+              "%(bold_start)sBACKUP%(bold_end)s "
+              "your existing databases before opening "
+              "them with this version, and make sure to export your "
+              "data to XML every now and then."
+             ) % {'bold_start' : '<b>',
+                  'bold_end'   : '</b>'},
+            parent=self.window)
