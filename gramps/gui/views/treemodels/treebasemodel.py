@@ -34,6 +34,7 @@ This module provides the model that is used for all hierarchical treeviews.
 #-------------------------------------------------------------------------
 from time import perf_counter
 import logging
+import json
 
 _LOG = logging.getLogger(".gui.treebasemodel")
 
@@ -544,7 +545,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                                         dfilter.match(handle, self.db))):
                     _LOG.debug("    add %s %s" % (handle, data))
                     self.__displayed += 1
-                    add_func(handle, data)
+                    add_func(handle, json.loads(data))
         status.end()
 
     def _rebuild_filter(self, dfilter, dfilter2, skip):
@@ -589,14 +590,14 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             for handle in dfilter.apply(cdb, tree=True,
                                         user=User(parent=self.uistate.window)):
                 status_ppl.heartbeat()
-                data = data_map(handle)
+                data = json.loads(data_map(handle))
                 add_func(handle, data)
                 self.__displayed += 1
         else:
             with gen_cursor() as cursor:
                 for handle, data in cursor:
                     status_ppl.heartbeat()
-                    add_func(handle, data)
+                    add_func(handle, json.loads(data))
                     self.__displayed += 1
 
         status_ppl.end()
@@ -746,7 +747,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if self._get_node(handle) is not None:
             return # row already exists
         cput = perf_counter()
-        data = self.map(handle)
+        data = json.loads(self.map(handle))
         if data:
             if not self.search or \
                     (self.search and self.search.match(handle, self.db)):
@@ -754,7 +755,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         else:
             if not self.search2 or \
                     (self.search2 and self.search2.match(handle, self.db)):
-                self.add_row2(handle, self.map2(handle))
+                self.add_row2(handle, json.loads(self.map2(handle)))
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
                     str(perf_counter() - cput) + ' sec')
@@ -929,9 +930,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
         if not cached:
             if not secondary:
-                data = self.map(handle)
+                data = json.loads(self.map(handle))
             else:
-                data = self.map2(handle)
+                data = json.loads(self.map2(handle))
             if store_cache:
                 self.set_cached_value(handle, col, data)
 

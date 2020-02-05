@@ -98,7 +98,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         self.parent_family_list = []
         self.alternate_names = []
         self.person_ref_list = []
-        self.__gender = Person.UNKNOWN
+        self.gender = Person.UNKNOWN
         self.death_ref_index = -1
         self.birth_ref_index = -1
         if data:
@@ -135,7 +135,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         return (
             self.handle,                                         #  0
             self.gramps_id,                                      #  1
-            self.__gender,                                       #  2
+            self.gender,                                       #  2
             self.primary_name.serialize(),                       #  3
             [name.serialize() for name in self.alternate_names], #  4
             self.death_ref_index,                                #  5
@@ -249,7 +249,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         (self.handle,             #  0
          self.gramps_id,          #  1
-         self.__gender,           #  2
+         self.gender,           #  2
          primary_name,            #  3
          alternate_names,         #  4
          self.death_ref_index,    #  5
@@ -649,7 +649,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         if gender not in (Person.MALE, Person.FEMALE, Person.UNKNOWN):
             raise ValueError('Attempt to assign invalid gender')
-        self.__gender = gender
+        self.gender = gender
 
     def get_gender(self):
         """
@@ -662,10 +662,10 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                   - Person.UNKNOWN
         :rtype: int
         """
-        return self.__gender
+        return self.gender
 
-    gender = property(get_gender, set_gender, None,
-                      'Returns or sets the gender of the person')
+    # gender = property(get_gender, set_gender, None,
+                      # 'Returns or sets the gender of the person')
 
     def set_birth_ref(self, event_ref):
         """

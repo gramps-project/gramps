@@ -101,17 +101,17 @@ class NoteModel(FlatBaseModel):
 
     def column_id(self, data):
         """Return the id of the Note."""
-        return data[Note.POS_ID]
+        return data['gramps_id']
 
     def column_type(self, data):
         """Return the type of the Note in readable format."""
         temp = NoteType()
-        temp.set(data[Note.POS_TYPE])
+        temp.set(data['type'])
         return str(temp)
 
     def column_preview(self, data):
         """Return a shortend version of the Note's text."""
-        note = data[Note.POS_TEXT][StyledText.POS_TEXT]
+        note = data['text']['string']
         note = " ".join(note.split())
         if len(note) > 80:
             return note[:80] + "..."
@@ -119,17 +119,17 @@ class NoteModel(FlatBaseModel):
             return note
 
     def column_private(self, data):
-        if data[Note.POS_PRIVATE]:
+        if data['private']:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
 
     def sort_change(self, data):
-        return "%012x" % data[Note.POS_CHANGE]
+        return "%012x" % data['change']
 
     def column_change(self,data):
-        return format_time(data[Note.POS_CHANGE])
+        return format_time(data['change'])
 
     def get_tag_name(self, tag_handle):
         """
@@ -145,12 +145,12 @@ class NoteModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data['handle']
         cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[Note.POS_TAGS]:
+            for handle in data['tag_list']:
                 tag = self.db.get_tag_from_handle(handle)
                 if tag:
                     this_priority = tag.get_priority()
@@ -165,6 +165,6 @@ class NoteModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[Note.POS_TAGS]))
+        tag_list = list(map(self.get_tag_name, data['tag_list']))
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
