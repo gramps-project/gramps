@@ -20,13 +20,13 @@
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
-# Pär Ekholm <pehlm@pekholm.org>, 2018, 2019.
+# Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2019-10-17 11:08+0200\n"
+"PO-Revision-Date: 2020-02-07 17:56+0100\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -1061,8 +1061,8 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"FEL: Felaktigt sökväg till databasen i Redigera-menyn->Inställningar.\n"
-"Öppna  inställningar och bestäm rätt sökväg.\n"
+"FEL: Felaktig sökväg till databasen i Redigera-menyn->Inställningar.\n"
+"Öppna inställningar och bestäm rätt sökväg.\n"
 "\n"
 "Detaljer: Kunde inte skapa databasmapp:\n"
 "    %s\n"
@@ -2819,15 +2819,15 @@ msgstr "Matchar citeringar vars källnotiser innehåller en delsträng eller som
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:48 ../gramps/gen/filters/rules/event/_hastag.py:48 ../gramps/gen/filters/rules/family/_hastag.py:48 ../gramps/gen/filters/rules/media/_hastag.py:48 ../gramps/gen/filters/rules/note/_hastag.py:48 ../gramps/gen/filters/rules/person/_hastag.py:48 ../gramps/gen/filters/rules/place/_hastag.py:48 ../gramps/gen/filters/rules/repository/_hastag.py:48 ../gramps/gen/filters/rules/source/_hastag.py:48 ../gramps/gui/editors/filtereditor.py:576
 msgid "Tag:"
-msgstr "Flagga:"
+msgstr "Tagg:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
-msgstr "Notiser med <flagga>"
+msgstr "Notiser med <tagg>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
-msgstr "Matchar notiser av den särskilda flaggan"
+msgstr "Matchar notiser med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:45
 msgid "Citations matching the <filter>"
@@ -3019,11 +3019,11 @@ msgstr "Matchar händelser med en viss antal källor kopplade till sig"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
 msgid "Events with the <tag>"
-msgstr "Notiser med <flagga>"
+msgstr "Notiser med <tagg>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
 msgid "Matches events with the particular tag"
-msgstr "Matchar notiser med den särskilda flaggan"
+msgstr "Matchar notiser med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:46
 msgid "Events with the particular type"
@@ -3284,11 +3284,11 @@ msgstr "Matchar familjer som har en viss källa"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 msgid "Families with the <tag>"
-msgstr "Familjer med <flagga>"
+msgstr "Familjer med <taggen>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:50
 msgid "Matches families with the particular tag"
-msgstr "Matchar familjer med den särskilda flaggan"
+msgstr "Matchar familjer med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:45
 msgid "Families with twins"
@@ -3512,11 +3512,11 @@ msgstr "Matchar media som har en viss källa"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 msgid "Media objects with the <tag>"
-msgstr "Mediaobjekt med <flaggan>"
+msgstr "Mediaobjekt med <taggen>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:50
 msgid "Matches media objects with the particular tag"
-msgstr "Matchar mediaobjekt med särskild flagga"
+msgstr "Matchar mediaobjekt med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:44
 msgid "Media objects matching the <filter>"
@@ -3596,11 +3596,11 @@ msgstr "Matchar notiser med en viss referensräknare"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 msgid "Notes with the <tag>"
-msgstr "Notiser med <flagga>"
+msgstr "Notiser med <taggen>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:50
 msgid "Matches notes with the particular tag"
-msgstr "Matchar notiser av den särskilda flaggan"
+msgstr "Matchar notiser med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:46
 msgid "Notes with the particular type"
@@ -4005,11 +4005,11 @@ msgstr "Matchar personer som har en viss källa"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
 msgid "People with the <tag>"
-msgstr "Personer med <flaggan>"
+msgstr "Personer med <taggen>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:50
 msgid "Matches people with the particular tag"
-msgstr "Matchar personer med den särskilda flaggan"
+msgstr "Matchar personer med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:47 ../gramps/gui/editors/filtereditor.py:568
 msgid "Case sensitive:"
@@ -4539,11 +4539,11 @@ msgstr "Matchar platser som har en viss källa"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:49
 msgid "Places with the <tag>"
-msgstr "Platser med <flaggan>"
+msgstr "Platser med <taggen>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
-msgstr "Matchar platser med den särskilda flaggan"
+msgstr "Matchar platser med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:49
 msgid "Places matching a title"
@@ -4715,11 +4715,11 @@ msgstr "Matchar arkivplatser med vissa parametrar"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:49
 msgid "Repositories with the <tag>"
-msgstr "Arkivplatser med <flagga>"
+msgstr "Arkivplatser med <taggen>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 msgid "Matches repositories with the particular tag"
-msgstr "Matchar arkivplatser med den särskilda flaggan"
+msgstr "Matchar arkivplatser med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:44
 msgid "Repositories matching the <filter>"
@@ -4839,11 +4839,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
-msgstr "Källor med <flagga>"
+msgstr "Källor med <taggen>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 msgid "Matches sources with the particular tag"
-msgstr "Matchar källor med den särskilda flaggan"
+msgstr "Matchar källor med den särskilda taggen"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:44
 msgid "Sources matching the <filter>"
@@ -5111,7 +5111,7 @@ msgstr "Senast ändrad"
 #: ../gramps/gen/lib/citation.py:131 ../gramps/gen/lib/event.py:171 ../gramps/gen/lib/family.py:188 ../gramps/gen/lib/media.py:167 ../gramps/gen/lib/note.py:126 ../gramps/gen/lib/person.py:232 ../gramps/gen/lib/place.py:180 ../gramps/gen/lib/repo.py:112 ../gramps/gen/lib/src.py:131 ../gramps/gui/glade/editfamily.glade:773 ../gramps/gui/glade/editmedia.glade:396 ../gramps/gui/glade/editmediaref.glade:726 ../gramps/gui/glade/editnote.glade:284 ../gramps/gui/glade/editperson.glade:683 ../gramps/gui/selectors/selectnote.py:74 ../gramps/plugins/importer/importprogen.glade:527 ../gramps/plugins/lib/libpersonview.py:111
 #: ../gramps/plugins/lib/libplaceview.py:93 ../gramps/plugins/textreport/indivcomplete.py:549 ../gramps/plugins/tool/notrelated.py:129 ../gramps/plugins/view/citationlistview.py:103 ../gramps/plugins/view/citationtreeview.py:98 ../gramps/plugins/view/eventview.py:84 ../gramps/plugins/view/familyview.py:85 ../gramps/plugins/view/mediaview.py:100 ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:98 ../gramps/plugins/view/sourceview.py:88
 msgid "Tags"
-msgstr "Flaggor"
+msgstr "Taggar"
 
 #. -------------------------------------------------------------------------
 #.
@@ -6376,12 +6376,12 @@ msgstr "Formaterad text"
 
 #: ../gramps/gen/lib/styledtext.py:324
 msgid "Styled Text Tags"
-msgstr "Formaterade textflaggor"
+msgstr "Formaterade texttaggar"
 
 #: ../gramps/gen/lib/styledtexttag.py:101 ../gramps/gen/lib/tag.py:115 ../gramps/gui/editors/edittaglist.py:109 ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116 ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:110 ../gramps/gui/filters/sidebar/_familysidebarfilter.py:128 ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:93 ../gramps/gui/filters/sidebar/_notesidebarfilter.py:103 ../gramps/gui/filters/sidebar/_personsidebarfilter.py:140 ../gramps/gui/filters/sidebar/_placesidebarfilter.py:114 ../gramps/gui/filters/sidebar/_reposidebarfilter.py:109 ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:92
 #: ../gramps/gui/views/tags.py:61 ../gramps/gui/views/tags.py:71 ../gramps/plugins/textreport/tagreport.py:909 ../gramps/plugins/textreport/tagreport.py:913
 msgid "Tag"
-msgstr "Flagga"
+msgstr "Tagg"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
 msgid "Ranges"
@@ -8953,14 +8953,14 @@ msgstr "Lägg till standardkälla vid GEDCOM-import"
 
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
-msgstr "Lägg till flagga vid import"
+msgstr "Lägg till tagg vid import"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
 "Specifed tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
-"Specificerad flagga kommer att läggas till vid import.\n"
+"Specificerad tagg kommer att läggas till vid import.\n"
 "Rensa för att ange standardvärde."
 
 #: ../gramps/gui/configure.py:1580
@@ -11198,11 +11198,11 @@ msgstr "Radera källa (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
 msgid "manual|Tag_selection_dialog"
-msgstr "Flaggvalsdialog"
+msgstr "Taggvalsdialog"
 
 #: ../gramps/gui/editors/edittaglist.py:70 ../gramps/gui/editors/edittaglist.py:127
 msgid "Tag selection"
-msgstr "Flaggval"
+msgstr "Taggval"
 
 #: ../gramps/gui/editors/editurl.py:47
 msgid "manual|Internet_Address_Editor"
@@ -11407,7 +11407,7 @@ msgstr "Använd dra-och-släpp eller knapparna för att välja en källa"
 
 #: ../gramps/gui/editors/objectentries.py:340
 msgid "First add a source using the button"
-msgstr "Först lägg till en källa genom att använda knappen"
+msgstr "Lägg först till en källa genom att använda knappen"
 
 #: ../gramps/gui/editors/objectentries.py:341
 msgid "Edit source"
@@ -11963,7 +11963,7 @@ msgstr "Ett unikt ID för att identifiera citeringen"
 
 #: ../gramps/gui/glade/editcitation.glade:360 ../gramps/gui/glade/editevent.glade:390 ../gramps/gui/glade/editeventref.glade:465 ../gramps/gui/glade/editplace.glade:398 ../gramps/gui/glade/editplaceref.glade:545 ../gramps/gui/glade/editrepository.glade:234 ../gramps/gui/glade/editsource.glade:229
 msgid "Tags:"
-msgstr "Flaggor:"
+msgstr "Taggar:"
 
 #: ../gramps/gui/glade/editdate.glade:140
 msgid "Calenda_r:"
@@ -12123,11 +12123,11 @@ msgstr "Släktskapstyp t. ex. 'Gift' eller 'Ogift'. Använd händelser för fler
 
 #: ../gramps/gui/glade/editfamily.glade:733 ../gramps/gui/glade/editmedia.glade:360 ../gramps/gui/glade/editmediaref.glade:696 ../gramps/gui/glade/editnote.glade:248 ../gramps/gui/glade/editperson.glade:650
 msgid "_Tags:"
-msgstr "_Flaggor:"
+msgstr "_Taggar:"
 
 #: ../gramps/gui/glade/editfamily.glade:764 ../gramps/gui/widgets/monitoredwidgets.py:853
 msgid "Edit the tag list"
-msgstr "Redigera flagglistan"
+msgstr "Redigera tagglistan"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
@@ -12515,7 +12515,7 @@ msgstr "Välj en person som har en koppling till den redigerade personen."
 
 #: ../gramps/gui/glade/editplace.glade:106 ../gramps/gui/glade/editplaceref.glade:229
 msgid "Either use the two fields below to enter coordinates (latitude and longitude),"
-msgstr "Antingen använd de två fälten nedan för att ange koordinater (latitud och longitud),"
+msgstr "Använd antingen de två fälten nedan för att ange koordinater (latitud och longitud),"
 
 #: ../gramps/gui/glade/editplace.glade:120
 msgid "L_atitude:"
@@ -12841,7 +12841,7 @@ msgstr "Familj 2"
 
 #: ../gramps/gui/glade/mergefamily.glade:458
 msgid "Events, lds_ord, media objects, attributes, notes, sources and tags of both families will be combined."
-msgstr "Händelser, sdh_ord, mediaobjekt, attribut, notiser, källor samt flaggor för bägge familjer kommer att kombineras."
+msgstr "Händelser, sdh_ord, mediaobjekt, attribut, notiser, källor samt taggar för bägge familjer kommer att kombineras."
 
 #: ../gramps/gui/glade/mergemedia.glade:97
 msgid ""
@@ -12861,7 +12861,7 @@ msgstr "Objekt 2"
 
 #: ../gramps/gui/glade/mergemedia.glade:455
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr "Attribut, källor, notiser samt flaggor för bägge objekten kommer att kombineras."
+msgstr "Attribut, källor, notiser samt taggar för bägge objekten kommer att kombineras."
 
 #: ../gramps/gui/glade/mergenote.glade:97
 msgid ""
@@ -12905,7 +12905,7 @@ msgstr "Kön:"
 
 #: ../gramps/gui/glade/mergeperson.glade:409
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
-msgstr "Händelser, mediaobjekt, adresser, attribut, url:er, notiser, källor samt flaggor för bägge personerna kommer att kombineras."
+msgstr "Händelser, mediaobjekt, adresser, attribut, url:er, notiser, källor samt taggar för bägge personerna kommer att kombineras."
 
 #: ../gramps/gui/glade/mergeperson.glade:500
 msgid "Context Information"
@@ -15281,89 +15281,89 @@ msgstr "Vy %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:71
 msgid "Tag selected rows"
-msgstr "Flagga valda rader"
+msgstr "Tagga valda rader"
 
 #: ../gramps/gui/views/tags.py:93
 msgid "New Tag..."
-msgstr "Ny flagga..."
+msgstr "Ny tagg..."
 
 #: ../gramps/gui/views/tags.py:93
 msgid "Organize Tags..."
-msgstr "Ordna flaggor..."
+msgstr "Ordna taggar..."
 
 #: ../gramps/gui/views/tags.py:112
 msgid "manual|Organize_Tags_Window"
-msgstr "Ordna flaggfönster"
+msgstr "Ordna taggfönster"
 
 #: ../gramps/gui/views/tags.py:113
 msgid "manual|New_Tag_dialog"
-msgstr "Dialog för ny flagga"
+msgstr "Dialog för ny tagg"
 
 #: ../gramps/gui/views/tags.py:306
 msgid "Adding Tags"
-msgstr "Lägger till flaggor"
+msgstr "Lägger till taggar"
 
 #: ../gramps/gui/views/tags.py:311
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Flaggval (%s)"
+msgstr "Taggval (%s)"
 
 #: ../gramps/gui/views/tags.py:360 ../gramps/gui/views/tags.py:368 ../gramps/gui/views/tags.py:436
 msgid "Organize Tags"
-msgstr "Ordna flaggor"
+msgstr "Ordna taggar"
 
 #: ../gramps/gui/views/tags.py:387
 msgid "Change Tag Priority"
-msgstr "Ändra prioritet bland flaggor"
+msgstr "Ändra prioritet bland taggar"
 
 #: ../gramps/gui/views/tags.py:529
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Ta bort flagga '%s'?"
+msgstr "Ta bort tagg '%s'?"
 
 #: ../gramps/gui/views/tags.py:530
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
-msgstr "Flaggdefinitionen kommer att tas bort. Flaggan kommer även att tas bort från alla objekt i databasen."
+msgstr "Taggdefinitionen kommer att tas bort. Taggen kommer även att tas bort från alla objekt i databasen."
 
 #: ../gramps/gui/views/tags.py:562
 msgid "Removing Tags"
-msgstr "Tar bort flaggor"
+msgstr "Tar bort taggar"
 
 #: ../gramps/gui/views/tags.py:567
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Radera flagga (%s)"
+msgstr "Radera tagg (%s)"
 
 #: ../gramps/gui/views/tags.py:592
 #, python-format
 msgid "Tag: %s"
-msgstr "Flagga: %s"
+msgstr "Tagg: %s"
 
 #: ../gramps/gui/views/tags.py:594
 msgid "New Tag"
-msgstr "Ny flagga"
+msgstr "Ny tagg"
 
 #: ../gramps/gui/views/tags.py:641
 msgid "Cannot save tag"
-msgstr "Kan inte spara flagga"
+msgstr "Kan inte spara tagg"
 
 #: ../gramps/gui/views/tags.py:642
 msgid "The tag name cannot be empty"
-msgstr "Flaggnamnet kan inte vara tomt"
+msgstr "Taggnamnet kan inte vara tomt"
 
 #: ../gramps/gui/views/tags.py:647
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Lägg till flagga (%s)"
+msgstr "Lägg till tagg (%s)"
 
 #: ../gramps/gui/views/tags.py:653
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Redigera flagga (%s)"
+msgstr "Redigera tagg (%s)"
 
 #: ../gramps/gui/views/tags.py:668
 msgid "Tag Name:"
-msgstr "Flaggnamn:"
+msgstr "Taggnamn:"
 
 #: ../gramps/gui/views/tags.py:675
 #, python-format
@@ -18827,20 +18827,20 @@ msgstr "Fördröjning innan ättlingar till förfäder bearbetas"
 #. for the person are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "Flagga för att visa att en persons uppgifter är fullständiga"
+msgstr "Tagg för att visa att en persons uppgifter är fullständiga"
 
 #. Tag to use to indicate that there are no further children in this
 #. family, if this family is not tagged, warn about this at the time the
 #. children of this family are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
-msgstr "Flagga för att visa att en familjs uppgifter är fullständiga"
+msgstr "Tagg för att visa att en familjs uppgifter är fullständiga"
 
 #. Tag to use to specify people and families to ignore. In his way,
 #. hopeless cases can be marked separately and don't clutter up the list.
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr "Flagga för att visa att en person eller familj borde ignoreras"
+msgstr "Tagg för att visa att en person eller familj borde ignoreras"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:164
 msgid "No Home Person set."
@@ -20020,7 +20020,7 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Standard flaggtext\n"
+"Standard taggtext\n"
 "(ur Inställningar)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
@@ -20041,7 +20041,7 @@ msgid ""
 "to all Tag Text'."
 msgstr ""
 "Kopiera standardtext\n"
-"till alla flaggtexter."
+"till alla taggtexter."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -20049,7 +20049,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopiera standardfilnamn\n"
-"till alla viktiga flaggtexter."
+"till alla viktiga taggtexter."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
 msgid ""
@@ -20057,7 +20057,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "Kopiera standarddatumet\n"
-"till alla viktiga flaggtexter."
+"till alla viktiga taggtexter."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
@@ -20069,11 +20069,11 @@ msgid ""
 "all object tags."
 msgstr ""
 "Aktivera/Avaktivera\n"
-"alla objektsflaggor."
+"alla objektstaggar."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
-msgstr "Flaggtext"
+msgstr "Taggtext"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 msgid "Import Objects"
@@ -20393,7 +20393,7 @@ msgstr "  Notiser: %d\n"
 #: ../gramps/plugins/importer/importxml.py:290
 #, python-format
 msgid "  Tags: %d\n"
-msgstr "  Flaggor: %d\n"
+msgstr "  Taggar: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:291
 #, python-format
@@ -20691,7 +20691,7 @@ msgstr "Rad gick inte att förstå, så den ignorerades"
 
 #: ../gramps/plugins/lib/libgedcom.py:3118
 msgid "Tag recognized but not supported"
-msgstr "Flagga upptäckt men stöds ej"
+msgstr "Tagg upptäckt men stöds ej"
 
 #: ../gramps/plugins/lib/libgedcom.py:3154
 msgid "Skipped subordinate line"
@@ -20755,7 +20755,7 @@ msgstr "GEDCOM-data"
 
 #: ../gramps/plugins/lib/libgedcom.py:3549
 msgid "Unknown tag"
-msgstr "Okänd flagga"
+msgstr "Okänd tagg"
 
 #: ../gramps/plugins/lib/libgedcom.py:3551 ../gramps/plugins/lib/libgedcom.py:3565 ../gramps/plugins/lib/libgedcom.py:3569 ../gramps/plugins/lib/libgedcom.py:3590
 msgid "Top Level"
@@ -26098,11 +26098,11 @@ msgstr "Huruvida citera källor."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1132
 msgid "Include Tags"
-msgstr "Ta med flaggor"
+msgstr "Ta med taggar"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1133
 msgid "Whether to include tags."
-msgstr "Huruvida ta med flaggor."
+msgstr "Huruvida ta med taggar."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1136
 msgid "Include Attributes"
@@ -26450,17 +26450,17 @@ msgstr "Mall som används för tredje nivån på rubriker."
 
 #: ../gramps/plugins/textreport/tagreport.py:106 ../gramps/plugins/textreport/textplugins.gpr.py:258
 msgid "Tag Report"
-msgstr "Flaggrapport"
+msgstr "Taggrapport"
 
 #: ../gramps/plugins/textreport/tagreport.py:107
 msgid "You must first create a tag before running this report."
-msgstr "Du måste skapa en flagga innan du kör denna rapport."
+msgstr "Du måste skapa en tagg innan du kör denna rapport."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/tagreport.py:116
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Flaggrapport för %s poster"
+msgstr "Taggrapport för %s poster"
 
 #: ../gramps/plugins/textreport/tagreport.py:671
 msgid "Email Address"
@@ -26472,7 +26472,7 @@ msgstr "Publiceringsinformation"
 
 #: ../gramps/plugins/textreport/tagreport.py:916
 msgid "The tag to use for the report"
-msgstr "Flagga som skall användas för rapporten"
+msgstr "Tagg som skall användas för rapporten"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:37
 msgid "Ahnentafel Report"
@@ -26540,7 +26540,7 @@ msgstr "Skapar en textrapport över släktskap för en given person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:259
 msgid "Produces a list of people with a specified tag"
-msgstr "Skapar en lista över personer med en särskild flagga"
+msgstr "Skapar en lista över personer med en särskild tagg"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:281
 msgid "Number of Ancestors Report"
@@ -26860,7 +26860,7 @@ msgstr "Uppdaterar kontrollsummor för media"
 
 #: ../gramps/plugins/tool/check.py:1970
 msgid "Looking for tag reference problems"
-msgstr "Söker efter problem med flaggreferenser"
+msgstr "Söker efter problem med taggreferenser"
 
 #: ../gramps/plugins/tool/check.py:2115
 msgid "Looking for media source reference problems"
@@ -27068,8 +27068,8 @@ msgstr[1] "{quantity} notisobjekt som refererats till kunde inte hittas\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "{quantity} flagga som refererats till kunde inte hittas\n"
-msgstr[1] "{quantity} flaggor som refererats till kunde inte hittas\n"
+msgstr[0] "{quantity} tagg som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} taggar som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2698
@@ -27592,7 +27592,7 @@ msgstr[1] "{number_of} citeringar sammanslagna"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
 msgid "_Tag"
-msgstr "_Flagga"
+msgstr "_Tagg"
 
 #: ../gramps/plugins/tool/notrelated.py:60
 msgid "manual|Not_Related"
@@ -27619,8 +27619,8 @@ msgstr "Samtliga i databasen är släkt med %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Anger flagga för {number_of} person"
-msgstr[1] "Anger flaggor för {number_of} personer"
+msgstr[0] "Anger tagg för {number_of} person"
+msgstr[1] "Anger taggar för {number_of} personer"
 
 #. translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
@@ -29193,7 +29193,7 @@ msgstr "Ättlingar till den aktiva personen."
 
 #: ../gramps/plugins/view/geomoves.py:238
 msgid "GeoMoves"
-msgstr "GeoMoves"
+msgstr "GeoFlyttningar"
 
 #: ../gramps/plugins/view/geomoves.py:556
 #, python-format
@@ -29275,7 +29275,7 @@ msgstr "Högerklicka på kartan och välj 'visa alla platser' för att visa alla
 
 #: ../gramps/plugins/view/geoplaces.py:462
 msgid "The place name in the status bar is disabled."
-msgstr "Platsnamn på statusraden är bortkopplat."
+msgstr "Platsnamn på statusraden är avaktiverat."
 
 #: ../gramps/plugins/view/geoplaces.py:467
 #, python-format
@@ -29441,7 +29441,7 @@ msgstr "Visa okända personer"
 
 #: ../gramps/plugins/view/pedigreeview.py:2108
 msgid "Show tags"
-msgstr "Visa flaggor"
+msgstr "Visa taggar"
 
 #: ../gramps/plugins/view/pedigreeview.py:2111
 msgid "Tree style"
@@ -29869,7 +29869,7 @@ msgstr "Hem"
 
 #: ../gramps/plugins/webreport/basepage.py:1534 ../gramps/plugins/webreport/basepage.py:1661 ../gramps/plugins/webreport/thumbnail.py:112
 msgid "Thumbnails"
-msgstr "Minatyrbilder"
+msgstr "Miniatyrbilder"
 
 #: ../gramps/plugins/webreport/basepage.py:1535 ../gramps/plugins/webreport/basepage.py:1668 ../gramps/plugins/webreport/download.py:94 ../gramps/plugins/webreport/narrativeweb.py:1910
 msgid "Download"
@@ -29942,7 +29942,7 @@ msgstr "Rapport som webbplats"
 
 #: ../gramps/plugins/webreport/event.py:148
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
-msgstr "Denna sida är en förteckning över alla händelser i databasen, sorterade efter typ, datum (om givet). Klickar du på en händelses Gramps-ID kommer en sida att laddas med denna händelse."
+msgstr "Denna sida är en förteckning över alla händelser i databasen, sorterade efter typ, datum (om givet). Klickar du på en händelses Gramps-ID kommer en sida att öppnas med denna händelse."
 
 #: ../gramps/plugins/webreport/event.py:174 ../gramps/plugins/webreport/family.py:186 ../gramps/plugins/webreport/place.py:180 ../gramps/plugins/webreport/place.py:192 ../gramps/plugins/webreport/surnamelist.py:140
 msgid "Letter"
@@ -30152,7 +30152,7 @@ msgstr "Avklinga       -- Endast WebKit-webbläsare"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1704 ../gramps/plugins/webreport/narrativeweb.py:1718
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr "Rullgardin  --- Endast WebKit-webbläsare"
+msgstr "Rullgardin  -- Endast WebKit-webbläsare"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1706
 msgid "Navigation Menu Layout"
@@ -30232,7 +30232,7 @@ msgstr "Ska koordinater visas i platslistan?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1790
 msgid "Whether to display latitude/longitude in the places list?"
-msgstr "Om visa latitud/longitud i platslistan?"
+msgstr "Huruvida visa latitud/longitud i platslistan?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1794
 msgid "Sort places references either by date or by name"
@@ -30540,7 +30540,7 @@ msgstr "Huruvida ta med statistiksida eller inte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2044
 msgid "Place Map Options"
-msgstr "Platskarteval"
+msgstr "Platskartealternativ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2049
 msgid "Google"
@@ -30600,7 +30600,7 @@ msgstr "API-nyckeln som används för Google-maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2101
 msgid "Other inclusion (CMS, Web Calendar, Php)"
-msgstr "Andra som ingår (CMS, webbkalender, Php)"
+msgstr "Annat som ingår (CMS, webbkalender, Php)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2105
 msgid "Do we include these pages in a cms web ?"
@@ -30629,7 +30629,7 @@ msgstr "Skapar individuella sidor"
 #. Individual List page message
 #: ../gramps/plugins/webreport/person.py:188
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
-msgstr "Denna sida är en förteckning över alla personer i databasen, sorterade på efternamn. Val av personens namn öppnar den personens egen sida."
+msgstr "Denna sida är en förteckning över alla personer i databasen, sorterade på efternamn. Val av personens namn öppnar den personens individuella sida."
 
 #. Name Column
 #: ../gramps/plugins/webreport/person.py:215 ../gramps/plugins/webreport/surname.py:137
@@ -30763,7 +30763,7 @@ msgstr "Rapport som webbplats för"
 #: ../gramps/plugins/webreport/surname.py:120
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
-msgstr "Denna sida är en förteckning över alla individer i databasen med efternamnet %s. Val av personens namn öppnar den personens egen sida."
+msgstr "Denna sida är en förteckning över alla individer i databasen med efternamnet %s. Val av personens namn öppnar den personens individuella sida."
 
 #: ../gramps/plugins/webreport/surnamelist.py:101
 msgid "Surnames by person count"
@@ -30803,7 +30803,7 @@ msgstr "Beräknar helgdagar för år %04d"
 #: ../gramps/plugins/webreport/webcal.py:491
 #, python-format
 msgid "the \"WebCal\" will be the potential-email Subject|Created for %(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr "\"WebCal\" kommer att vara den viktigaste e-postsubjektet|Skapat för %(html_email_author_start)sWebCal%(html_email_author_end)s"
+msgstr "\"WebCal\" kommer att vara det viktigaste e-postsubjektet|Skapat för %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:497
 #, python-format
