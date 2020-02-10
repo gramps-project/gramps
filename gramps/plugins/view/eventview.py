@@ -41,6 +41,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
+from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Event
 from gramps.gen.utils.string import data_recover_msg
@@ -391,6 +392,7 @@ class EventView(ListView):
                               handles,
                               self.dbstate.db.get_event_from_handle,
                               yes_func=self.delete_event_response,
+                              multi_yes_func=self.delete_multi_event_response,
                               parent=self.uistate.window)
 
     def _message1_format(self, event):
@@ -418,6 +420,48 @@ class EventView(ListView):
         query = DeleteEventQuery(self.dbstate, self.uistate, event,
                                  person_list, family_list)
         query.query_response()
+
+    def delete_multi_event_response(self, handles=None):
+        """
+        Deletes multiple events from the database.
+        """
+        # set the busy cursor, so the user knows that we are working
+        self.uistate.set_busy_cursor(True)
+        self.uistate.progress.show()
+        self.uistate.push_message(self.dbstate, _("Processing..."))
+        hndl_cnt = len(handles) / 100
+        _db = self.dbstate.db
+        _db.disable_signals()
+
+        # create the transaction
+        with DbTxn('', _db) as trans:
+            for (indx, handle) in enumerate(handles):
+                ev_handle_list = [handle]
+
+                person_list = [
+                    item[1] for item in
+                    _db.find_backlink_handles(handle, ['Person'])]
+                for hndl in person_list:
+                    person = _db.get_person_from_handle(hndl)
+                    person.remove_handle_references('Event', ev_handle_list)
+                    _db.commit_person(person, trans)
+
+                family_list = [
+                    item[1] for item in
+                    _db.find_backlink_handles(handle, ['Family'])]
+                for hndl in family_list:
+                    family = _db.get_family_from_handle(hndl)
+                    family.remove_handle_references('Event', ev_handle_list)
+                    _db.commit_family(family, trans)
+
+                _db.remove_event(handle, trans)
+                self.uistate.pulse_progressbar(indx / hndl_cnt)
+            trans.set_description(_("Multiple Selection Delete"))
+
+        _db.enable_signals()
+        _db.request_rebuild()
+        self.uistate.progress.hide()
+        self.uistate.set_busy_cursor(False)
 
     def remove_object_from_handle(self, handle):
         """
