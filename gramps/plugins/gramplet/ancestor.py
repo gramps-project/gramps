@@ -40,6 +40,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.config import config
+from gramps.gui.utils import model_to_text, text_to_clipboard
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -66,7 +67,8 @@ class Ancestor(Gramplet):
                   ('', NOSORT, 1), # tooltip
                   ('', NOSORT, 100)] # handle
         self.model = ListModel(self.view, titles, list_mode="tree",
-                               event_func=self.cb_double_click)
+                               event_func=self.cb_double_click,
+                               right_click=self.cb_right_click)
         return self.view
 
     def get_has_data(self, active_handle):
@@ -97,6 +99,40 @@ class Ancestor(Gramplet):
             EditPerson(self.dbstate, self.uistate, [], person)
         except WindowActiveError:
             pass
+
+    def cb_right_click(self, treeview, event):
+        """
+        Handle right click on treeview.
+        """
+        (model, iter_) = treeview.get_selection().get_selected()
+        sensitivity = 1 if iter_ else 0
+        menu = Gtk.Menu()
+        menu.set_reserve_toggle_size(False)
+        entries = [
+            (_("Edit"), lambda obj: self.cb_double_click(treeview),
+             sensitivity),
+            (None, None, 0),
+            (_("Copy all"), lambda obj: self.on_copy_all(treeview), 1),
+        ]
+        for title, callback, sensitivity in entries:
+            item = Gtk.MenuItem(label=title)
+            if callback:
+                item.connect("activate", callback)
+            else:
+                item = Gtk.SeparatorMenuItem()
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        self.menu = menu
+        self.menu.popup(None, None, None, None, event.button, event.time)
+
+    def on_copy_all(self, treeview):
+        """
+        Copy tree to clipboard.
+        """
+        model = treeview.get_model()
+        text = model_to_text(model, [0, 1], level=1)
+        text_to_clipboard(text)
 
     def db_changed(self):
         self.update()
