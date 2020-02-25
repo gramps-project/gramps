@@ -11,21 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2019-08-16 09:41-0500\n"
-"PO-Revision-Date: 2020-02-25 14:13+0000\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
-=======
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-07-11 08:05+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
->>>>>>> upstream/master
-"Language-Team: Portuguese <pmra@gmx.com>\n"
-"Language: pt_PT\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Language: pt_PT\n"
 "X-Generator: Poedit 2.3\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -11098,11 +11092,11 @@ msgstr "Lesbianismo"
 
 #: ../gramps/gen/utils/symbols.py:65
 msgid "Male homosexuality"
-msgstr "Homosexualidade masculina"
+msgstr "Homossexualidade masculina"
 
 #: ../gramps/gen/utils/symbols.py:66
 msgid "Heterosexuality"
-msgstr "Heterosexualidade"
+msgstr "Heterossexualidade"
 
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
@@ -34601,12 +34595,9 @@ msgstr "Remover_espaços_iniciais_e_finais"
 msgid "Clean input data"
 msgstr "Limpar dados inseridos"
 
-<<<<<<< HEAD
 #: ../gramps/plugins/tool/removespaces.py:88
-=======
 #: ../gramps/plugins/tool/removespaces.py:104
 #, fuzzy
->>>>>>> upstream/master
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "in coordinates fields.\n"
@@ -34616,53 +34607,38 @@ msgstr ""
 "vírgulas em campos de coordenadas dos locais.\n"
 "Faça duplo clique numa linha para editar."
 
-<<<<<<< HEAD
 #: ../gramps/plugins/tool/removespaces.py:97
-=======
 #: ../gramps/plugins/tool/removespaces.py:113
 #, fuzzy
->>>>>>> upstream/master
 msgid "Looking for possible fields with leading or trailing spaces"
 msgstr "A procurar possíveis campos com espaços iniciais ou finais"
 
-<<<<<<< HEAD
 #: ../gramps/plugins/tool/removespaces.py:114
 #: ../gramps/plugins/tool/removespaces.py:163
-=======
 #: ../gramps/plugins/tool/removespaces.py:130
 #: ../gramps/plugins/tool/removespaces.py:179
 #, fuzzy
->>>>>>> upstream/master
 msgid "handle"
 msgstr "gerir"
 
 #. 2=double underline
-<<<<<<< HEAD
 #: ../gramps/plugins/tool/removespaces.py:119
-=======
 #: ../gramps/plugins/tool/removespaces.py:135
 #, fuzzy
->>>>>>> upstream/master
 msgid "firstname"
 msgstr "nome próprio"
 
 #. 2=double underline
-<<<<<<< HEAD
 #: ../gramps/plugins/tool/removespaces.py:127
-=======
 #: ../gramps/plugins/tool/removespaces.py:143
 #, fuzzy
->>>>>>> upstream/master
 msgid "alternate name"
 msgstr "nome alternativo"
 
 #. 2=double underline
-<<<<<<< HEAD
 #: ../gramps/plugins/tool/removespaces.py:131
-=======
 #: ../gramps/plugins/tool/removespaces.py:147
 #, fuzzy
->>>>>>> upstream/master
 msgid "group as"
 msgstr "agrupar como"
 
