@@ -2,12 +2,13 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd at gmail.com>, 2007-2020.
+
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2020-01-26 21:28+0200\n"
+"PO-Revision-Date: 2020-02-25 22:47+0200\n"
 "Last-Translator: Bernard Banko <beernarrd at gmail.com>\n"
 "Language-Team: lugos.si\n"
 "Language: sl\n"
@@ -7154,7 +7155,7 @@ msgid_plural "{number_of} days"
 msgstr[0] "{number_of} dni"
 msgstr[1] "{number_of} dan"
 msgstr[2] "{number_of} dneva"
-msgstr[3] "{number_of} dneve"
+msgstr[3] "{number_of} dni"
 
 #: ../gramps/gen/lib/date.py:461
 msgid "0 days"
@@ -17528,7 +17529,7 @@ msgstr "_Dodatna poročila / orodja"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_FAQ"
-msgstr "_V&O"
+msgstr "_PZV"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Family Trees"
@@ -22382,7 +22383,7 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sVprašanja in odgovori"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sPogosto zastavljena vprašanja"
 "%(html_end)s%(bold_end)s\n"
 "(potrebna je internetna povezava)\n"
 
@@ -22663,7 +22664,7 @@ msgstr "Dvosmerni grafikon"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:172
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:178
 msgid "FAQ"
-msgstr "V&O"
+msgstr "PZV"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:173
 msgid "Gramplet showing frequently asked questions"
