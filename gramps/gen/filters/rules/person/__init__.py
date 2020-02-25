@@ -29,6 +29,7 @@ from ._disconnected import Disconnected
 from ._everyone import Everyone
 from ._familywithincompleteevent import FamilyWithIncompleteEvent
 from ._hasaddress import HasAddress
+from ._hasaddresstext import HasAddressText
 from ._hasalternatename import HasAlternateName
 from ._hasassociation import HasAssociation
 from ._hasattribute import HasAttribute
@@ -125,6 +126,7 @@ editor_rule_list = [
     IsBookmarked,
     HasAlternateName,
     HasAddress,
+    HasAddressText,
     HasAssociation,
     HasIdOf,
     HasLDS,

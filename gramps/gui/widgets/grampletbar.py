@@ -55,7 +55,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING, VERSION_DIR
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
 from ..managedwindow import ManagedWindow
@@ -76,7 +76,9 @@ from ..dialog import QuestionDialog
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = URL_MANUAL_PAGE + '_-_Gramplets'
+WIKI_HELP_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + '_-_Gramplets'
+WIKI_HELP_GRAMPLETBAR = URL_WIKISTRING + URL_MANUAL_PAGE + '_-_Main_Window#Gramplet_Bar_Menu'
+WIKI_HELP_ABOUT_GRAMPLETS = URL_WIKISTRING + URL_MANUAL_PAGE + '_-_Gramplets#What_is_a_Gramplet'
 NL = "\n"
 
 #-------------------------------------------------------------------------
@@ -510,6 +512,21 @@ class GrampletBar(Gtk.Notebook):
         rd_menu.show()
         menu.append(rd_menu)
 
+        # Separator.
+        rs_menu = Gtk.SeparatorMenuItem()
+        rs_menu.show()
+        menu.append(rs_menu)
+
+        rh_menu = Gtk.MenuItem(label=_('Gramplet Bar Help'))
+        rh_menu.connect("activate", self.on_help_grampletbar_clicked)
+        rh_menu.show()
+        menu.append(rh_menu)
+
+        rg_menu = Gtk.MenuItem(label=_('About Gramplets'))
+        rg_menu.connect("activate", self.on_help_gramplets_clicked)
+        rg_menu.show()
+        menu.append(rg_menu)
+
         menu.show_all()
         menu.popup(None, None, cb_menu_position, button, 0, 0)
 
@@ -575,6 +592,14 @@ class GrampletBar(Gtk.Notebook):
             return title, gui_options
         return gramplet_panel
 
+    def on_help_grampletbar_clicked(self, dummy):
+        """ Button: Display the relevant portion of Gramps manual"""
+        display_url(WIKI_HELP_GRAMPLETBAR)
+
+    def on_help_gramplets_clicked(self, dummy):
+        """ Button: Display the relevant portion of Gramps manual"""
+        display_url(WIKI_HELP_ABOUT_GRAMPLETS)
+
 #-------------------------------------------------------------------------
 #
 # TabGramplet class
@@ -630,13 +655,11 @@ class DetachedWindow(ManagedWindow):
         self.grampletbar = grampletbar
         self.gramplet = gramplet
 
-        ManagedWindow.__init__(self, gramplet.uistate, [],
-                                             self.title)
-        self.set_window(Gtk.Dialog("", gramplet.uistate.window,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
-                        None,
-                        self.title)
+        ManagedWindow.__init__(self, gramplet.uistate, [], self.title)
+        dlg = Gtk.Dialog(transient_for=gramplet.uistate.window,
+                         destroy_with_parent = True)
+        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dlg, None, self.title)
         self.window.move(x_pos, y_pos)
         self.window.set_default_size(gramplet.detached_width,
                                      gramplet.detached_height)
@@ -701,7 +724,8 @@ class DetachedWindow(ManagedWindow):
         self.gramplet.detached_width = size[0]
         self.gramplet.detached_height = size[1]
         self.gramplet.detached_window = None
-        self.gramplet.reparent(self.grampletbar)
+        self.notebook.remove(self.gramplet)
+        self.grampletbar.add(self.gramplet)
         ManagedWindow.close(self, *args)
 
 #-------------------------------------------------------------------------

@@ -559,6 +559,14 @@ class BasePersonView(ListView):
         person.add_tag(tag_handle)
         self.dbstate.db.commit_person(person, transaction)
 
+    def remove_tag(self, transaction, person_handle, tag_handle):
+        """
+        Remove the given tag from the given person.
+        """
+        person = self.dbstate.db.get_person_from_handle(person_handle)
+        person.remove_tag(tag_handle)
+        self.dbstate.db.commit_person(person, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

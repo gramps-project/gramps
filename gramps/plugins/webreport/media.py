@@ -97,6 +97,7 @@ class MediaPages(BasePage):
         self.media_dict = defaultdict(set)
         self.unused_media_handles = []
         self.cur_fname = None
+        self.create_images_index = self.report.options['create_images_index']
 
     def display_pages(self, title):
         """
@@ -190,7 +191,8 @@ class MediaPages(BasePage):
         """
         BasePage.__init__(self, report, title)
 
-        output_file, sio = self.report.create_file("media")
+        if self.create_images_index:
+            output_file, sio = self.report.create_file("media")
         # save the media file name in case we create unused media pages
         self.cur_fname = self.report.cur_fname
         result = self.write_header(self._('Media'))
@@ -314,7 +316,8 @@ class MediaPages(BasePage):
         # send page out for processing
         # and close the file
         self.report.cur_fname = self.cur_fname
-        self.xhtml_writer(medialistpage, output_file, sio, ldatec)
+        if self.create_images_index:
+            self.xhtml_writer(medialistpage, output_file, sio, ldatec)
 
     def media_ref_link(self, handle, name, uplink=False):
         """
@@ -472,8 +475,11 @@ class MediaPages(BasePage):
                                 if orig_image_path != newpath:
                                     url = self.report.build_url_fname(
                                         newpath, None, self.uplink)
+                                s_width = 'width: %dpx;' % max_width
                                 mediadisplay += Html("a", href=url) + (
-                                    Html("img", src=url, alt=esc_page_title)
+                                    Html("img", src=url,
+                                         style=s_width,
+                                         alt=esc_page_title)
                                 )
                     else:
                         dirname = tempfile.mkdtemp()
@@ -507,9 +513,11 @@ class MediaPages(BasePage):
                                 url = self.report.build_url_fname(newpath,
                                                                   None,
                                                                   self.uplink)
+                                s_width = 'width: 48px;'
                                 hyper = Html("a", href=url,
                                              title=esc_page_title) + (
                                                  Html("img", src=img_url,
+                                                      style=s_width,
                                                       alt=esc_page_title)
                                                  )
                                 mediadisplay += hyper
@@ -521,7 +529,9 @@ class MediaPages(BasePage):
                         summaryarea += mediadisplay
                         url = self.report.build_url_image("document.png",
                                                           "images", self.uplink)
+                        s_width = 'width: 48px;'
                         mediadisplay += Html("img", src=url,
+                                             style=s_width,
                                              alt=esc_page_title,
                                              title=esc_page_title)
 
@@ -570,7 +580,7 @@ class MediaPages(BasePage):
                         table += trow
 
             # get media notes
-            notelist = self.display_note_list(media.get_note_list())
+            notelist = self.display_note_list(media.get_note_list(), Media)
             if notelist is not None:
                 mediadetail += notelist
 
@@ -642,7 +652,9 @@ class MediaPages(BasePage):
         try:
             mtime = os.stat(fullpath).st_mtime
             if self.report.archive:
-                self.report.archive.add(fullpath, str(newpath))
+                if str(newpath) not in self.report.archive.getnames():
+                    # The current file not already archived.
+                    self.report.archive.add(fullpath, str(newpath))
             else:
                 to_dir = os.path.join(self.html_dir, to_dir)
                 if not os.path.isdir(to_dir):

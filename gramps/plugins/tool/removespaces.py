@@ -35,6 +35,7 @@ from gi.repository import GObject
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.plug import tool
 from gramps.gui.editors import (EditPlace, EditPerson)
 from gramps.gen.errors import WindowActiveError
@@ -89,6 +90,9 @@ class RemoveSpaces(ManagedWindow):
         self.dbstate = dbstate
         self.uistate = uistate
         self.db = dbstate.db
+        self.tooltip = ""
+        self.f_lat = False
+        self.f_lon = False
 
         top_dialog = Glade()
 
@@ -102,7 +106,8 @@ class RemoveSpaces(ManagedWindow):
         title = top_dialog.get_object("title")
         self.set_window(window, title, self.title)
         tip = _('Search leading and/or trailing spaces for persons'
-                ' and places. Search comma in coordinates fields.\n'
+                ' and places. Search comma or bad sign in coordinates'
+                ' fields.\n'
                 'Double click on a row to edit its content.')
         title.set_tooltip_text(tip)
 
@@ -168,7 +173,8 @@ class RemoveSpaces(ManagedWindow):
             GObject.TYPE_STRING,    # 0==handle
             GObject.TYPE_STRING,    # 1==name
             GObject.TYPE_STRING,    # 2==latitude
-            GObject.TYPE_STRING)    # 3==longitude
+            GObject.TYPE_STRING,    # 3==longitude
+            GObject.TYPE_STRING)    # 4==tooltip
         self.model_2.set_sort_column_id(
             Gtk.TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID, 1)
 
@@ -190,19 +196,25 @@ class RemoveSpaces(ManagedWindow):
         renderer7.set_property('underline-set', True)
         renderer7.set_property('underline', 2) # 2=double underline
         col4 = Gtk.TreeViewColumn(_('longitude'), renderer7, text=3)
+        col5 = Gtk.TreeViewColumn(_('tooltip'),
+                                  Gtk.CellRendererText(), text=4)
         col1.set_resizable(True)
         col1.set_visible(False)
         col2.set_resizable(True)
         col3.set_resizable(True)
         col4.set_resizable(True)
+        col5.set_visible(False)
         col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col2.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col3.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col4.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        col5.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         self.treeview_2.append_column(col1)
         self.treeview_2.append_column(col2)
         self.treeview_2.append_column(col3)
         self.treeview_2.append_column(col4)
+        self.treeview_2.append_column(col5)
+        self.treeview_2.set_tooltip_column(4)
         self.treeselection = self.treeview_2.get_selection()
         self.treeview_2.connect('row-activated', self.rowactivated_cb2)
 
@@ -213,6 +225,39 @@ class RemoveSpaces(ManagedWindow):
         self.progress.close()
 
         self.show()
+
+    def add_text_to_tip(self, nll, mess):
+        """
+        Add a text to tooltip for places.
+        nll: 0: name
+             1: latitude
+             2: longitude
+        mess: text to add
+        """
+        if nll == 0:
+            self.tooltip = _("Name:")
+            self.tooltip += " "
+            self.tooltip += mess
+        elif nll == 1:
+            if not self.f_lat:
+                if self.tooltip != "":
+                    self.tooltip += "\n"
+                self.tooltip += _("Latitude:")
+                self.tooltip += " "
+                self.f_lat = True
+            else:
+                self.tooltip += ", "
+            self.tooltip += mess
+        elif nll == 2:
+            if not self.f_lon:
+                if self.tooltip != "":
+                    self.tooltip += "\n"
+                self.tooltip += _("Longitude:")
+                self.tooltip += " "
+                self.f_lon = True
+            else:
+                self.tooltip += ", "
+            self.tooltip += mess
 
     def places(self):
         """
@@ -225,20 +270,40 @@ class RemoveSpaces(ManagedWindow):
             place_name = place.get_name()
             pname = place_name.get_value()
             found = False
+            self.tooltip = ""
             if pname != pname.strip():
+                self.add_text_to_tip(0, _("leading and/or trailing spaces"))
                 found = True
             plat = place.get_latitude()
+            plon = place.get_longitude()
+            lat, lon = conv_lat_lon(plat, plon, "D.D8")
+            self.f_lat = self.f_lon = False
+            if not lat:
+                self.add_text_to_tip(1, _("invalid format"))
+                found = True
             if plat != plat.strip():
+                self.add_text_to_tip(1, _("leading and/or trailing spaces"))
+                found = True
+            if plat.find(',') != -1:
+                self.add_text_to_tip(1, _("comma instead of dot"))
                 found = True
             if validate_lat_lon(plat):
+                self.add_text_to_tip(1, _("invalid char instead of '-'"))
                 found = True
-            plon = place.get_longitude()
+            if not lon:
+                self.add_text_to_tip(2, _("invalid format"))
+                found = True
             if plon != plon.strip():
+                self.add_text_to_tip(2, _("leading and/or trailing spaces"))
                 found = True
-            if validate_lat_lon(plon):
+            if plon.find(',') != -1:
+                self.add_text_to_tip(2, _("comma instead of dot"))
+                found = True
+            if validate_lat_lon(plat):
+                self.add_text_to_tip(1, _("invalid char instead of '-'"))
                 found = True
             if found:
-                value = (place_handle, pname, plat, plon)
+                value = (place_handle, pname, plat, plon, self.tooltip)
                 self.model_2.append(value)
         return True
 

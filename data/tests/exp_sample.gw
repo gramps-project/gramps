@@ -9,6 +9,12 @@ beg
 - h Hans_Peter.8 17/4/1904 #bp Rønne,_Bornholm,_Denmark 29/1/1977 #dp San_Francisco,_San_Francisco_Co.,_CA 
 end
 
+notes Hansdotter Anna.1
+beg
+******************************************************************890123456789
+******************************************************************89 123456789 
+end notes
+
 notes Smith Hjalmar.5
 beg
 BIOGRAPHY
@@ -61,7 +67,7 @@ Some Bold Unicode Characters: &#2294;&#508;&#1024;&#1580;&#12228;&#13405;&#15691
 Some Italic Unicode Characters: &#2294;&#508;&#1024;&#1580;&#12228;&#13405;&#15691;&#22299;&#22665;&#24181;&#32863;&#32870;&#65865;&#128694;&#128712; 
 end notes
 
-fam Smith Gus.6 +~1920 Michaels Evelyn.25 ~1897  
+fam Smith Gus.6 +~1920 Michaels Evelyn.25 ~1897 0 
 
 fam Smith Hjalmar.5 +31/10/1927 #mp Reno,_Washoe_Co.,_NV Ohman Marjorie.26 3/6/1903 #bp Denver,_Denver_Co.,_CO,_Denver_Co.,_Colorado,_USA 22/6/1980 #dp Reno,_Washoe_Co.,_NV 
 beg
@@ -98,13 +104,18 @@ beg
 - h Martin.17 1794..1796 #bp Tommarp,_Kristianstad_Län,_Sweden  #dp Sweden 
 end
 
-fam Willard Edwin.42 ~1886  +~1910 Smith Kirsti_Marie.2 
+fam Willard Edwin.42 ~1886 0 +~1910 Smith Kirsti_Marie.2 
 
 fam Smith Magnes.38 +24/8/1884 #mp Rønne,_Bornholm,_Denmark Streiffert Anna.43 23/9/1860 #bp Hoya/Jona/Hoia,_Sweden 2/2/1927 #dp Rønne,_Bornholm,_Denmark 
 
 fam Tester The.14 + Tester Mrs.44 0  
 beg
-- h Tom.45 0  
+- h Tom.45 Von_Tester_y_tested 0  
+-  Fake.46 von_Person 1954 #bp Fremont,_Alameda_Co.,_CA  
+- f Mary.47 0  
+- f Martha.48 0  
+- h John.49 0  
+- h Mark.50 0  
 end
 
 notes Tester Mrs.44

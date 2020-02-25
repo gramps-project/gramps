@@ -204,6 +204,7 @@ class GeoClose(GeoGraphyView):
         ('geography.center-lat', 0.0),
         ('geography.center-lon', 0.0),
         ('geography.use-keypad', True),
+        ('geography.personal-map', ""),
 
         ('geography.map_service', constants.OPENSTREETMAP),
         ('geography.max_places', 5000),
@@ -568,7 +569,6 @@ class GeoClose(GeoGraphyView):
         """
         self.newmenu = Gtk.Menu()
         menu = self.newmenu
-        menu.set_title("person")
         events = []
         message = ""
         oldplace = ""
@@ -613,7 +613,6 @@ class GeoClose(GeoGraphyView):
                     menu.append(add_item)
                     self.itemoption = Gtk.Menu()
                     itemoption = self.itemoption
-                    itemoption.set_title(message)
                     itemoption.show()
                     add_item.set_submenu(itemoption)
                     modify = Gtk.MenuItem(label=_("Edit Event"))

@@ -742,6 +742,18 @@ class CitationTreeView(ListView):
             source.add_tag(tag_handle)
             self.dbstate.db.commit_source(source, transaction)
 
+    def remove_tag(self, transaction, handle, tag_handle):
+        """
+        Remove the given tag from the given source or citation.
+        """
+        source, citation = self.get_source_or_citation(handle)
+        if citation:
+            citation.remove_tag(tag_handle)
+            self.dbstate.db.commit_citation(citation, transaction)
+        else:
+            source.remove_tag(tag_handle)
+            self.dbstate.db.commit_source(source, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

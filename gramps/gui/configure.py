@@ -690,7 +690,7 @@ class GrampsPreferences(ConfigureDialog):
         hbox.pack_start(lwidget, False, False, 0)
         hbox.pack_start(self.color_scheme_box, False, False, 0)
 
-        restore_btn = Gtk.Button(_('Restore to defaults'))
+        restore_btn = Gtk.Button(label=_('Restore to defaults'))
         restore_btn.set_tooltip_text(
             _('Restore colors for current theme to default.'))
         restore_btn.connect('clicked', self.restore_colors)
@@ -1256,14 +1256,15 @@ class GrampsPreferences(ConfigureDialog):
                          _("Years, Months, Days")]
         list(map(obox.append_text, age_precision))
         # Combo_box active index is from 0 to 2, we need values from 1 to 3
-        constant = 'preferences.age-display-precision'
-        active = config.get(constant) - 1
+        active = config.get('preferences.age-display-precision') - 1
         if active >= 0 and active <= 2:
             obox.set_active(active)
         else:
             obox.set_active(0)
-        obox.connect('changed',
-                     lambda obj: config.set(constant, obj.get_active() + 1))
+        obox.connect(
+            'changed',
+            lambda obj: config.set('preferences.age-display-precision',
+                                   obj.get_active() + 1))
         lwidget = BasicLabel(_("%s: ")
                              % _('Age display precision (requires restart)'))
         grid.attach(lwidget, 0, row, 1, 1)
@@ -1300,10 +1301,10 @@ class GrampsPreferences(ConfigureDialog):
         obox = Gtk.ComboBoxText()
         formats = FamilyRelType().get_standard_names()
         list(map(obox.append_text, formats))
-        constant = 'preferences.family-relation-type'
-        obox.set_active(config.get(constant))
+        obox.set_active(config.get('preferences.family-relation-type'))
         obox.connect('changed',
-                     lambda obj: config.set(constant, obj.get_active()))
+                     lambda obj: config.set('preferences.family-relation-type',
+                                            obj.get_active()))
         lwidget = BasicLabel(_("%s: ") % _('Default family relationship'))
         grid.attach(lwidget, 0, row, 1, 1)
         grid.attach(obox, 1, row, 2, 1)
@@ -1489,6 +1490,26 @@ class GrampsPreferences(ConfigureDialog):
             align=Gtk.Align.CENTER, bold=True)
 
         row = 1
+        self.add_pos_int_entry(
+            grid, _('Markup for invalid date format'),
+            row, 'preferences.invalid-date-format',
+            self.update_markup_entry,
+            helptext=_(
+                'Convenience markups are:\n'
+                '<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n'
+                '<big>&lt;big&gt;'
+                'Makes font relatively larger&lt;/big&gt;</big>\n'
+                '<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n'
+                '<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n'
+                '<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n'
+                '<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n'
+                '<small>&lt;small&gt;'
+                'Makes font relatively smaller&lt;/small&gt;</small>\n'
+                '<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n'
+                '<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n\n'
+                'For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n'
+                'will display <u><b>Underlined bold date</b></u>.\n'))
+        row += 1
         self.add_spinner(
             grid, _('Date about range'),
             row, 'behavior.date-about-range', (1, 9999))
@@ -1516,26 +1537,6 @@ class GrampsPreferences(ConfigureDialog):
         self.add_spinner(
             grid, _('Average years between generations'),
             row, 'behavior.avg-generation-gap', (10, 30))
-        row += 1
-        self.add_pos_int_entry(
-            grid, _('Markup for invalid date format'),
-            row, 'preferences.invalid-date-format',
-            self.update_markup_entry,
-            helptext=_(
-                'Convenience markups are:\n'
-                '<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n'
-                '<big>&lt;big&gt;'
-                'Makes font relatively larger&lt;/big&gt;</big>\n'
-                '<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n'
-                '<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n'
-                '<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n'
-                '<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n'
-                '<small>&lt;small&gt;'
-                'Makes font relatively smaller&lt;/small&gt;</small>\n'
-                '<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n'
-                '<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n\n'
-                'For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n'
-                'will display <u><b>Underlined bold date</b></u>.\n'))
 
         return _('Dates'), grid
 
@@ -1808,6 +1809,8 @@ class GrampsPreferences(ConfigureDialog):
         for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
             if plugin.id == default:
                 active = count
+            if plugin.id == 'bsddb':
+                continue  # bsddb is deprecated, so don't allow setting
             model.append(row=[count, plugin.name, plugin.id])
             count += 1
         obox.set_model(model)
@@ -1827,12 +1830,10 @@ class GrampsPreferences(ConfigureDialog):
         Show dialog to choose media directory.
         """
         f = Gtk.FileChooserDialog(title=_("Select media directory"),
-                                  parent=self.window,
-                                  action=Gtk.FileChooserAction.SELECT_FOLDER,
-                                  buttons=(_('_Cancel'),
-                                           Gtk.ResponseType.CANCEL,
-                                           _('_Apply'),
-                                           Gtk.ResponseType.OK))
+                                  transient_for=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER)
+        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                      _('_Apply'),  Gtk.ResponseType.OK)
         mpath = media_path(self.dbstate.db)
         f.set_current_folder(os.path.dirname(mpath))
 
@@ -1877,12 +1878,10 @@ class GrampsPreferences(ConfigureDialog):
         Show dialog to choose backup directory.
         """
         f = Gtk.FileChooserDialog(title=_("Select backup directory"),
-                                  parent=self.window,
-                                  action=Gtk.FileChooserAction.SELECT_FOLDER,
-                                  buttons=(_('_Cancel'),
-                                           Gtk.ResponseType.CANCEL,
-                                           _('_Apply'),
-                                           Gtk.ResponseType.OK))
+                                  transient_for=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER)
+        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                      _('_Apply'),  Gtk.ResponseType.OK)
         backup_path = config.get('database.backup-path')
         if not backup_path:
             backup_path = config.get('database.path')
@@ -2093,9 +2092,9 @@ class GrampsPreferences(ConfigureDialog):
                 self.all_avail_fonts, callback=self.utf8_update_font,
                 valueactive=True, setactive=active_val)
             if len(available_fonts) == 1:
-                single_font = self.all_avail_fonts[choosefont.get_active()][1]
+                single_font = self.all_avail_fonts[choosefont.get_active()][0]
                 config.set('utf8.selected-font',
-                           self.all_avail_fonts[single_font])
+                           self.all_avail_fonts[single_font][1])
                 self.utf8_show_example()
             symbols = Symbols()
             all_sbls = symbols.get_death_symbols()
@@ -2162,11 +2161,9 @@ class GrampsPreferences(ConfigureDialog):
         scrollw.set_size_request(600, 100)
         text = Gtk.Label()
         text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
         self.activate_change_font()
         text.set_halign(Gtk.Align.START)
-        text.set_text(my_characters)
+        text.set_markup("<span font='%s'>%s</span>" % (font, my_characters))
         scrollw.add(text)
         scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.grid.attach(scrollw, 1, 7, 8, 1)
@@ -2179,12 +2176,9 @@ class GrampsPreferences(ConfigureDialog):
         my_characters += symbols.get_death_symbol_for_char(death_symbl)
         text = Gtk.Label()
         text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
         text.set_halign(Gtk.Align.START)
-        text.set_markup("<big><big><big><big>" +
-                        my_characters +
-                        "</big></big></big></big>")
+        text.set_markup("<big><big><big><big><span font='%s'>%s</span>"
+                        "</big></big></big></big>" % (font, my_characters))
         self.grid.attach(text, 1, 8, 8, 1)
         scrollw.show_all()
         text.show_all()

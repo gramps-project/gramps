@@ -84,7 +84,6 @@ class Photo(Gtk.EventBox):
         elif is_right_click(event):
             if self.handle and self.uistate:
                 self.menu = Gtk.Menu()
-                self.menu.set_title(_("Media Object"))
                 add_menuitem(self.menu, _("Make Active Media"), widget,
                     lambda obj: self.uistate.set_active(self.handle, "Media"))
                 self.menu.popup(None, None, None, None, event.button, event.time)

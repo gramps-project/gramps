@@ -203,6 +203,7 @@ class GeoFamClose(GeoGraphyView):
         ('geography.center-lat', 0.0),
         ('geography.center-lon', 0.0),
         ('geography.use-keypad', True),
+        ('geography.personal-map', ""),
 
         ('geography.map_service', constants.OPENSTREETMAP),
         ('geography.max_places', 5000),
@@ -758,7 +759,6 @@ class GeoFamClose(GeoGraphyView):
         """
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("family")
         events = []
         message = ""
         oldplace = ""
@@ -802,7 +802,6 @@ class GeoFamClose(GeoGraphyView):
                     menu.append(add_item)
                     self.itemoption = Gtk.Menu()
                     itemoption = self.itemoption
-                    itemoption.set_title(message)
                     itemoption.show()
                     add_item.set_submenu(itemoption)
                     modify = Gtk.MenuItem(label=_("Edit Event"))

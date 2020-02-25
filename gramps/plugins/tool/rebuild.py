@@ -51,14 +51,13 @@ log = logging.getLogger(".Rebuild")
 #-------------------------------------------------------------------------
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
-from gramps.gen.updatecallback import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
 # runTool
 #
 #-------------------------------------------------------------------------
-class Rebuild(tool.Tool, UpdateCallback):
+class Rebuild(tool.Tool):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
@@ -76,10 +75,7 @@ class Rebuild(tool.Tool, UpdateCallback):
             uistate.progress.show()
             uistate.push_message(dbstate, _("Rebuilding secondary indexes..."))
 
-            UpdateCallback.__init__(self, self.callback)
-            self.set_total(12)
-            self.db.rebuild_secondary(self.update)
-            self.reset()
+            self.db.rebuild_secondary(self.callback)
 
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
@@ -88,7 +84,7 @@ class Rebuild(tool.Tool, UpdateCallback):
                      parent=uistate.window)
         else:
             print("Rebuilding Secondary Indexes...")
-            self.db.rebuild_secondary(self.update_empty)
+            self.db.rebuild_secondary(None)
             print("All secondary indexes have been rebuilt.")
 
         self.db.enable_signals()

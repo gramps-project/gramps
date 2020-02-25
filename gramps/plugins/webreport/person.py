@@ -52,7 +52,7 @@ import logging
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (ChildRefType, Date, Name, Person, EventRoleType,
-                            EventType)
+                            Family, Event, EventType)
 from gramps.gen.lib.date import Today
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import utils
@@ -74,7 +74,8 @@ from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              get_index_letter, add_birthdate,
                                              primary_difference, FULLCLEAR,
                                              _find_birth_date, _find_death_date,
-                                             MARKER_PATH, OSM_MARKERS,
+                                             MARKER_PATH, OPENLAYER,
+                                             OSM_MARKERS, STAMEN_MARKERS,
                                              GOOGLE_MAPS, MARKERS, html_escape,
                                              DROPMASTERS, FAMILYLINKS)
 from gramps.plugins.webreport.layout import LayoutTree
@@ -84,8 +85,8 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
-_WIDTH = 160
-_HEIGHT = 120
+_WIDTH = 280
+_HEIGHT = 140
 _VGAP = 10
 _HGAP = 30
 _SHADOW = 5
@@ -120,6 +121,7 @@ class PersonPages(BasePage):
         self.sort_name = None
         self.googleopts = None
         self.googlemapkey = None
+        self.stamenopts = None
         self.birthorder = None
         self.person = None
         self.familymappages = None
@@ -455,6 +457,7 @@ class PersonPages(BasePage):
         self.mapservice = self.report.options['mapservice']
         self.googleopts = self.report.options['googleopts']
         self.googlemapkey = self.report.options['googlemapkey']
+        self.stamenopts = self.report.options['stamenopts']
 
         # decide if we will sort the birth order of siblings...
         self.birthorder = self.report.options['birthorder']
@@ -466,18 +469,7 @@ class PersonPages(BasePage):
         output_file, sio = self.report.create_file(person.get_handle(), "ppl")
         self.uplink = True
         result = self.write_header(self.sort_name)
-        indivdetpage, head, dummy_body, outerwrapper = result
-
-        # attach the ancestortree style sheet if ancestor
-        # graph is being created?
-        if self.report.options["ancestortree"]:
-            if self.usecms:
-                fname = "/".join([self.target_uri, "css", "ancestortree.css"])
-            else:
-                fname = "/".join(["css", "ancestortree.css"])
-            url = self.report.build_url_fname(fname, None, self.uplink)
-            head += Html("link", href=url, type="text/css", media="screen",
-                         rel="stylesheet")
+        indivdetpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin individualdetail division
         with Html("div", class_="content",
@@ -493,7 +485,7 @@ class PersonPages(BasePage):
             if self.report.options['notes']:
                 # display Narrative Notes
                 notelist = person.get_note_list()
-                sect8 = self.display_note_list(notelist)
+                sect8 = self.display_note_list(notelist, Person)
                 if sect8 is not None:
                     individualdetail += sect8
 
@@ -561,7 +553,7 @@ class PersonPages(BasePage):
             if not self.report.options['notes']:
                 # display Narrative Notes
                 notelist = person.get_note_list()
-                sect8 = self.display_note_list(notelist)
+                sect8 = self.display_note_list(notelist, Person)
                 if sect8 is not None:
                     individualdetail += sect8
 
@@ -623,6 +615,35 @@ class PersonPages(BasePage):
         # and close the file
         self.xhtml_writer(indivdetpage, output_file, sio, date)
 
+    def _create_family_tracelife(self, tracelife, placetitle,
+                                 latitude, longitude, seq_, links):
+        """
+        creates individual family tracelife map events
+
+        @param: person -- person from database
+        @param: links  -- used to add links in the popup html page
+        """
+        # are we using Google?
+        if self.mapservice == "Google":
+
+            # are we creating Family Links?
+            if self.googleopts == "FamilyLinks":
+                tracelife += """
+    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+
+            # are we creating Drop Markers or Markers?
+            elif self.googleopts in ["Drop", "Markers"]:
+                tracelife += """
+    ['%s', %s, %s, %d, %s],""" % (placetitle.replace("'", "\\'"), latitude,
+                                  longitude, seq_, links)
+
+        # are we using OpenStreetMap, Stamen...
+        else:
+            tracelife += """
+    [%f, %f, \'%s\', %s],""" % (float(longitude), float(latitude),
+                                placetitle.replace("'", "\\'"), links)
+        return tracelife
+
     def __create_family_map(self, person, place_lat_long):
         """
         creates individual family map page
@@ -646,7 +667,7 @@ class PersonPages(BasePage):
         number_markers = len(place_lat_long)
         if number_markers > 1:
             for (latitude, longitude, placetitle, handle,
-                 date, etype) in place_lat_long:
+                 event) in place_lat_long:
                 xwidth.append(latitude)
                 yheight.append(longitude)
             xwidth.sort()
@@ -686,8 +707,8 @@ class PersonPages(BasePage):
 
         # 0 = latitude, 1 = longitude, 2 = place title,
         # 3 = handle, and 4 = date, 5 = event type...
-        # being sorted by date, latitude, and longitude...
-        place_lat_long = sorted(place_lat_long, key=itemgetter(4, 0, 1))
+        # being sorted by place_title
+        place_lat_long = sorted(place_lat_long, key=itemgetter(2))
 
         # for all plugins
         # if family_detail_page
@@ -710,7 +731,7 @@ class PersonPages(BasePage):
                 src_js += "&key=" + self.googlemapkey
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-        else:
+        else: # OpenStreetMap, Stamen...
             url = self.secure_mode
             url += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
                     "css/bootstrap.min.css")
@@ -734,61 +755,153 @@ class PersonPages(BasePage):
 
         if number_markers > 0:
             tracelife = "["
-            seq_ = 1
+            seq_ = 0
+            old_place_title = ""
+            links = ""
+            ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
+            ppl_lnk = ""
+            for index in range(0, number_markers):
+                (latitude, longitude, placetitle, handle,
+                 event) = place_lat_long[index]
+                # Do we have several events for this place?
+                if placetitle == old_place_title:
+                    evthdle = event.get_handle()
+                    bkref_list = self.report.bkref_dict[Event][evthdle]
+                    url_fct = self.report.build_url_fname_html
+                    if bkref_list:
+                        for ref in bkref_list:
+                            (bkref_class, bkref_hdle, role) = ref
+                            if bkref_class == Family and role == "Primary":
+                                url = url_fct(bkref_hdle,
+                                              "fam", self.uplink)
+                                fam_fct = self.r_db.get_family_from_handle
+                                fam = fam_fct(bkref_hdle)
+                                fam_name = self.report.get_family_name(fam)
+                                ppl_lnk = ln_str % (url,
+                                                    fam.get_gramps_id(),
+                                                    fam_name)
+                            if bkref_class == Person and role == "Primary":
+                                url = url_fct(bkref_hdle,
+                                              "ppl", self.uplink)
+                                ppl_fct = self.r_db.get_person_from_handle
+                                pers = ppl_fct(bkref_hdle)
+                                ppl_lnk = ln_str % (url,
+                                                    pers.get_gramps_id(),
+                                                    self.get_name(pers))
+                    url = self.report.build_url_fname_html(event.get_handle(),
+                                                           "evt", self.uplink)
+                    evt_type = self._(str(event.get_type()))
+                    evt_date = self.rlocale.get_date(event.get_date_object())
+                    evt_lnk = ln_str % (url, evt_date, evt_type)
+                    evt_lnk += " (" + evt_date + ")"
 
-            for index in range(0, (number_markers - 1)):
-                (latitude, longitude, placetitle, handle, date,
-                 etype) = place_lat_long[index]
+                    links += ' + "</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                    if index == number_markers - 1:
+                        tracelife = self._create_family_tracelife(tracelife,
+                                                                  placetitle,
+                                                                  latitude,
+                                                                  longitude,
+                                                                  seq_,
+                                                                  links)
+                        break
+                    continue
+                elif old_place_title != "" and index != 0:
+                    (lat, lng, plcetitle, dummy_handle,
+                     dummy_event) = place_lat_long[index-1]
+                    tracelife = self._create_family_tracelife(tracelife,
+                                                              plcetitle,
+                                                              lat,
+                                                              lng,
+                                                              seq_,
+                                                              links)
+                    if old_place_title != placetitle:
+                        old_place_title = placetitle
+                        evthdle = event.get_handle()
+                        bkref_list = self.report.bkref_dict[Event][evthdle]
+                        url_fct = self.report.build_url_fname_html
+                        if bkref_list:
+                            for ref in bkref_list:
+                                (bkref_class, bkref_hdle, role) = ref
+                                if bkref_class == Family and role == "Primary":
+                                    url = url_fct(bkref_hdle,
+                                                  "fam", self.uplink)
+                                    fam_fct = self.r_db.get_family_from_handle
+                                    fam = fam_fct(bkref_hdle)
+                                    fam_name = self.report.get_family_name(fam)
+                                    ppl_lnk = ln_str % (url,
+                                                        fam.get_gramps_id(),
+                                                        fam_name)
+                                if bkref_class == Person and role == "Primary":
+                                    url = url_fct(bkref_hdle,
+                                                  "ppl", self.uplink)
+                                    ppl_fct = self.r_db.get_person_from_handle
+                                    pers = ppl_fct(bkref_hdle)
+                                    ppl_lnk = ln_str % (url,
+                                                        pers.get_gramps_id(),
+                                                        self.get_name(pers))
+                        url = self.report.build_url_fname_html(event.handle,
+                                                               "evt",
+                                                               self.uplink)
+                        evt_type = self._(str(event.get_type()))
+                        date = self.rlocale.get_date(event.get_date_object())
+                        evt_lnk = ln_str % (url, date, evt_type)
+                        evt_lnk += " (" + date + ")"
 
-                # are we using Google?
-                if self.mapservice == "Google":
-
-                    # are we creating Family Links?
-                    if self.googleopts == "FamilyLinks":
-                        tracelife += """
-    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
-
-                    # are we creating Drop Markers or Markers?
-                    elif self.googleopts in ["Drop", "Markers"]:
-                        tracelife += """
-    ['%s', %s, %s, %d],""" % (placetitle.replace("'", "\\'"), latitude,
-                              longitude, seq_)
-
-                # are we using OpenStreetMap?
+                        links = '"</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                elif index == number_markers-1:
+                    tracelife = self._create_family_tracelife(tracelife,
+                                                              placetitle,
+                                                              latitude,
+                                                              longitude,
+                                                              seq_,
+                                                              links)
                 else:
-                    tracelife += """
-    [%f, %f, \'%s\'],""" % (float(longitude), float(latitude),
-                            placetitle.replace("'", "\\'"))
-
+                    evthdle = event.get_handle()
+                    bkref_list = self.report.bkref_dict[Event][evthdle]
+                    url_fct = self.report.build_url_fname_html
+                    if bkref_list:
+                        for ref in bkref_list:
+                            (bkref_class, bkref_hdle, role) = ref
+                            if bkref_class == Family and role == "Primary":
+                                url = url_fct(bkref_hdle,
+                                              "fam", self.uplink)
+                                fam_fct = self.r_db.get_family_from_handle
+                                fam = fam_fct(bkref_hdle)
+                                fam_name = self.report.get_family_name(fam)
+                                ppl_lnk = ln_str % (url,
+                                                    fam.get_gramps_id(),
+                                                    fam_name)
+                            if bkref_class == Person and role == "Primary":
+                                url = url_fct(bkref_hdle,
+                                              "ppl", self.uplink)
+                                ppl_fct = self.r_db.get_person_from_handle
+                                pers = ppl_fct(bkref_hdle)
+                                ppl_lnk = ln_str % (url,
+                                                    pers.get_gramps_id(),
+                                                    self.get_name(pers))
+                        url = self.report.build_url_fname_html(event.handle,
+                                                               "evt",
+                                                               self.uplink)
+                        evt_type = self._(str(event.get_type()))
+                        date = self.rlocale.get_date(event.get_date_object())
+                        evt_lnk = ln_str % (url, evt_type, evt_type)
+                        evt_lnk += " (" + date + ")"
+                    if "<p>" in links:
+                        links += '"</br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
+                    else:
+                        links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                    old_place_title = placetitle
                 seq_ += 1
-            # FIXME: The last element in the place_lat_long list is treated
-            # specially, and the code above is apparently repeated so as to
-            # avoid a comma at the end, and get the right closing. This is very
-            # ugly.
-            (latitude, longitude, placetitle, handle, date,
-             etype) = place_lat_long[-1]
 
-            # are we using Google?
-            if self.mapservice == "Google":
-
-                # are we creating Family Links?
-                if self.googleopts == "FamilyLinks":
-                    tracelife += """
-    new google.maps.LatLng(%s, %s)
-  ];""" % (latitude, longitude)
-
-                # are we creating Drop Markers or Markers?
-                elif self.googleopts in ["Drop", "Markers"]:
-                    tracelife += """
-    ['%s', %s, %s, %d]
-  ];""" % (placetitle.replace("'", "\\'"), latitude, longitude, seq_)
-
-            # are we using OpenStreetMap?
-            elif self.mapservice == "OpenStreetMap":
-                tracelife += """
-    [%f, %f, \'%s\']
-  ];""" % (float(longitude), float(latitude), placetitle.replace("'", "\\'"))
-
+        (lat, lng, plcetitle, dummy_handle,
+         dummy_event) = place_lat_long[number_markers-1]
+        tracelife = self._create_family_tracelife(tracelife,
+                                                  plcetitle,
+                                                  lat,
+                                                  lng,
+                                                  seq_,
+                                                  links)
+        tracelife += "];"
         # begin MapDetail division...
         with Html("div", class_="content", id="FamilyMapDetail") as mapdetail:
             outerwrapper += mapdetail
@@ -815,68 +928,24 @@ class PersonPages(BasePage):
             with Html("div", id="map_canvas") as canvas:
                 mapdetail += canvas
 
-                # begin javascript inline code...
-                with Html("script", deter="deter",
-                          style='width =100%; height =100%;',
-                          type="text/javascript", indent=False) as jsc:
-                    head += jsc
-
-                    # Link to Gramps marker
-                    fname = "/".join(['images', 'marker.png'])
-                    marker_path = self.report.build_url_image("marker.png",
-                                                              "images",
-                                                              self.uplink)
-
-                    jsc += MARKER_PATH % marker_path
-                    # are we using Google?
-                    if self.mapservice == "Google":
-
-                        # are we creating Family Links?
-                        if self.googleopts == "FamilyLinks":
-                            if midy_ is None:
-                                jsc += FAMILYLINKS % (tracelife, latitude,
-                                                      longitude, int(10))
-                            else:
-                                jsc += FAMILYLINKS % (tracelife, midx_, midy_,
-                                                      zoomlevel)
-
-                        # are we creating Drop Markers?
-                        elif self.googleopts == "Drop":
-                            if midy_ is None:
-                                jsc += DROPMASTERS % (tracelife, latitude,
-                                                      longitude, int(10))
-                            else:
-                                jsc += DROPMASTERS % (tracelife, midx_, midy_,
-                                                      zoomlevel)
-
-                        # we are creating Markers only...
-                        else:
-                            if midy_ is None:
-                                jsc += MARKERS % (tracelife, latitude,
-                                                  longitude, int(10))
-                            else:
-                                jsc += MARKERS % (tracelife, midx_, midy_,
-                                                  zoomlevel)
-
-                    # we are using OpenStreetMap...
-                    else:
-                        if midy_ is None:
-                            jsc += OSM_MARKERS % (tracelife,
-                                                  longitude,
-                                                  latitude, 10)
-                        else:
-                            jsc += OSM_MARKERS % (tracelife, midy_, midx_,
-                                                  zoomlevel)
-
-            # if Google and Drop Markers are selected,
-            # then add "Drop Markers" button?
-            if self.mapservice == "Google" and self.googleopts == "Drop":
-                mapdetail += Html("button", _("Drop Markers"),
-                                  id="drop", onclick="drop()", inline=True)
-
             # add div for popups.
-            with Html("div", id="popup", inline=True) as popup:
-                mapdetail += popup
+            if self.mapservice == "Google":
+                with Html("div", id="popup", inline=True) as popup:
+                    mapdetail += popup
+            else:
+                with Html("div", id="popup", class_="ol-popup",
+                          inline=True) as popup:
+                    mapdetail += popup
+                    popup += Html("a", href="#", id="popup-closer",
+                                  class_="ol-popup-closer")
+                    popup += Html("div", id="popup-title",
+                                  class_="ol-popup-title")
+                    popup += Html("div", id="popup-content",
+                                  class_="ol-popup-content")
+                with Html("div", id="tooltip", class_="ol-popup",
+                          inline=True) as tooltip:
+                    mapdetail += tooltip
+                    tooltip += Html("div", id="tooltip-content")
 
             # begin place reference section and its table...
             with Html("div", class_="subsection", id="references") as section:
@@ -904,11 +973,16 @@ class PersonPages(BasePage):
                     tbody = Html("tbody")
                     table += tbody
 
-                    for (latitude, longitude, placetitle, handle, date,
-                         etype) in place_lat_long:
+                    # being sorted by date
+                    place_lat_long = sorted(place_lat_long,
+                                            key=lambda evt:
+                                            evt[4].get_date_object())
+                    for (latitude, longitude, placetitle, handle,
+                         event) in place_lat_long:
                         trow = Html("tr")
                         tbody += trow
 
+                        date = event.get_date_object()
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
@@ -916,12 +990,88 @@ class PersonPages(BasePage):
                                 (self.place_link(handle, placetitle,
                                                  uplink=True),
                                  "ColumnPlace"),
-                                (self._(str(etype)), "ColumnType")
+                                (self._(str(event.get_type())), "ColumnType")
                             ]
                         )
 
+            # begin javascript inline code...
+            with Html("script", deter="deter",
+                      style='width =100%; height =100%;',
+                      type="text/javascript", indent=False) as jsc:
+                mapdetail += jsc
+
+                # Link to Gramps marker
+                fname = "/".join(['images', 'marker.png'])
+                marker_path = self.report.build_url_image("marker.png",
+                                                          "images",
+                                                          self.uplink)
+
+                jsc += MARKER_PATH % marker_path
+                # are we using Google?
+                if self.mapservice == "Google":
+
+                    # are we creating Family Links?
+                    if self.googleopts == "FamilyLinks":
+                        if midy_ is None:
+                            jsc += FAMILYLINKS % (tracelife, latitude,
+                                                  longitude, int(10))
+                        else:
+                            jsc += FAMILYLINKS % (tracelife, midx_, midy_,
+                                                  zoomlevel)
+
+                    # are we creating Drop Markers?
+                    elif self.googleopts == "Drop":
+                        if midy_ is None:
+                            jsc += DROPMASTERS % (tracelife, latitude,
+                                                  longitude, int(10))
+                        else:
+                            jsc += DROPMASTERS % (tracelife, midx_, midy_,
+                                                  zoomlevel)
+
+                    # we are creating Markers only...
+                    else:
+                        if midy_ is None:
+                            jsc += MARKERS % (tracelife, latitude,
+                                              longitude, int(10))
+                        else:
+                            jsc += MARKERS % (tracelife, midx_, midy_,
+                                              zoomlevel)
+
+                # we are using OpenStreetMap
+                elif self.mapservice == "OpenStreetMap":
+                    if midy_ is None:
+                        jsc += OSM_MARKERS % (tracelife,
+                                              longitude,
+                                              latitude, 10)
+                    else:
+                        jsc += OSM_MARKERS % (tracelife, midy_, midx_,
+                                              zoomlevel)
+                    jsc += OPENLAYER
+                # we are using StamenMap
+                elif self.mapservice == "StamenMap":
+                    if midy_ is None:
+                        jsc += STAMEN_MARKERS % (tracelife,
+                                                 self.stamenopts,
+                                                 longitude,
+                                                 latitude,
+                                                 10,
+                                                )
+                    else:
+                        jsc += STAMEN_MARKERS % (tracelife,
+                                                 self.stamenopts,
+                                                 midy_, midx_,
+                                                 zoomlevel,
+                                                )
+                    jsc += OPENLAYER
+
+            # if Google and Drop Markers are selected,
+            # then add "Drop Markers" button?
+            if self.mapservice == "Google" and self.googleopts == "Drop":
+                mapdetail += Html("button", _("Drop Markers"),
+                                  id="drop", onclick="drop()", inline=True)
+
         # add body id for this page...
-        body.attr = 'id ="FamilyMap" onload ="initialize()"'
+        body.attr = 'id ="FamilyMap"'
 
         # add clearline for proper styling
         # add footer section
@@ -1020,15 +1170,20 @@ class PersonPages(BasePage):
                 death = self.rlocale.get_date(dd_event.get_date_object())
             if death == "":
                 death = "..."
-            value = person_name + "<br/>*", birth, "<br/>+", death
+            value = person_name + "<br/>*"+ birth+ "<br/>+"+ death
+            tdval = Html("td", value, class_="name")
+            table = Html("table", class_="table")
             if thumbnail_url is None:
                 boxbg += Html("a", href=url, class_="noThumb") + value
             else:
-                thumb = Html("span", class_="thumbnail") + (
-                    Html("img", src=thumbnail_url, alt="Image: " + person_name))
-                boxbg += Html("a", href=url) + thumb + value
+                trow = Html("tr")
+                img = Html("img", src=thumbnail_url, alt="Img: " + person_name)
+                trow += Html("td", img, class_="img")
+                trow += tdval
+                table += trow
+                boxbg += Html("a", table, href=url, class_="thumbnail")
         shadow = Html(
-            "div", class_="shadow", inline=True,
+            "div", "", class_="shadow", inline=True,
             style="top: %dpx; left: %dpx;" % (top + _SHADOW, xoff + _SHADOW))
 
         return [boxbg, shadow]
@@ -1175,16 +1330,18 @@ class PersonPages(BasePage):
 
         # We now apply the Buchheim algorith to this tree, and it assigns X
         # and Y positions to all elements in the tree.
-        l_tree = buchheim(layout_tree, _WIDTH, _HGAP, _HEIGHT, _VGAP)
+        l_tree, top, height = buchheim(layout_tree, _WIDTH, _HGAP,
+                                       _HEIGHT, _VGAP)
 
+        top = abs(top)
         # We know the height in 'pixels' where every Ancestor will sit
         # precisely on an integer unit boundary.
         with Html("div", id="tree", class_="subsection") as tree:
             tree += Html("h4", _('Ancestors'), inline=True)
             with Html("div", id="treeContainer",
-                      style="width:%dpx; height:%dpx;" % (
-                          l_tree.width + _XOFFSET + _WIDTH,
-                          l_tree.height + _HEIGHT + _VGAP)
+                      style="width:%dpx; height:%dpx; top: %dpx" % (
+                          l_tree.width + _XOFFSET* (generations + 1) + _WIDTH,
+                          height + top + _HEIGHT + _VGAP, top)
                      ) as container:
                 tree += container
                 container += self.draw_tree(l_tree, 1, None)
@@ -1267,7 +1424,7 @@ class PersonPages(BasePage):
                     for data in [
                             person_lnk,
                             person_ref.get_relation(),
-                            self.dump_notes(person_ref.get_note_list()),
+                            self.dump_notes(person_ref.get_note_list(), Person),
                             self.get_citation_links(
                                 person_ref.get_citation_list()),
                         ]:

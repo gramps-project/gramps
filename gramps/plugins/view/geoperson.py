@@ -191,6 +191,7 @@ class GeoPerson(GeoGraphyView):
         ('geography.center-lat', 0.0),
         ('geography.center-lon', 0.0),
         ('geography.use-keypad', True),
+        ('geography.personal-map', ""),
 
         #('geography.gps_mode', GPS_DISABLED),
         #('geography.gps_update_rate', float(1.0)),
@@ -485,7 +486,6 @@ class GeoPerson(GeoGraphyView):
     def bubble_message(self, event, lat, lon, marks):
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("person")
         message = ""
         oldplace = ""
         prevmark = None
@@ -496,7 +496,6 @@ class GeoPerson(GeoGraphyView):
                 menu.append(add_item)
                 self.itemoption = Gtk.Menu()
                 itemoption = self.itemoption
-                itemoption.set_title(message)
                 itemoption.show()
                 message = ""
                 add_item.set_submenu(itemoption)
@@ -517,7 +516,6 @@ class GeoPerson(GeoGraphyView):
                     menu.append(add_item)
                     self.itemoption = Gtk.Menu()
                     itemoption = self.itemoption
-                    itemoption.set_title(message)
                     itemoption.show()
                     message = ""
                     add_item.set_submenu(itemoption)
@@ -559,7 +557,6 @@ class GeoPerson(GeoGraphyView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
         modify = Gtk.MenuItem(label=_("Edit Event"))

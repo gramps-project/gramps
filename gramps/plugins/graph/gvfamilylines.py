@@ -33,6 +33,7 @@ Family Lines, a Graphviz-based plugin for Gramps.
 #
 #------------------------------------------------------------------------
 from functools import partial
+import html
 
 #------------------------------------------------------------------------
 #
@@ -818,10 +819,10 @@ class FamilyLinesReport(Report):
             if bth_event and self._incdates:
                 date = bth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    birth_str = self._get_date( # localized year
+                    birth_str = self.get_date( # localized year
                         Date(date.get_year()))
                 else:
-                    birth_str = self._get_date(date)
+                    birth_str = self.get_date(date)
 
             # get birth place (one of:  hamlet, village, town, city, parish,
             # county, province, region, state or country)
@@ -834,10 +835,10 @@ class FamilyLinesReport(Report):
             if dth_event and self._incdates:
                 date = dth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    death_str = self._get_date( # localized year
+                    death_str = self.get_date( # localized year
                         Date(date.get_year()))
                 else:
-                    death_str = self._get_date(date)
+                    death_str = self.get_date(date)
 
             # get death place (one of:  hamlet, village, town, city, parish,
             # county, province, region, state or country)
@@ -876,8 +877,7 @@ class FamilyLinesReport(Report):
                 label += '<TD>'
 
             # at the very least, the label must have the person's name
-            name = name.replace('"', '&#34;')
-            label += name.replace('<', '&#60;').replace('>', '&#62;')
+            label += html.escape(name)
             if self.includeid == 1: # same line
                 label += " (%s)" % p_id
             elif self.includeid == 2: # own line
@@ -964,10 +964,10 @@ class FamilyLinesReport(Report):
                         if self._incdates:
                             date = event.get_date_object()
                             if self._just_years and date.get_year_valid():
-                                wedding_date = self._get_date( # localized year
+                                wedding_date = self.get_date( # localized year
                                     Date(date.get_year()))
                             else:
-                                wedding_date = self._get_date(date)
+                                wedding_date = self.get_date(date)
                         # get the wedding location
                         if self._incplaces:
                             wedding_place = self.get_event_place(event)
@@ -1090,6 +1090,9 @@ class FamilyLinesReport(Report):
             place = self._db.get_place_from_handle(place_handle)
             if place:
                 place_text = _pd.display(self._db, place)
-                place_text = place_text.replace('<', '&#60;')
-                place_text = place_text.replace('>', '&#62;')
+                place_text = html.escape(place_text)
         return place_text
+
+    def get_date(self, date):
+        """ return a formatted date """
+        return html.escape(self._get_date(date))

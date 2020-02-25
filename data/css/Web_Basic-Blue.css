@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -119,6 +119,16 @@ img {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
 }
 
 /* General Text
@@ -129,7 +139,6 @@ h1 {
 h2 {
     font: bold 1em sans-serif;
     text-align: center;
-    float: center;
 }
 h3 {
     font: bold italic 1.6em serif;
@@ -339,7 +348,7 @@ div#footer p#copyright img {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
 }
 
@@ -347,6 +356,12 @@ div#header::after {
     content: "";
     clear: both;
     display: table;
+}
+
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
 }
 
 /* Alphabet Navigation
@@ -401,11 +416,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -427,22 +437,23 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
+        font-size:2.9em;
+        line-height: 60px;
+        border: 0px;
+        color: #FFF;
+        background-color: #00029D;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
     .nav.responsive a.icon {
-        /* position: absolute; */
         right: 0;
         top: 0;
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         background-color: #13A926;
@@ -503,13 +514,12 @@ table.infolist tr td.ColumnRowLabel a {
 }
 table.infolist tr td.ColumnType {
     width: 6%;
-    padding-left: 20px;
 }
 table.infolist tr td.ColumnAttribute {
     width: 10%;
 }
 table.infolist tr td.ColumnValue {
-    width: 40%;
+    width: 30%;
 }
 table.infolist tr td.ColumnName {
     width: 30%;
@@ -524,7 +534,7 @@ table.infolist tr td.ColumnPartner {
 table.infolist tr td.ColumnParents {
     width: 30%;
 }
-table.infolist tbody tr td.ColumnParents span.father, 
+table.infolist tbody tr td.ColumnParents span.father,
 table.infolist tbody tr td.ColumnParents span.mother {
     display: block;
 }
@@ -592,11 +602,11 @@ div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     margin: 0;
     padding: 0;
 }
-table.surnamelist thead tr th.ColumnSurname, 
+table.surnamelist thead tr th.ColumnSurname,
 #Surnames table.surnamelist tbody tr td.ColumnSurname {
     width: 50%;
 }
-table#SortByName thead tr th.ColumnSurname, 
+table#SortByName thead tr th.ColumnSurname,
 table#SortByCount thead tr th.ColumnQuantity {
     background-color: #00029D;
     color: #FFF;
@@ -607,7 +617,7 @@ table.surnamelist thead tr th.ColumnSurname a {
 table.surnamelist thead tr th.ColumnSurname a:hover {
     color: #000;
 }
-table#SortByName thead tr th.ColumnSurname a:after, 
+table#SortByName thead tr th.ColumnSurname a:after,
 table#SortByCount thead tr th.ColumnQuantity a:after {
     content: " ↓";
 }
@@ -658,11 +668,9 @@ div#Places table.infolist tbody tr td.ColumnLongitude {
 }
 div#PlaceDetail h5 {
     font: bold .7cm serif;
-    float: center;
     text-align: center;
     border-bottom: double 4px #13A926;
 }
-    
 
 /* EventList and EventDetail
 ------------------------------------------------------ */
@@ -673,17 +681,39 @@ div#EventList, div#EventDetail {
 table.eventlist tbody tr td.ColumnEvent {
     width: 10%;
 }
-table.eventlist tbody tr td.ColumnPlace {
-    width: 25%;
-}
-table.eventlist tbody tr td.ColumnNotes {
-    width: 20%;
-}
 table.eventlist tbody tr td.ColumnSources {
+    vertical-align: top;
     width: 5%;
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;
+}
+table.eventlist th.ColumnDate {
+    width: 15%;
+}
+table.eventlist td.ColumnEvent,
+table.eventlist td.ColumnDate,
+table.eventlist td.ColumnPlace {
+    font-weight: bold;
+}
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnSources {
+    width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#families table.infolist th.ColumnEvent {
+    width: 10%;
+    padding-left: 0px;
+}
+#families table.infolist td.ColumnAttribute {
+    padding-left: 0px;
 }
 div#IndividualDetail div#families table.eventlist tr td {
     border-bottom: dashed 1px #000;
@@ -716,7 +746,7 @@ div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
 div#EventList table.alphaevent tbody tr td.ColumnPerson {
     width: 50%;
 }
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.father,
 div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
     display:block;
 }
@@ -741,14 +771,14 @@ div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
 div#EventDetail table.eventlist tbody tr td.ColumnDate {
     border-top: solid 1px #000;
 }
-    
+
 /* Events
 ----------------------------------------------------- */
 #EventList table.infolist tr td a,
 #EventDetail table.infolist tr td a {
     display: inline;
 }
-#EventList table.infolist tr td span.father, 
+#EventList table.infolist tr td span.father,
 #EventList table.infolist tr td span.mother,
 #EventDetail table.infolist tr td span.father,
 #EventDetail table.infolist tr td span.mother {
@@ -838,11 +868,10 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 }
 #GalleryDisplay img {
     margin: 0 auto;
-    max-width: 800px;
     height: auto;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1600px) {
     #GalleryDisplay img {
         max-width: 100%;
     }
@@ -861,7 +890,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 }
 #GalleryDetail div#summaryarea table.gallery {
     padding-bottom: 0;
-    margin: 1 .5em 0 0;
     border-style: solid;
     border-width: 2px 0 1px 0;
     border-color: #000;
@@ -947,9 +975,9 @@ body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
     text-decoration: none;
 }
 
-/* Download 
+/* Download
 ----------------------------------------------------- */
-div#Download { 
+div#Download {
     margin: 0;
     width: 100%;
 }
@@ -963,7 +991,7 @@ div#Download table.download {
 div#Download table.download tbody tr#Row02 {
     border-bottom: solid 2px #000;
 }
-div#Download table.download tbody tr td { 
+div#Download table.download tbody tr td {
     border: solid 1px #000;
     text-align: left;
 }
@@ -986,6 +1014,9 @@ div#Download table.download td.ColumnModified {
 #Sources {
     margin: 0;
     padding: 0;
+}
+#Sources table.infolist tr td.ColumnName {
+    width: 70%;
 }
 div#SourceDetail {
     min-height: 900px
@@ -1095,8 +1126,14 @@ div#events h4 {
 #IndividualDetail div#events table.eventtable {
     width: 100%;
 }
-table.eventlist tbody tr td.ColumnEvent {
-    width: 12%;
+#families table.eventlist tbody tr td.ColumnEvent {
+    vertical-align: top;
+    width: 8%;
+}
+div#RelationshipDetail table.infolist tbody tr td.ColumnAttribute,
+div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+    vertical-align: top;
+    width: 10%;
 }
 #IndividualDetail div#events table.infolist tbody tr td {
     padding-top: .4em;
@@ -1183,6 +1220,10 @@ div#Families table.infolist tbody tr td.ColumnAttribute {
     }
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top: 0;
+    margin-left: 0;
+}
+div#families table.infolist tbody tr td.ColumnValue {
+    width: 70%;
 }
 div#families table.infolist tbody tr td.ColumnValue ol {
     margin: 0;
@@ -1196,6 +1237,22 @@ div#families table.infolist tbody tr td.ColumnValue ol li a {
 }
 div#families table.fixed_subtables table.eventlist {
     table-layout:fixed;
+}
+div#families table.fixed_subtables table.eventlist th.ColumnDate {
+    width: 12%;
+}
+div#families table.fixed_subtables table.eventlist th.ColumnSources {
+     width: 5em;
+ }
+div#families table.fixed_subtables .Child table.eventlist .ColumnName {
+    width: 60%;
+}
+div#families table.fixed_subtables .Child table.eventlist .ColumnDate {
+    width: 20%;
+}
+div#families table.fixed_subtables .BeginFamily .ColumnType {
+    width: 7em;
+    vertical-align: top;
 }
 
 /* Subsection: Families: Attributes
@@ -1213,17 +1270,14 @@ SourcesType {
 div#families table.infolist tbody tr td.Value {
     width: 15%;
 }
-div#families table.infolist tr td.Notes {
-    width: 40%;
-}
 div#families table.infolist tbody tr td.Sources {
-    width: 15%;
+    width: 5%;
 }
 
 /* Subsection: Families: LDS Ordinance
 ------------------------------------------------------ */
 div#families table.infolist {
-    font: normal .8em sans;
+    font: normal .9em sans;
 }
 div#families table.infolist tbody tr.BeginOrdinance {
     border-top: solid 1px #000;
@@ -1364,7 +1418,6 @@ div.Residence table.infolist tr td {
 }
 #gallery div.indexno {
     float: right;
-    width: 1.8em;
     font-size: large;
     text-align: center;
     background-color: #CCC;
@@ -1409,8 +1462,21 @@ div.narrative {
     font: normal .9em/1.4em sans-serif;
     margin: 0.1em 0 0.2em 0;
 }
+i.NoteType {
+    font-weight: bold;
+    font-size: .8em;
+}
 i + div.grampsstylednote p {
     margin: 0.1em 0 0.2em 0;
+}
+div.grampsstylednote p {
+    padding-bottom: 0.6em;
+}
+
+/* Subsection : References
+----------------------------------------------------- */
+#references ol {
+    margin-left: 3em;
 }
 
 /* Subsections : References
@@ -1451,6 +1517,9 @@ div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
     font: normal .9em/1.2em sans-serif;
     vertical-align: top;
 }
+div#summaryarea table.infolist tr td.ColumnValue {
+    width: 70%;
+}
 div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
     display:inline;
 }
@@ -1480,7 +1549,7 @@ table.WebLinks tbody tr td.ColumnPath {
     width: 50%;
 }
 table.weblinks tbody tr td.ColumnDescription {
-    width: 30%;
+    width: 80%;
 }
 
 /* Subsections : Pedigree
@@ -1534,7 +1603,7 @@ div#pedigree {
 /* Calendar Styles
 -------------------------------------------------------------------------------------------- */
 #OneDay, #WebCal, #YearGlance {
-    width: 95%
+    width: 100%
 }
 /* Calendar : General */
 .calendar {
@@ -1563,19 +1632,10 @@ div#pedigree {
     color: #542;
     padding:.3em 0 .2em 0;
     background-color: #FFF;
+    vertical-align: top;
+    height: 2em;
 }
-#CreatorInfo {
-    float:right;
-    color: #FFF;
-    margin:-24px 10px 0 0;
-}
-#CreatorInfo a {
-    color: #FFF;
-}
-#CreatorInfo a:hover {
-    color: #FFF;
-}
-.calendar thead tr th.weekend, 
+.calendar thead tr th.weekend,
 .calendar thead tr th.weekday {
     font-style:italic;
     color: #000;
@@ -1598,8 +1658,8 @@ div#pedigree {
     font-size:1.2em;
     line-height:100%;
     text-align:center;
+    border: 5px solid rgba(0,0,0,.0);
     color: #542;
-    margin:0 0 0 .5em;
     padding:.2em 0;
     background-color: #D8F3D6;
 }
@@ -1639,8 +1699,11 @@ div#pedigree {
     display:block;
     width:92%;
     margin:0 4%;
-    padding:.2em 0 .3em 0;
+    padding:.6em 0 .3em 0;
     border-top: dashed 1px #000;
+}
+.calendar tbody tr td ul li:first-child {
+    border-top: 10px;
 }
 
 /* Calendar : Birthday, Anniversary, Highlight */
@@ -1659,9 +1722,9 @@ div#pedigree {
 }
 
 /* Calendar : Previous-Next Month */
-.calendar tbody tr td.previous, 
-.calendar tbody tr td.next, 
-.calendar tbody tr td.previous div.date, 
+.calendar tbody tr td.previous,
+.calendar tbody tr td.next,
+.calendar tbody tr td.previous div.date,
 .calendar tbody tr td.next div.date {
     color: #333;
     background-color: #D8F3D6;
@@ -1672,13 +1735,10 @@ body#fullyearlinked {
     background-color: #FFF;
 }
 body#fullyearlinked div.content {
-    width:963px;
     margin:0 auto;
     padding:15px 0 2px 2px;
 }
 body#fullyearlinked table.calendar {
-    float:left;
-    width:320px;
     height:18em;
     border:solid 1px #000;
 }
@@ -1693,10 +1753,8 @@ body#fullyearlinked table.calendar thead tr th.monthName {
     padding:2px 0;
     border-bottom: solid 1px #000;
 }
-body#fullyearlinked table.calendar tbody tr td {
-    height:3em;
-}
 body#fullyearlinked table.calendar tbody tr td.emptyDays {
+    height:52px;
     background-color: #FFF;
 }
 body#fullyearlinked table.calendar tbody tr td.saturday {
@@ -1733,4 +1791,44 @@ table.oneday tbody tr td.ColumnText {
 }
 table.oneday tbody tr td.ColumnEvent {
     width: 10%;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    padding: 2px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #000290;
+    padding: 0px;
+}
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 3px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
+body#fullyearlinked #YearGlance tbody td:hover .date {
+    border-radius: 45px;
+    border: 5px solid;
 }

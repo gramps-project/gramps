@@ -66,6 +66,9 @@ WIKI_HELP_SEC = _('manual|Reorder_Gramps_ID')
 PREFIXES = {'person': 'i', 'family': 'f', 'event': 'e', 'place': 'p',
             'source': 's', 'citation': 'c', 'repository': 'r',
             'media': 'o', 'note': 'n'}
+DB_INDXES = {'person': 'p', 'family': 'f', 'event': 'e', 'place': 'l',
+             'source': 's', 'citation': 'c', 'repository': 'r',
+             'media': 'o', 'note': 'n'}
 #-------------------------------------------------------------------------
 #
 # Actual tool
@@ -244,7 +247,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
 
         self.prim_methods, self.obj_methods = {}, {}
         for prim_obj, prim_objs in self.xobjects:
-            iter_handles = "iter_%s_handles" % prim_obj
+            get_handles = "get_%s_handles" % prim_obj
             get_number_obj = "get_number_of_%s" % prim_objs
             prefix_fmt = "%s_prefix" % prim_obj
             get_from_id = "get_%s_from_gramps_id" % prim_obj
@@ -255,7 +258,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             self.prim_methods[prim_obj] = (getattr(self.db, prefix_fmt),
                                            getattr(self.db, get_number_obj)(),
                                            getattr(self.db, next_from_id)())
-            self.obj_methods[prim_obj] = (getattr(self.db, iter_handles),
+            self.obj_methods[prim_obj] = (getattr(self.db, get_handles),
                                           getattr(self.db, commit),
                                           getattr(self.db, get_from_id),
                                           getattr(self.db, get_from_handle),
@@ -548,6 +551,9 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
                         self.progress.set_pass(
                             _('Reorder %s IDs ...') % _(prim_objs.title()),
                             self.obj_values[prim_obj].quant_id)
+                    # reset the db next_id index to zero so we restart new IDs
+                    # at lowest possible position
+                    setattr(self.db, DB_INDXES[prim_obj] + 'map_index', 0)
                     # Process reordering
                     self._reorder(prim_obj)
 
@@ -572,7 +578,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         dup_ids = []   # list of duplicate identifiers
         new_ids = {}   # list of new identifiers
 
-        iter_handles, commit, get_from_id, get_from_handle, next_from_id = \
+        get_handles, commit, get_from_id, get_from_handle, next_from_id = \
             self.obj_methods[prim_obj]
 
         prefix_fmt = self.obj_values[prim_obj].get_fmt()
@@ -585,8 +591,12 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         change = self.obj_values[prim_obj].get_change()
         index_max = int("9" * self.obj_values[prim_obj].width_fmt)
         do_same = False
+        # Process in handle order, which is in order handles were created.
+        # This makes renumberd IDs more consistant.
+        handles = get_handles()
+        handles.sort()
 
-        for handle in iter_handles():
+        for handle in handles:
             # Update progress
             if self.uistate:
                 self.progress.step()

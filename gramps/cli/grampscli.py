@@ -52,18 +52,14 @@ from gramps.gen.db.utils import make_database
 from gramps.gen.errors import DbError
 from gramps.gen.dbstate import DbState
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
-                                      BsddbDowngradeError,
+                                      DbSupportedError,
                                       DbVersionError,
                                       DbPythonError,
-                                      DbEnvironmentError,
-                                      BsddbUpgradeRequiredError,
-                                      BsddbDowngradeRequiredError,
-                                      PythonUpgradeRequiredError,
-                                      PythonDowngradeError,
                                       DbConnectionError)
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.recentfiles import recent_files
+from gramps.gen.filters import reload_custom_filters
 
 #-------------------------------------------------------------------------
 #
@@ -175,34 +171,8 @@ class CLIDbLoader:
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode,
                                  username=username, password=password)
-        except DbEnvironmentError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except BsddbUpgradeRequiredError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except BsddbDowngradeRequiredError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except BsddbDowngradeError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except DbUpgradeRequiredError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except PythonDowngradeError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except PythonUpgradeRequiredError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except DbVersionError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except DbPythonError as msg:
-            self.dbstate.no_database()
-            self._errordialog(_("Cannot open database"), str(msg))
-        except DbConnectionError as msg:
+        except (DbConnectionError, DbSupportedError, DbUpgradeRequiredError,
+                DbVersionError, DbPythonError, DbConnectionError) as msg:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
         except OSError as msg:
@@ -279,7 +249,7 @@ class CLIManager:
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:
-                with open(path) as ifile:
+                with open(path, encoding='utf8') as ifile:
                     title = ifile.readline().strip()
             except:
                 title = filename
@@ -373,6 +343,7 @@ def startcli(errors, argparser):
 
     #load the plugins
     climanager.do_reg_plugins(dbstate, uistate=None)
+    reload_custom_filters()
     # handle the arguments
     from .arghandler import ArgHandler
     handler = ArgHandler(dbstate, argparser, climanager)

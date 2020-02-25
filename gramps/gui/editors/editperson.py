@@ -42,6 +42,7 @@ import pickle
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
+from gi.repository.GLib import markup_escape_text
 
 #-------------------------------------------------------------------------
 #
@@ -435,7 +436,6 @@ class EditPerson(EditPrimary):
             obj.connect('changed', self._changed_name)
 
         self.preview_name = self.top.get_object("full_name")
-        self.preview_name.override_font(Pango.FontDescription('sans bold 12'))
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
                                   self.obj.get_primary_name(),
                                   on_change=self._changed_name)
@@ -550,7 +550,9 @@ class EditPerson(EditPrimary):
         Update the window title, and default name in name tab
         """
         self.update_title(self.get_menu_title())
-        self.preview_name.set_text(self.get_preview_name())
+        self.preview_name.set_markup(
+            "<span size='x-large' weight='bold'>%s</span>" %
+            markup_escape_text(self.get_preview_name(), -1))
         self.name_list.update_defname()
 
     def name_callback(self):
@@ -638,7 +640,6 @@ class EditPerson(EditPrimary):
         """
         self.imgmenu = Gtk.Menu()
         menu = self.imgmenu
-        menu.set_title(_("Media Object"))
         obj = self.db.get_media_from_handle(photo.get_reference_handle())
         if obj:
             add_menuitem(menu, _("View"), photo,
@@ -1086,9 +1087,9 @@ class EditPerson(EditPrimary):
 class GenderDialog(Gtk.MessageDialog):
     def __init__(self, parent=None):
         Gtk.MessageDialog.__init__(self,
-                                parent,
-                                flags=Gtk.DialogFlags.MODAL,
-                                type=Gtk.MessageType.QUESTION,
+                                   transient_for=parent,
+                                   modal=True,
+                                   message_type=Gtk.MessageType.QUESTION,
                                    )
         self.set_icon(ICON)
         self.set_title('')

@@ -80,7 +80,6 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.filters import reload_custom_filters
 
 #------------------------------------------------
 # specific narrative web import
@@ -98,6 +97,7 @@ from gramps.plugins.webreport.surnamelist import SurnameListPage
 from gramps.plugins.webreport.surname import SurnamePage
 from gramps.plugins.webreport.thumbnail import ThumbnailPreviewPage
 from gramps.plugins.webreport.statistics import StatisticsPage
+from gramps.plugins.webreport.updates import UpdatesPage
 from gramps.plugins.webreport.home import HomePage
 from gramps.plugins.webreport.contact import ContactPage
 from gramps.plugins.webreport.download import DownloadPage
@@ -164,6 +164,8 @@ class NavWebReport(Report):
         self.inc_gallery = self.options['gallery']
         self.inc_unused_gallery = self.options['unused']
         self.create_thumbs_only = self.options['create_thumbs_only']
+        self.create_thumbs_index = self.options['create_thumbs_index']
+        self.create_images_index = self.options['create_images_index']
 
         self.opts = self.options
         self.inc_contact = self.opts['contactnote'] or self.opts['contactimg']
@@ -203,6 +205,7 @@ class NavWebReport(Report):
         self.use_home = self.options['homenote'] or self.options['homeimg']
         self.use_contact = self.opts['contactnote'] or self.opts['contactimg']
         self.inc_stats = self.opts['inc_stats']
+        self.inc_updates = self.opts['updates']
         self.create_unused_media = self.opts['unused']
 
         # Do we need to include this in a cms ?
@@ -219,6 +222,9 @@ class NavWebReport(Report):
         self.usecal = self.options['usecal']
         self.target_cal_uri = self.options['caluri']
 
+        # Do we need to include news and updates page ?
+        self.inc_updates = self.options['updates']
+
         # either include the gender graphics or not?
         self.ancestortree = self.options['ancestortree']
 
@@ -234,6 +240,7 @@ class NavWebReport(Report):
         self.mapservice = self.options['mapservice']
         self.googleopts = self.options['googleopts']
         self.googlemapkey = self.options['googlemapkey']
+        self.stamenopts = self.options['stamenopts']
         self.reference_sort = self.options['reference_sort']
 
         if self.use_home:
@@ -402,6 +409,31 @@ class NavWebReport(Report):
 
         #################################################
         #
+        # Add images for home, contact and introduction pages
+        # if they are not associated to any used objects.
+        #
+        #################################################
+        if self.use_home:
+            img = self.options['homeimg']
+            if img:
+                media = self._db.get_media_from_gramps_id(img)
+                if media:
+                    self._add_media(media.handle, Media, media.handle)
+        if self.inc_contact:
+            img = self.options['contactimg']
+            if img:
+                media = self._db.get_media_from_gramps_id(img)
+                if media:
+                    self._add_media(media.handle, Media, media.handle)
+        if self.use_intro:
+            img = self.options['introimg']
+            if img:
+                media = self._db.get_media_from_gramps_id(img)
+                if media:
+                    self._add_media(media.handle, Media, media.handle)
+
+        #################################################
+        #
         # Pass 2 Generate the web pages
         #
         #################################################
@@ -450,6 +482,10 @@ class NavWebReport(Report):
         # build classes StatisticsPage
         if self.inc_stats:
             self.statistics_preview_page(self.title)
+
+        # build classes Updates
+        if self.inc_updates:
+            self.updates_preview_page(self.title)
 
         # copy all of the neccessary files
         self.copy_narrated_files()
@@ -846,7 +882,12 @@ class NavWebReport(Report):
             if self.reference_sort:
                 role_or_date = name
             else:
-                role_or_date = str(event.get_date_object())
+                date = event.get_date_object()
+                # calendar is the original date calendar
+                calendar = str(date.get_calendar())
+                # convert date to gregorian for a correct sort
+                _date = str(date.to_calendar("gregorian"))
+                role_or_date = calendar + ":" + _date
         else:
             role_or_date = ""
         place_fname = self.build_url_fname(place_handle, "plc",
@@ -1007,6 +1048,18 @@ class NavWebReport(Report):
         Copy all of the CSS, image, and javascript files for Narrated Web
         """
         imgs = []
+
+        # copy all screen style sheet
+        for css_f in CSS:
+            already_done = False
+            for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska", "Vis"):
+                if css_fn in css_f and not already_done:
+                    already_done = True
+                    fname = CSS[css_f]["filename"]
+                    # add images for this css
+                    imgs += CSS[css_f]["images"]
+                    css_f = css_f.replace("UsEr_", "")
+                    self.copy_file(fname, css_f + ".css", "css")
 
         # copy screen style sheet
         if CSS[self.css]["filename"]:
@@ -1176,6 +1229,15 @@ class NavWebReport(Report):
                                 1) as step:
             StatisticsPage(self, title, step)
 
+    def updates_preview_page(self, title):
+        """
+        creates the statistics preview page
+        """
+        with self.user.progress(_("Narrated Web Site Report"),
+                                _("Creating updates page..."),
+                                1):
+            UpdatesPage(self, title)
+
     def addressbook_pages(self, ind_list):
         """
         Create a webpage with a list of address availability for each person
@@ -1224,7 +1286,7 @@ class NavWebReport(Report):
 
     def base_pages(self):
         """
-        creates HomePage, ContactPage, DownloadPage, and IntroductionPage
+        creates HomePage, ContactPage, DownloadPage and IntroductionPage
         if requested by options in plugin
         """
         if self.use_home:
@@ -1437,15 +1499,17 @@ class NavWebReport(Report):
                                when we use rsync.
         """
         if self.archive:
-            output_file.flush()
-            tarinfo = tarfile.TarInfo(self.cur_fname)
-            tarinfo.size = len(string_io.getvalue())
-            tarinfo.mtime = date if date != 0 else time.time()
-            if not win():
-                tarinfo.uid = os.getuid()
-                tarinfo.gid = os.getgid()
-            string_io.seek(0)
-            self.archive.addfile(tarinfo, string_io)
+            if self.cur_fname not in self.archive.getnames():
+                # The current file not already archived.
+                output_file.flush()
+                tarinfo = tarfile.TarInfo(self.cur_fname)
+                tarinfo.size = len(string_io.getvalue())
+                tarinfo.mtime = date if date != 0 else time.time()
+                if not win():
+                    tarinfo.uid = os.getuid()
+                    tarinfo.gid = os.getgid()
+                string_io.seek(0)
+                self.archive.addfile(tarinfo, string_io)
             output_file.close()
         else:
             output_file.close()
@@ -1496,7 +1560,9 @@ class NavWebReport(Report):
                 return tarinfo
 
             dest = os.path.join(to_dir, to_fname)
-            self.archive.add(from_fname, dest, filter=set_mtime)
+            if dest not in self.archive.getnames():
+                # The current file not already archived.
+                self.archive.add(from_fname, dest, filter=set_mtime)
         else:
             dest = os.path.join(self.html_dir, to_dir, to_fname)
 
@@ -1560,13 +1626,15 @@ class NavWebOptions(MenuReportOptions):
         self.__usecal = None
         self.__calendar_uri = None
         self.__create_thumbs_only = None
+        self.__create_images_index = None
+        self.__create_thumbs_index = None
         self.__mapservice = None
-        self.__maxinitialimageheight = None
         self.__maxinitialimagewidth = None
         self.__citationreferents = None
         self.__incdownload = None
         self.__placemappages = None
         self.__familymappages = None
+        self.__stamenopts = None
         self.__googleopts = None
         self.__googlemapkey = None
         self.__ancestortree = None
@@ -1575,6 +1643,9 @@ class NavWebOptions(MenuReportOptions):
         self.__dl_descr2 = None
         self.__down_fname2 = None
         self.__gallery = None
+        self.__updates = None
+        self.__maxdays = None
+        self.__maxupdates = None
         self.__unused = None
         self.__down_fname1 = None
         self.__navigation = None
@@ -1683,13 +1754,15 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help(_("The copyright to be used for the web files"))
         addopt("cright", cright)
 
-        self.__css = EnumeratedListOption(('StyleSheet'), CSS["default"]["id"])
+        self.__css = EnumeratedListOption(('StyleSheet'),
+                                          CSS["Basic-Ash"]["id"])
         for (dummy_fname, gid) in sorted(
                 [(CSS[key]["translation"], CSS[key]["id"])
                  for key in list(CSS.keys())]):
             if CSS[gid]["user"]:
                 self.__css.add_item(CSS[gid]["id"], CSS[gid]["translation"])
-        self.__css.set_help(_('The stylesheet to be used for the web pages'))
+        self.__css.set_help(_('The default stylesheet to be used for'
+                              ' the pages'))
         addopt("css", self.__css)
         self.__css.connect("value-changed", self.__stylesheet_changed)
 
@@ -1866,8 +1939,16 @@ class NavWebOptions(MenuReportOptions):
         addopt("gallery", self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
+        self.__create_images_index = BooleanOption(
+            _("Create the images index"), False)
+        self.__create_images_index.set_help(
+            _("This option allows you to create the images index"))
+        addopt("create_images_index", self.__create_images_index)
+        self.__create_images_index.connect("value-changed",
+                                           self.__gallery_changed)
+
         self.__unused = BooleanOption(
-            _("Include unused images and media objects"), True)
+            _("Include unused images and media objects"), False)
         self.__unused.set_help(_('Whether to include unused or unreferenced'
                                  ' media objects'))
         addopt("unused", self.__unused)
@@ -1883,19 +1964,20 @@ class NavWebOptions(MenuReportOptions):
         self.__create_thumbs_only.connect("value-changed",
                                           self.__gallery_changed)
 
+        self.__create_thumbs_index = BooleanOption(
+            _("Create the thumbnail index"), False)
+        self.__create_thumbs_index.set_help(
+            _("This option allows you to create the thumbnail index"))
+        addopt("create_thumbs_index", self.__create_thumbs_index)
+        self.__create_thumbs_index.connect("value-changed",
+                                           self.__gallery_changed)
+
         self.__maxinitialimagewidth = NumberOption(
             _("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(
             _("This allows you to set the maximum width "
               "of the image shown on the media page. Set to 0 for no limit."))
         addopt("maxinitialimagewidth", self.__maxinitialimagewidth)
-
-        self.__maxinitialimageheight = NumberOption(
-            _("Max height of initial image"), _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
-        self.__maxinitialimageheight.set_help(
-            _("This allows you to set the maximum height "
-              "of the image shown on the media page. Set to 0 for no limit."))
-        addopt("maxinitialimageheight", self.__maxinitialimageheight)
 
         self.__gallery_changed()
 
@@ -2042,6 +2124,7 @@ class NavWebOptions(MenuReportOptions):
 
         mapopts = [
             [_("OpenStreetMap"), "OpenStreetMap"],
+            [_("StamenMap"), "StamenMap"],
             [_("Google"), "Google"]]
         self.__mapservice = EnumeratedListOption(_("Map Service"),
                                                  mapopts[0][1])
@@ -2088,6 +2171,19 @@ class NavWebOptions(MenuReportOptions):
         self.__googlemapkey.set_help(_("The API key used for the Google maps"))
         addopt("googlemapkey", self.__googlemapkey)
 
+        stamenopts = [
+            (_("Toner"), "toner"),
+            (_("Terrain"), "terrain"),
+            (_("WaterColor"), "watercolor")]
+        self.__stamenopts = EnumeratedListOption(_("Stamen Option"),
+                                                 stamenopts[0][1])
+        for trans, opt in stamenopts:
+            self.__stamenopts.add_item(opt, trans)
+        self.__stamenopts.set_help(
+            _("Select which option that you would like "
+              "to have for the Stamenmap Map pages..."))
+        addopt("stamenopts", self.__stamenopts)
+
         self.__placemap_options()
 
     def __add_others_options(self, menu):
@@ -2131,6 +2227,37 @@ class NavWebOptions(MenuReportOptions):
         addopt("caluri", self.__calendar_uri)
 
         self.__calendar_uri_changed()
+        self.__graph_changed()
+
+        self.__updates = BooleanOption(_("Include the news and updates page"),
+                                       True)
+        self.__updates.set_help(_('Whether to include '
+                                  'a page with the last updates'))
+        self.__updates.connect('value-changed', self.__updates_changed)
+        addopt("updates", self.__updates)
+
+        self.__maxdays = NumberOption(_("Max days for updates"), 1, 1, 300)
+        self.__maxdays.set_help(_("You want to see the last updates on how"
+                                  " many days ?"))
+        addopt("maxdays", self.__maxdays)
+
+        self.__maxupdates = NumberOption(_("Max number of updates per object"
+                                           " to show"), 1, 1, 100)
+        self.__maxupdates.set_help(_("How many updates do you want to see max"
+                                    ))
+        addopt("maxupdates", self.__maxupdates)
+
+    def __updates_changed(self):
+        """
+        Update the change of storage: archive or directory
+        """
+        _updates_option = self.__updates.get_value()
+        if _updates_option:
+            self.__maxupdates.set_available(True)
+            self.__maxdays.set_available(True)
+        else:
+            self.__maxupdates.set_available(False)
+            self.__maxdays.set_available(False)
 
     def __cms_uri_changed(self):
         """
@@ -2180,7 +2307,6 @@ class NavWebOptions(MenuReportOptions):
         Update the filter list based on the selected person
         """
         gid = self.__pid.get_value()
-        reload_custom_filters()
         person = self.__db.get_person_from_gramps_id(gid)
         filter_list = utils.get_person_filters(person, include_single=False)
         self.__filter.set_filters(filter_list)
@@ -2225,23 +2351,25 @@ class NavWebOptions(MenuReportOptions):
         if _gallery_option:
             self.__create_thumbs_only.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
-            self.__maxinitialimageheight.set_available(True)
+            self.__create_images_index.set_available(True)
+            self.__create_thumbs_index.set_available(True)
+            self.__unused.set_available(True)
 
             # thumbnail-sized images only...
             if _create_thumbs_only_option:
                 self.__maxinitialimagewidth.set_available(False)
-                self.__maxinitialimageheight.set_available(False)
 
             # full- sized images and Media Pages will be created...
             else:
                 self.__maxinitialimagewidth.set_available(True)
-                self.__maxinitialimageheight.set_available(True)
 
         # no images or media objects are to be used...
         else:
             self.__create_thumbs_only.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
-            self.__maxinitialimageheight.set_available(False)
+            self.__create_images_index.set_available(False)
+            self.__create_thumbs_index.set_available(False)
+            self.__unused.set_available(False)
 
     def __download_changed(self):
         """
@@ -2272,6 +2400,11 @@ class NavWebOptions(MenuReportOptions):
             self.__mapservice.set_available(True)
         else:
             self.__mapservice.set_available(False)
+
+        if mapservice_opts == "StamenMap":
+            self.__stamenopts.set_available(True)
+        else:
+            self.__stamenopts.set_available(False)
 
         if family_active and mapservice_opts == "Google":
             self.__googleopts.set_available(True)

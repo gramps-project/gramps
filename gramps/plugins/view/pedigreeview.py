@@ -51,6 +51,7 @@ import cairo
 from gramps.gen.lib import ChildRef, ChildRefType, Family
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.editors import FilterEditor
+from gramps.gui.display import display_url
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.file import media_path_full
@@ -62,7 +63,7 @@ from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.ddtargets import DdTargets
 from gramps.gen.config import config
 from gramps.gui.views.bookmarks import PersonBookmarks
-from gramps.gen.const import CUSTOM_FILTERS
+from gramps.gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
 from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
 from gramps.gen.constfunc import lin
@@ -75,7 +76,7 @@ from gramps.gen.utils.symbols import Symbols
 # Constants
 #
 #-------------------------------------------------------------------------
-
+WIKI_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + '_-_Categories#Pedigree_View'
 _PERSON = "p"
 _BORN = _('short for born|b.')
 _DIED = _('short for died|d.')
@@ -196,10 +197,10 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if tags and person:
             for tag_handle in person.get_tag_list():
                 # For the complete tag, don't modify the default color
-                # which is black (#000000000000)
+                # which is black
                 tag = dbstate.db.get_tag_from_handle(tag_handle)
-                if tag.get_color() != "#000000000000": # only if the color
-                    self.bgcolor = tag.get_color()     # is not black
+                if tag.get_color() not in ("#000000", "#000000000000"):
+                    self.bgcolor = tag.get_color()
         self.bgcolor = hex_to_rgb_float(self.bgcolor)
         self.bordercolor = hex_to_rgb_float(self.bordercolor)
 
@@ -791,6 +792,7 @@ class PedigreeView(NavigationView):
         self._add_db_signal('family-add', self.person_rebuild)
         self._add_db_signal('family-delete', self.person_rebuild)
         self._add_db_signal('family-rebuild', self.person_rebuild)
+        self._add_db_signal('event-update', self.person_rebuild)
 
     def change_db(self, db):
         """
@@ -822,6 +824,10 @@ class PedigreeView(NavigationView):
     def on_delete(self):
         self._config.save()
         NavigationView.on_delete(self)
+
+    def on_help_clicked(self, dummy):
+        """ Button: Display the relevant portion of Gramps manual"""
+        display_url(WIKI_PAGE)
 
     def goto_handle(self, handle=None):
         """
@@ -1691,6 +1697,18 @@ class PedigreeView(NavigationView):
         scroll_direction_menu.append(entry)
 
         scroll_direction_menu.show()
+        item.show()
+        menu.append(item)
+
+        # Separator.
+        item = Gtk.SeparatorMenuItem()
+        item.show()
+        menu.append(item)
+
+        # Help menu entry
+        menu.append(item)
+        item = Gtk.MenuItem(label=_("About Pedigree View"))
+        item.connect("activate", self.on_help_clicked)
         item.show()
         menu.append(item)
 

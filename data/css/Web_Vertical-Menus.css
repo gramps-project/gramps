@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -20,17 +20,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Web_Navigation-Vertical.css Stylesheet
-***************************************************************************************************
+*******************************************************************************
 
 # $Id: Web_Navigation-Vertical.css 15241 2010-04-19 11:07:00Z robhealey1 $
 
  Body Element
 ----------------------------------------------------- */
-body { background: -webkit-gradient
-           (linear, left top, left bottom, from(#ccc), to(#fff));
+body {
+    background: -webkit-gradient (linear, left top, left bottom,
+                                  from(#ccc), to(#fff));
     color: #000;
     padding: 60px 0px 0px 146px;
 }

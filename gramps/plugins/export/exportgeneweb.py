@@ -91,7 +91,8 @@ class GeneWebWriter:
         self.dirname = os.path.dirname (self.filename)
         try:
             with open(self.filename, "wb") as self.g:
-                self.flist = [x for x in self.db.iter_family_handles()]
+                self.flist = self.db.get_family_handles()
+                self.flist.sort()
                 if len(self.flist) < 1:
                     self.user.notify_error(_("No families matched by selected filter"))
                     return False

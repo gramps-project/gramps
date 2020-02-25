@@ -518,6 +518,14 @@ class MediaView(ListView):
         media.add_tag(tag_handle)
         self.dbstate.db.commit_media(media, transaction)
 
+    def remove_tag(self, transaction, media_handle, tag_handle):
+        """
+        Remove the given tag from the given media object.
+        """
+        media = self.dbstate.db.get_media_from_handle(media_handle)
+        media.remove_tag(tag_handle)
+        self.dbstate.db.commit_media(media, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

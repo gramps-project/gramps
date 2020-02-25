@@ -125,6 +125,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         ('geography.map_service', constants.OPENSTREETMAP),
         ('geography.max_places', 5000),
         ('geography.use-keypad', True),
+        ('geography.personal-map', ""),
         )
 
     def __init__(self, title, pdata, dbstate, uistate,
@@ -143,6 +144,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.lock = config.get("geography.lock")
         if config.get('geography.path') == "":
             config.set('geography.path', GEOGRAPHY_PATH)
+        if not config.is_set('geography.personal-map'):
+            config.set('geography.personal-map', "")
 
         self.uistate = uistate
         self.uistate.connect('font-changed', self.font_changed)
@@ -405,7 +408,6 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         self.changemap = Gtk.Menu()
         changemap = self.changemap
-        changemap.set_title(title)
         changemap.show()
         add_item.set_submenu(changemap)
         # show in the map menu all available providers
@@ -885,7 +887,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
         modify = Gtk.MenuItem(label=_("Edit Place"))
@@ -990,11 +991,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         filtering = Gtk.FileFilter()
         filtering.add_pattern("*.kml")
         kml = Gtk.FileChooserDialog(
-            _("Select a kml file used to add places"),
+            title=_("Select a kml file used to add places"),
             action=Gtk.FileChooserAction.OPEN,
-            parent=self.uistate.window,
-            buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                     _('_Apply'), Gtk.ResponseType.OK))
+            transient_for=self.uistate.window)
+        kml.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                        _('_Apply'), Gtk.ResponseType.OK)
         mpath = HOME_DIR
         kml.set_current_folder(os.path.dirname(mpath))
         kml.set_filter(filtering)
@@ -1268,7 +1269,51 @@ class GeoGraphyView(OsmGps, NavigationView):
                                     'from the keyboard.'),
                                   5, 'geography.use-keypad',
                                   extra_callback=self.update_shortcuts)
+        label = configdialog.add_text(
+            grid,
+            _('If you want to use a specific map provider,'
+              ' You can set the following field to the'
+              ' provider\'s url.\ni.e:\n'
+              'http://tile.stamen.com/toner/#Z/#X/#Y.png\n'
+              'http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n'
+              'http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n'
+              'http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n'
+             ),
+            6, line_wrap=False)
+        # set the possibility to copy/paste the urls
+        label.set_selectable(True)
+        start = label.get_text().find("http")
+        end = label.get_text().find("http", start + 1)
+        label.select_region(start, end)
+        url = configdialog.add_entry(grid, _("Personal map"),
+                                     7, 'geography.personal-map',
+                                     self.choosen_map,
+                                    )
+        if config.get('geography.personal-map') != "":
+            url.set_text(config.get('geography.personal-map'))
         return _('The map'), grid
+
+    def choosen_map(self, *obj):
+        """
+        Save the provider map path in the config section.
+        """
+        map_source = obj[0].get_text()
+        name = constants.TILES_PATH[constants.PERSONAL]
+        print(self.current_map, constants.PERSONAL,
+              map_source, config.get('geography.personal-map'))
+        config.set('geography.personal-map', map_source)
+        self.clear_map(None, name)
+        if map_source == "":
+            print("reset osm")
+            config.set("geography.map_service", constants.OPENSTREETMAP)
+            self.change_map(self.osm, config.get("geography.map_service"))
+            self.reload_tiles()
+            return
+        if map_source != config.get('geography.personal-map'):
+            print("set personal")
+            config.set("geography.map_service", constants.PERSONAL)
+            self.change_new_map(name, map_source)
+            self.reload_tiles()
 
     def set_tilepath(self, *obj):
         """
@@ -1286,13 +1331,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         dummy_obj = obj
         selected_dir = Gtk.FileChooserDialog(
-            _("Select tile cache directory for offline mode"),
+            title=_("Select tile cache directory for offline mode"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            parent=self.uistate.window,
-            buttons=(_('_Cancel'),
-                     Gtk.ResponseType.CANCEL,
-                     _('_Apply'),
-                     Gtk.ResponseType.OK))
+            transient_for=self.uistate.window)
+        selected_dir.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                                 _('_Apply'), Gtk.ResponseType.OK)
         mpath = config.get('geography.path')
         if not mpath:
             mpath = HOME_DIR

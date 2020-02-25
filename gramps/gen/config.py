@@ -186,6 +186,7 @@ register('geography.zoom_when_center', 12)
 register('geography.show_cross', False)
 register('geography.path', "")
 register('geography.use-keypad', True)
+register('geography.personal-map', "")
 
 # note that other calls to "register" are done in realtime (when
 # needed), for instance to four 'interface.clipboard' variables --
@@ -368,3 +369,5 @@ if not os.path.exists(CONFIGMAN.filename):
 CONFIGMAN.load()
 
 config = CONFIGMAN
+if config.get('database.backend') == 'bsddb':
+    config.set('database.backend', 'sqlite')
