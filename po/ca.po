@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-29 17:20+0100\n"
-"PO-Revision-Date: 2020-02-29 17:59+0100\n"
+"PO-Revision-Date: 2020-03-03 00:00+0100\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -10541,9 +10541,8 @@ msgid "Researcher"
 msgstr "Investigador"
 
 #: ../gramps/gui/configure.py:638
-#, fuzzy
 msgid "Gramps ID format settings"
-msgstr "Cadena de format de nom %s incorrecta"
+msgstr "Configuració de format d'Id Gramps"
 
 #: ../gramps/gui/configure.py:658 ../gramps/gui/editors/editperson.py:641
 #: ../gramps/gui/widgets/photo.py:87
@@ -10778,14 +10777,14 @@ msgid "Consider single pa/matronymic as surname"
 msgstr "Considerar un pa/matronímic únic com a cognom"
 
 #: ../gramps/gui/configure.py:1240
-#, fuzzy
 msgid "Place format (auto place title)"
-msgstr "Llocs que concorden amb un títol"
+msgstr "Format de lloc (títol automàtic de lloc)"
 
 #: ../gramps/gui/configure.py:1243
-#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
-msgstr "Habilita la generació automática de títols de llocs"
+msgstr ""
+"Habilita la generació automàtica de títols de llocs utilitzant el format"
+" especificat."
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -15442,7 +15441,7 @@ msgstr "_Longitud:"
 #: ../gramps/gui/glade/editplace.glade.h:8
 #: ../gramps/gui/glade/editplaceref.glade.h:20
 msgid "Full title of this place."
-msgstr "Nom complet d'aquest lloc."
+msgstr "Títol complet d'aquest lloc."
 
 #: ../gramps/gui/glade/editplace.glade.h:10
 #: ../gramps/gui/glade/editplaceref.glade.h:21
@@ -18241,12 +18240,11 @@ msgstr "Només Lectura"
 
 #: ../gramps/gui/viewmanager.py:1023
 msgid "Gramps had a problem the last time it was run."
-msgstr ""
+msgstr "Gramps va tenir un problema l'última vegada que es va executar."
 
 #: ../gramps/gui/viewmanager.py:1024
-#, fuzzy
 msgid "Would you like to run the Check and Repair tool?"
-msgstr "Si us plau, executi l'eina de Comprovar i Reparar la Base de Dades"
+msgstr "Voleu executar l'eina de Comprovar i Reparar?"
 
 #: ../gramps/gui/viewmanager.py:1189
 msgid "Autobackup..."
@@ -20486,7 +20484,7 @@ msgstr "(Persones vives: %(option_name)s)"
 #: ../gramps/plugins/drawreport/statisticschart.py:801
 #, python-format
 msgid "%s born"
-msgstr ""
+msgstr "%s han nascut"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:803
 msgid "Persons born"
@@ -22236,9 +22234,8 @@ msgid "Uncollected Objects: %s"
 msgstr "Objectes no Recollits: %s"
 
 #: ../gramps/plugins/gramplet/leak.py:239
-#, fuzzy
 msgid "Reference Error"
-msgstr "Referència"
+msgstr "Error de Referència"
 
 #: ../gramps/plugins/gramplet/locations.py:81
 msgid "Double-click on a row to edit the selected place."
@@ -23639,9 +23636,8 @@ msgid "occupationdescr"
 msgstr "Ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:210
-#, fuzzy
 msgid "Occupation description"
-msgstr "Descripció de versió"
+msgstr "Descripció d'ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:211
 #, fuzzy
@@ -23649,9 +23645,8 @@ msgid "occupationdate"
 msgstr "Ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:211
-#, fuzzy
 msgid "Occupation date"
-msgstr "Ocupació"
+msgstr "Data d'ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:212
 #, fuzzy
@@ -23659,9 +23654,8 @@ msgid "occupationplace"
 msgstr "Ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:212
-#, fuzzy
 msgid "Occupation place"
-msgstr "Ocupació"
+msgstr "Lloc d'ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:213
 #, fuzzy
@@ -23669,9 +23663,8 @@ msgid "occupationplace_id"
 msgstr "Ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:213
-#, fuzzy
 msgid "Occupation place id"
-msgstr "Ocupació"
+msgstr "Id de lloc d'ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:214
 #, fuzzy
@@ -23679,9 +23672,8 @@ msgid "occupationsource"
 msgstr "Ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:214
-#, fuzzy
 msgid "Occupation source"
-msgstr "Ocupació"
+msgstr "Font d'ocupació"
 
 #: ../gramps/plugins/importer/importcsv.py:216
 #, fuzzy
@@ -23689,9 +23681,8 @@ msgid "residencedate"
 msgstr "Residència"
 
 #: ../gramps/plugins/importer/importcsv.py:216
-#, fuzzy
 msgid "residence date"
-msgstr "Residència"
+msgstr "data de residència"
 
 #: ../gramps/plugins/importer/importcsv.py:217
 #, fuzzy
@@ -23699,9 +23690,8 @@ msgid "residenceplace"
 msgstr "Residència"
 
 #: ../gramps/plugins/importer/importcsv.py:217
-#, fuzzy
 msgid "residence place"
-msgstr "Residència"
+msgstr "lloc de residència"
 
 #: ../gramps/plugins/importer/importcsv.py:218
 #, fuzzy
@@ -23709,9 +23699,8 @@ msgid "residenceplace_id"
 msgstr "Residència"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
 msgid "residence place id"
-msgstr "id del lloc de defunció"
+msgstr "id de lloc de residència"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 #, fuzzy
@@ -23719,9 +23708,8 @@ msgid "residencesource"
 msgstr "Residència"
 
 #: ../gramps/plugins/importer/importcsv.py:219
-#, fuzzy
 msgid "residence source"
-msgstr "Incloure fonts"
+msgstr "font de residència"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 #, fuzzy
@@ -23729,9 +23717,8 @@ msgid "attributetype"
 msgstr "Nota d'Atribut"
 
 #: ../gramps/plugins/importer/importcsv.py:221
-#, fuzzy
 msgid "attribute type"
-msgstr "Nota d'Atribut"
+msgstr "tipus d'atribut"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 #, fuzzy
@@ -23739,9 +23726,8 @@ msgid "attributevalue"
 msgstr "Atribut"
 
 #: ../gramps/plugins/importer/importcsv.py:222
-#, fuzzy
 msgid "attribute value"
-msgstr "Nota d'Atribut"
+msgstr "valor d'atribut"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 #, fuzzy
@@ -23749,9 +23735,8 @@ msgid "attributesource"
 msgstr "Atributs"
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "attribute source"
-msgstr "Nota d'Atribut"
+msgstr "font d'atribut"
 
 #. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:226
@@ -24310,14 +24295,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade.h:84
-#, fuzzy
 msgid "Option"
-msgstr "Opcions"
+msgstr "Opció"
 
 #: ../gramps/plugins/importer/importprogen.glade.h:86
-#, fuzzy
 msgid "_Ok"
-msgstr "Ok"
+msgstr "_Ok"
 
 #: ../gramps/plugins/importer/importprogen.py:62
 msgid "manual|Import_from_another_genealogy_program"
@@ -28821,9 +28804,8 @@ msgid "Pro-Gen import"
 msgstr "Importació Pro-Gen"
 
 #: ../gramps/plugins/lib/libprogen.py:539
-#, fuzzy
 msgid "Saving."
-msgstr "S'està buscant..."
+msgstr "Desant."
 
 #: ../gramps/plugins/lib/libprogen.py:929
 msgid "Pro-Gen Import"
@@ -28836,9 +28818,9 @@ msgid "Date did not match: '%(text)s' (%(msg)s)"
 msgstr "La data no coincideix: '%(text)s' (%(msg)s)"
 
 #: ../gramps/plugins/lib/libprogen.py:1153
-#, fuzzy, python-format
+#, python-format
 msgid "Time: %s"
-msgstr "Viu: %s"
+msgstr "Temps: %s"
 
 #. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1207
@@ -28856,15 +28838,13 @@ msgid "see also address"
 msgstr "Adreça _Web:"
 
 #: ../gramps/plugins/lib/libprogen.py:1517
-#, fuzzy
 msgid "Death cause"
-msgstr "causa de defunció"
+msgstr "Causa de defunció"
 
 #. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1586
-#, fuzzy
 msgid "Importing families."
-msgstr "Escrivint famílies"
+msgstr "Important famílies."
 
 #: ../gramps/plugins/lib/libprogen.py:1691
 msgid "Civil union"
