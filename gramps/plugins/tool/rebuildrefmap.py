@@ -53,14 +53,13 @@ log = logging.getLogger(".RebuildRefMap")
 #-------------------------------------------------------------------------
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
-from gramps.gen.updatecallback import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
 # runTool
 #
 #-------------------------------------------------------------------------
-class RebuildRefMap(tool.Tool, UpdateCallback):
+class RebuildRefMap(tool.Tool):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
@@ -80,10 +79,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
             self.callback = None
             print(_("Rebuilding reference maps..."))
 
-        UpdateCallback.__init__(self, self.callback)
-        self.set_total(6)
-        self.db.reindex_reference_map(self.update)
-        self.reset()
+        self.db.reindex_reference_map(self.callback)
 
         if uistate:
             uistate.set_busy_cursor(False)

@@ -361,7 +361,7 @@ class DbTestClassBase(object):
                          msg="Callback Manager disconnect cb check")
 
 
-params = [('BsdDb', 'bsddb'), ('SQLite', 'sqlite')]
+params = [('SQLite', 'sqlite')]
 
 for name, param in params:
     cls_name = "TestMyTestClass_%s" % (name, )

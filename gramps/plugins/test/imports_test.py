@@ -199,18 +199,16 @@ def make_tst_function(tstfile, file_name):
     """
 
     @patch('gramps.plugins.db.dbapi.dbapi.time')
-    @patch('gramps.plugins.db.bsddb.write.time')
     @patch('gramps.gen.utils.unknown.localtime')
     @patch('gramps.gen.utils.unknown.time')
     @patch('time.localtime')
-    def tst(self, mockptime, mocktime, mockltime, mockwtime, mockdtime):
+    def tst(self, mockptime, mocktime, mockltime, mockdtime):
         """ This compares the import file with the expected result '.gramps'
         file.
         """
         mockptime.side_effect = mock_localtime
         mocktime.side_effect = mock_time
         mockltime.side_effect = mock_localtime
-        mockwtime.side_effect = mock_time
         mockdtime.side_effect = mock_time
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))

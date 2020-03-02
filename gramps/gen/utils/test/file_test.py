@@ -58,7 +58,7 @@ class FileTest(unittest.TestCase):
         """
 
         # Create database
-        db = make_database("bsddb")
+        db = make_database("sqlite")
         path = get_empty_tempdir("utils_file_test")
         db.load(path)
 

@@ -47,6 +47,7 @@ from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
                REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNUPD, TXNDEL,
                KEY_TO_NAME_MAP, DBMODE_R, DBMODE_W)
 from .utils import write_lock_file, clear_lock_file
+from .exceptions import DbVersionError, DbUpgradeRequiredError
 from ..errors import HandleError
 from ..utils.callback import Callback
 from ..updatecallback import UpdateCallback
@@ -311,7 +312,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    VERSION = (18, 0, 0)
+    VERSION = (20, 0, 0)
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -658,6 +659,21 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nmap_index = self._get_metadata('nmap_index', 0)
 
         self.db_is_open = True
+
+        # Check on db version to see if we need upgrade or too new
+        dbversion = int(self._get_metadata('version', default='0'))
+        if dbversion > self.VERSION[0]:
+            self.close()
+            raise DbVersionError(dbversion, 18, self.VERSION[0])
+
+        if not self.readonly and dbversion < self.VERSION[0]:
+            LOG.debug("Schema upgrade required from %s to %s",
+                      dbversion, self.VERSION[0])
+            if force_schema_upgrade:
+                self._gramps_upgrade(dbversion, directory, callback)
+            else:
+                self.close()
+                raise DbUpgradeRequiredError(dbversion, self.VERSION[0])
 
     def _close(self):
         """
@@ -2463,3 +2479,47 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             enclosed_by = placeref.ref
             break
         return enclosed_by
+
+    def _gramps_upgrade(self, version, directory, callback=None):
+        """
+        Here we do the calls for stepwise schema upgrades.
+        We assume that we need to rebuild secondary and reference maps.
+        """
+        UpdateCallback.__init__(self, callback)
+
+        start = time.time()
+
+        from gramps.gen.db.upgrade import (
+            gramps_upgrade_14, gramps_upgrade_15, gramps_upgrade_16,
+            gramps_upgrade_17, gramps_upgrade_18, gramps_upgrade_19,
+            gramps_upgrade_20)
+
+        if version < 14:
+            gramps_upgrade_14(self)
+        if version < 15:
+            gramps_upgrade_15(self)
+        if version < 16:
+            gramps_upgrade_16(self)
+        if version < 17:
+            gramps_upgrade_17(self)
+        if version < 18:
+            gramps_upgrade_18(self)
+        if version < 19:
+            gramps_upgrade_19(self)
+        if version < 20:
+            gramps_upgrade_20(self)
+
+        self.rebuild_secondary(callback)
+        self.reindex_reference_map(callback)
+        self.reset()
+
+        self.set_schema_version(self.VERSION[0])
+        LOG.debug("Upgrade time: %d seconds" % int(time.time() - start))
+
+    def get_schema_version(self):
+        """ Return current schema version as an int """
+        return int(self._get_metadata('version', default='0'))
+
+    def set_schema_version(self, value):
+        """ set the current schema version """
+        self._set_metadata('version', str(value))
