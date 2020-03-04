@@ -225,11 +225,6 @@ class Check(tool.BatchTool):
             checker.check_checksum()
             checker.check_media_sourceref()
             checker.check_note_links()
-
-        # for bsddb the check_backlinks doesn't work in 'batch' mode because
-        # the table used for backlinks is closed.
-        with DbTxn(_("Check Backlink Integrity"), self.db,
-                   batch=False) as checker.trans:
             checker.check_backlinks()
 
         # rebuilding reference maps needs to be done outside of a transaction

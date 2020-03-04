@@ -100,16 +100,11 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
     elif isinstance(obj, Family):
         obj.set_relationship(FamilyRelType.UNKNOWN)
         handle = obj.handle
-        if getattr(argv['db'].transaction, 'no_magic', False):
-            backlinks = argv['db'].find_backlink_handles(
-                    handle, [Person.__name__])
-            for dummy, person_handle in backlinks:
-                person = argv['db'].get_person_from_handle(person_handle)
-                add_personref_to_family(obj, person)
-        else:
-            for person in argv['db'].iter_people():
-                if person._has_handle_reference('Family', handle):
-                    add_personref_to_family(obj, person)
+        backlinks = argv['db'].find_backlink_handles(
+                handle, [Person.__name__])
+        for dummy, person_handle in backlinks:
+            person = argv['db'].get_person_from_handle(person_handle)
+            add_personref_to_family(obj, person)
     elif isinstance(obj, Event):
         if 'type' in argv:
             obj.set_type(argv['type'])
