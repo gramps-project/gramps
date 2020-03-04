@@ -244,7 +244,7 @@ class GeoMoves(GeoGraphyView):
         This assumes that this icon has already been registered
         as a stock icon.
         """
-        return 'geo-show-family'
+        return 'geo-show-family-down'
 
     def get_viewtype_stock(self):
         """Type of view in category
