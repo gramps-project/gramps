@@ -2230,6 +2230,7 @@ class CheckIntegrity:
             gid_list.append(gid)
         gid_list = []
         for note in self.db.iter_notes():
+            self.progress.step()
             ogid = gid = note.get_gramps_id()
             if gid in gid_list:
                 gid = self.db.find_next_note_gramps_id()
