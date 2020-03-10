@@ -594,6 +594,9 @@ table.IndividualList tbody tr td.ColumnName a:hover {
 #familymap a.familymap {
     margin-left:20px;
 }
+a.family_map {
+    margin-left: 20px;
+}
 
 /* Subsections : Attributes
 ----------------------------------------------------- */

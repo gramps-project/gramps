@@ -736,6 +736,9 @@ h4 + div.grampsstylednote, a.familymap {
     margin-left: 10px;
     margin-right: 10px;
 }
+a.family_map {
+    margin-left: 10px;
+}
 i.NoteType {
     font-weight: bold;
     font-size: .8em;

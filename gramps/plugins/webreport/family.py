@@ -438,4 +438,4 @@ class FamilyPages(BasePage):
         url = self.report.fam_link[handle]
         title = self._("Family Map for %s") % name
         return Html("a", title, href=url,
-                    title=title, class_="familymap", inline=True)
+                    title=title, class_="family_map", inline=True)
