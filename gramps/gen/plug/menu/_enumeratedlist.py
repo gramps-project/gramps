@@ -62,6 +62,7 @@ class EnumeratedListOption(Option):
         :type value: int
         :return: nothing
         """
+        self.ini_value = value
         Option.__init__(self, label, value)
         self.__items = []
         self.__xml_items = []
@@ -138,6 +139,8 @@ class EnumeratedListOption(Option):
         """
         if value in (v for v, d in self.__items):
             Option.set_value(self, value)
+        elif value == self.ini_value:
+            return
         else:
             logging.warning(_("Value '%(val)s' not found for option '%(opt)s'") %
                              {'val' : str(value), 'opt' : self.get_label()})
