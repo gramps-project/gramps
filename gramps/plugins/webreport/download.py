@@ -78,17 +78,13 @@ class DownloadPage(BasePage):
             return
 
         # menu options for class
-        # download and description #1
+        # download and description #n ( 1 <= n < 5 )
 
-        dlfname1 = self.report.dl_fname1
-        dldescr1 = self.report.dl_descr1
-
-        # download and description #2
-        dlfname2 = self.report.dl_fname2
-        dldescr2 = self.report.dl_descr2
+        dlfname = self.report.dl_fname
+        dldescr = self.report.dl_descr
 
         # if no filenames at all, return???
-        if dlfname1 or dlfname2:
+        if dlfname:
 
             output_file, sio = self.report.create_file("download")
             result = self.write_header(self._('Download'))
@@ -130,62 +126,51 @@ class DownloadPage(BasePage):
                     # table body
                     tbody = Html("tbody")
                     table += tbody
+                    dwnld = 0
 
-                    # if dlfname1 is not None, show it???
-                    if dlfname1:
+                    for fnamex in dlfname:
+                        # if fnamex is not None, do we have a file to download?
+                        if fnamex:
 
+                            fname = os.path.basename(dlfname[fnamex])
+                            # if fname is not None, show it
+                            if fname:
+                                dwnld += 1
+                                trow = Html("tr", id='Row01')
+                                tbody += trow
+
+                                dldescrx = dldescr[fnamex]
+                                tcell = Html("td", class_="ColumnFilename") + (
+                                    Html("a", fname, href=fname,
+                                         title=html_escape(dldescrx))
+                                )
+                                trow += tcell
+
+                                dldescr1 = dldescrx or "&nbsp;"
+                                trow += Html("td", dldescr1,
+                                         class_="ColumnDescription", inline=True)
+
+                                tcell = Html("td", class_="ColumnModified", inline=True)
+                                trow += tcell
+                                if os.path.exists(dlfname[fnamex]):
+                                    modified = os.stat(dlfname[fnamex]).st_mtime
+                                    last_mod = datetime.datetime.fromtimestamp(modified)
+                                    tcell += last_mod
+                                    # copy the file
+                                    self.report.copy_file(dlfname[fnamex],
+                                                          fname)
+                                else:
+                                    tcell += "&nbsp;"
+
+                    if not dwnld:
+                        # We have several files to download
+                        # but all file names are empty
+                        dldescrx = _("No file to download")
                         trow = Html("tr", id='Row01')
                         tbody += trow
-
-                        fname = os.path.basename(dlfname1)
-                        # TODO dlfname1 is filename, convert disk path to URL
-                        tcell = Html("td", class_="ColumnFilename") + (
-                            Html("a", fname, href=dlfname1,
-                                 title=html_escape(dldescr1))
-                        )
+                        tcell = Html("td", class_="ColumnFilename",
+                                     colspan=3) + Html("h2", dldescrx)
                         trow += tcell
-
-                        dldescr1 = dldescr1 or "&nbsp;"
-                        trow += Html("td", dldescr1,
-                                     class_="ColumnDescription", inline=True)
-
-                        tcell = Html("td", class_="ColumnModified", inline=True)
-                        trow += tcell
-                        if os.path.exists(dlfname1):
-                            modified = os.stat(dlfname1).st_mtime
-                            last_mod = datetime.datetime.fromtimestamp(modified)
-                            tcell += last_mod
-                        else:
-                            tcell += "&nbsp;"
-
-                    # if download filename #2, show it???
-                    if dlfname2:
-
-                        # begin row #2
-                        trow = Html("tr", id='Row02')
-                        tbody += trow
-
-                        fname = os.path.basename(dlfname2)
-                        tcell = Html("td", class_="ColumnFilename") + (
-                            Html("a", fname, href=dlfname2,
-                                 title=html_escape(dldescr2))
-                        )
-                        trow += tcell
-
-                        dldescr2 = dldescr2 or "&nbsp;"
-                        trow += Html("td", dldescr2,
-                                     class_="ColumnDescription", inline=True)
-
-                        tcell = Html("td", id='Col04',
-                                     class_="ColumnModified", inline=True)
-                        trow += tcell
-                        if os.path.exists(dlfname2):
-                            modified = os.stat(dlfname2).st_mtime
-                            last_mod = datetime.datetime.fromtimestamp(modified)
-                            tcell += last_mod
-                        else:
-                            tcell += "&nbsp;"
-
             # clear line for proper styling
             # create footer section
             footer = self.write_footer(None)
