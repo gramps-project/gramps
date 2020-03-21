@@ -147,14 +147,16 @@ class DownloadPage(BasePage):
                                 trow += tcell
 
                                 dldescr1 = dldescrx or "&nbsp;"
-                                trow += Html("td", dldescr1,
-                                         class_="ColumnDescription", inline=True)
+                                trow += Html("td", dldescr1, inline=True,
+                                             class_="ColumnDescription")
 
-                                tcell = Html("td", class_="ColumnModified", inline=True)
+                                tcell = Html("td", class_="ColumnModified",
+                                             inline=True)
                                 trow += tcell
                                 if os.path.exists(dlfname[fnamex]):
                                     modified = os.stat(dlfname[fnamex]).st_mtime
-                                    last_mod = datetime.datetime.fromtimestamp(modified)
+                                    last_mod = datetime.datetime.fromtimestamp(
+                                        modified)
                                     tcell += last_mod
                                     # copy the file
                                     self.report.copy_file(dlfname[fnamex],

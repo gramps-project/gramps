@@ -196,7 +196,7 @@ class NavWebReport(Report):
         self.nb_download = self.options['nbdownload']
         self.dl_descr = {}
         self.dl_fname = {}
-        for count in range(1,self.nb_download+1):
+        for count in range(1, self.nb_download+1):
             fnamex = 'down_fname%c' % str(count)
             descrx = 'dl_descr%c' % str(count)
             self.dl_fname[count] = self.options[fnamex]
@@ -1637,6 +1637,7 @@ class NavWebOptions(MenuReportOptions):
         self.__citationreferents = None
         self.__incdownload = None
         self.__max_download = 4 # Add 1 to this counter: In reality 3 downloads
+        self.__nbdownload = None
         self.__dl_descr = {}
         self.__down_fname = {}
         self.__placemappages = None
@@ -2007,9 +2008,9 @@ class NavWebOptions(MenuReportOptions):
         for count in range(1, self.__max_download):
             fnamex = 'down_fname%c' % str(count)
             descrx = 'dl_descr%c' % str(count)
+            wdir = os.path.join(config.get('paths.website-directory'), "")
             __down_fname = DestinationOption(_("Download Filename #%c") %
-                                             str(count),
-                os.path.join(config.get('paths.website-directory'), ""))
+                                             str(count), wdir)
             __down_fname.set_help(
                 _("File to be used for downloading of database"))
             addopt(fnamex, __down_fname)
