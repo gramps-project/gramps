@@ -57,6 +57,7 @@ from gramps.plugins.lib.libhtml import Html
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (FULLCLEAR, html_escape)
+from gramps.gen.utils.file import create_checksum
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
@@ -122,7 +123,8 @@ class DownloadPage(BasePage):
                         for (label, colclass) in [
                             (self._("File Name"), "Filename"),
                             (self._("Description"), "Description"),
-                            (self._("Last Modified"), "Modified")])
+                            (self._("Last Modified"), "Modified"),
+                            (self._("MD5"), "Md5")])
                     # table body
                     tbody = Html("tbody")
                     table += tbody
@@ -154,6 +156,9 @@ class DownloadPage(BasePage):
                                              inline=True)
                                 trow += tcell
                                 if os.path.exists(dlfname[fnamex]):
+                                    md5 = create_checksum(dlfname[fnamex])
+                                    trow += Html("td", md5, class_="ColumnMd5",
+                                                 inline=True)
                                     modified = os.stat(dlfname[fnamex]).st_mtime
                                     last_mod = datetime.datetime.fromtimestamp(
                                         modified)
