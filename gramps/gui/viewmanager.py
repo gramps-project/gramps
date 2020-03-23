@@ -875,9 +875,6 @@ class ViewManager(CLIManager):
         """
         Perform necessary actions when a page is changed.
         """
-        if not self.dbstate.is_open():
-            return
-
         self.__disconnect_previous_page()
 
         self.active_page = self.pages[page_num]
