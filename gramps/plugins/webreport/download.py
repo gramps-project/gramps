@@ -167,7 +167,7 @@ class DownloadPage(BasePage):
                                     self.report.copy_file(dlfname[fnamex],
                                                           fname)
                                 else:
-                                    tcell += "&nbsp;"
+                                    tcell += self._("Cannot open file")
 
                     if not dwnld:
                         # We have several files to download
