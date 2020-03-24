@@ -5297,7 +5297,7 @@ msgstr "Суффикс:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:50
 msgid "Call Name:"
-msgstr "Мирское имя:"
+msgstr "В быту:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:51
 msgid "Nick Name:"
@@ -15338,7 +15338,7 @@ msgstr ""
 "  <b>%t</b> - Титул            <b>%T</b> - ТИТУЛ\n"
 "  <b>%p</b> - Префикс          <b>%P</b> - ПРЕФИКС\n"
 "  <b>%s</b> - Суффикс          <b>%S</b> - СУФФИКС\n"
-"  <b>%c</b> - Бытовое, мирское имя <b>%C</b> - БЫТОВОЕ ИМЯ\n"
+"  <b>%c</b> - Бытовое имя      <b>%C</b> - БЫТОВОЕ ИМЯ\n"
 "  <b>%y</b> - Отчество         <b>%Y</b> - ОТЧЕСТВО</tt>"
 
 #: ../gramps/gui/glade/configure.glade:155
@@ -16238,7 +16238,7 @@ msgstr "Суффи_кс:"
 
 #: ../gramps/gui/glade/editname.glade:235
 msgid "C_all Name:"
-msgstr "Мирское имя:"
+msgstr "В быту:"
 
 #: ../gramps/gui/glade/editname.glade:250
 #: ../gramps/gui/glade/editperson.glade:150
@@ -16257,9 +16257,9 @@ msgid ""
 "some reports."
 msgstr ""
 "Часть личного имени человека, которая обычно употребляется в обиходе. "
-"Отображение на красном фоне означает, что указанное мирское, бытовое имя не является "
-"частью перечисленных личных имён, и поэтому не будет подчёркнуто в некоторых "
-"отчётах."
+"Отображение на красном фоне означает, что указанное мирское, бытовое имя "
+"не является частью перечисленных личных имён, и поэтому не будет "
+"подчёркнуто в некоторых отчётах."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
@@ -24834,7 +24834,7 @@ msgstr "имя"
 
 #: ../gramps/plugins/importer/importcsv.py:165
 msgid "call"
-msgstr "мирское имя"
+msgstr "бытовое имя"
 
 #: ../gramps/plugins/importer/importcsv.py:166
 msgid "Person or Place|title"
@@ -32209,7 +32209,7 @@ msgstr "Пропускать ли повторяющихся предков."
 #: ../gramps/plugins/textreport/detancestralreport.py:894
 #: ../gramps/plugins/textreport/detdescendantreport.py:1079
 msgid "Use callname for common name"
-msgstr "Использовать мирское имя по умолчанию"
+msgstr "Использовать бытовое имя по умолчанию"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:895
 #: ../gramps/plugins/textreport/detdescendantreport.py:1080
@@ -37886,7 +37886,7 @@ msgstr "Название места"
 
 #: ../gramps/plugins/webreport/person.py:1453
 msgid "Call Name"
-msgstr "Мирское имя"
+msgstr "Бытовое имя"
 
 #: ../gramps/plugins/webreport/person.py:1471
 msgid "Nick Name"
