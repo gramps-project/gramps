@@ -18991,7 +18991,7 @@ msgstr "Конфигурация"
 #: ../gramps/gui/plug/report/_styleeditor.py:115
 #: ../gramps/gui/plug/report/_styleeditor.py:270
 msgid "Style"
-msgstr "Слиль"
+msgstr "Стиль"
 
 #. better to 'Show siblings of\nthe center person
 #. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -23486,7 +23486,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
-msgstr "Необработаный объект"
+msgstr "Необработанный объект"
 
 #: ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
@@ -23509,7 +23509,7 @@ msgstr "%d ссылается на этот объект"
 #: ../gramps/plugins/gramplet/leak.py:198
 #, python-format
 msgid "Uncollected Objects: %s"
-msgstr "Необработаные объекты: %s"
+msgstr "Необработанные объекты: %s"
 
 #: ../gramps/plugins/gramplet/leak.py:239
 msgid "Reference Error"
@@ -24711,11 +24711,11 @@ msgstr "Включать описание деятельности"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:925
 msgid "Include date, description and place of all occupations"
-msgstr "Включать даты, описания и места всех деятельностей"
+msgstr "Включать даты, описания и места всех видов деятельности"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:927
 msgid "Whether to include the last occupation"
-msgstr "Включать ли последнюю деятельность"
+msgstr "Включать ли последний вид деятельности"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:931
 msgid "Include relationship debugging numbers also"
@@ -36959,7 +36959,7 @@ msgstr "Контакт"
 #: ../gramps/plugins/webreport/basepage.py:1540
 #: ../gramps/plugins/webreport/webplugins.gpr.py:58
 msgid "Web Calendar"
-msgstr "Сетвой календарь"
+msgstr "Сетевой календарь"
 
 #: ../gramps/plugins/webreport/basepage.py:1612
 #: ../gramps/plugins/webreport/media.py:399
