@@ -9985,10 +9985,9 @@ msgstr "Графики"
 msgid "Trees"
 msgstr "Древа"
 
-# !!!FIXME!!! изображение?
 #: ../gramps/gen/plug/report/_constants.py:55
 msgid "Graphics"
-msgstr "Графика"
+msgstr "Диаграмма"
 
 #: ../gramps/gen/plug/report/endnotes.py:61
 #: ../gramps/plugins/textreport/ancestorreport.py:376
@@ -11462,11 +11461,11 @@ msgstr ""
 "  <b>Главное, Главное[пр], или …[фам] …[св]</b> - полностью главная фамилия, "
 "префикс, только фамилия, связка\n"
 "  <b>Отчество, Отчество[пр], или …[им] …[св]</b> - аналогично Главное… для "
-"отчества или матчиства\n"
+"отчества или матчества\n"
 "  <b>Семпрозвище</b> - семейное прозвище            <b>Неглавные</b>   - "
 "фамилии без главной+отчества\n"
 "  <b>Префикс</b>     - приставки («де», «ван», ...) <b>Безотчества</b> - "
-"фамилии без отчества/матчиства\n"
+"фамилии без отчества/матчества\n"
 "  <b>Списокфо</b>    - фамилии и отчества (без префиксов и связок)\n"
 "</tt>\n"
 "Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
@@ -11828,7 +11827,7 @@ msgstr "Редактировать"
 
 #: ../gramps/gui/configure.py:1208
 msgid "Consider single pa/matronymic as surname"
-msgstr "Использовать одиночное отчество/матчиство как фамилию"
+msgstr "Использовать одиночное отчество/матчество как фамилию"
 
 #: ../gramps/gui/configure.py:1240
 msgid "Place format (auto place title)"
@@ -11864,7 +11863,7 @@ msgstr "Угадывание фамилий"
 
 #: ../gramps/gui/configure.py:1308
 msgid "Default family relationship"
-msgstr "Межличностное отношения по умолчанию"
+msgstr "Межличностное отношение по умолчанию"
 
 #: ../gramps/gui/configure.py:1315
 msgid "Height multiple surname box (pixels)"
@@ -13871,7 +13870,7 @@ msgstr "Сохранение события невозможно. ID уже су
 
 #: ../gramps/gui/editors/editevent.py:264
 msgid "The event type cannot be empty"
-msgstr "События не может быть безымянным"
+msgstr "Событие не может быть безымянным"
 
 #: ../gramps/gui/editors/editevent.py:270
 #, python-format
@@ -17703,7 +17702,7 @@ msgstr "_Руководство пользователя"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_View"
-msgstr "_Облик"
+msgstr "_Вид"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Windows"
@@ -18992,7 +18991,7 @@ msgstr "Конфигурация"
 #: ../gramps/gui/plug/report/_styleeditor.py:115
 #: ../gramps/gui/plug/report/_styleeditor.py:270
 msgid "Style"
-msgstr "Вид"
+msgstr "Слиль"
 
 #. better to 'Show siblings of\nthe center person
 #. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -37241,7 +37240,7 @@ msgstr "Моё семейное древо"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1639
 msgid "Web site title"
-msgstr "Название сайта"
+msgstr "Название странички"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1640
 msgid "The title of the web site"
