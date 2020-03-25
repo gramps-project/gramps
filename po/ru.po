@@ -5301,7 +5301,7 @@ msgstr "В быту:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:51
 msgid "Nick Name:"
-msgstr "Клич/Прозвище:"
+msgstr "Прозвище:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:52
 msgid "Prefix:"
@@ -24116,7 +24116,7 @@ msgstr "неизвестен тип отношений"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:469
 msgid "family not complete"
-msgstr "семья не полноценна"
+msgstr "нехватка данных о семье"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:484
 msgid "date unknown"
@@ -24571,10 +24571,9 @@ msgstr ""
 msgid "Graph Style"
 msgstr "Стиль графа"
 
-# !!!FIXME!!!
 #: ../gramps/plugins/graph/gvhourglass.py:438
 msgid "Force Ahnentafel order"
-msgstr "Принудить сортировку по древу"
+msgstr "Принудительная сортировка по древу"
 
 #: ../gramps/plugins/graph/gvhourglass.py:440
 msgid ""
@@ -24585,7 +24584,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "Ahnentafel number visible"
-msgstr "Показывать колено"
+msgstr "Показывать счёт поколений"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
@@ -37289,7 +37288,7 @@ msgstr "Авторские права, которые будут использ�
 #: ../gramps/plugins/webreport/narrativeweb.py:1696
 #: ../gramps/plugins/webreport/webcal.py:1703
 msgid "The stylesheet to be used for the web pages"
-msgstr "Таблица видов для страницы"
+msgstr "Таблица стилей для страницы"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1701
 msgid "Horizontal -- Default"
@@ -38154,7 +38153,7 @@ msgstr "Первый год календаря"
 
 #: ../gramps/plugins/webreport/webcal.py:1755
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "оВведите первый год календаря, он должен быть между 1900 - 3000"
+msgstr "Введите первый год календаря, он должен быть между 1900 - 3000"
 
 #: ../gramps/plugins/webreport/webcal.py:1759
 msgid "End Year for the Calendar(s)"
@@ -38372,7 +38371,7 @@ msgstr "Создаёт страницы (HTML) для отдельных лиц 
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:59
 msgid "Produces web (HTML) calendars."
-msgstr "Создаёт сетовые календари (HTML)."
+msgstr "Создаёт сетевые календари (HTML)."
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:36
 msgid "Webstuff"
