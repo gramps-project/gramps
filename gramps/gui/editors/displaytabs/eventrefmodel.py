@@ -46,7 +46,7 @@ from html import escape
 #
 #-------------------------------------------------------------------------
 from ...widgets.undoablebuffer import UndoableBuffer
-from gramps.gen.lib import (EventRoleType, Date)
+from gramps.gen.lib import (EventRoleType, EventType, Date)
 from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_participant_from_event
@@ -175,7 +175,9 @@ class EventRefModel(Gtk.TreeStore):
         """
         date = event.get_date_object()
         if date and self.start_date:
-            if date == self.start_date and date.modifier == Date.MOD_NONE:
+            if (date == self.start_date and date.modifier == Date.MOD_NONE
+                    and not (event.get_type().is_death_fallback() or
+                             event.get_type() == EventType.DEATH)):
                 return ""
             else:
                 return (date - self.start_date).format(precision=age_precision)
