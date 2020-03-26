@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 13:49+0300\n"
-"PO-Revision-Date: 2020-01-31 14:05+0300\n"
+"POT-Creation-Date: 2020-03-26 08:03+0300\n"
+"PO-Revision-Date: 2020-03-26 16:45+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -9327,7 +9327,7 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
 #: ../gramps/plugins/export/exportftree.py:136
-#: ../gramps/plugins/export/exportgedcom.py:1603
+#: ../gramps/plugins/export/exportgedcom.py:1597
 #: ../gramps/plugins/export/exportgeneweb.py:109
 #: ../gramps/plugins/export/exportgeneweb.py:113
 #: ../gramps/plugins/export/exportvcalendar.py:123
@@ -13222,7 +13222,7 @@ msgstr "Редактировать выделенное семейное соб�
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Share an existing event"
-msgstr "Участвовать в существующем событии"
+msgstr "Участвует в существующем событии"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -13463,15 +13463,15 @@ msgstr "<Неизвестно>"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:56
 msgid "Add a new personal event"
-msgstr "Добавить новое личное событие"
+msgstr "Добавить новое событие"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Remove the selected personal event"
-msgstr "Удалить выделенное личное событие"
+msgstr "Удалить выделенное событие"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Edit the selected personal event or edit family"
-msgstr "Редактировать выделенное личное событие или семью"
+msgstr "Редактировать выделенное событие или семью"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Move the selected event upwards or change family order"
@@ -13826,7 +13826,7 @@ msgstr "Исправьте дату, или переключите с «{cur_mod
 
 #: ../gramps/gui/editors/editevent.py:64
 msgid "manual|New_Event_dialog"
-msgstr "Новое_событие"
+msgstr "Изменение информации о событиях"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:263
@@ -13914,7 +13914,7 @@ msgstr "Добавить событие"
 
 #: ../gramps/gui/editors/editfamily.py:92
 msgid "manual|Family_Editor_dialog"
-msgstr "Редактор_семьи"
+msgstr "Изменение информации об отношениях"
 
 #: ../gramps/gui/editors/editfamily.py:113
 msgid "Create a new person and add the child to the family"
@@ -14535,7 +14535,7 @@ msgstr "Выберите лицо или отмените правку"
 
 #: ../gramps/gui/editors/editplace.py:69
 msgid "manual|Place_Editor_dialog"
-msgstr "Редактор_местоположений"
+msgstr "Редактирование информации о местах"
 
 #: ../gramps/gui/editors/editplace.py:91
 #: ../gramps/gui/glade/editplace.glade:355 ../gramps/gui/merge/mergeplace.py:55
@@ -14729,7 +14729,7 @@ msgstr "Удалить хранилище (%s)"
 
 #: ../gramps/gui/editors/editsource.py:64
 msgid "manual|New_Source_dialog"
-msgstr "Новый_источник"
+msgstr "Редактирование информации об источниках"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -16256,9 +16256,9 @@ msgid ""
 "some reports."
 msgstr ""
 "Часть личного имени человека, которая обычно употребляется в обиходе. "
-"Отображение на красном фоне означает, что указанное мирское, бытовое имя "
-"не является частью перечисленных личных имён, и поэтому не будет "
-"подчёркнуто в некоторых отчётах."
+"Отображение на красном фоне означает, что указанное мирское, бытовое имя не "
+"является частью перечисленных личных имён, и поэтому не будет подчёркнуто в "
+"некоторых отчётах."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
@@ -22253,11 +22253,11 @@ msgstr "Электронная почта"
 msgid "WWW"
 msgstr "Веб-страница"
 
-#: ../gramps/plugins/export/exportgedcom.py:1432
+#: ../gramps/plugins/export/exportgedcom.py:1426
 msgid "Writing media"
 msgstr "Запись документов"
 
-#: ../gramps/plugins/export/exportgedcom.py:1606
+#: ../gramps/plugins/export/exportgedcom.py:1600
 msgid "GEDCOM Export failed"
 msgstr "Экспорт в GEDCOM не удался"
 
