@@ -576,10 +576,16 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :param acquisition: instance to merge
         :type acquisition: :class:'~.place.Place
         """
-        if acquisition.name.value:
-            if acquisition.name != self.name:
-                if acquisition.name not in self.alt_names:
-                    self.alt_names.append(acquisition.name)
+        # if there is a acquisition name, 
+        #  and the length of the acquisition name is > 0, 
+        #  and the names of the acquisition and the original place are not identical,
+        #  and the acquisition is not yet in the list of alternate names
+        # then append the acquisition to the list of alternate name
+        if acquisition.name and \
+                (len(acquisition.name.value)>0) and \
+                (acquisition.name.value != self.name.value) and \
+                (acquisition.name not in self.alt_names):
+            self.alt_names.append(acquisition.name)
 
         for addendum in acquisition.alt_names:
             if addendum.value:
