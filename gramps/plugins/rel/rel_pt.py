@@ -84,7 +84,7 @@ _father_level = [ "", "pai", "avô", "bisavô", "trisavô",
                   "tetravô", "pentavô", "hexavô", "heptavô", "octavô"]
 
 _mother_level = [ "", "mãe", "avó", "bisavó", "trisavó",
-                  "tetravó", "pentavó", "hexavó", "heptavó", "octovó"]
+                  "tetravó", "pentavó", "hexavó", "heptavó", "octavó"]
 
 # Higher-order terms (after "tetravô") are not standard in Portuguese.
 # Check http://www.geneall.net/P/forum_msg.php?id=136774 that states
@@ -99,7 +99,7 @@ _daughter_level = [ "", "filha", "neta", "bisneta",
                     "trineta", "tetraneta", "pentaneta", "hexaneta", "heptaneta", "octaneta"]
 
 _sister_level = [ "", "irmã", "tia", "tia avó", "tia bisavó", "tia trisavó", "tia tetravó",
-                  "tia pentavó", "tia hexavó", "tia heptavó", "tia octovó"]
+                  "tia pentavó", "tia hexavó", "tia heptavó", "tia octavó"]
 
 _brother_level = [ "", "irmão", "tio", "tio avô", "tio bisavô", "tio trisavô",
                    "tio tetravô", "tio pentavô", "tio hexavô", "tio heptavô", "tio octavô"]
@@ -280,7 +280,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_relationship(self, secondRel, firstRel, orig_person_gender, other_person_gender):
         """
-        returns a string representing the relationshp between the two people,
+        returns a string representing the relationship between the two people,
         along with a list of common ancestors (typically father, mother)
         """
 
@@ -343,14 +343,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                                         in_law_a=False, in_law_b=False):
         return self.get_relationship(1, 1, gender_a, gender_b)[0];
 
-    # Relatório de Parentesco
+    # Relatório de parentesco
 
     def get_plural_relationship_string(self, Ga, Gb,
                                        reltocommon_a='', reltocommon_b='',
                                        only_birth=True,
                                        in_law_a=False, in_law_b=False):
         """
-        Cria o objeto KinshipReport que produz o relatório.
+        Cria o objecto KinshipReport que produz o relatório.
         Os argumentos são:
         database        - a instância do banco de dados GRAMPS
         options_class   - instância da classe das opções para este relatório
