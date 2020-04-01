@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2020-03-29 08:38+0100\n"
+"PO-Revision-Date: 2020-04-01 10:06+0100\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese <pmra@gmx.com>\n"
 "Language: pt_PT\n"
@@ -12699,7 +12699,7 @@ msgstr "Mover pai abaixo"
 
 #: ../gramps/gui/glade/reorder.glade:205
 msgid "Family relationships"
-msgstr "Parentescos com família"
+msgstr "Parentesco com cônjuges"
 
 #: ../gramps/gui/glade/reorder.glade:267
 msgid "Move family up"
@@ -28650,7 +28650,7 @@ msgstr "Mostrar botões de edição"
 
 #: ../gramps/plugins/view/relview.py:1680
 msgid "View links as website links"
-msgstr "Mostrar ligações como ligações da web"
+msgstr "Mostrar nomes como hiperligações"
 
 #: ../gramps/plugins/view/relview.py:1697
 msgid "Show Details"
@@ -28978,7 +28978,7 @@ msgstr "Esta página contém um índice de todos os objectos multimédia na base
 
 #: ../gramps/plugins/webreport/media.py:227
 msgid "Media | Name"
-msgstr " Nome"
+msgstr "Nome"
 
 #: ../gramps/plugins/webreport/media.py:230
 msgid "Mime Type"
