@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2020-04-01 10:06+0100\n"
+"PO-Revision-Date: 2020-04-02 16:36+0100\n"
 "Last-Translator: Pedro Albuquerque <pmra@protonmail.com>\n"
 "Language-Team: Portuguese <pmra@gmx.com>\n"
 "Language: pt_PT\n"
@@ -2577,7 +2577,7 @@ msgstr "Filtros de citações/fontes"
 
 #: ../gramps/gen/filters/rules/_haseventbase.py:56 ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:45 ../gramps/gen/filters/rules/person/_hasbirth.py:51 ../gramps/gen/filters/rules/person/_hasdeath.py:51 ../gramps/gen/filters/rules/person/_hasfamilyevent.py:54 ../gramps/gen/filters/rules/person/_iswitness.py:47 ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:44
 msgid "Event filters"
-msgstr "Fitros de evento"
+msgstr "Filtros de evento"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:45 ../gramps/gen/filters/rules/_hasldsbase.py:48 ../gramps/gen/filters/rules/_hasnotebase.py:46 ../gramps/gen/filters/rules/_hassourcecountbase.py:45 ../gramps/gen/filters/rules/person/_hasaddress.py:48 ../gramps/gen/filters/rules/person/_hasassociation.py:48 ../gramps/gen/filters/rules/source/_hasrepository.py:46 ../gramps/gui/editors/filtereditor.py:513
 msgid "Number must be:"
@@ -4400,7 +4400,7 @@ msgstr "Encontra locais com latitude ou longitude em branco"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:50 ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:56 ../gramps/gen/filters/rules/place/_withinarea.py:53
 msgid "Position filters"
-msgstr "Fitros de posição"
+msgstr "Filtros de posição"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:45
 msgid "Places having <count> notes"
@@ -10888,7 +10888,7 @@ msgstr "Filtros de famílias"
 
 #: ../gramps/gui/editors/filtereditor.py:91
 msgid "Event Filters"
-msgstr "Fitros de eventos"
+msgstr "Filtros de eventos"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgid "Place Filters"
@@ -10912,7 +10912,7 @@ msgstr "Filtros de notas"
 
 #: ../gramps/gui/editors/filtereditor.py:97
 msgid "Citation Filters"
-msgstr "Fitros de citações"
+msgstr "Filtros de citações"
 
 #: ../gramps/gui/editors/filtereditor.py:251
 msgid "equal to"
@@ -15089,7 +15089,7 @@ msgstr "Registo é privado"
 
 #: ../gramps/gui/widgets/buttons.py:163
 msgid "Record is public"
-msgstr "Registo é público"
+msgstr "O registo é público"
 
 #: ../gramps/gui/widgets/expandcollapsearrow.py:86
 msgid "Expand this section"
