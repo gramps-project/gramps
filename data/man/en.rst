@@ -32,12 +32,12 @@ SYNOPSIS
 DESCRIPTION
 ###########
 
-Gramps is a Free/OpenSource genealogy program.
+Gramps is a Free, Open Source genealogy program.
 It is written in Python, using the GTK+/GNOME interface.
 Gramps should seem familiar to anyone who has used other genealogy programs
 before such as Family Tree Maker™, Personal Ancestral Files™,
 or the GNU Geneweb.
-It supports importing of the ever popular GEDCOM format which is used world wide
+It supports importing of the ever-popular GEDCOM format which is used worldwide
 by almost all other genealogy software.
 
 #######
@@ -49,18 +49,18 @@ OPTIONS
     family tree database directory, then it is opened and an interactive
     session is started.
     If *FILE* is a file format understood by Gramps, an empty family tree is
-    created whose name is based on the *FILE* name and the data is imported
+    created whose name is based on the *FILE* name, and the data is imported
     into it.
-    The rest of the options is ignored.
+    Any other options are ignored.
     This way of launching is suitable for using gramps as a handler for
     genealogical data in e.g. web browsers.
-    This invocation can accept any data format native to gramps, see below.
+    This invocation can accept any data format native to gramps; see below.
 
 **-f**, **--format**\ =\ *FORMAT*
-    Explicitly specify format of *FILE* given by preceding **-i**, or **-e**
+    Explicitly specify format of *FILE* given by preceding **-i** or **-e**
     option.
     If the **-f** option is not given for any *FILE*, the format of that file
-    is guessed according to its extension or MIME-type.
+    is guessed according to its extension or MIME type.
 
     Formats available for export are **gramps-xml** (guessed if *FILE* ends
     with `.gramps`), **gedcom** (guessed if *FILE* ends with `.ged`), or any
@@ -86,17 +86,17 @@ OPTIONS
 **-O**, **--open**\ =\ *DATABASE*
     Open *DATABASE* which must be an existing database directory or existing
     family tree name.
-    If no action, import or export options are given on the command line then
+    If no action, import, or export options are given on the command line, then
     an interactive session is started using that database.
 
 **-i**, **--import**\ =\ *FILE*
     Import data from *FILE*.
-    If you haven't specified a database, then an empty database is created for
-    you called Family Tree *x* (where *x* is an incrementing number).
+    If no database was specified, then an empty database is created
+    called Family Tree *x* (where *x* is an incrementing number).
 
     When more than one input file is given,
-    each has to be preceded by **-i** flag.
-    The files are imported in the specified order, i.e.
+    each has to be preceded by a **-i** flag.
+    The files are imported in the specified order, e.g.,
     **-i** *FILE1* **-i** *FILE2*
     and
     **-i** *FILE2* **-i** *FILE1*
@@ -108,7 +108,7 @@ OPTIONS
     the *FILE* is the name of the resulting file.
 
     When more than one output file is given,
-    each has to be preceded by **-e** flag.
+    each has to be preceded by a **-e** flag.
     The files are written one by one, in the specified order.
 
 **-a**, **--action**\ =\ *ACTION*
@@ -122,12 +122,13 @@ OPTIONS
     **-p** flag).
 
     The *OPTION-STRING* should satisfy the following conditions:
-    It must not contain any spaces.
-    If some arguments need to include spaces, the string should be enclosed
-    with quotation marks, i.e., follow the shell syntax.
-    Option string is a list of pairs with name and value (separated by the
-    equality sign).
-    The name and value pairs must be separated by commas.
+
+    - It should not contain any spaces.
+    - If some arguments need to include spaces, the string should be enclosed
+      with quotation marks, following shell syntax.
+    - The option string is a list of pairs with name and value (separated by an
+      equals sign).
+    - The name and value pairs must be separated by commas.
 
     Most of the report or tools options are specific for each report or tool.
     However, there are some common options.
@@ -147,56 +148,56 @@ OPTIONS
         *optionname*, as well as what are the acceptable types and values for
         this option.
 
-        Use the above options to find out everything about a given report.
+    Use the above options to find out everything about a given report.
 
-    When more than one output action is given, each has to be preceded by
+    When more than one output action is given, each has to be preceded by a
     **-a** flag.
     The actions are performed one by one, in the specified order.
 
 **-d**, **--debug**\ =\ *LOGGER_NAME*
-    Enables debug logs for development and testing.
+    Enable debug logs for development and testing.
     Look at the source code for details.
 
 **--version**
-    Prints the version number of gramps and then exits.
+    Print the version number of gramps and then exits.
 
 #########
 OPERATION
 #########
 
-If the first argument on the command line does not start with dash (i.e. no
+If the first argument on the command line does not start with dash (i.e., no
 flag), gramps will attempt to open the file with the name given by the first
-argument and start interactive session, ignoring the rest of the command line
+argument and start an interactive session, ignoring the rest of the command line
 arguments.
 
 If the **-O** flag is given, then gramps will try opening the supplied database
 and then work with that data, as instructed by the further command line
 parameters.
 
-With or without the **-O** flag, there could be multiple imports, exports, and
-actions specified further on the command line by using **-i**, **-e**, and
+With or without the **-O** flag, further imports, exports, and actions may be
+specified on the command line by using **-i**, **-e**, and
 **-a** flags.
 
 The order of **-i**, **-e**, or **-a** options does not matter.
-The actual order always is:
+The actual order they are processed always is:
 all imports (if any) → all actions (if any) → all exports (if any).
 But opening must always be first!
 
 If no **-O** or **-i** option is given,
 gramps will launch its main window and start the usual interactive session with
-the empty database, since there is no data to process, anyway.
+an empty database, since there is no data to process anyway.
 
 If no **-e** or **-a** options are given,
 gramps will launch its main window and start the usual interactive session with
-the database resulted from all imports.
-This database resides in the *import_db.grdb* under *~/.gramps/import*
+the database resulting from all imports.
+This database resides in the *import_db.grdb* under the *~/.gramps/import*
 directory.
 
-The error encountered during import, export, or action,
-will be either dumped to *stdout* (if these are exceptions handled by gramps)
+Any errors encountered during import, export, or action
+will be dumped either to *stdout* (if these are exceptions handled by gramps)
 or to *stderr* (if these are not handled).
 Use usual shell redirections of *stdout* and *stderr* to save messages and
-errors in files.
+errors to files.
 
 ########
 EXAMPLES
@@ -206,7 +207,7 @@ To open an existing family tree and import an xml file into it, one may type::
 
     gramps -O 'My Family Tree' -i ~/db3.gramps
 
-The above changes the opened family tree, to do the same, but import both in a
+The above changes the opened family tree. To do the same, but import both in a
 temporary family tree and start an interactive session, one may type::
 
     gramps -i 'My Family Tree' -i ~/db3.gramps
@@ -222,21 +223,22 @@ appropriate **-f** options::
     gramps -i file1.ged -f gedcom -i file2.tgz -f gramps-pkg \
     -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a check
 
-To record the database resulting from all imports, supply **-e** flag (use
+To record the database resulting from all imports, supply a **-e** flag (use
 **-f** if the filename does not allow gramps to guess the format)::
 
     gramps -i file1.ged -i file2.tgz -e ~/new-package -f gramps-pkg
 
-To import three databases and start interactive gramps session with the result::
+To import three databases and start an interactive gramps session with the
+result::
 
     gramps -i file1.ged -i file2.tgz -i ~/db3.gramps
 
 To run the Verify tool from the commandline and output the result to
-**stdout**::
+*stdout*::
 
     gramps -O 'My Family Tree' -a tool -p name= verify
 
-Finally, to start normal interactive session type::
+Finally, to start a normal interactive session type::
 
     gramps
 
@@ -247,12 +249,12 @@ ENVIRONMENT VARIABLES
 The program checks whether these environment variables are set:
 
 ``LANG``
-    describe, which language to use:
-    Ex.: for polish language this variable has to be set to `pl_PL.UTF-8`.
+    Describe which language to use.
+    E.g., for the Polish language this variable has to be set to `pl_PL.UTF-8`.
 
 ``GRAMPSHOME``
-    if set, force Gramps to use the specified directory to keep program
-    settings and databases there.
+    Force Gramps to use the specified directory to keep program
+    settings and databases in.
     By default, this variable is not set and gramps assumes that the folder
     with all databases and profile settings should be created within the user
     profile folder (described by environment variable *HOME* for Linux or
@@ -264,7 +266,7 @@ The program checks whether these environment variables are set:
     modification of the main program.
 
     In addition to generating direct printer output, report generators also
-    target other systems, such as *LibreOffice.org*, *AbiWord*, *HTML*, or
+    target other output formats, such as *LibreOffice*, *AbiWord*, *HTML*, or
     *LaTeX* to allow the users to modify the format to suit their needs.
 
 #####
@@ -297,7 +299,7 @@ Gramps project <xxx@gramps-project.org>
 DOCUMENTATION
 #############
 
-The user documentation is available through standard web browser in the form of
+The user documentation is available through a web browser in the form of the
 Gramps Manual.
 
 The developer documentation can be found on the
