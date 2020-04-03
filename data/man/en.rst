@@ -35,7 +35,7 @@ DESCRIPTION
 Gramps is a Free/OpenSource genealogy program.
 It is written in Python, using the GTK+/GNOME interface.
 Gramps should seem familiar to anyone who has used other genealogy programs
-before such as Family Tree Maker (TM), Personal Ancestral Files (TM),
+before such as Family Tree Maker™, Personal Ancestral Files™,
 or the GNU Geneweb.
 It supports importing of the ever popular GEDCOM format which is used world wide
 by almost all other genealogy software.
@@ -115,8 +115,8 @@ OPTIONS
     Perform *ACTION* on the imported data.
     This is done after all imports are successfully completed.
     Currently available actions are **summary** (same as
-    Reports->View->Summary), **check** (same as Tools->Database
-    Processing->Check and Repair), **report** (generates report), and tool
+    Reports→View→Summary), **check** (same as Tools→Database
+    Processing→Check and Repair), **report** (generates report), and tool
     (runs a plugin tool).
     Both **report** and **tool** need the *OPTION-STRING* supplied by the
     **-p** flag).
@@ -179,7 +179,7 @@ actions specified further on the command line by using **-i**, **-e**, and
 
 The order of **-i**, **-e**, or **-a** options does not matter.
 The actual order always is:
-all imports (if any) -> all actions (if any) -> all exports (if any).
+all imports (if any) → all actions (if any) → all exports (if any).
 But opening must always be first!
 
 If no **-O** or **-i** option is given,
