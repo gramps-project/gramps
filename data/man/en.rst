@@ -284,7 +284,7 @@ AUTHORS
 #######
 
 Donald Allingham <don@gramps-project.org>
-http://gramps-project.org/
+https://www.gramps-project.org/
 
 This man page was originally written by:
 Brandon L. Griffith <brandon@debian.org>
@@ -301,5 +301,5 @@ The user documentation is available through standard web browser in the form of
 Gramps Manual.
 
 The developer documentation can be found on the
-http://www.gramps-project.org/wiki/index.php?title=Portal:Developers
+https://www.gramps-project.org/wiki/index.php/Portal:Developers
 portal.
