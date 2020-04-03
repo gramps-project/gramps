@@ -839,6 +839,9 @@ class NavWebReport(Report):
                 name = ""
         if config.get('preferences.place-auto'):
             place_name = _pd.display_event(self._db, event)
+            rplace_name = _pd.display(self._db, place)
+            if place_name != rplace_name:
+                place_name = rplace_name
         else:
             place_name = place.get_title()
         if event:
