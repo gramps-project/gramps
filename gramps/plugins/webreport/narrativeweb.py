@@ -1891,7 +1891,7 @@ class NavWebOptions(MenuReportOptions):
             _("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(
             _("This allows you to set the maximum width "
-              "of the image shown on the media page. Set to 0 for no limit."))
+              "of the image shown on the media page."))
         addopt("maxinitialimagewidth", self.__maxinitialimagewidth)
 
         self.__maxinitialimageheight = NumberOption(
