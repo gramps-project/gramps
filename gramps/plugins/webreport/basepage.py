@@ -2421,9 +2421,10 @@ class BasePage: # pylint: disable=C1001
         @param: handle -- The family handle
         @param: url    -- url to be linked
         """
-        dummy_handle = handle
+        self.report.fam_link[handle] = url
         return Html("a", self._("Family Map"), href=url,
-                    title=self._("Family Map"), class_="familymap", inline=True)
+                    title=self._("Family Map"), class_="familymap",
+                    inline=True)
 
     def display_spouse(self, partner, family, place_lat_long):
         """

@@ -749,6 +749,9 @@ div.grampsstylednote p {
 a.familymap {
     display: block;
 }
+a.family_map {
+    margin-left: 15px;
+}
 
 /* Subsection : References
 ----------------------------------------------------- */

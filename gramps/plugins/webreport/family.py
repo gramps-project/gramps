@@ -49,7 +49,7 @@ import logging
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (EventType, Family)
+from gramps.gen.lib import (EventType, Family, Name)
 from gramps.gen.plug.report import Bibliography
 from gramps.plugins.lib.libhtml import Html
 
@@ -57,9 +57,11 @@ from gramps.plugins.lib.libhtml import Html
 # specific narrative web import
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
+from gramps.gen.display.name import displayer as _nd
 from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              alphabet_navigation, sort_people,
                                              primary_difference, first_letter,
+                                             html_escape,
                                              FULLCLEAR, get_index_letter)
 
 _ = glocale.translation.sgettext
@@ -381,6 +383,37 @@ class FamilyPages(BasePage):
                 self.display_attr_list(attrlist, attrtable)
                 relationshipdetail += attrsection
 
+            # for use in family map pages...
+            if self.report.options["familymappages"]:
+                name_format = self.report.options['name_format']
+                fhandle = mhandle = father = mother = None
+                relationshipdetail += Html("h4", _("Family map"), inline=True)
+                mapdetail = Html("br")
+                fhandle = family.get_father_handle()
+                for handle, dummy_url in self.report.fam_link.items():
+                    if fhandle == handle:
+                        father = self.r_db.get_person_from_handle(fhandle)
+                        break
+                if father:
+                    primary_name = father.get_primary_name()
+                    name = Name(primary_name)
+                    name.set_display_as(name_format)
+                    fname = html_escape(_nd.display_name(name))
+                    mapdetail += self.family_map_link_for_parent(fhandle, fname)
+                mapdetail += Html("br")
+                mhandle = family.get_mother_handle()
+                for handle, dummy_url in self.report.fam_link.items():
+                    if mhandle == handle:
+                        mother = self.r_db.get_person_from_handle(mhandle)
+                        break
+                if mother:
+                    primary_name = mother.get_primary_name()
+                    name = Name(primary_name)
+                    name.set_display_as(name_format)
+                    mname = html_escape(_nd.display_name(name))
+                    mapdetail += self.family_map_link_for_parent(mhandle, mname)
+                relationshipdetail += mapdetail
+
             # source references
             srcrefs = self.display_ind_sources(family)
             if srcrefs:
@@ -394,3 +427,15 @@ class FamilyPages(BasePage):
         # send page out for processing
         # and close the file
         self.xhtml_writer(familydetailpage, output_file, sio, ldatec)
+
+    def family_map_link_for_parent(self, handle, name):
+        """
+        Creates a link to the family map for the father or the mother
+
+        @param: handle -- The person handle
+        @param: name   -- The name for this person to display
+        """
+        url = self.report.fam_link[handle]
+        title = self._("Family Map for %s") % name
+        return Html("a", title, href=url,
+                    title=title, class_="family_map", inline=True)

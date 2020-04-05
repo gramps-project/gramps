@@ -270,6 +270,7 @@ class NavWebReport(Report):
         self.bkref_dict = None
         self.rel_class = None
         self.tab = None
+        self.fam_link = {}
         if self.options['securesite']:
             self.secure_mode = HTTPS
         else:
