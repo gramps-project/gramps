@@ -47,7 +47,7 @@ from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.place import displayer as _pd
 from gramps.plugins.webreport.common import (FULLCLEAR, _EVENTMAP, html_escape)
 from gramps.gen.lib import (Person, Family, Event, Place, Source, Repository,
-                            Media, Note, Citation)
+                            Media, Citation)
 from gramps.gen.lib.date import Date
 
 _ = glocale.translation.sgettext
@@ -84,13 +84,14 @@ class UpdatesPage(BasePage):
         # begin updates division
         with Html("div", class_="content", id="Updates") as section:
             outerwrapper += section
-            description = ("This page contains the last updated objects in the"
-                           " database in the last %(days)d days and for a "
-                           "maximum of %(nb)d objects per object type." % {
-                               'days' : self.days,
-                               'nb' : self.nbr
-                               }
-                          )
+            description = self._("This page contains the last updated objects "
+                                 "in the database in the last %(days)d days and"
+                                 " for a maximum of %(nb)d objects per object "
+                                 "type." % {
+                                     'days' : self.days,
+                                     'nb' : self.nbr
+                                     }
+                                )
             section += Html("p", description)
 
             header = self._("People")
