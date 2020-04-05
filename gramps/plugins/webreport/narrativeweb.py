@@ -193,10 +193,14 @@ class NavWebReport(Report):
 
         # Download Options Tab
         self.inc_download = self.options['incdownload']
-        self.dl_fname1 = self.options['down_fname1']
-        self.dl_descr1 = self.options['dl_descr1']
-        self.dl_fname2 = self.options['down_fname2']
-        self.dl_descr2 = self.options['dl_descr2']
+        self.nb_download = self.options['nbdownload']
+        self.dl_descr = {}
+        self.dl_fname = {}
+        for count in range(1, self.nb_download+1):
+            fnamex = 'down_fname%c' % str(count)
+            descrx = 'dl_descr%c' % str(count)
+            self.dl_fname[count] = self.options[fnamex]
+            self.dl_descr[count] = self.options[descrx]
 
         self.encoding = self.options['encoding']
 
@@ -1633,6 +1637,10 @@ class NavWebOptions(MenuReportOptions):
         self.__maxinitialimagewidth = None
         self.__citationreferents = None
         self.__incdownload = None
+        self.__max_download = 4 # Add 1 to this counter: In reality 3 downloads
+        self.__nbdownload = None
+        self.__dl_descr = {}
+        self.__down_fname = {}
         self.__placemappages = None
         self.__familymappages = None
         self.__stamenopts = None
@@ -1640,15 +1648,11 @@ class NavWebOptions(MenuReportOptions):
         self.__googlemapkey = None
         self.__ancestortree = None
         self.__css = None
-        self.__dl_descr1 = None
-        self.__dl_descr2 = None
-        self.__down_fname2 = None
         self.__gallery = None
         self.__updates = None
         self.__maxdays = None
         self.__maxupdates = None
         self.__unused = None
-        self.__down_fname1 = None
         self.__navigation = None
         self.__target_cal_uri = None
         self.__securesite = False
@@ -1995,29 +1999,29 @@ class NavWebOptions(MenuReportOptions):
         addopt("incdownload", self.__incdownload)
         self.__incdownload.connect('value-changed', self.__download_changed)
 
-        self.__down_fname1 = DestinationOption(
-            _("Download Filename"),
-            os.path.join(config.get('paths.website-directory'), ""))
-        self.__down_fname1.set_help(
-            _("File to be used for downloading of database"))
-        addopt("down_fname1", self.__down_fname1)
+        self.__nbdownload = NumberOption(_("How many downloads"),
+                                         2, 1, self.__max_download-1)
+        self.__nbdownload.set_help(_("The number of download files to include "
+                                     "in the download page"))
+        addopt("nbdownload", self.__nbdownload)
+        self.__nbdownload.connect('value-changed', self.__download_changed)
 
-        self.__dl_descr1 = StringOption(_("Description for download"),
-                                        _('Smith Family Tree'))
-        self.__dl_descr1.set_help(_('Give a description for this file.'))
-        addopt("dl_descr1", self.__dl_descr1)
+        for count in range(1, self.__max_download):
+            fnamex = 'down_fname%c' % str(count)
+            descrx = 'dl_descr%c' % str(count)
+            wdir = os.path.join(config.get('paths.website-directory'), "")
+            __down_fname = DestinationOption(_("Download Filename #%c") %
+                                             str(count), wdir)
+            __down_fname.set_help(
+                _("File to be used for downloading of database"))
+            addopt(fnamex, __down_fname)
+            self.__down_fname[count] = __down_fname
 
-        self.__down_fname2 = DestinationOption(
-            _("Download Filename"),
-            os.path.join(config.get('paths.website-directory'), ""))
-        self.__down_fname2.set_help(
-            _("File to be used for downloading of database"))
-        addopt("down_fname2", self.__down_fname2)
-
-        self.__dl_descr2 = StringOption(_("Description for download"),
-                                        _('Johnson Family Tree'))
-        self.__dl_descr2.set_help(_('Give a description for this file.'))
-        addopt("dl_descr2", self.__dl_descr2)
+            __dl_descr = StringOption(_("Description for download"),
+                                      _('Family Tree #%c') % str(count))
+            __dl_descr.set_help(_('Give a description for this file.'))
+            addopt(descrx, __dl_descr)
+            self.__dl_descr[count] = __dl_descr
 
         self.__download_changed()
 
@@ -2377,15 +2381,23 @@ class NavWebOptions(MenuReportOptions):
         Handles the changing nature of include download page
         """
         if self.__incdownload.get_value():
-            self.__down_fname1.set_available(True)
-            self.__dl_descr1.set_available(True)
-            self.__down_fname2.set_available(True)
-            self.__dl_descr2.set_available(True)
+            self.__nbdownload.set_available(True)
+            for count in range(1, self.__max_download):
+                if count <= self.__nbdownload.get_value():
+                    self.__down_fname[count].set_available(True)
+                    self.__dl_descr[count].set_available(True)
+                else:
+                    self.__down_fname[count].set_available(False)
+                    self.__dl_descr[count].set_available(False)
         else:
-            self.__down_fname1.set_available(False)
-            self.__dl_descr1.set_available(False)
-            self.__down_fname2.set_available(False)
-            self.__dl_descr2.set_available(False)
+            self.__nbdownload.set_available(False)
+            for count in range(1, self.__max_download):
+                if count <= self.__nbdownload.get_value():
+                    self.__down_fname[count].set_available(False)
+                    self.__dl_descr[count].set_available(False)
+                else:
+                    self.__down_fname[count].set_available(False)
+                    self.__dl_descr[count].set_available(False)
 
     def __placemap_options(self):
         """
