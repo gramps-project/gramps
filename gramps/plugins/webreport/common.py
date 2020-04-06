@@ -421,14 +421,14 @@ def sort_people(dbase, handle_list, rlocale=glocale):
 
     return sorted_lists
 
-def sort_places(dbase, handle_list, handle_places, rlocale=glocale):
+def sort_places(dbase, handle_list, rlocale=glocale):
     """
     will sort the database places
     """
     pname_sub = defaultdict(list)
 
     for place_name in handle_list.keys():
-        (hdle, pname, ig_id, event) = handle_list[place_name]
+        (hdle, pname, dummy_id, event) = handle_list[place_name]
         place = dbase.get_place_from_handle(hdle)
         pname = _pd.display(dbase, place)
         apname = _pd.display_event(dbase, event)

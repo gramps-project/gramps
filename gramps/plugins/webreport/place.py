@@ -62,7 +62,7 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (first_letter,
                                              alphabet_navigation, GOOGLE_MAPS,
-                                             primary_difference, _KEYPLACE,
+                                             primary_difference,
                                              get_index_letter, FULLCLEAR,
                                              MARKER_PATH, OPENLAYER,
                                              OSM_MARKERS, STAMEN_MARKERS,
@@ -128,17 +128,15 @@ class PlacePages(BasePage):
                 index += 1
                 self.placepage(self.report, title, p_handle[0], place_name)
             step()
-            self.placelistpage(self.report, title,
-                               self.report.obj_dict[Place].keys())
+            self.placelistpage(self.report, title)
 
-    def placelistpage(self, report, title, place_handles):
+    def placelistpage(self, report, title):
         """
         Create a place index
 
         @param: report        -- The instance of the main report class for
                                  this report
         @param: title         -- Is the title of the web page
-        @param: place_handles -- The handle for the place to add
         """
         BasePage.__init__(self, report, title)
 
@@ -203,7 +201,6 @@ class PlacePages(BasePage):
 
                 handle_list = sort_places(self.r_db,
                                           self.report.obj_dict[PlaceName],
-                                          self.report.obj_dict[Place],
                                           self.rlocale)
                 first = True
 
@@ -297,7 +294,7 @@ class PlacePages(BasePage):
         """
         place = report.database.get_place_from_handle(place_handle)
         if not place:
-            return
+            return None
         BasePage.__init__(self, report, title, place.get_gramps_id())
         self.bibli = Bibliography()
         ldatec = place.get_change_time()
@@ -489,11 +486,10 @@ class PlacePages(BasePage):
         # and close the file
         if place_name == apname: # store only the primary named page
             if place in self.report.visited: # only the first time
-                self.report.close_file(output_file, sio, date)
+                self.report.close_file(output_file, sio, None)
                 return None
             self.report.visited.append(place)
             self.xhtml_writer(placepage, output_file, sio, ldatec)
-
 
 def get_first_letters(place_list, rlocale=glocale):
     """
@@ -521,4 +517,3 @@ def get_first_letters(place_list, rlocale=glocale):
 
     # return menu set letters for alphabet_navigation
     return index_list
-
