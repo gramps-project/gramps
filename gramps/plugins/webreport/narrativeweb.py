@@ -63,7 +63,7 @@ from decimal import getcontext
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (EventType, Name,
                             Person,
-                            Family, Event, Place, Source,
+                            Family, Event, Place, PlaceName, Source,
                             Citation, Media, Repository, Note, Tag)
 from gramps.gen.plug.menu import (PersonOption, NumberOption, StringOption,
                                   BooleanOption, EnumeratedListOption,
@@ -524,7 +524,7 @@ class NavWebReport(Report):
         and the handle for the object that refers to the 'key' object.
         """
         _obj_class_list = (Person, Family, Event, Place, Source, Citation,
-                           Media, Repository, Note, Tag)
+                           Media, Repository, Note, Tag, PlaceName)
 
         # setup a dictionary of the required structure
         self.obj_dict = defaultdict(lambda: defaultdict(set))
@@ -881,8 +881,10 @@ class NavWebReport(Report):
                 name = ""
         if config.get('preferences.place-auto'):
             place_name = _pd.display_event(self._db, event)
+            pplace_name = _pd.display(self._db, place)
         else:
             place_name = place.get_title()
+            pplace_name = place_name
         if event:
             if self.reference_sort:
                 role_or_date = name
@@ -899,6 +901,11 @@ class NavWebReport(Report):
                                            False) + self.ext
         self.obj_dict[Place][place_handle] = (place_fname, place_name,
                                               place.gramps_id, event)
+        self.obj_dict[PlaceName][place_name] = (place_handle, place_name,
+                                                place.gramps_id, event)
+        if place_name != pplace_name:
+            self.obj_dict[PlaceName][pplace_name] = (place_handle, pplace_name,
+                                                     place.gramps_id, event)
         self.bkref_dict[Place][place_handle].add((bkref_class, bkref_handle,
                                                   role_or_date
                                                  ))
