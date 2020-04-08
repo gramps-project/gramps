@@ -367,10 +367,10 @@ class PlacePages(BasePage):
                                  media="screen", rel="stylesheet")
 
                     # add MapService specific javascript code
-                    src_js = GOOGLE_MAPS + "api/js?sensor=false"
+                    src_js = GOOGLE_MAPS + "api/js"
                     if self.mapservice == "Google":
                         if self.googlemapkey:
-                            src_js += "&key=" + self.googlemapkey
+                            src_js += "?key=" + self.googlemapkey
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
                     else:

@@ -705,9 +705,9 @@ class PersonPages(BasePage):
 
         # add MapService specific javascript code
         if self.mapservice == "Google":
-            src_js = GOOGLE_MAPS + "api/js?sensor=false"
+            src_js = GOOGLE_MAPS + "api/js"
             if self.googlemapkey:
-                src_js += "&key=" + self.googlemapkey
+                src_js += "?key=" + self.googlemapkey
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else:
