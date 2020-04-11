@@ -258,13 +258,6 @@ class GVOptions:
                            "between columns."))
         menu.add_option(category, "ranksep", ranksep)
 
-        use_subgraphs = BooleanOption(_('Use subgraphs'), True)
-        use_subgraphs.set_help(_("Subgraphs can help Graphviz position "
-                                 "spouses together, but with non-trivial "
-                                 "graphs will result in longer lines and "
-                                 "larger graphs."))
-        menu.add_option(category, "usesubgraphs", use_subgraphs)
-
         ################################
         category = _("Note")
         ################################
@@ -450,7 +443,6 @@ class GVDocBase(BaseDoc, GVDoc):
         self.ranksep = get_option('ranksep').get_value()
         self.ratio = get_option('ratio').get_value()
         self.vpages = get_option('v_pages').get_value()
-        self.usesubgraphs = get_option('usesubgraphs').get_value()
         self.spline = get_option('spline').get_value()
         self.node_ports = get_option('node_ports').get_value()
 

@@ -181,6 +181,13 @@ class FamilyLinesOptions(MenuReportOptions):
 
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
+        use_subgraphs = BooleanOption(_('Use subgraphs'), True)
+        use_subgraphs.set_help(_("Subgraphs can help Graphviz position "
+                                 "spouses together, but with non-trivial "
+                                 "graphs will result in longer lines and "
+                                 "larger graphs."))
+        add_option("usesubgraphs", use_subgraphs)
+
         # --------------------------------
         add_option = partial(menu.add_option, _('People of Interest'))
         # --------------------------------
