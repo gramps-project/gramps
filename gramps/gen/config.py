@@ -157,7 +157,7 @@ register('behavior.translator-needed', True)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
-register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps51")
+register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps52")
 
 register('database.backend', 'sqlite')
 register('database.compress-backup', True)
