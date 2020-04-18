@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 17:20+0100\n"
-"PO-Revision-Date: 2020-04-18 12:56+0200\n"
+"POT-Creation-Date: 2020-04-18 12:57+0200\n"
+"PO-Revision-Date: 2020-04-18 13:05+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -1091,14 +1091,14 @@ msgstr "cap"
 msgid ":"
 msgstr ":"
 
-#: ../gramps/gen/datehandler/__init__.py:83
+#: ../gramps/gen/datehandler/__init__.py:88
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr ""
 "L'analitzador de dates per a '%s' no està disponible, s'utilitza el "
 "predeterminat"
 
-#: ../gramps/gen/datehandler/__init__.py:100
+#: ../gramps/gen/datehandler/__init__.py:105
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
@@ -5214,8 +5214,8 @@ msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
-"El lloc que ha seleccionat conté coordenades errònies. Si us plau, executeu"
-" l'eina 'netejar dades d'entrada'"
+"El lloc que ha seleccionat conté coordenades errònies. Si us plau, executeu "
+"l'eina 'netejar dades d'entrada'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -6221,7 +6221,7 @@ msgid "Values"
 msgstr "Valors"
 
 #: ../gramps/gen/lib/date.py:719 ../gramps/gen/lib/placename.py:99
-#: ../gramps/gen/lib/styledtext.py:321
+#: ../gramps/gen/lib/styledtext.py:322
 #: ../gramps/gen/plug/report/_constants.py:54 ../gramps/gui/clipboard.py:613
 #: ../gramps/gui/clipboard.py:621 ../gramps/gui/configure.py:1396
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
@@ -7894,11 +7894,11 @@ msgstr "Làpida"
 msgid "Video"
 msgstr "Vídeo"
 
-#: ../gramps/gen/lib/styledtext.py:317
+#: ../gramps/gen/lib/styledtext.py:318
 msgid "Styled Text"
 msgstr "Text amb estil"
 
-#: ../gramps/gen/lib/styledtext.py:324
+#: ../gramps/gen/lib/styledtext.py:325
 msgid "Styled Text Tags"
 msgstr "Etiquetes del text amb estil"
 
@@ -10783,8 +10783,8 @@ msgstr "Format de lloc (títol automàtic de lloc)"
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
-"Habilita la generació automàtica de títols de llocs utilitzant el format"
-" especificat."
+"Habilita la generació automàtica de títols de llocs utilitzant el format "
+"especificat."
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -10842,8 +10842,8 @@ msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
 msgstr ""
-"Mostra o amaga el text del costat dels botons de navegació (Persones,"
-" Famílies, Esdeveniments...).\n"
+"Mostra o amaga el text del costat dels botons de navegació (Persones, "
+"Famílies, Esdeveniments...).\n"
 "(requereix tornar a engegar el Gramps perquè s'apliqui)."
 
 #: ../gramps/gui/configure.py:1349
@@ -11111,7 +11111,8 @@ msgstr "actualitza"
 #: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
 msgstr ""
-"Opcions de base de dades de l'arbre genealògic i gestió de còpies de seguretat"
+"Opcions de base de dades de l'arbre genealògic i gestió de còpies de "
+"seguretat"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
@@ -11138,8 +11139,8 @@ msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"No obrir el diàleg per escollir l'arbre genealògic a carregar en engegar,"
-" simplement carregar l'últim que s'ha utilitzat."
+"No obrir el diàleg per escollir l'arbre genealògic a carregar en engegar, "
+"simplement carregar l'últim que s'ha utilitzat."
 
 #: ../gramps/gui/configure.py:1767
 msgid "Backup path"
@@ -11152,8 +11153,8 @@ msgstr "Fer còpia de seguretat en sortir"
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
-"En sortir , fer còpia de seguretat del vostre arbre genealògic a la ruta de"
-" còpia de seguretat especificada més amunt."
+"En sortir , fer còpia de seguretat del vostre arbre genealògic a la ruta de "
+"còpia de seguretat especificada més amunt."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -11250,20 +11251,20 @@ msgid ""
 "If you select the \"use symbols\" checkbox, Gramps will use the selected "
 "font if it exists."
 msgstr ""
-"Aquesta pestanya us dona la possibilitat d'utilitzar un tipus de lletra que"
-" pugui mostrar tots els símbols genealògics.\n"
+"Aquesta pestanya us dona la possibilitat d'utilitzar un tipus de lletra que "
+"pugui mostrar tots els símbols genealògics.\n"
 "\n"
-"Si marqueu la casella de verificació \"utilitzar símbols\", Gramps utilitzarà"
-" el tipus de lletra seleccionat si existeix."
+"Si marqueu la casella de verificació \"utilitzar símbols\", Gramps "
+"utilitzarà el tipus de lletra seleccionat si existeix."
 
 #: ../gramps/gui/configure.py:1953
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
-"Això pot ser útil si voleu afegir símbols fonètics en una nota per mostrar"
-" com es pronuncia un nom o si es barregen múltiples llengües com el grec i el"
-" rus."
+"Això pot ser útil si voleu afegir símbols fonètics en una nota per mostrar "
+"com es pronuncia un nom o si es barregen múltiples llengües com el grec i el "
+"rus."
 
 #: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
@@ -11275,8 +11276,8 @@ msgid ""
 "before you can continue (10 minutes or more). \n"
 "If you cancel the process, nothing will be changed."
 msgstr ""
-"Vigileu, si cliqueu al botó \"Provar de trobar\" pot trigar una estona abans"
-" no pugueu continuar (10 minuts o més).\n"
+"Vigileu, si cliqueu al botó \"Provar de trobar\" pot trigar una estona abans "
+"no pugueu continuar (10 minuts o més).\n"
 "Si cancel·leu el procés, no es modificarà res."
 
 #: ../gramps/gui/configure.py:1975
@@ -11312,8 +11313,8 @@ msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
 msgstr ""
-"No puc seleccionar tipus de lletra genealògics. Si us plau, instal·leu el"
-" mòdul fontconfig per a python 3."
+"No puc seleccionar tipus de lletra genealògics. Si us plau, instal·leu el "
+"mòdul fontconfig per a python 3."
 
 #: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
@@ -11328,8 +11329,8 @@ msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
 msgstr ""
-"Al vostre sistema no hi ha cap tipus de lletra amb símbols genealògics."
-" Gramps no podrà utilitzar símbols."
+"Al vostre sistema no hi ha cap tipus de lletra amb símbols genealògics. "
+"Gramps no podrà utilitzar símbols."
 
 #: ../gramps/gui/configure.py:2155
 msgid "What you will see"
@@ -24096,8 +24097,8 @@ msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
-"Text de l'atribució de la font "
-"(Text, Nom de fitxer d'importació & Data (de Sistema))."
+"Text de l'atribució de la font (Text, Nom de fitxer d'importació & Data (de "
+"Sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade.h:12
 msgid "Citation reference."
@@ -29150,13 +29151,42 @@ msgstr "El mapa"
 msgid "Select tile cache directory for offline mode"
 msgstr "Selecciona el directori cau per les caselles per al mode fora de línia"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:138
+#: ../gramps/plugins/lib/maps/osmgps.py:139
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "No s'ha pogut crear el directori de reserva de caselles %s"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:161
-#: ../gramps/plugins/lib/maps/osmgps.py:226
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
+"Heu de verificar i modificar la reserva de caselles\n"
+"...\n"
+"[geography\n"
+"...\n"
+"path='camí/incorrecte'\n"
+"...\n"
+"al fitxer gramps.ini:\n"
+"%s\n"
+"\n"
+"Abans de canviar el fitxer gramps.ini, heu de tancar Gramps\n"
+"\n"
+"Els següents errors seran normals"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:174
+#: ../gramps/plugins/lib/maps/osmgps.py:239
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "No s'ha pogut crear el directori de reserva de caselles per a '%s'."
@@ -33031,8 +33061,8 @@ msgid ""
 "in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Cercar espais al principi i/o al final per a persones i llocs. Cercar comes"
-" en camps de coordenades.\n"
+"Cercar espais al principi i/o al final per a persones i llocs. Cercar comes "
+"en camps de coordenades.\n"
 "Feu doble clic en una fila per editar-ne el contingut."
 
 #: ../gramps/plugins/tool/removespaces.py:113
@@ -34308,10 +34338,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Feu clic dret al mapa i seleccioneu 'mostrar tots els esdeveniments' per"
-" mostrar tots els "
-"esdeveniments coneguts amb coordenades. Podeu utilitzar la història per"
-" navegar pel mapa. Podeu utilitzar el filtrat."
+"Feu clic dret al mapa i seleccioneu 'mostrar tots els esdeveniments' per "
+"mostrar tots els esdeveniments coneguts amb coordenades. Podeu utilitzar la "
+"història per navegar pel mapa. Podeu utilitzar el filtrat."
 
 #: ../gramps/plugins/view/geoevents.py:408
 #: ../gramps/plugins/view/geoevents.py:440
@@ -35709,8 +35738,8 @@ msgstr "Ordenar les referències de lloc bé per data o bé per nom"
 #: ../gramps/plugins/webreport/narrativeweb.py:1796
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
-"Ordenar les referències de lloc per data o per nom. Si no diu res vol dir que"
-" es fa per data."
+"Ordenar les referències de lloc per data o per nom. Si no diu res vol dir "
+"que es fa per data."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1800
 msgid "Graph generations"
@@ -35729,8 +35758,8 @@ msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
-"Incloure notes de narració després mateix del nom, gènere i edat de defunció"
-" (predeterminat) o incloure'ls abans mateix dels atributs."
+"Incloure notes de narració després mateix del nom, gènere i edat de defunció "
+"(predeterminat) o incloure'ls abans mateix dels atributs."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1818
 msgid "Page Generation"
@@ -35854,10 +35883,10 @@ msgstr "Amplada màxima d'imatge inicial"
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
-"page. Set to 0 for no limit."
+"page."
 msgstr ""
-"Això li permet de fixar l'amplada màxima de la imatge que es mostra a la "
-"pàgina d'audiovisuals. Deixar a 0 perquè no hi hagi límit."
+"Això us permet de fixar l'amplada màxima de la imatge que es mostra a la "
+"pàgina d'audiovisuals."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1898
 msgid "Max height of initial image"
@@ -36646,9 +36675,9 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"Mostrar les dades només després d'aquest any. Per defecte és l'any actual -"
-" 'màxima edat probablement viu' que està definit a la pestanya de"
-" preferències de dates."
+"Mostrar les dades només després d'aquest any. Per defecte és l'any actual - "
+"'màxima edat probablement viu' que està definit a la pestanya de "
+"preferències de dates."
 
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Link prefix"
