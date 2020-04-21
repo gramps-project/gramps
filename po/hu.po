@@ -6,22 +6,22 @@
 # Egyeki Gergely <egeri@elte.hu>, 2003, 2004.
 # Arpad Horvath <horvath.arpad@szgti.bmf.hu>, 2006.
 # Kolesár András <translation@kolesar.hu>, 2009.
-# Nemeséri Lajos <nemeseril@gmail.com>, 2011-2019.
+# Nemeséri Lajos <nemeseril@gmail.com>, 2011-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2019-07-10 15:32+0200\n"
+"POT-Creation-Date: 2019-10-17 11:43+1100\n"
+"PO-Revision-Date: 2020-04-21 19:19+0200\n"
 "Last-Translator: Nemeséri Lajos <nemeseril@gmail.com>\n"
-"Language-Team: Hungarian <x@gmail.com>\n"
+"Language-Team: Hungarian <translation-team.hu>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 3.32.1\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -99,199 +99,195 @@ msgstr "GeneWeb"
 msgid "GeneWeb source file"
 msgstr "GeneWeb forrásfájl"
 
-#: ../data/holidays.xml.in.h:3
+#: ../data/holidays.xml.in.h:1
 msgid "Bulgaria"
 msgstr "Bulgária"
 
-#: ../data/holidays.xml.in.h:52
+#: ../data/holidays.xml.in.h:2
 msgid "Canada"
 msgstr "Kanada"
 
-#: ../data/holidays.xml.in.h:84
-msgid "Chile"
-msgstr "Chile"
-
-#: ../data/holidays.xml.in.h:107
-msgid "China"
-msgstr "Kína"
-
-#: ../data/holidays.xml.in.h:110
-msgid "Croatia"
-msgstr "Horvátország"
-
-#: ../data/holidays.xml.in.h:126
+#: ../data/holidays.xml.in.h:3
 msgid "Czech Republic"
 msgstr "Cseh Köztársaság"
 
-#: ../data/holidays.xml.in.h:141
+#: ../data/holidays.xml.in.h:4
+msgid "Chile"
+msgstr "Chile"
+
+#: ../data/holidays.xml.in.h:5
+msgid "China"
+msgstr "Kína"
+
+#: ../data/holidays.xml.in.h:6
+msgid "Croatia"
+msgstr "Horvátország"
+
+#: ../data/holidays.xml.in.h:7
 msgid "England"
 msgstr "Anglia"
 
-#: ../data/holidays.xml.in.h:171
+#: ../data/holidays.xml.in.h:8
 msgid "Finland"
 msgstr "Finnország"
 
-#: ../data/holidays.xml.in.h:265
+#: ../data/holidays.xml.in.h:9
 msgid "France"
 msgstr "Franciaország"
 
-#: ../data/holidays.xml.in.h:301
+#: ../data/holidays.xml.in.h:10
 msgid "Germany"
 msgstr "Németország"
 
-#: ../data/holidays.xml.in.h:318
+#: ../data/holidays.xml.in.h:11
 msgid "Japan"
 msgstr "Japán"
 
-#: ../data/holidays.xml.in.h:341
-msgid "Jewish Holidays"
-msgstr "Zsidó ünnepek"
-
-#: ../data/holidays.xml.in.h:342
-msgid "Purim"
-msgstr "Purim"
-
-#: ../data/holidays.xml.in.h:343
-msgid "Passover"
-msgstr "Pészah"
-
-#: ../data/holidays.xml.in.h:344
-msgid "2 of Passover"
-msgstr "Pészah 2"
-
-#: ../data/holidays.xml.in.h:345
-msgid "3 of Passover"
-msgstr "Pészah 3"
-
-#: ../data/holidays.xml.in.h:346
-msgid "4 of Passover"
-msgstr "Pészah 4"
-
-#: ../data/holidays.xml.in.h:347
-msgid "5 of Passover"
-msgstr "Pészah 5"
-
-#: ../data/holidays.xml.in.h:348
-msgid "6 of Passover"
-msgstr "Pészah 6"
-
-#: ../data/holidays.xml.in.h:349
-msgid "7 of Passover"
-msgstr "Pészah 7"
-
-#: ../data/holidays.xml.in.h:350
-msgid "Shavuot"
-msgstr "Sávuót"
-
-#: ../data/holidays.xml.in.h:351
-msgid "Rosh Ha'Shana"
-msgstr "Rós hásáná"
-
-#: ../data/holidays.xml.in.h:352
-msgid "Rosh Ha'Shana 2"
-msgstr "Rós hásáná 2"
-
-#: ../data/holidays.xml.in.h:353
-msgid "Yom Kippur"
-msgstr "Jóm kippur"
-
-#: ../data/holidays.xml.in.h:354
-msgid "Sukot"
-msgstr "Szukkót"
-
-#: ../data/holidays.xml.in.h:355
-msgid "2 of Sukot"
-msgstr "Szukkót 2"
-
-#: ../data/holidays.xml.in.h:356
-msgid "3 of Sukot"
-msgstr "Szukkót 3"
-
-#: ../data/holidays.xml.in.h:357
-msgid "4 of Sukot"
-msgstr "Szukkót 4"
-
-#: ../data/holidays.xml.in.h:358
-msgid "5 of Sukot"
-msgstr "Szukkót 5"
-
-#: ../data/holidays.xml.in.h:359
-msgid "6 of Sukot"
-msgstr "Szukkót 6"
-
-#: ../data/holidays.xml.in.h:360
-msgid "7 of Sukot"
-msgstr "Szukkót 7"
-
-#: ../data/holidays.xml.in.h:361
-msgid "Simhat Tora"
-msgstr "Szimchat Tórá"
-
-#: ../data/holidays.xml.in.h:362
-msgid "Hanuka"
-msgstr "Hanukka"
-
-#: ../data/holidays.xml.in.h:363
-msgid "2 of Hanuka"
-msgstr "Hanukka 2"
-
-#: ../data/holidays.xml.in.h:364
-msgid "3 of Hanuka"
-msgstr "Hanukka 3"
-
-#: ../data/holidays.xml.in.h:365
-msgid "4 of Hanuka"
-msgstr "Hanukka 4"
-
-#: ../data/holidays.xml.in.h:366
-msgid "5 of Hanuka"
-msgstr "Hanukka 5"
-
-#: ../data/holidays.xml.in.h:367
-msgid "6 of Hanuka"
-msgstr "Hanukka 6"
-
-#: ../data/holidays.xml.in.h:368
-msgid "7 of Hanuka"
-msgstr "Hanukka 7"
-
-#: ../data/holidays.xml.in.h:369
-msgid "8 of Hanuka"
-msgstr "Hanukka 8"
-
-#: ../data/holidays.xml.in.h:371
-msgid "New Zealand"
-msgstr "Új-Zéland"
-
-#: ../data/holidays.xml.in.h:387
-msgid "Russia"
-msgstr "Oroszország"
-
-#: ../data/holidays.xml.in.h:400
-msgid "Serbia"
-msgstr "Szerbia"
-
-#: ../data/holidays.xml.in.h:415
-msgid "Serbia (Latin)"
-msgstr "Szerbia (latin)"
-
-#: ../data/holidays.xml.in.h:430
+#: ../data/holidays.xml.in.h:12
 msgid "Slovakia"
 msgstr "Szlovákia"
 
-#. Make upper case of translated country so string search works later
-#: ../data/holidays.xml.in.h:447
+#. Make upper case of translaed country so string search works later
+#: ../data/holidays.xml.in.h:13
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
 msgstr "Svédország"
 
-#: ../data/holidays.xml.in.h:474
+#: ../data/holidays.xml.in.h:14
+msgid "United States of America"
+msgstr "Amerikai Egyesült államok"
+
+#: ../data/holidays.xml.in.h:15
+msgid "Jewish Holidays"
+msgstr "Zsidó ünnepek"
+
+#: ../data/holidays.xml.in.h:16
+msgid "Purim"
+msgstr "Purim"
+
+#: ../data/holidays.xml.in.h:17
+msgid "Passover"
+msgstr "Pészah"
+
+#: ../data/holidays.xml.in.h:18
+msgid "2 of Passover"
+msgstr "Pészah 2"
+
+#: ../data/holidays.xml.in.h:19
+msgid "3 of Passover"
+msgstr "Pészah 3"
+
+#: ../data/holidays.xml.in.h:20
+msgid "4 of Passover"
+msgstr "Pészah 4"
+
+#: ../data/holidays.xml.in.h:21
+msgid "5 of Passover"
+msgstr "Pészah 5"
+
+#: ../data/holidays.xml.in.h:22
+msgid "6 of Passover"
+msgstr "Pészah 6"
+
+#: ../data/holidays.xml.in.h:23
+msgid "7 of Passover"
+msgstr "Pészah 7"
+
+#: ../data/holidays.xml.in.h:24
+msgid "Shavuot"
+msgstr "Sávuót"
+
+#: ../data/holidays.xml.in.h:25
+msgid "Rosh Ha'Shana"
+msgstr "Rós hásáná"
+
+#: ../data/holidays.xml.in.h:26
+msgid "Rosh Ha'Shana 2"
+msgstr "Rós hásáná 2"
+
+#: ../data/holidays.xml.in.h:27
+msgid "Yom Kippur"
+msgstr "Jóm kippur"
+
+#: ../data/holidays.xml.in.h:28
+msgid "Sukot"
+msgstr "Szukkót"
+
+#: ../data/holidays.xml.in.h:29
+msgid "2 of Sukot"
+msgstr "Szukkót 2"
+
+#: ../data/holidays.xml.in.h:30
+msgid "3 of Sukot"
+msgstr "Szukkót 3"
+
+#: ../data/holidays.xml.in.h:31
+msgid "4 of Sukot"
+msgstr "Szukkót 4"
+
+#: ../data/holidays.xml.in.h:32
+msgid "5 of Sukot"
+msgstr "Szukkót 5"
+
+#: ../data/holidays.xml.in.h:33
+msgid "6 of Sukot"
+msgstr "Szukkót 6"
+
+#: ../data/holidays.xml.in.h:34
+msgid "7 of Sukot"
+msgstr "Szukkót 7"
+
+#: ../data/holidays.xml.in.h:35
+msgid "Simhat Tora"
+msgstr "Szimchat Tórá"
+
+#: ../data/holidays.xml.in.h:36
+msgid "Hanuka"
+msgstr "Hanukka"
+
+#: ../data/holidays.xml.in.h:37
+msgid "2 of Hanuka"
+msgstr "Hanukka 2"
+
+#: ../data/holidays.xml.in.h:38
+msgid "3 of Hanuka"
+msgstr "Hanukka 3"
+
+#: ../data/holidays.xml.in.h:39
+msgid "4 of Hanuka"
+msgstr "Hanukka 4"
+
+#: ../data/holidays.xml.in.h:40
+msgid "5 of Hanuka"
+msgstr "Hanukka 5"
+
+#: ../data/holidays.xml.in.h:41
+msgid "6 of Hanuka"
+msgstr "Hanukka 6"
+
+#: ../data/holidays.xml.in.h:42
+msgid "7 of Hanuka"
+msgstr "Hanukka 7"
+
+#: ../data/holidays.xml.in.h:43
+msgid "8 of Hanuka"
+msgstr "Hanukka 8"
+
+#: ../data/holidays.xml.in.h:44
+msgid "New Zealand"
+msgstr "Új-Zéland"
+
+#: ../data/holidays.xml.in.h:45
 msgid "Ukraine"
 msgstr "Ukrajna"
 
-#: ../data/holidays.xml.in.h:501
-msgid "United States of America"
-msgstr "Amerikai Egyesült államok"
+#: ../data/holidays.xml.in.h:46
+msgid "Serbia"
+msgstr "Szerbia"
+
+#: ../data/holidays.xml.in.h:47
+msgid "Serbia (Latin)"
+msgstr "Szerbia (latin)"
 
 #: ../data/tips.xml.in.h:1
 msgid ""
@@ -302,9 +298,9 @@ msgid ""
 "Editor."
 msgstr ""
 "<b>Munka a dátumokkal</b><br/>Megadhat dátum intervallumokat is a következő "
-"formátumban: &quot;2000 január 4 és 2003 március 20 között&quot;. Jelölheti "
-"a dátum és esemény megbízhatóságát is, és hét különböző naptár közül "
-"választhat. Próbálja ki a dátum mező melletti gombot az Esemény "
+"formátumban: &quot;2000. január 4. és 2003. március 20. között&quot;. "
+"Jelölheti a dátum és esemény megbízhatóságát is, és hét különböző naptár "
+"közül választhat. Próbálja ki a dátum mező melletti gombot az Esemény "
 "szerkesztőben."
 
 #: ../data/tips.xml.in.h:2
@@ -421,8 +417,8 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Az aktív személy megváltoztatása</b><br/>A nézetekben az aktív személy "
-"megváltoztatása nagyon könnyű. A Kapcsolat nézetben csak kattintson bárkire. "
-"A Származás nézetben kattintson kétszer a személyre, vagy jobb kattintással "
+"megváltoztatása könnyű. A Kapcsolat nézetben csak kattintson bárkire. A "
+"Származás nézetben kattintson kétszer a személyre, vagy jobb kattintással "
 "válasszon bárkit annak házastársai, testvérei, gyermekei, vagy szülei közül."
 
 #: ../data/tips.xml.in.h:11
@@ -921,7 +917,7 @@ msgid ""
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
 msgstr ""
-"<b>Bizalmasság a GRAMPS-ban</b><br/>A GRAMPS segítséget nyújt abban, hogy a "
+"<b>Magánélet a GRAMPS-ban</b><br/>A GRAMPS segítséget nyújt abban, hogy a "
 "személyes információk biztonságban legyenek, ha bizalmasnak jelöli azokat. "
 "Ezek az adatok nem jelennek meg a jelentésekben és az adatok exportálásakor. "
 "Nézze a lakat jelet, ami megkülönbözteti a bizalmas adatokat a nyilvánostól."
@@ -962,8 +958,8 @@ msgid ""
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"<b>összesítőkönyvek</b><br/>Az összesítőkönyv az &quot;összesítők &gt; "
-"Könyvek &gt; összesítőkönyv...&quot; érhető el, és lehetővé önnek, hogy több "
+"<b>Összesítőkönyvek</b><br/>Az összesítőkönyv az &quot;Összesítők &gt; "
+"Könyvek &gt; Összesítőkönyv...&quot; érhető el, és lehetővé önnek, hogy több "
 "összesítőt egyetlen dokumentumba rendezzen. Egyetlen összesítőt könnyebb "
 "kezelni, mint többet, különösen nyomtatáskor."
 
@@ -1044,7 +1040,7 @@ msgid ""
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
 "<b>Hello, привет or 喂</b><br/>A GRAMPS teljes Unicode támogatást nyújt. "
-"Ebben az összes nyelv karakterei helyesen jelennek."
+"Ebben az összes nyelv karakterei helyesen jelennek meg."
 
 #: ../data/tips.xml.in.h:59
 msgid ""
@@ -1771,9 +1767,9 @@ msgstr "%s által zárolt"
 #: ../gramps/plugins/gramplet/persondetails.py:222
 #: ../gramps/plugins/gramplet/relativegramplet.py:126
 #: ../gramps/plugins/gramplet/relativegramplet.py:137
-#: ../gramps/plugins/graph/gvfamilylines.py:287
-#: ../gramps/plugins/graph/gvhourglass.py:427
-#: ../gramps/plugins/graph/gvrelgraph.py:948
+#: ../gramps/plugins/graph/gvfamilylines.py:288
+#: ../gramps/plugins/graph/gvhourglass.py:429
+#: ../gramps/plugins/graph/gvrelgraph.py:951
 #: ../gramps/plugins/lib/libprogen.py:1057
 #: ../gramps/plugins/lib/maps/geography.py:802
 #: ../gramps/plugins/lib/maps/geography.py:812
@@ -1826,22 +1822,22 @@ msgstr "%s által zárolt"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: ../gramps/cli/grampscli.py:85
+#: ../gramps/cli/grampscli.py:86
 #, python-format
 msgid "WARNING: %s"
 msgstr "FIGYELMEZTETéS: %s"
 
-#: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:254
+#: ../gramps/cli/grampscli.py:93 ../gramps/cli/grampscli.py:255
 #, python-format
 msgid "ERROR: %s"
 msgstr "HIBA: %s"
 
-#: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:200
+#: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:200
 #: ../gramps/gui/dialog.py:295
 msgid "Low level database corruption detected"
 msgstr "Alacsony szintű adatbázis hibát észleltem"
 
-#: ../gramps/cli/grampscli.py:108 ../gramps/cli/user.py:201
+#: ../gramps/cli/grampscli.py:109 ../gramps/cli/user.py:201
 #: ../gramps/gui/dialog.py:296
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
@@ -1851,45 +1847,45 @@ msgstr ""
 "A GRAMPS az alap Berkeley adatbázisban hibát észlelt. Ez javítható a "
 "Családfa Kezelőben. Válassza ki az adatbázist és kattintson a Javítás gombra"
 
-#: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:165
+#: ../gramps/cli/grampscli.py:154 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
 msgstr "Csak olvasható adatbázis"
 
-#: ../gramps/cli/grampscli.py:154 ../gramps/gui/dbloader.py:166
+#: ../gramps/cli/grampscli.py:155 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:535
 msgid "You do not have write access to the selected file."
 msgstr "Nincs írási joga a kiválasztott fájlra."
 
-#: ../gramps/cli/grampscli.py:180 ../gramps/cli/grampscli.py:183
-#: ../gramps/cli/grampscli.py:186 ../gramps/cli/grampscli.py:189
-#: ../gramps/cli/grampscli.py:192 ../gramps/cli/grampscli.py:195
-#: ../gramps/cli/grampscli.py:198 ../gramps/cli/grampscli.py:201
-#: ../gramps/cli/grampscli.py:204 ../gramps/cli/grampscli.py:207
+#: ../gramps/cli/grampscli.py:181 ../gramps/cli/grampscli.py:184
+#: ../gramps/cli/grampscli.py:187 ../gramps/cli/grampscli.py:190
+#: ../gramps/cli/grampscli.py:193 ../gramps/cli/grampscli.py:196
+#: ../gramps/cli/grampscli.py:199 ../gramps/cli/grampscli.py:202
+#: ../gramps/cli/grampscli.py:205 ../gramps/cli/grampscli.py:208
 #: ../gramps/gui/dbloader.py:277 ../gramps/gui/dbloader.py:280
 #: ../gramps/gui/dbloader.py:283 ../gramps/gui/dbloader.py:286
 #: ../gramps/gui/dbloader.py:289 ../gramps/gui/dbloader.py:292
 msgid "Cannot open database"
 msgstr "Az adatbázis nem megnyitható"
 
-#: ../gramps/cli/grampscli.py:211 ../gramps/gui/dbloader.py:296
+#: ../gramps/cli/grampscli.py:212 ../gramps/gui/dbloader.py:296
 #: ../gramps/gui/dbloader.py:492
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Nem megnyitható fájl: %s"
 
-#: ../gramps/cli/grampscli.py:267
+#: ../gramps/cli/grampscli.py:268
 msgid "Could not load a recent Family Tree."
 msgstr "Létező családfa nem betölthető."
 
-#: ../gramps/cli/grampscli.py:268
+#: ../gramps/cli/grampscli.py:269
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "A családfa nem létezik, mivel törlésre került."
 
-#: ../gramps/cli/grampscli.py:273
+#: ../gramps/cli/grampscli.py:274
 msgid "The database is locked."
 msgstr "Az adatbázis lezárt."
 
-#: ../gramps/cli/grampscli.py:274
+#: ../gramps/cli/grampscli.py:275
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
@@ -1898,17 +1894,17 @@ msgstr ""
 "kívüliségében."
 
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:352
+#: ../gramps/cli/grampscli.py:353
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Hibával találkoztam: %s"
 
-#: ../gramps/cli/grampscli.py:354 ../gramps/cli/grampscli.py:362
+#: ../gramps/cli/grampscli.py:355 ../gramps/cli/grampscli.py:363
 #, python-format
 msgid "  Details: %s"
 msgstr "  Részletek: %s"
 
-#: ../gramps/cli/grampscli.py:359
+#: ../gramps/cli/grampscli.py:360
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Hibát észleltem a paraméter feldolgozásakor: %s"
@@ -2012,7 +2008,7 @@ msgstr "   Érvényes beállítások:"
 #: ../gramps/gen/plug/report/endnotes.py:197
 #: ../gramps/gen/plug/report/endnotes.py:204
 #: ../gramps/gen/plug/report/endnotes.py:210
-#: ../gramps/plugins/drawreport/descendtree.py:352
+#: ../gramps/plugins/drawreport/descendtree.py:358
 #: ../gramps/plugins/drawreport/fanchart.py:364
 #: ../gramps/plugins/drawreport/fanchart.py:380
 #: ../gramps/plugins/gramplet/persondetails.py:237
@@ -3597,6 +3593,20 @@ msgstr "Rossz névformátum karakterlánc: %s"
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "HIBA, szerkessze a Név-formátumot a Beállítások-ban"
 
+#: ../gramps/gen/display/place.py:73 ../gramps/gen/plug/utils.py:339
+#, python-format
+msgid "Error in '%s' file: cannot load."
+msgstr "Hiba a(z) %s fájlban: nem betölthető."
+
+#. -------------------------------------------------------------------------
+#.
+#. Private Constants
+#.
+#. -------------------------------------------------------------------------
+#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:63
+msgid "Full"
+msgstr "Teljes"
+
 #: ../gramps/gen/filters/_filterparser.py:119
 #, python-format
 msgid ""
@@ -3644,15 +3654,15 @@ msgstr "Alkalmazás ..."
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
-#: ../gramps/plugins/graph/gvrelgraph.py:801
+#: ../gramps/plugins/graph/gvrelgraph.py:804
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
 #: ../gramps/plugins/textreport/birthdayreport.py:473
 #: ../gramps/plugins/textreport/familygroup.py:714
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:168
-#: ../gramps/plugins/webreport/narrativeweb.py:1639
-#: ../gramps/plugins/webreport/webcal.py:1671
+#: ../gramps/plugins/webreport/narrativeweb.py:1643
+#: ../gramps/plugins/webreport/webcal.py:1672
 msgid "Filter"
 msgstr "Szűrő"
 
@@ -5746,9 +5756,9 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:149
-#: ../gramps/plugins/graph/gvfamilylines.py:283
-#: ../gramps/plugins/graph/gvhourglass.py:423
-#: ../gramps/plugins/graph/gvrelgraph.py:944
+#: ../gramps/plugins/graph/gvfamilylines.py:284
+#: ../gramps/plugins/graph/gvhourglass.py:425
+#: ../gramps/plugins/graph/gvrelgraph.py:947
 #: ../gramps/plugins/webreport/statistics.py:124
 #: ../gramps/plugins/webreport/statistics.py:189
 msgid "Females"
@@ -5790,16 +5800,6 @@ msgid ""
 msgstr "Könyvjelzőlistás emberek ősei, akik N-nél nem távolibb generációjúak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr ""
-"Alapértelmezett emberek ősei, akik nem több, mint <N> generációval "
-"távoliabbak"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid "Matches ancestors of the Home Person not more than N generations away"
-msgstr "Alapértelmezett emberek ősei, akik N-nél nem távolibb generációjúak"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr ""
 "Alapértelmezett emberek ősei, akik nem több, mint <N> generációval "
@@ -5826,9 +5826,9 @@ msgstr ""
 #. ###############################
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
-#: ../gramps/plugins/graph/gvfamilylines.py:279
-#: ../gramps/plugins/graph/gvhourglass.py:419
-#: ../gramps/plugins/graph/gvrelgraph.py:940
+#: ../gramps/plugins/graph/gvfamilylines.py:280
+#: ../gramps/plugins/graph/gvhourglass.py:421
+#: ../gramps/plugins/graph/gvrelgraph.py:943
 #: ../gramps/plugins/webreport/statistics.py:122
 #: ../gramps/plugins/webreport/statistics.py:187
 msgid "Males"
@@ -6349,13 +6349,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Ne használja a \"területen belül\" szűrőt"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"A kiválasztott hely rossz koordinátákat tartalmaz. Kérem használja a "
+"\"bemeneti adatok tisztítása\" eszközt"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -6739,7 +6741,7 @@ msgstr "Idézetek"
 #: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/basepage.py:1264
-#: ../gramps/plugins/webreport/person.py:1248
+#: ../gramps/plugins/webreport/person.py:1255
 msgid "Notes"
 msgstr "Jegyzetek"
 
@@ -7027,7 +7029,7 @@ msgstr "Idő"
 
 #: ../gramps/gen/lib/attrtype.py:79 ../gramps/gen/lib/eventtype.py:190
 #: ../gramps/gen/lib/nameorigintype.py:85
-#: ../gramps/gen/plug/docgen/treedoc.py:454
+#: ../gramps/gen/plug/docgen/treedoc.py:451
 #: ../gramps/plugins/gramplet/persondetails.py:163
 msgid "Occupation"
 msgstr "Foglalkozása"
@@ -7054,20 +7056,19 @@ msgstr "Kezelés"
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:209
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:155
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:154
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:252
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:257
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:191
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
 #: ../gramps/gui/glade/editplaceformat.glade:185
-#: ../gramps/plugins/graph/gvfamilylines.py:82
+#: ../gramps/plugins/graph/gvfamilylines.py:83
 #: ../gramps/plugins/tool/check.py:2494
 msgid "None"
 msgstr "Nincs"
 
 #: ../gramps/gen/lib/childreftype.py:68 ../gramps/gen/lib/eventtype.py:165
 #: ../gramps/gen/utils/symbols.py:72 ../gramps/gui/merge/mergeperson.py:189
-#: ../gramps/plugins/export/exportvcalendar.py:156
-#: ../gramps/plugins/export/exportvcalendar.py:161
+#: ../gramps/plugins/export/exportvcalendar.py:151
 #: ../gramps/plugins/gramplet/ancestor.py:64
 #: ../gramps/plugins/gramplet/descendant.py:63
 #: ../gramps/plugins/importer/importprogen.glade:1472
@@ -7144,7 +7145,7 @@ msgstr "Idézet"
 #: ../gramps/plugins/webreport/event.py:178
 #: ../gramps/plugins/webreport/event.py:391
 #: ../gramps/plugins/webreport/media.py:541
-#: ../gramps/plugins/webreport/person.py:1476
+#: ../gramps/plugins/webreport/person.py:1483
 #: ../gramps/plugins/webreport/repository.py:245
 #: ../gramps/plugins/webreport/source.py:261
 msgid "Gramps ID"
@@ -7304,7 +7305,7 @@ msgid "about"
 msgstr "nagyjából"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:339
-#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2924
+#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2932
 msgid "between"
 msgstr "között"
 
@@ -7313,7 +7314,7 @@ msgstr "között"
 #: ../gramps/plugins/quickview/all_relations.py:282
 #: ../gramps/plugins/view/relview.py:1159
 #: ../gramps/plugins/webreport/basepage.py:846
-#: ../gramps/plugins/webreport/basepage.py:2925
+#: ../gramps/plugins/webreport/basepage.py:2933
 msgid "and"
 msgstr "és"
 
@@ -7414,15 +7415,18 @@ msgid "none"
 msgstr "dátum-módosító|nincs"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:314
+#: ../gramps/plugins/webreport/basepage.py:2941
 msgid "about"
 msgstr "nagyjából"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1839
 #: ../gramps/plugins/lib/libsubstkeyword.py:313
+#: ../gramps/plugins/webreport/basepage.py:2937
 msgid "after"
 msgstr "később mint"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:313
+#: ../gramps/plugins/webreport/basepage.py:2939
 msgid "before"
 msgstr "korábban mint"
 
@@ -7625,8 +7629,7 @@ msgid "Other"
 msgstr "Egyéb"
 
 #: ../gramps/gen/lib/eventtype.py:166 ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/plugins/export/exportvcalendar.py:174
-#: ../gramps/plugins/export/exportvcalendar.py:179
+#: ../gramps/plugins/export/exportvcalendar.py:160
 #: ../gramps/plugins/importer/importprogen.glade:1491
 #: ../gramps/plugins/textreport/familygroup.py:328
 #: ../gramps/plugins/textreport/familygroup.py:534
@@ -7755,11 +7758,10 @@ msgstr "Nyugdíjazás"
 msgid "Will"
 msgstr "Végrendelet"
 
-#. feature requests 2356, 1657: avoid genitive form
 #: ../gramps/gen/lib/eventtype.py:198 ../gramps/gen/plug/docgen/treedoc.py:150
 #: ../gramps/gen/utils/symbols.py:75 ../gramps/gui/merge/mergeperson.py:258
 #: ../gramps/plugins/export/exportcsv.py:465
-#: ../gramps/plugins/export/exportvcalendar.py:136
+#: ../gramps/plugins/export/exportvcalendar.py:138
 #: ../gramps/plugins/importer/importcsv.py:235
 #: ../gramps/plugins/textreport/familygroup.py:406
 #: ../gramps/plugins/textreport/familygroup.py:415
@@ -8068,7 +8070,7 @@ msgstr "megsem."
 #: ../gramps/plugins/textreport/tagreport.py:252
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:1069
-#: ../gramps/plugins/webreport/person.py:1637
+#: ../gramps/plugins/webreport/person.py:1644
 msgid "Father"
 msgstr "Apa"
 
@@ -8090,7 +8092,7 @@ msgstr "Apa"
 #: ../gramps/plugins/textreport/tagreport.py:258
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:1070
-#: ../gramps/plugins/webreport/person.py:1650
+#: ../gramps/plugins/webreport/person.py:1657
 msgid "Mother"
 msgstr "Anya"
 
@@ -8100,7 +8102,7 @@ msgstr "Anya"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:869
 #: ../gramps/plugins/textreport/familygroup.py:646
 #: ../gramps/plugins/textreport/indivcomplete.py:678
-#: ../gramps/plugins/view/pedigreeview.py:1829
+#: ../gramps/plugins/view/pedigreeview.py:1830
 #: ../gramps/plugins/view/relview.py:1595
 #: ../gramps/plugins/webreport/basepage.py:381
 msgid "Children"
@@ -8119,7 +8121,7 @@ msgstr "Gyermekek"
 #: ../gramps/plugins/webreport/basepage.py:1650
 #: ../gramps/plugins/webreport/event.py:141
 #: ../gramps/plugins/webreport/event.py:366
-#: ../gramps/plugins/webreport/person.py:1535
+#: ../gramps/plugins/webreport/person.py:1542
 msgid "Events"
 msgstr "Események"
 
@@ -8128,7 +8130,7 @@ msgid "LDS ordinances"
 msgstr "Mormon rend(szer)"
 
 #: ../gramps/gen/lib/familyreltype.py:47
-#: ../gramps/plugins/webreport/webcal.py:2114
+#: ../gramps/plugins/webreport/webcal.py:2115
 msgid "Married"
 msgstr "Házas"
 
@@ -8398,7 +8400,7 @@ msgstr "Régió"
 #: ../gramps/plugins/tool/removeunused.py:201
 #: ../gramps/plugins/tool/verify.py:579 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/basepage.py:397
-#: ../gramps/plugins/webreport/person.py:1861
+#: ../gramps/plugins/webreport/person.py:1868
 msgid "Name"
 msgstr "Név"
 
@@ -8490,7 +8492,7 @@ msgstr "%(surname)s, %(first)s %(suffix)s"
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:465 ../gramps/gen/lib/name.py:480
 #: ../gramps/gen/plug/report/utils.py:257
-#: ../gramps/plugins/graph/gvfamilylines.py:490
+#: ../gramps/plugins/graph/gvfamilylines.py:491
 #: ../gramps/plugins/textreport/detancestralreport.py:454
 #: ../gramps/plugins/textreport/detdescendantreport.py:487
 #: ../gramps/plugins/textreport/indivcomplete.py:202
@@ -8578,7 +8580,7 @@ msgstr "Házassági név"
 #: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
-#: ../gramps/plugins/drawreport/descendtree.py:1701
+#: ../gramps/plugins/drawreport/descendtree.py:1707
 #: ../gramps/plugins/export/exportcsv.py:361
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:112
@@ -8760,7 +8762,7 @@ msgstr "Gyermek hivatkozás jegyzet"
 #: ../gramps/plugins/tool/reorderids.glade:761
 #: ../gramps/plugins/webreport/event.py:180
 #: ../gramps/plugins/webreport/family.py:188
-#: ../gramps/plugins/webreport/person.py:1246
+#: ../gramps/plugins/webreport/person.py:1253
 msgid "Person"
 msgstr "Személy"
 
@@ -8774,7 +8776,7 @@ msgstr "Személy"
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:928
-#: ../gramps/plugins/webreport/person.py:1487
+#: ../gramps/plugins/webreport/person.py:1494
 msgid "Gender"
 msgstr "Nem"
 
@@ -8794,9 +8796,9 @@ msgstr "Születési hivatkozás index"
 msgid "Event references"
 msgstr "Esemény hivatkozások"
 
-#: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:292
-#: ../gramps/plugins/graph/gvhourglass.py:432
-#: ../gramps/plugins/graph/gvrelgraph.py:954
+#: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:293
+#: ../gramps/plugins/graph/gvhourglass.py:434
+#: ../gramps/plugins/graph/gvrelgraph.py:957
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
 #: ../gramps/plugins/textreport/indivcomplete.py:641
@@ -9497,19 +9499,19 @@ msgstr "A %s fájl már nyitva van, először zárja be."
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
-#: ../gramps/plugins/export/exportftree.py:135
+#: ../gramps/plugins/export/exportftree.py:136
 #: ../gramps/plugins/export/exportgedcom.py:1602
-#: ../gramps/plugins/export/exportgeneweb.py:108
-#: ../gramps/plugins/export/exportgeneweb.py:112
-#: ../gramps/plugins/export/exportvcalendar.py:120
-#: ../gramps/plugins/export/exportvcalendar.py:124
+#: ../gramps/plugins/export/exportgeneweb.py:109
+#: ../gramps/plugins/export/exportgeneweb.py:113
+#: ../gramps/plugins/export/exportvcalendar.py:123
+#: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:71
 #: ../gramps/plugins/export/exportvcard.py:75
 #: ../gramps/plugins/lib/libhtmlbackend.py:249
 #: ../gramps/plugins/lib/libhtmlbackend.py:253
 #: ../gramps/plugins/lib/libhtmlbackend.py:259
 #: ../gramps/plugins/lib/libhtmlbackend.py:263
-#: ../gramps/plugins/webreport/narrativeweb.py:333
+#: ../gramps/plugins/webreport/narrativeweb.py:332
 #, python-format
 msgid "Could not create %s"
 msgstr "Nem létrehozható %s"
@@ -9540,22 +9542,22 @@ msgid "TrueType / FreeSans"
 msgstr "TrueType / FreeSans"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:72
-#: ../gramps/plugins/view/pedigreeview.py:2119
+#: ../gramps/plugins/view/pedigreeview.py:2120
 msgid "Vertical (↓)"
 msgstr "Függőleges (↓)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:73
-#: ../gramps/plugins/view/pedigreeview.py:2120
+#: ../gramps/plugins/view/pedigreeview.py:2121
 msgid "Vertical (↑)"
 msgstr "Függőleges (↑)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:74
-#: ../gramps/plugins/view/pedigreeview.py:2121
+#: ../gramps/plugins/view/pedigreeview.py:2122
 msgid "Horizontal (→)"
 msgstr "Vízszintes (→)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:75
-#: ../gramps/plugins/view/pedigreeview.py:2122
+#: ../gramps/plugins/view/pedigreeview.py:2123
 msgid "Horizontal (←)"
 msgstr "Vízszintes (←)"
 
@@ -9896,15 +9898,6 @@ msgstr "US Legal"
 msgid "Custom Size"
 msgstr "Egyéni méret"
 
-#. -------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/gen/plug/docgen/treedoc.py:63
-msgid "Full"
-msgstr "Teljes"
-
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
 msgid "Medium"
@@ -9982,13 +9975,13 @@ msgstr "Kicsi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:214
-#: ../gramps/plugins/graph/gvfamilylines.py:262
+#: ../gramps/plugins/graph/gvfamilylines.py:263
 #: ../gramps/plugins/importer/importprogen.py:487
 msgid "Normal"
 msgstr "Átlagos"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:94
-#: ../gramps/plugins/graph/gvfamilylines.py:263
+#: ../gramps/plugins/graph/gvfamilylines.py:264
 msgid "Large"
 msgstr "Nagy"
 
@@ -10058,7 +10051,7 @@ msgstr "Csomópont szín."
 #. #################
 #: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:791
-#: ../gramps/plugins/drawreport/descendtree.py:1527
+#: ../gramps/plugins/drawreport/descendtree.py:1533
 msgid "Tree Options"
 msgstr "Fa feltételek"
 
@@ -10106,11 +10099,11 @@ msgstr "Ez a szöveg a családfához kerül."
 msgid "The size of note text."
 msgstr "A jegyzetszöveg mérete."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:655
+#: ../gramps/gen/plug/docgen/treedoc.py:652
 msgid "PDF"
 msgstr "PDF"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:661
+#: ../gramps/gen/plug/docgen/treedoc.py:658
 msgid "LaTeX File"
 msgstr "LaTeX fájl"
 
@@ -10258,12 +10251,12 @@ msgid "The translation to be used for the report."
 msgstr "Az összegzőhöz használandó fordítás."
 
 #: ../gramps/gen/plug/report/stdoptions.py:73 ../gramps/gui/configure.py:1194
-#: ../gramps/plugins/webreport/webcal.py:1720
+#: ../gramps/plugins/webreport/webcal.py:1721
 msgid "Name format"
 msgstr "Név formátum"
 
 #: ../gramps/gen/plug/report/stdoptions.py:78
-#: ../gramps/plugins/webreport/webcal.py:1724
+#: ../gramps/plugins/webreport/webcal.py:1725
 msgid "Select the format to display names"
 msgstr "Válasszon névmegjelenítés formátumot"
 
@@ -10348,13 +10341,13 @@ msgstr "Legyen-e (és hol) GRAMPS Azonosító a nevek mellett"
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:328
 #: ../gramps/gui/viewmanager.py:1722
-#: ../gramps/plugins/graph/gvfamilylines.py:218
-#: ../gramps/plugins/graph/gvrelgraph.py:859
+#: ../gramps/plugins/graph/gvfamilylines.py:219
+#: ../gramps/plugins/graph/gvrelgraph.py:862
 #: ../gramps/plugins/textreport/detancestralreport.py:900
 #: ../gramps/plugins/textreport/detdescendantreport.py:1085
 #: ../gramps/plugins/textreport/familygroup.py:752
 #: ../gramps/plugins/textreport/indivcomplete.py:1102
-#: ../gramps/plugins/webreport/narrativeweb.py:1993
+#: ../gramps/plugins/webreport/narrativeweb.py:1997
 msgid "Include"
 msgstr "Beleértve"
 
@@ -10479,11 +10472,6 @@ msgstr "Hiba: ismeretlen fájltípus: '%s'"
 msgid "Examining '%s'..."
 msgstr "'%s' vizsgálata ..."
 
-#: ../gramps/gen/plug/utils.py:339
-#, python-format
-msgid "Error in '%s' file: cannot load."
-msgstr "Hiba a(z) %s fájlban: nem betölthető."
-
 #: ../gramps/gen/plug/utils.py:353
 #, python-format
 msgid "'%s' is for this version of Gramps."
@@ -10538,7 +10526,7 @@ msgstr ""
 "indítsa újra a GRAMPS-ot."
 
 #: ../gramps/gen/relationship.py:1273
-#: ../gramps/plugins/view/pedigreeview.py:1600
+#: ../gramps/plugins/view/pedigreeview.py:1601
 msgid "Relationship loop detected"
 msgstr "Körkapcsolatot észleltem"
 
@@ -10594,40 +10582,34 @@ msgid "ex-spouse"
 msgstr "volt házastárs"
 
 #: ../gramps/gen/relationship.py:2184
-#, fuzzy
 msgctxt "male,unmarried"
 msgid "partner"
 msgstr "társ"
 
 #: ../gramps/gen/relationship.py:2186
-#, fuzzy
 msgctxt "female,unmarried"
 msgid "partner"
 msgstr "társ"
 
 #: ../gramps/gen/relationship.py:2188
-#, fuzzy
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr "házastárs"
-
-#: ../gramps/gen/relationship.py:2191
-#, fuzzy
-msgctxt "male,unmarried"
-msgid "ex-partner"
-msgstr "volt férj"
-
-#: ../gramps/gen/relationship.py:2193
-#, fuzzy
-msgctxt "female,unmarried"
-msgid "ex-partner"
 msgstr "társ"
 
+#: ../gramps/gen/relationship.py:2191
+msgctxt "male,unmarried"
+msgid "ex-partner"
+msgstr "volt társ"
+
+#: ../gramps/gen/relationship.py:2193
+msgctxt "female,unmarried"
+msgid "ex-partner"
+msgstr "volt társ"
+
 #: ../gramps/gen/relationship.py:2195
-#, fuzzy
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "volt házastárs"
+msgstr "volt társ"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
@@ -11289,7 +11271,7 @@ msgstr ""
 
 #. Name                     UNICODE       SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:61
-#: ../gramps/plugins/graph/gvfamilylines.py:83
+#: ../gramps/plugins/graph/gvfamilylines.py:84
 #: ../gramps/plugins/textreport/indivcomplete.py:938
 #: ../gramps/plugins/tool/dumpgenderstats.py:73
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
@@ -11298,7 +11280,7 @@ msgid "Female"
 msgstr "Nő"
 
 #: ../gramps/gen/utils/symbols.py:62
-#: ../gramps/plugins/graph/gvfamilylines.py:84
+#: ../gramps/plugins/graph/gvfamilylines.py:85
 #: ../gramps/plugins/textreport/indivcomplete.py:936
 #: ../gramps/plugins/tool/dumpgenderstats.py:72
 #: ../gramps/plugins/tool/dumpgenderstats.py:96
@@ -11308,141 +11290,130 @@ msgstr "Férfi"
 
 #: ../gramps/gen/utils/symbols.py:63
 msgid "Asexuality, sexless, genderless"
-msgstr ""
+msgstr "Aszexualitás, szexmentes, nemtelen"
 
 #: ../gramps/gen/utils/symbols.py:64
 msgid "Lesbianism"
-msgstr ""
+msgstr "Leszbianitás"
 
 #: ../gramps/gen/utils/symbols.py:65
 msgid "Male homosexuality"
-msgstr ""
+msgstr "Férfi homoszexualitás"
 
 #: ../gramps/gen/utils/symbols.py:66
 msgid "Heterosexuality"
-msgstr ""
+msgstr "Heteroszexualitás"
 
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr ""
+msgstr "Transznemű, hermafrodita (entomológiában)"
 
 #: ../gramps/gen/utils/symbols.py:68
-#, fuzzy
 msgid "Transgender"
-msgstr "nem"
+msgstr "Transznemű"
 
 #: ../gramps/gen/utils/symbols.py:69
 msgid "Neuter"
-msgstr ""
+msgstr "Semleges"
 
 #: ../gramps/gen/utils/symbols.py:71
-#, fuzzy
 msgid "Illegitimate"
-msgstr "becsült"
+msgstr "Törvénytelen"
 
 #: ../gramps/gen/utils/symbols.py:73
-#, fuzzy
 msgid "Baptism/Christening"
-msgstr "Keresztelő"
+msgstr "Keresztség/keresztelő"
 
 #: ../gramps/gen/utils/symbols.py:74
-#, fuzzy
 msgid "Engaged"
-msgstr "Eljegyzés"
+msgstr "Eljegyzett"
 
 #: ../gramps/gen/utils/symbols.py:77
-#, fuzzy
 msgid "Unmarried partnership"
-msgstr "Nőtlen/hajadon"
+msgstr "Nem házas kapcsolat"
 
 #: ../gramps/gen/utils/symbols.py:78
-#, fuzzy
 msgid "Buried"
-msgstr "Temetés"
+msgstr "Eltemetett"
 
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Elhamvasztott/Temetési urna"
 
 #: ../gramps/gen/utils/symbols.py:80
-#, fuzzy
 msgid "Killed in action"
-msgstr "Gyűjtemény"
+msgstr "Csatában elesett"
 
 #: ../gramps/gen/utils/symbols.py:81
 msgid "Extinct"
-msgstr ""
+msgstr "Elhamvadt"
 
 #. The following is used in the global preferences in the display tab.
 #. Name
 #. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
-#, fuzzy
 msgid "Nothing"
-msgstr "Belül"
+msgstr "Semmi"
 
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "Koponya és csontkereszt"
 
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Ankh"
-msgstr ""
+msgstr "Egyiptomi kereszt"
 
 #: ../gramps/gen/utils/symbols.py:110
 msgid "Orthodox cross"
-msgstr ""
+msgstr "Ortodox kereszt"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Chi rho"
-msgstr ""
+msgstr "Chí-Ró kereszt"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Cross of Lorraine"
-msgstr ""
+msgstr "Kettős kereszt"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Cross of Jerusalem"
-msgstr ""
+msgstr "Jeruzsálemi kereszt"
 
 #: ../gramps/gen/utils/symbols.py:114
-#, fuzzy
 msgid "Star and crescent"
-msgstr "Indítsuk a dátum tesztet?"
+msgstr "Csillag és félhold"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
-msgstr ""
+msgstr "Liliomvégű kereszt"
 
 #: ../gramps/gen/utils/symbols.py:116
-#, fuzzy
 msgid "East Syriac cross"
-msgstr "Utoljára használt"
+msgstr "Villás-végű kereszt"
 
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Vastag görög kereszt"
 
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
-msgstr ""
+msgstr "Magas kereszt"
 
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Árnyékolt fehér magas kereszt"
 
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
-msgstr ""
+msgstr "Máltai kereszt"
 
 #: ../gramps/gen/utils/symbols.py:121
 msgid "Star of David"
-msgstr ""
+msgstr "Dávid-csillag"
 
 #: ../gramps/gen/utils/symbols.py:122
-#, fuzzy
 msgid "Dead"
-msgstr "Halott férfi"
+msgstr "Halott"
 
 #: ../gramps/gen/utils/unknown.py:140
 msgid "Unknown, created to replace a missing note object."
@@ -11616,8 +11587,8 @@ msgstr "_Alkalmaz"
 #. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1353
 #: ../gramps/plugins/drawreport/ancestortree.py:909
-#: ../gramps/plugins/drawreport/descendtree.py:1652
-#: ../gramps/plugins/webreport/narrativeweb.py:1766
+#: ../gramps/plugins/drawreport/descendtree.py:1658
+#: ../gramps/plugins/webreport/narrativeweb.py:1770
 msgid "Display"
 msgstr "Megjelenítés"
 
@@ -12018,7 +11989,7 @@ msgstr "Példa"
 #: ../gramps/gui/plug/report/_bookdialog.py:665 ../gramps/gui/views/tags.py:458
 #: ../gramps/gui/widgets/fanchart.py:2028
 #: ../gramps/gui/widgets/fanchart.py:2070
-#: ../gramps/plugins/view/pedigreeview.py:1703
+#: ../gramps/plugins/view/pedigreeview.py:1704
 msgid "_Add"
 msgstr "_Hozzáadás"
 
@@ -12033,8 +12004,8 @@ msgstr "_Hozzáadás"
 #: ../gramps/gui/glade/editlink.glade:222 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/plug/report/_bookdialog.py:639 ../gramps/gui/views/tags.py:459
 #: ../gramps/gui/widgets/fanchart.py:1817
-#: ../gramps/plugins/view/pedigreeview.py:1738
-#: ../gramps/plugins/view/pedigreeview.py:1966
+#: ../gramps/plugins/view/pedigreeview.py:1739
+#: ../gramps/plugins/view/pedigreeview.py:1967
 msgid "_Edit"
 msgstr "_Szerkesztés"
 
@@ -12074,11 +12045,6 @@ msgstr "Tekintse az apai/anyai nevet vezetéknévnek"
 #: ../gramps/gui/configure.py:1240
 msgid "Place format (auto place title)"
 msgstr "Hely formátum (automatikus helycím)"
-
-#: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specified format."
-msgstr ""
-"Az automatikus helynév létrehozás bekapcsolása meghatározott formátumban."
 
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
@@ -12196,38 +12162,10 @@ msgid "Dates settings used for calculation operations"
 msgstr "Dátum beállítások a számolási műveletekhez"
 
 #: ../gramps/gui/configure.py:1493
-msgid "Date about range"
-msgstr "Dátum a tartomány körül"
-
-#: ../gramps/gui/configure.py:1497
-msgid "Date after range"
-msgstr "Dátum a tartomány után"
-
-#: ../gramps/gui/configure.py:1501
-msgid "Date before range"
-msgstr "Dátum a tartomány előtt"
-
-#: ../gramps/gui/configure.py:1505
-msgid "Maximum age probably alive"
-msgstr "A valószínűleg élő legidősebbje"
-
-#: ../gramps/gui/configure.py:1509
-msgid "Maximum sibling age difference"
-msgstr "A legnagyobb korkülönbség testvérek között"
-
-#: ../gramps/gui/configure.py:1513
-msgid "Minimum years between generations"
-msgstr "A legtöbb év generációk között"
-
-#: ../gramps/gui/configure.py:1517
-msgid "Average years between generations"
-msgstr "Generációk közötti évek átlaga"
-
-#: ../gramps/gui/configure.py:1521
 msgid "Markup for invalid date format"
 msgstr "Hibás dátumformátum jelölése"
 
-#: ../gramps/gui/configure.py:1525
+#: ../gramps/gui/configure.py:1497
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12258,6 +12196,34 @@ msgstr ""
 "Például: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 " <u><b>aláhúzott félkövér dátum</b></u>ot fog mutatni.\n"
 
+#: ../gramps/gui/configure.py:1513
+msgid "Date about range"
+msgstr "Dátum a tartomány körül"
+
+#: ../gramps/gui/configure.py:1517
+msgid "Date after range"
+msgstr "Dátum a tartomány után"
+
+#: ../gramps/gui/configure.py:1521
+msgid "Date before range"
+msgstr "Dátum a tartomány előtt"
+
+#: ../gramps/gui/configure.py:1525
+msgid "Maximum age probably alive"
+msgstr "A valószínűleg élő legidősebbje"
+
+#: ../gramps/gui/configure.py:1529
+msgid "Maximum sibling age difference"
+msgstr "A legnagyobb korkülönbség testvérek között"
+
+#: ../gramps/gui/configure.py:1533
+msgid "Minimum years between generations"
+msgstr "A legtöbb év generációk között"
+
+#: ../gramps/gui/configure.py:1537
+msgid "Average years between generations"
+msgstr "Generációk közötti évek átlaga"
+
 #: ../gramps/gui/configure.py:1540
 msgid "Dates"
 msgstr "Dátumok"
@@ -12273,14 +12239,6 @@ msgstr "Alapértelmezett forrás hozzáadása a GEDCOM importhoz"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Címke hozzáadása az importhoz"
-
-#: ../gramps/gui/configure.py:1576
-msgid ""
-"Specified tag will be added on import.\n"
-"Clear to set default value."
-msgstr ""
-"Importnál meghatározott felirat lesz hozzáadva.\n"
-"Alapértelmezett értékhez törölje."
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -12524,7 +12482,7 @@ msgstr "A média könyvtár kiválasztása"
 #: ../gramps/gui/plug/_guioptions.py:1744 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1792 ../gramps/gui/views/listview.py:1064
+#: ../gramps/gui/viewmanager.py:1792 ../gramps/gui/views/listview.py:1065
 #: ../gramps/gui/views/navigationview.py:348 ../gramps/gui/views/tags.py:682
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
@@ -13513,7 +13471,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:355
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 #: ../gramps/plugins/drawreport/ancestortree.py:1095
-#: ../gramps/plugins/drawreport/descendtree.py:1810
+#: ../gramps/plugins/drawreport/descendtree.py:1816
 msgid "Cannot edit this reference"
 msgstr "A hivatkozás nem szerkeszthető"
 
@@ -15408,8 +15366,8 @@ msgstr "%s nem"
 msgid "%s does not contain"
 msgstr "%s nem tartalmazza"
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1198
-#: ../gramps/gui/views/listview.py:1218 ../gramps/plugins/gramplet/leak.py:193
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1199
+#: ../gramps/gui/views/listview.py:1219 ../gramps/plugins/gramplet/leak.py:193
 #: ../gramps/plugins/gramplet/leak.py:200
 msgid "Updating display..."
 msgstr "Képernyő frissítése..."
@@ -15460,7 +15418,7 @@ msgstr "Résztvevők"
 #: ../gramps/gui/widgets/reorderfam.py:103
 #: ../gramps/plugins/textreport/tagreport.py:264
 #: ../gramps/plugins/view/familyview.py:82
-#: ../gramps/plugins/webreport/person.py:1247
+#: ../gramps/plugins/webreport/person.py:1254
 msgid "Relationship"
 msgstr "Rokonság"
 
@@ -15470,7 +15428,7 @@ msgstr "mind"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/webreport/person.py:1862
+#: ../gramps/plugins/webreport/person.py:1869
 msgid "Birth date"
 msgstr "Születési dátum"
 
@@ -15482,7 +15440,7 @@ msgstr "példa: \"%(msg1)s\", vagy \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/webreport/person.py:1863
+#: ../gramps/plugins/webreport/person.py:1870
 msgid "Death date"
 msgstr "Halálozás dátuma"
 
@@ -15770,6 +15728,8 @@ msgstr ""
 
 #: ../gramps/gui/glade/dialog.glade:776 ../gramps/gui/glade/dialog.glade:793
 #: ../gramps/gui/glade/dialog.glade:906
+#: ../gramps/plugins/tool/removespaces.glade:115
+#: ../gramps/plugins/tool/removespaces.glade:172
 msgid "label"
 msgstr "címke"
 
@@ -15779,7 +15739,7 @@ msgstr "Bezárás _mentés nélkül"
 
 #: ../gramps/gui/glade/dialog.glade:873
 #: ../gramps/gui/plug/report/_bookdialog.py:637
-#: ../gramps/gui/views/listview.py:1065
+#: ../gramps/gui/views/listview.py:1066
 #: ../gramps/gui/widgets/grampletpane.py:589
 #: ../gramps/plugins/tool/eventcmp.py:400
 msgid "_Save"
@@ -17263,7 +17223,7 @@ msgid "Note 2"
 msgstr "Jegyzet 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1069
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1070
 msgid "Format:"
 msgstr "Formátum:"
 
@@ -18424,11 +18384,11 @@ msgstr "Emberek összefűzése"
 #: ../gramps/gui/widgets/fanchart.py:1994
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:128
-#: ../gramps/plugins/view/pedigreeview.py:1866
+#: ../gramps/plugins/view/pedigreeview.py:1867
 #: ../gramps/plugins/view/relview.py:667 ../gramps/plugins/view/relview.py:1033
 #: ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/webreport/person.py:232
-#: ../gramps/plugins/webreport/person.py:1845
+#: ../gramps/plugins/webreport/person.py:1852
 #: ../gramps/plugins/webreport/surname.py:154
 msgid "Parents"
 msgstr "Szülők"
@@ -18447,7 +18407,7 @@ msgstr "Nincsenek szülők"
 #: ../gramps/gui/merge/mergeperson.py:238
 #: ../gramps/gui/widgets/fanchart.py:1857
 #: ../gramps/plugins/textreport/kinshipreport.py:133
-#: ../gramps/plugins/view/pedigreeview.py:1753
+#: ../gramps/plugins/view/pedigreeview.py:1754
 msgid "Spouses"
 msgstr "Házastársak"
 
@@ -18742,7 +18702,7 @@ msgstr "Vé_grehajtani"
 #: ../gramps/gui/plug/_windows.py:1049
 #: ../gramps/plugins/importer/importprogen.py:457
 #: ../gramps/plugins/tool/ownereditor.py:164
-#: ../gramps/plugins/tool/reorderids.py:218
+#: ../gramps/plugins/tool/reorderids.py:221
 msgid "Main window"
 msgstr "Fő ablak"
 
@@ -19308,13 +19268,13 @@ msgstr "Stílus"
 #: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/ancestortree.py:835
 #: ../gramps/plugins/drawreport/calendarreport.py:462
-#: ../gramps/plugins/drawreport/descendtree.py:1573
+#: ../gramps/plugins/drawreport/descendtree.py:1579
 #: ../gramps/plugins/drawreport/fanchart.py:687
 #: ../gramps/plugins/drawreport/statisticschart.py:1008
 #: ../gramps/plugins/drawreport/timeline.py:414
-#: ../gramps/plugins/graph/gvfamilylines.py:120
-#: ../gramps/plugins/graph/gvhourglass.py:364
-#: ../gramps/plugins/graph/gvrelgraph.py:797
+#: ../gramps/plugins/graph/gvfamilylines.py:121
+#: ../gramps/plugins/graph/gvhourglass.py:366
+#: ../gramps/plugins/graph/gvrelgraph.py:800
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
 #: ../gramps/plugins/textreport/birthdayreport.py:471
@@ -19332,8 +19292,8 @@ msgstr "Stílus"
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:901
-#: ../gramps/plugins/webreport/narrativeweb.py:1613
-#: ../gramps/plugins/webreport/webcal.py:1656
+#: ../gramps/plugins/webreport/narrativeweb.py:1617
+#: ../gramps/plugins/webreport/webcal.py:1657
 msgid "Report Options"
 msgstr "Összesítő lehetőségek"
 
@@ -19738,7 +19698,7 @@ msgstr "Hiba a külső programból"
 msgid "File %s does not exist"
 msgstr "Nem létező %s fájl"
 
-#: ../gramps/gui/utils.py:627
+#: ../gramps/gui/utils.py:628
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -19756,7 +19716,7 @@ msgstr ""
 "Az idézet szerkesztéséhez zárja be a forrás szerkesztését, majd csak az "
 "idézethez nyisson meg egy szerkesztőt"
 
-#: ../gramps/gui/utils.py:640
+#: ../gramps/gui/utils.py:641
 msgid "Cannot open new citation editor"
 msgstr "Nem megnyitható az idézet-szerkesztő"
 
@@ -20035,19 +19995,19 @@ msgstr "%s törlése?"
 msgid "Column clicked, sorting..."
 msgstr "Oszlop volt kattintva, válogatás..."
 
-#: ../gramps/gui/views/listview.py:1061
+#: ../gramps/gui/views/listview.py:1062
 msgid "Export View as Spreadsheet"
 msgstr "Nézet exportálása mint táblázat"
 
-#: ../gramps/gui/views/listview.py:1074
+#: ../gramps/gui/views/listview.py:1075
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1075
+#: ../gramps/gui/views/listview.py:1076
 msgid "OpenDocument Spreadsheet"
 msgstr "Open Document táblázat"
 
-#: ../gramps/gui/views/listview.py:1266
+#: ../gramps/gui/views/listview.py:1267
 msgid "Columns"
 msgstr "Oszlopok"
 
@@ -20066,16 +20026,6 @@ msgstr "A könyvjelző nem beállítható, mert semmi sincs kiválasztva."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Nincs kiinduló személy"
-
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'Home Person' to go to. Select the People View, select the "
-"person you want as 'Home Person', then confirm your choice via the menu Edit "
-"-> Set Home Person."
-msgstr ""
-"Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
-"nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá a "
-"Szerkesztés -> Kiinduló személy beállítása menün keresztül."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -20260,22 +20210,22 @@ msgid "Reorder families"
 msgstr "Családok újrarendezése"
 
 #: ../gramps/gui/widgets/fanchart.py:1847
-#: ../gramps/plugins/view/pedigreeview.py:1743
-#: ../gramps/plugins/view/pedigreeview.py:1971
+#: ../gramps/plugins/view/pedigreeview.py:1744
+#: ../gramps/plugins/view/pedigreeview.py:1972
 msgid "_Copy"
 msgstr "_Másolás"
 
 #. Go over siblings and build their menu
 #: ../gramps/gui/widgets/fanchart.py:1891
 #: ../gramps/plugins/quickview/quickview.gpr.py:319
-#: ../gramps/plugins/view/pedigreeview.py:1787
+#: ../gramps/plugins/view/pedigreeview.py:1788
 #: ../gramps/plugins/view/relview.py:1084
 msgid "Siblings"
 msgstr "Testvérek"
 
 #. Go over parents and build their menu
 #: ../gramps/gui/widgets/fanchart.py:2037
-#: ../gramps/plugins/view/pedigreeview.py:1914
+#: ../gramps/plugins/view/pedigreeview.py:1915
 msgid "Related"
 msgstr "Összefüggő"
 
@@ -20796,13 +20746,13 @@ msgid "of %d"
 msgstr "%d-hez"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
-#: ../gramps/plugins/webreport/narrativeweb.py:1517
+#: ../gramps/plugins/webreport/narrativeweb.py:1521
 #: ../gramps/plugins/webreport/webcal.py:270
 msgid "Possible destination error"
 msgstr "Lehetséges irány hiba"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:1518
+#: ../gramps/plugins/webreport/narrativeweb.py:1522
 #: ../gramps/plugins/webreport/webcal.py:271
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -20897,10 +20847,10 @@ msgstr "%s származás grafikonja"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:362
 #: ../gramps/plugins/drawreport/calendarreport.py:114
-#: ../gramps/plugins/drawreport/descendtree.py:689
+#: ../gramps/plugins/drawreport/descendtree.py:695
 #: ../gramps/plugins/drawreport/fanchart.py:194
-#: ../gramps/plugins/graph/gvhourglass.py:109
-#: ../gramps/plugins/graph/gvrelgraph.py:184
+#: ../gramps/plugins/graph/gvhourglass.py:110
+#: ../gramps/plugins/graph/gvrelgraph.py:185
 #: ../gramps/plugins/textreport/ancestorreport.py:117
 #: ../gramps/plugins/textreport/birthdayreport.py:115
 #: ../gramps/plugins/textreport/descendreport.py:453
@@ -20930,8 +20880,8 @@ msgstr "Fa nyomtatása..."
 #: ../gramps/plugins/drawreport/ancestortree.py:793
 #: ../gramps/plugins/drawreport/calendarreport.py:472
 #: ../gramps/plugins/drawreport/fanchart.py:689
-#: ../gramps/plugins/graph/gvhourglass.py:366
-#: ../gramps/plugins/graph/gvrelgraph.py:807
+#: ../gramps/plugins/graph/gvhourglass.py:368
+#: ../gramps/plugins/graph/gvrelgraph.py:810
 #: ../gramps/plugins/textreport/ancestorreport.py:290
 #: ../gramps/plugins/textreport/descendreport.py:522
 #: ../gramps/plugins/textreport/detancestralreport.py:831
@@ -20956,7 +20906,7 @@ msgid ""
 msgstr "Csak a központi személyt, vagy annak minden testvérét is mutassa-e"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:804
-#: ../gramps/plugins/drawreport/descendtree.py:1538
+#: ../gramps/plugins/drawreport/descendtree.py:1544
 #: ../gramps/plugins/drawreport/fanchart.py:693
 #: ../gramps/plugins/textreport/ancestorreport.py:294
 #: ../gramps/plugins/textreport/descendreport.py:537
@@ -20966,7 +20916,7 @@ msgid "Generations"
 msgstr "Generációk"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:805
-#: ../gramps/plugins/drawreport/descendtree.py:1539
+#: ../gramps/plugins/drawreport/descendtree.py:1545
 msgid "The number of generations to include in the tree"
 msgstr "Generációk száma a fában"
 
@@ -20983,7 +20933,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Az ábrázolandó üres dobozok generáció száma"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:818
-#: ../gramps/plugins/drawreport/descendtree.py:1556
+#: ../gramps/plugins/drawreport/descendtree.py:1562
 msgid "Compress tree"
 msgstr "Fa tömörítése"
 
@@ -20994,13 +20944,13 @@ msgid ""
 msgstr "Ismeretlen emberek mellől bármennyi plusz szóközt el kell-e távolítani"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:837
-#: ../gramps/plugins/drawreport/descendtree.py:1575
+#: ../gramps/plugins/drawreport/descendtree.py:1581
 msgid "Report Title"
 msgstr "Összegzés cím"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:838
-#: ../gramps/plugins/drawreport/descendtree.py:1576
-#: ../gramps/plugins/drawreport/descendtree.py:1749
+#: ../gramps/plugins/drawreport/descendtree.py:1582
+#: ../gramps/plugins/drawreport/descendtree.py:1755
 msgid "Do not include a title"
 msgstr "Ne legyen cím"
 
@@ -21009,22 +20959,22 @@ msgid "Include Report Title"
 msgstr "Összegzés cím is"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:840
-#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/descendtree.py:1590
 msgid "Choose a title for the report"
 msgstr "Válasszon egy összegzés címet"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:843
-#: ../gramps/plugins/drawreport/descendtree.py:1588
+#: ../gramps/plugins/drawreport/descendtree.py:1594
 msgid "Include a border"
 msgstr "Szegély is"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:844
-#: ../gramps/plugins/drawreport/descendtree.py:1589
+#: ../gramps/plugins/drawreport/descendtree.py:1595
 msgid "Whether to make a border around the report."
 msgstr "Legyen-e kerete az összegzésnek."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:847
-#: ../gramps/plugins/drawreport/descendtree.py:1592
+#: ../gramps/plugins/drawreport/descendtree.py:1598
 msgid "Include Page Numbers"
 msgstr "Oldalszámok is"
 
@@ -21033,32 +20983,32 @@ msgid "Whether to print page numbers on each page."
 msgstr "Legyenek-e minden lapon oldalszámok nyomtatva."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#: ../gramps/plugins/drawreport/descendtree.py:1596
+#: ../gramps/plugins/drawreport/descendtree.py:1602
 msgid "Scale tree to fit"
 msgstr "Fa teljes kitöltésre"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:852
-#: ../gramps/plugins/drawreport/descendtree.py:1597
+#: ../gramps/plugins/drawreport/descendtree.py:1603
 msgid "Do not scale tree"
 msgstr "Ne méretezze a fát"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#: ../gramps/plugins/drawreport/descendtree.py:1598
+#: ../gramps/plugins/drawreport/descendtree.py:1604
 msgid "Scale tree to fit page width only"
 msgstr "Fa csak lapszélességre méretezése"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:854
-#: ../gramps/plugins/drawreport/descendtree.py:1599
+#: ../gramps/plugins/drawreport/descendtree.py:1605
 msgid "Scale tree to fit the size of the page"
 msgstr "Fa méretezése a teljes lapra"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
-#: ../gramps/plugins/drawreport/descendtree.py:1601
+#: ../gramps/plugins/drawreport/descendtree.py:1607
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Legyen-e a fa egy meghatározott papírméretre méretezve"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:863
-#: ../gramps/plugins/drawreport/descendtree.py:1608
+#: ../gramps/plugins/drawreport/descendtree.py:1614
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -21069,7 +21019,7 @@ msgstr ""
 "Figyelem: a 'Papír tulajdonságai' fülön megadott értékeket felülírja"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:869
-#: ../gramps/plugins/drawreport/descendtree.py:1614
+#: ../gramps/plugins/drawreport/descendtree.py:1620
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -21102,12 +21052,12 @@ msgstr ""
 "  bármilyen magassági- és oldalköz el lesz távolítva"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:889
-#: ../gramps/plugins/drawreport/descendtree.py:1634
+#: ../gramps/plugins/drawreport/descendtree.py:1640
 msgid "Include Blank Pages"
 msgstr "Üres oldalak is"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:890
-#: ../gramps/plugins/drawreport/descendtree.py:1635
+#: ../gramps/plugins/drawreport/descendtree.py:1641
 msgid "Whether to include pages that are blank."
 msgstr "Legyenek-e benne üres lapok is."
 
@@ -21121,13 +21071,13 @@ msgstr "Legyenek-e benne üres lapok is."
 #. ###############################
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/calendarreport.py:490
-#: ../gramps/plugins/drawreport/descendtree.py:1639
+#: ../gramps/plugins/drawreport/descendtree.py:1645
 #: ../gramps/plugins/drawreport/fanchart.py:730
 #: ../gramps/plugins/drawreport/statisticschart.py:1074
 #: ../gramps/plugins/drawreport/timeline.py:435
-#: ../gramps/plugins/graph/gvfamilylines.py:169
-#: ../gramps/plugins/graph/gvhourglass.py:402
-#: ../gramps/plugins/graph/gvrelgraph.py:841
+#: ../gramps/plugins/graph/gvfamilylines.py:170
+#: ../gramps/plugins/graph/gvhourglass.py:404
+#: ../gramps/plugins/graph/gvrelgraph.py:844
 #: ../gramps/plugins/textreport/ancestorreport.py:310
 #: ../gramps/plugins/textreport/birthdayreport.py:500
 #: ../gramps/plugins/textreport/descendreport.py:557
@@ -21138,7 +21088,7 @@ msgstr "Legyenek-e benne üres lapok is."
 #: ../gramps/plugins/textreport/kinshipreport.py:382
 #: ../gramps/plugins/textreport/placereport.py:462
 #: ../gramps/plugins/textreport/recordsreport.py:243
-#: ../gramps/plugins/webreport/webcal.py:1709
+#: ../gramps/plugins/webreport/webcal.py:1710
 msgid "Report Options (2)"
 msgstr "Összesítő lehetőségek (2)"
 
@@ -21193,17 +21143,17 @@ msgid "The display format for the center person"
 msgstr "A központi személy ábrázolásának formátuma"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
-#: ../gramps/plugins/drawreport/descendtree.py:1675
+#: ../gramps/plugins/drawreport/descendtree.py:1681
 msgid "Include Marriage box"
 msgstr "Házasság dobozzal bezárólag"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:943
-#: ../gramps/plugins/drawreport/descendtree.py:1677
+#: ../gramps/plugins/drawreport/descendtree.py:1683
 msgid "Whether to include a separate marital box in the report"
 msgstr "Legyen-e különálló házasság doboz az összesítőben"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:947
-#: ../gramps/plugins/drawreport/descendtree.py:1681
+#: ../gramps/plugins/drawreport/descendtree.py:1687
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -21212,19 +21162,19 @@ msgstr ""
 "Ábrázolásformátum"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:949
-#: ../gramps/plugins/drawreport/descendtree.py:1683
+#: ../gramps/plugins/drawreport/descendtree.py:1689
 msgid "Display format for the marital box."
 msgstr "A házasság doboz ábrázolásformátuma."
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:954
-#: ../gramps/plugins/drawreport/descendtree.py:1688
+#: ../gramps/plugins/drawreport/descendtree.py:1694
 #: ../gramps/plugins/lib/libmetadata.py:104
 msgid "Advanced"
 msgstr "Haladó"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:957
-#: ../gramps/plugins/drawreport/descendtree.py:1691
+#: ../gramps/plugins/drawreport/descendtree.py:1697
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -21233,7 +21183,7 @@ msgstr ""
 "'Ezt helyettesítse'/'ezzel'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:959
-#: ../gramps/plugins/drawreport/descendtree.py:1693
+#: ../gramps/plugins/drawreport/descendtree.py:1699
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -21248,17 +21198,17 @@ msgstr ""
 #. _("Whether to include thumbnails of people."))
 #. menu.add_option(category_name, "includeImages", self.__include_images)
 #: ../gramps/plugins/drawreport/ancestortree.py:969
-#: ../gramps/plugins/drawreport/descendtree.py:1696
+#: ../gramps/plugins/drawreport/descendtree.py:1702
 msgid "Include a note"
 msgstr "Jegyzet is"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:970
-#: ../gramps/plugins/drawreport/descendtree.py:1697
+#: ../gramps/plugins/drawreport/descendtree.py:1703
 msgid "Whether to include a note on the report."
 msgstr "Legyen-e az összegzésben jegyzet is."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:975
-#: ../gramps/plugins/drawreport/descendtree.py:1702
+#: ../gramps/plugins/drawreport/descendtree.py:1708
 msgid ""
 "Add a note\n"
 "\n"
@@ -21269,12 +21219,12 @@ msgstr ""
 "$T beszúrja a mai dátumot"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:980
-#: ../gramps/plugins/drawreport/descendtree.py:1707
+#: ../gramps/plugins/drawreport/descendtree.py:1713
 msgid "Note Location"
 msgstr "A jegyzet helye"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:983
-#: ../gramps/plugins/drawreport/descendtree.py:1710
+#: ../gramps/plugins/drawreport/descendtree.py:1716
 msgid "Where to place the note."
 msgstr "Hol legyen elhelyezve a jegyzet."
 
@@ -21287,13 +21237,13 @@ msgid "Make the inter-box spacing bigger or smaller"
 msgstr "A dobozbeli térköz nagyobbá, vagy kisebbé tétele"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:993
-#: ../gramps/plugins/drawreport/descendtree.py:1719
+#: ../gramps/plugins/drawreport/descendtree.py:1725
 msgid "box shadow scale factor"
 msgstr "doboz árnyék skála együttható"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:995
-#: ../gramps/plugins/drawreport/descendtree.py:1721
+#: ../gramps/plugins/drawreport/descendtree.py:1727
 msgid "Make the box shadow bigger or smaller"
 msgstr "A doboz árnyék nagyobbá, vagy kisebbé tétele"
 
@@ -21310,7 +21260,7 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Ismeretlen ősök üres dobozainak generációi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1049
-#: ../gramps/plugins/drawreport/descendtree.py:1781
+#: ../gramps/plugins/drawreport/descendtree.py:1787
 #: ../gramps/plugins/drawreport/fanchart.py:771
 #: ../gramps/plugins/drawreport/timeline.py:480
 #: ../gramps/plugins/textreport/alphabeticalindex.py:120
@@ -21331,14 +21281,14 @@ msgid "The basic style used for the text display."
 msgstr "A mutatott szöveg alap stílusa."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1059
-#: ../gramps/plugins/drawreport/descendtree.py:1801
+#: ../gramps/plugins/drawreport/descendtree.py:1807
 #: ../gramps/plugins/textreport/familygroup.py:890
 #: ../gramps/plugins/textreport/tagreport.py:993
 msgid "The basic style used for the note display."
 msgstr "Jegyzet ábrázolásának alap stílusa."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1068
-#: ../gramps/plugins/drawreport/descendtree.py:1772
+#: ../gramps/plugins/drawreport/descendtree.py:1778
 #: ../gramps/plugins/drawreport/fanchart.py:761
 #: ../gramps/plugins/drawreport/statisticschart.py:1159
 #: ../gramps/plugins/drawreport/timeline.py:498
@@ -21386,7 +21336,7 @@ msgstr "Hónapok formázása..."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:316
 #: ../gramps/plugins/textreport/birthdayreport.py:270
-#: ../gramps/plugins/webreport/webcal.py:1285
+#: ../gramps/plugins/webreport/webcal.py:1286
 msgid "Reading database..."
 msgstr "Adatbázis olvasás..."
 
@@ -21429,13 +21379,13 @@ msgstr[1] ""
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:468
-#: ../gramps/plugins/webreport/webcal.py:1673
+#: ../gramps/plugins/webreport/webcal.py:1674
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Válasszon szűrőt emberek megjelenésének kizárásához a naptárban"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:473
 #: ../gramps/plugins/drawreport/fanchart.py:690
-#: ../gramps/plugins/graph/gvrelgraph.py:808
+#: ../gramps/plugins/graph/gvrelgraph.py:811
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:523
 #: ../gramps/plugins/textreport/detancestralreport.py:832
@@ -21475,12 +21425,12 @@ msgstr "A naptár alján levő szöveg harmadik sora"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:501
 #: ../gramps/plugins/textreport/birthdayreport.py:507
-#: ../gramps/plugins/webreport/webcal.py:1729
+#: ../gramps/plugins/webreport/webcal.py:1730
 msgid "Include only living people"
 msgstr "Csak élő emberek"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:502
-#: ../gramps/plugins/webreport/webcal.py:1730
+#: ../gramps/plugins/webreport/webcal.py:1731
 msgid "Include only living people in the calendar"
 msgstr "Csak élő emberek a naptárban"
 
@@ -21503,7 +21453,7 @@ msgstr "Naptári év"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:517
 #: ../gramps/plugins/textreport/birthdayreport.py:530
-#: ../gramps/plugins/webreport/webcal.py:1766
+#: ../gramps/plugins/webreport/webcal.py:1767
 msgid "Country for holidays"
 msgstr "Szabadságok országa"
 
@@ -21514,48 +21464,48 @@ msgstr "Ország választása a hozzá társított szabadságok megnézéséhez"
 
 #. Default selection ????
 #: ../gramps/plugins/drawreport/calendarreport.py:531
-#: ../gramps/plugins/webreport/webcal.py:1784
+#: ../gramps/plugins/webreport/webcal.py:1785
 msgid "First day of week"
 msgstr "A hét első napja"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:539
-#: ../gramps/plugins/webreport/webcal.py:1787
+#: ../gramps/plugins/webreport/webcal.py:1788
 msgid "Select the first day of the week for the calendar"
 msgstr "A naptári hét első napjának választása"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:542
 #: ../gramps/plugins/textreport/birthdayreport.py:544
-#: ../gramps/plugins/webreport/webcal.py:1791
+#: ../gramps/plugins/webreport/webcal.py:1792
 msgid "Birthday surname"
 msgstr "Születésnapi vezetéknév"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:545
 #: ../gramps/plugins/textreport/birthdayreport.py:547
-#: ../gramps/plugins/webreport/webcal.py:1792
+#: ../gramps/plugins/webreport/webcal.py:1793
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "A férj vezetéknevét használó feleségek (az első felsorolt családnál)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:548
 #: ../gramps/plugins/textreport/birthdayreport.py:550
-#: ../gramps/plugins/webreport/webcal.py:1794
+#: ../gramps/plugins/webreport/webcal.py:1795
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "A férj vezetéknevét használó feleségek (az utolsó felsorolt családnál)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:549
 #: ../gramps/plugins/textreport/birthdayreport.py:551
-#: ../gramps/plugins/webreport/webcal.py:1796
+#: ../gramps/plugins/webreport/webcal.py:1797
 msgid "Wives use their own surname"
 msgstr "Saját vezetéknevet használó feleségek"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:550
 #: ../gramps/plugins/textreport/birthdayreport.py:552
-#: ../gramps/plugins/webreport/webcal.py:1797
+#: ../gramps/plugins/webreport/webcal.py:1798
 msgid "Select married women's displayed surname"
 msgstr "A megjelenített vezetéknevű házas nők választása"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:553
 #: ../gramps/plugins/textreport/birthdayreport.py:555
-#: ../gramps/plugins/webreport/webcal.py:1882
+#: ../gramps/plugins/webreport/webcal.py:1883
 msgid "Include birthdays"
 msgstr "Születésnapok is"
 
@@ -21566,7 +21516,7 @@ msgstr "Legyenek-e benne születésnapok is"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:557
 #: ../gramps/plugins/textreport/birthdayreport.py:559
-#: ../gramps/plugins/webreport/webcal.py:1886
+#: ../gramps/plugins/webreport/webcal.py:1887
 msgid "Include anniversaries"
 msgstr "Évfordulók is"
 
@@ -21645,100 +21595,100 @@ msgstr "%(father)s és %(mother)s leszármazotti grafikonja"
 msgid "Descendant Graph"
 msgstr "Leszármazás ábra"
 
-#: ../gramps/plugins/drawreport/descendtree.py:326
+#: ../gramps/plugins/drawreport/descendtree.py:332
 #, python-format
 msgid "Family Chart for %(person)s"
 msgstr "%(person)s családgrafikonja"
 
-#: ../gramps/plugins/drawreport/descendtree.py:329
+#: ../gramps/plugins/drawreport/descendtree.py:335
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "%(father1)s és %(mother1)s családgrafikonja"
 
-#: ../gramps/plugins/drawreport/descendtree.py:355
+#: ../gramps/plugins/drawreport/descendtree.py:361
 #, python-format
 msgid "Cousin Chart for %(names)s"
 msgstr "Unokatestvér grafikon %(names)s részére"
 
-#: ../gramps/plugins/drawreport/descendtree.py:758
+#: ../gramps/plugins/drawreport/descendtree.py:764
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "%s család nincs az adatbázisban"
 
 #. if self.name == "familial_descend_tree":
-#: ../gramps/plugins/drawreport/descendtree.py:1530
-#: ../gramps/plugins/drawreport/descendtree.py:1534
+#: ../gramps/plugins/drawreport/descendtree.py:1536
+#: ../gramps/plugins/drawreport/descendtree.py:1540
 msgid "Report for"
 msgstr "Összegzés"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1531
+#: ../gramps/plugins/drawreport/descendtree.py:1537
 msgid "The main person for the report"
 msgstr "Az összegzés fő személye"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1535
+#: ../gramps/plugins/drawreport/descendtree.py:1541
 msgid "The main family for the report"
 msgstr "Az összegzés fő családja"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1542
+#: ../gramps/plugins/drawreport/descendtree.py:1548
 msgid "Level of Spouses"
 msgstr "Házastársak szintje"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1543
+#: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr "0= nincs házastárs, 1=házastársak is, 2=házastárs házastársai is, stb"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1548
+#: ../gramps/plugins/drawreport/descendtree.py:1554
 msgid "Start with the parent(s) of the selected first"
 msgstr "Kezdje az első kiválasztott szülővel"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1551
+#: ../gramps/plugins/drawreport/descendtree.py:1557
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "A kiválasztott személy szüleit, testvéreit fogja mutatni."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1557
+#: ../gramps/plugins/drawreport/descendtree.py:1563
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Legyenek-e emberek mozgatva felfelé, ahol lehetséges, ha az kisebb fát "
 "eredményez"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1561
+#: ../gramps/plugins/drawreport/descendtree.py:1567
 msgid "Bold direct descendants"
 msgstr "Egyenes leszármazott félkövéren"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1563
+#: ../gramps/plugins/drawreport/descendtree.py:1569
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
 "Legyenek-e félkövérek az egyenesági leszármazottak (nem fél-, vagy mostoha)."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1568
+#: ../gramps/plugins/drawreport/descendtree.py:1574
 msgid "Indent Spouses"
 msgstr "Házastársak behúzása"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1569
+#: ../gramps/plugins/drawreport/descendtree.py:1575
 msgid "Whether to indent the spouses in the tree."
 msgstr "Legyenek-e behúzva a házastársak a fában."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1577
-#: ../gramps/plugins/drawreport/descendtree.py:1750
+#: ../gramps/plugins/drawreport/descendtree.py:1583
+#: ../gramps/plugins/drawreport/descendtree.py:1756
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "[kiválasztott személy(ek)] leszármazotti grafikonja"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1580
-#: ../gramps/plugins/drawreport/descendtree.py:1754
+#: ../gramps/plugins/drawreport/descendtree.py:1586
+#: ../gramps/plugins/drawreport/descendtree.py:1760
 msgid "Family Chart for [names of chosen family]"
 msgstr "[a választott család neveinek] család grafikonja"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1583
-#: ../gramps/plugins/drawreport/descendtree.py:1758
+#: ../gramps/plugins/drawreport/descendtree.py:1589
+#: ../gramps/plugins/drawreport/descendtree.py:1764
 msgid "Cousin Chart for [names of children]"
 msgstr "[gyermekek nevei] unokatestvér grafikonja"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1593
+#: ../gramps/plugins/drawreport/descendtree.py:1599
 msgid "Whether to include page numbers on each page."
 msgstr "Legyenek-e lapszámok minden lapon."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1654
+#: ../gramps/plugins/drawreport/descendtree.py:1660
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -21746,7 +21696,7 @@ msgstr ""
 "Leszármazott\n"
 "Ábrázolásformátum"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1658
+#: ../gramps/plugins/drawreport/descendtree.py:1664
 msgid "Display format for a descendant."
 msgstr "Leszármazott ábrázolásformátuma."
 
@@ -21756,7 +21706,7 @@ msgstr "Leszármazott ábrázolásformátuma."
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1668
+#: ../gramps/plugins/drawreport/descendtree.py:1674
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -21764,19 +21714,19 @@ msgstr ""
 "Házastársi\n"
 "Ábrázolásformátum"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1672
+#: ../gramps/plugins/drawreport/descendtree.py:1678
 msgid "Display format for a spouse."
 msgstr "Házastárs ábrázolásformátuma."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1714
+#: ../gramps/plugins/drawreport/descendtree.py:1720
 msgid "inter-box Y scale factor"
 msgstr "dobozbeli Y skála együttható"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1716
+#: ../gramps/plugins/drawreport/descendtree.py:1722
 msgid "Make the inter-box Y bigger or smaller"
 msgstr "A dobozbeli Y nagyobbá, vagy kisebbé tétele"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1792
+#: ../gramps/plugins/drawreport/descendtree.py:1798
 msgid "The bold style used for the text display."
 msgstr "Szövegábrázolásnál félkövér stílus használata."
 
@@ -21958,7 +21908,7 @@ msgid "Item count"
 msgstr "Elemszám"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:315
-#: ../gramps/plugins/graph/gvfamilylines.py:85
+#: ../gramps/plugins/graph/gvfamilylines.py:86
 msgid "Both"
 msgstr "Mindkettő"
 
@@ -22152,8 +22102,8 @@ msgstr "Meghatározza, milyen emberek kerülnek az összegzőbe."
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
-#: ../gramps/plugins/webreport/narrativeweb.py:1645
-#: ../gramps/plugins/webreport/webcal.py:1677
+#: ../gramps/plugins/webreport/narrativeweb.py:1649
+#: ../gramps/plugins/webreport/webcal.py:1678
 msgid "Filter Person"
 msgstr "Személyszűrő"
 
@@ -22298,8 +22248,8 @@ msgstr "Meghatározza, mely emberek legyenek az összesítőben"
 #: ../gramps/plugins/drawreport/timeline.py:423
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:174
-#: ../gramps/plugins/webreport/narrativeweb.py:1646
-#: ../gramps/plugins/webreport/webcal.py:1678
+#: ../gramps/plugins/webreport/narrativeweb.py:1650
+#: ../gramps/plugins/webreport/webcal.py:1679
 msgid "The center person for the filter"
 msgstr "A szűrő központi személye"
 
@@ -22471,7 +22421,7 @@ msgid "Include children"
 msgstr "Gyermekekkel együtt"
 
 #: ../gramps/plugins/export/exportcsv.py:139
-#: ../gramps/plugins/graph/gvfamilylines.py:234
+#: ../gramps/plugins/graph/gvfamilylines.py:235
 msgid "Include places"
 msgstr "Helyekkel együtt"
 
@@ -22583,7 +22533,7 @@ msgstr "Média írása"
 msgid "GEDCOM Export failed"
 msgstr "Sikertelen GEDCOM exportálás"
 
-#: ../gramps/plugins/export/exportgeneweb.py:96
+#: ../gramps/plugins/export/exportgeneweb.py:97
 msgid "No families matched by selected filter"
 msgstr "Nincs a kiválasztásnak megfelelő család"
 
@@ -23051,7 +23001,7 @@ msgstr "Aktív személy leszármazottait mutató gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:104
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:111
-#: ../gramps/plugins/webreport/person.py:1183
+#: ../gramps/plugins/webreport/person.py:1190
 msgid "Ancestors"
 msgstr "Ősök"
 
@@ -23118,7 +23068,7 @@ msgstr "Az összes keresztnevet szövegfelhőként mutató gramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:205
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:127
-#: ../gramps/plugins/webreport/person.py:1352
+#: ../gramps/plugins/webreport/person.py:1359
 msgid "Pedigree"
 msgstr "Családfa"
 
@@ -23533,7 +23483,7 @@ msgstr "Egy személy vissza-hivatkozásait mutató gramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/basepage.py:2959
+#: ../gramps/plugins/webreport/basepage.py:2982
 #: ../gramps/plugins/webreport/person.py:884
 #: ../gramps/plugins/webreport/thumbnail.py:164
 msgid "References"
@@ -24080,7 +24030,7 @@ msgstr "kevesebb mint 1"
 
 #. -------------------------
 #: ../gramps/plugins/gramplet/statsgramplet.py:140
-#: ../gramps/plugins/graph/gvfamilylines.py:276
+#: ../gramps/plugins/graph/gvfamilylines.py:277
 #: ../gramps/plugins/textreport/summary.py:113
 #: ../gramps/plugins/webreport/basepage.py:1526
 #: ../gramps/plugins/webreport/basepage.py:1577
@@ -24472,7 +24422,7 @@ msgid "Produces an hourglass graph using Graphviz."
 msgstr "Óraüveg diagramot hoz létre GrahWiz-zel."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:81
-#: ../gramps/plugins/graph/gvrelgraph.py:207
+#: ../gramps/plugins/graph/gvrelgraph.py:208
 msgid "Relationship Graph"
 msgstr "Kapcsolat diagram"
 
@@ -24485,50 +24435,50 @@ msgstr "Kapcsolat diagramot hoz létre GrahWiz-zel."
 #. Constant options items
 #.
 #. ------------------------------------------------------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:73
-#: ../gramps/plugins/graph/gvhourglass.py:58
-#: ../gramps/plugins/graph/gvrelgraph.py:72
-msgid "B&W outline"
-msgstr "Fekete-fehér körvonal"
-
 #: ../gramps/plugins/graph/gvfamilylines.py:74
 #: ../gramps/plugins/graph/gvhourglass.py:59
 #: ../gramps/plugins/graph/gvrelgraph.py:73
-msgid "Colored outline"
-msgstr "Színes keret"
+msgid "B&W outline"
+msgstr "Fekete-fehér körvonal"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:75
 #: ../gramps/plugins/graph/gvhourglass.py:60
 #: ../gramps/plugins/graph/gvrelgraph.py:74
+msgid "Colored outline"
+msgstr "Színes keret"
+
+#: ../gramps/plugins/graph/gvfamilylines.py:76
+#: ../gramps/plugins/graph/gvhourglass.py:61
+#: ../gramps/plugins/graph/gvrelgraph.py:75
 msgid "Color fill"
 msgstr "Szín kitöltés"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:77
-#: ../gramps/plugins/graph/gvrelgraph.py:76
+#: ../gramps/plugins/graph/gvfamilylines.py:78
+#: ../gramps/plugins/graph/gvrelgraph.py:77
 msgid "Descendants <- Ancestors"
 msgstr "Leszármazottak <- ősök"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:78
-#: ../gramps/plugins/graph/gvrelgraph.py:77
+#: ../gramps/plugins/graph/gvfamilylines.py:79
+#: ../gramps/plugins/graph/gvrelgraph.py:78
 msgid "Descendants -> Ancestors"
 msgstr "Leszármazottak -> ősök"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:79
-#: ../gramps/plugins/graph/gvrelgraph.py:78
+#: ../gramps/plugins/graph/gvfamilylines.py:80
+#: ../gramps/plugins/graph/gvrelgraph.py:79
 msgid "Descendants <-> Ancestors"
 msgstr "Leszármazottak <-> ősök"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:80
-#: ../gramps/plugins/graph/gvrelgraph.py:79
+#: ../gramps/plugins/graph/gvfamilylines.py:81
+#: ../gramps/plugins/graph/gvrelgraph.py:80
 msgid "Descendants - Ancestors"
 msgstr "Leszármazottak - ősök"
 
 #. ---------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:124
+#: ../gramps/plugins/graph/gvfamilylines.py:125
 msgid "Follow parents to determine \"family lines\""
 msgstr "Szülők követése a \"családvonalak\" meghatározásához"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:126
+#: ../gramps/plugins/graph/gvfamilylines.py:127
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
@@ -24536,19 +24486,19 @@ msgstr ""
 "Szülők és azok ősei lesznek figyelembe véve \"családvonalak\" "
 "meghatározásakor."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:130
+#: ../gramps/plugins/graph/gvfamilylines.py:131
 msgid "Follow children to determine \"family lines\""
 msgstr "Gyermekek követése \"családvonalak\" meghatározásához"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:132
+#: ../gramps/plugins/graph/gvfamilylines.py:133
 msgid "Children will be considered when determining \"family lines\"."
 msgstr "Gyermekek lesznek figyelembe véve \"családvonalak\" meghatározásakor."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:136
+#: ../gramps/plugins/graph/gvfamilylines.py:137
 msgid "Try to remove extra people and families"
 msgstr "Plusz emberek és családok eltávolításának kísérlete"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:138
+#: ../gramps/plugins/graph/gvfamilylines.py:139
 msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
@@ -24556,25 +24506,25 @@ msgstr ""
 "A célszemélyekhez nem közvetlenül kapcsolódó személyek és családok "
 "eltávolításra kerülnek a \"családvonalak\" meghatározásakor."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:144
-#: ../gramps/plugins/graph/gvhourglass.py:380
-#: ../gramps/plugins/graph/gvrelgraph.py:812
+#: ../gramps/plugins/graph/gvfamilylines.py:145
+#: ../gramps/plugins/graph/gvhourglass.py:382
+#: ../gramps/plugins/graph/gvrelgraph.py:815
 msgid "Arrowhead direction"
 msgstr "Nyílhegy iránya"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:147
-#: ../gramps/plugins/graph/gvhourglass.py:383
-#: ../gramps/plugins/graph/gvrelgraph.py:815
+#: ../gramps/plugins/graph/gvfamilylines.py:148
+#: ../gramps/plugins/graph/gvhourglass.py:385
+#: ../gramps/plugins/graph/gvrelgraph.py:818
 msgid "Choose the direction that the arrows point."
 msgstr "Válassza ki az irányt, amerre a nyíl mutatni fog."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:150
-#: ../gramps/plugins/graph/gvhourglass.py:386
-#: ../gramps/plugins/graph/gvrelgraph.py:818
+#: ../gramps/plugins/graph/gvfamilylines.py:151
+#: ../gramps/plugins/graph/gvhourglass.py:388
+#: ../gramps/plugins/graph/gvrelgraph.py:821
 msgid "Graph coloring"
 msgstr "Diagram színezés"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:153
+#: ../gramps/plugins/graph/gvfamilylines.py:154
 msgid ""
 "Males will be shown with blue, females with red, unless otherwise set above "
 "for filled. If the sex of an individual is unknown it will be shown with "
@@ -24583,26 +24533,26 @@ msgstr ""
 "A férfiak kékkel, a nők pirossal lesznek mutatva, amíg fentebb más nem lesz "
 "beállítva. Ha egy személy neme ismeretlen, az szürke lesz."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:159
+#: ../gramps/plugins/graph/gvfamilylines.py:160
 msgid "Rounded corners"
 msgstr "Lekerekített sarkok"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:162
+#: ../gramps/plugins/graph/gvfamilylines.py:163
 msgid "Use rounded corners e.g. to differentiate between women and men."
 msgstr ""
 "Lekerekített sarkok használata pl. nők és férfiak megkülönböztetéséhez."
 
 #. --------------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:184
+#: ../gramps/plugins/graph/gvfamilylines.py:185
 msgid "People of Interest"
 msgstr "Célszemélyek"
 
 #. --------------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:187
+#: ../gramps/plugins/graph/gvfamilylines.py:188
 msgid "People of interest"
 msgstr "Célszemélyek"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:188
+#: ../gramps/plugins/graph/gvfamilylines.py:189
 msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
@@ -24610,44 +24560,44 @@ msgstr ""
 "A célszemélyeket mint kiindulási pont használjuk, amikor \"családvonalakat\" "
 "határozunk meg."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:192
+#: ../gramps/plugins/graph/gvfamilylines.py:193
 msgid "Limit the number of ancestors"
 msgstr "Ősök számának korlátozása"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:194
+#: ../gramps/plugins/graph/gvfamilylines.py:195
 msgid "Whether to limit the number of ancestors."
 msgstr "Korlátozva legyen-e az ősök száma."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:200
+#: ../gramps/plugins/graph/gvfamilylines.py:201
 msgid "The maximum number of ancestors to include."
 msgstr "A vizsgált ősök legnagyobb száma."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:204
+#: ../gramps/plugins/graph/gvfamilylines.py:205
 msgid "Limit the number of descendants"
 msgstr "Leszármazottak számának korlátozása"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:207
+#: ../gramps/plugins/graph/gvfamilylines.py:208
 msgid "Whether to limit the number of descendants."
 msgstr "Legyen-e korlátozva a leszármazottak száma."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:213
+#: ../gramps/plugins/graph/gvfamilylines.py:214
 msgid "The maximum number of descendants to include."
 msgstr "A vizsgálandó leszármazottak legnagyobb száma."
 
 #. --------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:222
+#: ../gramps/plugins/graph/gvfamilylines.py:223
 msgid "Include dates"
 msgstr "Dátumokkal együtt"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:223
+#: ../gramps/plugins/graph/gvfamilylines.py:224
 msgid "Whether to include dates for people and families."
 msgstr "Benne legyenek-e dátumok az embereknél és a családoknál."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:228
+#: ../gramps/plugins/graph/gvfamilylines.py:229
 msgid "Limit dates to years only"
 msgstr "Dátumok korlátozása csak évekre"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:229
+#: ../gramps/plugins/graph/gvfamilylines.py:230
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -24655,132 +24605,132 @@ msgstr ""
 "Csak a dátum évét nyomtatja, sem a hónap, vagy nap; sem a közelített, vagy a "
 "dátumköz nem mutatott."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:235
+#: ../gramps/plugins/graph/gvfamilylines.py:236
 msgid "Whether to include placenames for people and families."
 msgstr "Benne legyenek-e a helynevek az embereknél és családoknál."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:239
+#: ../gramps/plugins/graph/gvfamilylines.py:240
 msgid "Include the number of children"
 msgstr "A gyermekek számával együtt"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:241
+#: ../gramps/plugins/graph/gvfamilylines.py:242
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
 msgstr ""
 "Mutatva legyenek-e a családok gyermekszámai egynél több gyermek esetén."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:246
-#: ../gramps/plugins/graph/gvrelgraph.py:904
+#: ../gramps/plugins/graph/gvfamilylines.py:247
+#: ../gramps/plugins/graph/gvrelgraph.py:907
 msgid "Include thumbnail images of people"
 msgstr "Az emberek bélyegképeivel együtt"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:249
+#: ../gramps/plugins/graph/gvfamilylines.py:250
 msgid "Whether to include thumbnail images of people."
 msgstr "Legyenek-e benne az emberek bélyegképei."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:254
+#: ../gramps/plugins/graph/gvfamilylines.py:255
 msgid "Thumbnail location"
 msgstr "Bélyegkép helye"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:255
-#: ../gramps/plugins/graph/gvrelgraph.py:911
+#: ../gramps/plugins/graph/gvfamilylines.py:256
+#: ../gramps/plugins/graph/gvrelgraph.py:914
 msgid "Above the name"
 msgstr "A név felett"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:256
-#: ../gramps/plugins/graph/gvrelgraph.py:912
+#: ../gramps/plugins/graph/gvfamilylines.py:257
+#: ../gramps/plugins/graph/gvrelgraph.py:915
 msgid "Beside the name"
 msgstr "A név mellett"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:257
-#: ../gramps/plugins/graph/gvrelgraph.py:914
+#: ../gramps/plugins/graph/gvfamilylines.py:258
+#: ../gramps/plugins/graph/gvrelgraph.py:917
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Hol jelenjen meg a bélyegkép a névhez viszonyítva"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:261
+#: ../gramps/plugins/graph/gvfamilylines.py:262
 msgid "Thumbnail size"
 msgstr "Bélyegkép méret"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:264
+#: ../gramps/plugins/graph/gvfamilylines.py:265
 msgid "Size of the thumbnail image"
 msgstr "A bélyegkép mérete"
 
 #. ----------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:268
+#: ../gramps/plugins/graph/gvfamilylines.py:269
 msgid "Family Colors"
 msgstr "Család színek"
 
 #. ----------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:271
+#: ../gramps/plugins/graph/gvfamilylines.py:272
 msgid "Family colors"
 msgstr "Család színek"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:272
+#: ../gramps/plugins/graph/gvfamilylines.py:273
 msgid "Colors to use for various family lines."
 msgstr "A különböző családvonalakhoz használt színek."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:280
-#: ../gramps/plugins/graph/gvhourglass.py:420
-#: ../gramps/plugins/graph/gvrelgraph.py:941
+#: ../gramps/plugins/graph/gvfamilylines.py:281
+#: ../gramps/plugins/graph/gvhourglass.py:422
+#: ../gramps/plugins/graph/gvrelgraph.py:944
 msgid "The color to use to display men."
 msgstr "Férfiakat mutató szín."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:284
-#: ../gramps/plugins/graph/gvhourglass.py:424
-#: ../gramps/plugins/graph/gvrelgraph.py:945
+#: ../gramps/plugins/graph/gvfamilylines.py:285
+#: ../gramps/plugins/graph/gvhourglass.py:426
+#: ../gramps/plugins/graph/gvrelgraph.py:948
 msgid "The color to use to display women."
 msgstr "Nőket mutató szín."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:288
-#: ../gramps/plugins/graph/gvhourglass.py:428
-#: ../gramps/plugins/graph/gvrelgraph.py:950
+#: ../gramps/plugins/graph/gvfamilylines.py:289
+#: ../gramps/plugins/graph/gvhourglass.py:430
+#: ../gramps/plugins/graph/gvrelgraph.py:953
 msgid "The color to use when the gender is unknown."
 msgstr "Ismeretlen nem színe."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:293
-#: ../gramps/plugins/graph/gvhourglass.py:433
-#: ../gramps/plugins/graph/gvrelgraph.py:955
+#: ../gramps/plugins/graph/gvfamilylines.py:294
+#: ../gramps/plugins/graph/gvhourglass.py:435
+#: ../gramps/plugins/graph/gvrelgraph.py:958
 msgid "The color to use to display families."
 msgstr "Családokat mutató szín."
 
-#: ../gramps/plugins/graph/gvfamilylines.py:405
+#: ../gramps/plugins/graph/gvfamilylines.py:406
 #: ../gramps/plugins/textreport/familygroup.py:680
 #: ../gramps/plugins/textreport/indivcomplete.py:829
 msgid "Empty report"
 msgstr "Üres összesítő"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:406
+#: ../gramps/plugins/graph/gvfamilylines.py:407
 #: ../gramps/plugins/textreport/familygroup.py:681
 #: ../gramps/plugins/textreport/indivcomplete.py:830
 msgid "You did not specify anybody"
 msgstr "Senkit sem határozott meg"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:465
+#: ../gramps/plugins/graph/gvfamilylines.py:466
 msgid "Number of people in database:"
 msgstr "Személyek száma az adatbázisban:"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:468
+#: ../gramps/plugins/graph/gvfamilylines.py:469
 msgid "Number of people of interest:"
 msgstr "Célszemélyek száma:"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:471
+#: ../gramps/plugins/graph/gvfamilylines.py:472
 msgid "Number of families in database:"
 msgstr "Családok száma az adatbázisban:"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:474
+#: ../gramps/plugins/graph/gvfamilylines.py:475
 msgid "Number of families of interest:"
 msgstr "Cél családok száma:"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:478
+#: ../gramps/plugins/graph/gvfamilylines.py:479
 msgid "Additional people removed:"
 msgstr "További eltávolított személyek:"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:481
+#: ../gramps/plugins/graph/gvfamilylines.py:482
 msgid "Additional families removed:"
 msgstr "További eltávolított családok:"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:484
+#: ../gramps/plugins/graph/gvfamilylines.py:485
 msgid "Initial list of people of interest:"
 msgstr "Célszemélyek kezdő listája:"
 
@@ -24807,46 +24757,46 @@ msgstr "anya: %s"
 msgid "child: %s"
 msgstr "gyermek: %s"
 
-#: ../gramps/plugins/graph/gvhourglass.py:62
+#: ../gramps/plugins/graph/gvhourglass.py:63
 msgid "Center -> Others"
 msgstr "Központi -> Mások"
 
-#: ../gramps/plugins/graph/gvhourglass.py:63
+#: ../gramps/plugins/graph/gvhourglass.py:64
 msgid "Center <- Others"
 msgstr "Központi <- Mások"
 
-#: ../gramps/plugins/graph/gvhourglass.py:64
+#: ../gramps/plugins/graph/gvhourglass.py:65
 msgid "Center <-> Other"
 msgstr "Központi <-> Más"
 
-#: ../gramps/plugins/graph/gvhourglass.py:65
+#: ../gramps/plugins/graph/gvhourglass.py:66
 msgid "Center - Other"
 msgstr "Központi - Más"
 
-#: ../gramps/plugins/graph/gvhourglass.py:367
+#: ../gramps/plugins/graph/gvhourglass.py:369
 msgid "The Center person for the graph"
 msgstr "A diagram központi személye"
 
-#: ../gramps/plugins/graph/gvhourglass.py:370
+#: ../gramps/plugins/graph/gvhourglass.py:372
 #: ../gramps/plugins/textreport/kinshipreport.py:362
 msgid "Max Descendant Generations"
 msgstr "Leszármazott generációk legnagyobb száma"
 
-#: ../gramps/plugins/graph/gvhourglass.py:371
+#: ../gramps/plugins/graph/gvhourglass.py:373
 msgid "The number of generations of descendants to include in the graph"
 msgstr "A diagramban szereplő leszármazott generációk száma"
 
-#: ../gramps/plugins/graph/gvhourglass.py:375
+#: ../gramps/plugins/graph/gvhourglass.py:377
 #: ../gramps/plugins/textreport/kinshipreport.py:366
 msgid "Max Ancestor Generations"
 msgstr "Ős generációk legnagyobb száma"
 
-#: ../gramps/plugins/graph/gvhourglass.py:376
+#: ../gramps/plugins/graph/gvhourglass.py:378
 msgid "The number of generations of ancestors to include in the graph"
 msgstr "A diagramban szereplő ősök generációinak száma"
 
-#: ../gramps/plugins/graph/gvhourglass.py:389
-#: ../gramps/plugins/graph/gvrelgraph.py:821
+#: ../gramps/plugins/graph/gvhourglass.py:391
+#: ../gramps/plugins/graph/gvrelgraph.py:824
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -24855,27 +24805,27 @@ msgstr ""
 "ismeretlen, az szürke lesz."
 
 #. see bug report #2180
-#: ../gramps/plugins/graph/gvhourglass.py:394
-#: ../gramps/plugins/graph/gvrelgraph.py:827
+#: ../gramps/plugins/graph/gvhourglass.py:396
+#: ../gramps/plugins/graph/gvrelgraph.py:830
 msgid "Use rounded corners"
 msgstr "Lekerekített sarkok használata"
 
-#: ../gramps/plugins/graph/gvhourglass.py:396
-#: ../gramps/plugins/graph/gvrelgraph.py:828
+#: ../gramps/plugins/graph/gvhourglass.py:398
+#: ../gramps/plugins/graph/gvrelgraph.py:831
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Lekerekített sarkok használata a nők és férfiak megkülönböztetéséhez."
 
 #. ###############################
-#: ../gramps/plugins/graph/gvhourglass.py:416
-#: ../gramps/plugins/graph/gvrelgraph.py:937
+#: ../gramps/plugins/graph/gvhourglass.py:418
+#: ../gramps/plugins/graph/gvrelgraph.py:940
 msgid "Graph Style"
 msgstr "Diagram stílus"
 
-#: ../gramps/plugins/graph/gvhourglass.py:436
+#: ../gramps/plugins/graph/gvhourglass.py:438
 msgid "Force Ahnentafel order"
 msgstr "Kikényszerített leszármazási sorrend"
 
-#: ../gramps/plugins/graph/gvhourglass.py:438
+#: ../gramps/plugins/graph/gvhourglass.py:440
 msgid ""
 "Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so "
 "that fathers are always on the left branch and mothers are on the right "
@@ -24885,11 +24835,11 @@ msgstr ""
 "rendezése, hogy az apák mindig bal, az anyák a jobb oldali csoportokba "
 "kerülnek."
 
-#: ../gramps/plugins/graph/gvhourglass.py:441
+#: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "Ahnentafel number visible"
 msgstr "Látható leszármazási szám"
 
-#: ../gramps/plugins/graph/gvhourglass.py:443
+#: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
@@ -24897,87 +24847,87 @@ msgstr ""
 "Mindenki más információi alatt a Sosa / Sosa-Stradonitz / Leszármazási szám "
 "mutatása"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:208
+#: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:834
 #: ../gramps/plugins/textreport/notelinkreport.py:103
 #: ../gramps/plugins/textreport/placereport.py:160
 msgid "Generating report"
 msgstr "Összesítő generálása"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:803
+#: ../gramps/plugins/graph/gvrelgraph.py:806
 msgid "Determines what people are included in the graph"
 msgstr "Meghatározza, kik legyenek a diagramban"
 
 #. see bug report #11112
-#: ../gramps/plugins/graph/gvrelgraph.py:833
+#: ../gramps/plugins/graph/gvrelgraph.py:836
 msgid "Use hexagons"
 msgstr "Hatszögek használata"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:834
+#: ../gramps/plugins/graph/gvrelgraph.py:837
 msgid "Use hexagons to differentiate those of unknown gender."
 msgstr "Hatszögek használata ismeretlen neműek megkülönböztetéséhez."
 
 #. ###############################
-#: ../gramps/plugins/graph/gvrelgraph.py:862
+#: ../gramps/plugins/graph/gvrelgraph.py:865
 msgid "Dates and/or Places"
 msgstr "Dátumok és/vagy helyek"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:863
+#: ../gramps/plugins/graph/gvrelgraph.py:866
 msgid "Do not include any dates or places"
 msgstr "Ne legyen benne egyetlen dátum vagy hely"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:864
+#: ../gramps/plugins/graph/gvrelgraph.py:867
 msgid "Include (birth, marriage, death) dates, but no places"
 msgstr "Születési, házassági és halálozási időpontokkal együtt, de hely nélkül"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:866
+#: ../gramps/plugins/graph/gvrelgraph.py:869
 msgid "Include (birth, marriage, death) dates, and places"
 msgstr "Születési, házassági, halálozási időpontokkal együtt, és helyekkel"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:868
+#: ../gramps/plugins/graph/gvrelgraph.py:871
 msgid "Include (birth, marriage, death) dates, and places if no dates"
 msgstr ""
 "Születési, házassági, halálozási időpontokkal együtt, és helyek ha nincsenek "
 "dátumok"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:870
+#: ../gramps/plugins/graph/gvrelgraph.py:873
 msgid "Include (birth, marriage, death) years, but no places"
 msgstr "Születési, házassági, halálozási évekkel együtt, de helyek nélkül"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:872
+#: ../gramps/plugins/graph/gvrelgraph.py:875
 msgid "Include (birth, marriage, death) years, and places"
 msgstr "Születési, házassági, halálozási évekkel együtt, és helyek"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:874
+#: ../gramps/plugins/graph/gvrelgraph.py:877
 msgid "Include (birth, marriage, death) places, but no dates"
 msgstr "Születési, házassági, halálozási évekkel együtt, de dátumok nélkül"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:876
+#: ../gramps/plugins/graph/gvrelgraph.py:879
 msgid "Include (birth, marriage, death) dates and places on same line"
 msgstr ""
 "Születési, házassági, halálozási időpontokkal és helyekkel ugyanabban a "
 "sorban"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:879
+#: ../gramps/plugins/graph/gvrelgraph.py:882
 msgid "Whether to include dates and/or places"
 msgstr "Legyenek-e benne a dátumok és/vagy helyek"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:882
+#: ../gramps/plugins/graph/gvrelgraph.py:885
 msgid "Show all family nodes"
 msgstr "Minden Család-csomópont mutatása"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:883
+#: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
 msgstr ""
 "Család-csomópont mutatása akkor is, ha a kimeneten csak egy családtag van a "
 "családban."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:887
+#: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "Include URLs"
 msgstr "URL-ekkel együtt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:888
+#: ../gramps/plugins/graph/gvrelgraph.py:891
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -24987,68 +24937,68 @@ msgstr ""
 "imagemap fájlok létrehozáskor tartalmazzanak aktív linkeket a 'Web Site "
 "Létrehozó' összegző által létrehozott fájlokhoz."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:896
+#: ../gramps/plugins/graph/gvrelgraph.py:899
 #: ../gramps/plugins/textreport/birthdayreport.py:568
 #: ../gramps/plugins/textreport/indivcomplete.py:1145
 msgid "Include relationship to center person"
 msgstr "A központi személyre vonatkozó kapcsolatokkal együtt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:897
+#: ../gramps/plugins/graph/gvrelgraph.py:900
 msgid "Whether to show every person's relationship to the center person"
 msgstr "Mutassa-e minden személy kapcsolatát a központi személlyel"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:906
+#: ../gramps/plugins/graph/gvrelgraph.py:909
 msgid "Whether to include thumbnails of people."
 msgstr "Legyenek-e benne az emberek bélyegképei."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:910
+#: ../gramps/plugins/graph/gvrelgraph.py:913
 msgid "Thumbnail Location"
 msgstr "Bélyegkép helye"
 
 #. occupation = BooleanOption(_("Include occupation"), False)
-#: ../gramps/plugins/graph/gvrelgraph.py:918
+#: ../gramps/plugins/graph/gvrelgraph.py:921
 msgid "Include occupation"
 msgstr "A foglalkozással együtt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:919
+#: ../gramps/plugins/graph/gvrelgraph.py:922
 msgid "Do not include any occupation"
 msgstr "Ne legyen semmilyen foglalkozás"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:920
+#: ../gramps/plugins/graph/gvrelgraph.py:923
 msgid "Include description of most recent occupation"
 msgstr "A legfrissebb foglalkozás leírásával együtt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:922
+#: ../gramps/plugins/graph/gvrelgraph.py:925
 msgid "Include date, description and place of all occupations"
 msgstr "Az összes foglalkozás dátummal, leírással és hellyel együtt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:924
+#: ../gramps/plugins/graph/gvrelgraph.py:927
 msgid "Whether to include the last occupation"
 msgstr "Legyen-e benne az utolsó foglalkozás"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:928
+#: ../gramps/plugins/graph/gvrelgraph.py:931
 msgid "Include relationship debugging numbers also"
 msgstr "A kapcsolatok hibakeresési számaival együtt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:931
+#: ../gramps/plugins/graph/gvrelgraph.py:934
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
 "Legyen-e a 'Ga' és 'Gb' is benne a kapcsolat kalkulátor hibakeresésénél"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:959
+#: ../gramps/plugins/graph/gvrelgraph.py:962
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "A nem édes-szülői kapcsolatot pontozott vonal jelezze"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:960
+#: ../gramps/plugins/graph/gvrelgraph.py:963
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "A nem édes-szülői kapcsolatokat pontozott vonalak jelzik a grafikonon."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:964
+#: ../gramps/plugins/graph/gvrelgraph.py:967
 msgid "Show family nodes"
 msgstr "Család-csomópontok mutatása"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:965
+#: ../gramps/plugins/graph/gvrelgraph.py:968
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 "A családok a gyermekekre és szülőkre hivatkozó ellipszisként jelennek meg."
@@ -26394,8 +26344,8 @@ msgid "Common Law Marriage"
 msgstr "Élettársi viszony"
 
 #: ../gramps/plugins/lib/libgedcom.py:699
-#: ../gramps/plugins/webreport/narrativeweb.py:1626
-#: ../gramps/plugins/webreport/webcal.py:1661
+#: ../gramps/plugins/webreport/narrativeweb.py:1630
+#: ../gramps/plugins/webreport/webcal.py:1662
 msgid "Destination"
 msgstr "Célhely"
 
@@ -26992,7 +26942,7 @@ msgid "She was born on %(birth_date)s."
 msgstr "Született: %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:125
-#: ../gramps/plugins/webreport/webcal.py:2091
+#: ../gramps/plugins/webreport/webcal.py:2092
 #, python-format
 msgid "Born %(birth_date)s."
 msgstr "Született: %(birth_date)s."
@@ -27382,7 +27332,7 @@ msgstr "A lány halálozási dátuma %(death_date)s, ekkor kora %(age)s volt."
 #. latin cross for html code
 #: ../gramps/plugins/lib/libnarrate.py:283
 #: ../gramps/plugins/lib/libnarrate.py:316
-#: ../gramps/plugins/webreport/webcal.py:2081
+#: ../gramps/plugins/webreport/webcal.py:2082
 #, python-format
 msgid "Died %(death_date)s."
 msgstr "Meghalt: %(death_date)s."
@@ -30352,7 +30302,7 @@ msgstr "_Vissza"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:652
 #: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/pedigreeview.py:1647
+#: ../gramps/plugins/view/pedigreeview.py:1648
 #: ../gramps/plugins/view/relview.py:372 ../gramps/plugins/view/relview.py:436
 msgid "_Home"
 msgstr "_Kezdés"
@@ -30455,20 +30405,9 @@ msgstr "Személyszűrő szerkesztő"
 
 #: ../gramps/plugins/lib/libpersonview.py:246
 #: ../gramps/plugins/lib/libpersonview.py:355
-#: ../gramps/plugins/view/pedigreeview.py:1657
+#: ../gramps/plugins/view/pedigreeview.py:1658
 msgid "Set _Home Person"
 msgstr "A kii_nduló személy beállítása"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the home person"
-msgstr "A kiinduló személyhez ugrás"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/view/fanchartview.py:184
@@ -31083,23 +31022,6 @@ msgstr "Válassza ki a gyorsítótár könyvtárat offline módhoz"
 msgid "Can't create tiles cache directory %s"
 msgstr "A csempék rejtett %s könyvtára nem létrehozható"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:143
-#, python-format
-msgid ""
-"You must verify and change the tiles cache\n"
-"...\n"
-"[geography]\n"
-"...\n"
-"path='bad/path'\n"
-"...\n"
-"in the gramps.ini file :\n"
-"%s\n"
-"\n"
-"Before to change the gramps.ini file, you need to close gramps\n"
-"\n"
-"The next errors will be normal"
-msgstr ""
-
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
 #, python-format
@@ -31217,7 +31139,7 @@ msgid "Open on maps.google.com"
 msgstr "A maps.google.com-on nyissa meg"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:2044
+#: ../gramps/plugins/webreport/narrativeweb.py:2048
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -31581,7 +31503,7 @@ msgstr "Emberek"
 #: ../gramps/plugins/webreport/basepage.py:1531
 #: ../gramps/plugins/webreport/basepage.py:1583
 #: ../gramps/plugins/webreport/basepage.py:1652
-#: ../gramps/plugins/webreport/person.py:1249
+#: ../gramps/plugins/webreport/person.py:1256
 #: ../gramps/plugins/webreport/source.py:130
 #: ../gramps/plugins/webreport/source.py:227
 msgid "Sources"
@@ -33029,7 +32951,7 @@ msgid "Alternate Parents"
 msgstr "Alternatív szülők"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:445
-#: ../gramps/plugins/webreport/person.py:1234
+#: ../gramps/plugins/webreport/person.py:1241
 msgid "Associations"
 msgstr "Társítások"
 
@@ -34974,7 +34896,7 @@ msgstr "Közös őseik: "
 #: ../gramps/plugins/tool/removespaces.py:54
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr ""
+msgstr "Elő_és_követő_szóközök_eltávolítása"
 
 #: ../gramps/plugins/tool/removespaces.py:87
 #: ../gramps/plugins/tool/tools.gpr.py:489
@@ -34982,43 +34904,38 @@ msgid "Clean input data"
 msgstr "Bemeneti adatok tisztítása"
 
 #: ../gramps/plugins/tool/removespaces.py:104
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Keresés a teljes adatbázisban helyek és személyek előtti, vagy utáni "
-"szóközökre. Helyek koordinátamezőiben vessző keresése."
+"Elő és követő szóközök keresése személyek és helyek esetén. Vessző keresése "
+"koordináta mezőkben.\n"
+"Tartalom szerkesztéséhez kettős kattintás a soron."
 
 #: ../gramps/plugins/tool/removespaces.py:113
-#, fuzzy
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr "Lehetséges hurok keresése minden személynél"
+msgstr "Lehetséges elő- és követő szóközök kutatása"
 
 #: ../gramps/plugins/tool/removespaces.py:130
 #: ../gramps/plugins/tool/removespaces.py:179
-#, fuzzy
 msgid "handle"
-msgstr "Kezelés"
+msgstr "kezelés"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:135
-#, fuzzy
 msgid "firstname"
-msgstr "ismeretlen keresztnév"
+msgstr "keresztnév"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
-#, fuzzy
 msgid "alternate name"
-msgstr "Alternatív nevek"
+msgstr "más név"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:147
-#, fuzzy
 msgid "group as"
-msgstr "Csoportosítás mint"
+msgstr "csoportosítás mint"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -35157,27 +35074,27 @@ msgid "Reorder_Gramps_ID"
 msgstr "manual|GRAPMS-azonosítók újrarendezése"
 
 #. self.top.set_icon(ICON)
-#: ../gramps/plugins/tool/reorderids.py:218
-#: ../gramps/plugins/tool/reorderids.py:441
-#: ../gramps/plugins/tool/reorderids.py:533
-#: ../gramps/plugins/tool/reorderids.py:616
-#: ../gramps/plugins/tool/reorderids.py:621
+#: ../gramps/plugins/tool/reorderids.py:221
+#: ../gramps/plugins/tool/reorderids.py:444
+#: ../gramps/plugins/tool/reorderids.py:536
+#: ../gramps/plugins/tool/reorderids.py:626
+#: ../gramps/plugins/tool/reorderids.py:631
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
 msgstr "GRAPMS-azonosítók újrarendezése"
 
-#: ../gramps/plugins/tool/reorderids.py:544
-#: ../gramps/plugins/tool/reorderids.py:549
+#: ../gramps/plugins/tool/reorderids.py:547
+#: ../gramps/plugins/tool/reorderids.py:552
 #, python-format
 msgid "Reorder %s IDs ..."
 msgstr "%s azonosítók újrarendezése..."
 
-#: ../gramps/plugins/tool/reorderids.py:625
+#: ../gramps/plugins/tool/reorderids.py:635
 #, python-format
 msgid "Do you want to replace %s?"
 msgstr "Le akarja cserélni ezt: %s?"
 
-#: ../gramps/plugins/tool/reorderids.py:684
+#: ../gramps/plugins/tool/reorderids.py:694
 msgid "Finding and assigning unused IDs."
 msgstr "Használatlan azonosítók keresése és kiosztása"
 
@@ -36169,7 +36086,7 @@ msgstr "GRAMPS ID mutatása"
 #: ../gramps/plugins/view/fanchart2wayview.py:346
 #: ../gramps/plugins/view/fanchartdescview.py:345
 #: ../gramps/plugins/view/fanchartview.py:437
-#: ../gramps/plugins/view/pedigreeview.py:2128
+#: ../gramps/plugins/view/pedigreeview.py:2129
 #: ../gramps/plugins/view/relview.py:1882
 msgid "Layout"
 msgstr "Elrendezés"
@@ -36784,85 +36701,85 @@ msgctxt "short for cremated"
 msgid "crem."
 msgstr "hamv."
 
-#: ../gramps/plugins/view/pedigreeview.py:1205
+#: ../gramps/plugins/view/pedigreeview.py:1206
 msgid "Jump to child..."
 msgstr "Ugrás gyermekhez..."
 
-#: ../gramps/plugins/view/pedigreeview.py:1219
+#: ../gramps/plugins/view/pedigreeview.py:1220
 msgid "Jump to father"
 msgstr "Ugrás apához"
 
-#: ../gramps/plugins/view/pedigreeview.py:1233
+#: ../gramps/plugins/view/pedigreeview.py:1234
 msgid "Jump to mother"
 msgstr "Ugrás anyához"
 
-#: ../gramps/plugins/view/pedigreeview.py:1601
+#: ../gramps/plugins/view/pedigreeview.py:1602
 msgid "A person was found to be his/her own ancestor."
 msgstr "A talált személy a saját őse."
 
-#: ../gramps/plugins/view/pedigreeview.py:1645
+#: ../gramps/plugins/view/pedigreeview.py:1646
 msgid "Pre_vious"
 msgstr "El_őző"
 
-#: ../gramps/plugins/view/pedigreeview.py:1646
+#: ../gramps/plugins/view/pedigreeview.py:1647
 msgid "_Next"
 msgstr "_Következő"
 
 #. Mouse scroll direction setting.
-#: ../gramps/plugins/view/pedigreeview.py:1675
+#: ../gramps/plugins/view/pedigreeview.py:1676
 msgid "Mouse scroll direction"
 msgstr "Egérgörgetés iránya"
 
-#: ../gramps/plugins/view/pedigreeview.py:1679
+#: ../gramps/plugins/view/pedigreeview.py:1680
 msgid "Top <-> Bottom"
 msgstr "Felül <-> Alul"
 
-#: ../gramps/plugins/view/pedigreeview.py:1686
+#: ../gramps/plugins/view/pedigreeview.py:1687
 msgid "Left <-> Right"
 msgstr "Balra <-> Jobbra"
 
-#: ../gramps/plugins/view/pedigreeview.py:1903
+#: ../gramps/plugins/view/pedigreeview.py:1904
 #: ../gramps/plugins/view/relview.py:393
 msgid "Add New Parents..."
 msgstr "Új szülők hozzáadása..."
 
-#: ../gramps/plugins/view/pedigreeview.py:2098
+#: ../gramps/plugins/view/pedigreeview.py:2099
 msgid "Show images"
 msgstr "Képek mutatása"
 
-#: ../gramps/plugins/view/pedigreeview.py:2101
+#: ../gramps/plugins/view/pedigreeview.py:2102
 msgid "Show marriage data"
 msgstr "Házassági adatok mutatása"
 
-#: ../gramps/plugins/view/pedigreeview.py:2104
+#: ../gramps/plugins/view/pedigreeview.py:2105
 msgid "Show unknown people"
 msgstr "Ismeretlen emberek mutatása"
 
-#: ../gramps/plugins/view/pedigreeview.py:2107
+#: ../gramps/plugins/view/pedigreeview.py:2108
 msgid "Show tags"
 msgstr "Címkék mutatása"
 
-#: ../gramps/plugins/view/pedigreeview.py:2110
+#: ../gramps/plugins/view/pedigreeview.py:2111
 msgid "Tree style"
 msgstr "A fa stílusa"
 
-#: ../gramps/plugins/view/pedigreeview.py:2112
+#: ../gramps/plugins/view/pedigreeview.py:2113
 msgid "Standard"
 msgstr "Szabványos"
 
-#: ../gramps/plugins/view/pedigreeview.py:2113
+#: ../gramps/plugins/view/pedigreeview.py:2114
 msgid "Compact"
 msgstr "Tömör"
 
-#: ../gramps/plugins/view/pedigreeview.py:2114
+#: ../gramps/plugins/view/pedigreeview.py:2115
 msgid "Expanded"
 msgstr "Kiterjesztett"
 
-#: ../gramps/plugins/view/pedigreeview.py:2117
+#: ../gramps/plugins/view/pedigreeview.py:2118
 msgid "Tree direction"
 msgstr "A fa iránya"
 
-#: ../gramps/plugins/view/pedigreeview.py:2124
+#: ../gramps/plugins/view/pedigreeview.py:2125
 msgid "Tree size"
 msgstr "A fa mérete"
 
@@ -36928,9 +36845,9 @@ msgstr "Aktív személy szerkesztése"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -37013,19 +36930,19 @@ msgid "Relationship type: %s"
 msgstr "Kapcsolattípus: %s"
 
 #: ../gramps/plugins/view/relview.py:1520
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s, %(place)s"
+msgstr "%(event_type)s %(date)s %(place)s -ba(e)n"
 
 #: ../gramps/plugins/view/relview.py:1524
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1528
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1539
 msgid "Broken family detected"
@@ -37326,7 +37243,7 @@ msgstr "Bélyegképek"
 #: ../gramps/plugins/webreport/basepage.py:1535
 #: ../gramps/plugins/webreport/basepage.py:1668
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:1906
+#: ../gramps/plugins/webreport/narrativeweb.py:1910
 msgid "Download"
 msgstr "Letöltés"
 
@@ -37377,14 +37294,13 @@ msgstr "Egyházmegye"
 msgid "Locations"
 msgstr "Koordináták"
 
-#: ../gramps/plugins/webreport/basepage.py:2893
+#: ../gramps/plugins/webreport/basepage.py:2943
 msgid "circa"
-msgstr ""
+msgstr "körül"
 
-#: ../gramps/plugins/webreport/basepage.py:2895
-#, fuzzy
+#: ../gramps/plugins/webreport/basepage.py:2945
 msgid "around"
-msgstr "Háttér"
+msgstr "körülbelül"
 
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
@@ -37416,12 +37332,12 @@ msgstr "Eseményoldalak létrehozása"
 #: ../gramps/plugins/webreport/family.py:108
 #: ../gramps/plugins/webreport/media.py:116
 #: ../gramps/plugins/webreport/media.py:244
-#: ../gramps/plugins/webreport/narrativeweb.py:501
-#: ../gramps/plugins/webreport/narrativeweb.py:1084
-#: ../gramps/plugins/webreport/narrativeweb.py:1142
-#: ../gramps/plugins/webreport/narrativeweb.py:1165
-#: ../gramps/plugins/webreport/narrativeweb.py:1174
-#: ../gramps/plugins/webreport/narrativeweb.py:1217
+#: ../gramps/plugins/webreport/narrativeweb.py:500
+#: ../gramps/plugins/webreport/narrativeweb.py:1088
+#: ../gramps/plugins/webreport/narrativeweb.py:1146
+#: ../gramps/plugins/webreport/narrativeweb.py:1169
+#: ../gramps/plugins/webreport/narrativeweb.py:1178
+#: ../gramps/plugins/webreport/narrativeweb.py:1221
 #: ../gramps/plugins/webreport/person.py:141
 #: ../gramps/plugins/webreport/place.py:117
 #: ../gramps/plugins/webreport/repository.py:102
@@ -37471,8 +37387,12 @@ msgstr ""
 msgid "Families beginning with letter "
 msgstr "Családok, melyek kezdőbetűje "
 
+#. Note. We use '/' here because it is a URL, not a OS
+#. dependent pathname need to leave home link alone,
+#. so look for it ...
 #: ../gramps/plugins/webreport/home.py:78
 #: ../gramps/plugins/webreport/webcal.py:576
+#: ../gramps/plugins/webreport/webcal.py:599
 msgid "Home"
 msgstr "Kezdőlap"
 
@@ -37531,107 +37451,107 @@ msgstr "Fájltípus"
 msgid "Missing media object:"
 msgstr "Hiányzó médiaobjektum:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:285
+#: ../gramps/plugins/webreport/narrativeweb.py:284
 #, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
 msgstr "Sem %(current)s, sem %(parent)s nem mappa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:294
-#: ../gramps/plugins/webreport/narrativeweb.py:300
-#: ../gramps/plugins/webreport/narrativeweb.py:313
-#: ../gramps/plugins/webreport/narrativeweb.py:319
+#: ../gramps/plugins/webreport/narrativeweb.py:293
+#: ../gramps/plugins/webreport/narrativeweb.py:299
+#: ../gramps/plugins/webreport/narrativeweb.py:312
+#: ../gramps/plugins/webreport/narrativeweb.py:318
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Nem lehet létrehozni a mappát : %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:326
+#: ../gramps/plugins/webreport/narrativeweb.py:325
 msgid "Invalid file name"
 msgstr "Szabálytalan fájlnév"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:327
+#: ../gramps/plugins/webreport/narrativeweb.py:326
 msgid "The archive file must be a file, not a directory"
 msgstr "Az archívumnak fájlnak kell lennie, nem mappának"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:463
+#: ../gramps/plugins/webreport/narrativeweb.py:462
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "Azonosító=%(grampsid)s, path=%(dir)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:468
+#: ../gramps/plugins/webreport/narrativeweb.py:467
 msgid "Missing media objects:"
 msgstr "Hiányzó médiaobjektumok:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:500
+#: ../gramps/plugins/webreport/narrativeweb.py:499
 msgid "Constructing list of other objects..."
 msgstr "Más objektum-lista felépítése..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:745
+#: ../gramps/plugins/webreport/narrativeweb.py:744
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "%(husband)s és %(spouse)s családja"
 
 #. Only the name of the husband is known
 #. Only the name of the wife is known
-#: ../gramps/plugins/webreport/narrativeweb.py:751
-#: ../gramps/plugins/webreport/narrativeweb.py:755
+#: ../gramps/plugins/webreport/narrativeweb.py:750
+#: ../gramps/plugins/webreport/narrativeweb.py:754
 #, python-format
 msgid "Family of %s"
 msgstr "%s családja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1083
+#: ../gramps/plugins/webreport/narrativeweb.py:1087
 msgid "Creating GENDEX file"
 msgstr "GENDEX fájl létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1141
+#: ../gramps/plugins/webreport/narrativeweb.py:1145
 msgid "Creating surname pages"
 msgstr "Családnév oldalak létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1166
+#: ../gramps/plugins/webreport/narrativeweb.py:1170
 msgid "Creating thumbnail preview page..."
 msgstr "Bélyegkép előnézet oldal létrehozása..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1175
+#: ../gramps/plugins/webreport/narrativeweb.py:1179
 msgid "Creating statistics page..."
 msgstr "Statisztikai oldal létrehozása..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1216
+#: ../gramps/plugins/webreport/narrativeweb.py:1220
 msgid "Creating address book pages ..."
 msgstr "Címlista oldalak létrehozása ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1616
+#: ../gramps/plugins/webreport/narrativeweb.py:1620
 msgid "Store web pages in .tar.gz archive"
 msgstr "A honlapot .tar.gz archívumban tárolja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1618
+#: ../gramps/plugins/webreport/narrativeweb.py:1622
 msgid "Whether to store the web pages in an archive file"
 msgstr "Legyen-e a web-oldal archívum fájlban tárolva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1629
-#: ../gramps/plugins/webreport/webcal.py:1663
+#: ../gramps/plugins/webreport/narrativeweb.py:1633
+#: ../gramps/plugins/webreport/webcal.py:1664
 msgid "The destination directory for the web files"
 msgstr "A web-fájlok cél könyvtára"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1635
+#: ../gramps/plugins/webreport/narrativeweb.py:1639
 msgid "My Family Tree"
 msgstr "Családfám"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1635
+#: ../gramps/plugins/webreport/narrativeweb.py:1639
 msgid "Web site title"
 msgstr "A web-oldal neve"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1636
+#: ../gramps/plugins/webreport/narrativeweb.py:1640
 msgid "The title of the web site"
 msgstr "A web-oldal megnevezése"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1641
+#: ../gramps/plugins/webreport/narrativeweb.py:1645
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Válasszon szűrőt a weboldalon megjelenő személyekhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1650
+#: ../gramps/plugins/webreport/narrativeweb.py:1654
 msgid "Show the relationship between the current person and the active person"
 msgstr "Kapcsolat mutatása a kiválasztott és a kiinduló személy között"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1653
+#: ../gramps/plugins/webreport/narrativeweb.py:1657
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
@@ -37639,204 +37559,206 @@ msgstr ""
 "Minden személy oldalon a kapcsolat mutatása a kiválasztott és a kiinduló "
 "személy között."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1671
+#: ../gramps/plugins/webreport/narrativeweb.py:1675
 msgid "Html options"
 msgstr "Html beállítások"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1674
-#: ../gramps/plugins/webreport/webcal.py:1684
+#: ../gramps/plugins/webreport/narrativeweb.py:1678
+#: ../gramps/plugins/webreport/webcal.py:1685
 msgid "File extension"
 msgstr "Fájlkiterjesztés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1677
-#: ../gramps/plugins/webreport/webcal.py:1687
+#: ../gramps/plugins/webreport/narrativeweb.py:1681
+#: ../gramps/plugins/webreport/webcal.py:1688
 msgid "The extension to be used for the web files"
 msgstr "A web-fájlokhoz használandó kiterjesztés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1680
-#: ../gramps/plugins/webreport/webcal.py:1690
+#: ../gramps/plugins/webreport/narrativeweb.py:1684
+#: ../gramps/plugins/webreport/webcal.py:1691
 msgid "Copyright"
 msgstr "Szerzői jog"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1683
-#: ../gramps/plugins/webreport/webcal.py:1693
+#: ../gramps/plugins/webreport/narrativeweb.py:1687
+#: ../gramps/plugins/webreport/webcal.py:1694
 msgid "The copyright to be used for the web files"
 msgstr "A web-fájlokra vonatkozó szerzői jog"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1692
-#: ../gramps/plugins/webreport/webcal.py:1702
+#: ../gramps/plugins/webreport/narrativeweb.py:1696
+#: ../gramps/plugins/webreport/webcal.py:1703
 msgid "The stylesheet to be used for the web pages"
 msgstr "A weboldalhoz használandó stíluslap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1697
+#: ../gramps/plugins/webreport/narrativeweb.py:1701
 msgid "Horizontal -- Default"
 msgstr "Vízszintes -- alapértelmezett"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1698
+#: ../gramps/plugins/webreport/narrativeweb.py:1702
 msgid "Vertical   -- Left Side"
 msgstr "Függőleges -- bal oldal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1699
+#: ../gramps/plugins/webreport/narrativeweb.py:1703
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Homályosít      -- csak WebKit böngészők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1700
-#: ../gramps/plugins/webreport/narrativeweb.py:1714
+#: ../gramps/plugins/webreport/narrativeweb.py:1704
+#: ../gramps/plugins/webreport/narrativeweb.py:1718
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Legördülő  -- csak WebKit böngészők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1702
+#: ../gramps/plugins/webreport/narrativeweb.py:1706
 msgid "Navigation Menu Layout"
 msgstr "Navigációs menü elrendezés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1706
+#: ../gramps/plugins/webreport/narrativeweb.py:1710
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Válassza ki a Navigációs menü elrendezését."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1713
+#: ../gramps/plugins/webreport/narrativeweb.py:1717
 msgid "Normal Outline Style"
 msgstr "Normál kontúr stílus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1717
+#: ../gramps/plugins/webreport/narrativeweb.py:1721
 msgid "Citation Referents Layout"
 msgstr "Idézet hivatkozások elrendezés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1721
+#: ../gramps/plugins/webreport/narrativeweb.py:1725
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 "Meghatározza a Forrás oldal idézet hivatkozások részének alapértelmezett "
 "elrendezését"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1725
+#: ../gramps/plugins/webreport/narrativeweb.py:1729
 msgid "Include ancestor's tree"
 msgstr "Az ős-fával"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1726
+#: ../gramps/plugins/webreport/narrativeweb.py:1730
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Legyen-e minden személy oldalán az ős-grafikon is"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1731
+#: ../gramps/plugins/webreport/narrativeweb.py:1735
 msgid "Add previous/next"
 msgstr "Előző/következő hozzáadása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1732
+#: ../gramps/plugins/webreport/narrativeweb.py:1736
 msgid "Add previous/next to the navigation bar."
 msgstr "Előző/következő hozzáadása a navigációs sávhoz."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1735
+#: ../gramps/plugins/webreport/narrativeweb.py:1739
 msgid "This is a secure site (https)"
 msgstr "Ez egy biztonságos oldal (https)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1737
+#: ../gramps/plugins/webreport/narrativeweb.py:1741
 msgid "Whether to use http:// or https://"
 msgstr "http://- vagy https://-t használjon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1744
+#: ../gramps/plugins/webreport/narrativeweb.py:1748
 msgid "Extra pages"
 msgstr "Többlet lap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1747
+#: ../gramps/plugins/webreport/narrativeweb.py:1751
 msgid "Extra page name"
 msgstr "Többlet lap neve"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1750
+#: ../gramps/plugins/webreport/narrativeweb.py:1754
 msgid "Your extra page name like it is shown in the menubar"
 msgstr "A többlet lap neve, ahogyan a menüsávban látható"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1755
+#: ../gramps/plugins/webreport/narrativeweb.py:1759
 msgid "Your extra page path"
 msgstr "Többlet lapjának útvonala"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1758
+#: ../gramps/plugins/webreport/narrativeweb.py:1762
 msgid "Your extra page path without extension"
 msgstr "Többlet lapjának útvonala kiterjesztés nélkül"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1778
+#: ../gramps/plugins/webreport/narrativeweb.py:1782
 msgid "Sort all children in birth order"
 msgstr "Rendezze az összes gyermeket születési sorrendbe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1780
+#: ../gramps/plugins/webreport/narrativeweb.py:1784
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Legyenek-e a gyermekek születési, vagy belépési sorrenbe rendezve?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1784
+#: ../gramps/plugins/webreport/narrativeweb.py:1788
 msgid "Do we display coordinates in the places list?"
 msgstr "Mutassuk-e a koordinátákat a helylistában?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1786
+#: ../gramps/plugins/webreport/narrativeweb.py:1790
 msgid "Whether to display latitude/longitude in the places list?"
 msgstr "Mutassuk-e a hosszúságot/szélességet a helylistában?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1790
+#: ../gramps/plugins/webreport/narrativeweb.py:1794
 msgid "Sort places references either by date or by name"
 msgstr "Helyek hivatkozásainak dátum és név szerinti rendezése"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1792
+#: ../gramps/plugins/webreport/narrativeweb.py:1796
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 "Helyek hivatkozásainak rendezése dátum, vagy név szerint. Ha nincs beállítás "
 "az dátum szerinti rendezést jelent."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1796
+#: ../gramps/plugins/webreport/narrativeweb.py:1800
 msgid "Graph generations"
 msgstr "Generációk grafikonja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1797
+#: ../gramps/plugins/webreport/narrativeweb.py:1801
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Az ős grafikonba kerülő generációk száma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1803
+#: ../gramps/plugins/webreport/narrativeweb.py:1807
 msgid "Include narrative notes just after name, gender"
-msgstr ""
+msgstr "A történet jegyzetei közvetlenül a név, nem után legyenek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1805
+#: ../gramps/plugins/webreport/narrativeweb.py:1809
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"A történet jegyzetei közvetlenül az elhalálozás (alaphelyzet) név, nem és "
+"kor után; vagy közvetlenül a tulajdonságok előtt legyenek."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1814
+#: ../gramps/plugins/webreport/narrativeweb.py:1818
 msgid "Page Generation"
 msgstr "Generáció oldal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1817
+#: ../gramps/plugins/webreport/narrativeweb.py:1821
 msgid "Home page note"
 msgstr "Kezdő oldal szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1818
+#: ../gramps/plugins/webreport/narrativeweb.py:1822
 msgid "A note to be used on the home page"
 msgstr "A kezdőlapon megjelenő szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1821
+#: ../gramps/plugins/webreport/narrativeweb.py:1825
 msgid "Home page image"
 msgstr "Kezdőlap kép"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1822
+#: ../gramps/plugins/webreport/narrativeweb.py:1826
 msgid "An image to be used on the home page"
 msgstr "Egy kép, ami a kezdőlapon lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1825
+#: ../gramps/plugins/webreport/narrativeweb.py:1829
 msgid "Introduction note"
 msgstr "Bevezető szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1826
+#: ../gramps/plugins/webreport/narrativeweb.py:1830
 msgid "A note to be used as the introduction"
 msgstr "Egy szöveg, ami a bevezetésben lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1829
+#: ../gramps/plugins/webreport/narrativeweb.py:1833
 msgid "Introduction image"
 msgstr "Bevezető kép"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1830
+#: ../gramps/plugins/webreport/narrativeweb.py:1834
 msgid "An image to be used as the introduction"
 msgstr "Egy kép, ami a bevezetésben lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1833
+#: ../gramps/plugins/webreport/narrativeweb.py:1837
 msgid "Publisher contact note"
 msgstr "A kiadó kapcsolat információja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1834
+#: ../gramps/plugins/webreport/narrativeweb.py:1838
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -37846,11 +37768,11 @@ msgstr ""
 "Ha nincs kiadói információ, akkor\n"
 "nem lesz kapcsolati oldal létrehozva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1840
+#: ../gramps/plugins/webreport/narrativeweb.py:1844
 msgid "Publisher contact image"
 msgstr "A kiadó kapcsolati képe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1841
+#: ../gramps/plugins/webreport/narrativeweb.py:1845
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -37860,47 +37782,47 @@ msgstr ""
 "Ha nincs kiadói információ, akkor\n"
 "nem lesz kapcsolati oldal létrehozva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1847
+#: ../gramps/plugins/webreport/narrativeweb.py:1851
 msgid "HTML user header"
 msgstr "HTML felhasználói fejléc"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1848
+#: ../gramps/plugins/webreport/narrativeweb.py:1852
 msgid "A note to be used as the page header"
 msgstr "Egy szöveg, ami az oldal fejlécében lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1851
+#: ../gramps/plugins/webreport/narrativeweb.py:1855
 msgid "HTML user footer"
 msgstr "HTML felhasználói lábléc"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1852
+#: ../gramps/plugins/webreport/narrativeweb.py:1856
 msgid "A note to be used as the page footer"
 msgstr "Egy szöveg, ami az oldal láblécében lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1859
+#: ../gramps/plugins/webreport/narrativeweb.py:1863
 msgid "Images Generation"
 msgstr "Képek generálása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1862
+#: ../gramps/plugins/webreport/narrativeweb.py:1866
 msgid "Include images and media objects"
 msgstr "Képekkel és médiaobjektumokkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1864
+#: ../gramps/plugins/webreport/narrativeweb.py:1868
 msgid "Whether to include a gallery of media objects"
 msgstr "Legyen-e benne a médiaobjektumok galériája"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1870
+#: ../gramps/plugins/webreport/narrativeweb.py:1874
 msgid "Include unused images and media objects"
 msgstr "A nem használt képekkel és médiaobjektumokkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1871
+#: ../gramps/plugins/webreport/narrativeweb.py:1875
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Legyenek-e benne nem használt, vagy nem-hivatkozott médiaobjektumok"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1876
+#: ../gramps/plugins/webreport/narrativeweb.py:1880
 msgid "Create and only use thumbnail- sized images"
 msgstr "Csak bélyegkép méretű képek létrehozása és használata"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1878
+#: ../gramps/plugins/webreport/narrativeweb.py:1882
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -37910,20 +37832,11 @@ msgstr ""
 "hanem bélyegkép méretű képek létrehozását. Ez a web-kiszolgáló oldalra "
 "sokkal kisebb feltöltési méretet tesz lehetővé."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1887
+#: ../gramps/plugins/webreport/narrativeweb.py:1891
 msgid "Max width of initial image"
 msgstr "A kezdőkép maximális szélessége"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
-#, fuzzy
-msgid ""
-"This allows you to set the maximum width of the image shown on the media "
-"page."
-msgstr ""
-"Lehetővé teszi a kép maximális mutatott szélességének beállítását a média "
-"oldalon. állítsa 0-ra, ha nincs korlát."
-
-#: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -37931,11 +37844,11 @@ msgstr ""
 "Lehetővé teszi a kép maximális mutatott szélességének beállítását a média "
 "oldalon. állítsa 0-ra, ha nincs korlát."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1894
+#: ../gramps/plugins/webreport/narrativeweb.py:1898
 msgid "Max height of initial image"
 msgstr "A kezdőkép maximális magassága"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1896
+#: ../gramps/plugins/webreport/narrativeweb.py:1900
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -37943,160 +37856,160 @@ msgstr ""
 "Lehetővé teszi a kép maximális mutatott magasságának beállítását a média "
 "oldalon. állítsa 0-ra, ha nincs korlát."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1909
+#: ../gramps/plugins/webreport/narrativeweb.py:1913
 msgid "Include download page"
 msgstr "Letöltés lappal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1911
+#: ../gramps/plugins/webreport/narrativeweb.py:1915
 msgid "Whether to include a database download option"
 msgstr "Legyen-e letöltés opcióhoz adatbázis benne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1916
-#: ../gramps/plugins/webreport/narrativeweb.py:1928
+#: ../gramps/plugins/webreport/narrativeweb.py:1920
+#: ../gramps/plugins/webreport/narrativeweb.py:1932
 msgid "Download Filename"
 msgstr "Fájlnév letöltés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1919
-#: ../gramps/plugins/webreport/narrativeweb.py:1931
+#: ../gramps/plugins/webreport/narrativeweb.py:1923
+#: ../gramps/plugins/webreport/narrativeweb.py:1935
 msgid "File to be used for downloading of database"
 msgstr "Az adatbázis letöltéséhez használandó fájl"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1922
-#: ../gramps/plugins/webreport/narrativeweb.py:1934
+#: ../gramps/plugins/webreport/narrativeweb.py:1926
+#: ../gramps/plugins/webreport/narrativeweb.py:1938
 msgid "Description for download"
 msgstr "A letöltés leírása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1923
+#: ../gramps/plugins/webreport/narrativeweb.py:1927
 msgid "Smith Family Tree"
 msgstr "Smith családfa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1924
-#: ../gramps/plugins/webreport/narrativeweb.py:1936
+#: ../gramps/plugins/webreport/narrativeweb.py:1928
+#: ../gramps/plugins/webreport/narrativeweb.py:1940
 msgid "Give a description for this file."
 msgstr "Adja meg a fájl leírását."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1935
+#: ../gramps/plugins/webreport/narrativeweb.py:1939
 msgid "Johnson Family Tree"
 msgstr "Johnson családfa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1945
-#: ../gramps/plugins/webreport/webcal.py:1868
+#: ../gramps/plugins/webreport/narrativeweb.py:1949
+#: ../gramps/plugins/webreport/webcal.py:1869
 msgid "Advanced Options"
 msgstr "Haladó opciók"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1948
-#: ../gramps/plugins/webreport/webcal.py:1870
+#: ../gramps/plugins/webreport/narrativeweb.py:1952
+#: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Character set encoding"
 msgstr "Karakterkészlet kódolás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1952
-#: ../gramps/plugins/webreport/webcal.py:1874
+#: ../gramps/plugins/webreport/narrativeweb.py:1956
+#: ../gramps/plugins/webreport/webcal.py:1875
 msgid "The encoding to be used for the web files"
 msgstr "A web-oldal karakterkódja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1956
+#: ../gramps/plugins/webreport/narrativeweb.py:1960
 msgid "Include link to active person on every page"
 msgstr "Aktív személy hivatkozással minden oldalon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1958
+#: ../gramps/plugins/webreport/narrativeweb.py:1962
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Együtt egy hivatkozással aktív személyhez (ha van web-oldala)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1962
+#: ../gramps/plugins/webreport/narrativeweb.py:1966
 msgid "Include a column for birth dates on the index pages"
 msgstr "Legyen oszlop a születési dátumokhoz az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1963
+#: ../gramps/plugins/webreport/narrativeweb.py:1967
 msgid "Whether to include a birth column"
 msgstr "Legyen-e születési oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1967
+#: ../gramps/plugins/webreport/narrativeweb.py:1971
 msgid "Include a column for death dates on the index pages"
 msgstr "Legyen oszlop a halálozási dátumokhoz az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1968
+#: ../gramps/plugins/webreport/narrativeweb.py:1972
 msgid "Whether to include a death column"
 msgstr "Legyen-e halálozási oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1971
+#: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Include a column for partners on the index pages"
 msgstr "Legyen oszlop a társaknak az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1973
+#: ../gramps/plugins/webreport/narrativeweb.py:1977
 msgid "Whether to include a partners column"
 msgstr "Legyen-e társak oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1976
+#: ../gramps/plugins/webreport/narrativeweb.py:1980
 msgid "Include a column for parents on the index pages"
 msgstr "Legyen oszlop a szülőknek az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1978
+#: ../gramps/plugins/webreport/narrativeweb.py:1982
 msgid "Whether to include a parents column"
 msgstr "Legyen-e szülők oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1982
+#: ../gramps/plugins/webreport/narrativeweb.py:1986
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Legyen fél- és/vagy mostohatestvér az egyes oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1985
+#: ../gramps/plugins/webreport/narrativeweb.py:1989
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
 "Benne legyenek-e a fél- és/vagy mostohatestvérek a szülőkkel és testvérekkel"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1996
+#: ../gramps/plugins/webreport/narrativeweb.py:2000
 msgid "Include family pages"
 msgstr "Családi oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1997
+#: ../gramps/plugins/webreport/narrativeweb.py:2001
 msgid "Whether or not to include family pages."
 msgstr "Legyenek-e benne családi oldalak is."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2000
+#: ../gramps/plugins/webreport/narrativeweb.py:2004
 msgid "Include event pages"
 msgstr "Esemény oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2002
+#: ../gramps/plugins/webreport/narrativeweb.py:2006
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Adjon-e hozzá eseménylistát és fontos oldalakat, vagy sem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2005
+#: ../gramps/plugins/webreport/narrativeweb.py:2009
 msgid "Include places pages"
 msgstr "Hely oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2007
+#: ../gramps/plugins/webreport/narrativeweb.py:2011
 msgid "Whether or not to include the places Pages."
 msgstr "Legyenek-e benne Hely oldalak, vagy sem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2010
+#: ../gramps/plugins/webreport/narrativeweb.py:2014
 msgid "Include sources pages"
 msgstr "Forrás oldalakkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2012
+#: ../gramps/plugins/webreport/narrativeweb.py:2016
 msgid "Whether or not to include the sources Pages."
 msgstr "Legyenek-e benne Forrás oldalak, vagy sem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2015
+#: ../gramps/plugins/webreport/narrativeweb.py:2019
 msgid "Include repository pages"
 msgstr "Tároló oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2017
+#: ../gramps/plugins/webreport/narrativeweb.py:2021
 msgid "Whether or not to include the Repository Pages."
 msgstr "Legyenek-e benne Tároló oldalak, vagy sem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2021
+#: ../gramps/plugins/webreport/narrativeweb.py:2025
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "GENDEX-fájllal (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2022
+#: ../gramps/plugins/webreport/narrativeweb.py:2026
 msgid "Whether to include a GENDEX file or not"
 msgstr "Legyen-e benne GENDEX-fájl, vagy sem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2025
+#: ../gramps/plugins/webreport/narrativeweb.py:2029
 msgid "Include address book pages"
 msgstr "Címlista oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2026
+#: ../gramps/plugins/webreport/narrativeweb.py:2030
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -38104,35 +38017,35 @@ msgstr ""
 "Legyenek-e hozzáadva olyan Címlista oldalak (vagy sem), melyek e-mail-, web-"
 "oldal- és személyes lak-/lakóhely címeket tartalmaznak."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2032
+#: ../gramps/plugins/webreport/narrativeweb.py:2036
 msgid "Include the statistics page"
 msgstr "Statisztikai oldallal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2033
+#: ../gramps/plugins/webreport/narrativeweb.py:2037
 msgid "Whether or not to add statistics page"
 msgstr "Legyen, vagy ne legyen statisztikai oldal hozzáadás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2040
+#: ../gramps/plugins/webreport/narrativeweb.py:2044
 msgid "Place Map Options"
 msgstr "Helytérkép opciók"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2045
+#: ../gramps/plugins/webreport/narrativeweb.py:2049
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2046
+#: ../gramps/plugins/webreport/narrativeweb.py:2050
 msgid "Map Service"
 msgstr "Térképszolgáltatás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2050
+#: ../gramps/plugins/webreport/narrativeweb.py:2054
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "A Helytérkép oldalak létrehozásához válasszon egy térképszolgáltatást."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2056
+#: ../gramps/plugins/webreport/narrativeweb.py:2060
 msgid "Include Place map on Place Pages"
 msgstr "Helytérképpel a Helyek oldalon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2058
+#: ../gramps/plugins/webreport/narrativeweb.py:2062
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -38140,11 +38053,11 @@ msgstr ""
 "Legyen-e helytérkép a Helyek oldalon, ahol a szélességi/hosszúsági fokok "
 "elérhetőek."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2063
+#: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Családtérkép oldalakkal az összes hely jelölésével a térképen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2067
+#: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -38152,23 +38065,23 @@ msgstr ""
 "Legyen-e egyéni oldalhoz térkép hozzáadva, ami jelöli az összes helyet az "
 "oldalon. Ez lehetővé teszi a család országon belüli utazásainak bemutatását."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2075
+#: ../gramps/plugins/webreport/narrativeweb.py:2079
 msgid "Family Links"
 msgstr "Család hivatkozások"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2076
+#: ../gramps/plugins/webreport/narrativeweb.py:2080
 msgid "Drop"
 msgstr "Eldobás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2077
+#: ../gramps/plugins/webreport/narrativeweb.py:2081
 msgid "Markers"
 msgstr "Jelzők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2078
+#: ../gramps/plugins/webreport/narrativeweb.py:2082
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ CsaládTérkép opció"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
@@ -38176,36 +38089,36 @@ msgstr ""
 "Válassza ki, milyen opciókkal szeretné a Google Térképeken a Családtérkép "
 "oldalakat megjeleníteni..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2087
+#: ../gramps/plugins/webreport/narrativeweb.py:2091
 msgid "Google maps API key"
 msgstr "Google térkép API kulcs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2088
+#: ../gramps/plugins/webreport/narrativeweb.py:2092
 msgid "The API key used for the Google maps"
 msgstr "A Google térképhez használt API kulcs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2097
+#: ../gramps/plugins/webreport/narrativeweb.py:2101
 msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgstr "Egyéb számításba veendő (CMS, Web-naptár, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2101
+#: ../gramps/plugins/webreport/narrativeweb.py:2105
 msgid "Do we include these pages in a cms web ?"
 msgstr "Betegyük ezeket a lapokat a cms web-be ?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2105
-#: ../gramps/plugins/webreport/narrativeweb.py:2122
+#: ../gramps/plugins/webreport/narrativeweb.py:2109
+#: ../gramps/plugins/webreport/narrativeweb.py:2126
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2111
+#: ../gramps/plugins/webreport/narrativeweb.py:2115
 msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Hol van az Ön web helye ? Alapértelmezett = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2118
+#: ../gramps/plugins/webreport/narrativeweb.py:2122
 msgid "Do we include the web calendar ?"
 msgstr "Betegyük a web-naptárt ?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2128
+#: ../gramps/plugins/webreport/narrativeweb.py:2132
 msgid "Where do you place your web site ? default = /WEBCAL"
 msgstr "Hol van az Ön web-helye ? Alapértelmezett = /WEBCAL"
 
@@ -38268,39 +38181,39 @@ msgstr "Jelölések dobása"
 msgid "Place Title"
 msgstr "Helycím"
 
-#: ../gramps/plugins/webreport/person.py:1446
+#: ../gramps/plugins/webreport/person.py:1453
 msgid "Call Name"
 msgstr "Hívónév"
 
-#: ../gramps/plugins/webreport/person.py:1464
+#: ../gramps/plugins/webreport/person.py:1471
 msgid "Nick Name"
 msgstr "Becenév"
 
-#: ../gramps/plugins/webreport/person.py:1510
+#: ../gramps/plugins/webreport/person.py:1517
 msgid "Age at Death"
 msgstr "Kora a halálakor"
 
-#: ../gramps/plugins/webreport/person.py:1640
+#: ../gramps/plugins/webreport/person.py:1647
 msgid "Stepfather"
 msgstr "Mostohaapa"
 
-#: ../gramps/plugins/webreport/person.py:1653
+#: ../gramps/plugins/webreport/person.py:1660
 msgid "Stepmother"
 msgstr "Mostohaanya"
 
-#: ../gramps/plugins/webreport/person.py:1681
+#: ../gramps/plugins/webreport/person.py:1688
 msgid "Not siblings"
 msgstr "Nem testvérek"
 
-#: ../gramps/plugins/webreport/person.py:1823
+#: ../gramps/plugins/webreport/person.py:1830
 msgid "Relation to the center person"
 msgstr "Kapcsolat a kiinduló személlyel"
 
-#: ../gramps/plugins/webreport/person.py:1860
+#: ../gramps/plugins/webreport/person.py:1867
 msgid "Relation to main person"
 msgstr "Kapcsolat a kiinduló személyhez"
 
-#: ../gramps/plugins/webreport/person.py:1864
+#: ../gramps/plugins/webreport/person.py:1871
 msgid "Relation within this family (if not by birth)"
 msgstr "Kapcsolat a családon belül (ha az nem születési)"
 
@@ -38436,9 +38349,9 @@ msgstr ""
 #. Number of directory levels up to get to root
 #. generate progress pass for "Year At A Glance"
 #: ../gramps/plugins/webreport/webcal.py:332
-#: ../gramps/plugins/webreport/webcal.py:975
-#: ../gramps/plugins/webreport/webcal.py:1061
-#: ../gramps/plugins/webreport/webcal.py:1284
+#: ../gramps/plugins/webreport/webcal.py:976
+#: ../gramps/plugins/webreport/webcal.py:1062
+#: ../gramps/plugins/webreport/webcal.py:1285
 msgid "Web Calendar Report"
 msgstr "Web naptár összesítő"
 
@@ -38466,29 +38379,29 @@ msgstr "Készült %(author)s számára"
 msgid "Year Glance"
 msgstr "Év pillantás"
 
-#: ../gramps/plugins/webreport/webcal.py:623
+#: ../gramps/plugins/webreport/webcal.py:624
 msgid "NarrativeWeb Home"
 msgstr "Elbeszélő web kezdőoldal"
 
-#: ../gramps/plugins/webreport/webcal.py:625
+#: ../gramps/plugins/webreport/webcal.py:626
 msgid "Full year at a Glance"
 msgstr "Teljes év Pillantásra"
 
-#: ../gramps/plugins/webreport/webcal.py:976
+#: ../gramps/plugins/webreport/webcal.py:977
 msgid "Formatting months ..."
 msgstr "Hónapok formázása..."
 
-#: ../gramps/plugins/webreport/webcal.py:1062
+#: ../gramps/plugins/webreport/webcal.py:1063
 msgid "Creating Year At A Glance calendar"
 msgstr "EgyévPillantás naptár létrehozása"
 
 #. page title
-#: ../gramps/plugins/webreport/webcal.py:1068
+#: ../gramps/plugins/webreport/webcal.py:1069
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr "%(year)d, Pillantás"
 
-#: ../gramps/plugins/webreport/webcal.py:1083
+#: ../gramps/plugins/webreport/webcal.py:1084
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
@@ -38499,220 +38412,218 @@ msgstr ""
 "oldalra juthat, ahol a dátum minden eseménye (ha van) látható.\n"
 
 #. page title
-#: ../gramps/plugins/webreport/webcal.py:1137
+#: ../gramps/plugins/webreport/webcal.py:1138
 msgid "One Day Within A Year"
 msgstr "Egy nap az éven belül"
 
-#: ../gramps/plugins/webreport/webcal.py:1473
+#: ../gramps/plugins/webreport/webcal.py:1474
 #, python-format
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s és %(person)s"
 
-#: ../gramps/plugins/webreport/webcal.py:1496
+#: ../gramps/plugins/webreport/webcal.py:1497
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
 msgstr "Készült a %(gramps_home_html_start)sGramps%(html_end)s-al %(date)s-n"
 
-#. page title
-#: ../gramps/plugins/webreport/webcal.py:1601
-#: ../gramps/plugins/webreport/webcal.py:1667
-msgid "My Family Calendar"
-msgstr "Családi naptáram"
-
-#: ../gramps/plugins/webreport/webcal.py:1667
+#: ../gramps/plugins/webreport/webcal.py:1668
 msgid "Calendar Title"
 msgstr "Naptárcím"
 
 #: ../gramps/plugins/webreport/webcal.py:1668
+msgid "My Family Calendar"
+msgstr "Családi naptáram"
+
+#: ../gramps/plugins/webreport/webcal.py:1669
 msgid "The title of the calendar"
 msgstr "A naptár címe"
 
-#: ../gramps/plugins/webreport/webcal.py:1699
+#: ../gramps/plugins/webreport/webcal.py:1700
 msgid "StyleSheet"
 msgstr "Stíluslap"
 
-#: ../gramps/plugins/webreport/webcal.py:1740
+#: ../gramps/plugins/webreport/webcal.py:1741
 msgid "Content Options"
 msgstr "Tartalom opciók"
 
-#: ../gramps/plugins/webreport/webcal.py:1745
+#: ../gramps/plugins/webreport/webcal.py:1746
 msgid "Create multiple year calendars"
 msgstr "Többéves naptár létrehozása"
 
-#: ../gramps/plugins/webreport/webcal.py:1747
+#: ../gramps/plugins/webreport/webcal.py:1748
 msgid "Whether to create Multiple year calendars or not."
 msgstr "Legyen-e több évet tartalmazó naptár létrehozva, vagy sem."
 
-#: ../gramps/plugins/webreport/webcal.py:1752
+#: ../gramps/plugins/webreport/webcal.py:1753
 msgid "Start Year for the Calendar(s)"
 msgstr "A(z) (s) naptár kezdő éve"
 
-#: ../gramps/plugins/webreport/webcal.py:1754
+#: ../gramps/plugins/webreport/webcal.py:1755
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr "Írja be 1900 - 3000 között a naptár kezdőévét"
 
-#: ../gramps/plugins/webreport/webcal.py:1758
+#: ../gramps/plugins/webreport/webcal.py:1759
 msgid "End Year for the Calendar(s)"
 msgstr "A(z) (s) naptár utolsó éve"
 
-#: ../gramps/plugins/webreport/webcal.py:1760
+#: ../gramps/plugins/webreport/webcal.py:1761
 msgid "Enter the ending year for the calendars between 1900 - 3000."
 msgstr "Írja be 1900 - 3000 között a naptár utolsó évét."
 
-#: ../gramps/plugins/webreport/webcal.py:1779
+#: ../gramps/plugins/webreport/webcal.py:1780
 msgid "Holidays will be included for the selected country"
 msgstr "Az ünnepnapok a kiválasztott országra fognak vonatkozni"
 
-#: ../gramps/plugins/webreport/webcal.py:1802
+#: ../gramps/plugins/webreport/webcal.py:1803
 msgid "Home link"
 msgstr "Kezdő hivatkozás"
 
-#: ../gramps/plugins/webreport/webcal.py:1803
+#: ../gramps/plugins/webreport/webcal.py:1804
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr "Hivatkozás, ami a felhasználót a web-oldal fő oldalára viszi"
 
-#: ../gramps/plugins/webreport/webcal.py:1811
+#: ../gramps/plugins/webreport/webcal.py:1812
 msgid "Jan - Jun Notes"
 msgstr "Jan - Jún jegyzetek"
 
-#: ../gramps/plugins/webreport/webcal.py:1813
+#: ../gramps/plugins/webreport/webcal.py:1814
 msgid "January Note"
 msgstr "Januári jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1814
+#: ../gramps/plugins/webreport/webcal.py:1815
 msgid "The note for the month of January"
 msgstr "Januárra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1817
+#: ../gramps/plugins/webreport/webcal.py:1818
 msgid "February Note"
 msgstr "Februári jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1818
+#: ../gramps/plugins/webreport/webcal.py:1819
 msgid "The note for the month of February"
 msgstr "Februárra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1821
+#: ../gramps/plugins/webreport/webcal.py:1822
 msgid "March Note"
 msgstr "Márciusi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1822
+#: ../gramps/plugins/webreport/webcal.py:1823
 msgid "The note for the month of March"
 msgstr "Márciusra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1825
+#: ../gramps/plugins/webreport/webcal.py:1826
 msgid "April Note"
 msgstr "Áprilisi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1826
+#: ../gramps/plugins/webreport/webcal.py:1827
 msgid "The note for the month of April"
 msgstr "Áprilisra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1829
+#: ../gramps/plugins/webreport/webcal.py:1830
 msgid "May Note"
 msgstr "Májusi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1830
+#: ../gramps/plugins/webreport/webcal.py:1831
 msgid "The note for the month of May"
 msgstr "Májusra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1833
+#: ../gramps/plugins/webreport/webcal.py:1834
 msgid "June Note"
 msgstr "Júniusi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1834
+#: ../gramps/plugins/webreport/webcal.py:1835
 msgid "The note for the month of June"
 msgstr "Júniusra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1837
+#: ../gramps/plugins/webreport/webcal.py:1838
 msgid "Jul - Dec Notes"
 msgstr "Júl - Dec jegyzetek"
 
-#: ../gramps/plugins/webreport/webcal.py:1839
+#: ../gramps/plugins/webreport/webcal.py:1840
 msgid "July Note"
 msgstr "Júliusi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1840
+#: ../gramps/plugins/webreport/webcal.py:1841
 msgid "The note for the month of July"
 msgstr "Júliusra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1843
+#: ../gramps/plugins/webreport/webcal.py:1844
 msgid "August Note"
 msgstr "Augusztusi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1844
+#: ../gramps/plugins/webreport/webcal.py:1845
 msgid "The note for the month of August"
 msgstr "Augusztusra vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1847
+#: ../gramps/plugins/webreport/webcal.py:1848
 msgid "September Note"
 msgstr "Szeptemberi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1848
+#: ../gramps/plugins/webreport/webcal.py:1849
 msgid "The note for the month of September"
 msgstr "Szeptemberre vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1851
+#: ../gramps/plugins/webreport/webcal.py:1852
 msgid "October Note"
 msgstr "Októberi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1852
+#: ../gramps/plugins/webreport/webcal.py:1853
 msgid "The note for the month of October"
 msgstr "Októberre vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1855
+#: ../gramps/plugins/webreport/webcal.py:1856
 msgid "November Note"
 msgstr "Novemberi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1856
+#: ../gramps/plugins/webreport/webcal.py:1857
 msgid "The note for the month of November"
 msgstr "Novemberre vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1859
+#: ../gramps/plugins/webreport/webcal.py:1860
 msgid "December Note"
 msgstr "Decemberi jegyzet"
 
-#: ../gramps/plugins/webreport/webcal.py:1860
+#: ../gramps/plugins/webreport/webcal.py:1861
 msgid "The note for the month of December"
 msgstr "Decemberre vonatkozó szöveg"
 
-#: ../gramps/plugins/webreport/webcal.py:1877
+#: ../gramps/plugins/webreport/webcal.py:1878
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Egy év - egy pillantás naptárhoz egynapos eseményoldal létrehozása"
 
-#: ../gramps/plugins/webreport/webcal.py:1879
+#: ../gramps/plugins/webreport/webcal.py:1880
 msgid "Whether to create one day pages or not"
 msgstr "Legyen-e egynapos oldal létrehozva, vagy sem"
 
-#: ../gramps/plugins/webreport/webcal.py:1883
+#: ../gramps/plugins/webreport/webcal.py:1884
 msgid "Include birthdays in the calendar"
 msgstr "Születésnapok a naptárban is"
 
-#: ../gramps/plugins/webreport/webcal.py:1887
+#: ../gramps/plugins/webreport/webcal.py:1888
 msgid "Include anniversaries in the calendar"
 msgstr "Évfordulók a naptárban is"
 
-#: ../gramps/plugins/webreport/webcal.py:1890
+#: ../gramps/plugins/webreport/webcal.py:1891
 msgid "Include death dates"
 msgstr "Halálozás dátumokkal együtt"
 
-#: ../gramps/plugins/webreport/webcal.py:1891
+#: ../gramps/plugins/webreport/webcal.py:1892
 msgid "Include death anniversaries in the calendar"
 msgstr "Halálozási évfordulók a naptárban is"
 
-#: ../gramps/plugins/webreport/webcal.py:1894
+#: ../gramps/plugins/webreport/webcal.py:1895
 msgid "Link to Narrated Web Report"
 msgstr "Leíró web-oldal összesítőre hivatkozás"
 
-#: ../gramps/plugins/webreport/webcal.py:1895
+#: ../gramps/plugins/webreport/webcal.py:1896
 msgid "Whether to link data to web report or not"
 msgstr "Legyen-e adathivatkozás a web összesítőre, vagy sem"
 
-#: ../gramps/plugins/webreport/webcal.py:1901
+#: ../gramps/plugins/webreport/webcal.py:1902
 msgid "Show data only after year"
 msgstr "Adat mutatása az év után"
 
-#: ../gramps/plugins/webreport/webcal.py:1904
+#: ../gramps/plugins/webreport/webcal.py:1905
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
@@ -38720,38 +38631,38 @@ msgstr ""
 "Adat mutatása csak ezután az év után. Alapértelmezett a jelenlegi év - 'a "
 "valószínűleg élő legmagasabb kor' az adatok beállítása fülön meghatározott. "
 
-#: ../gramps/plugins/webreport/webcal.py:1912
+#: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Link prefix"
 msgstr "Hivatkozás előtag"
 
-#: ../gramps/plugins/webreport/webcal.py:1913
+#: ../gramps/plugins/webreport/webcal.py:1914
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "Egy hivatkozás előtag, ami Leíró web-oldal összesítőre visz"
 
-#: ../gramps/plugins/webreport/webcal.py:2092
+#: ../gramps/plugins/webreport/webcal.py:2093
 #, python-format
 msgid "%s old"
 msgstr "%s éves"
 
-#: ../gramps/plugins/webreport/webcal.py:2102
+#: ../gramps/plugins/webreport/webcal.py:2103
 #, python-format
 msgid "%s since death"
 msgstr "%s óta halott"
 
-#: ../gramps/plugins/webreport/webcal.py:2103
+#: ../gramps/plugins/webreport/webcal.py:2104
 msgid "death"
 msgstr "halál"
 
-#: ../gramps/plugins/webreport/webcal.py:2110
+#: ../gramps/plugins/webreport/webcal.py:2111
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>esküvő</em>"
 
-#: ../gramps/plugins/webreport/webcal.py:2118
+#: ../gramps/plugins/webreport/webcal.py:2119
 msgid "Until"
 msgstr "-ig"
 
-#: ../gramps/plugins/webreport/webcal.py:2127
+#: ../gramps/plugins/webreport/webcal.py:2128
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
@@ -38840,15 +38751,6 @@ msgstr "Nincs stíluslap"
 #~ msgstr "Segíthet megoldani a betűtípusok problémáit."
 
 #~ msgid ""
-#~ "You need to set a 'Home Person' to go to. Select the People View, select "
-#~ "the person you want as 'Home Person', then confirm your choice via the "
-#~ "menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
-#~ "nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá "
-#~ "a Szerkesztés -> Kiinduló személy beállítása menün keresztül."
-
-#~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
@@ -38905,13 +38807,8 @@ msgstr "Nincs stíluslap"
 #~ msgid "Family Divorced"
 #~ msgstr "Elvált családok"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Home Person"
-msgstr "Alapértelmezett személy"
-
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Az alapértelmezettnek megfelelő személy"
+#~ msgid "Home Person"
+#~ msgstr "Kiinduló személy"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Élő nő kerete"
@@ -42130,4 +42027,3 @@ msgstr "Az alapértelmezettnek megfelelő személy"
 
 #~ msgid "Family Sources"
 #~ msgstr "Család források"
-
