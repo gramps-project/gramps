@@ -28,3 +28,4 @@ ehthumbs.db
 
 # Glade temp files
 *~
+.vscode/
