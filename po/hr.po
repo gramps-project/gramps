@@ -11772,7 +11772,7 @@ msgid "Place format (auto place title)"
 msgstr "Format za mjesta (automatska imena mjesta)"
 
 #: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr ""
 "Aktivira automatsko generiranje imena mjesta koristeći određeni format."
 
@@ -11967,7 +11967,7 @@ msgstr "Dodaj etiketu pri uvozu"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 "Određena oznaka će biti dodana prilikom uvoza.\n"

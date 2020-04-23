@@ -11956,7 +11956,7 @@ msgstr "Lugares que coincidem com o título"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Ativar a geração automática de títulos lugar"
 
 #: ../gramps/gui/configure.py:1254
@@ -12150,7 +12150,7 @@ msgstr "Adicionar etiqueta na importação"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 

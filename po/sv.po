@@ -8770,7 +8770,7 @@ msgid "Place format (auto place title)"
 msgstr "Platsformat (automatisk platstitel)"
 
 #: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Tillåt automatiskt skapande av platstitel med specificerat format."
 
 #: ../gramps/gui/configure.py:1254
@@ -8958,7 +8958,7 @@ msgstr "Lägg till tagg vid import"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 "Specificerad tagg kommer att läggas till vid import.\n"
@@ -35315,3 +35315,4 @@ msgstr "Inget mallblad"
 
 #~ msgid "Name Format Editor"
 #~ msgstr "Namnformatsredigerare"
+

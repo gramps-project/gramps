@@ -11834,7 +11834,7 @@ msgid "Place format (auto place title)"
 msgstr "Формат мест (автоматическое создание названий)"
 
 #: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Включает автоматическое создание названия места в указанном формате."
 
 #: ../gramps/gui/configure.py:1254
@@ -12026,7 +12026,7 @@ msgstr "Добавлять метку при импорте"
 
 #: ../gramps/gui/configure.py:1576
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 "Указанная метка будет добавлена при импорте.\n"
@@ -42377,3 +42377,4 @@ msgstr "Без стилевого листа"
 #~ "Используйте https://gramps-project.org/bugs/ чтобы сообщить об ошибке в "
 #~ "официально поддерживаемых  видах, или свяжитесь с автором "
 #~ "(%(firstauthoremail)s) в противном случае. "
+

@@ -11149,7 +11149,7 @@ msgid "Place format (auto place title)"
 msgstr "場所フォーマット (オート場所タイトル)"
 
 #: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "指定のフォーマットを使用した自動場所タイトル生成を許可。"
 
 #: ../gramps/gui/configure.py:1254
@@ -11327,7 +11327,7 @@ msgstr "インポートにタグを追加する"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr "指定されたタグがインポートに追加される。デフォルト値をクリア。"
 
@@ -38434,3 +38434,4 @@ msgstr "スタイルシートなし"
 
 #~ msgid "Family Sources"
 #~ msgstr "家族ソース"
+

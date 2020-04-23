@@ -12154,7 +12154,7 @@ msgid "Place format (auto place title)"
 msgstr "Места што се совпаѓаат со <filter>"
 
 #: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr ""
 
 #: ../gramps/gui/configure.py:1254
@@ -12364,7 +12364,7 @@ msgstr "Додади стандарден извор при увоз"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 

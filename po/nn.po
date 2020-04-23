@@ -11871,7 +11871,7 @@ msgstr "Stader som samsvarar med ein tittel"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Slå på automatisk generering av stadnamn"
 
 #: ../gramps/gui/configure.py:1254
@@ -12065,7 +12065,7 @@ msgstr "Legg til merke ved import"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 
