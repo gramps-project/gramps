@@ -1667,6 +1667,10 @@ class NavWebOptions(MenuReportOptions):
         self.__extra_page = None
         self.__relation = False
         self.__prevnext = False
+        self.__lang_2 = None
+        self.__lang_3 = None
+        self.__lang_4 = None
+        self.__lang_5 = None
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -1687,6 +1691,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_advanced_options_2(menu)
         self.__add_place_map_options(menu)
         self.__add_others_options(menu)
+        self.__add_translations(menu)
 
 
     def __add_report_options(self, menu):
@@ -1853,6 +1858,16 @@ class NavWebOptions(MenuReportOptions):
 
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        self.__multitrans = BooleanOption(
+            _('Do we use multiple translations?'), False)
+        self.__multitrans.set_help(
+            _('Whether to display the narrative web in multiple languages.'
+              '\nSee the translation tab to add new languages to the default'
+              ' one defined in the next field.'))
+        addopt("multitrans", self.__multitrans)
+        self.__multitrans.connect('value-changed',
+                                  self.__show_hide_translations)
 
         locale_opt = stdoptions.add_localization_option(menu, category_name)
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
@@ -2258,6 +2273,39 @@ class NavWebOptions(MenuReportOptions):
         self.__maxupdates.set_help(_("How many updates do you want to see max"
                                     ))
         addopt("maxupdates", self.__maxupdates)
+
+    def __add_translations(self, menu):
+        """
+        Options for selecting multiple languages. The default one is
+        displayed in the display tab. If the option "use multiple
+        languages is not selected, all the fields in this menu will be grayed.
+        """
+        category_name = _("Translations")
+        addopt = partial(menu.add_option, category_name)
+
+        #self.__usecms = BooleanOption(
+        #    _("Do we include these pages in a cms web ?"), False)
+        #menu.get_option_by_name(optname)
+        extras = menu.get_option_by_name("multitrans")
+        print("extras", extras.get_value())
+        self.__lang_2 = stdoptions.add_extra_localization_option(menu,
+            category_name, "second language", "lang2")
+        self.__lang_3 = stdoptions.add_extra_localization_option(menu,
+            category_name, "third language", "lang3")
+        self.__lang_4 = stdoptions.add_extra_localization_option(menu,
+            category_name, "fourth language", "lang4")
+        self.__lang_5 = stdoptions.add_extra_localization_option(menu,
+            category_name, "fifth language", "lang5")
+
+    def __show_hide_translations(self):
+        """
+        Make the possible extra languages selectable.
+        """
+        status = self.__multitrans.get_value()
+        self.__lang_2.set_available(status)
+        self.__lang_3.set_available(status)
+        self.__lang_4.set_available(status)
+        self.__lang_5.set_available(status)
 
     def __updates_changed(self):
         """
