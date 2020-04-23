@@ -11859,7 +11859,7 @@ msgstr "Steder der matcher en titel"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Tillad automatisk placering af titel generation"
 
 #: ../gramps/gui/configure.py:1254
@@ -12054,7 +12054,7 @@ msgstr "Tilføj tærkat ved import"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 

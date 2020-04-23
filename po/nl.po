@@ -12118,7 +12118,7 @@ msgstr "Locaties die en bepaalde titel hebben"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Het automatisch aanmaken van plaatstitel toelaten"
 
 #: ../gramps/gui/configure.py:1254
@@ -12313,7 +12313,7 @@ msgstr "Tag bij het importeren toevoegen"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 

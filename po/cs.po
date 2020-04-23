@@ -11752,7 +11752,7 @@ msgid "Place format (auto place title)"
 msgstr "Formát místa (automatický titulek místa)"
 
 #: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Povolit automatické vytváření titulku místa dle daného formátu"
 
 #: ../gramps/gui/configure.py:1254
@@ -11942,7 +11942,7 @@ msgstr "Při importu přidat štítek"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 "Zadaný štítek bude přídán při importu.\n"

@@ -11827,7 +11827,7 @@ msgstr "Lokoj kongruaj kun titolo"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Ebligu aŭtomatan generadon de loktitoloj"
 
 #: ../gramps/gui/configure.py:1254
@@ -12020,7 +12020,7 @@ msgstr "Aldonu etikedon dum importado"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"Specifed tag will be added on import.\n"
+"specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 
