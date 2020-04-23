@@ -12150,7 +12150,7 @@ msgstr "Adicionar etiqueta na importação"
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
-"specified tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 
