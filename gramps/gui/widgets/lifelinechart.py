@@ -1,33 +1,6 @@
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2001-2007  Donald N. Allingham, Martin Hawlisch
-# Copyright (C) 2009 Douglas S. Blank
-# Copyright (C) 2012 Benny Malengier
-# Copyright (C) 2013 Vassilii Khachaturov
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#
-
-## Based on the paper:
-##   http://www.cs.utah.edu/~draperg/research/lifelinechart/draperg_FHT08.pdf
-## and the applet:
-##   http://www.cs.utah.edu/~draperg/research/lifelinechart/demo/
-
-## Found by redwood:
-## http://www.gramps-project.org/bugs/view.php?id=2611
+"""
+See https://github.com/CWSchulze/life_line_chart
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -51,8 +24,6 @@ from gi.repository import PangoCairo
 #-------------------------------------------------------------------------
 from copy import deepcopy
 import sys, os
-sys.path = [r'C:\Users\Christian\Documents\Source\Stammbaum'] + sys.path
-os.environ['path'] = r'C:\Users\Christian\Documents\Source\Stammbaum;' + os.environ['path']
 from life_line_chart import AncestorGraph
 from life_line_chart import BaseIndividual, BaseFamily, InstanceContainer, estimate_birth_date, estimate_death_date
 from gramps.gen.display.name import displayer as name_displayer
@@ -349,8 +320,6 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         self.childring = 0
         self.childrenroot = []
         self.angle = {}
-        self.grad_start = '#0000FF'
-        self.grad_end = '#FF0000'
         self.background = BACKGROUND_GRAD_GEN
         self.filter = None
         self.alpha_filter = 0.5
@@ -598,46 +567,6 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
 
         return color[0], color[1], color[2], alpha
 
-    @staticmethod
-    def create_map_rect_to_sector(radius, start_rad, stop_rad, textheight,
-                                  bottom_is_outside=False):
-        """
-        Create a 2D-transform, mapping a rectangle onto a circle sector.
-
-        :param radius: average radius of the target sector
-        :param start_rad: start radial angle of the sector, in radians
-        :param stop_rad: stop radial angle of the sector, in radians
-        :param textheight height of the text
-        :param bottom_is_outside flag defining if we write with the
-                                 bottom toward outside
-        :returns: a lambda (x,y)|->(xNew,yNew) to feed to warpPath.
-        """
-        if bottom_is_outside:
-            def phi(posx):
-                """ x in outside case """
-                return -posx / radius + stop_rad
-            def rho(posy):
-                """ y in outside case """
-                return radius + (posy - textheight / 2.0)
-        else:
-            def phi(posx):
-                """ x in inside case """
-                return posx / radius + start_rad
-            def rho(posy):
-                """ y in inside case """
-                return radius - (posy - textheight / 2.0)
-        return lambda posx, posy: (rho(posy) * math.cos(phi(posx)),
-                                   rho(posy) * math.sin(phi(posx)))
-
- 
-    def cursor_on_tranlation_dot(self, curx, cury):
-        """
-        Determine if the cursor at position x and y is
-        on the translation dot
-        """
-        lifelinexy = curx - self.center_xy[0], cury - self.center_xy[1]
-        radius = math.sqrt((lifelinexy[0]) ** 2 + (lifelinexy[1]) ** 2)
-        return radius < TRANSLATE_PX
 
     def cursor_to_polar(self, curx, cury, get_raw_rads=False):
         """
@@ -696,11 +625,23 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         """grab key press
         """
         dummy_widget = widget
-        if self.mouse_x and self.mouse_y:
+        if Gdk.keyval_name(eventkey.keyval) == 'plus':
+            # we edit the person
+            self.zoom_level *= 1.1
+            self.draw()
+            self.queue_draw()
+            return True
+        if Gdk.keyval_name(eventkey.keyval) == 'minus':
+            # we edit the person
+            self.zoom_level /= 1.1
+            self.draw()
+            self.queue_draw()
+            return True
+        #if self.mouse_x and self.mouse_y:
             # cell_address = self.cell_address_under_cursor(self.mouse_x,
-            #                                               self.mouse_y)
-            if cell_address is None:
-                return False
+            # #                                               self.mouse_y)
+            # if cell_address is None:
+            #     return False
             # person, family = (self.person_at(cell_address),
             #                   self.family_at(cell_address))
             # if person and (Gdk.keyval_name(eventkey.keyval) == 'e'):
@@ -725,26 +666,25 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
             #we grab the focus to enable to see key_press events
             self.grab_focus()
 
-        # left mouse on center dot, we translate on left click
-        if self.cursor_on_tranlation_dot(event.x, event.y):
+        # cell_address = self.cell_address_under_cursor(event.x, event.y)
+        individual = self.life_line_chart_ancestor_graph.get_individual_from_position(event.x/self.zoom_level, event.y/self.zoom_level)
+        if individual:
+            individual_id = individual.individual_id
+        else:
+            #return True
+
+            # left mouse on center dot, we translate on left click
             if event.button == 1: # left mouse
                 # save the mouse location for movements
                 self.translating = True
                 self.last_x, self.last_y = event.x, event.y
                 return True
 
-        # cell_address = self.cell_address_under_cursor(event.x, event.y)
-        #click in open area, prepare for a rotate
-        # if cell_address is None:
-        #     # save the mouse location for movements
-        #     self.last_x, self.last_y = event.x, event.y
-        #     return True
-
         # #left click on person, prepare for expand/collapse or drag
-        # if event.button == 1:
-        #     self._mouse_click = True
-        #     self._mouse_click_cell_address = cell_address
-        #     return False
+        if event.button == 1:
+            self._mouse_click = True
+            self._mouse_click_individual_id = individual_id
+            return False
 
         # #right click on person, context menu
         # # Do things based on state, event.get_state(), or button, event.button
@@ -768,7 +708,7 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         self._mouse_click = False
         if self.last_x is None or self.last_y is None:
             # while mouse is moving, we must update the tooltip based on person
-            individual = self.life_line_chart_ancestor_graph.get_individual_from_position(event.x, event.y)
+            individual = self.life_line_chart_ancestor_graph.get_individual_from_position(event.x/self.zoom_level, event.y/self.zoom_level)
             self.mouse_x, self.mouse_y = event.x, event.y
             tooltip = ""
             if individual:
@@ -778,10 +718,9 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
 
         #translate or rotate should happen
         if self.translating:
-            canonical_center = self.center_xy_from_delta([0, 0])
-            self.center_delta_xy = (canonical_center[0] - event.x,
-                                    canonical_center[1] - event.y)
-            self.center_xy = self.center_xy_from_delta()
+            #canonical_center = self.center_xy_from_delta([0, 0])
+            self.center_delta_xy = (event.x - self.last_x,
+                                    event.y - self.last_y)
         else:
             # get the angles of the two points from the center:
             start_angle = math.atan2(event.y - self.center_xy[1],
@@ -835,9 +774,11 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
             return True
         if self.translating:
             self.translating = False
+            self.center_xy = self.center_xy[0] + self.center_delta_xy[0], self.center_xy[1] + self.center_delta_xy[1]
+            self.center_delta_xy = 0, 0
         else:
-            self.center_delta_xy = -1, 0
-            self.center_xy = self.center_xy_from_delta()
+            self.center_delta_xy = 0, 0
+            #self.center_xy = self.center_xy[0] + self.center_delta_xy[0], self.center_xy[1] + self.center_delta_xy[1]
 
         self.last_x, self.last_y = None, None
         self.draw()
@@ -862,10 +803,12 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         Returned parameters after drag.
         Specified for 'person-link', for others return text info about person.
         """
+        if not self._mouse_click_individual_id:
+            return
         dummy_widget = widget
         dummy_time = time
         tgs = [x.name() for x in context.list_targets()]
-        person = self.person_at(self._mouse_click_cell_address)
+        person = self.life_line_chart_ancestor_graph._instances[('i', self._mouse_click_individual_id)]._gramps_person
         if person:
             if info == DdTargets.PERSON_LINK.app_id:
                 data = (DdTargets.PERSON_LINK.drag_type,
@@ -939,6 +882,9 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         self.rootpersonh = None
         self.formatting = None
         self.positioning = None
+        self.filter = None
+        self.zoom_level = 1.0
+        self.zoom_level_backup = 1.0
         self.life_line_chart_ancestor_graph = None
         self.angle = {}
         self.childrenroot = []
@@ -947,38 +893,21 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         self.data = {}
         self.dbstate = dbstate
         self.set_values(None, 5, BACKGROUND_GRAD_GEN, True, True, True, True,
-                        'Sans', '#0000FF', '#FF0000', None, 0.5, FORM_CIRCLE,
+                        'Sans', None, 0.5, FORM_CIRCLE,
                         False)
         LifeLineChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
         self.ic = get_dbdstate_instance_container(self.dbstate)
 
     def set_values(self, root_person_handle, maxgen, background, childring,
                    flipupsidedownname, twolinename, radialtext, fontdescr,
-                   grad_start, grad_end, filtr, alpha_filter, form, showid):
+                   filtr, alpha_filter, form, showid):
         """
         Reset the values to be used:
 
-        :param root_person_handle: person to show
-        :param maxgen: maximum generations to show
-        :param background: config setting of which background procedure to use
-        :type background: int
-        :param childring: to show the center ring with children or not
-        :param twolinename: uses two lines for the display of person's name
-        :param flipupsidedownname: flip name on the left of the lifelinechart
-                                   for the display of person's name
-        :param radialtext: try to use radial text or not
-        :param fontdescr: string describing the font to use
-        :param grad_start: colors to use for background procedure
-        :param grad_end: colors to use for background procedure
-        :param filtr: the person filter to apply to the people in the chart
-        :param alpha: the alpha transparency value (0-1) to apply to filtered
-                      out data
-        :param form: the ``FORM_`` constant for the lifelinechart
-        :param showid: to show the gramps_id or not
         """
 
         reset = False
-        if self.rootpersonh != root_person_handle:
+        if self.rootpersonh != root_person_handle:# or self.filter != filtr:
             reset = True
             self.rootpersonh = root_person_handle
         self.generations = maxgen
@@ -988,8 +917,6 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         self.flipupsidedownname = flipupsidedownname
         self.background = background
         self.fontdescr = fontdescr
-        self.grad_start = grad_start
-        self.grad_end = grad_end
         self.filter = filtr
         self.alpha_filter = alpha_filter
         self.form = form
@@ -1010,11 +937,25 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                         self.life_line_chart_ancestor_graph.modify_layout(self.rootpersonh)
                     except:
                         pass
+
+                    #backup color
+                    for gir in self.life_line_chart_ancestor_graph.graphical_individual_representations:
+                        gir.color_backup = gir.color
                 else:
                     self.life_line_chart_ancestor_graph.clear_svg_items()
                     self.life_line_chart_ancestor_graph._formatting = deepcopy(self.formatting)
+                    def filter(individual_id):
+                        if self.filter:
+                            person = self.life_line_chart_ancestor_graph._instances[('i', individual_id)]._gramps_person
+                            if not self.filter.match(person.handle, self.dbstate.db):
+                                return True
+                        return False
+                    for gir in self.life_line_chart_ancestor_graph.graphical_individual_representations:
+                        if filter(gir.individual_id):
+                            gir.color = (220,220,220)
+                        else:
+                            gir.color = gir.color_backup
                 self.life_line_chart_ancestor_graph.define_svg_items()
-                self.life_line_chart_ancestor_graph.paint_and_save(self.rootpersonh,r'c:\users\christian\documents\dymola\autogrampsgen.svg')
             plot()
             
 
@@ -1038,7 +979,7 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         return (PIXELS_PER_GENERATION * self.nrgen() +
                 self.CENTER + BORDER_EDGE_WIDTH)
 
-    def draw(self, ctx=None, scale=1.0):
+    def draw(self, ctx=None, scale=1.):
         """
         The main method to do the drawing.
         If ctx is given, we assume we draw draw raw on the cairo context ctx
@@ -1050,23 +991,31 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         # first do size request of what we will need
         if not ctx:  # Display
             graph = self.life_line_chart_ancestor_graph
-            size_w_a = int(graph.get_full_width())
-            size_h_a = int(graph.get_full_height())
+            size_w_a = int(graph.get_full_width()*self.zoom_level)
+            size_h_a = int(graph.get_full_height()*self.zoom_level)
+            #size_w_a = max(size_w_a, self.get_allocated_width())
+            #size_h_a = max(size_h_a, self.get_allocated_height())
             self.set_size_request(size_w_a, size_h_a)
             size_w = self.get_allocated_width()
             size_h = self.get_allocated_height()
             self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                                               size_w_a, size_h_a)
             ctx = cairo.Context(self.surface)
-            self.center_xy = self.center_xy_from_delta()
-            #ctx.translate(*self.center_xy)
+            #self.center_xy = self.center_xy_from_delta()
+            #ctx.translate(self.center_xy[0] + self.center_delta_xy[0], self.center_xy[1] + self.center_delta_xy[1])
+            ctx.scale(self.zoom_level, self.zoom_level)
+
+            visible_range = self.scrolledwindow.get_clip().width, self.scrolledwindow.get_clip().height
+            sb_h_adj = self.scrolledwindow.get_hscrollbar().get_adjustment()
+            sb_v_adj = self.scrolledwindow.get_vscrollbar().get_adjustment()
+            #visible_range = 0,0
+            sb_h_adj.set_value((self.zoom_level / self.zoom_level_backup) * (visible_range[0] * 0.5 + sb_h_adj.get_value()) - visible_range[0] * 0.5)
+            sb_v_adj.set_value((self.zoom_level / self.zoom_level_backup) * (visible_range[1] * 0.5 + sb_v_adj.get_value()) - visible_range[1] * 0.5)
+            self.zoom_level_backup = self.zoom_level
         else:  # printing
-            if self.form == FORM_QUADRANT:
-                self.center_xy = self.CENTER + PIXELS_PER_GENERATION, halfdist
-            else:
-                self.center_xy = halfdist + PIXELS_PER_GENERATION, halfdist
-            ctx.scale(scale, scale)
+            # ??
             #ctx.translate(*self.center_xy)
+            ctx.scale(scale, scale)
 
         
         additional_items = []
@@ -1591,8 +1540,6 @@ class LifeLineChartGrampsGUI:
         self.maxgen = 8
         self.childring = 0
         self.showid = False
-        self.grad_start = '#0000FF'
-        self.grad_end = '#FF0000'
         self.form = FORM_CIRCLE
         self.alpha_filter = 0.5
         self.filter = None
@@ -1621,7 +1568,7 @@ class LifeLineChartGrampsGUI:
         self.lifeline.set_values(root_person_handle, self.maxgen, self.background,
                             self.childring, False,
                             self.twolinename, self.radialtext, self.fonttype,
-                            self.grad_start, self.grad_end, self.generic_filter,
+                            self.generic_filter,
                             self.alpha_filter, self.form, self.showid)
         self.lifeline.reset()
         self.lifeline.draw()

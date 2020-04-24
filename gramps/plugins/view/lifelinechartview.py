@@ -1,29 +1,6 @@
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2001-2007  Donald N. Allingham, Martin Hawlisch
-# Copyright (C) 2009 Douglas S. Blank
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-## Based on the paper:
-##   http://www.cs.utah.edu/~draperg/research/lifelinechart/draperg_FHT08.pdf
-## and the applet:
-##   http://www.cs.utah.edu/~draperg/research/lifelinechart/demo/
-
-## Found by redwood:
-## http://www.gramps-project.org/bugs/view.php?id=2611
+"""
+See https://github.com/CWSchulze/life_line_chart
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -47,8 +24,6 @@ from gramps.gui.utils import SystemFonts
 
 from copy import deepcopy
 import sys, os
-sys.path = [r'C:\Users\Christian\Documents\Source\Stammbaum'] + sys.path
-os.environ['path'] = r'C:\Users\Christian\Documents\Source\Stammbaum;' + os.environ['path']
 from life_line_chart import AncestorGraph, BaseGraph
 
 # the print settings to remember between print sessions
@@ -233,39 +208,8 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
             if self._config.is_set('interface.lifelineview-'+key):
                 self.positioning[key] = self._config.get('interface.lifelineview-'+key)
 
-        # self.formatting = {
-        #     'generations':3,
-        #     'compression_steps':4,
-        #             'vertical_step_size' : scg('interface.lifelineview-vertical_step_size'),
-        #             'line_thickness' : scg('interface.lifelineview-line_thickness'),
-        #             'total_height' : scg('interface.lifelineview-total_height'),
-        #             'flip_to_optimize' : scg('interface.lifelineview-flip_to_optimize'),
-        #             'compress':  scg('interface.lifelineview-compress'),
-        #             'fathers_have_the_same_color': scg('interface.lifelineview-fathers_have_the_same_color'),
-        #             'font_size_description': scg('interface.lifelineview-font_size_description'),
-        #             'font_name': scg('interface.lifelineview-font_name'),
-        #             'font_description_letter_offset' : [str(30 / 12.0)+'px'],
-        #             'birth_label_letter_x_offset': ['15px'],
-        #             'birth_label_letter_y_offset': ['6px'],
-        #             'birth_label_along_path' : False,
-        #             'fade_individual_color' : True,
-        #             'marriage_font_offset' : 20,
-        #             'no_ring' : False,
-        #             'death_label_rotation':-90,
-        #             'death_label_letter_x_offset': ['5px'],
-        #             'death_label_letter_y_offset': ['6px'],
-        # }
-        #self.maxgen = scg('interface.lifelineview-maxgen')
-        #self.background = scg('interface.lifelineview-background')
-        #self.childring = scg('interface.lifelineview-childrenring')
-        #self.radialtext = scg('interface.lifelineview-radialtext')
-        #self.twolinename = scg('interface.lifelineview-twolinename')
-        #self.flipupsidedownname = scg('interface.lifelineview-flipupsidedownname')
         self.fonttype = scg('interface.lifelineview-font_name')
 
-        #self.grad_start = scg('interface.color-start-grad')
-        #self.grad_end = scg('interface.color-end-grad')
-        #self.form = scg('interface.lifelineview-form')
         self.showid = scg('interface.lifelineview-showid')
         self.generic_filter = None
         self.alpha_filter = 0.2
@@ -307,6 +251,7 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
                                        Gtk.PolicyType.AUTOMATIC)
         self.lifeline.show_all()
         self.scrolledwindow.add(self.lifeline)
+        chart.scrolledwindow = self.scrolledwindow
 
         return self.scrolledwindow
 
@@ -409,11 +354,11 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
     <placeholder id='BarCommonEdit'>
     <child groups='RO'>
       <object class="GtkToolButton">
-        <property name="icon-name">document-print</property>
-        <property name="action-name">win.PrintView</property>
+        <property name="icon-name">document-save</property>
+        <property name="action-name">win.SaveView</property>
         <property name="tooltip_text" translatable="yes">'''
-        '''Print or save the Life Line Chart View</property>
-        <property name="label" translatable="yes">Print...</property>
+        '''Save the Life Line Chart View</property>
+        <property name="label" translatable="yes">Save...</property>
         <property name="use-underline">True</property>
       </object>
       <packing>
@@ -430,7 +375,7 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', self.printview, "<PRIMARY><SHIFT>P")
+        self._add_action('SaveView', self.saveview, "<PRIMARY><SHIFT>S")
         self._add_action('PRIMARY-J', self.jump, '<PRIMARY>J')
 
     def build_tree(self):
@@ -477,10 +422,10 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
         """
         Redraw the lifeline chart
         """
-        #self.main()
-        
-        #import cProfile
-        #cProfile.runctx('self.main()', globals(), locals())
+        run_profiler = False
+        if run_profiler:
+            import cProfile
+            cProfile.runctx('self.main()', globals(), locals())
         self.main()
 
     def goto_handle(self, handle):
@@ -510,22 +455,38 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
         if self.active:
             self.bookmarks.redraw()
 
-    def printview(self, *obj):
+    def saveview(self, *obj):
         """
-        Print or save the view that is currently shown
+        Save the view that is currently shown
         """
-        dummy_obj = obj
-        widthpx = 2 * self.lifeline.halfdist()
-        heightpx = widthpx
-        if self.form == lifelinechart.FORM_HALFCIRCLE:
-            heightpx = heightpx / 2 + self.lifeline.CENTER + lifelinechart.PAD_PX
-        elif self.form == lifelinechart.FORM_QUADRANT:
-            heightpx = heightpx / 2 + self.lifeline.CENTER + lifelinechart.PAD_PX
-            widthpx = heightpx
+        
+        chooser = Gtk.FileChooserDialog(
+            title=_("Export View as SVG"),
+            transient_for=self.uistate.window,
+            action=Gtk.FileChooserAction.SAVE)
+        chooser.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                            _('_Save'), Gtk.ResponseType.OK)
+        chooser.set_do_overwrite_confirmation(True)
 
-        prt = CairoPrintSave(widthpx, heightpx, self.lifeline.prt_draw,
-                             self.uistate.window)
-        prt.run()
+        filtering = Gtk.FileFilter()
+        filtering.add_pattern("*.svg")
+        chooser.set_filter(filtering)
+        #default_dir = '.'#self._config.get('paths.recent-export-dir')
+        #chooser.set_current_folder(default_dir)
+
+        while True:
+            value = chooser.run()
+            fn = chooser.get_filename()
+            if value == Gtk.ResponseType.OK:
+                if fn:
+                    chooser.destroy()
+                    break
+            else:
+                chooser.destroy()
+                return
+        # config.set('paths.recent-export-dir', os.path.split(fn)[0])
+        pass
+        self.lifeline.life_line_chart_ancestor_graph.paint_and_save(self.lifeline.rootpersonh, fn)
 
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
@@ -703,154 +664,6 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
         """
         return (("Person Filter",),
                 ())
-
-#------------------------------------------------------------------------
-#
-# CairoPrintSave class
-#
-#------------------------------------------------------------------------
-class CairoPrintSave:
-    """Act as an abstract document that can render onto a cairo context.
-
-    It can render the model onto cairo context pages, according to the received
-    page style.
-
-    """
-
-    def __init__(self, widthpx, heightpx, drawfunc, parent):
-        """
-        This class provides the things needed so as to dump a cairo drawing on
-        a context to output
-        """
-        self.widthpx = widthpx
-        self.heightpx = heightpx
-        self.drawfunc = drawfunc
-        self.parent = parent
-        self.preview = None
-        self.previewopr = None
-
-    def run(self):
-        """Create the physical output from the meta document.
-
-        """
-        global PRINT_SETTINGS
-
-        # set up a print operation
-        operation = Gtk.PrintOperation()
-        operation.connect("draw_page", self.on_draw_page)
-        operation.connect("preview", self.on_preview)
-        operation.connect("paginate", self.on_paginate)
-        operation.set_n_pages(1)
-        #paper_size = Gtk.PaperSize.new(name="iso_a4")
-        ## WHY no Gtk.Unit.PIXEL ?? Is there a better way to convert
-        ## Pixels to MM ??
-        paper_size = Gtk.PaperSize.new_custom("custom",
-                                              "Custom Size",
-                                              round(self.widthpx * 0.2646),
-                                              round(self.heightpx * 0.2646),
-                                              Gtk.Unit.MM)
-        page_setup = Gtk.PageSetup()
-        page_setup.set_paper_size(paper_size)
-        #page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
-        operation.set_default_page_setup(page_setup)
-        #operation.set_use_full_page(True)
-
-        if PRINT_SETTINGS is not None:
-            operation.set_print_settings(PRINT_SETTINGS)
-
-        # run print dialog
-        while True:
-            self.preview = None
-            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG,
-                                self.parent)
-            if self.preview is None: # cancel or print
-                break
-            # set up printing again; can't reuse PrintOperation?
-            operation = Gtk.PrintOperation()
-            operation.set_default_page_setup(page_setup)
-            operation.connect("draw_page", self.on_draw_page)
-            operation.connect("preview", self.on_preview)
-            operation.connect("paginate", self.on_paginate)
-            # set print settings if it was stored previously
-            if PRINT_SETTINGS is not None:
-                operation.set_print_settings(PRINT_SETTINGS)
-
-        # store print settings if printing was successful
-        if res == Gtk.PrintOperationResult.APPLY:
-            PRINT_SETTINGS = operation.get_print_settings()
-
-    def on_draw_page(self, operation, context, page_nr):
-        """Draw a page on a Cairo context.
-        """
-        dummy_operation = operation
-        dummy_page_nr = page_nr
-        ctx = context.get_cairo_context()
-        pxwidth = round(context.get_width())
-        pxheight = round(context.get_height())
-        scale = min(pxwidth/self.widthpx, pxheight/self.heightpx)
-        self.drawfunc(None, ctx, scale=scale)
-
-    def on_paginate(self, operation, context):
-        """Paginate the whole document in chunks.
-           We don't need this as there is only one page, however,
-           we provide a dummy holder here, because on_preview crashes if no
-           default application is set with gir 3.3.2
-           (typically evince not installed)!
-           It will provide the start of the preview dialog, which cannot be
-           started in on_preview
-        """
-        dummy_context = context
-        finished = True
-        # update page number
-        operation.set_n_pages(1)
-
-        # start preview if needed
-        if self.preview:
-            self.preview.run()
-
-        return finished
-
-    def on_preview(self, operation, preview, context, parent):
-        """Implement custom print preview functionality.
-           We provide a dummy holder here, because on_preview crashes if no
-           default application is set with gir 3.3.2
-           (typically evince not installed)!
-        """
-        dummy_preview = preview
-        dlg = Gtk.MessageDialog(transient_for=parent,
-                                modal=True,
-                                message_type=Gtk.MessageType.WARNING,
-                                buttons=Gtk.ButtonsType.CLOSE,
-                                message_format=_('No preview available'))
-        self.preview = dlg
-        self.previewopr = operation
-        #dlg.format_secondary_markup(msg2)
-        dlg.set_title("Life Line Chart Preview - Gramps")
-        dlg.connect('response', self.previewdestroy)
-
-        # give a dummy cairo context to Gtk.PrintContext,
-        try:
-            width = int(round(context.get_width()))
-        except ValueError:
-            width = 0
-        try:
-            height = int(round(context.get_height()))
-        except ValueError:
-            height = 0
-        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
-        ctx = cairo.Context(surface)
-        context.set_cairo_context(ctx, 72.0, 72.0)
-
-        return True
-
-    def previewdestroy(self, dlg, res):
-        """
-        Destroy the preview page
-        """
-        dummy_dlg = dlg
-        dummy_res = res
-        self.preview.destroy()
-        self.previewopr.end_preview()
 
 
 # fix the fact that the config is static
