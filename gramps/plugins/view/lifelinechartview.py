@@ -40,7 +40,7 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
         ('interface.lifelineview-generations', 4),
         ('interface.lifelineview-compression_steps', 4),
         ('interface.lifelineview-vertical_step_size', 30),
-        ('interface.lifelineview-font_size_description', 12),
+        ('interface.lifelineview-font_size_description', 0.5),
         ('interface.lifelineview-total_height', 2000),
         
         ('interface.lifelineview-background', lifelinechart.BACKGROUND_GRAD_GEN),
@@ -73,84 +73,95 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
 
         self.gui_config = {
             'generations': {
-                'description' : 'Max generations',
+                'description' : BaseGraph._positioning_description['generations']['short_description'],
+                'tooltip' : BaseGraph._positioning_description['generations']['long_description'],
                 'additional_arg' : {'range':(1,30)},
                 'data_container':'positioning',
                 'widget' : 'spinner',
                 'additional_setter_arg'  : {}
             },
-            'compression_steps': {
-                'description' : 'compression_steps',
-                'additional_arg' : {'range':(-1,500)},
-                'data_container':'positioning',
-                'widget' : 'spinner',
-                'additional_setter_arg'  : {}
-            },
+            # 'compression_steps': {
+            #     'description' : 'compression_steps',
+            #     'additional_arg' : {'range':(-1,500)},
+            #     'data_container':'positioning',
+            #     'widget' : 'spinner',
+            #     'additional_setter_arg'  : {}
+            # },
             'warp_shape': {
-                'description' : 'Warp the whole shape',
+                'description' : BaseGraph._formatting_description['warp_shape']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['warp_shape']['long_description'],
                 'additional_arg' : {'opts' : [a for a in enumerate(BaseGraph._available_warp_shapes)], 'valueactive':True},
                 'additional_setter_arg'  : {'index_to_name' : lambda x:BaseGraph._available_warp_shapes[x]},
                 'data_container':'formatting',
                 'widget' : 'combobox',
             },
             'flip_to_optimize': {
-                'description' : 'Flip families to optimize layout',
+                'description' : BaseGraph._positioning_description['flip_to_optimize']['short_description'],
+                'tooltip' : BaseGraph._positioning_description['flip_to_optimize']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'positioning',
                 'additional_setter_arg'  : {}
             },
             'compress': {
-                'description' : 'Compress vertically',
+                'description' : BaseGraph._positioning_description['compress']['short_description'],
+                'tooltip' : BaseGraph._positioning_description['compress']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'positioning',
                 'additional_setter_arg'  : {}
             },
             'fade_individual_color': {
-                'description' : 'Fade the color of an individual',
+                'description' : BaseGraph._formatting_description['fade_individual_color']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['fade_individual_color']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'formatting',
                 'additional_setter_arg'  : {}
             },
             'birth_label_active': {
-                'description' : 'Draw birth label',
+                'description' : BaseGraph._formatting_description['birth_label_active']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['birth_label_active']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'formatting',
                 'additional_setter_arg'  : {}
             },
             'birth_label_along_path': {
-                'description' : 'Draw the birth label along line',
+                'description' : BaseGraph._formatting_description['birth_label_along_path']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['birth_label_along_path']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'formatting',
                 'additional_setter_arg'  : {}
             },
             'marriage_label_active': {
-                'description' : 'Draw marriage label',
+                'description' : BaseGraph._formatting_description['marriage_label_active']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['marriage_label_active']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'formatting',
                 'additional_setter_arg'  : {}
             },
             'death_label_active': {
-                'description' : 'Draw death label',
+                'description' : BaseGraph._formatting_description['death_label_active']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['death_label_active']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'formatting',
                 'additional_setter_arg'  : {}
             },
             'vertical_step_size': {
-                'description' : 'Vertical step size',
+                'description' : BaseGraph._formatting_description['vertical_step_size']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['vertical_step_size']['long_description'],
                 'additional_arg' : {'range':(1, 100)},
                 'data_container':'formatting',
                 'widget' : 'slider',
                 'additional_setter_arg'  : {}
             },
             'relative_line_thickness': {
-                'description' : 'Relative line thickness',
+                'description' : BaseGraph._formatting_description['relative_line_thickness']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['relative_line_thickness']['long_description'],
                 'additional_arg' : {'range':(1, 100)},
                 'data_container':'formatting',
                 'widget' : 'slider',
@@ -160,32 +171,39 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
                 },
             },
             'total_height': {
-                'description' : 'Total height',
+                'description' : BaseGraph._formatting_description['total_height']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['total_height']['long_description'],
                 'additional_arg' : {'range':(500, 5000)},
                 'data_container':'formatting',
                 'widget' : 'slider',
                 'additional_setter_arg'  : {}
             },
             'fathers_have_the_same_color': {
-                'description' : 'Fathers have the same color',
+                'description' : BaseGraph._positioning_description['fathers_have_the_same_color']['short_description'],
+                'tooltip' : BaseGraph._positioning_description['fathers_have_the_same_color']['long_description'],
                 'additional_arg' : {},
                 'widget' : 'checkbox',
                 'data_container':'positioning',
                 'additional_setter_arg'  : {}
             },
             'font_name': {
-                'description' : 'Font name',
+                'description' : BaseGraph._formatting_description['font_name']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['font_name']['long_description'],
                 'additional_arg' : {'opts' : self.allfonts, 'valueactive':True},
                 'additional_setter_arg'  : {'index_to_name' : lambda x:self.allfonts[x][1]},
                 'data_container':'formatting',
                 'widget' : 'combobox',
             },
             'font_size_description': {
-                'description' : 'Font size',
-                'additional_arg' : {'range':(1,60)},
+                'description' : BaseGraph._formatting_description['font_size_description']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['font_size_description']['long_description'],
+                'additional_arg' : {'range':(1, 200)},
                 'data_container':'formatting',
-                'widget' : 'spinner',
-                'additional_setter_arg'  : {}
+                'widget' : 'slider',
+                'additional_setter_arg'  : {
+                    'value_decode': lambda x:x/100.,
+                    'value_encode': lambda x:int(x*100)
+                },
             },
         }
         NavigationView.__init__(self, _('Life Line Chart'),
@@ -523,9 +541,10 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
 
         def my_non_weird_add_checkbox(grid, label, index, constant, start=1, stop=9,
                      config=None, callback=None, extra_callback=None, tooltip=''):
-            configdialog.add_checkbox(grid, label, index, constant, start, stop, config, extra_callback, tooltip)
+            cb = configdialog.add_checkbox(grid, label, index, constant, start, stop, config, extra_callback, tooltip)
             self._config.connect(constant,
                              callback)
+            return cb
 
         function_mapping={
             'spinner' : configdialog.add_spinner,
@@ -536,7 +555,7 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
 
         for index, (entry_name, settings) in enumerate(self.gui_config.items()):
             
-            function_mapping[settings['widget']](
+            item = function_mapping[settings['widget']](
                     grid, _(settings['description']),
                     index,
                     'interface.lifelineview-' + entry_name,
@@ -544,6 +563,7 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
                                 getattr(self,'cb_update_' + settings['widget'])(*args, entry_name, settings['data_container'], **settings['additional_setter_arg']),
                     **settings['additional_arg']
                 )
+            item.set_tooltip_text(_(settings['tooltip']))
 
         # compress
         backgrvals = (

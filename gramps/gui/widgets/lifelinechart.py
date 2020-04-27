@@ -910,6 +910,7 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         if self.rootpersonh != root_person_handle:# or self.filter != filtr:
             reset = True
             self.rootpersonh = root_person_handle
+        new_filter = self.filter != filtr
         self.generations = maxgen
         self.radialtext = radialtext
         self.childring = childring
@@ -923,27 +924,31 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         self.showid = showid
         if self.rootpersonh:
             def plot():
-                x = GrampsIndividual(self.ic, self.dbstate, self.rootpersonh)
-                if reset or self.life_line_chart_ancestor_graph is None or self.positioning != self.life_line_chart_ancestor_graph._positioning:
-                    self.life_line_chart_ancestor_graph = AncestorGraph(positioning = self.positioning, formatting = self.formatting, instance_container=lambda:get_dbdstate_instance_container(self.dbstate))
-                    root_individual = self.life_line_chart_ancestor_graph._instances[('i', self.rootpersonh)]
-                    
-                    self.life_line_chart_ancestor_graph.select_individuals(root_individual)
-                    cof_family_id = None
-                    if root_individual.child_of_family_id:
-                        cof_family_id = root_individual.child_of_family_id[0]
-                    self.life_line_chart_ancestor_graph.place_selected_individuals(root_individual, None, None, self.life_line_chart_ancestor_graph._instances[('f',cof_family_id)])
-                    try:
-                        self.life_line_chart_ancestor_graph.modify_layout(self.rootpersonh)
-                    except:
-                        pass
+                # x = GrampsIndividual(self.ic, self.dbstate, self.rootpersonh)
+                if (reset or self.life_line_chart_ancestor_graph is None or self.positioning != self.life_line_chart_ancestor_graph._positioning or
+                        self.formatting != self.life_line_chart_ancestor_graph._formatting or new_filter):
 
-                    #backup color
-                    for gir in self.life_line_chart_ancestor_graph.graphical_individual_representations:
-                        gir.color_backup = gir.color
-                else:
-                    self.life_line_chart_ancestor_graph.clear_svg_items()
-                    self.life_line_chart_ancestor_graph._formatting = deepcopy(self.formatting)
+                    if reset or self.life_line_chart_ancestor_graph is None or self.positioning != self.life_line_chart_ancestor_graph._positioning:
+                        self.life_line_chart_ancestor_graph = AncestorGraph(positioning = self.positioning, formatting = self.formatting, instance_container=lambda:get_dbdstate_instance_container(self.dbstate))
+                        root_individual = self.life_line_chart_ancestor_graph._instances[('i', self.rootpersonh)]
+                        
+                        self.life_line_chart_ancestor_graph.select_individuals(root_individual)
+                        cof_family_id = None
+                        if root_individual.child_of_family_id:
+                            cof_family_id = root_individual.child_of_family_id[0]
+                        self.life_line_chart_ancestor_graph.place_selected_individuals(root_individual, None, None, self.life_line_chart_ancestor_graph._instances[('f',cof_family_id)])
+                        try:
+                            self.life_line_chart_ancestor_graph.modify_layout(self.rootpersonh)
+                        except:
+                            pass
+
+                        #backup color
+                        for gir in self.life_line_chart_ancestor_graph.graphical_individual_representations:
+                            gir.color_backup = gir.color
+                    else:
+                        self.life_line_chart_ancestor_graph.clear_svg_items()
+                        self.life_line_chart_ancestor_graph._formatting = deepcopy(self.formatting)
+                        
                     def filter(individual_id):
                         if self.filter:
                             person = self.life_line_chart_ancestor_graph._instances[('i', individual_id)]._gramps_person
@@ -955,7 +960,7 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                             gir.color = (220,220,220)
                         else:
                             gir.color = gir.color_backup
-                self.life_line_chart_ancestor_graph.define_svg_items()
+                    self.life_line_chart_ancestor_graph.define_svg_items()
             plot()
             
 
@@ -1074,6 +1079,10 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                     # ctx.select_font_face("Arial",
                     #                     cairo.FONT_SLANT_NORMAL,
                     #                     cairo.FONT_WEIGHT_NORMAL)
+                    font_size = item['font_size']
+                    if type(font_size) == str:
+                        if font_size.endswith('px') or font_size.endswith('pt'):
+                            font_size = float(font_size[:-2])
                     rotation = 0
                     if 'transform' in args and args['transform'].startswith('rotate('):
                         rotation = float(args['transform'][7:-1].split(',')[0])
@@ -1092,10 +1101,6 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                     anchor = args.get('text-anchor')
                     if not anchor:
                         anchor = 'start'
-                    font_size = item['font_size']
-                    if type(font_size) == str:
-                        if font_size.endswith('px') or font_size.endswith('pt'):
-                            font_size = float(font_size[:-2])
                     text_function(
                         ctx,
                         args['text'],
