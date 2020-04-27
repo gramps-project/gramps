@@ -72,40 +72,63 @@ class PlaceCoordinateGramplet(Gramplet):
         self.view=grid
 #        self.view.add(grid)
         
-        grid.attach(Gtk.Label(_("Search for:")),1,1,1,1)
+        i = 1
+        grid.attach(Gtk.Label(_("Search for:")),1,i,1,1)
         self.entry_name = Gtk.Entry()
-        grid.attach(self.entry_name,2,1,3,1)
+        grid.attach(self.entry_name,2,1,2,1)
+        self.searchButton = Gtk.Button(label=_("Go"))
+        self.searchButton.connect("clicked", self.on_searchButton_clicked)
+        grid.attach(self.searchButton,4,i,2,1)
         
-        grid.attach(Gtk.Label(_("Found place:")),1,2,1,1)
+        i += 1
+        grid.attach(Gtk.Label(_("Found place:")),1,i,1,1)
         self.entry_foundName = Gtk.Entry()
         self.entry_foundName.set_editable(False)
         self.entry_foundName.set_text(_("Nothing has been searched yet"))
         self.entry_foundName.set_width_chars(100)
-        grid.attach(self.entry_foundName,2,2,3,1)
+        grid.attach(self.entry_foundName,2,i,3,1)
 
-        grid.attach(Gtk.Label(_("Latitude:")),1,3,1,1)
+        i += 1
+        grid.attach(Gtk.Label(_("Latitude:")),1,i,1,1)
         self.entry_lat = Gtk.Entry()
-        grid.attach(self.entry_lat,2,3,1,1)
-        grid.attach(Gtk.Label(_("Longitude:")),3,3,1,1)
+        grid.attach(self.entry_lat,2,i,1,1)
+        grid.attach(Gtk.Label(_("Longitude:")),3,i,1,1)
         self.entry_long = Gtk.Entry()
-        grid.attach(self.entry_long,4,3,1,1)
-        
-        grid.attach(Gtk.Label(_("Postal-Code:")),1,4,1,1)
-        self.entry_code = Gtk.Entry()
-        grid.attach(self.entry_code,2,4,3,1)
+        grid.attach(self.entry_long,4,i,1,1)
 
-        self.searchButton = Gtk.Button(label=_("Search"))
-        self.searchButton.connect("clicked", self.on_searchButton_clicked)
-        grid.attach(self.searchButton,1,5,2,1)
+        i += 1
+        self.showInBrowserButton = Gtk.Button(label=_("Show externally in Google Maps"))
+        self.showInBrowserButton.connect("clicked", self.on_showInBrowserButton_clicked)
+        grid.attach(self.showInBrowserButton,1,i,4,1)
+
+        i += 1
+        self.place_id_label = Gtk.Label(_(""))
+        self.place_id_label.set_halign(Gtk.Align.START)
+        grid.attach(self.place_id_label,1,i,3,1)
+        
+        i += 1
+        grid.attach(Gtk.Label(_("Postal-Code:")),1,i,1,1)
+        self.entry_code = Gtk.Entry()
+        self.entry_code.set_editable(False)
+        grid.attach(self.entry_code,2,i,3,1)
+
+        i += 1
+        grid.attach(Gtk.Label(_("Latitude:")),1,i,1,1)
+        self.entry_lat_db = Gtk.Entry()
+        self.entry_lat_db.set_editable(False)
+        grid.attach(self.entry_lat_db,2,i,1,1)
+        grid.attach(Gtk.Label(_("Longitude:")),3,i,1,1)
+        self.entry_long_db = Gtk.Entry()
+        self.entry_long_db.set_editable(False)
+        grid.attach(self.entry_long_db,4,i,1,1)
+
+        i += 1
         self.fromMapButton = Gtk.Button(label=_("Take last clicked position from Geography map"))
         self.fromMapButton.connect("clicked", self.on_fromMapButton_clicked)
-        grid.attach(self.fromMapButton,1,6,2,1)
-        self.showInBrowserButton = Gtk.Button(label=_("Show"))
-        self.showInBrowserButton.connect("clicked", self.on_showInBrowserButton_clicked)
-        grid.attach(self.showInBrowserButton,3,5,2,1)
-        self.applyButton = Gtk.Button(label=_("Apply to Database"))
+        grid.attach(self.fromMapButton,1,i,2,1)
+        self.applyButton = Gtk.Button(label=_("Apply geo location to Database"))
         self.applyButton.connect("clicked", self.on_apply_clicked)
-        grid.attach(self.applyButton,3,6,2,1)
+        grid.attach(self.applyButton,3,i,2,1)
         
         grid.show_all()
         return self.view
@@ -122,8 +145,8 @@ class PlaceCoordinateGramplet(Gramplet):
         try :
             location = geolocator.geocode(self.entry_name.get_text())
             if location:
-                self.entry_lat.set_text("%.8f" % location.latitude)
-                self.entry_long.set_text("%.8f" % location.longitude)
+                self.entry_lat.set_text("%.10f" % location.latitude)
+                self.entry_long.set_text("%.10f" % location.longitude)
                 self.entry_foundName.set_text(location.address)
             else:
                 self.entry_foundName.set_text(_("The place was not found. You may clarify the search keywords."))
@@ -153,11 +176,14 @@ class PlaceCoordinateGramplet(Gramplet):
             if place:
                 place.set_latitude(self.entry_lat.get_text())
                 place.set_longitude(self.entry_long.get_text())
-                if (len(self.entry_code.get_text())>0):
-                    place.set_code(self.entry_code.get_text())
-                with DbTxn(_("Extract Place data"), self.dbstate.db, batch=True) as self.trans:
-                    self.dbstate.db.commit_place(place,self.trans)
-                    self.dbstate.emit("place-update", ([active_handle],))
+                # if (len(self.entry_code.get_text())>0):
+                #     place.set_code(self.entry_code.get_text())
+                with DbTxn(_("Edit Place (%s)") % place.title,
+                           self.dbstate.db) as trans:
+                    if not place.get_gramps_id():
+                        place.set_gramps_id(self.db.find_next_place_gramps_id())
+                    self.dbstate.db.commit_place(place, trans)
+                    #self.dbstate.emit("database-changed", ([active_handle],))
 
     def db_changed(self):
         self.update()
@@ -166,22 +192,25 @@ class PlaceCoordinateGramplet(Gramplet):
         if active_handle:
             place = self.dbstate.db.get_place_from_handle(active_handle)
             if place:
+                self.place_id_label.set_text(f"DB entry [{place.gramps_id}] {place_displayer.display(self.dbstate.db, place)}:")
                 descr = place_displayer.display(self.dbstate.db, place)
                 self.entry_foundName.set_text(_("Nothing has been searched yet"))
                 code = place.get_code()
                 if len(place.lat)>0:
-                    self.entry_lat.set_text(place.lat)
+                    self.entry_lat_db.set_text(place.lat)
                 else:
-                    self.entry_lat.set_text("")
+                    self.entry_lat_db.set_text("")
+                self.entry_lat.set_text("")
                 if len(place.long)>0:
-                    self.entry_long.set_text(place.long)
+                    self.entry_long_db.set_text(place.long)
                 else:
-                    self.entry_long.set_text("")
+                    self.entry_long_db.set_text("")
+                self.entry_long.set_text("")
                 if len(code)>0:
                     self.entry_code.set_text(code)
                 else:
                     self.entry_code.set_text("")
-                self.entry_name.set_text(descr+", "+code)
+                self.entry_name.set_text(descr) # +", "+code)
                 return True;
         self.entry_foundName.set_text("")
         self.entry_lat.set_text("")
