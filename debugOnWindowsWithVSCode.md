@@ -20,7 +20,7 @@
 - modify settings.json
 ```
 
-    "python.jediEnabled": true,
+    "python.jediEnabled": false,
     "python.pythonPath": "C:\\...\\msys2\\mingw64\\bin\\python.exe",
     "terminal.integrated.shell.windows": "C:\\...\\gramps\\msys2\\usr\\bin\\zsh.exe", 
     "terminal.integrated.shellArgs.windows": [
@@ -35,5 +35,5 @@
     "python.linting.pylintEnabled": false,
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
     "python.testing.promptToConfigure": false,
-    "python.testing.pytestPath": "",
+    "python.testing.pytestPath": "IGNOREME",
 ```
