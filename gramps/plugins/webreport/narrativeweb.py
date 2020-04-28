@@ -1687,7 +1687,7 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help(_("The copyright to be used for the web files"))
         addopt("cright", cright)
 
-        self.__css = EnumeratedListOption(('StyleSheet'), CSS["default"]["id"])
+        self.__css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
         for (dummy_fname, gid) in sorted(
                 [(CSS[key]["translation"], CSS[key]["id"])
                  for key in list(CSS.keys())]):
