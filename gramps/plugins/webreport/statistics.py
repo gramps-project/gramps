@@ -68,14 +68,14 @@ class StatisticsPage(BasePage):
     """
     Create one page for statistics
     """
-    def __init__(self, report, title, step):
+    def __init__(self, report, the_lang, the_title, step):
         """
         @param: report        -- The instance of the main report class
                                  for this report
         @param: title         -- Is the title of the web page
         """
         import os
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         self.bibli = Bibliography()
         self.uplink = False
         self.report = report

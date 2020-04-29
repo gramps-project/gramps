@@ -143,6 +143,7 @@ class NavWebReport(Report):
         self.set_locale(options.menu.get_option_by_name('trans').get_value())
         stdoptions.run_date_format_option(self, menu)
         self.rlocale = self._locale
+        self.the_lang = self.rlocale.language[0]
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu)
@@ -381,22 +382,22 @@ class NavWebReport(Report):
             # FIXME: Would it be better if the Web Page plugins used a different
             # base class rather than BasePage, which is really just for each web
             # page
-            self.tab[obj_class] = BasePage(report=self, title="")
+            self.tab[obj_class] = BasePage(self, None, None)
 
         # Note that by not initialising any Web Page plugins that are not going
         # to generate pages, we ensure that there is not performance implication
         # for such plugins.
-        self.tab["Person"] = PersonPages(self)
+        self.tab["Person"] = PersonPages(self, None, None)
         if self.inc_families:
-            self.tab["Family"] = FamilyPages(self)
+            self.tab["Family"] = FamilyPages(self, None, None)
         if self.inc_events:
-            self.tab["Event"] = EventPages(self)
+            self.tab["Event"] = EventPages(self, None, None)
         if self.inc_gallery:
-            self.tab["Media"] = MediaPages(self)
-        self.tab["Place"] = PlacePages(self)
-        self.tab["Source"] = SourcePages(self)
-        self.tab["Repository"] = RepositoryPages(self)
-        self.tab["Citation"] = CitationPages(self)
+            self.tab["Media"] = MediaPages(self, None, None)
+        self.tab["Place"] = PlacePages(self, None, None)
+        self.tab["Source"] = SourcePages(self, None, None)
+        self.tab["Repository"] = RepositoryPages(self, None, None)
+        self.tab["Citation"] = CitationPages(self, None, None)
 
         # FIXME: The following routines that are not run in two passes have not
         # yet been converted to a form suitable for separation into Web Page
@@ -443,54 +444,76 @@ class NavWebReport(Report):
         #
         #################################################
 
-        self.base_pages()
+        self.languages = []
+        self.default_lang = self.options['trans']
+        if self.default_lang == "default":
+            self.default_lang = self.rlocale.language[0]
+        self.languages.append((self.default_lang, self.options['title']))
+        if self.options['multitrans']:
+            for idx in range(2,7):
+                lang = "lang%c" % str(idx)
+                titl = "title%c" % str(idx)
+                if self.options[lang] != "default":
+                    cur_lang = self.options[lang]
+                    cur_title = self.options[titl]
+                    self.languages.append((cur_lang, cur_title))
+
         self.visited = []
+        for the_lang, the_title in self.languages:
+            if len(self.languages) == 1:
+                the_lang = None
+                the_title = self.title
+            if the_lang == "default":
+                the_lang = self.rlocale.language[0]
+            self.the_lang = the_lang
+            self.the_title = the_title
+            self.base_pages()
 
-        # build classes IndividualListPage and IndividualPage
-        self.tab["Person"].display_pages(self.title)
+            # build classes IndividualListPage and IndividualPage
+            self.tab["Person"].display_pages(the_lang, the_title)
 
-        self.build_gendex(self.obj_dict[Person])
+            self.build_gendex(self.obj_dict[Person], the_lang, the_title)
 
-        # build classes SurnameListPage and SurnamePage
-        self.surname_pages(self.obj_dict[Person])
+            # build classes SurnameListPage and SurnamePage
+            self.surname_pages(self.obj_dict[Person], the_lang, the_title)
 
-        # build classes FamilyListPage and FamilyPage
-        if self.inc_families:
-            self.tab["Family"].display_pages(self.title)
+            # build classes FamilyListPage and FamilyPage
+            if self.inc_families:
+                self.tab["Family"].display_pages(the_lang, the_title)
 
-        # build classes EventListPage and EventPage
-        if self.inc_events:
-            self.tab["Event"].display_pages(self.title)
+            # build classes EventListPage and EventPage
+            if self.inc_events:
+                self.tab["Event"].display_pages(the_lang, the_title)
 
-        # build classes PlaceListPage and PlacePage
-        self.tab["Place"].display_pages(self.title)
+            # build classes PlaceListPage and PlacePage
+            self.tab["Place"].display_pages(the_lang, the_title)
 
-        # build classes RepositoryListPage and RepositoryPage
-        if self.inc_repository:
-            self.tab["Repository"].display_pages(self.title)
+            # build classes RepositoryListPage and RepositoryPage
+            if self.inc_repository:
+                self.tab["Repository"].display_pages(the_lang, the_title)
 
-        # build classes MediaListPage and MediaPage
-        if self.inc_gallery:
-            if not self.create_thumbs_only:
-                self.tab["Media"].display_pages(self.title)
+            # build classes MediaListPage and MediaPage
+            if self.inc_gallery:
+                if not self.create_thumbs_only:
+                    self.tab["Media"].display_pages(the_lang, the_title)
 
-            # build Thumbnail Preview Page...
-            self.thumbnail_preview_page()
+                # build Thumbnail Preview Page...
+                self.thumbnail_preview_page()
 
-        # build classes AddressBookListPage and AddressBookPage
-        if self.inc_addressbook:
-            self.addressbook_pages(self.obj_dict[Person])
+            # build classes AddressBookListPage and AddressBookPage
+            if self.inc_addressbook:
+                self.addressbook_pages(self.obj_dict[Person])
 
-        # build classes SourceListPage and SourcePage
-        self.tab["Source"].display_pages(self.title)
+            # build classes SourceListPage and SourcePage
+            self.tab["Source"].display_pages(the_lang, the_title)
 
-        # build classes StatisticsPage
-        if self.inc_stats:
-            self.statistics_preview_page(self.title)
+            # build classes StatisticsPage
+            if self.inc_stats:
+                self.statistics_preview_page()
 
-        # build classes Updates
-        if self.inc_updates:
-            self.updates_preview_page(self.title)
+            # build classes Updates
+            if self.inc_updates:
+                self.updates_preview_page()
 
         # copy all of the necessary files
         self.copy_narrated_files()
@@ -539,7 +562,8 @@ class NavWebReport(Report):
         ind_list = self.filter.apply(self._db, ind_list, user=self.user)
 
         message = _('Constructing list of other objects...')
-        with self.user.progress(_("Narrated Web Site Report"), message,
+        pgr_title = self.pgrs_title(None)
+        with self.user.progress(pgr_title, message,
                                 sum(1 for _ in ind_list)) as step:
             index = 1
             for handle in ind_list:
@@ -1057,7 +1081,7 @@ class NavWebReport(Report):
 
     def copy_narrated_files(self):
         """
-        Copy all of the CSS, image, and JavaScript files for Narrated Web
+        Copy all of the CSS, image, and javascript files for Narrative Web
         """
         imgs = []
 
@@ -1138,7 +1162,7 @@ class NavWebReport(Report):
         fname = CSS["marker"]["filename"]
         self.copy_file(fname, "marker.png", "images")
 
-    def build_gendex(self, ind_list):
+    def build_gendex(self, ind_list, the_lang, the_title):
         """
         Create a gendex file
 
@@ -1146,8 +1170,8 @@ class NavWebReport(Report):
         """
         if self.inc_gendex:
             message = _('Creating GENDEX file')
-            with self.user.progress(_("Narrated Web Site Report"), message,
-                                    len(ind_list)) as step:
+            pgr_title = self.pgrs_title(the_lang)
+            with self.user.progress(pgr_title, message, len(ind_list)) as step:
                 fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
                 date = 0
                 index = 1
@@ -1194,7 +1218,7 @@ class NavWebReport(Report):
         else:
             filep.write(linew)
 
-    def surname_pages(self, ind_list):
+    def surname_pages(self, ind_list, the_lang, the_title):
         """
         Generates the surname related pages from list of individual
         people.
@@ -1204,18 +1228,18 @@ class NavWebReport(Report):
         local_list = sort_people(self._db, ind_list, self.rlocale)
 
         message = _("Creating surname pages")
-        with self.user.progress(_("Narrated Web Site Report"), message,
-                                len(local_list)) as step:
+        pgr_title = self.pgrs_title(the_lang)
+        with self.user.progress(pgr_title, message, len(local_list)) as step:
 
-            SurnameListPage(self, self.title, ind_list,
+            SurnameListPage(self, the_lang, the_title, ind_list,
                             SurnameListPage.ORDER_BY_NAME, self.surname_fname)
 
-            SurnameListPage(self, self.title, ind_list,
+            SurnameListPage(self, the_lang, the_title, ind_list,
                             SurnameListPage.ORDER_BY_COUNT, "surnames_count")
 
             index = 1
             for (surname, handle_list) in local_list:
-                SurnamePage(self, self.title, surname, sorted(handle_list))
+                SurnamePage(self, the_lang, the_title, surname, sorted(handle_list))
                 step()
                 index += 1
 
@@ -1227,28 +1251,31 @@ class NavWebReport(Report):
             media_count = len(self._db.get_media_handles())
         else:
             media_count = len(self.obj_dict[Media])
-        with self.user.progress(_("Narrated Web Site Report"),
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title,
                                 _("Creating thumbnail preview page..."),
                                 media_count) as step:
-            ThumbnailPreviewPage(self, self.title, step)
+            ThumbnailPreviewPage(self, self.the_lang, self.the_title, step)
 
-    def statistics_preview_page(self, title):
+    def statistics_preview_page(self):
         """
         creates the statistics preview page
         """
-        with self.user.progress(_("Narrated Web Site Report"),
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title,
                                 _("Creating statistics page..."),
                                 1) as step:
-            StatisticsPage(self, title, step)
+            StatisticsPage(self, self.the_lang, self.the_title, step)
 
-    def updates_preview_page(self, title):
+    def updates_preview_page(self):
         """
         creates the statistics preview page
         """
-        with self.user.progress(_("Narrated Web Site Report"),
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title,
                                 _("Creating updates page..."),
                                 1):
-            UpdatesPage(self, title)
+            UpdatesPage(self, self.the_lang, self.the_title)
 
     def addressbook_pages(self, ind_list):
         """
@@ -1282,17 +1309,17 @@ class NavWebReport(Report):
                 url_addr_res.append((sort_name, person_handle, add, res, url))
 
         url_addr_res.sort()
-        AddressBookListPage(self, self.title, url_addr_res)
+        AddressBookListPage(self, self.the_lang, self.the_title, url_addr_res)
 
         # begin Address Book pages
         addr_size = len(url_addr_res)
 
         message = _("Creating address book pages ...")
-        with self.user.progress(_("Narrated Web Site Report"), message,
-                                addr_size) as step:
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title, message, addr_size) as step:
             index = 1
             for (sort_name, person_handle, add, res, url) in url_addr_res:
-                AddressBookPage(self, self.title, person_handle, add, res, url)
+                AddressBookPage(self, self.the_lang, self.the_title, person_handle, add, res, url)
                 step()
                 index += 1
 
@@ -1302,18 +1329,18 @@ class NavWebReport(Report):
         if requested by options in plugin
         """
         if self.use_home:
-            HomePage(self, self.title)
+            HomePage(self, self.the_lang, self.the_title)
 
         if self.inc_contact:
-            ContactPage(self, self.title)
+            ContactPage(self, self.the_lang, self.the_title)
 
         if self.inc_download:
-            DownloadPage(self, self.title)
+            DownloadPage(self, self.the_lang, self.the_title)
 
         if self.use_intro:
-            IntroductionPage(self, self.title)
+            IntroductionPage(self, self.the_lang, self.the_title)
 
-    def build_subdirs(self, subdir, fname, uplink=False):
+    def build_subdirs(self, subdir, fname, uplink=False, image=False):
         """
         If subdir is given, then two extra levels of subdirectory are inserted
         between 'subdir' and the filename. The reason is to prevent directories
@@ -1332,16 +1359,23 @@ class NavWebReport(Report):
             subdirs.append(subdir)
             subdirs.append(fname[-1].lower())
             subdirs.append(fname[-2].lower())
+        nb_dir = 0
+        if self.the_lang and image:
+            nb_dir = 1
 
         if self.usecms:
             if self.target_uri not in subdirs:
                 subdirs = [self.target_uri] + subdirs
         else:
             if uplink is True:
-                subdirs = ['..']*3 + subdirs
+                nb_dir += 3
+                subdirs = ['..']*nb_dir + subdirs
 
-            # added for use in EventListPage
+            elif uplink is False:
+                if nb_dir == 1:
+                    subdirs = ['..'] + subdirs
             elif uplink is None:
+                # added for use in EventListPage
                 subdirs = ['.'] + subdirs
         return subdirs
 
@@ -1358,6 +1392,32 @@ class NavWebReport(Report):
         """
         return os.path.join(*self.build_subdirs(subdir, fname, uplink))
 
+    def build_url_lang(self, fname, subdir=None, uplink=False):
+        """
+        builds a url for an extra language
+
+        @param: fname  -- The file name for which we need to build the path
+        @param: subdir -- The subdirectory name to use
+        @param: uplink -- If True, then "../../../" is inserted in front of the
+                          result.
+        """
+        subdirs = []
+        if uplink:
+            nb_dir = 4 if self.the_lang else 3
+        else:
+            nb_dir = 1
+        if subdir:
+            subdirs.append(subdir)
+        if self.usecms:
+            if self.target_uri not in subdirs:
+                subdirs = [self.target_uri] + subdirs
+        else:
+            subdirs = ['..']*nb_dir + subdirs
+        nname = "/".join(subdirs + [fname])
+        if win():
+            nname = nname.replace('\\', "/")
+        return nname
+
     def build_url_image(self, fname, subdir=None, uplink=False):
         """
         builds a url from an image
@@ -1368,6 +1428,10 @@ class NavWebReport(Report):
                           result.
         """
         subdirs = []
+        if uplink:
+            nb_dir = 4 if self.the_lang else 3
+        else:
+            nb_dir = 1
         if subdir:
             subdirs.append(subdir)
         if self.usecms:
@@ -1375,7 +1439,7 @@ class NavWebReport(Report):
                 subdirs = [self.target_uri] + subdirs
         else:
             if uplink:
-                subdirs = ['..']*3 + subdirs
+                    subdirs = ['..']*nb_dir + subdirs
         nname = "/".join(subdirs + [fname])
         if win():
             nname = nname.replace('\\', "/")
@@ -1436,7 +1500,7 @@ class NavWebReport(Report):
             return None
         return self.build_url_fname(handle, subdir, uplink) + self.ext
 
-    def build_url_fname(self, fname, subdir=None, uplink=False):
+    def build_url_fname(self, fname, subdir=None, uplink=False, image=False):
         """
         Create part of the URL given the filename and optionally the
         subdirectory. If the subdirectory is given, then two extra levels of
@@ -1461,9 +1525,9 @@ class NavWebReport(Report):
             fname = fname.replace('\\', "/")
         fname = fname.replace(self.target_uri + "/", "")
         if self.usecms:
-            subdirs = self.build_subdirs(subdir, fname, False)
+            subdirs = self.build_subdirs(subdir, fname, False, image)
         else:
-            subdirs = self.build_subdirs(subdir, fname, uplink)
+            subdirs = self.build_subdirs(subdir, fname, uplink, image)
         return "/".join(subdirs + [fname])
 
     def create_file(self, fname, subdir=None, ext=None):
@@ -1491,10 +1555,23 @@ class NavWebReport(Report):
         else:
             string_io = None
             if subdir:
-                subdir = os.path.join(self.html_dir, subdir)
+                if self.the_lang:
+                    subdir = os.path.join(self.html_dir, self.the_lang, subdir)
+                else:
+                    subdir = os.path.join(self.html_dir, subdir)
                 if not os.path.isdir(subdir):
                     os.makedirs(subdir)
-            fname = os.path.join(self.html_dir, self.cur_fname)
+            else:
+                if self.the_lang:
+                    subdir = os.path.join(self.html_dir, self.the_lang)
+                else:
+                    subdir = os.path.join(self.html_dir)
+                if not os.path.isdir(subdir):
+                    os.makedirs(subdir)
+            if self.the_lang:
+                fname = os.path.join(self.html_dir, self.the_lang, self.cur_fname)
+            else:
+                fname = os.path.join(self.html_dir, self.cur_fname)
             output_file = open(fname, 'w', encoding=self.encoding,
                                errors='xmlcharrefreplace')
         return (output_file, string_io)
@@ -1608,6 +1685,19 @@ class NavWebReport(Report):
         @param: person_handle -- The person we are looking for
         """
         return person_handle in self.obj_dict[Person]
+
+    def pgrs_title(self, the_lang):
+        """Set the message depending on the lang."""
+        if the_lang:
+            languages = glocale.get_language_dict()
+            lang = "???"
+            for language in languages:
+                if languages[language] == the_lang:
+                    lang = language
+                    break
+            return _("Narrative Web Site Report for the %s language") % lang
+        else:
+            return _("Narrative Web Site Report")
 
 #################################################
 #
@@ -1867,7 +1957,7 @@ class NavWebOptions(MenuReportOptions):
               ' one defined in the next field.'))
         addopt("multitrans", self.__multitrans)
         self.__multitrans.connect('value-changed',
-                                  self.__show_hide_translations)
+                                  self.__activate_translations)
 
         locale_opt = stdoptions.add_localization_option(menu, category_name)
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
@@ -2283,29 +2373,53 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Translations")
         addopt = partial(menu.add_option, category_name)
 
-        #self.__usecms = BooleanOption(
-        #    _("Do we include these pages in a cms web ?"), False)
-        #menu.get_option_by_name(optname)
         extras = menu.get_option_by_name("multitrans")
-        print("extras", extras.get_value())
         self.__lang_2 = stdoptions.add_extra_localization_option(menu,
             category_name, "second language", "lang2")
+        self.__titl_2 = StringOption(_("Site name for your second language"),
+                                     _('This site title'))
+        self.__titl_2.set_help(_('Give a title in the appropriate language'))
+        addopt("title2", self.__titl_2)
         self.__lang_3 = stdoptions.add_extra_localization_option(menu,
             category_name, "third language", "lang3")
+        self.__titl_3 = StringOption(_("Site name for your third language"),
+                                     _('This site title'))
+        self.__titl_3.set_help(_('Give a title in the appropriate language'))
+        addopt("title3", self.__titl_3)
         self.__lang_4 = stdoptions.add_extra_localization_option(menu,
             category_name, "fourth language", "lang4")
+        self.__titl_4 = StringOption(_("Site name for your fourth language"),
+                                     _('This site title'))
+        self.__titl_4.set_help(_('Give a title in the appropriate language'))
+        addopt("title4", self.__titl_4)
         self.__lang_5 = stdoptions.add_extra_localization_option(menu,
             category_name, "fifth language", "lang5")
+        self.__titl_5 = StringOption(_("Site name for your fifth language"),
+                                     _('This site title'))
+        self.__titl_5.set_help(_('Give a title in the appropriate language'))
+        addopt("title5", self.__titl_5)
+        self.__lang_6 = stdoptions.add_extra_localization_option(menu,
+            category_name, "sixth language", "lang6")
+        self.__titl_6 = StringOption(_("Site name for your sixth language"),
+                                     _('This site title'))
+        self.__titl_6.set_help(_('Give a title in the appropriate language'))
+        addopt("title6", self.__titl_6)
 
-    def __show_hide_translations(self):
+    def __activate_translations(self):
         """
         Make the possible extra languages selectable.
         """
         status = self.__multitrans.get_value()
         self.__lang_2.set_available(status)
+        self.__titl_2.set_available(status)
         self.__lang_3.set_available(status)
+        self.__titl_3.set_available(status)
         self.__lang_4.set_available(status)
+        self.__titl_4.set_available(status)
         self.__lang_5.set_available(status)
+        self.__titl_5.set_available(status)
+        self.__lang_6.set_available(status)
+        self.__titl_6.set_available(status)
 
     def __updates_changed(self):
         """

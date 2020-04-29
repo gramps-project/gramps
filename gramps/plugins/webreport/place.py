@@ -90,12 +90,12 @@ class PlacePages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
         @param: report -- The instance of the main report class for
                           this report
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.place_dict = defaultdict(set)
         self.placemappages = None
         self.mapservice = None
@@ -107,7 +107,7 @@ class PlacePages(BasePage):
         # Place needs to display coordinates?
         self.display_coordinates = report.options["coordinates"]
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Place tab, namely the place
         index and the individual place pages.
@@ -118,7 +118,8 @@ class PlacePages(BasePage):
         for item in self.report.obj_dict[Place].items():
             LOG.debug("    %s", str(item))
         message = _("Creating place pages")
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Place]) + 1
                                  ) as step:
             index = 1
@@ -126,11 +127,12 @@ class PlacePages(BasePage):
                 step()
                 p_handle = self.report.obj_dict[PlaceName][place_name]
                 index += 1
-                self.placepage(self.report, title, p_handle[0], place_name)
+                self.placepage(self.report, the_lang, the_title, p_handle[0],
+                               placename)
             step()
-            self.placelistpage(self.report, title)
+            self.placelistpage(self.report, the_lang, the_title)
 
-    def placelistpage(self, report, title):
+    def placelistpage(self, report, the_lang, the_title, place_handles):
         """
         Create a place index
 
@@ -138,7 +140,7 @@ class PlacePages(BasePage):
                                  this report
         @param: title         -- Is the title of the web page
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         output_file, sio = self.report.create_file("places")
         result = self.write_header(self._("Places"))
@@ -283,7 +285,7 @@ class PlacePages(BasePage):
         # and close the file
         self.xhtml_writer(placelistpage, output_file, sio, ldatec)
 
-    def placepage(self, report, title, place_handle, place_name):
+    def placepage(self, report, the_lang, the_title, place_handle):
         """
         Create a place page
 
@@ -294,8 +296,9 @@ class PlacePages(BasePage):
         """
         place = report.database.get_place_from_handle(place_handle)
         if not place:
-            return None
-        BasePage.__init__(self, report, title, place.get_gramps_id())
+            return
+        BasePage.__init__(self, report, the_lang, the_title,
+                          place.get_gramps_id())
         self.bibli = Bibliography()
         ldatec = place.get_change_time()
         apname = _pd.display(self.r_db, place)
@@ -365,7 +368,10 @@ class PlacePages(BasePage):
                     placetitle = place_name
 
                     # add narrative-maps CSS...
-                    fname = "/".join(["css", "narrative-maps.css"])
+                    if the_lang:
+                        fname = "/".join(["..", "css", "narrative-maps.css"])
+                    else:
+                        fname = "/".join(["css", "narrative-maps.css"])
                     url = self.report.build_url_fname(fname, None, self.uplink)
                     head += Html("link", href=url, type="text/css",
                                  media="screen", rel="stylesheet")

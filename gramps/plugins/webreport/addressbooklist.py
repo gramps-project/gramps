@@ -64,7 +64,7 @@ class AddressBookListPage(BasePage):
     """
     Create the index for addresses.
     """
-    def __init__(self, report, title, has_url_addr_res):
+    def __init__(self, report, the_lang, the_title, has_url_addr_res):
         """
         @param: report           -- The instance of the main report class
                                     for this report
@@ -72,7 +72,7 @@ class AddressBookListPage(BasePage):
         @param: has_url_addr_res -- The url, address and residence to use
                                     for the report
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         # Name the file, and create it
         output_file, sio = self.report.create_file("addressbook")

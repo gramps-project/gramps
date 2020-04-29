@@ -169,6 +169,7 @@ a[href]:hover, a[href]:active {
 -----------------------------------------------------------------*/
 div#nav, #subnavigation {
     background: url(../images/Web_Mainz_Mid.png) repeat-x top left;
+    position: relative;
 }
 div#nav ul, #subnavigation ul {
     list-style-type: none;
@@ -198,6 +199,31 @@ div#nav ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
 }
 #subnavigation ul li.CurrentSection a {
     border-width: 0px 1px 1px 1px;
+}
+div#nav li.lang {
+    font-size: smaller;
+    padding: 2px 2px;
+}
+div#nav li.lang:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+div#nav ul.lang {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+    background-color: #D8C19F;
+    background-color: #FFFFE7;
+    top: -1em;
+    font-family: sans-serif;
+}
+div#nav ul.lang:hover {
+    float: initial;
+}
+div#nav ul.lang li {
+    float: none;
+    font-size: larger;
 }
 
 /* Alphabet Navigation
@@ -291,7 +317,7 @@ div#nav::after {
         background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
     }
 
-    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive {position: relative; display: block; z-index: 100;}
     .nav.responsive a.icon {
         position: absolute;
         right: 0;
@@ -311,6 +337,7 @@ div#nav::after {
 
     div#nav ul, #subnavigation ul {
         padding-left: 0px;
+        position: absolute;
     }
 
     .content {
@@ -613,7 +640,7 @@ div#SourceDetail {
     margin-right: 10px;
 }
 #Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
-      #Contact #GalleryDisplay {
+      #Contact #GalleryDisplay img {
     display: block;
     max-width: 950px;
     height: auto;

@@ -238,10 +238,10 @@ div#alphanav, div#nav, div#subnavigation {
     width: 100%;
     margin: 0;
     background-color: #A97;
+    position: relative;
 }
 div#alphanav ul, div#nav ul, div#subnavigation ul {
     list-style: none;
-    min-width: 770px;
     height: 24px;
     margin: 0;
     padding: 0px 0px 0px 16px;
@@ -281,6 +281,40 @@ div#nav ul li.CurrentSection a:hover {
 }
 div#subnavigation ul li.CurrentSection a {
     border-width: 0 0 1px 0;
+}
+div#nav li.lang {
+    padding: 4px 2px 3px 10px;
+    font: bold .8em sans;
+}
+div#nav li.lang:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+div#nav ul.lang {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    height: auto;
+    width: auto;
+    z-index: 999;
+    overflow: visible;
+    background-color: #A97;
+    top: -1em;
+    border-width: 2px 0px 1px 0px;
+    padding: 0px;
+}
+div#nav ul.lang li:after {
+    content: "";
+}
+div#nav li.lang ul.lang li {
+    float: right;
+    background-color: #A97;
+    font: bold 1.2em sans;
+    padding: 0px 0px;
+}
+div#nav li.lang ul.lang li a {
+    float: none;
+    width: auto;
 }
 
 /* Responsive navigation */

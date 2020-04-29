@@ -73,7 +73,7 @@ class SurnamePage(BasePage):
     """
     This will create a list of individuals with the same surname
     """
-    def __init__(self, report, title, surname, ppl_handle_list):
+    def __init__(self, report, the_lang, the_title, surname, ppl_handle_list):
         """
         @param: report          -- The instance of the main report class for
                                    this report
@@ -82,7 +82,7 @@ class SurnamePage(BasePage):
         @param: ppl_handle_list -- The list of people for whom we need to create
                                    a page.
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         # module variables
         showbirth = report.options['showbirth']
