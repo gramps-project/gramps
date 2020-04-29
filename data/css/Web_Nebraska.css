@@ -283,8 +283,10 @@ div#subnavigation ul li.CurrentSection a {
     border-width: 0 0 1px 0;
 }
 div#nav li.lang {
-    padding: 4px 2px 3px 10px;
-    font: bold .8em sans;
+    position: relative;
+    padding-top: 3px;
+    padding-left: 8px;
+    font: bold .7em sans;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;
@@ -307,14 +309,15 @@ div#nav ul.lang li:after {
     content: "";
 }
 div#nav li.lang ul.lang li {
-    float: right;
+    float: none;
     background-color: #A97;
-    font: bold 1.2em sans;
+    margin-left: 10px;
     padding: 0px 0px;
 }
 div#nav li.lang ul.lang li a {
     float: none;
     width: auto;
+    font: bold .9em sans;
 }
 
 /* Responsive navigation */
@@ -381,7 +384,6 @@ div#nav::after {
         position: absolute;
         right: 0;
         top: 0;
-        margin-right: 10px;
     }
     .nav.responsive ::after {
         /* need to remove the "|" when we are in the dropdown menu. */
@@ -404,6 +406,28 @@ div#nav::after {
 
     .content {
         padding: 0em 0.5em;
+    }
+    div#nav ul li.lang {
+        padding-top: 3px;
+        padding-bottom: 6px;
+        padding-left: 0px;
+    }
+    .lang {
+        position: relative;
+        padding-top: 3px;
+        padding-left: 8px;
+    }
+    .lang > .lang {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    .lang:hover > .lang {
+        display: block;
     }
 }
 

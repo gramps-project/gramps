@@ -205,7 +205,8 @@ div#nav ul li.CurrentSection a {
 div#nav li.lang {
     font-size: smaller;
     font-family: sans-serif;
-    padding: 5px 2px;
+    padding-top: .3em;
+    padding-bottom: .3em;
     font-weight: bold;
 }
 div#nav li.lang:hover > ul {
@@ -347,6 +348,21 @@ div#nav::after {
 
     .content {
         padding: 0em 0.5em;
+    }
+    .lang {
+        position: relative;
+    }
+    .lang > .lang {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    .lang:hover > .lang {
+        display: block;
     }
 }
 
