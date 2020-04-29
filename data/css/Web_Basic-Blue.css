@@ -254,6 +254,7 @@ p#user_header {
 div#nav, #subnavigation {
     border: solid 1px #EEE; /* needed by IE7 */
     background-color: #13A926;
+    position: relative;
 }
 #subnavigation ul {
     overflow: hidden;
@@ -290,6 +291,33 @@ div#nav ul li.CurrentSection a {
 }
 #nav ul li.CurrentSection a:hover {
     background-color: #903;
+}
+div#nav li.lang {
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: .5em;
+}
+div#nav li.lang:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+div#nav ul.lang {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+    background-color: #EEE;
+    border-bottom: solid 1px #999;
+    padding: 2px 1px;
+    top: -1em;
+}
+div#nav ul.lang:hover {
+    float: initial;
+}
+div#nav ul.lang li {
+    float: none;
+    font-size: larger;
+    padding: 0px;
 }
 
 /* Webcal

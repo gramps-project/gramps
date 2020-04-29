@@ -70,6 +70,7 @@ from gramps.gen.proxy import LivingProxyDb
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              alphabet_navigation, sort_people,
+                                             _NAME_STYLE_SHORT,
                                              _NAME_STYLE_FIRST, first_letter,
                                              get_index_letter, add_birthdate,
                                              primary_difference, FULLCLEAR,
@@ -111,11 +112,11 @@ class PersonPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
         @param: report -- The instance of the main report class for this report
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.ind_dict = defaultdict(set)
         self.mapservice = None
         self.sort_name = None
@@ -129,7 +130,7 @@ class PersonPages(BasePage):
         self.placemappages = None
         self.name = None
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Individuals tab, namely the
         individual index and the individual pages.
@@ -140,7 +141,8 @@ class PersonPages(BasePage):
         for item in self.report.obj_dict[Person].items():
             LOG.debug("    %s", str(item))
         message = _('Creating individual pages')
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Person]) + 1
                                  ) as step:
             index = 1
@@ -148,9 +150,9 @@ class PersonPages(BasePage):
                 step()
                 index += 1
                 person = self.r_db.get_person_from_handle(person_handle)
-                self.individualpage(self.report, title, person)
+                self.individualpage(self.report, the_lang, the_title, person)
             step()
-            self.individuallistpage(self.report, title,
+            self.individuallistpage(self.report, the_lang, the_title,
                                     self.report.obj_dict[Person].keys())
 
 #################################################
@@ -158,7 +160,7 @@ class PersonPages(BasePage):
 #    creates the Individual List Page
 #
 #################################################
-    def individuallistpage(self, report, title, ppl_handle_list):
+    def individuallistpage(self, report, the_lang, the_title, ppl_handle_list):
         """
         Creates an individual page
 
@@ -168,7 +170,7 @@ class PersonPages(BasePage):
         @param: ppl_handle_list -- The list of people for whom we need
                                    to create a page.
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         prev_letter = " "
 
         # plugin variables for this module
@@ -433,7 +435,7 @@ class PersonPages(BasePage):
         Person.UNKNOWN : _('unknown'),
         }
 
-    def individualpage(self, report, title, person):
+    def individualpage(self, report, the_lang, the_title, person):
         """
         Creates an individual page
 
@@ -441,7 +443,7 @@ class PersonPages(BasePage):
         @param: title  -- Is the title of the web page
         @param: person -- The person to use for this page.
         """
-        BasePage.__init__(self, report, title, person.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title, person.get_gramps_id())
         place_lat_long = []
 
         self.person = person
@@ -583,7 +585,7 @@ class PersonPages(BasePage):
                     sstring_io = sio
                     sfname = self.report.cur_fname
                     individualdetail += self.__display_family_map(
-                        person, place_lat_long)
+                        person, place_lat_long, the_lang)
                     # restore output_file, string_io and cur_fname
                     # after creating a new page
                     output_file = sof
@@ -644,7 +646,7 @@ class PersonPages(BasePage):
                                 placetitle.replace("'", "\\'"), links)
         return tracelife
 
-    def __create_family_map(self, person, place_lat_long):
+    def __create_family_map(self, person, place_lat_long, the_lang):
         """
         creates individual family map page
 
@@ -1082,7 +1084,7 @@ class PersonPages(BasePage):
         # and close the file
         self.xhtml_writer(familymappage, output_file, sio, 0)
 
-    def __display_family_map(self, person, place_lat_long):
+    def __display_family_map(self, person, place_lat_long, the_lang):
         """
         Create the family map link
 
@@ -1090,7 +1092,7 @@ class PersonPages(BasePage):
         @param: place_lat_long -- The center of the box
         """
         # create family map page
-        self.__create_family_map(person, place_lat_long)
+        self.__create_family_map(person, place_lat_long, the_lang)
 
         # begin family map division plus section title
         with Html("div", class_="subsection", id="familymap") as familymap:
@@ -1150,14 +1152,17 @@ class PersonPages(BasePage):
                             newpath = self.copy_thumbnail(
                                 photo_handle, photo, region)
                             # TODO. Check if build_url_fname can be used.
-                            newpath = "/".join(['..']*3 + [newpath])
+                            #newpath = "/".join(['..']*3 + [newpath])
+                            #newpath = "/".join(['..']*3 + [newpath])
+                            newpath = self.report.build_url_fname(newpath, None, self.uplink, image=True)
                             if win():
                                 newpath = newpath.replace('\\', "/")
                             thumbnail_url = newpath
                         else:
                             (dummy_photo_url, thumbnail_url) = \
                                 self.report.prepare_copy_media(photo)
-                            thumbnail_url = "/".join(['..']*3 + [thumbnail_url])
+                            #thumbnail_url = "/".join(['..']*3 + [thumbnail_url])
+                            thumbnail_url = self.report.build_url_fname(thumbnail_url, None, self.uplink, image=True)
                             if win():
                                 thumbnail_url = thumbnail_url.replace('\\', "/")
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
@@ -1614,7 +1619,7 @@ class PersonPages(BasePage):
                     # (see http://gramps.1791082.n4.nabble.com/Where-is-
                     # nickname-stored-tp4469779p4484272.html), and also because
                     # the attribute is (normally) displayed lower down the
-                    # wNarrative Web report.
+                    # Narrative Web report.
                     nick_name = name.get_nick_name()
                     if nick_name and nick_name != first_name:
                         trow = Html("tr") + (

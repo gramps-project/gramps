@@ -79,17 +79,17 @@ class SourcePages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
         @param: report -- The instance of the main report class for
                           this report
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.source_dict = defaultdict(set)
         self.navigation = None
         self.citationreferents = None
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Sources tab, namely the sources
         index and the individual sources pages.
@@ -100,19 +100,20 @@ class SourcePages(BasePage):
         for item in self.report.obj_dict[Source].items():
             LOG.debug("    %s", str(item))
         message = _("Creating source pages")
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Source]) + 1
                                  ) as step:
-            self.sourcelistpage(self.report, title,
+            self.sourcelistpage(self.report, the_lang, the_title,
                                 self.report.obj_dict[Source].keys())
 
             index = 1
             for source_handle in self.report.obj_dict[Source]:
                 step()
                 index += 1
-                self.sourcepage(self.report, title, source_handle)
+                self.sourcepage(self.report, the_lang, the_title, source_handle)
 
-    def sourcelistpage(self, report, title, source_handles):
+    def sourcelistpage(self, report, the_lang, the_title, source_handles):
         """
         Generate and output the Sources index page.
 
@@ -122,7 +123,7 @@ class SourcePages(BasePage):
         @param: source_handles -- A list of the handles of the sources to be
                                   displayed
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         source_dict = {}
 
@@ -202,7 +203,7 @@ class SourcePages(BasePage):
         # and close the file
         self.xhtml_writer(sourcelistpage, output_file, sio, 0)
 
-    def sourcepage(self, report, title, source_handle):
+    def sourcepage(self, report, the_lang, the_title, source_handle):
         """
         Generate and output an individual Source page.
 
@@ -212,7 +213,7 @@ class SourcePages(BasePage):
         @param: source_handle -- The handle of the source to be output
         """
         source = report.database.get_source_from_handle(source_handle)
-        BasePage.__init__(self, report, title, source.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title, source.get_gramps_id())
         if not source:
             return
 

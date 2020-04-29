@@ -77,7 +77,7 @@ class SurnameListPage(BasePage):
     ORDER_BY_NAME = 0
     ORDER_BY_COUNT = 1
 
-    def __init__(self, report, title, ppl_handle_list,
+    def __init__(self, report, the_lang, the_title, ppl_handle_list,
                  order_by=ORDER_BY_NAME, filename="surnames"):
         """
         @param: report          -- The instance of the main report class for
@@ -89,7 +89,7 @@ class SurnameListPage(BasePage):
                                    Surnames or Surnames count
         @param: filename        -- The name to use for the Surnames page
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         prev_surname = ""
         prev_letter = " "
 

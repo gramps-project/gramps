@@ -96,7 +96,7 @@ class BasePage: # pylint: disable=C1001
     Manages all the functions, variables, and everything needed
     for all of the classes contained within this plugin
     """
-    def __init__(self, report, title, gid=None):
+    def __init__(self, report, the_lang, the_title, gid=None):
         """
         @param: report -- The instance of the main report class for
                           this report
@@ -111,9 +111,11 @@ class BasePage: # pylint: disable=C1001
         self.report = report
         self.r_db = report.database
         self.r_user = report.user
-        self.title_str = title
+        self.title_str = the_title
         self.gid = gid
         self.bibli = Bibliography()
+        self.the_lang = the_lang
+        self.the_title = the_title
 
         self.page_title = ""
 
@@ -144,8 +146,7 @@ class BasePage: # pylint: disable=C1001
         self.extrapagename = report.options['extrapagename']
         self.familymappages = None
         self.reference_sort = report.options['reference_sort']
-        lang = report.options['trans']
-        self.rlocale = report.set_locale(lang)
+        self.rlocale = report.set_locale(the_lang)
         self._ = self.rlocale.translation.sgettext
         self.colon = self._(':') # translators: needed for French, else ignore
 
@@ -161,7 +162,7 @@ class BasePage: # pylint: disable=C1001
         """
         pass
 
-    def display_pages(self, title):
+    def display_pages(self, lang, title):
         """
         Display the pages
         """
@@ -1382,7 +1383,7 @@ class BasePage: # pylint: disable=C1001
         # return footer to its callers
         return footer
 
-    def write_header(self, title):
+    def write_header(self, the_title):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
@@ -1390,10 +1391,13 @@ class BasePage: # pylint: disable=C1001
         @param: title -- Is the title of the web page
         """
         # begin each html page...
-        xmllang = xml_lang()
+        if self.the_lang:
+            xmllang = self.the_lang.replace('_','-')
+        else:
+            xmllang = xml_lang() # TODO self.the_lang is None ???
         page, head, body = Html.page('%s - %s' %
                                      (html_escape(self.title_str.strip()),
-                                      html_escape(title)),
+                                      html_escape(the_title)),
                                      self.report.encoding,
                                      xmllang, cms=self.usecms)
 
@@ -1418,17 +1422,25 @@ class BasePage: # pylint: disable=C1001
         )
 
         # Link to _NARRATIVESCREEN  stylesheet
-        fname = "/".join(["css", _NARRATIVESCREEN])
+        if self.the_lang:
+            fname = "/".join(["..", "css", _NARRATIVESCREEN])
+        else:
+            fname = "/".join(["css", _NARRATIVESCREEN])
         url2 = self.report.build_url_fname(fname, None, self.uplink)
 
         # Link to _NARRATIVEPRINT stylesheet
-        fname = "/".join(["css", _NARRATIVEPRINT])
+        if self.the_lang:
+            fname = "/".join(["..", "css", _NARRATIVEPRINT])
+        else:
+            fname = "/".join(["css", _NARRATIVEPRINT])
         url3 = self.report.build_url_fname(fname, None, self.uplink)
 
         # Link to Gramps favicon
-        fname = "/".join(['images', 'favicon2.ico'])
-        url4 = self.report.build_url_image("favicon2.ico",
-                                           "images", self.uplink)
+        if self.the_lang:
+            fname = "/".join(["..", 'images', 'favicon2.ico'])
+        else:
+            fname = "/".join(['images', 'favicon2.ico'])
+        url4 = self.report.build_url_image(fname, None, self.uplink)
 
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
@@ -1439,7 +1451,10 @@ class BasePage: # pylint: disable=C1001
             if self.usecms:
                 fname = "/".join([self.target_uri, "css", "ancestortree.css"])
             else:
-                fname = "/".join(["css", "ancestortree.css"])
+                if self.the_lang:
+                    fname = "/".join(["..", "css", "ancestortree.css"])
+                else:
+                    fname = "/".join(["css", "ancestortree.css"])
             url5 = self.report.build_url_fname(fname, None, self.uplink)
             links += Html("link", type="text/css", href=url5,
                           media="screen", rel="stylesheet", indent=False)
@@ -1454,7 +1469,10 @@ class BasePage: # pylint: disable=C1001
             for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
                 if css_fn in css_f and not already_done:
                     css_f = css_f.replace("UsEr_", "")
-                    fname = "/".join(["css", css_f + ".css"])
+                    if self.the_lang:
+                        fname = "/".join(["..", "css", css_f + ".css"])
+                    else:
+                        fname = "/".join(["css", css_f + ".css"])
                     urlx = self.report.build_url_fname(fname, None,
                                                        self.uplink)
                     links += Html("link", rel="alternate stylesheet",
@@ -1464,7 +1482,10 @@ class BasePage: # pylint: disable=C1001
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]:
-            fname = "/".join(["css", "narrative-menus.css"])
+            if self.the_lang:
+                fname = "/".join(["..", "css", "narrative-menus.css"])
+            else:
+                fname = "/".join(["css", "narrative-menus.css"])
             url = self.report.build_url_fname(fname, None, self.uplink)
             links += Html("link", type="text/css", href=url,
                           media="screen", rel="stylesheet", indent=False)
@@ -1513,7 +1534,7 @@ class BasePage: # pylint: disable=C1001
            ) and self.report.navigation == "dropdown":
             outerwrapperdiv += self.display_drop_menu()
         else:
-            outerwrapperdiv += self.display_nav_links(title)
+            outerwrapperdiv += self.display_nav_links(the_title)
 
         # message for Codacy :
         # body is used in some modules to add functions like onload(),
@@ -1645,6 +1666,22 @@ class BasePage: # pylint: disable=C1001
                         )
                     index += 1
 
+                if self.report.options['multitrans']:
+                    langs = Html("li", self._("Language"), class_="lang")
+                    languages = glocale.get_language_dict()
+                    choice = Html("ul", class_="lang")
+                    langs += choice
+                    for language in languages:
+                        for extra_lang, title in self.report.languages:
+                            if languages[language] == extra_lang:
+                                lang_txt = html_escape(self._(language))
+                                url = self.report.build_url_lang("index",
+                                    languages[language], self.uplink) + self.ext
+                                lnk = Html("a", lang_txt,
+                                           href=url, title=lang_txt)
+                                choice += Html("li", lnk, inline=True)
+                    unordered.extend(langs)
+
                 if self.prevnext:
                     prv = Html('<a onclick="history.go(-1);">%s</a>' %
                                self._("Previous"))
@@ -1773,7 +1810,10 @@ class BasePage: # pylint: disable=C1001
 
             # if there are media rectangle regions, attach behaviour style sheet
             if _region_items:
-                fname = "/".join(["css", "behaviour.css"])
+                if self.the_lang:
+                    fname = "/".join(["..", "css", "behaviour.css"])
+                else:
+                    fname = "/".join(["css", "behaviour.css"])
                 url = self.report.build_url_fname(fname, None, self.uplink)
                 head += Html("link", href=url, type="text/css",
                              media="screen", rel="stylesheet")
@@ -1815,12 +1855,11 @@ class BasePage: # pylint: disable=C1001
                             imag.attr += 'height = "%d"'  % height
 
                         descr = html_escape(obj.get_description())
-                        newpath = self.report.build_url_fname(newpath)
+                        newpath = self.report.build_url_fname(newpath, image=True)
                         imag.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
                         fname = self.report.build_url_fname(obj.get_handle(),
                                                             "img",
                                                             False) + self.ext
-                        #image += imag
                         inc_gallery = self.report.options['gallery']
                         if not self.create_thumbs_only and inc_gallery:
                             img_link = Html("a", href=fname, title=descr) + (
@@ -1989,7 +2028,7 @@ class BasePage: # pylint: disable=C1001
 
                     # make a thumbnail of this region
                     newpath = self.copy_thumbnail(photo_handle, photo, region)
-                    newpath = self.report.build_url_fname(newpath, uplink=True)
+                    newpath = self.report.build_url_fname(newpath, uplink=True, image=True)
 
                     snapshot += self.media_link(photo_handle, newpath, descr,
                                                 uplink=self.uplink,
@@ -2101,7 +2140,7 @@ class BasePage: # pylint: disable=C1001
                         # create thumbnail url
                         # extension needs to be added as it is not already there
                         url = self.report.build_url_fname(photo_handle, "thumb",
-                                                          True) + ".png"
+                                                          True, image=True) + ".png"
                         # begin hyperlink
                         section += self.media_link(photo_handle, url,
                                                    descr, uplink=self.uplink,

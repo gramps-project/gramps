@@ -67,14 +67,14 @@ class ThumbnailPreviewPage(BasePage):
     This class is responsible for displaying information about
     the Thumbnails page.
     """
-    def __init__(self, report, title, cb_progress):
+    def __init__(self, report, the_lang, the_title, cb_progress):
         """
         @param: report      -- The instance of the main report class
                                for this report
         @param: title       -- Is the title of the web page
         @param: cb_progress -- The step used for the progress bar.
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         self.create_thumbs_only = report.options['create_thumbs_only']
         self.create_thumbs_index = self.report.options['create_thumbs_index']
         # bug 8950 : it seems it's better to sort on desc + gid.
@@ -151,7 +151,7 @@ class ThumbnailPreviewPage(BasePage):
                 # create thumbnail
                 (dummy_real_path,
                  newpath) = self.report.prepare_copy_media(photo)
-                newpath = self.report.build_url_fname(newpath)
+                newpath = self.report.build_url_fname(newpath, image=True)
 
                 # attach thumbnail to list...
                 gallerycell += self.thumb_hyper_image(newpath, "img",
@@ -217,7 +217,6 @@ class ThumbnailPreviewPage(BasePage):
         name = html_escape(name)
         url = "/".join(self.report.build_subdirs(subdir,
                                                  fname) + [fname]) + self.ext
-
         with Html("div", class_="thumbnail") as thumbnail:
                     #snapshot += thumbnail
 
