@@ -125,7 +125,8 @@ class EventPages(BasePage):
         self.eventlistpage(self.report, the_lang, the_title, event_types,
                            event_handle_list)
 
-    def eventlistpage(self, report, the_lang, the_title, event_types, event_handle_list):
+    def eventlistpage(self, report, the_lang, the_title,
+                      event_types, event_handle_list):
         """
         Will create the event list page
 
@@ -356,7 +357,8 @@ class EventPages(BasePage):
         @param: event_handle -- The event handle for the database
         """
         event = report.database.get_event_from_handle(event_handle)
-        BasePage.__init__(self, report, the_lang, the_title, event.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          event.get_gramps_id())
         if not event:
             return
 

@@ -171,14 +171,16 @@ class MediaPages(BasePage):
                         next_ = None
                     else:
                         next_ = self.unused_media_handles[idx]
-                    self.mediapage(self.report, the_lang, the_title, media_handle,
+                    self.mediapage(self.report, the_lang, the_title,
+                                   media_handle,
                                    (prev, next_, index, media_count))
                     prev = media_handle
                     step()
                     index += 1
                     idx += 1
 
-        self.medialistpage(self.report, the_lang, the_title, sorted_media_handles)
+        self.medialistpage(self.report, the_lang, the_title,
+                           sorted_media_handles)
 
     def medialistpage(self, report, the_lang, the_title, sorted_media_handles):
         """

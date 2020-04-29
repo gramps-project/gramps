@@ -213,7 +213,8 @@ class SourcePages(BasePage):
         @param: source_handle -- The handle of the source to be output
         """
         source = report.database.get_source_from_handle(source_handle)
-        BasePage.__init__(self, report, the_lang, the_title, source.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          source.get_gramps_id())
         if not source:
             return
 
