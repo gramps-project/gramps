@@ -162,7 +162,7 @@ class BasePage: # pylint: disable=C1001
         """
         pass
 
-    def display_pages(self, lang, title):
+    def display_pages(self, the_lang, the_title):
         """
         Display the pages
         """
@@ -1392,9 +1392,9 @@ class BasePage: # pylint: disable=C1001
         """
         # begin each html page...
         if self.the_lang:
-            xmllang = self.the_lang.replace('_','-')
+            xmllang = self.the_lang.replace('_', '-')
         else:
-            xmllang = xml_lang() # TODO self.the_lang is None ???
+            xmllang = xml_lang()
         page, head, body = Html.page('%s - %s' %
                                      (html_escape(self.title_str.strip()),
                                       html_escape(the_title)),
@@ -1557,7 +1557,6 @@ class BasePage: # pylint: disable=C1001
             inc_repos = False
 
         # create media pages...
-        _create_media_link = False
         if self.create_media:
             _create_media_link = True
             if self.create_thumbs_only:
@@ -1672,11 +1671,14 @@ class BasePage: # pylint: disable=C1001
                     choice = Html("ul", class_="lang")
                     langs += choice
                     for language in languages:
-                        for extra_lang, title in self.report.languages:
+                        for extra_lang, dummy_title in self.report.languages:
                             if languages[language] == extra_lang:
                                 lang_txt = html_escape(self._(language))
-                                url = self.report.build_url_lang("index",
-                                    languages[language], self.uplink) + self.ext
+                                n_lang = languages[language]
+                                url = (self.report.build_url_lang("index",
+                                                                  n_lang,
+                                                                  self.uplink)
+                                       + self.ext)
                                 lnk = Html("a", lang_txt,
                                            href=url, title=lang_txt)
                                 choice += Html("li", lnk, inline=True)
@@ -1855,7 +1857,8 @@ class BasePage: # pylint: disable=C1001
                             imag.attr += 'height = "%d"'  % height
 
                         descr = html_escape(obj.get_description())
-                        newpath = self.report.build_url_fname(newpath, image=True)
+                        newpath = self.report.build_url_fname(newpath,
+                                                              image=True)
                         imag.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
                         fname = self.report.build_url_fname(obj.get_handle(),
                                                             "img",
@@ -2028,7 +2031,8 @@ class BasePage: # pylint: disable=C1001
 
                     # make a thumbnail of this region
                     newpath = self.copy_thumbnail(photo_handle, photo, region)
-                    newpath = self.report.build_url_fname(newpath, uplink=True, image=True)
+                    newpath = self.report.build_url_fname(newpath, uplink=True,
+                                                          image=True)
 
                     snapshot += self.media_link(photo_handle, newpath, descr,
                                                 uplink=self.uplink,
@@ -2139,8 +2143,9 @@ class BasePage: # pylint: disable=C1001
                     try:
                         # create thumbnail url
                         # extension needs to be added as it is not already there
-                        url = self.report.build_url_fname(photo_handle, "thumb",
-                                                          True, image=True) + ".png"
+                        url = (self.report.build_url_fname(photo_handle, "thumb",
+                                                           True, image=True) +
+                               ".png")
                         # begin hyperlink
                         section += self.media_link(photo_handle, url,
                                                    descr, uplink=self.uplink,

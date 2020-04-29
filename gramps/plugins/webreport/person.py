@@ -70,7 +70,6 @@ from gramps.gen.proxy import LivingProxyDb
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              alphabet_navigation, sort_people,
-                                             _NAME_STYLE_SHORT,
                                              _NAME_STYLE_FIRST, first_letter,
                                              get_index_letter, add_birthdate,
                                              primary_difference, FULLCLEAR,
@@ -443,7 +442,8 @@ class PersonPages(BasePage):
         @param: title  -- Is the title of the web page
         @param: person -- The person to use for this page.
         """
-        BasePage.__init__(self, report, the_lang, the_title, person.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          person.get_gramps_id())
         place_lat_long = []
 
         self.person = person
@@ -585,7 +585,7 @@ class PersonPages(BasePage):
                     sstring_io = sio
                     sfname = self.report.cur_fname
                     individualdetail += self.__display_family_map(
-                        person, place_lat_long, the_lang)
+                        person, place_lat_long)
                     # restore output_file, string_io and cur_fname
                     # after creating a new page
                     output_file = sof
@@ -646,7 +646,7 @@ class PersonPages(BasePage):
                                 placetitle.replace("'", "\\'"), links)
         return tracelife
 
-    def __create_family_map(self, person, place_lat_long, the_lang):
+    def __create_family_map(self, person, place_lat_long):
         """
         creates individual family map page
 
@@ -1084,7 +1084,7 @@ class PersonPages(BasePage):
         # and close the file
         self.xhtml_writer(familymappage, output_file, sio, 0)
 
-    def __display_family_map(self, person, place_lat_long, the_lang):
+    def __display_family_map(self, person, place_lat_long):
         """
         Create the family map link
 
@@ -1092,7 +1092,7 @@ class PersonPages(BasePage):
         @param: place_lat_long -- The center of the box
         """
         # create family map page
-        self.__create_family_map(person, place_lat_long, the_lang)
+        self.__create_family_map(person, place_lat_long)
 
         # begin family map division plus section title
         with Html("div", class_="subsection", id="familymap") as familymap:
@@ -1147,22 +1147,21 @@ class PersonPages(BasePage):
                     if mime_type:
                         region = self.media_ref_region_to_object(photo_handle,
                                                                  person)
+                        rbuf = self.report.build_url_fname
                         if region:
                             # make a thumbnail of this region
                             newpath = self.copy_thumbnail(
                                 photo_handle, photo, region)
-                            # TODO. Check if build_url_fname can be used.
-                            #newpath = "/".join(['..']*3 + [newpath])
-                            #newpath = "/".join(['..']*3 + [newpath])
-                            newpath = self.report.build_url_fname(newpath, None, self.uplink, image=True)
+                            newpath = rbuf(newpath, None, self.uplink,
+                                           image=True)
                             if win():
                                 newpath = newpath.replace('\\', "/")
                             thumbnail_url = newpath
                         else:
                             (dummy_photo_url, thumbnail_url) = \
                                 self.report.prepare_copy_media(photo)
-                            #thumbnail_url = "/".join(['..']*3 + [thumbnail_url])
-                            thumbnail_url = self.report.build_url_fname(thumbnail_url, None, self.uplink, image=True)
+                            thumbnail_url = rbuf(thumbnail_url, None,
+                                                 self.uplink, image=True)
                             if win():
                                 thumbnail_url = thumbnail_url.replace('\\', "/")
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
