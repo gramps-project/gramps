@@ -584,7 +584,7 @@ class PersonPages(BasePage):
                     sstring_io = sio
                     sfname = self.report.cur_fname
                     individualdetail += self.__display_family_map(
-                        person, place_lat_long, the_lang)
+                        person, place_lat_long)
                     # restore output_file, string_io and cur_fname
                     # after creating a new page
                     output_file = sof
@@ -645,7 +645,7 @@ class PersonPages(BasePage):
                                 placetitle.replace("'", "\\'"), links)
         return tracelife
 
-    def __create_family_map(self, person, place_lat_long, the_lang):
+    def __create_family_map(self, person, place_lat_long):
         """
         creates individual family map page
 
@@ -1083,7 +1083,7 @@ class PersonPages(BasePage):
         # and close the file
         self.xhtml_writer(familymappage, output_file, sio, 0)
 
-    def __display_family_map(self, person, place_lat_long, the_lang):
+    def __display_family_map(self, person, place_lat_long):
         """
         Create the family map link
 
@@ -1091,7 +1091,7 @@ class PersonPages(BasePage):
         @param: place_lat_long -- The center of the box
         """
         # create family map page
-        self.__create_family_map(person, place_lat_long, the_lang)
+        self.__create_family_map(person, place_lat_long)
 
         # begin family map division plus section title
         with Html("div", class_="subsection", id="familymap") as familymap:
