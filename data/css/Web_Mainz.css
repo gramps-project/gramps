@@ -202,7 +202,8 @@ div#nav ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
 }
 div#nav li.lang {
     font-size: smaller;
-    padding: 2px 2px;
+    padding-top: 2px;
+    padding-bottom: 1px;
 }
 div#nav li.lang:hover > ul {
     visibility: visible;
@@ -214,7 +215,6 @@ div#nav ul.lang {
     opacity: 0;
     z-index: 999;
     background-color: #D8C19F;
-    background-color: #FFFFE7;
     top: -1em;
     font-family: sans-serif;
 }
@@ -342,6 +342,21 @@ div#nav::after {
 
     .content {
         padding: 0em 0.5em;
+    }
+    .lang {
+        position: relative;
+    }
+    .lang > .lang {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    .lang:hover > .lang {
+        display: block;
     }
 }
 
