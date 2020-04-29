@@ -1667,7 +1667,8 @@ class BasePage: # pylint: disable=C1001
 
                 if self.report.options['multitrans']:
                     langs = Html("li", self._("Language"), class_="lang")
-                    languages = glocale.get_language_dict()
+                    en_locale = self.report.set_locale("en")
+                    languages = en_locale.get_language_dict()
                     choice = Html("ul", class_="lang")
                     langs += choice
                     for language in languages:
