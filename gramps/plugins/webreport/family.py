@@ -321,7 +321,8 @@ class FamilyPages(BasePage):
         family = report.database.get_family_from_handle(family_handle)
         if not family:
             return
-        BasePage.__init__(self, report, the_lang, the_title, family.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          family.get_gramps_id())
         ldatec = family.get_change_time()
 
         self.bibli = Bibliography()

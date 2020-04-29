@@ -113,14 +113,16 @@ class RepositoryPages(BasePage):
             keys = sorted(repos_dict, key=self.rlocale.sort_key)
 
             # RepositoryListPage Class
-            self.repositorylistpage(self.report, the_lang, the_title, repos_dict, keys)
+            self.repositorylistpage(self.report, the_lang, the_title,
+                                    repos_dict, keys)
 
             idx = 1
             for dummy_index, key in enumerate(keys):
                 (repo, handle) = repos_dict[key]
                 step()
                 idx += 1
-                self.repositorypage(self.report, the_lang, the_title, repo, handle)
+                self.repositorypage(self.report, the_lang, the_title,
+                                    repo, handle)
 
     def repositorylistpage(self, report, the_lang, the_title, repos_dict, keys):
         """

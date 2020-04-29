@@ -65,7 +65,8 @@ class AddressBookPage(BasePage):
     """
     Create one page for one Address
     """
-    def __init__(self, report, the_lang, the_title, person_handle, has_add, has_res, has_url):
+    def __init__(self, report, the_lang, the_title, person_handle,
+                 has_add, has_res, has_url):
         """
         @param: report        -- The instance of the main report class
                                  for this report

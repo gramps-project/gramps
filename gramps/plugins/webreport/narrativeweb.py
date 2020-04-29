@@ -280,6 +280,9 @@ class NavWebReport(Report):
             self.secure_mode = HTTPS
         else:
             self.secure_mode = HTTP
+        self.languages = None
+        self.default_lang = None
+        self.the_title = None
 
     def write_report(self):
         """
@@ -450,7 +453,7 @@ class NavWebReport(Report):
             self.default_lang = self.rlocale.language[0]
         self.languages.append((self.default_lang, self.options['title']))
         if self.options['multitrans']:
-            for idx in range(2,7):
+            for idx in range(2, 7):
                 lang = "lang%c" % str(idx)
                 titl = "title%c" % str(idx)
                 if self.options[lang] != "default":
@@ -472,7 +475,7 @@ class NavWebReport(Report):
             # build classes IndividualListPage and IndividualPage
             self.tab["Person"].display_pages(the_lang, the_title)
 
-            self.build_gendex(self.obj_dict[Person], the_lang, the_title)
+            self.build_gendex(self.obj_dict[Person], the_lang)
 
             # build classes SurnameListPage and SurnamePage
             self.surname_pages(self.obj_dict[Person], the_lang, the_title)
@@ -1155,7 +1158,7 @@ class NavWebReport(Report):
         fname = CSS["marker"]["filename"]
         self.copy_file(fname, "marker.png", "images")
 
-    def build_gendex(self, ind_list, the_lang, the_title):
+    def build_gendex(self, ind_list, the_lang):
         """
         Create a gendex file
 
@@ -1232,7 +1235,8 @@ class NavWebReport(Report):
 
             index = 1
             for (surname, handle_list) in local_list:
-                SurnamePage(self, the_lang, the_title, surname, sorted(handle_list))
+                SurnamePage(self, the_lang, the_title, surname,
+                            sorted(handle_list))
                 step()
                 index += 1
 
@@ -1312,7 +1316,8 @@ class NavWebReport(Report):
         with self.user.progress(pgr_title, message, addr_size) as step:
             index = 1
             for (sort_name, person_handle, add, res, url) in url_addr_res:
-                AddressBookPage(self, self.the_lang, self.the_title, person_handle, add, res, url)
+                AddressBookPage(self, self.the_lang, self.the_title,
+                                person_handle, add, res, url)
                 step()
                 index += 1
 
@@ -1432,7 +1437,7 @@ class NavWebReport(Report):
                 subdirs = [self.target_uri] + subdirs
         else:
             if uplink:
-                    subdirs = ['..']*nb_dir + subdirs
+                subdirs = ['..']*nb_dir + subdirs
         nname = "/".join(subdirs + [fname])
         if win():
             nname = nname.replace('\\', "/")
@@ -1562,7 +1567,8 @@ class NavWebReport(Report):
                 if not os.path.isdir(subdir):
                     os.makedirs(subdir)
             if self.the_lang:
-                fname = os.path.join(self.html_dir, self.the_lang, self.cur_fname)
+                fname = os.path.join(self.html_dir, self.the_lang,
+                                     self.cur_fname)
             else:
                 fname = os.path.join(self.html_dir, self.cur_fname)
             output_file = open(fname, 'w', encoding=self.encoding,
@@ -1750,10 +1756,17 @@ class NavWebOptions(MenuReportOptions):
         self.__extra_page = None
         self.__relation = False
         self.__prevnext = False
+        self.__multitrans = False
         self.__lang_2 = None
         self.__lang_3 = None
         self.__lang_4 = None
         self.__lang_5 = None
+        self.__lang_6 = None
+        self.__titl_2 = None
+        self.__titl_3 = None
+        self.__titl_4 = None
+        self.__titl_5 = None
+        self.__titl_6 = None
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -2366,33 +2379,42 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Translations")
         addopt = partial(menu.add_option, category_name)
 
-        extras = menu.get_option_by_name("multitrans")
+        mess = _("second language")
         self.__lang_2 = stdoptions.add_extra_localization_option(menu,
-            category_name, "second language", "lang2")
+                                                                 category_name,
+                                                                 mess, "lang2")
         self.__titl_2 = StringOption(_("Site name for your second language"),
                                      _('This site title'))
         self.__titl_2.set_help(_('Give a title in the appropriate language'))
         addopt("title2", self.__titl_2)
+        mess = _("third language")
         self.__lang_3 = stdoptions.add_extra_localization_option(menu,
-            category_name, "third language", "lang3")
+                                                                 category_name,
+                                                                 mess, "lang3")
         self.__titl_3 = StringOption(_("Site name for your third language"),
                                      _('This site title'))
         self.__titl_3.set_help(_('Give a title in the appropriate language'))
         addopt("title3", self.__titl_3)
+        mess = _("fourth language")
         self.__lang_4 = stdoptions.add_extra_localization_option(menu,
-            category_name, "fourth language", "lang4")
+                                                                 category_name,
+                                                                 mess, "lang4")
         self.__titl_4 = StringOption(_("Site name for your fourth language"),
                                      _('This site title'))
         self.__titl_4.set_help(_('Give a title in the appropriate language'))
         addopt("title4", self.__titl_4)
+        mess = _("fifth language")
         self.__lang_5 = stdoptions.add_extra_localization_option(menu,
-            category_name, "fifth language", "lang5")
+                                                                 category_name,
+                                                                 mess, "lang5")
         self.__titl_5 = StringOption(_("Site name for your fifth language"),
                                      _('This site title'))
         self.__titl_5.set_help(_('Give a title in the appropriate language'))
         addopt("title5", self.__titl_5)
+        mess = _("sixth language")
         self.__lang_6 = stdoptions.add_extra_localization_option(menu,
-            category_name, "sixth language", "lang6")
+                                                                 category_name,
+                                                                 mess, "lang6")
         self.__titl_6 = StringOption(_("Site name for your sixth language"),
                                      _('This site title'))
         self.__titl_6.set_help(_('Give a title in the appropriate language'))

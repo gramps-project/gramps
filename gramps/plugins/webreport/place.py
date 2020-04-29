@@ -295,7 +295,8 @@ class PlacePages(BasePage):
         place = report.database.get_place_from_handle(place_handle)
         if not place:
             return
-        BasePage.__init__(self, report, the_lang, the_title, place.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          place.get_gramps_id())
         self.bibli = Bibliography()
         place_name = self.report.obj_dict[Place][place_handle][1]
         ldatec = place.get_change_time()

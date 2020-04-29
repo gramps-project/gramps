@@ -47,7 +47,7 @@ from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.place import displayer as _pd
 from gramps.plugins.webreport.common import (FULLCLEAR, _EVENTMAP, html_escape)
 from gramps.gen.lib import (Person, Family, Event, Place, Source, Repository,
-                            Media, Note, Citation)
+                            Media, Citation)
 from gramps.gen.lib.date import Date
 
 _ = glocale.translation.sgettext
