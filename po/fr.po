@@ -1162,7 +1162,7 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Erreur : l'arbre familial « %s » existe déjà.\n"
+"Erreur : l'arbre familial « %s » existe déjà.\n"
 "L'option « -C » ne peut pas être utilisée."
 
 #: ../gramps/cli/arghandler.py:241
@@ -1194,7 +1194,7 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"ATTENTION : le fichier de sortie existe déjà !\n"
+"ATTENTION : le fichier de sortie existe déjà !\n"
 "ATTENTION : il sera écrasé\n"
 "   %s"
 
@@ -1214,17 +1214,17 @@ msgstr "oui"
 #: ../gramps/cli/arghandler.py:300
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Écrasera le fichier existant: %s"
+msgstr "Écrasera le fichier existant : %s"
 
 #: ../gramps/cli/arghandler.py:320
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr "ERREUR : format non reconnu pour le fichier %s à exporter"
+msgstr "ERREUR : format non reconnu pour le fichier %s à exporter"
 
 #: ../gramps/cli/arghandler.py:386 ../gramps/gen/plug/utils.py:316
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr "Erreur : impossible d'ouvrir « %s »"
+msgstr "Erreur : impossible d'ouvrir « %s »"
 
 #: ../gramps/cli/arghandler.py:405
 msgid "List of known Family Trees in your database path\n"
@@ -1238,7 +1238,7 @@ msgstr "%(full_DB_path)s sous le nom « %(f_t_name)s »"
 
 #: ../gramps/cli/arghandler.py:431 ../gramps/cli/clidbman.py:188
 msgid "Gramps Family Trees:"
-msgstr "Arbres familiaux Gramps :"
+msgstr "Arbres familiaux Gramps :"
 
 #. We have to construct the line elements together, to avoid
 #. insertion of blank spaces when print on the same line is used
@@ -1261,23 +1261,23 @@ msgstr "Arbre familial"
 #: ../gramps/gen/plug/report/endnotes.py:199
 #, python-format
 msgid "\"%s\""
-msgstr "« %s »"
+msgstr "« %s »"
 
 #: ../gramps/cli/arghandler.py:457
 #, python-format
 msgid "Performing action: %s."
-msgstr "Action en cours : %s."
+msgstr "Action en cours : %s."
 
 #: ../gramps/cli/arghandler.py:461 ../gramps/gen/plug/report/stdoptions.py:285
 #, python-format
 msgid "Using options string: %s"
-msgstr "Chaîne d'options utilisée : %s"
+msgstr "Chaîne d'options utilisée : %s"
 
 # Substantif (GNOME fr)
 #: ../gramps/cli/arghandler.py:467
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr "Exportation : fichier %(filename)s, format %(format)s."
+msgstr "Exportation : fichier %(filename)s, format %(format)s."
 
 #: ../gramps/cli/arghandler.py:478
 msgid "Cleaning up."
@@ -1299,29 +1299,29 @@ msgstr "Sortie..."
 #: ../gramps/cli/arghandler.py:522
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr "Importation : fichier %(filename)s, format %(format)s."
+msgstr "Importation : fichier %(filename)s, format %(format)s."
 
 #: ../gramps/cli/arghandler.py:541
 msgid "Opened successfully!"
-msgstr "Ouverture réussie !"
+msgstr "Ouverture réussie !"
 
 #: ../gramps/cli/arghandler.py:555
 msgid "Database is locked, cannot open it!"
-msgstr "La base de données est verrouillée, impossible de l'ouvrir !"
+msgstr "La base de données est verrouillée, impossible de l'ouvrir !"
 
 #: ../gramps/cli/arghandler.py:556
 #, python-format
 msgid "  Info: %s"
-msgstr "  Informations : %s"
+msgstr "  Informations : %s"
 
 #: ../gramps/cli/arghandler.py:559
 msgid "Database needs recovery, cannot open it!"
-msgstr "La base de données doit être réparée, impossible de l'ouvrir !"
+msgstr "La base de données doit être réparée, impossible de l'ouvrir !"
 
 #: ../gramps/cli/arghandler.py:562
 msgid "Database backend unavailable, cannot open it!"
 msgstr ""
-"Le pilote de la base de données est indisponible, impossible de l'ouvrir !"
+"Le pilote de la base de données est indisponible, impossible de l'ouvrir !"
 
 #: ../gramps/cli/arghandler.py:613 ../gramps/cli/arghandler.py:662
 #: ../gramps/cli/arghandler.py:709
@@ -1369,7 +1369,7 @@ msgstr "Nom du livre absent. Utilisez %(donottranslate)s=bookname."
 #: ../gramps/cli/arghandler.py:730
 #, python-format
 msgid "Unknown action: %s."
-msgstr "Action inconnue : %s."
+msgstr "Action inconnue : %s."
 
 # master
 #: ../gramps/cli/argparser.py:56
@@ -1607,13 +1607,13 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
-"Erreur dans l'analyse des arguments : %s\n"
+"Erreur dans l'analyse des arguments : %s\n"
 "Tapez gramps --help pour un aperçu des commandes ou consultez le manuel."
 
 #: ../gramps/cli/argparser.py:277
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr "Essai d'ouverture de : %s..."
+msgstr "Essai d'ouverture de : %s..."
 
 #: ../gramps/cli/argparser.py:321
 #, python-format
@@ -1621,13 +1621,13 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
-"ATTENTION : %(strerr)s (errno=%(errno)s):\n"
-"ATTENTION : %(name)s\n"
+"ATTENTION : %(strerr)s (errno=%(errno)s):\n"
+"ATTENTION : %(name)s\n"
 
 #: ../gramps/cli/argparser.py:333
 #, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "Action inconnue : %s. Ignorée."
+msgstr "Action inconnue : %s. ignorée."
 
 #: ../gramps/cli/argparser.py:343
 msgid "setup debugging"
@@ -2107,7 +2107,7 @@ msgstr ", "
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
-"    Utilisez '%(donottranslate)s' pour voir la description et les valeurs "
+"    Utilisez « %(donottranslate)s » pour voir la description et les valeurs "
 "acceptées"
 
 # Substantif (GNOME fr)
@@ -2117,8 +2117,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Remplace '%(notranslate1)s=%(notranslate2)s' par '%(notranslate1)s="
-"%(notranslate3)s'."
+"Remplace « %(notranslate1)s=%(notranslate2)s » par « %(notranslate1)s="
+"%(notranslate3)s »."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -2150,8 +2150,8 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"option « %(optionname)s » non valide. Utilisez « %(donottranslate)s » pour voir "
-"les valeurs acceptées."
+"option « %(optionname)s » non valide. Utilisez « %(donottranslate)s » pour "
+"voir les valeurs acceptées."
 
 #: ../gramps/cli/plug/__init__.py:669
 msgid "Failed to write report. "
@@ -27685,7 +27685,7 @@ msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Erreur : référence famille « %(family)s » de l'enfant « %(child)s » "
+"Erreur : référence famille « %(family)s » de l'enfant « %(child)s » manquante,"
 "référence ajoutée."
 
 #: ../gramps/plugins/lib/libcairodoc.py:1398
