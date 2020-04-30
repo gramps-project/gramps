@@ -940,7 +940,7 @@ msgid ""
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
 "<b>Signaler un problème dans Gramps</b><br/>Le meilleur moyen de signaler un "
-"bug dans Gramps est d'utiliser le système de suivi de bug, https://gramps-"
+"bogue dans Gramps est d'utiliser le système de suivi de bogue, https://gramps-"
 "project.org/bugs/"
 
 #: ../data/tips.xml.in.h:47
@@ -1627,7 +1627,7 @@ msgstr "Action inconnue: %s. Ignorée."
 
 #: ../gramps/cli/argparser.py:343
 msgid "setup debugging"
-msgstr "préparation du déverminage"
+msgstr "préparation du débogage"
 
 #: ../gramps/cli/argparser.py:355
 #, python-format
@@ -2178,7 +2178,7 @@ msgstr ""
 "être résolue en lançant l'outil « Vérifier et réparer la base de données ».\n"
 "\n"
 "Si le problème persiste après passage de cet outil, veuillez rédiger un "
-"rapport de bug sur %(gramps_bugtracker_url)s\n"
+"rapport de bogue sur %(gramps_bugtracker_url)s\n"
 "\n"
 
 #: ../gramps/gen/config.py:248
@@ -19088,7 +19088,7 @@ msgstr "Assistant de rapport d'erreur"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:259
 msgid "Report a bug"
-msgstr "Signaler un bug"
+msgstr "Signaler un bogue"
 
 # master
 #: ../gramps/gui/logger/_errorreportassistant.py:266
@@ -19103,15 +19103,15 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"Assistant de rapport de bug\n"
+"Assistant de rapport de bogue\n"
 "\n"
 "Il va vous aider à rédiger un rapport aussi détaillé que possible pour les "
 "développeurs de Gramps.\n"
 "\n"
 "L'assistant vous posera plusieurs questions et va récolter des informations "
 "sur l'erreur et sur l'environnement système. À la fin de cette opération, "
-"vous pourrez envoyer un rapport de bug au système de suivi de bug de Gramps. "
-"L'assistant placera le rapport de bug dans le presse-papiers pour vous "
+"vous pourrez envoyer un rapport de bogue au système de suivi de bogue de Gramps. "
+"L'assistant placera le rapport de bogue dans le presse-papiers pour vous "
 "permettre de le coller dans votre logiciel de messagerie et de contrôler "
 "exactement quelles informations vous souhaitez inclure."
 
@@ -19194,23 +19194,23 @@ msgstr ""
 #: ../gramps/gui/logger/_errorreportassistant.py:547
 #: ../gramps/gui/logger/_errorreportassistant.py:574
 msgid "Bug Report Summary"
-msgstr "Résumé du rapport de bug"
+msgstr "Résumé du rapport de bogue"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:552
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
 msgstr ""
-"Rapport complet de bug\n"
+"Rapport complet de bogue\n"
 " La prochaine page de l'assistant vous aidera à envoyer le rapport au site "
-"internet du suivi de bug de Gramps."
+"internet du suivi de bogue de Gramps."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:583
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
-"Utilisez les deux boutons ci-dessous pour copier le rapport de bug vers le "
+"Utilisez les deux boutons ci-dessous pour copier le rapport de bogue vers le "
 "presse-papiers et ouvrir votre navigateur internet pour déposer le rapport à "
 
 #: ../gramps/gui/logger/_errorreportassistant.py:593
@@ -19219,7 +19219,7 @@ msgid ""
 "bug tracking system."
 msgstr ""
 "Utilisez ce bouton pour lancer votre navigateur internet et déposer le "
-"rapport dans le système de suivi de bug de Gramps."
+"rapport dans le système de suivi de bogue de Gramps."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:616
 msgid ""
@@ -19227,7 +19227,7 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"Utilisez ce bouton pour copier votre rapport de bug dans le presse-papier. "
+"Utilisez ce bouton pour copier votre rapport de bogue dans le presse-papier. "
 "Puis, allez sur le site internet de suivi de but en utilisant le bouton ci-"
 "dessous, collez le rapport et cliquez sur soumettre le rapport (submit "
 "report)."
@@ -19235,7 +19235,7 @@ msgstr ""
 #: ../gramps/gui/logger/_errorreportassistant.py:649
 #: ../gramps/gui/logger/_errorreportassistant.py:676
 msgid "Send Bug Report"
-msgstr "Envoyer un rapport de bug"
+msgstr "Envoyer un rapport de bogue"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:654
 msgid ""
@@ -19244,7 +19244,7 @@ msgid ""
 msgstr ""
 "Étape finale\n"
 "Utilisez les boutons de cette page pour lancer votre navigateur internet et "
-"déposer le rapport de bug dans le système de suivi de Gramps."
+"déposer le rapport de bogue dans le système de suivi de Gramps."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:683
 msgid ""
@@ -19253,7 +19253,7 @@ msgid ""
 msgstr ""
 "Gramps est un projet de logiciel libre. Son succès dépend de ses "
 "utilisateurs. Le retour d'expérience est important. N'hésitez surtout pas à "
-"prendre un peu de temps pour soumettre un rapport de bug."
+"prendre un peu de temps pour soumettre un rapport de bogue."
 
 #: ../gramps/gui/logger/_errorview.py:46
 msgid "manual|Error_Report"
@@ -20514,7 +20514,7 @@ msgstr "Colonne %d :"
 
 #: ../gramps/gui/plug/tool.py:55
 msgid "Debug"
-msgstr "Déverminage"
+msgstr "Débogage"
 
 #: ../gramps/gui/plug/tool.py:56
 msgid "Analysis and Exploration"
@@ -20893,7 +20893,7 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Si vous n'arrivez pas à corriger ce problème par vous-même, vous pouvez "
-"soumettre un bug à %(gramps_bugtracker_url)s ou contacter l'auteur de cette "
+"soumettre un bogue à %(gramps_bugtracker_url)s ou contacter l'auteur de cette "
 "vue (%(firstauthoremail)s).\n"
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger cette vue, vous "
@@ -20924,7 +20924,7 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Si vous n'arrivez pas à corriger ce problème par vous-même, vous pouvez "
-"soumettre un bug à %(gramps_bugtracker_url)s ou contacter l'auteur "
+"soumettre un bogue à %(gramps_bugtracker_url)s ou contacter l'auteur "
 "(%(firstauthoremail)s).\n"
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger ce greffon, vous "
@@ -26273,12 +26273,12 @@ msgstr "Pour inclure la profession"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:931
 msgid "Include relationship debugging numbers also"
-msgstr "Inclure les index de déverminage du calculateur de relation"
+msgstr "Inclure les index de débogage du calculateur de relation"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:934
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Pour inclure 'Ga' et 'Gb' pour déverminer le calcul des relations"
+msgstr "Pour inclure 'Ga' et 'Gb' pour déboguer le calcul des relations"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:962
 msgid "Indicate non-birth relationships with dotted lines"
