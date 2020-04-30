@@ -11959,7 +11959,7 @@ msgstr "Distribution : %s"
 msgid "OS: %s"
 msgstr "Système : %s"
 
-# http://www.gramps-project.org/wiki/index.php?title=Gramps_3.0_Wiki_Manual_-_Navigation/fr#Utiliser_le_presse-papiers
+# http://www.gramps-project.org/wiki/index.php?title=Gramps_3.0_Wiki_Manual_-_Navigation/fr#Utiliser_le_presse-papier
 #: ../gramps/gui/clipboard.py:70
 msgid "manual|Using_the_Clipboard"
 msgstr ""
@@ -12001,7 +12001,7 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/gui/clipboard.py:1401 ../gramps/gui/clipboard.py:1446
 #: ../gramps/gui/glade/clipboard.glade:7
 msgid "Clipboard"
-msgstr "Presse-papiers"
+msgstr "Presse-papier"
 
 # détails pour la famille, le lieu ...
 #. Now add more items to popup menu, if available
@@ -18768,7 +18768,7 @@ msgstr "Livres..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Clip_board"
-msgstr "_Presse-papiers"
+msgstr "_Presse-papier"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Configure the active view"
@@ -18804,7 +18804,7 @@ msgstr "Fichiers _récemment ouverts"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the Clipboard dialog"
-msgstr "Ouvrir le presse-papiers"
+msgstr "Ouvrir le presse-papier"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the reports dialog"
@@ -19111,7 +19111,7 @@ msgstr ""
 "L'assistant vous posera plusieurs questions et va récolter des informations "
 "sur l'erreur et sur l'environnement système. À la fin de cette opération, "
 "vous pourrez envoyer un rapport de bogue au système de suivi de bogue de Gramps. "
-"L'assistant placera le rapport de bogue dans le presse-papiers pour vous "
+"L'assistant placera le rapport de bogue dans le presse-papier pour vous "
 "permettre de le coller dans votre logiciel de messagerie et de contrôler "
 "exactement quelles informations vous souhaitez inclure."
 
@@ -19211,7 +19211,7 @@ msgid ""
 "then open a webbrowser to file a bug report at "
 msgstr ""
 "Utilisez les deux boutons ci-dessous pour copier le rapport de bogue vers le "
-"presse-papiers et ouvrir votre navigateur internet pour déposer le rapport à "
+"presse-papier et ouvrir votre navigateur internet pour déposer le rapport à "
 
 #: ../gramps/gui/logger/_errorreportassistant.py:593
 msgid ""
@@ -19287,7 +19287,7 @@ msgstr "Détail de l'erreur"
 #: ../gramps/gui/makefilter.py:41
 #, python-format
 msgid "Filter %s from Clipboard"
-msgstr "Filtre %s depuis le presse-papiers"
+msgstr "Filtre %s depuis le presse-papier"
 
 # trunk
 #: ../gramps/gui/makefilter.py:46
