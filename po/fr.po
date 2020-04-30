@@ -561,7 +561,7 @@ msgid ""
 "relationships between people."
 msgstr ""
 "<b>Un nouvel arbre généalogique</b><br/>Une bonne façon de commencer une "
-"généalogie est d'entrer tous les membres de votre famille dans une base de "
+"généalogie est de saisir tous les membres de votre famille dans une base de "
 "données (utilisez « Édition &gt; Ajouter » ou cliquez sur le bouton "
 "« Ajouter » dans la vue Individus). Puis allez dans la vue Relations et "
 "créez les relations entre les individus."
@@ -583,7 +583,7 @@ msgid ""
 "see the Gramps Manual to learn more."
 msgstr ""
 "<b>Pas sûr(e) d'une date ?</b><br/>Si vous ne connaissez pas la date d'un "
-"événement avec certitude (naissance ou décès), Gramps vous permet d'entrer "
+"événement avec certitude (naissance ou décès), Gramps vous permet de saisir "
 "une multitude de formes de date basées sur une estimation ou un choix. Par "
 "exemple, « vers 1908 » est une entrée valide pour une date de naissance dans "
 "Gramps. Cliquez sur le bouton à côté du champ date. Consultez la section "
@@ -1276,7 +1276,7 @@ msgstr "Chaîne d'options utilisée: %s"
 #: ../gramps/cli/arghandler.py:467
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr "Exportation: fichier %(filename)s, format %(format)s."
+msgstr "Exportation : fichier %(filename)s, format %(format)s."
 
 #: ../gramps/cli/arghandler.py:478
 msgid "Cleaning up."
@@ -1298,7 +1298,7 @@ msgstr "Sortie..."
 #: ../gramps/cli/arghandler.py:522
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr "Importation: fichier %(filename)s, format %(format)s."
+msgstr "Importation : fichier %(filename)s, format %(format)s."
 
 #: ../gramps/cli/arghandler.py:541
 msgid "Opened successfully!"
@@ -1311,7 +1311,7 @@ msgstr "La base de données est verrouillée, impossible de l'ouvrir!"
 #: ../gramps/cli/arghandler.py:556
 #, python-format
 msgid "  Info: %s"
-msgstr "  Info: %s"
+msgstr "  Info : %s"
 
 #: ../gramps/cli/arghandler.py:559
 msgid "Database needs recovery, cannot open it!"
@@ -9770,11 +9770,11 @@ msgstr "Outil"
 
 #: ../gramps/gen/plug/_pluginreg.py:82
 msgid "Importer"
-msgstr "Import par"
+msgstr "Importation par"
 
 #: ../gramps/gen/plug/_pluginreg.py:83
 msgid "Exporter"
-msgstr "Export par"
+msgstr "Exportation par"
 
 #: ../gramps/gen/plug/_pluginreg.py:84
 msgid "Doc creator"
@@ -12798,11 +12798,11 @@ msgstr "Paramètres généraux de Gramps"
 
 #: ../gramps/gui/configure.py:1554
 msgid "Add default source on GEDCOM import"
-msgstr "Ajouter une source à l'import GEDCOM"
+msgstr "Ajouter une source à l'importation GEDCOM"
 
 #: ../gramps/gui/configure.py:1573
 msgid "Add tag on import"
-msgstr "Ajouter une étiquette à l'import"
+msgstr "Ajouter une étiquette à l'importation"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/gui/configure.py:1576
@@ -14650,7 +14650,7 @@ msgid ""
 "leave blank to get the next available ID value."
 msgstr ""
 "Vous avez essayé d'utiliser l'identifiant Gramps existant %(id)s. Cette "
-"valeur est déjà utilisée par « %(prim_object)s ». Veuillez entrer un "
+"valeur est déjà utilisée par « %(prim_object)s ». Veuillez saisir un "
 "identifiant différent ou laissez-le vide pour obtenir le prochain "
 "identifiant disponible."
 
@@ -14759,7 +14759,7 @@ msgstr "Impossible d'enregistrer l'événement"
 #: ../gramps/gui/editors/editevent.py:240
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour cet événement. Veuillez entrer une donnée ou "
+"Aucune donnée n'existe pour cet événement. Veuillez saisir une donnée ou "
 "annuler l'édition."
 
 #: ../gramps/gui/editors/editevent.py:250
@@ -15057,7 +15057,7 @@ msgstr "Impossible d'enregistrer la famille"
 #: ../gramps/gui/editors/editfamily.py:1134
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour cette famille. Veuillez entrer une donnée ou "
+"Aucune donnée n'existe pour cette famille. Veuillez saisir une donnée ou "
 "annuler l'édition."
 
 #: ../gramps/gui/editors/editfamily.py:1142
@@ -15074,7 +15074,7 @@ msgid ""
 "next available ID value."
 msgstr ""
 "Vous tentez d'utiliser la valeur de l'identifiant Gramps %(id)s. Cette "
-"valeur est déjà utilisée. Veuillez entrer un identifiant différent ou "
+"valeur est déjà utilisée. Veuillez saisir un identifiant différent ou "
 "laissez-le vide pour obtenir le prochain identifiant disponible."
 
 #: ../gramps/gui/editors/editfamily.py:1158
@@ -15153,7 +15153,7 @@ msgstr "Impossible d'enregistrer le medium"
 msgid ""
 "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour cet objet medium. Veuillez entrer une donnée ou "
+"Aucune donnée n'existe pour cet objet medium. Veuillez saisir une donnée ou "
 "annuler l'édition."
 
 #: ../gramps/gui/editors/editmedia.py:299
@@ -15313,7 +15313,7 @@ msgstr "Impossible d'enregistrer la note"
 #: ../gramps/gui/editors/editnote.py:319
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour cette note. Veuillez entrer une donnée ou "
+"Aucune donnée n'existe pour cette note. Veuillez saisir une donnée ou "
 "annuler l'édition."
 
 #: ../gramps/gui/editors/editnote.py:327
@@ -15393,7 +15393,7 @@ msgstr "Impossible d'enregistrer l'individu"
 #: ../gramps/gui/editors/editperson.py:821
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour cet individu. Veuillez entrer une donnée ou "
+"Aucune donnée n'existe pour cet individu. Veuillez saisir une donnée ou "
 "annuler l'édition."
 
 #: ../gramps/gui/editors/editperson.py:845
@@ -15651,7 +15651,7 @@ msgstr "Impossible d'enregistrer le dépôt"
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour ce dépôt. Veuillez entrer une donnée ou annuler "
+"Aucune donnée n'existe pour ce dépôt. Veuillez saisir une donnée ou annuler "
 "l'édition."
 
 #: ../gramps/gui/editors/editrepository.py:199
@@ -15690,7 +15690,7 @@ msgstr "Impossible d'enregistrer la source"
 #: ../gramps/gui/editors/editsource.py:199
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour cette source. Veuillez entrer une donnée ou "
+"Aucune donnée n'existe pour cette source. Veuillez saisir une donnée ou "
 "annuler l'édition."
 
 #: ../gramps/gui/editors/editsource.py:209
@@ -17571,7 +17571,7 @@ msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
 msgstr ""
-"Utilisez les deux champs suivants pour entrer les coordonnées (latitude et "
+"Utilisez les deux champs suivants pour saisir les coordonnées (latitude et "
 "longitude)."
 
 #: ../gramps/gui/glade/editplace.glade:120
@@ -32198,7 +32198,7 @@ msgstr "Fournit des fonctions récursives pour les rapports"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:88
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr "Fournit le service commun d'import et d'export Gramps XML."
+msgstr "Fournit le service commun d'importation et d'exportation Gramps XML."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:107
 msgid "Provides holiday information for different countries."
@@ -41630,7 +41630,7 @@ msgstr "Aucune feuille de style"
 #~ "Either use the two fields below to enter coordinates(latitude and "
 #~ "longitude),"
 #~ msgstr ""
-#~ "Utilisez soit les deux champs suivants pour entrer les coordonnées "
+#~ "Utilisez soit les deux champs suivants pour saisir les coordonnées "
 #~ "(latitude et longitude),"
 
 # trunk
