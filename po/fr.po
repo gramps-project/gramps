@@ -1187,7 +1187,7 @@ msgstr ""
 "Erreur : type « %(format)s » non reconnu du fichier à importer %(filename)s"
 
 #: ../gramps/cli/arghandler.py:293
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
@@ -1309,7 +1309,7 @@ msgid "Database is locked, cannot open it!"
 msgstr "La base de données est verrouillée, impossible de l'ouvrir !"
 
 #: ../gramps/cli/arghandler.py:556
-#, fuzzy, python-format
+#, python-format
 msgid "  Info: %s"
 msgstr " Informations : %s"
 
@@ -1372,7 +1372,6 @@ msgstr "Action inconnue : %s."
 
 # master
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1649,7 +1648,7 @@ msgstr "PAR DÉFAUT"
 # trunk
 #. translators: indent "New" to match "Current"
 #: ../gramps/cli/argparser.py:387
-#, fuzzy, python-format
+#, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
 msgstr " Nouvelle valeur du paramètre : %(name)s = %(value)s"
 
@@ -1674,7 +1673,7 @@ msgid "Unavailable"
 msgstr "Non disponible"
 
 #: ../gramps/cli/clidbman.py:83
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
@@ -1776,7 +1775,7 @@ msgid "Could not rename Family Tree"
 msgstr "Impossible de renommer l'arbre familial"
 
 #: ../gramps/cli/clidbman.py:483
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "ERROR: Wrong database path in Edit Menu->Preferences.\n"
@@ -1972,7 +1971,7 @@ msgid "Error encountered: %s"
 msgstr "Erreur : %s"
 
 #: ../gramps/cli/grampscli.py:324 ../gramps/cli/grampscli.py:332
-#, fuzzy, python-format
+#, python-format
 msgid "  Details: %s"
 msgstr " Détails : %s"
 
@@ -2071,7 +2070,6 @@ msgid "Unknown option: %s"
 msgstr "Option inconnue: %s"
 
 #: ../gramps/cli/plug/__init__.py:462 ../gramps/cli/plug/__init__.py:552
-#, fuzzy
 msgid "   Valid options are:"
 msgstr " Les options valides sont:"
 
@@ -2103,7 +2101,7 @@ msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:465 ../gramps/cli/plug/__init__.py:555
 #: ../gramps/cli/plug/__init__.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
 " Utilisez « %(donottranslate)s » pour voir la description et les valeurs "
@@ -2131,7 +2129,6 @@ msgid "Ignoring unknown option: %s"
 msgstr "Option inconnue : %s, ignorée"
 
 #: ../gramps/cli/plug/__init__.py:624
-#, fuzzy
 msgid "   Available options:"
 msgstr " Options disponibles :"
 
@@ -2140,7 +2137,6 @@ msgid "(no help available)"
 msgstr "(aucune aide disponible)"
 
 #: ../gramps/cli/plug/__init__.py:641
-#, fuzzy
 msgid "   Available values are:"
 msgstr " Les valeurs disponibles sont :"
 
@@ -3631,7 +3627,7 @@ msgstr ""
 "Poursuite avec une partie des arguments seulement."
 
 #: ../gramps/gen/filters/_filterparser.py:127
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
@@ -5347,7 +5343,6 @@ msgid "Relationship filters"
 msgstr "Filtres relationnels"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:135
-#, fuzzy
 msgid ""
 "Searches over the database starting from a specified person and returns "
 "everyone between that person and a set of target people specified with a "
@@ -9754,7 +9749,7 @@ msgstr "Aucune description fournie"
 
 #: ../gramps/gen/plug/_options.py:405
 #: ../gramps/plugins/textreport/recordsreport.py:162
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
@@ -10161,7 +10156,6 @@ msgid "Aspect ratio"
 msgstr "Facteur de forme"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:217
-#, fuzzy
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -10194,7 +10188,6 @@ msgid "DPI"
 msgstr "Résolution"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:234
-#, fuzzy
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
@@ -10209,7 +10202,6 @@ msgid "Node spacing"
 msgstr "Espacement de fratrie"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:242
-#, fuzzy
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -10224,7 +10216,6 @@ msgid "Rank spacing"
 msgstr "Espacement de génération"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:250
-#, fuzzy
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -10516,7 +10507,6 @@ msgid "Level distance"
 msgstr "Distance entre niveaux"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:191
-#, fuzzy
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -11472,7 +11462,6 @@ msgid "See details"
 msgstr "Voir les détails"
 
 #: ../gramps/gen/utils/image.py:123
-#, fuzzy
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
@@ -12119,7 +12108,6 @@ msgstr "_Fermer"
 # master
 # call name = prénom dans le context !
 #: ../gramps/gui/configure.py:119
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -16351,7 +16339,6 @@ msgstr "Définition du _format :"
 
 # call name = prénom dans le context !
 #: ../gramps/gui/glade/configure.glade:140
-#, fuzzy
 msgid ""
 "The following conventions are used:\n"
 "<tt>  <b>%f</b> - Given Name       <b>%F</b> - GIVEN NAME\n"
@@ -16855,7 +16842,6 @@ msgid "Old Style/New Style"
 msgstr "Ancien style/Nouveau style"
 
 #: ../gramps/gui/glade/editdate.glade:216
-#, fuzzy
 msgid "Ne_w year begins:  "
 msgstr "_Début de la nouvelle année : "
 
@@ -17221,7 +17207,6 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/glade/editmediaref.glade:119
-#, fuzzy
 msgid "_Corner 2:  X"
 msgstr "_Coin 1 : X"
 
@@ -17258,7 +17243,6 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/glade/editmediaref.glade:208
-#, fuzzy
 msgid "_Corner 1:  X"
 msgstr "_Coin 1 : X"
 
@@ -17349,7 +17333,7 @@ msgid ""
 "some reports."
 msgstr ""
 "Le prénom utilisée habituellement. L'arrière-plan est rouge quand ce prénom "
-"n'est pas partie de ceux donnés. Il ne pourra donc pas être souligné dans "
+"ne fait pas parti de ceux donnés. Il ne pourra donc pas être souligné dans "
 "certains rapports."
 
 #: ../gramps/gui/glade/editname.glade:291
@@ -17764,7 +17748,6 @@ msgstr "Le nom du lieu."
 
 # master
 #: ../gramps/gui/glade/editplacename.glade:196
-#, fuzzy
 msgid ""
 "Language in which the name is written. Valid values are two character ISO "
 "codes. For example:  en, fr, de, nl ..."
@@ -19474,7 +19457,6 @@ msgstr "Attention"
 
 # master
 #: ../gramps/gui/merge/mergeperson.py:342
-#, fuzzy
 msgid ""
 "The persons have been merged.\n"
 "However, the families for this merge were too complex to automatically "
@@ -21286,7 +21268,6 @@ msgid "Remove tag '%s'?"
 msgstr "Supprimer l'étiquette « %s » ?"
 
 #: ../gramps/gui/views/tags.py:559
-#, fuzzy
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
@@ -21456,7 +21437,6 @@ msgstr "Rétablir les gramplets par défaut ?"
 
 # trunk
 #: ../gramps/gui/widgets/grampletbar.py:565
-#, fuzzy
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
@@ -22116,7 +22096,6 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
 #: ../gramps/plugins/drawreport/descendtree.py:1620
-#, fuzzy
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -24004,7 +23983,7 @@ msgstr "Édition des conjoints"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:71
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of "
 "spouses?%(html_end)s\n"
@@ -24014,7 +23993,7 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
@@ -24024,7 +24003,7 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
@@ -24038,7 +24017,7 @@ msgstr "Sauvegardes et mises à jour"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:92
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
@@ -24048,7 +24027,7 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
@@ -24062,7 +24041,7 @@ msgstr "Saisie des données"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:109
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
@@ -24072,7 +24051,7 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
@@ -24086,7 +24065,7 @@ msgstr "Fichiers media"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:125
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
@@ -24096,7 +24075,7 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  9. %(gramps_FAQ_html_start)s%(faq_section)sHow do you find unused media "
 "objects?%(html_end)s\n"
@@ -25269,13 +25248,13 @@ msgstr "Parents :"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:121
 #: ../gramps/plugins/gramplet/relativegramplet.py:125
-#, fuzzy, python-format
+#, python-format
 msgid "   %d.a Mother: "
 msgstr " %d.a Mère : "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:132
 #: ../gramps/plugins/gramplet/relativegramplet.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "   %d.b Father: "
 msgstr " %d.b Père : "
 
@@ -26134,7 +26113,6 @@ msgstr "Nombre de générations d'ascendants à inclure dans le graphe"
 
 #: ../gramps/plugins/graph/gvhourglass.py:391
 #: ../gramps/plugins/graph/gvrelgraph.py:824
-#, fuzzy
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -27129,7 +27107,6 @@ msgstr ""
 "dans toutes les étiquettes concernées"
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
-#, fuzzy
 msgid "  Objects"
 msgstr " Objets"
 
@@ -27413,99 +27390,99 @@ msgstr ""
 "Gramps valide."
 
 #: ../gramps/plugins/importer/importxml.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr " %(id)s - %(text)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr " Famille %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:254
-#, fuzzy, python-format
+#, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr " Source %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:257
-#, fuzzy, python-format
+#, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr " Événement %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:260
-#, fuzzy, python-format
+#, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr " Objet medium %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr " Lieu %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:266
-#, fuzzy, python-format
+#, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr " Dépôt %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:269
-#, fuzzy, python-format
+#, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr " Note %(id)s avec %(id2)s\n"
 
 # trunk
 #: ../gramps/plugins/importer/importxml.py:274
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr " Citation %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:282
-#, fuzzy, python-format
+#, python-format
 msgid "  People: %d\n"
 msgstr " Individus : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy, python-format
+#, python-format
 msgid "  Families: %d\n"
 msgstr " Familles : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:284
-#, fuzzy, python-format
+#, python-format
 msgid "  Sources: %d\n"
 msgstr " Sources : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:285
-#, fuzzy, python-format
+#, python-format
 msgid "  Events: %d\n"
 msgstr " Événements : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:286
-#, fuzzy, python-format
+#, python-format
 msgid "  Media Objects: %d\n"
 msgstr " Objets media : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:287
-#, fuzzy, python-format
+#, python-format
 msgid "  Places: %d\n"
 msgstr " Lieux : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:288
-#, fuzzy, python-format
+#, python-format
 msgid "  Repositories: %d\n"
 msgstr " Dépôts : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:289
-#, fuzzy, python-format
+#, python-format
 msgid "  Notes: %d\n"
 msgstr " Notes : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "  Tags: %d\n"
 msgstr " Étiquettes : %d\n"
 
 # trunk
 #: ../gramps/plugins/importer/importxml.py:291
-#, fuzzy, python-format
+#, python-format
 msgid "  Citations: %d\n"
 msgstr " Citations : %d\n"
 
@@ -27621,7 +27598,7 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/importer/importxml.py:1031
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -27647,7 +27624,7 @@ msgstr "Le fichier ne sera pas importé"
 
 # master
 #: ../gramps/plugins/importer/importxml.py:1044
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -27895,7 +27872,7 @@ msgid "Records not imported into "
 msgstr "Articles non importés dans "
 
 #: ../gramps/plugins/lib/libgedcom.py:3225
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
@@ -32412,7 +32389,6 @@ msgid "Wedding"
 msgstr "Mariage"
 
 #: ../gramps/plugins/lib/libprogen.py:1829
-#, fuzzy
 msgid "future"
 msgstr "future"
 
@@ -35943,7 +35919,7 @@ msgstr[0] "{quantity} identifiant Gramps réparé\n"
 msgstr[1] "{quantity} identifiants Gramps réparés\n"
 
 #: ../gramps/plugins/tool/check.py:2725
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
 "   %(person)d person objects\n"
@@ -36707,7 +36683,6 @@ msgstr "_Accepter et fermer"
 
 # trunk
 #: ../gramps/plugins/tool/patchnames.glade:135
-#, fuzzy
 msgid ""
 "Below is a list of the nicknames, titles, prefixes and compound surnames "
 "that Gramps can extract from the Family Tree.\n"
@@ -37035,7 +37010,6 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/tool/reorderids.glade:1424
-#, fuzzy
 msgid "  Actual"
 msgstr " Actuel"
 
@@ -39442,7 +39416,6 @@ msgid "around"
 msgstr "vers"
 
 #: ../gramps/plugins/webreport/download.py:98
-#, fuzzy
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
 "share a couple of files with you regarding their family.  If there are any "
@@ -39565,7 +39538,6 @@ msgstr "Création des pages de media"
 # titre = nom
 # &#8217 ?
 #: ../gramps/plugins/webreport/media.py:206
-#, fuzzy
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -39773,18 +39745,15 @@ msgid "Horizontal -- Default"
 msgstr "Horizontal -- par défaut"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1776
-#, fuzzy
 msgid "Vertical   -- Left Side"
 msgstr "Vertical -- côté gauche"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1777
-#, fuzzy
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Fondu -- uniquement pour navigateurs Webkit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1778
 #: ../gramps/plugins/webreport/narrativeweb.py:1792
-#, fuzzy
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Déroulant -- uniquement pour navigateurs Webkit"
 
@@ -40637,7 +40606,6 @@ msgid "Surnames beginning with letter %s"
 msgstr "Noms de famille commençant par la lettre %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:120
-#, fuzzy
 msgid ""
 "This page displays a indexed list of all the media objects in this "
 "database.  It is sorted by media title.  There is an index of all the media "
@@ -40941,7 +40909,6 @@ msgid "Show data only after year"
 msgstr "Afficher les informations seulement après l'an"
 
 #: ../gramps/plugins/webreport/webcal.py:1980
-#, fuzzy
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
@@ -41164,7 +41131,7 @@ msgstr "Aucune feuille de style"
 #~ "récupération de base de données."
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -41236,47 +41203,47 @@ msgstr "Aucune feuille de style"
 #~ "utilisez une version inférieure"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 #~ msgstr ""
 #~ "%(n1)6d individus migrés avec %(n2)6d citations en %(n3)6d secondes\n"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 #~ msgstr ""
 #~ "%(n1)6d familles migrées avec %(n2)6d citations en %(n3)6d secondes\n"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 #~ msgstr ""
 #~ "%(n1)6d événements migrés avec %(n2)6d citations en %(n3)6d secondes\n"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 #~ msgstr ""
 #~ "%(n1)6d objets media migrés avec %(n2)6d citations en %(n3)6d secondes\n"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 #~ msgstr "%(n1)6d lieux migrés avec %(n2)6d citations en %(n3)6d secondes\n"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 #~ msgstr "%(n1)6d dépôts migrés avec %(n2)6d citations en %(n3)6d secs\n"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 #~ msgstr ""
@@ -41412,12 +41379,12 @@ msgstr "Aucune feuille de style"
 #~ "bogue, http://bugs.gramps-project.org"
 
 # trunk
-#, fuzzy
+
 #~ msgid "Male Alive"
 #~ msgstr "Masculin vivant"
 
 # trunk
-#, fuzzy
+
 #~ msgid "Female Alive"
 #~ msgstr "Féminin vivante"
 
@@ -41425,7 +41392,7 @@ msgstr "Aucune feuille de style"
 #~ msgstr "Féminin décédée"
 
 # trunk
-#, fuzzy
+
 #~ msgid "Unknown Alive"
 #~ msgstr "Inconnu vivant"
 
@@ -41447,7 +41414,7 @@ msgstr "Aucune feuille de style"
 #~ msgstr "Bordure féminin vivante"
 
 # trunk
-#, fuzzy
+
 #~ msgid "Border Female Dead"
 #~ msgstr "Bordure féminin décédée"
 
@@ -41456,7 +41423,7 @@ msgstr "Aucune feuille de style"
 #~ msgstr "Bordure inconnu vivant"
 
 # trunk
-#, fuzzy
+
 #~ msgid "Border Unknown Dead"
 #~ msgstr "Bordure inconnu décédé"
 
@@ -41556,7 +41523,7 @@ msgstr "Aucune feuille de style"
 #~ msgstr "Aperçu de la miniature"
 
 # master
-#, fuzzy
+
 #~ msgid ""
 #~ "\n"
 #~ "Usage: gramps.py [OPTION...]\n"
