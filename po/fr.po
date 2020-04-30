@@ -1612,7 +1612,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:277
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr "Essai d'ouverture de: %s ..."
+msgstr "Essai d'ouverture de: %s..."
 
 #: ../gramps/cli/argparser.py:321
 #, python-format
@@ -1745,7 +1745,7 @@ msgstr "Début de l'importation de %s"
 
 #: ../gramps/cli/clidbman.py:280
 msgid "Import finished..."
-msgstr "Importation terminée.."
+msgstr "Importation terminée..."
 
 # Substantif (GNOME fr)
 #. Create a new database
@@ -1789,11 +1789,11 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"ERREUR: mauvais chemin de base de données dans\n"
+"ERREUR : mauvais chemin de base de données dans\n"
 "le menu Édition -> Préférences.\n"
 "Ouvrez les préférences et définissez un bon chemin.\n"
 "\n"
-"Détails: impossible de créer le répertoire de base de données:\n"
+"Détails : impossible de créer le répertoire de base de données:\n"
 "    %s\n"
 "\n"
 
@@ -9750,7 +9750,7 @@ msgid ""
 "  but is not known to the module.  Ignoring..."
 msgstr ""
 "L'option « %(opt_name)s » est présente dans %(file)s\n"
-"  mais elle est inconnue du module.  Option ignorée ..."
+"  mais elle est inconnue du module.  Option ignorée..."
 
 #: ../gramps/gen/plug/_pluginreg.py:59
 msgid "Stable"
@@ -20574,7 +20574,7 @@ msgstr "Choix de la source ou la citation"
 #: ../gramps/gui/selectors/selectcitation.py:71
 #: ../gramps/plugins/view/citationtreeview.py:93
 msgid "Source: Title or Citation: Volume/Page"
-msgstr "Source: Titre ou Citation: Volume/Page"
+msgstr "Source : Titre ou Citation : Volume/Page"
 
 #: ../gramps/gui/selectors/selectcitation.py:73
 #: ../gramps/gui/selectors/selectevent.py:72
@@ -37048,7 +37048,7 @@ msgstr "Réorganiser les identifiants Gramps"
 #: ../gramps/plugins/tool/reorderids.py:552
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "Réorganisation de %s identifiants ..."
+msgstr "Réorganisation de %s identifiants..."
 
 # master
 #: ../gramps/plugins/tool/reorderids.py:635
@@ -40613,7 +40613,7 @@ msgstr "Année résumée"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/webcal.py:1031
 msgid "Formatting months ..."
-msgstr "Formatage des mois ..."
+msgstr "Formatage des mois..."
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/webcal.py:1116
