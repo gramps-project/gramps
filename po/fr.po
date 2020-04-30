@@ -18,6 +18,9 @@
 #  regular expressions : expressions rationnelles
 #  Gramps ID = Identifiant Gramps
 #  Please... = Veuillez...
+#  bug : bogue
+#  afficher / masquer
+#  sélectionner
 #
 # Traits d'union:
 #  non-substantif
@@ -19561,7 +19564,7 @@ msgstr "Info"
 #. id_col
 #: ../gramps/gui/plug/_windows.py:147 ../gramps/gui/plug/_windows.py:201
 msgid "Hide/Unhide"
-msgstr "Cacher/Afficher"
+msgstr "Masquer/Afficher"
 
 #. id_col
 #: ../gramps/gui/plug/_windows.py:155 ../gramps/gui/plug/_windows.py:210
@@ -19992,7 +19995,7 @@ msgstr "Cliquez pour voir l'aperçu après le filtrage des références"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:401
 msgid "Hide order"
-msgstr "Cacher l'ordre"
+msgstr "Masquer l'ordre"
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/plug/export/_exportoptions.py:597
@@ -20897,7 +20900,7 @@ msgstr ""
 "vue (%(firstauthoremail)s).\n"
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger cette vue, vous "
-"pouvez la cacher en utilisant le gestionnaire de greffons dans le menu Aide."
+"pouvez la masquer en utilisant le gestionnaire de greffons dans le menu Aide."
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/viewmanager.py:1574
@@ -20928,7 +20931,7 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger ce greffon, vous "
-"pouvez le cacher en utilisant le gestionnaire de greffons dans le menu Aide."
+"pouvez le masquer en utilisant le gestionnaire de greffons dans le menu Aide."
 
 #: ../gramps/gui/viewmanager.py:1655
 msgid "Gramps XML Backup"
@@ -21014,7 +21017,7 @@ msgstr "Gestion des signets"
 
 #: ../gramps/gui/views/bookmarks.py:474
 msgid "Cannot bookmark this reference"
-msgstr "Impossible de marquer cette référence"
+msgstr "Impossible de sélectionner cette référence"
 
 #: ../gramps/gui/views/listview.py:439
 msgid "Active object not visible"
@@ -36907,12 +36910,12 @@ msgstr "Recherche des notes"
 #: ../gramps/plugins/tool/removeunused.glade:287
 #: ../gramps/plugins/tool/verify.glade:929
 msgid "_Mark all"
-msgstr "Tout _marquer"
+msgstr "Tout _sélectionner"
 
 #: ../gramps/plugins/tool/removeunused.glade:303
 #: ../gramps/plugins/tool/verify.glade:945
 msgid "_Unmark all"
-msgstr "Tout _démarquer"
+msgstr "Tout _désélectionner"
 
 #: ../gramps/plugins/tool/removeunused.glade:319
 #: ../gramps/plugins/tool/verify.glade:961
@@ -36935,7 +36938,7 @@ msgstr "Objets non référencés"
 #: ../gramps/plugins/tool/removeunused.py:184
 #: ../gramps/plugins/tool/verify.py:554
 msgid "Mark"
-msgstr "Marquer"
+msgstr "Sélectionner"
 
 # supprimer pour marquer la disparition
 #: ../gramps/plugins/tool/removeunused.py:299
@@ -37504,7 +37507,7 @@ msgstr "Étendue ma_ximale d'années du premier au dernier enfant"
 
 #: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:673
 msgid "_Hide marked"
-msgstr "_Cacher les marqués"
+msgstr "_Masquer les marqués"
 
 # manuel wiki
 #: ../gramps/plugins/tool/verify.py:83
@@ -38226,7 +38229,7 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:641
 msgid "Choose and bookmark the new reference person"
-msgstr "Choisir et marquer le nouvel individu de référence"
+msgstr "Choisir et sélectionner le nouvel individu de référence"
 
 #: ../gramps/plugins/view/geoclose.py:664
 msgid ""
@@ -38275,14 +38278,14 @@ msgid ""
 "use filtering."
 msgstr ""
 "Clic droit sur la carte puis sélection de 'Afficher tous les événements' "
-"pour montrer tous les lieux avec coordonnées. Vous pouvez utiliser "
+"pour afficher tous les lieux avec coordonnées. Vous pouvez utiliser "
 "l'historique pour naviguer dans la carte. Vous pouvez aussi utiliser le "
 "filtrage."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
 msgid "Bookmark this event"
-msgstr "Marquer cet événement"
+msgstr "Sélectionner cet événement"
 
 #: ../gramps/plugins/view/geoevents.py:452
 msgid "Show all events"
@@ -38511,7 +38514,7 @@ msgstr "Toute la descendance de %s"
 
 #: ../gramps/plugins/view/geomoves.py:697
 msgid "Bookmark this person"
-msgstr "Marquer cet individu"
+msgstr "Sélectionner cet individu"
 
 #: ../gramps/plugins/view/geomoves.py:729
 msgid "The maximum number of generations.\n"
@@ -38631,7 +38634,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoplaces.py:507
 #: ../gramps/plugins/view/geoplaces.py:530
 msgid "Bookmark this place"
-msgstr "Marquer ce lieu"
+msgstr "Sélectionner ce lieu"
 
 #: ../gramps/plugins/view/geoplaces.py:545
 msgid "Show all places"
@@ -40853,14 +40856,14 @@ msgstr "Pour lier les données calendaires au site généalogique"
 
 #: ../gramps/plugins/webreport/webcal.py:1977
 msgid "Show data only after year"
-msgstr "Montrer les informations seulement après l'an"
+msgstr "Afficher les informations seulement après l'an"
 
 #: ../gramps/plugins/webreport/webcal.py:1980
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"Montrer les informations seulement après cette année, par défaut l'année "
+"Afficher les informations seulement après cette année, par défaut l'année "
 "courante - 'Espérance de vie maximale' qui est définie dans l'onglet des "
 "préférences de dates."
 
