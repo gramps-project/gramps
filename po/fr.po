@@ -5906,12 +5906,12 @@ msgstr "Renvoie les enfants de tout individu accepté par le filtre"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
 msgid "Default person"
-msgstr "Individu par défaut"
+msgstr "Individu souche"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
 msgid "Matches the default person"
-msgstr "Renvoie l'individu par défaut (souche)"
+msgstr "Renvoie l'individu souche"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
 msgid "Descendant family members of <person>"
@@ -12854,7 +12854,7 @@ msgstr "Nb. max. de générations entre 2 individus"
 
 #: ../gramps/gui/configure.py:1612
 msgid "Base path for relative media paths"
-msgstr "Base pour les chemins relatifs des media"
+msgstr "Racine du chemin d'accès relatif aux media"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/gui/configure.py:1618
@@ -12962,7 +12962,7 @@ msgstr "Serveur"
 # numéro = astuce pour éviter la liste par ordre alphabétique
 #: ../gramps/gui/configure.py:1748
 msgid "Port"
-msgstr "Canal"
+msgstr "Canal (port)"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1756
@@ -31998,7 +31998,7 @@ msgstr "Définir comme s_ouche"
 #: ../gramps/plugins/view/pedigreeview.py:694
 #: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
-msgstr "Aller à l'individu par défaut"
+msgstr "Aller à l'individu souche"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
