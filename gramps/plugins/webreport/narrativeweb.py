@@ -1666,13 +1666,14 @@ class NavWebReport(Report):
                 os.makedirs(destdir)
 
             if from_fname != dest:
-                try:
-                    shutil.copyfile(from_fname, dest)
-                    os.utime(dest, (mtime, mtime))
-                except Exception as exception:
-                    LOG.exception(exception)
-                    print("Copying error: %s" % sys.exc_info()[1])
-                    print("Continuing...")
+                if not os.path.exists(dest):
+                    try:
+                        shutil.copyfile(from_fname, dest)
+                        os.utime(dest, (mtime, mtime))
+                    except Exception as exception:
+                        LOG.exception(exception)
+                        print("Copying error: %s" % sys.exc_info()[1])
+                        print("Continuing...")
             elif self.warn_dir:
                 self.user.warn(
                     _("Possible destination error") + "\n" +

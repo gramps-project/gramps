@@ -668,8 +668,9 @@ class MediaPages(BasePage):
                 if not os.path.isdir(to_dir):
                     os.makedirs(to_dir)
                 new_file = os.path.join(self.html_dir, newpath)
-                shutil.copyfile(fullpath, new_file)
-                os.utime(new_file, (mtime, mtime))
+                if not os.path.exists(newpath):
+                    shutil.copyfile(fullpath, new_file)
+                    os.utime(new_file, (mtime, mtime))
             return newpath
         except (IOError, OSError) as msg:
             error = _("Missing media object:"
