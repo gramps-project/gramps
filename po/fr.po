@@ -42,15 +42,15 @@ msgstr ""
 "Project-Id-Version: 5.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-24 16:38+0200\n"
-"PO-Revision-Date: 2020-04-29 19:12+0200\n"
-"Last-Translator: geryonesime <gery.onesime@orange.fr>\n"
+"PO-Revision-Date: 2020-04-30 07:10+0100\n"
+"Last-Translator: \n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -1419,7 +1419,7 @@ msgid ""
 msgstr ""
 "\n"
 "Utilisation : gramps.py [OPTION...]\n"
-" --load-modules=MODULE1,MODULE2,... Modules dynamiques à charger\n"
+" --load-modules=MODULE1,MODULE2... Modules dynamiques à charger\n"
 "\n"
 "Options d'aide\n"
 " -?, --help Affiche ce message d'aide\n"
@@ -1466,7 +1466,7 @@ msgstr ""
 " leurs valeurs par défaut;\n"
 " A - les greffons sont effacés\n"
 " P - les préférences reprennent leurs valeurs par défaut\n"
-" X - les Livres sont effacés, les paramètres des rapports\n"
+" X - les livres sont effacés, les paramètres des rapports\n"
 " et des outils reprennent leurs valeurs par défaut\n"
 " F - les filtres sont effacés\n"
 " E - tout est effacé et tous les paramètres reprennent\n"
@@ -11228,7 +11228,7 @@ msgstr ""
 #: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
 msgid "%s, ..."
-msgstr "%s, ..."
+msgstr "%s..."
 
 #: ../gramps/gen/utils/db.py:537 ../gramps/plugins/lib/librecords.py:317
 #, python-format
@@ -12659,7 +12659,7 @@ msgid ""
 "Requires Gramps restart to apply."
 msgstr ""
 "Afficher le texte des boutons du navigateur (individus, familles, "
-"événements,...).\n"
+"événements...).\n"
 "Nécessite de relancer Gramps."
 
 #: ../gramps/gui/configure.py:1349
@@ -16706,7 +16706,7 @@ msgid ""
 "standard."
 msgstr ""
 "Nom de l'attribut que vous souhaitez utiliser. Par exemple : taille (pour un "
-"individu), météo du jour (pour un événement),...\n"
+"individu), météo du jour (pour un événement)...\n"
 "Utilisez ceci pour stocker des bribes d'information que vous rassemblez et "
 "souhaitez relier à leurs propriétaires. Les attributs peuvent être affectés "
 "aux individus, familles, événements et media.\n"
@@ -16941,7 +16941,7 @@ msgstr "Sélecteur"
 # trunk
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr "Le type d'événement, par exemple : inhumation, baptême, ..."
+msgstr "Le type d'événement, par exemple : inhumation, baptême ..."
 
 # trunk
 #: ../gramps/gui/glade/editevent.glade:326
@@ -16949,8 +16949,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Date de l'événement. Peut être une date exacte, une période (de ... à ..., "
-"entre ... et ...), ou une date approximative (vers, ...)."
+"Date de l'événement. Peut être une date exacte, une période (de .... à ...., "
+"entre .... et ....), ou une date approximative (vers...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -17278,7 +17278,7 @@ msgstr "Double-cliquez sur l'image pour l'afficher dans un lecteur externe"
 #: ../gramps/gui/glade/editmediaref.glade:533
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
-"Le type de medium défini par l'ordinateur, par exemple image, vidéo, ..."
+"Le type de medium défini par l'ordinateur, par exemple image, vidéo..."
 
 #: ../gramps/gui/glade/editmediaref.glade:650
 msgid "Select a file"
@@ -17572,7 +17572,7 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
-"Description d'une association, par exemple : parrain, ami, ...\n"
+"Description d'une association, par exemple : parrain, ami...\n"
 "\n"
 "Remarque : utilisez plutôt les événements pour les relations liées à un "
 "instant donné ou une occasion. Les événements peuvent être partagés entre "
@@ -17673,7 +17673,7 @@ msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
 "Champ utilisé pour coller une information depuis une page internet, comme "
-"google, openstreetmap, ..."
+"google, openstreetmap..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -17691,7 +17691,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:378
 #: ../gramps/gui/glade/editplaceref.glade:397
 msgid "What type of place this is. Eg 'Country', 'City', ... ."
-msgstr "Le type du lieu, par exemple pays, ville, ..."
+msgstr "Le type du lieu, par exemple pays, ville..."
 
 # trunk
 #: ../gramps/gui/glade/editplace.glade:441
@@ -17834,7 +17834,7 @@ msgid ""
 "publisher, ..."
 msgstr ""
 "Information de publication, telle que ville et année de publication, nom de "
-"l'éditeur, ..."
+"l'éditeur..."
 
 #: ../gramps/gui/glade/editsource.glade:181
 msgid ""
@@ -17862,7 +17862,7 @@ msgstr "De_scription :"
 
 #: ../gramps/gui/glade/editurl.glade:170
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr "Le type d'adresse internet, par exemple courriel, page internet, ..."
+msgstr "Le type d'adresse internet, par exemple courriel, page internet..."
 
 #: ../gramps/gui/glade/editurl.glade:189
 msgid ""
@@ -32194,7 +32194,7 @@ msgid ""
 "Maps, ...)"
 msgstr ""
 "Tentative de localiser les lieux sélectionnés avec un service cartographique "
-"(OpenstreetMap, Google Maps, ...)"
+"(OpenstreetMap, Google Maps...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:466
 msgid "Select a Map Service"
@@ -38467,10 +38467,10 @@ msgid ""
 msgstr ""
 "Les fonctions géographiques ne sont pas disponibles\n"
 "Essayez d'installer :\n"
-" gir1.2-osmgpsmap-1.0 (debian, ubuntu, …)\n"
-" osm-gps-map-gobject-1.0.1 (fedora, …)\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu...)\n"
+" osm-gps-map-gobject-1.0.1 (fedora...)\n"
 " typelib-1_0-OsmGpsMap-1_0 (openSuse)\n"
-" …\n"
+" ...\n"
 "Voir le Wiki (<F1>) pour une compilation\n"
 " et chercher « Build from source »"
 
@@ -40106,7 +40106,7 @@ msgstr "Inclure un lien vers la personne active dans le pied de chaque page"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2049
 msgid "Include a column for birth dates on the index pages"
-msgstr "Inclure une colonne pour les naissance dans les index"
+msgstr "Inclure une colonne pour les naissances dans les index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2050
 msgid "Whether to include a birth column"
@@ -41030,728 +41030,3 @@ msgstr "Aucune feuille de style"
 
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Arbre de la famille Bernard"
-
-# master
-#~ msgid ""
-#~ "The Family Tree you are trying to load is in the Bsddb version "
-#~ "%(env_version)s format. This version of Gramps uses Bsddb version "
-#~ "%(bdb_version)s. So you are trying to load data created in a newer format "
-#~ "into an older program, and this is bound to fail.\n"
-#~ "\n"
-#~ "You should start your %(bold_start)snewer%(bold_end)s version of Gramps "
-#~ "and %(wiki_backup_html_start)smake a backup%(html_end)s of your Family "
-#~ "Tree. You can then import this backup into this version of Gramps."
-#~ msgstr ""
-#~ "L'arbre familial que vous voulez ouvrir utilise la version BSDDB "
-#~ "%(env_version)s. Cette version de Gramps utilise la version BSDDB "
-#~ "%(bdb_version)s. Vous tentez de charger des données créées avec un format "
-#~ "plus récent dans une ancienne version, ceci est voué à l'échec.\n"
-#~ "\n"
-#~ "Vous devriez utiliser votre version %(bold_start)splus ancienne"
-#~ "%(bold_end)s de Gramps et %(wiki_backup_html_start)sfaire une sauvegarde"
-#~ "%(html_end)s de votre arbre familial. Vous pourrez alors importer cette "
-#~ "sauvegarde dans la nouvelle version de Gramps."
-
-# master
-#~ msgid ""
-#~ "The Family Tree you are trying to load is in the Bsddb version "
-#~ "%(env_version)s format. This version of Gramps uses Bsddb version "
-#~ "%(bdb_version)s. So you are trying to load data created in a newer format "
-#~ "into an older program. In this particular case, the difference is very "
-#~ "small, so it may work.\n"
-#~ "\n"
-#~ "If you have not already made a backup of your Family Tree, then you "
-#~ "should start your %(bold_start)snewer%(bold_end)s version of Gramps and "
-#~ "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
-#~ msgstr ""
-#~ "L'arbre familial que vous voulez ouvrir utilise la version BSDDB "
-#~ "%(env_version)s. Cette version de Gramps utilise la version BSDDB "
-#~ "%(bdb_version)s. Vous tentez de charger des données créées avec un format "
-#~ "plus récent dans une ancienne version. Dans ce cas particulier, la "
-#~ "différence est légère, ceci devrait fonctionner.\n"
-#~ "\n"
-#~ "Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, vous "
-#~ "devriez utiliser votre version %(bold_start)srécente%(bold_end)s de "
-#~ "Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s."
-
-# master
-#~ msgid ""
-#~ "The Family Tree you are trying to load is in the Bsddb version "
-#~ "%(env_version)s format. This version of Gramps uses Bsddb version "
-#~ "%(bdb_version)s. Therefore you cannot load this Family Tree without "
-#~ "upgrading the Bsddb version of the Family Tree.\n"
-#~ "\n"
-#~ "Opening the Family Tree with this version of Gramps might irretrievably "
-#~ "corrupt your Family Tree. You are strongly advised to backup your Family "
-#~ "Tree.\n"
-#~ "\n"
-#~ "If you have not already made a backup of your Family Tree, then you "
-#~ "should start your %(bold_start)sold%(bold_end)s version of Gramps and "
-#~ "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
-#~ msgstr ""
-#~ "L'arbre familial que vous voulez ouvrir utilise la version BSDDB "
-#~ "%(env_version)s. Cette version de Gramps utilise la version BSDDB "
-#~ "%(bdb_version)s. C'est pourquoi vous ne pouvez pas charger cet arbre "
-#~ "familial sans une mise à jour de la version BSDDB liée à l'arbre "
-#~ "familial.\n"
-#~ "\n"
-#~ "Ouvrir l'arbre familial avec cette version de Gramps peut endommager "
-#~ "irrémédiablement votre base de données. Il est fortement conseillé de "
-#~ "sauvegarder votre arbre avant de mettre à jour.\n"
-#~ "\n"
-#~ "Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, vous "
-#~ "devriez utiliser votre %(bold_start)sancienne%(bold_end)s version de "
-#~ "Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s."
-
-#~ msgid ""
-#~ "Gramps has detected a problem in opening the 'environment' of the "
-#~ "underlying Berkeley database used to store this Family Tree. The most "
-#~ "likely cause is that the database was created with an old version of the "
-#~ "Berkeley database program, and you are now using a new version. It is "
-#~ "quite likely that your database has not been changed by Gramps.\n"
-#~ "If possible, you should revert to your old version of Gramps and its "
-#~ "support software; export your database to XML; close the database; then "
-#~ "upgrade again to this version of Gramps and import the XML file in an "
-#~ "empty Family Tree. Alternatively, it may be possible to use the Berkeley "
-#~ "database recovery tools."
-#~ msgstr ""
-#~ "Gramps a détecté un problème en ouvrant l'« environnement » de la base de "
-#~ "données Berkeley utilisé pour enregistrer cet arbre familial. La cause "
-#~ "plausible est la création de la base de données avec une ancienne version "
-#~ "de la BdD Berkeley et l'utilisation présente d'une nouvelle version. Il "
-#~ "est probable que votre base de données n'a pas été modifiée par Gramps.\n"
-#~ "\n"
-#~ "Si possible,\n"
-#~ "- retournez à votre ancienne version de Gramps et de ses utilitaires \n"
-#~ "- exportez votre base de données vers le format XML \n"
-#~ "- fermez la base de données ^n - mettez à niveau cette version de Gramps\n"
-#~ "- importez le fichier XML dans un arbre familial vide\n"
-#~ "\n"
-#~ "Autrement, il doit être possible d'utiliser les outils Berkeley de "
-#~ "récupération de base de données."
-
-# master
-
-#~ msgid ""
-#~ "The Family Tree you are trying to load was created with Python version "
-#~ "%(db_python_version)s. This version of Gramps uses Python version "
-#~ "%(current_python_version)s.  So you are trying to load data created in a "
-#~ "newer format into an older program, and this is bound to fail.\n"
-#~ "\n"
-#~ "You should start your %(bold_start)snewer%(bold_end)s version of Gramps "
-#~ "and %(wiki_backup_html_start)smake a backup%(html_end)s of your Family "
-#~ "Tree. You can then import this backup into this version of Gramps."
-#~ msgstr ""
-#~ "L'arbre familial que vous voulez ouvrir a été créé avec Python "
-#~ "%(db_python_version)s. Cette version de Gramps utilise Python "
-#~ "%(current_python_version)s. Vous tentez de charger des données créées "
-#~ "avec un format plus récent dans une ancienne version, ceci est voué à "
-#~ "l'échec.\n"
-#~ "\n"
-#~ "Vous devriez utiliser votre %(bold_start)sancienne%(bold_end)s version de "
-#~ "Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s de "
-#~ "l'arbre familial. Vous pourrez alors importer cette sauvegarde dans cette "
-#~ "version de Gramps."
-
-# master
-#~ msgid ""
-#~ "The Family Tree you are trying to load is in the Python version "
-#~ "%(db_python_version)s format. This version of Gramps uses Python version "
-#~ "%(current_python_version)s. Therefore you cannot load this Family Tree "
-#~ "without upgrading the Python version of the Family Tree.\n"
-#~ "\n"
-#~ "If you upgrade then you won't be able to use the previous version of "
-#~ "Gramps, even if you subsequently %(wiki_manual_backup_html_start)sbackup"
-#~ "%(html_end)s or %(wiki_manual_export_html_start)sexport%(html_end)s your "
-#~ "upgraded Family Tree.\n"
-#~ "\n"
-#~ "Upgrading is a difficult task which could irretrievably corrupt your "
-#~ "Family Tree if it is interrupted or fails.\n"
-#~ "\n"
-#~ "If you have not already made a backup of your Family Tree, then you "
-#~ "should start your %(bold_start)sold%(bold_end)s version of Gramps and "
-#~ "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
-#~ msgstr ""
-#~ "L'arbre familial que vous voulez 'ouvrir a été créé avec Python "
-#~ "%(db_python_version)s. Cette version de Gramps utilise Python "
-#~ "%(current_python_version)s. C'est pourquoi vous ne pouvez pas charger cet "
-#~ "arbre familial sans une mise à niveau de l'interpréteur Python liée à "
-#~ "votre arbre familial.\n"
-#~ "\n"
-#~ "Si vous mettez à niveau, il ne sera plus possible d'utiliser une version "
-#~ "précédente de Gramps, même via une "
-#~ "%(wiki_manual_backup_html_start)ssauvegarde%(html_end)s ou une "
-#~ "%(wiki_manual_export_html_start)sexportation%(html_end)s de votre arbre "
-#~ "familial.\n"
-#~ "\n"
-#~ "Mettre à jour est une tâche qui peut endommager irrémédiablement l'arbre "
-#~ "familial si l'action est interrompue ou si elle échoue.\n"
-#~ "\n"
-#~ "Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, vous "
-#~ "devriez utiliser votre %(bold_start)sancienne%(bold_end)s version de "
-#~ "Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s."
-
-#~ msgid "Are you sure you want to downgrade this Family Tree?"
-#~ msgstr ""
-#~ "Voulez-vous vraiment utiliser une version inférieure pour cet arbre ?"
-
-#~ msgid ""
-#~ "I have made a backup,\n"
-#~ "please downgrade my Family Tree"
-#~ msgstr ""
-#~ "J'ai fait une sauvegarde,\n"
-#~ "utilisez une version inférieure"
-
-# master
-
-#~ msgid ""
-#~ "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-#~ msgstr ""
-#~ "%(n1)6d individus migrés avec %(n2)6d citations en %(n3)6d secondes\n"
-
-# master
-
-#~ msgid ""
-#~ "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-#~ msgstr ""
-#~ "%(n1)6d familles migrées avec %(n2)6d citations en %(n3)6d secondes\n"
-
-# master
-
-#~ msgid ""
-#~ "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-#~ msgstr ""
-#~ "%(n1)6d événements migrés avec %(n2)6d citations en %(n3)6d secondes\n"
-
-# master
-
-#~ msgid ""
-#~ "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-#~ msgstr ""
-#~ "%(n1)6d objets media migrés avec %(n2)6d citations en %(n3)6d secondes\n"
-
-# master
-
-#~ msgid ""
-#~ "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-#~ msgstr "%(n1)6d lieux migrés avec %(n2)6d citations en %(n3)6d secondes\n"
-
-# master
-
-#~ msgid ""
-#~ "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-#~ msgstr "%(n1)6d dépôts migrés avec %(n2)6d citations en %(n3)6d secs\n"
-
-# master
-
-#~ msgid ""
-#~ "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-#~ msgstr ""
-#~ "%(n1)6d sources migrées avec %(n2)6d citations en %(n3)6d secondess\n"
-
-#~ msgid "Number of new objects upgraded:\n"
-#~ msgstr "Nombre de nouveaux objets migrés :\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "You may want to run\n"
-#~ "Tools -> Family Tree Processing -> Merge\n"
-#~ "in order to merge citations that contain similar\n"
-#~ "information"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Lancez\n"
-#~ "Outils -> Modifications de l'arbre familial -> Fusion\n"
-#~ "pour fusionner les citations qui contiennent une\n"
-#~ "information similaire"
-
-#~ msgid "Upgrade Statistics"
-#~ msgstr "Statistiques de migration"
-
-#~ msgid ""
-#~ "An attempt is made to save a reference key which is partly bytecode, this "
-#~ "is not allowed.\n"
-#~ "Key is %s"
-#~ msgstr ""
-#~ "Tentative de suppression d'une référence dont la clef est partiellement "
-#~ "en bytecode. Ceci n'est pas possible.\n"
-#~ "La clef est %s"
-
-#~ msgid "Rebuild reference map"
-#~ msgstr "Reconstruire la table des références"
-
-#~ msgid ""
-#~ "A second transaction is started while there is still a transaction, \"%s"
-#~ "\", active in the database."
-#~ msgstr ""
-#~ "Une seconde transaction est lancée alors qu'il y en a encore une active "
-#~ "dans la base de données : « %s »."
-
-#~ msgid "Max height of initial image"
-#~ msgstr "Hauteur max ds images"
-
-#~ msgid ""
-#~ "This allows you to set the maximum height of the image shown on the media "
-#~ "page. Set to 0 for no limit."
-#~ msgstr ""
-#~ "Définir la hauteur maximum de l'image affichée dans la page media. 0 "
-#~ "signifie « taille originale »."
-
-#~ msgid "Created for %(author)s"
-#~ msgstr "Créé pour %(author)s"
-
-#~ msgid "Year Glance"
-#~ msgstr "Année résumée"
-
-#~ msgid "Home link"
-#~ msgstr "Accueil"
-
-#~ msgid ""
-#~ "The link to be included to direct the user to the main page of the web "
-#~ "site"
-#~ msgstr ""
-#~ "Lien à inclure pour rediriger l'utilisateur vers la page principale du "
-#~ "site internet"
-
-#~ msgid "unmarried|husband"
-#~ msgstr "le conjoint"
-
-#~ msgid "unmarried|wife"
-#~ msgstr "la conjointe"
-
-#~ msgid "gender unknown,unmarried|spouse"
-#~ msgstr "le conjoint"
-
-#~ msgid "unmarried|ex-husband"
-#~ msgstr "l'ancien conjoint"
-
-#~ msgid "unmarried|ex-wife"
-#~ msgstr "l'ancienne conjointe"
-
-#~ msgid "gender unknown,unmarried|ex-spouse"
-#~ msgstr "l'ancien conjoint"
-
-# master
-#~ msgid "Use alternate Font handler for GUI and Reports (requires restart)"
-#~ msgstr ""
-#~ "Utiliser un gestionnaire de polices alternatif pour l'interface et les "
-#~ "rapports (nécessite un redémarrage)"
-
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Vous devez définir un 'individu de référence'. Allez dans la vue "
-#~ "Individus, puis sélectionnez la personne qui sera la 'souche' de votre "
-#~ "arbre, enfin confirmez votre choix via la menu Édition -> Définir la "
-#~ "souche. "
-
-# trunk
-#~ msgid "_Print..."
-#~ msgstr "_Impression..."
-
-# Substantif (GNOME fr)
-#~ msgid ""
-#~ "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements "
-#~ "to Gramps. Requesting an enhancement can be done either through the "
-#~ "gramps-users or gramps-devel mailing lists, or by going to http://bugs."
-#~ "gramps-project.org and creating a Feature Request. Filing a Feature "
-#~ "Request is preferred but it can be good to discuss your ideas on the "
-#~ "email lists."
-#~ msgstr ""
-#~ "<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer des "
-#~ "améliorations pour Gramps. Proposer une amélioration est possible par les "
-#~ "listes de diffusion gramps-users ou gramps-devel ou en créant une demande "
-#~ "d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-"
-#~ "project.org/. Il est également apprécié d'en discuter sur l'une des "
-#~ "listes Gramps."
-
-#~ msgid ""
-#~ "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#~ "Gramps is to use the Gramps bug tracking system at http://bugs.gramps-"
-#~ "project.org"
-#~ msgstr ""
-#~ "<b>Rapporter un problème dans Gramps</b><br/>Le meilleur moyen de "
-#~ "rapporter un bogue dans Gramps est d'utiliser le système de suivi de "
-#~ "bogue, http://bugs.gramps-project.org"
-
-# trunk
-
-#~ msgid "Male Alive"
-#~ msgstr "Masculin vivant"
-
-# trunk
-
-#~ msgid "Female Alive"
-#~ msgstr "Féminin vivante"
-
-#~ msgid "Female Dead"
-#~ msgstr "Féminin décédée"
-
-# trunk
-
-#~ msgid "Unknown Alive"
-#~ msgstr "Inconnu vivant"
-
-# trunk
-#~ msgid "Unknown Dead"
-#~ msgstr "Inconnu décédé"
-
-#~ msgid "Family Node"
-#~ msgstr "Nœud familial"
-
-#~ msgid "Family Divorced"
-#~ msgstr "Famille divorcée"
-
-#~ msgid "Home Person"
-#~ msgstr "Individu souche"
-
-# trunk
-#~ msgid "Border Female Alive"
-#~ msgstr "Bordure féminin vivante"
-
-# trunk
-
-#~ msgid "Border Female Dead"
-#~ msgstr "Bordure féminin décédée"
-
-# trunk
-#~ msgid "Border Unknown Alive"
-#~ msgstr "Bordure inconnu vivant"
-
-# trunk
-
-#~ msgid "Border Unknown Dead"
-#~ msgstr "Bordure inconnu décédé"
-
-#~ msgid "Border Family"
-#~ msgstr "Bordure familiale"
-
-# manuel wiki
-#~ msgid "manual|Repositories"
-#~ msgstr "Dépôts"
-
-#~ msgid "Open an existing database"
-#~ msgstr "Ouvrir une base de données existante"
-
-# master
-#~ msgid "Close the current database"
-#~ msgstr "Fermer la base de données actuelle"
-
-#~ msgid "Make a Gramps XML backup of the database"
-#~ msgstr "Générer une sauvegarde de la base de données au format Gramps XML"
-
-#~ msgid "Undo History..."
-#~ msgstr "Historique d'annulations..."
-
-#~ msgid "Key %s is not bound"
-#~ msgstr "La clé %s n'est pas définie"
-
-# objet sélectionné
-#~ msgid "_Delete Item"
-#~ msgstr "_Supprimer l'article"
-
-#~ msgid "%(title)s..."
-#~ msgstr "%(title)s..."
-
-# master
-#~ msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
-#~ msgstr "%(genders)s né %(year_from)04d - %(year_to)04d"
-
-# master
-#~ msgid "Persons born %(year_from)04d-%(year_to)04d"
-#~ msgstr "Individus nés entre %(year_from)04d - %(year_to)04d"
-
-#~ msgid "Marriage of %s"
-#~ msgstr "Mariage de %s"
-
-#~ msgid "Birth of %s"
-#~ msgstr "Naissance de %s"
-
-#~ msgid "Death of %s"
-#~ msgstr "Décès de %s"
-
-#~ msgid "Anniversary: %s"
-#~ msgstr "Anniversaire : %s"
-
-#~ msgid "%d. Partner: "
-#~ msgstr "%d. Conjoint : "
-
-#~ msgid "Not a Pro-Gen file"
-#~ msgstr "Pas un fichier Pro-Gen valide"
-
-# Substantif (GNOME fr)
-#~ msgid "Loading..."
-#~ msgstr "En charge..."
-
-#~ msgid ""
-#~ "Attempt to see this location with a Map Service (OpenstreetMap, Google "
-#~ "Maps, ...)"
-#~ msgstr ""
-#~ "Tentative pour localiser cet emplacement avec le service cartographique "
-#~ "(OpenstreetMap, Google Maps, ...)"
-
-#~ msgid "Map Menu"
-#~ msgstr "Menu Carte"
-
-# manuel wiki
-# points de suspension et url ?
-#~ msgid "manual|Media_Manager..."
-#~ msgstr "Gestionnaire de media"
-
-# master
-#~ msgid ""
-#~ "Geography functionality will not be available.\n"
-#~ "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
-#~ msgstr ""
-#~ "La fonction Géographie n'est pas disponible.\n"
-#~ "Pour construire ce module, voir %(gramps_wiki_build_osmgps_url)s"
-
-#~ msgid "Open the folder containing the media file"
-#~ msgstr "Ouvrir le répertoire qui contient le medium"
-
-#~ msgid "Suppress Gramps ID"
-#~ msgstr "Supprimer les identifiants Gramps"
-
-#~ msgid "Whether to include the Gramps ID of objects"
-#~ msgstr "Inclure ou non les identifiants Gramps des objets"
-
-#~ msgid "Thumbnail Preview"
-#~ msgstr "Aperçu de la miniature"
-
-# master
-
-#~ msgid ""
-#~ "\n"
-#~ "Usage: gramps.py [OPTION...]\n"
-#~ "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#~ "\n"
-#~ "Help options\n"
-#~ "  -?, --help                             Show this help message\n"
-#~ "  --usage                                Display brief usage message\n"
-#~ "\n"
-#~ "Application options\n"
-#~ "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#~ "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#~ "Tree\n"
-#~ "  -i, --import=FILENAME                  Import file\n"
-#~ "  -e, --export=FILENAME                  Export file\n"
-#~ "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#~ "(use regular expressions)\n"
-#~ "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#~ "  -a, --action=ACTION                    Specify action\n"
-#~ "  -p, --options=OPTIONS_STRING           Specify options\n"
-#~ "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#~ "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#~ "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#~ "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#~ "delimited\n"
-#~ "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#~ "  -s, --show                             Show config settings\n"
-#~ "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#~ "Gramps\n"
-#~ "  -y, --yes                              Don't ask to confirm dangerous "
-#~ "actions (non-GUI mode only)\n"
-#~ "  -q, --quiet                            Suppress progress indication "
-#~ "output (non-GUI mode only)\n"
-#~ "  -v, --version                          Show versions\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Utilisation : gramps.py [OPTION...]\n"
-#~ " --load-modules=MODULE1,MODULE2,... Modules dynamiques à charger\n"
-#~ "\n"
-#~ "Options d'aide\n"
-#~ " -?, --help Affiche ce message d'aide\n"
-#~ " --usage Affiche une aide à l'utilisation\n"
-#~ "\n"
-#~ "Options de l'application\n"
-#~ " -O, --open=ARBRE_FAMILIAL Ouvre l'arbre familial\n"
-#~ " -C, --create=ARBRE_FAMILIAL Créé à l'ouverture si arbre familial\n"
-#~ " -i, --import=FICHIER Importe un fichier\n"
-#~ " -e, --export=FICHIER Exporte un fichier\n"
-#~ " -r, --remove=MODELE_ARBRE Enlever les arbres correspondants (utilisez "
-#~ "les expressions rationnelles)\n"
-#~ " -f, --format=FORMAT Spécifie le format de l'arbre\n"
-#~ " -a, --action=ACTION Spécifie l'action\n"
-#~ " -p, --options=OPTIONS Spécifie les options\n"
-#~ " -d, --debug=NOM_DE_LOGGER Active les logs de déboguage\n"
-#~ " -l [MODÈLE_ARBRE_FAMILIAL...] Liste les arbres familiaux\n"
-#~ " -L[MODÈLE_ARBRE_FAMILIAL...] Liste les arbres familiaux en détail\n"
-#~ " -t [MODÈLE_ARBRE_FAMILIAL...] Liste les arbres familiaux dans un format "
-#~ "tabulaire (tab)\n"
-#~ " -u, --force-unlock Force le déverrouillage de l'arbre\n"
-#~ " familial\n"
-#~ " -s, --show Affiche les paramètres de configuration\n"
-#~ " -c, --config=[config.setting[:value]] Définit un ou plusieurs paramètres "
-#~ "de\n"
-#~ " configuration et lance Gramps\n"
-#~ " -y, --yes Ne pas demander de confirmation pour les actions dangereuses\n"
-#~ " (hors interface graphique)\n"
-#~ " -q, --quiet Supprimer l'indication de progression pour la sortie\n"
-#~ " (hors interface graphique)\n"
-#~ " -v, --version Affiche les versions des bibliothèques\n"
-
-# master
-#~ msgid "Data version"
-#~ msgstr "Version des données"
-
-# trunk
-#~ msgid "Gender Male Alive"
-#~ msgstr "Masculin vivant"
-
-# trunk
-#~ msgid "Border Male Death"
-#~ msgstr "Bordure masculin décédé"
-
-# trunk
-#~ msgid "Gender Female Alive"
-#~ msgstr "Féminin vivante"
-
-# trunk
-#~ msgid "Border Female Death"
-#~ msgstr "Bordure féminin décédée"
-
-# trunk
-#~ msgid "Gender Unknown Alive"
-#~ msgstr "Inconnu vivant"
-
-# trunk
-#~ msgid "Border Unknown Death"
-#~ msgstr "Bordure inconnu décédé"
-
-#~ msgid "Invalid latitude (syntax: 18\\u00b09'"
-#~ msgstr "Latitude invalide (syntaxe : 18\\u00b09'"
-
-#~ msgid "Invalid longitude (syntax: 18\\u00b09'"
-#~ msgstr "Longitude invalide (syntaxe : 18\\u00b09'"
-
-# manuel wiki
-#~ msgid "manual|New_Repositories_dialog"
-#~ msgstr "Nouveau_dépôts"
-
-# trunk
-#~ msgid ""
-#~ "Conveys the submitter's quantitative evaluation of the credibility of a "
-#~ "piece of information, based upon its supporting evidence. It is not "
-#~ "intended to eliminate the receiver's need to evaluate the evidence for "
-#~ "themselves.\n"
-#~ "Very Low =Unreliable evidence or estimated data\n"
-#~ "Low =Questionable reliability of evidence (interviews, census, oral "
-#~ "genealogies, or potential for bias for example, an autobiography)\n"
-#~ "High =Secondary evidence, data officially recorded sometime after event\n"
-#~ "Very High =Direct and primary evidence used, or by dominance of the "
-#~ "evidence "
-#~ msgstr ""
-#~ "Traduit la confiance placée dans la qualité de la source transmise ou la "
-#~ "crédibilité de cette partie d'information, basé sur les preuves. Il ne "
-#~ "vise pas à éliminer les besoins de vérifier les preuves.\n"
-#~ "Très bas = preuve non-liée ou date estimée\n"
-#~ "Bas = preuve qui nécessite une vérification (interview, recensement, "
-#~ "généalogie orale, ou une possibilité par le biais, par exemple, d'une "
-#~ "autobiographie)\n"
-#~ "Haut = preuve secondaire, données officiellement enregistrées parfois "
-#~ "après un événement\n"
-#~ "Très haut = preuve directe et principale, ou qui n'entraîne pas de doute"
-
-# master
-#~ msgid ""
-#~ "Either use the two fields below to enter coordinates(latitude and "
-#~ "longitude),"
-#~ msgstr ""
-#~ "Utilisez soit les deux champs suivants pour entrer les coordonnées "
-#~ "(latitude et longitude),"
-
-# trunk
-#~ msgid "DB-API version"
-#~ msgstr "Version DB-API"
-
-# master
-#~ msgid "Database db version"
-#~ msgstr "Version de la base de données db"
-
-# master
-#~ msgid "DB-_API Database"
-#~ msgstr "Base de données DB-_API"
-
-# master
-#~ msgid "DB-API Database"
-#~ msgstr "Base de données DB-API"
-
-#~ msgid "In-Memory"
-#~ msgstr "En-Mémoire"
-
-# master
-#~ msgid "In-_Memory Database"
-#~ msgstr "Base de données En-_Mémoire"
-
-# master
-#~ msgid "In-Memory Database"
-#~ msgstr "Base de données En-Mémoire"
-
-# master
-#~ msgid ""
-#~ "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
-#~ "%(total_pages)d%(strong_end)s"
-#~ msgstr ""
-#~ "%(strong1_start)s%(page_number)d%(strong_end)s sur %(strong2_start)s"
-#~ "%(total_pages)d%(strong_end)s"
-
-# trunk
-#~ msgid "Gender Male Death"
-#~ msgstr "Masculin décédé"
-
-# trunk
-#~ msgid "Gender Female Death"
-#~ msgstr "Féminin décédée"
-
-# trunk
-#~ msgid "Gender Unknown Death"
-#~ msgstr "Inconnu décédé"
-
-# master
-#~ msgid "Suppress comma after house number"
-#~ msgstr "Suppression de la virgule après le numéro de l'adresse"
-
-# master
-#~ msgid "-> Hamlet/Village/Town/City"
-#~ msgstr "-> Hameau/Village/Ville"
-
-# master
-#~ msgid "Hamlet/Village/Town/City ->"
-#~ msgstr "Hameau/Village/Ville ->"
-
-# master
-#~ msgid "Restrict"
-#~ msgstr "Restreindre"
-
-# master
-#~ msgid "You wish to convert this database into the new DB-API format?"
-#~ msgstr ""
-#~ "Souhaitez-vous convertir cette base de données vers le nouveau format DB-"
-#~ "API ?"
-
-#~ msgid "48.21\"S, -18.2412 or -18:9:48.21)"
-#~ msgstr "48.21\"S, -18.2412 ou -18:9:48.21)"
-
-#~ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
-#~ msgstr "48.21\"E, -18.2412 ou -18:9:48.21)"
-
-#~ msgid "_PostgreSQL Database"
-#~ msgstr "Base de données _PostgreSQL"
-
-#~ msgid "PostgreSQL Database"
-#~ msgstr "Base de données PostgreSQL"
-
-# master
-#~ msgid "Ancestor"
-#~ msgstr "Ascendant"
-
-# master
-#~ msgid "Descendant"
-#~ msgstr "Descendant"
-
-#~ msgid "Alphabet Menu: %s"
-#~ msgstr "Menu alphabétique : %s"
