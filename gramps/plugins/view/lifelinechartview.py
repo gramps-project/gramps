@@ -194,6 +194,16 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
                 'data_container':'formatting',
                 'widget' : 'combobox',
             },
+            'family_shape': {
+                'description' : BaseGraph._formatting_description['family_shape']['short_description'],
+                'tooltip' : BaseGraph._formatting_description['family_shape']['long_description'],
+                'additional_arg' : {'opts' : enumerate(["0", "1"]), 'valueactive':True},
+                'additional_setter_arg'  : {'index_to_name' : lambda x:int(x)},
+
+
+                'data_container':'formatting',
+                'widget' : 'combobox',
+            },
             'font_size_description': {
                 'description' : BaseGraph._formatting_description['font_size_description']['short_description'],
                 'tooltip' : BaseGraph._formatting_description['font_size_description']['long_description'],
