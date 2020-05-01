@@ -1,3 +1,23 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2020 Christian Schulze
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
 """
 See https://github.com/CWSchulze/life_line_chart
 """
@@ -10,22 +30,22 @@ See https://github.com/CWSchulze/life_line_chart
 from gi.repository import Gtk
 import cairo
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from copy import deepcopy
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-import lifelinechart
+#------------------------------------------------------------------nechart
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gui.utils import SystemFonts
 
+# widget
+import lifelinechart
 
-from copy import deepcopy
-import sys
-import os
-from life_line_chart import AncestorGraph, BaseGraph
+# backend
+from life_line_chart import BaseGraph
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
@@ -36,41 +56,21 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
     """
     The Gramplet code that realizes the LifeLineChartWidget.
     """
-    #settings in the config file
+    # settings in the config file
     CONFIGSETTINGS = (
-        ('interface.lifelineview-maxgen', 9),
         ('interface.lifelineview-generations', 4),
-        ('interface.lifelineview-compression_steps', 4),
-        ('interface.lifelineview-vertical_step_size', 30),
-        ('interface.lifelineview-font_size_description', 0.5),
-        ('interface.lifelineview-total_height', 2000),
-
         ('interface.lifelineview-background', lifelinechart.BACKGROUND_GRAD_GEN),
-        ('interface.lifelineview-flip_to_optimize', True),
-        ('interface.lifelineview-compress', True),
-        ('interface.lifelineview-fathers_have_the_same_color', True),
-        ('interface.lifelineview-flip_upside_down', True),
-        ('interface.lifelineview-font_name', 'Sans'),
-        ('interface.lifelineview-font-size', 12),
         ('interface.lifelineview-showid', False),
-        #('interface.color-start-grad', '#ef2929'),
-        #('interface.color-end-grad', '#3d37e9'),
-    )
-
+        ('interface.lifelineview-relative_line_thickness', BaseGraph._default_formatting['relative_line_thickness']*100),
+        ('interface.lifelineview-font_size_description', BaseGraph._default_formatting['font_size_description']*100),
+        )
+    
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
         self.uistate = uistate
 
         self.formatting = deepcopy(BaseGraph._default_formatting)
         self.positioning = deepcopy(BaseGraph._default_positioning)
-        # self.positioning = {
-        #     'generations':4,
-        #     'compression_steps':-1,
-        #     'compress':True,
-        #     'flip_to_optimize':True,
-        #     'fathers'
-        # }
-
         self.allfonts = [x for x in enumerate(
             SystemFonts().get_system_fonts())]
 
@@ -224,7 +224,7 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
                                 PersonBookmarks, nav_group)
         lifelinechart.LifeLineChartGrampsGUI.__init__(
             self, self.on_childmenu_changed)
-        #set needed values
+        # set needed values
         scg = self._config.get
         for key, value in self.formatting.items():
             gramps_key = 'interface.lifelineview-'+key
@@ -705,7 +705,7 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
 
 
 # fix the fact that the config is static
-for key, value in BaseGraph._default_formatting.items():
+for key, value in list(BaseGraph._default_formatting.items()) + list(BaseGraph._default_positioning.items()):
     def config_has_key(name):
         for a, b in LifeLineChartView.CONFIGSETTINGS:
             if a == name:
