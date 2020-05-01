@@ -25,17 +25,16 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 register(VIEW,
-id = 'lifelinechartview',
-name = _("Life Line Chart"),
-category = ("Ancestry", _("Charts")),
-description = _("A view showing parents through a lifelinechart"),
-version = '1.0',
-gramps_target_version = "5.1",
-status = STABLE,
-fname = 'lifelinechartview.py',
-authors = ["Christian Schulze"],
-authors_email = ["XX"],
-viewclass = 'LifeLineChartView',
-stock_icon = 'gramps-lifelinechart',
-  )
-
+         id='lifelinechartview',
+         name=_("Life Line Chart"),
+         category=("Ancestry", _("Charts")),
+         description=_("A view showing parents through a lifelinechart"),
+         version='1.0',
+         gramps_target_version="5.1",
+         status=STABLE,
+         fname='lifelinechartview.py',
+         authors=["Christian Schulze"],
+         authors_email=["XX"],
+         viewclass='LifeLineChartView',
+         stock_icon='gramps-lifelinechart',
+         )

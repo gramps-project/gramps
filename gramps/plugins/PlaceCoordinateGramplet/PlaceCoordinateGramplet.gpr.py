@@ -23,16 +23,17 @@
 # Register Gramplet
 #
 #------------------------------------------------------------------------
-register(GRAMPLET, 
-         id="Place Coordinates", 
-         name=_("Place Coordinates"), 
-         description = _("Gramplet that simplifies setting the coordinates of a place"),
-         version = '1.1.0',
+register(GRAMPLET,
+         id="Place Coordinates",
+         name=_("Place Coordinates"),
+         description=_(
+             "Gramplet that simplifies setting the coordinates of a place"),
+         version='1.1.0',
          gramps_target_version="5.1",
-         status = STABLE,
+         status=STABLE,
          fname="PlaceCoordinateGramplet.py",
          height=280,
-         gramplet = 'PlaceCoordinateGramplet',
+         gramplet='PlaceCoordinateGramplet',
          gramplet_title=_("Place Coordinates"),
          navtypes=["Place"],
          )

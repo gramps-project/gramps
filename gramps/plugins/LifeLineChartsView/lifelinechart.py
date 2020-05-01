@@ -7,6 +7,7 @@ See https://github.com/CWSchulze/life_line_chart
 # Python modules
 #
 #-------------------------------------------------------------------------
+import logging
 import math
 import colorsys
 import pickle
@@ -31,13 +32,16 @@ from gramps.gen.lib import Person, ChildRefType, EventType, FamilyRelType
 from gramps.gen.lib import Date
 import datetime
 
+logger = logging.getLogger("LifeLineChart View")
+
 def get_date(event):
     event_data = None
     try:
         date_obj = event.get_date_object()
         if date_obj.year == 0:
             return None
-        date = datetime.datetime(date_obj.dateval[2], max(1, date_obj.dateval[1]), max(1,date_obj.dateval[0]), 0, 0, 0)
+        date = datetime.datetime(date_obj.dateval[2], max(
+            1, date_obj.dateval[1]), max(1, date_obj.dateval[0]), 0, 0, 0)
         quality = date_obj.get_quality()
         modifier = date_obj.get_modifier()
         comment = ''
@@ -52,14 +56,15 @@ def get_date(event):
         elif modifier == Date.MOD_ABOUT:
             comment = 'About'
         event_data = {
-            'gramps_event' : event,
-            'date' : date,
-            'ordinal_value' : date.toordinal(),
-            'comment':comment
+            'gramps_event': event,
+            'date': date,
+            'ordinal_value': date.toordinal(),
+            'comment': comment
         }
     except:
         pass
     return event_data
+
 
 def get_relevant_events(gramps_person, dbstate, target):
     events_key_name = {
@@ -70,8 +75,8 @@ def get_relevant_events(gramps_person, dbstate, target):
         EventType.BAPTISM: 'baptism',
     }
     for eventref in gramps_person.get_event_ref_list():
-#        for get_event_reference, key_name in events:
-#            eventref = get_event_reference()
+        #        for get_event_reference, key_name in events:
+        #            eventref = get_event_reference()
         event = dbstate.db.get_event_from_handle(eventref.ref)
         if event and event.get_type().value in events_key_name:
             key_name = events_key_name[event.get_type().value]
@@ -88,7 +93,6 @@ def get_relevant_events(gramps_person, dbstate, target):
     else:
         target['birth_or_christening'] = None
 
-
     if 'death' in target:
         target['death_or_burial'] = target['death']
     elif 'death_or_burial' not in target and 'burial' in target:
@@ -96,20 +100,21 @@ def get_relevant_events(gramps_person, dbstate, target):
     else:
         target['death_or_burial'] = None
 
+
 class GrampsIndividual(BaseIndividual):
     def __init__(self, instances, dbstate, individual_id):
         BaseIndividual.__init__(self, instances, individual_id)
         self._dbstate = dbstate
-        self._gramps_person = self._dbstate.db.get_person_from_handle(individual_id)
+        self._gramps_person = self._dbstate.db.get_person_from_handle(
+            individual_id)
         self._initialize()
-        
+
     def _initialize(self):
         BaseIndividual._initialize(self)
         self.child_of_family_id = self._gramps_person.get_parent_family_handle_list()
         get_relevant_events(self._gramps_person, self._dbstate, self.events)
         estimate_birth_date(self, self._instances)
         estimate_death_date(self)
-        
 
         # if family and other.get_handle() in [family.get_father_handle(),
         #                                          family.get_mother_handle()]:
@@ -146,7 +151,7 @@ class GrampsIndividual(BaseIndividual):
     #     _get_relevant_events(self._database_indi, self.individual_id, self.events)
     #     estimate_birth_date(self, self._instances)
     #     estimate_death_date(self)
-        
+
     def _get_name(self):
         return [name_displayer.display_format(self._gramps_person, 101), name_displayer.display_format(self._gramps_person, 100)]
     name = property(_get_name)
@@ -154,7 +159,8 @@ class GrampsIndividual(BaseIndividual):
     def _get_father_and_mother(self):
         child_of_families = self._gramps_person.get_parent_family_handle_list()
         if child_of_families:
-            child_of_family = self._dbstate.db.get_family_from_handle(child_of_families[0])
+            child_of_family = self._dbstate.db.get_family_from_handle(
+                child_of_families[0])
             father = child_of_family.get_father_handle()
             mother = child_of_family.get_mother_handle()
             return father, mother
@@ -162,8 +168,6 @@ class GrampsIndividual(BaseIndividual):
 
     def _get_marriage_family_ids(self):
         return self._gramps_person.get_family_handle_list()
-
-
 
 
 def estimate_marriage_date(family):
@@ -175,30 +179,33 @@ def estimate_marriage_date(family):
             get_relevant_events(gramps_person, family._dbstate, child_events)
             if child_events['birth_or_christening']:
                 children_events.append(child_events['birth_or_christening'])
-        
+
         #unsorted_marriages = [family._instances[('f',m)] for m in family._marriage_family_ids]
         if len(children_events) > 0:
-            sorted_pairs = list(zip([(m['ordinal_value'], i) for i, m in enumerate(children_events)], children_events))
+            sorted_pairs = list(zip([(m['ordinal_value'], i) for i, m in enumerate(
+                children_events)], children_events))
             sorted_pairs.sort()
             family.marriage = sorted_pairs[0][1]
+
 
 class GrampsFamily(BaseFamily):
     def __init__(self, instances, dbstate, family_id):
         BaseFamily.__init__(self, instances, family_id)
         self._dbstate = dbstate
-        self._gramps_family = self._dbstate.db.get_family_from_handle(family_id)
+        self._gramps_family = self._dbstate.db.get_family_from_handle(
+            family_id)
         self._initialize()
 
     def _initialize(self):
         BaseFamily._initialize(self)
         #self.marriage = {}
-        
+
         reflist = self._gramps_family.get_event_ref_list()
         if reflist:
-            elist = [ self._dbstate.db.get_event_from_handle(ref.ref)
-                        for ref in reflist ]
-            events = [ evnt for evnt in elist
-                        if evnt.type == EventType.MARRIAGE ]
+            elist = [self._dbstate.db.get_event_from_handle(ref.ref)
+                     for ref in reflist]
+            events = [evnt for evnt in elist
+                      if evnt.type == EventType.MARRIAGE]
             if events:
                 #    return displayer.display(date_obj)
                 self.marriage = get_date(events[0])
@@ -218,14 +225,15 @@ class GrampsFamily(BaseFamily):
     def _get_husb_name(self):
         father_handle = Family.get_father_handle(self._gramps_family)
         return self.husb.name
+
     def _get_wife_name(self):
         mother_handle = Family.get_mother_handle(self._gramps_family)
         return self.wife.name
     husb_name = property(_get_husb_name)
     wife_name = property(_get_wife_name)
 
-import logging
-logger = logging.getLogger()
+
+
 
 def get_dbdstate_instance_container(dbstate):
     logger.debug('start reading data')
@@ -237,12 +245,12 @@ def get_dbdstate_instance_container(dbstate):
     #     for individual_id in list(database_indi.keys()):
     #         if not ('i',individual_id) in self:
     #             self[('i',individual_id)] = Individual(self, database_fam, database_indi, individual_id)
-    
+
     logger.debug('start creating instances')
     return InstanceContainer(
         lambda self, key: GrampsFamily(self, dbstate, key[1]),
         lambda self, key: GrampsIndividual(self, dbstate, key[1]),
-        None)#lambda self : instantiate_all(self, database_fam, database_indi))
+        None)  # lambda self : instantiate_all(self, database_fam, database_indi))
 
 
 
@@ -299,6 +307,7 @@ TWO_LINE_FORMAT_2 = 101
 # LifeLineChartBaseWidget
 #
 #-------------------------------------------------------------------------
+
 
 class LifeLineChartBaseWidget(Gtk.DrawingArea):
     """ a base widget for lifelinecharts"""
@@ -374,10 +383,10 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         self.uistate.connect('font-changed', self.reload_symbols)
 
         self._mouse_click = False
-        self.rotate_value = 90 # degrees, initially, 1st gen male on right half
-        self.center_delta_xy = [0, 0] # translation of the center of the
-                                      # lifeline wrt canonical center
-        self.center_xy = [0, 0] # coord of the center of the lifeline
+        self.rotate_value = 90  # degrees, initially, 1st gen male on right half
+        self.center_delta_xy = [0, 0]  # translation of the center of the
+        # lifeline wrt canonical center
+        self.center_xy = [0, 0]  # coord of the center of the lifeline
         self.mouse_x = 0
         self.mouse_y = 0
         #(re)compute everything
@@ -399,10 +408,12 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
     def reload_symbols(self):
         dth_idx = self.uistate.death_symbol
         if self.uistate.symbols:
-            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_for_string(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_for_char(dth_idx)
         else:
-            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_fallback(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_fallback(dth_idx)
 
     def reset(self):
@@ -468,7 +479,6 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         dummy_widget = widget
         self.draw(ctx=ctx, scale=scale)
 
-
     def set_userdata_timeperiod(self, person, userdata):
         """
         set the userdata as used by timeperiod
@@ -505,7 +515,7 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
                      agefrac * self.cend_hsv[1]),
                     ((1-agefrac) * self.cstart_hsv[2] +
                      agefrac * self.cend_hsv[2]),
-                    )
+                )
         userdata.append((agecol[0]*255, agecol[1]*255, agecol[2]*255))
 
     def background_box(self, person, generation, userdata):
@@ -547,7 +557,7 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
                      periodfrac * self.cend_hsv[1]),
                     ((1-periodfrac) * self.cstart_hsv[2] +
                      periodfrac * self.cend_hsv[2]),
-                    )
+                )
                 color = (periodcol[0]*255, periodcol[1]*255, periodcol[2]*255)
         else:
             if self.background == BACKGROUND_GRAD_GEN and generation < 0:
@@ -566,7 +576,6 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
             alpha = 1.
 
         return color[0], color[1], color[2], alpha
-
 
     def cursor_to_polar(self, curx, cury, get_raw_rads=False):
         """
@@ -595,7 +604,6 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         # print(start_rad, rads, stop_rad, ". (rads-start), portion :",
         #       dist_rads_to_start_rads, portion)
         return dist_rads_to_start_rads < portion
-
 
     def person_at(self, cell_address):
         """
@@ -660,21 +668,22 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         What to do if we release a mouse button
         """
         dummy_widget = widget
-        self.translating = False # keep track of up/down/left/right movement
+        self.translating = False  # keep track of up/down/left/right movement
 
         if event.button == 1:
             #we grab the focus to enable to see key_press events
             self.grab_focus()
 
         # cell_address = self.cell_address_under_cursor(event.x, event.y)
-        individual = self.life_line_chart_ancestor_graph.get_individual_from_position(event.x/self.zoom_level, event.y/self.zoom_level)
+        individual = self.life_line_chart_ancestor_graph.get_individual_from_position(
+            event.x/self.zoom_level, event.y/self.zoom_level)
         if individual:
             individual_id = individual.individual_id
         else:
             #return True
 
             # left mouse on center dot, we translate on left click
-            if event.button == 1: # left mouse
+            if event.button == 1:  # left mouse
                 # save the mouse location for movements
                 self.translating = True
                 self.last_x, self.last_y = event.x, event.y
@@ -708,7 +717,8 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         self._mouse_click = False
         if self.last_x is None or self.last_y is None:
             # while mouse is moving, we must update the tooltip based on person
-            individual = self.life_line_chart_ancestor_graph.get_individual_from_position(event.x/self.zoom_level, event.y/self.zoom_level)
+            individual = self.life_line_chart_ancestor_graph.get_individual_from_position(
+                event.x/self.zoom_level, event.y/self.zoom_level)
             self.mouse_x, self.mouse_y = event.x, event.y
             tooltip = ""
             if individual:
@@ -774,7 +784,9 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
             return True
         if self.translating:
             self.translating = False
-            self.center_xy = self.center_xy[0] + self.center_delta_xy[0], self.center_xy[1] + self.center_delta_xy[1]
+            self.center_xy = self.center_xy[0] + \
+                self.center_delta_xy[0], self.center_xy[1] + \
+                self.center_delta_xy[1]
             self.center_delta_xy = 0, 0
         else:
             self.center_delta_xy = 0, 0
@@ -808,7 +820,8 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
         dummy_widget = widget
         dummy_time = time
         tgs = [x.name() for x in context.list_targets()]
-        person = self.life_line_chart_ancestor_graph._instances[('i', self._mouse_click_individual_id)]._gramps_person
+        person = self.life_line_chart_ancestor_graph._instances[(
+            'i', self._mouse_click_individual_id)]._gramps_person
         if person:
             if info == DdTargets.PERSON_LINK.app_id:
                 data = (DdTargets.PERSON_LINK.drag_type,
@@ -869,6 +882,7 @@ class LifeLineChartBaseWidget(Gtk.DrawingArea):
 #
 #-------------------------------------------------------------------------
 
+
 class LifeLineChartWidget(LifeLineChartBaseWidget):
     """
     Interactive Fan Chart Widget.
@@ -895,7 +909,8 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         self.set_values(None, 5, BACKGROUND_GRAD_GEN, True, True, True, True,
                         'Sans', None, 0.5, FORM_CIRCLE,
                         False)
-        LifeLineChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
+        LifeLineChartBaseWidget.__init__(
+            self, dbstate, uistate, callback_popup)
         self.ic = get_dbdstate_instance_container(self.dbstate)
 
     def set_values(self, root_person_handle, maxgen, background, childring,
@@ -907,7 +922,7 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         """
 
         reset = False
-        if self.rootpersonh != root_person_handle:# or self.filter != filtr:
+        if self.rootpersonh != root_person_handle:  # or self.filter != filtr:
             reset = True
             self.rootpersonh = root_person_handle
         new_filter = self.filter != filtr
@@ -929,16 +944,21 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                         self.formatting != self.life_line_chart_ancestor_graph._formatting or new_filter):
 
                     if reset or self.life_line_chart_ancestor_graph is None or self.positioning != self.life_line_chart_ancestor_graph._positioning:
-                        self.life_line_chart_ancestor_graph = AncestorGraph(positioning = self.positioning, formatting = self.formatting, instance_container=lambda:get_dbdstate_instance_container(self.dbstate))
-                        root_individual = self.life_line_chart_ancestor_graph._instances[('i', self.rootpersonh)]
-                        
-                        self.life_line_chart_ancestor_graph.select_individuals(root_individual)
+                        self.life_line_chart_ancestor_graph = AncestorGraph(
+                            positioning=self.positioning, formatting=self.formatting, instance_container=lambda: get_dbdstate_instance_container(self.dbstate))
+                        root_individual = self.life_line_chart_ancestor_graph._instances[(
+                            'i', self.rootpersonh)]
+
+                        self.life_line_chart_ancestor_graph.select_individuals(
+                            root_individual)
                         cof_family_id = None
                         if root_individual.child_of_family_id:
                             cof_family_id = root_individual.child_of_family_id[0]
-                        self.life_line_chart_ancestor_graph.place_selected_individuals(root_individual, None, None, self.life_line_chart_ancestor_graph._instances[('f',cof_family_id)])
+                        self.life_line_chart_ancestor_graph.place_selected_individuals(
+                            root_individual, None, None, self.life_line_chart_ancestor_graph._instances[('f', cof_family_id)])
                         try:
-                            self.life_line_chart_ancestor_graph.modify_layout(self.rootpersonh)
+                            self.life_line_chart_ancestor_graph.modify_layout(
+                                self.rootpersonh)
                         except:
                             pass
 
@@ -947,22 +967,23 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                             gir.color_backup = gir.color
                     else:
                         self.life_line_chart_ancestor_graph.clear_svg_items()
-                        self.life_line_chart_ancestor_graph._formatting = deepcopy(self.formatting)
-                        
+                        self.life_line_chart_ancestor_graph._formatting = deepcopy(
+                            self.formatting)
+
                     def filter(individual_id):
                         if self.filter:
-                            person = self.life_line_chart_ancestor_graph._instances[('i', individual_id)]._gramps_person
+                            person = self.life_line_chart_ancestor_graph._instances[(
+                                'i', individual_id)]._gramps_person
                             if not self.filter.match(person.handle, self.dbstate.db):
                                 return True
                         return False
                     for gir in self.life_line_chart_ancestor_graph.graphical_individual_representations:
                         if filter(gir.individual_id):
-                            gir.color = (220,220,220)
+                            gir.color = (220, 220, 220)
                         else:
                             gir.color = gir.color_backup
                     self.life_line_chart_ancestor_graph.define_svg_items()
             plot()
-            
 
     def nrgen(self):
         """
@@ -1010,41 +1031,46 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
             #ctx.translate(self.center_xy[0] + self.center_delta_xy[0], self.center_xy[1] + self.center_delta_xy[1])
             ctx.scale(self.zoom_level, self.zoom_level)
 
-            visible_range = self.scrolledwindow.get_clip().width, self.scrolledwindow.get_clip().height
+            visible_range = self.scrolledwindow.get_clip(
+            ).width, self.scrolledwindow.get_clip().height
             sb_h_adj = self.scrolledwindow.get_hscrollbar().get_adjustment()
             sb_v_adj = self.scrolledwindow.get_vscrollbar().get_adjustment()
             #visible_range = 0,0
-            sb_h_adj.set_value((self.zoom_level / self.zoom_level_backup) * (visible_range[0] * 0.5 + sb_h_adj.get_value()) - visible_range[0] * 0.5)
-            sb_v_adj.set_value((self.zoom_level / self.zoom_level_backup) * (visible_range[1] * 0.5 + sb_v_adj.get_value()) - visible_range[1] * 0.5)
+            sb_h_adj.set_value((self.zoom_level / self.zoom_level_backup) * (
+                visible_range[0] * 0.5 + sb_h_adj.get_value()) - visible_range[0] * 0.5)
+            sb_v_adj.set_value((self.zoom_level / self.zoom_level_backup) * (
+                visible_range[1] * 0.5 + sb_v_adj.get_value()) - visible_range[1] * 0.5)
             self.zoom_level_backup = self.zoom_level
         else:  # printing
             # ??
             #ctx.translate(*self.center_xy)
             ctx.scale(scale, scale)
 
-        
         additional_items = []
         for key, value in self.life_line_chart_ancestor_graph.additional_graphical_items.items():
             additional_items += value
-        sorted_individuals = [(gr.get_birth_event()['ordinal_value'], index, gr)  for index, gr in enumerate(self.life_line_chart_ancestor_graph.graphical_individual_representations)]
+        sorted_individuals = [(gr.get_birth_event()['ordinal_value'], index, gr) for index, gr in enumerate(
+            self.life_line_chart_ancestor_graph.graphical_individual_representations)]
         sorted_individuals.sort()
         sorted_individual_items = []
         for _, index, graphical_individual_representation in sorted_individuals:
             sorted_individual_items += graphical_individual_representation.items
         for item in additional_items + sorted_individual_items:
-                
-                def text_function(ctx, text, x, y, rotation=0, fontName="Arial", fontSize=10, verticalPadding=0, vertical_offset=0, horizontal_offset=0, bold=False, align = 'center', position='middle'):
+
+                def text_function(ctx, text, x, y, rotation=0, fontName="Arial", fontSize=10, verticalPadding=0, vertical_offset=0, horizontal_offset=0, bold=False, align='center', position='middle'):
 
                     rotation = rotation * math.pi / 180
 
                     if bold:
-                        ctx.select_font_face(fontName, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+                        ctx.select_font_face(
+                            fontName, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
                     else:
-                        ctx.select_font_face(fontName, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+                        ctx.select_font_face(
+                            fontName, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
                     ctx.set_font_size(fontSize)
 
                     fascent, fdescent, fheight, fxadvance, fyadvance = ctx.font_extents()
-                    
+
                     ctx.save()
                     ctx.translate(x, y)
                     ctx.rotate(rotation)
@@ -1053,7 +1079,8 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                     lines = text.split("\n")
 
                     for i, line in enumerate(lines):
-                        xoff, yoff, textWidth, textHeight = ctx.text_extents(line)[:4]
+                        xoff, yoff, textWidth, textHeight = ctx.text_extents(line)[
+                            :4]
 
                         if align == 'middle':
                             offx = -textWidth / 2.0
@@ -1061,9 +1088,10 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                             offx = -textWidth
                         else:
                             offx = 0
-                        
+
                         if position == 'middle':
-                            offy = (fheight / 2.0) + (fheight + verticalPadding) * i
+                            offy = (fheight / 2.0) + \
+                                (fheight + verticalPadding) * i
                         else:
                             offy = (fheight + verticalPadding) * i
 
@@ -1107,10 +1135,10 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                         args['insert'][0],
                         args['insert'][1],
                         rotation,
-                        fontSize = font_size,
+                        fontSize=font_size,
                         fontName=item['font_name'],
-                        vertical_offset = vertical_offset,
-                        horizontal_offset = horizontal_offset,
+                        vertical_offset=vertical_offset,
+                        horizontal_offset=horizontal_offset,
                         align=anchor,
                         position='top')
                     # ctx.save()
@@ -1123,7 +1151,7 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                     #     ctx.move_to(*args['insert'])
                     #     ctx.show_text(args['text'])
                     # cr.restore()
-                    # 
+                    #
                     # #args = deepcopy(item['config'])
                     # #args['insert'] = (args['insert'][0], args['insert'][1])
                     # svg_text = svg_document.text(
@@ -1137,9 +1165,11 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
 
                         #ctx.set_source_rgb(*[c/255. for c in item['color']])
                         #lg3 = cairo.LinearGradient(0, item['color_pos'][0],  0, item['color_pos'][1])
-                        lg3 = cairo.LinearGradient(0, item['color_pos'][0], 0, item['color_pos'][1])
+                        lg3 = cairo.LinearGradient(
+                            0, item['color_pos'][0], 0, item['color_pos'][1])
                         #fill = svg_document.linearGradient(("0", str(item['color_pos'][0])+""), ("0", str(item['color_pos'][1])+""), gradientUnits='userSpaceOnUse')
-                        lg3.add_color_stop_rgba(0, *[c/255. for c in item['color']], 1)
+                        lg3.add_color_stop_rgba(
+                            0, *[c/255. for c in item['color']], 1)
                         lg3.add_color_stop_rgba(1, 0, 0, 0, 1)
 
                         ctx.set_source(lg3)
@@ -1151,30 +1181,33 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                         elif item['config']['type'] == 'CubicBezier':
                             ctx.move_to(arguments[0].real, arguments[0].imag)
                             ctx.set_line_width(item['stroke_width'])
-                            ctx.curve_to(arguments[1].real, arguments[1].imag, arguments[2].real, arguments[2].imag, arguments[3].real, arguments[3].imag)
+                            ctx.curve_to(arguments[1].real, arguments[1].imag, arguments[2].real,
+                                         arguments[2].imag, arguments[3].real, arguments[3].imag)
                             ctx.stroke()
                     else:
                         if item['config']['type'] == 'Line':
                             ctx.move_to(arguments[0].real, arguments[0].imag)
-                            ctx.set_source_rgb(*[c/255. for c in item['color']])
+                            ctx.set_source_rgb(
+                                *[c/255. for c in item['color']])
                             ctx.set_line_width(item['stroke_width'])
                             ctx.line_to(arguments[1].real, arguments[1].imag)
                             ctx.stroke()
                         elif item['config']['type'] == 'CubicBezier':
-                            
+
                             ctx.move_to(arguments[0].real, arguments[0].imag)
-                            ctx.set_source_rgb(*[c/255. for c in item['color']])
+                            ctx.set_source_rgb(
+                                *[c/255. for c in item['color']])
                             ctx.set_line_width(item['stroke_width'])
-                            ctx.curve_to(arguments[1].real, arguments[1].imag, arguments[2].real, arguments[2].imag, arguments[3].real, arguments[3].imag)
+                            ctx.curve_to(arguments[1].real, arguments[1].imag, arguments[2].real,
+                                         arguments[2].imag, arguments[3].real, arguments[3].imag)
                             ctx.stroke()
                 elif item['type'] == 'textPath':
                     from math import cos, sin, atan2, pi
 
-
                     # def distance(x1, y1, x2, y2):
                     #     """Get the distance between two points."""
                     #     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
-                        
+
                     # def point_angle(cx, cy, px, py):
                     #     """Return angle between x axis and point knowing given center."""
                     #     return atan2(py - cy, px - cx)
@@ -1210,8 +1243,7 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                     #     return (
                     #         ([pl.pop(0) if pl else None for pl in (xl, yl, dxl, dyl, rl)], char)
                     #         for char in word)
-                    
-                    
+
                     # x, y, dx, dy, rotate = [], [], [], [], [0]
                     # if 'x' in node:
                     #     x = [size(surface, i, 'x')
@@ -1326,7 +1358,7 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                     # #end pathtext
                     import svgpathtools
                     from cmath import phase
-                    
+
                     def draw_text_along_path(ctx, textspans, start_x, start_y, cp1_x, cp1_y, cp2_x, cp2_y, end_x, end_y, show_path_line=True):
                         def warpPath(ctx, function):
                             first = True
@@ -1355,7 +1387,8 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
 
                         def follow_path(path_length, path, te, x, y):
                             #p = x/path_length
-                            p = path.ilength(min(x,path_length), error=1e-3, min_depth=2)
+                            p = path.ilength(
+                                min(x, path_length), error=1e-3, min_depth=2)
                             return path.point(p).real - path.normal(p).real*(y-te.y_bearing/2), path.point(p).imag - path.normal(p).imag*(y-te.y_bearing/2)
 
                         def xxx(path_length, ctx, path, textspans, vertical_offset, horizontal_offset):
@@ -1364,77 +1397,85 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                                 if 'dx' in args:
                                     x_pos += float(args['dx'][0])
                                 for character in text:
-                                    p = path.ilength(min(x_pos, path_length), error=1e-3, min_depth=2)
-                                    character_pos = path.point(p) - path.normal(p) * vertical_offset*0
-                                    x, y = (character_pos.real, character_pos.imag)
+                                    p = path.ilength(
+                                        min(x_pos, path_length), error=1e-3, min_depth=2)
+                                    character_pos = path.point(
+                                        p) - path.normal(p) * vertical_offset*0
+                                    x, y = (character_pos.real,
+                                            character_pos.imag)
                                     r = phase(path.normal(p))/pi*180 + 90
                                     ctx.save()
-                                    
+
                                     text_function(
                                         ctx,
                                         character,
                                         x,
                                         y,
                                         r,
-                                        fontSize = item['font_size'],
+                                        fontSize=item['font_size'],
                                         fontName=item['font_name'],
-                                        vertical_offset = vertical_offset,
-                                        horizontal_offset = horizontal_offset,
+                                        vertical_offset=vertical_offset,
+                                        horizontal_offset=horizontal_offset,
                                         align='start',
                                         position='left',
-                                        bold = 'style' in args and 'bold' in args['style'])
-                                    ctx.select_font_face(item['font_name'], cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+                                        bold='style' in args and 'bold' in args['style'])
+                                    ctx.select_font_face(
+                                        item['font_name'], cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
                                     ctx.set_font_size(font_size)
                                     te = ctx.text_extents(character,)
                                     ctx.restore()
-                                    x_pos +=  te.x_advance
-                                
+                                    x_pos += te.x_advance
+
                                 te = ctx.text_extents(' ',)
-                                x_pos +=  te.x_advance
-                        svg_path = svgpathtools.CubicBezier(start_x + start_y*1j, cp1_x + cp1_y*1j, cp2_x + cp2_y*1j, end_x + end_y*1j)
+                                x_pos += te.x_advance
+                        svg_path = svgpathtools.CubicBezier(
+                            start_x + start_y*1j, cp1_x + cp1_y*1j, cp2_x + cp2_y*1j, end_x + end_y*1j)
                         # if show_path_line:
                         #     ctx.move_to(start_x, start_y)
                         #     ctx.curve_to(cp1_x, cp1_y, cp2_x, cp2_y, end_x, end_y)
                         #     ctx.stroke()
                         #path = ctx.copy_path_flat()
-                        
+
                         #ctx.new_path()
                         #ctx.move_to(0, 0)
                         #ctx.text_path(text)
                         path_length = svg_path.length(error=1e-3, min_depth=2)
-                        
+
                         ##pathtext(ctx, path, text, 0)
-                        
+
                         vertical_offset = 0
                         if 'dy' in item['config']:
                             if item['config']['dy'][0].endswith('px') or item['config']['dy'][0].endswith('pt'):
-                                vertical_offset = float(item['config']['dy'][0][:-2])
+                                vertical_offset = float(
+                                    item['config']['dy'][0][:-2])
                             else:
-                                vertical_offset = float(item['config']['dy'][0])
+                                vertical_offset = float(
+                                    item['config']['dy'][0])
                         horizontal_offset = 0
                         if 'dx' in args:
                             if args['dx'][0].endswith('px') or args['dx'][0].endswith('pt'):
                                 horizontal_offset = float(args['dx'][0][:-2])
                             else:
                                 horizontal_offset = float(args['dx'][0])
-                        xxx(path_length, ctx, svg_path, item['spans'], vertical_offset, horizontal_offset)
+                        xxx(path_length, ctx, svg_path,
+                            item['spans'], vertical_offset, horizontal_offset)
                         #te=ctx.text_extents(text)
-                        
+
                         #warpPath(ctx, lambda x, y: follow_path(path_length, svg_path, te, x, y))
                         ctx.fill()
-                        
 
                     args_path = item['path']
                     args_text = item['config']
-                    
+
                     if args_path['type'] == 'CubicBezier':
                         arguments = deepcopy(args_path['arguments'])
                         ctx.new_path()
                         ctx.set_line_width(0.1)
                         #path = svgpathtools.CubicBezier(*arguments)
-                        ctx.set_source_rgb(0,0,0)
-                        
-                        draw_text_along_path(ctx, item['spans'][0][0], arguments[0].real, arguments[0].imag, arguments[1].real, arguments[1].imag, arguments[2].real, arguments[2].imag, arguments[3].real, arguments[3].imag)
+                        ctx.set_source_rgb(0, 0, 0)
+
+                        draw_text_along_path(ctx, item['spans'][0][0], arguments[0].real, arguments[0].imag, arguments[1].real,
+                                             arguments[1].imag, arguments[2].real, arguments[2].imag, arguments[3].real, arguments[3].imag)
                         # ctx.move_to(arguments[0].real, arguments[0].imag)
                         # ctx.set_source_rgb(*[c/255. for c in graphical_individual_representation.color])
                         # ctx.set_line_width(self.life_line_chart_ancestor_graph._formatting['line_thickness'])
@@ -1467,7 +1508,8 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                 elif item['type'] == 'image':
                     def draw_image(ctx, image, left, top, width, height):
                         """Draw a scaled image on a given context."""
-                        image_surface = cairo.ImageSurface.create_from_png(image)
+                        image_surface = cairo.ImageSurface.create_from_png(
+                            image)
                         # calculate proportional scaling
                         img_height = image_surface.get_height()
                         img_width = image_surface.get_width()
@@ -1487,7 +1529,8 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                         ctx.paint()
                         ctx.restore()
                     import os
-                    draw_image(ctx, item['filename'], *item['config']['insert'], *item['config']['size'])
+                    draw_image(ctx, item['filename'], *item['config']
+                               ['insert'], *item['config']['size'])
                     # marriage_pos and 'spouse' in positions[individual_id]['marriage']:
                     #m_pos_x = (positions[positions[individual_id]['marriage']['spouse']]['x_position'] + x_pos)/2
                     #svg_document.add(svg_document.use(image_def.get_iri(), **item['config']))
@@ -1497,11 +1540,8 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
                     pass
                     #this_rect = svg_document.rect(**item['config'])
 
-                        #insert=(rect[0], rect[1]), size = (rect[2]-rect[0], rect[3]-rect[1]), fill = 'none')
+                    #insert=(rect[0], rect[1]), size = (rect[2]-rect[0], rect[3]-rect[1]), fill = 'none')
                     #svg_document.add(this_rect)
-
-
-
 
     def person_at(self, cell_address):
         """
@@ -1528,9 +1568,11 @@ class LifeLineChartWidget(LifeLineChartBaseWidget):
         self.draw()
         self.queue_draw()
 
+
 class LifeLineChartGrampsGUI:
     """ class for functions lifelinechart GUI elements will need in Gramps
     """
+
     def __init__(self, on_childmenu_changed):
         """
         Common part of GUI that shows Fan Chart, needs to know what to do if
@@ -1571,10 +1613,10 @@ class LifeLineChartGrampsGUI:
         """
         root_person_handle = self.get_active('Person')
         self.lifeline.set_values(root_person_handle, self.maxgen, self.background,
-                            self.childring, False,
-                            self.twolinename, self.radialtext, self.fonttype,
-                            self.generic_filter,
-                            self.alpha_filter, self.form, self.showid)
+                                 self.childring, False,
+                                 self.twolinename, self.radialtext, self.fonttype,
+                                 self.generic_filter,
+                                 self.alpha_filter, self.form, self.showid)
         self.lifeline.reset()
         self.lifeline.draw()
         self.lifeline.queue_draw()
@@ -1937,7 +1979,7 @@ class LifeLineChartGrampsGUI:
         """
         Add a child to a family
         """
-        callback = lambda x: self.callback_add_child(x, family_handle)
+        def callback(x): return self.callback_add_child(x, family_handle)
         person = Person()
         name = Name()
         #the editor requires a surname
