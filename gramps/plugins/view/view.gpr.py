@@ -152,7 +152,7 @@ authors_email = ["doug.blank@gmail.com", "benny.malengier@gmail.com"],
 viewclass = 'FanChartView',
 stock_icon = 'gramps-fanchart',
   )
-  
+
 register(VIEW,
 id = 'fanchartdescview',
 name = _("Descendant Fan"),

@@ -62,9 +62,9 @@ class LifeLineChartView(lifelinechart.LifeLineChartGrampsGUI, NavigationView):
         ('interface.lifelineview-background', lifelinechart.BACKGROUND_GRAD_GEN),
         ('interface.lifelineview-showid', False),
         ('interface.lifelineview-relative_line_thickness', BaseGraph._default_formatting['relative_line_thickness']*100),
-        ('interface.lifelineview-font_size_description', BaseGraph._default_formatting['font_size_description']*100),
+        ('interface.lifelineview-font_size_description', BaseGraph._default_formatting['font_size_description']*100)
         )
-    
+
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
         self.uistate = uistate
