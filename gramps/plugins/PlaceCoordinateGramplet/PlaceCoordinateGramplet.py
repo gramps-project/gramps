@@ -27,7 +27,9 @@ try:
 except:
     raise
 from gi.repository import Gtk
-from geopy.geocoders import Nominatim
+import gi
+gi.require_version('GeocodeGlib', '1.0')
+from gi.repository import GeocodeGlib
 from gramps.gui.display import display_url
 
 #------------------------------------------------------------------------
@@ -45,6 +47,22 @@ from gramps.gen.plug  import (CATEGORY_QR_PLACE)
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.db import DbTxn
 from gramps.gen.config import config
+
+# helper
+def generate_address_string(location_information, entries = ['building', 'street', 'area', 'town', 'county', 'state', 'country']):
+    name = []
+    if 'building' in entries and 'building' in location_information and 'street' in entries and 'street' in location_information:
+        entries.remove('building')
+        entries.remove('street')
+        name.append(location_information['street'] + ' ' + location_information['building'])
+    if 'county' in entries and 'county' in location_information and 'town' in entries and 'town' in location_information:
+        if location_information['town'] in location_information['county']:
+            entries.remove('county')
+        
+    for entry in entries:
+        if entry in location_information:
+            name.append(location_information[entry])
+    return ", ".join(name)
 
 #------------------------------------------------------------------------
 #
@@ -97,14 +115,14 @@ class PlaceCoordinateGramplet(Gramplet):
         grid.attach(self.entry_long,4,i,1,1)
 
         i += 1
-        self.showInBrowserButton = Gtk.Button(label=_("Show externally in Google Maps"))
+        self.showInBrowserButton = Gtk.Button(label=_("Show found place externally in Google Maps"))
         self.showInBrowserButton.connect("clicked", self.on_showInBrowserButton_clicked)
         grid.attach(self.showInBrowserButton,1,i,4,1)
 
         i += 1
         self.place_id_label = Gtk.Label(_(""))
         self.place_id_label.set_halign(Gtk.Align.START)
-        grid.attach(self.place_id_label,1,i,3,1)
+        grid.attach(self.place_id_label,1,i,4,1)
         
         i += 1
         grid.attach(Gtk.Label(_("Postal-Code:")),1,i,1,1)
@@ -125,7 +143,10 @@ class PlaceCoordinateGramplet(Gramplet):
         i += 1
         self.fromMapButton = Gtk.Button(label=_("Take last clicked position from Geography map"))
         self.fromMapButton.connect("clicked", self.on_fromMapButton_clicked)
-        grid.attach(self.fromMapButton,1,i,2,1)
+        grid.attach(self.fromMapButton,1,i,1,1)
+        self.fromDBButton = Gtk.Button(label=_("Search location from DB"))
+        self.fromDBButton.connect("clicked", self.on_fromDBButton_clicked)
+        grid.attach(self.fromDBButton,2,i,1,1)
         self.applyButton = Gtk.Button(label=_("Apply geo location to Database"))
         self.applyButton.connect("clicked", self.on_apply_clicked)
         grid.attach(self.applyButton,3,i,2,1)
@@ -134,20 +155,28 @@ class PlaceCoordinateGramplet(Gramplet):
         return self.view
 
     def on_showInBrowserButton_clicked(self, widget):
-        path = "http://maps.google.com/maps?q=%s,%s" % (self.entry_lat.get_text(), self.entry_long.get_text())
-        display_url(path)
+        if len(self.entry_lat.get_text()) > 0 and len(self.entry_long.get_text()) > 0:
+            path = "http://maps.google.com/maps?q=%s,%s" % (self.entry_lat.get_text(), self.entry_long.get_text())
+            display_url(path)
         
     def on_searchButton_clicked(self, widget):
         lat=config.get("geography.center-lat")
         lon=config.get("geography.center-lon")
 #        self.osm.grab_focus()
-        geolocator = Nominatim()
         try :
-            location = geolocator.geocode(self.entry_name.get_text())
-            if location:
-                self.entry_lat.set_text("%.10f" % location.latitude)
-                self.entry_long.set_text("%.10f" % location.longitude)
-                self.entry_foundName.set_text(location.address)
+            location_ = GeocodeGlib.Forward.new_for_string(self.entry_name.get_text())
+            try:
+                result = location_.search()
+            except:
+                result = None
+            if result:
+                result = result[0] # use the first result
+                location_information = dict((p.name, result.get_property(p.name)) for p in result.list_properties() if result.get_property(p.name))
+                geo_loc = location_information['location']
+                
+                self.entry_lat.set_text("%.10f" % geo_loc.get_latitude())
+                self.entry_long.set_text("%.10f" % geo_loc.get_longitude())
+                self.entry_foundName.set_text(generate_address_string(location_information))
             else:
                 self.entry_foundName.set_text(_("The place was not found. You may clarify the search keywords."))
         except:
@@ -158,14 +187,38 @@ class PlaceCoordinateGramplet(Gramplet):
         longitude=config.get("geography.center-lon")
         self.entry_lat.set_text("%.8f" % latitude)
         self.entry_long.set_text("%.8f" % longitude)
-#        self.osm.grab_focus()
-        geolocator = Nominatim()
-        try :
-            location = geolocator.reverse(self.entry_lat.get_text()+", "+self.entry_long.get_text())
-            if location:
-                self.entry_foundName.set_text(location.address)
-            else:
-                self.entry_foundName.set_text(_("The place was not identified."))
+        # self.osm.grab_focus()
+
+        try:
+            loc = GeocodeGlib.Location.new(latitude, longitude, 0)
+            obj = GeocodeGlib.Reverse.new_for_location(loc)
+            result = GeocodeGlib.Reverse.resolve(obj)
+            location_information = dict((p.name, result.get_property(p.name)) for p in result.list_properties() if result.get_property(p.name))
+            self.entry_foundName.set_text(generate_address_string(location_information))
+        except:
+            self.entry_foundName.set_text(_("The place was not identified."))
+                 
+    def on_fromDBButton_clicked(self, widget):
+        latitude=config.get("geography.center-lat")
+        longitude=config.get("geography.center-lon")
+        latitude = self.entry_lat_db.get_text()
+        longitude = self.entry_long_db.get_text()
+        self.entry_lat.set_text(self.entry_lat_db.get_text())
+        self.entry_long.set_text(self.entry_long_db.get_text())
+        latitude = latitude.replace('N','+')
+        latitude = latitude.replace('S','-')
+        latitude = float(latitude)
+        longitude = longitude.replace('E','+')
+        longitude = longitude.replace('W','-')
+        longitude = float(longitude)
+        # self.osm.grab_focus()
+
+        try:
+            loc = GeocodeGlib.Location.new(latitude, longitude, 0)
+            obj = GeocodeGlib.Reverse.new_for_location(loc)
+            result = GeocodeGlib.Reverse.resolve(obj)
+            location_information = dict((p.name, result.get_property(p.name)) for p in result.list_properties() if result.get_property(p.name))
+            self.entry_foundName.set_text(generate_address_string(location_information))
         except:
             self.entry_foundName.set_text(_("The place was not identified."))
                 

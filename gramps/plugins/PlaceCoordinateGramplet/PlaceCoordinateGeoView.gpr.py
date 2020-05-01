@@ -9,8 +9,6 @@
 #
 #------------------------------------------------------------------------
 
-MODULE_VERSION="5.1" 
-
 from gi import Repository
 
 #-------------------------------------------------------------------------
@@ -29,7 +27,7 @@ register(VIEW,
              name  = _("Place Coordinate Gramplet view"),
              description =  _("View for the place coordinate gramplet."),
              version = '1.0',
-             gramps_target_version = MODULE_VERSION,
+             gramps_target_version = "5.1",
              status = STABLE,
              fname = 'PlaceCoordinateGeoView.py',
              authors = ["Christian Schulze"],

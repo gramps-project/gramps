@@ -48,7 +48,10 @@ from gramps.gui.editors import EditPlace
 from gramps.gui.selectors.selectplace import SelectPlace
 from gramps.gui.filters.sidebar import PlaceSidebarFilter
 from gramps.gui.views.navigationview import NavigationView
-from geopy.geocoders import Nominatim
+import gi
+gi.require_version('GeocodeGlib', '1.0')
+from gi.repository import GeocodeGlib
+from PlaceCoordinateGramplet import generate_address_string
 
 #-------------------------------------------------------------------------
 #
@@ -642,7 +645,7 @@ class PlaceCoordinateGeoView(GeoGraphyView):
                     self.plc_custom_color[str(place.get_type())] = color.lower()
 
 
-    def __add_place(self, menu, plat, plon, entries = ['hamlet', 'village', 'town', 'city', 'county', 'state', 'country']):
+    def __add_place(self, menu, plat, plon, entries = ['town', 'county', 'state', 'country']):
         """
         Add a new place using longitude and latitude of location centered
         on the map
@@ -651,22 +654,22 @@ class PlaceCoordinateGeoView(GeoGraphyView):
         new_place.set_latitude(str(plat))
         new_place.set_longitude(str(plon))
         try:
-            n = Nominatim()
-            location = n.reverse(f"{plat}, {plon}")
-            new_place.set_code(location.raw['address']['postcode'])
+            loc = GeocodeGlib.Location.new(plat, plon, 0)
+            obj = GeocodeGlib.Reverse.new_for_location(loc)
+            try:
+                result = GeocodeGlib.Reverse.resolve(obj)
+            except:
+                pass
+            #new_place.set_code(result.get_)
+            location_information = dict((p.name, result.get_property(p.name)) for p in result.list_properties() if result.get_property(p.name))
+            
+            new_place.set_code(location_information['postal-code'])
         except:
             pass
         try:
-            name = []
-            if 'house_number' in entries and 'house_number' in location.raw['address'] and 'road' in entries and 'road' in location.raw['address']:
-                entries.remove('house_number')
-                entries.remove('road')
-                name.append(location.raw['address']['road'] + ' ' + location.raw['address']['house_number'])
-            for entry in entries:
-                if entry in location.raw['address']:
-                    name.append(location.raw['address'][entry])
+            name = generate_address_string(location_information)
             placename = PlaceName()
-            placename.set_value(", ".join(name))
+            placename.set_value(name)
             new_place.set_name(placename)
             
         except:
@@ -727,7 +730,7 @@ class PlaceCoordinateGeoView(GeoGraphyView):
         menu.append(add_item)
 
         add_item = Gtk.MenuItem(label=_("Add addess as place"))
-        add_item.connect("activate", lambda menu, plat, plon: self.__add_place(menu, plat, plon, entries = ['house_number', 'road', 'neighbourhood', 'hamlet', 'village', 'town', 'city', 'county', 'state', 'country']), lat , lon)
+        add_item.connect("activate", lambda menu, plat, plon: self.__add_place(menu, plat, plon, ['building', 'street', 'area', 'town', 'county', 'state', 'country']), lat , lon)
         add_item.show()
         menu.append(add_item)
 
