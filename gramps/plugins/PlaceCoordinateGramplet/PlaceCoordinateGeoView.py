@@ -255,7 +255,7 @@ class PlaceCoordinateGeoView(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'geo-show-place'
@@ -514,7 +514,7 @@ class PlaceCoordinateGeoView(GeoGraphyView):
         return 1
 
     def add_specific_menu(self, menu, event, lat, lon):
-        """ 
+        """
         Add specific entry to the navigation menu.
         """
         add_item = Gtk.MenuItem(label=_("Centering on Place"))
