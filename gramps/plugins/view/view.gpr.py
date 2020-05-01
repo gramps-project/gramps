@@ -154,22 +154,6 @@ stock_icon = 'gramps-fanchart',
   )
   
 register(VIEW,
-id = 'lifelinechartview',
-name = _("Life Line Chart"),
-category = ("Ancestry", _("Charts")),
-description = _("A view showing parents through a lifelinechart"),
-version = '1.0',
-gramps_target_version = MODULE_VERSION,
-status = STABLE,
-fname = 'lifelinechartview.py',
-authors = ["Christian Schulze"],
-authors_email = ["XX"],
-viewclass = 'LifeLineChartView',
-stock_icon = 'gramps-lifelinechart',
-  )
-
-
-register(VIEW,
 id = 'fanchartdescview',
 name = _("Descendant Fan"),
 category = ("Ancestry", _("Charts")),
