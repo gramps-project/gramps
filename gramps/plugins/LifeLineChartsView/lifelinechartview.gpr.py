@@ -36,5 +36,5 @@ register(VIEW,
          authors=["Christian Schulze"],
          authors_email=["XX"],
          viewclass='LifeLineChartView',
-         stock_icon='gramps-lifelinechart',
+         # stock_icon='gramps-lifelinechart',
          )

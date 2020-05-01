@@ -242,9 +242,9 @@ class PlaceCoordinateGeoView(GeoGraphyView):
         self.cal = config.get('preferences.calendar-format-report')
         self.plc_color = []
         self.plc_custom_color = defaultdict(set)
-        self.connect_signal('Place', self._active_changed)
-    def active_changed(self, handle):
-        self.update()
+    #     self.connect_signal('Place', self._active_changed)
+    # def active_changed(self, handle):
+    #     self.update()
 
     def get_title(self):
         """
