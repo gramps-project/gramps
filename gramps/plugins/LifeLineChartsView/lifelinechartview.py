@@ -16,7 +16,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gramps.gui.widgets.lifelinechart as lifelinechart
+import lifelinechart
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gui.utils import SystemFonts

@@ -280,11 +280,11 @@ from gramps.gen.const import (
     COLLAPSED,
     NORMAL,
     EXPANDED)
-from .reorderfam import Reorder
-from ..utils import color_graph_box, hex_to_rgb, is_right_click
-from ..ddtargets import DdTargets
-from ..editors import EditPerson, EditFamily
-from ..utilscairo import warpPath
+from gramps.gui.widgets.reorderfam import Reorder
+from gramps.gui.utils import color_graph_box, hex_to_rgb, is_right_click
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gui.utilscairo import warpPath
 from gramps.gen.utils.symbols import Symbols
 
 _ = glocale.translation.gettext
