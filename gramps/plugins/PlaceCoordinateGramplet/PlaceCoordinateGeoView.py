@@ -26,38 +26,19 @@ View to add geograpic coordinates
 # Python modules
 #
 #-------------------------------------------------------------------------
-from PlaceCoordinateGramplet import generate_address_string
-from gi.repository import GeocodeGlib
-import gi
-from gramps.gui.views.navigationview import NavigationView
-from gramps.gui.filters.sidebar import PlaceSidebarFilter
-from gramps.gui.selectors.selectplace import SelectPlace
-from gramps.gui.editors import EditPlace
-from gramps.gen.errors import WindowActiveError
-from gramps.gen.lib import EventType, Place, PlaceType, PlaceRef, PlaceName
-from gramps.gui.utils import ProgressMeter
-from gramps.plugins.lib.maps import constants
-from gramps.plugins.lib.maps.geography import GeoGraphyView
-from gramps.gui.views.bookmarks import PlaceBookmarks
-from gramps.gen.utils.place import conv_lat_lon
-from gramps.gen.display.place import displayer as _pd
-from gramps.gen.config import config
-from gramps.gen.lib import PlaceType
-from gramps.gen.lib import EventType
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-import logging
-from collections import defaultdict
-from gi.repository import Gtk
 import time
 import operator
 from gi.repository import Gdk
 KEY_TAB = Gdk.KEY_Tab
+from gi.repository import Gtk
+from collections import defaultdict
 
 #-------------------------------------------------------------------------
 #
 # set up logging
 #
 #-------------------------------------------------------------------------
+import logging
 _LOG = logging.getLogger("GeoGraphy.placecoordinate")
 
 #-------------------------------------------------------------------------
@@ -65,14 +46,35 @@ _LOG = logging.getLogger("GeoGraphy.placecoordinate")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.lib import EventType
+from gramps.gen.lib import PlaceType
+from gramps.gen.config import config
+from gramps.gen.display.place import displayer as _pd
+from gramps.gen.utils.place import conv_lat_lon
+from gramps.gui.views.bookmarks import PlaceBookmarks
+from gramps.plugins.lib.maps.geography import GeoGraphyView
+from gramps.plugins.lib.maps import constants
+from gramps.gui.utils import ProgressMeter
+from gramps.gen.lib import EventType, Place, PlaceType, PlaceRef, PlaceName
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPlace
+from gramps.gui.selectors.selectplace import SelectPlace
+from gramps.gui.filters.sidebar import PlaceSidebarFilter
+from gramps.gui.views.navigationview import NavigationView
+import gi
 gi.require_version('GeocodeGlib', '1.0')
+from gi.repository import GeocodeGlib
+from PlaceCoordinateGramplet import generate_address_string
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
+
+from gramps.plugins.lib.maps import constants
 
 
 _UI_DEF = [
