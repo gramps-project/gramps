@@ -16,6 +16,7 @@ gramps/gen/datehandler/_dateutils.py
 gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/generic.py
+gramps/gen/db/upgrade.py
 gramps/gen/display/name.py
 gramps/gen/display/place.py
 gramps/gen/filters/_filterparser.py
@@ -575,10 +576,6 @@ gramps/gui/widgets/styledtextbuffer.py
 gramps/gui/widgets/styledtexteditor.py
 gramps/gui/widgets/validatedmaskedentry.py
 gramps/plugins/db/bsddb/bsddb.gpr.py
-gramps/plugins/db/bsddb/read.py
-gramps/plugins/db/bsddb/undoredo.py
-gramps/plugins/db/bsddb/upgrade.py
-gramps/plugins/db/bsddb/write.py
 gramps/plugins/db/dbapi/sqlite.gpr.py
 gramps/plugins/db/dbapi/sqlite.py
 gramps/plugins/docgen/asciidoc.py
@@ -803,6 +800,7 @@ gramps/plugins/webreport/statistics.py
 gramps/plugins/webreport/surname.py
 gramps/plugins/webreport/surnamelist.py
 gramps/plugins/webreport/thumbnail.py
+gramps/plugins/webreport/updates.py
 gramps/plugins/webreport/webcal.py
 gramps/plugins/webreport/webplugins.gpr.py
 gramps/plugins/webstuff/webstuff.gpr.py
