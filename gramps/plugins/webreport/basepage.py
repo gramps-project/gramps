@@ -2631,9 +2631,6 @@ class BasePage: # pylint: disable=C1001
         @param: place -- Place object from the database
         @param: table -- Table from Placedetail
         """
-        if place in self.report.visited:
-            return None
-        self.report.visited.append(place)
         # add table body
         tbody = Html("tbody")
         table += tbody
@@ -3101,7 +3098,7 @@ class BasePage: # pylint: disable=C1001
 
         @param: output_file  -- Open file that is being written to
         @param: htmlinstance -- Web page created with libhtml
-                                src/plugins/lib/libhtml.py
+                                gramps/plugins/lib/libhtml.py
         """
         htmlinstance.write(partial(print, file=output_file))
 

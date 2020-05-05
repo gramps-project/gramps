@@ -423,16 +423,19 @@ def sort_people(dbase, handle_list, rlocale=glocale):
 
 def sort_places(dbase, handle_list, rlocale=glocale):
     """
-    will sort the database place
+    will sort the database places
     """
     pname_sub = defaultdict(list)
-    sortnames = {}
 
-    for place_handle in handle_list:
-        place = dbase.get_place_from_handle(place_handle)
+    for place_name in handle_list.keys():
+        (hdle, pname, dummy_id, event) = handle_list[place_name]
+        place = dbase.get_place_from_handle(hdle)
         pname = _pd.display(dbase, place)
-        sortnames[place_handle] = pname
-        pname_sub[pname].append(place_handle)
+        apname = _pd.display_event(dbase, event)
+
+        pname_sub[pname].append(hdle)
+        if pname != apname:
+            pname_sub[apname].append(hdle)
 
     sorted_lists = []
     temp_list = sorted(pname_sub, key=rlocale.sort_key)
@@ -440,10 +443,7 @@ def sort_places(dbase, handle_list, rlocale=glocale):
     for name in temp_list:
         if isinstance(name, bytes):
             name = name.decode('utf-8')
-        slist = sorted(((sortnames[x], x) for x in pname_sub[name]),
-                       key=lambda x: rlocale.sort_key(x[0]))
-        for entry in slist:
-            sorted_lists.append(entry)
+        sorted_lists.append((name, pname_sub[name][0]))
 
     return sorted_lists
 
