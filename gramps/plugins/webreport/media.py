@@ -388,7 +388,7 @@ class MediaPages(BasePage):
         # if there are media rectangle regions, attach behaviour style sheet
         if _region_items:
 
-            if self.the_lang:
+            if self.the_lang and not self.usecms:
                 fname = "/".join(["..", "css", "behaviour.css"])
             else:
                 fname = "/".join(["css", "behaviour.css"])

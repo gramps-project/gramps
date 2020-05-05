@@ -368,7 +368,7 @@ class PlacePages(BasePage):
                     placetitle = place_name
 
                     # add narrative-maps CSS...
-                    if the_lang:
+                    if the_lang and not self.usecms:
                         fname = "/".join(["..", "css", "narrative-maps.css"])
                     else:
                         fname = "/".join(["css", "narrative-maps.css"])
