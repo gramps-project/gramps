@@ -1514,8 +1514,6 @@ class BasePage: # pylint: disable=C1001
         # add outerwrapper to set the overall page width
         outerwrapperdiv = Html("div", id='outerwrapper')
         body += outerwrapperdiv
-        if the_title == "index":
-            body.attr
 
         # begin header section
         headerdiv = Html("div", id='header') + (
