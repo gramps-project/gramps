@@ -66,12 +66,12 @@ class ContactPage(BasePage):
     """
     This class is responsible for displaying information about the 'Researcher'
     """
-    def __init__(self, report, title):
+    def __init__(self, report, the_lang, the_title):
         """
         @param: report -- The instance of the main report class for this report
         @param: title  -- Is the title of the web page
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         output_file, sio = self.report.create_file("contact")
         result = self.write_header(self._('Contact'))

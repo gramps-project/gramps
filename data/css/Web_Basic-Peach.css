@@ -164,6 +164,7 @@ a[href]:hover, a[href]:active {
 ----------------------------------------------------- */
 div#nav, #subnavigation {
     border: solid 1px #FFE09F; /* needed by IE7 */
+    position: relative;
 }
 #subnavigation ul {
     overflow: hidden;
@@ -200,6 +201,34 @@ div#nav ul li.CurrentSection a {
 }
 #subnavigation ul li.CurrentSection a {
     background-color: #FFFBE7;
+}
+div#nav li.lang {
+    font-size: smaller;
+    font-family: sans-serif;
+    padding: 5px 2px;
+    font-weight: bold;
+}
+div#nav li.lang:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+div#nav ul.lang {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+    padding: 5px 2px;
+    background-color: #FFE09F;
+    top: -1em;
+    font-size: larger;
+    font-family: sans-serif;
+}
+div#nav ul.lang:hover {
+    float: initial;
+}
+div#nav ul.lang li {
+    float: none;
+    padding: 1px 2px;
 }
 
 /* Alphabet Navigation

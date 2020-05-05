@@ -65,7 +65,7 @@ class AddressBookPage(BasePage):
     """
     Create one page for one Address
     """
-    def __init__(self, report, title, person_handle, has_add, has_res, has_url):
+    def __init__(self, report, the_lang, the_title, person_handle, has_add, has_res, has_url):
         """
         @param: report        -- The instance of the main report class
                                  for this report
@@ -77,7 +77,7 @@ class AddressBookPage(BasePage):
         @param: has_url       -- the url to use for the report
         """
         person = report.database.get_person_from_handle(person_handle)
-        BasePage.__init__(self, report, title, person.gramps_id)
+        BasePage.__init__(self, report, the_lang, the_title, person.gramps_id)
         self.bibli = Bibliography()
 
         self.uplink = True

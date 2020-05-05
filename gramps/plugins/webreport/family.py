@@ -85,16 +85,16 @@ class FamilyPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
         @param: report -- The instance of the main report class for
                           this report
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.family_dict = defaultdict(set)
         self.familymappages = None
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Family tab, namely the family
         index and the individual family pages.
@@ -107,18 +107,19 @@ class FamilyPages(BasePage):
 
         message = _("Creating family pages...")
         index = 1
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Family]) + 1
                                  ) as step:
             for family_handle in self.report.obj_dict[Family]:
                 step()
                 index += 1
-                self.familypage(self.report, title, family_handle)
+                self.familypage(self.report, the_lang, the_title, family_handle)
             step()
-            self.familylistpage(self.report, title,
+            self.familylistpage(self.report, the_lang, the_title,
                                 self.report.obj_dict[Family].keys())
 
-    def familylistpage(self, report, title, fam_list):
+    def familylistpage(self, report, the_lang, the_title, fam_list):
         """
         Create a family index
 
@@ -127,7 +128,7 @@ class FamilyPages(BasePage):
         @param: title    -- Is the title of the web page
         @param: fam_list -- The handle for the place to add
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         output_file, sio = self.report.create_file("families")
         result = self.write_header(self._("Families"))
@@ -308,7 +309,7 @@ class FamilyPages(BasePage):
         # and close the file
         self.xhtml_writer(familieslistpage, output_file, sio, ldatec)
 
-    def familypage(self, report, title, family_handle):
+    def familypage(self, report, the_lang, the_title, family_handle):
         """
         Create a family page
 
@@ -320,7 +321,7 @@ class FamilyPages(BasePage):
         family = report.database.get_family_from_handle(family_handle)
         if not family:
             return
-        BasePage.__init__(self, report, title, family.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title, family.get_gramps_id())
         ldatec = family.get_change_time()
 
         self.bibli = Bibliography()

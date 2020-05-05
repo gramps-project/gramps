@@ -455,12 +455,13 @@ def sort_event_types(dbase, event_types, event_handle_list, rlocale):
     @param: event_types -- a dict of event types
     @param: event_handle_list -- all event handles in this database
     """
-    event_dict = dict((evt_type, list()) for evt_type in event_types)
+    rts = rlocale.translation.sgettext
+    event_dict = dict((rts(evt_type), list()) for evt_type in event_types)
 
     for event_handle in event_handle_list:
 
         event = dbase.get_event_from_handle(event_handle)
-        event_type = rlocale.translation.sgettext(event.get_type().xml_str())
+        event_type = rts(event.get_type().xml_str())
 
         # add (gramps_id, date, handle) from this event
         if event_type in event_dict:

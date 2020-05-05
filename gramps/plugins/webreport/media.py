@@ -89,17 +89,17 @@ class MediaPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
         @param: report -- The instance of the main report class for this report
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.media_dict = defaultdict(set)
         self.unused_media_handles = []
         self.cur_fname = None
         self.create_images_index = self.report.options['create_images_index']
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Media tab, namely the media
         index and the individual media pages.
@@ -114,7 +114,8 @@ class MediaPages(BasePage):
         else:
             media_count = len(self.report.obj_dict[Media])
         message = _("Creating media pages")
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   media_count + 1
                                  ) as step:
             # bug 8950 : it seems it's better to sort on desc + gid.
@@ -153,7 +154,7 @@ class MediaPages(BasePage):
                     next_ = self.unused_media_handles[0]
                 else:
                     next_ = None
-                self.mediapage(self.report, title,
+                self.mediapage(self.report, the_lang, the_title,
                                handle, (prev, next_, index, media_count))
                 prev = handle
                 step()
@@ -170,16 +171,16 @@ class MediaPages(BasePage):
                         next_ = None
                     else:
                         next_ = self.unused_media_handles[idx]
-                    self.mediapage(self.report, title, media_handle,
+                    self.mediapage(self.report, the_lang, the_title, media_handle,
                                    (prev, next_, index, media_count))
                     prev = media_handle
                     step()
                     index += 1
                     idx += 1
 
-        self.medialistpage(self.report, title, sorted_media_handles)
+        self.medialistpage(self.report, the_lang, the_title, sorted_media_handles)
 
-    def medialistpage(self, report, title, sorted_media_handles):
+    def medialistpage(self, report, the_lang, the_title, sorted_media_handles):
         """
         Generate and output the Media index page.
 
@@ -189,7 +190,7 @@ class MediaPages(BasePage):
         @param: sorted_media_handles -- A list of the handles of the media to be
                                         displayed sorted by the media title
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         if self.create_images_index:
             output_file, sio = self.report.create_file("media")
@@ -340,7 +341,7 @@ class MediaPages(BasePage):
         # return hyperlink to its callers
         return hyper
 
-    def mediapage(self, report, title, media_handle, info):
+    def mediapage(self, report, the_lang, the_title, media_handle, info):
         """
         Generate and output an individual Media page.
 
@@ -353,7 +354,7 @@ class MediaPages(BasePage):
                                 number, and the total number of media pages
         """
         media = report.database.get_media_from_handle(media_handle)
-        BasePage.__init__(self, report, title, media.gramps_id)
+        BasePage.__init__(self, report, the_lang, the_title, media.gramps_id)
         (prev, next_, page_number, total_pages) = info
 
         ldatec = media.get_change_time()
@@ -385,7 +386,10 @@ class MediaPages(BasePage):
         # if there are media rectangle regions, attach behaviour style sheet
         if _region_items:
 
-            fname = "/".join(["css", "behaviour.css"])
+            if self.the_lang:
+                fname = "/".join(["..", "css", "behaviour.css"])
+            else:
+                fname = "/".join(["css", "behaviour.css"])
             url = self.report.build_url_fname(fname, None, self.uplink)
             head += Html("link", href=url, type="text/css",
                          media="screen", rel="stylesheet")
@@ -474,7 +478,7 @@ class MediaPages(BasePage):
                                 # display the image
                                 if orig_image_path != newpath:
                                     url = self.report.build_url_fname(
-                                        newpath, None, self.uplink)
+                                        newpath, None, self.uplink, image=True)
                                 s_width = 'width: %dpx;' % max_width
                                 mediadisplay += Html("a", href=url) + (
                                     Html("img", src=url,
@@ -507,12 +511,14 @@ class MediaPages(BasePage):
 
                             img_url = self.report.build_url_fname(path,
                                                                   None,
-                                                                  self.uplink)
+                                                                  self.uplink,
+                                                                  image=True)
                             if target_exists:
                                 # TODO. Convert disk path to URL
                                 url = self.report.build_url_fname(newpath,
                                                                   None,
-                                                                  self.uplink)
+                                                                  self.uplink,
+                                                                  image=True)
                                 s_width = 'width: 48px;'
                                 hyper = Html("a", href=url,
                                              title=esc_page_title) + (
