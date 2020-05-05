@@ -1171,6 +1171,10 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
 table.relationships tr:hover {
     background-color:#C1B398;
 }
+div.content table.tags {
+    text-align: left;
+    width: auto;
+}
 div#families table.infolist {
     margin-top:.5em;
 }
@@ -1243,7 +1247,8 @@ div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
 #indivgallery .thumbnail {
     margin:0;
     float:left;
-    width:130px;
+    width:160px;
+    height:220px;
     text-align:center;
     background-color: #F6F2EE;
 }
@@ -1689,4 +1694,44 @@ body#fullyearlinked #YearGlance tbody td .date {
 body#fullyearlinked #YearGlance tbody td:hover .date {
     border-radius: 45px;
     border: 5px solid;
+}
+h4 button.icon {
+    width: 0.9em;
+    border: 0px solid;
+    padding: 0;
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: transform 200ms ease-out 0s;
+    background: transparent;
+}
+h4 button.icon-close {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+h4 button.icon-open {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}
+svg {
+  fill: #542;
+}
+/* Go to the top of the page */
+#gototop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 999;
+  border: none;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+#gototop:hover {
+  background-color: #696969;
 }

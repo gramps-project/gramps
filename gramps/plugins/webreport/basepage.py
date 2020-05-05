@@ -1462,7 +1462,10 @@ class BasePage: # pylint: disable=C1001
             if self.the_lang and not self.usecms:
                 fname = "/".join(["..", "css", "ancestortree.css"])
             else:
-                fname = "/".join(["css", "ancestortree.css"])
+                if self.the_lang:
+                    fname = "/".join(["..", "css", "ancestortree.css"])
+                else:
+                    fname = "/".join(["css", "ancestortree.css"])
             url5 = self.report.build_url_fname(fname, None, self.uplink)
             links += Html("link", type="text/css", href=url5,
                           media="screen", rel="stylesheet", indent=False)
@@ -1478,7 +1481,7 @@ class BasePage: # pylint: disable=C1001
                 if css_fn in css_f and css_f not in already_done:
                     css_f = css_f.replace("UsEr_", "")
                     already_done.append(css_f)
-                    if self.the_lang and not self.usecms:
+                    if self.the_lang:
                         fname = "/".join(["..", "css", css_f + ".css"])
                     else:
                         fname = "/".join(["css", css_f + ".css"])

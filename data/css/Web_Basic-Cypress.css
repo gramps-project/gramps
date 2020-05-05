@@ -724,7 +724,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow-x: auto;
 }
 .subsection p {
     margin: 0px;
@@ -735,6 +735,10 @@ div#SourceDetail {
 #families table.infolist td.ColumnValue.Child table.infolist tr:hover,
 table.relationships tr:hover {
     background-color: #9DBF9D;
+}
+div.content table.tags {
+    text-align: left;
+    width: auto;
 }
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
@@ -757,6 +761,12 @@ div#families table.attrlist td.ColumnType {
 #indivgallery {
     background-color: white;
 }
+#indivgallery a {
+    color: black;
+    text-decoration: none;
+    word-wrap: break-word;
+    display: block;
+}
 #gallery .gallerycell {
     float: left;
     width: 130px;
@@ -773,7 +783,8 @@ div#families table.attrlist td.ColumnType {
 }
 #indivgallery .thumbnail {
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     font-size: smaller;
     text-align: center;
     margin: 0.8em 0.5em;
@@ -1090,4 +1101,44 @@ body#fullyearlinked #YearGlance tbody td .date {
 body#fullyearlinked #YearGlance tbody td:hover .date {
     border-radius: 45px;
     border: 5px solid;
+}
+h4 button.icon {
+    width: 0.9em;
+    border: 0px solid;
+    padding: 0;
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: transform 200ms ease-out 0s;
+    background: transparent;
+}
+h4 button.icon-close {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+h4 button.icon-open {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}
+svg {
+  fill: #9DBF9D;
+}
+/* Go to the top of the page */
+#gototop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 999;
+  border: none;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+#gototop:hover {
+  background-color: #E0E6E0;
 }

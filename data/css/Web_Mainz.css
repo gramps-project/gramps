@@ -594,7 +594,7 @@ table.IndividualList tr:hover td.ColumnSurname {
     position: relative;
 }
 #GalleryDisplay img {
-    margin: 0px auto;
+    margin: 10px auto;
     display:block;
     border: solid 1px #7D5925;
     height: auto;
@@ -623,11 +623,6 @@ div#SourceDetail {
     padding-bottom: 0px;
     margin: 0px;
 }
-#Contact #summaryarea #GalleryDisplay img {
-    display: block;
-    margin: 0px auto 1em auto;
-    border: solid 1px #7D5925;
-}
 #Contact #researcher {
     text-align: center;
 }
@@ -653,17 +648,19 @@ div#SourceDetail {
     float: right;
     margin-left: 10px;
     margin-right: 10px;
+    margin: 10px auto;
 }
 #Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
       #Contact #GalleryDisplay img {
     display: block;
     max-width: 950px;
+    width: 100%;
     height: auto;
     float: right;
 }
 @media only screen and (max-width: 1080px) {
     #Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
-          #Contact #GalleryDisplay {
+          #Contact #GalleryDisplay img {
         margin: 0 auto;
         max-width: 100%;
     }
@@ -673,7 +670,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow-x: auto;
 }
 .subsection p {
     margin: 0px;
@@ -684,6 +681,10 @@ div#SourceDetail {
 #families table.infolist td.ColumnValue.Child table.infolist tbody tr:hover,
 table.relationships tr:hover td {
     background-color: #D8C19F;
+}
+div.content table.tags {
+    text-align: left;
+    width: auto;
 }
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
@@ -709,7 +710,6 @@ div#families .infolist h4 {
     height: 150px;
     text-align: center;
     margin: 0;
-    background-color: white;
     border-top: solid 1px #999;
     border-right: solid 1px #999;
 }
@@ -721,9 +721,18 @@ div#families .infolist h4 {
     /* float container stretch, see www.quirksmode.org/css/clearing.html */
     overflow: hidden;
 }
+div#indivgallery div.thumbnail a,
+div#gallerycell div.thumbnail a {
+    color: #7D5925;
+    text-decoration: none;
+    word-wrap: break-word;
+    width: 160px;
+    display: block;
+}
 #indivgallery .thumbnail {
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     font-size: smaller;
     text-align: center;
     margin: 0.5em;
@@ -1042,4 +1051,44 @@ body#fullyearlinked #YearGlance tbody td.highlight .date:hover {
     border-radius: 45px;
     border: 5px solid;
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
+}
+h4 button.icon {
+    width: 0.9em;
+    border: 0px solid;
+    padding: 0;
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: transform 200ms ease-out 0s;
+    background: transparent;
+}
+h4 button.icon-close {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+h4 button.icon-open {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}
+svg {
+  fill: #7D5925;
+}
+/* Go to the top of the page */
+#gototop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 999;
+  border: none;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+#gototop:hover {
+  background-color: #FFF2C6;
 }
