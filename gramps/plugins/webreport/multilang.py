@@ -33,12 +33,11 @@ import logging
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.plugins.lib.libhtml import Html
-from gramps.plugins.webreport.basepage import BasePage
 
 #------------------------------------------------
 # specific narrative web import
 #------------------------------------------------
-from gramps.plugins.webreport.common import FULLCLEAR
+from gramps.plugins.webreport.basepage import BasePage
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".multilang")
