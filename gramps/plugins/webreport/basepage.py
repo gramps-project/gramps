@@ -1462,10 +1462,7 @@ class BasePage: # pylint: disable=C1001
             if self.the_lang and not self.usecms:
                 fname = "/".join(["..", "css", "ancestortree.css"])
             else:
-                if self.the_lang:
-                    fname = "/".join(["..", "css", "ancestortree.css"])
-                else:
-                    fname = "/".join(["css", "ancestortree.css"])
+                fname = "/".join(["css", "ancestortree.css"])
             url5 = self.report.build_url_fname(fname, None, self.uplink)
             links += Html("link", type="text/css", href=url5,
                           media="screen", rel="stylesheet", indent=False)
@@ -1517,6 +1514,8 @@ class BasePage: # pylint: disable=C1001
         # add outerwrapper to set the overall page width
         outerwrapperdiv = Html("div", id='outerwrapper')
         body += outerwrapperdiv
+        if the_title == "index":
+            body.attr
 
         # begin header section
         headerdiv = Html("div", id='header') + (
