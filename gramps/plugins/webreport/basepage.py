@@ -146,7 +146,10 @@ class BasePage: # pylint: disable=C1001
         self.extrapagename = report.options['extrapagename']
         self.familymappages = None
         self.reference_sort = report.options['reference_sort']
-        self.rlocale = report.set_locale(the_lang)
+        if the_lang:
+            self.rlocale = report.set_locale(the_lang)
+        else:
+            self.rlocale = report.set_locale(report.options['trans'])
         self._ = self.rlocale.translation.sgettext
         self.colon = self._(':') # translators: needed for French, else ignore
 
@@ -222,7 +225,7 @@ class BasePage: # pylint: disable=C1001
         """
         Returns the navigation menu hyperlink
         """
-        if url_fname == self.target_cal_uri:
+        if url_fname == self.target_cal_uri: # The web calendar
             uplink = False
         else:
             uplink = self.uplink
@@ -232,9 +235,17 @@ class BasePage: # pylint: disable=C1001
             url_fname += self.ext
 
         # get menu item url and begin hyperlink...
-        url = self.report.build_url_fname(url_fname, None, uplink)
-
-        return Html("a", nav_text, href=url, title=nav_text, inline=True)
+        if self.usecms:
+            if self.the_lang:
+                url_name = "/".join([self.target_uri,
+                                     self.the_lang,
+                                     url_fname])
+            else:
+                url_name = "/".join([self.target_uri,
+                                     url_fname])
+        else:
+            url_name = self.report.build_url_fname(url_fname, None, uplink)
+        return Html("a", nav_text, href=url_name, title=nav_text, inline=True)
 
     def get_column_data(self, unordered, data_list, column_title):
         """
@@ -1422,21 +1433,21 @@ class BasePage: # pylint: disable=C1001
         )
 
         # Link to _NARRATIVESCREEN  stylesheet
-        if self.the_lang:
+        if self.the_lang and not self.usecms:
             fname = "/".join(["..", "css", _NARRATIVESCREEN])
         else:
             fname = "/".join(["css", _NARRATIVESCREEN])
         url2 = self.report.build_url_fname(fname, None, self.uplink)
 
         # Link to _NARRATIVEPRINT stylesheet
-        if self.the_lang:
+        if self.the_lang and not self.usecms:
             fname = "/".join(["..", "css", _NARRATIVEPRINT])
         else:
             fname = "/".join(["css", _NARRATIVEPRINT])
         url3 = self.report.build_url_fname(fname, None, self.uplink)
 
         # Link to Gramps favicon
-        if self.the_lang:
+        if self.the_lang and not self.usecms:
             fname = "/".join(["..", 'images', 'favicon2.ico'])
         else:
             fname = "/".join(['images', 'favicon2.ico'])
@@ -1448,13 +1459,10 @@ class BasePage: # pylint: disable=C1001
         # attach the ancestortree style sheet if ancestor
         # graph is being created?
         if self.report.options["ancestortree"]:
-            if self.usecms:
-                fname = "/".join([self.target_uri, "css", "ancestortree.css"])
+            if self.the_lang and not self.usecms:
+                fname = "/".join(["..", "css", "ancestortree.css"])
             else:
-                if self.the_lang:
-                    fname = "/".join(["..", "css", "ancestortree.css"])
-                else:
-                    fname = "/".join(["css", "ancestortree.css"])
+                fname = "/".join(["css", "ancestortree.css"])
             url5 = self.report.build_url_fname(fname, None, self.uplink)
             links += Html("link", type="text/css", href=url5,
                           media="screen", rel="stylesheet", indent=False)
@@ -1465,11 +1473,12 @@ class BasePage: # pylint: disable=C1001
         # create all alternate stylesheets
         # Cannot use it on local files (file://)
         for css_f in CSS:
-            already_done = False
+            already_done = []
             for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
-                if css_fn in css_f and not already_done:
+                if css_fn in css_f and css_f not in already_done:
                     css_f = css_f.replace("UsEr_", "")
-                    if self.the_lang:
+                    already_done.append(css_f)
+                    if self.the_lang and not self.usecms:
                         fname = "/".join(["..", "css", css_f + ".css"])
                     else:
                         fname = "/".join(["css", css_f + ".css"])
@@ -1482,7 +1491,7 @@ class BasePage: # pylint: disable=C1001
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]:
-            if self.the_lang:
+            if self.the_lang and not self.usecms:
                 fname = "/".join(["..", "css", "narrative-menus.css"])
             else:
                 fname = "/".join(["css", "narrative-menus.css"])
@@ -1505,6 +1514,8 @@ class BasePage: # pylint: disable=C1001
         # add outerwrapper to set the overall page width
         outerwrapperdiv = Html("div", id='outerwrapper')
         body += outerwrapperdiv
+        if the_title == "index":
+            body.attr
 
         # begin header section
         headerdiv = Html("div", id='header') + (
@@ -1627,31 +1638,43 @@ class BasePage: # pylint: disable=C1001
                     check_cs = False
                     if nav_text == currentsection:
                         check_cs = True
-                    elif nav_text == _("Surnames"):
+                    elif nav_text == self._("Html|Home"):
+                        if "index" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == self._("Surnames"):
                         if "srn" in self.report.cur_fname:
                             check_cs = True
-                        elif _("Surnames") in currentsection:
+                        elif self._("Surnames") in currentsection:
                             check_cs = True
-                    elif nav_text == _("Individuals"):
+                    elif nav_text == self._("Individuals"):
                         if "ppl" in self.report.cur_fname:
                             check_cs = True
-                    elif nav_text == _("Families"):
+                    elif nav_text == self._("Families"):
                         if "fam" in self.report.cur_fname:
                             check_cs = True
-                    elif nav_text == _("Sources"):
+                    elif nav_text == self._("Sources"):
                         if "src" in self.report.cur_fname:
                             check_cs = True
-                    elif nav_text == _("Places"):
+                    elif nav_text == self._("Repositories"):
+                        if "repo" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == self._("Places"):
                         if "plc" in self.report.cur_fname:
                             check_cs = True
-                    elif nav_text == _("Events"):
+                    elif nav_text == self._("Events"):
                         if "evt" in self.report.cur_fname:
                             check_cs = True
-                    elif nav_text == _("Media"):
+                    elif nav_text == self._("Media"):
                         if "img" in self.report.cur_fname:
                             check_cs = True
-                    elif nav_text == _("Address Book"):
+                    elif nav_text == self._("Address Book"):
                         if "addr" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == self._("Updates"):
+                        if "updates" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == self._("Statistics"):
+                        if "statistics" in self.report.cur_fname:
                             check_cs = True
                     temp_cs = 'class = "CurrentSection"'
                     check_cs = temp_cs if check_cs else False
@@ -1813,7 +1836,7 @@ class BasePage: # pylint: disable=C1001
 
             # if there are media rectangle regions, attach behaviour style sheet
             if _region_items:
-                if self.the_lang:
+                if self.the_lang and not self.usecms:
                     fname = "/".join(["..", "css", "behaviour.css"])
                 else:
                     fname = "/".join(["css", "behaviour.css"])
@@ -2144,7 +2167,8 @@ class BasePage: # pylint: disable=C1001
                     try:
                         # create thumbnail url
                         # extension needs to be added as it is not already there
-                        url = (self.report.build_url_fname(photo_handle, "thumb",
+                        url = (self.report.build_url_fname(photo_handle,
+                                                           "thumb",
                                                            True, image=True) +
                                ".png")
                         # begin hyperlink
