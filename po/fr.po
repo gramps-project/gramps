@@ -703,7 +703,7 @@ msgstr ""
 "<b>Bouton Tout afficher</b><br/>Quand vous ajoutez un conjoint, la liste des "
 "individus est filtrée pour n'afficher que les individus pouvant avoir cet "
 "état (basé sur les dates dans la base de données). Si Gramps est trop strict "
-"dans son choix, vous pouvez passer outre en cochant «  Tout Afficher  »."
+"dans son choix, vous pouvez passer outre en cochant « Tout Afficher »."
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml.in.h:29
@@ -2120,7 +2120,7 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr "Utilisez « %(notranslate) » pour voir les valeurs acceptées."
+msgstr "Utilisez « %(notranslate)s » pour voir les valeurs acceptées."
 
 #: ../gramps/cli/plug/__init__.py:551
 #: ../gramps/gen/plug/report/stdoptions.py:282
@@ -3490,7 +3490,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:724
-#, fuzzy
 msgid "Number of new objects upgraded:\n"
 msgstr "Nombre de nouveaux objets importés :\n"
 
@@ -3505,7 +3504,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:737
-#, fuzzy
 msgid "Upgrade Statistics"
 msgstr "Statistiques d'importation"
 
@@ -36378,7 +36376,7 @@ msgid ""
 "now to continue."
 msgstr ""
 "L'action demandée s'est terminée avec succès. Vous pouvez maintenant appuyer "
-"sur le bouton «  Fermer  » pour continuer."
+"sur le bouton « Fermer » pour continuer."
 
 #: ../gramps/plugins/tool/mediamanager.py:394
 msgid "Operation failed"
