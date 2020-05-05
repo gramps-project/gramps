@@ -98,6 +98,7 @@ from gramps.plugins.webreport.surname import SurnamePage
 from gramps.plugins.webreport.thumbnail import ThumbnailPreviewPage
 from gramps.plugins.webreport.statistics import StatisticsPage
 from gramps.plugins.webreport.updates import UpdatesPage
+from gramps.plugins.webreport.multilang import IndexPage
 from gramps.plugins.webreport.home import HomePage
 from gramps.plugins.webreport.contact import ContactPage
 from gramps.plugins.webreport.download import DownloadPage
@@ -462,6 +463,9 @@ class NavWebReport(Report):
                     self.languages.append((cur_lang, cur_title))
 
         self.visited = []
+        if len(self.languages) > 1:
+            IndexPage(self, self.languages)
+
         for the_lang, the_title in self.languages:
             if len(self.languages) == 1:
                 the_lang = None
@@ -595,7 +599,7 @@ class NavWebReport(Report):
         if person:
             person_name = self.get_person_name(person)
             person_fname = self.build_url_fname(person_handle, "ppl",
-                                                False) + self.ext
+                                                False, init=True) + self.ext
             self.obj_dict[Person][person_handle] = (person_fname, person_name,
                                                     person.gramps_id)
             self.bkref_dict[Person][person_handle].add((bkref_class,
@@ -739,7 +743,7 @@ class NavWebReport(Report):
         family_name = self.get_family_name(family)
         if self.inc_families:
             family_fname = self.build_url_fname(family_handle, "fam",
-                                                False) + self.ext
+                                                False, init=True) + self.ext
         else:
             family_fname = ""
         self.obj_dict[Family][family_handle] = (family_fname, family_name,
@@ -861,7 +865,7 @@ class NavWebReport(Report):
             # end descriptions to media pages
         if self.inc_events:
             event_fname = self.build_url_fname(event_handle, "evt",
-                                               False) + self.ext
+                                               False, init=True) + self.ext
         else:
             event_fname = ""
         self.obj_dict[Event][event_handle] = (event_fname, event_name,
@@ -923,7 +927,7 @@ class NavWebReport(Report):
         else:
             role_or_date = ""
         place_fname = self.build_url_fname(place_handle, "plc",
-                                           False) + self.ext
+                                           False, init=True) + self.ext
         self.obj_dict[Place][place_handle] = (place_fname, place_name,
                                               place.gramps_id, event)
         self.bkref_dict[Place][place_handle].add((bkref_class, bkref_handle,
@@ -955,7 +959,7 @@ class NavWebReport(Report):
         source = self._db.get_source_from_handle(source_handle)
         source_name = source.get_title()
         source_fname = self.build_url_fname(source_handle, "src",
-                                            False) + self.ext
+                                            False, init=True) + self.ext
         self.obj_dict[Source][source_handle] = (source_fname, source_name,
                                                 source.gramps_id)
         self.bkref_dict[Source][source_handle].add((bkref_class,
@@ -1031,7 +1035,7 @@ class NavWebReport(Report):
         #end media title
         if self.inc_gallery:
             media_fname = self.build_url_fname(media_handle, "img",
-                                               False) + self.ext
+                                               False, init=True) + self.ext
         else:
             media_fname = ""
         self.obj_dict[Media][media_handle] = (media_fname, media_name,
@@ -1065,7 +1069,7 @@ class NavWebReport(Report):
         repos_name = repos.name
         if self.inc_repository:
             repos_fname = self.build_url_fname(repos_handle, "repo",
-                                               False) + self.ext
+                                               False, init=True) + self.ext
         else:
             repos_fname = ""
         self.obj_dict[Repository][repos_handle] = (repos_fname, repos_name,
@@ -1083,10 +1087,10 @@ class NavWebReport(Report):
 
         # copy all screen style sheet
         for css_f in CSS:
-            already_done = False
+            already_done = []
             for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska", "Vis"):
-                if css_fn in css_f and not already_done:
-                    already_done = True
+                if css_fn in css_f and css_f not in already_done:
+                    already_done.append(css_f)
                     fname = CSS[css_f]["filename"]
                     # add images for this css
                     imgs += CSS[css_f]["images"]
@@ -1338,7 +1342,8 @@ class NavWebReport(Report):
         if self.use_intro:
             IntroductionPage(self, self.the_lang, self.the_title)
 
-    def build_subdirs(self, subdir, fname, uplink=False, image=False):
+    def build_subdirs(self, subdir, fname, uplink=False, image=False,
+                      init=False):
         """
         If subdir is given, then two extra levels of subdirectory are inserted
         between 'subdir' and the filename. The reason is to prevent directories
@@ -1357,13 +1362,24 @@ class NavWebReport(Report):
             subdirs.append(subdir)
             subdirs.append(fname[-1].lower())
             subdirs.append(fname[-2].lower())
+        if init:
+            return subdirs
         nb_dir = 0
         if self.the_lang and image:
             nb_dir = 1
 
         if self.usecms:
-            if self.target_uri not in subdirs:
-                subdirs = [self.target_uri] + subdirs
+            if subdir:
+                if self.the_lang and subdir not in ["css", "images", "thumb"]:
+                    subdirs = [self.target_uri] + [self.the_lang] + subdirs
+                else:
+                    if not subdir:
+                        subdirs = [self.target_uri] + subdirs
+                        subdirs = []
+            elif self.target_uri not in fname:
+                subdirs = [self.target_uri] + [fname]
+            else:
+                subdirs = []
         else:
             if uplink is True:
                 nb_dir += 3
@@ -1433,7 +1449,7 @@ class NavWebReport(Report):
         if subdir:
             subdirs.append(subdir)
         if self.usecms:
-            if self.target_uri not in subdirs:
+            if self.target_uri not in fname:
                 subdirs = [self.target_uri] + subdirs
         else:
             if uplink:
@@ -1498,7 +1514,8 @@ class NavWebReport(Report):
             return None
         return self.build_url_fname(handle, subdir, uplink) + self.ext
 
-    def build_url_fname(self, fname, subdir=None, uplink=False, image=False):
+    def build_url_fname(self, fname, subdir=None, uplink=False,
+                        image=False, init=False):
         """
         Create part of the URL given the filename and optionally the
         subdirectory. If the subdirectory is given, then two extra levels of
@@ -1521,9 +1538,30 @@ class NavWebReport(Report):
 
         if win():
             fname = fname.replace('\\', "/")
+        if init:
+            subdirs = self.build_subdirs(subdir, fname, False, init=init)
+            return "/".join(subdirs + [fname])
         fname = fname.replace(self.target_uri + "/", "")
         if self.usecms:
-            subdirs = self.build_subdirs(subdir, fname, False, image)
+            if self.the_lang:
+                if subdir:
+                    subdirs = self.build_subdirs(subdir, fname,
+                                                 False, image)
+                    if subdir[0:3] in ["css", "ima", "thu"]:
+                        subdirs = [self.target_uri] + subdirs
+                else:
+                    if fname[0:3] in ["css", "ima", "thu"]:
+                        subdirs = [self.target_uri]
+                    else:
+                        subdirs = [self.target_uri] + [self.the_lang]
+            else:
+                if subdir:
+                    if subdir[0:3] not in ["css", "ima", "thu"]:
+                        subdirs = [self.target_uri] + [self.the_lang] + [subdir]
+                    else:
+                        subdirs = [self.target_uri] + [subdir]
+                else:
+                    subdirs = [self.target_uri]
         else:
             subdirs = self.build_subdirs(subdir, fname, uplink, image)
         return "/".join(subdirs + [fname])
@@ -1539,13 +1577,30 @@ class NavWebReport(Report):
         if ext is None:
             ext = self.ext
         if self.usecms and subdir is None:
-            self.cur_fname = os.path.join(self.target_uri, fname) + ext
+            if self.the_lang:
+                if ext != "index":
+                    target = os.path.join(self.target_uri, self.the_lang)
+                    self.cur_fname = os.path.join(target, fname) + ext
+                else:
+                    self.cur_fname = os.path.join(self.target_uri,
+                                                  fname) + self.ext
+            else:
+                self.cur_fname = os.path.join(self.target_uri, fname) + ext
         else:
+            if self.the_lang and self.archive:
+                if subdir:
+                    if not self.usecms:
+                        subdir = os.path.join(self.the_lang, subdir)
+                elif ext != "index":
+                    fname = os.path.join(self.the_lang, fname)
             if subdir:
                 subdir = self.build_path(subdir, fname)
                 self.cur_fname = os.path.join(subdir, fname) + ext
             else:
-                self.cur_fname = fname + ext
+                if ext == "index":
+                    self.cur_fname = os.path.join(fname) + self.ext
+                else:
+                    self.cur_fname = fname + ext
         if self.archive:
             string_io = BytesIO()
             output_file = TextIOWrapper(string_io, encoding=self.encoding,
