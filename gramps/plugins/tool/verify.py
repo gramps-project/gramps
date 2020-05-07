@@ -542,7 +542,10 @@ class VerifyResults(ManagedWindow):
                                         GObject.TYPE_BOOLEAN)
         self.filt_model = self.real_model.filter_new()
         self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
-        self.sort_model = self.filt_model.sort_new_with_model()
+        if hasattr(self.filt_model, "sort_new_with_model"):
+            self.sort_model = self.filt_model.sort_new_with_model()
+        else:
+            self.sort_model = Gtk.TreeModelSort.new_with_model(self.filt_model)
         self.warn_tree.set_model(self.sort_model)
 
         self.renderer = Gtk.CellRendererText()
