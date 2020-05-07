@@ -542,7 +542,10 @@ class VerifyResults(ManagedWindow):
                                         GObject.TYPE_BOOLEAN)
         self.filt_model = self.real_model.filter_new()
         self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
-        self.sort_model = self.filt_model.sort_new_with_model()
+        if hasattr(self.filt_model, "sort_new_with_model"):
+            self.sort_model = self.filt_model.sort_new_with_model()
+        else:
+            self.sort_model = Gtk.TreeModelSort.new_with_model(self.filt_model)
         self.warn_tree.set_model(self.sort_model)
 
         self.renderer = Gtk.CellRendererText()
@@ -659,18 +662,19 @@ class VerifyResults(ManagedWindow):
         self.closeall()
 
     def hide_toggled(self, button):
+        self.filt_model = self.real_model.filter_new()
         if button.get_active():
             button.set_label(_("_Show all"))
-            self.filt_model = self.real_model.filter_new()
             self.filt_model.set_visible_column(VerifyResults.SHOW_COL)
-            self.sort_model = self.filt_model.sort_new_with_model()
-            self.warn_tree.set_model(self.sort_model)
         else:
-            self.filt_model = self.real_model.filter_new()
-            self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
-            self.sort_model = self.filt_model.sort_new_with_model()
-            self.warn_tree.set_model(self.sort_model)
             button.set_label(_("_Hide marked"))
+            self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
+        if hasattr(self.filt_model, "sort_new_with_model"):
+            self.sort_model = self.filt_model.sort_new_with_model()
+        else:
+            self.sort_model = Gtk.TreeModelSort.new_with_model(
+                self.filt_model)
+        self.warn_tree.set_model(self.sort_model)
 
     def selection_toggled(self, cell, path_string):
         sort_path = tuple(map(int, path_string.split(':')))
