@@ -16128,10 +16128,11 @@ msgid "Remove note"
 msgstr "Enlever la note"
 
 # master
+#, translated label on gtk domain
 #: ../gramps/gui/filters/_searchbar.py:56
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:60
 msgid "_Find"
-msgstr "_Trouver"
+msgstr "_Rechercher"
 
 # master
 #: ../gramps/gui/filters/_searchbar.py:57
@@ -40626,7 +40627,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/updates.py:77
 msgid "New and updated objects"
-msgstr "Les greffons mis à jour et les nouveaux"
+msgstr "Les objets mis à jour et les nouveaux"
 
 #. An optional link to a home page
 #. Note. We use '/' here because it is a URL, not a OS
