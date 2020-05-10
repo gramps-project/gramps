@@ -887,9 +887,11 @@ class AddDateInformationWorker(threading.Thread):
                         if date_string is not None:
                             self.com_queue.put(
                                 ('add', (date_string, filename, handle)))
-            except Exception:
-                # ignore errors
-                pass
+            except Exception as e:
+                self.com_queue.put(
+                    ('add', ('', 'Unexpected error when detecting '
+                                 'date for {filename}', handle)))
+
             if self.event_update_list.isSet():
                 break
         self.event_update_done.set()
@@ -903,6 +905,7 @@ class AddDateInformationWorker(threading.Thread):
             return False
 
         date_string = False
+        error_text = None
         with open(full_path, 'rb') as fd:
             try:
                 buf = fd.read()
@@ -918,8 +921,8 @@ class AddDateInformationWorker(threading.Thread):
                         exif_date_string, '%Y:%m:%d %H:%M:%S')
                     gramps_date = Date(dt.year, dt.month, dt.day)
                     date_string = glocale.get_date(gramps_date)
-            except Exception:
-                pass
+            except Exception as e:
+                error_text = str(e)
         return date_string
 
     def update_list(self):
@@ -1089,6 +1092,7 @@ class AddDateInformation(BatchOp):
         if not self.prepared:
             self.prepare()
         self.set_total(len(self.my_handle_list))
+        failed_list = []
         for date_string, filename, handle in self.my_handle_list:
             if date_string:
                 obj = self.db.get_media_from_handle(handle)
@@ -1097,9 +1101,11 @@ class AddDateInformation(BatchOp):
                     date_object = obj.get_date_object()
                     date_object.set_yr_mon_day(*date.get_ymd())
                     self.db.commit_media(obj, self.trans)
-                except Exception:
-                    pass
+                except Exception as e:
+                    failed_list.append(f'Error: {e}; '
+                                       f'{date_string} for file {filename}')
             self.update()
+        # failed_list could be used for something
         return True
 
 
