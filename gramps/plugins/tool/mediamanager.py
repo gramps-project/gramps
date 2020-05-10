@@ -132,6 +132,9 @@ class MediaMan(ManagedWindow, tool.Tool):
         """
         Close the assistant.
         """
+
+        for op in self.batch_ops:
+            op.on_close()
         position = self.window.get_position() # crock
         self.assistant.hide()
         self.window.move(position[0], position[1])
@@ -495,6 +498,12 @@ class BatchOp(UpdateCallback):
     def _prepare(self):
         print("This method needs to be written.")
         print("Preparing BatchOp tool... done.")
+
+    def on_close(self):
+        """
+        This method is called when the dialog is closed
+        """
+        pass
 
 
 #------------------------------------------------------------------------
@@ -969,8 +978,11 @@ class AddDateInformation(BatchOp):
 
     def __del__(self):
         # also kill the thread if this batchop is deleted
-        self.worker_thread.stop()
-        self.worker_thread.join()
+        if self.worker_thread:
+            self.worker_thread.stop()
+            self.worker_thread.join()
+            del self.worker_thread
+            self.worker_thread = None
 
     def check_queue(self):
         """
@@ -979,7 +991,7 @@ class AddDateInformation(BatchOp):
         Returns:
             bool: keep alive
         """
-        if self.worker_thread.is_alive():
+        if self.worker_thread and self.worker_thread.is_alive():
             try:
                 while not self.worker_thread.com_queue.empty():
                     update_command = self.worker_thread.com_queue.get()
@@ -1087,6 +1099,13 @@ class AddDateInformation(BatchOp):
         self.worker_thread.regex_format = self.regex_format.get_text()
         self.worker_thread.regex_string = self.regex_entry.get_text()
         self.worker_thread.update_list()
+
+    def on_close(self):
+        if self.worker_thread:
+            self.worker_thread.stop()
+            self.worker_thread.join()
+            del self.worker_thread
+            self.worker_thread = None
 
     def _run(self):
         if not self.prepared:
