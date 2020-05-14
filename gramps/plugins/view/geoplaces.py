@@ -267,6 +267,8 @@ class GeoPlaces(GeoGraphyView):
         """
         Rebuild the tree with the given places handle as the root.
         """
+        if self.osm is None:
+            return
         self.places_found = []
         self.build_tree()
 
@@ -332,6 +334,8 @@ class GeoPlaces(GeoGraphyView):
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
+        if self.osm is None:
+            return
         dbstate = self.dbstate
         self.place_list = []
         self.places_found = []

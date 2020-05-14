@@ -142,8 +142,27 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.centerlat = config.get("geography.center-lat")
         self.zoom = config.get("geography.zoom")
         self.lock = config.get("geography.lock")
-        if config.get('geography.path') == "":
+        tile_path = config.get('geography.path')
+        if tile_path == "":
             config.set('geography.path', GEOGRAPHY_PATH)
+        else:
+            # verify is the path always exists
+            if os.path.exists(tile_path) and os.path.isdir(tile_path):
+                self.tile_path_ok = True
+            else:
+                self.tile_path_ok = False
+                try:
+                    os.makedirs(tile_path, 0o755) # create dir like mkdir -p
+                except:
+                    from gramps.gui.dialog import WarningDialog
+                    WarningDialog(_("Tile path"),
+                                  _("The tile directory doesn't exist anymore:"
+                                    "\n%s\nTrying to create a new one failed."
+                                    "\nConfigure the view for the tile path"
+                                    " and restart gramps."
+                                    % tile_path),
+                                  parent=uistate.window)
+
         if not config.is_set('geography.personal-map'):
             config.set('geography.personal-map', "")
 
@@ -274,11 +293,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Clear the map: places, markers, tracks, messages...
         """
-        self.place_list = []
-        self.remove_all_markers()
-        self.remove_all_gps()
-        self.remove_all_tracks()
-        self.message_layer.clear_messages()
+        if self.osm is not None:
+            self.place_list = []
+            self.remove_all_markers()
+            self.remove_all_gps()
+            self.remove_all_tracks()
+            self.message_layer.clear_messages()
 
     def change_db(self, dbse):
         """
@@ -291,7 +311,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         dummy_dbse = dbse
         if self.active:
             self.bookmarks.redraw()
-        self.build_tree()
+        if self.osm is not None:
+            self.build_tree()
+            self.osm.grab_focus()
+            self.set_crosshair(config.get("geography.show_cross"))
 
     def can_configure(self):
         """
@@ -541,7 +564,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Remove the specified layer
         """
-        self.osm.remove_layer(layer)
+        if self.osm is not None:
+            self.osm.remove_layer(layer)
 
     def add_marker(self, menu, event, lat, lon, event_type, differtype,
                    count, color=None):
@@ -568,19 +592,22 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Remove all gps points on the map
         """
-        self.osm.gps_clear()
+        if self.osm is not None:
+            self.osm.gps_clear()
 
     def remove_all_tracks(self):
         """
         Remove all tracks on the map
         """
-        self.osm.track_remove_all()
+        if self.osm is not None:
+            self.osm.track_remove_all()
 
     def remove_all_markers(self):
         """
         Remove all markers on the map
         """
-        self.marker_layer.clear_markers()
+        if self.osm is not None:
+            self.marker_layer.clear_markers()
 
     def _present_in_places_list(self, index, string):
         """

@@ -216,6 +216,8 @@ class GeoFamily(GeoGraphyView):
         """
         Rebuild the tree with the given person handle as the root.
         """
+        if self.osm is None:
+            return
         self.build_tree()
 
     def build_tree(self):
@@ -435,6 +437,8 @@ class GeoFamily(GeoGraphyView):
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
+        if self.osm is None:
+            return
         if not handle:
             return
         self.place_list = []
