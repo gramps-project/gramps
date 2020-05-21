@@ -1306,10 +1306,8 @@ class GrampsParser(UpdateCallback):
             return
 
         if self.family:
-            event.personal = False
             self.family.add_event_ref(self.eventref)
         elif self.person:
-            event.personal = True
             if (event.type == EventType.BIRTH) \
                    and (self.eventref.role == EventRoleType.PRIMARY) \
                    and (self.person.get_birth_ref() is None):
