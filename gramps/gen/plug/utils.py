@@ -116,9 +116,8 @@ class Zipfile:
                 os.mkdir(fullname)
         for name in self.get_files(names):
             fullname = os.path.join(path, name)
-            outfile = open(fullname, 'wb')
-            outfile.write(self.zip_obj.read(name))
-            outfile.close()
+            with open(fullname, 'wb') as outfile:
+                outfile.write(self.zip_obj.read(name))
 
     def extractfile(self, name):
         """
