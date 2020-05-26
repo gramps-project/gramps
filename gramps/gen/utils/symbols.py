@@ -98,10 +98,10 @@ class Symbols(object):
             (_("Divorce"), '\u26ae', config.get('utf8.divorce-symbol')),
             (_("Unmarried partnership"), '\u26af',
              config.get('utf8.partner-symbol')),
-            (_("Buried"), '\u26b0', config.get('utf8.dead-symbol')),
+            (_("Buried"), '\u26b0', config.get('utf8.buried-symbol')),
             (_("Cremated/Funeral urn"), '\u26b1',
-             config.get('utf8.dead-symbol')),
-            (_("Killed in action"), '\u2694', config.get('utf8.dead-symbol')),
+             config.get('utf8.cremated-symbol')),
+            (_("Killed in action"), '\u2694', config.get('utf8.killed-symbol')),
             (_("Extinct"), '\u2021', "")]
 
         # The following is used in the global preferences in the display tab.
