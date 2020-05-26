@@ -1950,37 +1950,35 @@ class GrampsPreferences(ConfigureDialog):
 
         message = _('This tab gives you the possibility to use one font'
                     ' which is able to show all genealogical symbols\n\n'
-                    'If you select the "use symbols" checkbox, '
-                    'Gramps will use the selected font if it exists.'
+                    'If checked, use the standard genealogic symbols (death '
+                    'symbol is user selectable).\n'
+                    'If not checked, you can use the lower panel to customize '
+                    'the symbols yourself.'
                    )
-        message += '\n'
+        message += '\n\n'
         message += _('This can be useful if you want to add phonetic in '
                      'a note to show how to pronounce a name or if you mix'
                      ' multiple languages like greek and russian.'
                     )
-        self.add_text(self.grid, message,
-                      0, line_wrap=True)
-        self.add_checkbox(self.grid, _('Use symbols'), 1, 'utf8.in-use',
-                          extra_callback=self.activate_change_font)
+        self.add_checkbox(self.grid, _('Use symbols'), 0, 'utf8.in-use',
+                          extra_callback=self.activate_change_font,
+                          tooltip=message)
         message = _('Be careful, if you click on the "Try to find" button,'
                     ' it can take a while before you can continue (10 minutes'
                     ' or more). '
                     '\nIf you cancel the process, nothing will be changed.'
                    )
-        self.add_text(self.grid, message, 2, line_wrap=True)
         available_fonts = config.get('utf8.available-fonts')
         self.all_avail_fonts = list(enumerate(available_fonts))
         if available_fonts:
-            self.add_text(self.grid,
-                          _('You have already run the tool to search for'
-                            ' genealogy fonts.'
-                            '\nRun it again only if you added fonts on your'
-                            ' system.'
-                           ),
-                          3, line_wrap=True)
+            label = Gtk.Label(halign=Gtk.Align.START, label=_(
+                'You have already run the tool to search for genealogy fonts.'
+                '\nRun it again only if you added fonts on your system.'))
+            self.grid.attach(label, 2, 2, 1, 1)
         extra_cback = self.can_we_use_genealogical_fonts
-        self.find = self.add_button(self.grid, _('Try to find'), 4,
+        self.find = self.add_button(self.grid, _('Try to find'), 2,
                                     'utf8.in-use', extra_callback=extra_cback)
+        self.find.set_tooltip_text(message)
         sel_font = config.get('utf8.selected-font')
         if available_fonts:
             try:
@@ -1988,7 +1986,7 @@ class GrampsPreferences(ConfigureDialog):
             except:
                 active_val = 0
             self.choosefont = self.add_combo(self.grid, _('Choose font'),
-                                             5, 'utf8.selected-font',
+                                             3, 'utf8.selected-font',
                                              self.all_avail_fonts,
                                              callback=self.utf8_update_font,
                                              valueactive=True,
@@ -2002,7 +2000,7 @@ class GrampsPreferences(ConfigureDialog):
             pos = config.get('utf8.death-symbol')
             self.combo = self.add_combo(self.grid,
                                         _('Select default death symbol'),
-                                        6, 'utf8.death-symbol',
+                                        4, 'utf8.death-symbol',
                                         self.all_death_symbols,
                                         callback=self.utf8_update_death_symbol,
                                         valueactive=True, setactive='')
@@ -2036,12 +2034,15 @@ class GrampsPreferences(ConfigureDialog):
             return False
         try:
             # remove the old messages with old font
+            self.grid.remove_row(11)
             self.grid.remove_row(10)
             self.grid.remove_row(9)
             self.grid.remove_row(8)
             self.grid.remove_row(7)
             self.grid.remove_row(6)
             self.grid.remove_row(5)
+            self.grid.remove_row(4)
+            self.grid.remove_row(3)
         except:
             pass
         fonts = fontconfig.query()
@@ -2169,7 +2170,7 @@ class GrampsPreferences(ConfigureDialog):
                     self.uistate.reload_symbols()
                     self.show_default_symbols()
                     self.uistate.emit('font-changed')
-                except error:
+                except:
                     # We can't change the font, The system will use the default.
                     # Reason: the font doesn't exist anymore (removed ?)
                     print("WARNING: can't select the choosen font: %s'", font)
@@ -2180,10 +2181,13 @@ class GrampsPreferences(ConfigureDialog):
         from string import ascii_letters
         try:
             # remove the old messages with old font
+            self.grid.remove_row(11)
             self.grid.remove_row(10)
             self.grid.remove_row(9)
             self.grid.remove_row(8)
             self.grid.remove_row(7)
+            self.grid.remove_row(6)
+            self.grid.remove_row(5)
         except:
             pass
         font = config.get('utf8.selected-font')
@@ -2206,7 +2210,7 @@ class GrampsPreferences(ConfigureDialog):
         text.set_text(my_characters)
         scrollw.add(text)
         scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        self.grid.attach(scrollw, 1, 7, 8, 1)
+        self.grid.attach(scrollw, 1, 8, 8, 1)
 
         my_characters = ""
         for idx in range(symbols.SYMBOL_FEMALE, symbols.SYMBOL_EXTINCT+1):
@@ -2223,7 +2227,7 @@ class GrampsPreferences(ConfigureDialog):
                         my_characters +
                         "</big></big></big></big>")
         text.set_selectable(True)
-        self.grid.attach(text, 1, 8, 8, 1)
+        self.grid.attach(text, 1, 9, 8, 1)
         scrollw.show_all()
         text.show_all()
         self.show_default_symbols()
@@ -2264,8 +2268,9 @@ class GrampsPreferences(ConfigureDialog):
     def show_default_symbols(self):
         # prepare scrolled window for symbols
         try:
+            self.grid.remove_row(11)
             self.grid.remove_row(10)
-            self.grid.remove_row(9)
+            self.symbols_grid.remove_row(5)
             self.symbols_grid.remove_row(4)
             self.symbols_grid.remove_row(3)
             self.symbols_grid.remove_row(2)
@@ -2274,41 +2279,43 @@ class GrampsPreferences(ConfigureDialog):
         except:
             pass
 
-        symbol_reset = _('Reset default genealogy symbols replacement')
-        reset = self.add_button(self.grid, symbol_reset,
-                                9, "",
-                                extra_callback=self.reset_substitution_symbol
-                               )
         scroll_window = Gtk.ScrolledWindow()
         scroll_window.add(self.symbols_grid)
         scroll_window.set_vexpand(True)
         scroll_window.set_policy(Gtk.PolicyType.NEVER,
                                  Gtk.PolicyType.AUTOMATIC)
-        self.grid.attach(scroll_window, 0, 10, 5, 1)
+        self.grid.attach(scroll_window, 0, 11, 5, 1)
         if self.symbols_grid and self.uistate.symbols:
             self.symbols_grid.set_sensitive(False)
-            reset.set_sensitive(False)
+            #reset.set_sensitive(False)
         else:
             self.symbols_grid.set_sensitive(True)
-            reset.set_sensitive(True)
+            #reset.set_sensitive(True)
         self.symbol_list = [
             (_("Birth"), 'utf8.birth-symbol', 1, 1),
-            (_("Marriage"), 'utf8.marriage-symbol', 1, 3),
-            (_("Baptism"), 'utf8.baptism-symbol', 1, 5),
-            (_("Engaged"), 'utf8.engaged-symbol', 1, 7),
-            (_("Divorce"), 'utf8.divorce-symbol', 2, 1),
-            (_("Partner"), 'utf8.partner-symbol', 2, 3),
-            (_("Death"), 'utf8.dead-symbol', 2, 5),
-            (_("Buried"), 'utf8.buried-symbol', 2, 7),
-            (_("Cremated/Funeral urn"), 'utf8.cremated-symbol', 3, 1),
-            (_("Killed"), 'utf8.killed-symbol', 3, 3),
+            (_("Baptism"), 'utf8.baptism-symbol', 1, 3),
+            (_("Engaged"), 'utf8.engaged-symbol', 2, 1),
+            (_("Marriage"), 'utf8.marriage-symbol', 2, 3),
+            (_("Partner"), 'utf8.partner-symbol', 3, 1),
+            (_("Divorce"), 'utf8.divorce-symbol', 3, 3),
+            (_("Death"), 'utf8.dead-symbol', 4, 1),
+            (_("Killed"), 'utf8.killed-symbol', 4, 3),
+            (_("Buried"), 'utf8.buried-symbol', 5, 1),
+            (_("Cremated/Funeral urn"), 'utf8.cremated-symbol', 5, 3),
             ]
         symbol_title = _('Default genealogy symbols replacement')
 
         symbol_label = Gtk.Label()
         symbol_label.set_halign(Gtk.Align.START)
         symbol_label.set_markup(_('<b>%s</b>') % symbol_title)
-        self.symbols_grid.attach(symbol_label, 0, 0, 7, 1)
+        #self.symbols_grid.attach(symbol_label, 0, 0, 7, 1)
+        self.symbols_grid.attach(symbol_label, 0, 0, 4, 1)
+
+        symbol_reset = _('Restore to defaults')
+        button = Gtk.Button(label=symbol_reset)
+        button.connect('clicked', self.reset_substitution_symbol)
+        self.symbols_grid.attach(button, 4, 0, 4, 1)
+
         symbol_tooltip = _('You can set any text you want for this field.'
                            '\nYou can drag and drop a symbol from the symbol '
                            'list above.\nIt will be visible only if your font '
