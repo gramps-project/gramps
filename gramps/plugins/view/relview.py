@@ -153,7 +153,6 @@ class RelationshipView(NavigationView):
         self.theme = self._config.get('preferences.relation-display-theme')
         self.toolbar_visible = config.get('interface.toolbar-on')
         self.age_precision = config.get('preferences.age-display-precision')
-        self.symbols = Symbols()
         self.reload_symbols()
 
     def get_handle_from_gramps_id(self, gid):
@@ -184,6 +183,7 @@ class RelationshipView(NavigationView):
         self.callman.add_db_signal('person-delete', self.redraw)
 
     def reload_symbols(self):
+        self.symbols = Symbols()
         if self.uistate and self.uistate.symbols:
             gsfs = self.symbols.get_symbol_for_string
             self.male = gsfs(self.symbols.SYMBOL_MALE)

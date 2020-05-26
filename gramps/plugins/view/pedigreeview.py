@@ -574,6 +574,7 @@ class PedigreeView(NavigationView):
         self.uistate.connect('font-changed', self.reload_symbols)
 
     def reload_symbols(self):
+        self.symbols = Symbols()
         dth_idx = self.uistate.death_symbol
         if self.uistate.symbols:
             self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)

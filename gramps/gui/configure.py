@@ -1943,6 +1943,9 @@ class GrampsPreferences(ConfigureDialog):
         self.grid.set_border_width(12)
         self.grid.set_column_spacing(6)
         self.grid.set_row_spacing(6)
+        self.combo = None
+        self.choosefont = None
+        self.symbols_grid = self.create_grid()
 
         message = _('This tab gives you the possibility to use one font'
                     ' which is able to show all genealogical symbols\n\n'
@@ -1976,7 +1979,7 @@ class GrampsPreferences(ConfigureDialog):
                   '\nRun it again only if you added fonts on your system.'
                  ),
                 3, line_wrap=True)
-        self.add_button(self.grid,
+        self.find = self.add_button(self.grid,
                 _('Try to find'),
                 4,
                 'utf8.in-use',
@@ -1987,7 +1990,7 @@ class GrampsPreferences(ConfigureDialog):
                 active_val = available_fonts.index(sel_font)
             except:
                 active_val = 0
-            self.add_combo(self.grid,
+            self.choosefont = self.add_combo(self.grid,
                 _('Choose font'),
                 5, 'utf8.selected-font',
                 self.all_avail_fonts,
@@ -2000,15 +2003,25 @@ class GrampsPreferences(ConfigureDialog):
                 all_symbols.append(symbol[1] + " " + symbol[0])
             self.all_death_symbols = list(enumerate(all_symbols))
             pos = config.get('utf8.death-symbol')
-            combo = self.add_combo(self.grid,
+            self.combo = self.add_combo(self.grid,
                 _('Select default death symbol'),
                 6, 'utf8.death-symbol',
                 self.all_death_symbols,
                 callback=self.utf8_update_death_symbol,
                 valueactive=True, setactive='')
-            combo.set_active(pos)
+            self.combo.set_active(pos)
             if config.get('utf8.selected-font') != "":
                 self.utf8_show_example()
+        self.show_default_symbols()
+        if config.get('utf8.in-use'):
+            self.find.set_sensitive(True)
+            self.choosefont.set_sensitive(True)
+            #self.combo.set_sensitive(True)
+        else:
+            self.find.set_sensitive(False)
+            self.choosefont.set_sensitive(False)
+            #self.combo.set_sensitive(False)
+            self.uistate.emit('font-changed')
 
         return _('Genealogical Symbols'), self.grid
 
@@ -2026,6 +2039,8 @@ class GrampsPreferences(ConfigureDialog):
             return False
         try:
             # remove the old messages with old font
+            self.grid.remove_row(10)
+            self.grid.remove_row(9)
             self.grid.remove_row(8)
             self.grid.remove_row(7)
             self.grid.remove_row(6)
@@ -2088,7 +2103,7 @@ class GrampsPreferences(ConfigureDialog):
             active_val = 0
         if len(available_fonts) > 0:
             self.all_avail_fonts = list(enumerate(available_fonts))
-            choosefont = self.add_combo(self.grid,
+            self.choosefont = self.add_combo(self.grid,
                 _('Choose font'),
                 5, 'utf8.selected-font',
                 self.all_avail_fonts, callback=self.utf8_update_font,
@@ -2105,13 +2120,13 @@ class GrampsPreferences(ConfigureDialog):
                 all_symbols.append(symbol[1] + " " + symbol[0])
             self.all_death_symbols = list(enumerate(all_symbols))
             pos = config.get('utf8.death-symbol')
-            combo = self.add_combo(self.grid,
+            self.combo = self.add_combo(self.grid,
                 _('Select default death symbol'),
                 6, 'utf8.death-symbol',
                 self.all_death_symbols,
                 callback=self.utf8_update_death_symbol,
                 valueactive=True, setactive='')
-            combo.set_active(pos)
+            self.combo.set_active(pos)
         else:
             self.add_text(self.grid,
                 _('You have no font with genealogical symbols on your '
@@ -2131,13 +2146,28 @@ class GrampsPreferences(ConfigureDialog):
         if obj:
             if not obj.get_active():
                 # reset to the system default
+                self.find.set_sensitive(False)
+                if self.choosefont:
+                    self.choosefont.set_sensitive(False)
+                if self.combo:
+                    self.combo.set_sensitive(False)
+                self.uistate.reload_symbols()
+                self.show_default_symbols()
+                self.uistate.emit('font-changed')
                 self.uistate.viewmanager.reset_font()
+                return
+        self.find.set_sensitive(True)
+        if self.choosefont:
+            self.choosefont.set_sensitive(True)
+        if self.combo:
+            self.combo.set_sensitive(True)
         font = config.get('utf8.selected-font')
         if not self.uistate.viewmanager.change_font(font):
             # We can't change the font, so reset the checkbox.
             if obj:
                 obj.set_active(False)
         self.uistate.reload_symbols()
+        self.show_default_symbols()
         self.uistate.emit('font-changed')
 
     def utf8_show_example(self):
@@ -2146,6 +2176,8 @@ class GrampsPreferences(ConfigureDialog):
         from string import ascii_letters
         try:
             # remove the old messages with old font
+            self.grid.remove_row(10)
+            self.grid.remove_row(9)
             self.grid.remove_row(8)
             self.grid.remove_row(7)
         except:
@@ -2160,7 +2192,7 @@ class GrampsPreferences(ConfigureDialog):
             my_characters += v[2] + ":\t" + lang.get_sample_string() + "\n"
 
         scrollw = Gtk.ScrolledWindow()
-        scrollw.set_size_request(600, 100)
+        scrollw.set_size_request(600, 60)
         text = Gtk.Label()
         text.set_line_wrap(True)
         font_description = Pango.font_description_from_string(font)
@@ -2186,9 +2218,11 @@ class GrampsPreferences(ConfigureDialog):
         text.set_markup("<big><big><big><big>" +
                         my_characters +
                         "</big></big></big></big>")
+        text.set_selectable(True)
         self.grid.attach(text, 1, 8, 8, 1)
         scrollw.show_all()
         text.show_all()
+        self.show_default_symbols()
 
     def stop_looking_for_font(self, *args, **kwargs):
         self.progress.close()
@@ -2198,4 +2232,90 @@ class GrampsPreferences(ConfigureDialog):
         entry = obj.get_active()
         config.set(constant, entry)
         self.utf8_show_example()
+        self.uistate.emit('font-changed')
 
+    def symbol_value_change(self, obj, constant):
+        entry = obj.get_text()
+        config.set(constant, entry)
+        idx = 0
+        symbols = Symbols()
+        for symbol in self.symbols:
+            if obj == self.symbols[symbol]:
+                self.set_substitution_symbol(self.symbol_list[idx][1], entry)
+            idx += 1
+
+    def reset_substitution_symbol(self, *args):
+        """ reset the substitution symbol to the default """
+        self.set_substitution_symbol('utf8.birth-symbol', "*")
+        self.set_substitution_symbol('utf8.baptism-symbol', "~")
+        self.set_substitution_symbol('utf8.marriage-symbol', "oo")
+        self.set_substitution_symbol('utf8.engaged-symbol', "o")
+        self.set_substitution_symbol('utf8.divorce-symbol', "o|o")
+        self.set_substitution_symbol('utf8.partner-symbol', "o-o")
+        self.set_substitution_symbol('utf8.dead-symbol', "☠")
+        self.show_default_symbols()
+
+    def show_default_symbols(self):
+        # prepare scrolled window for symbols
+        try:
+            self.grid.remove_row(10)
+            self.grid.remove_row(9)
+            self.symbols_grid.remove_row(3)
+            self.symbols_grid.remove_row(2)
+            self.symbols_grid.remove_row(1)
+            self.symbols_grid.remove_row(0)
+        except:
+            pass
+
+        symbol_reset = _('Reset default genealogy symbols replacement')
+        reset = self.add_button(self.grid, symbol_reset,
+                9, "", extra_callback=self.reset_substitution_symbol
+                )
+        scroll_window = Gtk.ScrolledWindow()
+        scroll_window.add(self.symbols_grid)
+        scroll_window.set_vexpand(True)
+        scroll_window.set_policy(Gtk.PolicyType.NEVER,
+                                 Gtk.PolicyType.AUTOMATIC)
+        self.grid.attach(scroll_window, 0, 10, 5, 1)
+        if self.symbols_grid and self.uistate.symbols:
+            self.symbols_grid.set_sensitive(False)
+            reset.set_sensitive(False)
+        else:
+            self.symbols_grid.set_sensitive(True)
+            reset.set_sensitive(True)
+        self.symbol_list = [
+            ("Birth", 'utf8.birth-symbol', 1, 1),
+            ("Marriage", 'utf8.marriage-symbol', 1, 3),
+            ("Baptism", 'utf8.baptism-symbol', 1, 5),
+            ("Engaged", 'utf8.engaged-symbol', 1, 7),
+            ("Divorce", 'utf8.divorce-symbol', 2, 1),
+            ("Partner", 'utf8.partner-symbol', 2, 3),
+            ("Dead", 'utf8.dead-symbol', 2, 5),
+            ]
+        symbol_title = _('Default genealogy symbols replacement')
+
+        symbol_label = Gtk.Label()
+        symbol_label.set_halign(Gtk.Align.START)
+        symbol_label.set_markup(_('<b>%s</b>') % symbol_title)
+        self.symbols_grid.attach(symbol_label, 0, 0, 7, 1)
+        symbol_tooltip = _('You can set any text you want for this field.'
+                           '\nYou can drag and drop a symbol from the symbol '
+                           'list above.\nIt will be visible only if your font '
+                           'contains this glyph.'
+                          )
+
+        # add symbols values to scrolled window
+        self.symbols = {}
+        for symbol in self.symbol_list:
+            self.symbols[symbol[0]] = self.add_entry(
+                self.symbols_grid, symbol[0], symbol[2], symbol[1],
+                self.symbol_value_change, col_attach=symbol[3]
+                )
+            self.symbols[symbol[0]].set_tooltip_text(symbol_tooltip)
+        scroll_window.show_all()
+        self.grid.show_all()
+
+    def set_substitution_symbol(self, symbol, value):
+        """ set the substitution symbol to string """
+        config.set(symbol, value)
+        self.uistate.emit('font-changed')
