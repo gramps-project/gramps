@@ -2012,7 +2012,8 @@ class GrampsPreferences(ConfigureDialog):
         self.show_default_symbols()
         if config.get('utf8.in-use'):
             self.find.set_sensitive(True)
-            self.choosefont.set_sensitive(True)
+            if self.choosefont:
+                self.choosefont.set_sensitive(True)
         else:
             self.find.set_sensitive(False)
             if self.choosefont:
@@ -2156,15 +2157,22 @@ class GrampsPreferences(ConfigureDialog):
                 self.uistate.emit('font-changed')
                 self.uistate.viewmanager.reset_font()
                 return
-        self.find.set_sensitive(True)
-        if self.choosefont:
-            self.choosefont.set_sensitive(True)
-        if self.combo:
-            self.combo.set_sensitive(True)
-        font = config.get('utf8.selected-font')
-        self.uistate.reload_symbols()
-        self.show_default_symbols()
-        self.uistate.emit('font-changed')
+            else:
+                self.find.set_sensitive(True)
+                if self.choosefont:
+                    self.choosefont.set_sensitive(True)
+                if self.combo:
+                    self.combo.set_sensitive(True)
+                font = config.get('utf8.selected-font')
+                try:
+                    self.uistate.viewmanager.change_font(font)
+                    self.uistate.reload_symbols()
+                    self.show_default_symbols()
+                    self.uistate.emit('font-changed')
+                except error:
+                    # We can't change the font, The system will use the default.
+                    # Reason: the font doesn't exist anymore (removed ?)
+                    print("WARNING: can't select the choosen font: %s'", font)
 
     def utf8_show_example(self):
         from gi.repository import Pango
