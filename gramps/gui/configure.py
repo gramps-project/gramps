@@ -2041,8 +2041,6 @@ class GrampsPreferences(ConfigureDialog):
             self.grid.remove_row(7)
             self.grid.remove_row(6)
             self.grid.remove_row(5)
-            self.grid.remove_row(4)
-            self.grid.remove_row(3)
         except:
             pass
         fonts = fontconfig.query()
@@ -2210,27 +2208,51 @@ class GrampsPreferences(ConfigureDialog):
         text.set_text(my_characters)
         scrollw.add(text)
         scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        self.grid.attach(scrollw, 1, 8, 8, 1)
+        self.grid.attach(scrollw, 1, 8, 4, 1)
 
-        my_characters = ""
-        for idx in range(symbols.SYMBOL_FEMALE, symbols.SYMBOL_EXTINCT+1):
-            my_characters += symbols.get_symbol_for_string(idx) + " "
+        self.sym_buf = Gtk.TextBuffer()
+        self.sym_text = Gtk.TextView.new_with_buffer(self.sym_buf)
+        self.sym_text.set_has_tooltip(True)
+        self.sym_text.props.halign = Gtk.Align.START
+        self.sym_text.connect("query_tooltip", self.sym_tooltip)
+        for (tooltip, text, _tsym) in symbols.all_symbols:
+            text = ' ' + text + ' '
+            tag = self.sym_buf.create_tag(tag_name=tooltip, font=font,
+                                          size_points=16.0)
+            _iter = self.sym_buf.get_end_iter()
+            self.sym_buf.insert_with_tags(_iter, text, tag)
 
         death_symbl = config.get('utf8.death-symbol')
-        my_characters += symbols.get_death_symbol_for_char(death_symbl)
-        text = Gtk.Label()
-        text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
-        text.set_halign(Gtk.Align.START)
-        text.set_markup("<big><big><big><big>" +
-                        my_characters +
-                        "</big></big></big></big>")
-        text.set_selectable(True)
-        self.grid.attach(text, 1, 9, 8, 1)
+        text = ' ' + symbols.get_death_symbol_for_char(death_symbl) + ' '
+        tooltip = (_("Death:") + '\n' +
+                   symbols.get_death_symbol_name(death_symbl))
+        tag = self.sym_buf.create_tag(tag_name=tooltip, font=font,
+                                      size_points=14.0)
+        _iter = self.sym_buf.get_end_iter()
+        self.sym_buf.insert_with_tags(_iter, text, tag)
+        self.sym_text.set_editable(False)
+        self.grid.attach(self.sym_text, 1, 9, 8, 1)
         scrollw.show_all()
-        text.show_all()
+        self.sym_text.show()
         self.show_default_symbols()
+
+    def sym_tooltip(self, widget, w_x, w_y, key_mode, tooltip):
+        """ show a tooltip for each genealogic symbol """
+        if key_mode:
+            offset = self.sym_buf.props.cursor_position
+            iter_ = self.sym_buf.get_iter_at_offset(offset)
+        else:
+            # x. y are valid
+            b_x, b_y = self.sym_text.window_to_buffer_coords(
+                Gtk.TextWindowType.TEXT, w_x, w_y)
+            iter_ = self.sym_text.get_iter_at_position(b_x, b_y)
+            if isinstance(iter_, tuple):
+                iter_ = iter_[1]
+        tags = iter_.get_tags()
+        if tags:
+            tooltip.set_text(tags[0].props.name)
+            return True  # if tooltip is to be shown
+        return False
 
     def stop_looking_for_font(self, *args, **kwargs):
         self.progress.close()
@@ -2287,10 +2309,8 @@ class GrampsPreferences(ConfigureDialog):
         self.grid.attach(scroll_window, 0, 11, 5, 1)
         if self.symbols_grid and self.uistate.symbols:
             self.symbols_grid.set_sensitive(False)
-            #reset.set_sensitive(False)
         else:
             self.symbols_grid.set_sensitive(True)
-            #reset.set_sensitive(True)
         self.symbol_list = [
             (_("Birth"), 'utf8.birth-symbol', 1, 1),
             (_("Baptism"), 'utf8.baptism-symbol', 1, 3),
@@ -2308,8 +2328,7 @@ class GrampsPreferences(ConfigureDialog):
         symbol_label = Gtk.Label()
         symbol_label.set_halign(Gtk.Align.START)
         symbol_label.set_markup(_('<b>%s</b>') % symbol_title)
-        #self.symbols_grid.attach(symbol_label, 0, 0, 7, 1)
-        self.symbols_grid.attach(symbol_label, 0, 0, 4, 1)
+        self.symbols_grid.attach(symbol_label, 0, 0, 3, 1)
 
         symbol_reset = _('Restore to defaults')
         button = Gtk.Button(label=symbol_reset)
@@ -2325,11 +2344,13 @@ class GrampsPreferences(ConfigureDialog):
         # add symbols values to scrolled window
         self.symbols = {}
         for symbol in self.symbol_list:
-            self.symbols[symbol[0]] = self.add_entry(
+            self.symbols[symbol[0]] = entry = self.add_entry(
                 self.symbols_grid, symbol[0], symbol[2], symbol[1],
-                self.symbol_value_change, col_attach=symbol[3]
-                )
-            self.symbols[symbol[0]].set_tooltip_text(symbol_tooltip)
+                self.symbol_value_change, col_attach=symbol[3])
+            entry.set_tooltip_text(symbol_tooltip)
+            entry.set_max_width_chars(12)
+            entry.set_width_chars(12)
+            entry.set_halign(Gtk.Align.START)
         scroll_window.show_all()
         self.grid.show_all()
 
