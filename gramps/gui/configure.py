@@ -1961,40 +1961,6 @@ class GrampsPreferences(ConfigureDialog):
         self.add_checkbox(self.grid, _('Use symbols'), 0, 'utf8.in-use',
                           extra_callback=self.activate_change_font,
                           tooltip=message)
-        message = _('Be careful, if you click on the "Try to find" button, it '
-                    'can take a while before you can continue (some minutes).'
-                    '\nIf you cancel the process, nothing will be changed.'
-                   )
-        available_fonts = config.get('utf8.available-fonts')
-        if available_fonts:
-            self.find_label = Gtk.Label(halign=Gtk.Align.START, label=_(
-                'You have already run the tool to search for genealogy fonts.'
-                '\nRun it again only if you added fonts on your system.'))
-        else:
-            self.find_label = Gtk.Label(halign=Gtk.Align.START, label=_(
-                'Your default font may not contain all the necessary symbols.'
-                "\nIf you see some missing symbols, use 'Try to find',\n"
-                "and then select a different font."))
-        self.grid.attach(self.find_label, 2, 2, 1, 1)
-        self.all_avail_fonts = [(0, _("Default"))]
-        self.all_avail_fonts.extend(
-            [(i + 1, fnt) for (i, fnt) in enumerate(available_fonts)])
-        extra_cback = self.can_we_use_genealogical_fonts
-        self.find = self.add_button(self.grid, _('Try to find'), 2,
-                                    '', extra_callback=extra_cback)
-        self.find.set_tooltip_text(message)
-        sel_font = config.get('utf8.selected-font')
-        if available_fonts:
-            try:
-                active_val = available_fonts.index(sel_font)
-            except:
-                active_val = 0
-            self.choosefont = self.add_combo(self.grid, _('Choose font'),
-                                             3, 'utf8.selected-font',
-                                             self.all_avail_fonts,
-                                             callback=self.utf8_update_font,
-                                             valueactive=True,
-                                             setactive=active_val)
         symbols = Symbols()
         all_sbls = symbols.get_death_symbols()
         all_symbols = []
@@ -2009,158 +1975,13 @@ class GrampsPreferences(ConfigureDialog):
                                     valueactive=False)
         self.utf8_show_example()
         self.show_default_symbols()
-        if config.get('utf8.in-use'):
-            self.find.set_sensitive(True)
-            if self.choosefont:
-                self.choosefont.set_sensitive(True)
-        else:
-            self.find.set_sensitive(False)
-            if self.choosefont:
-                self.choosefont.set_sensitive(False)
-            self.uistate.emit('font-changed')
 
         return _('Genealogical Symbols'), self.grid
 
-    def can_we_use_genealogical_fonts(self, obj):
-        try:
-            import fontconfig
-            from gramps.gui.utils import ProgressMeter
-            from collections import defaultdict
-            fonts = fontconfig.query()
-        except:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog(_("Cannot look for genealogical fonts"),
-                          _("I am not able to select genealogical fonts. Please"
-                            ", install the module fontconfig for python 3."),
-                          parent=self.uistate.window)
-            fonts = []
-        try:
-            # remove the old messages with old font
-            self.grid.remove_row(8)
-            self.grid.remove_row(7)
-            self.grid.remove_row(6)
-            self.grid.remove_row(5)
-            self.grid.remove_row(4)
-            self.grid.remove_row(3)
-        except:
-            pass
-        all_fonts = defaultdict(set)
-        symbols = Symbols()
-        nb_symbols = symbols.get_how_many_symbols()
-        self.in_progress = True
-        progress_text = _('Checking available genealogical fonts')
-        can_callback = self.stop_looking_for_font
-        self.progress = ProgressMeter(progress_text, can_cancel=True,
-                                      cancel_callback=can_callback,
-                                      parent=self.uistate.window)
-        pass_txt = _('Looking for all fonts with genealogical symbols.')
-        self.progress.set_pass(pass_txt, nb_symbols*len(fonts))
-        for path in fonts:
-            if not self.in_progress:
-                return # We clicked on Cancel
-            font = fontconfig.FcFont(path)
-            local = get_env_var('LANGUAGE', 'en')
-            if isinstance(font.family, list):
-                # fontconfig version 0.5.x uses a list
-                fontname = None
-                for lang, fam in font.family:
-                    if lang == local:
-                        fontname = fam
-                if not fontname:
-                    fontname = font.family[0][1]
-            else:
-                # fontconfig version 0.6.0 uses dict
-                if local in font.family:
-                    fontname = font.family[local]
-                else:
-                    for lang, name in font.family.item():
-                        fontname = name
-                        break
-            for rand in range(symbols.SYMBOL_MALE, symbols.SYMBOL_EXTINCT+1):
-                string = symbols.get_symbol_for_html(rand)
-                value = symbols.get_symbol_for_string(rand)
-                if font.has_char(value):
-                    all_fonts[fontname].add(value)
-                self.progress.step()
-            for rand in range(symbols.DEATH_SYMBOL_SKULL,
-                              symbols.DEATH_SYMBOL_DEAD):
-                value = symbols.get_death_symbol_for_char(rand)
-                if font.has_char(value):
-                    all_fonts[fontname].add(value)
-                self.progress.step()
-        self.progress.close()
-        available_fonts = []
-        for font, font_usage in all_fonts.items():
-            if not font_usage:
-                continue
-            if len(font_usage) == nb_symbols: # If the font use all symbols
-                available_fonts.append(font)
-        config.set('utf8.available-fonts', available_fonts)
-        sel_font = config.get('utf8.selected-font')
-        try:
-            active_val = available_fonts.index(sel_font)
-        except:
-            active_val = 0
-        if available_fonts:
-            self.all_avail_fonts = [(0, _("Default"))]
-            self.all_avail_fonts.extend(
-                [(i + 1, fnt) for (i, fnt) in enumerate(available_fonts)])
-            self.choosefont = self.add_combo(self.grid, _('Choose font'),
-                                             3, 'utf8.selected-font',
-                                             self.all_avail_fonts,
-                                             callback=self.utf8_update_font,
-                                             valueactive=True,
-                                             setactive=active_val)
-        else:
-            self.find_label.set_markup(
-                _('<b>You have no font with all the genealogical symbols on '
-                  'your system.</b>'))
-            config.set('utf8.selected-font', "")
-        self.combo = self.add_combo(self.grid,
-                                    _('Select default death symbol'),
-                                    4, 'utf8.death-symbol',
-                                    self.all_death_symbols,
-                                    callback=self.utf8_update_death_symbol,
-                                    valueactive=False)
-        config.set('utf8.in-use', True)
-        self.utf8_show_example()
-        self.grid.show_all()
-        self.in_progress = False
-
-    def utf8_update_font(self, obj, constant):
-        entry = obj.get_active()
-        if entry:
-            config.set(constant, self.all_avail_fonts[entry][1])
-        else:
-            config.set(constant, '')
-        self.utf8_show_example()
-
     def activate_change_font(self, obj=None):
-        if obj:
-            if not obj.get_active():
-                # reset to the system default
-                self.find.set_sensitive(False)
-                if self.choosefont:
-                    self.choosefont.set_sensitive(False)
-                self.uistate.reload_symbols()
-                self.show_default_symbols()
-                self.uistate.emit('font-changed')
-                self.uistate.viewmanager.reset_font()
-                return
-            else:
-                self.find.set_sensitive(True)
-                if self.choosefont:
-                    self.choosefont.set_sensitive(True)
-                font = config.get('utf8.selected-font')
-                try:
-                    self.uistate.viewmanager.change_font(font)
-                    self.uistate.reload_symbols()
-                    self.show_default_symbols()
-                    self.uistate.emit('font-changed')
-                except:
-                    # We can't change the font, The system will use the default.
-                    # Reason: the font doesn't exist anymore (removed ?)
-                    print("WARNING: can't select the choosen font: %s'", font)
+        self.uistate.reload_symbols()
+        self.show_default_symbols()
+        self.uistate.emit('font-changed')
 
     def utf8_show_example(self):
         from gi.repository import Pango
@@ -2238,10 +2059,6 @@ class GrampsPreferences(ConfigureDialog):
             tooltip.set_text(tags[0].props.name)
             return True  # if tooltip is to be shown
         return False
-
-    def stop_looking_for_font(self, *args, **kwargs):
-        self.progress.close()
-        self.in_progress = False
 
     def utf8_update_death_symbol(self, obj, constant):
         entry = obj.get_active()
