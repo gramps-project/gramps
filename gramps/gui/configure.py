@@ -2255,7 +2255,10 @@ class GrampsPreferences(ConfigureDialog):
         self.set_substitution_symbol('utf8.engaged-symbol', "o")
         self.set_substitution_symbol('utf8.divorce-symbol', "o|o")
         self.set_substitution_symbol('utf8.partner-symbol', "o-o")
-        self.set_substitution_symbol('utf8.dead-symbol', "☠")
+        self.set_substitution_symbol('utf8.dead-symbol', "✝")
+        self.set_substitution_symbol('utf8.buried-symbol', "[]")
+        self.set_substitution_symbol('utf8.cremated-symbol', "⚱")
+        self.set_substitution_symbol('utf8.killed-symbol', "x")
         self.show_default_symbols()
 
     def show_default_symbols(self):
@@ -2263,6 +2266,7 @@ class GrampsPreferences(ConfigureDialog):
         try:
             self.grid.remove_row(10)
             self.grid.remove_row(9)
+            self.symbols_grid.remove_row(4)
             self.symbols_grid.remove_row(3)
             self.symbols_grid.remove_row(2)
             self.symbols_grid.remove_row(1)
@@ -2288,13 +2292,16 @@ class GrampsPreferences(ConfigureDialog):
             self.symbols_grid.set_sensitive(True)
             reset.set_sensitive(True)
         self.symbol_list = [
-            ("Birth", 'utf8.birth-symbol', 1, 1),
-            ("Marriage", 'utf8.marriage-symbol', 1, 3),
-            ("Baptism", 'utf8.baptism-symbol', 1, 5),
-            ("Engaged", 'utf8.engaged-symbol', 1, 7),
-            ("Divorce", 'utf8.divorce-symbol', 2, 1),
-            ("Partner", 'utf8.partner-symbol', 2, 3),
-            ("Dead", 'utf8.dead-symbol', 2, 5),
+            (_("Birth"), 'utf8.birth-symbol', 1, 1),
+            (_("Marriage"), 'utf8.marriage-symbol', 1, 3),
+            (_("Baptism"), 'utf8.baptism-symbol', 1, 5),
+            (_("Engaged"), 'utf8.engaged-symbol', 1, 7),
+            (_("Divorce"), 'utf8.divorce-symbol', 2, 1),
+            (_("Partner"), 'utf8.partner-symbol', 2, 3),
+            (_("Death"), 'utf8.dead-symbol', 2, 5),
+            (_("Buried"), 'utf8.buried-symbol', 2, 7),
+            (_("Cremated/Funeral urn"), 'utf8.cremated-symbol', 3, 1),
+            (_("Killed"), 'utf8.killed-symbol', 3, 3),
             ]
         symbol_title = _('Default genealogy symbols replacement')
 

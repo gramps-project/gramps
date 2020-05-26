@@ -320,7 +320,10 @@ register('utf8.marriage-symbol', "oo")
 register('utf8.engaged-symbol', "o")
 register('utf8.divorce-symbol', "o|o")
 register('utf8.partner-symbol', "o-o")
-register('utf8.dead-symbol', "☠")
+register('utf8.dead-symbol', "✝")
+register('utf8.buried-symbol', "[]")
+register('utf8.cremated-symbol', "⚱")
+register('utf8.killed-symbol', "x")
 
 if __debug__: # enable a simple CLI test to see if the datestrings exist
     register('test.january', _("localized lexeme inflections||January"))
