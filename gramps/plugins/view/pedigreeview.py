@@ -578,10 +578,12 @@ class PedigreeView(NavigationView):
         self.symbols = Symbols()
         dth_idx = self.uistate.death_symbol
         if self.uistate.symbols:
-            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_for_string(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_for_char(dth_idx)
         else:
-            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
+            self.bth = self.symbols.get_symbol_fallback(
+                self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_fallback(dth_idx)
 
     def get_handle_from_gramps_id(self, gid):
