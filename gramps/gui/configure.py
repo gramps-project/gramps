@@ -1969,12 +1969,24 @@ class GrampsPreferences(ConfigureDialog):
                     '\nIf you cancel the process, nothing will be changed.'
                    )
         available_fonts = config.get('utf8.available-fonts')
-        self.all_avail_fonts = list(enumerate(available_fonts))
         if available_fonts:
             label = Gtk.Label(halign=Gtk.Align.START, label=_(
                 'You have already run the tool to search for genealogy fonts.'
                 '\nRun it again only if you added fonts on your system.'))
             self.grid.attach(label, 2, 2, 1, 1)
+        else:
+            label = Gtk.Label(halign=Gtk.Align.START, label=_(
+                'This is the first time you try to use symbols. '
+                'I hope your default font contains all necessary symbols.'
+                'If you see some missing symbols, perhaps you need to run'
+                " 'Try to find'."))
+            self.grid.attach(label, 2, 2, 1, 1)
+            l_style = label.get_style()
+            font_name = l_style.font_desc.to_string()
+            available_fonts = [font_name]
+            config.set('utf8.available-fonts', available_fonts)
+            config.set('utf8.selected-font', font_name)
+        self.all_avail_fonts = list(enumerate(available_fonts))
         extra_cback = self.can_we_use_genealogical_fonts
         self.find = self.add_button(self.grid, _('Try to find'), 2,
                                     'utf8.in-use', extra_callback=extra_cback)
