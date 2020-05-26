@@ -78,7 +78,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
-                          preset_name)
+                                 preset_name)
 from gramps.gui.ddtargets import DdTargets
 from gramps.gen.utils.symbols import Symbols
 
@@ -128,10 +128,8 @@ class RelationshipView(NavigationView):
         )
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        NavigationView.__init__(self, _('Relationships'),
-                                      pdata, dbstate, uistate,
-                                      PersonBookmarks,
-                                      nav_group)
+        NavigationView.__init__(self, _('Relationships'), pdata, dbstate,
+                                uistate, PersonBookmarks, nav_group)
 
         dbstate.connect('database-changed', self.change_db)
         uistate.connect('nameformat-changed', self.build_tree)
@@ -176,7 +174,7 @@ class RelationshipView(NavigationView):
         self.callman.add_db_signal('person-update', self.person_update)
         self.callman.add_db_signal('person-rebuild', self.person_rebuild)
         self.callman.add_db_signal('family-update', self.family_update)
-        self.callman.add_db_signal('family-add',    self.family_add)
+        self.callman.add_db_signal('family-add', self.family_add)
         self.callman.add_db_signal('family-delete', self.family_delete)
         self.callman.add_db_signal('family-rebuild', self.family_rebuild)
 
@@ -581,7 +579,7 @@ class RelationshipView(NavigationView):
             list(map(self.header.remove, self.header.get_children()))
             self.child = None
         if self.active:
-                self.bookmarks.redraw()
+            self.bookmarks.redraw()
         self.redraw()
 
     def get_name(self, handle, use_gender=False):
@@ -627,7 +625,7 @@ class RelationshipView(NavigationView):
             old_vadjust = self.scroll.get_vadjustment().get_lower()
             self.old_handle = obj
         self.scroll.get_vadjustment().set_value(
-                            self.scroll.get_vadjustment().get_lower())
+            self.scroll.get_vadjustment().get_lower())
         if self.redrawing:
             return False
         self.redrawing = True
@@ -657,7 +655,7 @@ class RelationshipView(NavigationView):
 
         family_handle_list = person.get_parent_family_handle_list()
 
-        self.reorder_sensitive = len(family_handle_list)> 1
+        self.reorder_sensitive = len(family_handle_list) > 1
 
         if family_handle_list:
             for family_handle in family_handle_list:
@@ -670,7 +668,7 @@ class RelationshipView(NavigationView):
         family_handle_list = person.get_family_handle_list()
 
         if not self.reorder_sensitive:
-            self.reorder_sensitive = len(family_handle_list)> 1
+            self.reorder_sensitive = len(family_handle_list) > 1
 
         if family_handle_list:
             for family_handle in family_handle_list:
@@ -794,11 +792,10 @@ class RelationshipView(NavigationView):
 
         if not showed_death:
             subgrid.attach(widgets.BasicLabel(_("%s") % death_title),
-                          1, 2, 1, 1)
+                           1, 2, 1, 1)
             deathwidget = widgets.BasicLabel(self.format_event(death))
             deathwidget.set_selectable(True)
-            subgrid.attach(deathwidget,
-                          2, 2, 1, 1)
+            subgrid.attach(deathwidget, 2, 2, 1, 1)
 
         mbox = Gtk.Box()
         mbox.add(grid)
@@ -809,9 +806,8 @@ class RelationshipView(NavigationView):
             mobj = self.dbstate.db.get_media_from_handle(image_list[0].ref)
             if mobj and mobj.get_mime_type()[0:5] == "image":
                 pixbuf = get_thumbnail_image(
-                                media_path_full(self.dbstate.db,
-                                                mobj.get_path()),
-                                rectangle=image_list[0].get_rectangle())
+                    media_path_full(self.dbstate.db, mobj.get_path()),
+                    rectangle=image_list[0].get_rectangle())
                 image = Gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 button = Gtk.Button()
@@ -914,11 +910,12 @@ class RelationshipView(NavigationView):
             msg = ""
         return msg
 
-    def write_label(self, title, family, is_parent, person = None):
+    def write_label(self, title, family, is_parent, person=None):
         """
         Write a Family header row
         Shows following elements:
-        (collapse/expand arrow, Parents/Family title label, Family gramps_id, and add-choose-edit-delete buttons)
+        (collapse/expand arrow, Parents/Family title label, Family gramps_id,
+         and add-choose-edit-delete buttons)
         """
         msg = '<span style="italic" weight="heavy">%s</span>' % escape(title)
         hbox = Gtk.Box()
@@ -933,9 +930,9 @@ class RelationshipView(NavigationView):
                 arrow = widgets.ExpandCollapseArrow(False,
                                                     self.expand_collapse_press,
                                                     (person, family.handle))
-        else :
+        else:
             arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.RIGHT,
-                                        shadow_type=Gtk.ShadowType.OUT)
+                              shadow_type=Gtk.ShadowType.OUT)
         hbox.pack_start(arrow, False, True, 0)
         hbox.pack_start(label, True, True, 0)
         # Allow to drag this family
@@ -1024,7 +1021,7 @@ class RelationshipView(NavigationView):
 
 ######################################################################
 
-    def write_parents(self, family_handle, person = None):
+    def write_parents(self, family_handle, person=None):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if not family:
             return
@@ -1039,21 +1036,21 @@ class RelationshipView(NavigationView):
                 count = len(child_list)
             else:
                 count = 0
-            if count > 1 :
+            if count > 1:
                 # translators: leave all/any {...} untranslated
                 childmsg = ngettext(" ({number_of} sibling)",
                                     " ({number_of} siblings)", count
                                    ).format(number_of=count)
-            elif count == 1 :
+            elif count == 1:
                 gender = self.dbstate.db.get_person_from_handle(
-                                        child_list[0]).gender
-                if gender == Person.MALE :
+                    child_list[0]).gender
+                if gender == Person.MALE:
                     childmsg = _(" (1 brother)")
-                elif gender == Person.FEMALE :
+                elif gender == Person.FEMALE:
                     childmsg = _(" (1 sister)")
-                else :
+                else:
                     childmsg = _(" (1 sibling)")
-            else :
+            else:
                 childmsg = _(" (only child)")
             self.family = family
             box = self.get_people_box(family.get_father_handle(),
@@ -1062,7 +1059,7 @@ class RelationshipView(NavigationView):
             eventbox = widgets.ShadeBox(self.use_shade)
             eventbox.add(box)
             self.child.attach(eventbox, _PDATA_START, self.row,
-                               _PDATA_STOP-_PDATA_START, 1)
+                              _PDATA_STOP-_PDATA_START, 1)
             self.row += 1 # now advance it
         else:
             self.write_label(_("%s:") % _('Parents'), family, True, person)
@@ -1094,21 +1091,21 @@ class RelationshipView(NavigationView):
                         count = len(child_list)
                     else:
                         count = 0
-                    if count > 1 :
+                    if count > 1:
                         # translators: leave all/any {...} untranslated
                         childmsg = ngettext(" ({number_of} sibling)",
                                             " ({number_of} siblings)", count
                                            ).format(number_of=count)
-                    elif count == 1 :
+                    elif count == 1:
                         gender = self.dbstate.db.get_person_from_handle(
-                                                child_list[0]).gender
-                        if gender == Person.MALE :
+                            child_list[0]).gender
+                        if gender == Person.MALE:
                             childmsg = _(" (1 brother)")
-                        elif gender == Person.FEMALE :
+                        elif gender == Person.FEMALE:
                             childmsg = _(" (1 sister)")
-                        else :
+                        else:
                             childmsg = _(" (1 sibling)")
-                    else :
+                    else:
                         childmsg = _(" (only child)")
                     self.family = None
                     box = self.get_people_box(post_msg=childmsg)
@@ -1213,7 +1210,7 @@ class RelationshipView(NavigationView):
             parent = len(person.get_parent_family_handle_list()) > 0
             format = ''
             relation_display_theme = self._config.get(
-                                    'preferences.relation-display-theme')
+                'preferences.relation-display-theme')
             if parent:
                 emph = True
             else:
@@ -1482,11 +1479,11 @@ class RelationshipView(NavigationView):
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
             if (event and event.get_type().is_relationship_event() and
-                (event_ref.get_role() == EventRoleType.FAMILY or
-                 event_ref.get_role() == EventRoleType.PRIMARY)):
-                if event.get_type() ==  EventType.MARRIAGE:
+                    (event_ref.get_role() == EventRoleType.FAMILY or
+                     event_ref.get_role() == EventRoleType.PRIMARY)):
+                if event.get_type() == EventType.MARRIAGE:
                     etype = self.marriage
-                elif event.get_type() ==  EventType.DIVORCE:
+                elif event.get_type() == EventType.DIVORCE:
                     etype = self.divorce
                 else:
                     etype = event.get_type().string
@@ -1512,7 +1509,7 @@ class RelationshipView(NavigationView):
         else:
             pname = None
             dobj = None
-            value = { 'event_type' : ename, }
+            value = {'event_type' : ename}
 
         if dobj:
             if pname:
@@ -1531,7 +1528,7 @@ class RelationshipView(NavigationView):
             self.write_data(
                 vbox, '%(event_type)s' % value, start_col, stop_col)
 
-    def write_family(self, family_handle, person = None):
+    def write_family(self, family_handle, person=None):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family is None:
             from gramps.gui.dialog import WarningDialog
@@ -1558,12 +1555,12 @@ class RelationshipView(NavigationView):
                 count = len(child_list)
             else:
                 count = 0
-            if count >= 1 :
+            if count >= 1:
                 # translators: leave all/any {...} untranslated
                 childmsg = ngettext(" ({number_of} child)",
                                     " ({number_of} children)", count
                                    ).format(number_of=count)
-            else :
+            else:
                 childmsg = _(" (no children)")
             self.family = family
             box = self.get_people_box(handle, post_msg=childmsg)
@@ -1604,12 +1601,12 @@ class RelationshipView(NavigationView):
                     count = len(child_list)
                 else:
                     count = 0
-                if count >= 1 :
+                if count >= 1:
                     # translators: leave all/any {...} untranslated
                     childmsg = ngettext(" ({number_of} child)",
                                         " ({number_of} children)", count
                                        ).format(number_of=count)
-                else :
+                else:
                     childmsg = _(" (no children)")
                 self.family = None
                 box = self.get_people_box(post_msg=childmsg)
@@ -1867,12 +1864,10 @@ class RelationshipView(NavigationView):
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
-        configdialog.add_checkbox(grid,
-                _('Use shading'),
-                0, 'preferences.relation-shade')
-        configdialog.add_checkbox(grid,
-                _('Display edit buttons'),
-                1, 'preferences.releditbtn')
+        configdialog.add_checkbox(grid, _('Use shading'),
+                                  0, 'preferences.relation-shade')
+        configdialog.add_checkbox(grid, _('Display edit buttons'),
+                                  1, 'preferences.releditbtn')
         checkbox = Gtk.CheckButton(label=_('View links as website links'))
         theme = self._config.get('preferences.relation-display-theme')
         checkbox.set_active(theme == 'WEBPAGE')
@@ -1889,12 +1884,10 @@ class RelationshipView(NavigationView):
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
-        configdialog.add_checkbox(grid,
-                _('Show Details'),
-                0, 'preferences.family-details')
-        configdialog.add_checkbox(grid,
-                _('Show Siblings'),
-                1, 'preferences.family-siblings')
+        configdialog.add_checkbox(grid, _('Show Details'),
+                                  0, 'preferences.family-details')
+        configdialog.add_checkbox(grid, _('Show Siblings'),
+                                  1, 'preferences.family-siblings')
 
         return _('Content'), grid
 
@@ -1905,11 +1898,11 @@ class RelationshipView(NavigationView):
         if obj.get_active():
             self.theme = 'WEBPAGE'
             self._config.set('preferences.relation-display-theme',
-                              'WEBPAGE')
+                             'WEBPAGE')
         else:
             self.theme = 'CLASSIC'
             self._config.set('preferences.relation-display-theme',
-                              'CLASSIC')
+                             'CLASSIC')
 
     def _get_configure_page_funcs(self):
         """
@@ -1925,7 +1918,7 @@ class RelationshipView(NavigationView):
 # Function to return if person has children
 #
 #-------------------------------------------------------------------------
-def has_children(db,p):
+def has_children(db, p):
     """
     Return if a person has children.
     """
@@ -1940,9 +1933,9 @@ def has_children(db,p):
 
 def button_activated(event, mouse_button):
     if (event.type == Gdk.EventType.BUTTON_PRESS and
-        event.button == mouse_button) or \
-       (event.type == Gdk.EventType.KEY_PRESS and
-        event.keyval in (_RETURN, _KP_ENTER, _SPACE)):
+            event.button == mouse_button) or \
+           (event.type == Gdk.EventType.KEY_PRESS and
+            event.keyval in (_RETURN, _KP_ENTER, _SPACE)):
         return True
     else:
         return False
