@@ -1961,9 +1961,8 @@ class GrampsPreferences(ConfigureDialog):
         self.add_checkbox(self.grid, _('Use symbols'), 0, 'utf8.in-use',
                           extra_callback=self.activate_change_font,
                           tooltip=message)
-        message = _('Be careful, if you click on the "Try to find" button,'
-                    ' it can take a while before you can continue (10 minutes'
-                    ' or more). '
+        message = _('Be careful, if you click on the "Try to find" button, it '
+                    'can take a while before you can continue (some minutes).'
                     '\nIf you cancel the process, nothing will be changed.'
                    )
         available_fonts = config.get('utf8.available-fonts')
@@ -2074,7 +2073,7 @@ class GrampsPreferences(ConfigureDialog):
                 if local in font.family:
                     fontname = font.family[local]
                 else:
-                    for lang, name in font.family:
+                    for lang, name in font.family.item():
                         fontname = name
                         break
             for rand in range(symbols.SYMBOL_MALE, symbols.SYMBOL_EXTINCT+1):
@@ -2143,8 +2142,6 @@ class GrampsPreferences(ConfigureDialog):
                 self.find.set_sensitive(False)
                 if self.choosefont:
                     self.choosefont.set_sensitive(False)
-                if self.combo:
-                    self.combo.set_sensitive(False)
                 self.uistate.reload_symbols()
                 self.show_default_symbols()
                 self.uistate.emit('font-changed')
