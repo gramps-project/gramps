@@ -8339,54 +8339,78 @@ msgstr "%(str1)s, %(str2)s"
 msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(first)s %(surname)s, %(suffix)s"
 
+#: ../gramps/gen/lib/nameorigintype.py:73
+msgid "SurnameOrigin|Unknown"
+msgstr "Неизвестно"
+
+#: ../gramps/gen/lib/nameorigintype.py:74
+msgid "SurnameOrigin|Custom"
+msgstr "Другое"
+
 #: ../gramps/gen/lib/nameorigintype.py:76
-msgid "Surname|Inherited"
-msgstr "Унаследование, по завещанию"
+msgid "SurnameOrigin|Inherited"
+msgstr "Унаследованная (по завещанию)"
 
 #: ../gramps/gen/lib/nameorigintype.py:77
-msgid "Surname|Given"
-msgstr "Фамилия, по рождению"
+msgid "SurnameOrigin|Given"
+msgstr "По рождению"
 
 #: ../gramps/gen/lib/nameorigintype.py:78
-msgid "Surname|Taken"
-msgstr "Фамилия, по принятию"
+msgid "SurnameOrigin|Taken"
+msgstr "Принятая"
 
-#: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
-#: ../gramps/gui/configure.py:857
-msgid "Patronymic"
+#: ../gramps/gen/lib/nameorigintype.py:79
+msgid "SurnameOrigin|Patronymic"
 msgstr "Отчество"
 
 #: ../gramps/gen/lib/nameorigintype.py:80
-msgid "Matronymic"
+msgid "SurnameOrigin|Matronymic"
 msgstr "Матроним"
 
 #: ../gramps/gen/lib/nameorigintype.py:81
-msgid "Surname|Feudal"
+msgid "SurnameOrigin|Feudal"
 msgstr "Акколада, по посвящению"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
-msgid "Pseudonym"
+msgid "SurnameOrigin|Pseudonym"
 msgstr "Псевдоним"
 
 #: ../gramps/gen/lib/nameorigintype.py:83
-msgid "Patrilineal"
-msgstr "Происхождение, по мужской линии"
+msgid "SurnameOrigin|Patrilineal"
+msgstr "От фамилии отца"
 
+# при угадывании фамилии на стадии ввода
 #: ../gramps/gen/lib/nameorigintype.py:84
-msgid "Matrilineal"
-msgstr "Происхождение, по женской линии"
+msgid "SurnameOrigin|Matrilineal"
+msgstr "От фамилии матери"
+
+#: ../gramps/gen/lib/nameorigintype.py:85
+msgid "SurnameOrigin|Occupation"
+msgstr "Род деятельности"
+
+#: ../gramps/gen/lib/nameorigintype.py:86
+msgid "SurnameOrigin|Location"
+msgstr "По местности"
+
+#: ../gramps/gen/lib/nametype.py:46
+msgid "NameType|Unknown"
+msgstr "Неизвестен"
+
+#: ../gramps/gen/lib/nametype.py:47
+msgid "NameType|Custom"
+msgstr "Другой"
 
 #: ../gramps/gen/lib/nametype.py:48
-msgid "Also Known As"
-msgstr "Он(а) же"
+msgid "NameType|Also Known As"
+msgstr "Альтернативный"
 
 #: ../gramps/gen/lib/nametype.py:49
-msgid "Birth Name"
-msgstr "Имя по рождению"
+msgid "NameType|Birth Name"
+msgstr "По рождению"
 
 #: ../gramps/gen/lib/nametype.py:50
-msgid "Married Name"
-msgstr "Имя по браку"
+msgid "NameType|Married Name"
+msgstr "Имя в браке"
 
 #. ###############################
 #. 3
@@ -10905,6 +10929,10 @@ msgstr "Главное[св]"
 #: ../gramps/gen/utils/keyword.py:65
 msgid "PATRONYMIC"
 msgstr "ОТЧЕСТВО"
+
+#: ../gramps/gen/utils/keyword.py:65 ../gramps/gui/configure.py:857
+msgid "Patronymic"
+msgstr "Отчество"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "PATRONYMIC[PRE]"

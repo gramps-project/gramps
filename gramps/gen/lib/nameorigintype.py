@@ -70,20 +70,20 @@ class NameOriginType(GrampsType):
     _DEFAULT = NONE
 
     _DATAMAP = [
-        (UNKNOWN, _("Unknown"), "Unknown "),
-        (CUSTOM, _("Custom"), "Custom"),
+        (UNKNOWN, _("SurnameOrigin|Unknown"), "Unknown "),
+        (CUSTOM, _("SurnameOrigin|Custom"), "Custom"),
         (NONE, "", ""),
-        (INHERITED, _("Surname|Inherited"), "Inherited"),
-        (GIVEN, _("Surname|Given"), "Given"),
-        (TAKEN, _("Surname|Taken"), "Taken"),
-        (PATRONYMIC, _("Patronymic"), "Patronymic"),
-        (MATRONYMIC, _("Matronymic"), "Matronymic"),
-        (FEUDAL, _("Surname|Feudal"), "Feudal"),
-        (PSEUDONYM, _("Pseudonym"), "Pseudonym"),
-        (PATRILINEAL, _("Patrilineal"), "Patrilineal"),
-        (MATRILINEAL, _("Matrilineal"), "Matrilineal"),
-        (OCCUPATION, _("Occupation"), "Occupation"),
-        (LOCATION, _("Location"), "Location"),
+        (INHERITED, _("SurnameOrigin|Inherited"), "Inherited"),
+        (GIVEN, _("SurnameOrigin|Given"), "Given"),
+        (TAKEN, _("SurnameOrigin|Taken"), "Taken"),
+        (PATRONYMIC, _("SurnameOrigin|Patronymic"), "Patronymic"),
+        (MATRONYMIC, _("SurnameOrigin|Matronymic"), "Matronymic"),
+        (FEUDAL, _("SurnameOrigin|Feudal"), "Feudal"),
+        (PSEUDONYM, _("SurnameOrigin|Pseudonym"), "Pseudonym"),
+        (PATRILINEAL, _("SurnameOrigin|Patrilineal"), "Patrilineal"),
+        (MATRILINEAL, _("SurnameOrigin|Matrilineal"), "Matrilineal"),
+        (OCCUPATION, _("SurnameOrigin|Occupation"), "Occupation"),
+        (LOCATION, _("SurnameOrigin|Location"), "Location"),
         ]
 
     def __init__(self, value=None):
