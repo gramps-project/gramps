@@ -58,7 +58,7 @@ from gramps.gen.lib import (Date, Media)
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import run_thumbnailer
-from gramps.gen.utils.image import image_size # , resize_to_jpeg_buffer
+from gramps.gen.utils.image import image_size
 from gramps.plugins.lib.libhtml import Html
 
 #------------------------------------------------
@@ -650,8 +650,12 @@ class MediaPages(BasePage):
         @param: photo  -- The source object (image, pdf, ...)
         """
         ext = os.path.splitext(photo.get_path())[1]
-        to_dir = self.report.build_path('images', handle)
+        to_dir = self.report.build_path('images', handle, image=True)
         newpath = os.path.join(to_dir, handle) + ext
+        if (self.the_lang is not None and
+            self.the_lang != self.report.languages[0][0]):
+            # if multi languages, copy the image only for the first language.
+            return newpath
 
         fullpath = media_path_full(self.r_db, photo.get_path())
         if not os.path.isfile(fullpath):

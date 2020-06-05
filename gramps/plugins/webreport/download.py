@@ -173,11 +173,11 @@ class DownloadPage(BasePage):
                     if not dwnld:
                         # We have several files to download
                         # but all file names are empty
-                        dldescrx = _("No file to download")
+                        dldescrx = self._("No file to download")
                         trow = Html("tr", id='Row01')
                         tbody += trow
                         tcell = Html("td", class_="ColumnFilename",
-                                     colspan=3) + Html("h2", dldescrx)
+                                     colspan=3) + Html("h4", dldescrx)
                         trow += tcell
             # clear line for proper styling
             # create footer section

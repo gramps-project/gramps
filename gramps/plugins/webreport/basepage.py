@@ -63,6 +63,7 @@ from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person,
                             Source, Attribute, Media, Repository, Event,
                             Family, Citation, Place, Date)
 from gramps.gen.lib.date import Today
+from gramps.gen.mime import is_image_type
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
 from gramps.gen.plug.report import Bibliography
@@ -218,7 +219,10 @@ class BasePage: # pylint: disable=C1001
                 from_path = CSS["Document"]["filename"]
         else:
             from_path = CSS["Document"]["filename"]
-        self.report.copy_file(from_path, to_path)
+        if (self.the_lang is None or
+            self.the_lang == self.report.languages[0][0]):
+            # if multi languages, copy the thumbnail only for the first lang.
+            self.report.copy_file(from_path, to_path)
         return to_path
 
     def get_nav_menu_hyperlink(self, url_fname, nav_text):
@@ -300,10 +304,10 @@ class BasePage: # pylint: disable=C1001
                 for family_handle in family_list:
                     family = self.r_db.get_family_from_handle(family_handle)
                     if family:
-                        link = self.family_link(
-                            family_handle,
-                            self.report.obj_dict[Family][family_handle][1],
-                            gid=family.get_gramps_id(), uplink=True)
+                        fam_name = self.report.get_family_name(family)
+                        link = self.family_link(family_handle, fam_name,
+                                                gid=family.get_gramps_id(),
+                                                uplink=True)
                         link1 = Html("H4", link, class_="subsection")
                         trow = Html("tr", class_="BeginFamily") + (
                             Html("td", link1, class_="ColumnValue", colspan=3,
@@ -739,7 +743,7 @@ class BasePage: # pylint: disable=C1001
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
             htmllist.extend(Html("p",
-                                 _("%(str1)s: %(str2)s") % {
+                                 self._("%(str1)s: %(str2)s") % {
                                      'str1' : Html("b", attr.get_type()),
                                      'str2' : attr.get_value()
                                      }))
@@ -835,46 +839,6 @@ class BasePage: # pylint: disable=C1001
         hyper = Html("a", name, href=url, title=name)
         hyper += gid_html
         return hyper
-
-    def get_family_string(self, family):
-        """
-        Unused method ???
-        Returns a hyperlink for each person linked to the Family Page
-
-        @param: family -- The family
-        """
-        husband, spouse = [False]*2
-
-        husband_handle = family.get_father_handle()
-
-        if husband_handle:
-            husband = self.r_db.get_person_from_handle(husband_handle)
-        else:
-            husband = None
-
-        spouse_handle = family.get_mother_handle()
-        if spouse_handle:
-            spouse = self.r_db.get_person_from_handle(spouse_handle)
-        else:
-            spouse = None
-
-        if husband:
-            husband_name = self.get_name(husband)
-            hlink = self.family_link(family.get_handle(),
-                                     husband_name, uplink=self.uplink)
-        if spouse:
-            spouse_name = self.get_name(spouse)
-            slink = self.family_link(family.get_handle(),
-                                     spouse_name, uplink=self.uplink)
-
-        title_str = ''
-        if husband and spouse:
-            title_str = '%s ' % hlink + self._("and") + ' %s' % slink
-        elif husband:
-            title_str = '%s ' % hlink
-        elif spouse:
-            title_str = '%s ' % slink
-        return title_str
 
     def event_link(self, event_handle, event_title, gid=None, uplink=False):
         """
@@ -1697,10 +1661,10 @@ class BasePage: # pylint: disable=C1001
                             if languages[language] == extra_lang:
                                 lang_txt = html_escape(self._(language))
                                 n_lang = languages[language]
-                                url = (self.report.build_url_lang("index",
-                                                                  n_lang,
-                                                                  self.uplink)
-                                       + self.ext)
+                                nfname = self.report.cur_fname
+                                url = self.report.build_url_lang(nfname,
+                                                                 n_lang,
+                                                                 self.uplink)
                                 lnk = Html("a", lang_txt,
                                            href=url, title=lang_txt)
                                 choice += Html("li", lnk, inline=True)
@@ -1842,12 +1806,17 @@ class BasePage: # pylint: disable=C1001
                 head += Html("link", href=url, type="text/css",
                              media="screen", rel="stylesheet")
             mime_type = obj.get_mime_type()
-            if mime_type and mime_type.startswith("image"):
+            if mime_type and is_image_type(mime_type):
                 try:
 
                     newpath, dummy_tpath = self.report.prepare_copy_media(obj)
+                    (first_field, separator,
+                     second_field) = newpath.partition("/")
+                    newpathc = newpath
+                    if self.report.archive:
+                        newpathc = second_field
                     self.report.copy_file(media_path_full(
-                        self.r_db, obj.get_path()), newpath)
+                        self.r_db, obj.get_path()), newpathc)
 
                     # begin image
                     with Html("div", id="GalleryDisplay",
@@ -2046,11 +2015,9 @@ class BasePage: # pylint: disable=C1001
         # begin snapshot division
         with Html("div", class_="snapshot") as snapshot:
 
-            if mime_type:
-
+            if mime_type and is_image_type(mime_type):
                 region = self.media_ref_region_to_object(photo_handle, object_)
                 if region:
-
                     # make a thumbnail of this region
                     newpath = self.copy_thumbnail(photo_handle, photo, region)
                     newpath = self.report.build_url_fname(newpath, uplink=True,
@@ -2295,7 +2262,7 @@ class BasePage: # pylint: disable=C1001
 
         # begin LDS Ordinance division and section title
         with Html("div", class_="subsection", id="LDSOrdinance") as section:
-            section += Html("h4", _("Latter-Day Saints/ LDS Ordinance"),
+            section += Html("h4", self._("Latter-Day Saints/ LDS Ordinance"),
                             inline=True)
 
             # ump individual LDS ordinance list
@@ -2372,10 +2339,10 @@ class BasePage: # pylint: disable=C1001
                                           [self._("Confidence"), conf]]:
                         if data:
                             tmp += Html("li",
-                                        _("%(str1)s: %(str2)s") % {
-                                            'str1' : label,
-                                            'str2' : data
-                                            })
+                                        self._("%(str1)s: %(str2)s") % {
+                                               'str1' : label,
+                                               'str2' : data
+                                               })
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
@@ -2417,7 +2384,7 @@ class BasePage: # pylint: disable=C1001
                         if this_note is not None:
                             note_format = self.get_note_format(this_note, True)
                             tmp += Html("li",
-                                        _("%(str1)s: %(str2)s") % {
+                                        self._("%(str1)s: %(str2)s") % {
                                             'str1' : str(this_note.get_type()),
                                             'str2' : note_format
                                             })
@@ -2534,7 +2501,7 @@ class BasePage: # pylint: disable=C1001
                 name = self.report.get_person_name(person)
                 gid = person.get_gramps_id()
             else:
-                name = _("Unknown")
+                name = self._("Unknown")
                 gid = ""
         else:
             # The person has been encountered in the web report, but this does
