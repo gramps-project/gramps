@@ -88,3 +88,4 @@ class IndexPage(BasePage):
         # send page out for processing
         # and close the file
         self.xhtml_writer(page, output_file, sio, 0)
+        self.report.close_file(output_file, sio, 0)

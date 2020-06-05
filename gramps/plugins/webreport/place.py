@@ -127,7 +127,8 @@ class PlacePages(BasePage):
                 step()
                 p_handle = self.report.obj_dict[PlaceName][place_name]
                 index += 1
-                self.placepage(self.report, the_lang, the_title, place_handle)
+                self.placepage(self.report, the_lang, the_title, p_handle[0],
+                               place_name)
             step()
             self.placelistpage(self.report, the_lang, the_title,
                                self.report.obj_dict[Place].keys())
@@ -285,7 +286,7 @@ class PlacePages(BasePage):
         # and close the file
         self.xhtml_writer(placelistpage, output_file, sio, ldatec)
 
-    def placepage(self, report, the_lang, the_title, place_handle):
+    def placepage(self, report, the_lang, the_title, place_handle, place_name):
         """
         Create a place page
 
@@ -384,11 +385,6 @@ class PlacePages(BasePage):
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
                     else: # OpenStreetMap, Stamen...
-                        url = self.secure_mode
-                        url += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                                "css/bootstrap.min.css")
-                        head += Html("link", href=url, type="text/javascript",
-                                     rel="stylesheet")
                         src_js = self.secure_mode
                         src_js += ("ajax.googleapis.com/ajax/libs/jquery/1.9.1/"
                                    "jquery.min.js")
@@ -400,11 +396,6 @@ class PlacePages(BasePage):
                         url = "https://openlayers.org/en/latest/css/ol.css"
                         head += Html("link", href=url, type="text/javascript",
                                      rel="stylesheet")
-                        src_js = self.secure_mode
-                        src_js += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                                   "js/bootstrap.min.js")
-                        head += Html("script", type="text/javascript",
-                                     src=src_js, inline=True)
 
                     # section title
                     placedetail += Html("h4", self._("Place Map"), inline=True)
@@ -491,10 +482,6 @@ class PlacePages(BasePage):
         # send page out for processing
         # and close the file
         if place_name == apname: # store only the primary named page
-            if place in self.report.visited: # only the first time
-                self.report.close_file(output_file, sio, None)
-                return None
-            self.report.visited.append(place)
             self.xhtml_writer(placepage, output_file, sio, ldatec)
 
 def get_first_letters(place_list, rlocale=glocale):

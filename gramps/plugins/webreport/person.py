@@ -54,6 +54,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (ChildRefType, Date, Name, Person, EventRoleType,
                             Family, Event, EventType)
 from gramps.gen.lib.date import Today
+from gramps.gen.mime import is_image_type
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import utils
 from gramps.gen.utils.alive import probably_alive
@@ -63,6 +64,7 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.proxy import LivingProxyDb
+from gramps.gen.relationship import get_relationship_calculator
 
 #------------------------------------------------
 # specific narrative web import
@@ -428,12 +430,6 @@ class PersonPages(BasePage):
 #    creates an Individual Page
 #
 #################################################
-    gender_map = {
-        Person.MALE    : _('male'),
-        Person.FEMALE  : _('female'),
-        Person.UNKNOWN : _('unknown'),
-        }
-
     def individualpage(self, report, the_lang, the_title, person):
         """
         Creates an individual page
@@ -445,6 +441,12 @@ class PersonPages(BasePage):
         BasePage.__init__(self, report, the_lang, the_title,
                           person.get_gramps_id())
         place_lat_long = []
+
+        self.gender_map = {
+            Person.MALE    : self._('male'),
+            Person.FEMALE  : self._('female'),
+            Person.UNKNOWN : self._('unknown'),
+            }
 
         self.person = person
         self.bibli = Bibliography()
@@ -466,7 +468,8 @@ class PersonPages(BasePage):
 
         # get the Relationship Calculator so that we can determine
         # bio, half, step- siblings for use in display_ind_parents() ...
-        self.rel_class = self.report.rel_class
+        self.rel_class = get_relationship_calculator(reinit=True,
+                                                     clocale=self.rlocale)
 
         output_file, sio = self.report.create_file(person.get_handle(), "ppl")
         self.uplink = True
@@ -734,11 +737,6 @@ class PersonPages(BasePage):
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else: # OpenStreetMap, Stamen...
-            url = self.secure_mode
-            url += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                    "css/bootstrap.min.css")
-            head += Html("link", href=url, type="text/javascript",
-                         rel="stylesheet")
             src_js = self.secure_mode
             src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
             head += Html("script", type="text/javascript",
@@ -749,11 +747,6 @@ class PersonPages(BasePage):
             url = "https://openlayers.org/en/latest/css/ol.css"
             head += Html("link", href=url, type="text/javascript",
                          rel="stylesheet")
-            src_js = self.secure_mode
-            src_js += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                       "js/bootstrap.min.js")
-            head += Html("script", type="text/javascript",
-                         src=src_js, inline=True)
 
         if number_markers > 0:
             tracelife = "["
@@ -792,7 +785,7 @@ class PersonPages(BasePage):
                                                     self.get_name(pers))
                     url = self.report.build_url_fname_html(event.get_handle(),
                                                            "evt", self.uplink)
-                    evt_type = self._(str(event.get_type()))
+                    evt_type = self._(event.get_type().xml_str())
                     evt_date = self.rlocale.get_date(event.get_date_object())
                     evt_lnk = ln_str % (url, evt_date, evt_type)
                     evt_lnk += " (" + evt_date + ")"
@@ -844,7 +837,7 @@ class PersonPages(BasePage):
                         url = self.report.build_url_fname_html(event.handle,
                                                                "evt",
                                                                self.uplink)
-                        evt_type = self._(str(event.get_type()))
+                        evt_type = self._(event.get_type().xml_str())
                         date = self.rlocale.get_date(event.get_date_object())
                         evt_lnk = ln_str % (url, date, evt_type)
                         evt_lnk += " (" + date + ")"
@@ -884,7 +877,7 @@ class PersonPages(BasePage):
                         url = self.report.build_url_fname_html(event.handle,
                                                                "evt",
                                                                self.uplink)
-                        evt_type = self._(str(event.get_type()))
+                        evt_type = self._(event.get_type().xml_str())
                         date = self.rlocale.get_date(event.get_date_object())
                         evt_lnk = ln_str % (url, evt_type, evt_type)
                         evt_lnk += " (" + date + ")"
@@ -966,9 +959,9 @@ class PersonPages(BasePage):
                     trow.extend(
                         Html("th", label, class_=colclass, inline=True)
                         for (label, colclass) in [
-                            (_("Date"), "ColumnDate"),
-                            (_("Place Title"), "ColumnPlace"),
-                            (_("Event Type"), "ColumnType")
+                            (self._("Date"), "ColumnDate"),
+                            (self._("Place Title"), "ColumnPlace"),
+                            (self._("Event Type"), "ColumnType")
                         ]
                     )
 
@@ -985,6 +978,7 @@ class PersonPages(BasePage):
                         tbody += trow
 
                         date = event.get_date_object()
+                        evt_name = self._(event.get_type().xml_str())
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
@@ -992,7 +986,7 @@ class PersonPages(BasePage):
                                 (self.place_link(handle, placetitle,
                                                  uplink=True),
                                  "ColumnPlace"),
-                                (self._(str(event.get_type())), "ColumnType")
+                                (evt_name, "ColumnType")
                             ]
                         )
 
@@ -1069,7 +1063,7 @@ class PersonPages(BasePage):
             # if Google and Drop Markers are selected,
             # then add "Drop Markers" button?
             if self.mapservice == "Google" and self.googleopts == "Drop":
-                mapdetail += Html("button", _("Drop Markers"),
+                mapdetail += Html("button", self._("Drop Markers"),
                                   id="drop", onclick="drop()", inline=True)
 
         # add body id for this page...
@@ -1138,13 +1132,13 @@ class PersonPages(BasePage):
             boxbg += Html("span", person_name, class_="unlinked", inline=True)
         else:
             thumbnail_url = None
-            if self.create_media and col < 5:
+            if self.create_media:
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
                     photo = self.r_db.get_media_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
-                    if mime_type:
+                    if mime_type and is_image_type(mime_type):
                         region = self.media_ref_region_to_object(photo_handle,
                                                                  person)
                         rbuf = self.report.build_url_fname
@@ -1341,7 +1335,7 @@ class PersonPages(BasePage):
         # We know the height in 'pixels' where every Ancestor will sit
         # precisely on an integer unit boundary.
         with Html("div", id="tree", class_="subsection") as tree:
-            tree += Html("h4", _('Ancestors'), inline=True)
+            tree += Html("h4", self._('Ancestors'), inline=True)
             with Html("div", id="treeContainer",
                       style="width:%dpx; height:%dpx; top: %dpx" % (
                           l_tree.width + _XOFFSET* (generations + 1) + _WIDTH,
@@ -1604,7 +1598,7 @@ class PersonPages(BasePage):
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
                         trow = Html("tr") + (
-                            Html("td", _("Call Name"), class_="ColumnAttribute",
+                            Html("td", self._("Call Name"), class_="ColumnAttribute",
                                  inline=True),
                             Html("td", call_name, class_="ColumnValue",
                                  inline=True)
@@ -1834,9 +1828,6 @@ class PersonPages(BasePage):
 
                         reln = self.rel_class.get_sibling_relationship_string(
                             sibling_type, self.person.gender, child.gender)
-                        # We have a problem here : reln is never in the choosen
-                        # language but in the default language.
-                        # Does get_sibling_relationship_string work ?
                         reln = reln[0].upper() + reln[1:]
                     except Exception:
                         reln = self._("Not siblings")

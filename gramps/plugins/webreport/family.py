@@ -389,7 +389,8 @@ class FamilyPages(BasePage):
             if self.report.options["familymappages"]:
                 name_format = self.report.options['name_format']
                 fhandle = mhandle = father = mother = None
-                relationshipdetail += Html("h4", _("Family map"), inline=True)
+                relationshipdetail += Html("h4", self._("Family map"),
+                                           inline=True)
                 mapdetail = Html("br")
                 fhandle = family.get_father_handle()
                 for handle, dummy_url in self.report.fam_link.items():

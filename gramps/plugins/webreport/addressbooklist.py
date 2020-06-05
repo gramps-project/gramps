@@ -87,11 +87,11 @@ class AddressBookListPage(BasePage):
             outerwrapper += addressbooklist
 
             # Address Book Page message
-            msg = _("This page contains an index of all the individuals in "
-                    "the database, sorted by their surname, with one of the "
-                    "following: Address, Residence, or Web Links. "
-                    "Selecting the person&#8217;s name will take you "
-                    "to their individual Address Book page.")
+            msg = self._("This page contains an index of all the individuals "
+                         "in the database, sorted by their surname, with one "
+                         "of the following: Address, Residence, or Web Links. "
+                         "Selecting the person&#8217;s name will take you "
+                         "to their individual Address Book page.")
             addressbooklist += Html("p", msg, id="description")
 
             # begin Address Book table

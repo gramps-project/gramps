@@ -103,7 +103,7 @@ class StatisticsPage(BasePage):
                 chars += os.path.getsize(fullname)
                 length = len(str(chars))
                 if chars <= 999999:
-                    mbytes = _("less than 1")
+                    mbytes = self._("less than 1")
                 else:
                     mbytes = str(chars)[:(length-6)]
             except OSError:

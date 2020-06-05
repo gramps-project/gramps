@@ -799,6 +799,8 @@ class NavWebReport(Report):
 
         @param: family -- family object from database
         """
+        self.rlocale = self.set_locale(self.the_lang)
+        self._ = self.rlocale.translation.sgettext
         husband_handle = family.get_father_handle()
         spouse_handle = family.get_mother_handle()
 
@@ -1380,9 +1382,7 @@ class NavWebReport(Report):
                 if self.the_lang and subdir not in ["css", "images", "thumb"]:
                     subdirs = [self.target_uri] + [self.the_lang] + subdirs
                 else:
-                    if not subdir:
-                        subdirs = [self.target_uri] + subdirs
-                        subdirs = []
+                    subdirs = [self.target_uri] + subdirs
             elif self.target_uri not in fname:
                 subdirs = [self.target_uri] + [fname]
             else:
@@ -1392,15 +1392,17 @@ class NavWebReport(Report):
                 nb_dir += 3
                 subdirs = ['..']*nb_dir + subdirs
 
-            elif uplink is False:
-                if nb_dir == 1:
-                    subdirs = ['..'] + subdirs
+            elif uplink == 2:
+                # special case for the add_image method
+                if subdir and subdir[0:3] in ["css", "ima", "thu"]:
+                    if nb_dir == 1:
+                        subdirs = ['..'] + subdirs
             elif uplink is None:
                 # added for use in EventListPage
                 subdirs = ['.'] + subdirs
         return subdirs
 
-    def build_path(self, subdir, fname, uplink=False):
+    def build_path(self, subdir, fname, uplink=False, image=False):
         """
         Return the name of the subdirectory.
 
@@ -1411,7 +1413,7 @@ class NavWebReport(Report):
         @param: uplink -- If True, then "../../../" is inserted in front of the
                           result.
         """
-        return os.path.join(*self.build_subdirs(subdir, fname, uplink))
+        return os.path.join(*self.build_subdirs(subdir, fname, uplink, image))
 
     def build_url_lang(self, fname, subdir=None, uplink=False):
         """
@@ -1427,6 +1429,18 @@ class NavWebReport(Report):
             nb_dir = 4 if self.the_lang else 3
         else:
             nb_dir = 1
+        if self.usecms:
+            # remove self.target_uri
+            fname = fname.replace(self.target_uri + "/", "")
+            # remove the lang
+            (first_field, separator, second_field) = fname.partition("/")
+            fname = second_field
+        else:
+            (first_field, separator, second_field) = fname.partition("/")
+            in_lang = dict(self.languages)
+            if in_lang[first_field]:
+                # remove the lang
+                fname = second_field
         if subdir:
             subdirs.append(subdir)
         if self.usecms:
@@ -1542,7 +1556,6 @@ class NavWebReport(Report):
         """
         if not fname:
             return ""
-
         if win():
             fname = fname.replace('\\', "/")
         if init:
@@ -1554,6 +1567,8 @@ class NavWebReport(Report):
                 if subdir:
                     subdirs = self.build_subdirs(subdir, fname,
                                                  False, image)
+                    if self.target_uri in subdirs and image:
+                        subdirs.remove(self.target_uri)
                     if subdir[0:3] in ["css", "ima", "thu"]:
                         subdirs = [self.target_uri] + subdirs
                 else:
@@ -1563,12 +1578,13 @@ class NavWebReport(Report):
                         subdirs = [self.target_uri] + [self.the_lang]
             else:
                 if subdir:
-                    if subdir[0:3] not in ["css", "ima", "thu"]:
-                        subdirs = [self.target_uri] + [self.the_lang] + [subdir]
-                    else:
-                        subdirs = [self.target_uri] + [subdir]
+                    subdirs = self.build_subdirs(subdir, fname,
+                                                 False, image)
                 else:
                     subdirs = [self.target_uri]
+                # remove None value in subdir. this is related to the lang
+                if isinstance(subdirs, list):
+                    subdirs = [val for val in subdirs if val is not None]
         else:
             subdirs = self.build_subdirs(subdir, fname, uplink, image)
         return "/".join(subdirs + [fname])
@@ -1583,7 +1599,7 @@ class NavWebReport(Report):
         """
         if ext is None:
             ext = self.ext
-        if self.usecms and subdir is None:
+        if self.usecms and not subdir:
             if self.the_lang:
                 if ext != "index":
                     target = os.path.join(self.target_uri, self.the_lang)
@@ -1629,8 +1645,12 @@ class NavWebReport(Report):
                 if not os.path.isdir(subdir):
                     os.makedirs(subdir)
             if self.the_lang:
-                fname = os.path.join(self.html_dir, self.the_lang,
-                                     self.cur_fname)
+                if ext == "index":
+                    self.cur_fname = os.path.join(fname) + self.ext
+                    fname = os.path.join(self.html_dir, self.cur_fname)
+                else:
+                    fname = os.path.join(self.html_dir, self.the_lang,
+                                         self.cur_fname)
             else:
                 fname = os.path.join(self.html_dir, self.cur_fname)
             output_file = open(fname, 'w', encoding=self.encoding,
@@ -1675,9 +1695,11 @@ class NavWebReport(Report):
         """
         handle = photo.get_handle()
         ext = os.path.splitext(photo.get_path())[1]
-        real_path = os.path.join(self.build_path('images', handle),
+        real_path = os.path.join(self.build_path('images', handle,
+                                 uplink=2, image=True),
                                  handle + ext)
-        thumb_path = os.path.join(self.build_path('thumb', handle),
+        thumb_path = os.path.join(self.build_path('thumb', handle,
+                                  uplink=2, image=True),
                                   handle + '.png')
         return real_path, thumb_path
 
@@ -2381,6 +2403,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__usecms = BooleanOption(
             _("Do we include these pages in a cms web ?"), False)
+        self.__usecms.connect('value-changed', self.__usecms_changed)
         addopt("usecms", self.__usecms)
 
         default_dir = "/NAVWEB"
@@ -2511,6 +2534,15 @@ class NavWebOptions(MenuReportOptions):
             self.__maxupdates.set_available(False)
             self.__maxdays.set_available(False)
 
+    def __usecms_changed(self):
+        """
+        We need to use cms or not
+        If we use a cms, the storage must be an archive
+        """
+        if self.__usecms.get_value():
+            self.__archive.set_value(True)
+        self.__target_uri = self.__cms_uri.get_value()
+
     def __cms_uri_changed(self):
         """
         Update the change of storage: archive or directory
@@ -2553,6 +2585,9 @@ class NavWebOptions(MenuReportOptions):
             self.__target.set_directory_entry(False)
         else:
             self.__target.set_directory_entry(True)
+            # We don't use an archive. If usecms is True, set it to False
+            if self.__usecms:
+                self.__usecms.set_value(False)
 
     def __update_filters(self):
         """
