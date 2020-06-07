@@ -587,7 +587,8 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if dfilter:
             cdb = CacheProxyDb(self.db)
             for handle in dfilter.apply(cdb, tree=True,
-                                        user=User(parent=self.uistate.window)):
+                                        user=User(parent=self.uistate.window,
+                                                  uistate=self.uistate)):
                 status_ppl.heartbeat()
                 data = data_map(handle)
                 add_func(handle, data)

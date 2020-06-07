@@ -288,10 +288,12 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
             else:
                 return self.__value == value[0]
         else:
-            if value.value == self._CUSTOM:
+            if value.value == self._CUSTOM and self.__value == self._CUSTOM:
                 return self.__string == value.string
-            else:
+            elif value.value != self._CUSTOM and self.__value != self._CUSTOM:
                 return self.__value == value.value
+            else:
+                return False
 
     def __ne__(self, value):
         return not self.__eq__(value)

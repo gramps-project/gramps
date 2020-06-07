@@ -113,7 +113,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Add a message
         """
-        self.message += "\n%s" % message if self.message is not "" else message
+        self.message += "\n%s" % message if self.message else message
 
     def do_draw(self, gpsmap, ctx):
         """

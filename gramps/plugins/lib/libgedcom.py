@@ -7776,7 +7776,8 @@ class GedcomParser(UpdateCallback):
             # have got deleted by Chack and repair because the record is empty.
             # If we find the source record, the title is overwritten in
             # __source_title.
-            src.set_title(line.data)
+            if not src.title:
+                src.set_title(line.data)
         self.dbase.commit_source(src, self.trans)
         self.__parse_source_reference(citation, level, src.handle, state)
         citation.set_reference_handle(src.handle)

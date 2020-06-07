@@ -1791,7 +1791,7 @@ class OldAgeButNoDeath(PersonRule):
 class BirthEqualsDeath(PersonRule):
     """ test if a person's birth date is the same as their death date """
     ID = 33
-    SEVERITY = Rule.ERROR
+    SEVERITY = Rule.WARNING
     def broken(self):
         """ return boolean indicating whether this rule is violated """
         birth_date = get_birth_date(self.db, self.obj)

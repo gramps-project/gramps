@@ -8,21 +8,21 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-19 16:37+0200\n"
-"PO-Revision-Date: 2019-10-19 16:49+0200\n"
+"POT-Creation-Date: 2020-04-08 18:57+0200\n"
+"PO-Revision-Date: 2020-04-08 19:07+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 18.12.3\n"
+"X-Generator: Lokalize 19.04.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -1224,7 +1224,7 @@ msgstr "Gramps-Stammbäume:"
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
 #: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
-#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1790
+#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1791
 msgid "Family Tree"
 msgstr "Stammbaum"
 
@@ -1697,8 +1697,8 @@ msgstr "Stammbaum \"%s\":"
 #: ../gramps/plugins/textreport/indivcomplete.py:1028
 #: ../gramps/plugins/textreport/placereport.py:185
 #: ../gramps/plugins/webreport/basepage.py:715
-#: ../gramps/plugins/webreport/basepage.py:2275
-#: ../gramps/plugins/webreport/basepage.py:2320
+#: ../gramps/plugins/webreport/basepage.py:2228
+#: ../gramps/plugins/webreport/basepage.py:2273
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s: %(str2)s"
@@ -1757,8 +1757,8 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1625
-#: ../gramps/gui/configure.py:1778
+#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1626
+#: ../gramps/gui/configure.py:1779
 msgid "Never"
 msgstr "Nie"
 
@@ -1806,7 +1806,7 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/graph/gvfamilylines.py:288
 #: ../gramps/plugins/graph/gvhourglass.py:429
 #: ../gramps/plugins/graph/gvrelgraph.py:951
-#: ../gramps/plugins/lib/libprogen.py:1057
+#: ../gramps/plugins/lib/libprogen.py:1058
 #: ../gramps/plugins/lib/maps/geography.py:802
 #: ../gramps/plugins/lib/maps/geography.py:812
 #: ../gramps/plugins/lib/maps/geography.py:813
@@ -1853,8 +1853,8 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/webreport/basepage.py:1868
 #: ../gramps/plugins/webreport/basepage.py:1873
 #: ../gramps/plugins/webreport/basepage.py:1880
-#: ../gramps/plugins/webreport/basepage.py:2264
-#: ../gramps/plugins/webreport/basepage.py:2436
+#: ../gramps/plugins/webreport/basepage.py:2217
+#: ../gramps/plugins/webreport/basepage.py:2389
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -1889,7 +1889,7 @@ msgid "Read only database"
 msgstr "Schreibgeschützte Datenbank"
 
 #: ../gramps/cli/grampscli.py:155 ../gramps/gui/dbloader.py:166
-#: ../gramps/gui/dbloader.py:535
+#: ../gramps/gui/dbloader.py:541
 msgid "You do not have write access to the selected file."
 msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
@@ -1905,7 +1905,7 @@ msgid "Cannot open database"
 msgstr "Kann die Datenbank nicht öffnen"
 
 #: ../gramps/cli/grampscli.py:212 ../gramps/gui/dbloader.py:296
-#: ../gramps/gui/dbloader.py:492
+#: ../gramps/gui/dbloader.py:498
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann die folgende Datei nicht öffnen: %s"
@@ -3288,27 +3288,27 @@ msgstr ""
 "Bitte überprüfe deine Datei mit den Verbindungseinstellungen:\n"
 "%(settings_file)s"
 
-#: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
-#: ../gramps/gen/db/generic.py:2018 ../gramps/plugins/db/bsddb/undoredo.py:251
+#: ../gramps/gen/db/generic.py:162 ../gramps/gen/db/generic.py:212
+#: ../gramps/gen/db/generic.py:2025 ../gramps/plugins/db/bsddb/undoredo.py:251
 #: ../gramps/plugins/db/bsddb/undoredo.py:293
 #: ../gramps/plugins/db/bsddb/write.py:2141
 #, python-format
 msgid "_Undo %s"
 msgstr "_Rückgängig %s"
 
-#: ../gramps/gen/db/generic.py:166 ../gramps/gen/db/generic.py:217
+#: ../gramps/gen/db/generic.py:167 ../gramps/gen/db/generic.py:218
 #: ../gramps/plugins/db/bsddb/undoredo.py:257
 #: ../gramps/plugins/db/bsddb/undoredo.py:299
 #, python-format
 msgid "_Redo %s"
 msgstr "_Wiederherstellen %s"
 
-#: ../gramps/gen/db/generic.py:2410 ../gramps/plugins/db/bsddb/read.py:1938
+#: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1938
 #: ../gramps/plugins/db/bsddb/write.py:2296
 msgid "Number of people"
 msgstr "Personenanzahl"
 
-#: ../gramps/gen/db/generic.py:2411 ../gramps/plugins/db/bsddb/read.py:1939
+#: ../gramps/gen/db/generic.py:2418 ../gramps/plugins/db/bsddb/read.py:1939
 #: ../gramps/plugins/db/bsddb/write.py:2297
 #: ../gramps/plugins/gramplet/statsgramplet.py:170
 #: ../gramps/plugins/webreport/statistics.py:131
@@ -3316,57 +3316,57 @@ msgstr "Personenanzahl"
 msgid "Number of families"
 msgstr "Familienanzahl"
 
-#: ../gramps/gen/db/generic.py:2412 ../gramps/plugins/db/bsddb/read.py:1940
+#: ../gramps/gen/db/generic.py:2419 ../gramps/plugins/db/bsddb/read.py:1940
 #: ../gramps/plugins/db/bsddb/write.py:2298
 #: ../gramps/plugins/webreport/statistics.py:159
 #: ../gramps/plugins/webreport/statistics.py:208
 msgid "Number of sources"
 msgstr "Anzahl der Quellen"
 
-#: ../gramps/gen/db/generic.py:2413 ../gramps/plugins/db/bsddb/read.py:1941
+#: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/read.py:1941
 #: ../gramps/plugins/db/bsddb/write.py:2299
 #: ../gramps/plugins/webreport/statistics.py:163
 #: ../gramps/plugins/webreport/statistics.py:211
 msgid "Number of citations"
 msgstr "Anzahl der Fundstellen"
 
-#: ../gramps/gen/db/generic.py:2414 ../gramps/plugins/db/bsddb/read.py:1942
+#: ../gramps/gen/db/generic.py:2421 ../gramps/plugins/db/bsddb/read.py:1942
 #: ../gramps/plugins/db/bsddb/write.py:2300
 #: ../gramps/plugins/webreport/statistics.py:152
 #: ../gramps/plugins/webreport/statistics.py:202
 msgid "Number of events"
 msgstr "Anzahl der Ereignisse"
 
-#: ../gramps/gen/db/generic.py:2415 ../gramps/plugins/db/bsddb/read.py:1943
+#: ../gramps/gen/db/generic.py:2422 ../gramps/plugins/db/bsddb/read.py:1943
 #: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of media"
 msgstr "Anzahl der Medien"
 
-#: ../gramps/gen/db/generic.py:2416 ../gramps/plugins/db/bsddb/read.py:1944
+#: ../gramps/gen/db/generic.py:2423 ../gramps/plugins/db/bsddb/read.py:1944
 #: ../gramps/plugins/db/bsddb/write.py:2302
 #: ../gramps/plugins/webreport/statistics.py:155
 #: ../gramps/plugins/webreport/statistics.py:205
 msgid "Number of places"
 msgstr "Anzahl der Orte"
 
-#: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1945
+#: ../gramps/gen/db/generic.py:2424 ../gramps/plugins/db/bsddb/read.py:1945
 #: ../gramps/plugins/db/bsddb/write.py:2303
 #: ../gramps/plugins/webreport/statistics.py:167
 #: ../gramps/plugins/webreport/statistics.py:214
 msgid "Number of repositories"
 msgstr "Anzahl der Aufbewahrungsorte"
 
-#: ../gramps/gen/db/generic.py:2418 ../gramps/plugins/db/bsddb/read.py:1946
+#: ../gramps/gen/db/generic.py:2425 ../gramps/plugins/db/bsddb/read.py:1946
 #: ../gramps/plugins/db/bsddb/write.py:2304
 msgid "Number of notes"
 msgstr "Anzahl der Notizen"
 
-#: ../gramps/gen/db/generic.py:2419 ../gramps/plugins/db/bsddb/read.py:1947
+#: ../gramps/gen/db/generic.py:2426 ../gramps/plugins/db/bsddb/read.py:1947
 #: ../gramps/plugins/db/bsddb/write.py:2305
 msgid "Number of tags"
 msgstr "Anzahl der Markierungen"
 
-#: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/write.py:2306
+#: ../gramps/gen/db/generic.py:2427 ../gramps/plugins/db/bsddb/write.py:2306
 msgid "Schema version"
 msgstr "Schemaversion"
 
@@ -6603,8 +6603,8 @@ msgstr "Liefert Quellen, die als vertraulich markiert sind."
 #: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:136
-#: ../gramps/plugins/lib/libgedcom.py:5656
-#: ../gramps/plugins/lib/libgedcom.py:5823
+#: ../gramps/plugins/lib/libgedcom.py:5657
+#: ../gramps/plugins/lib/libgedcom.py:5824
 #: ../gramps/plugins/textreport/familygroup.py:352
 #: ../gramps/plugins/webreport/addressbooklist.py:113
 msgid "Address"
@@ -6620,7 +6620,7 @@ msgstr "Adresse"
 #: ../gramps/gen/lib/place.py:182 ../gramps/gen/lib/repo.py:114
 #: ../gramps/gen/lib/reporef.py:110 ../gramps/gen/lib/src.py:133
 #: ../gramps/gen/lib/srcattribute.py:74 ../gramps/gen/lib/url.py:92
-#: ../gramps/gen/proxy/private.py:830
+#: ../gramps/gen/proxy/private.py:831
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
@@ -6782,10 +6782,10 @@ msgstr "Notizen"
 #: ../gramps/plugins/webreport/basepage.py:930
 #: ../gramps/plugins/webreport/basepage.py:961
 #: ../gramps/plugins/webreport/basepage.py:1127
-#: ../gramps/plugins/webreport/basepage.py:2269
+#: ../gramps/plugins/webreport/basepage.py:2222
 #: ../gramps/plugins/webreport/event.py:177
 #: ../gramps/plugins/webreport/media.py:230
-#: ../gramps/plugins/webreport/media.py:564
+#: ../gramps/plugins/webreport/media.py:571
 #: ../gramps/plugins/webreport/person.py:898
 msgid "Date"
 msgstr "Datum"
@@ -6797,8 +6797,8 @@ msgstr "Datum"
 #: ../gramps/plugins/view/geoplaces.py:601
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1128
-#: ../gramps/plugins/webreport/basepage.py:2587
-#: ../gramps/plugins/webreport/basepage.py:2653
+#: ../gramps/plugins/webreport/basepage.py:2540
+#: ../gramps/plugins/webreport/basepage.py:2606
 msgid "Street"
 msgstr "Straße"
 
@@ -6809,8 +6809,8 @@ msgstr "Straße"
 #: ../gramps/plugins/view/geoplaces.py:598
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1129
-#: ../gramps/plugins/webreport/basepage.py:2588
-#: ../gramps/plugins/webreport/basepage.py:2654
+#: ../gramps/plugins/webreport/basepage.py:2541
+#: ../gramps/plugins/webreport/basepage.py:2607
 msgid "Locality"
 msgstr "Lokalität"
 
@@ -6821,8 +6821,8 @@ msgstr "Lokalität"
 #: ../gramps/plugins/view/geoplaces.py:649
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1130
-#: ../gramps/plugins/webreport/basepage.py:2589
-#: ../gramps/plugins/webreport/basepage.py:2655
+#: ../gramps/plugins/webreport/basepage.py:2542
+#: ../gramps/plugins/webreport/basepage.py:2608
 msgid "City"
 msgstr "Stadt"
 
@@ -6833,8 +6833,8 @@ msgstr "Stadt"
 #: ../gramps/plugins/lib/maps/placeselection.py:151
 #: ../gramps/plugins/view/geoplaces.py:631
 #: ../gramps/plugins/webreport/basepage.py:1132
-#: ../gramps/plugins/webreport/basepage.py:2592
-#: ../gramps/plugins/webreport/basepage.py:2657
+#: ../gramps/plugins/webreport/basepage.py:2545
+#: ../gramps/plugins/webreport/basepage.py:2610
 msgid "County"
 msgstr "Kreis"
 
@@ -6856,8 +6856,8 @@ msgstr "Bundesland"
 #: ../gramps/plugins/view/geoplaces.py:625
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1134
-#: ../gramps/plugins/webreport/basepage.py:2596
-#: ../gramps/plugins/webreport/basepage.py:2660
+#: ../gramps/plugins/webreport/basepage.py:2549
+#: ../gramps/plugins/webreport/basepage.py:2613
 #: ../gramps/plugins/webreport/place.py:183
 #: ../gramps/plugins/webreport/place.py:195
 msgid "Country"
@@ -6865,17 +6865,17 @@ msgstr "Land"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1133
-#: ../gramps/plugins/webreport/basepage.py:2595
-#: ../gramps/plugins/webreport/basepage.py:2659
+#: ../gramps/plugins/webreport/basepage.py:2548
+#: ../gramps/plugins/webreport/basepage.py:2612
 msgid "Postal Code"
 msgstr "Postleitzahl"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:105
 #: ../gramps/gui/configure.py:626 ../gramps/plugins/export/exportgedcom.py:788
-#: ../gramps/plugins/export/exportgedcom.py:1161
+#: ../gramps/plugins/export/exportgedcom.py:1162
 #: ../gramps/plugins/gramplet/repositorydetails.py:124
-#: ../gramps/plugins/lib/libgedcom.py:4143
-#: ../gramps/plugins/lib/libgedcom.py:5920
+#: ../gramps/plugins/lib/libgedcom.py:4144
+#: ../gramps/plugins/lib/libgedcom.py:5921
 #: ../gramps/plugins/webreport/basepage.py:1135
 msgid "Phone"
 msgstr "Telefon"
@@ -6934,8 +6934,8 @@ msgstr "Gesellschaftsklasse"
 #: ../gramps/plugins/view/eventview.py:78
 #: ../gramps/plugins/webreport/basepage.py:643
 #: ../gramps/plugins/webreport/basepage.py:933
-#: ../gramps/plugins/webreport/basepage.py:2140
-#: ../gramps/plugins/webreport/basepage.py:2872
+#: ../gramps/plugins/webreport/basepage.py:2093
+#: ../gramps/plugins/webreport/basepage.py:2825
 #: ../gramps/plugins/webreport/download.py:128
 msgid "Description"
 msgstr "Beschreibung"
@@ -7079,7 +7079,7 @@ msgstr "Pflegekind"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
 #: ../gramps/plugins/importer/importprogen.glade:209
 #: ../gramps/plugins/importer/importprogen.glade:739
-#: ../gramps/plugins/lib/libprogen.py:935
+#: ../gramps/plugins/lib/libprogen.py:936
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
 #: ../gramps/plugins/quickview/references.py:89
 #: ../gramps/plugins/tool/reorderids.glade:823
@@ -7110,10 +7110,10 @@ msgstr "Fundstelle"
 #: ../gramps/plugins/quickview/filterbyname.py:276
 #: ../gramps/plugins/tool/findloop.py:112
 #: ../gramps/plugins/tool/findloop.py:116
-#: ../gramps/plugins/webreport/basepage.py:2562
+#: ../gramps/plugins/webreport/basepage.py:2515
 #: ../gramps/plugins/webreport/event.py:178
 #: ../gramps/plugins/webreport/event.py:391
-#: ../gramps/plugins/webreport/media.py:541
+#: ../gramps/plugins/webreport/media.py:548
 #: ../gramps/plugins/webreport/person.py:1483
 #: ../gramps/plugins/webreport/repository.py:245
 #: ../gramps/plugins/webreport/source.py:261
@@ -7123,7 +7123,7 @@ msgstr "Gramps-ID"
 #: ../gramps/gen/lib/citation.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
 #: ../gramps/plugins/importer/importprogen.glade:295
-#: ../gramps/plugins/webreport/basepage.py:2271
+#: ../gramps/plugins/webreport/basepage.py:2224
 msgid "Page"
 msgstr "Seite"
 
@@ -7131,7 +7131,7 @@ msgstr "Seite"
 #: ../gramps/plugins/importer/importprogen.glade:261
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
-#: ../gramps/plugins/webreport/basepage.py:2272
+#: ../gramps/plugins/webreport/basepage.py:2225
 msgid "Confidence"
 msgstr "Vertraulichkeit"
 
@@ -7147,7 +7147,7 @@ msgstr "Vertraulichkeit"
 #: ../gramps/plugins/importer/importcsv.py:170
 #: ../gramps/plugins/importer/importprogen.glade:52
 #: ../gramps/plugins/importer/importprogen.glade:724
-#: ../gramps/plugins/lib/libprogen.py:882
+#: ../gramps/plugins/lib/libprogen.py:883
 #: ../gramps/plugins/quickview/filterbyname.py:195
 #: ../gramps/plugins/quickview/filterbyname.py:258
 #: ../gramps/plugins/quickview/quickview.gpr.py:205
@@ -7183,7 +7183,7 @@ msgstr "Quelle"
 #: ../gramps/plugins/webreport/basepage.py:1592
 #: ../gramps/plugins/webreport/basepage.py:1660
 #: ../gramps/plugins/webreport/basepage.py:1707
-#: ../gramps/plugins/webreport/basepage.py:2044
+#: ../gramps/plugins/webreport/basepage.py:1997
 #: ../gramps/plugins/webreport/media.py:196
 #: ../gramps/plugins/webreport/media.py:378
 msgid "Media"
@@ -7240,8 +7240,8 @@ msgstr "Markierungen"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
-#: ../gramps/plugins/lib/libgedcom.py:5453
-#: ../gramps/plugins/lib/libgedcom.py:6761
+#: ../gramps/plugins/lib/libgedcom.py:5454
+#: ../gramps/plugins/lib/libgedcom.py:6762
 #: ../gramps/plugins/textreport/indivcomplete.py:663
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:791
@@ -7273,7 +7273,7 @@ msgid "age|about"
 msgstr "um"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:339
-#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2932
+#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2885
 msgid "between"
 msgstr "zwischen"
 
@@ -7282,7 +7282,7 @@ msgstr "zwischen"
 #: ../gramps/plugins/quickview/all_relations.py:282
 #: ../gramps/plugins/view/relview.py:1159
 #: ../gramps/plugins/webreport/basepage.py:846
-#: ../gramps/plugins/webreport/basepage.py:2933
+#: ../gramps/plugins/webreport/basepage.py:2886
 msgid "and"
 msgstr "und"
 
@@ -7347,7 +7347,7 @@ msgstr "Werte"
 #: ../gramps/gen/lib/date.py:719 ../gramps/gen/lib/placename.py:99
 #: ../gramps/gen/lib/styledtext.py:321
 #: ../gramps/gen/plug/report/_constants.py:54 ../gramps/gui/clipboard.py:613
-#: ../gramps/gui/clipboard.py:621 ../gramps/gui/configure.py:1395
+#: ../gramps/gui/clipboard.py:621 ../gramps/gui/configure.py:1396
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/importer/importprogen.glade:403
 #: ../gramps/plugins/importer/importprogen.glade:1107
@@ -7381,18 +7381,18 @@ msgid "date-modifier|none"
 msgstr "kein"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:314
-#: ../gramps/plugins/webreport/basepage.py:2941
+#: ../gramps/plugins/webreport/basepage.py:2894
 msgid "about"
 msgstr "um"
 
-#: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1839
+#: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1841
 #: ../gramps/plugins/lib/libsubstkeyword.py:313
-#: ../gramps/plugins/webreport/basepage.py:2937
+#: ../gramps/plugins/webreport/basepage.py:2890
 msgid "after"
 msgstr "nach"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:313
-#: ../gramps/plugins/webreport/basepage.py:2939
+#: ../gramps/plugins/webreport/basepage.py:2892
 msgid "before"
 msgstr "vor"
 
@@ -7578,10 +7578,10 @@ msgstr "Juristisch"
 
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
-#: ../gramps/plugins/lib/libprogen.py:1827
-#: ../gramps/plugins/lib/libprogen.py:1830
+#: ../gramps/plugins/lib/libprogen.py:1829
+#: ../gramps/plugins/lib/libprogen.py:1832
 #: ../gramps/plugins/webreport/addressbooklist.py:114
-#: ../gramps/plugins/webreport/basepage.py:2849
+#: ../gramps/plugins/webreport/basepage.py:2802
 msgid "Residence"
 msgstr "Wohnort"
 
@@ -8117,8 +8117,8 @@ msgstr "Gesetzliche Partnerschaft"
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/basepage.py:960
 #: ../gramps/plugins/webreport/basepage.py:1262
-#: ../gramps/plugins/webreport/basepage.py:2139
-#: ../gramps/plugins/webreport/basepage.py:2806
+#: ../gramps/plugins/webreport/basepage.py:2092
+#: ../gramps/plugins/webreport/basepage.py:2759
 #: ../gramps/plugins/webreport/event.py:176
 #: ../gramps/plugins/webreport/repository.py:163
 #: ../gramps/plugins/webreport/repository.py:253
@@ -8368,7 +8368,7 @@ msgstr "Suffix"
 #: ../gramps/plugins/textreport/tagreport.py:745
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/basepage.py:2804
+#: ../gramps/plugins/webreport/basepage.py:2757
 msgid "Title"
 msgstr "Titel"
 
@@ -8516,7 +8516,7 @@ msgstr "Notiz"
 msgid "Format"
 msgstr "Format"
 
-#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1673
+#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1674
 #: ../gramps/gui/editors/editeventref.py:89
 #: ../gramps/gui/editors/editmediaref.py:107
 #: ../gramps/gui/editors/editplaceref.py:71
@@ -8763,7 +8763,7 @@ msgstr "Verknüpfung"
 #: ../gramps/plugins/gramplet/coordinates.py:96
 #: ../gramps/plugins/gramplet/placedetails.py:136
 #: ../gramps/plugins/lib/libplaceview.py:91
-#: ../gramps/plugins/webreport/basepage.py:2579
+#: ../gramps/plugins/webreport/basepage.py:2532
 #: ../gramps/plugins/webreport/place.py:185
 msgid "Longitude"
 msgstr "Längengrad"
@@ -8772,7 +8772,7 @@ msgstr "Längengrad"
 #: ../gramps/plugins/gramplet/coordinates.py:95
 #: ../gramps/plugins/gramplet/placedetails.py:134
 #: ../gramps/plugins/lib/libplaceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:2571
+#: ../gramps/plugins/webreport/basepage.py:2524
 #: ../gramps/plugins/webreport/place.py:184
 msgid "Latitude"
 msgstr "Breitengrad"
@@ -8794,7 +8794,7 @@ msgstr "Orte"
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/plugins/textreport/indivcomplete.py:391
-#: ../gramps/plugins/webreport/basepage.py:2623
+#: ../gramps/plugins/webreport/basepage.py:2576
 msgid "Alternate Names"
 msgstr "Alternative Namen"
 
@@ -8806,7 +8806,7 @@ msgstr "Alternative Namen"
 msgid "Code"
 msgstr "Kennung"
 
-#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2647
+#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2600
 msgid "Alternate Locations"
 msgstr "Alternative Ortsangaben"
 
@@ -8821,7 +8821,7 @@ msgstr "Ortsname"
 
 #: ../gramps/gen/lib/placename.py:103
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
-#: ../gramps/plugins/webreport/basepage.py:2625
+#: ../gramps/plugins/webreport/basepage.py:2578
 msgid "Language"
 msgstr "Sprache"
 
@@ -8875,7 +8875,7 @@ msgstr "Gebäude"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
 #: ../gramps/plugins/view/geoplaces.py:622
-#: ../gramps/plugins/webreport/basepage.py:2802
+#: ../gramps/plugins/webreport/basepage.py:2755
 #: ../gramps/plugins/webreport/source.py:164
 msgid "Number"
 msgstr "Standortnummer/Signatur"
@@ -8971,7 +8971,7 @@ msgstr "Abkürzung"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/basepage.py:1532
 #: ../gramps/plugins/webreport/basepage.py:1653
-#: ../gramps/plugins/webreport/basepage.py:2793
+#: ../gramps/plugins/webreport/basepage.py:2746
 #: ../gramps/plugins/webreport/repository.py:138
 #: ../gramps/plugins/webreport/repository.py:224
 msgid "Repositories"
@@ -9418,7 +9418,7 @@ msgstr "Datei %s ist bereits geöffnet, erst schließen."
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
 #: ../gramps/plugins/export/exportftree.py:136
-#: ../gramps/plugins/export/exportgedcom.py:1602
+#: ../gramps/plugins/export/exportgedcom.py:1597
 #: ../gramps/plugins/export/exportgeneweb.py:109
 #: ../gramps/plugins/export/exportgeneweb.py:113
 #: ../gramps/plugins/export/exportvcalendar.py:123
@@ -9837,7 +9837,7 @@ msgid "Not shown"
 msgstr "Nicht gezeigt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:99
-#: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1938
+#: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1939
 #: ../gramps/gui/views/pageview.py:591
 msgid "Preferences"
 msgstr "Einstellungen"
@@ -9893,7 +9893,7 @@ msgstr "Klein"
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:214
 #: ../gramps/plugins/graph/gvfamilylines.py:263
-#: ../gramps/plugins/importer/importprogen.py:487
+#: ../gramps/plugins/importer/importprogen.py:488
 msgid "Normal"
 msgstr "Normal"
 
@@ -10016,11 +10016,11 @@ msgstr "Dieser Text wird dem Baum hinzugefügt."
 msgid "The size of note text."
 msgstr "Die Größe des Notizentext."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:652
+#: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
 msgstr "PDF"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:658
+#: ../gramps/gen/plug/docgen/treedoc.py:659
 msgid "LaTeX File"
 msgstr "LaTeX Datei"
 
@@ -10285,9 +10285,8 @@ msgstr "Datei existiert nicht"
 #: ../gramps/plugins/textreport/indivcomplete.py:915
 #: ../gramps/plugins/textreport/simplebooktitle.py:106
 #: ../gramps/plugins/webreport/basepage.py:1799
-#: ../gramps/plugins/webreport/basepage.py:2004
-#: ../gramps/plugins/webreport/basepage.py:2070
-#: ../gramps/plugins/webreport/basepage.py:2078
+#: ../gramps/plugins/webreport/basepage.py:2023
+#: ../gramps/plugins/webreport/basepage.py:2031
 msgid "Could not add photo to page"
 msgstr "Das Foto kann zur Seite nicht hinzugefügt werden."
 
@@ -11105,24 +11104,24 @@ msgid "Invalid"
 msgstr "Ungültig"
 
 #: ../gramps/gen/utils/string.py:55 ../gramps/gui/editors/editcitation.py:216
-#: ../gramps/plugins/importer/importprogen.py:489
+#: ../gramps/plugins/importer/importprogen.py:490
 msgid "Very High"
 msgstr "Sehr hoch"
 
 #: ../gramps/gen/utils/string.py:56 ../gramps/gui/editors/editcitation.py:215
-#: ../gramps/plugins/importer/importprogen.py:488
+#: ../gramps/plugins/importer/importprogen.py:489
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "High"
 msgstr "Hoch"
 
 #: ../gramps/gen/utils/string.py:58 ../gramps/gui/editors/editcitation.py:213
-#: ../gramps/plugins/importer/importprogen.py:486
+#: ../gramps/plugins/importer/importprogen.py:487
 #: ../gramps/plugins/tool/finddupes.py:60
 msgid "Low"
 msgstr "Niedrig"
 
 #: ../gramps/gen/utils/string.py:59 ../gramps/gui/editors/editcitation.py:212
-#: ../gramps/plugins/importer/importprogen.py:485
+#: ../gramps/plugins/importer/importprogen.py:486
 msgid "Very Low"
 msgstr "Sehr niedrig"
 
@@ -11460,8 +11459,8 @@ msgstr "Baumansicht: erste Spalte \"%s\" kann nicht geändert werden"
 msgid "Drag and drop the columns to change the order"
 msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position."
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1834
-#: ../gramps/gui/configure.py:1858 ../gramps/gui/configure.py:1884
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1835
+#: ../gramps/gui/configure.py:1859 ../gramps/gui/configure.py:1885
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1794
 #: ../gramps/plugins/lib/maps/geography.py:997
 #: ../gramps/plugins/lib/maps/geography.py:1294
@@ -11469,7 +11468,7 @@ msgid "_Apply"
 msgstr "_Anwenden"
 
 #. #################
-#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1353
+#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1354
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1658
 #: ../gramps/plugins/webreport/narrativeweb.py:1770
@@ -11599,11 +11598,11 @@ msgstr "Ungültige oder unvollständige Formatfestlegung."
 #: ../gramps/gui/configure.py:482 ../gramps/gui/configure.py:519
 #: ../gramps/gui/configure.py:541 ../gramps/gui/configure.py:689
 #: ../gramps/gui/configure.py:1194 ../gramps/gui/configure.py:1222
-#: ../gramps/gui/configure.py:1240 ../gramps/gui/configure.py:1267
-#: ../gramps/gui/configure.py:1281 ../gramps/gui/configure.py:1294
-#: ../gramps/gui/configure.py:1307 ../gramps/gui/configure.py:1332
-#: ../gramps/gui/configure.py:1634 ../gramps/gui/configure.py:1652
-#: ../gramps/gui/configure.py:1735 ../gramps/gui/configure.py:1786
+#: ../gramps/gui/configure.py:1240 ../gramps/gui/configure.py:1268
+#: ../gramps/gui/configure.py:1282 ../gramps/gui/configure.py:1295
+#: ../gramps/gui/configure.py:1308 ../gramps/gui/configure.py:1333
+#: ../gramps/gui/configure.py:1635 ../gramps/gui/configure.py:1653
+#: ../gramps/gui/configure.py:1736 ../gramps/gui/configure.py:1787
 #: ../gramps/gui/views/navigationview.py:343
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
@@ -11952,44 +11951,44 @@ msgstr "Jahre, Monate"
 msgid "Years, Months, Days"
 msgstr "Jahre, Monate, Tage"
 
-#: ../gramps/gui/configure.py:1268
+#: ../gramps/gui/configure.py:1269
 msgid "Age display precision (requires restart)"
 msgstr "Alter genau anzeigen (erfordert Neustart)"
 
-#: ../gramps/gui/configure.py:1281
+#: ../gramps/gui/configure.py:1282
 msgid "Calendar on reports"
 msgstr "Kalender für Berichte"
 
-#: ../gramps/gui/configure.py:1294
+#: ../gramps/gui/configure.py:1295
 msgid "Surname guessing"
 msgstr "Nachnamen-Schätzung"
 
-#: ../gramps/gui/configure.py:1307
+#: ../gramps/gui/configure.py:1308
 msgid "Default family relationship"
 msgstr "Standardfamilienbeziehung"
 
-#: ../gramps/gui/configure.py:1314
+#: ../gramps/gui/configure.py:1315
 msgid "Height multiple surname box (pixels)"
 msgstr "Höhe der Mehrfachnachnamenbox (Pixel)"
 
-#: ../gramps/gui/configure.py:1321
+#: ../gramps/gui/configure.py:1322
 msgid "Active person's name and ID"
 msgstr "Name und ID der aktiven Person"
 
-#: ../gramps/gui/configure.py:1322
+#: ../gramps/gui/configure.py:1323
 #: ../gramps/plugins/textreport/indivcomplete.py:370
 msgid "Relationship to home person"
 msgstr "Verwandtschaftsverhältnis zur Hauptperson"
 
-#: ../gramps/gui/configure.py:1332
+#: ../gramps/gui/configure.py:1333
 msgid "Status bar"
 msgstr "Statusleiste"
 
-#: ../gramps/gui/configure.py:1339
+#: ../gramps/gui/configure.py:1340
 msgid "Show text label beside Navigator buttons (requires restart)"
 msgstr "Zeige Text neben Navigationsschaltflächen (benötigt Neustart)"
 
-#: ../gramps/gui/configure.py:1342
+#: ../gramps/gui/configure.py:1343
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
@@ -11998,49 +11997,49 @@ msgstr ""
 "Familien, Ereignisse...)\n"
 " Benötigt zur Aktivierung einen Gramps Neustart."
 
-#: ../gramps/gui/configure.py:1348
+#: ../gramps/gui/configure.py:1349
 msgid "Show close button in gramplet bar tabs"
 msgstr "Zeige die Schaltfläche 'Schließen' in den Gramplet-Reitern."
 
-#: ../gramps/gui/configure.py:1351
+#: ../gramps/gui/configure.py:1352
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr ""
 "Zeige Schließen Schaltflächen um das Entfernen von Gramplets von Leisten zu "
 "vereinfachen."
 
-#: ../gramps/gui/configure.py:1370
+#: ../gramps/gui/configure.py:1371
 msgid "Default text used for conditions"
 msgstr "Standardtext verwendet für Bedingungen"
 
-#: ../gramps/gui/configure.py:1375
+#: ../gramps/gui/configure.py:1376
 msgid "Missing surname"
 msgstr "Fehlender Nachname"
 
-#: ../gramps/gui/configure.py:1378
+#: ../gramps/gui/configure.py:1379
 msgid "Missing given name"
 msgstr "Fehlender Vorname"
 
-#: ../gramps/gui/configure.py:1381
+#: ../gramps/gui/configure.py:1382
 msgid "Missing record"
 msgstr "Fehlender Datensatz"
 
-#: ../gramps/gui/configure.py:1384
+#: ../gramps/gui/configure.py:1385
 msgid "Private surname"
 msgstr "Vertraulicher Nachname"
 
-#: ../gramps/gui/configure.py:1388
+#: ../gramps/gui/configure.py:1389
 msgid "Private given name"
 msgstr "Vertraulicher Vorname"
 
-#: ../gramps/gui/configure.py:1392
+#: ../gramps/gui/configure.py:1393
 msgid "Private record"
 msgstr "Vertraulicher Datensatz"
 
-#: ../gramps/gui/configure.py:1461
+#: ../gramps/gui/configure.py:1462
 msgid "Change is not immediate"
 msgstr "Änderung noch nicht wirksam"
 
-#: ../gramps/gui/configure.py:1462
+#: ../gramps/gui/configure.py:1463
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
@@ -12048,15 +12047,15 @@ msgstr ""
 "Das Ändern der Datumseinstellung wird erst mit einem Neustart von Gramps "
 "aktiv."
 
-#: ../gramps/gui/configure.py:1487
+#: ../gramps/gui/configure.py:1488
 msgid "Dates settings used for calculation operations"
 msgstr "Datumseinstellungen die für Berechnungen verwendet werden"
 
-#: ../gramps/gui/configure.py:1493
+#: ../gramps/gui/configure.py:1494
 msgid "Markup for invalid date format"
 msgstr "Markierung für ungültiges Datumsformat"
 
-#: ../gramps/gui/configure.py:1497
+#: ../gramps/gui/configure.py:1498
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -12087,51 +12086,51 @@ msgstr ""
 "Zum Beispiel: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "zeigt <u><b>Unterstrichenes fettes Datum</b></u>\n"
 
-#: ../gramps/gui/configure.py:1513
+#: ../gramps/gui/configure.py:1514
 msgid "Date about range"
 msgstr "Datum um Spanne"
 
-#: ../gramps/gui/configure.py:1517
+#: ../gramps/gui/configure.py:1518
 msgid "Date after range"
 msgstr "Datum nach Spanne"
 
-#: ../gramps/gui/configure.py:1521
+#: ../gramps/gui/configure.py:1522
 msgid "Date before range"
 msgstr "Datum vor Spanne"
 
-#: ../gramps/gui/configure.py:1525
+#: ../gramps/gui/configure.py:1526
 msgid "Maximum age probably alive"
 msgstr "Maximales Alter von 'wahrscheinlich am leben'"
 
-#: ../gramps/gui/configure.py:1529
+#: ../gramps/gui/configure.py:1530
 msgid "Maximum sibling age difference"
 msgstr "Maximaler Altersabstand von Geschwistern"
 
-#: ../gramps/gui/configure.py:1533
+#: ../gramps/gui/configure.py:1534
 msgid "Minimum years between generations"
 msgstr "Minimaler Abstand zwischen Generationen in Jahren"
 
-#: ../gramps/gui/configure.py:1537
+#: ../gramps/gui/configure.py:1538
 msgid "Average years between generations"
 msgstr "Durchschnittlicher Abstand zwischen Generationen in Jahren"
 
-#: ../gramps/gui/configure.py:1540
+#: ../gramps/gui/configure.py:1541
 msgid "Dates"
 msgstr "Daten"
 
-#: ../gramps/gui/configure.py:1548
+#: ../gramps/gui/configure.py:1549
 msgid "General Gramps settings"
 msgstr "Allgemeine Gramps Einstellungen"
 
-#: ../gramps/gui/configure.py:1553
+#: ../gramps/gui/configure.py:1554
 msgid "Add default source on GEDCOM import"
 msgstr "Füge Standardquelle beim GEDCOM Import hinzu"
 
-#: ../gramps/gui/configure.py:1572
+#: ../gramps/gui/configure.py:1573
 msgid "Add tag on import"
 msgstr "Markierung beim Import hinzufügen"
 
-#: ../gramps/gui/configure.py:1575
+#: ../gramps/gui/configure.py:1576
 msgid ""
 "Specifed tag will be added on import.\n"
 "Clear to set default value."
@@ -12139,11 +12138,11 @@ msgstr ""
 "Angegebenes Kennzeichen wird bei Import hinzugefügt.\n"
 "Leeren um auf Standardwert zu setzen."
 
-#: ../gramps/gui/configure.py:1580
+#: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
 msgstr "Rechtschreibprüfung aktivieren"
 
-#: ../gramps/gui/configure.py:1589
+#: ../gramps/gui/configure.py:1590
 #, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
@@ -12153,181 +12152,181 @@ msgstr ""
 "stehen.\n"
 "Um es für Gramps zu erstellen, siehe %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:1595
+#: ../gramps/gui/configure.py:1596
 msgid "Display Tip of the Day"
 msgstr "Tipp des Tages anzeigen"
 
-#: ../gramps/gui/configure.py:1597
+#: ../gramps/gui/configure.py:1598
 msgid "Show useful information about using Gramps on startup."
 msgstr "Zeigt hilfreiche Informationen zur Gramps Verwendung beim Starten."
 
-#: ../gramps/gui/configure.py:1600
+#: ../gramps/gui/configure.py:1601
 msgid "Remember last view displayed"
 msgstr "Letzte angezeigte Ansicht merken"
 
-#: ../gramps/gui/configure.py:1602
+#: ../gramps/gui/configure.py:1603
 msgid "Remember last view displayed and open it next time."
 msgstr "Letzte angezeigte Ansicht merken und nächstes Mal öffnen."
 
-#: ../gramps/gui/configure.py:1605
+#: ../gramps/gui/configure.py:1606
 msgid "Max generations for relationships"
 msgstr "Maximale Anzahl der Generationen für Beziehungen"
 
-#: ../gramps/gui/configure.py:1611
+#: ../gramps/gui/configure.py:1612
 msgid "Base path for relative media paths"
 msgstr "Basisverzeichnis für relative Medienpfade"
 
-#: ../gramps/gui/configure.py:1617
+#: ../gramps/gui/configure.py:1618
 msgid "Third party addons management"
 msgstr "Erweiterung dritter Verwaltung"
 
-#: ../gramps/gui/configure.py:1626
+#: ../gramps/gui/configure.py:1627
 msgid "Once a month"
 msgstr "Einmal im Monat"
 
-#: ../gramps/gui/configure.py:1627
+#: ../gramps/gui/configure.py:1628
 msgid "Once a week"
 msgstr "Einmal die Woche"
 
-#: ../gramps/gui/configure.py:1628
+#: ../gramps/gui/configure.py:1629
 msgid "Once a day"
 msgstr "Einmal am Tag"
 
-#: ../gramps/gui/configure.py:1629
+#: ../gramps/gui/configure.py:1630
 msgid "Always"
 msgstr "Immer"
 
-#: ../gramps/gui/configure.py:1634
+#: ../gramps/gui/configure.py:1635
 msgid "Check for addon updates"
 msgstr "Nach Aktualisierungen für Erweiterungen suchen"
 
-#: ../gramps/gui/configure.py:1640
+#: ../gramps/gui/configure.py:1641
 msgid "Updated addons only"
 msgstr "Nur aktualisierte Erweiterungen"
 
-#: ../gramps/gui/configure.py:1641
+#: ../gramps/gui/configure.py:1642
 msgid "New addons only"
 msgstr "Nur neue Erweiterungen"
 
-#: ../gramps/gui/configure.py:1642
+#: ../gramps/gui/configure.py:1643
 msgid "New and updated addons"
 msgstr "Neue und aktualisierte Erweiterungen"
 
-#: ../gramps/gui/configure.py:1652
+#: ../gramps/gui/configure.py:1653
 msgid "What to check"
 msgstr "Was prüfen"
 
-#: ../gramps/gui/configure.py:1657
+#: ../gramps/gui/configure.py:1658
 msgid "Where to check"
 msgstr "Wo prüfen"
 
-#: ../gramps/gui/configure.py:1662
+#: ../gramps/gui/configure.py:1663
 msgid "Do not ask about previously notified addons"
 msgstr "Bereits aktualisierte Erweiterungen nicht erneut abfragen"
 
-#: ../gramps/gui/configure.py:1667
+#: ../gramps/gui/configure.py:1668
 msgid "Check for updated addons now"
 msgstr "Jetzt nach Aktualisierungen für Erweiterungen suchen"
 
-#: ../gramps/gui/configure.py:1679
+#: ../gramps/gui/configure.py:1680
 msgid "Checking Addons Failed"
 msgstr "Überprüfen der Erweiterungen fehlgeschlagen"
 
-#: ../gramps/gui/configure.py:1680
+#: ../gramps/gui/configure.py:1681
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 "Der Aufbewahrungsort im Internet für Zusatzmodule ist nicht erreichbar. "
 "Bitte versuche es später noch einmal."
 
-#: ../gramps/gui/configure.py:1693
+#: ../gramps/gui/configure.py:1694
 msgid "There are no available addons of this type"
 msgstr "Es sind keine Erweiterungen dieses Typs verfügbar"
 
-#: ../gramps/gui/configure.py:1694
+#: ../gramps/gui/configure.py:1695
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Prüfe nach '%s'"
 
-#: ../gramps/gui/configure.py:1695
+#: ../gramps/gui/configure.py:1696
 msgid "' and '"
 msgstr "' und '"
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1700
+#: ../gramps/gui/configure.py:1701
 msgid "new"
 msgstr "neu"
 
-#: ../gramps/gui/configure.py:1700
+#: ../gramps/gui/configure.py:1701
 msgid "update"
 msgstr "Aktualisierung"
 
-#: ../gramps/gui/configure.py:1729
+#: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
 msgstr "Stammbaum-Datenbank Einstellungen und Sicherung Verwaltung"
 
-#: ../gramps/gui/configure.py:1735
+#: ../gramps/gui/configure.py:1736
 msgid "Database backend"
 msgstr "Datenbank Backend"
 
-#: ../gramps/gui/configure.py:1742
+#: ../gramps/gui/configure.py:1743
 msgid "Host"
 msgstr "Host"
 
-#: ../gramps/gui/configure.py:1747
+#: ../gramps/gui/configure.py:1748
 msgid "Port"
 msgstr "Port"
 
-#: ../gramps/gui/configure.py:1755
+#: ../gramps/gui/configure.py:1756
 msgid "Family Tree Database path"
 msgstr "Stammbaumdatenbankpfad"
 
-#: ../gramps/gui/configure.py:1759
+#: ../gramps/gui/configure.py:1760
 msgid "Automatically load last Family Tree"
 msgstr "Letzten Stammbaum automatisch laden"
 
-#: ../gramps/gui/configure.py:1761
+#: ../gramps/gui/configure.py:1762
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
 "Dialog zur Stammbaumauswahl nicht öffnen, einfach zuletzt verwendeten öffnen."
 
-#: ../gramps/gui/configure.py:1766
+#: ../gramps/gui/configure.py:1767
 msgid "Backup path"
 msgstr "Sicherungspfad"
 
-#: ../gramps/gui/configure.py:1771
+#: ../gramps/gui/configure.py:1772
 msgid "Backup on exit"
 msgstr "Beim beenden sichern"
 
-#: ../gramps/gui/configure.py:1773
+#: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr "Deinen Stammbaum im oben angegeben Pfad beim Beenden sichern."
 
-#: ../gramps/gui/configure.py:1779
+#: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
 msgstr "Alle 15 Minuten"
 
-#: ../gramps/gui/configure.py:1780
+#: ../gramps/gui/configure.py:1781
 msgid "Every 30 minutes"
 msgstr "Alle 30 Minuten"
 
-#: ../gramps/gui/configure.py:1781
+#: ../gramps/gui/configure.py:1782
 msgid "Every hour"
 msgstr "Jede Stunde"
 
-#: ../gramps/gui/configure.py:1786
+#: ../gramps/gui/configure.py:1787
 msgid "Autobackup"
 msgstr "Automatisches Backup"
 
-#: ../gramps/gui/configure.py:1829
+#: ../gramps/gui/configure.py:1830
 msgid "Select media directory"
 msgstr "Wähle ein Medienverzeichnis"
 
-#: ../gramps/gui/configure.py:1832 ../gramps/gui/configure.py:1857
-#: ../gramps/gui/configure.py:1882 ../gramps/gui/dbloader.py:401
-#: ../gramps/gui/dbloader.py:435 ../gramps/gui/editors/edittaglist.py:119
+#: ../gramps/gui/configure.py:1833 ../gramps/gui/configure.py:1858
+#: ../gramps/gui/configure.py:1883 ../gramps/gui/dbloader.py:408
+#: ../gramps/gui/dbloader.py:442 ../gramps/gui/editors/edittaglist.py:119
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:24
 #: ../gramps/gui/glade/configure.glade:23 ../gramps/gui/glade/dialog.glade:417
@@ -12385,15 +12384,15 @@ msgstr "Wähle ein Medienverzeichnis"
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
-#: ../gramps/gui/configure.py:1854
+#: ../gramps/gui/configure.py:1855
 msgid "Select database directory"
 msgstr "Wähle ein Datenbankverzeichnis."
 
-#: ../gramps/gui/configure.py:1879 ../gramps/gui/viewmanager.py:1789
+#: ../gramps/gui/configure.py:1880 ../gramps/gui/viewmanager.py:1789
 msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
-#: ../gramps/gui/configure.py:1946
+#: ../gramps/gui/configure.py:1947
 msgid ""
 "This tab gives you the possibility to use one font which is able to show all "
 "genealogical symbols\n"
@@ -12407,7 +12406,7 @@ msgstr ""
 "Wenn du \"Symbole verwenden\" Kästchen aktivierst, verwendet Gramps die "
 "gewählte Schriftart, wenn sie existiert."
 
-#: ../gramps/gui/configure.py:1952
+#: ../gramps/gui/configure.py:1953
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
@@ -12416,11 +12415,11 @@ msgstr ""
 "zeigen wie ein Name ausgesprochen wird wenn du verschiedene Sprachen mischt "
 "wie Griechisch und Russisch. "
 
-#: ../gramps/gui/configure.py:1959
+#: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
 msgstr "Symbole verwenden"
 
-#: ../gramps/gui/configure.py:1964
+#: ../gramps/gui/configure.py:1965
 msgid ""
 "Be careful, if you click on the \"Try to find\" button, it can take a while "
 "before you can continue (10 minutes or more). \n"
@@ -12430,7 +12429,7 @@ msgstr ""
 "kann eine Weile dauern bevor du fortsetzen kannst (10 Minuten oder länger).\n"
 "Wenn du den Prozess abbrichst, wird nichts verändert."
 
-#: ../gramps/gui/configure.py:1974
+#: ../gramps/gui/configure.py:1975
 msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
@@ -12439,27 +12438,27 @@ msgstr ""
 "lassen.\n"
 "Starte es nur erneut wenn du Schriftarten deinem System hinzugefügt hast."
 
-#: ../gramps/gui/configure.py:1979
+#: ../gramps/gui/configure.py:1980
 msgid "Try to find"
 msgstr "Versuche zu finden"
 
-#: ../gramps/gui/configure.py:1990 ../gramps/gui/configure.py:2091
+#: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
 msgid "Choose font"
 msgstr "Zeichensatz wählen"
 
-#: ../gramps/gui/configure.py:2003 ../gramps/gui/configure.py:2108
+#: ../gramps/gui/configure.py:2004 ../gramps/gui/configure.py:2109
 msgid "Select default death symbol"
 msgstr "Wähle Standard Tod Symbol"
 
-#: ../gramps/gui/configure.py:2012
+#: ../gramps/gui/configure.py:2013
 msgid "Genealogical Symbols"
 msgstr "Genealogische Symbole"
 
-#: ../gramps/gui/configure.py:2021
+#: ../gramps/gui/configure.py:2022
 msgid "Cannot look for genealogical fonts"
 msgstr "Kann nicht nach genealogischen Zeichensätzen suchen"
 
-#: ../gramps/gui/configure.py:2022
+#: ../gramps/gui/configure.py:2023
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
@@ -12467,15 +12466,15 @@ msgstr ""
 "Ich kann keine genealogischen Zeichensätze wählen. Bitte installiere das "
 "Modul fontconfig für Python 3."
 
-#: ../gramps/gui/configure.py:2039
+#: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
 msgstr "Prüfe verfügbare genealogische Zeichensätze"
 
-#: ../gramps/gui/configure.py:2043
+#: ../gramps/gui/configure.py:2044
 msgid "Looking for all fonts with genealogical symbols."
 msgstr "Suche nach allen Zeichensätzen mit genealogischen Symbolen."
 
-#: ../gramps/gui/configure.py:2116
+#: ../gramps/gui/configure.py:2117
 msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
@@ -12483,7 +12482,7 @@ msgstr ""
 "Du hast keinen Zeichensatz mit genealogischen Symbolen auf deinem System. "
 "Gramps wird es nicht möglich sein, Symbole zu verwenden."
 
-#: ../gramps/gui/configure.py:2154
+#: ../gramps/gui/configure.py:2155
 msgid "What you will see"
 msgstr "Was du sehen wirst"
 
@@ -12554,35 +12553,35 @@ msgstr ""
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../gramps/gui/dbloader.py:357
+#: ../gramps/gui/dbloader.py:364
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../gramps/gui/dbloader.py:366
+#: ../gramps/gui/dbloader.py:373
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
-#: ../gramps/gui/dbloader.py:380 ../gramps/gui/dbloader.py:402
+#: ../gramps/gui/dbloader.py:387 ../gramps/gui/dbloader.py:409
 msgid "Login"
 msgstr "Login"
 
-#: ../gramps/gui/dbloader.py:388
+#: ../gramps/gui/dbloader.py:395
 msgid "Username: "
 msgstr "Benutzername:"
 
-#: ../gramps/gui/dbloader.py:393
+#: ../gramps/gui/dbloader.py:400
 msgid "Password: "
 msgstr "Kennwort:"
 
-#: ../gramps/gui/dbloader.py:425
+#: ../gramps/gui/dbloader.py:432
 msgid "Import Family Tree"
 msgstr "Stammbaum importieren"
 
-#: ../gramps/gui/dbloader.py:436
+#: ../gramps/gui/dbloader.py:443
 msgid "Import"
 msgstr "Importieren"
 
-#: ../gramps/gui/dbloader.py:493
+#: ../gramps/gui/dbloader.py:499
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -12595,29 +12594,29 @@ msgstr ""
 "Gültige Typen sind: Gramps-Datenbank, Gramps-XML, Gramps-Paket, GEDCOM und "
 "andere."
 
-#: ../gramps/gui/dbloader.py:516 ../gramps/gui/dbloader.py:523
+#: ../gramps/gui/dbloader.py:522 ../gramps/gui/dbloader.py:529
 msgid "Cannot open file"
 msgstr "Die Datei kann nicht geöffnet werden."
 
-#: ../gramps/gui/dbloader.py:517
+#: ../gramps/gui/dbloader.py:523
 msgid "The selected file is a directory, not a file.\n"
 msgstr ""
 "Die ausgewählte Datei ist ein ganzes Verzeichnis und keine einzelne Datei.\n"
 
-#: ../gramps/gui/dbloader.py:524
+#: ../gramps/gui/dbloader.py:530
 msgid "You do not have read access to the selected file."
 msgstr "Du hast keinen Lesezugriff auf die ausgewählte Datei."
 
-#: ../gramps/gui/dbloader.py:534
+#: ../gramps/gui/dbloader.py:540
 msgid "Cannot create file"
 msgstr "Die Datei kann nicht erstellt werden."
 
-#: ../gramps/gui/dbloader.py:558
+#: ../gramps/gui/dbloader.py:564
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Die Datei kann nicht importiert werden: %s."
 
-#: ../gramps/gui/dbloader.py:559
+#: ../gramps/gui/dbloader.py:565
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -13634,7 +13633,7 @@ msgid "_Associations"
 msgstr "_Verknüpfungen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:138
-#: ../gramps/plugins/lib/libprogen.py:1467
+#: ../gramps/plugins/lib/libprogen.py:1469
 msgid "Godfather"
 msgstr "Taufpate"
 
@@ -13666,8 +13665,8 @@ msgstr "Alternative Namen"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:72
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:111
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
-#: ../gramps/plugins/webreport/basepage.py:2696
-#: ../gramps/plugins/webreport/basepage.py:2714
+#: ../gramps/plugins/webreport/basepage.py:2649
+#: ../gramps/plugins/webreport/basepage.py:2667
 msgid "Enclosed By"
 msgstr "Teil von"
 
@@ -13870,7 +13869,7 @@ msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 #: ../gramps/gui/editors/editevent.py:251
 #: ../gramps/gui/editors/editmedia.py:300
 #: ../gramps/gui/editors/editperson.py:845
-#: ../gramps/gui/editors/editplace.py:318
+#: ../gramps/gui/editors/editplace.py:324
 #: ../gramps/gui/editors/editreference.py:288
 #: ../gramps/gui/editors/editrepository.py:189
 #: ../gramps/gui/editors/editsource.py:210
@@ -14511,7 +14510,7 @@ msgid "_Note"
 msgstr "_Notiz"
 
 #: ../gramps/gui/editors/editnote.py:294 ../gramps/gui/editors/editnote.py:343
-#: ../gramps/gui/editors/objectentries.py:433
+#: ../gramps/gui/editors/objectentries.py:437
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
@@ -14685,8 +14684,8 @@ msgid "New Place"
 msgstr "Neuer Ort"
 
 #. translators: translate the "S" too (and the "or" of course)
-#: ../gramps/gui/editors/editplace.py:201
-#: ../gramps/gui/editors/editplaceref.py:194
+#: ../gramps/gui/editors/editplace.py:207
+#: ../gramps/gui/editors/editplaceref.py:200
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
@@ -14695,8 +14694,8 @@ msgstr ""
 "(Syntax: 18\\u00b09'48.21\"S, -18.2412 oder -18:9:48.21)"
 
 #. translators: translate the "E" too (and the "or" of course)
-#: ../gramps/gui/editors/editplace.py:206
-#: ../gramps/gui/editors/editplaceref.py:199
+#: ../gramps/gui/editors/editplace.py:212
+#: ../gramps/gui/editors/editplaceref.py:205
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -14704,38 +14703,38 @@ msgstr ""
 "Ungültiger Längengrad\n"
 "(Syntax: 18\\u00b09'48.21\"E, -18.2412 oder -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:217
+#: ../gramps/gui/editors/editplace.py:223
 #: ../gramps/plugins/lib/maps/geography.py:891
 #: ../gramps/plugins/view/geoplaces.py:496
 #: ../gramps/plugins/view/geoplaces.py:522
 msgid "Edit Place"
 msgstr "Ort bearbeiten"
 
-#: ../gramps/gui/editors/editplace.py:307
-#: ../gramps/gui/editors/editplaceref.py:302
+#: ../gramps/gui/editors/editplace.py:313
+#: ../gramps/gui/editors/editplaceref.py:308
 msgid "Cannot save place. Name not entered."
 msgstr "Kann Ort nicht speichern. Name nicht eingegeben."
 
-#: ../gramps/gui/editors/editplace.py:308
-#: ../gramps/gui/editors/editplaceref.py:303
+#: ../gramps/gui/editors/editplace.py:314
+#: ../gramps/gui/editors/editplaceref.py:309
 msgid "You must enter a name before saving."
 msgstr "Du musst einen Namen eingeben bevor du speicherst."
 
-#: ../gramps/gui/editors/editplace.py:317
+#: ../gramps/gui/editors/editplace.py:323
 msgid "Cannot save place. ID already exists."
 msgstr "Der Ort kann nicht gespeichert werden. ID besteht bereits."
 
-#: ../gramps/gui/editors/editplace.py:329
+#: ../gramps/gui/editors/editplace.py:335
 #, python-format
 msgid "Add Place (%s)"
 msgstr "Ort (%s) hinzufügen"
 
-#: ../gramps/gui/editors/editplace.py:334
+#: ../gramps/gui/editors/editplace.py:340
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Ort (%s) bearbeiten"
 
-#: ../gramps/gui/editors/editplace.py:362
+#: ../gramps/gui/editors/editplace.py:368
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Ort (%s) löschen"
@@ -14774,11 +14773,11 @@ msgstr "Der Ortsname darf nicht leer sein"
 msgid "Place Reference Editor"
 msgstr "Ortsreferenzeditor"
 
-#: ../gramps/gui/editors/editplaceref.py:309
+#: ../gramps/gui/editors/editplaceref.py:315
 msgid "Modify Place"
 msgstr "Ort ändern"
 
-#: ../gramps/gui/editors/editplaceref.py:314
+#: ../gramps/gui/editors/editplaceref.py:320
 msgid "Add Place"
 msgstr "Ort hinzufügen"
 
@@ -15142,85 +15141,85 @@ msgstr "Neuen Ort hinzufügen"
 msgid "Remove place"
 msgstr "Ort löschen"
 
-#: ../gramps/gui/editors/objectentries.py:338
+#: ../gramps/gui/editors/objectentries.py:341
 msgid "To select a source, use drag-and-drop or use the buttons"
 msgstr ""
 "Um eine Quelle zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
 
-#: ../gramps/gui/editors/objectentries.py:340
+#: ../gramps/gui/editors/objectentries.py:343
 msgid "First add a source using the button"
 msgstr "Füge erst mit der Schaltfläche eine Quelle hinzu"
 
-#: ../gramps/gui/editors/objectentries.py:341
+#: ../gramps/gui/editors/objectentries.py:344
 msgid "Edit source"
 msgstr "Quelle bearbeiten"
 
-#: ../gramps/gui/editors/objectentries.py:342
+#: ../gramps/gui/editors/objectentries.py:345
 msgid "Select an existing source"
 msgstr "Wähle eine existierende Quelle aus."
 
-#: ../gramps/gui/editors/objectentries.py:343
+#: ../gramps/gui/editors/objectentries.py:346
 #: ../gramps/plugins/view/citationlistview.py:125
 #: ../gramps/plugins/view/citationtreeview.py:122
 #: ../gramps/plugins/view/sourceview.py:98
 msgid "Add a new source"
 msgstr "Neue Quelle hinzufügen"
 
-#: ../gramps/gui/editors/objectentries.py:344
+#: ../gramps/gui/editors/objectentries.py:347
 msgid "Remove source"
 msgstr "Quelle entfernen"
 
-#: ../gramps/gui/editors/objectentries.py:384
+#: ../gramps/gui/editors/objectentries.py:387
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 "Um ein Medienobjekt auszuwählen, verwende ziehen und ablegen oder die "
 "Schaltflächen."
 
-#: ../gramps/gui/editors/objectentries.py:386
+#: ../gramps/gui/editors/objectentries.py:389
 #: ../gramps/gui/plug/_guioptions.py:1116
 msgid "No image given, click button to select one"
 msgstr "Kein Bild angegeben, auf Schaltfläche klicken, um eines zu wählen"
 
-#: ../gramps/gui/editors/objectentries.py:387
+#: ../gramps/gui/editors/objectentries.py:390
 msgid "Edit media object"
 msgstr "Medienobjekt bearbeiten"
 
-#: ../gramps/gui/editors/objectentries.py:388
+#: ../gramps/gui/editors/objectentries.py:391
 #: ../gramps/gui/plug/_guioptions.py:1094
 msgid "Select an existing media object"
 msgstr "Ein bestehendes Medienobjekt auswählen"
 
-#: ../gramps/gui/editors/objectentries.py:389
+#: ../gramps/gui/editors/objectentries.py:392
 #: ../gramps/plugins/view/mediaview.py:112
 msgid "Add a new media object"
 msgstr "Neues Medienobjekt hinzufügen"
 
-#: ../gramps/gui/editors/objectentries.py:390
+#: ../gramps/gui/editors/objectentries.py:393
 msgid "Remove media object"
 msgstr "Medienobjekt entfernen"
 
-#: ../gramps/gui/editors/objectentries.py:430
+#: ../gramps/gui/editors/objectentries.py:434
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 "Um eine Notiz zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
 
-#: ../gramps/gui/editors/objectentries.py:432
+#: ../gramps/gui/editors/objectentries.py:436
 #: ../gramps/gui/plug/_guioptions.py:1014
 msgid "No note given, click button to select one"
 msgstr ""
 "Die Notiz wurde nicht angegeben. Zum Auswählen klicke auf die Schaltfläche."
 
-#: ../gramps/gui/editors/objectentries.py:434
+#: ../gramps/gui/editors/objectentries.py:438
 #: ../gramps/gui/plug/_guioptions.py:989
 msgid "Select an existing note"
 msgstr "Wähle eine existierende Notiz aus."
 
-#: ../gramps/gui/editors/objectentries.py:435
+#: ../gramps/gui/editors/objectentries.py:439
 #: ../gramps/plugins/view/noteview.py:93
 msgid "Add a new note"
 msgstr "Neue Notiz hinzufügen"
 
-#: ../gramps/gui/editors/objectentries.py:436
+#: ../gramps/gui/editors/objectentries.py:440
 msgid "Remove note"
 msgstr "Notiz entfernen"
 
@@ -16791,7 +16790,7 @@ msgid "Street Number"
 msgstr "Straße Nummer"
 
 #: ../gramps/gui/glade/editplacename.glade:156
-#: ../gramps/plugins/webreport/basepage.py:2621
+#: ../gramps/plugins/webreport/basepage.py:2574
 msgid "Date range in which the name is valid."
 msgstr "Zeitraum, in dem der Name gültig ist."
 
@@ -18474,7 +18473,7 @@ msgstr "Speichern als"
 msgid "_Open"
 msgstr " _Öffnen"
 
-#: ../gramps/gui/plug/_guioptions.py:1823
+#: ../gramps/gui/plug/_guioptions.py:1824
 #: ../gramps/gui/plug/report/_reportdialog.py:329
 msgid "Style Editor"
 msgstr "Stileditor"
@@ -18630,7 +18629,7 @@ msgid "_Execute"
 msgstr "_Ausführen"
 
 #: ../gramps/gui/plug/_windows.py:1049
-#: ../gramps/plugins/importer/importprogen.py:457
+#: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/tool/ownereditor.py:164
 #: ../gramps/plugins/tool/reorderids.py:221
 msgid "Main window"
@@ -22164,7 +22163,7 @@ msgid "Sorted by %s"
 msgstr "Sortiert nach %s"
 
 #: ../gramps/plugins/drawreport/timeline.py:312
-#: ../gramps/plugins/lib/libgedcom.py:7900
+#: ../gramps/plugins/lib/libgedcom.py:7901
 msgid "No Date Information"
 msgstr "Keine Datumsinformation"
 
@@ -22406,14 +22405,14 @@ msgstr "Beerdigung Quelle"
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:233
 #: ../gramps/plugins/textreport/familygroup.py:627
-#: ../gramps/plugins/webreport/basepage.py:2366
+#: ../gramps/plugins/webreport/basepage.py:2319
 msgid "Husband"
 msgstr "Ehemann"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:230
 #: ../gramps/plugins/textreport/familygroup.py:636
-#: ../gramps/plugins/webreport/basepage.py:2364
+#: ../gramps/plugins/webreport/basepage.py:2317
 msgid "Wife"
 msgstr "Ehefrau"
 
@@ -22423,10 +22422,10 @@ msgstr "Schreibe Personen"
 
 #: ../gramps/plugins/export/exportgedcom.py:790
 #: ../gramps/plugins/export/exportgedcom.py:1072
-#: ../gramps/plugins/export/exportgedcom.py:1163
-#: ../gramps/plugins/lib/libgedcom.py:4158
-#: ../gramps/plugins/lib/libgedcom.py:5932
-#: ../gramps/plugins/lib/libgedcom.py:7062
+#: ../gramps/plugins/export/exportgedcom.py:1164
+#: ../gramps/plugins/lib/libgedcom.py:4159
+#: ../gramps/plugins/lib/libgedcom.py:5933
+#: ../gramps/plugins/lib/libgedcom.py:7063
 msgid "FAX"
 msgstr "FAX"
 
@@ -22447,21 +22446,21 @@ msgstr "Schreibe Notizen"
 msgid "Writing repositories"
 msgstr "Schreibe Aufbewahrungsorte"
 
-#: ../gramps/plugins/export/exportgedcom.py:1165
-#: ../gramps/plugins/lib/libgedcom.py:5944
+#: ../gramps/plugins/export/exportgedcom.py:1166
+#: ../gramps/plugins/lib/libgedcom.py:5945
 msgid "EMAIL"
 msgstr "E-MAIL"
 
-#: ../gramps/plugins/export/exportgedcom.py:1167
-#: ../gramps/plugins/lib/libgedcom.py:5956
+#: ../gramps/plugins/export/exportgedcom.py:1168
+#: ../gramps/plugins/lib/libgedcom.py:5957
 msgid "WWW"
 msgstr "WWW"
 
-#: ../gramps/plugins/export/exportgedcom.py:1431
+#: ../gramps/plugins/export/exportgedcom.py:1426
 msgid "Writing media"
 msgstr "Schreibe Medien"
 
-#: ../gramps/plugins/export/exportgedcom.py:1605
+#: ../gramps/plugins/export/exportgedcom.py:1600
 msgid "GEDCOM Export failed"
 msgstr "GEDCOM Export fehlgeschlagen"
 
@@ -22469,7 +22468,7 @@ msgstr "GEDCOM Export fehlgeschlagen"
 msgid "No families matched by selected filter"
 msgstr "Keine Familien entsprechen dem ausgewählten Filter"
 
-#: ../gramps/plugins/export/exportpkg.py:185
+#: ../gramps/plugins/export/exportpkg.py:212
 #: ../gramps/plugins/export/exportxml.py:139
 #: ../gramps/plugins/export/exportxml.py:155
 #: ../gramps/plugins/export/exportxml.py:173
@@ -23421,7 +23420,7 @@ msgstr "Gramplet zeigt die rückwärts Referenzen für eine Person"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/basepage.py:2982
+#: ../gramps/plugins/webreport/basepage.py:2935
 #: ../gramps/plugins/webreport/person.py:884
 #: ../gramps/plugins/webreport/thumbnail.py:164
 msgid "References"
@@ -23452,7 +23451,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet zeigt die rückwärts Referenzen für einen Ort"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:931
-#: ../gramps/plugins/webreport/basepage.py:2234
+#: ../gramps/plugins/webreport/basepage.py:2187
 msgid "Source References"
 msgstr "Ereignisreferenzen"
 
@@ -23658,8 +23657,8 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Gramplet zeigt die  Orte die im aktuellen Ort enthalten sind"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
-#: ../gramps/plugins/webreport/basepage.py:2673
-#: ../gramps/plugins/webreport/basepage.py:2736
+#: ../gramps/plugins/webreport/basepage.py:2626
+#: ../gramps/plugins/webreport/basepage.py:2689
 msgid "Place Encloses"
 msgstr "Enthaltene Orte"
 
@@ -25841,8 +25840,8 @@ msgstr "Import aus Pro-Gen (%s)"
 msgid "Pro-Gen data error"
 msgstr "Pro-Gen Datenfehler"
 
-#: ../gramps/plugins/importer/importprogen.py:457
-#: ../gramps/plugins/importer/importprogen.py:465
+#: ../gramps/plugins/importer/importprogen.py:458
+#: ../gramps/plugins/importer/importprogen.py:466
 msgid "Import Pro-Gen"
 msgstr "Pro-Gen Import"
 
@@ -26397,7 +26396,7 @@ msgstr "Untergeordnete Zeile übersprungen"
 msgid "Records not imported into "
 msgstr "Datensätze nicht importiert nach "
 
-#: ../gramps/plugins/lib/libgedcom.py:3225
+#: ../gramps/plugins/lib/libgedcom.py:3226
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -26406,7 +26405,7 @@ msgstr ""
 "FEHLER: %(msg)s  '%(gramps_id)s' (eingelesen als @%(xref)s@) ist nicht im "
 "eingelesenen GEDCOM. Der Datensatz wird synthetisiert."
 
-#: ../gramps/plugins/lib/libgedcom.py:3234
+#: ../gramps/plugins/lib/libgedcom.py:3235
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -26416,7 +26415,7 @@ msgstr ""
 "eingelesenen GEDCOM. Der Datensatz wird mit dem versinnbildlichenden "
 "Attribut 'Unbekannt' erstellt."
 
-#: ../gramps/plugins/lib/libgedcom.py:3278
+#: ../gramps/plugins/lib/libgedcom.py:3279
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -26427,7 +26426,7 @@ msgstr ""
 "%(person)s (eingelesen als %(orig_person)s) ist kein referenziertes Mitglied "
 "der Familie. Die Familienreferenz wurde von der Person entfernt."
 
-#: ../gramps/plugins/lib/libgedcom.py:3356
+#: ../gramps/plugins/lib/libgedcom.py:3357
 #, python-format
 msgid ""
 "\n"
@@ -26447,177 +26446,177 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3430
+#: ../gramps/plugins/lib/libgedcom.py:3431
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "ADDR Element ignoriert '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3451
+#: ../gramps/plugins/lib/libgedcom.py:3452
 msgid "TRLR (trailer)"
 msgstr "TRLR (Anhang)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3480
+#: ../gramps/plugins/lib/libgedcom.py:3481
 msgid "(Submitter):"
 msgstr "(Ersteller):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3504
-#: ../gramps/plugins/lib/libgedcom.py:7318
+#: ../gramps/plugins/lib/libgedcom.py:3505
+#: ../gramps/plugins/lib/libgedcom.py:7319
 msgid "GEDCOM data"
 msgstr "GEDCOM Daten"
 
-#: ../gramps/plugins/lib/libgedcom.py:3549
+#: ../gramps/plugins/lib/libgedcom.py:3550
 msgid "Unknown tag"
 msgstr "Unbekannte Markierung"
 
-#: ../gramps/plugins/lib/libgedcom.py:3551
-#: ../gramps/plugins/lib/libgedcom.py:3565
-#: ../gramps/plugins/lib/libgedcom.py:3569
-#: ../gramps/plugins/lib/libgedcom.py:3590
+#: ../gramps/plugins/lib/libgedcom.py:3552
+#: ../gramps/plugins/lib/libgedcom.py:3566
+#: ../gramps/plugins/lib/libgedcom.py:3570
+#: ../gramps/plugins/lib/libgedcom.py:3591
 msgid "Top Level"
 msgstr "Oberste Ebene"
 
-#: ../gramps/plugins/lib/libgedcom.py:3665
+#: ../gramps/plugins/lib/libgedcom.py:3666
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (Individium) Gramps-ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3793
+#: ../gramps/plugins/lib/libgedcom.py:3794
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Leerer Alias <PERSÖNLICHER NAME> ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:5024
+#: ../gramps/plugins/lib/libgedcom.py:5025
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (Familie) Gramps-ID: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5395
-#: ../gramps/plugins/lib/libgedcom.py:6751
+#: ../gramps/plugins/lib/libgedcom.py:5396
+#: ../gramps/plugins/lib/libgedcom.py:6752
 msgid "Filename omitted"
 msgstr "Dateiname ausgelassen"
 
-#: ../gramps/plugins/lib/libgedcom.py:5429
-#: ../gramps/plugins/lib/libgedcom.py:6804
+#: ../gramps/plugins/lib/libgedcom.py:5430
+#: ../gramps/plugins/lib/libgedcom.py:6805
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../gramps/plugins/lib/libgedcom.py:5495
-#: ../gramps/plugins/lib/libgedcom.py:6891
+#: ../gramps/plugins/lib/libgedcom.py:5496
+#: ../gramps/plugins/lib/libgedcom.py:6892
 msgid "Media-Type"
 msgstr "Medienart"
 
-#: ../gramps/plugins/lib/libgedcom.py:5519
-#: ../gramps/plugins/lib/libgedcom.py:6793
+#: ../gramps/plugins/lib/libgedcom.py:5520
+#: ../gramps/plugins/lib/libgedcom.py:6794
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Mehrere FILE in einem einzelnen OBJ ignoriert"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5658
+#: ../gramps/plugins/lib/libgedcom.py:5659
 msgid "A second PLAC ignored"
 msgstr "Ein zweites PLAC ignoriert"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, ...
-#: ../gramps/plugins/lib/libgedcom.py:5797
+#: ../gramps/plugins/lib/libgedcom.py:5798
 msgid "Detail"
 msgstr "Detail"
 
 #. We have perviously found an ADDR, or have populated
 #. location from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5810
+#: ../gramps/plugins/lib/libgedcom.py:5811
 msgid "Location already populated; ADDR ignored"
 msgstr "Örtlichkeit schon bekannt ADDR ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:6211
-#: ../gramps/plugins/lib/libgedcom.py:7099
+#: ../gramps/plugins/lib/libgedcom.py:6212
+#: ../gramps/plugins/lib/libgedcom.py:7100
 msgid "Warn: ADDR overwritten"
 msgstr "Warn: ADDR überschrieben"
 
-#: ../gramps/plugins/lib/libgedcom.py:6376
+#: ../gramps/plugins/lib/libgedcom.py:6377
 msgid "Citation Justification"
 msgstr "Fundstelle Begründung"
 
-#: ../gramps/plugins/lib/libgedcom.py:6403
+#: ../gramps/plugins/lib/libgedcom.py:6404
 msgid "REFN ignored"
 msgstr "REFN ignoriert"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6502
+#: ../gramps/plugins/lib/libgedcom.py:6503
 #, python-format
 msgid "No title - ID %s"
 msgstr "Kein Titel - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6507
+#: ../gramps/plugins/lib/libgedcom.py:6508
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (Quelle) Gramps-ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6769
+#: ../gramps/plugins/lib/libgedcom.py:6770
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (Multimediaobjekt) Gramps-ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6987
+#: ../gramps/plugins/lib/libgedcom.py:6988
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (Aufbewahrungsort) Gramps-ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7048
-#: ../gramps/plugins/lib/libgedcom.py:8059
+#: ../gramps/plugins/lib/libgedcom.py:7049
+#: ../gramps/plugins/lib/libgedcom.py:8060
 msgid "Only one phone number supported"
 msgstr "Es wird nur eine Telefonnummer unterstützt"
 
-#: ../gramps/plugins/lib/libgedcom.py:7234
+#: ../gramps/plugins/lib/libgedcom.py:7235
 msgid "HEAD (header)"
 msgstr "Kopf (Dateikopf)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7255
+#: ../gramps/plugins/lib/libgedcom.py:7256
 msgid "Approved system identification"
 msgstr "Anerkannte Systemidentifikation"
 
-#: ../gramps/plugins/lib/libgedcom.py:7267
+#: ../gramps/plugins/lib/libgedcom.py:7268
 msgid "Generated By"
 msgstr "Erstellt von"
 
-#: ../gramps/plugins/lib/libgedcom.py:7283
+#: ../gramps/plugins/lib/libgedcom.py:7284
 msgid "Name of software product"
 msgstr "Name der Software"
 
-#: ../gramps/plugins/lib/libgedcom.py:7297
+#: ../gramps/plugins/lib/libgedcom.py:7298
 msgid "Version number of software product"
 msgstr "Versionsnummer des Programms"
 
-#: ../gramps/plugins/lib/libgedcom.py:7315
+#: ../gramps/plugins/lib/libgedcom.py:7316
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Firma die das Produkt herstellt: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7337
+#: ../gramps/plugins/lib/libgedcom.py:7338
 msgid "Name of source data"
 msgstr "Name der Quelldaten"
 
-#: ../gramps/plugins/lib/libgedcom.py:7354
+#: ../gramps/plugins/lib/libgedcom.py:7355
 msgid "Copyright of source data"
 msgstr "Copyright der Quelldaten"
 
-#: ../gramps/plugins/lib/libgedcom.py:7371
+#: ../gramps/plugins/lib/libgedcom.py:7372
 msgid "Publication date of source data"
 msgstr "Publikationsdatum der Quelldaten"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7385
+#: ../gramps/plugins/lib/libgedcom.py:7386
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../gramps/plugins/lib/libgedcom.py:7424
+#: ../gramps/plugins/lib/libgedcom.py:7425
 msgid "Submission record identifier"
 msgstr "Einreichung Datensatz Bezeichnung"
 
-#: ../gramps/plugins/lib/libgedcom.py:7437
+#: ../gramps/plugins/lib/libgedcom.py:7438
 msgid "Language of GEDCOM text"
 msgstr "Sprache des GEDCOM Text"
 
-#: ../gramps/plugins/lib/libgedcom.py:7459
+#: ../gramps/plugins/lib/libgedcom.py:7460
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -26626,89 +26625,89 @@ msgstr ""
 "Import der GEDCOM Datei %(filename)s mit dem ZIEL=%(by)s kann Fehler in der "
 "resultierenden Datenbank verursachen!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7462
+#: ../gramps/plugins/lib/libgedcom.py:7463
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../gramps/plugins/lib/libgedcom.py:7485
+#: ../gramps/plugins/lib/libgedcom.py:7486
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: ../gramps/plugins/lib/libgedcom.py:7490
+#: ../gramps/plugins/lib/libgedcom.py:7491
 msgid "Character set and version"
 msgstr "Zeichensatz und Version"
 
-#: ../gramps/plugins/lib/libgedcom.py:7507
+#: ../gramps/plugins/lib/libgedcom.py:7508
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM Version nicht unterstützt"
 
-#: ../gramps/plugins/lib/libgedcom.py:7511
+#: ../gramps/plugins/lib/libgedcom.py:7512
 msgid "GEDCOM version"
 msgstr "GEDCOM Version"
 
 #. Allow Lineage-Linked etc. though it should be in
 #. uppercase  (Note: Gramps is not a validator! prc)
-#: ../gramps/plugins/lib/libgedcom.py:7520
+#: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM FORM sollte groß geschrieben sein"
 
-#: ../gramps/plugins/lib/libgedcom.py:7523
+#: ../gramps/plugins/lib/libgedcom.py:7524
 msgid "GEDCOM FORM not supported"
 msgstr "GEDCOM FORM nicht unterstützt"
 
-#: ../gramps/plugins/lib/libgedcom.py:7526
+#: ../gramps/plugins/lib/libgedcom.py:7527
 msgid "GEDCOM form"
 msgstr "GEDCOM Formular"
 
-#: ../gramps/plugins/lib/libgedcom.py:7577
+#: ../gramps/plugins/lib/libgedcom.py:7578
 msgid "Creation date of GEDCOM"
 msgstr "Erstellungsdatum von GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7582
+#: ../gramps/plugins/lib/libgedcom.py:7583
 msgid "Creation date and time of GEDCOM"
 msgstr "Erstellungsdatum und Zeit des GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7623
-#: ../gramps/plugins/lib/libgedcom.py:7665
+#: ../gramps/plugins/lib/libgedcom.py:7624
+#: ../gramps/plugins/lib/libgedcom.py:7666
 msgid "Empty note ignored"
 msgstr "Leere Notiz ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:7682
+#: ../gramps/plugins/lib/libgedcom.py:7683
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Notiz Gramps-ID: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7733
+#: ../gramps/plugins/lib/libgedcom.py:7734
 msgid "Submission: Submitter"
 msgstr "Einreichung: Antragsteller"
 
-#: ../gramps/plugins/lib/libgedcom.py:7735
+#: ../gramps/plugins/lib/libgedcom.py:7736
 msgid "Submission: Family file"
 msgstr "Einreichung: Familiendatei"
 
-#: ../gramps/plugins/lib/libgedcom.py:7737
+#: ../gramps/plugins/lib/libgedcom.py:7738
 msgid "Submission: Temple code"
 msgstr "Einreichung: Tempelkode"
 
-#: ../gramps/plugins/lib/libgedcom.py:7739
+#: ../gramps/plugins/lib/libgedcom.py:7740
 msgid "Submission: Generations of ancestors"
 msgstr "Einreichung: Generationen der Vorfahren"
 
-#: ../gramps/plugins/lib/libgedcom.py:7741
+#: ../gramps/plugins/lib/libgedcom.py:7742
 msgid "Submission: Generations of descendants"
 msgstr "Einreichung: Generationen der Nachkommen"
 
-#: ../gramps/plugins/lib/libgedcom.py:7743
+#: ../gramps/plugins/lib/libgedcom.py:7744
 msgid "Submission: Ordinance process flag"
 msgstr "Einreichung: Ordinance process flag"
 
 #. Okay we have no clue which temple this is.
 #. We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7997
+#: ../gramps/plugins/lib/libgedcom.py:7998
 msgid "Invalid temple code"
 msgstr "Ungültiger Tempelkode"
 
-#: ../gramps/plugins/lib/libgedcom.py:8093
+#: ../gramps/plugins/lib/libgedcom.py:8094
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -26716,7 +26715,7 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../gramps/plugins/lib/libgedcom.py:8096
+#: ../gramps/plugins/lib/libgedcom.py:8097
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
@@ -30600,52 +30599,52 @@ msgstr "Pro-Gen importieren"
 msgid "Saving."
 msgstr "Speichere."
 
-#: ../gramps/plugins/lib/libprogen.py:928
+#: ../gramps/plugins/lib/libprogen.py:929
 msgid "Pro-Gen Import"
 msgstr "Pro-Gen Import"
 
 #. Hmmm. Just use the plain text.
-#: ../gramps/plugins/lib/libprogen.py:1137
+#: ../gramps/plugins/lib/libprogen.py:1138
 #, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
 msgstr "Datum passt nicht: '%(text)s' (%(msg)s)"
 
-#: ../gramps/plugins/lib/libprogen.py:1152
+#: ../gramps/plugins/lib/libprogen.py:1153
 #, python-format
 msgid "Time: %s"
 msgstr "Zeit: %s"
 
 #. start feedback about import progress (GUI/TXT)
-#: ../gramps/plugins/lib/libprogen.py:1206
+#: ../gramps/plugins/lib/libprogen.py:1207
 msgid "Importing persons."
 msgstr "Importiere Personen."
 
-#: ../gramps/plugins/lib/libprogen.py:1412
+#: ../gramps/plugins/lib/libprogen.py:1414
 msgid "see address on "
 msgstr "siehe Adresse auf"
 
-#: ../gramps/plugins/lib/libprogen.py:1415
+#: ../gramps/plugins/lib/libprogen.py:1417
 msgid "see also address"
 msgstr "siehe auch Adresse"
 
-#: ../gramps/plugins/lib/libprogen.py:1515
+#: ../gramps/plugins/lib/libprogen.py:1517
 msgid "Death cause"
 msgstr "Todesursache"
 
 #. start feedback about import progress (GUI/TXT)
-#: ../gramps/plugins/lib/libprogen.py:1584
+#: ../gramps/plugins/lib/libprogen.py:1586
 msgid "Importing families."
 msgstr "Importiere Familien."
 
-#: ../gramps/plugins/lib/libprogen.py:1689
+#: ../gramps/plugins/lib/libprogen.py:1691
 msgid "Civil union"
 msgstr "Gesetzliche Partnerschaft"
 
-#: ../gramps/plugins/lib/libprogen.py:1794
+#: ../gramps/plugins/lib/libprogen.py:1796
 msgid "Wedding"
 msgstr "Hochzeit"
 
-#: ../gramps/plugins/lib/libprogen.py:1829
+#: ../gramps/plugins/lib/libprogen.py:1831
 msgid "future"
 msgstr "Zukunft"
 
@@ -30653,17 +30652,17 @@ msgstr "Zukunft"
 #. F13: Father
 #. F14: Mother
 #. start feedback about import progress (GUI/TXT)
-#: ../gramps/plugins/lib/libprogen.py:1901
+#: ../gramps/plugins/lib/libprogen.py:1903
 msgid "Adding children."
 msgstr "Kinder hinzufügen."
 
-#: ../gramps/plugins/lib/libprogen.py:1927
+#: ../gramps/plugins/lib/libprogen.py:1929
 msgid "Cannot find father for I%(person)s (Father=%(father))"
-msgstr ""
+msgstr "Kann Vater nicht finden für I%(person)s (Father=%(father))"
 
-#: ../gramps/plugins/lib/libprogen.py:1930
+#: ../gramps/plugins/lib/libprogen.py:1932
 msgid "Cannot find mother for I%(person)s (Mother=%(mother))"
-msgstr ""
+msgstr "Kann Mutter nicht finden für I%(person)s (Mother=%(mother))"
 
 #: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
@@ -30923,13 +30922,30 @@ msgstr "Die Karte"
 msgid "Select tile cache directory for offline mode"
 msgstr "Wähle das Verzeichnis für die Kacheln für de offline Modus"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:138
+#: ../gramps/plugins/lib/maps/osmgps.py:139
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Das Kachelzwischenspeicherverzeichnis kann nicht erstellt werden %s."
 
-#: ../gramps/plugins/lib/maps/osmgps.py:161
-#: ../gramps/plugins/lib/maps/osmgps.py:226
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
+
+#: ../gramps/plugins/lib/maps/osmgps.py:174
+#: ../gramps/plugins/lib/maps/osmgps.py:239
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Kann Titelzwischenspeicherverzeichnis für '%s' nicht erstellen."
@@ -31187,8 +31203,8 @@ msgstr "Elter"
 
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:479
-#: ../gramps/plugins/webreport/basepage.py:2368
-#: ../gramps/plugins/webreport/basepage.py:2370
+#: ../gramps/plugins/webreport/basepage.py:2321
+#: ../gramps/plugins/webreport/basepage.py:2323
 #: ../gramps/plugins/webreport/person.py:227
 #: ../gramps/plugins/webreport/surname.py:149
 msgid "Partner"
@@ -31709,7 +31725,7 @@ msgid "No references for this %s"
 msgstr "Keine Referenzen für diese %s"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/basepage.py:2808
+#: ../gramps/plugins/webreport/basepage.py:2761
 msgid "Call number"
 msgstr "Standortnummer/Signatur:"
 
@@ -37063,19 +37079,19 @@ msgid "Full Name"
 msgstr "Kompletter Name"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:115
-#: ../gramps/plugins/webreport/basepage.py:2126
+#: ../gramps/plugins/webreport/basepage.py:2079
 msgid "Web Links"
 msgstr "Weblinks"
 
 #. add section title
 #: ../gramps/plugins/webreport/basepage.py:369
-#: ../gramps/plugins/webreport/basepage.py:2107
+#: ../gramps/plugins/webreport/basepage.py:2060
 msgid "Narrative"
 msgstr "Erzählend"
 
 #: ../gramps/plugins/webreport/basepage.py:1131
-#: ../gramps/plugins/webreport/basepage.py:2593
-#: ../gramps/plugins/webreport/basepage.py:2658
+#: ../gramps/plugins/webreport/basepage.py:2546
+#: ../gramps/plugins/webreport/basepage.py:2611
 #: ../gramps/plugins/webreport/place.py:182
 #: ../gramps/plugins/webreport/place.py:194
 msgid "State/ Province"
@@ -37158,35 +37174,35 @@ msgstr "Zurück"
 msgid "Next"
 msgstr "Vor"
 
-#: ../gramps/plugins/webreport/basepage.py:2174
+#: ../gramps/plugins/webreport/basepage.py:2127
 msgid " [Click to Go]"
 msgstr " [Zum Gehen klicken]"
 
-#: ../gramps/plugins/webreport/basepage.py:2198
+#: ../gramps/plugins/webreport/basepage.py:2151
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Heilige der letzten Tage/ HLT Ordination"
 
-#: ../gramps/plugins/webreport/basepage.py:2344
-#: ../gramps/plugins/webreport/basepage.py:2345
+#: ../gramps/plugins/webreport/basepage.py:2297
+#: ../gramps/plugins/webreport/basepage.py:2298
 #: ../gramps/plugins/webreport/person.py:638
 #: ../gramps/plugins/webreport/person.py:947
 msgid "Family Map"
 msgstr "Familienkarte"
 
-#: ../gramps/plugins/webreport/basepage.py:2590
-#: ../gramps/plugins/webreport/basepage.py:2656
+#: ../gramps/plugins/webreport/basepage.py:2543
+#: ../gramps/plugins/webreport/basepage.py:2609
 msgid "Church Parish"
 msgstr "Kirchengemeinde"
 
-#: ../gramps/plugins/webreport/basepage.py:2611
+#: ../gramps/plugins/webreport/basepage.py:2564
 msgid "Locations"
 msgstr "Lagen"
 
-#: ../gramps/plugins/webreport/basepage.py:2943
+#: ../gramps/plugins/webreport/basepage.py:2896
 msgid "circa"
 msgstr "circa"
 
-#: ../gramps/plugins/webreport/basepage.py:2945
+#: ../gramps/plugins/webreport/basepage.py:2898
 msgid "around"
 msgstr "um"
 
@@ -37330,11 +37346,11 @@ msgstr ""
 msgid "The file has been moved or deleted."
 msgstr "Die Datei wurde verschoben oder gelöscht."
 
-#: ../gramps/plugins/webreport/media.py:552
+#: ../gramps/plugins/webreport/media.py:559
 msgid "File Type"
 msgstr "Dateityp"
 
-#: ../gramps/plugins/webreport/media.py:655
+#: ../gramps/plugins/webreport/media.py:662
 msgid "Missing media object:"
 msgstr "Fehlendes Medienobjekt"
 
@@ -37603,9 +37619,8 @@ msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
-"Mit erzählenden Anmerkungen direkt nach Namen, Geschlecht und Alter beim Tod"
-" (Standard) "
-"oder plazier sie direkt vor den Attributen."
+"Mit erzählenden Anmerkungen direkt nach Namen, Geschlecht und Alter beim Tod "
+"(Standard) oder plazier sie direkt vor den Attributen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1818
 msgid "Page Generation"
@@ -37729,10 +37744,10 @@ msgstr "Max. Breite für Anfangsbild"
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
-"page. Set to 0 for no limit."
+"page."
 msgstr ""
 "Dies erlaubt dir, die maximale Breite des Bildes zu bestimmen, das auf der "
-"Medienseite gezeigt wird. Setze 0 für unbegrenzt."
+"Medienseite gezeigt wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1898
 msgid "Max height of initial image"
