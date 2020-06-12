@@ -1,0 +1,54 @@
+# German translation for Gramps
+# This file is distributed under the same license as the Gramps package.
+# translation of de.po to Deutsch
+#
+#
+# Anton Huber <anton_huber@gmx.de>, 2005,2006.
+# Sebastian Vöcking <sebastian_voecking@gmx.de>, 2005.
+# Sebastian Vöcking <voeck@web.de>, 2005.
+# Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
+# Alex Roitman <shura@gramps-project.org>, 2006.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019.
+# Alois Pöttker <alois.poettker@gmx.de>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: de\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-11 17:06-0500\n"
+"PO-Revision-Date: 2019-10-19 16:49+0200\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 18.12.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Placetypes/placetype_nl.gpr.py:33
+msgid "Provides a library of Netherlands PlaceType values."
+msgstr "Bietet eine Bibliothek mit Niederlande PlaceType-Werten."
+
+#: Placetypes/placetype_nl.py:96
+msgid "Country"
+msgstr "Land"
+
+#: Placetypes/placetype_nl.py:98
+msgid "nl|Province"
+msgstr "Provinz"
+
+#: Placetypes/placetype_nl.py:100
+msgid "nl|Municipality"
+msgstr "Gemeinde"
+
+#: Placetypes/placetype_nl.py:102
+msgid "nl|City"
+msgstr "Stadt"
+
+#: Placetypes/placetype_nl.py:104
+msgid "nl|Place"
+msgstr "Platz"
+
+#: Placetypes/placetype_nl.py:106
+msgid "nl|Village"
+msgstr "Dorf"
