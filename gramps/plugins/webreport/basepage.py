@@ -1810,11 +1810,15 @@ class BasePage: # pylint: disable=C1001
                 try:
 
                     newpath, dummy_tpath = self.report.prepare_copy_media(obj)
-                    (first_field, separator,
-                     second_field) = newpath.partition("/")
                     newpathc = newpath
-                    if self.report.archive:
+                    if self.the_lang and self.report.archive:
+                        (first_field, separator,
+                         second_field) = newpath.partition("/")
                         newpathc = second_field
+                    if self.usecms:
+                        newpathc = newpathc.replace(self.target_uri + "/", "")
+                        # In some case, we have the target_uri without the leading "/"
+                        newpathc = newpathc.replace(self.target_uri[1:] + "/", "")
                     self.report.copy_file(media_path_full(
                         self.r_db, obj.get_path()), newpathc)
 
@@ -1852,8 +1856,13 @@ class BasePage: # pylint: disable=C1001
                                                               image=True)
                         imag.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
                         fname = self.report.build_url_fname(obj.get_handle(),
-                                                            "img",
-                                                            False) + self.ext
+                                                            "img", False,
+                                                            image=True,
+                                                            ) + self.ext
+                        if self.the_lang and not self.usecms:
+                            newpath = "/".join(["..", newpath])
+                        if self.the_lang and self.usecms:
+                            fname = "/".join(["..", fname])
                         inc_gallery = self.report.options['gallery']
                         if not self.create_thumbs_only and inc_gallery:
                             img_link = Html("a", href=fname, title=descr) + (
@@ -3031,13 +3040,13 @@ class BasePage: # pylint: disable=C1001
                         (pref, date) = role.split(' ')
                         if "aft" in pref:
                             role = self._("after") + " " + date
-                        if "bef" in pref:
+                        elif "bef" in pref:
                             role = self._("before") + " " + date
-                        if pref in ("abt", "about"):
+                        elif pref in ("abt", "about"):
                             role = self._("about") + " " + date
-                        if "c" in pref:
+                        elif "c" in pref:
                             role = self._("circa") + " " + date
-                        if "around" in pref:
+                        elif "around" in pref:
                             role = self._("around") + " " + date
                     # parse is done in the default language
                     date = _dp.parse(role)
