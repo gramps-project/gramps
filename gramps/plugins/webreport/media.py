@@ -91,7 +91,10 @@ class MediaPages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
         self.media_dict = defaultdict(set)
@@ -104,7 +107,8 @@ class MediaPages(BasePage):
         Generate and output the pages under the Media tab, namely the media
         index and the individual media pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Media]")
         for item in self.report.obj_dict[Media].items():
@@ -188,7 +192,8 @@ class MediaPages(BasePage):
 
         @param: report               -- The instance of the main report class
                                         for this report
-        @param: title                -- Is the title of the web page
+        @param: the_lang             -- The lang to process
+        @param: the_title            -- The title page related to the language
         @param: sorted_media_handles -- A list of the handles of the media to be
                                         displayed sorted by the media title
         """
@@ -349,7 +354,8 @@ class MediaPages(BasePage):
 
         @param: report       -- The instance of the main report class
                                 for this report
-        @param: title        -- Is the title of the web page
+        @param: the_lang     -- The lang to process
+        @param: the_title    -- The title page related to the language
         @param: media_handle -- The media handle to use
         @param: info         -- A tuple containing the media handle for the
                                 next and previous media, the current page
@@ -621,6 +627,11 @@ class MediaPages(BasePage):
     def media_nav_link(self, handle, name, uplink=False):
         """
         Creates the Media Page Navigation hyperlinks for Next and Prev
+
+        @param: handle -- The media handle
+        @param: name   -- The name to use for the link
+        @param: uplink -- If True, then "../../../" is inserted in front of the
+                          result.
         """
         url = self.report.build_url_fname_html(handle, "img", uplink)
         name = html_escape(name)

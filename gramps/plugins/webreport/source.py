@@ -81,8 +81,10 @@ class SourcePages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
         self.source_dict = defaultdict(set)
@@ -94,7 +96,8 @@ class SourcePages(BasePage):
         Generate and output the pages under the Sources tab, namely the sources
         index and the individual sources pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Source]")
         for item in self.report.obj_dict[Source].items():
@@ -119,7 +122,8 @@ class SourcePages(BasePage):
 
         @param: report         -- The instance of the main report class for
                                   this report
-        @param: title          -- Is the title of the web page
+        @param: the_lang       -- The lang to process
+        @param: the_title      -- The title page related to the language
         @param: source_handles -- A list of the handles of the sources to be
                                   displayed
         """
@@ -209,7 +213,8 @@ class SourcePages(BasePage):
 
         @param: report        -- The instance of the main report class
                                  for this report
-        @param: title         -- Is the title of the web page
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         @param: source_handle -- The handle of the source to be output
         """
         source = report.database.get_source_from_handle(source_handle)

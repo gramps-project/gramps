@@ -1185,6 +1185,7 @@ class NavWebReport(Report):
         Create a gendex file
 
         @param: ind_list -- The list of person to use
+        @param: the_lang -- The lang to process
         """
         if self.inc_gendex:
             message = _('Creating GENDEX file')
@@ -1241,7 +1242,9 @@ class NavWebReport(Report):
         Generates the surname related pages from list of individual
         people.
 
-        @param: ind_list -- The list of person to use
+        @param: ind_list  -- The list of person to use
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page for the lang
         """
         local_list = sort_people(self._db, ind_list, self.rlocale)
 
@@ -1374,6 +1377,9 @@ class NavWebReport(Report):
         @param: uplink -- If True, then "../../../" is inserted in front of the
                           result.
                           If uplink = None then [./] for use in EventListPage
+        @param: image  -- We are processing a thumbnail or an image
+        @param: init   -- We are building the objects table.
+                          Don't try to manage the lang.
         """
         subdirs = []
         if subdir:
@@ -1421,6 +1427,7 @@ class NavWebReport(Report):
         @param: fname  -- The file name for which we need to build the path
         @param: uplink -- If True, then "../../../" is inserted in front of the
                           result.
+        @param: image  -- We are processing a thumbnail or an image
         """
         return os.path.join(*self.build_subdirs(subdir, fname, uplink, image))
 
@@ -1556,6 +1563,9 @@ class NavWebReport(Report):
         @param: subdir -- The subdirectory name to use
         @param: uplink -- if True, then "../../../" is inserted in front of the
                           result.
+        @param: image  -- We are processing a thumbnail or an image
+        @param: init   -- We are building the objects table.
+                          Don't try to manage the lang.
 
         The extension is added to the filename as well.
 
@@ -1788,7 +1798,7 @@ class NavWebReport(Report):
         return person_handle in self.obj_dict[Person]
 
     def pgrs_title(self, the_lang):
-        """Set the message depending on the lang."""
+        """Set the user progress popup message depending on the lang."""
         if the_lang:
             languages = glocale.get_language_dict()
             lang = "???"
@@ -1895,6 +1905,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_report_options(self, menu):
         """
         Options on the "Report Options" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Report Options")
         addopt = partial(menu.add_option, category_name)
@@ -1953,6 +1965,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_report_html(self, menu):
         """
         Html Options for the Report.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Html options")
         addopt = partial(menu.add_option, category_name)
@@ -2028,6 +2042,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_more_pages(self, menu):
         """
         Add more extra pages to the report
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Extra pages")
         addopt = partial(menu.add_option, category_name)
@@ -2050,6 +2066,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_report_display(self, menu):
         """
         How to display names, datyes, ...
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Display")
         addopt = partial(menu.add_option, category_name)
@@ -2108,6 +2126,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_page_generation_options(self, menu):
         """
         Options on the "Page Generation" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Page Generation")
         addopt = partial(menu.add_option, category_name)
@@ -2153,6 +2173,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_images_generation_options(self, menu):
         """
         Options on the "Page Generation" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Images Generation")
         addopt = partial(menu.add_option, category_name)
@@ -2209,6 +2231,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_download_options(self, menu):
         """
         Options for the download tab ...
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Download")
         addopt = partial(menu.add_option, category_name)
@@ -2248,6 +2272,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_advanced_options(self, menu):
         """
         Options on the "Advanced" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Advanced Options")
         addopt = partial(menu.add_option, category_name)
@@ -2296,6 +2322,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_advanced_options_2(self, menu):
         """
         Continue options on the "Advanced" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Include")
         addopt = partial(menu.add_option, category_name)
@@ -2343,6 +2371,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_place_map_options(self, menu):
         """
         options for the Place Map tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Place Map Options")
         addopt = partial(menu.add_option, category_name)
@@ -2414,6 +2444,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_others_options(self, menu):
         """
         Options for the cms tab, web calendar inclusion, php ...
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Other inclusion (CMS, Web Calendar, Php)")
         addopt = partial(menu.add_option, category_name)
@@ -2478,6 +2510,8 @@ class NavWebOptions(MenuReportOptions):
         Options for selecting multiple languages. The default one is
         displayed in the display tab. If the option "use multiple
         languages is not selected, all the fields in this menu will be grayed.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Translations")
         addopt = partial(menu.add_option, category_name)
@@ -2731,10 +2765,10 @@ class NavWebOptions(MenuReportOptions):
 # See : http://www.gramps-project.org/bugs/view.php?id = 4423
 
 # Contraction data taken from CLDR 22.1. Only the default variant is considered.
-# The languages included below are, by no means, all the langauges that have
-# contractions - just a sample of langauges that have been supported
+# The languages included below are, by no means, all the languages that have
+# contractions - just a sample of languages that have been supported
 
-# At the time of writing (Feb 2013), the following langauges have greater that
+# At the time of writing (Feb 2013), the following languages have greater that
 # 50% coverage of translation of Gramps: bg Bulgarian, ca Catalan, cs Czech, da
 # Danish, de German, el Greek, en_GB, es Spanish, fi Finish, fr French, he
 # Hebrew, hr Croation, hu Hungarian, it Italian, ja Japanese, lt Lithuanian, nb

@@ -115,7 +115,10 @@ class PersonPages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
         self.ind_dict = defaultdict(set)
@@ -136,7 +139,8 @@ class PersonPages(BasePage):
         Generate and output the pages under the Individuals tab, namely the
         individual index and the individual pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Person].items():
@@ -167,7 +171,8 @@ class PersonPages(BasePage):
 
         @param: report          -- The instance of the main report class
                                    for this report
-        @param: title           -- Is the title of the web page
+        @param: the_lang        -- The lang to process
+        @param: the_title       -- The title page related to the language
         @param: ppl_handle_list -- The list of people for whom we need
                                    to create a page.
         """
@@ -434,9 +439,11 @@ class PersonPages(BasePage):
         """
         Creates an individual page
 
-        @param: report -- The instance of the main report class for this report
-        @param: title  -- Is the title of the web page
-        @param: person -- The person to use for this page.
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: person    -- The person to use for this page.
         """
         BasePage.__init__(self, report, the_lang, the_title,
                           person.get_gramps_id())
@@ -625,8 +632,12 @@ class PersonPages(BasePage):
         """
         creates individual family tracelife map events
 
-        @param: person -- person from database
-        @param: links  -- used to add links in the popup html page
+        @param: tracelife  -- The family event list
+        @param: placetitle -- The place title to add to the event list
+        @param: latitude   -- The latitude for this place
+        @param: longitude  -- The longitude for this place
+        @param: seq_       -- The sequence number for this event (googlemap)
+        @param: links      -- Used to add links in the popup html page
         """
         # are we using Google?
         if self.mapservice == "Google":
@@ -1103,6 +1114,7 @@ class PersonPages(BasePage):
     def draw_box(self, node, col, person):
         """
         Draw the box around the AncestorTree Individual name box...
+
         @param: node   -- The node defining the box location
         @param: col    -- The generation number
         @param: person -- The person to set in the box

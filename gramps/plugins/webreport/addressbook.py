@@ -70,7 +70,8 @@ class AddressBookPage(BasePage):
         """
         @param: report        -- The instance of the main report class
                                  for this report
-        @param: title         -- Is the title of the web page
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         @param: person_handle -- the url, address and residence to use
                                  for the report
         @param: has_add       -- the address to use for the report
