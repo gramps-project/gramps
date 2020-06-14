@@ -671,6 +671,7 @@ def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     @param: handle_list -- One of a handle list for either person or
                            place handles or an evt types list
     @param: key         -- Either a person, place, or event type
+    @param: rlocale     -- The locale to use
 
     The first letter (or letters if there is a contraction) are extracted from
     all the objects in the handle list. There may be duplicates, and there may
@@ -722,6 +723,10 @@ def get_index_letter(letter, index_list, rlocale=glocale):
     the letter provided. See the discussion in get_first_letters above.
     Continuing the example, if letter is Å and index_list is A, then this would
     return A.
+
+    @param: letter     -- The letter to find in the index_list
+    @param: index_list -- The list of all first letters in use
+    @param: rlocale    -- The locale to use
     """
     for index in index_list:
         if not primary_difference(letter, index, rlocale):
@@ -738,6 +743,7 @@ def alphabet_navigation(index_list, rlocale=glocale):
     SurnameListPage, PlaceListPage, and EventList
 
     @param: index_list -- a dictionary of either letters or words
+    @param: rlocale    -- The locale to use
     """
     sorted_set = defaultdict(int)
 

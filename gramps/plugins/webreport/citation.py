@@ -69,8 +69,10 @@ class CitationPages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
 

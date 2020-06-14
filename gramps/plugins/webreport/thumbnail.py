@@ -71,6 +71,7 @@ class ThumbnailPreviewPage(BasePage):
         """
         @param: report      -- The instance of the main report class
                                for this report
+        @param: the_lang    -- Is the lang to process.
         @param: title       -- Is the title of the web page
         @param: cb_progress -- The step used for the progress bar.
         """
@@ -209,13 +210,21 @@ class ThumbnailPreviewPage(BasePage):
     def thumbnail_link(self, name, index):
         """
         creates a hyperlink for Thumbnail Preview Reference...
+
+        @param: name    -- The image description
+        @param: index   -- The image index
         """
         return Html("a", index, title=html_escape(name),
                     href="#%d" % index)
 
     def thumb_hyper_image(self, thumbnail_url, subdir, fname, name):
         """
-        eplaces media_link() because it doesn't work for this instance
+        replaces media_link() because it doesn't work for this instance
+
+        @param: thumnail_url -- The url for this thumbnail
+        @param: subdir       -- The subdir prefix to add
+        @param: fname        -- The file name for this image
+        @param: name         -- The image description
         """
         name = html_escape(name)
         url = "/".join(self.report.build_subdirs(subdir,

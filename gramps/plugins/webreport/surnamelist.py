@@ -82,7 +82,8 @@ class SurnameListPage(BasePage):
         """
         @param: report          -- The instance of the main report class for
                                    this report
-        @param: title           -- Is the title of the web page
+        @param: the_lang        -- The lang to process
+        @param: the_title       -- The title page related to the language
         @param: ppl_handle_list -- The list of people for whom we need to create
                                    a page.
         @param: order_by        -- The way to sort surnames :

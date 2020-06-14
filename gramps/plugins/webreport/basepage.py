@@ -92,17 +92,18 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
-class BasePage: # pylint: disable=C1001
+class BasePage:
     """
     Manages all the functions, variables, and everything needed
     for all of the classes contained within this plugin
     """
     def __init__(self, report, the_lang, the_title, gid=None):
         """
-        @param: report -- The instance of the main report class for
-                          this report
-        @param: title  -- Is the title of the web page
-        @param: gid    -- The family gramps ID
+        @param: report    -- The instance of the main report class for
+                             this report
+        @param: the_lang  -- Is the lang to process
+        @param: the_title -- Is the title of the web page
+        @param: gid       -- The family gramps ID
         """
         self.uplink = False
         # class to do conversion of styled notes to html markup
@@ -204,6 +205,10 @@ class BasePage: # pylint: disable=C1001
         up-to-date cache of a thumbnail, and call report.copy_file
         to copy the cached thumbnail to the website.
         Return the new path to the image.
+
+        @param: handle -- The handle for this thumbnail
+        @param: photo  -- The image related to this thumbnail
+        @param: region -- The image region to associate
         """
         to_dir = self.report.build_path('thumb', handle)
         to_path = os.path.join(to_dir, handle) + (
@@ -362,6 +367,11 @@ class BasePage: # pylint: disable=C1001
         """
         Display details about one family: family events, children, family LDS
         ordinances, family attributes
+
+        @param: family         -- The family
+        @param: place_lat_long -- For use in Family Map Pages. This will be
+                                  None if called from Family pages, which do
+                                  not create a Family Map
         """
         table = None
         birthorder = self.report.options["birthorder"]
@@ -485,6 +495,8 @@ class BasePage: # pylint: disable=C1001
         @param: first_person -- Not used any more, done via css
         @param: handle_list  -- handle list from the backlink of
                                 the event_handle
+        @param: uplink       -- If True, then "../../../" is inserted in
+                                front of the result.
         """
         dummy_first_person = first_person
         for (classname, handle) in handle_list:
@@ -558,12 +570,16 @@ class BasePage: # pylint: disable=C1001
                 text += ' <a href="#sref%s">%s</a>' % (id_, id_)
         return text
 
-    def get_note_format(self, note, link_prefix_up):
+    def get_note_format(self, note, uplink):
         """
         will get the note from the database, and will return either the
         styled text or plain note
+
+        @param: note   -- the note to process
+        @param: uplink -- If True, then "../../../" is inserted in
+                          front of the result.
         """
-        self.report.link_prefix_up = link_prefix_up
+        self.report.link_prefix_up = uplink
 
         text = ""
         if note is not None:
@@ -581,9 +597,10 @@ class BasePage: # pylint: disable=C1001
 
     def styled_note(self, styledtext, styled_format, contains_html=False):
         """
-        styledtext : assumed a StyledText object to write
-        styled_format : = 0 : Flowed, = 1 : Preformatted
-        style_name : name of the style to use for default presentation
+        @param: styledtext    --  assumed a StyledText object to write
+        @param: styled_format --  = 0 : Flowed, = 1 : Preformatted
+        @param: style_name    --  name of the style to use for default
+                                  presentation
         """
         text = str(styledtext)
 
@@ -634,6 +651,7 @@ class BasePage: # pylint: disable=C1001
         dump out of list of notes with very little elements of its own
 
         @param: notelist -- list of notes
+        @param: parent   -- The parent object (Person, Family, Media,...)
         """
         if not notelist:
             return Html("div")
@@ -2124,7 +2142,7 @@ class BasePage: # pylint: disable=C1001
         """
         return true if the notetype is the same as the parent
 
-        @param: parent -- The object (Person, Family, Media,...)
+        @param: parent   -- The parent object (Person, Family, Media,...)
         @param: notetype -- The type for the current note
         """
         if parent == Person and notetype == NoteType.PERSON:
@@ -2152,7 +2170,7 @@ class BasePage: # pylint: disable=C1001
         Display note list
 
         @param: notelist -- The list of notes
-        @param: parent -- The parent associated to these notes
+        @param: parent   -- The parent object (Person, Family, Media,...)
         """
         if not notelist:
             return None
@@ -3028,6 +3046,9 @@ class BasePage: # pylint: disable=C1001
     def event_for_date(self, gid, date):
         """
         return the event type
+
+        @param: gid  -- the person gramps ID
+        @param: date -- the event to look for this date
         """
         pers = self.r_db.get_person_from_gramps_id(gid)
         if pers:
@@ -3046,6 +3067,8 @@ class BasePage: # pylint: disable=C1001
     def birth_death_dates(self, gid):
         """
         return the birth and death date for the person
+
+        @param: gid  -- the person gramps ID
         """
         pers = self.r_db.get_person_from_gramps_id(gid)
         if pers:

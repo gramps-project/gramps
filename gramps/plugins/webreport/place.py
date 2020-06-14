@@ -92,8 +92,10 @@ class PlacePages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
         self.place_dict = defaultdict(set)
@@ -112,7 +114,8 @@ class PlacePages(BasePage):
         Generate and output the pages under the Place tab, namely the place
         index and the individual place pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Place]")
         for item in self.report.obj_dict[Place].items():
@@ -132,13 +135,14 @@ class PlacePages(BasePage):
             step()
             self.placelistpage(self.report, the_lang, the_title)
 
-    def placelistpage(self, report, the_lang, the_title, place_handles):
+    def placelistpage(self, report, the_lang, the_title):
         """
         Create a place index
 
-        @param: report        -- The instance of the main report class for
-                                 this report
-        @param: title         -- Is the title of the web page
+        @param: report        -- The instance of the main report class
+                                 for this report
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
 
@@ -289,10 +293,12 @@ class PlacePages(BasePage):
         """
         Create a place page
 
-        @param: report            -- The instance of the main report class for
-                                     this report
-        @param: title             -- Is the title of the web page
+        @param: report       -- The instance of the main report class
+                                for this report
+        @param: the_lang     -- The lang to process
+        @param: the_title    -- The title page related to the language
         @param: place_handle -- The handle for the place to add
+        @param: place_name   -- The alternate place name
         """
         place = report.database.get_place_from_handle(place_handle)
         if not place:

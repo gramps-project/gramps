@@ -87,8 +87,10 @@ class EventPages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
         self.event_handle_list = []
@@ -100,7 +102,8 @@ class EventPages(BasePage):
         Generate and output the pages under the Event tab, namely the event
         index and the individual event pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, self.report, the_lang, the_title)
         LOG.debug("obj_dict[Event]")
@@ -132,7 +135,8 @@ class EventPages(BasePage):
 
         @param: report            -- The instance of the main report class for
                                      this report
-        @param: title             -- Is the title of the web page
+        @param: the_lang          -- The lang to process
+        @param: the_title         -- The title page related to the language
         @param: event_types       -- A list of the type in the events database
         @param: event_handle_list -- A list of event handles
         """
@@ -353,7 +357,8 @@ class EventPages(BasePage):
 
         @param: report       -- The instance of the main report class for
                                 this report
-        @param: title        -- Is the title of the web page
+        @param: the_lang     -- The lang to process
+        @param: the_title    -- The title page related to the language
         @param: event_handle -- The event handle for the database
         """
         event = report.database.get_event_from_handle(event_handle)

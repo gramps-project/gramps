@@ -81,7 +81,10 @@ class RepositoryPages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
         self.repos_dict = defaultdict(set)
@@ -91,7 +94,8 @@ class RepositoryPages(BasePage):
         Generate and output the pages under the Repository tab, namely the
         repository index and the individual repository pages.
 
-        @param: title  -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Repository].items():
@@ -130,7 +134,8 @@ class RepositoryPages(BasePage):
 
         @param: report     -- The instance of the main report class
                               for this report
-        @param: title      -- Is the title of the web page
+        @param: the_lang   -- The lang to process
+        @param: the_title  -- The title page related to the language
         @param: repos_dict -- The dictionary for all repositories
         @param: keys       -- The keys used to access repositories
         """
@@ -214,10 +219,12 @@ class RepositoryPages(BasePage):
         """
         Create one page for one repository.
 
-        @param: report -- The instance of the main report class for this report
-        @param: title  -- Is the title of the web page
-        @param: repo   -- the repository to use
-        @param: handle -- the handle to use
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: repo      -- the repository to use
+        @param: handle    -- the handle to use
         """
         gid = repo.get_gramps_id()
         BasePage.__init__(self, report, the_lang, the_title, gid)

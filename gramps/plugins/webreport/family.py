@@ -87,8 +87,10 @@ class FamilyPages(BasePage):
     """
     def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         BasePage.__init__(self, report, the_lang, the_title)
         self.family_dict = defaultdict(set)
@@ -99,7 +101,8 @@ class FamilyPages(BasePage):
         Generate and output the pages under the Family tab, namely the family
         index and the individual family pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Family]")
         for item in self.report.obj_dict[Family].items():
@@ -123,10 +126,11 @@ class FamilyPages(BasePage):
         """
         Create a family index
 
-        @param: report   -- The instance of the main report class for
-                            this report
-        @param: title    -- Is the title of the web page
-        @param: fam_list -- The handle for the place to add
+        @param: report    -- The instance of the main report class for
+                             this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: fam_list  -- The handle for the place to add
         """
         BasePage.__init__(self, report, the_lang, the_title)
 
@@ -315,7 +319,8 @@ class FamilyPages(BasePage):
 
         @param: report        -- The instance of the main report class for
                                  this report
-        @param: title         -- Is the title of the web page
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         @param: family_handle -- The handle for the family to add
         """
         family = report.database.get_family_from_handle(family_handle)

@@ -69,6 +69,10 @@ class IndexPage(BasePage):
         We will be redirected to the good page depending of the browser
         language. If the browser language is unknown, we use the first
         defined in the display tab of the narrative web configuration.
+
+        @param: report -- The instance of the main report class
+                          for this report
+        @param: langs  -- The languages to process
         """
         BasePage.__init__(self, report, None, "index")
         output_file, sio = report.create_file("index", ext="index")
