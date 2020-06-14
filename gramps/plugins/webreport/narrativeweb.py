@@ -289,6 +289,11 @@ class NavWebReport(Report):
         """
         The first method called to write the Narrative Web after loading options
         """
+        # begin performance check initialization
+        #import cProfile, pstats, io
+        #pr = cProfile.Profile()
+        #pr.enable()
+        # end performance check
         global _WRONGMEDIAPATH
 
         _WRONGMEDIAPATH = []
@@ -538,6 +543,10 @@ class NavWebReport(Report):
                 error += '\n ...'
             self.user.warn(_("Missing media objects:"), error)
         self.database.clear_cache()
+        # begin print performance check
+        #pr.disable()
+        #pr.print_stats()
+        # end print performance check
 
     def _build_obj_dict(self):
         """
@@ -1435,10 +1444,10 @@ class NavWebReport(Report):
             # remove the lang
             (first_field, separator, second_field) = fname.partition("/")
             fname = second_field
-        else:
+        elif self.the_lang:
             (first_field, separator, second_field) = fname.partition("/")
-            in_lang = dict(self.languages)
-            if in_lang[first_field]:
+            if [(lang, title) for lang, title in self.languages
+                if lang == first_field]:
                 # remove the lang
                 fname = second_field
         if subdir:
@@ -1585,6 +1594,14 @@ class NavWebReport(Report):
                 # remove None value in subdir. this is related to the lang
                 if isinstance(subdirs, list):
                     subdirs = [val for val in subdirs if val is not None]
+        elif self.the_lang:
+            (first_field, separator, second_field) = fname.partition("/")
+            if separator == "/" and second_field[0:3] in ["ima", "thu"]:
+                fname = second_field
+                subdirs = self.build_subdirs(subdir, second_field,
+                                             uplink, image)
+            else:
+                subdirs = self.build_subdirs(subdir, fname, uplink, image)
         else:
             subdirs = self.build_subdirs(subdir, fname, uplink, image)
         return "/".join(subdirs + [fname])
@@ -1715,7 +1732,7 @@ class NavWebReport(Report):
                               It will be prepended before 'to_fname'.
         """
         if self.usecms:
-            to_dir = "/" + self.target_uri + "/" + to_dir
+            to_dir = "/".join([self.target_uri, to_dir])
         LOG.debug("copying '%s' to '%s/%s'", from_fname, to_dir, to_fname)
         mtime = os.stat(from_fname).st_mtime
         if self.archive:
