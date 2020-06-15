@@ -225,7 +225,7 @@ class BasePage:
         else:
             from_path = CSS["Document"]["filename"]
         if (self.the_lang is None or
-            self.the_lang == self.report.languages[0][0]):
+                self.the_lang == self.report.languages[0][0]):
             # if multi languages, copy the thumbnail only for the first lang.
             self.report.copy_file(from_path, to_path)
         return to_path
@@ -1830,13 +1830,15 @@ class BasePage:
                     newpath, dummy_tpath = self.report.prepare_copy_media(obj)
                     newpathc = newpath
                     if self.the_lang and self.report.archive:
-                        (first_field, separator,
+                        (dummy_1_field, dummy_sep,
                          second_field) = newpath.partition("/")
                         newpathc = second_field
                     if self.usecms:
                         newpathc = newpathc.replace(self.target_uri + "/", "")
-                        # In some case, we have the target_uri without the leading "/"
-                        newpathc = newpathc.replace(self.target_uri[1:] + "/", "")
+                        # In some case, we have the target_uri without
+                        # the leading "/"
+                        newpathc = newpathc.replace(self.target_uri[1:] + "/",
+                                                    "")
                     self.report.copy_file(media_path_full(
                         self.r_db, obj.get_path()), newpathc)
 
@@ -1876,7 +1878,7 @@ class BasePage:
                         fname = self.report.build_url_fname(obj.get_handle(),
                                                             "img", False,
                                                             image=True,
-                                                            ) + self.ext
+                                                           ) + self.ext
                         if self.the_lang and not self.usecms:
                             newpath = "/".join(["..", newpath])
                         if self.the_lang and self.usecms:
@@ -2415,9 +2417,9 @@ class BasePage:
                         if data:
                             tmp += Html("li",
                                         self._("%(str1)s: %(str2)s") % {
-                                               'str1' : label,
-                                               'str2' : data
-                                               })
+                                            'str1' : label,
+                                            'str2' : data
+                                            })
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
