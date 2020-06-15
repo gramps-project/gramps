@@ -1696,7 +1696,7 @@ class CheckIntegrity:
                 if item[0] == "Citation":
                     if not item[1]:
                         new_handle = create_id()
-                        person.replace_citation_references(None, new_handle)
+                        person.replace_citation_references(item[1], new_handle)
                         self.db.commit_person(person, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
@@ -1710,7 +1710,7 @@ class CheckIntegrity:
                 if item[0] == "Citation":
                     if not item[1]:
                         new_handle = create_id()
-                        family.replace_citation_references(None, new_handle)
+                        family.replace_citation_references(item[1], new_handle)
                         self.db.commit_family(family, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
@@ -1724,7 +1724,7 @@ class CheckIntegrity:
                 if item[0] == "Citation":
                     if not item[1]:
                         new_handle = create_id()
-                        place.replace_citation_references(None, new_handle)
+                        place.replace_citation_references(item[1], new_handle)
                         self.db.commit_place(place, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
@@ -1738,7 +1738,7 @@ class CheckIntegrity:
                 if item[0] == "Citation":
                     if not item[1]:
                         new_handle = create_id()
-                        citation.replace_citation_references(None, new_handle)
+                        citation.replace_citation_references(item[1], new_handle)
                         self.db.commit_citation(citation, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
@@ -1752,7 +1752,7 @@ class CheckIntegrity:
                 if item[0] == "Citation":
                     if not item[1]:
                         new_handle = create_id()
-                        repository.replace_citation_references(None, new_handle)
+                        repository.replace_citation_references(item[1], new_handle)
                         self.db.commit_repository(repository, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
@@ -1766,7 +1766,7 @@ class CheckIntegrity:
                 if item[0] == "Citation":
                     if not item[1]:
                         new_handle = create_id()
-                        obj.replace_citation_references(None, new_handle)
+                        obj.replace_citation_references(item[1], new_handle)
                         self.db.commit_media(obj, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
@@ -1780,7 +1780,7 @@ class CheckIntegrity:
                 if item[0] == "Citation":
                     if not item[1]:
                         new_handle = create_id()
-                        event.replace_citation_references(None, new_handle)
+                        event.replace_citation_references(item[1], new_handle)
                         self.db.commit_event(event, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
