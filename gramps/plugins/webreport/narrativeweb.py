@@ -143,7 +143,7 @@ class NavWebReport(Report):
 
         self.set_locale(options.menu.get_option_by_name('trans').get_value())
         stdoptions.run_date_format_option(self, menu)
-        self.rlocale = self._locale
+        self.rlocale = self._ = self._locale
         self.the_lang = self.rlocale.language[0]
 
         stdoptions.run_private_data_option(self, menu)
@@ -1449,12 +1449,12 @@ class NavWebReport(Report):
             # remove self.target_uri
             fname = fname.replace(self.target_uri + "/", "")
             # remove the lang
-            (first_field, separator, second_field) = fname.partition("/")
+            (dummy_1_field, dummy_sep, second_field) = fname.partition("/")
             fname = second_field
         elif self.the_lang:
-            (first_field, separator, second_field) = fname.partition("/")
+            (first_field, dummy_sep, second_field) = fname.partition("/")
             if [(lang, title) for lang, title in self.languages
-                if lang == first_field]:
+                    if lang == first_field]:
                 # remove the lang
                 fname = second_field
         if subdir:
@@ -1605,7 +1605,7 @@ class NavWebReport(Report):
                 if isinstance(subdirs, list):
                     subdirs = [val for val in subdirs if val is not None]
         elif self.the_lang:
-            (first_field, separator, second_field) = fname.partition("/")
+            (dummy_1_field, separator, second_field) = fname.partition("/")
             if separator == "/" and second_field[0:3] in ["ima", "thu"]:
                 fname = second_field
                 subdirs = self.build_subdirs(subdir, second_field,
@@ -1723,10 +1723,10 @@ class NavWebReport(Report):
         handle = photo.get_handle()
         ext = os.path.splitext(photo.get_path())[1]
         real_path = os.path.join(self.build_path('images', handle,
-                                 uplink=2, image=True),
+                                                 uplink=2, image=True),
                                  handle + ext)
         thumb_path = os.path.join(self.build_path('thumb', handle,
-                                  uplink=2, image=True),
+                                                  uplink=2, image=True),
                                   handle + '.png')
         return real_path, thumb_path
 

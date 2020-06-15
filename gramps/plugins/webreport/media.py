@@ -297,8 +297,6 @@ class MediaPages(BasePage):
                             gmfh = self.r_db.get_media_from_handle
                             media = gmfh(media_handle)
                             gc.collect() # Reduce memory usage when many images.
-                            if idx != total:
-                                self.unused_media_handles[idx]
                             trow += Html("tr")
                             media_data_row = [
                                 [index, "ColumnRowLabel"],
@@ -664,7 +662,7 @@ class MediaPages(BasePage):
         to_dir = self.report.build_path('images', handle, image=True)
         newpath = os.path.join(to_dir, handle) + ext
         if (self.the_lang is not None and
-            self.the_lang != self.report.languages[0][0]):
+                self.the_lang != self.report.languages[0][0]):
             # if multi languages, copy the image only for the first language.
             return newpath
 

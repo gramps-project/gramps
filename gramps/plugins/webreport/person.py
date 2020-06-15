@@ -133,6 +133,7 @@ class PersonPages(BasePage):
         self.rel_class = None
         self.placemappages = None
         self.name = None
+        self.gender_map = None
 
     def display_pages(self, the_lang, the_title):
         """
@@ -1609,8 +1610,8 @@ class PersonPages(BasePage):
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
                         trow = Html("tr") + (
-                            Html("td", self._("Call Name"), class_="ColumnAttribute",
-                                 inline=True),
+                            Html("td", self._("Call Name"),
+                                 class_="ColumnAttribute", inline=True),
                             Html("td", call_name, class_="ColumnValue",
                                  inline=True)
                             )
