@@ -251,10 +251,10 @@ class Gramps:
                 if handler.dbstate.is_open():
                     handler.dbstate.db.close()
             except:
-                print("Exception in test:")
-                print("-" * 60)
-                traceback.print_exc(file=sys.stdout)
-                print("-" * 60)
+                print("Exception in test:", file=sys.stderr)
+                print("-" * 60, file=sys.stderr)
+                traceback.print_exc(file=sys.stderr)
+                print("-" * 60, file=sys.stderr)
 
         return output
 
