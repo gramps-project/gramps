@@ -374,7 +374,7 @@ class NavWebReport(Report):
         self.tab = {}
         # FIXME: Initialising self.tab in this way means that this code has to
         # run before the Web Page registration - I am not sure whether this is
-        # possible, in which case an alternative approach to provinding the
+        # possible, in which case an alternative approach to providing the
         # mapping of object class to Web Page plugin will be needed.
         for obj_class in ("Person", "Family", "Source", "Citation", "Place",
                           "Event", "Media", "Repository"):
@@ -492,7 +492,7 @@ class NavWebReport(Report):
         if self.inc_updates:
             self.updates_preview_page(self.title)
 
-        # copy all of the neccessary files
+        # copy all of the necessary files
         self.copy_narrated_files()
 
         # if an archive is being used, close it?
@@ -520,7 +520,7 @@ class NavWebReport(Report):
         For the obj_dict, the value is a tuple containing the gramps_id,
         the text name for the object, and the file name for the display.
 
-        For the bkref_dict, the value is a tuple containg the class of object
+        For the bkref_dict, the value is a tuple containing the class of object
         and the handle for the object that refers to the 'key' object.
         """
         _obj_class_list = (Person, Family, Event, Place, Source, Citation,
@@ -531,7 +531,7 @@ class NavWebReport(Report):
         self.bkref_dict = defaultdict(lambda: defaultdict(set))
 
         # initialise the dictionary to empty in case no objects of any
-        # particular class are incuded in the web report
+        # particular class are included in the web report
         for obj_class in _obj_class_list:
             self.obj_dict[obj_class] = defaultdict(set)
 
@@ -600,7 +600,7 @@ class NavWebReport(Report):
                             self._add_place(place_handle, Person,
                                             person_handle, event)
                         # If event pages are not being output, then tell the
-                        # media tab to display the perosn's event media. If
+                        # media tab to display the person's event media. If
                         # events are being displayed, then the media are linked
                         # from the event tab
                         if not self.inc_events:
@@ -892,7 +892,7 @@ class NavWebReport(Report):
                 date = event.get_date_object()
                 # calendar is the original date calendar
                 calendar = str(date.get_calendar())
-                # convert date to gregorian for a correct sort
+                # convert date to Gregorian for a correct sort
                 _date = str(date.to_calendar("gregorian"))
                 role_or_date = calendar + ":" + _date
         else:
@@ -1057,7 +1057,7 @@ class NavWebReport(Report):
 
     def copy_narrated_files(self):
         """
-        Copy all of the CSS, image, and javascript files for Narrated Web
+        Copy all of the CSS, image, and JavaScript files for Narrated Web
         """
         imgs = []
 
