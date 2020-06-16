@@ -33178,3 +33178,4 @@ msgstr "Gestor_de_multimédia"
 #~ msgstr ""
 #~ "A vista %(name)s não carregou. Veja o menu de Ajuda,Gestor de Módulos para mais informação.\n"
 #~ "Use https://gramps-project.org/bugs/ para submeter erros das vistas oficiais, ou em alternativa contacte o autor da vista (%(firstauthoremail)s)"
+
