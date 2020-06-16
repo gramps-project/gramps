@@ -139,7 +139,7 @@ msgstr "Japonska"
 msgid "Slovakia"
 msgstr "Slovaška"
 
-#. Make upper case of translaed country so string search works later
+#. Make upper case of translated country so string search works later
 #: ../data/holidays.xml.in.h:13
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
