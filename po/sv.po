@@ -8,13 +8,13 @@
 # Svensk-engelskt lexikon: http://lexin.nada.kth.se/sve-eng.shtml#
 # Några tveksamma eller inte helt uppenbara översättningar:#
 # city                stad/kommun
-# county              landskap
+# county              län
 # location            lokalisering
 # media object        medieobjekt
 # place               plats
 # plugin              insticksmodul
 # repository          arkivinstitution
-# state               län/delstat
+# state               delstat
 # undo history        redigeringshistorik#
 # Bo Rosén <bo.rosen@home.se>, 2001.
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2020-02-07 17:56+0100\n"
+"PO-Revision-Date: 2020-06-21 10:13+0200\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -435,7 +435,7 @@ msgstr "<b>Hantera källor</b><br/>Källvyn visar en lista med alla källor i et
 
 #: ../data/tips.xml.in.h:39
 msgid "<b>Managing Places</b><br/>The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr "<b>Hantera platser</b><br/>Platsvyn visar en lista med alla platser i databasen. Listan kan sorteras efter ett antal olika kriterier, som exempelvis stad/kommun, landskap eller län."
+msgstr "<b>Hantera platser</b><br/>Platsvyn visar en lista med alla platser i databasen. Listan kan sorteras efter ett antal olika kriterier, som exempelvis stad/kommun, län eller delstat."
 
 #: ../data/tips.xml.in.h:40
 msgid "<b>Media View</b><br/>The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
@@ -4495,11 +4495,11 @@ msgstr "Kommun/Stad:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "County:"
-msgstr "Landskap:"
+msgstr "Län:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "State:"
-msgstr "Län/delstat:"
+msgstr "Delstat:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "Country:"
@@ -4939,11 +4939,11 @@ msgstr "Ort"
 
 #: ../gramps/gen/lib/address.py:119 ../gramps/gen/lib/location.py:97 ../gramps/gen/lib/placetype.py:67 ../gramps/gui/editors/displaytabs/locationembedlist.py:57 ../gramps/gui/views/treemodels/placemodel.py:312 ../gramps/plugins/lib/maps/placeselection.py:151 ../gramps/plugins/view/geoplaces.py:631 ../gramps/plugins/webreport/basepage.py:1132 ../gramps/plugins/webreport/basepage.py:2592 ../gramps/plugins/webreport/basepage.py:2657
 msgid "County"
-msgstr "Landskap"
+msgstr "Län"
 
 #: ../gramps/gen/lib/address.py:121 ../gramps/gen/lib/location.py:99 ../gramps/gen/lib/placetype.py:66 ../gramps/gui/editors/displaytabs/locationembedlist.py:58 ../gramps/gui/views/treemodels/placemodel.py:312 ../gramps/plugins/lib/maps/placeselection.py:150 ../gramps/plugins/view/geoplaces.py:628
 msgid "State"
-msgstr "Län/delstat"
+msgstr "Delstat"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:101 ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:620 ../gramps/gui/editors/displaytabs/addrembedlist.py:76 ../gramps/gui/editors/displaytabs/locationembedlist.py:59 ../gramps/gui/views/treemodels/placemodel.py:312 ../gramps/plugins/lib/maps/placeselection.py:149 ../gramps/plugins/view/geoplaces.py:625 ../gramps/plugins/view/repoview.py:93 ../gramps/plugins/webreport/basepage.py:1134 ../gramps/plugins/webreport/basepage.py:2596 ../gramps/plugins/webreport/basepage.py:2660 ../gramps/plugins/webreport/place.py:183
 #: ../gramps/plugins/webreport/place.py:195
@@ -6207,7 +6207,7 @@ msgstr "Platsref"
 
 #: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:634
 msgid "Province"
-msgstr "Provins"
+msgstr "Landskap/provins"
 
 #: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:640
 msgid "Department"
@@ -8555,7 +8555,7 @@ msgstr "Skriv in information om dig själv, så personer kan ta kontakt med dig,
 
 #: ../gramps/gui/configure.py:617 ../gramps/gui/editors/displaytabs/addrembedlist.py:75 ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
-msgstr "Stat/Län"
+msgstr "Delstat/Län"
 
 #: ../gramps/gui/configure.py:623 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
@@ -11818,7 +11818,7 @@ msgstr "Kommun eller stad för adressen"
 
 #: ../gramps/gui/glade/editaddress.glade:151 ../gramps/plugins/tool/ownereditor.glade:192
 msgid "_State/County:"
-msgstr "_Stat/Län:"
+msgstr "_Delstat/Län:"
 
 #: ../gramps/gui/glade/editaddress.glade:166 ../gramps/gui/glade/editlocation.glade:248
 msgid "_ZIP/Postal code:"
@@ -12179,15 +12179,15 @@ msgstr "Understa kyrkliga indelningen av denna plats. Används typiskt för kyrk
 
 #: ../gramps/gui/glade/editlocation.glade:164
 msgid "Co_unty:"
-msgstr "Lan_dskap:"
+msgstr "L_än:"
 
 #: ../gramps/gui/glade/editlocation.glade:178
 msgid "Third level of place division. Eg., in the USA a county."
-msgstr "Tredje indelningsnivån för platser. T. ex. i USA är det 'county', i Sverige är det landskap."
+msgstr "Tredje indelningsnivån för platser. T. ex. i USA är det 'county', i Sverige är det län."
 
 #: ../gramps/gui/glade/editlocation.glade:192
 msgid "_State:"
-msgstr "L_än/delstat:"
+msgstr "_Delstat:"
 
 #: ../gramps/gui/glade/editlocation.glade:206
 msgid "Second level of place division, eg., in the USA a state, in Germany a Bundesland."
@@ -24460,7 +24460,7 @@ msgstr " församling"
 #. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " state"
-msgstr " län"
+msgstr " delstat"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:150
 msgid "Latitude not within '54.55' to '69.05'\n"
@@ -29828,7 +29828,7 @@ msgstr "Berättelse"
 
 #: ../gramps/plugins/webreport/basepage.py:1131 ../gramps/plugins/webreport/basepage.py:2593 ../gramps/plugins/webreport/basepage.py:2658 ../gramps/plugins/webreport/place.py:182 ../gramps/plugins/webreport/place.py:194
 msgid "State/ Province"
-msgstr "Län/delstat"
+msgstr "Delstat/landskap"
 
 #: ../gramps/plugins/webreport/basepage.py:1306
 #, python-format
