@@ -9,6 +9,7 @@
 # Några tveksamma eller inte helt uppenbara översättningar:#
 # city                stad/kommun
 # county              län
+# province            landskap
 # location            lokalisering
 # media object        medieobjekt
 # place               plats
@@ -26,7 +27,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2020-06-21 10:13+0200\n"
+"PO-Revision-Date: 2020-06-22 21:42+0200\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -29828,7 +29829,7 @@ msgstr "Berättelse"
 
 #: ../gramps/plugins/webreport/basepage.py:1131 ../gramps/plugins/webreport/basepage.py:2593 ../gramps/plugins/webreport/basepage.py:2658 ../gramps/plugins/webreport/place.py:182 ../gramps/plugins/webreport/place.py:194
 msgid "State/ Province"
-msgstr "Delstat/landskap"
+msgstr "Delstat"
 
 #: ../gramps/plugins/webreport/basepage.py:1306
 #, python-format
