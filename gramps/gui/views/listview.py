@@ -577,6 +577,15 @@ class ListView(NavigationView):
         order = self._config.get("columns.rank")
         size = self._config.get("columns.size")
         vis = self._config.get("columns.visible")
+        # make sure an upgraded number of columns works
+        if len(order) != len(self.COLUMNS) or len(size) != len(self.COLUMNS):
+            # If not, reset everything to defaults
+            vis = self.CONFIGSETTINGS[0][1]
+            self._config.set("columns.visible", vis)
+            order = self.CONFIGSETTINGS[1][1]
+            self._config.set("columns.rank", order)
+            size = self.CONFIGSETTINGS[2][1]
+            self._config.set("columns.size", size)
 
         colord = [(1 if val in vis else 0, val, size) for val, size in zip(order, size)]
         return colord
