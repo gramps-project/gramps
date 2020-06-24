@@ -591,6 +591,17 @@ class MediaPages(BasePage):
                             )
                         table += trow
 
+                    # Tags
+                    tags = self.show_tags(media)
+                    if tags and self.report.inc_tags:
+                        trow = Html("tr") + (
+                            Html("td", self._("Tags:"),
+                                 class_="ColumnAttribute", inline=True),
+                            Html("td", tags,
+                                 class_="ColumnValue", inline=True)
+                            )
+                        table += trow
+
             # get media notes
             notelist = self.display_note_list(media.get_note_list(), Media)
             if notelist is not None:

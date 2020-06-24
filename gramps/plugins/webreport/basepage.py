@@ -54,6 +54,7 @@ from decimal import getcontext
 #------------------------------------------------
 import logging
 
+from gi.repository import Gdk
 #------------------------------------------------
 # Gramps module
 #------------------------------------------------
@@ -131,6 +132,7 @@ class BasePage:
         self.html_dir = report.options['target']
         self.ext = report.options['ext']
         self.noid = not report.options['inc_id']
+        self.inc_tags = report.options['inc_tags']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
         self.create_unused_media = report.options['unused']
@@ -646,6 +648,34 @@ class BasePage:
                 htmllist.extend(Html('p') + linelist)
         return htmllist
 
+    def show_tags(self, obj):
+        """
+        Show all tags associated to an object (Person, Family, Media,...)
+
+        @param: obj -- the object for which we show tags
+        """
+        tags_text = ""
+        if obj is None:
+            return tags_text
+        tags = []
+
+        with Html("div", id="tag") as tags_list:
+            for tag_handle in obj.get_tag_list():
+                tags.append(self.r_db.get_tag_from_handle(tag_handle))
+            if tags and self.report.inc_tags:
+                for tag in tags:
+                    if tags_text:
+                        tags_text += ", "
+                    # convert tag color to html format: #RRGGBB
+                    rgba = Gdk.RGBA()
+                    rgba.parse(tag.get_color())
+                    color = '#%02x%02x%02x' % (int(rgba.red * 255),
+                                               int(rgba.green * 255),
+                                               int(rgba.blue * 255))
+                    tags_text += ("<span style='background-color:%s;'>"
+                                  "%s</span>" % (color, tag.get_name()))
+        return tags_text
+
     def dump_notes(self, notelist, parent=None):
         """
         dump out of list of notes with very little elements of its own
@@ -675,6 +705,13 @@ class BasePage:
                         title_text = self._("Note")
                     else:
                         title_text = title
+
+                # Tags
+                if parent:
+                    tags = self.show_tags(this_note)
+                    if tags and self.report.inc_tags:
+                        title_text += " (" + tags + ")"
+
                 notesection.extend(Html("i", title_text, class_="NoteType"))
                 notesection.extend(self.get_note_format(this_note, True))
         return notesection
@@ -2247,6 +2284,13 @@ class BasePage:
                             title_text = self._("Note")
                         else:
                             title_text = title
+
+                    # Tags
+                    if parent:
+                        tags = self.show_tags(note)
+                        if tags and self.report.inc_tags:
+                            title_text += " (" + tags + ")"
+
                     # add section title
                     section += Html("h4", title_text, inline=True)
 
@@ -2808,6 +2852,17 @@ class BasePage:
                         )
                         tbody += trow
                 tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
+
+        # Tags
+        tags = self.show_tags(place)
+        if tags and self.report.inc_tags:
+            trow = Html("tr") + (
+                Html("td", self._("Tags:"),
+                     class_="ColumnAttribute", inline=True),
+                Html("td", tags,
+                     class_="ColumnValue", inline=True)
+                )
+            tbody += trow
 
         # enclosed by
         tbody += Html("tr") + Html("td", "&nbsp;")

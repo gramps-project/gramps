@@ -425,6 +425,17 @@ class EventPages(BasePage):
                             )
                         tbody += trow
 
+                # Tags
+                tags = self.show_tags(event)
+                if tags and self.report.inc_tags:
+                    trow = Html("tr") + (
+                        Html("td", self._("Tags:"),
+                             class_="ColumnAttribute", inline=True),
+                        Html("td", tags,
+                             class_="ColumnValue", inline=True)
+                        )
+                    table += trow
+
             # Narrative subsection
             notelist = event.get_note_list()
             notelist = self.display_note_list(notelist, Event)

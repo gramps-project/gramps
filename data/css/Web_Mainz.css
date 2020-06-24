@@ -685,6 +685,10 @@ div#SourceDetail {
 table.relationships tr:hover td {
     background-color: #D8C19F;
 }
+div.content table.tags {
+    text-align: left;
+    width: auto;
+}
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
 }

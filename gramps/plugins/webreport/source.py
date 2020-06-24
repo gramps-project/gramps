@@ -279,6 +279,17 @@ class SourcePages(BasePage):
                         )
                         tbody += trow
 
+            # Tags
+            tags = self.show_tags(source)
+            if tags and self.report.inc_tags:
+                trow = Html("tr") + (
+                    Html("td", self._("Tags:"),
+                         class_="ColumnAttribute", inline=True),
+                    Html("td", tags,
+                         class_="ColumnValue", inline=True)
+                    )
+                tbody += trow
+
             # Source notes
             notelist = self.display_note_list(source.get_note_list(), Source)
             if notelist is not None:

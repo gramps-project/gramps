@@ -361,6 +361,16 @@ class FamilyPages(BasePage):
                     Html('sup') + (Html('small') +
                                    self.get_citation_links(
                                        family.get_citation_list())))
+            # Tags
+            tags = self.show_tags(family)
+            if tags and self.report.inc_tags:
+                trow = Html("table", class_='tags') + (Html("tr") + (
+                    Html("td", self._("Tags:"),
+                         class_="ColumnAttribute", inline=True),
+                    Html("td", tags,
+                         class_="ColumnValue", inline=True),
+                    ))
+                relationshipdetail += trow
 
             # display relationships
             families = self.display_family_relationships(family, None)

@@ -268,6 +268,17 @@ class RepositoryPages(BasePage):
                 )
                 tbody += trow
 
+            # Tags
+            tags = self.show_tags(repo)
+            if tags and self.report.inc_tags:
+                trow = Html("tr") + (
+                    Html("td", self._("Tags:"),
+                         class_="ColumnAttribute", inline=True),
+                    Html("td", tags,
+                         class_="ColumnValue", inline=True)
+                    )
+                tbody += trow
+
             # repository: address(es)...
             # repository addresses do NOT have Sources
             repo_address = self.display_addr_list(repo.get_address_list(),

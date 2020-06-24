@@ -1171,6 +1171,10 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
 table.relationships tr:hover {
     background-color:#C1B398;
 }
+div.content table.tags {
+    text-align: left;
+    width: auto;
+}
 div#families table.infolist {
     margin-top:.5em;
 }

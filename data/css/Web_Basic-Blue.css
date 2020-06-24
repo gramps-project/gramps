@@ -695,6 +695,10 @@ div#RelationshipList, div#RelationshipDetail {
 div#RelationshipDetail div#FamilyDetail table.infolist tbody tr td {
     border: none;
 }
+div.content table.tags {
+    text-align: left;
+    width: auto;
+}
 
 /* Places
 =================================================----- */
