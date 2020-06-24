@@ -161,6 +161,8 @@ class NavWebReport(Report):
         self.navigation = self.options["navigation"]
         self.citationreferents = self.options['citationreferents']
 
+        self.inc_tags = self.options['inc_tags']
+
         self.title = self.options['title']
 
         self.inc_gallery = self.options['gallery']
@@ -2089,6 +2091,7 @@ class NavWebOptions(MenuReportOptions):
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
         stdoptions.add_gramps_id_option(menu, category_name)
+        stdoptions.add_tags_option(menu, category_name)
 
         birthorder = BooleanOption(
             _('Sort all children in birth order'), False)

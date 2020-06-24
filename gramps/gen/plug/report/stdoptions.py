@@ -317,6 +317,24 @@ def run_date_format_option(report, menu):
         format_to_be = 0 # ISO always exists
     report._ldd.set_format(format_to_be)
 
+def add_tags_option(menu, category):
+    """
+    Insert an option for deciding whether to include tags
+    in the report
+
+    :param menu: The menu the options should be added to.
+    :type menu: :class:`.Menu`
+    :param category: A label that describes the category that the option
+        belongs to, e.g. "Report Options"
+    :type category: string
+    """
+
+    include_tags = EnumeratedListOption(_('Tags'), 0)
+    include_tags.add_item(0, _('Do not include'))
+    include_tags.add_item(1, _('Include'))
+    include_tags.set_help(_("Whether to include tags"))
+    menu.add_option(category, 'inc_tags', include_tags)
+
 def add_gramps_id_option(menu, category, ownline=False):
     """
     Insert an option for deciding whether to include Gramps IDs

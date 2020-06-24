@@ -1681,6 +1681,17 @@ class PersonPages(BasePage):
                             )
                         table += trow
 
+                # Tags
+                tags = self.show_tags(self.person)
+                if tags and self.report.inc_tags:
+                    trow = Html("tr") + (
+                        Html("td", self._("Tags:"),
+                             class_="ColumnAttribute", inline=True),
+                        Html("td", tags,
+                             class_="ColumnValue", inline=True)
+                        )
+                    table += trow
+
         # return all three pieces to its caller
         # do NOT combine before returning
         return thumbnail, section_title, summaryarea
