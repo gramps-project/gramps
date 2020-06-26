@@ -393,6 +393,7 @@
     <date value="*/5/9" type="national" name="День Победы" />
     <date value="*/6/1" type="national" name="День защиты детей" />
     <date value="*/6/12" type="national" name="День России" />
+    <date value="*/9/1" type="national" name="День знаний" />
     <date value="*/11/4" type="national" name="День народного единства" />
     <date value="*/12/31" offset="+2" type="national" name="Новый год" />
   </country>

@@ -98,195 +98,199 @@ msgstr "GeneWeb"
 msgid "GeneWeb source file"
 msgstr "Fontdosiero de GeneWeb"
 
-#: ../data/holidays.xml.in.h:1
+#: ../data/holidays.xml.in.h:3
 msgid "Bulgaria"
 msgstr "Bulgario"
 
-#: ../data/holidays.xml.in.h:2
+#: ../data/holidays.xml.in.h:52
 msgid "Canada"
 msgstr "Kanado"
 
-#: ../data/holidays.xml.in.h:3
-msgid "Czech Republic"
-msgstr "Ĉeĥio"
-
-#: ../data/holidays.xml.in.h:4
+#: ../data/holidays.xml.in.h:84
 msgid "Chile"
 msgstr "Ĉilio"
 
-#: ../data/holidays.xml.in.h:5
+#: ../data/holidays.xml.in.h:107
 msgid "China"
 msgstr "Ĉinio"
 
-#: ../data/holidays.xml.in.h:6
+#: ../data/holidays.xml.in.h:110
 msgid "Croatia"
 msgstr "Kroatio"
 
-#: ../data/holidays.xml.in.h:7
+#: ../data/holidays.xml.in.h:126
+msgid "Czech Republic"
+msgstr "Ĉeĥio"
+
+#: ../data/holidays.xml.in.h:141
 msgid "England"
 msgstr "Anglio"
 
-#: ../data/holidays.xml.in.h:8
+#: ../data/holidays.xml.in.h:171
 msgid "Finland"
 msgstr "Finnlando"
 
-#: ../data/holidays.xml.in.h:9
+#: ../data/holidays.xml.in.h:265
 msgid "France"
 msgstr "Francio"
 
-#: ../data/holidays.xml.in.h:10
+#: ../data/holidays.xml.in.h:301
 msgid "Germany"
 msgstr "Germanio"
 
-#: ../data/holidays.xml.in.h:11
+#: ../data/holidays.xml.in.h:318
 msgid "Japan"
 msgstr "Japanio"
 
-#: ../data/holidays.xml.in.h:12
+#: ../data/holidays.xml.in.h:341
+msgid "Jewish Holidays"
+msgstr "Judaj festotagoj"
+
+#: ../data/holidays.xml.in.h:342
+msgid "Purim"
+msgstr "Purimo"
+
+#: ../data/holidays.xml.in.h:343
+msgid "Passover"
+msgstr "Juda Pasko"
+
+#: ../data/holidays.xml.in.h:344
+msgid "2 of Passover"
+msgstr "2a de J. Pasko"
+
+#: ../data/holidays.xml.in.h:345
+msgid "3 of Passover"
+msgstr "3a de J. Pasko"
+
+#: ../data/holidays.xml.in.h:346
+msgid "4 of Passover"
+msgstr "4a de J. Pasko"
+
+#: ../data/holidays.xml.in.h:347
+msgid "5 of Passover"
+msgstr "5a de J. Pasko"
+
+#: ../data/holidays.xml.in.h:348
+msgid "6 of Passover"
+msgstr "6a de J. Pasko"
+
+#: ../data/holidays.xml.in.h:349
+msgid "7 of Passover"
+msgstr "7a de J. Pasko"
+
+#: ../data/holidays.xml.in.h:350
+msgid "Shavuot"
+msgstr "Sepsemajna festo"
+
+#: ../data/holidays.xml.in.h:351
+msgid "Rosh Ha'Shana"
+msgstr "Juda Jarfino"
+
+#: ../data/holidays.xml.in.h:352
+msgid "Rosh Ha'Shana 2"
+msgstr "Juda Jarfino 2"
+
+#: ../data/holidays.xml.in.h:353
+msgid "Yom Kippur"
+msgstr "Jom Kippur"
+
+#: ../data/holidays.xml.in.h:354
+msgid "Sukot"
+msgstr "Sukoto"
+
+#: ../data/holidays.xml.in.h:355
+msgid "2 of Sukot"
+msgstr "2a de Sukoto"
+
+#: ../data/holidays.xml.in.h:356
+msgid "3 of Sukot"
+msgstr "3a de Sukoto"
+
+#: ../data/holidays.xml.in.h:357
+msgid "4 of Sukot"
+msgstr "4a de Sukoto"
+
+#: ../data/holidays.xml.in.h:358
+msgid "5 of Sukot"
+msgstr "5a de Sukoto"
+
+#: ../data/holidays.xml.in.h:359
+msgid "6 of Sukot"
+msgstr "6a de Sukoto"
+
+#: ../data/holidays.xml.in.h:360
+msgid "7 of Sukot"
+msgstr "7a de Sukoto"
+
+#: ../data/holidays.xml.in.h:361
+msgid "Simhat Tora"
+msgstr "Simhat Tora"
+
+#: ../data/holidays.xml.in.h:362
+msgid "Hanuka"
+msgstr "Ĥanuka"
+
+#: ../data/holidays.xml.in.h:363
+msgid "2 of Hanuka"
+msgstr "2a de Ĥanuka"
+
+#: ../data/holidays.xml.in.h:364
+msgid "3 of Hanuka"
+msgstr "3a de Ĥanuka"
+
+#: ../data/holidays.xml.in.h:365
+msgid "4 of Hanuka"
+msgstr "4a de Ĥanuka"
+
+#: ../data/holidays.xml.in.h:366
+msgid "5 of Hanuka"
+msgstr "5a de Ĥanuka"
+
+#: ../data/holidays.xml.in.h:367
+msgid "6 of Hanuka"
+msgstr "6a de Ĥanuka"
+
+#: ../data/holidays.xml.in.h:368
+msgid "7 of Hanuka"
+msgstr "7a de Ĥanuka"
+
+#: ../data/holidays.xml.in.h:369
+msgid "8 of Hanuka"
+msgstr "8a de Ĥanuka"
+
+#: ../data/holidays.xml.in.h:371
+msgid "New Zealand"
+msgstr "Novzelando"
+
+#: ../data/holidays.xml.in.h:387
+msgid "Russia"
+msgstr ""
+
+#: ../data/holidays.xml.in.h:400
+msgid "Serbia"
+msgstr "Serbio"
+
+#: ../data/holidays.xml.in.h:415
+msgid "Serbia (Latin)"
+msgstr "Serbio (Latina)"
+
+#: ../data/holidays.xml.in.h:430
 msgid "Slovakia"
 msgstr "Slovakio"
 
 #. Make upper case of translated country so string search works later
-#: ../data/holidays.xml.in.h:13
+#: ../data/holidays.xml.in.h:447
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
 msgstr "Svedio"
 
-#: ../data/holidays.xml.in.h:14
-msgid "United States of America"
-msgstr "Usono"
-
-#: ../data/holidays.xml.in.h:15
-msgid "Jewish Holidays"
-msgstr "Judaj festotagoj"
-
-#: ../data/holidays.xml.in.h:16
-msgid "Purim"
-msgstr "Purimo"
-
-#: ../data/holidays.xml.in.h:17
-msgid "Passover"
-msgstr "Juda Pasko"
-
-#: ../data/holidays.xml.in.h:18
-msgid "2 of Passover"
-msgstr "2a de J. Pasko"
-
-#: ../data/holidays.xml.in.h:19
-msgid "3 of Passover"
-msgstr "3a de J. Pasko"
-
-#: ../data/holidays.xml.in.h:20
-msgid "4 of Passover"
-msgstr "4a de J. Pasko"
-
-#: ../data/holidays.xml.in.h:21
-msgid "5 of Passover"
-msgstr "5a de J. Pasko"
-
-#: ../data/holidays.xml.in.h:22
-msgid "6 of Passover"
-msgstr "6a de J. Pasko"
-
-#: ../data/holidays.xml.in.h:23
-msgid "7 of Passover"
-msgstr "7a de J. Pasko"
-
-#: ../data/holidays.xml.in.h:24
-msgid "Shavuot"
-msgstr "Sepsemajna festo"
-
-#: ../data/holidays.xml.in.h:25
-msgid "Rosh Ha'Shana"
-msgstr "Juda Jarfino"
-
-#: ../data/holidays.xml.in.h:26
-msgid "Rosh Ha'Shana 2"
-msgstr "Juda Jarfino 2"
-
-#: ../data/holidays.xml.in.h:27
-msgid "Yom Kippur"
-msgstr "Jom Kippur"
-
-#: ../data/holidays.xml.in.h:28
-msgid "Sukot"
-msgstr "Sukoto"
-
-#: ../data/holidays.xml.in.h:29
-msgid "2 of Sukot"
-msgstr "2a de Sukoto"
-
-#: ../data/holidays.xml.in.h:30
-msgid "3 of Sukot"
-msgstr "3a de Sukoto"
-
-#: ../data/holidays.xml.in.h:31
-msgid "4 of Sukot"
-msgstr "4a de Sukoto"
-
-#: ../data/holidays.xml.in.h:32
-msgid "5 of Sukot"
-msgstr "5a de Sukoto"
-
-#: ../data/holidays.xml.in.h:33
-msgid "6 of Sukot"
-msgstr "6a de Sukoto"
-
-#: ../data/holidays.xml.in.h:34
-msgid "7 of Sukot"
-msgstr "7a de Sukoto"
-
-#: ../data/holidays.xml.in.h:35
-msgid "Simhat Tora"
-msgstr "Simhat Tora"
-
-#: ../data/holidays.xml.in.h:36
-msgid "Hanuka"
-msgstr "Ĥanuka"
-
-#: ../data/holidays.xml.in.h:37
-msgid "2 of Hanuka"
-msgstr "2a de Ĥanuka"
-
-#: ../data/holidays.xml.in.h:38
-msgid "3 of Hanuka"
-msgstr "3a de Ĥanuka"
-
-#: ../data/holidays.xml.in.h:39
-msgid "4 of Hanuka"
-msgstr "4a de Ĥanuka"
-
-#: ../data/holidays.xml.in.h:40
-msgid "5 of Hanuka"
-msgstr "5a de Ĥanuka"
-
-#: ../data/holidays.xml.in.h:41
-msgid "6 of Hanuka"
-msgstr "6a de Ĥanuka"
-
-#: ../data/holidays.xml.in.h:42
-msgid "7 of Hanuka"
-msgstr "7a de Ĥanuka"
-
-#: ../data/holidays.xml.in.h:43
-msgid "8 of Hanuka"
-msgstr "8a de Ĥanuka"
-
-#: ../data/holidays.xml.in.h:44
-msgid "New Zealand"
-msgstr "Novzelando"
-
-#: ../data/holidays.xml.in.h:45
+#: ../data/holidays.xml.in.h:474
 msgid "Ukraine"
 msgstr "Ukrainio"
 
-#: ../data/holidays.xml.in.h:46
-msgid "Serbia"
-msgstr "Serbio"
-
-#: ../data/holidays.xml.in.h:47
-msgid "Serbia (Latin)"
-msgstr "Serbio (Latina)"
+#: ../data/holidays.xml.in.h:501
+msgid "United States of America"
+msgstr "Usono"
 
 #: ../data/tips.xml.in.h:1
 msgid ""
