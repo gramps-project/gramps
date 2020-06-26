@@ -97,195 +97,199 @@ msgstr "GeneWeb"
 msgid "GeneWeb source file"
 msgstr "Файл з кодом GeneWeb"
 
-#: ../data/holidays.xml.in.h:1
+#: ../data/holidays.xml.in.h:3
 msgid "Bulgaria"
 msgstr "Болгарія"
 
-#: ../data/holidays.xml.in.h:2
+#: ../data/holidays.xml.in.h:52
 msgid "Canada"
 msgstr "Канада"
 
-#: ../data/holidays.xml.in.h:3
-msgid "Czech Republic"
-msgstr "Чеська Республіка"
-
-#: ../data/holidays.xml.in.h:4
+#: ../data/holidays.xml.in.h:84
 msgid "Chile"
 msgstr "Чилі"
 
-#: ../data/holidays.xml.in.h:5
+#: ../data/holidays.xml.in.h:107
 msgid "China"
 msgstr "Китай"
 
-#: ../data/holidays.xml.in.h:6
+#: ../data/holidays.xml.in.h:110
 msgid "Croatia"
 msgstr "Хорватія"
 
-#: ../data/holidays.xml.in.h:7
+#: ../data/holidays.xml.in.h:126
+msgid "Czech Republic"
+msgstr "Чеська Республіка"
+
+#: ../data/holidays.xml.in.h:141
 msgid "England"
 msgstr "Англія"
 
-#: ../data/holidays.xml.in.h:8
+#: ../data/holidays.xml.in.h:171
 msgid "Finland"
 msgstr "Фінляндія"
 
-#: ../data/holidays.xml.in.h:9
+#: ../data/holidays.xml.in.h:265
 msgid "France"
 msgstr "Франція"
 
-#: ../data/holidays.xml.in.h:10
+#: ../data/holidays.xml.in.h:301
 msgid "Germany"
 msgstr "Німеччина"
 
-#: ../data/holidays.xml.in.h:11
+#: ../data/holidays.xml.in.h:318
 msgid "Japan"
 msgstr "Японія"
 
-#: ../data/holidays.xml.in.h:12
+#: ../data/holidays.xml.in.h:341
+msgid "Jewish Holidays"
+msgstr "Єврейські свята"
+
+#: ../data/holidays.xml.in.h:342
+msgid "Purim"
+msgstr "Пурім"
+
+#: ../data/holidays.xml.in.h:343
+msgid "Passover"
+msgstr "Песах"
+
+#: ../data/holidays.xml.in.h:344
+msgid "2 of Passover"
+msgstr "2 день Песаха"
+
+#: ../data/holidays.xml.in.h:345
+msgid "3 of Passover"
+msgstr "3 день Песаха"
+
+#: ../data/holidays.xml.in.h:346
+msgid "4 of Passover"
+msgstr "4 день Песаха"
+
+#: ../data/holidays.xml.in.h:347
+msgid "5 of Passover"
+msgstr "5 день Песаха"
+
+#: ../data/holidays.xml.in.h:348
+msgid "6 of Passover"
+msgstr "6 день Песаха"
+
+#: ../data/holidays.xml.in.h:349
+msgid "7 of Passover"
+msgstr "7 день Песаха"
+
+#: ../data/holidays.xml.in.h:350
+msgid "Shavuot"
+msgstr "Шаувот"
+
+#: ../data/holidays.xml.in.h:351
+msgid "Rosh Ha'Shana"
+msgstr "Рош Гашана"
+
+#: ../data/holidays.xml.in.h:352
+msgid "Rosh Ha'Shana 2"
+msgstr "Рош Гашана 2"
+
+#: ../data/holidays.xml.in.h:353
+msgid "Yom Kippur"
+msgstr "Йом-Кіпур"
+
+#: ../data/holidays.xml.in.h:354
+msgid "Sukot"
+msgstr "Суккот"
+
+#: ../data/holidays.xml.in.h:355
+msgid "2 of Sukot"
+msgstr "2 день Суккот"
+
+#: ../data/holidays.xml.in.h:356
+msgid "3 of Sukot"
+msgstr "3 день Суккот"
+
+#: ../data/holidays.xml.in.h:357
+msgid "4 of Sukot"
+msgstr "4 день Суккот"
+
+#: ../data/holidays.xml.in.h:358
+msgid "5 of Sukot"
+msgstr "5 день Суккот"
+
+#: ../data/holidays.xml.in.h:359
+msgid "6 of Sukot"
+msgstr "6 день Суккот"
+
+#: ../data/holidays.xml.in.h:360
+msgid "7 of Sukot"
+msgstr "7 день Суккот"
+
+#: ../data/holidays.xml.in.h:361
+msgid "Simhat Tora"
+msgstr "Сімхат Тора"
+
+#: ../data/holidays.xml.in.h:362
+msgid "Hanuka"
+msgstr "Ханука"
+
+#: ../data/holidays.xml.in.h:363
+msgid "2 of Hanuka"
+msgstr "2 день Хануки"
+
+#: ../data/holidays.xml.in.h:364
+msgid "3 of Hanuka"
+msgstr "3 день Хануки"
+
+#: ../data/holidays.xml.in.h:365
+msgid "4 of Hanuka"
+msgstr "4 день Хануки"
+
+#: ../data/holidays.xml.in.h:366
+msgid "5 of Hanuka"
+msgstr "5 день Хануки"
+
+#: ../data/holidays.xml.in.h:367
+msgid "6 of Hanuka"
+msgstr "6 день Хануки"
+
+#: ../data/holidays.xml.in.h:368
+msgid "7 of Hanuka"
+msgstr "7 день Хануки"
+
+#: ../data/holidays.xml.in.h:369
+msgid "8 of Hanuka"
+msgstr "8 день Хануки"
+
+#: ../data/holidays.xml.in.h:371
+msgid "New Zealand"
+msgstr "Нова Зеландія"
+
+#: ../data/holidays.xml.in.h:387
+msgid "Russia"
+msgstr "Росія"
+
+#: ../data/holidays.xml.in.h:400
+msgid "Serbia"
+msgstr "Сербія"
+
+#: ../data/holidays.xml.in.h:415
+msgid "Serbia (Latin)"
+msgstr "Сербія (латинь)"
+
+#: ../data/holidays.xml.in.h:430
 msgid "Slovakia"
 msgstr "Словаччина"
 
 #. Make upper case of translated country so string search works later
-#: ../data/holidays.xml.in.h:13
+#: ../data/holidays.xml.in.h:447
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
 msgstr "Швеція"
 
-#: ../data/holidays.xml.in.h:14
-msgid "United States of America"
-msgstr "Сполучені Штати Америки"
-
-#: ../data/holidays.xml.in.h:15
-msgid "Jewish Holidays"
-msgstr "Єврейські свята"
-
-#: ../data/holidays.xml.in.h:16
-msgid "Purim"
-msgstr "Пурім"
-
-#: ../data/holidays.xml.in.h:17
-msgid "Passover"
-msgstr "Песах"
-
-#: ../data/holidays.xml.in.h:18
-msgid "2 of Passover"
-msgstr "2 день Песаха"
-
-#: ../data/holidays.xml.in.h:19
-msgid "3 of Passover"
-msgstr "3 день Песаха"
-
-#: ../data/holidays.xml.in.h:20
-msgid "4 of Passover"
-msgstr "4 день Песаха"
-
-#: ../data/holidays.xml.in.h:21
-msgid "5 of Passover"
-msgstr "5 день Песаха"
-
-#: ../data/holidays.xml.in.h:22
-msgid "6 of Passover"
-msgstr "6 день Песаха"
-
-#: ../data/holidays.xml.in.h:23
-msgid "7 of Passover"
-msgstr "7 день Песаха"
-
-#: ../data/holidays.xml.in.h:24
-msgid "Shavuot"
-msgstr "Шаувот"
-
-#: ../data/holidays.xml.in.h:25
-msgid "Rosh Ha'Shana"
-msgstr "Рош Гашана"
-
-#: ../data/holidays.xml.in.h:26
-msgid "Rosh Ha'Shana 2"
-msgstr "Рош Гашана 2"
-
-#: ../data/holidays.xml.in.h:27
-msgid "Yom Kippur"
-msgstr "Йом-Кіпур"
-
-#: ../data/holidays.xml.in.h:28
-msgid "Sukot"
-msgstr "Суккот"
-
-#: ../data/holidays.xml.in.h:29
-msgid "2 of Sukot"
-msgstr "2 день Суккот"
-
-#: ../data/holidays.xml.in.h:30
-msgid "3 of Sukot"
-msgstr "3 день Суккот"
-
-#: ../data/holidays.xml.in.h:31
-msgid "4 of Sukot"
-msgstr "4 день Суккот"
-
-#: ../data/holidays.xml.in.h:32
-msgid "5 of Sukot"
-msgstr "5 день Суккот"
-
-#: ../data/holidays.xml.in.h:33
-msgid "6 of Sukot"
-msgstr "6 день Суккот"
-
-#: ../data/holidays.xml.in.h:34
-msgid "7 of Sukot"
-msgstr "7 день Суккот"
-
-#: ../data/holidays.xml.in.h:35
-msgid "Simhat Tora"
-msgstr "Сімхат Тора"
-
-#: ../data/holidays.xml.in.h:36
-msgid "Hanuka"
-msgstr "Ханука"
-
-#: ../data/holidays.xml.in.h:37
-msgid "2 of Hanuka"
-msgstr "2 день Хануки"
-
-#: ../data/holidays.xml.in.h:38
-msgid "3 of Hanuka"
-msgstr "3 день Хануки"
-
-#: ../data/holidays.xml.in.h:39
-msgid "4 of Hanuka"
-msgstr "4 день Хануки"
-
-#: ../data/holidays.xml.in.h:40
-msgid "5 of Hanuka"
-msgstr "5 день Хануки"
-
-#: ../data/holidays.xml.in.h:41
-msgid "6 of Hanuka"
-msgstr "6 день Хануки"
-
-#: ../data/holidays.xml.in.h:42
-msgid "7 of Hanuka"
-msgstr "7 день Хануки"
-
-#: ../data/holidays.xml.in.h:43
-msgid "8 of Hanuka"
-msgstr "8 день Хануки"
-
-#: ../data/holidays.xml.in.h:44
-msgid "New Zealand"
-msgstr "Нова Зеландія"
-
-#: ../data/holidays.xml.in.h:45
+#: ../data/holidays.xml.in.h:474
 msgid "Ukraine"
 msgstr "Україна"
 
-#: ../data/holidays.xml.in.h:46
-msgid "Serbia"
-msgstr "Сербія"
-
-#: ../data/holidays.xml.in.h:47
-msgid "Serbia (Latin)"
-msgstr "Сербія (латинь)"
+#: ../data/holidays.xml.in.h:501
+msgid "United States of America"
+msgstr "Сполучені Штати Америки"
 
 #: ../data/tips.xml.in.h:1
 msgid ""

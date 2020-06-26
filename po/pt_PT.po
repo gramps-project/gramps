@@ -256,6 +256,10 @@ msgstr "8 de Hanuka"
 msgid "New Zealand"
 msgstr "Nova Zelândia"
 
+#: ../data/holidays.xml.in.h:387
+msgid "Russia"
+msgstr "Russia"
+
 #: ../data/holidays.xml.in.h:45
 msgid "Ukraine"
 msgstr "Ucrânia"
