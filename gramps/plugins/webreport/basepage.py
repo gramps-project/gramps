@@ -673,7 +673,7 @@ class BasePage:
                                                int(rgba.green * 255),
                                                int(rgba.blue * 255))
                     tags_text += ("<span style='background-color:%s;'>"
-                                  "%s</span>" % (color, tag.get_name()))
+                                  "%s</span>" % (color, self._(tag.get_name())))
         return tags_text
 
     def dump_notes(self, notelist, parent=None):
@@ -2857,7 +2857,7 @@ class BasePage:
         tags = self.show_tags(place)
         if tags and self.report.inc_tags:
             trow = Html("tr") + (
-                Html("td", self._("Tags:"),
+                Html("td", self._("Tags"),
                      class_="ColumnAttribute", inline=True),
                 Html("td", tags,
                      class_="ColumnValue", inline=True)
