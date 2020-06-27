@@ -365,7 +365,7 @@ class FamilyPages(BasePage):
             tags = self.show_tags(family)
             if tags and self.report.inc_tags:
                 trow = Html("table", class_='tags') + (Html("tr") + (
-                    Html("td", self._("Tags:"),
+                    Html("td", self._("Tags") + self._(":"),
                          class_="ColumnAttribute", inline=True),
                     Html("td", tags,
                          class_="ColumnValue", inline=True),

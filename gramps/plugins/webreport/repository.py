@@ -273,7 +273,7 @@ class RepositoryPages(BasePage):
             tags = self.show_tags(repo)
             if tags and self.report.inc_tags:
                 trow = Html("tr") + (
-                    Html("td", self._("Tags:"),
+                    Html("td", self._("Tags"),
                          class_="ColumnAttribute", inline=True),
                     Html("td", tags,
                          class_="ColumnValue", inline=True)
