@@ -26,7 +26,6 @@ The following three packages with GObject Introspection bindings (the gi package
 * **pangocairo** - Allows you to use Pango with Cairo http://www.pango.org/
 
 * **librsvg2** - (SVG icon view) a library to render SVG files using cairo. http://live.gnome.org/LibRsvg
-* **xdg-utils** - Desktop integration utilities from freedesktop.org
 * **bsddb3** - Python bindings for Oracle Berkeley DB https://pypi.python.org/pypi/bsddb3/
 * **sqlite3** - Python bindings for SQLite Database library
 

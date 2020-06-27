@@ -29,7 +29,6 @@ Utility functions that depend on GUI components or for GUI components
 #-------------------------------------------------------------------------
 import os
 import sys
-import subprocess
 import threading
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
@@ -45,6 +44,7 @@ gi.require_version('PangoCairo', '1.0')
 from gi.repository import PangoCairo
 from gi.repository import GLib
 from gi.repository import Gdk
+from gi.repository import Gio
 
 #-------------------------------------------------------------------------
 #
@@ -368,7 +368,7 @@ class SystemFonts:
 #-------------------------------------------------------------------------
 def display_error_dialog (index, errorstrings, uistate=None):
     """
-    Display a message box for errors resulting from xdg-open/open
+    Display a message box for errors resulting from open
     """
     from .dialog import ErrorDialog
     error = _("The external program failed to launch or experienced an error")
@@ -384,28 +384,6 @@ def display_error_dialog (index, errorstrings, uistate=None):
     ErrorDialog(_("Error from external program"),
                 error, parent=uistate.window)
 
-def poll_external (args):
-    """
-    Check the for completion of a task launched with
-    subprocess.Popen().  This function is intended to be passed to
-    GLib.timeout_add_seconds, so the arguments are in a tuple because that
-    function takes only a single data argument.
-
-    :param proc: the process, returned from subprocess.Popen()
-    :param errorstrings: a dict of possible response values and the
-                         corresponding messages to display.
-    :return: bool returned to timeout_add_seconds: should this function be
-             called again?
-    """
-    (proc, errorstrings, uistate) = args
-    resp = proc.poll()
-    if resp is None:
-        return True
-
-    if resp != 0:
-        display_error_dialog(resp, errorstrings, uistate)
-    return False
-
 def open_file_with_default_application(path, uistate):
     """
     Launch a program to open an arbitrary file. The file will be opened using
@@ -417,8 +395,6 @@ def open_file_with_default_application(path, uistate):
     :type file_path: string
     :return: nothing
     """
-
-    errstrings = None
 
     norm_path = os.path.normpath(path)
     if not os.path.exists(norm_path):
@@ -435,20 +411,12 @@ def open_file_with_default_application(path, uistate):
 
         return
 
-    if mac():
-        utility = '/usr/bin/open'
-    else:
-        utility = 'xdg-open'
-        errstrings = {1:'Error in command line syntax.',
-                      2:'One of the files passed on the command line did not exist.',
-                      3:' A required tool could not be found.',
-                      4:'The action failed.'}
-
-    proc = subprocess.Popen([utility, norm_path], stderr=subprocess.STDOUT)
-
-    from gi.repository import GLib
-    GLib.timeout_add_seconds(1, poll_external, (proc, errstrings, uistate))
-    return
+    if not norm_path.startswith('file://'):
+        norm_path = 'file://' + norm_path
+    try:
+        Gio.AppInfo.launch_default_for_uri(norm_path)
+    except GLib.Error as error:
+        display_error_dialog(0, str(error), uistate)
 
 def process_pending_events(max_count=20):
     """
