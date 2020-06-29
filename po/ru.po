@@ -465,10 +465,10 @@ msgid ""
 "Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
 "well as all common ancestors are reported."
 msgstr ""
-"<b>Определение отношений</b><br/>Этот инструмент из категории <b>Инструменты "
-"&gt; Вспомогательные</b> позволяет проверить, состоит ли данное лицо в "
-"родственных отношениях с вами (по крови, не по женитьбе). Результатом "
-"является точное название отношения и имя общего предка."
+"<b>Определение отношений</b><br/>Для проверки двух людей в базе данных на "
+"наличие родственных связей (по крови, не по женитьбе) попробуйте инструмент "
+"<b>Инструменты-Вспомогательные инструменты-Калькулятор родственных отношений</b>."
+" В результате будет сообщено о точном родстве и обо всех общих предках."
 
 #: ../data/tips.xml.in.h:14
 msgid ""
@@ -728,7 +728,7 @@ msgstr ""
 "Gramps настолько производительна, что позволяет управлять данными, "
 "содержащими информацию о сотнях тысяч людей.<br/>"
 "<i>Примечание переводчика: в названии присутствует игра слов, ведь gramps "
-"также означает - дедушки, то есть - предки.</i>"
+"также означает - дедушки, то есть - предки</i>."
 
 #: ../data/tips.xml.in.h:33
 msgid ""
@@ -3137,7 +3137,7 @@ msgstr ""
 "сопутствующие ей версии вспомогательных программных пакетов; экспортируйте "
 "базу данных в XML; закройте базу данных; затем снова запустите текущую "
 "версию Gramps и импортируйте XML в пустое семейное древо. Также можно "
-"попытаться запустить инструменты по восстановлению СУБД Беркли."
+"попытаться запустить инструменты по восстановлению базы данных Беркли."
 
 #: ../gramps/gen/db/exceptions.py:252
 #, python-format
@@ -3173,7 +3173,7 @@ msgstr ""
 "Семейного древа, если будет прервано или окажется неудачным.\n"
 "\n"
 "Если Вы ещё не сделали резервной копии Вашего Семейного древа, то запустите "
-"%(bold_start)sстарую%(bold_end)s версию Gramps"
+"%(bold_start)sстарую%(bold_end)s версию Gramps "
 "и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s древа из "
 "неё."
 
@@ -9428,13 +9428,13 @@ msgstr "Равномерно растянуть"
 #: ../gramps/gen/plug/docgen/treedoc.py:86
 #: ../gramps/gui/glade/styleeditor.glade:1359
 msgid "Top"
-msgstr "Верх"
+msgstr "Вверху"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:96
 #: ../gramps/gen/plug/docgen/treedoc.py:87
 #: ../gramps/gui/glade/styleeditor.glade:1374
 msgid "Bottom"
-msgstr "Низ"
+msgstr "Внизу"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:98
 msgid "Straight"
@@ -9758,7 +9758,7 @@ msgstr "Вверх (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Right (→)"
-msgstr "Вправо"
+msgstr "Вправо (→)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Left (←)"
@@ -11181,15 +11181,15 @@ msgstr "Звезда и полумесяц"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
-msgstr ""
+msgstr "Западный Сирийский крест"
 
 #: ../gramps/gen/utils/symbols.py:116
 msgid "East Syriac cross"
-msgstr ""
+msgstr "Восточный Сирийский крест"
 
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Тяжелый греческий крест"
 
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
@@ -11197,7 +11197,7 @@ msgstr "Латинский крест"
 
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Затенённый белый Латинский крест"
 
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
@@ -16801,13 +16801,13 @@ msgstr ""
 #: ../gramps/gui/glade/mergedata.glade:732
 #: ../gramps/gui/glade/mergesource.glade:186
 msgid "Source 1"
-msgstr "Источник №1"
+msgstr "Источник 1"
 
 #: ../gramps/gui/glade/mergecitation.glade:200
 #: ../gramps/gui/glade/mergedata.glade:747
 #: ../gramps/gui/glade/mergesource.glade:200
 msgid "Source 2"
-msgstr "Источник №2"
+msgstr "Источник 2"
 
 #: ../gramps/gui/glade/mergecitation.glade:311
 #: ../gramps/gui/glade/mergecitation.glade:327
@@ -16893,11 +16893,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergeevent.glade:186
 msgid "Event 1"
-msgstr "Событие №1"
+msgstr "Событие 1"
 
 #: ../gramps/gui/glade/mergeevent.glade:200
 msgid "Event 2"
-msgstr "Событие №2"
+msgstr "Событие 2"
 
 #: ../gramps/gui/glade/mergeevent.glade:512
 msgid ""
@@ -16930,11 +16930,11 @@ msgstr "Родство:"
 
 #: ../gramps/gui/glade/mergefamily.glade:417
 msgid "Family 1"
-msgstr "Семья №1"
+msgstr "Семья 1"
 
 #: ../gramps/gui/glade/mergefamily.glade:431
 msgid "Family 2"
-msgstr "Семья №2"
+msgstr "Семья 2"
 
 #: ../gramps/gui/glade/mergefamily.glade:458
 msgid ""
@@ -16954,11 +16954,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergemedia.glade:186
 msgid "Object 1"
-msgstr "Объект №1"
+msgstr "Объект 1"
 
 #: ../gramps/gui/glade/mergemedia.glade:200
 msgid "Object 2"
-msgstr "Объект №2"
+msgstr "Объект 2"
 
 #: ../gramps/gui/glade/mergemedia.glade:455
 msgid "Attributes, sources, notes and tags of both objects will be combined."
@@ -16975,11 +16975,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergenote.glade:186
 msgid "Note 1"
-msgstr "Заметка №1"
+msgstr "Заметка 1"
 
 #: ../gramps/gui/glade/mergenote.glade:200
 msgid "Note 2"
-msgstr "Заметка №2"
+msgstr "Заметка 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
 #: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1069
@@ -16997,12 +16997,12 @@ msgstr ""
 #: ../gramps/gui/glade/mergeperson.glade:196
 #: ../gramps/plugins/textreport/recordsreport.py:268
 msgid "Person 1"
-msgstr "Лицо №1"
+msgstr "Лицо 1"
 
 #: ../gramps/gui/glade/mergeperson.glade:210
 #: ../gramps/plugins/textreport/recordsreport.py:266
 msgid "Person 2"
-msgstr "Лицо №2"
+msgstr "Лицо 2"
 
 #: ../gramps/gui/glade/mergeperson.glade:255
 #: ../gramps/gui/glade/mergeperson.glade:271
@@ -17047,11 +17047,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergerepository.glade:186
 msgid "Repository 1"
-msgstr "Хранилище №1"
+msgstr "Хранилище 1"
 
 #: ../gramps/gui/glade/mergerepository.glade:200
 msgid "Repository 2"
-msgstr "Хранилище №2"
+msgstr "Хранилище 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:398
 msgid "Addresses, urls and notes of both repositories will be combined."
@@ -25572,7 +25572,6 @@ msgid "(-cause)"
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1610
-#, fuzzy
 msgid "Male surname"
 msgstr "Мужская фамилия"
 
@@ -25584,7 +25583,6 @@ msgstr "Изменить имя мужчины на,\n"
 "например, имя его жены."
 
 #: ../gramps/plugins/importer/importprogen.glade:1629
-#, fuzzy
 msgid "Female surname"
 msgstr "Женская фамилия"
 
@@ -30207,7 +30205,6 @@ msgstr "Редактировать..."
 #: ../gramps/plugins/view/noteview.py:279
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
-#, fuzzy
 msgid "Forward"
 msgstr "_Вперёд"
 
@@ -30389,7 +30386,6 @@ msgid "Field '%(fldname)s' not found"
 msgstr "Поле '%(fldname)s' не найдено"
 
 #: ../gramps/plugins/lib/libprogen.py:491
-#, fuzzy, python-format
 msgid "Not a (right) DEF file: %(dname)s"
 msgstr "Отсутствует (правильный) файл DEF: %(dname)s"
 
@@ -34591,12 +34587,12 @@ msgstr "Выберите лицо для определения родствен
 
 #: ../gramps/plugins/tool/relcalc.py:67 ../gramps/plugins/tool/tools.gpr.py:331
 msgid "Relationship Calculator"
-msgstr "Определение родственных отношений"
+msgstr "Калькулятор родственных отношений"
 
 #: ../gramps/plugins/tool/relcalc.py:110
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
-msgstr "Счетчик родственных отношений: %(person_name)s"
+msgstr "Калькулятор родственных отношений: %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:115
 #, python-format
@@ -34605,12 +34601,12 @@ msgstr "Отношение к %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:175
 msgid "Relationship Calculator tool"
-msgstr "Инструмент подсчёта родственных отношений"
+msgstr "Инструмент Калькулятор родственных отношений"
 
 #: ../gramps/plugins/tool/relcalc.py:207
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
-msgstr "%(person)s и %(active_person)s - не родственники."
+msgstr "%(person)s и %(active_person)s - не кровные родственники."
 
 #: ../gramps/plugins/tool/relcalc.py:226
 #, python-format
@@ -36803,7 +36799,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:128
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "Определяет число предков выделенного лица"
+msgstr "Вид показывает родословную предка выделенного лица"
 
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/view/view.gpr.py:144
@@ -36814,7 +36810,7 @@ msgstr "Графики"
 
 #: ../gramps/plugins/view/view.gpr.py:145
 msgid "A view showing parents through a fanchart"
-msgstr "Показывает родителей в виде веерной карты"
+msgstr "Вид показывает родителей в виде веерной карты"
 
 #: ../gramps/plugins/view/view.gpr.py:160
 msgid "Showing descendants through a fanchart"
@@ -38326,13 +38322,15 @@ msgstr "Создавать ли ссылки на события на повес
 
 #: ../gramps/plugins/webreport/webcal.py:1901
 msgid "Show data only after year"
-msgstr ""
+msgstr "Показывать данные только через год"
 
 #: ../gramps/plugins/webreport/webcal.py:1904
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
-msgstr ""
+msgstr "Показывать данные только после этого года. По умолчанию "
+"текущий год равен параметру 'Максимальное количество лет жизни', который "
+"определён на вкладке настроек 'Даты'."
 
 #: ../gramps/plugins/webreport/webcal.py:1912
 msgid "Link prefix"
