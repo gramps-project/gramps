@@ -1553,7 +1553,7 @@ class GedcomWriter(UpdateCallback):
         @type addr: [a super-type of] LocationBase
         """
         if addr.get_street() or addr.get_locality() or addr.get_city() or \
-           addr.get_state() or addr.get_postal_code or addr.get_country():
+           addr.get_state() or addr.get_postal_code() or addr.get_country():
             self._writeln(level, 'ADDR', addr.get_street())
             if addr.get_locality():
                 self._writeln(level + 1, 'CONT', addr.get_locality())
