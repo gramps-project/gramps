@@ -122,7 +122,10 @@ class Locations(Gramplet, DbGUIElement):
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
-                self.display_place(active, None, [active_handle], DateRange())
+                visited = [active_handle]
+                self.display_place(active, None, visited, DateRange())
+                self.callman.register_handles({"place": visited})
+
             else:
                 self.set_has_data(False)
         else:
@@ -191,12 +194,11 @@ class EnclosedBy(Locations):
         """
         Display the location hierarchy for the active place.
         """
-        self.callman.register_obj(place)
         for placeref in place.get_placeref_list():
             if placeref.ref in visited:
                 continue
 
-            dr2 = drange.intersect(placeref.date)
+            dr2 = drange.intersect(placeref.get_date_object())
             if dr2.is_empty():
                 continue
 
@@ -231,7 +233,6 @@ class Encloses(Locations):
         """
         Display the location hierarchy for the active place.
         """
-        self.callman.register_obj(place)
         for link in self.dbstate.db.find_backlink_handles(
             place.handle, include_classes=["Place"]
         ):
@@ -247,6 +248,7 @@ class Encloses(Locations):
                         continue
 
                     self.add_place(placeref, child_place, node, visited, dr2)
+                    self.callman.register_handles({"place": [child_place.handle]})
 
         self.set_has_data(self.model.count > 0)
         self.model.tree.expand_all()
