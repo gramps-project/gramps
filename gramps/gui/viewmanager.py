@@ -958,8 +958,7 @@ class ViewManager(CLIManager):
                 self.dbstate.db.close(user=self.user)
             (filename, title) = value
             self.db_loader.read_file(filename)
-            if self.dbstate.db.is_open():
-                self._post_load_newdb(filename, 'x-directory/normal', title)
+            self._post_load_newdb(filename, 'x-directory/normal', title)
         else:
             if dialog.after_change != "":
                 # We change the title of the main window.
@@ -1009,11 +1008,16 @@ class ViewManager(CLIManager):
         if title:
             name = title
 
-        rw = not self.dbstate.db.readonly
-        if rw:
-            msg = "%s - Gramps" % name
+        isopen = self.dbstate.is_open()
+        if not isopen:
+            rw = False
+            msg = "Gramps"
         else:
-            msg = "%s (%s) - Gramps" % (name, _('Read Only'))
+            rw = not self.dbstate.db.readonly
+            if rw:
+                msg = "%s - Gramps" % name
+            else:
+                msg = "%s (%s) - Gramps" % (name, _('Read Only'))
         self.uistate.window.set_title(msg)
 
         if(bool(config.get('behavior.runcheck')) and QuestionDialog2(
@@ -1032,7 +1036,7 @@ class ViewManager(CLIManager):
         config.set('behavior.runcheck', False)
         self.__change_page(self.notebook.get_current_page())
         self.uimanager.set_actions_visible(self.actiongroup, rw)
-        self.uimanager.set_actions_visible(self.readonlygroup, True)
+        self.uimanager.set_actions_visible(self.readonlygroup, isopen)
         self.uimanager.set_actions_visible(self.undoactions, rw)
         self.uimanager.set_actions_visible(self.redoactions, rw)
 
