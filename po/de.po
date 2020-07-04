@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2020-07-01 20:00+0200\n"
+"PO-Revision-Date: 2020-07-04 21:21+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -30,7 +30,6 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-""
 "Gramps ist ein Genealogieprogramm, das sowohl intuitiv für Amateure als auch "
 "ein vollständiges Werkzeug für professionelle Genealogen ist."
 
@@ -12490,7 +12489,7 @@ msgstr "Was du sehen wirst"
 
 #: ../gramps/gui/dbloader.py:120 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
-msgstr "Warnung: Bearbeitungschronik zurück setzen."
+msgstr "Bearbeitungschronik zurücksetzen Warnung"
 
 #: ../gramps/gui/dbloader.py:121
 msgid ""
