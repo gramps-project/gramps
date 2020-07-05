@@ -945,7 +945,7 @@ class AddDateInformationWorker(threading.Thread):
 class AddDateInformation(BatchOp):
     title = _('Add date information')
     description = _("This tool enables the user to add the date information "
-                    "to media. If you path to the file or the filename "
+                    "to media. If the path of the file or the filename "
                     "includes the year/date information, then this tool "
                     "can parse it and set the database accordingly. "
                     "If an exif tag of a photo is available then this "
