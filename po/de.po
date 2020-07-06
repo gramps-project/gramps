@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2020-07-04 21:21+0200\n"
+"PO-Revision-Date: 2020-07-07 00:02+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -19783,7 +19783,7 @@ msgstr "Datei:"
 
 #: ../gramps/gui/viewmanager.py:1716
 msgid "Media:"
-msgstr "Medium:"
+msgstr "Medien:"
 
 #: ../gramps/gui/viewmanager.py:1723
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
