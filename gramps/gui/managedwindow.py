@@ -633,6 +633,17 @@ class ManagedWindow:
         if self.horiz_position_key is not None:
             horiz_position = config.get(self.horiz_position_key)
             vert_position = config.get(self.vert_position_key)
+            # make sure some of left side shows on screen
+            # for part time multi monitor setups
+            screen = Gtk.Window().get_screen()
+            s_width = screen.get_width()
+            s_height = screen.get_height()
+            if horiz_position > s_width - 50 or vert_position > s_height - 50:
+                (p_width, p_height) = self.parent_window.get_size()
+                (p_horiz, p_vert) = self.parent_window.get_position()
+                (w_width, w_height) = self.window.get_size()
+                horiz_position = p_horiz + ((p_width - w_width) // 2)
+                vert_position = p_vert + ((p_height - w_height) // 2)
             self.window.move(horiz_position, vert_position)
 
     def _save_position(self, save_config=True):
