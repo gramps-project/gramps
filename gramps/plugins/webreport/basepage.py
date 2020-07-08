@@ -2543,6 +2543,7 @@ class BasePage: # pylint: disable=C1001
                 (self._("State/ Province"),
                  mlocation.get(PlaceType.STATE, '')),
                 (self._("Postal Code"), place.get_code()),
+                (self._("Province"), mlocation.get(PlaceType.PROVINCE, '')),
                 (self._("Country"), mlocation.get(PlaceType.COUNTRY, ''))]:
             if data:
                 trow = Html("tr") + (
