@@ -2393,9 +2393,6 @@ class BasePage: # pylint: disable=C1001
             # not necessarily mean that a page has been generated
             (link, name, gid) = result
 
-        if name_style == _NAME_STYLE_FIRST and person:
-            name = _get_short_name(person.get_gender(),
-                                   person.get_primary_name())
         name = html_escape(name)
         # construct the result
         if not self.noid and gid != "":
