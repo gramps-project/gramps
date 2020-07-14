@@ -89,199 +89,203 @@ msgstr "GeneWeb"
 msgid "GeneWeb source file"
 msgstr "Archivos GeneWeb"
 
-#: ../data/holidays.xml.in.h:1
+#: ../data/holidays.xml.in.h:3
 msgid "Bulgaria"
 msgstr "Bulgaria"
 
-#: ../data/holidays.xml.in.h:2
+#: ../data/holidays.xml.in.h:52
 msgid "Canada"
 msgstr "Canadá"
 
-#: ../data/holidays.xml.in.h:3
-msgid "Czech Republic"
-msgstr "República checa"
-
-#: ../data/holidays.xml.in.h:4
+#: ../data/holidays.xml.in.h:84
 msgid "Chile"
 msgstr "Chile"
 
-#: ../data/holidays.xml.in.h:5
+#: ../data/holidays.xml.in.h:107
 msgid "China"
 msgstr "China"
 
-#: ../data/holidays.xml.in.h:6
+#: ../data/holidays.xml.in.h:110
 msgid "Croatia"
 msgstr "Croacia"
 
-#: ../data/holidays.xml.in.h:7
+#: ../data/holidays.xml.in.h:126
+msgid "Czech Republic"
+msgstr "República checa"
+
+#: ../data/holidays.xml.in.h:141
 msgid "England"
 msgstr "Inglaterra"
 
-#: ../data/holidays.xml.in.h:8
+#: ../data/holidays.xml.in.h:171
 msgid "Finland"
 msgstr "Finlandia"
 
-#: ../data/holidays.xml.in.h:9
+#: ../data/holidays.xml.in.h:265
 msgid "France"
 msgstr "Francia"
 
-#: ../data/holidays.xml.in.h:10
+#: ../data/holidays.xml.in.h:301
 msgid "Germany"
 msgstr "Alemania"
 
-#: ../data/holidays.xml.in.h:11
+#: ../data/holidays.xml.in.h:318
 msgid "Japan"
 msgstr "Japón"
 
-#: ../data/holidays.xml.in.h:12
-#, fuzzy
-msgid "Slovakia"
-msgstr "Eslovaco"
-
-#. Make upper case of translaed country so string search works later
-#: ../data/holidays.xml.in.h:13
-#: ../gramps/plugins/mapservices/eniroswedenmap.py:47
-msgid "Sweden"
-msgstr "Suecia"
-
-#: ../data/holidays.xml.in.h:14
-msgid "United States of America"
-msgstr "Estados Unidos de América"
-
-#: ../data/holidays.xml.in.h:15
+#: ../data/holidays.xml.in.h:341
 msgid "Jewish Holidays"
 msgstr "Festividades judías"
 
-#: ../data/holidays.xml.in.h:16
+#: ../data/holidays.xml.in.h:342
 msgid "Purim"
 msgstr "Purim"
 
-#: ../data/holidays.xml.in.h:17
+#: ../data/holidays.xml.in.h:343
 msgid "Passover"
 msgstr "Pésaj"
 
-#: ../data/holidays.xml.in.h:18
+#: ../data/holidays.xml.in.h:344
 msgid "2 of Passover"
 msgstr "2 de Pésaj"
 
-#: ../data/holidays.xml.in.h:19
+#: ../data/holidays.xml.in.h:345
 msgid "3 of Passover"
 msgstr "3 de Pésaj"
 
-#: ../data/holidays.xml.in.h:20
+#: ../data/holidays.xml.in.h:346
 msgid "4 of Passover"
 msgstr "4 de Pésaj"
 
-#: ../data/holidays.xml.in.h:21
+#: ../data/holidays.xml.in.h:347
 msgid "5 of Passover"
 msgstr "5 de Pésaj"
 
-#: ../data/holidays.xml.in.h:22
+#: ../data/holidays.xml.in.h:348
 msgid "6 of Passover"
 msgstr "6 de Pésaj"
 
-#: ../data/holidays.xml.in.h:23
+#: ../data/holidays.xml.in.h:349
 msgid "7 of Passover"
 msgstr "7 de Pésaj"
 
-#: ../data/holidays.xml.in.h:24
+#: ../data/holidays.xml.in.h:350
 msgid "Shavuot"
 msgstr "Shavuot"
 
-#: ../data/holidays.xml.in.h:25
+#: ../data/holidays.xml.in.h:351
 msgid "Rosh Ha'Shana"
 msgstr "Rosh Hashaná"
 
-#: ../data/holidays.xml.in.h:26
+#: ../data/holidays.xml.in.h:352
 msgid "Rosh Ha'Shana 2"
 msgstr "Rosh Hashaná 2"
 
-#: ../data/holidays.xml.in.h:27
+#: ../data/holidays.xml.in.h:353
 msgid "Yom Kippur"
 msgstr "Yom Kipur"
 
-#: ../data/holidays.xml.in.h:28
+#: ../data/holidays.xml.in.h:354
 msgid "Sukot"
 msgstr "Sucot"
 
-#: ../data/holidays.xml.in.h:29
+#: ../data/holidays.xml.in.h:355
 msgid "2 of Sukot"
 msgstr "2 de Sucot"
 
-#: ../data/holidays.xml.in.h:30
+#: ../data/holidays.xml.in.h:356
 msgid "3 of Sukot"
 msgstr "3 de Sucot"
 
-#: ../data/holidays.xml.in.h:31
+#: ../data/holidays.xml.in.h:357
 msgid "4 of Sukot"
 msgstr "4 de Sucot"
 
-#: ../data/holidays.xml.in.h:32
+#: ../data/holidays.xml.in.h:358
 msgid "5 of Sukot"
 msgstr "5 de Sucot"
 
-#: ../data/holidays.xml.in.h:33
+#: ../data/holidays.xml.in.h:359
 msgid "6 of Sukot"
 msgstr "6 de Sucot"
 
-#: ../data/holidays.xml.in.h:34
+#: ../data/holidays.xml.in.h:360
 msgid "7 of Sukot"
 msgstr "7 de Sucot"
 
-#: ../data/holidays.xml.in.h:35
+#: ../data/holidays.xml.in.h:361
 msgid "Simhat Tora"
 msgstr "Simjat Torá"
 
-#: ../data/holidays.xml.in.h:36
+#: ../data/holidays.xml.in.h:362
 msgid "Hanuka"
 msgstr "Janucá"
 
-#: ../data/holidays.xml.in.h:37
+#: ../data/holidays.xml.in.h:363
 msgid "2 of Hanuka"
 msgstr "2 de Janucá"
 
-#: ../data/holidays.xml.in.h:38
+#: ../data/holidays.xml.in.h:364
 msgid "3 of Hanuka"
 msgstr "3 de Janucá"
 
-#: ../data/holidays.xml.in.h:39
+#: ../data/holidays.xml.in.h:365
 msgid "4 of Hanuka"
 msgstr "4 de Janucá"
 
-#: ../data/holidays.xml.in.h:40
+#: ../data/holidays.xml.in.h:366
 msgid "5 of Hanuka"
 msgstr "5 de Janucá"
 
-#: ../data/holidays.xml.in.h:41
+#: ../data/holidays.xml.in.h:367
 msgid "6 of Hanuka"
 msgstr "6 de Janucá"
 
-#: ../data/holidays.xml.in.h:42
+#: ../data/holidays.xml.in.h:368
 msgid "7 of Hanuka"
 msgstr "7 de Janucá"
 
-#: ../data/holidays.xml.in.h:43
+#: ../data/holidays.xml.in.h:369
 msgid "8 of Hanuka"
 msgstr "8 de Janucá"
 
-#: ../data/holidays.xml.in.h:44
+#: ../data/holidays.xml.in.h:371
 msgid "New Zealand"
 msgstr "Nueva Zelanda"
 
-#: ../data/holidays.xml.in.h:45
-#, fuzzy
-msgid "Ukraine"
-msgstr "Ucrania"
+#: ../data/holidays.xml.in.h:387
+msgid "Russia"
+msgstr ""
 
-#: ../data/holidays.xml.in.h:46
+#: ../data/holidays.xml.in.h:400
 #, fuzzy
 msgid "Serbia"
 msgstr "Serbio"
 
-#: ../data/holidays.xml.in.h:47
+#: ../data/holidays.xml.in.h:415
 #, fuzzy
 msgid "Serbia (Latin)"
 msgstr "Serbio"
+
+#: ../data/holidays.xml.in.h:430
+#, fuzzy
+msgid "Slovakia"
+msgstr "Eslovaco"
+
+#. Make upper case of translated country so string search works later
+#: ../data/holidays.xml.in.h:447
+#: ../gramps/plugins/mapservices/eniroswedenmap.py:47
+msgid "Sweden"
+msgstr "Suecia"
+
+#: ../data/holidays.xml.in.h:474
+#, fuzzy
+msgid "Ukraine"
+msgstr "Ucrania"
+
+#: ../data/holidays.xml.in.h:501
+msgid "United States of America"
+msgstr "Estados Unidos de América"
 
 #: ../data/tips.xml.in.h:1
 msgid ""

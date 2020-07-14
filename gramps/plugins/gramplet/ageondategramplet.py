@@ -68,11 +68,11 @@ class AgeOnDateGramplet(Gramplet):
         button = Gtk.Button(label=_("Run"))
         button.connect("clicked", self.run)
         ##self.filter =
+        vbox.pack_start(hbox, False, True, 0)
+        vbox.pack_start(button, False, True, 0)
         hbox.pack_start(label, False, True, 0)
         hbox.pack_start(self.entry, True, True, 0)
         vbox.pack_start(description, True, True, 0)
-        vbox.pack_start(hbox, False, True, 0)
-        vbox.pack_start(button, False, True, 0)
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(vbox)
         vbox.show_all()

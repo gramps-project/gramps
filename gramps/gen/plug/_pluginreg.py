@@ -1135,7 +1135,7 @@ class PluginRegister:
 
     def __init__(self):
         """ This function should only be run once by get_instance() """
-        if PluginRegister.__instance is not 1:
+        if PluginRegister.__instance != 1:
             raise Exception("This class is a singleton. "
                             "Use the get_instance() method")
         self.stable_only = True

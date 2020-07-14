@@ -32,6 +32,9 @@ We do not check all dependencies of Gramps, see README for a list of
 all required and optional dependencies. Missing dependencies will
 result in runtime errors.
 
+To install all needed dependences you can use (in Ubuntu):
+   sudo apt-get build-dep gramps
+
 To build and install, whether from a tarball or git repo:
    python3 setup.py build
    sudo python3 setup.py install
@@ -48,7 +51,7 @@ things like MIME type and desktop entries.
 
 See below for ways to invoke Gramps.
 
-Typical install directories in linux (ubuntu) are:
+Typical install directories in linux (Ubuntu) are:
   * /usr/local/lib/python3.4/dist-packages/gramps/  : the gramps python module
   * /usr/local/share/mime-info    : mime info so gramps opens files automatically
   * /usr/local/share/icons/gnome  : our icons

@@ -530,6 +530,8 @@ class EditRule(ManagedWindow):
                 # filters of another namespace, name may be same as caller!
                 elif v == _('Person filter name:'):
                     t = MyFilters(self.filterdb.get_filters('Person'))
+                elif v == _('Family filter name:'):
+                    t = MyFilters(self.filterdb.get_filters('Family'))
                 elif v == _('Event filter name:'):
                     t = MyFilters(self.filterdb.get_filters('Event'))
                 elif v == _('Source filter name:'):
