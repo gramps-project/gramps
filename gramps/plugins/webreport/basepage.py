@@ -119,6 +119,7 @@ class BasePage:
         self.bibli = Bibliography()
         self.the_lang = the_lang
         self.the_title = the_title
+        self.not_holiday = True
 
         self.page_title = ""
 
@@ -145,7 +146,6 @@ class BasePage:
         self.prevnext = report.options['prevnext']
         self.target_uri = report.options['cmsuri']
         self.usecal = report.options['usecal']
-        self.target_cal_uri = report.options['caluri']
         self.extrapage = report.options['extrapage']
         self.extrapagename = report.options['extrapagename']
         self.familymappages = None
@@ -161,6 +161,7 @@ class BasePage:
             self.secure_mode = HTTPS
         else:
             self.secure_mode = HTTP
+        self.target_cal_uri = "cal/%s/index" % Today().get_year()
 
     # Functions used when no Web Page plugin is provided
     def add_instance(self, *param):
@@ -232,14 +233,12 @@ class BasePage:
             self.report.copy_file(from_path, to_path)
         return to_path
 
-    def get_nav_menu_hyperlink(self, url_fname, nav_text):
+    def get_nav_menu_hyperlink(self, url_fname, nav_text, cal=0):
         """
         Returns the navigation menu hyperlink
         """
-        if url_fname == self.target_cal_uri: # The web calendar
-            uplink = False
-        else:
-            uplink = self.uplink
+        uplink = self.uplink
+        sub_cal = cal if cal > 0 else 1
 
         # check for web page file extension?
         if not _has_webpage_extension(url_fname):
@@ -255,6 +254,8 @@ class BasePage:
                 url_name = "/".join([self.target_uri,
                                      url_fname])
         else:
+            if cal > 0:
+                url_fname = "/".join(([".."]*sub_cal + [url_fname]))
             url_name = self.report.build_url_fname(url_fname, None, uplink)
         return Html("a", nav_text, href=url_name, title=nav_text, inline=True)
 
@@ -659,21 +660,20 @@ class BasePage:
             return tags_text
         tags = []
 
-        with Html("div", id="tag") as tags_list:
-            for tag_handle in obj.get_tag_list():
-                tags.append(self.r_db.get_tag_from_handle(tag_handle))
-            if tags and self.report.inc_tags:
-                for tag in tags:
-                    if tags_text:
-                        tags_text += ", "
-                    # convert tag color to html format: #RRGGBB
-                    rgba = Gdk.RGBA()
-                    rgba.parse(tag.get_color())
-                    color = '#%02x%02x%02x' % (int(rgba.red * 255),
-                                               int(rgba.green * 255),
-                                               int(rgba.blue * 255))
-                    tags_text += ("<span style='background-color:%s;'>"
-                                  "%s</span>" % (color, self._(tag.get_name())))
+        for tag_handle in obj.get_tag_list():
+            tags.append(self.r_db.get_tag_from_handle(tag_handle))
+        if tags and self.report.inc_tags:
+            for tag in tags:
+                if tags_text:
+                    tags_text += ", "
+                # convert tag color to html format: #RRGGBB
+                rgba = Gdk.RGBA()
+                rgba.parse(tag.get_color())
+                color = '#%02x%02x%02x' % (int(rgba.red * 255),
+                                           int(rgba.green * 255),
+                                           int(rgba.blue * 255))
+                tags_text += ("<span style='background-color:%s;'>"
+                              "%s</span>" % (color, self._(tag.get_name())))
         return tags_text
 
     def dump_notes(self, notelist, parent=None):
@@ -1326,7 +1326,7 @@ class BasePage:
             self.dump_attribute(attr) for attr in attrlist
         )
 
-    def write_footer(self, date):
+    def write_footer(self, date, cal=0):
         """
         Will create and display the footer section of each page...
 
@@ -1372,8 +1372,12 @@ class BasePage:
                     self.report.options['pid'])
                 if (center_person and
                         self.report.person_in_webreport(center_person.handle)):
+                    if cal > 0 and not self.usecms:
+                        prfx = "/".join(([".."]*2 + ["ppl"]))
+                    else:
+                        prfx = "ppl"
                     center_person_url = self.report.build_url_fname_html(
-                        center_person.handle, "ppl", self.uplink)
+                        center_person.handle, prfx, uplink=False)
 
                     #person_name = self.get_name(center_person)
                     if filt_number > 0 and  filt_number < 5:
@@ -1413,12 +1417,13 @@ class BasePage:
         # return footer to its callers
         return footer
 
-    def write_header(self, the_title):
+    def write_header(self, the_title, cal=0):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
 
         @param: title -- Is the title of the web page
+        @param: cal   -- The number of directories to use
         """
         # begin each html page...
         if self.the_lang:
@@ -1452,22 +1457,35 @@ class BasePage:
         )
 
         # Link to _NARRATIVESCREEN  stylesheet
-        if self.the_lang and not self.usecms:
-            fname = "/".join(["..", "css", _NARRATIVESCREEN])
+        sub_cal = cal + 1 if cal > 0 else 1
+        if self.usecms:
+            fname = "/".join(["css", _NARRATIVESCREEN])
+        elif self.the_lang:
+            fname = "/".join(([".."]*sub_cal + ["css", _NARRATIVESCREEN]))
+        elif cal > 0:
+            fname = "/".join(([".."]*cal + ["css", _NARRATIVESCREEN]))
         else:
             fname = "/".join(["css", _NARRATIVESCREEN])
         url2 = self.report.build_url_fname(fname, None, self.uplink)
 
         # Link to _NARRATIVEPRINT stylesheet
-        if self.the_lang and not self.usecms:
-            fname = "/".join(["..", "css", _NARRATIVEPRINT])
+        if self.usecms:
+            fname = "/".join(["css", _NARRATIVEPRINT])
+        elif self.the_lang:
+            fname = "/".join(([".."]*sub_cal + ["css", _NARRATIVEPRINT]))
+        elif cal > 0:
+            fname = "/".join(([".."]*cal + ["css", _NARRATIVEPRINT]))
         else:
             fname = "/".join(["css", _NARRATIVEPRINT])
         url3 = self.report.build_url_fname(fname, None, self.uplink)
 
         # Link to Gramps favicon
-        if self.the_lang and not self.usecms:
-            fname = "/".join(["..", 'images', 'favicon2.ico'])
+        if self.usecms:
+            fname = "/".join(["images", "favicon2.ico"])
+        elif self.the_lang:
+            fname = "/".join(([".."]*sub_cal + ['images', 'favicon2.ico']))
+        elif cal > 0:
+            fname = "/".join(([".."]*cal + ["images", "favicon2.ico"]))
         else:
             fname = "/".join(['images', 'favicon2.ico'])
         url4 = self.report.build_url_image(fname, None, self.uplink)
@@ -1478,8 +1496,13 @@ class BasePage:
         # attach the ancestortree style sheet if ancestor
         # graph is being created?
         if self.report.options["ancestortree"]:
-            if self.the_lang and not self.usecms:
-                fname = "/".join(["..", "css", "ancestortree.css"])
+            if self.usecms:
+                fname = "/".join(["css", "ancestortree.css"])
+            elif self.the_lang:
+                fname = "/".join(([".."]*sub_cal +
+                                  ["css", "ancestortree.css"]))
+            elif cal > 0:
+                fname = "/".join(([".."]*cal + ["css", "ancestortree.css"]))
             else:
                 fname = "/".join(["css", "ancestortree.css"])
             url5 = self.report.build_url_fname(fname, None, self.uplink)
@@ -1497,8 +1520,14 @@ class BasePage:
                 if css_fn in css_f and css_f not in already_done:
                     css_f = css_f.replace("UsEr_", "")
                     already_done.append(css_f)
-                    if self.the_lang and not self.usecms:
-                        fname = "/".join(["..", "css", css_f + ".css"])
+                    if self.usecms:
+                        fname = "/".join(["css", css_f + ".css"])
+                    elif self.the_lang:
+                        fname = "/".join(([".."]*sub_cal + ["css",
+                                                            css_f + ".css"]))
+                    elif cal > 0:
+                        fname = "/".join(([".."]*cal + ["css",
+                                                        css_f + ".css"]))
                     else:
                         fname = "/".join(["css", css_f + ".css"])
                     urlx = self.report.build_url_fname(fname, None,
@@ -1562,7 +1591,7 @@ class BasePage:
            ) and self.report.navigation == "dropdown":
             outerwrapperdiv += self.display_drop_menu()
         else:
-            outerwrapperdiv += self.display_nav_links(the_title)
+            outerwrapperdiv += self.display_nav_links(the_title, cal=cal)
 
         # message for Codacy :
         # body is used in some modules to add functions like onload(),
@@ -1572,7 +1601,7 @@ class BasePage:
         # return page, head, and body to its classes...
         return page, head, body, outerwrapperdiv
 
-    def display_nav_links(self, currentsection):
+    def display_nav_links(self, currentsection, cal=0):
         """
         Creates the navigation menu
 
@@ -1589,12 +1618,6 @@ class BasePage:
             _create_media_link = True
             if self.create_thumbs_only:
                 _create_media_link = False
-
-        # create link to web calendar pages...
-        #_create_calendar_link = False
-        if self.usecal:
-            #_create_calendar_link = True
-            self.target_cal_uri += "/index"
 
         # Determine which menu items will be available?
         # Menu items have been adjusted to concide with Gramps Navigation
@@ -1641,7 +1664,8 @@ class BasePage:
                 unordered = Html("ul", class_="nav", id="dropmenu")
                 while index < number_items:
                     url_fname, nav_text = menu_items[index]
-                    hyper = self.get_nav_menu_hyperlink(url_fname, nav_text)
+                    hyper = self.get_nav_menu_hyperlink(url_fname, nav_text,
+                                                        cal=cal)
 
                     # Define 'currentsection' to correctly set navlink item
                     # CSS id 'CurrentSection' for Navigation styling.
@@ -1693,6 +1717,10 @@ class BasePage:
                     elif nav_text == self._("Statistics"):
                         if "statistics" in self.report.cur_fname:
                             check_cs = True
+                    elif nav_text == self._("Web Calendar"):
+                        #url_fname = url_fname + self.ext
+                        if "cal/" in self.report.cur_fname:
+                            check_cs = True
                     temp_cs = 'class = "CurrentSection"'
                     check_cs = temp_cs if check_cs else False
                     if check_cs:
@@ -1705,7 +1733,7 @@ class BasePage:
                         )
                     index += 1
 
-                if self.report.options['multitrans']:
+                if self.report.options['multitrans'] and self.not_holiday:
                     langs = Html("li", self._("Language"), class_="lang")
                     en_locale = self.report.set_locale("en")
                     languages = en_locale.get_language_dict()
@@ -1717,9 +1745,19 @@ class BasePage:
                                 lang_txt = html_escape(self._(language))
                                 n_lang = languages[language]
                                 nfname = self.report.cur_fname
-                                url = self.report.build_url_lang(nfname,
-                                                                 n_lang,
-                                                                 self.uplink)
+                                if "cal" in nfname:
+                                    (dummy_field, dummy_sep,
+                                     field2) = nfname.partition("cal/")
+                                    sub_cal = 3 if self.the_lang else 2
+                                    url = "/".join(([".."]*sub_cal + [n_lang,
+                                                                      "cal",
+                                                                      field2]
+                                                   ))
+                                else:
+                                    upl = self.uplink
+                                    url = self.report.build_url_lang(nfname,
+                                                                     n_lang,
+                                                                     upl)
                                 lnk = Html("a", lang_txt,
                                            href=url, title=lang_txt)
                                 choice += Html("li", lnk, inline=True)

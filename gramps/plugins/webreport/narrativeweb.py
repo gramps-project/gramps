@@ -65,6 +65,7 @@ from gramps.gen.lib import (EventType, Name,
                             Person,
                             Family, Event, Place, PlaceName, Source,
                             Citation, Media, Repository, Note, Tag)
+from gramps.gen.lib.date import Today
 from gramps.gen.plug.menu import (PersonOption, NumberOption, StringOption,
                                   BooleanOption, EnumeratedListOption,
                                   FilterOption, NoteOption, MediaOption,
@@ -75,9 +76,11 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.constfunc import win, get_curr_dir
 from gramps.gen.config import config
+from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
+import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gen.relationship import get_relationship_calculator
 
@@ -105,6 +108,7 @@ from gramps.plugins.webreport.download import DownloadPage
 from gramps.plugins.webreport.introduction import IntroductionPage
 from gramps.plugins.webreport.addressbook import AddressBookPage
 from gramps.plugins.webreport.addressbooklist import AddressBookListPage
+from gramps.plugins.webreport.calendar import CalendarPage
 
 from gramps.plugins.webreport.common import (get_gendex_data,
                                              HTTP, HTTPS, _WEB_EXT, CSS,
@@ -228,7 +232,6 @@ class NavWebReport(Report):
 
         # Do we need to include web calendar ?
         self.usecal = self.options['usecal']
-        self.target_cal_uri = self.options['caluri']
 
         # Do we need to include news and updates page ?
         self.inc_updates = self.options['updates']
@@ -362,9 +365,6 @@ class NavWebReport(Report):
         if self.usecms:
             config.set('paths.website-cms-uri',
                        os.path.dirname(self.target_uri))
-        if self.usecal:
-            config.set('paths.website-cal-uri',
-                       os.path.dirname(self.target_cal_uri))
 
         # for use with discovering biological, half, and step siblings for use
         # in display_ind_parents()...
@@ -520,6 +520,11 @@ class NavWebReport(Report):
 
             # build classes SourceListPage and SourcePage
             self.tab["Source"].display_pages(the_lang, the_title)
+
+            # build calendar for the current year
+            if self.usecal:
+                self.calendar = CalendarPage(self, None, None)
+                self.calendar.display_pages(the_lang, the_title)
 
             # build classes StatisticsPage
             if self.inc_stats:
@@ -1371,9 +1376,7 @@ class NavWebReport(Report):
         If subdir is given, then two extra levels of subdirectory are inserted
         between 'subdir' and the filename. The reason is to prevent directories
         with too many entries.
-
         For example, this may return "8/1/aec934857df74d36618"
-
         @param: subdir -- The subdirectory name to use
         @param: fname  -- The file name for which we need to build the path
         @param: uplink -- If True, then "../../../" is inserted in front of the
@@ -1664,15 +1667,11 @@ class NavWebReport(Report):
                     subdir = os.path.join(self.html_dir, self.the_lang, subdir)
                 else:
                     subdir = os.path.join(self.html_dir, subdir)
-                if not os.path.isdir(subdir):
-                    os.makedirs(subdir)
             else:
                 if self.the_lang:
                     subdir = os.path.join(self.html_dir, self.the_lang)
                 else:
                     subdir = os.path.join(self.html_dir)
-                if not os.path.isdir(subdir):
-                    os.makedirs(subdir)
             if self.the_lang:
                 if ext == "index":
                     self.cur_fname = os.path.join(fname) + self.ext
@@ -1682,6 +1681,9 @@ class NavWebReport(Report):
                                          self.cur_fname)
             else:
                 fname = os.path.join(self.html_dir, self.cur_fname)
+            dir_name = os.path.dirname(fname)
+            if not os.path.isdir(dir_name):
+                os.makedirs(dir_name)
             output_file = open(fname, 'w', encoding=self.encoding,
                                errors='xmlcharrefreplace')
         return (output_file, string_io)
@@ -1864,7 +1866,6 @@ class NavWebOptions(MenuReportOptions):
         self.__maxupdates = None
         self.__unused = None
         self.__navigation = None
-        self.__target_cal_uri = None
         self.__securesite = False
         self.__extra_page_name = None
         self.__extra_page = None
@@ -1881,6 +1882,12 @@ class NavWebOptions(MenuReportOptions):
         self.__titl_4 = None
         self.__titl_5 = None
         self.__titl_6 = None
+        self.__start_dow = None
+        self.__maiden_name = None
+        self.__makeoneday = None
+        self.__birthdays = None
+        self.__anniv = None
+        self.__alive = None
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -1902,6 +1909,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_place_map_options(menu)
         self.__add_others_options(menu)
         self.__add_translations(menu)
+        self.__add_calendar_options(menu)
 
 
     def __add_report_options(self, menu):
@@ -2471,23 +2479,6 @@ class NavWebOptions(MenuReportOptions):
 
         self.__cms_uri_changed()
 
-        self.__usecal = BooleanOption(
-            _("Do we include the web calendar ?"), False)
-        addopt("usecal", self.__usecal)
-
-        default_calendar = "/WEBCAL"
-        self.__calendar_uri = DestinationOption(_("URI"),
-                                                os.path.join(
-                                                    config.get('paths.website'
-                                                               '-cal-uri'),
-                                                    default_calendar))
-        self.__calendar_uri.set_help(
-            _("Where do you place your web site ? default = /WEBCAL"))
-        self.__calendar_uri.connect('value-changed',
-                                    self.__calendar_uri_changed)
-        addopt("caluri", self.__calendar_uri)
-
-        self.__calendar_uri_changed()
         self.__graph_changed()
 
         self.__updates = BooleanOption(_("Include the news and updates page"),
@@ -2602,17 +2593,6 @@ class NavWebOptions(MenuReportOptions):
         Update the change of storage: archive or directory
         """
         self.__target_uri = self.__cms_uri.get_value()
-
-    def __calendar_uri_changed(self):
-        """
-        Update the change of storage: Where is the web calendar ?
-
-        Possible cases :
-        1 - /WEBCAL                  (relative URI to the navweb site)
-        2 - http://mysite.org/WEBCAL (URL is on another website)
-        3 - //mysite.org/WEBCAL      (PRL depend on the protocol used)
-        """
-        self.__target_cal_uri = self.__calendar_uri.get_value()
 
     def __extra_page_name_changed(self):
         """
@@ -2764,6 +2744,96 @@ class NavWebOptions(MenuReportOptions):
             self.__googlemapkey.set_available(True)
         else:
             self.__googlemapkey.set_available(False)
+
+    def __add_calendar_options(self, menu):
+        """
+        Options on the "Calendar Options" tab.
+        """
+        category_name = _("Calendar Options")
+        addopt = partial(menu.add_option, category_name)
+
+        # set to today's date for use in menu, etc.
+        today = Today()
+
+        self.__usecal = BooleanOption(
+            _("Do we include the web calendar ?"), False)
+        self.__usecal.set_help(_('Whether to include '
+                                 'a calendar for year %s' % today.get_year()))
+        self.__usecal.connect('value-changed', self.__usecal_changed)
+        addopt("usecal", self.__usecal)
+
+        self.__start_dow = EnumeratedListOption(_("First day of week"), 1)
+        for count in range(1, 8):
+            self.__start_dow.add_item(count, _dd.long_days[count].capitalize())
+        self.__start_dow.set_help(_("Select the first day of the week "
+                                    "for the calendar"))
+        menu.add_option(category_name, "start_dow", self.__start_dow)
+
+        maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
+        maiden_name.add_item('spouse_first', _("Wives use husband's surname "
+                                               "(from first family listed)"))
+        maiden_name.add_item('spouse_last', _("Wives use husband's surname "
+                                              "(from last family listed)"))
+        maiden_name.add_item("own", _("Wives use their own surname"))
+        maiden_name.set_help(_("Select married women's displayed surname"))
+        menu.add_option(category_name, "maiden_name", maiden_name)
+        self.__maiden_name = maiden_name
+
+        self.__makeoneday = BooleanOption(_('Create one day event pages for'
+                                            ' Year At A Glance calendar'),
+                                          False)
+        self.__makeoneday.set_help(_('Whether to create one day pages or not'))
+        menu.add_option(category_name, 'makeoneday', self.__makeoneday)
+
+        self.__birthdays = BooleanOption(_("Include birthdays"), True)
+        self.__birthdays.set_help(_("Include birthdays in the calendar"))
+        menu.add_option(category_name, "birthdays", self.__birthdays)
+
+        self.__anniv = BooleanOption(_("Include anniversaries"), True)
+        self.__anniv.set_help(_("Include anniversaries in the calendar"))
+        menu.add_option(category_name, "anniversaries", self.__anniv)
+
+        self.__death_anniv = BooleanOption(_('Include death dates'), False)
+        self.__death_anniv.set_help(_('Include death anniversaries in '
+                                      'the calendar'))
+        menu.add_option(category_name, 'death_anniv', self.__death_anniv)
+
+        self.__alive = BooleanOption(_("Include only living people"), True)
+        self.__alive.set_help(_("Include only living people in the calendar"))
+        menu.add_option(category_name, "alive", self.__alive)
+
+        default_before = config.get('behavior.max-age-prob-alive')
+        self.__after_year = NumberOption(_('Show data only after year'),
+                                         (today.get_year() - default_before),
+                                         0, today.get_year())
+        self.__after_year.set_help(_("Show data only after this year."
+                                     " Default is current year - "
+                                     " 'maximum age probably alive' which is "
+                                     "defined in the dates preference tab."))
+        menu.add_option(category_name, 'after_year', self.__after_year)
+
+    def __usecal_changed(self):
+        """
+        Do we need to choose calendar options ?
+        """
+        if self.__usecal.get_value():
+            self.__start_dow.set_available(True)
+            self.__maiden_name.set_available(True)
+            self.__makeoneday.set_available(True)
+            self.__birthdays.set_available(True)
+            self.__anniv.set_available(True)
+            self.__alive.set_available(True)
+            self.__death_anniv.set_available(True)
+            self.__after_year.set_available(True)
+        else:
+            self.__start_dow.set_available(False)
+            self.__maiden_name.set_available(False)
+            self.__makeoneday.set_available(False)
+            self.__birthdays.set_available(False)
+            self.__anniv.set_available(False)
+            self.__alive.set_available(False)
+            self.__death_anniv.set_available(False)
+            self.__after_year.set_available(False)
 
 # See : http://www.gramps-project.org/bugs/view.php?id = 4423
 
