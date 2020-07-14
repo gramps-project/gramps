@@ -384,6 +384,40 @@ _EVENTMAP = set([EventType.MARRIAGE, EventType.MARR_ALT,
 _NARRATIVESCREEN = "narrative-screen.css"
 _NARRATIVEPRINT = "narrative-print.css"
 
+HOLIDAYS_ASSOC = [
+    # LANG INDEX HOLIDAY_NAME
+    ("be", 0, 'Bulgaria'),
+    ("ca", 1, 'Canada'),
+    ("cs", 2, 'Czech Republic'),
+    ("cl", 3, 'Chile'),
+    ("zh", 4, 'China'),
+    ("hr", 5, 'Croatia'),
+    ("en", 13, 'United States of America'), # must be here. should be en_US
+    ("en_GB", 6, 'England'),
+    ("fi", 7, 'Finland'),
+    ("fr_FR", 8, 'France'),
+    ("de", 9, 'Germany'),
+    ("ja", 10, 'Japan'),
+    ("sk", 11, 'Slovakia'),
+    ("sv", 12, 'Sweden'),
+    ("he", 14, 'Jewish Holidays'),
+    ("en_NZ", 15, 'New Zealand'),
+    ("uk", 16, 'Ukraine'),
+    ("sr_RS", 17, 'Serbia'),
+    ("sr_RS@latin", 18, 'Serbia (Latin)'),
+]
+
+def do_we_have_holidays(lang):
+    """
+    Associate an index for the holidays depending on the LANG
+    """
+    for lng, idx, dummy_name in HOLIDAYS_ASSOC:
+        if lng == lang: # i.e. en_US
+            return idx
+        if lng[:2] == lang: # i.e. en_US[:2] => en
+            return idx
+    return None
+
 def sort_people(dbase, handle_list, rlocale=glocale):
     """
     will sort the database people by surname
