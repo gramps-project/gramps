@@ -1388,8 +1388,8 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
         # a death
         if event == 'Death':
             txt_str = (text + ', ' + death_symbol + ' <em>'
-                       + (_('%s since death') % str(age_str) if nyears
-                          else _('death'))
+                       + (trans_text('%s since death') % str(age_str) if nyears
+                          else trans_text('death'))
                        + '</em>')
 
         # an anniversary
