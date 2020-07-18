@@ -1718,7 +1718,6 @@ class BasePage:
                         if "statistics" in self.report.cur_fname:
                             check_cs = True
                     elif nav_text == self._("Web Calendar"):
-                        #url_fname = url_fname + self.ext
                         if "cal/" in self.report.cur_fname:
                             check_cs = True
                     temp_cs = 'class = "CurrentSection"'
@@ -1728,6 +1727,18 @@ class BasePage:
                             Html("li", hyper, attr=check_cs, inline=True)
                         )
                     else:
+                        if self.report.extrapage != "":
+                            if (url_fname[:4] == "http" or
+                                url_fname[:1] == "/"):
+                                hyper = Html("a", nav_text, href=url_fname,
+                                             title=nav_text)
+                            elif self.report.extrapagename == nav_text:
+                                if cal > 0:
+                                    url_fname = "/".join(([".."]*cal +
+                                                          [url_fname]))
+                                hyper = Html("a", nav_text,
+                                             href=url_fname,
+                                             title=nav_text)
                         unordered.extend(
                             Html("li", hyper, inline=True)
                         )
