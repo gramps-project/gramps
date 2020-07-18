@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
-"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.8.0/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.9.0//EN"
+"http://gramps-project.org/xml/1.9.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.9.0/">
   <header>
-    <created date="1999-12-25" version="5.1.2"/>
+    <created date="1999-12-25" version="6.0.0"/>
     <researcher>
       <resname>The Gramps Tester</resname>
       <resaddr>TesterHouse, Annex, 112 Main St., Open Source</resaddr>
@@ -306,7 +306,7 @@
       <placeref hlink="_0000001500000015" type="Administrative"/>
       <noteref hlink="_0000001400000014"/>
     </placeobj>
-    <placeobj handle="_0000001900000019" change="1" id="P0016" group="None">
+    <placeobj handle="_0000001900000019" change="1" id="P0016" group="Countries">
       <ptitle>USA</ptitle>
       <pname value="USA">
         <pabbr type="Unknown" value="United States of America"/>
@@ -461,7 +461,7 @@
       <noteref hlink="_0000004100000041"/>
       <noteref hlink="_0000004400000044"/>
     </placeobj>
-    <placeobj handle="_0000004200000042" change="1" id="P0031" group="None">
+    <placeobj handle="_0000004200000042" change="1" id="P0031" group="Countries">
       <ptitle>United States</ptitle>
       <pname value="United States"/>
       <ptype pt_id="GOV_50" name="country"/>
@@ -478,7 +478,7 @@
       <pname value="North America"/>
       <ptype pt_id="CUSTOM" name="Continent"/>
     </placeobj>
-    <placeobj handle="_0000004d0000004d" change="1" id="P0034" group="None">
+    <placeobj handle="_0000004d0000004d" change="1" id="P0034" group="Countries">
       <ptitle>USA, North America</ptitle>
       <pname value="USA"/>
       <ptype pt_id="GOV_50" name="country"/>
@@ -517,7 +517,7 @@
       <ptype pt_id="CUSTOM" name="Address"/>
       <placeref hlink="_0000005300000053" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000005600000056" change="1" id="object_276534a" group="None">
+    <placeobj handle="_0000005600000056" change="1" id="object_276534a" group="Countries">
       <ptitle>United States of America</ptitle>
       <pname value="United States of America"/>
       <ptype pt_id="GOV_50" name="Country"/>
@@ -545,17 +545,17 @@
       <ptype pt_id="Street" name="Street"/>
       <placeref hlink="_0000003a0000003a" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000006e0000006e" change="1" id="object_276534" group="None">
+    <placeobj handle="_0000006e0000006e" change="1" id="object_276534" group="Countries">
       <ptitle>United States</ptitle>
       <pname value="United States"/>
       <ptype pt_id="GOV_50" name="country"/>
     </placeobj>
-    <placeobj handle="_0000006f0000006f" change="1" id="Tester001" group="None">
+    <placeobj handle="_0000006f0000006f" change="1" id="Tester001" group="Countries">
       <ptitle>Testers Country</ptitle>
       <pname value="Testers Country"/>
       <ptype pt_id="GOV_50" name="country"/>
     </placeobj>
-    <placeobj handle="_0000007000000070" change="1" id="P0013" group="None">
+    <placeobj handle="_0000007000000070" change="1" id="P0013" group="Regions">
       <ptitle>Testers Parish</ptitle>
       <pname value="Testers Parish"/>
       <ptype pt_id="GOV_29" name="Parish"/>
@@ -576,7 +576,7 @@
         <dateval val="1900" type="before"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000007300000073" change="1" id="P0101" group="None">
+    <placeobj handle="_0000007300000073" change="1" id="P0101" group="Countries">
       <ptitle>USX, Tehas</ptitle>
       <pname value="USX">
         <pabbr type="Abbreviation" value="United States of Tester"/>
@@ -743,7 +743,7 @@ Could not import myhouse.jpg                                        Line   413: 
         <range start="0" end="166"/>
       </style>
     </note>
-    <note handle="_0000007700000077" change="1594936971" id="N0030" type="General">
+    <note handle="_0000007700000077" change="1746488659" id="N0030" type="General">
       <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>

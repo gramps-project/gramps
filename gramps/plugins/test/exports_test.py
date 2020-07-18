@@ -27,13 +27,20 @@ from time import localtime, strptime
 import tempfile
 
 from gramps.test.test_util import Gramps
-from gramps.gen.const import DATA_DIR
+from gramps.gen.const import DATA_DIR, HOME_DIR
 from gramps.gen.datehandler import set_format
 from gramps.gen.user import User
 from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_exporttest"
+# the following defines where to find the test import and result files
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+DB_DIR = os.path.join(HOME_DIR, "grampsdb")
+# the following defines where to find test error diffs and export result files
+# this need to remain in place for developer debug
+TEMP_DIR = os.path.join(HOME_DIR, "temp")
+if not os.path.isdir(TEMP_DIR):
+    os.makedirs(TEMP_DIR)
 
 
 def mock_localtime(*args):
@@ -58,23 +65,20 @@ def do_it(srcfile, tstfile, dfilter=None):
     """
     tst_file = os.path.join(TEST_DIR, srcfile)
     expect_file = os.path.join(TEST_DIR, tstfile)
-    with tempfile.TemporaryDirectory() as tmpdirname:
-        result_file = os.path.join(tmpdirname, tstfile)
-        err = call(
-            "-C", TREE_NAME, "-q", "--import", tst_file, "--export", result_file
-        )[1]
-        if "Cleaning up." not in err:
-            return "Export failed, no 'Cleaning up.'"
-        msg = compare(expect_file, result_file, dfilter)
-        if not msg:
-            # we will leave the result_file in place if there was an error.
-            try:
-                os.remove(result_file)
-            except OSError:
-                pass
-            return
-        else:
-            return msg
+    result_file = os.path.join(TEMP_DIR, tstfile)
+    err = call("-C", TREE_NAME, "-q", "--import", tst_file, "--export", result_file)[1]
+    if "Cleaning up." not in err:
+        return "Export failed, no 'Cleaning up.'"
+    msg = compare(expect_file, result_file, dfilter)
+    if not msg:
+        # we will leave the result_file in place if there was an error.
+        try:
+            os.remove(result_file)
+        except OSError:
+            pass
+        return
+    else:
+        return msg
 
 
 def compare(expect_file, result_file, dfilter=None):
@@ -222,7 +226,11 @@ class ExportControl(unittest.TestCase):
     #                            "--import", example)
 
     def tearDown(self):
-        call("-y", "-q", "--remove", TREE_NAME)
+        dbdir = os.path.join(DB_DIR, TREE_NAME)
+        if os.path.exists(dbdir):
+            os.rmdir(dbdir)
+
+    #        call("-y", "-q", "--remove", TREE_NAME)
 
     def test_csv(self):
         """Run a csv export test"""

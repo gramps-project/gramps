@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.9.0//EN"
+"http://gramps-project.org/xml/1.9.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.9.0/">
   <header>
-    <created date="1999-12-25" version="5.2.0"/>
+    <created date="1999-12-25" version="6.0.0"/>
     <researcher>
       <resname>The Subm /Tester/</resname>
       <resaddr>123 Main St.</resaddr>
@@ -56,7 +56,7 @@
       </name>
       <eventref hlink="_0000000800000008" role="Primary"/>
       <citationref hlink="_0000000e0000000e"/>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </person>
     <person handle="_0000000f0000000f" change="1" id="I0001">
       <gender>U</gender>
@@ -78,7 +78,7 @@
       <url  href="http://mrstester.com" type="Web Home"/>
       <noteref hlink="_0000001000000010"/>
       <citationref hlink="_0000001600000016"/>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </person>
     <person handle="_0000001700000017" change="1" id="I0002">
       <gender>U</gender>
@@ -88,7 +88,7 @@
       </name>
       <eventref hlink="_0000001800000018" role="Primary"/>
       <citationref hlink="_0000001900000019"/>
-      <tagref hlink="_0000000400000004"/>
+      <tagref hlink="_0000000200000002"/>
     </person>
   </people>
   <citations>
@@ -128,45 +128,53 @@
     </source>
   </sources>
   <places>
-    <placeobj handle="_0000000900000009" change="1" id="P0000" type="Country">
+    <placeobj handle="_0000000900000009" change="1" id="P0000" group="Countries">
       <ptitle>USA</ptitle>
       <pname value="USA"/>
+      <ptype pt_id="Country" name="Country"/>
     </placeobj>
-    <placeobj handle="_0000000a0000000a" change="1" id="P0001" type="State">
+    <placeobj handle="_0000000a0000000a" change="1" id="P0001" group="Regions">
       <ptitle>Ohio, USA</ptitle>
       <pname value="Ohio"/>
-      <placeref hlink="_0000000900000009"/>
+      <ptype pt_id="State" name="State"/>
+      <placeref hlink="_0000000900000009" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000000b0000000b" change="1" id="P0002" type="County">
+    <placeobj handle="_0000000b0000000b" change="1" id="P0002" group="Regions">
       <ptitle>Cuyahoga, Ohio, USA</ptitle>
       <pname value="Cuyahoga"/>
-      <placeref hlink="_0000000a0000000a"/>
+      <ptype pt_id="County" name="County"/>
+      <placeref hlink="_0000000a0000000a" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000000c0000000c" change="1" id="P0003" type="City">
+    <placeobj handle="_0000000c0000000c" change="1" id="P0003" group="Places">
       <ptitle>Cleveland, Cuyahoga, Ohio, USA</ptitle>
       <pname value="Cleveland"/>
-      <placeref hlink="_0000000b0000000b"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_0000000b0000000b" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000000d0000000d" change="1" id="P0004" type="Street">
+    <placeobj handle="_0000000d0000000d" change="1" id="P0004" group="Other">
       <ptitle>123 High St, Cleveland, Cuyahoga, Ohio, USA</ptitle>
-      <code>44140</code>
       <pname value="123 High St"/>
-      <placeref hlink="_0000000c0000000c"/>
+      <ptype pt_id="Street" name="Street"/>
+      <placeref hlink="_0000000c0000000c" type="Administrative"/>
+      <attribute type="Postal code" value="44140"/>
     </placeobj>
-    <placeobj handle="_0000001300000013" change="1" id="P0005" type="State">
+    <placeobj handle="_0000001300000013" change="1" id="P0005" group="Regions">
       <ptitle>PA</ptitle>
       <pname value="PA"/>
+      <ptype pt_id="State" name="State"/>
     </placeobj>
-    <placeobj handle="_0000001400000014" change="1" id="P0006" type="City">
+    <placeobj handle="_0000001400000014" change="1" id="P0006" group="Places">
       <ptitle>Winslow, PA</ptitle>
       <pname value="Winslow"/>
-      <placeref hlink="_0000001300000013"/>
+      <ptype pt_id="City" name="City"/>
+      <placeref hlink="_0000001300000013" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000001500000015" change="1" id="P0007" type="Street">
+    <placeobj handle="_0000001500000015" change="1" id="P0007" group="Other">
       <ptitle>123 Main St., Winslow, PA</ptitle>
-      <code>12345</code>
       <pname value="123 Main St."/>
-      <placeref hlink="_0000001400000014"/>
+      <ptype pt_id="Street" name="Street"/>
+      <placeref hlink="_0000001400000014" type="Administrative"/>
+      <attribute type="Postal code" value="12345"/>
     </placeobj>
   </places>
   <repositories>

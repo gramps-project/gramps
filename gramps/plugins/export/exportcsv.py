@@ -54,13 +54,12 @@ LOG = logging.getLogger(".ExportCSV")
 #
 # -------------------------------------------------------------------------
 from gramps.gen.config import config
-from gramps.gen.lib import EventType, Person
+from gramps.gen.lib import EventType, Person, AttributeType
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as _pd
-from gramps.gui.glade import Glade
 from gramps.gen.constfunc import win
 
 
@@ -331,17 +330,21 @@ class CSVWriter:
                 if place:
                     place_id = place.gramps_id
                     place_title = place.title
-                    place_name = place.name.value
-                    place_type = str(place.place_type)
+                    place_name = place.get_name().value
+                    place_type = str(place.get_type())
                     place_latitude = place.lat
                     place_longitude = place.long
-                    place_code = place.code
+                    place_code = ""
+                    for att in place.get_attribute_list():
+                        if att.get_type() == AttributeType.POSTAL:
+                            place_code = att.get_value()
+                            break
                     if place.placeref_list:
                         for placeref in place.placeref_list:
                             placeref_obj = self.db.get_place_from_handle(placeref.ref)
                             placeref_date = ""
-                            if not placeref.date.is_empty():
-                                placeref_date = placeref.date
+                            if not placeref.get_date_object().is_empty():
+                                placeref_date = placeref.get_date_object()
                             placeref_id = ""
                             if placeref_obj:
                                 placeref_id = "[%s]" % placeref_obj.gramps_id
@@ -370,7 +373,7 @@ class CSVWriter:
                         )
                 self.update()
             self.writeln()
-        ########################### sort:
+        # sort:
         sortorder = []
         dropped_surnames = set()
         for key in self.plist:

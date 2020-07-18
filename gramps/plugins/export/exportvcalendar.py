@@ -214,7 +214,7 @@ class CalendarWriter:
             self.writeln("UID:%s@gramps.com" % event.handle)
             self.writeln(fold("SUMMARY:%s %s" % (date.get_year(), event_text)))
             if place_handle:
-                location = _pd.display_event(self.db, event)
+                location = _pd.display_event(self.db, event, fmt=0)
                 if location:
                     self.writeln("LOCATION:%s" % location)
             self.writeln("RRULE:FREQ=YEARLY")
