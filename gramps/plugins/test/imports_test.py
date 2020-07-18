@@ -32,7 +32,7 @@ import re
 import locale
 from time import localtime, strptime
 from unittest.mock import patch
-mport zipfile
+import zipfile
 import shutil
 
 # import logging
@@ -73,14 +73,6 @@ if not os.path.isdir(TEMP_DIR):
 #  Local Functions
 # ------------------------------------------------------------------
 
-======
-# These tests assume a US date and time format.
-try:
-    locale.setlocale(locale.LC_ALL, "en_US.utf8")
-except locale.Error:  # seems to fail on Windows system for some reason
-    locale.setlocale(locale.LC_ALL, "English_United States")
-
->>>>>>> eae5d2732 (linting)
 
 def mock_time(*args):
     """
@@ -96,7 +88,7 @@ def mock_localtime(*args):
     return strptime("25 Dec 1999", "%d %b %Y")
 
 
- These tests assume a US date and time format.
+# These tests assume a US date and time format.
 # If the locale is not available on the
 # build host, skip these tests.
 en_US_locale_available = False
@@ -127,7 +119,7 @@ class TestImports(unittest.TestCase):
         if diffs:
             for diff in diffs:
                 obj_type, item1, item2 = diff
-               msg = self._report_diff(
+                msg = self._report_diff(
                     obj_type, object_to_dict(item1), object_to_dict(item2)
                 )
                 if msg != "":
@@ -330,7 +322,7 @@ def make_tst_function(tstfile, file_name):
         set_det_id(True)
         with capture(None) as output:
             self.user = User()
-           if ".zip" in fn1:  # must be a db, not an importable file
+            if ".zip" in fn1:  # must be a db, not an importable file
                 self.database1 = db_load(fn1, self)
             else:
                 self.database1 = import_as_dict(
@@ -383,7 +375,7 @@ def make_tst_function(tstfile, file_name):
                     + self.msg
                 )
                 self.fail(self.msg)
-       if ".zip" in tstfile:
+        if ".zip" in tstfile:
             fn1 = self.database1.path
             self.database1.close(update=False)
             shutil.rmtree(fn1, ignore_errors=True)

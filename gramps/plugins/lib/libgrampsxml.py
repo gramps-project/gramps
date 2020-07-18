@@ -33,5 +33,5 @@
 # Public Constants
 #
 # ------------------------------------------------------------------------
-GRAMPS_XML_VERSION_TUPLE = (1, 7, 2)  # version for Gramps 6.0
+GRAMPS_XML_VERSION_TUPLE = (1, 9, 0)  # version for Gramps 6.0 places1
 GRAMPS_XML_VERSION = ".".join(str(i) for i in GRAMPS_XML_VERSION_TUPLE)

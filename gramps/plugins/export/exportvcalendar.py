@@ -186,7 +186,7 @@ class CalendarWriter:
                 end = self.format_single_date(date.get_stop_date(), thisyear, cal)
                 if start and end:
                     retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start, end)
-           elif mod == Date.MOD_FROM:
+            elif mod == Date.MOD_FROM:
                 start = self.format_single_date(date.get_start_date(), thisyear, cal)
                 if start:
                     retval = "DTSTART:%sT000001" % (start)

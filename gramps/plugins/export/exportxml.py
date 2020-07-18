@@ -59,7 +59,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_HOMEPAGE
-from gramps.gen.lib import Date, Person
+from gramps.gen.lib import Date, Person, PlaceType
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
@@ -561,7 +561,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_line("gender", "M", index + 1)
         elif person.get_gender() == Person.FEMALE:
             self.write_line("gender", "F", index + 1)
-       elif person.get_gender() == Person.OTHER:
+        elif person.get_gender() == Person.OTHER:
             self.write_line("gender", "X", index + 1)
         else:
             self.write_line("gender", "U", index + 1)
@@ -783,7 +783,7 @@ class GrampsXmlWriter(UpdateCallback):
         attribute_list = eventref.get_attribute_list()
         citation_list = eventref.get_citation_list()
         note_list = eventref.get_note_list()
-       if len(citation_list) + len(attribute_list) + len(note_list) == 0:
+        if len(citation_list) + len(attribute_list) + len(note_list) == 0:
             self.write_ref(
                 "eventref",
                 eventref.ref,
@@ -801,34 +801,78 @@ class GrampsXmlWriter(UpdateCallback):
             )
             self.write_attribute_list(attribute_list, index + 1)
             self.write_note_list(note_list, index + 1)
-           for citation_handle in citation_list:
+            for citation_handle in citation_list:
                 self.write_ref("citationref", citation_handle, index + 1)
             self.g.write("%s</eventref>\n" % sp)
 
     def dump_place_ref(self, placeref, index=1):
-        sp = "  " * index
+        """ref, hierarchy type, date, citations"""
+        _sp = "  " * index
         date = placeref.get_date_object()
-        if date.is_empty():
-            self.write_ref("placeref", placeref.ref, index, close=True)
+        htype = ' type="%s"' % escxml(placeref.get_type().xml_str())
+        if date.is_empty() and not placeref.get_citation_list():
+            self.write_ref(
+                "placeref", placeref.ref, index, close=True, extra_text=htype
+            )
         else:
-            self.write_ref("placeref", placeref.ref, index, close=False)
-            self.write_date(date, index + 1)
-            self.g.write("%s</placeref>\n" % sp)
+            self.write_ref(
+                "placeref", placeref.ref, index, close=False, extra_text=htype
+            )
+            if not date.is_empty():
+                self.write_date(date, index + 1)
+            for citation_handle in placeref.get_citation_list():
+                self.write_ref("citationref", citation_handle, index + 1)
+            self.g.write("%s</placeref>\n" % _sp)
 
-    def dump_place_name(self, place_name, index=1):
-        sp = "  " * index
-        value = place_name.get_value()
-        date = place_name.get_date_object()
-        lang = place_name.get_language()
-        self.g.write('%s<pname value="%s"' % (sp, self.fix(value)))
-        if lang:
-            self.g.write(' lang="%s"' % self.fix(lang))
-        if date.is_empty():
+    def dump_place_type(self, placetype, index=1):
+        """type, date, citations"""
+        _sp = "  " * index
+        pt_id = self.fix(placetype.pt_id)
+        pt_name = self.fix(placetype.name)
+        self.g.write('%s<ptype pt_id="%s" name="%s"' % (_sp, pt_id, pt_name))
+        date = placetype.get_date_object()
+        if date.is_empty() and not placetype.get_citation_list():
             self.g.write("/>\n")
         else:
             self.g.write(">\n")
-            self.write_date(date, index + 1)
-            self.g.write("%s</pname>\n" % sp)
+            if not date.is_empty():
+                self.write_date(date, index + 1)
+            for citation_handle in placetype.get_citation_list():
+                self.write_ref("citationref", citation_handle, index + 1)
+            self.g.write("%s</ptype>\n" % _sp)
+
+    def dump_place_name(self, place_name, index=1):
+        """name, date, lang, citations, abbreviations"""
+        _sp = "  " * index
+        value = place_name.get_value()
+        date = place_name.get_date_object()
+        lang = place_name.get_language()
+        self.g.write('%s<pname value="%s"' % (_sp, self.fix(value)))
+        if lang:
+            self.g.write(' lang="%s"' % self.fix(lang))
+        if (
+            date.is_empty()
+            and not place_name.get_citation_list()
+            and not place_name.get_abbrevs()
+        ):
+            self.g.write("/>\n")
+        else:
+            self.g.write(">\n")
+            if not date.is_empty():
+                self.write_date(date, index + 1)
+            for citation_handle in place_name.get_citation_list():
+                self.write_ref("citationref", citation_handle, index + 1)
+            self.write_place_abbrev_list(place_name.get_abbrevs(), index + 1)
+            self.g.write("%s</pname>\n" % _sp)
+
+    def write_place_abbrev_list(self, _list, indent=3):
+        """list of type, value of abbreviation"""
+        _sp = "  " * indent
+        for abbr in _list:
+            self.g.write(
+                '%s<pabbr type="%s" value="%s"/>\n'
+                % (_sp, escxml(abbr.get_type().xml_str()), self.fix(abbr.get_value()))
+            )
 
     def write_event(self, event, index=1):
         if not event:
@@ -855,9 +899,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write("%s</event>\n" % sp)
 
     def dump_ordinance(self, ord, index=1):
-======
 
->>>>>>> eae5d2732 (linting)
         name = ord.type2xml()
 
         sp = "  " * index
@@ -1335,19 +1377,18 @@ class GrampsXmlWriter(UpdateCallback):
             )
 
     def write_place_obj(self, place, index=1):
+        """ptypes, title, names, ptypes, lat/lon, placerefs, alt locs, medias,
+        urls, notes, citations, tags, attributes, eventrefs"""
         self.write_primary_tag("placeobj", place, index, close=False)
-        ptype = self.fix(place.get_type().xml_str())
-        self.g.write(' type="%s"' % ptype)
-        self.g.write(">\n")
-
+        self.g.write(' group="%s">\n' % self.fix(str(place.group)))
         title = self.fix(place.get_title())
-        code = self.fix(place.get_code())
         self.write_line_nofix("ptitle", title, index + 1)
-        self.write_line_nofix("code", code, index + 1)
 
-        self.dump_place_name(place.get_name(), index + 1)
-        for pname in place.get_alternative_names():
+        for pname in place.get_names():
             self.dump_place_name(pname, index + 1)
+
+        for ptype in place.get_types():
+            self.dump_place_type(ptype, index + 1)
 
         longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
@@ -1359,13 +1400,18 @@ class GrampsXmlWriter(UpdateCallback):
             self.dump_place_ref(placeref, index + 1)
         list(map(self.dump_location, place.get_alternate_locations()))
         self.write_media_list(place.get_media_list(), index + 1)
-        self.write_url_list(place.get_url_list())
+        self.write_url_list(place.get_url_list(), index + 1)
         self.write_note_list(place.get_note_list(), index + 1)
         for citation_handle in place.get_citation_list():
             self.write_ref("citationref", citation_handle, index + 1)
 
         for tag_handle in place.get_tag_list():
             self.write_ref("tagref", tag_handle, index + 1)
+
+        self.write_attribute_list(place.get_attribute_list())
+
+        for event_ref in place.get_event_ref_list():
+            self.dump_event_ref(event_ref, index + 1)
 
         self.g.write("%s</placeobj>\n" % ("  " * index))
 

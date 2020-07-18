@@ -63,6 +63,7 @@ class EventRoleType(GrampsType):
     FRIEND = 16
     NEIGHBOR = 17
     OFFICIATOR = 18
+    PLACE = 19
 
     _CUSTOM = CUSTOM
     _DEFAULT = PRIMARY
@@ -88,6 +89,7 @@ class EventRoleType(GrampsType):
         (FRIEND, _("Friend"), "Friend"),
         (NEIGHBOR, _("Neighbor"), "Neighbor"),
         (OFFICIATOR, _("Officiator"), "Officiator"),
+        (PLACE, _("Place"), "Place"),
     ]
 
     def __init__(self, value=None):
@@ -104,3 +106,9 @@ class EventRoleType(GrampsType):
         Returns True if EventRoleType is FAMILY, False otherwise.
         """
         return self.value == self.FAMILY
+
+    def is_place(self):
+        """
+        Returns True if EventRoleType is PLACE, False otherwise.
+        """
+        return self.value == self.PLACE

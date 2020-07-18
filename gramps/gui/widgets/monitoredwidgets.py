@@ -82,9 +82,7 @@ _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 #
 # -------------------------------------------------------------------------
 class MonitoredCheckbox:
-======
 
->>>>>>> eae5d2732 (linting)
     def __init__(self, obj, button, set_val, get_val, on_toggle=None, readonly=False):
         self.button = button
         self.button.connect("toggled", self._on_toggle)
@@ -116,9 +114,7 @@ class MonitoredCheckbox:
 #
 # -------------------------------------------------------------------------
 class MonitoredEntry:
-======
 
->>>>>>> eae5d2732 (linting)
     def __init__(
         self, obj, set_val, get_val, read_only=False, autolist=None, changed=None
     ):
@@ -376,9 +372,7 @@ class MonitoredText:
 #
 # -------------------------------------------------------------------------
 class MonitoredType:
-======
 
->>>>>>> eae5d2732 (linting)
     def __init__(
         self, obj, set_val, get_val, mapping, custom, readonly=False, custom_values=None
     ):
@@ -428,9 +422,7 @@ class MonitoredType:
 #
 # -------------------------------------------------------------------------
 class MonitoredDataType:
-======
 
->>>>>>> eae5d2732 (linting)
     def __init__(
         self,
         obj,
@@ -439,6 +431,7 @@ class MonitoredDataType:
         readonly=False,
         custom_values=None,
         ignore_values=None,
+        changed=None,
     ):
         """
         Constructor for the MonitoredDataType class.
@@ -458,11 +451,14 @@ class MonitoredDataType:
         :param ignore_values: list of values not to show in the combobox. If the
                               result of get_val is in these, it is not ignored
         :type ignore_values: list of int
+        :param changed: To update an external element when we change value
+        :type callback: method
         """
         self.set_val = set_val
         self.get_val = get_val
 
         self.obj = obj
+        self.changed = changed
 
         val = get_val()
 
@@ -519,6 +515,8 @@ class MonitoredDataType:
     def on_change(self, obj):
         value = self.fix_value(self.sel.get_values())
         self.set_val(value)
+        if self.changed:
+            self.changed(obj)
 
 
 # -------------------------------------------------------------------------
@@ -527,9 +525,7 @@ class MonitoredDataType:
 #
 # -------------------------------------------------------------------------
 class MonitoredMenu:
-======
 
->>>>>>> eae5d2732 (linting)
     def __init__(self, obj, set_val, get_val, mapping, readonly=False, changed=None):
         self.set_val = set_val
         self.get_val = get_val
@@ -850,12 +846,6 @@ class MonitoredTagList:
     A MonitoredTagList consists of a label to display a list of tags and a
     button to invoke the tag editor.
     """
-======
-
-    def __init__(
-        self, label, button, set_list, get_list, db, uistate, track, readonly=False
-    ):
->>>>>>> eae5d2732 (linting)
 
     def __init__(
         self, label, button, set_list, get_list, db, uistate, track, readonly=False

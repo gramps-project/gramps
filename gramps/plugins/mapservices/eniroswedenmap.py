@@ -76,9 +76,9 @@ def _build_title(db, place):
     """Builds descrition string for title parameter in url"""
     descr = place_displayer.display(db, place)
     location = get_main_location(db, place)
-    parish = location.get(PlaceType.PARISH)
-    city = location.get(PlaceType.CITY)
-    state = location.get(PlaceType.STATE)
+    parish = location.get("Parish")
+    city = location.get("City")
+    state = location.get("State")
     title_descr = ""
     if descr:
         title_descr += descr.strip()
@@ -97,7 +97,7 @@ def _build_title(db, place):
 def _build_city(db, place):
     """Builds description string for city parameter in url"""
     location = get_main_location(db, place)
-    county = location.get(PlaceType.COUNTY)
+    county = location.get("County")
     # Build a title description string that will work for Eniro
     city_descr = _build_area(db, place)
     if county:
@@ -109,8 +109,8 @@ def _build_city(db, place):
 def _build_area(db, place):
     """Builds string for area parameter in url"""
     location = get_main_location(db, place)
-    street = location.get(PlaceType.STREET)
-    city = location.get(PlaceType.CITY)
+    street = location.get("Street")
+    city = location.get("City")
     # Build a title description string that will work for Eniro
     area_descr = ""
     if street:
@@ -140,7 +140,7 @@ class EniroSVMapService(MapService):
         # First see if we are in or near Sweden or Denmark
         # Change country to upper case
         location = get_main_location(self.database, place)
-        country = location.get(PlaceType.COUNTRY, "").upper().strip()
+        country = location.get("Country", "").upper().strip()
         country_given = (
             country in MAP_NAMES_SWEDEN or country in MAP_NAMES_DENMARK
         ) and (country != "")

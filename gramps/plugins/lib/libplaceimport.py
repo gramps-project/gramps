@@ -20,6 +20,9 @@
 
 """
 Helper class for importing places.
+Note: this is used for importing old Location based places and converting to
+the more recent enclosed places (Gramps 4.2.x) and is not likely useful for
+new work.
 """
 from collections import OrderedDict
 
@@ -98,10 +101,14 @@ class PlaceImport:
             # link to existing place
             if parent:
                 place = self.db.get_place_from_handle(handle)
-                placeref = PlaceRef()
-                placeref.ref = parent
-                place.set_placeref_list([placeref])
-                self.db.commit_place(place, trans, place.get_change_time())
+                if not place.get_placeref_list():  # Only if not enclosed
+                    placeref = PlaceRef()
+                    placeref.ref = parent
+                    placeref.set_type_for_place(self.db.get_place_from_handle(parent))
+                    place.set_placeref_list([placeref])
+                    self.db.commit_place(place, trans, place.get_change_time())
+
+    locs = ["street", "locality", "parish", "city", "county", "state", "country"]
 
     def __add_place(self, name, type_num, parent, title, trans):
         """
@@ -110,12 +117,15 @@ class PlaceImport:
         place = Place()
         place_name = PlaceName()
         place_name.set_value(name)
-        place.name = place_name
+        place.set_name(place_name)
         place.title = title
-        place.place_type = PlaceType(7 - type_num)
+        ptype = PlaceType(self.locs[type_num])
+        place.set_type(ptype)
+        place.set_group(ptype.get_probable_group())
         if parent is not None:
             placeref = PlaceRef()
             placeref.ref = parent
+            placeref.set_type_for_place(self.db.get_place_from_handle(parent))
             place.set_placeref_list([placeref])
         handle = self.db.add_place(place, trans)
         self.db.commit_place(place, trans)

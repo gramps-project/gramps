@@ -58,7 +58,7 @@ def do_it(srcfile, tstfile, dfilter=None):
     """
     tst_file = os.path.join(TEST_DIR, srcfile)
     expect_file = os.path.join(TEST_DIR, tstfile)
-   with tempfile.TemporaryDirectory() as tmpdirname:
+    with tempfile.TemporaryDirectory() as tmpdirname:
         result_file = os.path.join(tmpdirname, tstfile)
         err = call(
             "-C", TREE_NAME, "-q", "--import", tst_file, "--export", result_file
@@ -79,7 +79,7 @@ def do_it(srcfile, tstfile, dfilter=None):
 
 def compare(expect_file, result_file, dfilter=None):
     """This uses the diff library to compare two files"""
-   with open(
+    with open(
         expect_file, encoding="utf-8_sig", errors="surrogateescape"
     ) as exp_f, open(
         result_file, encoding="utf-8_sig", errors="surrogateescape"
@@ -114,7 +114,7 @@ def gedfilt(line):
 
     # pylint: disable=unsubscriptable-object
     if line.startswith("@@"):
-       gedfilt.prev = [None] * 16
+        gedfilt.prev = [None] * 16
         gedfilt.indx = 0
         return False
     retval = True
@@ -143,7 +143,7 @@ def gedfilt(line):
         elif token == "TIME" and get_prev_token(2) == "DATE":
             # probably have a header with file time
             retval = False
-       elif token == "TIME" and get_prev_token(2) == "CHAN\n":
+        elif token == "TIME" and get_prev_token(2) == "CHAN\n":
             # probably have a timestamp of last change
             retval = False
         elif token == "FILE" and line.endswith(".ged\n"):
@@ -164,7 +164,7 @@ def gedfilt(line):
         ):
             # we must have a header with file date
             retval = False
-       elif token == "DATE" and (
+        elif token == "DATE" and (
             get_prev_token(3) == "CHAN\n" or get_prev_token(4) == "CHAN\n"
         ):
             # probably have a timestamp of last change

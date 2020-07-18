@@ -53,7 +53,7 @@ LOG = logging.getLogger(".ExportCSV")
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-rom gramps.gen.config import config
+from gramps.gen.config import config
 from gramps.gen.lib import EventType, Person
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gui.plug.export import WriterOptionBox
@@ -271,7 +271,7 @@ class CSVWriter:
                 encoding="utf_8_sig" if win() else "utf_8",
                 newline="",
             )
-           my_dialect = config.get("csv.dialect")
+            my_dialect = config.get("csv.dialect")
             my_delimiter = config.get("csv.delimiter")
             if my_dialect == _("Custom"):
                 self.g = csv.writer(self.fp, delimiter=my_delimiter)
@@ -420,7 +420,7 @@ class CSVWriter:
                     _("Surname"),
                     _("Given"),
                     _("Call"),
-                   _("Nickname"),
+                    _("Nickname"),
                     _("Suffix"),
                     _("Prefix"),
                     _("Title", "Person"),
@@ -445,7 +445,7 @@ class CSVWriter:
                     "Surname",
                     "Given",
                     "Call",
-                   "Nickname",
+                    "Nickname",
                     "Suffix",
                     "Prefix",
                     "Title",
@@ -544,7 +544,7 @@ class CSVWriter:
                         surname,
                         first_name,
                         callname,
-                       nickname,
+                        nickname,
                         suffix,
                         prefix,
                         title,

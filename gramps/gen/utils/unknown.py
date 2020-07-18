@@ -48,6 +48,9 @@ from ..lib import (
     EventType,
     Source,
     Place,
+    PlaceName,
+    PlaceType,
+    PlaceGroupType as P_G,
     Citation,
     Repository,
     RepositoryType,
@@ -120,7 +123,7 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction, *
     elif isinstance(obj, Family):
         obj.set_relationship(FamilyRelType.UNKNOWN)
         handle = obj.handle
-       backlinks = argv["db"].find_backlink_handles(handle, [Person.__name__])
+        backlinks = argv["db"].find_backlink_handles(handle, [Person.__name__])
         for dummy, person_handle in backlinks:
             person = argv["db"].get_person_from_handle(person_handle)
             add_personref_to_family(obj, person)
@@ -131,7 +134,8 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction, *
             obj.set_type(EventType.UNKNOWN)
     elif isinstance(obj, Place):
         obj.set_title(_("Unknown"))
-        obj.name.set_value(_("Unknown"))
+        obj.set_name(PlaceName(value=_("Unknown")))
+        obj.group = P_G(P_G.PLACE)
     elif isinstance(obj, Source):
         obj.set_title(_("Unknown"))
     elif isinstance(obj, Citation):

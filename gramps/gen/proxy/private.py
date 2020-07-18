@@ -47,7 +47,7 @@ from ..lib import (
     Address,
     EventRef,
     Person,
-   PersonRef,
+    PersonRef,
     Name,
     Source,
     RepoRef,
@@ -1028,6 +1028,7 @@ def sanitize_place(db, place):
     new_place.set_change_time(place.get_change_time())
     new_place.set_longitude(place.get_longitude())
     new_place.set_latitude(place.get_latitude())
+    new_place.set_group(place.get_group())
     new_place.set_alternate_locations(place.get_alternate_locations())
     new_place.set_name(place.get_name())
     new_place.set_alternative_names(place.get_alternative_names())

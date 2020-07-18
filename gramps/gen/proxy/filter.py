@@ -80,7 +80,6 @@ from ..types import (
 )
 
 
-
 class FilterProxyDb(ProxyDbBase):
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,

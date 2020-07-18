@@ -180,7 +180,7 @@ class StandardCustomSelector:
         """
         store = Gtk.TreeStore(int, str, bool)
         for heading, items in self.menu:
-            if self.active_key in items:
+            if self.active_key in items or not heading:
                 parent = None
             else:
                 parent = store.append(None, row=[None, _(heading), False])

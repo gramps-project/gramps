@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""
+"""
 Database API interface
 """
 
@@ -28,11 +28,6 @@ Database API interface
 # Python modules
 #
 # -------------------------------------------------------------------------
-======
-import os
-import time
-import pickle
->>>>>>> eae5d2732 (linting)
 import logging
 import json
 import time
@@ -46,7 +41,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # ------------------------------------------------------------------------
 from gramps.gen.db.dbconst import (
     DBLOGNAME,
-   KEY_TO_CLASS_MAP,
+    KEY_TO_CLASS_MAP,
     KEY_TO_NAME_MAP,
     REFERENCE_KEY,
     TXNADD,
@@ -73,7 +68,7 @@ LOG = logging.getLogger(".dbapi")
 _LOG = logging.getLogger(DBLOGNAME)
 
 
- -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # DBAPI class
 #
@@ -131,42 +126,42 @@ class DBAPI(DbGeneric):
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "given_name TEXT, "
             "surname TEXT, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE family "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE source "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE citation "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE event "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE media "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
@@ -174,28 +169,28 @@ class DBAPI(DbGeneric):
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
             "enclosed_by VARCHAR(50), "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE repository "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE note "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         self.dbapi.execute(
             "CREATE TABLE tag "
             "("
             "handle VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{col_data}"
+            f"{col_data}"
             ")"
         )
         # Secondary:
@@ -219,7 +214,7 @@ class DBAPI(DbGeneric):
             "CREATE TABLE metadata "
             "("
             "setting VARCHAR(50) PRIMARY KEY NOT NULL, "
-           f"{meta_col_data}"
+            f"{meta_col_data}"
             ")"
         )
         self.dbapi.execute(
@@ -235,7 +230,7 @@ class DBAPI(DbGeneric):
         self._create_secondary_columns()
 
         ## Indices:
-       self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
+        self.dbapi.execute("CREATE INDEX person_gramps_id ON person(gramps_id)")
         self.dbapi.execute("CREATE INDEX person_surname ON person(surname)")
         self.dbapi.execute("CREATE INDEX person_given_name ON person(given_name)")
         self.dbapi.execute("CREATE INDEX source_title ON source(title)")
@@ -328,7 +323,7 @@ class DBAPI(DbGeneric):
         """
         _LOG.debug(
             "    %sDBAPI %s transaction commit for '%s'",
-           "Batch " if transaction.batch else "",
+            "Batch " if transaction.batch else "",
             hex(id(self)),
             transaction.get_description(),
         )
@@ -340,7 +335,7 @@ class DBAPI(DbGeneric):
             # do deletes and adds first
             for trans_type in [TXNDEL, TXNADD, TXNUPD]:
                 for obj_type in range(11):
-                   if (
+                    if (
                         obj_type != REFERENCE_KEY
                         and (obj_type, trans_type) in transaction
                     ):
@@ -354,7 +349,7 @@ class DBAPI(DbGeneric):
                         else:
                             handles = [
                                 handle
-                               for (handle, data) in transaction[
+                                for (handle, data) in transaction[
                                     (obj_type, trans_type)
                                 ]
                                 if (handle, None) not in transaction[(obj_type, TXNDEL)]
@@ -394,7 +389,7 @@ class DBAPI(DbGeneric):
 
         Note we reserve and use _ to denote default value of []
         """
-       self.dbapi.execute(
+        self.dbapi.execute(
             f"SELECT {self.serializer.metadata_field} FROM metadata WHERE setting = ?",
             [key],
         )
@@ -419,7 +414,7 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             self.dbapi.execute(
-               f"UPDATE metadata SET {self.serializer.metadata_field} = ? WHERE setting = ?",
+                f"UPDATE metadata SET {self.serializer.metadata_field} = ? WHERE setting = ?",
                 [self.serializer.object_to_metadata(value), key],
             )
         else:
@@ -434,7 +429,7 @@ class DBAPI(DbGeneric):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-       self.dbapi.execute("SELECT name, grouping FROM name_group ORDER BY name")
+        self.dbapi.execute("SELECT name, grouping FROM name_group ORDER BY name")
         # not None test below fixes db corrupted by 11011 for export
         return [row[0] for row in self.dbapi.fetchall() if row[1] is not None]
 
@@ -442,7 +437,7 @@ class DBAPI(DbGeneric):
         """
         Return the default grouping name for a surname.
         """
-       self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?", [surname])
+        self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?", [surname])
         row = self.dbapi.fetchone()
         if row and row[0] is not None:
             # not None test fixes db corrupted by 11011
@@ -460,7 +455,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "SELECT handle FROM person "
                 "ORDER BY surname "
                 f'COLLATE "{self._collation(locale)}"'
@@ -480,7 +475,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "SELECT family.handle "
                 "FROM family "
                 "LEFT JOIN person AS father "
@@ -520,7 +515,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "SELECT handle FROM citation "
                 "ORDER BY page "
                 f'COLLATE "{self._collation(locale)}"'
@@ -540,7 +535,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "SELECT handle FROM source "
                 "ORDER BY title "
                 f'COLLATE "{self._collation(locale)}"'
@@ -560,7 +555,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "SELECT handle FROM place "
                 "ORDER BY title "
                 f'COLLATE "{self._collation(locale)}"'
@@ -588,7 +583,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "SELECT handle FROM media "
                 "ORDER BY desc "
                 f'COLLATE "{self._collation(locale)}"'
@@ -616,7 +611,7 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "SELECT handle FROM tag "
                 "ORDER BY name "
                 f'COLLATE "{self._collation(locale)}"'
@@ -660,7 +655,7 @@ class DBAPI(DbGeneric):
         self._txn_begin()
         self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?", [name])
         row = self.dbapi.fetchone()
-       if row and group is not None:
+        if row and group is not None:
             self.dbapi.execute(
                 "UPDATE name_group SET grouping=? WHERE name = ?", [group, name]
             )
@@ -688,7 +683,7 @@ class DBAPI(DbGeneric):
         if self._has_handle(obj_key, obj.handle):
             old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
                 [self.serializer.object_to_string(obj), obj.handle],
             )
@@ -702,7 +697,7 @@ class DBAPI(DbGeneric):
         self._update_backlinks(obj, trans)
         if not trans.batch:
             if old_data:
-               trans.add(
+                trans.add(
                     obj_key,
                     TXNUPD,
                     obj.handle,
@@ -730,7 +725,7 @@ class DBAPI(DbGeneric):
 
         if self._has_handle(obj_key, handle):
             # update the object:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 f"UPDATE {table} SET {self.serializer.data_field} = ? WHERE handle = ?",
                 [self.serializer.data_to_string(data), handle],
             )
@@ -824,7 +819,7 @@ class DBAPI(DbGeneric):
         """
         # collect backlinks from this object for undo
         self.dbapi.execute(
-           "SELECT ref_class, ref_handle FROM reference WHERE obj_handle = ?",
+            "SELECT ref_class, ref_handle FROM reference WHERE obj_handle = ?",
             [obj_handle],
         )
         rows = self.dbapi.fetchall()
@@ -855,7 +850,7 @@ class DBAPI(DbGeneric):
             result_list = list(find_backlink_handles(handle))
         """
         self.dbapi.execute(
-           "SELECT obj_class, obj_handle FROM reference WHERE ref_handle = ?",
+            "SELECT obj_class, obj_handle FROM reference WHERE ref_handle = ?",
             [handle],
         )
         rows = self.dbapi.fetchall()
@@ -907,9 +902,6 @@ class DBAPI(DbGeneric):
         Return an iterator over raw data in the place hierarchy.
         """
         to_do = [""]
-======
-        sql = "SELECT handle, blob_data FROM place WHERE enclosed_by = ?"
->>>>>>> eae5d2732 (linting)
         while to_do:
             handle = to_do.pop()
             self.dbapi.execute(
@@ -1069,7 +1061,7 @@ class DBAPI(DbGeneric):
         Returns a dictionary of
         {given_name: (male_count, female_count, unknown_count)}
         """
-       self.dbapi.execute("SELECT given_name, female, male, unknown FROM gender_stats")
+        self.dbapi.execute("SELECT given_name, female, male, unknown FROM gender_stats")
         gstats = {}
         for row in self.dbapi.fetchall():
             gstats[row[0]] = (row[1], row[2], row[3])
@@ -1093,7 +1085,7 @@ class DBAPI(DbGeneric):
         Helper method to undo a reference map entry
         """
         if data is None:
-           self.dbapi.execute(
+            self.dbapi.execute(
                 "DELETE FROM reference WHERE obj_handle = ? AND ref_handle = ?",
                 [handle[0], handle[1]],
             )
@@ -1131,7 +1123,7 @@ class DBAPI(DbGeneric):
         """
         Return the list of locale-sorted surnames contained in the database.
         """
-       self.dbapi.execute("SELECT DISTINCT surname FROM person ORDER BY surname")
+        self.dbapi.execute("SELECT DISTINCT surname FROM person ORDER BY surname")
         surname_list = []
         for row in self.dbapi.fetchall():
             surname_list.append(row[0])
@@ -1144,7 +1136,7 @@ class DBAPI(DbGeneric):
         """
         if schema_type == "string":
             if max_length:
-               return f"VARCHAR({max_length})"
+                return f"VARCHAR({max_length})"
             return "TEXT"
         if schema_type in ["boolean", "integer"]:
             return "INTEGER"
@@ -1156,7 +1148,7 @@ class DBAPI(DbGeneric):
         """
         Create secondary columns.
         """
-       LOG.debug("Creating secondary columns...")
+        LOG.debug("Creating secondary columns...")
         for cls in (
             Person,
             Family,
@@ -1174,7 +1166,7 @@ class DBAPI(DbGeneric):
                 if field != "handle":
                     sql_type = self._sql_type(schema_type, max_length)
                     self.dbapi.execute(
-                       f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
+                        f"ALTER TABLE {table_name} ADD COLUMN {field} {sql_type}"
                     )
 
     def _update_secondary_values(self, obj):
@@ -1206,7 +1198,7 @@ class DBAPI(DbGeneric):
         if len(values) > 0:
             table_name = table.lower()
             self.dbapi.execute(
-               f'UPDATE {table_name} SET {", ".join(sets)} where handle = ?',
+                f'UPDATE {table_name} SET {", ".join(sets)} where handle = ?',
                 self._sql_cast_list(values) + [obj.handle],
             )
 

@@ -74,10 +74,6 @@ class LastNameDialog(ManagedWindow):
     """
     A dialog that allows the selection of a surname from the database.
     """
-======
-
-    def __init__(self, database, uistate, track, surnames, skip_list=set()):
->>>>>>> eae5d2732 (linting)
 
     def __init__(self, database, uistate, track, surnames, skip_list=set()):
         ManagedWindow.__init__(self, uistate, track, self, modal=True)

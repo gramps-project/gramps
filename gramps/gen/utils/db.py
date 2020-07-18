@@ -21,23 +21,20 @@
 """
 Utilities for getting information from the database.
 """
+
 # -------------------------------------------------------------------------
 #
 # Standard python modules
 #
 # -------------------------------------------------------------------------
 import logging
-======
-
-LOG = logging.getLogger(".gui.utils.db")
->>>>>>> eae5d2732 (linting)
 
 # -------------------------------------------------------------------------
 #
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-rom ..const import GRAMPS_LOCALE as glocale
+from ..const import GRAMPS_LOCALE as glocale
 from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
 from ..lib import EventType, EventRoleType, NameOriginType, Surname
@@ -67,7 +64,7 @@ def get_birth_or_fallback(db, person, format=None):
 
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
-       event = db.get_event_from_handle(event_ref.ref)
+        event = db.get_event_from_handle(event_ref.ref)
         if event and event.type.is_birth_fallback() and event_ref.role.is_primary():
             if format:
                 event.date.format = format
@@ -88,7 +85,7 @@ def get_death_or_fallback(db, person, format=None):
 
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
-       event = db.get_event_from_handle(event_ref.ref)
+        event = db.get_event_from_handle(event_ref.ref)
         if event and event.type.is_death_fallback() and event_ref.role.is_primary():
             if format:
                 event.date.format = format
@@ -115,7 +112,7 @@ def get_age(db, person, fallback=True, calendar="gregorian"):
     else:
         birth_ref = person.get_birth_ref()
         if birth_ref:  # regular birth found
-           birth = db.get_event_from_handle(birth_ref.ref)
+            birth = db.get_event_from_handle(birth_ref.ref)
         death_ref = person.get_death_ref()
         if death_ref:  # regular death found
             death = db.get_event_from_handle(death_ref.ref)
@@ -162,7 +159,7 @@ def get_timeperiod(db, person):
 
     # no birth and death, look for another event date we can use
     for event_ref in person.get_primary_event_ref_list():
-       event = db.get_event_from_handle(event_ref.ref)
+        event = db.get_event_from_handle(event_ref.ref)
         if event:
             event_date = event.get_date_object().to_calendar("gregorian")
             if event_date and event_date.get_valid() and not event_date.is_empty():
@@ -174,17 +171,13 @@ def get_event_ref(db, family, event_type):
     """
     Return a reference to a primary family event of the given event type.
     """
-======
-    from ..lib.eventroletype import EventRoleType
-
->>>>>>> eae5d2732 (linting)
     if family:
         for event_ref in family.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
             if (
                 event
                 and event.get_type() == event_type
-               and event_ref.get_role() in PRIMARY_EVENT_ROLES
+                and event_ref.get_role() in PRIMARY_EVENT_ROLES
             ):
                 return event_ref
     return None
@@ -194,7 +187,7 @@ def get_primary_event_ref_list(db, family):
     """
     Return a reference to the primary events of the family.
     """
-   events = []
+    events = []
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
         if event and event_ref.get_role() in PRIMARY_EVENT_ROLES:
@@ -202,17 +195,11 @@ def get_primary_event_ref_list(db, family):
     return events
 
 
-
 def get_marriage_or_fallback(db, family, format=None):
     """
     Get a MARRIAGE event from a family, or fallback to an
     alternative event type.
     """
-======
-    from ..lib.eventroletype import EventRoleType
-    from ..lib.eventtype import EventType
-
->>>>>>> eae5d2732 (linting)
     marriage_ref = get_event_ref(db, family, EventType.MARRIAGE)
     if marriage_ref:  # regular marriage found
         event = db.get_event_from_handle(marriage_ref.ref)
@@ -221,7 +208,7 @@ def get_marriage_or_fallback(db, family, format=None):
 
     # now search the event list for fallbacks
     for event_ref in get_primary_event_ref_list(db, family):
-       event = db.get_event_from_handle(event_ref.ref)
+        event = db.get_event_from_handle(event_ref.ref)
         if (
             event
             and event.type.is_marriage_fallback()
@@ -238,11 +225,6 @@ def get_divorce_or_fallback(db, family, format=None):
     Get a DIVORCE event from a family, or fallback to an
     alternative event type.
     """
-======
-    from ..lib.eventroletype import EventRoleType
-    from ..lib.eventtype import EventType
-
->>>>>>> eae5d2732 (linting)
     divorce_ref = get_event_ref(db, family, EventType.DIVORCE)
     if divorce_ref:  # regular marriage found
         event = db.get_event_from_handle(divorce_ref.ref)
@@ -251,7 +233,7 @@ def get_divorce_or_fallback(db, family, format=None):
 
     # now search the event list for fallbacks
     for event_ref in get_primary_event_ref_list(db, family):
-       event = db.get_event_from_handle(event_ref.ref)
+        event = db.get_event_from_handle(event_ref.ref)
         if (
             event
             and event.type.is_divorce_fallback()
@@ -268,32 +250,42 @@ def get_divorce_or_fallback(db, family, format=None):
 # Function to return the name of the main participant of an event
 #
 # -------------------------------------------------------------------------
-def get_participant_from_event(db, event_handle, all_=False):
+def get_participant_from_event(db, event_handle, all_=False, inc_place=False):
     """
     Obtain the first primary or family participant to an event we find in the
     database. Note that an event can have more than one primary or
     family participant, only one is returned, adding ellipses if there are
     more. If the all_ parameter is true a comma-space separated string with
     the names of all primary participants is returned and no ellipses is used.
+    If inc_place is true, we add places as well as people.
     """
     participant = ""
     ellipses = False
-   result_list = list(
-        db.find_backlink_handles(event_handle, include_classes=["Person", "Family"])
-    )
+    try:
+        result_list = list(
+            db.find_backlink_handles(
+                event_handle, include_classes=["Person", "Family", "Place"]
+            )
+        )
+    except:
+        # during a magic batch transaction find_backlink_handles tries to
+        # access the reference_map_referenced_map which is closed
+        # under those circumstances.
+        return ""
 
     # obtain handles without duplicates
     people = set([x[1] for x in result_list if x[0] == "Person"])
     families = set([x[1] for x in result_list if x[0] == "Family"])
-   for person_handle in people:
-        person = db.get_person_from_handle(person_handle)
+    places = set([x[1] for x in result_list if x[0] == "Place"])
+    for personhandle in people:
+        person = db.get_person_from_handle(personhandle)
         if not person:
             continue
         for event_ref in person.get_event_ref_list():
             if event_handle == event_ref.ref and event_ref.get_role().is_primary():
                 if participant:
                     if all_:
-                       participant += f", {name_displayer.display(person)}"
+                        participant += f", {name_displayer.display(person)}"
                     else:
                         ellipses = True
                 else:
@@ -310,7 +302,7 @@ def get_participant_from_event(db, event_handle, all_=False):
             if event_handle == event_ref.ref and event_ref.get_role().is_family():
                 if participant:
                     if all_:
-                       participant += f", {family_name(family, db)}"
+                        participant += f", {family_name(family, db)}"
                     else:
                         ellipses = True
                 else:
@@ -319,9 +311,25 @@ def get_participant_from_event(db, event_handle, all_=False):
         if ellipses:
             break
 
+    if inc_place or not (families or people):
+        for placehandle in places:
+            place = db.get_place_from_handle(placehandle)
+            for event_ref in place.get_event_ref_list():
+                if event_handle == event_ref.ref and event_ref.get_role().is_place():
+                    if participant:
+                        if all_:
+                            participant += ", %s" % place_displayer.display(db, place)
+                        else:
+                            ellipses = True
+                    else:
+                        participant = place_displayer.display(db, place)
+                    break
+            if ellipses:
+                break
+
     if ellipses:
         return _("%s, ...") % participant
-   return participant
+    return participant
 
 
 # -------------------------------------------------------------------------
@@ -330,7 +338,7 @@ def get_participant_from_event(db, event_handle, all_=False):
 # and to describe bookmarked objects.
 #
 # -------------------------------------------------------------------------
-ef navigation_label(db, nav_type, handle_or_obj):
+def navigation_label(db, nav_type, handle_or_obj):
     """
     Return a descriptive label for an object.
     """
@@ -389,7 +397,7 @@ ef navigation_label(db, nav_type, handle_or_obj):
 # Function to return children's list of a person
 #
 # -------------------------------------------------------------------------
-ef find_children(db, person):
+def find_children(db, person):
     """
     Return the list of all children's IDs for a person.
     """
@@ -402,15 +410,12 @@ ef find_children(db, person):
     return list(children)
 
 
-======
-
->>>>>>> eae5d2732 (linting)
 # -------------------------------------------------------------------------
 #
 # Function to return parent's list of a person
 #
 # -------------------------------------------------------------------------
-ef find_parents(db, person):
+def find_parents(db, person):
     """
     Return the unique list of all parents' IDs for a person.
     """
@@ -426,16 +431,13 @@ ef find_parents(db, person):
     return list(parents)
 
 
-======
-
->>>>>>> eae5d2732 (linting)
 # -------------------------------------------------------------------------
 #
 # Function to return persons, that share the same event.
 # This for example links witnesses to the tree
 #
 # -------------------------------------------------------------------------
-ef find_witnessed_people(db, person):
+def find_witnessed_people(db, person):
     """
     Return list of all person handles associated with an event.
     """
@@ -499,7 +501,7 @@ def for_each_ancestor(db, start, func, data):
             continue
         if func(data, person_handle):
             return 1
-       person = db.get_person_from_handle(person_handle)
+        person = db.get_person_from_handle(person_handle)
         for family_handle in person.get_parent_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             if family:
@@ -518,7 +520,7 @@ def for_each_ancestor(db, start, func, data):
 # Preset a name with a name of family member
 #
 # -------------------------------------------------------------------------
-ef preset_name(base_person, name, sibling=False):
+def preset_name(base_person, name, sibling=False):
     """
     Fill up name with all family common names of base person.
     If sibling=True, pa/matronymics are retained.
@@ -545,9 +547,6 @@ ef preset_name(base_person, name, sibling=False):
     name.set_sort_as(primary_name.get_sort_as())
 
 
-======
-
->>>>>>> eae5d2732 (linting)
 # -------------------------------------------------------------------------
 #
 # Short hand function to return either the person's name, or an empty
@@ -571,7 +570,7 @@ def family_name(family, db, noname=_("unknown")):
     if father and mother:
         fname = name_displayer.display(father)
         mname = name_displayer.display(mother)
-       return _("%(father)s and %(mother)s") % {
+        return _("%(father)s and %(mother)s") % {
             "father": fname,
             "mother": mname,
         }
@@ -588,7 +587,7 @@ def family_name(family, db, noname=_("unknown")):
 #
 # -------------------------------------------------------------------------
 def get_referents(handle, db, primary_objects):
-   """
+    """
     Find objects that refer to an object.
 
     This function is the base for other get_<object>_referents functions.
@@ -606,7 +605,7 @@ def get_referents(handle, db, primary_objects):
 
 
 def get_source_referents(source_handle, db):
-   """
+    """
     Find objects that refer the source.
 
     This function finds all primary objects that refer (directly or through
@@ -620,13 +619,13 @@ def get_source_referents(source_handle, db):
 
 
 def get_citation_referents(citation_handle, db):
-   """
+    """
     Find objects that refer the citation.
 
     This function finds all primary objects that refer (directly or through
     secondary child-objects) to a given citation handle in a given database.
     """
-   _primaries = (
+    _primaries = (
         "Person",
         "Family",
         "Event",
@@ -675,7 +674,7 @@ def get_source_and_citation_referents(source_handle, db):
     | )
     """
     the_lists = get_source_referents(source_handle, db)
-   LOG.debug("source referents %s", [the_lists])
+    LOG.debug("source referents %s", [the_lists])
     # now, for each citation, get the objects that refer to that citation
     citation_referents_list = []
     for citation in the_lists[0]:
@@ -687,7 +686,7 @@ def get_source_and_citation_referents(source_handle, db):
     (citation_list) = the_lists
     the_lists = (citation_list, citation_referents_list)
 
-   LOG.debug("the_lists %s", [the_lists])
+    LOG.debug("the_lists %s", [the_lists])
     return the_lists
 
 
@@ -730,7 +729,7 @@ def get_media_referents(media_handle, db):
 
 
 def get_note_referents(note_handle, db):
-   """
+    """
     Find objects that refer a note object.
 
     This function finds all primary objects that refer

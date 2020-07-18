@@ -176,7 +176,7 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option("arrow", arrow)
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
-       for COLOR in _COLORS:
+        for COLOR in _COLORS:
             color.add_item(COLOR["value"], COLOR["name"])
         color.set_help(
             _(
@@ -339,6 +339,7 @@ class FamilyLinesOptions(MenuReportOptions):
         color_males = ColorOption(_("Males"), "#e0e0ff")
         color_males.set_help(_("The color to use to display men."))
         add_option("colormales", color_males)
+
         color_females = ColorOption(_("Females"), "#ffe0e0")
         color_females.set_help(_("The color to use to display women."))
         add_option("colorfemales", color_females)
@@ -435,7 +436,7 @@ class FamilyLinesReport(Report):
         self._gidlist = get_value("gidlist")
         self._colormales = get_value("colormales")
         self._colorfemales = get_value("colorfemales")
-       self._colorother = get_value("colorother")
+        self._colorother = get_value("colorother")
         self._colorunknown = get_value("colorunknown")
         self._colorfamilies = get_value("colorfamilies")
         self._limitparents = get_value("limitparents")
@@ -555,7 +556,7 @@ class FamilyLinesReport(Report):
             person = self._db.get_person_from_handle(handle)
             gid = person.get_gramps_id()
             name = person.get_primary_name().get_regular_name()
-           # Translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             id_n = self._("%(str1)s, %(str2)s") % {"str1": gid, "str2": name}
             self.doc.add_comment("# -> " + id_n)
 
@@ -960,7 +961,7 @@ class FamilyLinesReport(Report):
             elif self.includeid == 2:  # own line
                 label += "%s(%s)" % (line_delimiter, p_id)
 
-           if birth_str or birthplace:
+            if birth_str or birthplace:
                 label += "%s%s " % (line_delimiter, birth_symbol)
                 if birth_str:
                     label += "%s" % birth_str
@@ -1057,7 +1058,7 @@ class FamilyLinesReport(Report):
             if self._incchildcount:
                 child_count = len(family.get_child_ref_list())
                 if child_count >= 1:
-                   # Translators: leave all/any {...} untranslated
+                    # Translators: leave all/any {...} untranslated
                     children_str = ngettext(
                         "{number_of} child", "{number_of} children", child_count
                     ).format(number_of=child_count)

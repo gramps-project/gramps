@@ -48,7 +48,7 @@ from ..lib import (
     Source,
     Tag,
 )
-rom ..lib.json_utils import object_to_data
+from ..lib.json_utils import object_to_data
 from ..const import GRAMPS_LOCALE as glocale
 
 

@@ -110,6 +110,7 @@ TAG_MENU = (
         </section>
     """
 )
+
 WIKI_HELP_PAGE = "%s_-_Filters" % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _("Organize_Tags_Window", "manual")
 WIKI_HELP_SEC2 = _("New_Tag_dialog", "manual")
@@ -289,7 +290,7 @@ class Tags(DbGUIElement):
         popup_menu = Gtk.Menu.new_from_model(menu)
         popup_menu.attach_to_widget(button, None)
         popup_menu.show_all()
-       popup_menu.popup_at_widget(
+        popup_menu.popup_at_widget(
             button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None
         )
 
@@ -364,28 +365,6 @@ class Tags(DbGUIElement):
                 view.remove_tag(trans, object_handle, tag_handle)
         status.end()
 
-======
-
-def cb_menu_position(*args):
-    """
-    Determine the position of the popup menu.
-    """
-    # takes two argument: menu, button
-    if len(args) == 2:
-        menu = args[0]
-        button = args[1]
-    # broken introspection can't handle MenuPositionFunc annotations corectly
-    else:
-        menu = args[0]
-        button = args[3]
-
-    ret_val, x_pos, y_pos = button.get_window().get_origin()
-    x_pos += button.get_allocation().x
-    y_pos += button.get_allocation().y + button.get_allocation().height
-
-    return (x_pos, y_pos, False)
->>>>>>> eae5d2732 (linting)
-
 
 def make_callback(func, tag_handle):
     """
@@ -414,7 +393,7 @@ class OrganizeTagsDialog(ManagedWindow):
         self.top = self._create_dialog()
         self.set_window(self.top, None, _("Organize Tags"))
         self.setup_configs("interface.organizetagsdialog", 400, 350)
-       if not config.get("behavior.immediate-warn"):
+        if not config.get("behavior.immediate-warn"):
             self.get_window().set_tooltip_text(_("Any changes are saved immediately"))
         self.show()
         self.run()
@@ -594,9 +573,6 @@ class OrganizeTagsDialog(ManagedWindow):
         )
         prompt = yes_no.run()
         if prompt:
-======
-
->>>>>>> eae5d2732 (linting)
             fnc = {
                 "Person": (self.db.get_person_from_handle, self.db.commit_person),
                 "Family": (self.db.get_family_from_handle, self.db.commit_family),

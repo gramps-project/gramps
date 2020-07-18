@@ -46,7 +46,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 # -------------------------------------------------------------------------
-from gramps.gen.lib import Place, PlaceType
+from gramps.gen.lib import Place, PlaceType, PlaceGroupType
 from gramps.gen.lib.json_utils import data_to_object
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
@@ -79,12 +79,12 @@ class PlaceBaseModel:
             self.column_id,
             self.column_title,
             self.column_type,
-            self.column_code,
             self.column_latitude,
             self.column_longitude,
             self.column_private,
             self.column_tags,
             self.column_change,
+            self.column_group,
             self.column_tag_color,
             self.search_name,
         ]
@@ -93,12 +93,12 @@ class PlaceBaseModel:
             self.column_id,
             self.column_title,
             self.column_type,
-            self.column_code,
             self.sort_latitude,
             self.sort_longitude,
             self.column_private,
             self.column_tags,
             self.sort_change,
+            self.column_group,
             self.column_tag_color,
             self.search_name,
         ]
@@ -134,11 +134,11 @@ class PlaceBaseModel:
 
     def column_name(self, data):
         """Return the primary name"""
-       return data.name.value
+        return data.name_list[0].value
 
     def search_name(self, data):
-        """The search name includes all alt names to enable finding by alt name"""
-        return ",".join([data.name.value] + [name.value for name in data.alt_names])
+        """The search name includes all names"""
+        return ",".join([name.value for name in data.name_list])
 
     def column_longitude(self, data):
         if not data.long:
@@ -153,7 +153,7 @@ class PlaceBaseModel:
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def column_latitude(self, data):
-       if not data.lat:
+        if not data.lat:
             return ""
         value = conv_lat_lon(
             data.lat,
@@ -165,7 +165,7 @@ class PlaceBaseModel:
         return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def sort_longitude(self, data):
-       if not data.long:
+        if not data.long:
             return ""
         value = conv_lat_lon("0", data.long, format="ISO-DMS") if data.long else ""
         if not value:
@@ -173,7 +173,7 @@ class PlaceBaseModel:
         return value
 
     def sort_latitude(self, data):
-       if not data.lat:
+        if not data.lat:
             return ""
         value = conv_lat_lon(data.lat, "0", format="ISO-DMS") if data.lat else ""
         if not value:
@@ -184,13 +184,10 @@ class PlaceBaseModel:
         return data.gramps_id
 
     def column_type(self, data):
-        return PlaceType.get_str(data.place_type)
-
-    def column_code(self, data):
-        return data.code
+        return PlaceType.str(data.type_list[0])
 
     def column_private(self, data):
-       if data.private:
+        if data.private:
             return "gramps-lock"
         else:
             # There is a problem returning None here.
@@ -201,6 +198,9 @@ class PlaceBaseModel:
 
     def column_change(self, data):
         return format_time(data.change)
+
+    def column_group(self, data):
+        return str(PlaceGroupType(data.group))
 
     def get_tag_name(self, tag_handle):
         """
@@ -270,19 +270,6 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
     """
     Flat place model.  (Original code in PlaceBaseModel).
     """
-======
-
-    def __init__(
-        self,
-        db,
-        uistate,
-        scol=0,
-        order=Gtk.SortType.ASCENDING,
-        search=None,
-        skip=set(),
-        sort_map=None,
-    ):
->>>>>>> eae5d2732 (linting)
 
     def __init__(
         self,
@@ -316,19 +303,6 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     """
     Hierarchical place model.
     """
-======
-
-    def __init__(
-        self,
-        db,
-        uistate,
-        scol=0,
-        order=Gtk.SortType.ASCENDING,
-        search=None,
-        skip=set(),
-        sort_map=None,
-    ):
->>>>>>> eae5d2732 (linting)
 
     def __init__(
         self,

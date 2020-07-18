@@ -195,7 +195,7 @@ class PlaceReport(Report):
             )
 
         place_names = ""
-        all_names = place.get_all_names()
+        all_names = place.get_names()
         if len(all_names) > 1 or __debug__:
             for place_name in all_names:
                 if place_names != "":

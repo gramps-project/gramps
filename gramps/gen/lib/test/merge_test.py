@@ -23,7 +23,7 @@
 import unittest
 
 from .. import (
-   Address,
+    Address,
     Attribute,
     AttributeType,
     ChildRef,
@@ -73,7 +73,6 @@ from ..privacybase import PrivacyBase
 from ..surnamebase import SurnameBase
 from ..tagbase import TagBase
 from ..urlbase import UrlBase
-
 
 
 class PrivacyBaseTest:
@@ -136,7 +135,843 @@ class UrlBaseTest:
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
 
-# ):
+# ===========================================================
+
+
+class PrivacyCheck(unittest.TestCase):
+    def test_privacy(self):
+        known_values = (
+            (False, False, False),
+            (True, False, True),
+            (False, True, True),
+            (True, True, True),
+        )
+        phoenix = PrivacyBase()
+        titanic = PrivacyBase()
+        for value1, value2, value_merge in known_values:
+            phoenix.set_privacy(value1)
+            titanic.set_privacy(value2)
+            phoenix._merge_privacy(titanic)
+            self.assertEqual(phoenix.get_privacy(), value_merge)
+
+
+class UrlCheck(unittest.TestCase, PrivacyBaseTest):
+    def setUp(self):
+        self.phoenix = Url()
+        self.phoenix.set_path("http://example1.com")
+        self.phoenix.set_description("hello world")
+        self.phoenix.set_type(UrlType.WEB_HOME)
+        self.titanic = Url(self.phoenix)
+        self.ref_obj = Url(self.phoenix)
+
+    def test_path_equivalence(self):
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
+        self.titanic.set_path("http://example2.com")
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_type_equivalence(self):
+        self.titanic.set_type(UrlType.UNKNOWN)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_desc_equivalence(self):
+        self.titanic.set_description("goodby")
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_privacy_equivalence(self):
+        self.titanic.set_privacy(True)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
+
+    def test_merge_path(self):
+        self.titanic.set_path("example2.com")
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
+
+
+class UrlBaseCheck(unittest.TestCase):
+    def setUp(self):
+        self.phoenix = UrlBase()
+        self.titanic = UrlBase()
+        url = Url()
+        url.set_path("example.com")
+        self.phoenix.add_url(url)
+
+    def test_identical(self):
+        ref_url_list = UrlBase(self.phoenix)
+        url = Url()
+        url.set_path("example.com")
+        self.titanic.add_url(url)
+        self.phoenix._merge_url_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), ref_url_list.serialize())
+
+    def test_equal(self):
+        ref_url_list = UrlBase(self.phoenix)
+        ref_url = ref_url_list.get_url_list()[0]
+        ref_url.set_privacy(True)
+        url = Url()
+        url.set_path("example.com")
+        url.set_privacy(True)
+        self.titanic.add_url(url)
+        self.phoenix._merge_url_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), ref_url_list.serialize())
+
+    def test_different(self):
+        ref_url_list = UrlBase(self.phoenix)
+        url = Url()
+        url.set_path("other.com")
+        ref_url_list.add_url(url)
+        self.titanic.add_url(url)
+        self.phoenix._merge_url_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), ref_url_list.serialize())
+
+
+class AddressCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest):
+    def setUp(self):
+        self.phoenix = Address()
+        self.phoenix.set_city("Amsterdam")
+        self.titanic = Address(self.phoenix)
+        self.ref_obj = Address(self.phoenix)
+
+    def test_location_equivalence(self):
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
+        self.titanic.set_city("Rotterdam")
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_date_equivalence(self):
+        date = Date()
+        date.set_yr_mon_day(1999, 12, 5)
+        self.titanic.set_date_object(date)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_privacy_equivalence(self):
+        self.titanic.set_privacy(True)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
+
+    def test_location_merge(self):
+        self.titanic.set_city("Rotterdam")
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
+
+
+class AddressBaseCheck(unittest.TestCase):
+    def setUp(self):
+        self.phoenix = AddressBase()
+        self.titanic = AddressBase()
+        self.ref_list = AddressBase()
+        address = Address()
+        address.set_city("Amsterdam")
+        self.phoenix.add_address(address)
+
+    def test_identical(self):
+        address = Address()
+        address.set_city("Amsterdam")
+        self.ref_list.add_address(address)
+        self.titanic.add_address(address)
+        self.phoenix._merge_address_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_equal(self):
+        note_handle = "123456"
+        address = Address()
+        address.set_city("Amsterdam")
+        address.add_note(note_handle)
+        self.titanic.add_address(address)
+        self.ref_list.add_address(address)
+        self.phoenix._merge_address_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_different(self):
+        address = Address()
+        address.set_country("Netherlands")
+        self.titanic.add_address(address)
+        self.ref_list = AddressBase(self.phoenix)
+        self.ref_list.add_address(address)
+        self.phoenix._merge_address_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+
+class AttributeCheck(
+    unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest
+):
+    def setUp(self):
+        self.phoenix = Attribute()
+        self.phoenix.set_type(AttributeType.AGE)
+        self.phoenix.set_value(10)
+        self.titanic = Attribute(self.phoenix)
+        self.ref_obj = Attribute(self.phoenix)
+
+    def test_type_equivalence(self):
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
+        self.titanic.set_type(AttributeType.MOTHER_AGE)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_value_equivalence(self):
+        self.titanic.set_value(12)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_privacy_equivalence(self):
+        self.titanic.set_privacy(True)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
+
+    def test_value_merge(self):
+        self.titanic.set_value(12)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
+
+
+class AttributeBaseCheck(unittest.TestCase):
+    def setUp(self):
+        self.phoenix = AttributeBase()
+        self.titanic = AttributeBase()
+        self.ref_list = AttributeBase()
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
+        attr.set_value(10)
+        self.phoenix.add_attribute(attr)
+
+    def test_identical(self):
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
+        attr.set_value(10)
+        self.ref_list.add_attribute(attr)
+        self.titanic.add_attribute(attr)
+        self.phoenix._merge_attribute_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_equal(self):
+        note_handle = "123456"
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
+        attr.set_value(10)
+        attr.add_note(note_handle)
+        self.titanic.add_attribute(attr)
+        self.ref_list.add_attribute(attr)
+        self.phoenix._merge_attribute_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_different(self):
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
+        attr.set_value(12)
+        self.titanic.add_attribute(attr)
+        self.ref_list = AttributeBase(self.phoenix)
+        self.ref_list.add_attribute(attr)
+        self.phoenix._merge_attribute_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+
+class ChildRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest):
+    def setUp(self):
+        self.phoenix = ChildRef()
+        self.phoenix.set_reference_handle("123456")
+        self.phoenix.set_father_relation(ChildRefType.UNKNOWN)
+        self.phoenix.set_mother_relation(ChildRefType.UNKNOWN)
+        self.titanic = ChildRef()
+        self.titanic.set_reference_handle("123456")
+        self.titanic.set_father_relation(ChildRefType.UNKNOWN)
+        self.titanic.set_mother_relation(ChildRefType.UNKNOWN)
+        self.ref_obj = ChildRef()
+        self.ref_obj.set_reference_handle("123456")
+        self.ref_obj.set_father_relation(ChildRefType.UNKNOWN)
+        self.ref_obj.set_mother_relation(ChildRefType.UNKNOWN)
+
+    def test_handle_equivalence(self):
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
+        self.titanic.set_reference_handle("654321")
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_privacy_equivalence(self):
+        self.titanic.set_privacy(True)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
+
+    def test_mrel_merge(self):
+        self.titanic.set_mother_relation(ChildRefType.BIRTH)
+        self.ref_obj.set_mother_relation(ChildRefType.BIRTH)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
+
+    def test_frel_merge(self):
+        self.titanic.set_father_relation(ChildRefType.ADOPTED)
+        self.ref_obj.set_father_relation(ChildRefType.ADOPTED)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
+
+
+class EventCheck(
+    unittest.TestCase,
+    PrivacyBaseTest,
+    NoteBaseTest,
+    CitationBaseTest,
+    MediaBaseTest,
+    AttrBaseTest,
+):
+    def setUp(self):
+        self.phoenix = Event()
+        self.phoenix.set_description("hello world")
+        self.titanic = Event(self.phoenix)
+        self.ref_obj = Event(self.phoenix)
+
+
+class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, AttrBaseTest):
+    def setUp(self):
+        self.phoenix = EventRef()
+        self.phoenix.set_reference_handle("123456")
+        self.titanic = EventRef(self.phoenix)
+        self.ref_obj = EventRef(self.phoenix)
+
+    def test_handle_equivalence(self):
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
+        self.titanic.set_reference_handle("654321")
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_role_equivalence(self):
+        self.titanic.set_role(EventRoleType.WITNESS)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_privacy_equivalence(self):
+        self.titanic.set_privacy(True)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
+
+    def test_replace(self):
+        attr1 = Attribute()
+        attr1.set_type(AttributeType.AGE)
+        attr1.set_value(10)
+        citation1 = Citation()
+        citation1.set_reference_handle("123456")
+        citation1.set_page("p.10")
+        citation2 = Citation()
+        citation2.set_reference_handle("234567")
+        citation2.set_page("p.20")
+        attr1.add_citation(citation1.handle)
+        attr1.add_citation(citation2.handle)
+        attr2 = Attribute()
+        attr2.set_type(AttributeType.AGE)
+        attr2.set_value(10)
+        citation3 = Citation()
+        citation3.set_reference_handle("123456")
+        citation3.set_page("p.10")
+        citation4 = Citation()
+        citation4.set_reference_handle("654321")
+        citation4.set_page("p.20")
+        attr2.add_citation(citation3.handle)
+        attr2.add_citation(citation4.handle)
+        self.phoenix.add_attribute(attr1)
+        self.ref_obj.add_attribute(attr2)
+        self.phoenix.replace_citation_references("234567", "654321")
+        self.assertTrue(self.phoenix.is_equal(self.ref_obj))
+
+
+class FamilyCheck(
+    unittest.TestCase,
+    PrivacyBaseTest,
+    NoteBaseTest,
+    CitationBaseTest,
+    MediaBaseTest,
+    AttrBaseTest,
+):
+    def setUp(self):
+        self.phoenix = Family()
+        self.phoenix.set_father_handle("123456")
+        self.phoenix.set_mother_handle("654321")
+        self.phoenix.set_relationship(FamilyRelType.MARRIED)
+        self.titanic = Family()
+        self.titanic.set_father_handle("123456")
+        self.titanic.set_mother_handle("654321")
+        self.titanic.set_relationship(FamilyRelType.MARRIED)
+        self.ref_obj = Family()
+        self.ref_obj.set_father_handle("123456")
+        self.ref_obj.set_mother_handle("654321")
+        self.ref_obj.set_relationship(FamilyRelType.MARRIED)
+
+    def test_relation_merge(self):
+        self.phoenix.set_relationship(FamilyRelType.UNKNOWN)
+        self.titanic.set_relationship(FamilyRelType.UNMARRIED)
+        self.ref_obj.set_relationship(FamilyRelType.UNMARRIED)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_eventref_merge(self):
+        evtref = EventRef()
+        evtref.set_role(EventRoleType.WITNESS)
+        self.titanic.add_event_ref(evtref)
+        self.ref_obj.add_event_ref(evtref)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_ldsord_merge(self):
+        ldsord = LdsOrd()
+        ldsord.set_temple("London")
+        self.titanic.add_lds_ord(ldsord)
+        self.ref_obj.add_lds_ord(ldsord)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_childref_merge(self):
+        childref = ChildRef()
+        childref.set_reference_handle("123456")
+        self.titanic.add_child_ref(childref)
+        self.ref_obj.add_child_ref(childref)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_mergechildref_identical(self):
+        childref1 = ChildRef()
+        childref1.set_reference_handle("123456")
+        childref2 = ChildRef()
+        childref2.set_reference_handle("123456")
+        childref3 = ChildRef()
+        childref3.set_reference_handle("123456")
+        self.phoenix.add_child_ref(childref1)
+        self.titanic.add_child_ref(childref2)
+        self.ref_obj.add_child_ref(childref3)
+        self.phoenix._merge_child_ref_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_mergechildref_equal(self):
+        childref1 = ChildRef()
+        childref1.set_reference_handle("123456")
+        childref2 = ChildRef()
+        childref2.set_reference_handle("123456")
+        childref2.add_note("N1")
+        childref3 = ChildRef()
+        childref3.set_reference_handle("123456")
+        childref3.add_note("N1")
+        self.phoenix.add_child_ref(childref1)
+        self.titanic.add_child_ref(childref2)
+        self.ref_obj.add_child_ref(childref3)
+        self.phoenix._merge_child_ref_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_mergechildref_different(self):
+        childref1 = ChildRef()
+        childref1.set_reference_handle("123456")
+        childref2 = ChildRef()
+        childref2.set_reference_handle("654321")
+        childref3 = ChildRef()
+        childref3.set_reference_handle("123456")
+        childref4 = ChildRef()
+        childref4.set_reference_handle("654321")
+        self.phoenix.add_child_ref(childref1)
+        self.titanic.add_child_ref(childref2)
+        self.ref_obj.add_child_ref(childref3)
+        self.ref_obj.add_child_ref(childref4)
+        self.phoenix._merge_child_ref_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_childref_absent(self):
+        childref1 = ChildRef()
+        childref1.set_reference_handle("234567")
+        childref2 = ChildRef()
+        childref2.set_reference_handle("345678")
+        childref3 = ChildRef()
+        childref3.set_reference_handle("765432")
+        childref4 = ChildRef()
+        childref4.set_reference_handle("345678")
+        self.phoenix.add_child_ref(childref1)
+        self.phoenix.add_child_ref(childref2)
+        self.ref_obj.add_child_ref(childref3)
+        self.ref_obj.add_child_ref(childref4)
+        self.phoenix.replace_handle_reference("Person", "234567", "765432")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_childref_identical(self):
+        childref1 = ChildRef()
+        childref1.set_reference_handle("234567")
+        childref2 = ChildRef()
+        childref2.set_reference_handle("765432")
+        childref3 = ChildRef()
+        childref3.set_reference_handle("765432")
+        self.phoenix.add_child_ref(childref1)
+        self.phoenix.add_child_ref(childref2)
+        self.ref_obj.add_child_ref(childref3)
+        self.phoenix.replace_handle_reference("Person", "234567", "765432")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_childref_equal(self):
+        childref1 = ChildRef()
+        childref1.set_reference_handle("234567")
+        childref1.set_privacy(True)
+        childref2 = ChildRef()
+        childref2.set_reference_handle("765432")
+        childref3 = ChildRef()
+        childref3.set_reference_handle("765432")
+        childref3.set_privacy(True)
+        self.phoenix.add_child_ref(childref1)
+        self.phoenix.add_child_ref(childref2)
+        self.ref_obj.add_child_ref(childref3)
+        self.phoenix.replace_handle_reference("Person", "234567", "765432")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_childref_different(self):
+        # impossible, is_equivalent is only DIFFERENT if handles differ.
+        childref1 = ChildRef()
+        childref1.set_reference_handle("234567")
+        childref1.set_mother_relation("Adopted")
+        childref2 = ChildRef()
+        childref2.set_reference_handle("765432")
+        childref3 = ChildRef()
+        childref3.set_reference_handle("765432")
+        self.phoenix.add_child_ref(childref1)
+        self.phoenix.add_child_ref(childref2)
+        self.ref_obj.add_child_ref(childref3)
+        self.phoenix.replace_handle_reference("Person", "234567", "765432")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_mergeeventref_identical(self):
+        eventref1 = EventRef()
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
+        eventref2.set_role(EventRoleType.WITNESS)
+        eventref3 = EventRef()
+        eventref3.set_role(EventRoleType.WITNESS)
+        self.phoenix.add_event_ref(eventref1)
+        self.titanic.add_event_ref(eventref2)
+        self.ref_obj.add_event_ref(eventref3)
+        self.phoenix._merge_event_ref_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_mergeeventref_equal(self):
+        eventref1 = EventRef()
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
+        eventref2.set_role(EventRoleType.WITNESS)
+        eventref2.add_note("N1")
+        eventref3 = EventRef()
+        eventref3.set_role(EventRoleType.WITNESS)
+        eventref3.add_note("N1")
+        self.phoenix.add_event_ref(eventref1)
+        self.titanic.add_event_ref(eventref2)
+        self.ref_obj.add_event_ref(eventref3)
+        self.phoenix._merge_event_ref_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_mergeeventref_different(self):
+        eventref1 = EventRef()
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
+        eventref2.set_role(EventRoleType.CLERGY)
+        eventref3 = EventRef()
+        eventref3.set_role(EventRoleType.WITNESS)
+        eventref4 = EventRef()
+        eventref4.set_role(EventRoleType.CLERGY)
+        self.phoenix.add_event_ref(eventref1)
+        self.titanic.add_event_ref(eventref2)
+        self.ref_obj.add_event_ref(eventref3)
+        self.ref_obj.add_event_ref(eventref4)
+        self.phoenix._merge_event_ref_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_event_absent(self):
+        eventref1 = EventRef()
+        eventref1.set_reference_handle("123456")
+        eventref2 = EventRef()
+        eventref2.set_reference_handle("234567")
+        eventref3 = EventRef()
+        eventref3.set_reference_handle("654321")
+        eventref4 = EventRef()
+        eventref4.set_reference_handle("234567")
+        self.phoenix.add_event_ref(eventref1)
+        self.phoenix.add_event_ref(eventref2)
+        self.ref_obj.add_event_ref(eventref3)
+        self.ref_obj.add_event_ref(eventref4)
+        self.phoenix.replace_handle_reference("Event", "123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_event_identical(self):
+        eventref1 = EventRef()
+        eventref1.set_reference_handle("123456")
+        eventref2 = EventRef()
+        eventref2.set_reference_handle("654321")
+        eventref3 = EventRef()
+        eventref3.set_reference_handle("654321")
+        self.phoenix.add_event_ref(eventref1)
+        self.phoenix.add_event_ref(eventref2)
+        self.ref_obj.add_event_ref(eventref3)
+        self.phoenix.replace_handle_reference("Event", "123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_event_equal(self):
+        eventref1 = EventRef()
+        eventref1.set_reference_handle("123456")
+        eventref1.set_privacy(True)
+        eventref2 = EventRef()
+        eventref2.set_reference_handle("654321")
+        eventref3 = EventRef()
+        eventref3.set_reference_handle("654321")
+        eventref3.set_privacy(True)
+        self.phoenix.add_event_ref(eventref1)
+        self.phoenix.add_event_ref(eventref2)
+        self.ref_obj.add_event_ref(eventref3)
+        self.phoenix.replace_handle_reference("Event", "123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_event_different(self):
+        eventref1 = EventRef()
+        eventref1.set_reference_handle("123456")
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
+        eventref2.set_reference_handle("654321")
+        eventref3 = EventRef()
+        eventref3.set_reference_handle("654321")
+        eventref3.set_role(EventRoleType.WITNESS)
+        eventref4 = EventRef()
+        eventref4.set_reference_handle("654321")
+        self.phoenix.add_event_ref(eventref1)
+        self.phoenix.add_event_ref(eventref2)
+        self.ref_obj.add_event_ref(eventref3)
+        self.ref_obj.add_event_ref(eventref4)
+        self.phoenix.replace_handle_reference("Event", "123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_event_order_first(self):
+        eventref1 = EventRef()
+        eventref1.set_reference_handle("123456")
+        eventref2 = EventRef()
+        eventref2.set_reference_handle("234567")
+        eventref3 = EventRef()
+        eventref3.set_reference_handle("654321")
+        eventref4 = EventRef()
+        eventref4.set_reference_handle("123456")
+        eventref5 = EventRef()
+        eventref5.set_reference_handle("234567")
+        self.phoenix.add_event_ref(eventref1)
+        self.phoenix.add_event_ref(eventref2)
+        self.phoenix.add_event_ref(eventref3)
+        self.ref_obj.add_event_ref(eventref4)
+        self.ref_obj.add_event_ref(eventref5)
+        self.phoenix.replace_handle_reference("Event", "654321", "123456")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_replace_event_order_last(self):
+        eventref1 = EventRef()
+        eventref1.set_reference_handle("123456")
+        eventref2 = EventRef()
+        eventref2.set_reference_handle("234567")
+        eventref3 = EventRef()
+        eventref3.set_reference_handle("654321")
+        eventref4 = EventRef()
+        eventref4.set_reference_handle("234567")
+        eventref5 = EventRef()
+        eventref5.set_reference_handle("654321")
+        self.phoenix.add_event_ref(eventref1)
+        self.phoenix.add_event_ref(eventref2)
+        self.phoenix.add_event_ref(eventref3)
+        self.ref_obj.add_event_ref(eventref4)
+        self.ref_obj.add_event_ref(eventref5)
+        self.phoenix.replace_handle_reference("Event", "123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+
+class LdsordCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, CitationBaseTest):
+    def setUp(self):
+        self.phoenix = LdsOrd()
+        self.phoenix.set_temple("London, England")
+        self.titanic = LdsOrd(self.phoenix)
+        self.ref_obj = LdsOrd(self.phoenix)
+
+    def test_type_equivalence(self):
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
+        self.titanic.set_type(LdsOrd.CONFIRMATION)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_date_equivalence(self):
+        date = Date()
+        date.set_yr_mon_day(1999, 12, 5)
+        self.titanic.set_date_object(date)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_temple_equivalence(self):
+        self.titanic.set_temple("Baton Rouge, Louisiana")
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_status_equivalence(self):
+        self.titanic.set_status(LdsOrd.STATUS_CLEARED)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_famc_equivalence(self):
+        self.titanic.set_family_handle("F1")
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
+
+    def test_privacy_equivalence(self):
+        self.titanic.set_privacy(True)
+        self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
+
+
+class LdsordBaseCheck(unittest.TestCase):
+    def setUp(self):
+        self.phoenix = LdsOrdBase()
+        self.titanic = LdsOrdBase()
+        self.ref_list = LdsOrdBase()
+        ldsord = LdsOrd()
+        ldsord.set_temple("London, England")
+        self.phoenix.add_lds_ord(ldsord)
+
+    def test_identical(self):
+        ldsord = LdsOrd()
+        ldsord.set_temple("London, England")
+        self.titanic.add_lds_ord(ldsord)
+        self.ref_list.add_lds_ord(ldsord)
+        self.phoenix._merge_lds_ord_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_equal(self):
+        ldsord = LdsOrd()
+        ldsord.set_temple("London, England")
+        ldsord.set_privacy(True)
+        self.titanic.add_lds_ord(ldsord)
+        self.ref_list.add_lds_ord(ldsord)
+        self.phoenix._merge_lds_ord_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_different(self):
+        ldsord = LdsOrd()
+        ldsord.set_temple("Baton Rouge, Louisiana")
+        self.titanic.add_lds_ord(ldsord)
+        self.ref_list = LdsOrdBase(self.phoenix)
+        self.ref_list.add_lds_ord(ldsord)
+        self.phoenix._merge_lds_ord_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+
+class MediaBaseCheck(unittest.TestCase):
+    def setUp(self):
+        self.phoenix = MediaBase()
+        self.titanic = MediaBase()
+        self.ref_list = MediaBase()
+        mediaref = MediaRef()
+        mediaref.set_reference_handle("123456")
+        mediaref.set_rectangle("10 10 90 90")
+        self.phoenix.add_media_reference(mediaref)
+
+    def test_merge_identical(self):
+        mediaref = MediaRef()
+        mediaref.set_reference_handle("123456")
+        mediaref.set_rectangle("10 10 90 90")
+        self.titanic.add_media_reference(mediaref)
+        self.ref_list.add_media_reference(mediaref)
+        self.phoenix._merge_media_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_merge_equal(self):
+        mediaref = MediaRef()
+        mediaref.set_reference_handle("123456")
+        mediaref.set_rectangle("10 10 90 90")
+        mediaref.set_privacy(True)
+        self.titanic.add_media_reference(mediaref)
+        self.ref_list.add_media_reference(mediaref)
+        self.phoenix._merge_media_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_merge_different(self):
+        mediaref1 = MediaRef()
+        mediaref1.set_reference_handle("123456")
+        mediaref1.set_rectangle("10 10 90 90")
+        mediaref2 = MediaRef()
+        mediaref2.set_reference_handle("123456")
+        mediaref2.set_rectangle("20 10 90 90")
+        self.titanic.add_media_reference(mediaref2)
+        self.ref_list.add_media_reference(mediaref1)
+        self.ref_list.add_media_reference(mediaref2)
+        self.phoenix._merge_media_list(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_replace_absent(self):
+        mediaref1 = MediaRef()
+        mediaref1.set_reference_handle("654321")
+        mediaref1.set_rectangle("10 10 90 90")
+        self.ref_list.add_media_reference(mediaref1)
+        self.phoenix.replace_media_references("123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_replace_identical(self):
+        mediaref1 = MediaRef()
+        mediaref1.set_reference_handle("654321")
+        mediaref1.set_rectangle("10 10 90 90")
+        mediaref2 = MediaRef()
+        mediaref2.set_reference_handle("654321")
+        mediaref2.set_rectangle("10 10 90 90")
+        self.phoenix.add_media_reference(mediaref1)
+        self.ref_list.add_media_reference(mediaref2)
+        self.phoenix.replace_media_references("123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_replace_equal(self):
+        mediaref1 = MediaRef()
+        mediaref1.set_reference_handle("654321")
+        mediaref1.set_rectangle("10 10 90 90")
+        mediaref1.set_privacy(True)
+        mediaref2 = MediaRef()
+        mediaref2.set_reference_handle("654321")
+        mediaref2.set_rectangle("10 10 90 90")
+        mediaref2.set_privacy(True)
+        self.phoenix.add_media_reference(mediaref1)
+        self.ref_list.add_media_reference(mediaref2)
+        self.phoenix.replace_media_references("123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_replace_different(self):
+        mediaref1 = MediaRef()
+        mediaref1.set_reference_handle("654321")
+        mediaref1.set_rectangle("20 20 90 90")
+        mediaref2 = MediaRef()
+        mediaref2.set_reference_handle("654321")
+        mediaref2.set_rectangle("10 10 90 90")
+        mediaref3 = MediaRef()
+        mediaref3.set_reference_handle("654321")
+        mediaref3.set_rectangle("20 20 90 90")
+        self.phoenix.add_media_reference(mediaref1)
+        self.ref_list.add_media_reference(mediaref2)
+        self.ref_list.add_media_reference(mediaref3)
+        self.phoenix.replace_media_references("123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_replace_order_first(self):
+        mediaref1 = MediaRef()
+        mediaref1.set_reference_handle("234567")
+        mediaref1.set_rectangle("10 10 90 90")
+        mediaref2 = MediaRef()
+        mediaref2.set_reference_handle("654321")
+        mediaref2.set_rectangle("10 10 90 90")
+        mediaref3 = MediaRef()
+        mediaref3.set_reference_handle("123456")
+        mediaref3.set_rectangle("10 10 90 90")
+        mediaref4 = MediaRef()
+        mediaref4.set_reference_handle("234567")
+        mediaref4.set_rectangle("10 10 90 90")
+        self.phoenix.add_media_reference(mediaref1)
+        self.phoenix.add_media_reference(mediaref2)
+        self.ref_list.add_media_reference(mediaref3)
+        self.ref_list.add_media_reference(mediaref4)
+        self.phoenix.replace_media_references("654321", "123456")
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+    def test_replace_order_last(self):
+        mediaref1 = MediaRef()
+        mediaref1.set_reference_handle("234567")
+        mediaref1.set_rectangle("10 10 90 90")
+        mediaref2 = MediaRef()
+        mediaref2.set_reference_handle("654321")
+        mediaref2.set_rectangle("10 10 90 90")
+        mediaref3 = MediaRef()
+        mediaref3.set_reference_handle("234567")
+        mediaref3.set_rectangle("10 10 90 90")
+        mediaref4 = MediaRef()
+        mediaref4.set_reference_handle("654321")
+        mediaref4.set_rectangle("10 10 90 90")
+        self.phoenix.add_media_reference(mediaref1)
+        self.phoenix.add_media_reference(mediaref2)
+        self.ref_list.add_media_reference(mediaref3)
+        self.ref_list.add_media_reference(mediaref4)
+        self.phoenix.replace_media_references("123456", "654321")
+        self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
+
+
+class MediaCheck(
+    unittest.TestCase,
+    PrivacyBaseTest,
+    AttrBaseTest,
+    NoteBaseTest,
+    CitationBaseTest,
+):
     def setUp(self):
         self.phoenix = Media()
         self.phoenix.set_path("example.png")
@@ -145,7 +980,7 @@ class UrlBaseTest:
 
 
 class MediaRefCheck(
-   unittest.TestCase,
+    unittest.TestCase,
     PrivacyBaseTest,
     AttrBaseTest,
     CitationBaseTest,
@@ -209,7 +1044,7 @@ class NoteCheck(unittest.TestCase, PrivacyBaseTest):
         self.titanic = Note("hello world")
         self.ref_obj = Note("hello world")
 
-   def test_note_replace_handle_reference(self):
+    def test_note_replace_handle_reference(self):
         ptag = StyledTextTag(
             name=StyledTextTagType.LINK,
             value="gramps://Event/handle/e0000",
@@ -318,7 +1153,7 @@ class NoteBaseCheck(unittest.TestCase):
         self.phoenix.replace_note_references("", "")
         self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
 
-   def test_remove_note_references(self):
+    def test_remove_note_references(self):
         note = Note("note other")
         note.set_handle("654321")
         self.phoenix.add_note(note.get_handle())

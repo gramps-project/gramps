@@ -36,7 +36,7 @@ from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
-rom gramps.gen.config import config
+from gramps.gen.config import config
 
 _ = glocale.translation.gettext
 
@@ -69,7 +69,7 @@ class PlaceDetails(Gramplet):
         self.top.show_all()
         return self.top
 
-    def add_row(self, title, value):
+    def add_row(self, title, value, val2=None):
         """
         Add a row to the table.
         """
@@ -83,6 +83,10 @@ class PlaceDetails(Gramplet):
         value.show()
         self.grid.add(label)
         self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
+        if val2:
+            col2 = Gtk.Label(label=val2, halign=Gtk.Align.START)
+            col2.show()
+            self.grid.attach_next_to(col2, value, Gtk.PositionType.RIGHT, 1, 1)
 
     def clear_grid(self):
         """
@@ -95,10 +99,9 @@ class PlaceDetails(Gramplet):
         self.connect_signal("Place", self.update)
 
     def update_has_data(self):
-        active_handle = self.get_active("Person")
+        active_handle = self.get_active("Place")
         if active_handle:
-            active_person = self.dbstate.db.get_person_from_handle(active_handle)
-            self.set_has_data(active_person is not None)
+            self.set_has_data(self.dbstate.db.has_place_handle(active_handle))
         else:
             self.set_has_data(False)
 
@@ -128,13 +131,34 @@ class PlaceDetails(Gramplet):
         )
 
         self.clear_grid()
-        self.add_row(_("Name"), place.get_name().get_value())
-        self.add_row(_("Type"), place.get_type())
+        names = []
+        dates = []
+        for name in place.get_names():
+            names.append(
+                "%s (%s)" % (name.get_value(), name.get_language())
+                if name.get_language()
+                else name.get_value()
+            )
+            dates.append(
+                ""
+                if name.get_date_object().is_empty()
+                else "[%s]" % name.get_date_object()
+            )
+        self.add_row(_("Names"), "\n".join(names), val2="\n".join(dates))
         self.display_separator()
-        self.display_alt_names(place)
+        types = []
+        dates = []
+        for typ in place.get_types():
+            types.append(typ.str(expand=True))
+            dates.append(
+                ""
+                if typ.get_date_object().is_empty()
+                else "[%s]" % typ.get_date_object()
+            )
+        self.add_row(_("Types"), "\n".join(types), val2="\n".join(dates))
         self.display_separator()
         lat, lon = conv_lat_lon(
-           place.get_latitude(),
+            place.get_latitude(),
             place.get_longitude(),
             format=coord_formats[config.get("preferences.coord-format")],
         )
@@ -142,21 +166,6 @@ class PlaceDetails(Gramplet):
             self.add_row(_("Latitude"), lat)
         if lon:
             self.add_row(_("Longitude"), lon)
-
-    def display_alt_names(self, place):
-        """
-        Display alternative names for the place.
-        """
-        alt_names = [
-            (
-                "%s (%s)" % (name.get_value(), name.get_language())
-                if name.get_language()
-                else name.get_value()
-            )
-            for name in place.get_alternative_names()
-        ]
-        if len(alt_names) > 0:
-            self.add_row(_("Alternative Names"), "\n".join(alt_names))
 
     def display_empty(self):
         """

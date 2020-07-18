@@ -74,12 +74,12 @@ class PlaceBaseView(ListView):
     COL_ID = 1
     COL_TITLE = 2
     COL_TYPE = 3
-    COL_CODE = 4
-    COL_LAT = 5
-    COL_LON = 6
-    COL_PRIV = 7
-    COL_TAGS = 8
-    COL_CHAN = 9
+    COL_LAT = 4
+    COL_LON = 5
+    COL_PRIV = 6
+    COL_TAGS = 7
+    COL_CHAN = 8
+    COL_GROUP = 9
     COL_SEARCH = 11
     # column definitions
     COLUMNS = [
@@ -87,16 +87,17 @@ class PlaceBaseView(ListView):
         (_("ID"), TEXT, None),
         (_("Title"), TEXT, None),
         (_("Type"), TEXT, None),
-        (_("Code"), TEXT, None),
         (_("Latitude"), TEXT, None),
         (_("Longitude"), TEXT, None),
         (_("Private"), ICON, "gramps-lock"),
         (_("Tags"), TEXT, None),
         (_("Last Changed"), TEXT, None),
+        (_("Group"), TEXT, None),
     ]
+
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ("columns.visible", [COL_NAME, COL_ID, COL_TYPE, COL_CODE]),
+        ("columns.visible", [COL_NAME, COL_ID, COL_TYPE]),
         (
             "columns.rank",
             [
@@ -104,7 +105,7 @@ class PlaceBaseView(ListView):
                 COL_TITLE,
                 COL_ID,
                 COL_TYPE,
-                COL_CODE,
+                COL_GROUP,
                 COL_LAT,
                 COL_LON,
                 COL_PRIV,
@@ -112,7 +113,7 @@ class PlaceBaseView(ListView):
                 COL_CHAN,
             ],
         ),
-        ("columns.size", [250, 250, 75, 100, 100, 150, 150, 40, 100, 100]),
+        ("columns.size", [250, 250, 75, 100, 75, 150, 150, 40, 100, 100]),
     )
     ADD_MSG = _("Add a new place")
     EDIT_MSG = _("Edit the selected place")
@@ -231,7 +232,7 @@ class PlaceBaseView(ListView):
         """
         if action:
             action.set_state(value)
-           self.mapservice = value.get_string()
+            self.mapservice = value.get_string()
         else:
             self.mapservice = value
         config.set("interface.mapservice", self.mapservice)
@@ -350,7 +351,7 @@ class PlaceBaseView(ListView):
         </item>
       </section>
 """
-       % _("_Edit...", "action"),  # to use sgettext()
+        % _("_Edit...", "action"),  # to use sgettext()
         """
         <placeholder id='otheredit'>
         <item>
@@ -489,7 +490,7 @@ class PlaceBaseView(ListView):
       </section>
     </menu>
 """
-       % _("_Edit...", "action"),
+        % _("_Edit...", "action"),
     ]  # to use sgettext()
 
     map_ui_menu = """
@@ -540,7 +541,7 @@ class PlaceBaseView(ListView):
     def remove(self, *obj):
         ht_list = []
         for handle in self.selected_handles():
-           for _link in self.dbstate.db.find_backlink_handles(handle, ["Place"]):
+            for _link in self.dbstate.db.find_backlink_handles(handle, ["Place"]):
                 msg = _("Cannot delete place.")
                 msg2 = _(
                     "This place is currently referenced by another place."
@@ -645,6 +646,7 @@ class PlaceBaseView(ListView):
                 "Place Details",
                 "Place Enclosed By",
                 "Place Encloses",
+                "Place Events",
                 "Place Gallery",
                 "Place Citations",
                 "Place Notes",

@@ -359,7 +359,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         for tag in note.text.get_tags():
             if tag.name == "Link":
                 if tag.value.startswith("gramps://"):
-                   obj_class, prop, value = tag.value[9:].split("/", 2)
+                    obj_class, prop, value = tag.value[9:].split("/", 2)
                     if obj_class == "Media":  # bug6493
                         obj_class = "Media"
                     if prop == "handle":
