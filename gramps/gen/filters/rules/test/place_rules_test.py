@@ -198,7 +198,7 @@ class BaseTest(unittest.TestCase):
         """
         Test HasData rule.
         """
-        rule = HasData(["Albany", "County", ""])
+        rule = HasData(["Albany", "County"])
         self.assertEqual(
             self.filter_with_rule(rule), set(["c9658726d602acadb74e330116a"])
         )

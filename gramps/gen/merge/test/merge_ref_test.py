@@ -36,7 +36,7 @@ from gramps.test.test_util import Gramps
 from gramps.gen.user import User
 from gramps.gen.const import DATA_DIR, USER_PLUGINS
 from gramps.version import VERSION
-from gramps.gen.lib import Name, Surname
+from gramps.gen.lib import Name, Surname, PlaceType
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
@@ -310,13 +310,15 @@ class PersonCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000" type="Country">
+          <placeobj handle="_p0000" id="P0000" group="Countries">
             <ptitle>Place 0</ptitle>
             <pname value="Place 0"/>
+            <ptype pt_id="Country" name="Country"/>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001" type="Country">
+          <placeobj handle="_p0001" id="P0001" group="Countries">
             <ptitle>Place 1</ptitle>
             <pname value="Place 1"/>
+            <ptype pt_id="Country" name="Country"/>
           </placeobj>
         </places>
         <objects>
@@ -527,13 +529,15 @@ class FamilyCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000" type="Country">
+          <placeobj handle="_p0000" id="P0000" group="Countries">
             <ptitle>Place 0</ptitle>
             <pname value="Place 0"/>
+            <ptype pt_id="Country" name="Country"/>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001" type="Country">
+          <placeobj handle="_p0001" id="P0001" group="Countries">
             <ptitle>Place 1</ptitle>
             <pname value="Place 1"/>
+            <ptype pt_id="Country" name="Country"/>
           </placeobj>
         </places>
         <objects>
@@ -580,7 +584,8 @@ class FamilyCheck(BaseMergeCheck):
         placeobj = expect.xpath(
             "//g:placeobj[@handle='_p0000']", namespaces={"g": NS_G}
         )[0]
-        ET.SubElement(placeobj, NSP + "pname", value="Place 1")
+        pname = ET.Element(NSP + "pname", value="Place 1")
+        placeobj.insert(2, pname)
         self.do_case("P0000", "P0001", self.basedoc, expect)
 
     def test_citation_merge(self):
@@ -672,13 +677,15 @@ class EventCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000" type = "Country">
+          <placeobj handle="_p0000" id="P0000" group="Countries">
             <ptitle>Place 0</ptitle>
             <pname value="Place 0"/>
+            <ptype pt_id="Country" name="Country"/>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001" type = "Country">
+          <placeobj handle="_p0001" id="P0001" group="Countries">
             <ptitle>Place 1</ptitle>
             <pname value="Place 1"/>
+            <ptype pt_id="Country" name="Country"/>
           </placeobj>
         </places>
         <objects>
@@ -714,7 +721,8 @@ class EventCheck(BaseMergeCheck):
         placeobj = expect.xpath(
             "//g:placeobj[@handle='_p0000']", namespaces={"g": NS_G}
         )[0]
-        ET.SubElement(placeobj, NSP + "pname", value="Place 1")
+        pname = ET.Element(NSP + "pname", value="Place 1")
+        placeobj.insert(2, pname)
         self.do_case("P0000", "P0001", self.basedoc, expect)
 
     def test_citation_merge(self):
@@ -788,16 +796,18 @@ class PlaceCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000" type = "Country">
+          <placeobj handle="_p0000" id="P0000" group="Countries">
             <ptitle>Place 0</ptitle>
             <pname value="Place 0"/>
+            <ptype pt_id="Country" name="Country"/>
             <objref hlink="_o0000"/>
             <noteref hlink="_n0000"/>
             <citationref hlink="_c0000"/>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001" type = "Country">
+          <placeobj handle="_p0001" id="P0001" group="Countries">
             <ptitle>Place 1</ptitle>
             <pname value="Place 1"/>
+            <ptype pt_id="Country" name="Country"/>
             <objref hlink="_o0001"/>
             <noteref hlink="_n0001"/>
             <citationref hlink="_c0001"/>
