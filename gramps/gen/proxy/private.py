@@ -53,6 +53,9 @@ from ..lib import (
     RepoRef,
     Media,
     Place,
+    PlaceName,
+    PlaceRef,
+    PlaceType,
     Event,
     Family,
     ChildRef,
@@ -515,6 +518,26 @@ def copy_citation_ref_list(db, original_obj, clean_obj):
                 clean_obj.add_citation(citation_handle)
 
 
+def copy_event_ref_list(db, original_obj, clean_obj):
+    """
+    Copies event references from one object to another - excluding references
+    to private events
+
+    :param db: Gramps database to which the references belongs
+    :type db: DbBase
+    :param original_obj: Object that may have private references
+    :type original_obj: EventBase
+    :param clean_obj: Object that will have only non-private references
+    :type original_obj: EventBase
+    :returns: Nothing
+    """
+    for event_ref in original_obj.get_event_ref_list():
+        if event_ref and not event_ref.get_privacy():
+            event = db.get_event_from_handle(event_ref.ref)
+            if event and not event.get_privacy():
+                clean_obj.add_event_ref(sanitize_event_ref(db, event_ref))
+
+
 def copy_notes(db, original_obj, clean_obj):
     """
     Copies notes from one object to another - excluding references to private
@@ -900,12 +923,7 @@ def sanitize_person(db, person):
         if name and not name.get_privacy():
             new_person.add_alternate_name(sanitize_name(db, name))
 
-    # copy event list
-    for event_ref in person.get_event_ref_list():
-        if event_ref and not event_ref.get_privacy():
-            event = db.get_event_from_handle(event_ref.ref)
-            if event and not event.get_privacy():
-                new_person.add_event_ref(sanitize_event_ref(db, event_ref))
+    copy_event_ref_list(db, person, new_person)
 
     # Copy birth and death after event list to maintain the order.
     # copy birth event
@@ -1030,17 +1048,32 @@ def sanitize_place(db, place):
     new_place.set_latitude(place.get_latitude())
     new_place.set_group(place.get_group())
     new_place.set_alternate_locations(place.get_alternate_locations())
-    new_place.set_name(place.get_name())
-    new_place.set_alternative_names(place.get_alternative_names())
-    new_place.set_type(place.get_type())
-    new_place.set_code(place.get_code())
-    new_place.set_placeref_list(place.get_placeref_list())
     new_place.set_tag_list(place.get_tag_list())
+    # Copy name list
+    for name in place.get_names():
+        n_name = PlaceName(name)
+        n_name.citation_list = []
+        copy_citation_ref_list(db, name, n_name)
+        new_place.name_list.append(n_name)
+    # Copy type list
+    for ptype in place.get_types():
+        n_type = PlaceType(ptype)
+        n_type.citation_list = []
+        copy_citation_ref_list(db, ptype, n_type)
+        new_place.type_list.append(n_type)
+    # Copy placeref list
+    for pref in place.placeref_list:
+        n_pref = PlaceRef(pref)
+        n_pref.citation_list = []
+        copy_citation_ref_list(db, pref, n_pref)
+        new_place.placeref_list.append(n_pref)
 
+    copy_event_ref_list(db, place, new_place)
     copy_citation_ref_list(db, place, new_place)
     copy_notes(db, place, new_place)
     copy_media_ref_list(db, place, new_place)
     copy_urls(db, place, new_place)
+    copy_attributes(db, place, new_place)
 
     return new_place
 
@@ -1136,13 +1169,7 @@ def sanitize_family(db, family):
         copy_citation_ref_list(db, child_ref, new_ref)
         new_family.add_child_ref(new_ref)
 
-    # Copy event ref list.
-    for event_ref in family.get_event_ref_list():
-        if event_ref and not event_ref.get_privacy():
-            event = db.get_event_from_handle(event_ref.ref)
-            if event and not event.get_privacy():
-                new_family.add_event_ref(sanitize_event_ref(db, event_ref))
-
+    copy_event_ref_list(db, family, new_family)
     copy_citation_ref_list(db, family, new_family)
     copy_notes(db, family, new_family)
     copy_media_ref_list(db, family, new_family)

@@ -79,7 +79,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import conf_strings
-from ..widgets import DateEntry
+from ..widgets import DateEntry, PlaceTypeSelector
 from gramps.gen.datehandler import displayer
 from gramps.gen.config import config
 from gramps.gui.widgets.persistenttreeview import PersistentTreeView
@@ -110,6 +110,7 @@ _TITLES = {
 _name2typeclass = {
     _("Personal event:"): EventType,
     _("Family event:"): EventType,
+    _("Place event:"): EventType,
     _("Event type:"): EventType,
     _("Personal attribute:"): AttributeType,
     _("Family attribute:"): AttributeType,
@@ -119,7 +120,6 @@ _name2typeclass = {
     _("Note type:"): NoteType,
     _("Name type:"): NameType,
     _("Surname origin type:"): NameOriginType,
-    _("Place type:"): PlaceType,
 }
 
 
@@ -423,12 +423,12 @@ class MySelect(Gtk.ComboBox):
         Gtk.ComboBox.__init__(self, has_entry=True)
         self.type_class = type_class
         self.sel = StandardCustomSelector(
-            type_class._I2SMAP,
+            type_class.get_map(type_class),
             self,
-            type_class._CUSTOM,
+            type_class.CUSTOM,
             type_class._DEFAULT,
             additional,
-            type_class._MENU,
+            type_class.get_menu(type_class),
         )
         self.show()
 
@@ -439,6 +439,41 @@ class MySelect(Gtk.ComboBox):
         tc = self.type_class()
         tc.set_from_xml_str(val)
         self.sel.set_values((int(tc), str(tc)))
+
+
+# -------------------------------------------------------------------------
+#
+# MyPlaceTypeSelect
+#
+# -------------------------------------------------------------------------
+class MyPlaceTypeSelect(Gtk.ComboBox):
+    """
+    for filters, we store the pt_id, or if CUSTOM, the name of the PlaceType
+    in the filter rule.
+
+    The PlaceTypeSelector assumes an actual PlaceType.
+
+    This handles the conversion back and forth.
+    """
+
+    def __init__(self, dbstate):
+        # we need to inherit and have an combobox with an entry
+        self.dbstate = dbstate
+        Gtk.ComboBox.__init__(self, has_entry=True)
+        self.ptype = PlaceType(PlaceType.CUSTOM)  # for add rule default
+        self.sel = PlaceTypeSelector(dbstate, self, self.ptype)
+        self.show()
+
+    def set_text(self, text):
+        """allows the rule to preset the PlaceType string from stored handle"""
+        self.ptype.set(text)
+        self.sel.update()
+
+    def get_text(self):
+        """retrieve the pt_id for the filter rule"""
+        if self.ptype.is_custom():
+            return self.ptype.name
+        return self.ptype.pt_id
 
 
 # -------------------------------------------------------------------------
@@ -599,11 +634,9 @@ class EditRule(ManagedWindow):
                         additional = self.db.get_name_types()
                     elif v == _("Surname origin type:"):
                         additional = self.db.get_origin_types()
-                    elif v == _("Place type:"):
-                        additional = sorted(
-                            self.db.get_place_types(), key=lambda s: s.lower()
-                        )
                     t = MySelect(_name2typeclass[v], additional)
+                elif v == _("Place type:"):
+                    t = MyPlaceTypeSelect(self.dbstate)
                 elif v == _("Inclusive:"):
                     t = MyBoolean(_("Include selected Gramps ID"))
                 elif v == _("Case sensitive:"):

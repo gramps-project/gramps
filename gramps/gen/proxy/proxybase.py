@@ -778,6 +778,27 @@ class ProxyDbBase(DbReadBase):
         """
         return self.db.get_origin_types()
 
+    def get_placehier_types(self):
+        """
+        Return a list of all custom place hierarchy types assocated with Place
+        instances in the database.
+        """
+        return self.db.get_placehier_types()
+
+    def get_placeabbr_types(self):
+        """
+        Return a list of all custom place name types assocated with Place
+        instances in the database.
+        """
+        return self.db.get_placeabbr_types()
+
+    def get_place_attribute_types(self):
+        """
+        Return a list of all custom place name types assocated with Place
+        instances in the database.
+        """
+        return self.db.get_place_attribute_types()
+
     def get_repository_types(self):
         """returns a list of all custom repository types associated with
         Repository instances in the database"""

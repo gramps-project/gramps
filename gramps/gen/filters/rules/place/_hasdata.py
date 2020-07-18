@@ -57,7 +57,6 @@ class HasData(Rule):
     labels = [
         _("Name:", "place"),
         _("Place type:"),
-        _("Code:"),
     ]
     name = _("Places matching parameters")
     description = _("Matches places with particular parameters")
@@ -74,7 +73,7 @@ class HasData(Rule):
         """
         if self.list[1]:
             self.place_type = PlaceType()
-            self.place_type.set_from_xml_str(self.list[1])
+            self.place_type.set(self.list[1])
 
     def apply_to_one(self, _db: Database, obj: Place) -> bool:
         """
@@ -83,10 +82,10 @@ class HasData(Rule):
         if not self.match_name(obj):
             return False
 
-        if self.place_type and obj.place_type != self.place_type:
-            return False
-
-        if not self.match_substring(2, obj.code):
+        if self.place_type:
+            for typ in obj.get_types():  # place types list
+                if typ.is_same(self.place_type):
+                    return True
             return False
 
         return True
@@ -95,7 +94,7 @@ class HasData(Rule):
         """
         Match any name in a list of names.
         """
-        for name in place.get_all_names():
+        for name in place.get_names():
             if self.match_substring(0, name.value):
                 return True
         return False
