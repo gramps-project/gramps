@@ -788,7 +788,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.placegroup_types = self._get_metadata("placegroup_types", set())
         self.placehier_types = self._get_metadata("placehier_types", set())
         self.place_types = self._get_metadata("place_types", set())
-        _pd.load_formats(self._get_metadata("place_formats", []))
+        _pd.load_formats(self._get_metadata("place_formats", ""))
 
         # surname list
         self.surname_list = self.get_surname_list()
