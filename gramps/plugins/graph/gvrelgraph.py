@@ -152,6 +152,7 @@ class RelGraphReport(Report):
         self.database = CacheProxyDb(self.database)
         self._db = self.database
 
+        self._place_format = get_value("place_format")
         self.includeid = get_value("inc_id")
         self.includeurl = get_value("url")
         self.includeimg = get_value("includeImages")
@@ -841,7 +842,7 @@ class RelGraphReport(Report):
             empty string
         """
         if event and self.event_choice in [2, 3, 5, 6, 7]:
-            place = _pd.display_event(self._db, event)
+            place = _pd.display_event(self._db, event, fmt=self._place_format)
             return html.escape(place)
         return ""
 
@@ -931,6 +932,8 @@ class RelGraphOptions(MenuReportOptions):
         self._nf.connect("value-changed", self.__update_filters)
 
         self.__update_filters()
+
+        stdoptions.add_place_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 

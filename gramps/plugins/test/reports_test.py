@@ -452,8 +452,9 @@ reports.addcli(
 )
 
 txt_list = [
-    "6 media objects were referenced, but not found",
-    "References to 6 missing media objects were kept",
+    "No errors were found"
+    #    "6 media objects were referenced, but not found",
+    #    "References to 6 missing media objects were kept",
 ]
 reports.addcli(
     TestDynamic,

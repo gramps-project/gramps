@@ -69,7 +69,7 @@ from gramps.gen.lib import (
     Person,
     UrlType,
     Name,
-    PlaceType,
+    PlaceGroupType,
     EventRoleType,
     Source,
     Attribute,
@@ -104,7 +104,7 @@ from gramps.gen.datehandler import parser as _dp
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 from gramps.gen.utils.place import conv_lat_lon, coord_formats
-from gramps.gen.utils.location import get_main_location
+from gramps.gen.utils.location import get_location_list
 from gramps.plugins.webreport.common import (
     _NAME_STYLE_DEFAULT,
     HTTP,
@@ -233,6 +233,8 @@ class BasePage:
         self.dir = "rtl" if self.rlocale.rtl_locale else "ltr"
         self._ = self.rlocale.translation.sgettext
         self.colon = self._(":")  # Translators: needed for French, else ignore
+        # place format options
+        self.place_format = report.options["place_format"]
 
         if report.options["securesite"]:
             self.secure_mode = HTTPS
@@ -1125,7 +1127,7 @@ class BasePage:
             data[3] == place_handle and data[4] == event_date for data in place_lat_long
         )
         if not found:
-            placetitle = _pd.display(self.r_db, place, fmt=0)
+            placetitle = _pd.display(self.r_db, place, fmt=self.place_format)
             latitude = place.get_latitude()
             longitude = place.get_longitude()
             if latitude and longitude:
@@ -1261,7 +1263,9 @@ class BasePage:
 
         place_hyper = None
         if place:
-            place_name = _pd.display(self.r_db, place, evt.get_date_object(), fmt=0)
+            place_name = _pd.display(
+                self.r_db, place, evt.get_date_object(), fmt=self.place_format
+            )
             place_hyper = self.place_link(place_handle, place_name, uplink=uplink)
 
         evt_desc = evt.get_description()
@@ -1333,7 +1337,9 @@ class BasePage:
                 if place_handle:
                     place = self.r_db.get_place_from_handle(place_handle)
                     if place:
-                        place_title = _pd.display(self.r_db, place, fmt=0)
+                        place_title = _pd.display(
+                            self.r_db, place, fmt=self.place_format
+                        )
                         place_hyper = self.place_link(
                             place_handle,
                             place_title,
@@ -2505,7 +2511,7 @@ class BasePage:
                 _linkurl = self.report.build_url_fname_html(_obj.handle, "evt", True)
             elif classname == "Place":
                 _obj = self.r_db.get_place_from_handle(newhandle)
-                _name = _pd.display(self.r_db, _obj, fmt=0)
+                _name = _pd.display(self.r_db, _obj, fmt=self.place_format)
                 if not _name:
                     _name = self._("Unknown")
                 _linkurl = self.report.build_url_fname_html(newhandle, "plc", True)
@@ -3417,24 +3423,54 @@ class BasePage:
             )
             tbody += trow
 
-        mlocation = get_main_location(self.r_db, place)
-        for label, data in [
-            (self._("Street"), mlocation.get(PlaceType.STREET, "")),
-            (self._("Locality"), mlocation.get(PlaceType.LOCALITY, "")),
-            (self._("City"), mlocation.get(PlaceType.CITY, "")),
-            (self._("Church Parish"), mlocation.get(PlaceType.PARISH, "")),
-            (self._("County"), mlocation.get(PlaceType.COUNTY, "")),
-            (self._("State/ Province"), mlocation.get(PlaceType.STATE, "")),
-            (self._("Postal Code"), place.get_code()),
-            (self._("Province"), mlocation.get(PlaceType.PROVINCE, "")),
-            (self._("Country"), mlocation.get(PlaceType.COUNTRY, "")),
-        ]:
-            if data:
-                trow = Html("tr") + (
-                    Html("td", label, class_="ColumnAttribute", inline=True),
-                    Html("td", data, class_="ColumnValue", inline=True),
-                )
-                tbody += trow
+        mloc = {}
+        loc_list = get_location_list(self.r_db, place)
+        for loc in loc_list:
+            # loc_list shoud be in order from smallest to largest
+            name, place_type, dummy_hndl, abbrs, group = loc
+            if place_type == "Street":
+                mloc[self._("Street")] = name
+                continue
+            elif place_type == "Locality":
+                mloc[self._("Locality")] = name
+                continue
+            elif place_type == "Parish":
+                mloc[self._("Church Parish")] = name
+                continue
+            elif group == PlaceGroupType.COUNTRY and not mloc.get(self._("Country")):
+                # should find smaller of country group
+                mloc[self._("Country")] = name
+                continue
+            elif group == PlaceGroupType.REGION and not mloc.get(self._("County")):
+                # should find smaller of region group (county)
+                mloc[self._("County")] = name
+                continue
+            elif group == PlaceGroupType.REGION:
+                # should find largest (state)
+                mloc[self._("State/ Province")] = name
+                continue
+            elif group == PlaceGroupType.PLACE:
+                # should find largest (city)
+                mloc[self._("City")] = name
+
+        for label, data in mloc.items():
+            trow = Html("tr") + (
+                Html("td", label, class_="ColumnAttribute", inline=True),
+                Html("td", data, class_="ColumnValue", inline=True),
+            )
+            tbody += trow
+
+        for attr in place.get_attribute_list():
+            trow = Html("tr") + (
+                Html(
+                    "td",
+                    self._(attr.type.xml_str()),
+                    class_="ColumnAttribute",
+                    inline=True,
+                ),
+                Html("td", attr.value, class_="ColumnValue", inline=True),
+            )
+            tbody += trow
 
         # display all related locations
         for placeref in place.get_placeref_list():
@@ -3451,7 +3487,7 @@ class BasePage:
                 )
                 tbody += trow
 
-        altloc = place.get_alternative_names()
+        altloc = place.get_names()
         if altloc:
             tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
             date_msg = self._("Date range in which the name is valid.")
@@ -3463,6 +3499,7 @@ class BasePage:
                     class_="ColumnAttribute",
                     inline=True,
                 ),
+                Html("th", date_msg, colspan=1, class_="ColumnAttribute", inline=True),
                 Html(
                     "th",
                     self._("Language"),
@@ -3470,14 +3507,49 @@ class BasePage:
                     class_="ColumnAttribute",
                     inline=True,
                 ),
-                Html("th", date_msg, colspan=1, class_="ColumnAttribute", inline=True),
+                Html(
+                    "th",
+                    self._("Abbreviations"),
+                    colspan=1,
+                    class_="ColumnAttribute",
+                    inline=True,
+                ),
             )
             tbody += trow
             for loc in altloc:
                 place_date = self.rlocale.get_date(loc.date)
+                abbrs = ""
+                for abbr in loc.get_abbrevs():
+                    abbrs += (", " if abbrs else "") + abbr.get_value()
                 trow = Html("tr") + (
                     Html("td", loc.get_value(), class_="ColumnValue", inline=True),
+                    Html("td", place_date, class_="ColumnValue", inline=True),
                     Html("td", loc.get_language(), class_="ColumnValue", inline=True),
+                    Html("td", abbrs, class_="ColumnValue", inline=True),
+                )
+                tbody += trow
+
+        ptypes = place.get_types()
+        if ptypes:
+            tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
+            date_msg = self._("Date range in which the type is valid.")
+            trow = Html("tr") + (
+                Html(
+                    "th",
+                    self._("Type"),
+                    colspan=1,
+                    class_="ColumnAttribute",
+                    inline=True,
+                ),
+                Html("th", date_msg, colspan=1, class_="ColumnAttribute", inline=True),
+            )
+            tbody += trow
+            for ptype in ptypes:
+                place_date = self.rlocale.get_date(ptype.get_date_object())
+                trow = Html("tr") + (
+                    Html(
+                        "td", ptype.str(self.rlocale), class_="ColumnValue", inline=True
+                    ),
                     Html("td", place_date, class_="ColumnValue", inline=True),
                 )
                 tbody += trow

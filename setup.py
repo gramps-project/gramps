@@ -242,7 +242,9 @@ class test(Command):
             raise RuntimeError(
                 "No build directory. Run `python setup.py build` before trying to run tests."
             )
-        os.environ["GRAMPS_RESOURCES"] = "."
+        # Note: GRAMPS_RESOURCES needs to be a non-relative path, else it interferes with
+        # the tests finding media (thinks they are relative to the db directory)
+        os.environ["GRAMPS_RESOURCES"] = os.path.abspath(".")
         all_tests = unittest.TestLoader().discover(".", pattern="*_test.py")
         result = unittest.TextTestRunner(verbosity=self.verbose).run(all_tests)
         if not result.wasSuccessful():

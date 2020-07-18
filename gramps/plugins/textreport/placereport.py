@@ -90,7 +90,7 @@ class PlaceReport(Report):
         self._user = user
         menu = options.menu
 
-        self.set_locale(menu.get_option_by_name("trans").get_value())
+        self.locale = self.set_locale(menu.get_option_by_name("trans").get_value())
 
         stdoptions.run_date_format_option(self, menu)
 
@@ -188,25 +188,32 @@ class PlaceReport(Report):
 
         place_details = [self._("Gramps ID: %s ") % place.get_gramps_id()]
         for level in get_location_list(self._db, place):
-            # Translators: needed for French, ignore otherwise
+            # translators: needed for French, ignore otherwise
             place_details.append(
-                self._("%(str1)s: %(str2)s")
-                % {"str1": self._(level[1].xml_str()), "str2": level[0]}
+                _("%(str1)s: %(str2)s")
+                % {"str1": level[1].str(self.locale), "str2": level[0]}
             )
 
         place_names = ""
-        all_names = place.get_names()
-        if len(all_names) > 1 or __debug__:
-            for place_name in all_names:
-                if place_names != "":
-                    # Translators: needed for Arabic, ignore otherwise
-                    place_names += self._(", ")
-                place_names += "%s" % place_name.get_value()
-                if place_name.get_language() != "" or __debug__:
-                    place_names += " (%s)" % place_name.get_language()
-            place_details += [
-                self._("All Names: %s", "places") % place_names,
-            ]
+        for place_name in place.get_names():
+            if place_names != "":
+                # translators: needed for Arabic, ignore otherwise
+                place_names += self._(", ")
+            place_names += "\u2028%s" % place_name.get_value()
+            if place_name.get_language() != "":
+                place_names += " (%s)" % place_name.get_language()
+            if not place_name.get_date_object().is_empty():
+                place_names += " [%s]" % self._get_date(place_name.get_date_object())
+        place_details.append(self._("All Names:", "places") + place_names)
+        place_types = ""
+        for ptype in place.get_types():
+            if place_types != "":
+                # translators: needed for Arabic, ignore otherwise
+                place_types += self._(", ")
+            place_types += "\u2028%s" % str(ptype)
+            if not ptype.get_date_object().is_empty():
+                place_types += " [%s]" % self._get_date(ptype.get_date_object())
+        place_details.append(self._("All Types:", "places") + place_types)
         self.doc.start_paragraph("PLC-PlaceTitle")
         place_title = _pd.display(self._db, place, None, self.place_format)
         self.doc.write_text(
@@ -266,7 +273,7 @@ class PlaceReport(Report):
                 for ref_type, ref_handle in ref_handles:
                     if ref_type == "Person":
                         person_list.append(ref_handle)
-                    else:
+                    elif ref_type == "Family":
                         family = self._db.get_family_from_handle(ref_handle)
                         father = family.get_father_handle()
                         if father:
@@ -348,7 +355,7 @@ class PlaceReport(Report):
                         self._nd.display(person),
                         person.get_gramps_id(),
                     )
-                else:
+                elif ref_type == "Family":
                     family = self._db.get_family_from_handle(ref_handle)
                     f_handle = family.get_father_handle()
                     m_handle = family.get_mother_handle()
@@ -383,6 +390,8 @@ class PlaceReport(Report):
                         # No parents - bug #7299
                         continue
 
+                else:  # ref_type == 'Place'  a place event!
+                    continue
                 if name_entry in person_dict:
                     person_dict[name_entry].append(evt_handle)
                 else:
@@ -574,7 +583,7 @@ class PlaceOptions(MenuReportOptions):
         font.set(face=FONT_SERIF, size=10)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0, lmargin=1.5)
+        para.set(first_indent=-0.5, lmargin=2.0)
         para.set_description(_("The style used for details."))
         self.default_style.add_paragraph_style("PLC-PlaceDetails", para)
 

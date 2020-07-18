@@ -904,7 +904,8 @@ class HeatmapPage(BasePage):
         else:
             for place_ref in place.get_placeref_list():
                 place_new = self.r_db.get_place_from_handle(place_ref.ref)
-                self.check_place(place_new, event)
+                if place_new:
+                    self.check_place(place_new, event)
 
     def create_tracelife(self, places, handles):
         number_markers = len(places)

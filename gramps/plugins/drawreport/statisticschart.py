@@ -462,6 +462,7 @@ class Extract:
                 self.get_event_type,
             ),
         }
+        self._place_format = None
 
     # ----------------- data extraction methods --------------------
     # take an object and return a list of strings
@@ -541,7 +542,7 @@ class Extract:
         "return place for given event"
         place_handle = event.get_place_handle()
         if place_handle:
-            place = _pd.display_event(self.db, event)
+            place = _pd.display_event(self.db, event, fmt=self._place_format)
             if place:
                 return [place]
         return [_T_("Place missing")]
@@ -554,7 +555,7 @@ class Extract:
             event = self.db.get_event_from_handle(event_handle)
             place_handle = event.get_place_handle()
             if place_handle:
-                place = _pd.display_event(self.db, event)
+                place = _pd.display_event(self.db, event, fmt=self._place_format)
                 if place:
                     places.append(place)
             else:
@@ -869,6 +870,7 @@ class StatisticsChart(Report):
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
+        _Extract._place_format = get_value("place_format")
         filter_opt = get_option_by_name("filter")
         self.filter = filter_opt.get_filter()
         self.fil_name = "(%s)" % self.filter.get_name(self._locale)
@@ -1191,6 +1193,8 @@ class StatisticsChartOptions(MenuReportOptions):
 
         self._nf = stdoptions.add_name_format_option(menu, category_name)
         self._nf.connect("value-changed", self.__update_filters)
+
+        stdoptions.add_place_format_option(menu, category_name)
 
         self.__update_filters()
 
