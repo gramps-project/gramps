@@ -1123,7 +1123,7 @@ class GedcomWriter(UpdateCallback):
             +1 <<NOTE_STRUCTURE>>          # not used
         """
         self._writeln(level, 'CHAN')
-        time_val = time.gmtime(timeval)
+        time_val = time.localtime(timeval)
         self._writeln(level + 1, 'DATE', '%d %s %d' % (
             time_val[2], libgedcom.MONTH[time_val[1]], time_val[0]))
         self._writeln(level + 2, 'TIME', '%02d:%02d:%02d' % (
