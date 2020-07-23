@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2020-07-07 00:02+0200\n"
+"PO-Revision-Date: 2020-07-23 20:24+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -5635,11 +5635,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Liefert Kinder von den Personen, die im Filter enthalten sind"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Hauptperson"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Liefert die Hauptperson"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5757,19 +5757,7 @@ msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Liefert Personen, die Vorfahren der Hauptperson sind, die aber höchstens <N> "
-"Generationen entfernt sind."
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 "Liefert Personen, die Vorfahren der Hauptperson sind, die aber höchstens <N> "
 "Generationen entfernt sind."
@@ -11948,8 +11936,8 @@ msgstr "Ortsformat (automatischer Ortstitel)"
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
-"Aktiviert die automatische Generierung von Ortsbezeichnungen im angegebenen"
-" Format."
+"Aktiviert die automatische Generierung von Ortsbezeichnungen im angegebenen "
+"Format."
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -17773,7 +17761,7 @@ msgstr "Gramps _Mailinglisten"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Make Backup..."
-msgstr "Erstelle Sicherung..."
+msgstr "Sicherung erstellen..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Manage databases"
@@ -19964,19 +19952,9 @@ msgstr "Keine Hauptperson"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
-"You need to set a 'Home Person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
-"Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
-"und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
-
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
 msgstr ""
 "Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
 "Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
@@ -30343,17 +30321,6 @@ msgid "Go to the home person"
 msgstr "Springe zur Hauptperson"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Springe zur Hauptperson"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -38658,6 +38625,33 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
 
+#~ msgid "Default person"
+#~ msgstr "Hauptperson"
+
+#~ msgid "Matches the default person"
+#~ msgstr "Liefert die Hauptperson"
+
+#~ msgid "Ancestors of the default person not more than <N> generations away"
+#~ msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
+
+#~ msgid ""
+#~ "Matches ancestors of the default person not more than N generations away"
+#~ msgstr ""
+#~ "Liefert Personen, die Vorfahren der Hauptperson sind, die aber höchstens "
+#~ "<N> Generationen entfernt sind."
+
+#~ msgid ""
+#~ "You need to set a 'default person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit -> Set Home Person."
+#~ msgstr ""
+#~ "Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
+#~ "Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
+#~ "und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
+
+#~ msgid "Go to the default person"
+#~ msgstr "Springe zur Hauptperson"
+
 #~ msgid ""
 #~ "This allows you to set the maximum width of the image shown on the media "
 #~ "page."
@@ -38695,9 +38689,9 @@ msgstr "Kein Stylesheet"
 #~ msgstr "Ex-Lebensgefährt(e/in)"
 
 #~ msgid ""
-#~ "You need to set a 'Home Person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
 #~ msgstr ""
 #~ "Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
 #~ "Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
@@ -38756,13 +38750,6 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Family Divorced"
 #~ msgstr "Familie, geschieden"
-
-#~ msgid "Home Person"
-#~ msgstr "Hauptperson"
-
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Liefert die Hauptperson"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Weiblich, lebt Rand"
@@ -43843,4 +43830,3 @@ msgstr "Liefert die Hauptperson"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
-
