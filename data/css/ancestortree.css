@@ -35,7 +35,7 @@ Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
 # -------------------------------------------------------------------------- */
 /* Subsections : Ancestors Tree -------------------------------------------- */
-#tree {
+.tree {
     page-break-before:always;
     margin:0;
     padding:0;

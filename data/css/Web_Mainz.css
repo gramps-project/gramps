@@ -1047,3 +1047,20 @@ body#fullyearlinked #YearGlance tbody td.highlight .date:hover {
     border: 5px solid;
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }
+h4 button.icon {
+    width: 0.9em;
+    border: 0px solid;
+    padding: 0;
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: transform 200ms ease-out 0s;
+    background: transparent;
+}
+h4 button.icon-close {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+h4 button.icon-open {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}

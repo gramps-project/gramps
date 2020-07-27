@@ -93,6 +93,24 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
+TOGGLE = """
+<script type="text/javascript">
+function toggleContent(elem, icon) {
+  // Get the DOM reference
+  var contentId = document.getElementById(elem);
+  var icon = document.getElementById(icon);
+  // Toggle
+  if (contentId.style.display == "block") {
+    contentId.style.display = "none";
+    icon.className = 'icon icon-close';
+  } else {
+    contentId.style.display = "block";
+    icon.className = 'icon icon-open';
+  };
+}
+</script>
+"""
+
 class BasePage:
     """
     Manages all the functions, variables, and everything needed
@@ -301,12 +319,16 @@ class BasePage:
             return None
 
         with Html("div", class_="subsection", id="families") as section:
-            section += Html("h4", self._("Families"), inline=True)
+            with self.create_toggle("families") as h4_head:
+                section += h4_head
+                h4_head += self._("Families")
 
             table_class = "infolist"
             if len(family_list) > 1:
                 table_class += " fixed_subtables"
-            with Html("table", class_=table_class) as table:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_=table_class,
+                      id="toggle_families", style="display:%s" % disp) as table:
                 section += table
 
                 for family_handle in family_list:
@@ -465,8 +487,8 @@ class BasePage:
                 Html("td", "&nbsp;", class_="ColumnType", inline=True),
                 Html("td", self._("LDS Ordinance"), class_="ColumnAttribute",
                      inline=True),
-                Html("td", self.dump_ordinance(family, "Family"),
-                     class_="ColumnValue")
+                Html("td", self.dump_ordinance(family, "Family",
+                     toggle=False), class_="ColumnValue")
             )
             table = table + trow if table is not None else trow
 
@@ -485,7 +507,7 @@ class BasePage:
 
             # we do not need the section variable for this instance
             # of Attributes...
-            dummy, attrtable = self.display_attribute_header()
+            dummy, attrtable = self.display_attribute_header(toggle=False)
             tcell += attrtable
             self.display_attr_list(family_attribute_list, attrtable)
         return table
@@ -977,7 +999,7 @@ class BasePage:
                 (self._("Place"), "ColumnPlace", place_hyper),
                 (self._("Description"), "ColumnDescription", evt_desc)]
 
-    def dump_ordinance(self, ldsobj, ldssealedtype):
+    def dump_ordinance(self, ldsobj, ldssealedtype, toggle=True):
         """
         will dump the LDS Ordinance information for either
         a person or a family ...
@@ -990,8 +1012,14 @@ class BasePage:
         if not objectldsord:
             return None
 
+        if toggle:
+            disp = "none" if self.report.options['toggle'] else "block"
+            ordin = Html("table", class_="infolist ldsordlist",
+                      id="toggle_lds", style="display:%s" % disp)
+        else:
+            ordin = Html("table", class_="infolist ldsordlist")
         # begin LDS ordinance table and table head
-        with Html("table", class_="infolist ldsordlist") as table:
+        with ordin as table:
             thead = Html("thead")
             table += thead
 
@@ -1057,9 +1085,13 @@ class BasePage:
 
         # begin data map division and section title...
         with Html("div", class_="subsection", id="data_map") as section:
-            section += Html("h4", self._("Attributes"), inline=True)
+            with self.create_toggle("srcattr") as h4_head:
+                section += h4_head
+                h4_head += self._("Attributes")
 
-            with Html("table", class_="infolist") as table:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_="infolist",
+                      id="toggle_attr", style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
@@ -1126,7 +1158,9 @@ class BasePage:
 
         # begin addresses division and title
         with Html("div", class_="subsection", id="Addresses") as section:
-            section += Html("h4", self._("Addresses"), inline=True)
+            with self.create_toggle("addr") as h4_head:
+                section += h4_head
+                h4_head += self._("Addresses")
 
             # write out addresses()
             section += self.dump_addresses(addrlist, showsrc)
@@ -1148,7 +1182,9 @@ class BasePage:
             return None
 
         # begin summaryarea division
-        with Html("div", id="AddressTable") as summaryarea:
+        disp = "none" if self.report.options['toggle'] else "block"
+        with Html("div", class_="AddressTable", id="toggle_addr",
+                  style="display:%s" % disp) as summaryarea:
 
             # begin address table
             with Html("table") as table:
@@ -1228,7 +1264,7 @@ class BasePage:
                     # address: notelist
                     if showsrc is not None:
                         notelist = self.display_note_list(
-                            address.get_note_list())
+                            address.get_note_list(), toggle=False)
                         if notelist is not None:
                             summaryarea += notelist
         return summaryarea
@@ -1283,32 +1319,41 @@ class BasePage:
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
-    def display_attribute_header(self):
+    def display_attribute_header(self, toggle=True):
         """
         Display the attribute section and its table header
         """
         # begin attributes division and section title
-        with Html("div", class_="subsection", id="attributes") as section:
-            section += Html("h4", self._("Attributes"), inline=True)
+        if toggle:
+            with Html("div", class_="subsection", id="attributes") as section:
+                with self.create_toggle("attr") as h4_head:
+                    section += h4_head
+                    h4_head += self._("Attributes")
+            disp = "none" if self.report.options['toggle'] else "block"
+            head = Html("table", class_="infolist attrlist",
+                      id="toggle_attr", style="display:%s" % disp)
+        else:
+            section = Html("h4", self._("Attributes"), inline=True)
+            head = Html("table", class_="infolist attrlist")
 
-            # begin attributes table
-            with Html("table", class_="infolist attrlist") as attrtable:
-                section += attrtable
+        # begin attributes table
+        with head as attrtable:
+            section += attrtable
 
-                thead = Html("thead")
-                attrtable += thead
+            thead = Html("thead")
+            attrtable += thead
 
-                trow = Html("tr")
-                thead += trow
+            trow = Html("tr")
+            thead += trow
 
-                trow.extend(
-                    Html("th", label, class_=colclass, inline=True)
-                    for (label, colclass) in [
-                        (self._("Type"), "ColumnType"),
-                        (self._("Value"), "ColumnValue"),
-                        (self._("Notes"), "ColumnNotes"),
-                        (self._("Sources"), "ColumnSources")]
-                )
+            trow.extend(
+                Html("th", label, class_=colclass, inline=True)
+                for (label, colclass) in [
+                    (self._("Type"), "ColumnType"),
+                    (self._("Value"), "ColumnValue"),
+                    (self._("Notes"), "ColumnNotes"),
+                    (self._("Sources"), "ColumnSources")]
+            )
         return section, attrtable
 
     def display_attr_list(self, attrlist,
@@ -1592,6 +1637,9 @@ class BasePage:
             outerwrapperdiv += self.display_drop_menu()
         else:
             outerwrapperdiv += self.display_nav_links(the_title, cal=cal)
+
+        if self.report.options['toggle']:
+            head += TOGGLE
 
         # message for Codacy :
         # body is used in some modules to add functions like onload(),
@@ -2228,51 +2276,57 @@ class BasePage:
 
         # begin individualgallery division and section title
         with Html("div", class_="subsection", id="indivgallery") as section:
-            section += Html("h4", self._("Media"), inline=True)
+            with self.create_toggle("media") as h4_head:
+                section += h4_head
+                h4_head += self._("Media")
 
-            displayed = []
-            for mediaref in photolist_ordered:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("div", style="display:%s" % disp,
+                      id="toggle_media") as toggle:
+                section += toggle
+                displayed = []
+                for mediaref in photolist_ordered:
 
-                photo_handle = mediaref.get_reference_handle()
-                photo = self.r_db.get_media_from_handle(photo_handle)
+                    photo_handle = mediaref.get_reference_handle()
+                    photo = self.r_db.get_media_from_handle(photo_handle)
 
-                if photo_handle in displayed:
-                    continue
-                mime_type = photo.get_mime_type()
+                    if photo_handle in displayed:
+                        continue
+                    mime_type = photo.get_mime_type()
 
-                # get media description
-                descr = photo.get_description()
+                    # get media description
+                    descr = photo.get_description()
 
-                if mime_type:
-                    try:
-                        # create thumbnail url
-                        # extension needs to be added as it is not already there
-                        url = (self.report.build_url_fname(photo_handle,
-                                                           "thumb",
-                                                           True, image=True) +
-                               ".png")
-                        # begin hyperlink
-                        section += self.media_link(photo_handle, url,
-                                                   descr, uplink=self.uplink,
-                                                   usedescr=True)
-                    except (IOError, OSError) as msg:
-                        self.r_user.warn(_("Could not add photo to page"),
-                                         str(msg))
-                else:
-                    try:
-                        # begin hyperlink
-                        section += self.doc_link(photo_handle, descr,
-                                                 uplink=self.uplink)
-                    except (IOError, OSError) as msg:
-                        self.r_user.warn(_("Could not add photo to page"),
-                                         str(msg))
-                displayed.append(photo_handle)
+                    if mime_type:
+                        try:
+                            # create thumbnail url
+                            # extension needs to be added as it is not already there
+                            url = (self.report.build_url_fname(photo_handle,
+                                                               "thumb",
+                                                               True, image=True) +
+                                   ".png")
+                            # begin hyperlink
+                            toggle += self.media_link(photo_handle, url,
+                                                       descr, uplink=self.uplink,
+                                                       usedescr=True)
+                        except (IOError, OSError) as msg:
+                            self.r_user.warn(_("Could not add photo to page"),
+                                             str(msg))
+                    else:
+                        try:
+                            # begin hyperlink
+                            toggle += self.doc_link(photo_handle, descr,
+                                                     uplink=self.uplink)
+                        except (IOError, OSError) as msg:
+                            self.r_user.warn(_("Could not add photo to page"),
+                                             str(msg))
+                    displayed.append(photo_handle)
 
-        # add fullclear for proper styling
-        section += FULLCLEAR
+            # add fullclear for proper styling
+            section += FULLCLEAR
 
-        # return indivgallery division to its caller
-        return section
+            # return indivgallery division to its caller
+            return section
 
     def default_note(self, parent, notetype):
         """
@@ -2301,7 +2355,7 @@ class BasePage:
             return True
         return False
 
-    def display_note_list(self, notelist=None, parent=None):
+    def display_note_list(self, notelist=None, parent=None, toggle=True):
         """
         Display note list
 
@@ -2311,43 +2365,53 @@ class BasePage:
         if not notelist:
             return None
 
-        # begin narrative division
-        with Html("div", class_="subsection narrative") as section:
+        # begin LDS ordinance table and table head
+        if toggle:
+            with Html("div", class_="subsection narrative") as hdiv:
+                with self.create_toggle("note") as h4_head:
+                    hdiv += h4_head
+                    h4_head += self._("Notes")
+                disp = "none" if self.report.options['toggle'] else "block"
+                with Html("div", class_="subsection narrative",
+                      id="toggle_note", style="display:%s" % disp) as section:
+                    hdiv += section
+        else:
+            with Html("div", class_="subsection narrative") as section:
+                hdiv = section
+        idx = 0
+        for notehandle in notelist:
+            note = self.r_db.get_note_from_handle(notehandle)
+            title = self._(note.type.xml_str())
 
-            idx = 0
-            for notehandle in notelist:
-                note = self.r_db.get_note_from_handle(notehandle)
-                title = self._(note.type.xml_str())
-
-                if note:
-                    note_text = self.get_note_format(note, True)
-                    idx += 1
-                    if len(notelist) > 1:
-                        if self.default_note(parent, int(note.type)):
-                            title_text = self._("Note: %s") % str(idx)
-                        else:
-                            title = " (" + title + ")"
-                            title_text = self._("Note: %s") % str(idx) + title
+            if note:
+                note_text = self.get_note_format(note, True)
+                idx += 1
+                if len(notelist) > 1:
+                    if self.default_note(parent, int(note.type)):
+                        title_text = self._("Note: %s") % str(idx)
                     else:
-                        if self.default_note(parent, int(note.type)):
-                            title_text = self._("Note")
-                        else:
-                            title_text = title
+                        title = " (" + title + ")"
+                        title_text = self._("Note: %s") % str(idx) + title
+                else:
+                    if self.default_note(parent, int(note.type)):
+                        title_text = self._("Note")
+                    else:
+                        title_text = title
 
-                    # Tags
-                    if parent:
-                        tags = self.show_tags(note)
-                        if tags and self.report.inc_tags:
-                            title_text += " (" + tags + ")"
+                # Tags
+                if parent:
+                    tags = self.show_tags(note)
+                    if tags and self.report.inc_tags:
+                        title_text += " (" + tags + ")"
 
-                    # add section title
-                    section += Html("h4", title_text, inline=True)
+                # add section title
+                section += Html("h4", title_text, inline=True)
 
-                    # attach note
-                    section += note_text
+                # attach note
+                section += note_text
 
         # return notes to its callers
-        return section
+        return hdiv
 
     def display_url_list(self, urllist=None):
         """
@@ -2360,9 +2424,13 @@ class BasePage:
 
         # begin web links division
         with Html("div", class_="subsection", id="WebLinks") as section:
-            section += Html("h4", self._("Web Links"), inline=True)
+            with self.create_toggle("links") as h4_head:
+                section += h4_head
+                h4_head += self._("Web Links")
 
-            with Html("table", class_="infolist weblinks") as table:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_="infolist weblinks",
+                      id="toggle_links", style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
@@ -2432,10 +2500,11 @@ class BasePage:
 
         # begin LDS Ordinance division and section title
         with Html("div", class_="subsection", id="LDSOrdinance") as section:
-            section += Html("h4", self._("Latter-Day Saints/ LDS Ordinance"),
-                            inline=True)
+            with self.create_toggle("lds") as h4_head:
+                section += h4_head
+                h4_head += self._("Latter-Day Saints/ LDS Ordinance")
 
-            # ump individual LDS ordinance list
+            # dump individual LDS ordinance list
             section += self.dump_ordinance(db_obj_, "Person")
 
         # return section to its caller
@@ -3276,3 +3345,26 @@ class BasePage:
 
         # closes the file
         self.report.close_file(output_file, sio, date)
+
+    def create_toggle(self, element):
+        """
+        will produce a toggle button
+
+        @param: element -- The html element name
+        """
+        use_toggle = self.report.options['toggle']
+        if use_toggle:
+            viewbox = "0 0 100 100"
+            points = "5.9,88.2 50,11.8 94.1,88.2"
+            svg = Html("svg", viewBox=viewbox, class_="triangle", inline=False)
+            svg += Html("polygon", points=points)
+            toggle_name = 'toggle_' + element
+            id_name = 'icon_' + element
+            with Html("h4") as toggle:
+                toggle += Html("button", svg,
+                               onclick="toggleContent('" + toggle_name
+                                   + "', '" + id_name + "');",
+                               id=id_name, class_='icon')
+        else:
+            toggle = Html("h4", inline=True)
+        return toggle

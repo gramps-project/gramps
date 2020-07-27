@@ -2049,6 +2049,12 @@ class NavWebOptions(MenuReportOptions):
         self.__securesite.set_help(_('Whether to use http:// or https://'))
         addopt("securesite", self.__securesite)
 
+        self.__toggle = BooleanOption(_("Toggle sections"),
+                                          False)
+        self.__toggle.set_help(_('Check it if you want to open/close'
+                                 ' a section'))
+        addopt("toggle", self.__toggle)
+
     def __add_more_pages(self, menu):
         """
         Add more extra pages to the report
