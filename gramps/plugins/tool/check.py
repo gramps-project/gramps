@@ -60,7 +60,7 @@ _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.lib import (Citation, Event, EventType, Family, Media,
                             Name, Note, Person, Place, Repository, Source,
-                            StyledText, Tag)
+                            StyledText, StyledTextTagType, Tag)
 from gramps.gen.db import DbTxn, CLASS_TO_KEY_MAP
 from gramps.gen.config import config
 from gramps.gen.utils.id import create_id
@@ -224,6 +224,7 @@ class Check(tool.BatchTool):
             checker.check_tag_references()
             checker.check_checksum()
             checker.check_media_sourceref()
+            checker.check_note_links()
 
         # for bsddb the check_backlinks doesn't work in 'batch' mode because
         # the table used for backlinks is closed.
@@ -290,6 +291,7 @@ class CheckIntegrity:
         self.place_errors = 0
         self.duplicated_gramps_ids = 0
         self.bad_backlinks = 0
+        self.bad_note_links = 0
         self.text = StringIO()
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'), '',
@@ -2291,6 +2293,40 @@ class CheckIntegrity:
                 self.duplicated_gramps_ids += 1
             gid_list.append(gid)
 
+    def check_note_links(self):
+        """
+        look for missing links in Notes StyledTextTags
+        """
+        self.progress.set_pass(_('Checking for bad links in Notes'),
+                               len(self.db.get_note_handles()))
+        for note in self.db.iter_notes():
+            self.progress.step()
+            text = note.text
+            new_tags = []
+            for tag in text.get_tags():
+                bad_tag = False
+                if tag.name == StyledTextTagType.LINK:
+                    if tag.value.startswith("gramps://"):
+                        obj_class, prop, value = tag.value[9:].split("/")
+                        if prop == 'handle':
+                            if not self.db.method("has_%s_handle",
+                                                  obj_class)(value):
+                                bad_tag = True
+                        elif prop == 'gramps_id':
+                            if not self.db.method("has_%s_gramps_id",
+                                                  obj_class)(value):
+                                bad_tag = True
+                if not bad_tag:
+                    # good link, need to keep it
+                    new_tags.append(tag)
+                else:
+                    logging.warning('    FAIL: Bad Note Link found, '
+                                    '%s: %s: %s', obj_class, prop, value)
+                    self.bad_note_links += 1
+            if len(text.get_tags()) != new_tags:
+                text.set_tags(new_tags)
+                self.db.commit_note(note, self.trans)
+
     def class_person(self, handle):
         person = Person()
         person.set_handle(handle)
@@ -2408,7 +2444,7 @@ class CheckIntegrity:
                   citation_references + repo_references + media_references +
                   note_references + tag_references + name_format + empty_objs +
                   invalid_dates + source_references + dup_gramps_ids +
-                  self.bad_backlinks)
+                  self.bad_backlinks + self.bad_note_links)
 
         if errors == 0:
             if uistate:
@@ -2747,6 +2783,10 @@ class CheckIntegrity:
             self.text.write(_("%d bad backlinks were fixed;\n")
                             % self.bad_backlinks +
                             _("All reference maps have been rebuilt.") + '\n')
+
+        if self.bad_note_links:
+            self.text.write(_("%d bad Note Links were fixed;\n")
+                            % self.bad_note_links)
 
         return errors
 
