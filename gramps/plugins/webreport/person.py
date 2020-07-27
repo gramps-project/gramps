@@ -1101,12 +1101,20 @@ class PersonPages(BasePage):
 
         # begin family map division plus section title
         with Html("div", class_="subsection", id="familymap") as familymap:
-            familymap += Html("h4", self._("Family Map"), inline=True)
+            with self.create_toggle("map") as h4_head:
+                familymap += h4_head
+                h4_head += self._("Family Map")
 
-            # add family map link
-            person_handle = person.get_handle()
-            url = self.report.build_url_fname_html(person_handle, "maps", True)
-            familymap += self.family_map_link(person_handle, url)
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("div", style="display:%s" % disp,
+                      id="toggle_map") as toggle:
+
+                familymap += toggle
+                # add family map link
+                person_handle = person.get_handle()
+                url = self.report.build_url_fname_html(person_handle,
+                                                       "maps", True)
+                toggle += self.family_map_link(person_handle, url)
 
         # return family map link to its caller
         return familymap
@@ -1344,19 +1352,26 @@ class PersonPages(BasePage):
                                        _HEIGHT, _VGAP)
 
         top = abs(top)
-        # We know the height in 'pixels' where every Ancestor will sit
-        # precisely on an integer unit boundary.
-        with Html("div", id="tree", class_="subsection") as tree:
-            tree += Html("h4", self._('Ancestors'), inline=True)
-            with Html("div", id="treeContainer",
-                      style="width:%dpx; height:%dpx; top: %dpx" % (
-                          l_tree.width + _XOFFSET* (generations + 1) + _WIDTH,
-                          height + top + _HEIGHT + _VGAP, top)
-                     ) as container:
-                tree += container
-                container += self.draw_tree(l_tree, 1, None)
+        tree_width = l_tree.width + _XOFFSET* (generations + 1) + _WIDTH
+        tree_height = height + top + _HEIGHT + _VGAP
+        with Html("div", id="tree", class_="subsection") as treecont:
+            with self.create_toggle("anc") as h4_head:
+                treecont += h4_head
+                h4_head += self._("Ancestors")
+            # We know the height in 'pixels' where every Ancestor will sit
+            # precisely on an integer unit boundary.
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("div", id="toggle_anc", class_="subsection tree",
+                      style="display:%s" % disp) as tree:
+                treecont += tree
+                with Html("div", id="treeContainer",
+                          style="width:%dpx; height:%dpx; top: %dpx" % (
+                              tree_width, tree_height, top)
+                         ) as container:
+                    tree += container
+                    container += self.draw_tree(l_tree, 1, None)
 
-        return tree
+        return treecont
 
     def draw_tree(self, l_node, gen_nr, c_node):
         """
@@ -1398,9 +1413,13 @@ class PersonPages(BasePage):
         """
         # begin Associations division
         with Html("div", class_="subsection", id="Associations") as section:
-            section += Html("h4", self._('Associations'), inline=True)
+            with self.create_toggle("assoc") as h4_head:
+                section += h4_head
+                h4_head += self._("Associations")
 
-            with Html("table", class_="infolist assoclist") as table:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_="infolist assoclist",
+                      id="toggle_assoc", style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
@@ -1516,8 +1535,12 @@ class PersonPages(BasePage):
             mother = None
 
         with Html("div", id="pedigree", class_="subsection") as ped:
-            ped += Html("h4", self._('Pedigree'), inline=True)
-            with Html("ol", class_="pedigreegen") as pedol:
+            with self.create_toggle("pedigree") as h4_head:
+                ped += h4_head
+                h4_head += self._("Pedigree")
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("ol", class_="pedigreegen", style="display:%s" % disp,
+                      id="toggle_pedigree") as pedol:
                 ped += pedol
                 if father and mother:
                     pedfa = Html("li") + self.pedigree_person(father)
@@ -1710,10 +1733,15 @@ class PersonPages(BasePage):
 
         # begin events division and section title
         with Html("div", id="events", class_="subsection") as section:
-            section += Html("h4", self._("Events"), inline=True)
+            with self.create_toggle("event") as h4_head:
+                section += h4_head
+                h4_head += self._("Events")
 
             # begin events table
-            with Html("table", class_="infolist eventlist") as table:
+            classe = "infolist eventlist toggle_event"
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_=classe, id="toggle_event",
+                      style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
@@ -2017,10 +2045,15 @@ class PersonPages(BasePage):
 
         # begin parents division
         with Html("div", class_="subsection", id="parents") as section:
-            section += Html("h4", self._("Parents"), inline=True)
+            with self.create_toggle("parent") as h4_head:
+                section += h4_head
+                h4_head += self._("Parents")
 
             # begin parents table
-            with Html("table", class_="infolist") as table:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_="infolist toggle_parent",
+                               id="toggle_parent",
+                               style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")

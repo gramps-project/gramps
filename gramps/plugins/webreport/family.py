@@ -404,33 +404,40 @@ class FamilyPages(BasePage):
             if self.report.options["familymappages"]:
                 name_format = self.report.options['name_format']
                 fhandle = mhandle = father = mother = None
-                relationshipdetail += Html("h4", self._("Family map"),
-                                           inline=True)
-                mapdetail = Html("br")
-                fhandle = family.get_father_handle()
-                for handle, dummy_url in self.report.fam_link.items():
-                    if fhandle == handle:
-                        father = self.r_db.get_person_from_handle(fhandle)
-                        break
-                if father:
-                    primary_name = father.get_primary_name()
-                    name = Name(primary_name)
-                    name.set_display_as(name_format)
-                    fname = html_escape(_nd.display_name(name))
-                    mapdetail += self.family_map_link_for_parent(fhandle, fname)
-                mapdetail += Html("br")
-                mhandle = family.get_mother_handle()
-                for handle, dummy_url in self.report.fam_link.items():
-                    if mhandle == handle:
-                        mother = self.r_db.get_person_from_handle(mhandle)
-                        break
-                if mother:
-                    primary_name = mother.get_primary_name()
-                    name = Name(primary_name)
-                    name.set_display_as(name_format)
-                    mname = html_escape(_nd.display_name(name))
-                    mapdetail += self.family_map_link_for_parent(mhandle, mname)
-                relationshipdetail += mapdetail
+                with self.create_toggle("map") as h4_head:
+                    relationshipdetail += h4_head
+                    h4_head += self._("Family Map")
+                    disp = "none" if self.report.options['toggle'] else "block"
+                    with Html("div", style="display:%s" % disp,
+                              id="toggle_map") as toggle:
+                        relationshipdetail += toggle
+                        mapdetail = Html("br")
+                        fhdle = family.get_father_handle()
+                        for handle, dummy_url in self.report.fam_link.items():
+                            if fhdle == handle:
+                                father = self.r_db.get_person_from_handle(fhdle)
+                                break
+                        if father:
+                            primary_name = father.get_primary_name()
+                            name = Name(primary_name)
+                            name.set_display_as(name_format)
+                            fname = html_escape(_nd.display_name(name))
+                            mapdetail += self.family_map_link_for_parent(fhdle,
+                                                                         fname)
+                        mapdetail += Html("br")
+                        mhdle = family.get_mother_handle()
+                        for handle, dummy_url in self.report.fam_link.items():
+                            if mhdle == handle:
+                                mother = self.r_db.get_person_from_handle(mhdle)
+                                break
+                        if mother:
+                            primary_name = mother.get_primary_name()
+                            name = Name(primary_name)
+                            name.set_display_as(name_format)
+                            mname = html_escape(_nd.display_name(name))
+                            mapdetail += self.family_map_link_for_parent(mhdle,
+                                                                         mname)
+                        toggle += mapdetail
 
             # source references
             srcrefs = self.display_ind_sources(family)
