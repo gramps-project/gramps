@@ -458,6 +458,10 @@ class DisplayState(Callback):
             minutes = 30
         elif interval == 3:
             minutes = 60
+        elif interval == 4:
+            minutes = 720
+        elif interval == 5:
+            minutes = 1440
         if interval > 0:
             self.backup_timer = GLib.timeout_add_seconds(
                 minutes*60, self.__emit_autobackup)
@@ -505,7 +509,7 @@ class DisplayState(Callback):
 
     def get_active(self, nav_type, nav_group=0):
         """
-        Return the handle for the active obejct specified by the given
+        Return the handle for the active object specified by the given
         navigation type and group.
         """
         history = self.get_history(nav_type, nav_group)
@@ -545,7 +549,7 @@ class DisplayState(Callback):
         """ Construct the relationship in order to show it in the statusbar
             This can be a time intensive calculation, so we only want to do
             it if persons are different than before.
-            Eg: select a person, then double click, will result in calling
+            E.g.: select a person, then double click, will result in calling
                 three times to construct build the statusbar. We only want
                 to obtain relationship once!
             This means the relationship part of statusbar only changes on

@@ -12218,6 +12218,14 @@ msgstr "Каждые 30 минут"
 msgid "Every hour"
 msgstr "Каждый час"
 
+#: ../gramps/gui/configure.py:1782
+msgid "Every 12 hours"
+msgstr "Каждые 12 часов"
+
+#: ../gramps/gui/configure.py:1783
+msgid "Every day"
+msgstr "Каждый день"
+
 #: ../gramps/gui/configure.py:1786
 msgid "Autobackup"
 msgstr "Автоматическое резервное копирование"
