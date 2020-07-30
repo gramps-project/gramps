@@ -32,9 +32,9 @@ to your language:
 *   **language-pack-gnome-xx**
 
  Translation of GTK elements to your language, with
- xx your language code; e.g. for Dutch you need
+ xx your language code, e.g., for Dutch you need
  language-pack-gnome-nl. The translation of the
- Gramps strings is included with the gramps source.
+ Gramps strings is included with the Gramps source.
 
 
 The following packages are **STRONGLY RECOMMENDED** to be installed:
@@ -45,12 +45,12 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
  but the Python bindings for this must also be present, so gir1.2-osmgpsmap-1.0.
  Without this the GeoView will not be active, see
- https://gramps-project.org/wiki/index.php?title=Gramps_5.0_Wiki_Manual_-_Categories#Geography_Category
+ https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Categories#Geography_Category
 
 * **Graphviz**
 
   Enable creation of graphs using Graphviz engine.
-  Without this, three reports cannot be run.
+  Without this Gramps reports cannot be run.
   Obtain it from: http://www.graphviz.org or try graphviz and python3-pygraphviz from your packages.
 
 * **PyICU**
@@ -63,12 +63,12 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  sorting is done through built-in libraries. PyICU is
  fairly widely available through the package managers of
  distributions. See http://pyicu.osafoundation.org/
- (These are Python bindings for the ICU package. 
- https://pypi.python.org/pypi/PyICU/)
+ (These are Python bindings for the ICU package 
+ https://pypi.python.org/pypi/PyICU/).
 
 * **Ghostscript**
 
-  Used by Graphviz reports to help create PDF's
+  Used by Graphviz reports to help create PDF's.
 
 The following packages are optional:
 ------------------------------------
@@ -76,14 +76,14 @@ The following packages are optional:
 
  Enable spell checking in the notes. Gtkspell depends on
  enchant. A version of gtkspell with gobject introspection
- is needed, so minimally version 3.0.0
+ is needed, so minimally version 3.0.0.
 
 * **rcs**
 
  The GNU Revision Control System (RCS) can be used to manage
  multiple revisions of your family trees. See info at
- https://gramps-project.org/wiki/index.php?title=Gramps_5.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
- Only rcs is needed, NO python bindings are required
+ https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree 
+ Only rcs is needed, NO python bindings are required.
 
 * **PIL**
 
@@ -91,7 +91,7 @@ The following packages are optional:
  images and also to convert non-JPG images to
  JPG so as to include them in LaTeX output.
  (For Python3 a different source may be needed,
- python-imaging or python-pillow or python3-pillow)
+ python-imaging or python-pillow or python3-pillow).
 
 * **GExiv2**
 
@@ -101,7 +101,8 @@ The following packages are optional:
 
 * **ttf-freefont**
 
- More font support in the reports
+ More font support in the reports.
+ For use genealogic symbols you must have FreeSerif or DejaVu Sans fonts (or other) installed.
 
 * **geocodeglib**
 
