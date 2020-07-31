@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-07-31 00:33+0200\n"
+"PO-Revision-Date: 2020-07-31 09:07+0200\n"
 "Last-Translator: Krystian Safjan <ksafjan@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
 "Language: pl_PL\n"
@@ -8991,7 +8991,7 @@ msgstr "Tagi stylizowanego tekstu"
 #: ../gramps/plugins/textreport/tagreport.py:909
 #: ../gramps/plugins/textreport/tagreport.py:913
 msgid "Tag"
-msgstr "Atrybut:"
+msgstr "Tag"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
 msgid "Ranges"
@@ -15696,7 +15696,7 @@ msgstr "Położenie adresu"
 
 #: ../gramps/gui/glade/editattribute.glade:93
 msgid "_Attribute:"
-msgstr "Atrybut:"
+msgstr "_Atrybut:"
 
 #: ../gramps/gui/glade/editattribute.glade:108
 msgid "_Value:"
@@ -19881,15 +19881,15 @@ msgstr "Widok %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:71
 msgid "Tag selected rows"
-msgstr "Zaznaczone wiersze atrybutu"
+msgstr "Taguj zaznaczone wiersze"
 
 #: ../gramps/gui/views/tags.py:93
 msgid "New Tag..."
-msgstr "Nowy Atrybut..."
+msgstr "Nowy tag..."
 
 #: ../gramps/gui/views/tags.py:93
 msgid "Organize Tags..."
-msgstr "Organizuj atrybuty..."
+msgstr "Organizuj tagi..."
 
 #: ../gramps/gui/views/tags.py:112
 msgid "manual|Organize_Tags_Window"
@@ -19942,33 +19942,33 @@ msgstr "Usuń atrybut (%s)"
 #: ../gramps/gui/views/tags.py:592
 #, python-format
 msgid "Tag: %s"
-msgstr "Atrybut: %s"
+msgstr "Tag: %s"
 
 #: ../gramps/gui/views/tags.py:594
 msgid "New Tag"
-msgstr "Nowy Atrybut"
+msgstr "Nowy Tag"
 
 #: ../gramps/gui/views/tags.py:641
 msgid "Cannot save tag"
-msgstr "Nie można zapisać atrybutu"
+msgstr "Nie można zapisać taga"
 
 #: ../gramps/gui/views/tags.py:642
 msgid "The tag name cannot be empty"
-msgstr "Nazwa atrybutu nie może być pusta"
+msgstr "Nazwa taga nie może być pusta"
 
 #: ../gramps/gui/views/tags.py:647
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Dodaj atrybut (%s)"
+msgstr "Dodaj tag (%s)"
 
 #: ../gramps/gui/views/tags.py:653
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Edytuj atrybut (%s)"
+msgstr "Edytuj tag (%s)"
 
 #: ../gramps/gui/views/tags.py:668
 msgid "Tag Name:"
-msgstr "Nazwa atrybutu:"
+msgstr "Nazwa taga:"
 
 #: ../gramps/gui/views/tags.py:675
 #, python-format
@@ -24119,20 +24119,20 @@ msgstr "Zwłoka pomiędzy przetwarzaniem potomków przodków"
 #. for the person are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "Atrybut określający że osoba jest kompletna"
+msgstr "Tag określający że osoba jest kompletna"
 
 #. Tag to use to indicate that there are no further children in this
 #. family, if this family is not tagged, warn about this at the time the
 #. children of this family are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
-msgstr "Atrybut określający że rodzina jest kompletna"
+msgstr "Tag określający że rodzina jest kompletna"
 
 #. Tag to use to specify people and families to ignore. In his way,
 #. hopeless cases can be marked separately and don't clutter up the list.
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr "Atrybut określający że osoba lub rodzina powinna być ignorowana"
+msgstr "Tag określający że osoba lub rodzina powinna być ignorowana"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:164
 msgid "No Home Person set."
@@ -25553,6 +25553,8 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
+"Domyślny text taga\n"
+"(z Ustawień)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -25607,9 +25609,8 @@ msgstr ""
 "wszystkie tagi obiektów."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
-#, fuzzy
 msgid "Tag Text"
-msgstr "Zwykły tekst"
+msgstr "Tekst taga"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 #, fuzzy
@@ -25957,7 +25958,7 @@ msgstr "  Notatki: %d\n"
 #: ../gramps/plugins/importer/importxml.py:290
 #, python-format
 msgid "  Tags: %d\n"
-msgstr "  Atrybuty: %d\n"
+msgstr "  Tagi: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:291
 #, python-format
@@ -32793,14 +32794,12 @@ msgid "Whether to cite sources."
 msgstr "Określa, czy cytować źródła."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1132
-#, fuzzy
 msgid "Include Tags"
-msgstr "Dołącz daty"
+msgstr "Dołącz tagi"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1133
-#, fuzzy
 msgid "Whether to include tags."
-msgstr "Określa, czy dołączać zdjęcia."
+msgstr "Określa, czy dołączać tagi."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1136
 #, fuzzy
@@ -33181,17 +33180,17 @@ msgstr "Styl używany do nagłówka trzeciego poziomu."
 #: ../gramps/plugins/textreport/tagreport.py:106
 #: ../gramps/plugins/textreport/textplugins.gpr.py:258
 msgid "Tag Report"
-msgstr "Raport atrybutów"
+msgstr "Raport tagów"
 
 #: ../gramps/plugins/textreport/tagreport.py:107
 msgid "You must first create a tag before running this report."
-msgstr "Najpierw musisz utworzyć atrybut przed uruchomieniem tego raportu."
+msgstr "Musisz utworzyć tag przed uruchomieniem tego raportu."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/tagreport.py:116
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Raport atrybutów dla %s elementów"
+msgstr "Raport tagów dla %s elementów"
 
 #: ../gramps/plugins/textreport/tagreport.py:671
 msgid "Email Address"
@@ -33204,7 +33203,7 @@ msgstr "Informacje o wydaniu"
 
 #: ../gramps/plugins/textreport/tagreport.py:916
 msgid "The tag to use for the report"
-msgstr "Atrybut używany dla raportu"
+msgstr "Tag używany dla raportu"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:37
 msgid "Ahnentafel Report"
@@ -33276,7 +33275,7 @@ msgstr "Generuje tekstowy raport relacji rodzinnych dla danej osoby"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:259
 msgid "Produces a list of people with a specified tag"
-msgstr "Generuje listę osób z określonym atrybutem"
+msgstr "Generuje listę osób z określonym tagiem"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:281
 msgid "Number of Ancestors Report"
@@ -33622,7 +33621,7 @@ msgstr "Aktualizacja sum kontrolnych na obiektach medialnych"
 
 #: ../gramps/plugins/tool/check.py:1970
 msgid "Looking for tag reference problems"
-msgstr "Wyszukiwanie problemów z odwołaniami do znaczników"
+msgstr "Wyszukiwanie problemów z odwołaniami do tagów"
 
 #: ../gramps/plugins/tool/check.py:2115
 msgid "Looking for media source reference problems"
@@ -33875,8 +33874,7 @@ msgstr[2] "Istniało {quantity} odwołań do notatek, których nie odnaleziono.\
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] ""
-"Istniało {quantity} odwołanie do znacznika, którego nie odnaleziono\n"
+msgstr[0] "Istniało {quantity} odwołań do taga, którego nie odnaleziono\n"
 msgstr[1] ""
 "Istniało {quantity} odwołania do znaczników, których nie odnaleziono.\n"
 msgstr[2] ""
@@ -34533,7 +34531,7 @@ msgstr "Każdy w bazie jest spokrewniony do %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Ustawianie atrybutu dla {number_of} osoby"
+msgstr[0] "Ustawianie taga dla {number_of} osoby"
 msgstr[1] "Ustawianie atrybutu dla {number_of} osób"
 msgstr[2] "Ustawianie atrybutu dla {number_of} ludzi"
 
