@@ -1689,10 +1689,10 @@ class PersonPages(BasePage):
                     if birth:
                         birth_date = birth.get_date_object()
 
+                death_date = _find_death_date(self.r_db, self.person)
                 if birth_date and birth_date is not Date.EMPTY:
                     alive = probably_alive(self.person, self.r_db, Today())
 
-                    death_date = _find_death_date(self.r_db, self.person)
                     if not alive and death_date is not None:
                         nyears = death_date - birth_date
                         nyears = nyears.format(precision=3,
@@ -1701,6 +1701,24 @@ class PersonPages(BasePage):
                             Html("td", self._("Age at Death"),
                                  class_="ColumnAttribute", inline=True),
                             Html("td", nyears,
+                                 class_="ColumnValue", inline=True)
+                            )
+                        table += trow
+                if self.report.options['toggle']:
+                    # Show birth and/or death date if we use the close button.
+                    if birth_date and birth_date is not Date.EMPTY:
+                        trow = Html("tr") + (
+                            Html("td", self._("Birth date"),
+                                 class_="ColumnAttribute", inline=True),
+                            Html("td", self.rlocale.get_date(birth_date),
+                                 class_="ColumnValue", inline=True)
+                            )
+                        table += trow
+                    if death_date and death_date is not Date.EMPTY:
+                        trow = Html("tr") + (
+                            Html("td", self._("Death date"),
+                                 class_="ColumnAttribute", inline=True),
+                            Html("td", self.rlocale.get_date(death_date),
                                  class_="ColumnValue", inline=True)
                             )
                         table += trow
