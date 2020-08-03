@@ -165,7 +165,7 @@ class ThumbnailPreviewPage(BasePage):
                 indexpos += 1
 
         # begin Thumbnail Reference section...
-        with Html("div", class_="subsection", id="references") as section:
+        with Html("div", class_="content", id="references") as section:
             outerwrapper += section
             section += Html("h4", self._("References"), inline=True)
 
