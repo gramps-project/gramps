@@ -166,7 +166,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <metamodule id="meta-gramps-modules">
     <dependencies>
       <dep package="python3"/>
-      <dep package="meta-gtk-osx-gtk3.14"/>
+      <dep package="meta-gtk-osx-gtk3"/>
       <dep package="meta-gtk-osx-gtk3-core-themes"/>
       <dep package="goocanvas2"/>
       <dep package="librsvg"/>
