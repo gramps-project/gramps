@@ -74,8 +74,8 @@ class AddrEmbedList(EmbeddedList):
         (_('City'),         3, 100, TEXT_COL, -1, None),
         (_('State/County'), 4, 100, TEXT_COL, -1, None),
         (_('Country'),      5,  75, TEXT_COL, -1, None),
-        (_("postal"),       6,  75, TEXT_COL, -1, None),
-        (_("phone"),        7, 150, TEXT_COL, -1, None),
+        (_("Postal"),       6,  75, TEXT_COL, -1, None),
+        (_("Phone"),        7, 150, TEXT_COL, -1, None),
         (_('Private'),      8,  30, ICON_COL, -1, 'gramps-lock')
         ]
 
