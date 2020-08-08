@@ -437,11 +437,29 @@ class MissingMediaDialog:
             parent=self.top)
         return True
 
+
 class MultiSelectDialog:
+    """
+    Allows a Yes, No, Cancel dialog that includes a checkbox
+    with "Use this answer for the rest of the items" that works with 'Yes'
+    """
     def __init__(self, msg1_func, msg2_func, items, lookup,
                  cancel_func=None, no_func=None, yes_func=None,
                  multi_yes_func=None, parent=None):
         """
+        msg1_func a function to display big bold text at top
+        msg2_func a function to display normal text at center of dialog
+        items   a list of objects (often handles) passed to lookup
+                Must be a list, not a generator
+        lookup  A function that looks up an object to pass to yes/no/multi_func
+        cancel_func     A function or None called on cancel.
+        yes_func        A function or None called on Yes.
+        no_func         A function or None called on No.
+        multi_yes_func  A function or None called on Yes with
+                        "use this answer for rest" checked.
+        The above xxx_func calls will have parameters:
+            object from lookup function
+            "parent=" set to this dialog for transient parent purposes.
         """
         self.xml = Glade(toplevel='multiselectdialog')
 
@@ -468,7 +486,7 @@ class MultiSelectDialog:
         self.top.connect('delete_event', self.warn)
 
         default_action = 0
-        for selected in items:
+        for indx, selected in enumerate(items):
             item = self.lookup(selected)
             if default_action == 0:
                 msg1 = self.msg1_func(item)
@@ -491,22 +509,22 @@ class MultiSelectDialog:
                 if check_button.get_active():
                     # run the multiple yes if 'do remainder' is checked
                     if multi_yes_func and response == 3:
-                        multi_yes_func(items)
+                        multi_yes_func(items[indx:], parent=self.top)
                         break
                     default_action = response
             else:
                 response = default_action
-            ### Now do it
-            if response == 1: # Cancel
+            # Now do it
+            if response == 1:  # Cancel
                 if self.cancel_func:
-                    self.cancel_func(item)
+                    self.cancel_func(item, parent=self.top)
                 break
-            elif response == 2: # No
+            elif response == 2:  # No
                 if self.no_func:
-                    self.no_func(item)
-            elif response == 3: # Yes
+                    self.no_func(item, parent=self.top)
+            elif response == 3:  # Yes
                 if self.yes_func:
-                    self.yes_func(item)
+                    self.yes_func(item, parent=self.top)
         self.top.destroy()
         if parent and parent_modal:
             parent.set_modal(True)
