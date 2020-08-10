@@ -5703,11 +5703,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Coincide con los hijos o hijas de alguien que coincide con un filtro"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Persona inicial"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Coincide con la persona inicial"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5830,18 +5830,6 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Coincide con los ascendientes a no más de N generaciones de distancia de la "
-"persona inicial"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr ""
-"Ascendientes a no más de <N> generaciones de distancia de la persona inicial"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Coincide con los ascendientes a no más de N generaciones de distancia de la "
 "persona inicial"
@@ -20293,16 +20281,6 @@ msgstr ""
 "de personas, seleccione la persona que desee como 'persona inicial' y "
 "confirme su elección mediante el menú Editar->Establecer persona inicial."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Necesita establecer una 'persona inicial' a la que ir. Seleccione la vista "
-"de personas, seleccione la persona que desee como 'persona inicial' y "
-"confirme su elección mediante el menú Editar->Establecer persona inicial."
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -30761,17 +30739,6 @@ msgid "Go to the home person"
 msgstr "Ir a la persona inicial"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Ir a la persona inicial"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -39282,10 +39249,6 @@ msgstr "Sin hoja de estilo"
 #~ msgid "Home Person"
 #~ msgstr "No se ha establecido una persona inicial"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Coincide con la persona inicial"
-
 #~ msgid "Border Female Alive"
 #~ msgstr "Borde para las mujeres vivas"
 
@@ -39337,16 +39300,6 @@ msgstr "Coincide con la persona inicial"
 
 #~ msgid ""
 #~ "You need to set a 'Home Person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Necesita establecer una 'persona inicial' a la que ir. Seleccione la "
-#~ "vista de personas, seleccione la persona que desee como 'persona inicial' "
-#~ "y confirme su elección mediante el menú Editar->Establecer persona "
-#~ "inicial."
-
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
 #~ msgstr ""
@@ -42395,9 +42348,6 @@ msgstr "Coincide con la persona inicial"
 #~ msgid "You need to set a 'Home Person' to go to."
 #~ msgstr "Es necesario que fije una persona inicial para ir a ella."
 
-#~ msgid "You need to set a 'default person' to go to."
-#~ msgstr "Es necesario que fije una persona inicial para ir a ella."
-
 #~ msgid "Replace first name with call name"
 #~ msgstr "Sustituir el nombre de pila por el nombre corto"
 
@@ -43752,4 +43702,3 @@ msgstr "Coincide con la persona inicial"
 #~ "Use https://gramps-project.org/bugs/ para reportar problemas en las "
 #~ "vistas oficiales, contacte con el autor de la vista "
 #~ "(%(firstauthoremail)s) en los demás casos. "
-

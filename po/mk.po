@@ -5538,11 +5538,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Се совпаѓа со децата од секого совпаднат од филтерот"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Основно лице"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Се совпаѓа со основното лице"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5658,15 +5658,6 @@ msgstr "Предци на основното лице не повеќе од <N>
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr "Совпаѓа предци на основното лице не повеќе од Б генерации понатаму"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Предци на основното лице не повеќе од <N> генерации понатаму"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr "Совпаѓа предци на основното лице не повеќе од Б генерации понатаму"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -20385,13 +20376,6 @@ msgid ""
 "Edit -> Set Home Person."
 msgstr ""
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 #, fuzzy
@@ -31035,7 +31019,7 @@ msgstr "Уредувач на филтерот за лица"
 msgid "Set _Home Person"
 msgstr "Постави По_четно лице"
 
-# Овие се испомешале со home person и Home Person. Не ми е јасно дали тоа е исто, но ги третирав како исто. Да се провери.
+# Овие се испомешале со home person и home person. Не ми е јасно дали тоа е исто, но ги третирав како исто. Да се провери.
 # А.Б.
 # (П.С. 'Home Person' - што ти прави многу броусање!)
 #: ../gramps/plugins/lib/libpersonview.py:260
@@ -31047,20 +31031,6 @@ msgstr "Постави По_четно лице"
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
 msgid "Go to the home person"
-msgstr "Оди на основното лице"
-
-# Овие се испомешале со home person и default person. Не ми е јасно дали тоа е исто, но ги третирав како исто. Да се провери.
-# А.Б.
-# (П.С. 'Home Person' - што ти прави многу броусање!)
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
 msgstr "Оди на основното лице"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
@@ -39923,10 +39893,6 @@ msgstr "Нема стил на страница"
 #~ msgid "Home Person"
 #~ msgstr "Постави По_четно лице"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Се совпаѓа со основното лице"
-
 #, fuzzy
 #~ msgid "Border Female Dead"
 #~ msgstr "Возраст на умирање"
@@ -42539,4 +42505,3 @@ msgstr "Се совпаѓа со основното лице"
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Земја:"
-

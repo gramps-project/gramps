@@ -5500,14 +5500,6 @@ msgstr "Defaŭlta persono"
 msgid "Matches the Home Person"
 msgstr "Kongruas kun la defaŭlta persono"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
-msgstr "Defaŭlta persono"
-
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
-msgstr "Kongruas kun la defaŭlta persono"
-
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
 msgid "Descendant family members of <person>"
 msgstr "Anoj de praida familio de <persono>"
@@ -5624,16 +5616,6 @@ msgstr "Prauloj dela defaŭlta persono ne pli ol <N> generaciojn for"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Kongruas kun prauloj de la defaŭlta persono ne pli ol N generaciojn for"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Prauloj dela defaŭlta persono ne pli ol <N> generaciojn for"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Kongruas kun prauloj de la defaŭlta persono ne pli ol N generaciojn for"
 
@@ -19753,16 +19735,6 @@ msgstr ""
 "personon kiun vi volas kiel 'Hejmpersono', tiam konfirmu la elekton per la "
 "menuero Redaktu -> Agordu Hejmpersonon."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Necesas agordi 'defaŭltan personon'. Elektu la Personvidon, elektu la "
-"personon kiun vi volas kiel 'Hejmpersono', tiam konfirmu la elekton per la "
-"menuero Redaktu -> Agordu Hejmpersonon."
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -30096,17 +30068,6 @@ msgid "Go to the home person"
 msgstr "Iru al la defaŭlta persono"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Iru al la defaŭlta persono"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -38499,15 +38460,6 @@ msgstr "Neniu stilfolio"
 #~ "personon kiun vi volas kiel 'Hejmpersono', tiam konfirmu la elekton per "
 #~ "la menuero Redaktu -> Agordu Hejmpersonon."
 
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Necesas agordi 'defaŭltan personon'. Elektu la Personvidon, elektu la "
-#~ "personon kiun vi volas kiel 'Hejmpersono', tiam konfirmu la elekton per "
-#~ "la menuero Redaktu -> Agordu Hejmpersonon."
-
 #~ msgid "DB-API version"
 #~ msgstr "DB-API-versio"
 
@@ -41191,4 +41143,3 @@ msgstr "Neniu stilfolio"
 #, fuzzy
 #~ msgid "Top:"
 #~ msgstr "_Supra"
-

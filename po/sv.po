@@ -4089,11 +4089,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Matchar barn till någon som matchas av ett filter"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Standardperson"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Matchar standardpersonen"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -4174,14 +4174,6 @@ msgstr "Anor till förvald person inte mer än <N> generationer bort"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid "Matches ancestors of the Home Person not more than N generations away"
-msgstr "Matchar anor till förvald person högst N generationer bort"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Anor till förvald person inte mer än <N> generationer bort"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid "Matches ancestors of the default person not more than N generations away"
 msgstr "Matchar anor till förvald person högst N generationer bort"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -15250,10 +15242,6 @@ msgstr "Hemperson är inte bestämd"
 msgid "You need to set a 'Home Person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
 msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
-msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
-
 #: ../gramps/gui/views/navigationview.py:334 ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
 msgstr "Hoppa till efter Gramps-ID"
@@ -23895,10 +23883,6 @@ msgstr "Välj _hemperson"
 msgid "Go to the home person"
 msgstr "Gå till standardpersonen"
 
-#: ../gramps/plugins/lib/libpersonview.py:260 ../gramps/plugins/view/fanchartview.py:184 ../gramps/plugins/view/geoclose.py:111 ../gramps/plugins/view/geofamclose.py:109 ../gramps/plugins/view/geomoves.py:108 ../gramps/plugins/view/geoperson.py:109 ../gramps/plugins/view/pedigreeview.py:693 ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Gå till standardpersonen"
-
 #: ../gramps/plugins/lib/libpersonview.py:260 ../gramps/plugins/lib/libplaceview.py:332 ../gramps/plugins/view/citationlistview.py:224 ../gramps/plugins/view/citationtreeview.py:374 ../gramps/plugins/view/eventview.py:238 ../gramps/plugins/view/familyview.py:197 ../gramps/plugins/view/fanchartview.py:184 ../gramps/plugins/view/geoclose.py:111 ../gramps/plugins/view/geoevents.py:101 ../gramps/plugins/view/geofamclose.py:109 ../gramps/plugins/view/geofamily.py:101 ../gramps/plugins/view/geomoves.py:108 ../gramps/plugins/view/geoperson.py:109 ../gramps/plugins/view/geoplaces.py:104 ../gramps/plugins/view/mediaview.py:297
 #: ../gramps/plugins/view/noteview.py:197 ../gramps/plugins/view/pedigreeview.py:693 ../gramps/plugins/view/relview.py:436 ../gramps/plugins/view/repoview.py:210 ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the next object in the history"
@@ -31202,9 +31186,6 @@ msgstr "Inget mallblad"
 #~ msgid "You need to set a 'Home Person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
 #~ msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
 
-#~ msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
-#~ msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
-
 #~ msgid "_Print..."
 #~ msgstr "_Skriv ut..."
 
@@ -31237,10 +31218,6 @@ msgstr "Inget mallblad"
 
 #~ msgid "Home Person"
 #~ msgstr "Hemperson"
-
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Matchar standardpersonen"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Kant för levande kvinnoperson"
@@ -33144,9 +33121,6 @@ msgstr "Matchar standardpersonen"
 #~ msgstr "Ogiltig longitud (syntax: 18°9'"
 
 #~ msgid "You need to set a 'Home Person' to go to."
-#~ msgstr "Du måste bestämma en 'standardperson' att hoppa till."
-
-#~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Du måste bestämma en 'standardperson' att hoppa till."
 
 #~ msgid "TODO"

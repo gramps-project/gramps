@@ -4529,11 +4529,11 @@ msgstr ""
 "Concorda amb els fills de qualsevol persona que concordi amb algun filtre"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Persona predeterminada"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Concorda amb la persona predeterminada"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -4654,8 +4654,8 @@ msgstr "Avantpassats de la persona predeterminada a no més de <N> generacions"
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Concorda amb avantpassats de la persona predeterminada que no estiguin a més"
-" de N generacions"
+"Concorda amb avantpassats de la persona predeterminada que no estiguin a més "
+"de N generacions"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
 msgid "Descendants of <person> not more than <N> generations away"
@@ -18490,13 +18490,13 @@ msgstr "Persona base no fixada"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
-"You need to set a 'Home Person' to go to. Select the People View, select"
-" the person you want as 'Home Person', then confirm your choice via the menu"
-" Edit -> Set Home Person."
+"You need to set a 'Home Person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
 msgstr ""
-"Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista de"
-" Persones, seleccioneu la persona que voleu com a 'Persona Base', i llavors"
-" confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
+"Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista de "
+"Persones, seleccioneu la persona que voleu com a 'Persona Base', i llavors "
+"confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
 
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
@@ -28641,99 +28641,6 @@ msgstr "Combinar les persones seleccionades"
 msgid "action|_Edit..."
 msgstr "_Edita..."
 
-#: ../gramps/plugins/lib/libpersonview.py:246
-#: ../gramps/plugins/view/pedigreeview.py:684
-#: ../gramps/plugins/view/relview.py:393
-msgid "Person Filter Editor"
-msgstr "Editor de Filtres de Persones"
-
-#: ../gramps/plugins/lib/libpersonview.py:246
-#: ../gramps/plugins/lib/libpersonview.py:355
-#: ../gramps/plugins/view/pedigreeview.py:1658
-msgid "Set _Home Person"
-msgstr "Fixa Persona _Base"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the home person"
-msgstr "Anar a la persona predeterminada"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libplaceview.py:332
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:238
-#: ../gramps/plugins/view/familyview.py:197
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:297
-#: ../gramps/plugins/view/noteview.py:197
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436 ../gramps/plugins/view/repoview.py:210
-#: ../gramps/plugins/view/sourceview.py:196
-msgid "Go to the next object in the history"
-msgstr "Anar a l'objecte següent de la història"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libplaceview.py:332
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:238
-#: ../gramps/plugins/view/familyview.py:197
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:297
-#: ../gramps/plugins/view/noteview.py:197
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436 ../gramps/plugins/view/repoview.py:210
-#: ../gramps/plugins/view/sourceview.py:196
-msgid "Go to the previous object in the history"
-msgstr "Anar a l'objecte anterior dins de la història"
-
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libplaceview.py:362
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/eventview.py:268
-#: ../gramps/plugins/view/familyview.py:227
-#: ../gramps/plugins/view/mediaview.py:327
-#: ../gramps/plugins/view/noteview.py:227 ../gramps/plugins/view/relview.py:393
-#: ../gramps/plugins/view/relview.py:479 ../gramps/plugins/view/repoview.py:240
-#: ../gramps/plugins/view/sourceview.py:226
-msgid "Edit..."
-msgstr "Editar..."
-
-#: ../gramps/plugins/lib/libpersonview.py:355
-#: ../gramps/plugins/lib/libplaceview.py:415
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:320
-#: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:395
-#: ../gramps/plugins/view/noteview.py:279
-#: ../gramps/plugins/view/repoview.py:292
-#: ../gramps/plugins/view/sourceview.py:278
-msgid "Forward"
-msgstr "Endavant"
-
 #: ../gramps/plugins/lib/libpersonview.py:454
 msgid "_Delete Person"
 msgstr "_Esborrar Persona"
@@ -34892,6 +34799,10 @@ msgstr "Següe_nt"
 msgid "_Home"
 msgstr "_Base"
 
+#: ../gramps/plugins/view/pedigreeview.py:1658
+msgid "Set _Home Person"
+msgstr "Fixa Persona _Base"
+
 #. Mouse scroll direction setting.
 #: ../gramps/plugins/view/pedigreeview.py:1676
 msgid "Mouse scroll direction"
@@ -38103,6 +38014,24 @@ msgstr ""
 #~ msgid "_Merge..."
 #~ msgstr "_Combinar..."
 
+#~ msgid "Person Filter Editor"
+#~ msgstr "Editor de Filtres de Persones"
+
+#~ msgid "Go to the home person"
+#~ msgstr "Anar a la persona predeterminada"
+
+#~ msgid "Go to the next object in the history"
+#~ msgstr "Anar a l'objecte següent de la història"
+
+#~ msgid "Go to the previous object in the history"
+#~ msgstr "Anar a l'objecte anterior dins de la història"
+
+#~ msgid "Edit..."
+#~ msgstr "Editar..."
+
+#~ msgid "Forward"
+#~ msgstr "Endavant"
+
 #~ msgid "Place Filter Editor"
 #~ msgstr "Editor de Filtres de Lloc"
 
@@ -38269,10 +38198,6 @@ msgstr ""
 #~ msgid "Home Person"
 #~ msgstr "Persona base"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Concorda amb la persona predeterminada"
-
 #~ msgid "Border Female Alive"
 #~ msgstr "Contorn Femení Viva"
 
@@ -38319,6 +38244,15 @@ msgstr "Concorda amb la persona predeterminada"
 
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
+#~ "select the person you want as 'Home Person', then confirm your choice via "
+#~ "the menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista "
+#~ "de Persones, seleccioneu la persona que voleu com a 'Persona Base', i "
+#~ "llavors confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
 
 #~ msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
 #~ msgstr "%(genders)s nascuts %(year_from)04d-%(year_to)04d"
@@ -38479,4 +38413,3 @@ msgstr "Concorda amb la persona predeterminada"
 
 #~ msgid "Alphabet Menu: %s"
 #~ msgstr "Menú d'Alfabet: %s"
-

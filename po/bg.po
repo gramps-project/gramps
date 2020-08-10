@@ -5541,11 +5541,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Подбира деца на някой, отговарящ на филтър"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Лице по подразбиране"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Подбира подразбиращото се лице"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5665,19 +5665,6 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Подбира прародители на лицето по подразбиране, отдалечени на не повече от N "
-"поколения"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr ""
-"Прародители на лицето по подразбиране, отдалечени на не повече от <N> "
-"поколения"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Подбира прародители на лицето по подразбиране, отдалечени на не повече от N "
 "поколения"
@@ -20065,13 +20052,6 @@ msgid ""
 "Edit -> Set Home Person."
 msgstr ""
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -30583,17 +30563,6 @@ msgid "Go to the home person"
 msgstr "Отиди до лицето по подразбиране"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Отиди до лицето по подразбиране"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -39198,10 +39167,6 @@ msgstr "Без стил"
 #~ msgid "Home Person"
 #~ msgstr "Не е зададено основно лице."
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Подбира подразбиращото се лице"
-
 #, fuzzy
 #~ msgid "Border Female Dead"
 #~ msgstr "Възраст при смъртта"
@@ -42429,4 +42394,3 @@ msgstr "Подбира подразбиращото се лице"
 #~ "Използвай https://gramps-project.org/bugs/ за да докладваш грешки за "
 #~ "официалните изгледи или се свържи с автора в противен случай "
 #~ "(%(firstauthoremail)s). "
-

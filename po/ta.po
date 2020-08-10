@@ -5144,11 +5144,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "ஒரு வடிப்பிக்கு பொருந்தும் எந்த ஒரு நபரின் குழந்தைகளுக்கும் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "இயல்பிருப்பு நபர்"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5263,17 +5263,6 @@ msgstr "<N> தலைமுறைகளுக்கு கீழில்லா�
 #, fuzzy
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr "<N> தலைமுறைகளுக்கு கீழில்லாத <person> இன் வழித்தோன்றல்கள்"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-#, fuzzy
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "<N> தலைமுறைகளுக்கு கீழில்லாத <person> இன் வழித்தோன்றல்கள்"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-#, fuzzy
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr "<N> தலைமுறைகளுக்கு கீழில்லாத <person> இன் வழித்தோன்றல்கள்"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -19368,13 +19357,6 @@ msgid ""
 "Edit -> Set Home Person."
 msgstr ""
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -29394,18 +29376,6 @@ msgid "Go to the home person"
 msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-#, fuzzy
-msgid "Go to the default person"
-msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -37742,10 +37712,6 @@ msgstr ""
 #~ msgid "Home Person"
 #~ msgstr "புதிய நபர்"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
-
 #, fuzzy
 #~ msgid "Border Female Dead"
 #~ msgstr "மாற்று இறப்பு"
@@ -38291,4 +38257,3 @@ msgstr "இயல்பிருப்பு நபருடன் பொரு�
 
 #~ msgid "<b>Values</b>"
 #~ msgstr "<b>மதிப்புகள்</b>"
-

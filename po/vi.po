@@ -5454,11 +5454,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "So khớp con cái của bất kỳ người nào thỏa một chuẩn lọc "
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Người mặc định "
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Khớp với người mặc định "
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5567,15 +5567,6 @@ msgstr "Tổ tiên của người mặc định không hơn <N> thế hệ "
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr "So tổ tiên người mặc định không hơn N thế hệ "
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Tổ tiên của người mặc định không hơn <N> thế hệ "
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr "So tổ tiên người mặc định không hơn N thế hệ "
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -19619,16 +19610,6 @@ msgstr ""
 "một người bạn muốn làm 'người cơ sở', rồi xác nhận việc chọn này qua menu "
 "Chỉnh sửa -> Chọn người cơ sở."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Bạn cần đặt một 'người mặc định' để tiếp tục. Hãy chọn mục Hiện Người, chọn "
-"một người bạn muốn làm 'người cơ sở', rồi xác nhận việc chọn này qua menu "
-"Chỉnh sửa -> Chọn người cơ sở."
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -29931,17 +29912,6 @@ msgid "Go to the home person"
 msgstr "Đi đến người mặc định "
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Đi đến người mặc định "
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -38188,10 +38158,6 @@ msgstr "Không có style sheet "
 #~ msgid "Home Person"
 #~ msgstr "Chưa đặt người chính"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Khớp với người mặc định "
-
 #~ msgid "Border Female Alive"
 #~ msgstr "Nữ biên giới còn sống"
 
@@ -38245,15 +38211,6 @@ msgstr "Khớp với người mặc định "
 
 #~ msgid ""
 #~ "You need to set a 'Home Person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Bạn cần đặt một 'người mặc định' để tiếp tục. Hãy chọn mục Hiện Người, "
-#~ "chọn một người bạn muốn làm 'người cơ sở', rồi xác nhận việc chọn này qua "
-#~ "menu Chỉnh sửa -> Chọn người cơ sở."
-
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
 #~ msgstr ""
@@ -41513,4 +41470,3 @@ msgstr "Khớp với người mặc định "
 #~ "cắm chạy để có thêm thông tin.\n"
 #~ "Dùng https://gramps-project.org/bugs/ để báo lỗi cho hiển thị chính thức, "
 #~ "hoặc liênhệ tác giả hiển thị (%(firstauthoremail)s). "
-

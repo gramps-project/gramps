@@ -5974,12 +5974,12 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Correspond aux enfants de tout individu issu d'un filtrage"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Individu par défaut"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Correspond à l'individu par défaut"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -6100,18 +6100,6 @@ msgstr "Ascendants de l'individu de référence sur moins de <N> générations"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Correspond aux ascendants de l'individu de référence sur moins de N "
-"générations"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Ascendants de l'individu de référence sur moins de <N> générations"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Correspond aux ascendants de l'individu de référence sur moins de N "
 "générations"
@@ -21170,16 +21158,6 @@ msgstr ""
 "puis sélectionnez la personne qui sera la 'souche' de votre arbre, enfin "
 "confirmez votre choix via la menu Édition -> Définir la souche. "
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Vous devez définir un 'individu de référence'. Allez dans la vue Individus, "
-"puis sélectionnez la personne qui sera la 'souche' de votre arbre, enfin "
-"confirmez votre choix via la menu Édition -> Définir la souche. "
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -32115,17 +32093,6 @@ msgid "Go to the home person"
 msgstr "Aller à l'individu par défaut"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Aller à l'individu par défaut"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -40985,16 +40952,6 @@ msgstr "Aucune feuille de style"
 #~ "arbre, enfin confirmez votre choix via la menu Édition -> Définir la "
 #~ "souche. "
 
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Vous devez définir un 'individu de référence'. Allez dans la vue "
-#~ "Individus, puis sélectionnez la personne qui sera la 'souche' de votre "
-#~ "arbre, enfin confirmez votre choix via la menu Édition -> Définir la "
-#~ "souche. "
-
 # trunk
 #~ msgid "_Print..."
 #~ msgstr "_Impression..."
@@ -41055,11 +41012,6 @@ msgstr "Aucune feuille de style"
 #~ msgid "Home Person"
 #~ msgstr "Individu souche"
 
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Correspond à l'individu par défaut"
-
 # trunk
 #~ msgid "Border Female Alive"
 #~ msgstr "Bordure féminin vivante"
@@ -41083,4 +41035,3 @@ msgstr "Correspond à l'individu par défaut"
 
 #~ msgid "Web Connect"
 #~ msgstr "Connexion internet"
-

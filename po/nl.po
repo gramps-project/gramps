@@ -5641,13 +5641,13 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Vindt kinderen van personen gevonden via een filter"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Standaardpersoon"
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "De standaardpersoon zoeken"
 
 # afstammelingen
@@ -5770,18 +5770,6 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer "
-"dan N generaties verwijderd"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr ""
-"Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer "
 "dan N generaties verwijderd"
@@ -20227,16 +20215,6 @@ msgstr ""
 "selecteer een persoon die u als 'basis' wenst en bevestig uw keuze via het "
 "menu Bewerken -> Basispersoon."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"U dien een 'standaard'-persoon te bepalen. Ga naar de personen categorie, "
-"selecteer een persoon die u als 'basis' wenst en bevestig uw keuze via het "
-"menu Bewerken -> Basispersoon."
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -30709,19 +30687,6 @@ msgstr "Be_ginpersoon instellen"
 msgid "Go to the home person"
 msgstr "Naar de beginpersoon gaan"
 
-# komt overeen met de genoemde filter?
-# Vindt de filter genaamd?
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Naar de beginpersoon gaan"
-
 #: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
@@ -39270,12 +39235,6 @@ msgstr "Geen stijlblad"
 #~ msgid "Home Person"
 #~ msgstr "Geen beginpersoon"
 
-# komt overeen met de genoemde filter?
-# Vindt de filter genaamd?
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "De standaardpersoon zoeken"
-
 #~ msgid "Border Female Alive"
 #~ msgstr "Rand voor vrouwen nog in leven"
 
@@ -39331,15 +39290,6 @@ msgstr "De standaardpersoon zoeken"
 
 #~ msgid ""
 #~ "You need to set a 'Home Person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "U dien een 'standaard'-persoon te bepalen. Ga naar de personen categorie, "
-#~ "selecteer een persoon die u als 'basis' wenst en bevestig uw keuze via "
-#~ "het menu Bewerken -> Basispersoon."
-
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
 #~ msgstr ""
@@ -42238,12 +42188,6 @@ msgstr "De standaardpersoon zoeken"
 #~ msgid "You need to set a 'Home Person' to go to."
 #~ msgstr "Naar de beginpersoon gaan"
 
-# komt overeen met de genoemde filter?
-# Vindt de filter genaamd?
-#, fuzzy
-#~ msgid "You need to set a 'default person' to go to."
-#~ msgstr "Naar de beginpersoon gaan"
-
 #, fuzzy
 #~ msgid "Gramplet for generic notes"
 #~ msgstr "SoundEx-codes aanmaken"
@@ -43856,4 +43800,3 @@ msgstr "De standaardpersoon zoeken"
 #~ "Gebruik https://gramps-project.org/bugs/ om fouten te melden voor de "
 #~ "officiële schermen of anders contacteer de maker van het scherm "
 #~ "(%(firstauthoremail)s). "
-

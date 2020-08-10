@@ -5539,11 +5539,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "A szűrőnek megfelelő bármely gyermek"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Alapértelmezett személy"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Az alapértelmezettnek megfelelő személy"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5660,17 +5660,6 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr "Alapértelmezett emberek ősei, akik N-nél nem távolibb generációjúak"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr ""
-"Alapértelmezett emberek ősei, akik nem több, mint <N> generációval "
-"távoliabbak"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr "Alapértelmezett emberek ősei, akik N-nél nem távolibb generációjúak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -19770,16 +19759,6 @@ msgstr ""
 "nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá a "
 "Szerkesztés -> Kiinduló személy beállítása menün keresztül."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
-"nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá a "
-"Szerkesztés -> Kiinduló személy beállítása menün keresztül."
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -30152,17 +30131,6 @@ msgid "Go to the home person"
 msgstr "A kiinduló személyhez ugrás"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "A kiinduló személyhez ugrás"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -38436,15 +38404,6 @@ msgstr "Nincs stíluslap"
 #~ "nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá "
 #~ "a Szerkesztés -> Kiinduló személy beállítása menün keresztül."
 
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
-#~ "nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá "
-#~ "a Szerkesztés -> Kiinduló személy beállítása menün keresztül."
-
 #~ msgid "_Print..."
 #~ msgstr "_Nyomtatás..."
 
@@ -38495,10 +38454,6 @@ msgstr "Nincs stíluslap"
 
 #~ msgid "Home Person"
 #~ msgstr "Kiinduló személy"
-
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Az alapértelmezettnek megfelelő személy"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Élő nő kerete"
@@ -41717,4 +41672,3 @@ msgstr "Az alapértelmezettnek megfelelő személy"
 
 #~ msgid "Family Sources"
 #~ msgstr "Család források"
-

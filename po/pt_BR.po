@@ -5598,11 +5598,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Localiza filhos de qualquer um encontrado por um filtro"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Pessoa predefinida"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Coincide com a pessoa predefinida"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5721,16 +5721,6 @@ msgstr "Ascendentes da pessoa predefinida com até <N> gerações de distância"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Localiza os ascendentes da pessoa predefinida com até N gerações de distância"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Ascendentes da pessoa predefinida com até <N> gerações de distância"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Localiza os ascendentes da pessoa predefinida com até N gerações de distância"
 
@@ -19932,17 +19922,6 @@ msgstr ""
 "\"pessoa inicial\", então confirme a sua escolha por meio do menu Editar -"
 ">Definir pessoa inicial."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Você precisa de uma \"pessoa predefinida\" para a qual deseja ir. Selecione "
-"a visualização de pessoas, selecione a pessoa que você quer que seja a "
-"\"pessoa inicial\", então confirme a sua escolha por meio do menu Editar -"
-">Definir pessoa inicial."
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -30382,17 +30361,6 @@ msgid "Go to the home person"
 msgstr "Ir para a pessoa inicial"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Ir para a pessoa inicial"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -38785,10 +38753,6 @@ msgstr "Sem folha de estilo"
 #~ msgid "Home Person"
 #~ msgstr "Pessoa inicial"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Coincide com a pessoa predefinida"
-
 #~ msgid "Border Female Alive"
 #~ msgstr "Borda para sexo feminino ainda vivo"
 
@@ -38837,16 +38801,6 @@ msgstr "Coincide com a pessoa predefinida"
 
 #~ msgid ""
 #~ "You need to set a 'Home Person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Você precisa de uma \"pessoa predefinida\" para a qual deseja ir. "
-#~ "Selecione a visualização de pessoas, selecione a pessoa que você quer que "
-#~ "seja a \"pessoa inicial\", então confirme a sua escolha por meio do menu "
-#~ "Editar ->Definir pessoa inicial."
-
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
 #~ msgstr ""
@@ -41205,4 +41159,3 @@ msgstr "Coincide com a pessoa predefinida"
 #, fuzzy
 #~ msgid "window1"
 #~ msgstr "Janela principal"
-

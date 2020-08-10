@@ -5553,11 +5553,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Encontra filhos de qualquer pessoa encontrada por um filtro"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Indivíduo predefinido"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Localiza o indivíduo predefinido"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5676,17 +5676,6 @@ msgstr "Ascendentes do indivíduo predefinido com não mais de <n> gerações"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the Home Person not more than N generations away"
-msgstr ""
-"Encontracendentes do indivíduo predefinido com não mais de n gerações de "
-"distância"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "Ascendentes do indivíduo predefinido com não mais de <n> gerações"
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Encontracendentes do indivíduo predefinido com não mais de n gerações de "
 "distância"
@@ -19831,16 +19820,6 @@ msgstr ""
 "Indivíduos, seleccione o indivíduo que deseja como \"indivíduo inicial\" e "
 "confirme a sua escolha através do menu Editar->Definir indivíduo inicial."
 
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
-"Tem de definir um \"indivíduo predefinido\". Seleccione o separador "
-"Indivíduos, seleccione o indivíduo que deseja como \"indivíduo inicial\" e "
-"confirme a sua escolha através do menu Editar->Definir indivíduo inicial."
-
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
 msgid "Jump to by Gramps ID"
@@ -30183,17 +30162,6 @@ msgid "Go to the home person"
 msgstr "Ir para o indivíduo predefinido"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "Ir para o indivíduo predefinido"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -38546,10 +38514,6 @@ msgstr "Sem folha de estilos"
 #~ msgid "Home Person"
 #~ msgstr "Indivíduo inicial"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "Localiza o indivíduo predefinido"
-
 #~ msgid "Border Male Alive"
 #~ msgstr "Contorno masculino vivo"
 
@@ -38609,16 +38573,6 @@ msgstr "Localiza o indivíduo predefinido"
 
 #~ msgid ""
 #~ "You need to set a 'Home Person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Tem de definir um \"indivíduo predefinido\". Seleccione o separador "
-#~ "Indivíduos, seleccione o indivíduo que deseja como \"indivíduo inicial\" "
-#~ "e confirme a sua escolha através do menu Editar->Definir indivíduo "
-#~ "inicial."
-
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
 #~ msgstr ""
@@ -40409,9 +40363,6 @@ msgstr "Localiza o indivíduo predefinido"
 #~ msgstr "Cor"
 
 #~ msgid "You need to set a 'Home Person' to go to."
-#~ msgstr "Você precisa definir uma \"pessoa padrão\" para prosseguir."
-
-#~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Você precisa definir uma \"pessoa padrão\" para prosseguir."
 
 #~ msgid "Report a bug: Step 1 of 5"
@@ -42230,4 +42181,3 @@ msgstr "Localiza o indivíduo predefinido"
 #~ "Use https://gramps-project.org/bugs/ para submeter erros das vistas "
 #~ "oficiais, ou em alternativa contacte o autor da vista "
 #~ "(%(firstauthoremail)s)"
-

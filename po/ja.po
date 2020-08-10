@@ -5007,11 +5007,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "フィルターで抽出した人物の子供とマッチする"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "デフォルトの人物"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "デフォルトの人物にマッチする"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -18807,13 +18807,6 @@ msgid ""
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
 msgstr ""
-
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
 "「デフォルトの人物」を設定する必要があります。人物ビューから「ホームの人物」"
 "にしたい人物を選択し、メニューバーの編集から「ホームの人物に指定」で設定して"
 "ください。"
@@ -28760,17 +28753,6 @@ msgid "Go to the home person"
 msgstr "デフォルトの人物へ戻る"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
-msgstr "デフォルトの人物へ戻る"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
 #: ../gramps/plugins/lib/libplaceview.py:332
 #: ../gramps/plugins/view/citationlistview.py:224
 #: ../gramps/plugins/view/citationtreeview.py:374
@@ -36850,7 +36832,7 @@ msgstr "スタイルシートなし"
 #~ msgstr "GUIとレポートに代替フォントハンドラを使用する(再起動が必要)"
 
 #~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
 #~ msgstr ""
@@ -36884,10 +36866,6 @@ msgstr "スタイルシートなし"
 
 #~ msgid "Home Person"
 #~ msgstr "ホームの人物"
-
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "デフォルトの人物にマッチする"
 
 #~ msgid "Web Connect"
 #~ msgstr "ウェブへ接続"

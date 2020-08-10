@@ -45644,3 +45644,4 @@ msgstr "Bez arkusza stylów"
 #~ "Użyj https://gramps-project.org/bugs/ aby zgłosić błąd odnośnie "
 #~ "oficjalnych widoków, w innych przypadku skontaktuj się z jego autorem "
 #~ "(%(firstauthoremail)s). "
+
