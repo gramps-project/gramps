@@ -36571,7 +36571,7 @@ msgstr "Przejdź do dziecka..."
 
 #: ../gramps/plugins/view/pedigreeview.py:1220
 msgid "Jump to father"
-msgstr "Przejdź do dziecka"
+msgstr "Przejdź do ojca"
 
 #: ../gramps/plugins/view/pedigreeview.py:1234
 msgid "Jump to mother"
