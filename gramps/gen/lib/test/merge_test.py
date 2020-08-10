@@ -967,6 +967,49 @@ class NoteCheck(unittest.TestCase, PrivacyBaseTest):
         self.titanic = Note("hello world")
         self.ref_obj = Note("hello world")
 
+    def test_note_replace_handle_reference(self):
+        ptag = StyledTextTag(name=StyledTextTagType.LINK,
+                             value="gramps://Event/handle/e0000",
+                             ranges=[0, 3])
+        self.phoenix.text.set_tags([ptag])
+        rtag = StyledTextTag(name=StyledTextTagType.LINK,
+                             value="gramps://Event/handle/e0001",
+                             ranges=[0, 3])
+        self.ref_obj.text.set_tags([rtag])
+        self.phoenix.replace_handle_reference('Event', 'e0000', 'e0001')
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+    def test_note_has_handle_reference(self):
+        ptag = StyledTextTag(name=StyledTextTagType.LINK,
+                             value="gramps://Event/handle/e0000",
+                             ranges=[0, 3])
+        self.phoenix.text.set_tags([ptag])
+        self.assertTrue(self.phoenix.has_handle_reference('Event', 'e0000'))
+        self.assertFalse(self.phoenix.has_handle_reference('Event', 'e0001'))
+
+    def test_note_get_referenced_handles(self):
+        tag0 = StyledTextTag(name=StyledTextTagType.LINK,
+                             value="gramps://Event/handle/e0000",
+                             ranges=[0, 2])
+        tag1 = StyledTextTag(name=StyledTextTagType.LINK,
+                             value="gramps://Person/handle/i0001",
+                             ranges=[2, 3])
+        self.phoenix.text.set_tags([tag0, tag1])
+        self.phoenix.add_tag("t1234")
+        tag_list = self.phoenix.get_referenced_handles()
+        self.assertEqual(tag_list, [('Event', 'e0000'), ('Person', 'i0001'),
+                                    ('Tag', 't1234')])
+        self.assertFalse(self.phoenix.has_handle_reference('Event', 'e0001'))
+
+    def test_note_remove_handle_references(self):
+        ptag = StyledTextTag(name=StyledTextTagType.LINK,
+                             value="gramps://Event/handle/e0000",
+                             ranges=[0, 3])
+        self.phoenix.text.set_tags([ptag])
+        self.phoenix.remove_handle_references('Event', ['e0000'])
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+
+
 class NoteBaseCheck(unittest.TestCase):
     def setUp(self):
         self.phoenix = NoteBase()
@@ -984,6 +1027,7 @@ class NoteBaseCheck(unittest.TestCase):
     def test_different(self):
         ref_note_list = NoteBase(self.phoenix)
         note = Note("note other")
+        note.set_handle('654321')
         self.titanic.add_note(note.get_handle())
         ref_note_list.add_note(note.get_handle())
         self.phoenix._merge_note_list(self.titanic)
@@ -1016,6 +1060,14 @@ class NoteBaseCheck(unittest.TestCase):
         note.set_handle('123456')
         ref_note_list.add_note(note.get_handle())
         self.phoenix.replace_note_references('','')
+        self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
+
+    def test_remove_note_references(self):
+        note = Note("note other")
+        note.set_handle('654321')
+        self.phoenix.add_note(note.get_handle())
+        self.phoenix.remove_note_references(['123456', '654321'])
+        ref_note_list = NoteBase()
         self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
 
 class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
