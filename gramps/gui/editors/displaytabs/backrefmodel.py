@@ -134,6 +134,15 @@ class BackRefModel(Gtk.ListStore):
                 name = p.get_name()
                 gid = p.gramps_id
                 handle = p.handle
+            elif dtype == 'Note':
+                p = self.db.get_note_from_handle(ref[1])
+                if not p:
+                    continue
+                name = " ".join(p.get().split())
+                if len(name) > 80:
+                    name = name[:80] + "..."
+                gid = p.gramps_id
+                handle = p.handle
             else:
                 p = self.db.get_media_from_handle(ref[1])
                 if not p:

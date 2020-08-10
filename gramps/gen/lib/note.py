@@ -161,7 +161,14 @@ class Note(BasicPrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_tag_handles()
+        reflist = []
+        for dom, obj, prop, hndl in self.get_links():
+            if dom != "gramps" or prop != "handle":
+                continue
+            else:
+                reflist.append((obj, hndl))
+        reflist.extend(self.get_referenced_tag_handles())
+        return reflist
 
     def merge(self, acquisition):
         """

@@ -569,12 +569,14 @@ def get_link_color(context):
 
     return rgb_to_hex((col.red, col.green, col.blue))
 
+
 def edit_object(dbstate, uistate, reftype, ref):
     """
     Invokes the appropriate editor for an object type and given handle.
     """
     from .editors import (EditEvent, EditPerson, EditFamily, EditSource,
-                          EditPlace, EditMedia, EditRepository, EditCitation)
+                          EditPlace, EditMedia, EditRepository, EditCitation,
+                          EditNote)
 
     if reftype == 'Person':
         try:
@@ -642,6 +644,13 @@ def edit_object(dbstate, uistate, reftype, ref):
             EditRepository(dbstate, uistate, [], repo)
         except WindowActiveError:
             pass
+    elif reftype == 'Note':
+        try:
+            note = dbstate.db.get_note_from_handle(ref)
+            EditNote(dbstate, uistate, [], note)
+        except WindowActiveError:
+            pass
+
 
 #-------------------------------------------------------------------------
 #
