@@ -170,6 +170,29 @@ class Note(BasicPrimaryObject):
         reflist.extend(self.get_referenced_tag_handles())
         return reflist
 
+    def remove_handle_references(self, classname, handle_list):
+        """
+        Remove all references in this object to object handles in the list.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
+
+        If the link is in the styled text, we just remove the style for that
+        link.
+        """
+        tags = []
+        for styledtext_tag in self.text.get_tags():
+            if(styledtext_tag.name == StyledTextTagType.LINK and
+               styledtext_tag.value.startswith("gramps://")):
+                obj, prop, value = styledtext_tag.value[9:].split("/", 2)
+                if obj == classname and prop == 'handle' and \
+                        value in handle_list:
+                    continue
+            tags.append(styledtext_tag)
+        self.text.set_tags(tags)
+
     def merge(self, acquisition):
         """
         Merge the content of acquisition into this note.
