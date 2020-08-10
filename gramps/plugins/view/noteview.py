@@ -46,7 +46,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import NoteModel
-from gramps.gen.utils.db import get_note_referents
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import NoteBookmarks
 from gramps.gen.config import config
@@ -54,7 +53,7 @@ from gramps.gen.lib import Note
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.filters.sidebar import NoteSidebarFilter
-from gramps.gui.editors import EditNote, DeleteNoteQuery
+from gramps.gui.editors import EditNote
 from gramps.gui.merge import MergeNote
 from gramps.gen.plug import CATEGORY_QR_NOTE
 
@@ -330,14 +329,9 @@ class NoteView(ListView):
             pass
 
     def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        the_lists = get_note_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_note_from_handle(handle)
-        query = DeleteNoteQuery(self.dbstate, self.uistate, object, the_lists)
-        is_used = any(the_lists)
-        return (query, is_used, object)
+        handles = self.selected_handles()
+        ht_list = [('Note', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
         for handle in self.selected_handles():

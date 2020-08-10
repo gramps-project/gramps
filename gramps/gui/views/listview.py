@@ -59,6 +59,7 @@ from .navigationview import NavigationView
 from ..uimanager import ActionGroup
 from ..columnorder import ColumnOrder
 from gramps.gen.config import config
+from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError, FilterError, HandleError
 from ..filters import SearchBar
 from ..widgets.menuitem import add_menuitem
@@ -66,7 +67,8 @@ from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.plug import CATEGORY_QR_PERSON
-from ..dialog import QuestionDialog, QuestionDialog3, ErrorDialog
+from ..dialog import (QuestionDialog, QuestionDialog3, ErrorDialog,
+                      MultiSelectDialog)
 from ..editors import FilterEditor
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
@@ -532,57 +534,138 @@ class ListView(NavigationView):
     def get_column_widths(self):
         return [column.get_width() for column in self.columns]
 
-    def remove_selected_objects(self):
+    ####################################################################
+    # Object Delete functions
+    ####################################################################
+    # def remove(self):  # this is over-ridden in each view
+        # """
+        # must return the tuple of (object type and handle) for each
+        # selected item
+        # """
+        # handles = self.selected_handles()
+        # ht_list = [('Person', hndl) for hndl in handles]
+        # self.remove_selected_objects(ht_list)
+
+    def remove_selected_objects(self, ht_list=None):
         """
         Function to remove selected objects
         """
-        prompt = True
-        if len(self.selected_handles()) > 1:
-            ques = QuestionDialog3(
-                _("Multiple Selection Delete"),
-                _("More than one item has been selected for deletion. "
-                  "Select the option indicating how to delete the items:"),
-                _("Delete All"),
-                _("Confirm Each Delete"),
-                parent=self.uistate.window)
-            res = ques.run()
-            if res == -1:  # Cancel
-                return
-            else:
-                prompt = not res  # we prompt on 'Confirm Each Delete'
+        if len(ht_list) == 1:
+            obj = self.dbstate.db.method(
+                "get_%s_from_handle", ht_list[0][0])(ht_list[0][1])
+            msg1 = self._message1_format(obj)
+            msg2 = self._message2_format(obj)
+            msg2 = "%s %s" % (msg2, data_recover_msg)
+            QuestionDialog(msg1,
+                           msg2,
+                           _('_Delete'),
+                           lambda: self.delete_object_response(obj, parent=self.uistate.window),
+                           parent=self.uistate.window)
+        else:
+            MultiSelectDialog(self._message1_format,
+                              self._message2_format,
+                              ht_list,
+                              lambda x: self.dbstate.db.method(
+                                  "get_%s_from_handle", x[0])(x[1]),
+                              yes_func=self.delete_object_response,
+                              multi_yes_func=self.delete_multi_object_response,
+                              parent=self.uistate.window)
 
-        if not prompt:
-            self.uistate.set_busy_cursor(True)
+    def _message1_format(self, obj):
+        """
+        Header format for remove dialogs.
+        """
+        return _('Delete {type} [{gid}]?').format(
+            type=_(obj.__class__.__name__), gid=obj.gramps_id)
 
-        for handle in self.selected_handles():
-            (query, is_used, object) = self.remove_object_from_handle(handle)
-            if prompt:
-                if is_used:
-                    msg = _('This item is currently being used. '
-                            'Deleting it will remove it from the database and '
-                            'from all other items that reference it.')
-                else:
-                    msg = _('Deleting item will remove it from the database.')
+    def _message2_format(self, _obj):
+        """
+        Detailed message format for the remove dialogs.
+        """
+        return _('Deleting item will remove it from the database.')
 
-                msg += ' ' + data_recover_msg
-                #descr = object.get_description()
-                #if descr == "":
-                descr = object.get_gramps_id()
-                ques = QuestionDialog3(_('Delete %s?') % descr, msg,
-                                       _('_Yes'), _('_No'),
-                                       parent=self.uistate.window)
-                res = ques.run()
-                if res == -1:  # Cancel
-                    return
-                elif res:  # If true, perfom the delete
-                    self.uistate.set_busy_cursor(True)
-                    query.query_response()
-                    self.uistate.set_busy_cursor(False)
-            else:
-                query.query_response()
+    def _message3_format(self, obj):
+        """
+        Transaction label format
+        """
+        return "%s %s [%s]" % (_("Delete"), _(obj.__class__.__name__),
+                               obj.get_gramps_id())
 
-        if not prompt:
-            self.uistate.set_busy_cursor(False)
+    def delete_object_response(self, obj, parent=None):
+        """
+        Delete the object from the database.
+        """
+        with DbTxn(self._message3_format(obj), self.dbstate.db) as trans:
+            #self.db.disable_signals()
+            self.remove_object_from_handle(
+                obj.__class__.__name__, obj.handle, trans, in_use_prompt=True, parent=parent)
+            #self.dbstate.db.enable_signals()
+        self.uistate.set_busy_cursor(False)
+
+    def delete_multi_object_response(self, ht_list=None, parent=None):
+        """
+        Deletes multiple objects from the database.
+        """
+        # set the busy cursor, so the user knows that we are working
+        self.uistate.set_busy_cursor(True)
+        self.uistate.progress.show()
+        self.uistate.push_message(self.dbstate, _("Processing..."))
+        hndl_cnt = len(ht_list) / 100
+        _db = self.dbstate.db
+        _db.disable_signals()
+
+        # create the transaction
+        with DbTxn('', _db) as trans:
+            for (indx, item) in enumerate(ht_list):
+                result = self.remove_object_from_handle(
+                    *item, trans, in_use_prompt=False, parent=parent)
+                self.uistate.pulse_progressbar(indx / hndl_cnt)
+                if result == -1:
+                    break
+            trans.set_description(_("Multiple Selection Delete"))
+
+        _db.enable_signals()
+        _db.request_rebuild()
+        self.uistate.progress.hide()
+        self.uistate.set_busy_cursor(False)
+
+    def remove_object_from_handle(self, obj_type, handle,
+                                  trans, in_use_prompt=False, parent=None):
+        """
+        deletes a single object from database
+        """
+        obj = self.dbstate.db.method("get_%s_from_handle", obj_type)(handle)
+        bl_list = list(self.dbstate.db.find_backlink_handles(handle))
+        if in_use_prompt:
+            res = self._in_use_prompt(obj, bl_list, parent=parent)
+            if res != 1:  # Cancel or No
+                return res
+        # perfom the cleanup
+        for ref_type, ref_hndl in bl_list:
+            ref_obj = self.dbstate.db.method(
+                "get_%s_from_handle", ref_type)(ref_hndl)
+            ref_obj.remove_handle_references(obj_type, [handle])
+            self.dbstate.db.method("commit_%s", ref_type)(ref_obj, trans)
+        self.dbstate.db.method("remove_%s", obj_type)(
+            obj.get_handle(), trans)
+
+    def _in_use_prompt(self, obj, bl_list, parent=None):
+        """
+        Prompt user if he wants to continue becasue in use
+        """
+        if bl_list:
+            msg = _('This item is currently being used. '
+                    'Deleting it will remove it from the database and '
+                    'from all other items that reference it.')
+        else:
+            msg = _('Deleting item will remove it from the database.')
+
+        msg += ' ' + data_recover_msg
+        descr = obj.get_gramps_id()
+        ques = QuestionDialog3(_('Delete %s?') % descr, msg,
+                               _('_Yes'), _('_No'),
+                               parent=parent)
+        return ques.run()
 
     def blist(self, store, path, iter_, sel_list):
         '''GtkTreeSelectionForeachFunc
@@ -1186,12 +1269,6 @@ class ListView(NavigationView):
     def merge(self, *obj):
         """
         Template function to allow the merger of two objects.
-        """
-
-    @abstractmethod
-    def remove_object_from_handle(self, handle):
-        """
-        Template function to allow the removal of an object by its handle
         """
 
     def open_all_nodes(self, *obj):

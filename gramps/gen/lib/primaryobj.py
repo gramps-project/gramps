@@ -39,7 +39,9 @@ from .tableobj import TableObject
 from .privacybase import PrivacyBase
 from .citationbase import CitationBase
 from .mediabase import MediaBase
+from .notebase import NoteBase
 from .tagbase import TagBase
+
 
 #-------------------------------------------------------------------------
 #
@@ -274,6 +276,8 @@ class PrimaryObject(BasicPrimaryObject):
             self.remove_citation_references(handle_list)
         elif classname == 'Media' and isinstance(self, MediaBase):
             self.remove_media_references(handle_list)
+        elif classname == 'Note' and isinstance(self, NoteBase):
+            self.remove_note_references(handle_list)
         else:
             self._remove_handle_references(classname, handle_list)
 
