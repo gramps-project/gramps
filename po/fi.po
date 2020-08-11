@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-16 23:48+0300\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2020-07-17 00:30+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.con>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
@@ -2203,7 +2203,7 @@ msgstr "{long_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:189
-#, python-format
+#, fuzzy, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month.f[E]} {year}"
 
@@ -2215,7 +2215,7 @@ msgstr "{long_month.f[E]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:197
-#, python-format
+#, fuzzy, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month.f[IL]} {year}"
 
@@ -2227,7 +2227,7 @@ msgstr "{long_month.f[IL]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:205
-#, python-format
+#, fuzzy, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2239,7 +2239,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, python-format
+#, fuzzy, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2250,7 +2250,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, python-format
+#, fuzzy, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[P]} {year}"
 
@@ -2261,7 +2261,7 @@ msgstr "{long_month.f[P]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, python-format
+#, fuzzy, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2272,7 +2272,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:234
-#, python-format
+#, fuzzy, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -2283,7 +2283,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
-#, python-format
+#, fuzzy, python-brace-format
 msgid "estimated|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -2294,7 +2294,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
-#, python-format
+#, fuzzy, python-brace-format
 msgid "calculated|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -38317,4 +38317,3 @@ msgstr "Ei tyylitiedostoa"
 
 #~ msgid "Given Name"
 #~ msgstr "Etunimi"
-

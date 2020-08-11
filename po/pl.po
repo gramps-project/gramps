@@ -20,8 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10"
-" || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 20.04.3\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -30,8 +30,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps jest programem genealogicznym, który jest intuicyjny dla hobbistów"
-" oraz jest bogaty w funkcjonalności dla profesjonalistów."
+"Gramps jest programem genealogicznym, który jest intuicyjny dla hobbistów "
+"oraz jest bogaty w funkcjonalności dla profesjonalistów."
 
 #: ../data/gramps.appdata.xml.in.h:2
 msgid ""
@@ -752,11 +752,10 @@ msgid ""
 "Preferences &gt; Display&quot;."
 msgstr ""
 "<b>Błędne daty</b><br/>Każdy czasami wprowadza daty w niewłaściwym formacie. "
-"Błędne daty będą wyświetlone na czerwonym tle lub z czerwoną kropką przy"
-" prawej krawędzi pola. Możesz poprawić datę używając "
-"okna wyboru daty otwieranego przez kliknięcie na przycisk daty. Format daty "
-"jest konfigurowalny w &quot; Edycja &gt; Preferencje &gt; Wyświetlanie "
-"&quot;."
+"Błędne daty będą wyświetlone na czerwonym tle lub z czerwoną kropką przy "
+"prawej krawędzi pola. Możesz poprawić datę używając okna wyboru daty "
+"otwieranego przez kliknięcie na przycisk daty. Format daty jest "
+"konfigurowalny w &quot; Edycja &gt; Preferencje &gt; Wyświetlanie &quot;."
 
 #: ../data/tips.xml.in.h:35
 msgid ""
@@ -6462,8 +6461,8 @@ msgstr "Dopasowuje źródła z określoną ilością odniesień do magazynów"
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
-"Źródła z odnośnikami do repozytoriów zawierającymi <tekst> w \"Numer"
-" odniesienia\""
+"Źródła z odnośnikami do repozytoriów zawierającymi <tekst> w \"Numer "
+"odniesienia\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
@@ -9479,7 +9478,8 @@ msgstr "Zaokrąglony"
 msgid "Orthogonal"
 msgstr "Prostopadły"
 
-#. ###############################: ../gramps/gen/plug/docgen/graphdoc.py:141
+#. ###############################
+#: ../gramps/gen/plug/docgen/graphdoc.py:141
 msgid "Graphviz Layout"
 msgstr "Układ graficzny GraphViz"
 
@@ -9541,8 +9541,8 @@ msgid ""
 msgstr ""
 "Program GraphViz może tworzyć bardzo duże grafy poprzez ich rozciągnięcie na "
 "prostokątnej tablicy stron. To ustawienie określa ilość stron pionowo. "
-"Ustawienie to dotyczy tylko plików dot oraz pdf wygenerowanych za pomocą"
-" GhostScript'a."
+"Ustawienie to dotyczy tylko plików dot oraz pdf wygenerowanych za pomocą "
+"GhostScript'a."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:179
 msgid "Paging Direction"
@@ -9574,7 +9574,8 @@ msgstr "Alternatywne nazwiska"
 msgid "Whether lines attach to nodes differently"
 msgstr "Określa, czy dołączać linki do raportu webowego czy nie"
 
-#. ###############################: ../gramps/gen/plug/docgen/graphdoc.py:210
+#. ###############################
+#: ../gramps/gen/plug/docgen/graphdoc.py:210
 msgid "Graphviz Options"
 msgstr "Opcje programu GraphViz"
 
@@ -9904,7 +9905,8 @@ msgstr "Kolor notatki."
 msgid "Tree Options"
 msgstr "Opcje drzewa"
 
-#. ###############################: ../gramps/gen/plug/docgen/treedoc.py:178
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:178
 msgid "Timeflow"
 msgstr "Oś czasu"
 
@@ -9934,7 +9936,8 @@ msgstr ""
 "pionowych, określa odstęp pomiędzy wierszami, dla grafów poziomych - "
 "pomiędzy kolumnami."
 
-#. ###############################: ../gramps/gen/plug/docgen/treedoc.py:202
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:202
 msgid "Note to add to the tree"
 msgstr "Notatka do dołączenia do drzewa"
 
@@ -11863,8 +11866,8 @@ msgstr "Format miejsca (automatyczny tytuł dla miejsca)"
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specified format."
 msgstr ""
-"Włącza automatyczne generowanie tytułu dla miejsca używając określonego"
-" schematu."
+"Włącza automatyczne generowanie tytułu dla miejsca używając określonego "
+"schematu."
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -11973,8 +11976,8 @@ msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr ""
-"Zmiana formatu daty nie odniesie skutku póki program Gramps nie zostanie"
-" ponownie uruchomiony."
+"Zmiana formatu daty nie odniesie skutku póki program Gramps nie zostanie "
+"ponownie uruchomiony."
 
 #: ../gramps/gui/configure.py:1488
 msgid "Dates settings used for calculation operations"
@@ -12220,8 +12223,8 @@ msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Nie otwieraj okna do wyboru drzewa do załadowania w trakcie uruchamiania"
-" programu, załaduj ostatnio używane."
+"Nie otwieraj okna do wyboru drzewa do załadowania w trakcie uruchamiania "
+"programu, załaduj ostatnio używane."
 
 #: ../gramps/gui/configure.py:1767
 msgid "Backup path"
@@ -12234,8 +12237,8 @@ msgstr "Tworzenie kopii zapasowej w trakcie wyjścia z programu"
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
-"Wykonaj kopię bezpieczeństwa drzewa w trakcie wychodzenia z programu w"
-" ścieżce określonej powyżej."
+"Wykonaj kopię bezpieczeństwa drzewa w trakcie wychodzenia z programu w "
+"ścieżce określonej powyżej."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12333,9 +12336,8 @@ msgid ""
 "If you select the \"use symbols\" checkbox, Gramps will use the selected "
 "font if it exists."
 msgstr ""
-"Ta zakładka daje Ci możliwość użycia jednej czcionki, która jest w stanie"
-" pokazać "
-"wszystkie symbole genealogiczne.\n"
+"Ta zakładka daje Ci możliwość użycia jednej czcionki, która jest w stanie "
+"pokazać wszystkie symbole genealogiczne.\n"
 "\n"
 "Jeśli zaznaczysz kratkę \"używaj symboli\", Gramps użyje wybranej czcionki "
 "jeśli ona istnieje."
@@ -12366,8 +12368,8 @@ msgid ""
 "Run it again only if you added fonts on your system."
 msgstr ""
 "Już uruchomiłeś(łaś) narzędzie do wyszukiwania czcionek genealogicznych.\n"
-"Uruchom je ponownie tylko w przypadku jeśli zostały dodane czcionki do"
-" Twojego systemu."
+"Uruchom je ponownie tylko w przypadku jeśli zostały dodane czcionki do "
+"Twojego systemu."
 
 #: ../gramps/gui/configure.py:1980
 msgid "Try to find"
@@ -12394,9 +12396,8 @@ msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
 msgstr ""
-"Nie jestem w stanie wybrać czcionek genealogicznych. Proszę zainstalować"
-" pakiet"
-"fontconfig for dla pythona 3."
+"Nie jestem w stanie wybrać czcionek genealogicznych. Proszę zainstalować "
+"pakietfontconfig for dla pythona 3."
 
 #: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
@@ -12411,8 +12412,8 @@ msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
 msgstr ""
-"Nie masz w systemie żadnych czcionek z symbolami genealogicznymi.  "
-"Gramps nie będzie w stanie używać tych symboli."
+"Nie masz w systemie żadnych czcionek z symbolami genealogicznymi.  Gramps "
+"nie będzie w stanie używać tych symboli."
 
 #: ../gramps/gui/configure.py:2155
 msgid "What you will see"
@@ -13805,10 +13806,9 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"Próbujesz użyć istniejącego identyfikatora Gramps ID z wartością %(id)s. Ta"
-" wartość jest "
-"już używana przez '%(prim_object)s'. Proszę wprowadź inne ID albo pozostaw "
-"pole puste w celu użycia pierwszej wolnej wartości ID."
+"Próbujesz użyć istniejącego identyfikatora Gramps ID z wartością %(id)s. Ta "
+"wartość jest już używana przez '%(prim_object)s'. Proszę wprowadź inne ID "
+"albo pozostaw pole puste w celu użycia pierwszej wolnej wartości ID."
 
 #: ../gramps/gui/editors/editcitation.py:333
 #, python-format
@@ -14215,10 +14215,9 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"Próbujesz użyć istniejącego identyfikatora Gramps ID z wartością %(id)s. Ta"
-" wartość jest "
-"już używana. Proszę wprowadzić inne ID albo pozostawić pole puste w celu "
-"użycia pierwszej wolnej wartości ID."
+"Próbujesz użyć istniejącego identyfikatora Gramps ID z wartością %(id)s. Ta "
+"wartość jest już używana. Proszę wprowadzić inne ID albo pozostawić pole "
+"puste w celu użycia pierwszej wolnej wartości ID."
 
 #: ../gramps/gui/editors/editfamily.py:1158
 msgid "Add Family"
@@ -16573,8 +16572,8 @@ msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
 msgstr ""
-"Użyj albo dwóch pól poniżej by wprowadzić współrzędne geograficzne (szerokość"
-" i długość),"
+"Użyj albo dwóch pól poniżej by wprowadzić współrzędne geograficzne "
+"(szerokość i długość),"
 
 #: ../gramps/gui/glade/editplace.glade:120
 msgid "L_atitude:"
@@ -16628,16 +16627,16 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"albo kopiuj/wklej z wybranego serwisu z mapami (format: szerokość, "
-"długość) do poniższego pola:"
+"albo kopiuj/wklej z wybranego serwisu z mapami (format: szerokość, długość) "
+"do poniższego pola:"
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
 msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
-"Pole używane do wklejania informacji ze stron takich jak google,"
-" openstreetmap, ... "
+"Pole używane do wklejania informacji ze stron takich jak google, "
+"openstreetmap, ... "
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -16706,8 +16705,8 @@ msgid ""
 "Language in which the name is written. Valid values are two character ISO "
 "codes. For example:  en, fr, de, nl ..."
 msgstr ""
-"Język w którym jest zapisane nazwisko. Dozwolone wartości to dwuliterowe kody"
-" ISO. Np. en, fr, de, pl .."
+"Język w którym jest zapisane nazwisko. Dozwolone wartości to dwuliterowe "
+"kody ISO. Np. en, fr, de, pl .."
 
 #: ../gramps/gui/glade/editplaceref.glade:295
 #, fuzzy
@@ -18265,8 +18264,8 @@ msgid ""
 msgstr ""
 "Osoby zostały połączone.\n"
 "Jednak rodziny do tego połączenia są zbyt złożone by połączyć je  "
-"automatycznie.  Zalecamy przejście do widoku Relacji i sprawdzenie czy "
-"jest konieczne dodatkowe, ręczne łączenie rodzin."
+"automatycznie.  Zalecamy przejście do widoku Relacji i sprawdzenie czy jest "
+"konieczne dodatkowe, ręczne łączenie rodzin."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgid "manual|Merge_Places"
@@ -20169,8 +20168,8 @@ msgid ""
 "Matches places within a given distance of the active place. You have no "
 "active place."
 msgstr ""
-"Dopasowuje miejsca w określonej odległości od aktywnego miejsca. Nie masz"
-" wybranego aktywnego miejsca."
+"Dopasowuje miejsca w określonej odległości od aktywnego miejsca. Nie masz "
+"wybranego aktywnego miejsca."
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
@@ -22594,8 +22593,8 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sCzęsto zadawane pytania "
-"%(html_end)s%(bold_end)s\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sCzęsto zadawane "
+"pytania %(html_end)s%(bold_end)s\n"
 "(wymagane połączenie z internetem)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
@@ -22608,8 +22607,8 @@ msgid ""
 "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of "
 "spouses?%(html_end)s\n"
 msgstr ""
-"  1. %(gramps_FAQ_html_start)s%(faq_section)sJak zmienić kolejność "
-" małżonków?%(html_end)s\n"
+"  1. %(gramps_FAQ_html_start)s%(faq_section)sJak zmienić kolejność  "
+"małżonków?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
 #, python-format
@@ -22617,8 +22616,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sJak dodać dodatkowego "
-" małżonka?%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sJak dodać dodatkowego  małżonka?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
@@ -22639,9 +22638,8 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
-"  4. %(gramps_FAQ_html_start)s%(faq_section)sJak bezpiecznie wykonać kopie"
-" bezpieczeństwa?"
-"%(html_end)s\n"
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sJak bezpiecznie wykonać kopie "
+"bezpieczeństwa?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
 #, fuzzy, python-format
@@ -22662,8 +22660,8 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
-"  6. %(gramps_manual_html_start)s%(section)sJak wprowadzać informacje o"
-" małżeństwach?%(html_end)s\n"
+"  6. %(gramps_manual_html_start)s%(section)sJak wprowadzać informacje o "
+"małżeństwach?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
 #, fuzzy, python-format
@@ -22685,8 +22683,8 @@ msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
 msgstr ""
-"  8. %(gramps_FAQ_html_start)s%(faq_section)sJak dodać "
-"zdjęcie do osoby/źródła/zdarzenia?%(html_end)s\n"
+"  8. %(gramps_FAQ_html_start)s%(faq_section)sJak dodać zdjęcie do osoby/"
+"źródła/zdarzenia?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
@@ -22703,8 +22701,8 @@ msgid ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
 "Gramps and my tree?%(html_end)s\n"
 msgstr ""
-" 10. %(gramps_FAQ_html_start)s%(faq_section)sJak za pomocą Gramps przygotować "
-" stronę internetową z moim drzewem?%(html_end)s\n"
+" 10. %(gramps_FAQ_html_start)s%(faq_section)sJak za pomocą Gramps "
+"przygotować  stronę internetową z moim drzewem?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
@@ -22718,8 +22716,8 @@ msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
 msgstr ""
-" 12. %(gramps_FAQ_html_start)s%(faq_section)sCo zrobić jeśli znajdziesz "
-"błąd w programie?%(html_end)s\n"
+" 12. %(gramps_FAQ_html_start)s%(faq_section)sCo zrobić jeśli znajdziesz błąd "
+"w programie?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
@@ -22727,9 +22725,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sCzy istnieje podręcznik użytkownika"
-" do Grampsa?"
-"%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sCzy istnieje podręcznik "
+"użytkownika do Grampsa?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, fuzzy, python-format
@@ -25816,9 +25813,8 @@ msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested VCards."
 msgstr ""
-"Właściwość BEGIN nie zamknięta poprawnie przez właściwość END, Gramps nie"
-" radzi sobie z "
-"zagnieżdżonymi wizytówkami VCards."
+"Właściwość BEGIN nie zamknięta poprawnie przez właściwość END, Gramps nie "
+"radzi sobie z zagnieżdżonymi wizytówkami VCards."
 
 #: ../gramps/plugins/importer/importvcard.py:346
 #, python-format
@@ -26888,9 +26884,7 @@ msgstr "Ur. %(modified_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:144
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s urodził się %(month_year)s w "
-"%(birth_place)s."
+msgstr "%(unknown_gender_name)s urodził się %(month_year)s w %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:145
 #, python-format
@@ -27300,9 +27294,7 @@ msgstr "%(male_name)s zmarł %(month_year)s w %(death_place)s."
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
-msgstr ""
-"%(male_name)s zmarł %(month_year)s w %(death_place)s w wieku "
-"%(age)s."
+msgstr "%(male_name)s zmarł %(month_year)s w %(death_place)s w wieku %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:331
 #, python-format
@@ -27315,8 +27307,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s zmarł %(month_year)s w %(death_place)s w wieku "
-"%(age)s."
+"%(female_name)s zmarł %(month_year)s w %(death_place)s w wieku %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:336
 #, python-format
@@ -27568,16 +27559,15 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s zostało pochowane %(burial_date)s na "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s zostało pochowane %(burial_date)s na %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
 msgid ""
 "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Ta osoba została pochowana %(burial_date)s na %(burial_place)s"
-"%(endnotes)s."
+"Ta osoba została pochowana %(burial_date)s na %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:472
 #, python-format
@@ -27624,8 +27614,7 @@ msgstr "Pochowany %(burial_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s został pochowany %(month_year)s w %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s został pochowany %(month_year)s w %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:494
 #, python-format
@@ -27637,15 +27626,13 @@ msgstr "Został pochowany %(month_year)s w %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s została pochowana %(month_year)s w "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s została pochowana %(month_year)s w %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Została pochowana %(month_year)s w %(burial_place)s"
-"%(endnotes)s."
+msgstr "Została pochowana %(month_year)s w %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:501
 #, python-format
@@ -27653,16 +27640,15 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s została pochowana %(month_year)s w "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s została pochowana %(month_year)s w %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Ta osoba została pochowana %(month_year)s w %(burial_place)s"
-"%(endnotes)s."
+"Ta osoba została pochowana %(month_year)s w %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:504
 #, python-format
@@ -27692,9 +27678,7 @@ msgstr "Została pochowana %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:517
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s została pochowana %(month_year)s"
-"%(endnotes)s."
+msgstr "%(unknown_gender_name)s została pochowana %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:518
 #, python-format
@@ -27966,8 +27950,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s została ochrzczona %(month_year)s w "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s została ochrzczona %(month_year)s w %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -27980,16 +27964,15 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s została ochrzczona %(month_year)s w "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s została ochrzczona %(month_year)s w %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Ta osoba została ochrzczona %(month_year)s w %(baptism_place)s"
-"%(endnotes)s."
+"Ta osoba została ochrzczona %(month_year)s w %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:637
 #, python-format
@@ -28203,8 +28186,7 @@ msgid ""
 "He was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Został ochrzczony %(christening_date)s w %(christening_place)s"
-"%(endnotes)s."
+"Został ochrzczony %(christening_date)s w %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:731
 #, python-format
@@ -28289,16 +28271,14 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s został ochrzczony %(month_year)s w "
-"%(christening_place)s%(endnotes)s."
+"%(male_name)s został ochrzczony %(month_year)s w %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"Został ochrzczony %(month_year)s w %(christening_place)s"
-"%(endnotes)s."
+msgstr "Został ochrzczony %(month_year)s w %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:763
 #, python-format
@@ -28306,16 +28286,14 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s została ochrzczona %(month_year)s w "
-"%(christening_place)s%(endnotes)s."
+"%(female_name)s została ochrzczona %(month_year)s w %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"Została ochrzczona %(month_year)s w %(christening_place)s"
-"%(endnotes)s."
+msgstr "Została ochrzczona %(month_year)s w %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:767
 #, python-format
@@ -29145,8 +29123,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Miał nieślubny związek z %(spouse)s w %(full_date)s w %(place)s"
-"%(endnotes)s."
+"Miał nieślubny związek z %(spouse)s w %(full_date)s w %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1105
 #, python-format
@@ -29172,8 +29149,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Miała nieślubny związek z %(spouse)s w %(full_date)s w %(place)s"
-"%(endnotes)s."
+"Miała nieślubny związek z %(spouse)s w %(full_date)s w %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1110
 #, python-format
@@ -29428,8 +29404,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Miała także nieślubny związek z %(spouse)s w %(partial_date)s"
-"%(endnotes)s."
+"Miała także nieślubny związek z %(spouse)s w %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1178
 #, python-format
@@ -29666,8 +29641,7 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Był także w związku z %(spouse)s w %(partial_date)s w %(place)s"
-"%(endnotes)s."
+"Był także w związku z %(spouse)s w %(partial_date)s w %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1253
 #, python-format
@@ -29683,8 +29657,7 @@ msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Był także w związku z %(spouse)s %(modified_date)s w %(place)s"
-"%(endnotes)s."
+"Był także w związku z %(spouse)s %(modified_date)s w %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1257
 #, python-format
@@ -29692,8 +29665,7 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Była także w związku z %(spouse)s w %(partial_date)s w %(place)s"
-"%(endnotes)s."
+"Była także w związku z %(spouse)s w %(partial_date)s w %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
@@ -29701,8 +29673,7 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Była także w związku z %(spouse)s w %(full_date)s w %(place)s"
-"%(endnotes)s."
+"Była także w związku z %(spouse)s w %(full_date)s w %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1259
 #, python-format
@@ -29710,8 +29681,7 @@ msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Była także w związku z %(spouse)s %(modified_date)s w %(place)s"
-"%(endnotes)s."
+"Była także w związku z %(spouse)s %(modified_date)s w %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1262
 #, python-format
@@ -30375,8 +30345,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libplaceview.py:557
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr ""
-"Połączenie tych miejsc spowoduje utworzenie cyklicznych odwołań w hierarchii"
-" miejsc."
+"Połączenie tych miejsc spowoduje utworzenie cyklicznych odwołań w hierarchii "
+"miejsc."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:35
 msgid "Provides a library for using Cairo to generate documents."
@@ -32366,7 +32336,9 @@ msgstr "Dołącz zdjęcia / obrazy z galerii"
 msgid "Whether to include images."
 msgstr "Określa, czy dołączać zdjęcia."
 
-#. #########################. ###############################: ../gramps/plugins/textreport/detancestralreport.py:931
+#. #########################
+#. ###############################
+#: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1120
 #: ../gramps/plugins/textreport/familygroup.py:782
 #: ../gramps/plugins/textreport/indivcomplete.py:1127
@@ -32771,7 +32743,8 @@ msgstr "Listuj zdarzenia chronologicznie"
 msgid "Whether to sort events into chronological order."
 msgstr "Określa, czy sortować zdarzenia w porządku chronologicznym."
 
-#. ###############################: ../gramps/plugins/textreport/indivcomplete.py:1105
+#. ###############################
+#: ../gramps/plugins/textreport/indivcomplete.py:1105
 msgid "Include Notes"
 msgstr "Dołącz notatki"
 
@@ -38499,9 +38472,9 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"Pokarz jedynie dane po tym roku. Domyślnie jest to bieżący rok - 'maksymalny"
-" wiek prawdopodobnie żyjący(a)', "
-" który jest definiowany w zakładce ustawień daty."
+"Pokarz jedynie dane po tym roku. Domyślnie jest to bieżący rok - 'maksymalny "
+"wiek prawdopodobnie żyjący(a)',  który jest definiowany w zakładce ustawień "
+"daty."
 
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Link prefix"
@@ -38746,14 +38719,12 @@ msgstr "Bez arkusza stylów"
 #~ msgid "Undo History..."
 #~ msgstr "Historia cofania..."
 
-#, python-format
 #~ msgid "Key %s is not bound"
 #~ msgstr "Klucz %s nie jest powiązany"
 
 #~ msgid "_Delete Item"
 #~ msgstr "_Usuń element"
 
-#, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
 
@@ -38775,33 +38746,28 @@ msgstr "Bez arkusza stylów"
 #~ "wskaż osobę którą chcesz jako 'osobę referencyjną', potwierdź swój wybór "
 #~ "przez Edycja->Ustaw osobę początkową."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
 #~ msgstr ""
 #~ "%(genders)s urodzonych %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "Persons born %(year_from)04d-%(year_to)04d"
 #~ msgstr ""
 #~ "Osoby urodzone w latach %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
-#, python-format
 #~ msgid "Marriage of %s"
 #~ msgstr "Małżeństwo osoby %s"
 
-#, python-format
 #~ msgid "Birth of %s"
 #~ msgstr "Urodziny osoby %s"
 
-#, python-format
 #~ msgid "Death of %s"
 #~ msgstr "Śmierć osoby %s"
 
-#, python-format
 #~ msgid "Anniversary: %s"
 #~ msgstr "Rocznica: %s"
 
-#, python-format
 #~ msgid "%d. Partner: "
 #~ msgstr "%d. Partner: "
 
@@ -38827,7 +38793,7 @@ msgstr "Bez arkusza stylów"
 #~ msgid "manual|Media_Manager..."
 #~ msgstr "Zarządzanie mediami..."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "Geography functionality will not be available.\n"
 #~ "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
@@ -38986,7 +38952,7 @@ msgstr "Bez arkusza stylów"
 #~ msgid "Database db version"
 #~ msgstr "Wersja Bsddb"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
 #~ "%(total_pages)d%(strong_end)s"
@@ -45644,4 +45610,3 @@ msgstr "Bez arkusza stylów"
 #~ "Użyj https://gramps-project.org/bugs/ aby zgłosić błąd odnośnie "
 #~ "oficjalnych widoków, w innych przypadku skontaktuj się z jego autorem "
 #~ "(%(firstauthoremail)s). "
-
