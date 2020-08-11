@@ -2070,8 +2070,7 @@ class PersonPages(BasePage):
             # begin parents table
             disp = "none" if self.report.options['toggle'] else "block"
             with Html("table", class_="infolist toggle_parent",
-                               id="toggle_parent",
-                               style="display:%s" % disp) as table:
+                      id="toggle_parent", style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")

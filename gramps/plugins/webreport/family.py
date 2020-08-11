@@ -403,7 +403,7 @@ class FamilyPages(BasePage):
             # for use in family map pages...
             if self.report.options["familymappages"]:
                 name_format = self.report.options['name_format']
-                fhandle = mhandle = father = mother = None
+                father = mother = None
                 with self.create_toggle("map") as h4_head:
                     relationshipdetail += h4_head
                     h4_head += self._("Family Map")
