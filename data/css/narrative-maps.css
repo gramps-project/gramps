@@ -117,7 +117,15 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
   font: bold 0.9em sans-serif;
   max-height: 200px;
   overflow-y: auto;
-  padding: 0 0.5em 15px 0.5em;
+  padding: 5px 0.5em 5px 0.5em;
+}
+#map_canvas .thumbnail {
+  padding: 5px 5px;
+  text-align: center;
+}
+#map_canvas img {
+  max-height: 300px;
+  max-width: 400px;
 }
 #map_canvas .ol-popup-content a {
   color: #111;

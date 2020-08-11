@@ -51,6 +51,7 @@ import logging
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (PlaceType, Place, PlaceName)
 from gramps.gen.plug.report import Bibliography
+from gramps.gen.mime import is_image_type
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.location import get_main_location
@@ -444,6 +445,25 @@ class PlacePages(BasePage):
                     latitude, longitude = conv_lat_lon(place.get_latitude(),
                                                        place.get_longitude(),
                                                        "D.D8")
+                    tracelife = " "
+                    if self.create_media and media_list:
+                        for fmedia in media_list:
+                            photo_hdle = fmedia.get_reference_handle()
+                            photo = self.r_db.get_media_from_handle(photo_hdle)
+                            mime_type = photo.get_mime_type()
+                            descr = photo.get_description()
+
+                            if mime_type and is_image_type(mime_type):
+                                uplnk = self.uplink
+                                (pth,
+                                 dummy_) = self.report.prepare_copy_media(photo)
+                                newpath = self.report.build_url_fname(pth,
+                                    image=True, uplink=uplnk)
+                                imglnk = self.media_link(photo_hdle, newpath,
+                                                         descr, uplink=uplnk,
+                                                         usedescr=False)
+                                tracelife += str(imglnk)
+                                break # We show only the first image
                     scripts = Html()
                     if self.mapservice == "Google":
                         with Html("script", type="text/javascript",
@@ -455,7 +475,7 @@ class PlacePages(BasePage):
                             jsc += MARKERS % ([[plce,
                                                 latitude,
                                                 longitude,
-                                                1, ""]],
+                                                1, tracelife]],
                                               latitude, longitude,
                                               10)
                     elif self.mapservice == "OpenStreetMap":
@@ -464,7 +484,7 @@ class PlacePages(BasePage):
                             jsc += MARKER_PATH % marker_path
                             jsc += OSM_MARKERS % ([[float(longitude),
                                                     float(latitude),
-                                                    placetitle, ""]],
+                                                    placetitle, tracelife]],
                                                   longitude, latitude, 10)
                             jsc += OPENLAYER
                     else: # STAMEN
@@ -473,7 +493,7 @@ class PlacePages(BasePage):
                             jsc += MARKER_PATH % marker_path
                             jsc += STAMEN_MARKERS % ([[float(longitude),
                                                        float(latitude),
-                                                       placetitle, ""]],
+                                                       placetitle, tracelife]],
                                                      self.stamenopts,
                                                      longitude, latitude, 10)
                             jsc += OPENLAYER
