@@ -488,7 +488,8 @@ class BasePage:
                 Html("td", self._("LDS Ordinance"), class_="ColumnAttribute",
                      inline=True),
                 Html("td", self.dump_ordinance(family, "Family",
-                     toggle=False), class_="ColumnValue")
+                                               toggle=False),
+                     class_="ColumnValue")
             )
             table = table + trow if table is not None else trow
 
@@ -1015,7 +1016,7 @@ class BasePage:
         if toggle:
             disp = "none" if self.report.options['toggle'] else "block"
             ordin = Html("table", class_="infolist ldsordlist",
-                      id="toggle_lds", style="display:%s" % disp)
+                         id="toggle_lds", style="display:%s" % disp)
         else:
             ordin = Html("table", class_="infolist ldsordlist")
         # begin LDS ordinance table and table head
@@ -1331,7 +1332,7 @@ class BasePage:
                     h4_head += self._("Attributes")
             disp = "none" if self.report.options['toggle'] else "block"
             head = Html("table", class_="infolist attrlist",
-                      id="toggle_attr", style="display:%s" % disp)
+                        id="toggle_attr", style="display:%s" % disp)
         else:
             section = Html("h4", self._("Attributes"), inline=True)
             head = Html("table", class_="infolist attrlist")
@@ -1777,7 +1778,7 @@ class BasePage:
                     else:
                         if self.report.extrapage != "":
                             if (url_fname[:4] == "http" or
-                                url_fname[:1] == "/"):
+                                    url_fname[:1] == "/"):
                                 hyper = Html("a", nav_text, href=url_fname,
                                              title=nav_text)
                             elif self.report.extrapagename == nav_text:
@@ -2294,15 +2295,18 @@ class BasePage:
                     if mime_type:
                         try:
                             # create thumbnail url
-                            # extension needs to be added as it is not already there
+                            # extension needs to be added as it is not
+                            # already there
                             url = (self.report.build_url_fname(photo_handle,
                                                                "thumb",
-                                                               True, image=True) +
+                                                               True,
+                                                               image=True) +
                                    ".png")
                             # begin hyperlink
                             toggle += self.media_link(photo_handle, url,
-                                                       descr, uplink=self.uplink,
-                                                       usedescr=True)
+                                                      descr,
+                                                      uplink=self.uplink,
+                                                      usedescr=True)
                         except (IOError, OSError) as msg:
                             self.r_user.warn(_("Could not add photo to page"),
                                              str(msg))
@@ -2310,7 +2314,7 @@ class BasePage:
                         try:
                             # begin hyperlink
                             toggle += self.doc_link(photo_handle, descr,
-                                                     uplink=self.uplink)
+                                                    uplink=self.uplink)
                         except (IOError, OSError) as msg:
                             self.r_user.warn(_("Could not add photo to page"),
                                              str(msg))
@@ -2367,7 +2371,8 @@ class BasePage:
                     h4_head += self._("Notes")
                 disp = "none" if self.report.options['toggle'] else "block"
                 with Html("div", class_="subsection narrative",
-                      id="toggle_note", style="display:%s" % disp) as section:
+                          id="toggle_note",
+                          style="display:%s" % disp) as section:
                     hdiv += section
         else:
             with Html("div", class_="subsection narrative") as section:
@@ -3357,7 +3362,7 @@ class BasePage:
             with Html("h4") as toggle:
                 toggle += Html("button", svg,
                                onclick="toggleContent('" + toggle_name
-                                   + "', '" + id_name + "');",
+                               + "', '" + id_name + "');",
                                id=id_name, class_='icon')
         else:
             toggle = Html("h4", inline=True)

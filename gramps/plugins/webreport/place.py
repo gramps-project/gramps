@@ -457,8 +457,8 @@ class PlacePages(BasePage):
                                 uplnk = self.uplink
                                 (pth,
                                  dummy_) = self.report.prepare_copy_media(photo)
-                                newpath = self.report.build_url_fname(pth,
-                                    image=True, uplink=uplnk)
+                                srbuf = self.report.build_url_fname
+                                newpath = srbuf(pth, image=True, uplink=uplnk)
                                 imglnk = self.media_link(photo_hdle, newpath,
                                                          descr, uplink=uplnk,
                                                          usedescr=False)

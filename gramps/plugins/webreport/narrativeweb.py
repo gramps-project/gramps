@@ -80,7 +80,6 @@ from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
-import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gen.relationship import get_relationship_calculator
 
@@ -232,6 +231,7 @@ class NavWebReport(Report):
 
         # Do we need to include web calendar ?
         self.usecal = self.options['usecal']
+        self.calendar = None
 
         # Do we need to include news and updates page ?
         self.inc_updates = self.options['updates']
@@ -1888,6 +1888,9 @@ class NavWebOptions(MenuReportOptions):
         self.__birthdays = None
         self.__anniv = None
         self.__alive = None
+        self.__toggle = None
+        self.__death_anniv = None
+        self.__after_year = None
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -2049,8 +2052,7 @@ class NavWebOptions(MenuReportOptions):
         self.__securesite.set_help(_('Whether to use http:// or https://'))
         addopt("securesite", self.__securesite)
 
-        self.__toggle = BooleanOption(_("Toggle sections"),
-                                          False)
+        self.__toggle = BooleanOption(_("Toggle sections"), False)
         self.__toggle.set_help(_('Check it if you want to open/close'
                                  ' a section'))
         addopt("toggle", self.__toggle)
