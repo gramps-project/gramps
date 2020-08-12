@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-06-22 21:42+0200\n"
+"PO-Revision-Date: 2020-08-12 20:03+0200\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -30540,6 +30540,18 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
+"Du måste verifiera och ändra tilecachen\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"i gramps.ini-filen :\n"
+"%s\n"
+"\n"
+"Innan ändring av gramps.ini-filen, måste gramps stängas ned\n"
+"\n"
+"Senare fel kommer att vara normala"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:174
 #: ../gramps/plugins/lib/maps/osmgps.py:239
@@ -37287,13 +37299,12 @@ msgid "Max width of initial image"
 msgstr "Största bredd på första bild"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
-#, fuzzy
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
 msgstr ""
 "Detta tillåter dig att ställa in den största bredden för bilden som visas på "
-"mediasidan. Sätt till 0 för obegränsad bredd."
+"mediasidan."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1898
 msgid "Max height of initial image"
