@@ -1984,9 +1984,6 @@ class GrampsPreferences(ConfigureDialog):
         self.uistate.emit('font-changed')
 
     def utf8_show_example(self):
-        from gi.repository import Pango
-        from gramps.gen.utils.grampslocale import _LOCALE_NAMES as X
-        from string import ascii_letters
         try:
             # remove the old messages with old font
             self.grid.remove_row(7)
@@ -1996,25 +1993,6 @@ class GrampsPreferences(ConfigureDialog):
             pass
         font = config.get('utf8.selected-font')
         symbols = Symbols()
-        my_characters = _("What you will see") + " :\n"
-        my_characters += ascii_letters
-        my_characters += " àäâçùéèiïîêëiÉÀÈïÏËÄœŒÅåØøìòô ...\n"
-        for k, v in sorted(X.items()):
-            lang = Pango.Language.from_string(k)
-            my_characters += v[2] + ":\t" + lang.get_sample_string() + "\n"
-
-        scrollw = Gtk.ScrolledWindow()
-        scrollw.set_size_request(600, 60)
-        text = Gtk.Label()
-        text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
-        self.activate_change_font()
-        text.set_halign(Gtk.Align.START)
-        text.set_text(my_characters)
-        scrollw.add(text)
-        scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        self.grid.attach(scrollw, 1, 5, 4, 1)
 
         self.sym_buf = Gtk.TextBuffer()
         self.sym_text = Gtk.TextView.new_with_buffer(self.sym_buf)
@@ -2038,7 +2016,6 @@ class GrampsPreferences(ConfigureDialog):
         self.sym_buf.insert_with_tags(_iter, text, tag)
         self.sym_text.set_editable(False)
         self.grid.attach(self.sym_text, 1, 6, 8, 1)
-        scrollw.show_all()
         self.sym_text.show()
         self.show_default_symbols()
 
