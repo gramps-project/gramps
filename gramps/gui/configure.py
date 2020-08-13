@@ -1984,9 +1984,6 @@ class GrampsPreferences(ConfigureDialog):
         self.uistate.emit('font-changed')
 
     def utf8_show_example(self):
-        from gi.repository import Pango
-        from gramps.gen.utils.grampslocale import _LOCALE_NAMES as X
-        from string import ascii_letters
         try:
             # remove the old messages with old font
             self.grid.remove_row(7)
@@ -1996,6 +1993,7 @@ class GrampsPreferences(ConfigureDialog):
             pass
         font = config.get('utf8.selected-font')
         symbols = Symbols()
+<<<<<<< HEAD
         my_characters = _("What you will see") + " :\n"
         my_characters += ascii_letters
         my_characters += " àäâçùéèiïîêëiÉÀÈïÏËÄœŒÅåØøìòô ...\n"
@@ -2013,6 +2011,8 @@ class GrampsPreferences(ConfigureDialog):
         scrollw.add(text)
         scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.grid.attach(scrollw, 1, 5, 4, 1)
+=======
+>>>>>>> Remove Font example widget from Genealogic Symbols
 
         self.sym_buf = Gtk.TextBuffer()
         self.sym_text = Gtk.TextView.new_with_buffer(self.sym_buf)
@@ -2060,8 +2060,11 @@ class GrampsPreferences(ConfigureDialog):
 >>>>>>> Symbols: add tooltips, and some minors changes.
 =======
         self.grid.attach(self.sym_text, 1, 6, 8, 1)
+<<<<<<< HEAD
 >>>>>>> Expand on default font concept (thanks paul)
         scrollw.show_all()
+=======
+>>>>>>> Remove Font example widget from Genealogic Symbols
         self.sym_text.show()
         self.show_default_symbols()
 
