@@ -7,9 +7,6 @@ build/
 dist/
 
 # Gramps
-data/tips.xml
-data/holidays.xml
-po/.intltool-merge-cache
 docs/_build/
 
 # Editing

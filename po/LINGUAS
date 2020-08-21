@@ -1,0 +1,37 @@
+# this list MUST be a subset of _LOCALE_NAMES in gen/utils/grampslocale.py
+# (that is, if you add a new language here, be sure it's in _LOCALE_NAMES too)
+ar
+bg
+ca
+cs
+da
+de
+el
+en_GB
+eo
+es
+fi
+fr
+he
+hr
+hu
+is
+it
+ja
+lt
+nb
+nl
+nn
+pl
+pt_BR pt_PT
+ru
+sk
+sl
+sq
+sr
+sv
+ta
+tr
+uk
+vi
+zh_CN zh_HK zh_TW

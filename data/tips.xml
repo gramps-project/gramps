@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tips>
+
+<tip number="1"><b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor.</tip>
+
+<tip number="2"><b>Editing Objects</b><br/>In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the Relationship Editor.</tip>
+
+<tip number="3"><b>Adding Images</b><br/>An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser. Actually you can add any type of file like this, useful for scans of documents and other digital sources.</tip>
+
+<tip number="4"><b>Ordering Children in a Family</b><br/>The birth order of children in a family can be set by using drag and drop. This order is preserved even when they do not have birth dates.</tip>
+
+<tip number="5"><b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!</tip>
+
+<tip number="7"><b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter.</tip>
+
+<tip number="8"><b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children.</tip>
+
+<tip number="9"><b>Locating People</b><br/>By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter.</tip>
+
+<tip number="10"><b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children.</tip>
+
+<tip number="11"><b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents.</tip>
+
+<tip number="12"><b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results.</tip>
+
+<tip number="13"><b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow you to undertake operations such as checking the database for errors and consistency. There are research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and many others. All tools can be accessed through the &quot;Tools&quot; menu.</tip>
+
+<tip number="14"><b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported.</tip>
+
+<tip number="15"><b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx Gramplet takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To view the SoundEx codes for surnames in your database, add the SoundEx Gramplet.</tip>
+
+<tip number="16"><b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;</tip>
+
+<tip number="17"><b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well.</tip>
+
+<tip number="18"><b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people.</tip>
+
+<tip number="19"><b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear.</tip>
+
+<tip number="20"><b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more.</tip>
+
+<tip number="21"><b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find Possible Duplicate People...&quot; allows you to locate (and merge) entries of the same person entered more than once in the database.</tip>
+
+<tip number="22"><b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge...&quot; allows you to combine separately listed people into one. Select the second entry by holding the Control key as you click. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual. This also works for the Places, Sources and Repositories views.</tip>
+
+<tip number="23"><b>Organising the Views</b><br/>Many of the views can present your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu.</tip>
+
+<tip number="24"><b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People and Events. You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons.</tip>
+
+<tip number="25"><b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu.</tip>
+
+<tip number="26"><b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;Help &gt; User Manual&quot;. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive.</tip>
+
+<tip number="27"><b>Adding Children</b><br/>To add children in Gramps there are two options. You can find one of their parents in the Families View and open the family. Then choose to create a new person or add an existing person. You can also add children (or siblings) from inside the Family Editor.</tip>
+
+<tip number="28"><b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to its parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown.</tip>
+
+<tip number="29"><b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case Gramps is wrong in making this choice, you can override the filter by checking the Show All checkbutton.</tip>
+
+<tip number="31"><b>Improving Gramps</b><br/>Users are encouraged to request enhancements to Gramps. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by going to https://gramps-project.org/bugs/ and creating a Feature Request. Filing a Feature Request is preferred but it can be good to discuss your ideas on the email lists.</tip>
+
+<tip number="32"><b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;.</tip>
+
+<tip number="33"><b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;</tip>
+
+<tip number="34"><b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stands for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people.</tip>
+
+<tip number="36"><b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects.</tip>
+
+<tip number="37"><b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a either a reddish background or a red dot on the right edge of the field. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;.</tip>
+
+<tip number="38"><b>Listing Events</b><br/>Events are added using the editor opened with &quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of preset event types. You can add your own event types by typing in the text field, they will be added to the available events, but not translated.</tip>
+
+<tip number="39"><b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the preferred name by dragging it to the Preferred Name section.</tip>
+
+<tip number="40"><b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options.</tip>
+
+<tip number="41"><b>Managing Sources</b><br/>The Sources View shows a list of all sources in a single window. From here you can edit your sources, merge duplicates and see which individuals reference each source. You can use filters to group your sources.</tip>
+
+<tip number="42"><b>Managing Places</b><br/>The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State.</tip>
+
+<tip number="43"><b>Media View</b><br/>The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more.</tip>
+
+<tip number="44"><b>Filters</b><br/>Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created limited only by your imagination. Custom filters are created from &quot;Edit &gt; Person Filter Editor&quot;.</tip>
+
+<tip number="45"><b>The GEDCOM File Format</b><br/>Gramps allows you to import from, and export to, the GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange Gramps information to and from users of most other genealogy programs. Filters exist that make importing and exporting GEDCOM files trivial.</tip>
+
+<tip number="46"><b>The Gramps XML Package</b><br/>You can export your Family Tree as a Gramps XML Package. This is a compressed file containing your family tree data and all the media files connected to the database (images for example). This file is completely portable so is useful for backups or sharing with other Gramps users. This format has the key advantage over GEDCOM that no information is ever lost when exporting and importing.</tip>
+
+<tip number="48"><b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files.</tip>
+
+<tip number="49"><b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web.</tip>
+
+<tip number="50"><b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at https://gramps-project.org/bugs/</tip>
+
+<tip number="51"><b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/</tip>
+
+<tip number="53"><b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public.</tip>
+
+<tip number="54"><b>Keeping Good Records</b><br/>Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source.</tip>
+
+<tip number="57"><b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; Extra Reports/Tools&quot;. This is the best way for advanced users to experiment and create new functionality.</tip>
+
+<tip number="58"><b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; Book Report...&quot;, allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed.</tip>
+
+<tip number="59"><b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;</tip>
+
+<tip number="60"><b>Record Your Sources</b><br/>Information collected about your family is only as good as the source it came from. Take the time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents.</tip>
+
+<tip number="61"><b>Directing Your Research</b><br/>Go from what you know to what you do not. Always record everything that is known before making conjectures. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads.</tip>
+
+<tip number="62"><b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about dates and names. It is about people. Be descriptive. Include why things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive.</tip>
+
+<tip number="63"><b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 40 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps.</tip>
+
+<tip number="64"><b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net</tip>
+
+<tip number="66"><b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed.</tip>
+
+<tip number="67"><b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed.</tip>
+
+<tip number="70"><b>The Gramps Code</b><br/>Gramps is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. Gramps is supported on any computer system where these programs have been ported. Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X.</tip>
+
+<tip number="71"><b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative.</tip>
+
+<tip number="72"><b>The Gramps Software License</b><br/>You are free to use and share Gramps with others. Gramps is freely distributable under the GNU General Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the rights and restrictions of this license.</tip>
+
+<tip number="73"><b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine.</tip>
+
+</tips>

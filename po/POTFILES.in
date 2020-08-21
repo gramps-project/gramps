@@ -808,9 +808,8 @@ gramps/plugins/webstuff/webstuff.py
 #
 #   Files to extract from and then merge into
 #
-data/gramps.desktop.in
-data/gramps.keys.in
 data/gramps.xml.in
-data/holidays.xml.in
-data/tips.xml.in
 data/gramps.appdata.xml.in
+data/gramps.desktop.in
+data/holidays.xml
+data/tips.xml

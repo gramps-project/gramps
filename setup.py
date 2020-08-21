@@ -3,9 +3,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2012 Nick Hall
-# Copyright (C) 2012 Rob G. Healey
-# Copyright (C) 2012 Benny Malengier
+# Copyright (C) 2012,2020 Nick Hall
+# Copyright (C) 2012      Rob G. Healey
+# Copyright (C) 2012      Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,14 +45,6 @@ from gramps.version import VERSION
 import unittest
 import argparse
 
-# this list MUST be a subset of _LOCALE_NAMES in gen/utils/grampslocale.py
-# (that is, if you add a new language here, be sure it's in _LOCALE_NAMES too)
-ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB',
-               'eo', 'es', 'fi', 'fr', 'he', 'hr', 'hu', 'is', 'it',
-               'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR', 'pt_PT',
-               'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'ta', 'tr', 'uk', 'vi',
-               'zh_CN', 'zh_HK', 'zh_TW')
-_FILES = ('data/tips.xml', 'data/holidays.xml')
 
 svem_flag = '--single-version-externally-managed'
 if svem_flag in sys.argv:
@@ -64,34 +56,6 @@ argparser.add_argument("--no-compress-manpages", dest="no_compress_manpages",
                        action="store_true")
 args, passthrough = argparser.parse_known_args()
 sys.argv = [sys.argv[0]] + passthrough
-
-def intltool_version():
-    '''
-    Return the version of intltool as a tuple.
-    '''
-    if sys.platform == 'win32':
-        cmd = ["perl",
-               r"-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
-        try:
-            ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE, shell=True).communicate()
-            ver = ver.decode("utf-8")
-            if ver > "":
-                version_str = ver
-            else:
-                return (0,0,0)
-        except:
-            return (0,0,0)
-    else:
-        cmd = 'intltool-update --version 2> /dev/null' # pathological case
-        retcode, version_str = subprocess.getstatusoutput(cmd)
-        if retcode != 0:
-            return None
-        cmd = 'intltool-update --version 2> /dev/null | head -1 | cut -d" " -f3'
-        retcode, version_str = subprocess.getstatusoutput(cmd)
-        if retcode != 0: # unlikely but just barely imaginable, so leave it
-            return None
-    return tuple([int(num) for num in version_str.split('.')])
 
 def substitute_variables(filename_in, filename_out, subst_vars):
     '''
@@ -106,12 +70,24 @@ def substitute_variables(filename_in, filename_out, subst_vars):
     f_in.close()
     f_out.close()
 
+def get_linguas():
+    '''
+    Read the po/LINGUAS file to get a list of all linguas.
+    '''
+    all_linguas = []
+    with open(os.path.join('po', 'LINGUAS'), 'r', encoding='utf-8') as linguas:
+        for line in linguas:
+            if '#' in line:
+                line = line[:line.find('#')]
+            all_linguas.extend(line.split())
+    return all_linguas
+
 def build_trans(build_cmd):
     '''
     Translate the language files into gramps.mo
     '''
     data_files = build_cmd.distribution.data_files
-    for lang in ALL_LINGUAS:
+    for lang in get_linguas():
         po_file = os.path.join('po', lang + '.po')
         mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'LC_MESSAGES',
                                'gramps.mo')
@@ -183,21 +159,12 @@ def build_intl(build_cmd):
     '''
     Merge translation files into desktop and mime files
     '''
-    for filename in _FILES:
-        filename = convert_path(filename)
-        strip_files(filename + '.in', filename, ['_tip', '_name'])
-
-    i_v = intltool_version()
-    if i_v is None or i_v < (0, 25, 0):
-        log.info('No intltool or version < 0.25.0, build_intl is aborting')
-        return
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
 
-    merge_files = (('data/gramps.desktop', 'share/applications', '-d'),
-                    ('data/gramps.keys', 'share/mime-info', '-k'),
-                    ('data/gramps.xml', 'share/mime/packages', '-x'),
-                    ('data/gramps.appdata.xml', 'share/metainfo', '-x'))
+    merge_files = (('data/gramps.desktop', 'share/applications', '--desktop'),
+                   ('data/gramps.xml', 'share/mime/packages', '--xml'),
+                   ('data/gramps.appdata.xml', 'share/metainfo', '--xml'))
 
     for filename, target, option in merge_files:
         filenamelocal = convert_path(filename)
@@ -208,46 +175,17 @@ def build_intl(build_cmd):
         merge(filenamelocal + '.in', newfile, option)
         data_files.append((target, [base + '/' + filename]))
 
-def strip_files(in_file, out_file, mark):
+def merge(in_file, out_file, option, po_dir='po'):
     '''
-    strip the file of the first character (typically an underscore) in each
-    keyword (in the "mark" argument list) in the file -- so this method is an
-    Alternative to intltool-merge command.
+    Run the msgfmt command.
     '''
     if (not os.path.exists(out_file) and os.path.exists(in_file)):
-        old = open(in_file, 'r', encoding='utf-8')
-        with open(out_file, 'w', encoding='utf-8', errors='strict') as fb:
-            for line in old:
-                for marker in mark:
-                    line = line.replace(marker, marker[1:])
-                fb.write(line)
-        old.close()
-        log.info('Compiling %s >> %s', in_file, out_file)
-
-def merge(in_file, out_file, option, po_dir='po', cache=True):
-    '''
-    Run the intltool-merge command.
-    '''
-    option += ' -u'
-    if cache:
-        cache_file = os.path.join('po', '.intltool-merge-cache')
-        option += ' -c ' + cache_file
-
-    if (not os.path.exists(out_file) and os.path.exists(in_file)):
-        if sys.platform == 'win32':
-            cmd = (('set LC_ALL=C && perl -S intltool-merge %(opt)s %(po_dir)s %(in_file)s '
-                '%(out_file)s') %
-              {'opt' : option,
-               'po_dir' : po_dir,
-               'in_file' : in_file,
-               'out_file' : out_file})
-        else:
-            cmd = (('LC_ALL=C intltool-merge %(opt)s %(po_dir)s %(in_file)s '
-                '%(out_file)s') %
-              {'opt' : option,
-               'po_dir' : po_dir,
-               'in_file' : in_file,
-               'out_file' : out_file})
+        cmd = (('GETTEXTDATADIR=%(po_dir)s msgfmt %(opt)s '
+                '--template %(in_file)s -d %(po_dir)s -o %(out_file)s') %
+                {'opt' : option,
+                 'po_dir' : po_dir,
+                 'in_file' : in_file,
+                 'out_file' : out_file})
         if os.system(cmd) != 0:
             msg = ('ERROR: %s was not merged into the translation files!\n' %
                     out_file)
@@ -391,8 +329,7 @@ package_data = package_data_core + package_data_gui
 # Resources
 #
 #-------------------------------------------------------------------------
-data_files_core = [('share/mime-info', ['data/gramps.mime']),
-                   ('share/icons', ['images/gramps.png'])]
+data_files_core = [('share/icons', ['images/gramps.png'])]
 DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'NEWS', 'README.md',
              'TODO']
 GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
