@@ -2200,10 +2200,20 @@ msgstr ""
 msgid "to-date|"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:446
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}自{date_start} 至{date_stop}{nonstd_calendar_and_ny}"
+
+#: ../gramps/gen/datehandler/_datedisplay.py:440
+#, python-brace-format
+msgid "{date_quality}from {date_start}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}自{date_start}{nonstd_calendar_and_ny}"
+
+#: ../gramps/gen/datehandler/_datedisplay.py:434
+#, python-brace-format
+msgid "{date_quality}to {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}至{date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "between <Month>"
 #. in your language, DON'T translate this string.  Otherwise,

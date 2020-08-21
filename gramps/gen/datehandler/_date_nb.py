@@ -95,6 +95,10 @@ class DateParserNb(DateParser):
         self._span = re.compile(
             r"(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
             re.IGNORECASE)
+        self._span_from = re.compile(r"(fra)\s*(?P<start>.+)",
+                                re.IGNORECASE)
+        self._span_to = re.compile(r"(til|--|–)\s*(?P<stop>.+)",
+                                re.IGNORECASE)
         self._range = re.compile(
             r"(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", re.IGNORECASE)
 
@@ -138,7 +142,7 @@ class DateDisplayNb(DateDisplay):
 
     _mod_str = ("", "før ", "etter ", "ca ", "", "", "")
 
-    _qual_str = ("", "beregnet ", "beregnet ")
+    _qual_str = ("", "estimert ", "beregnet ")
 
     _bce_str = "%s f Kr"
 
@@ -150,19 +154,31 @@ class DateDisplayNb(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        stop = date.get_stop_date()
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
 
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
+        elif mod == Date.MOD_SPAN:
+            if start == Date.EMPTY and stop == Date.EMPTY:
+                return ""
+            if start == Date.EMPTY:
+                d2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+                return "%stil %s%s" % (qual_str, d2, scal)
+            elif stop == Date.EMPTY:
+                d1 = self.display_cal[cal](start)
+                scal = self.format_extras(cal, newyear)
+                return "%sfra %s%s" % (qual_str, d1, scal)
+            else:
+                d1 = self.display_cal[cal](start)
+                d2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+                return "%sfra %s til %s%s" % (qual_str, d1, d2, scal)
         elif start == Date.EMPTY:
             return ""
-        elif mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%sfra %s til %s%s" % (qual_str, d1, d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())

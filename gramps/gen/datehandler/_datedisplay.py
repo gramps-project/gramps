@@ -370,13 +370,13 @@ class DateDisplay:
 
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
-        elif start == Date.EMPTY:
-            return ""
         elif mod == Date.MOD_SPAN or mod == Date.MOD_RANGE:
             d1 = self.display_iso(start)
             d2 = self.display_iso(date.get_stop_date())
             scal = self.format_extras(cal, newyear)
             return "%s %s - %s%s" % (qual_str, d1, d2, scal)
+        elif start == Date.EMPTY:
+            return ""
         else:
             text = self.display_iso(start)
             scal = self.format_extras(cal, newyear)
@@ -430,6 +430,19 @@ class DateDisplay:
             # in your language, DON'T translate this string.  Otherwise,
             # "translate" this to "to" in ENGLISH!!! ENGLISH!!!
                                    inflect=self._("to-date|"))
+        if d1 == '0':
+            return self._("{date_quality}to {date_stop}"
+                          "{nonstd_calendar_and_ny}").format(
+                              date_quality=qual_str,
+                              date_stop=d2,
+                              nonstd_calendar_and_ny=scal)
+        elif d2 == '0':
+            return self._("{date_quality}from {date_start}"
+                           "{nonstd_calendar_and_ny}").format(
+                               date_quality=qual_str,
+                               date_start=d1,
+                               nonstd_calendar_and_ny=scal)
+
         return self._("{date_quality}from {date_start} to {date_stop}"
                       "{nonstd_calendar_and_ny}").format(
                             date_quality=qual_str,
@@ -477,10 +490,10 @@ class DateDisplay:
 
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
-        elif start == Date.EMPTY:
-            return ""
         elif mod == Date.MOD_SPAN:
             return self.dd_span(date)
+        elif start == Date.EMPTY:
+            return ""
         elif mod == Date.MOD_RANGE:
             return self.dd_range(date)
         else:

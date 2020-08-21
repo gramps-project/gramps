@@ -50,6 +50,17 @@ class DateParserCZ(DateParser):
     Converts a text string into a Date object
     """
 
+    modifier_to_int = {
+        'před'    : Date.MOD_BEFORE,
+        'po'      : Date.MOD_AFTER,
+        'kolem'   : Date.MOD_ABOUT,
+    }
+
+    quality_to_int = {
+        'odhadem'     : Date.QUAL_ESTIMATED,
+        'vypočteno'   : Date.QUAL_CALCULATED,
+    }
+
     bce = ["před naším letopočtem", "před Kristem",
            "př. n. l.", "př. Kr."] + DateParser.bce
 
@@ -57,6 +68,29 @@ class DateParserCZ(DateParser):
         """ Allow overriding so a subclass can modify it """
         # bug 9739 grampslocale.py gets '%-d.%-m.%Y' -- makes it be '%/d.%/m.%Y'
         self.dhformat = self.dhformat.replace('/', '') # so counteract that
+
+    def init_strings(self):
+        """ Define span and range regular expressions"""
+        DateParser.init_strings(self)
+        _span_1 = ['od']
+        _span_2 = ['do']
+        _range_1 = ['mezi']
+        _range_2 = ['a']
+        self._span = re.compile(r"(%s)?\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)" %
+                                ('|'.join(_span_1), '|'.join(_span_2)),
+                                 re.IGNORECASE)
+        self._span_from = re.compile(
+            r"(%s)\s*(?P<start>.+)" %
+            ('|'.join(_span_1)), re.IGNORECASE)
+        self._span_to = re.compile(
+            r"(%s)\s*(?P<stop>.+)" %
+            ('|'.join(_span_2)), re.IGNORECASE)
+        self._range = re.compile(
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_range_1), '|'.join(_range_2)), re.IGNORECASE)
+        self._range = re.compile(
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_range_1), '|'.join(_range_2)), re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

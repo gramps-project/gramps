@@ -183,6 +183,10 @@ class DateParserFR(DateParser):
         self._numeric = re.compile(r"((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
         self._span = re.compile(r"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)",
                                 re.IGNORECASE)
+        self._span_from = re.compile(r"(de)\s+(?P<start>.+)",
+                                re.IGNORECASE)
+        self._span_to = re.compile(r"(à)\s+(?P<stop>.+)",
+                                re.IGNORECASE)
         self._range = re.compile(r"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)",
                                  re.IGNORECASE)
 

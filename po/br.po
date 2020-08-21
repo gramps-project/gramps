@@ -1997,9 +1997,19 @@ msgstr ""
 msgid "to-date|"
 msgstr "Deiziad:"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:446
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
+msgstr ""
+
+#: ../gramps/gen/datehandler/_datedisplay.py:440
+#, python-brace-format
+msgid "{date_quality}from {date_start}{nonstd_calendar_and_ny}"
+msgstr ""
+
+#: ../gramps/gen/datehandler/_datedisplay.py:434
+#, python-brace-format
+msgid "{date_quality}to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. If there is no special inflection for "between <Month>"

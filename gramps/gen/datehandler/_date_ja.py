@@ -163,17 +163,73 @@ class DateParserJA(DateParser):
         })
 
         _span_1 = ['から', '~', '〜']
-        _span_2 = ['まで', '']
+        _span_2 = ['まで']
         _range_1 = ['から', 'と', '~', '〜']
         _range_2 = ['までの間', 'の間']
-        self._span = re.compile(r"(?P<start>.+)(%s)(?P<stop>\d+)(%s)" %
-                                ('|'.join(_span_1), '|'.join(_span_2)),
+
+        self._qual = re.compile(r"(.*)(%s)\s*(.*)" % self._qual_str,
+                                re.IGNORECASE)
+        self._qual_formatted = re.compile(r"(.*)(%s)\s*(.*)" % self._qual_match_str,
+                                re.IGNORECASE)
+        self._span = re.compile(r"(\((.*)\))?(?P<start>.+)(%s)(?P<stop>[^%s]+)(%s)?" %
+                                ( '|'.join(_span_1), '|'.join(_span_2), '|'.join(_span_2)),
+                                re.IGNORECASE)
+        self._span_from = re.compile(r"(\((.*)\))?(?P<start>.+)(%s)" %
+                                ( '|'.join(_span_1)),
+                                re.IGNORECASE)
+        self._span_to = re.compile(r"(\((.*)\))?(?P<stop>[^%s]+)(%s)" %
+                                ( '|'.join(_span_2), '|'.join(_span_2)),
                                 re.IGNORECASE)
         self._range = re.compile(r"(?P<start>.+)(%s)(?P<stop>.+)(%s)" %
                                  ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
         self._numeric = re.compile(r"((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
 
+    def match_calendar(self, text, cal):
+        """
+        Try parsing calendar.
+
+        Return calendar index and the text with calendar removed.
+        
+        Note: re.compile truncates patterns at 200 characters.
+        See https://bugs.python.org/issue40984
+        """
+
+        match = re.match("\((.*)\)( ?.*)", text)
+        if match:
+            if match.group(1) in self.calendar_to_int.keys():
+                cal = self.calendar_to_int[match.group(1)]
+                text = match.group(2)
+        else:
+            match = re.match("(.*)\((.*)\)", text)
+            if match:
+                if match.group(2) in self.calendar_to_int.keys():
+                    cal = self.calendar_to_int[match.group(2)]
+                    text = match.group(1)
+            
+        return (text, cal)
+
+    def match_quality(self, text, qual):
+        """
+        Try matching quality.
+
+        Return quality index and the text with quality removed.
+        """
+        match = self._qual.match(text)
+        if match:
+            m1 = match.group(1)
+            m2 = match.group(2)
+            m3 = match.group(3)
+            m4 = match.group(4)
+            qual = self.quality_to_int[match.group(2).lower()]
+            text = match.group(1) + match.group(4)
+        else:
+            match = self._qual_formatted.match(text)
+            if match:
+                m = match.group(2)
+                qual = self._ds.qualifiers[1:].index(match.group(2)) + 1
+                text = match.group(1) + match.group(4)
+        return (text, qual)
 #-------------------------------------------------------------------------
 #
 # Japanese display

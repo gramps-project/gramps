@@ -95,16 +95,26 @@ class DateParserSv(DateParser):
     def init_strings(self):
         """ Define, in Swedish, span and range regular expressions"""
         DateParser.init_strings(self)
+        _span_1 = ['från']
+        _span_2 = ['till', '--', '–']
+        _range_1 = ['mellan']
+        _range_2 = ['och']
         self._numeric = re.compile(r"((\d+)/)?\s*((\d+)/)?\s*(\d+)[/ ]?$")
         # this next RE has the (possibly-slashed) year at the string's start
         self._text2 = re.compile(r'((\d+)(/\d+)?)?\s+?%s\s*(\d+)?\s*$'
                                  % self._mon_str, re.IGNORECASE)
-        self._span = re.compile(
-            r"(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)",
-            re.IGNORECASE)
+        self._span = re.compile(r"(%s)?\s*(?P<start>.+)\s*(%s)\s*(?P<stop>.+)" %
+                                ('|'.join(_span_1), '|'.join(_span_2)),
+                                 re.IGNORECASE)
+        self._span_from = re.compile(
+            r"(%s)\s*(?P<start>.+)" %
+            ('|'.join(_span_1)), re.IGNORECASE)
+        self._span_to = re.compile(
+            r"(%s)\s*(?P<stop>.+)" %
+            ('|'.join(_span_2)), re.IGNORECASE)
         self._range = re.compile(
-            r"(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
-            re.IGNORECASE)
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_range_1), '|'.join(_range_2)), re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -115,7 +125,8 @@ class DateDisplaySv(DateDisplay):
     """
     Swedish language date display class.
     """
-
+    
+    _mod_str = ('', 'före ', 'efter ', 'omkring ', '', '', '') # FIXME: Remove. This did not help for the date_test run.
     _bce_str = "%s f Kr"
 
     formats = (

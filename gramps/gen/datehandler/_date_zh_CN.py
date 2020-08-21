@@ -124,11 +124,18 @@ class DateParserZH_CN(DateParser):
         _span_2 = ['至']
         _range_1 = ['介于']
         _range_2 = ['与']
-        self._span = re.compile(r"(%s)(?P<start>.+)(%s)(?P<stop>\d+)" %
+        _range_3 = ['之间']
+        self._span = re.compile(r"(%s)(?P<start>.+)(%s)(?P<stop>.+)" %
                                 ('|'.join(_span_1), '|'.join(_span_2)),
                                 re.IGNORECASE)
-        self._range = re.compile(r"(%s)(?P<start>.+)(%s)(?P<stop>\d+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)),
+        self._span_from = re.compile(
+            r"(%s)(?P<start>.+)" %
+            ('|'.join(_span_1)), re.IGNORECASE)
+        self._span_to = re.compile(
+            r"(%s)(?P<stop>.+)" %
+            ('|'.join(_span_2)), re.IGNORECASE)
+        self._range = re.compile(r"(%s)(?P<start>.+)(%s)(?P<stop>[^之]+)(%s)?" %
+                                 ('|'.join(_range_1), '|'.join(_range_2), '|'.join(_range_3)),
                                  re.IGNORECASE)
         self._numeric = re.compile(r"((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
 

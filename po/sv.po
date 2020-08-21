@@ -1619,10 +1619,20 @@ msgstr "from"
 msgid "to-date|"
 msgstr "to"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:446
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}från {date_start} till {date_stop}{nonstd_calendar_and_ny}"
+
+#: ../gramps/gen/datehandler/_datedisplay.py:440
+#, python-brace-format
+msgid "{date_quality}from {date_start}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}från {date_start}{nonstd_calendar_and_ny}"
+
+#: ../gramps/gen/datehandler/_datedisplay.py:434
+#, python-brace-format
+msgid "{date_quality}to {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}till {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "between <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -1648,14 +1658,14 @@ msgstr "{date_quality}mellan {date_start} och {date_stop}{nonstd_calendar_and_ny
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:491
 msgid "before-date|"
-msgstr "before-date|"
+msgstr "before"
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 msgid "after-date|"
-msgstr "after-date|"
+msgstr "after"
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,

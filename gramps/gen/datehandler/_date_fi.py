@@ -102,6 +102,10 @@ class DateParserFI(DateParser):
                                  % self._mon_str, re.IGNORECASE)
         self._span = re.compile(r"(?P<start>.+)\s+(-)\s+(?P<stop>.+)",
                                 re.IGNORECASE)
+        self._span_from = re.compile(r"(?P<start>.+)\s+(-)",
+                                re.IGNORECASE)
+        self._span_to = re.compile(r"(-)\s+(?P<stop>.+)",
+                                re.IGNORECASE)
         self._range = re.compile(
             r"(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä",
             re.IGNORECASE)

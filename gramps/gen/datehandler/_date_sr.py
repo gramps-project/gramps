@@ -222,6 +222,12 @@ class DateParserSR(DateParser):
         self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
                                 % ('|'.join(_span_1), '|'.join(_span_2)),
                                 re.IGNORECASE)
+        self._span_from = re.compile(
+            r"(%s)\s+(?P<start>.+)" %
+            ('|'.join(_span_1)), re.IGNORECASE)
+        self._span_to = re.compile(
+            r"(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_span_2)), re.IGNORECASE)
         self._range = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
                                  % ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
@@ -305,6 +311,7 @@ class DateDisplaySR_Base(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        stop = date.get_stop_date()
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
@@ -315,14 +322,24 @@ class DateDisplaySR_Base(DateDisplay):
 
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
+        elif mod == Date.MOD_SPAN:
+            if start == Date.EMPTY and stop == Date.EMPTY:
+                return ""
+            if start == Date.EMPTY:
+                d_2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s%s" % (qual_str, span2, d_2, scal)
+            elif stop == Date.EMPTY:
+                d_1 = self.display_cal[cal](start)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s%s" % (qual_str, span1, d_1, scal)
+            else:
+                d_1 = self.display_cal[cal](start)
+                d_2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+            return "%s%s %s %s %s%s" % (qual_str, span1, d_1, span2, d_2, scal)
         elif start == Date.EMPTY:
             return ""
-        elif mod == Date.MOD_SPAN:
-            d_1 = self.display_cal[cal](start)
-            d_2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, span1, d_1, span2, d_2,
-                                                            scal)
         elif mod == Date.MOD_RANGE:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
@@ -414,7 +431,7 @@ class DateDisplaySR_Cyrillic(DateDisplaySR_Base):
         )
         # this definition must agree with its "_display_gregorian" method
 
-    _span1 = 'из'
+    _span1 = 'од' # Changed from 'из' which broke span matching.
     _span2 = 'до'
     _range1 = 'између'
     _range2 = 'и'

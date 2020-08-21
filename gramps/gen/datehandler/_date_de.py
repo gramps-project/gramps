@@ -250,6 +250,10 @@ class DateParserDE(DateParser):
         DateParser.init_strings(self)
         self._span = re.compile(
             r"(von|vom)\s+(?P<start>.+)\s+(bis)\s+(?P<stop>.+)", re.IGNORECASE)
+        self._span_from = re.compile(r"(von|vom)\s+(?P<start>.+)",
+                                re.IGNORECASE)
+        self._span_to = re.compile(r"(bis)\s+(?P<stop>.+)",
+                                re.IGNORECASE)
         self._range = re.compile(
             r"zwischen\s+(?P<start>.+)\s+und\s+(?P<stop>.+)", re.IGNORECASE)
         self._text2 = re.compile(
@@ -379,19 +383,31 @@ class DateDisplayDE(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        stop = date.get_stop_date()
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
 
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
+        elif mod == Date.MOD_SPAN:
+            if start == Date.EMPTY and stop == Date.EMPTY:
+                return ""
+            if start == Date.EMPTY:
+                d2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s%s" % (qual_str, 'bis', d2, scal)
+            elif stop == Date.EMPTY:
+                d1 = self.display_cal[cal](start)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s%s" % (qual_str, 'von', d1, scal)
+            else:
+                d1 = self.display_cal[cal](start)
+                d2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s %s %s%s" % (qual_str, 'von', d1, 'bis', d2, scal)
         elif start == Date.EMPTY:
             return ""
-        elif mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'von', d1, 'bis', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())

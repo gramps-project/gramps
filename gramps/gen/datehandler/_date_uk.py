@@ -56,7 +56,7 @@ class DateParserUK(DateParser):
     # modifiers before the date
     modifier_to_int = {
         'перед'    : Date.MOD_BEFORE,
-        'до'       : Date.MOD_BEFORE,
+        #'до'       : Date.MOD_BEFORE, # Deleted as it made made "before" clash with open ended "from"
         'раніше'   : Date.MOD_BEFORE,
 
         'після'    : Date.MOD_AFTER,
@@ -114,6 +114,12 @@ class DateParserUK(DateParser):
         self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                 ('|'.join(_span_1), '|'.join(_span_2)),
                                 re.IGNORECASE)
+        self._span_from = re.compile(
+            r"(%s)\s+(?P<start>.+)" %
+            ('|'.join(_span_1)), re.IGNORECASE)
+        self._span_to = re.compile(
+            r"(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_span_2)), re.IGNORECASE)
         self._range = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
                                  % ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)

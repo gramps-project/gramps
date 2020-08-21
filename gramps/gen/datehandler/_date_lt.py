@@ -141,6 +141,12 @@ class DateParserLT(DateParser):
         self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                 ('|'.join(_span_1), '|'.join(_span_2)),
                                 re.IGNORECASE)
+        self._span_from = re.compile(
+            r"(%s)\s+(?P<start>.+)" %
+            ('|'.join(_span_1)), re.IGNORECASE)
+        self._span_to = re.compile(
+            r"(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_span_2)), re.IGNORECASE)
         self._range = re.compile(
             r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
             ('|'.join(_range_1), '|'.join(_range_2)), re.IGNORECASE)
@@ -234,20 +240,31 @@ class DateDisplayLT(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        stop = date.get_stop_date()
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
 
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
+        elif mod == Date.MOD_SPAN:
+            if start == Date.EMPTY and stop == Date.EMPTY:
+                return ""
+            if start == Date.EMPTY:
+                d2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s%s" % (qual_str, 'iki', d2, scal)
+            elif stop == Date.EMPTY:
+                d1 = self.display_cal[cal](start)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s%s" % (qual_str, 'nuo', d1, scal)
+            else:
+                d1 = self.display_cal[cal](start)
+                d2 = self.display_cal[cal](stop)
+                scal = self.format_extras(cal, newyear)
+                return "%s%s %s %s %s%s" % (qual_str, 'nuo', d1, 'iki', d2, scal)
         elif start == Date.EMPTY:
             return ""
-        elif mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'nuo', d1, 'iki',
-                                        d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())

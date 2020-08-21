@@ -213,8 +213,8 @@ class DateParserHU(DateParser):
 
 
     calendar_to_int = {
-        'Gergely'              : Date.CAL_GREGORIAN,
-        'Julián'               : Date.CAL_JULIAN,
+        'gergely'              : Date.CAL_GREGORIAN,
+        'julián'               : Date.CAL_JULIAN,
         'héber'                : Date.CAL_HEBREW,
         'iszlám'               : Date.CAL_ISLAMIC,
         'francia köztársasági' : Date.CAL_FRENCH,
@@ -239,6 +239,12 @@ class DateParserHU(DateParser):
         self._span = re.compile(r"(?P<start>.+)(%s)\s+(?P<stop>.+)(%s)" %
                                 ('|'.join(_span_1), '|'.join(_span_2)),
                                 re.IGNORECASE)
+        self._span_from = re.compile(
+            r"(?P<start>.+)(%s)" %
+            ('|'.join(_span_1)), re.IGNORECASE)
+        self._span_to = re.compile(
+            r"(?P<stop>.+)(%s)" %
+            ('|'.join(_span_2)), re.IGNORECASE)
         self._range = re.compile(r"(?P<start>.+)\s+(%s)\s+(?P<stop>.+)\s+(%s)"
                                  % ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)

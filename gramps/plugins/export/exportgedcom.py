@@ -1246,22 +1246,32 @@ class GedcomWriter(UpdateCallback):
         expected format.
         """
         self._datewritten = True
+        cal = date.get_calendar()
         start = date.get_start_date()
-        if start != Date.EMPTY:
-            cal = date.get_calendar()
-            mod = date.get_modifier()
-            quality = date.get_quality()
-            if quality in libgedcom.DATE_QUALITY:
-                qual_text = libgedcom.DATE_QUALITY[quality] + " "
-            else:
-                qual_text = ""
-            if mod == Date.MOD_SPAN:
+        quality = date.get_quality()
+        if quality in libgedcom.DATE_QUALITY:
+            qual_text = libgedcom.DATE_QUALITY[quality] + " "
+        else:
+            qual_text = ""
+        mod = date.get_modifier()
+        if mod == Date.MOD_SPAN:
+            stop = date.get_stop_date()
+            if start == Date.EMPTY:
+                val = "%sTO %s" % (
+                    qual_text,
+                    libgedcom.make_gedcom_date(stop, cal, mod, None))
+            elif stop == Date.EMPTY:
+                val = "%sFROM %s" % (
+                    qual_text,
+                    libgedcom.make_gedcom_date(start, cal, mod, None))
+            else:    
                 val = "%sFROM %s TO %s" % (
                     qual_text,
                     libgedcom.make_gedcom_date(start, cal, mod, None),
-                    libgedcom.make_gedcom_date(date.get_stop_date(),
-                                               cal, mod, None))
-            elif mod == Date.MOD_RANGE:
+                    libgedcom.make_gedcom_date(stop, cal, mod, None))
+            self._writeln(level, 'DATE', val)
+        elif start != Date.EMPTY:
+            if mod == Date.MOD_RANGE:
                 val = "%sBET %s AND %s" % (
                     qual_text,
                     libgedcom.make_gedcom_date(start, cal, mod, None),

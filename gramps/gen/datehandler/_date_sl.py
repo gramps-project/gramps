@@ -96,6 +96,10 @@ class DateParserSL(DateParser):
 
         self._span = re.compile(r"od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)",
                                 re.IGNORECASE)
+        self._span_from = re.compile(r"(od)\s+(?P<start>.+)",
+                                re.IGNORECASE)
+        self._span_to = re.compile(r"do\s+(?P<stop>.+)",
+                                re.IGNORECASE)
         self._range = re.compile(
             r"med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", re.IGNORECASE)
         self._jtext2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
