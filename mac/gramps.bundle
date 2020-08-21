@@ -41,7 +41,7 @@
   </binary>
 
   <binary recurse="True">
-    ${prefix}/lib/python3.6/*.so
+    ${prefix}/lib/python3.8/*.so
   </binary>
 
   <binary>
@@ -144,19 +144,19 @@
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
   <data recurse="True">
-    ${prefix}/lib/python3.6/*.py
+    ${prefix}/lib/python3.8/*.py
   </data>
 
   <data>
-    ${prefix}/lib/python3.6/config-3.6m-darwin/
+    ${prefix}/lib/python3.8/config-3.8-darwin/
   </data>
 
   <data>
-    ${prefix}/lib/python3.6/site-packages/gramps/gen/utils/resource-path
+    ${prefix}/lib/python3.8/site-packages/gramps/gen/utils/resource-path
   </data>
 
   <data>
-    ${prefix}/include/python3.6m/pyconfig.h
+    ${prefix}/include/python3.8/pyconfig.h
   </data>
 
 
@@ -173,7 +173,7 @@
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python3.6/site-packages/gramps/*.glade
+    ${prefix}/lib/python3.8/site-packages/gramps/*.glade
   </data>
 
   <data>
