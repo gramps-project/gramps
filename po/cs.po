@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-01-07 16:39+0100\n"
+"PO-Revision-Date: 2020-08-21 11:01+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -48,7 +48,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -11805,11 +11805,13 @@ msgid "Show text label beside Navigator buttons (requires restart)"
 msgstr "Zobrazovat text vedle tlačítek Navigátoru (projeví se po restartu)"
 
 #: ../gramps/gui/configure.py:1343
-#, fuzzy
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
-msgstr "Zobrazovat text vedle tlačítek Navigátoru (projeví se po restartu)"
+msgstr ""
+"Zobrazovat nebo skrýt text vedle tlačítek Navigátoru (Osoby, Rodiny, "
+"Události ...).\n"
+"Projeví se po restartu Gramps."
 
 #: ../gramps/gui/configure.py:1349
 msgid "Show close button in gramplet bar tabs"
@@ -23318,9 +23320,8 @@ msgid "Gramplet showing the events for all the family"
 msgstr "Gramplet zobrazující události pro celou rodinu"
 
 #: ../gramps/plugins/gramplet/leak.py:99
-#, fuzzy
 msgid "Referrer"
-msgstr "Odkaz"
+msgstr "Odkazující"
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
@@ -25167,11 +25168,12 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
-#, fuzzy
 msgid ""
 "Source reference\n"
 "(out of Settings)"
-msgstr "Hledají se problémové odkazy na prameny"
+msgstr ""
+"Zdrojový odkaz\n"
+"(mimo Předvolby)"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
 msgid ""
@@ -25218,11 +25220,10 @@ msgid "Import Text"
 msgstr "Import textu"
 
 #: ../gramps/plugins/importer/importprogen.glade:415
-#, fuzzy
 msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
-msgstr "Nastavení výchozí předpony a spojky"
+msgstr "Výchozí text štítku (mimo Předvolby)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -31548,9 +31549,8 @@ msgid "Dead Symbol"
 msgstr "Symbol úmrtí"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:512
-#, fuzzy
 msgid "This will show after name to indicate that person is dead"
-msgstr "Štítek indikující, že osoba je kompletní"
+msgstr "Štítek za jménem indikující, že osoba zemřela"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:519
 msgid "Show event year"
@@ -34288,9 +34288,8 @@ msgstr "ukazatel"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:135
-#, fuzzy
 msgid "firstname"
-msgstr "Vyhovují lidé s chybějícím křestním jménem nebo příjmením"
+msgstr "křestní jméno"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
@@ -35031,19 +35030,16 @@ msgid "Old age but no death"
 msgstr "Starý ale živý"
 
 #: ../gramps/plugins/tool/verify.py:1806
-#, fuzzy
 msgid "Birth equals death"
-msgstr "Smrt před narozením"
+msgstr "Narození  je rovno úmrtí"
 
 #: ../gramps/plugins/tool/verify.py:1824
-#, fuzzy
 msgid "Birth equals marriage"
-msgstr "Sňatek před narozením"
+msgstr "Narození  je rovno sňatku"
 
 #: ../gramps/plugins/tool/verify.py:1842
-#, fuzzy
 msgid "Death equals marriage"
-msgstr "Sňatek po smrti"
+msgstr "Úmrtí  je rovna sňatku"
 
 #: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: Title"
@@ -35413,7 +35409,6 @@ msgstr "Stejnoměrné rozložení potomků"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:329
 #: ../gramps/plugins/view/fanchartdescview.py:328
-#, fuzzy
 msgid "Size proportional to number of descendants"
 msgstr "Velikost proporcionálně k počtu potomků"
 
@@ -35600,14 +35595,13 @@ msgid "Selecting all events"
 msgstr "Vybírají se všechny události"
 
 #: ../gramps/plugins/view/geoevents.py:368
-#, fuzzy
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Klikněte pravým tlačítkem myši na mapu s vyberte 'Zobrazit všechna místa' "
-"pro zobrazení všech známých míst včetně souřadnic. Pro navigaci v mapě "
+"Klikněte pravým tlačítkem myši na mapu s vyberte 'zobrazit všechny události' "
+"pro zobrazení všech známých událostí včetně souřadnic. Pro navigaci v mapě "
 "můžete použít historii. Můžete použít filtrování."
 
 #: ../gramps/plugins/view/geoevents.py:408
@@ -37043,9 +37037,9 @@ msgid "Sort places references either by date or by name"
 msgstr "Třídit odkazy na místa podle data nebo jména"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1796
-#, fuzzy
 msgid "Sort the places references by date or by name. Not set means by date."
-msgstr "Třídit odkazy na místa podle data nebo jména"
+msgstr ""
+"Třídit odkazy na místa podle data nebo jména. Nenastaveno znamená podle data."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1800
 msgid "Graph generations"
@@ -37184,13 +37178,11 @@ msgid "Max width of initial image"
 msgstr "Maximální šířka výchozího obrázku"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
-#, fuzzy
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
 msgstr ""
-"Umožní vám nastavit maximální šířku obrázku zobrazeného na stránce média. "
-"Nastavení na 0 ruší limit."
+"Umožní vám nastavit maximální šířku obrázku zobrazeného na stránce média."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1898
 msgid "Max height of initial image"
