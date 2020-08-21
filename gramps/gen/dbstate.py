@@ -29,7 +29,6 @@ Provide the database state class
 #
 #------------------------------------------------------------------------
 import sys
-import os
 import logging
 import inspect
 

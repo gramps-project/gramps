@@ -29,7 +29,6 @@ BSDDBTxn class: Wrapper for BSDDB transaction-oriented methods
 #-------------------------------------------------------------------------
 import logging
 import inspect
-import os
 
 #-------------------------------------------------------------------------
 #

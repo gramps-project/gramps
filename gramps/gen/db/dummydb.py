@@ -52,7 +52,6 @@ methods should be changed to generate exceptions. Possibly by globally changing
 #
 #-------------------------------------------------------------------------
 import logging
-import os
 import inspect
 from abc import ABCMeta
 from types import FunctionType
