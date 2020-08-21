@@ -16248,7 +16248,7 @@ msgstr "Общая информация"
 msgid ""
 "An identification of what type of Name this is, eg. Birth Name, Married Name."
 msgstr ""
-"Какой это тип имени. Например, фамилия при рождении или фамилия в браке."
+"Какой это тип имени. Например, Фамилия при рождении или Фамилия в браке."
 
 #: ../gramps/gui/glade/editname.glade:192
 #: ../gramps/gui/glade/editperson.glade:134
@@ -25779,7 +25779,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:245
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
-msgstr "  %(id)s - %(text)s with %(id2)s\n"
+msgstr "  %(id)s - %(text)s с %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:251
 #, python-format
@@ -26143,7 +26143,7 @@ msgstr "Цвет глаз"
 
 #: ../gramps/plugins/lib/libgedcom.py:706
 msgid "Height"
-msgstr "Высота"
+msgstr "Рост"
 
 #: ../gramps/plugins/lib/libgedcom.py:707
 msgid "Initiatory (LDS)"
