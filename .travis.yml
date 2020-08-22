@@ -23,16 +23,11 @@
 # After changing this file, check it on:
 #   http://lint.travis-ci.org/
 
-sudo: required
-dist: trusty
+os: linux
+dist: xenial
 language: python
 python:
  - 3.3 # This is irrelevant, because the virtualenv is not used at all
-
-# FIXME: The minimum requirement for Gramps is Python 3.2, so a test environment
-# for Python 3.2 should be added to this environment which is Python 3.3. It
-# will not be possible to run coverage under Python 3.2, because coverage is
-# Python 3.3 (or above) only.
 
 addons:
   apt:
