@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2019
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2019-10-18 09:49+0200\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
+"PO-Revision-Date: 2020-08-21 11:01+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -48,7 +48,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -5642,6 +5642,14 @@ msgstr ""
 "než N generací"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Předci výchozí osoby jsou vzdálení maximálně <N> generací"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "Vyhovují předci výchozí osoby vzdálení ne více než N generací"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Předci výchozí osoby jsou vzdálení maximálně <N> generací"
 
@@ -7992,7 +8000,7 @@ msgstr "<Žádný stav>"
 #: ../gramps/gen/lib/ldsord.py:104
 #, fuzzy
 msgid "Born in Covenant"
-msgstr "Lidé narození po"
+msgstr "Osoby narozené"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
@@ -9476,14 +9484,12 @@ msgid "How the lines between objects will be drawn."
 msgstr "Jakým způsobe budou kresleny čáry propojující objekty."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
-#, fuzzy
 msgid "Alternate line attachment"
-msgstr "Alternativní jména"
+msgstr "Alternativní připojení čáry"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:194
-#, fuzzy
 msgid "Whether lines attach to nodes differently"
-msgstr "Zda linkovat data do webové sestavy nebo ne"
+msgstr "Zda připojovat čáry k uzlům odlišně"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
@@ -11058,7 +11064,7 @@ msgstr "Pohřben"
 
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Kremace/Urna"
 
 #: ../gramps/gen/utils/symbols.py:80
 msgid "Killed in action"
@@ -11534,9 +11540,8 @@ msgid "ID Formats"
 msgstr "Formáty ID"
 
 #: ../gramps/gui/configure.py:677
-#, fuzzy
 msgid "Colors used for boxes in the graphical views"
-msgstr "Nastavit barvu použitou pro pole v grafických pohledech"
+msgstr "Barvy použité pro bloky v grafických zobrazeních"
 
 #: ../gramps/gui/configure.py:683
 msgid "Light colors"
@@ -11737,9 +11742,8 @@ msgid "_Remove"
 msgstr "O_dstranit"
 
 #: ../gramps/gui/configure.py:1153
-#, fuzzy
 msgid "Appearance and format settings"
-msgstr "Nesprávný řetězec formátu jména %s"
+msgstr "Vzhled a nastavení formátu"
 
 #: ../gramps/gui/configure.py:1198 ../gramps/gui/configure.py:1237
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11761,6 +11765,10 @@ msgstr "Zvážit samotné příjmení po otci/matce"
 #: ../gramps/gui/configure.py:1240
 msgid "Place format (auto place title)"
 msgstr "Formát místa (automatický titulek místa)"
+
+#: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr "Povolit automatické vytváření titulku místa dle daného formátu"
 
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
@@ -11815,26 +11823,26 @@ msgstr "Stavový řádek"
 msgid "Show text label beside Navigator buttons (requires restart)"
 msgstr "Zobrazovat text vedle tlačítek Navigátoru (projeví se po restartu)"
 
-#: ../gramps/gui/configure.py:1342
-#, fuzzy
+#: ../gramps/gui/configure.py:1343
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
-msgstr "Zobrazovat text vedle tlačítek Navigátoru (projeví se po restartu)"
+msgstr ""
+"Zobrazovat nebo skrýt text vedle tlačítek Navigátoru (Osoby, Rodiny, "
+"Události ...).\n"
+"Projeví se po restartu Gramps."
 
 #: ../gramps/gui/configure.py:1348
 msgid "Show close button in gramplet bar tabs"
 msgstr "Ukázat tlačítko pro zavření v záložkách panelu grampletů"
 
-#: ../gramps/gui/configure.py:1351
-#, fuzzy
+#: ../gramps/gui/configure.py:1352
 msgid "Show close button to simplify removing gramplets from bars."
-msgstr "Ukázat tlačítko pro zavření v záložkách panelu grampletů"
+msgstr "Ukázat tlačítko pro zavření pro usnadnění odebírání grampletů z panelů"
 
-#: ../gramps/gui/configure.py:1370
-#, fuzzy
+#: ../gramps/gui/configure.py:1371
 msgid "Default text used for conditions"
-msgstr "Styl používaný pro podrobnosti."
+msgstr "Výchozí text použitý pro podmínky"
 
 #: ../gramps/gui/configure.py:1375
 msgid "Missing surname"
@@ -11952,6 +11960,14 @@ msgstr "Při importu GEDCOM přidat výchozí pramen"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Při importu přidat štítek"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
+"Zadaný štítek bude přídán při importu.\n"
+"Smazat nastaví výchozí hodnotu."
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -12105,11 +12121,13 @@ msgstr "Cesta k databázi rodokmenu"
 msgid "Automatically load last Family Tree"
 msgstr "Automaticky načíst poslední rodokmen"
 
-#: ../gramps/gui/configure.py:1761
+#: ../gramps/gui/configure.py:1762
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
+"Neotevítat nabídku výběru rodokmenu při startu, ale použít poslední "
+"zpracovávaný."
 
 #: ../gramps/gui/configure.py:1766
 msgid "Backup path"
@@ -19621,6 +19639,16 @@ msgstr "Žádná výchozí osoba"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Pro pokračování musíte nejdříve vybrat 'výchozí osobu'. Zvolte Pohled osoby, "
+"vyberte osobu kterou chcete mít jako výchozí, poté potvrďte volbu "
+"prostřednictvím nabídky Upravit -> Nastavit výchozí osobu."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -23329,9 +23357,8 @@ msgid "Gramplet showing the events for all the family"
 msgstr "Gramplet zobrazující události pro celou rodinu"
 
 #: ../gramps/plugins/gramplet/leak.py:99
-#, fuzzy
 msgid "Referrer"
-msgstr "Odkaz"
+msgstr "Odkazující"
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
@@ -24411,7 +24438,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvhourglass.py:443
 #, fuzzy
 msgid "Ahnentafel number visible"
-msgstr "Sestava o předcích"
+msgstr "Viditelný"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
@@ -24747,115 +24774,96 @@ msgid "Occupation description"
 msgstr "Popis povolání"
 
 #: ../gramps/plugins/importer/importcsv.py:210
-#, fuzzy
 msgid "occupationdescr"
-msgstr "Zaměstnání"
+msgstr "occupationdescr"
 
 #: ../gramps/plugins/importer/importcsv.py:211
 msgid "Occupation date"
 msgstr "Datum zaměstnání"
 
 #: ../gramps/plugins/importer/importcsv.py:211
-#, fuzzy
 msgid "occupationdate"
-msgstr "Zaměstnání"
+msgstr "occupationdate"
 
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "Occupation place"
 msgstr "Místo zaměstnání"
 
 #: ../gramps/plugins/importer/importcsv.py:212
-#, fuzzy
 msgid "occupationplace"
-msgstr "Zaměstnání"
+msgstr "occupationplace"
 
 #: ../gramps/plugins/importer/importcsv.py:213
-#, fuzzy
 msgid "Occupation place id"
-msgstr "Zaměstnání"
+msgstr "Occupation place id"
 
 #: ../gramps/plugins/importer/importcsv.py:213
-#, fuzzy
 msgid "occupationplace_id"
-msgstr "Zaměstnání"
+msgstr "occupationplace_id"
 
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "Occupation source"
 msgstr "Pramen zaměstnání"
 
 #: ../gramps/plugins/importer/importcsv.py:214
-#, fuzzy
 msgid "occupationsource"
-msgstr "Zaměstnání"
+msgstr "occupationsource"
 
 #: ../gramps/plugins/importer/importcsv.py:216
-#, fuzzy
 msgid "residence date"
-msgstr "Bydliště"
+msgstr "residence date"
 
 #: ../gramps/plugins/importer/importcsv.py:216
-#, fuzzy
 msgid "residencedate"
-msgstr "Bydliště"
+msgstr "residencedate"
 
 #: ../gramps/plugins/importer/importcsv.py:217
-#, fuzzy
 msgid "residence place"
-msgstr "Bydliště"
+msgstr "residence place"
 
 #: ../gramps/plugins/importer/importcsv.py:217
-#, fuzzy
 msgid "residenceplace"
-msgstr "Bydliště"
+msgstr "residenceplace"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
 msgid "residence place id"
-msgstr "id místa úmrtí"
+msgstr "residence place id"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
 msgid "residenceplace_id"
-msgstr "Bydliště"
+msgstr "residenceplace_id"
 
 #: ../gramps/plugins/importer/importcsv.py:219
-#, fuzzy
 msgid "residence source"
-msgstr "Odkazované prameny"
+msgstr "residence source"
 
 #: ../gramps/plugins/importer/importcsv.py:219
-#, fuzzy
 msgid "residencesource"
-msgstr "Bydliště"
+msgstr "residencesource"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attribute type"
 msgstr "typ atributu"
 
 #: ../gramps/plugins/importer/importcsv.py:221
-#, fuzzy
 msgid "attributetype"
-msgstr "Poznámka k atributu"
+msgstr "attributetype"
 
 #: ../gramps/plugins/importer/importcsv.py:222
-#, fuzzy
 msgid "attribute value"
-msgstr "Poznámka k atributu"
+msgstr "attribute value"
 
 #: ../gramps/plugins/importer/importcsv.py:222
-#, fuzzy
 msgid "attributevalue"
-msgstr "Atribut"
+msgstr "attributevalue"
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "attribute source"
-msgstr "Poznámka k atributu"
+msgstr "attribute source"
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "attributesource"
-msgstr "Atributy"
+msgstr "attributesource"
 
 #. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:226
@@ -25197,11 +25205,12 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
-#, fuzzy
 msgid ""
 "Source reference\n"
 "(out of Settings)"
-msgstr "Poznámka k odkazu na pramen"
+msgstr ""
+"Zdrojový odkaz\n"
+"(mimo Předvolby)"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
 msgid ""
@@ -25251,7 +25260,7 @@ msgstr "Import textu"
 msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
-msgstr ""
+msgstr "Výchozí text štítku (mimo Předvolby)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -25338,6 +25347,8 @@ msgid ""
 "Use original Family\n"
 "Identifier as Gramps ID."
 msgstr ""
+"Použít původní identifikátor\n"
+"rodiny jako Gramps ID."
 
 #: ../gramps/plugins/importer/importprogen.glade:1369
 msgid "Identifier"
@@ -25380,6 +25391,8 @@ msgid ""
 "Store REFN number\n"
 "in event description."
 msgstr ""
+"Uložit číslo REFN\n"
+"v popisu události."
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
@@ -29804,6 +29817,17 @@ msgstr "Na_stavit výchozí osobu"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Přejít na výchozí osobu"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Přejít na výchozí osobu"
 
@@ -30054,9 +30078,9 @@ msgid "Field '%(fldname)s' not found"
 msgstr "Pole '%(fldname)s' nebylo nalezeno"
 
 #: ../gramps/plugins/lib/libprogen.py:491
-#, fuzzy, python-format
+#, python-format
 msgid "Not a (right) DEF file: %(dname)s"
-msgstr "Nelze najít DEF soubor: %(dname)s"
+msgstr "Nesprávný DEF soubor: %(dname)s"
 
 #: ../gramps/plugins/lib/libprogen.py:498
 #: ../gramps/plugins/lib/libprogen.py:732
@@ -30101,15 +30125,13 @@ msgstr "Čas: %s"
 msgid "Importing persons."
 msgstr "Importují se osoby."
 
-#: ../gramps/plugins/lib/libprogen.py:1412
-#, fuzzy
+#: ../gramps/plugins/lib/libprogen.py:1414
 msgid "see address on "
-msgstr "_WWW adresa:"
+msgstr "viz adresa"
 
-#: ../gramps/plugins/lib/libprogen.py:1415
-#, fuzzy
+#: ../gramps/plugins/lib/libprogen.py:1417
 msgid "see also address"
-msgstr "_WWW adresa:"
+msgstr "viz také adresa"
 
 #: ../gramps/plugins/lib/libprogen.py:1515
 msgid "Death cause"
@@ -30140,15 +30162,13 @@ msgstr "budoucí"
 msgid "Adding children."
 msgstr "Přidávají se děti."
 
-#: ../gramps/plugins/lib/libprogen.py:1927
-#, fuzzy
+#: ../gramps/plugins/lib/libprogen.py:1929
 msgid "Cannot find father for I%(person)s (Father=%(father))"
-msgstr "Nelze najít otce pro  I%(person)s (Father=%(id)d)"
+msgstr "Nelze najít otce pro  I%(person)s (Father=%(father))"
 
-#: ../gramps/plugins/lib/libprogen.py:1930
-#, fuzzy
+#: ../gramps/plugins/lib/libprogen.py:1932
 msgid "Cannot find mother for I%(person)s (Mother=%(mother))"
-msgstr "Nelze najít matku pro I%(person)s (Mother=%(mother)d)"
+msgstr "Nelze najít matku pro I%(person)s (Mother=%(mother))"
 
 #: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
@@ -30412,6 +30432,23 @@ msgstr "Zvolte adresář uložení dlaždic pro offline režim"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Nemohu vytvořit adresář keše dlaždic %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -31471,9 +31508,9 @@ msgid "Relationships shown are to %s"
 msgstr "Zobrazené vztahy k %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "* %(person)s, birth%(relation)s"
-msgstr "%(person)s, narozen(a)%(relation)s"
+msgstr "* %(person)s, narozen(a)%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
@@ -31485,12 +31522,12 @@ msgstr[1] "{person}, {age}{relation}"
 msgstr[2] "{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:402
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "⚭ %(spouse)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s a\n"
+"⚭ %(spouse)s a\n"
 " %(person)s, sňatek"
 
 #. translators: leave all/any {...} untranslated
@@ -31560,9 +31597,8 @@ msgid "Dead Symbol"
 msgstr "Symbol úmrtí"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:512
-#, fuzzy
 msgid "This will show after name to indicate that person is dead"
-msgstr "Štítek indikující, že osoba je kompletní"
+msgstr "Štítek za jménem indikující, že osoba zemřela"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:519
 msgid "Show event year"
@@ -34272,28 +34308,26 @@ msgstr "Společnými předky jsou: "
 
 #: ../gramps/plugins/tool/removespaces.py:54
 msgid "manual|Remove_leading_and_trailing_spaces"
-msgstr ""
+msgstr "Remove_leading_and_trailing_spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:87
 #: ../gramps/plugins/tool/tools.gpr.py:489
-#, fuzzy
 msgid "Clean input data"
-msgstr "Datum vytvoření"
+msgstr "Vyčistit vstupní data"
 
 #: ../gramps/plugins/tool/removespaces.py:104
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Prochází celou databázi, hledá citace, které mají stejný svazek/stranu, "
-"datum a důvěrnost."
+"Hledá záznamy míst a osob začínající nebo končící mezerou. Hledají se mezery "
+"v polích souřadnic míst. \n"
+"Dvojklik na řádku umožní změnu jeho obsahu."
 
 #: ../gramps/plugins/tool/removespaces.py:113
-#, fuzzy
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr "Hledá se možné zacyklení pro každou osobu"
+msgstr "Hledají se pole s řetězci začínajícími nebo končícími mezerou"
 
 #: ../gramps/plugins/tool/removespaces.py:130
 #: ../gramps/plugins/tool/removespaces.py:179
@@ -34302,9 +34336,8 @@ msgstr "ukazatel"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:135
-#, fuzzy
 msgid "firstname"
-msgstr "neznámé jméno"
+msgstr "křestní jméno"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
@@ -34798,13 +34831,12 @@ msgid "Searches the entire database, looking for a possible loop."
 msgstr "V celé databázi se hledá možné zacyklení."
 
 #: ../gramps/plugins/tool/tools.gpr.py:490
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Prochází celou databázi, hledá citace, které mají stejný svazek/stranu, "
-"datum a důvěrnost."
+"Prochází celou databázi, hledá záznamy míst a osob začínající nebo končící "
+"mezerou. Hledají se mezery v polích souřadnic míst."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
@@ -35045,20 +35077,17 @@ msgstr "Datum sňatku ale nesezdán"
 msgid "Old age but no death"
 msgstr "Starý ale živý"
 
-#: ../gramps/plugins/tool/verify.py:1802
-#, fuzzy
+#: ../gramps/plugins/tool/verify.py:1806
 msgid "Birth equals death"
-msgstr "Datum narození"
+msgstr "Narození  je rovno úmrtí"
 
-#: ../gramps/plugins/tool/verify.py:1820
-#, fuzzy
+#: ../gramps/plugins/tool/verify.py:1824
 msgid "Birth equals marriage"
-msgstr "Nejkratší manželství"
+msgstr "Narození  je rovno sňatku"
 
-#: ../gramps/plugins/tool/verify.py:1838
-#, fuzzy
+#: ../gramps/plugins/tool/verify.py:1842
 msgid "Death equals marriage"
-msgstr "Pozdní sňatek"
+msgstr "Úmrtí  je rovna sňatku"
 
 #: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: Title"
@@ -35615,15 +35644,14 @@ msgid "Selecting all events"
 msgstr "Vybírají se všechny události"
 
 #: ../gramps/plugins/view/geoevents.py:368
-#, fuzzy
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Klikněte pravým tlačítkem myši na mapu s vyberte 'Zobrazit všechna místa' "
-"pro zobrazení všech známých míst se souřadnicemi. Můžete měnit barvu značek "
-"v závislosti na místě. Můžete použít filtrování."
+"Klikněte pravým tlačítkem myši na mapu s vyberte 'zobrazit všechny události' "
+"pro zobrazení všech známých událostí včetně souřadnic. Pro navigaci v mapě "
+"můžete použít historii. Můžete použít filtrování."
 
 #: ../gramps/plugins/view/geoevents.py:408
 #: ../gramps/plugins/view/geoevents.py:440
@@ -35977,9 +36005,8 @@ msgid "Show all places"
 msgstr "Zobrazit všechna místa"
 
 #: ../gramps/plugins/view/geoplaces.py:659
-#, fuzzy
 msgid "Custom places name"
-msgstr "Celý názav místa"
+msgstr "Vlastní názvy míst"
 
 #: ../gramps/plugins/view/geoplaces.py:668
 msgid "The places marker color"
@@ -36298,19 +36325,19 @@ msgid "Relationship type: %s"
 msgstr "Vztah: %s"
 
 #: ../gramps/plugins/view/relview.py:1520
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s, %(place)s"
+msgstr "%(event_type)s: %(date)s v %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1524
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1528
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1539
 msgid "Broken family detected"
@@ -36664,10 +36691,9 @@ msgstr "Polohy"
 msgid "circa"
 msgstr "asi"
 
-#: ../gramps/plugins/webreport/basepage.py:2945
-#, fuzzy
+#: ../gramps/plugins/webreport/basepage.py:2895
 msgid "around"
-msgstr "Pozadí"
+msgstr "okolo"
 
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
@@ -36918,11 +36944,10 @@ msgid "Show the relationship between the current person and the active person"
 msgstr "Zobrazit  vztah mezi aktivní a výchozí osobou"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1657
-#, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
-msgstr "Zobrazit všechny vztahy mezi osobou a výchozí osobou."
+msgstr "Na každé stránce osoby zobrazit vztah touto a aktivní osobou."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1675
 msgid "Html options"
@@ -37016,14 +37041,12 @@ msgid "Whether to use http:// or https://"
 msgstr "Zda použít http:// nebo https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1748
-#, fuzzy
 msgid "Extra pages"
-msgstr "Extrémě velký"
+msgstr "Dodatečné stránky"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1751
-#, fuzzy
 msgid "Extra page name"
-msgstr "Extrémě velký"
+msgstr "Název dodatečné stránky"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1754
 msgid "Your extra page name like it is shown in the menubar"
@@ -37031,7 +37054,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1759
 msgid "Your extra page path"
-msgstr ""
+msgstr "Cesta k vaší dodatečné stránce"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1762
 msgid "Your extra page path without extension"
@@ -37060,6 +37083,7 @@ msgstr "Třídit odkazy na místa podle data nebo jména"
 #: ../gramps/plugins/webreport/narrativeweb.py:1796
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
+"Třídit odkazy na místa podle data nebo jména. Nenastaveno znamená podle data."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1800
 msgid "Graph generations"
@@ -37196,6 +37220,13 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1891
 msgid "Max width of initial image"
 msgstr "Maximální šířka výchozího obrázku"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Umožní vám nastavit maximální šířku obrázku zobrazeného na stránce média."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
@@ -38112,6 +38143,15 @@ msgstr "Žádná šablona"
 #~ msgstr "Může pomoci vyřešit problémy s písmy."
 
 #~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Pro pokračování musíte nejdříve vybrat 'výchozí osobu'. Zvolte Pohled "
+#~ "osoby, vyberte osobu kterou chcete mít jako výchozí, poté potvrďte volbu "
+#~ "prostřednictvím nabídky Upravit -> Nastavit výchozí osobu."
+
+#~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
@@ -38170,6 +38210,10 @@ msgstr "Žádná šablona"
 
 #~ msgid "Home Person"
 #~ msgstr "Výchozí osoba"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Vyhovuje výchozí osoba"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Ohraničit žijící ženy"
@@ -41091,6 +41135,9 @@ msgstr "Žádná šablona"
 #~ msgid "Right-click to the right of the tab to add a gramplet."
 #~ msgstr "Pravým tlačítkem myši na záložce přidejte gramplety."
 
+#~ msgid "You need to set a 'Home Person' to go to."
+#~ msgstr "Musíte zvolit výchozí osobu"
+
 #~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Musíte zvolit výchozí osobu"
 
@@ -41544,3 +41591,4 @@ msgstr "Žádná šablona"
 
 #~ msgid "Password:"
 #~ msgstr "Heslo:"
+

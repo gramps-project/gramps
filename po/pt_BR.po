@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 11:43+1100\n"
 "PO-Revision-Date: 2019-11-15 08:08-0300\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "Last-Translator: Paulo Henrique Paiva de Moraes <paulohpmoraes@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -5718,6 +5718,15 @@ msgid ""
 msgstr ""
 "Localiza os ascendentes de pessoas que estão na lista de marcadores com até N "
 "gerações de distância"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Ascendentes da pessoa predefinida com até <N> gerações de distância"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Localiza os ascendentes da pessoa predefinida com até N gerações de distância"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11879,6 +11888,11 @@ msgid "Place format (auto place title)"
 msgstr "Formato de lugar (título automático)"
 
 #: ../gramps/gui/configure.py:1243
+#, fuzzy
+msgid "Enables automatic place title generation using specified format."
+msgstr "Ativar a geração automática de títulos lugar"
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 "Ativa a geração automática de títulos lugar utilizando um formato "
@@ -12073,6 +12087,12 @@ msgstr "Adicionar fonte padrão na importação de GEDCOM"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Adicionar etiqueta na importação"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19811,6 +19831,17 @@ msgstr "Um marcador não pode ser definido porque nenhum deles foi selecionado."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Não foi definida uma pessoa inicial"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Você precisa de uma \"pessoa predefinida\" para a qual deseja ir. Selecione "
+"a visualização de pessoas, selecione a pessoa que você quer que seja a "
+"\"pessoa inicial\", então confirme a sua escolha por meio do menu Editar -"
+">Definir pessoa inicial."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30164,6 +30195,17 @@ msgstr "_Definir a pessoa inicial"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Ir para a pessoa inicial"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Ir para a pessoa inicial"
 
@@ -30771,6 +30813,23 @@ msgstr "Selecionar o diretório do cache dos pedaços para o modo offline"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Não foi possível criar a pasta de cache de pedaços %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -37581,6 +37640,15 @@ msgid "Max width of initial image"
 msgstr "Largura máxima da imagem inicial"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Permite-lhe definir a largura máxima da imagem mostrada na página de objetos "
+"de mídia. Defina como 0 para largura ilimitada."
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -38546,8 +38614,13 @@ msgstr "Sem folha de estilo"
 #~ msgid "Family Divorced"
 #~ msgstr "Família divorciada"
 
-#~ msgid "Home Person"
-#~ msgstr "Pessoa inicial"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Pessoa predefinida"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Coincide com a pessoa predefinida"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Borda para sexo feminino ainda vivo"
@@ -38594,6 +38667,16 @@ msgstr "Sem folha de estilo"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Você precisa de uma \"pessoa predefinida\" para a qual deseja ir. "
+#~ "Selecione a visualização de pessoas, selecione a pessoa que você quer que "
+#~ "seja a \"pessoa inicial\", então confirme a sua escolha por meio do menu "
+#~ "Editar ->Definir pessoa inicial."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -40944,3 +41027,4 @@ msgstr "Sem folha de estilo"
 #, fuzzy
 #~ msgid "window1"
 #~ msgstr "Janela principal"
+

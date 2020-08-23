@@ -1250,20 +1250,14 @@ class GedcomWriter(UpdateCallback):
         if start != Date.EMPTY:
             cal = date.get_calendar()
             mod = date.get_modifier()
-            quality = date.get_quality()
-            if quality in libgedcom.DATE_QUALITY:
-                qual_text = libgedcom.DATE_QUALITY[quality] + " "
-            else:
-                qual_text = ""
+            quality = None if mod else date.get_quality()
             if mod == Date.MOD_SPAN:
-                val = "%sFROM %s TO %s" % (
-                    qual_text,
+                val = "FROM %s TO %s" % (
                     libgedcom.make_gedcom_date(start, cal, mod, None),
                     libgedcom.make_gedcom_date(date.get_stop_date(),
                                                cal, mod, None))
             elif mod == Date.MOD_RANGE:
-                val = "%sBET %s AND %s" % (
-                    qual_text,
+                val = "BET %s AND %s" % (
                     libgedcom.make_gedcom_date(start, cal, mod, None),
                     libgedcom.make_gedcom_date(date.get_stop_date(),
                                                cal, mod, None))
@@ -1559,7 +1553,7 @@ class GedcomWriter(UpdateCallback):
         @type addr: [a super-type of] LocationBase
         """
         if addr.get_street() or addr.get_locality() or addr.get_city() or \
-           addr.get_state() or addr.get_postal_code or addr.get_country():
+           addr.get_state() or addr.get_postal_code() or addr.get_country():
             self._writeln(level, 'ADDR', addr.get_street())
             if addr.get_locality():
                 self._writeln(level + 1, 'CONT', addr.get_locality())

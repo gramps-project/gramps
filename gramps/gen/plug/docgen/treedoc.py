@@ -302,7 +302,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         name = paper_size.get_name().lower()
         if name == 'custom size':
             width = str(paper_size.get_width())
-            height = str(paper_size.get_width())
+            height = str(paper_size.get_height())
             paper = 'papersize={%scm,%scm}' % (width, height)
         elif name in ('a', 'b', 'c', 'd', 'e'):
             paper = 'ansi' + name + 'paper'
@@ -519,6 +519,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
             date_str = date_str + '/' + stop_date
 
         place = escape(_pd.display_event(db, event))
+        place = place.replace("-", "\--")
 
         if modifier:
             event_type += '+'

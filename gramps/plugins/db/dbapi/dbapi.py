@@ -232,6 +232,10 @@ class DBAPI(DbGeneric):
         _LOG.debug("    %sDBAPI %s transaction begin for '%s'",
                    "Batch " if transaction.batch else "",
                    hex(id(self)), transaction.get_description())
+        if transaction.batch:
+            # A batch transaction does not store the commits
+            # Aborting the session completely will become impossible.
+            self.abort_possible = False
         self.transaction = transaction
         self.dbapi.begin()
         return transaction

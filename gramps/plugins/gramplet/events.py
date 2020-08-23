@@ -32,6 +32,7 @@ from gi.repository import Gtk
 from gramps.gui.editors import EditEvent
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
+from gramps.gen.lib import (EventType, Date)
 from gramps.gen.plug.report.utils import find_spouse
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.display.place import displayer as place_displayer
@@ -131,7 +132,12 @@ class Events(Gramplet, DbGUIElement):
         date = event.get_date_object()
         start_date = self.cached_start_date
         if date and start_date:
-            return (date - start_date).format(precision=age_precision)
+            if (date == start_date and date.modifier == Date.MOD_NONE
+                    and not (event.get_type().is_death_fallback() or
+                             event.get_type() == EventType.DEATH)):
+                return ""
+            else:
+                return (date - start_date).format(precision=age_precision)
         else:
             return ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2018-07-13 14:34+0800\n"
 "Last-Translator: detran <trande@gmail.com>\n"
 "Language-Team: VIETNAMESE <trande@gmail.com>\n"
@@ -5563,6 +5563,14 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr "So tổ tiên của người trên danh sách đánh dấu không hơn N thế hệ "
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Tổ tiên của người mặc định không hơn <N> thế hệ "
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "So tổ tiên người mặc định không hơn N thế hệ "
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11744,6 +11752,11 @@ msgstr "Địa điểm khớp với tiêu đề"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
+msgid "Enables automatic place title generation using specified format."
+msgstr "Cho phép tạo tên địa điểm tự động"
+
+#: ../gramps/gui/configure.py:1243
+#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
 msgstr "Cho phép tạo tên địa điểm tự động"
 
@@ -11934,6 +11947,12 @@ msgstr "Thêm nguồn mặc định khi nhập GEDCOM"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Thêm thẻ k hi nhập"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19606,6 +19625,16 @@ msgstr "Chưa đặt người chính"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Bạn cần đặt một 'người mặc định' để tiếp tục. Hãy chọn mục Hiện Người, chọn "
+"một người bạn muốn làm 'người cơ sở', rồi xác nhận việc chọn này qua menu "
+"Chỉnh sửa -> Chọn người cơ sở."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -25336,7 +25365,7 @@ msgid ""
 "Enable/Disable\n"
 "Child import."
 msgstr ""
-"Kích hoạt\vô hiệu\n"
+"Kích hoạt/Vô hiệu\n"
 "Nhập con cái."
 
 #: ../gramps/plugins/importer/importprogen.glade:1330
@@ -29912,6 +29941,17 @@ msgstr "Đặt người gốc "
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Đi đến người mặc định "
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Đi đến người mặc định "
 
@@ -30517,6 +30557,23 @@ msgstr "Chọn lớp ở thư mục bộ đệm cho trạng thái ngoại tuyế
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Không thể tạo tu mục nhớ tạm tile %s "
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -36668,6 +36725,15 @@ msgstr "Nhà thờ "
 msgid "Locations"
 msgstr "Địa điểm"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Màu nền"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -37193,6 +37259,15 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "Chiều rộng tối đa của hình "
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Nó cho phép bạn ấn định chiều ngang tối đa hiện trên trang đa phương tiện. "
+"Đặt là 0 sẽ không giới hạn. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -38158,9 +38233,13 @@ msgstr "Không có style sheet "
 #~ msgid "Family Divorced"
 #~ msgstr "Nguồn gia đình "
 
-#, fuzzy
-#~ msgid "Home Person"
-#~ msgstr "Chưa đặt người chính"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Người mặc định "
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Khớp với người mặc định "
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Nữ biên giới còn sống"
@@ -38212,6 +38291,15 @@ msgstr "Không có style sheet "
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Bạn cần đặt một 'người mặc định' để tiếp tục. Hãy chọn mục Hiện Người, "
+#~ "chọn một người bạn muốn làm 'người cơ sở', rồi xác nhận việc chọn này qua "
+#~ "menu Chỉnh sửa -> Chọn người cơ sở."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -41474,3 +41562,4 @@ msgstr "Không có style sheet "
 #~ "cắm chạy để có thêm thông tin.\n"
 #~ "Dùng https://gramps-project.org/bugs/ để báo lỗi cho hiển thị chính thức, "
 #~ "hoặc liênhệ tác giả hiển thị (%(firstauthoremail)s). "
+

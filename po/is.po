@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2018-06-30 13:51+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
@@ -5474,6 +5474,15 @@ msgid ""
 msgstr ""
 "Samsvarar forfeðrum einstaklinga á bókamerkjalista ekki meira en N kynslóðir "
 "frá"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Afkomendur sjálfgefins einstaklings ekki meira en <N> kynslóðir frá"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Samsvarar forfeðrum sjálfgefins einstaklings ekki meira en N kynslóðir frá"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11646,6 +11655,11 @@ msgstr "Staðir samsvarandi titli"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
+msgid "Enables automatic place title generation using specified format."
+msgstr "Virkja sjálfvirka gerð titla fyrir staði"
+
+#: ../gramps/gui/configure.py:1243
+#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
 msgstr "Virkja sjálfvirka gerð titla fyrir staði"
 
@@ -11835,6 +11849,12 @@ msgstr "Bæta við tilvísun í upprunaskrá þegar flutt er inn GEDCOM"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Bæta við merki við innflutning"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19286,6 +19306,17 @@ msgstr "Ekki var hægt að setja bókamerki því ekkert var valið."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Enginn upphafseinstaklingur"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Þú verður að setja einhvern einstakling sem 'sjálfgefinn' til að ganga út "
+"frá. Veldu einstaklingasýnina, veldu þann sem þú vilt að sé þessi "
+"'upphafseinstaklingur', síðan þarftu að staðfesta þetta val með því að fara "
+"í valmyndina Breyta ->Setilla upphafseinstakling."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -29320,6 +29351,17 @@ msgstr "Stilla upphafseinstakling"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Fara á sjálfgefinn einstakling"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Fara á sjálfgefinn einstakling"
 
@@ -29929,6 +29971,23 @@ msgstr "Veldu möppu undir skyndiminni kortaflísa fyrir ónettengda notkun"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Get ekki búið til skyndiminnismöppuna %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -36016,6 +36075,15 @@ msgstr "Kirkjusókn"
 msgid "Locations"
 msgstr "Staðsetningar"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Bakgrunnur"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -36524,6 +36592,12 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "Hámarksbreidd myndar í upphafi"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -37476,9 +37550,13 @@ msgstr "Ekkert stílblað"
 #~ msgid "Family Divorced"
 #~ msgstr "Ættartala"
 
-#, fuzzy
-#~ msgid "Home Person"
-#~ msgstr "Enginn upphafseinstaklingur"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Sjálfgefinn einstaklingur"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Samsvarar sjálfgefnum upphafseinstaklingi"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Rammi lifandi kvenmanns"
@@ -37526,6 +37604,16 @@ msgstr "Ekkert stílblað"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Þú verður að setja einhvern einstakling sem 'sjálfgefinn' til að ganga út "
+#~ "frá. Veldu einstaklingasýnina, veldu þann sem þú vilt að sé þessi "
+#~ "'upphafseinstaklingur', síðan þarftu að staðfesta þetta val með því að "
+#~ "fara í valmyndina Breyta ->Setilla upphafseinstakling."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -38254,3 +38342,4 @@ msgstr "Ekkert stílblað"
 
 #~ msgid "Adding children"
 #~ msgstr "Bæta við börnum"
+

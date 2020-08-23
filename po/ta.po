@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2013-04-02 11:54+0000\n"
 "Last-Translator: முரளி (murali) (Logan M) <vmmlog@gmail.com>\n"
 "Language-Team: Tamil <ta@li.org>\n"
@@ -5257,6 +5257,16 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr "குறிப்பிட்ட நபரின் N தலைமுறைகளுக்கு கீழில்லாத வழித்தோன்றல்களுடன் பொருந்துகிறது"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+#, fuzzy
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "<N> தலைமுறைகளுக்கு கீழில்லாத <person> இன் வழித்தோன்றல்கள்"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+#, fuzzy
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "<N> தலைமுறைகளுக்கு கீழில்லாத <person> இன் வழித்தோன்றல்கள்"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 #, fuzzy
@@ -11547,6 +11557,10 @@ msgid "Place format (auto place title)"
 msgstr "<filter>க்கு பொருந்தும் நபர்கள்"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 
@@ -11732,6 +11746,12 @@ msgstr ""
 #, fuzzy
 msgid "Add tag on import"
 msgstr "புதிய வடிப்பியை சேர்"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19353,6 +19373,13 @@ msgstr ""
 #, fuzzy
 msgid "No Home Person"
 msgstr "புதிய நபர்"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -29376,6 +29403,18 @@ msgstr "நடுவில் உள்ள நபர்"
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
 #, fuzzy
+msgid "Go to the home person"
+msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
+#, fuzzy
 msgid "Go to the default person"
 msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
 
@@ -29986,6 +30025,23 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/osmgps.py:138
 #, python-format
 msgid "Can't create tiles cache directory %s"
+msgstr ""
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
@@ -36276,6 +36332,14 @@ msgstr ""
 msgid "Locations"
 msgstr "இருப்பிடத் திருத்தி"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+msgid "around"
+msgstr ""
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -36787,6 +36851,12 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
@@ -37712,9 +37782,13 @@ msgstr ""
 #~ msgid "Family Divorced"
 #~ msgstr "குடும்ப நிகழ்வு:"
 
-#, fuzzy
-#~ msgid "Home Person"
-#~ msgstr "புதிய நபர்"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "இயல்பிருப்பு நபர்"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
 
 #, fuzzy
 #~ msgid "Border Female Dead"
@@ -38261,3 +38335,4 @@ msgstr ""
 
 #~ msgid "<b>Values</b>"
 #~ msgstr "<b>மதிப்புகள்</b>"
+

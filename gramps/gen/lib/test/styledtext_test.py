@@ -64,11 +64,11 @@ class Test1(unittest.TestCase):
         C = self.C.join([self.A, self.S, deepcopy(self.B)])
         C = C.replace('X', StyledText('_', [self.T3]))
         _C = ('123_456\ncleartext\nabc_def',
-              [((1, ''), 'v1', [(0, 2), (2, 3)]),
-               ((0, ''), 'v3', [(3, 4)]),
+              [((0, ''), 'v3', [(3, 4)]),
+               ((0, ''), 'v3', [(21, 22)]),
+               ((1, ''), 'v1', [(0, 2), (2, 3)]),
                ((1, ''), 'v1', [(4, 6)]),
                ((2, ''), 'v2', [(19, 21), (18, 21)]),
-               ((0, ''), 'v3', [(21, 22)]),
                ((2, ''), 'v2', [(22, 23), (22, 25)])])
         self.assertEqual(C.serialize(), _C)
 

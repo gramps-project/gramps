@@ -3222,6 +3222,7 @@ class GedcomParser(UpdateCallback):
                         make_unknown(gramps_id, self.explanation.handle,
                                      class_func, commit_func, self.trans,
                                      db=self.dbase)
+                        self.missing_references += 1
                         self.__add_msg(_("Error: %(msg)s  '%(gramps_id)s'"
                                          " (input as @%(xref)s@) not in input"
                                          " GEDCOM. Record synthesised") %
@@ -7775,7 +7776,8 @@ class GedcomParser(UpdateCallback):
             # have got deleted by Chack and repair because the record is empty.
             # If we find the source record, the title is overwritten in
             # __source_title.
-            src.set_title(line.data)
+            if not src.title:
+                src.set_title(line.data)
         self.dbase.commit_source(src, self.trans)
         self.__parse_source_reference(citation, level, src.handle, state)
         citation.set_reference_handle(src.handle)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2017-07-26 01:50+0300\n"
 "Last-Translator: Tadas Masiulionis <tadzikaz@gmail.com>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -5603,6 +5603,14 @@ msgid ""
 msgstr ""
 "Tai asmenys, kurie yra žymelių sąraše esančių asmenų protėviai, bet nutolę "
 "ne daugiau kaip N kartų"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Pagrindinio asmens protėviai, bet iki <N> kartos"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "Tai pagrindinio asmens protėviai, kurie nutolę ne daugiau kaip N kartų"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11821,6 +11829,11 @@ msgstr "Vietovės atitinkančios pavadinimą"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
+msgid "Enables automatic place title generation using specified format."
+msgstr "Leisti automatiškai sukurti vietos pavadinimą"
+
+#: ../gramps/gui/configure.py:1243
+#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
 msgstr "Leisti automatiškai sukurti vietos pavadinimą"
 
@@ -12012,6 +12025,12 @@ msgstr "Įkeliant GEDCOM rinkmeną, pridėti numatytą šaltinį"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Įkeliant pridėti gairę"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19724,6 +19743,17 @@ msgstr "Žymė negali būti uždėta, nes nieko nėra pažymėta."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Nepasirinktas pagrindinis asmuo"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Reikia nustatyti \"numatytąjį asmenį\", kad pereiti. Pasirinkite žmonių "
+"peržiūrą, pasirinkite kurį nors asmenį kaip \"Pagrindinis asmuo\", tuomet "
+"patvirtinkite savo pasirinkimą per meniu Taisa -> Nustatyti pagrindinį "
+"asmenį."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30124,6 +30154,17 @@ msgstr "Nustatyti _pagrindinį asmenį"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Nueiti iki asmens pagal nutylėjimą"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Nueiti iki asmens pagal nutylėjimą"
 
@@ -30745,6 +30786,23 @@ msgstr ""
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Nepavyko sukurti žemėlapio dalių saugojimo aplanko %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -37005,6 +37063,15 @@ msgstr "Bažnyčios parapija:"
 msgid "Locations"
 msgstr "Vietos"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Fonas"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -37532,6 +37599,15 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "Maksimalus pradinio paveikslo plotis"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Įgalina nustatyti paveikslo, kuris rodomas garso/vaizdo puslapyje maksimalų "
+"plotį. Be limito - įrašyti 0."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -38515,9 +38591,13 @@ msgstr "Jokio stiliaus"
 #~ msgid "Family Divorced"
 #~ msgstr "Giminės medis"
 
-#, fuzzy
-#~ msgid "Home Person"
-#~ msgstr "Nepasirinktas pagrindinis asmuo"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Pagrindinis asmuo"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Atitinką pagrindinį asmenį"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Moters amžius, kai gyva"
@@ -38570,6 +38650,16 @@ msgstr "Jokio stiliaus"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Reikia nustatyti \"numatytąjį asmenį\", kad pereiti. Pasirinkite žmonių "
+#~ "peržiūrą, pasirinkite kurį nors asmenį kaip \"Pagrindinis asmuo\", tuomet "
+#~ "patvirtinkite savo pasirinkimą per meniu Taisa -> Nustatyti pagrindinį "
+#~ "asmenį."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -41776,3 +41866,4 @@ msgstr "Jokio stiliaus"
 #~ "Tvarkymas.\n"
 #~ "Oficialių vaizdų  klaidas raportuokite  https://gramps-project.org/bugs/, "
 #~ "arba susisiekite su autoriumi  (%(firstauthoremail)s)  kitu atveju. "
+

@@ -535,7 +535,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.undo_history_callback = None
         self.modified = 0
         self.transaction = None
-        self.abort_possible = False
+        self.abort_possible = True
         self._bm_changes = 0
         self.has_changed = 0  # Also gives commits since startup
         self.surname_list = []

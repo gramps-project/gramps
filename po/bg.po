@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2010-03-23 22:00+0200\n"
 "Last-Translator: Boril Gourinov <boril.gourinov@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -5659,6 +5659,18 @@ msgid ""
 msgstr ""
 "Подбира прародители на хората в списъка с отметки, отдалечени на не повече "
 "от N поколения"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr ""
+"Прародители на лицето по подразбиране, отдалечени на не повече от <N> "
+"поколения"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Подбира прародители на лицето по подразбиране, отдалечени на не повече от N "
+"поколения"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -12048,6 +12060,10 @@ msgid "Place format (auto place title)"
 msgstr "Места, отговарящи <филтър>"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 
@@ -12231,6 +12247,12 @@ msgstr "Добавя подразбиращ се източник при вна�
 #, fuzzy
 msgid "Add tag on import"
 msgstr "Добавя подразбиращ се източник при внасяне"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -20048,6 +20070,13 @@ msgstr "Не може да се създаде отметка защото ни�
 #, fuzzy
 msgid "No Home Person"
 msgstr "Не е зададено основно лице."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30563,6 +30592,17 @@ msgstr "Задай _основното лице"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Отиди до лицето по подразбиране"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Отиди до лицето по подразбиране"
 
@@ -31196,6 +31236,23 @@ msgstr "Маркрайте за обръщане на реда на сортир
 #, fuzzy, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Папката не може да бъде създадена: %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -37646,6 +37703,15 @@ msgstr "Църковна енория"
 msgid "Locations"
 msgstr "Местоположение"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Цвят на фона"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -38171,6 +38237,15 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "Максимална ширина на началното изображение"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Позволява да зададете максималната ширина на изображението показвано на "
+"медия страницата. Задайте като 0 за да премахнете лимита."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -39167,9 +39242,13 @@ msgstr "Без стил"
 #~ msgid "Family Divorced"
 #~ msgstr "Родословно дърво"
 
-#, fuzzy
-#~ msgid "Home Person"
-#~ msgstr "Не е зададено основно лице."
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Лице по подразбиране"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Подбира подразбиращото се лице"
 
 #, fuzzy
 #~ msgid "Border Female Dead"
@@ -42398,3 +42477,4 @@ msgstr "Без стил"
 #~ "Използвай https://gramps-project.org/bugs/ за да докладваш грешки за "
 #~ "официалните изгледи или се свържи с автора в противен случай "
 #~ "(%(firstauthoremail)s). "
+

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2013-10-25 11:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: Breton <br@li.org>\n"
@@ -5261,6 +5261,14 @@ msgstr ""
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
@@ -11694,6 +11702,10 @@ msgid "Place format (auto place title)"
 msgstr "Titl & Stad"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 
@@ -11878,6 +11890,12 @@ msgstr ""
 #, fuzzy
 msgid "Add tag on import"
 msgstr "Ouzhpennañ tud"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19774,6 +19792,13 @@ msgstr ""
 #, fuzzy
 msgid "No Home Person"
 msgstr "Nevez den"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30039,6 +30064,17 @@ msgstr "Nevez den"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr ""
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr ""
 
@@ -30662,6 +30698,23 @@ msgstr "N'eo ket possubl da skrivañ er restr: %s"
 #, fuzzy, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "N'eo ket possubl da skrivañ er restr: %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -37057,6 +37110,15 @@ msgstr ""
 msgid "Locations"
 msgstr "Lec'hiadur"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Drekva"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -37579,6 +37641,12 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
@@ -38524,6 +38592,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Home Person"
 #~ msgstr "Nevez den"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Border Female Dead"
@@ -39771,3 +39843,4 @@ msgstr ""
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Bro:"
+

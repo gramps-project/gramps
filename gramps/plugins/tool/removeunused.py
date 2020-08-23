@@ -172,7 +172,11 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                                         GObject.TYPE_STRING,
                                         GObject.TYPE_STRING,
                                         GObject.TYPE_STRING)
-        self.sort_model = self.real_model.sort_new_with_model()
+        # a short term Gtk introspection means we need to try both ways:
+        if hasattr(self.real_model, "sort_new_with_model"):
+            self.sort_model = self.real_model.sort_new_with_model()
+        else:
+            self.sort_model = Gtk.TreeModelSort.new_with_model(self.real_model)
         self.warn_tree.set_model(self.sort_model)
 
         self.renderer = Gtk.CellRendererText()

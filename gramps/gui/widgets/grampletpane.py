@@ -1474,7 +1474,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             plugs.sort(key=lambda x: x.name)
             for plug in plugs:
                 action_name = valid_action_name(plug.id)
-                a_menuitems += menuitem % (action_name, plug.name)
+                a_menuitems += menuitem % (action_name, escape(plug.name))
                 actions.append((action_name,
                                 make_callback(self.add_gramplet, plug.name)))
             names = [gramplet.title for gramplet in self.closed_gramplets]
@@ -1485,7 +1485,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                     # 'name' could be non-ASCII when in non-English language
                     # action names must be in ASCII, so use 'id' instead.
                     action_name = valid_action_name(str(id(name)))
-                    r_menuitems += menuitem % (action_name, name)
+                    r_menuitems += menuitem % (action_name, escape(name))
                     actions.append((action_name,
                                     make_callback(self.restore_gramplet,
                                                   name)))

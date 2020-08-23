@@ -41,9 +41,9 @@ from .. import Rule
 class IsDefaultPerson(Rule):
     """Rule that checks for a default person in the database"""
 
-    name = _('Default person')
+    name = _('Home Person')
     category = _('General filters')
-    description = _("Matches the default person")
+    description = _("Matches the Home Person")
 
     def prepare(self, db, user):
         p = db.get_default_person()

@@ -1525,7 +1525,7 @@ class NavWebReport(Report):
             output_file.close()
         else:
             output_file.close()
-            if date > 0:
+            if date is not None and date > 0:
                 os.utime(output_file.name, (date, date))
 
     def prepare_copy_media(self, photo):
@@ -1766,7 +1766,7 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help(_("The copyright to be used for the web files"))
         addopt("cright", cright)
 
-        self.__css = EnumeratedListOption(('StyleSheet'),
+        self.__css = EnumeratedListOption(_('StyleSheet'),
                                           CSS["Basic-Ash"]["id"])
         for (dummy_fname, gid) in sorted(
                 [(CSS[key]["translation"], CSS[key]["id"])
@@ -1988,7 +1988,7 @@ class NavWebOptions(MenuReportOptions):
             _("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(
             _("This allows you to set the maximum width "
-              "of the image shown on the media page. Set to 0 for no limit."))
+              "of the image shown on the media page."))
         addopt("maxinitialimagewidth", self.__maxinitialimagewidth)
 
         self.__gallery_changed()

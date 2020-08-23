@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2018-07-22 10:52+0200\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: Norsk, bokmål <kde-i18n-doc@kde.org>\n"
@@ -5648,6 +5648,15 @@ msgid ""
 msgstr ""
 "Samsvarer med aner av personer i bokmerkelista, ikke mer en N generasjoner "
 "unna"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Ane av standardpersonen, ikke mer enn <N> generasjoner unna"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Samsvarer med aner av standardpersonen, ikke mer enn N generasjoner unna"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11852,6 +11861,11 @@ msgstr "Steder som Ssmsvarer med tittel"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
+msgid "Enables automatic place title generation using specified format."
+msgstr "Skru på generering av automatiske stedstitler"
+
+#: ../gramps/gui/configure.py:1243
+#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
 msgstr "Skru på generering av automatiske stedstitler"
 
@@ -12042,6 +12056,12 @@ msgstr "Legg til en standard kilde ved import av GEDCOM"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Legg til merking ved import"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19763,6 +19783,15 @@ msgstr "Startperson er ikke valgt"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Du må angi en startperson. Velg personvisningen, velg den personen du vil ha "
+"som startperson og bekreft dette valget i menyen Edit->Angi som startperson."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -27074,7 +27103,7 @@ msgstr "Han døde %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Han døde døde %(death_date)s, i en alder av %(age)s."
+msgstr "Han døde %(death_date)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:311
 #, python-format
@@ -30033,6 +30062,17 @@ msgstr "Angi som startperson"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Gå til standardpersonen"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Gå til standardpersonen"
 
@@ -30655,6 +30695,23 @@ msgstr "velg katalog for mellomlagring for offline-modus"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Kan ikke opprette mellomlagerkatalog for titler %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -36852,6 +36909,15 @@ msgstr "Sogn"
 msgid "Locations"
 msgstr "Plasseringer"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Bakgrunn"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -37378,6 +37444,15 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "Største bredde på startbilde"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Dette gjør det mulig for deg å angi maksimal bredde på bildet som skal vises "
+"på mediasiden. Angi 0 for å ikke sette noen grense."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -38343,8 +38418,13 @@ msgstr "Ingen stilsett"
 #~ msgid "Family Divorced"
 #~ msgstr "Skilt familie"
 
-#~ msgid "Home Person"
-#~ msgstr "Startperson"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Standardperson"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Samsvarer med standardpersonen"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Kant kvinne levende"
@@ -38388,6 +38468,15 @@ msgstr "Ingen stilsett"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Du må angi en startperson. Velg personvisningen, velg den personen du vil "
+#~ "ha som startperson og bekreft dette valget i menyen Edit->Angi som "
+#~ "startperson."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -39384,3 +39473,4 @@ msgstr "Ingen stilsett"
 
 #~ msgid "Extract Place data"
 #~ msgstr "Hent ut stedsdata"
+

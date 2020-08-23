@@ -812,9 +812,12 @@ class ToolManagedWindowBase(ManagedWindow):
         buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT,
                                                        int(event.x),
                                                        int(event.y))
-        iter = view.get_iter_at_location(*buffer_location)
+        _iter = view.get_iter_at_location(*buffer_location)
+        if isinstance(_iter, tuple):  # Gtk changed api in recent versions
+            _iter = _iter[1]
+
         for (tag, person_handle) in self.tags:
-            if iter.has_tag(tag):
+            if _iter.has_tag(tag):
                 _window = view.get_window(Gtk.TextWindowType.TEXT)
                 _window.set_cursor(self.link_cursor)
                 return False # handle event further, if necessary
@@ -825,9 +828,11 @@ class ToolManagedWindowBase(ManagedWindow):
         buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT,
                                                        int(event.x),
                                                        int(event.y))
-        iter = view.get_iter_at_location(*buffer_location)
+        _iter = view.get_iter_at_location(*buffer_location)
+        if isinstance(_iter, tuple):  # Gtk changed api in recent versions
+            _iter = _iter[1]
         for (tag, person_handle) in self.tags:
-            if iter.has_tag(tag):
+            if _iter.has_tag(tag):
                 person = self.db.get_person_from_handle(person_handle)
                 if event.button == 1:
                     if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:

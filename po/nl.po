@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2017-07-24 20:28+0200\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
@@ -5762,6 +5762,17 @@ msgstr ""
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
+msgstr ""
+"Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer "
+"dan N generaties verwijderd"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr ""
+"Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer "
 "dan N generaties verwijderd"
@@ -12122,6 +12133,11 @@ msgstr "Locaties die en bepaalde titel hebben"
 
 #: ../gramps/gui/configure.py:1243
 #, fuzzy
+msgid "Enables automatic place title generation using specified format."
+msgstr "Het automatisch aanmaken van plaatstitel toelaten"
+
+#: ../gramps/gui/configure.py:1243
+#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
 msgstr "Het automatisch aanmaken van plaatstitel toelaten"
 
@@ -12314,6 +12330,12 @@ msgstr "Standaardbron bij het importeren van een GEDCOM-bestand toevoegen"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Tag bij het importeren toevoegen"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -20208,6 +20230,16 @@ msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Geen beginpersoon"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"U dien een 'standaard'-persoon te bepalen. Ga naar de personen categorie, "
+"selecteer een persoon die u als 'basis' wenst en bevestig uw keuze via het "
+"menu Bewerken -> Basispersoon."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30688,6 +30720,19 @@ msgstr "Be_ginpersoon instellen"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Naar de beginpersoon gaan"
+
+# komt overeen met de genoemde filter?
+# Vindt de filter genaamd?
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Naar de beginpersoon gaan"
 
@@ -31321,6 +31366,23 @@ msgstr "In welke map moeten de tegels voor 'offline' gebruik opgeslagen worden"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "De map %s om tegels in op te slaan kon niet aangemaakt worden"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -37693,6 +37755,15 @@ msgstr "Parochie"
 msgid "Locations"
 msgstr "Locaties"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Achtergrond"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -38230,6 +38301,15 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "Max breedte van de eerste afbeelding"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Stel de maximale breedte van een afbeelding voor de mediapagina in. Zet deze "
+"op 0 om geen limiet in te stellen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -39235,9 +39315,15 @@ msgstr "Geen stijlblad"
 #~ msgid "Family Divorced"
 #~ msgstr "Familienamen"
 
-#, fuzzy
-#~ msgid "Home Person"
-#~ msgstr "Geen beginpersoon"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Standaardpersoon"
+
+# komt overeen met de genoemde filter?
+# Vindt de filter genaamd?
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "De standaardpersoon zoeken"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Rand voor vrouwen nog in leven"
@@ -39291,6 +39377,15 @@ msgstr "Geen stijlblad"
 #, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "U dien een 'standaard'-persoon te bepalen. Ga naar de personen categorie, "
+#~ "selecteer een persoon die u als 'basis' wenst en bevestig uw keuze via "
+#~ "het menu Bewerken -> Basispersoon."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
@@ -42189,6 +42284,12 @@ msgstr "Geen stijlblad"
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
 #, fuzzy
+#~ msgid "You need to set a 'Home Person' to go to."
+#~ msgstr "Naar de beginpersoon gaan"
+
+# komt overeen met de genoemde filter?
+# Vindt de filter genaamd?
+#, fuzzy
 #~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Naar de beginpersoon gaan"
 
@@ -43804,3 +43905,4 @@ msgstr "Geen stijlblad"
 #~ "Gebruik https://gramps-project.org/bugs/ om fouten te melden voor de "
 #~ "officiële schermen of anders contacteer de maker van het scherm "
 #~ "(%(firstauthoremail)s). "
+

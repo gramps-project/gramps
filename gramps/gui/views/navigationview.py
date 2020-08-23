@@ -321,7 +321,7 @@ class NavigationView(PageView):
         else:
             from ..dialog import WarningDialog
             WarningDialog(_("No Home Person"),
-                _("You need to set a 'default person' to go to. "
+                _("You need to set a 'Home Person' to go to. "
                   "Select the People View, select the person you want as "
                   "'Home Person', then confirm your choice "
                   "via the menu Edit -> Set Home Person."),
