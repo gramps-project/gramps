@@ -36,7 +36,6 @@ from distutils import log
 from distutils.core import setup, Command
 from distutils.util import convert_path, newer
 from distutils.command.build import build as _build
-from distutils.command.install import install as _install
 import os
 import glob
 import codecs
@@ -60,19 +59,10 @@ if svem_flag in sys.argv:
     # Die, setuptools, die.
     sys.argv.remove(svem_flag)
 
-# check if the resourcepath option is used and store the path
-# this is for packagers that build out of the source tree
-# other options to setup.py are passed through
-resource_path = ''
-packaging = False
 argparser = argparse.ArgumentParser(add_help=False)
-argparser.add_argument("--resourcepath", dest="resource_path")
 argparser.add_argument("--no-compress-manpages", dest="no_compress_manpages",
                        action="store_true")
 args, passthrough = argparser.parse_known_args()
-if args.resource_path:
-    resource_path = args.resource_path
-    packaging = True
 sys.argv = [sys.argv[0]] + passthrough
 
 def intltool_version():
@@ -273,22 +263,6 @@ class build(_build):
         build_intl(self)
         _build.run(self)
 
-class install(_install):
-    """Custom install command."""
-    def run(self):
-        resource_file = os.path.join(os.path.dirname(__file__), 'gramps', 'gen',
-                                     'utils', 'resource-path')
-        with open(resource_file, 'w', encoding='utf-8', errors='strict') as fp:
-            if packaging:
-                path = resource_path
-            else:
-                path = os.path.abspath(os.path.join(self.install_data, 'share'))
-            fp.write(path)
-
-        _install.run(self)
-
-        os.remove(resource_file)
-
 class test(Command):
     """Command to run Gramps unit tests"""
     description = "run all unit tests"
@@ -409,8 +383,6 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.xml')
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.ini')
 
-package_data_core.append('gen/utils/resource-path')
-
 package_data_gui = ['gui/glade/*.glade']
 package_data = package_data_core + package_data_gui
 
@@ -488,7 +460,7 @@ setup(name = 'gramps',
       url = 'http://gramps-project.org',
       license = 'GPL v2 or greater',
       platforms = ['FreeBSD', 'Linux', 'MacOS', 'Windows'],
-      cmdclass = {'build': build, 'install': install, 'test': test},
+      cmdclass = {'build': build, 'test': test},
       packages = packages,
       package_data = {'gramps': package_data},
       data_files = data_files,
