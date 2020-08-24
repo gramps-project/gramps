@@ -258,7 +258,8 @@ class ProgenOptions(ManagedWindow):
 
         # display window if GUI active
         if self.uistate:
-            ManagedWindow.__init__(self, self.uistate, [], self.__class__)
+            ManagedWindow.__init__(self, self.uistate, [], self.__class__,
+                                   modal=True)
             self._display()
 
     def __on_source_button_toggled(self, widget):
@@ -580,6 +581,7 @@ class ProgenOptions(ManagedWindow):
         widget.grab_focus()
 
         # creates a modal window and display immediatly!
+        self.show()
         self.glade.toplevel.run()
 
     def _collect(self):

@@ -62,6 +62,9 @@ class DateParserJA(DateParser):
         'ごろ' : Date.MOD_ABOUT,
         }
 
+    # modifiers after the date
+    modifier_after_to_int = modifier_to_int
+    
     month_to_int = DateParser.month_to_int
 
     quality_to_int = {
@@ -167,11 +170,17 @@ class DateParserJA(DateParser):
         _range_1 = ['から', 'と', '~', '〜']
         _range_2 = ['までの間', 'の間']
 
+        # Temporaily added to cope with that modifiers in japanese are not followed by space.
+        self._modifier = re.compile(r'%s\s*([^ ]+)' % self._mod_str,
+                                    re.IGNORECASE)
+        self._modifier_formatted = re.compile(r'%s\s*([^ ]+)' % self._mod_match_str,
+                                    re.IGNORECASE)
+
         self._qual = re.compile(r"(.*)(%s)\s*(.*)" % self._qual_str,
                                 re.IGNORECASE)
         self._qual_formatted = re.compile(r"(.*)(%s)\s*(.*)" % self._qual_match_str,
                                 re.IGNORECASE)
-        self._span = re.compile(r"(\((.*)\))?(?P<start>.+)(%s)(?P<stop>[^%s]+)(%s)?" %
+        self._span = re.compile(r"(\((.*)\))?(?P<start>.+)(%s)(?P<stop>[^%s]+)(%s)" %
                                 ( '|'.join(_span_1), '|'.join(_span_2), '|'.join(_span_2)),
                                 re.IGNORECASE)
         self._span_from = re.compile(r"(\((.*)\))?(?P<start>.+)(%s)" %
@@ -217,16 +226,16 @@ class DateParserJA(DateParser):
         """
         match = self._qual.match(text)
         if match:
-            m1 = match.group(1)
-            m2 = match.group(2)
-            m3 = match.group(3)
-            m4 = match.group(4)
+            m1 = match.group(1) # FIXME: Remove
+            m2 = match.group(2) # FIXME: Remove
+            m3 = match.group(3) # FIXME: Remove
+            m4 = match.group(4) # FIXME: Remove
             qual = self.quality_to_int[match.group(2).lower()]
             text = match.group(1) + match.group(4)
         else:
             match = self._qual_formatted.match(text)
             if match:
-                m = match.group(2)
+                m = match.group(2) # FIXME: Remove
                 qual = self._ds.qualifiers[1:].index(match.group(2)) + 1
                 text = match.group(1) + match.group(4)
         return (text, qual)

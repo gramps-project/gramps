@@ -38,7 +38,7 @@ from gramps.gen.lib import EventType, NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
 from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab,
-                         EventBackRefList, AttrEmbedList)
+                         EventBackRefList, EventAttrEmbedList)
 from ..widgets import (PrivacyButton, MonitoredEntry,
                      MonitoredDate, MonitoredDataType, MonitoredTagList)
 from .editreference import RefTab, EditReference
@@ -210,10 +210,10 @@ class EditEventRef(EditReference):
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
-        self.attr_list = AttrEmbedList(self.dbstate,
-                                       self.uistate,
-                                       self.track,
-                                       self.source.get_attribute_list())
+        self.attr_list = EventAttrEmbedList(self.dbstate,
+                                            self.uistate,
+                                            self.track,
+                                            self.source.get_attribute_list())
         self._add_tab(notebook, self.attr_list)
         self.track_ref_for_deletion("attr_list")
 
@@ -248,10 +248,11 @@ class EditEventRef(EditReference):
         self._add_tab(notebook, self.backref_tab)
         self.track_ref_for_deletion("backref_tab")
 
-        self.attr_ref_list = AttrEmbedList(self.dbstate,
-                                           self.uistate,
-                                           self.track,
-                                           self.source_ref.get_attribute_list())
+        self.attr_ref_list = EventAttrEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_attribute_list())
         self._add_tab(notebook_ref, self.attr_ref_list)
         self.track_ref_for_deletion("attr_ref_list")
 

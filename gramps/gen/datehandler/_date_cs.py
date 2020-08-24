@@ -57,8 +57,12 @@ class DateParserCZ(DateParser):
     }
 
     quality_to_int = {
-        'odhadem'     : Date.QUAL_ESTIMATED,
-        'vypočteno'   : Date.QUAL_CALCULATED,
+        'přibližně'  : Date.QUAL_ESTIMATED,
+        'odhadem'    : Date.QUAL_ESTIMATED,
+        'odh.'       : Date.QUAL_ESTIMATED,
+        'vypočteno'  : Date.QUAL_CALCULATED,
+        'vypočtené'  : Date.QUAL_CALCULATED,
+        'vyp.'       : Date.QUAL_CALCULATED,
     }
 
     bce = ["před naším letopočtem", "před Kristem",
@@ -72,6 +76,8 @@ class DateParserCZ(DateParser):
     def init_strings(self):
         """ Define span and range regular expressions"""
         DateParser.init_strings(self)
+        self._text2 = re.compile(r'(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
+                                 % self._mon_str, re.IGNORECASE)
         _span_1 = ['od']
         _span_2 = ['do']
         _range_1 = ['mezi']

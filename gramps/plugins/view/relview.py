@@ -466,7 +466,7 @@ class RelationshipView(NavigationView):
         <property name="icon-name">go-home</property>
         <property name="action-name">win.HomePerson</property>
         <property name="tooltip_text" translatable="yes">'''
-        '''Go to the default person</property>
+        '''Go to the home person</property>
         <property name="label" translatable="yes">_Home</property>
         <property name="use-underline">True</property>
       </object>

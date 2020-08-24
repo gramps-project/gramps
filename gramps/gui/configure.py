@@ -1241,7 +1241,7 @@ class GrampsPreferences(ConfigureDialog):
             row, 'preferences.place-auto', start=0, stop=1,
             extra_callback=self.auto_title_changed,
             tooltip=_("Enables automatic place title generation "
-                      "using specifed format."))
+                      "using specified format."))
         self.auto_title_changed(cb_widget)
         hbox.pack_start(self.pformat, True, True, 0)
         hbox.pack_start(self.fmt_btn, False, False, 0)
@@ -1573,7 +1573,7 @@ class GrampsPreferences(ConfigureDialog):
         self.add_checkbox(grid, _('Add tag on import'), current_line,
                           cb_const, stop=2,
                           extra_callback=self.toggle_tag_on_import,
-                          tooltip=_("Specifed tag will be added on import.\n"
+                          tooltip=_("Specified tag will be added on import.\n"
                                     "Clear to set default value."))
         grid.attach(self.tag_format_entry, 2, current_line, 1, 1)
 

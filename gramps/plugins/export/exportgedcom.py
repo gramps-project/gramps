@@ -1246,34 +1246,18 @@ class GedcomWriter(UpdateCallback):
         expected format.
         """
         self._datewritten = True
-        cal = date.get_calendar()
         start = date.get_start_date()
-        quality = date.get_quality()
-        if quality in libgedcom.DATE_QUALITY:
-            qual_text = libgedcom.DATE_QUALITY[quality] + " "
-        else:
-            qual_text = ""
-        mod = date.get_modifier()
-        if mod == Date.MOD_SPAN:
-            stop = date.get_stop_date()
-            if start == Date.EMPTY:
-                val = "%sTO %s" % (
-                    qual_text,
-                    libgedcom.make_gedcom_date(stop, cal, mod, None))
-            elif stop == Date.EMPTY:
-                val = "%sFROM %s" % (
-                    qual_text,
-                    libgedcom.make_gedcom_date(start, cal, mod, None))
-            else:    
-                val = "%sFROM %s TO %s" % (
-                    qual_text,
+        if start != Date.EMPTY:
+            cal = date.get_calendar()
+            mod = date.get_modifier()
+            quality = None if mod else date.get_quality()
+            if mod == Date.MOD_SPAN:
+                val = "FROM %s TO %s" % (
                     libgedcom.make_gedcom_date(start, cal, mod, None),
-                    libgedcom.make_gedcom_date(stop, cal, mod, None))
-            self._writeln(level, 'DATE', val)
-        elif start != Date.EMPTY:
-            if mod == Date.MOD_RANGE:
-                val = "%sBET %s AND %s" % (
-                    qual_text,
+                    libgedcom.make_gedcom_date(date.get_stop_date(),
+                                               cal, mod, None))
+            elif mod == Date.MOD_RANGE:
+                val = "BET %s AND %s" % (
                     libgedcom.make_gedcom_date(start, cal, mod, None),
                     libgedcom.make_gedcom_date(date.get_stop_date(),
                                                cal, mod, None))
@@ -1569,7 +1553,7 @@ class GedcomWriter(UpdateCallback):
         @type addr: [a super-type of] LocationBase
         """
         if addr.get_street() or addr.get_locality() or addr.get_city() or \
-           addr.get_state() or addr.get_postal_code or addr.get_country():
+           addr.get_state() or addr.get_postal_code() or addr.get_country():
             self._writeln(level, 'ADDR', addr.get_street())
             if addr.get_locality():
                 self._writeln(level + 1, 'CONT', addr.get_locality())

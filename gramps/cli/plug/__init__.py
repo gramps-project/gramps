@@ -519,8 +519,8 @@ class CommandLineReport:
                         self.format = tree_format["class"]
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = tree_format.FORMATS[0]["class"]
-                _chosen_format = tree_format.FORMATS[0]["type"]
+                self.format = treedoc.FORMATS[0]["class"]
+                _chosen_format = treedoc.FORMATS[0]["type"]
         else:
             self.format = None
         if _chosen_format and _format_str:

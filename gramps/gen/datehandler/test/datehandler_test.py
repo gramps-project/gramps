@@ -268,7 +268,7 @@ class DateHandlerTest(unittest.TestCase):
                 new_date = parser.parse(datestr)
                 try:
                     self.assertTrue(test_date.is_equal(new_date),
-                                    "language: {}, parser: {}, displayer: {}, dates: {} -> {}\n{} -> {}".format(
+                                    "language: {}, parser: {}, displayer: {}, dates: {} -> {}, date details: {} -> {}".format(
                                         language,
                                         parser.__class__.__name__,
                                         displayer.__class__.__name__,

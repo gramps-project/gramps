@@ -130,7 +130,8 @@ class EventModel(FlatBaseModel):
         handle = data[0]
         cached, value = self.get_cached_value(handle, "PARTICIPANT")
         if not cached:
-            value = get_participant_from_event(self.db, data[COLUMN_HANDLE])
+            value = get_participant_from_event(self.db, data[COLUMN_HANDLE],
+                                               all_=True) # all participants
             self.set_cached_value(handle, "PARTICIPANT", value)
         return value
 

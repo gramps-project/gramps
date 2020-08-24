@@ -145,7 +145,7 @@ sys.path.insert(0, ROOT_DIR)
 git_revision = get_git_revision(ROOT_DIR).replace('\n', '')
 if sys.platform == 'win32' and git_revision == "":
     git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
-VERSION += git_revision
+#VERSION += git_revision
 #VERSION += "-1"
 
 #
@@ -225,7 +225,7 @@ GTK_GETTEXT_DOMAIN = 'gtk30'
 #
 #-------------------------------------------------------------------------
 COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" \
-                "© 2007-2019 The Gramps Developers"
+                "© 2007-2020 The Gramps Developers"
 COMMENTS = _("Gramps\n (Genealogical Research and Analysis "
              "Management Programming System)\n"
              "is a personal genealogy program.")

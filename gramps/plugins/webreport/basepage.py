@@ -60,7 +60,6 @@ import logging
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person,
                             UrlType, Name, PlaceType, EventRoleType,
-                            Source, Attribute, Media, Repository, Event,
                             Family, Citation, Place, Date)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
@@ -131,8 +130,6 @@ class BasePage: # pylint: disable=C1001
         self.create_media = report.options['gallery']
         self.create_unused_media = report.options['unused']
         self.create_thumbs_only = report.options['create_thumbs_only']
-        self.create_images_index = report.options['create_images_index']
-        self.create_thumbs_index = report.options['create_thumbs_index']
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
         self.usecms = report.options['usecms']
@@ -354,9 +351,10 @@ class BasePage: # pylint: disable=C1001
         if family_events:
             trow = Html("tr") + (
                 Html("td", "&nbsp;", class_="ColumnType", inline=True),
+                Html("td", "&nbsp;", class_="ColumnAttribute", inline=True),
                 Html("td", self.format_family_events(family_events,
                                                      place_lat_long),
-                     class_="ColumnValue", colspan=2)
+                     class_="ColumnValue")
             )
             table = trow
 
@@ -379,13 +377,13 @@ class BasePage: # pylint: disable=C1001
         childlist = family.get_child_ref_list()
         if childlist:
             trow = Html("tr") + (
+                Html("td", "&nbsp;", class_="ColumnType", inline=True),
                 Html("td", self._("Children"), class_="ColumnAttribute",
                      inline=True)
             )
             table = table + trow if table is not None else trow
 
-            tcell = Html("td", class_="ColumnValue Child", close=False,
-                         colspan=2)
+            tcell = Html("td", class_="ColumnValue", close=False)
             trow += tcell
 
             with Html("table", class_="infolist eventlist") as table2:
@@ -519,8 +517,7 @@ class BasePage: # pylint: disable=C1001
             for (data, colclass) in [
                 (str(attr.get_type()), "ColumnType"),
                 (attr.get_value(), "ColumnValue"),
-                (self.dump_notes(attr.get_note_list(), Attribute),
-                 "ColumnNotes"),
+                (self.dump_notes(attr.get_note_list()), "ColumnNotes"),
                 (self.get_citation_links(attr.get_citation_list()),
                  "ColumnSources")
             ]
@@ -613,7 +610,7 @@ class BasePage: # pylint: disable=C1001
                 htmllist.extend(Html('p') + linelist)
         return htmllist
 
-    def dump_notes(self, notelist, parent=None):
+    def dump_notes(self, notelist):
         """
         dump out of list of notes with very little elements of its own
 
@@ -624,24 +621,11 @@ class BasePage: # pylint: disable=C1001
 
         # begin unordered list
         notesection = Html("div")
-        idx = 0
         for notehandle in notelist:
             this_note = self.r_db.get_note_from_handle(notehandle)
-            title = self._(this_note.type.xml_str())
             if this_note is not None:
-                idx += 1
-                if len(notelist) > 1:
-                    if self.default_note(parent, int(this_note.type)):
-                        title_text = self._("Note: %s") % str(idx)
-                    else:
-                        title = " (" + title + ")"
-                        title_text = self._("Note: %s") % str(idx) + title
-                else:
-                    if self.default_note(parent, int(this_note.type)):
-                        title_text = self._("Note")
-                    else:
-                        title_text = title
-                notesection.extend(Html("i", title_text, class_="NoteType"))
+                notesection.extend(Html("i", self._(this_note.type.xml_str()),
+                                        class_="NoteType"))
                 notesection.extend(self.get_note_format(this_note, True))
         return notesection
 
@@ -698,7 +682,7 @@ class BasePage: # pylint: disable=C1001
                                       etype,
                                       event_gid,
                                       uplink) if hyperlink else etype
-        trow += Html("td", event_hyper, class_="ColumnEvent", rowspan=2)
+        trow += Html("td", event_hyper, class_="ColumnEvent")
 
         # get event data
         event_data = self.get_event_data(event, event_ref, uplink)
@@ -710,6 +694,7 @@ class BasePage: # pylint: disable=C1001
         )
 
         trow2 = Html("tr")
+        trow2 += Html("td", "", class_="ColumnEvent")
         # get event source references
         srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
@@ -718,7 +703,7 @@ class BasePage: # pylint: disable=C1001
         notelist = event.get_note_list()[:]  # we don't want to modify
                                              # cached original
         notelist.extend(event_ref.get_note_list())
-        htmllist = self.dump_notes(notelist, Event)
+        htmllist = self.dump_notes(notelist)
 
         # if the event or event reference has an attribute attached to it,
         # get the text and format it correctly?
@@ -735,7 +720,7 @@ class BasePage: # pylint: disable=C1001
             #also output notes attached to the attributes
             notelist = attr.get_note_list()
             if notelist:
-                htmllist.extend(self.dump_notes(notelist, Event))
+                htmllist.extend(self.dump_notes(notelist))
 
         trow2 += Html("td", htmllist, class_="ColumnNotes", colspan=3)
 
@@ -757,7 +742,7 @@ class BasePage: # pylint: disable=C1001
         event_date = event.get_date_object()
 
         # 0 = latitude, 1 = longitude, 2 - placetitle,
-        # 3 = place handle, 4 = event
+        # 3 = place handle, 4 = event date, 5 = event type
         found = any(data[3] == place_handle and data[4] == event_date
                     for data in place_lat_long)
         if not found:
@@ -767,8 +752,9 @@ class BasePage: # pylint: disable=C1001
             if latitude and longitude:
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
+                    etype = event.get_type()
                     place_lat_long.append([latitude, longitude, placetitle,
-                                           place_handle, event])
+                                           place_handle, event_date, etype])
 
     def _get_event_place(self, person, place_lat_long):
         """
@@ -1402,9 +1388,9 @@ class BasePage: # pylint: disable=C1001
             del page[0]
 
         # Header constants
-        _meta1 = 'name ="viewport" content="width=device-width, '
-        _meta1 += 'height=device-height, initial-scale=1.0, '
-        _meta1 += 'minimum-scale=0.5, maximum-scale=10.0, user-scalable=yes"'
+        _meta1 = 'name ="viewport" content="width=device-width; '
+        _meta1 += 'height=device-height; initial-scale=1.0; '
+        _meta1 += 'minimum-scale=0.5; maximum-scale=10.0; user-scalable=yes"'
         _meta2 = 'name ="apple-mobile-web-app-capable" content="yes"'
         _meta3 = 'name="generator" content="%s %s %s"' % (
             PROGRAM_NAME, VERSION, URL_HOMEPAGE)
@@ -1432,35 +1418,12 @@ class BasePage: # pylint: disable=C1001
 
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
-                     href=url4, rel="shortcut icon")
-        # attach the ancestortree style sheet if ancestor
-        # graph is being created?
-        if self.report.options["ancestortree"]:
-            if self.usecms:
-                fname = "/".join([self.target_uri, "css", "ancestortree.css"])
-            else:
-                fname = "/".join(["css", "ancestortree.css"])
-            url5 = self.report.build_url_fname(fname, None, self.uplink)
-            links += Html("link", type="text/css", href=url5,
-                          media="screen", rel="stylesheet", indent=False)
-        links += Html("link", type="text/css", href=url3,
-                      media='print', rel="stylesheet", indent=False)
-        links += Html("link", type="text/css", href=url2,
-                      media="screen", rel="stylesheet", indent=False)
-        # create all alternate stylesheets
-        # Cannot use it on local files (file://)
-        for css_f in CSS:
-            already_done = False
-            for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
-                if css_fn in css_f and not already_done:
-                    css_f = css_f.replace("UsEr_", "")
-                    fname = "/".join(["css", css_f + ".css"])
-                    urlx = self.report.build_url_fname(fname, None,
-                                                       self.uplink)
-                    links += Html("link", rel="alternate stylesheet",
-                                  title=self._(css_f), indent=False,
-                                  media="screen", type="text/css",
-                                  href=urlx)
+                     href=url4, rel="shortcut icon") + (
+                         Html("link", type="text/css", href=url3,
+                              media='print', rel="stylesheet", indent=False),
+                         Html("link", type="text/css", href=url2,
+                              media="screen", rel="stylesheet", indent=False),
+                         )
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]:
@@ -1486,11 +1449,13 @@ class BasePage: # pylint: disable=C1001
         body += outerwrapperdiv
 
         # begin header section
+        #headerdiv = Html("div", id='header') + (
         headerdiv = Html("div", id='header') + (
-            Html("<button href=\"javascript:void(0);\" class=\"navIcon\""
-                 " onclick=\"navFunction()\">&#8801;</button>"))
-        headerdiv += Html("h1", html_escape(self.title_str),
+            Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
+                 " onclick=\"navFunction()\">&#8801;</a>")) + (
+                     Html("h1", html_escape(self.title_str),
                           id="SiteTitle", inline=True)
+                     )
         outerwrapperdiv += headerdiv
 
         header_note = self.report.options['headernote']
@@ -1565,15 +1530,12 @@ class BasePage: # pylint: disable=C1001
             ('places', self._("Places"), self.report.inc_places),
             ('sources', self._("Sources"), self.report.inc_sources),
             ('repositories', self._("Repositories"), inc_repos),
-            ('media', self._("Media"), self.create_images_index and
-             self.report.inc_gallery and not self.report.create_thumbs_only),
-            ('thumbnails', self._("Thumbnails"), self.create_thumbs_index and
-             self.report.inc_gallery),
+            ('media', self._("Media"), _create_media_link),
+            ('thumbnails', self._("Thumbnails"), self.create_media),
             ('download', self._("Download"), self.report.inc_download),
             ("addressbook", self._("Address Book"),
              self.report.inc_addressbook),
             ('contact', self._("Contact"), self.report.use_contact),
-            ('updates', self._("Updates"), self.report.inc_updates),
             ('statistics', self._("Statistics"), self.report.inc_stats),
             (self.target_cal_uri, self._("Web Calendar"), self.usecal)
         ]
@@ -1878,7 +1840,7 @@ class BasePage: # pylint: disable=C1001
                         _linkurl = self.report.build_url_fname_html(_obj.handle,
                                                                     "ppl",
                                                                     linkurl)
-            elif classname == "Family":
+            elif classname == "Family" and self.inc_families:
                 _obj = self.r_db.get_family_from_handle(newhandle)
                 partner1_handle = _obj.get_father_handle()
                 partner2_handle = _obj.get_mother_handle()
@@ -1904,7 +1866,7 @@ class BasePage: # pylint: disable=C1001
                                                                 "ppl", True)
                 if not _name:
                     _name = self._("Unknown")
-            elif classname == "Event":
+            elif classname == "Event" and self.inc_events:
                 _obj = self.r_db.get_event_from_handle(newhandle)
                 _name = _obj.get_description()
                 if not _name:
@@ -1990,59 +1952,16 @@ class BasePage: # pylint: disable=C1001
                     # make a thumbnail of this region
                     newpath = self.copy_thumbnail(photo_handle, photo, region)
                     newpath = self.report.build_url_fname(newpath, uplink=True)
-
                     snapshot += self.media_link(photo_handle, newpath, descr,
                                                 uplink=self.uplink,
                                                 usedescr=False)
                 else:
-
                     dummy_rpath, newpath = self.report.prepare_copy_media(photo)
                     newpath = self.report.build_url_fname(newpath, uplink=True)
-
-                    # FIXME: There doesn't seem to be any point in highlighting
-                    # a sub-region in the thumbnail and linking back to the
-                    # person or whatever. First it is confusing when the link
-                    # probably has nothing to do with the page on which the
-                    # thumbnail is displayed, and second on a thumbnail it is
-                    # probably too small to see, and third, on the thumbnail,
-                    # the link is shown above the image (which is pretty
-                    # useless!)
-                    _region_items = self.media_ref_rect_regions(photo_handle,
-                                                                linkurl=False)
-                    if _region_items:
-                        with Html("div", id="GalleryDisplay") as mediadisplay:
-                            snapshot += mediadisplay
-
-                            ordered = Html("ol", class_="RegionBox")
-                            mediadisplay += ordered
-                            while _region_items:
-                                (name, coord_x, coord_y,
-                                 width, height, linkurl) = _region_items.pop()
-                                ordered += Html("li",
-                                                style="left:%d%%; top:%d%%; "
-                                                "width:%d%%; height:%d%%;" % (
-                                                    coord_x, coord_y,
-                                                    width, height))
-                                ordered += Html("a", name, href=linkurl)
-                            # Need to add link to mediadisplay to get the links:
-                            mediadisplay += self.media_link(photo_handle,
-                                                            newpath, descr,
-                                                            self.uplink, False)
-                    else:
-                        try:
-
-                            # Begin hyperlink. Description is given only for
-                            # the purpose of the alt tag in img element
-                            if self.create_images_index:
-                                snapshot += self.media_link(photo_handle,
-                                                            newpath,
-                                                            descr,
-                                                            uplink=self.uplink,
-                                                            usedescr=False)
-
-                        except (IOError, OSError) as msg:
-                            self.r_user.warn(_("Could not add photo to page"),
-                                             str(msg))
+                    snapshot += self.media_link(photo_handle, newpath,
+                                                descr,
+                                                uplink=self.uplink,
+                                                usedescr=False)
             else:
                 # begin hyperlink
                 snapshot += self.doc_link(photo_handle, descr,
@@ -2070,12 +1989,6 @@ class BasePage: # pylint: disable=C1001
             if photoref.ref in photolist_handles:
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)
-                try:
-                    if photo in photolist:
-                        photolist.remove(photo)
-                except ValueError:
-                    LOG.warning("Error trying to remove '%s' from photolist",
-                                photo)
         # and add any that are left (should there be any?)
         photolist_ordered += photolist
 
@@ -2125,39 +2038,11 @@ class BasePage: # pylint: disable=C1001
         # return indivgallery division to its caller
         return section
 
-    def default_note(self, parent, notetype):
-        """
-        return true if the notetype is the same as the parent
-
-        @param: parent -- The object (Person, Family, Media,...)
-        @param: notetype -- The type for the current note
-        """
-        if parent == Person and notetype == NoteType.PERSON:
-            return True
-        elif parent == Family and notetype == NoteType.FAMILY:
-            return True
-        elif parent == Media and notetype == NoteType.MEDIA:
-            return True
-        elif parent == Repository and notetype == NoteType.REPO:
-            return True
-        elif parent == Source and notetype == NoteType.SOURCE:
-            return True
-        elif parent == Event and notetype == NoteType.EVENT:
-            return True
-        elif parent == Place and notetype == NoteType.PLACE:
-            return True
-        elif parent == Citation and notetype == NoteType.CITATION:
-            return True
-        elif parent == Attribute and notetype == NoteType.ATTRIBUTE:
-            return True
-        return False
-
-    def display_note_list(self, notelist=None, parent=None):
+    def display_note_list(self, notelist=None):
         """
         Display note list
 
         @param: notelist -- The list of notes
-        @param: parent -- The parent associated to these notes
         """
         if not notelist:
             return None
@@ -2165,27 +2050,14 @@ class BasePage: # pylint: disable=C1001
         # begin narrative division
         with Html("div", class_="subsection narrative") as section:
 
-            idx = 0
             for notehandle in notelist:
                 note = self.r_db.get_note_from_handle(notehandle)
-                title = self._(note.type.xml_str())
 
                 if note:
                     note_text = self.get_note_format(note, True)
-                    idx += 1
-                    if len(notelist) > 1:
-                        if self.default_note(parent, int(note.type)):
-                            title_text = self._("Note: %s") % str(idx)
-                        else:
-                            title = " (" + title + ")"
-                            title_text = self._("Note: %s") % str(idx) + title
-                    else:
-                        if self.default_note(parent, int(note.type)):
-                            title_text = self._("Note")
-                        else:
-                            title_text = title
+
                     # add section title
-                    section += Html("h4", title_text, inline=True)
+                    section += Html("h4", self._("Narrative"), inline=True)
 
                     # attach note
                     section += note_text
@@ -2421,10 +2293,9 @@ class BasePage: # pylint: disable=C1001
         @param: handle -- The family handle
         @param: url    -- url to be linked
         """
-        self.report.fam_link[handle] = url
+        dummy_handle = handle
         return Html("a", self._("Family Map"), href=url,
-                    title=self._("Family Map"), class_="familymap",
-                    inline=True)
+                    title=self._("Family Map"), class_="familymap", inline=True)
 
     def display_spouse(self, partner, family, place_lat_long):
         """
@@ -2522,9 +2393,6 @@ class BasePage: # pylint: disable=C1001
             # not necessarily mean that a page has been generated
             (link, name, gid) = result
 
-        if name_style == _NAME_STYLE_FIRST and person:
-            name = _get_short_name(person.get_gender(),
-                                   person.get_primary_name())
         name = html_escape(name)
         # construct the result
         if not self.noid and gid != "":
@@ -2631,6 +2499,9 @@ class BasePage: # pylint: disable=C1001
         @param: place -- Place object from the database
         @param: table -- Table from Placedetail
         """
+        if place in self.report.visited:
+            return None
+        self.report.visited.append(place)
         # add table body
         tbody = Html("tbody")
         table += tbody
@@ -2672,6 +2543,7 @@ class BasePage: # pylint: disable=C1001
                 (self._("State/ Province"),
                  mlocation.get(PlaceType.STATE, '')),
                 (self._("Postal Code"), place.get_code()),
+                (self._("Province"), mlocation.get(PlaceType.PROVINCE, '')),
                 (self._("Country"), mlocation.get(PlaceType.COUNTRY, ''))]:
             if data:
                 trow = Html("tr") + (
@@ -2746,6 +2618,47 @@ class BasePage: # pylint: disable=C1001
                         tbody += trow
                 tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
 
+            # encloses
+            with Html("div", class_='subsection encloses') as encloses:
+                tbody += encloses
+                encloses += Html("h4", self._("Place Encloses"), inline=True)
+                with Html("table", class_="infolist place") as table:
+                    encloses += table
+                    visited = [place.handle]
+                    for link in self.r_db.find_backlink_handles(
+                            place.handle, include_classes=['Place']):
+                        if link[1] in visited:
+                            continue
+                        visited.append(link[1])
+                        c_place = self.r_db.get_place_from_handle(link[1])
+                        placeref = None
+                        for placeref in c_place.get_placeref_list():
+                            if placeref.ref == place.handle:
+                                gpfh = self.r_db.get_place_from_handle
+                                eplace = gpfh(placeref.ref)
+                                if not eplace:
+                                    continue
+                                place_name = c_place.get_name().get_value()
+                                table += Html("tr") + Html("td", place_name)
+
+            # enclosed by
+            with Html("div", class_='subsection encloses') as encloses:
+                tbody += encloses
+                encloses += Html("h4", self._("Enclosed By"), inline=True)
+                with Html("table", class_="infolist place") as table:
+                    encloses += table
+                    visited = [place.handle]
+                    placeref = None
+                    for placeref in place.get_placeref_list():
+                        if placeref.ref in visited:
+                            continue
+                        visited.append(placeref.ref)
+                        pplace = self.r_db.get_place_from_handle(placeref.ref)
+                        if not pplace:
+                            continue
+                        place_name = pplace.get_name().get_value()
+                        table += Html("tr") + Html("td", place_name)
+
         # enclosed by
         tbody += Html("tr") + Html("td", "&nbsp;")
         trow = Html("tr") + (
@@ -2753,25 +2666,7 @@ class BasePage: # pylint: disable=C1001
                  class_="ColumnAttribute", inline=True),
         )
         tbody += trow
-
-        def sort_by_enclosed_by(obj):
-            """
-            Sort by enclosed by
-            """
-            place_name = ""
-            parent_place = self.r_db.get_place_from_handle(obj.ref)
-            if parent_place:
-                place_name = parent_place.get_name().get_value()
-            return place_name
-
-        def sort_by_encl(obj):
-            """
-            Sort by encloses
-            """
-            return obj[0]
-
-        for placeref in sorted(place.get_placeref_list(),
-                               key=sort_by_enclosed_by):
+        for placeref in place.get_placeref_list():
             parent_place = self.r_db.get_place_from_handle(placeref.ref)
             if parent_place:
                 place_name = parent_place.get_name().get_value()
@@ -2782,7 +2677,7 @@ class BasePage: # pylint: disable=C1001
                 else:
                     place_hyper = place_name
                 trow = Html("tr") + (
-                    Html("td", place_hyper, class_="ColumnPlace",
+                    Html("td", place_hyper, class_="ColumnValue",
                          inline=True))
                 tbody += trow
 
@@ -2793,7 +2688,6 @@ class BasePage: # pylint: disable=C1001
                  class_="ColumnAttribute", inline=True),
         )
         tbody += trow
-        encloses = []
         for link in self.r_db.find_backlink_handles(
                 place.handle, include_classes=['Place']):
             child_place = self.r_db.get_place_from_handle(link[1])
@@ -2801,20 +2695,15 @@ class BasePage: # pylint: disable=C1001
             for placeref in child_place.get_placeref_list():
                 if placeref.ref == place.handle:
                     place_name = child_place.get_name().get_value()
-                    if link[1] in self.report.obj_dict[Place]:
-                        encloses.append((place_name, link[1]))
+                    if child_place.handle in self.report.obj_dict[Place]:
+                        place_hyper = self.place_link(child_place.handle,
+                                                      place_name,
+                                                      uplink=self.uplink)
                     else:
-                        encloses.append((place_name, ""))
-        for (name, handle) in sorted(encloses, key=sort_by_encl):
-            place_name = child_place.get_name().get_value()
-            if handle and handle in self.report.obj_dict[Place]:
-                place_hyper = self.place_link(handle, name,
-                                              uplink=self.uplink)
-            else:
-                place_hyper = name
-            trow = Html("tr") + (
-                Html("td", place_hyper,
-                     class_="ColumnPlace", inline=True))
+                        place_hyper = place_name
+                    trow = Html("tr") + (
+                        Html("td", place_hyper,
+                             class_="ColumnValue", inline=True))
             tbody += trow
 
         # return place table to its callers
@@ -2982,7 +2871,7 @@ class BasePage: # pylint: disable=C1001
             gid = self.report.obj_dict[bkref_class][bkref_handle][2]
             if role != "":
                 if self.reference_sort:
-                    role = self.birth_death_dates(gid)
+                    role = ""
                 elif role[1:2] == ':':
                     # cal is the original calendar
                     cal, role = role.split(':')
@@ -3010,10 +2899,7 @@ class BasePage: # pylint: disable=C1001
                     # reset the date to the original calendar
                     cdate = date.to_calendar(Date.calendar_names[int(cal)])
                     ldate = self.rlocale.get_date(cdate)
-                    evtype = self.event_for_date(gid, cdate)
-                    if evtype:
-                        evtype = " " + evtype
-                    role = " (%s) " % (ldate + evtype)
+                    role = " (%s) " % ldate
                 else:
                     role = " (%s) " % self._(role)
             ordered += list_html
@@ -3031,45 +2917,6 @@ class BasePage: # pylint: disable=C1001
                     gid_html = ""
                 list_html += Html("a", href=url) + name + role + gid_html
         return ordered
-
-    def event_for_date(self, gid, date):
-        """
-        return the event type
-        """
-        pers = self.r_db.get_person_from_gramps_id(gid)
-        if pers:
-            evt_ref_list = pers.get_event_ref_list()
-            if evt_ref_list:
-                for evt_ref in evt_ref_list:
-                    evt = self.r_db.get_event_from_handle(evt_ref.ref)
-                    if evt:
-                        evdate = evt.get_date_object()
-                        # convert date to gregorian
-                        _date = str(evdate.to_calendar("gregorian"))
-                        if _date == str(date):
-                            return self._(str(evt.get_type()))
-        return ""
-
-    def birth_death_dates(self, gid):
-        """
-        return the birth and death date for the person
-        """
-        pers = self.r_db.get_person_from_gramps_id(gid)
-        if pers:
-            birth = death = ""
-            evt_birth = get_birth_or_fallback(self.r_db, pers)
-            if evt_birth:
-                birthd = evt_birth.get_date_object()
-                # convert date to gregorian to avoid strange years
-                birth = str(birthd.to_calendar("gregorian").get_year())
-            evt_death = get_death_or_fallback(self.r_db, pers)
-            if evt_death:
-                deathd = evt_death.get_date_object()
-                # convert date to gregorian to avoid strange years
-                death = str(deathd.to_calendar("gregorian").get_year())
-            return "(%s-%s)" % (birth, death)
-        else:
-            return ""
 
     def display_bkref_list(self, obj_class, obj_handle):
         """
@@ -3098,9 +2945,10 @@ class BasePage: # pylint: disable=C1001
 
         @param: output_file  -- Open file that is being written to
         @param: htmlinstance -- Web page created with libhtml
-                                gramps/plugins/lib/libhtml.py
+                                src/plugins/lib/libhtml.py
         """
         htmlinstance.write(partial(print, file=output_file))
 
         # closes the file
         self.report.close_file(output_file, sio, date)
+
