@@ -56,6 +56,7 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -181,6 +182,9 @@ class ViewManager(CLIManager):
         self.views = None
         self.current_views = [] # The current view in each category
         self.view_changing = False
+        self.autobackup_time = time.time()  # time of start or last autobackup
+        self.delay_timer = None  # autobackup delay timer for after wakeup
+        self.prev_has_changed = 0  # db commit count at autobackup time
 
         self.show_navigator = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
@@ -1184,7 +1188,33 @@ class ViewManager(CLIManager):
         """
         Backup the current family tree.
         """
-        if self.dbstate.db.is_open() and self.dbstate.db.has_changed:
+        if self.delay_timer is not None:
+            GLib.source_remove(self.delay_timer)
+            self.delay_timer = None
+        interval = config.get('database.autobackup')
+        if interval == 1:
+            seconds = 900.  # 15min *60
+        elif interval == 2:
+            seconds = 1800.  # 30min *60
+        elif interval == 3:
+            seconds = 3600.  # 60min *60
+        elif interval == 4:
+            seconds = 43200.  # (12 hours) 720min *60
+        elif interval == 5:
+            seconds = 86400.  # (24 hours) 1440min *60
+        now = time.time()
+        if interval and now > self.autobackup_time + seconds + 300.:
+            # we have been delayed by more than 5 minutes
+            # so we have probably been awakened from sleep/hibernate
+            # we should delay a bit more to let the system settle
+            self.delay_timer = GLib.timeout_add_seconds(300, self.autobackup)
+            self.autobackup_time = now
+            return
+        self.autobackup_time = now
+        # Only backup if more commits since last time
+        if(self.dbstate.db.is_open() and
+           self.dbstate.db.has_changed > self.prev_has_changed):
+            self.prev_has_changed = self.dbstate.db.has_changed
             self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))

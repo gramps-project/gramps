@@ -903,6 +903,7 @@ def uri_dialog(self, uri, callback):
                 handle = obj.uistate.get_active(object_class)
                 if handle:
                     uri = "gramps://%s/handle/%s" % (object_class, handle)
+                    break
         EditLink(obj.dbstate, obj.uistate, obj.track, uri, callback)
 
 

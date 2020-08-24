@@ -208,17 +208,28 @@ class EditLink(ManagedWindow):
                                    (object_class, prop, value))
 
     def _on_type_changed(self, widget):
-        self.selected.set_text("")
         if self.uri_list.get_active() == WEB:
             self.url_link.set_sensitive(True)
             self.pick_item.set_sensitive(False)
             self.new_button.set_sensitive(False)
             self.edit_button.set_sensitive(False)
+            self.selected.set_text("")
+            self.url_link.set_text("https://")
         else:
             self.url_link.set_sensitive(False)
             self.pick_item.set_sensitive(True)
             self.new_button.set_sensitive(True)
             self.edit_button.set_sensitive(True)
+            object_class = OBJECT_MAP[self.uri_list.get_active()]
+            handle = self.uistate.get_active(object_class)
+            if handle:
+                self.selected.set_text(self.display_link(
+                    object_class, "handle", handle))
+                self.url_link.set_text("gramps://%s/handle/%s" %
+                                       (object_class, handle))
+            else:
+                self.selected.set_text("")
+                self.url_link.set_text("")
 
     def get_uri(self):
         if self.uri_list.get_active() == WEB:

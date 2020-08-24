@@ -65,9 +65,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v5.1.2.tar.gz"
-	    repo="github-tarball" version="5.1.2"
-	    checkoutdir="gramps-gramps-5.1.2"/>
+    <branch module="gramps-project/gramps/archive/v5.1.3.tar.gz"
+	    repo="github-tarball" version="5.1.3"
+	    checkoutdir="gramps-gramps-5.1.3"/>
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -105,6 +105,25 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="xdg-utils">
     <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
   </autotools>
+
+  <meson id="json-glib">
+    <branch module="json-glib/1.4/json-glib-1.4.4.tar.xz"
+            version="1.4.4" repo="ftp.gnome.org"
+            hash="sha256:720c5f4379513dc11fd97dc75336eb0c0d3338c53128044d9fabec4374f4bc47"/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </meson>
+
+  <meson id="geocode-glib" mesonargs="-Denable-gtk-doc=false">
+    <branch module="geocode-glib/3.26/geocode-glib-3.26.2.tar.xz"
+            version="3.26.2" repo="ftp.gnome.org"
+            hash="sha256:01fe84cfa0be50c6e401147a2bc5e2f1574326e2293b55c69879be3e82030fd1"/>
+    <dependencies>
+      <dep package="json-glib"/>
+      <dep package="libsoup"/>
+    </dependencies>
+  </meson>
 
   <autotools id="osmgpsmap" skip-autogen="never"
 	     autogenargs="--disable-gtk-doc-html"
@@ -173,6 +192,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
       <dep package="gtkspell3"/>
+      <dep package="geocode-glib"/>
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
       <dep package="gexiv2"/>

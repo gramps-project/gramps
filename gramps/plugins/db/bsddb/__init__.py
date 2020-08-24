@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
+# Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,3 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-VERSION_TUPLE = (5, 1, 4)
-VERSION_QUALIFIER = ""
-VERSION = '.'.join(map(str,VERSION_TUPLE)) + VERSION_QUALIFIER
-major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])

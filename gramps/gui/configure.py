@@ -1779,7 +1779,9 @@ class GrampsPreferences(ConfigureDialog):
         formats = [_("Never"),
                    _("Every 15 minutes"),
                    _("Every 30 minutes"),
-                   _("Every hour")]
+                   _("Every hour"),
+                   _("Every 12 hours"),
+                   _("Every day")]
         list(map(obox.append_text, formats))
         active = config.get('database.autobackup')
         obox.set_active(active)

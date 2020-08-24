@@ -58,7 +58,13 @@ class SidebarFilter(DbGUIElement):
         self.grid.set_row_spacing(6)
         self.grid.set_column_spacing(6)
         self.apply_btn = Gtk.Button.new_with_mnemonic(_('_Find'))
+        self.apply_btn.set_tooltip_text(_(
+            "This updates the view with the current filter parameters."))
         self.clear_btn = Gtk.Button()
+        self.clear_btn.set_tooltip_text(_(
+            "This resets the filter parameters to empty state.  The 'Find' "
+            "button should be used to actually update the view to its "
+            "defaults."))
 
         self._init_interface()
         uistate.connect('filters-changed', self.on_filters_changed)

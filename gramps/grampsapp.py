@@ -76,7 +76,7 @@ _ = glocale.translation.gettext
 
 try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
-    # sys.stdout.enoding, and on Linux they're both right.
+    # sys.stdout.encoding, and on Linux they're both right.
     if mac():
         _encoding = sys.getdefaultencoding()
     else:
@@ -483,7 +483,7 @@ def run():
         LOG.debug("A GUI is needed, set it up")
         try:
             from .gui.grampsgui import startgramps
-            # no DISPLAY is a RuntimeError in an older pygtk (e.g. F14's 2.17)
+            # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
         except RuntimeError as msg:
             error += [(_("Configuration error:"), str(msg))]
             return error
