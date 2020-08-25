@@ -385,6 +385,20 @@
     <date name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
     <date name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
   </country>
+  <country name="Italy">
+    <date name="Capodanno" value="*/1/1" type="national" />
+    <date name="Epifania" value="*/1/6" type="religious" />
+    <date name="Pasqua" type="religious" value="> easter(y)"  />
+    <date name="Pasquetta" type="religious" value="> easter(y)" offset="1" />
+    <date name="Festa della Liberazione" value="*/4/25" type="national" />
+    <date name="Festa dei lavoratori" value="*/5/1" type="national" />
+    <date name="Festa della Repubblica" value="*/6/2" type="national" />
+    <date name="Ferragosto" value="*/8/15" type="national" />
+    <date name="Tutti i santi" value="*/11/1" type="religious" />
+    <date name="Immacolata Concezione" value="*/12/8" type="religious" />
+    <date name="Natale" value="*/12/25" type="religious" />
+    <date name="Santo Stefano" value="*/12/26" type="religious" />
+  </country>
   <country name="New Zealand">
     <date value="*/1/1" type="national" name="New Year's Day"/>
     <date value="*/1/2" type="national" name="Day After New Year's Day"/>
