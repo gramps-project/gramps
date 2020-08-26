@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-08-10 22:47+0200\n"
+"PO-Revision-Date: 2020-08-26 18:07+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -12299,7 +12299,7 @@ msgstr "Sicherungspfad"
 
 #: ../gramps/gui/configure.py:1772
 msgid "Backup on exit"
-msgstr "Beim beenden sichern"
+msgstr "Beim Beenden sichern"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
@@ -37638,7 +37638,7 @@ msgid ""
 "or include them just before attributes."
 msgstr ""
 "Mit erzählenden Anmerkungen direkt nach Namen, Geschlecht und Alter beim Tod "
-"(Standard) oder plazier sie direkt vor den Attributen."
+"(Standard) oder platziere sie direkt vor den Attributen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1818
 msgid "Page Generation"
