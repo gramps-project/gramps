@@ -712,6 +712,10 @@ class NavWebReport(Report):
                                 self._add_media(media_handle, Person,
                                                 person_handle)
 
+            ############### Associations section ##############
+            for assoc in person.get_person_ref_list():
+                self._add_person(assoc.ref, "", "")
+
             ############### LDS Ordinance section ##############
             for lds_ord in person.get_lds_ord_list():
                 for citation_handle in lds_ord.get_citation_list():
