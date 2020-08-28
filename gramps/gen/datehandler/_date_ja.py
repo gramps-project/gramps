@@ -226,16 +226,11 @@ class DateParserJA(DateParser):
         """
         match = self._qual.match(text)
         if match:
-            m1 = match.group(1) # FIXME: Remove
-            m2 = match.group(2) # FIXME: Remove
-            m3 = match.group(3) # FIXME: Remove
-            m4 = match.group(4) # FIXME: Remove
             qual = self.quality_to_int[match.group(2).lower()]
             text = match.group(1) + match.group(4)
         else:
             match = self._qual_formatted.match(text)
             if match:
-                m = match.group(2) # FIXME: Remove
                 qual = self._ds.qualifiers[1:].index(match.group(2)) + 1
                 text = match.group(1) + match.group(4)
         return (text, qual)
