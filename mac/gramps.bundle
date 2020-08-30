@@ -96,6 +96,10 @@
     ${prefix}/lib/libgexiv2.dylib
   </binary>
 
+  <binary>
+    ${prefix}/lib/libgeocode-glib.dylib
+  </binary>
+
   <gir>
     ${prefix}/share/gir-1.0/*.gir
   </gir>
