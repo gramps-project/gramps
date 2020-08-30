@@ -101,6 +101,7 @@ class Connection:
         self.__cursor = self.__connection.cursor()
         self.__connection.create_function("regexp", 2, regexp)
         self.__collations = []
+        self.__tmap = str.maketrans('-.@=;', '_____')
         self.check_collation(glocale)
 
     def check_collation(self, locale):
@@ -110,7 +111,10 @@ class Connection:
         :param locale: Locale to be checked.
         :param type: A GrampsLocale object.
         """
-        collation = locale.get_collation()
+        #PySQlite3 permits only ascii alphanumerics and underscores in
+        #collation names so first translate any old-style Unicode locale
+        #delimiters to underscores.
+        collation = locale.get_collation().translate(self.__tmap)
         if collation not in self.__collations:
             self.__connection.create_collation(collation, locale.strcoll)
 

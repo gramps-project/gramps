@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2015-03-18 17:31-0600\n"
 "Last-Translator: Anthony Fok <foka@debian.org>\n"
 "Language-Team: Chinese (Hong Kong) <(nothing)>\n"
@@ -5447,6 +5447,14 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr "匹配在收錄的列表中的成員，其祖先未能超過 N 代的"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "預設的成員的祖先 不超過 <N> 代"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "匹配預設的成員，其祖先 不超過 N 代"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11713,6 +11721,10 @@ msgid "Place format (auto place title)"
 msgstr "地點匹配篩查器<filter>"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 
@@ -11902,6 +11914,12 @@ msgstr "匯入 GEDCOM 時新增預設源資訊"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "匯入時新增標籤"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19524,6 +19542,13 @@ msgstr "由於沒有選中內容，書籤不能被設定."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "未設定主人翁"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30076,6 +30101,17 @@ msgstr "設定為主人翁(_H)"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "前往預設成員"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "前往預設成員"
 
@@ -30694,6 +30730,23 @@ msgstr "鉤選反向排列順序."
 #, fuzzy, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "無法建立目錄:%s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -36969,6 +37022,15 @@ msgstr "教會堂區"
 msgid "Locations"
 msgstr "位置"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "背景顏色"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -37492,6 +37554,14 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "初始影象的最大寬度"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"這將會允許您設定在媒體頁面上，顯示影象的最大尺寸。設定為0代表沒有限制。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -38458,9 +38528,13 @@ msgstr "無樣式表"
 #~ msgid "Family Divorced"
 #~ msgstr "家族姓"
 
-#, fuzzy
-#~ msgid "Home Person"
-#~ msgstr "未設定主人翁"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "預設人"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "選中預設人"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "健在女性邊框顏色"
@@ -43121,3 +43195,4 @@ msgstr "無樣式表"
 #~ "檢視 %(name)s 未讀取. 參照幫助選單，插件管理了解更多資訊。\n"
 #~ "利用 https://gramps-project.org/bugs/  提交官方檢視的故障報告,  或者聯絡檢"
 #~ "視的作者 (%(firstauthoremail)s) . "
+

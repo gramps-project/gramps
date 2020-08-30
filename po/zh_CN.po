@@ -1,5 +1,5 @@
 # Chinese (simplified) translation for Gramps
-# Copyright (C) 2009, 2010, 2011, 2012, 2014, 2015
+# Copyright (C) 2009, 2010, 2011, 2012, 2014, 2015, 2020
 # This file is distributed under the same license as the Gramps package.
 #
 # 陈欣(Celia), 2009.
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2020-05-07 23:27+0800\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
+"PO-Revision-Date: 2020-06-07 11:10+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
 "Language: zh_CN\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -269,10 +269,9 @@ msgstr "俄罗斯"
 msgid "Serbia"
 msgstr "塞尔维亚"
 
-#: ../data/holidays.xml.in.h:415
-#, fuzzy
+#: ../data/holidays.xml.in.h:47
 msgid "Serbia (Latin)"
-msgstr "塞尔维亚语"
+msgstr "塞尔维亚语 (拉丁字母)"
 
 #: ../data/holidays.xml.in.h:430
 msgid "Slovakia"
@@ -546,15 +545,15 @@ msgstr ""
 "单。"
 
 #: ../data/tips.xml.in.h:23
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
 "through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
 "Back&quot; or the arrow buttons."
 msgstr ""
-"<b>向前和向后浏览</b> <br/>Gramps 保持一张之前活跃的人员名单。您可以使用按钮"
-"&quot;转到 &gt;前进&quot; 和 &quot;转到 &gt; 后退&quot; 或者箭头按钮。"
+"<b>向前和向后浏览</b> <br/>Gramps 会维护一份先前对象列表，比如人物、事件等。"
+"您可以使用&quot;转到 &gt;前进&quot; 和 &quot;转到 &gt; 后退&quot; 或者箭头按"
+"钮在列表内向前或向后。"
 
 #: ../data/tips.xml.in.h:24
 msgid ""
@@ -680,7 +679,6 @@ msgstr ""
 "添加书签 &quot; 或者按 Ctrl+D。您也可以收藏其他对象。"
 
 #: ../data/tips.xml.in.h:34
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -689,9 +687,10 @@ msgid ""
 "on the date button. The format of the date is set under &quot;Edit &gt; "
 "Preferences &gt; Display&quot;."
 msgstr ""
-"<b>错误的日期</b><br/>每个人都有可能偶尔输入一个错误的格式的日期数据。不正确"
-"的日期格式将会在日期旁边以红色的按钮显示。点击日期按钮，您可以使用日期选择对"
-"话框。日期格式可以通过 &quot;编辑 &gt; 选项 &gt; 显示&quot; 设置。"
+"<b>错误的日期</b><br/>任何人都有可能不小心输入一个错误格式的日期。Gramps 中会"
+"将不正确的日期格式所在的区域显示为红色背景，或者在该区域框右侧显示一个红点。"
+"您可通过点击日期按钮，然后用日期选择对话框来修复错误的格式。日期格式可以通过 "
+"&quot;编辑 &gt; 偏好设置&gt; 显示&quot; 菜单进行设置。"
 
 #: ../data/tips.xml.in.h:35
 msgid ""
@@ -705,15 +704,15 @@ msgstr ""
 "类型，他们可以被添加进有效的事件，不会被翻译。"
 
 #: ../data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "<b>Managing Names</b><br/>It is easy to manage people with several names in "
 "Gramps. In the Person Editor select the Names tab. You can add names of "
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>管理名字</b><br/>在 Gramps 中即使成员有几个名字也很容易管理。在成员编辑器"
-"选择姓名条，您可以添加不同类型的姓名，拖动姓名并设置为首选的姓名。"
+"<b>管理名字</b><br/>在 Gramps 中即使人员有多个名字也很容易管理。在人员编辑器"
+"中选择姓名选项卡，您可以添加不同类型的名字，然后将其拖到优先名字位置，可将其"
+"设置为首选的名字。"
 
 #: ../data/tips.xml.in.h:37
 msgid ""
@@ -915,15 +914,15 @@ msgstr ""
 "很长的一段时间后，如何让历史变得鲜活。"
 
 #: ../data/tips.xml.in.h:56
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 40 languages. If Gramps supports your language and it is not being "
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>不会讲英语？</b><br/>志愿者们已经将 Gramps 翻译成 20 多种语言。如果 "
-"Gramps 支持您的语言但是未被显示出来，请更改默认语言支持并重启 Gramps。"
+"<b>不会讲英语？</b><br/>志愿者们已经将 Gramps 翻译成 40 多种语言。如果 "
+"Gramps 支持您的语言，但是没有显示出来您的语言，请先设置您操作系统的默认语言，"
+"然后重启 Gramps。"
 
 #: ../data/tips.xml.in.h:57
 msgid ""
@@ -1039,9 +1038,8 @@ msgstr ""
 "   %s"
 
 #: ../gramps/cli/arghandler.py:296
-#, fuzzy
 msgid "OK to overwrite?"
-msgstr "打算覆盖吗？（是/否）"
+msgstr "确认覆盖吗？"
 
 #: ../gramps/cli/arghandler.py:297 ../gramps/cli/clidbman.py:429
 msgid "no"
@@ -1068,9 +1066,8 @@ msgid "Error: cannot open '%s'"
 msgstr "错误：无法打开 '%s'"
 
 #: ../gramps/cli/arghandler.py:405
-#, fuzzy
 msgid "List of known Family Trees in your database path\n"
-msgstr "家族树数据库路径"
+msgstr "在您的数据库路径下的家族树列表\n"
 
 #: ../gramps/cli/arghandler.py:413
 #, python-format
@@ -1104,9 +1101,9 @@ msgid "\"%s\""
 msgstr "“%s”"
 
 #: ../gramps/cli/arghandler.py:457
-#, fuzzy, python-format
+#, python-format
 msgid "Performing action: %s."
-msgstr "执行选中的行动"
+msgstr "采取行动：%s。"
 
 #: ../gramps/cli/arghandler.py:461 ../gramps/gen/plug/report/stdoptions.py:285
 #, python-format
@@ -1204,12 +1201,11 @@ msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:730
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s."
-msgstr "未知行动：%s"
+msgstr "未知行动：%s。"
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1265,24 +1261,35 @@ msgstr ""
 "\n"
 "应用选项\n"
 "  -O, --open=FAMILY_TREE                 打开家族树\n"
-"  -C, --create=FAMILY_TREE               创建新的家族树\n"
+"  -U, --username=USERNAME                数据库用户名\n"
+"  -P, --password=PASSWORD                数据库密码\n"
+"  -C, --create=FAMILY_TREE                创建新的家族树\n"
 "  -i, --import=FILENAME                  导入文件\n"
 "  -e, --export=FILENAME                  导出文件\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       删除匹配的家族树 (使用正则表达式)\n"
 "  -f, --format=FORMAT                    指定家族树的格式\n"
 "  -a, --action=ACTION                    指定动作\n"
 "  -p, --options=OPTIONS_STRING           指定选项\n"
 "  -d, --debug=LOGGER_NAME                启用调试日志\n"
-"  -l                                     列表家族树\n"
-"  -L                                     详细列出家族树\n"
-"  -t                                     列出家族树，以跳格(Tab)分隔\n"
+"  -l [FAMILY_TREE_PATTERN…]            列出家族树\n"
+"  -L [FAMILY_TREE_PATTERN…]            详细列出家族树\n"
+"  -t [FAMILY_TREE_PATTERN…]            列出家族树，以跳格(Tab)分隔\n"
 "  -u, --force-unlock                     强制解锁家族树\n"
-"  -s, --show                             显示配置参数\n"
+"  -s, --show                             显示配置参数n\n"
 "  -c, --config=[config.setting[:value]]  设置配置参数并启动 Gramps\n"
-"  -y, --yes                              不询问确认，直接执行危险动作（限于非"
-"图形界面模式）\n"
-"  -q, --quiet                            抑制进度指示输出（仅限于非图形界面模"
+"  -y, --yes                              不询问确认，直接执行危险动作（仅限于"
+"非图形界面模式）\n"
+"  -q, --quiet                            阻止进度指示输出（仅限于非图形界面模"
 "式）\n"
 "  -v, --version                          显示版本信息\n"
+"  -S, --safe                             启动 Gramps 到安全模式\n"
+"                                          (临时使用默认设置)\n"
+"  -D, --default=[APXFE]                  重置为默认设置;\n"
+"                 A - 清除附加项\n"
+"                 P - 使用默认偏好设置\n"
+"                 X - 清理书籍，报告和工具使用默认\n"
+"                 F - 清理筛选器\n"
+"                 E - 清理所有内容或设为默认\n"
 
 #: ../gramps/cli/argparser.py:95
 msgid ""
@@ -1371,9 +1378,9 @@ msgstr ""
 "警告：%(name)s\n"
 
 #: ../gramps/cli/argparser.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "未知的."
+msgstr "未知操作：%s。忽略。"
 
 #: ../gramps/cli/argparser.py:343
 msgid "setup debugging"
@@ -1406,13 +1413,13 @@ msgid "Gramps: no such config setting: '%s'"
 msgstr "Gramps：没有此配置设定：’%s’"
 
 #: ../gramps/cli/argparser.py:471
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode, supply at least one input file to process."
 msgstr ""
-"引用参数错误: %s \n"
-"命令模式下，至少应用一个输入文件进行处理。"
+"解释参数时出错：%s \n"
+"要在命令行模式下使用，需至少提供一个输入文件进行处理。"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:166
 #: ../gramps/cli/clidbman.py:168 ../gramps/gui/clipboard.py:188
@@ -1421,13 +1428,13 @@ msgid "Unavailable"
 msgstr "无效"
 
 #: ../gramps/cli/clidbman.py:83
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
-"错误：%s \n"
-"　　　%s"
+"错误：%(title)s \n"
+"       %(message)s"
 
 #: ../gramps/cli/clidbman.py:170 ../gramps/gen/lib/media.py:143
 #: ../gramps/gen/lib/url.py:94
@@ -1500,11 +1507,13 @@ msgid "Remove family tree warning"
 msgstr "移除家族树警告"
 
 #: ../gramps/cli/clidbman.py:426
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
-msgstr "是否确认重新选择数据?"
+msgstr ""
+"您确定要删除名称为 %s 的\n"
+"家族树吗？"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:738
 msgid "Could not delete Family Tree"
@@ -1765,7 +1774,7 @@ msgstr "数字"
 #: ../gramps/cli/plug/__init__.py:298
 #, fuzzy
 msgid "Paper orientation number."
-msgstr "身份证号"
+msgstr "纸张方向编号。"
 
 #: ../gramps/cli/plug/__init__.py:300
 msgid "Left paper margin"
@@ -1789,9 +1798,8 @@ msgid "Bottom paper margin"
 msgstr "纸张下边界"
 
 #: ../gramps/cli/plug/__init__.py:307
-#, fuzzy
 msgid "=css filename"
-msgstr "选择文件名"
+msgstr "=css 文件名"
 
 #: ../gramps/cli/plug/__init__.py:308
 msgid "CSS filename to use, html format only"
@@ -1799,9 +1807,9 @@ msgstr "要使用的 CSS 文件名，仅可用 html 格式"
 
 #. translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:416
-#, fuzzy, python-format
+#, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
-msgstr "%(father)s 和 %(mother)s的子女."
+msgstr "%(id)s:\t%(father)s，%(mother)s"
 
 #: ../gramps/cli/plug/__init__.py:461
 #, python-format
@@ -1821,7 +1829,7 @@ msgstr "有效选项为："
 #: ../gramps/gen/plug/report/endnotes.py:197
 #: ../gramps/gen/plug/report/endnotes.py:204
 #: ../gramps/gen/plug/report/endnotes.py:210
-#: ../gramps/plugins/drawreport/descendtree.py:352
+#: ../gramps/plugins/drawreport/descendtree.py:358
 #: ../gramps/plugins/drawreport/fanchart.py:364
 #: ../gramps/plugins/drawreport/fanchart.py:380
 #: ../gramps/plugins/gramplet/persondetails.py:237
@@ -1836,7 +1844,7 @@ msgstr "有效选项为："
 #: ../gramps/plugins/textreport/descendreport.py:286
 #: ../gramps/plugins/textreport/placereport.py:195
 msgid ", "
-msgstr "​"
+msgstr "​, "
 
 #: ../gramps/cli/plug/__init__.py:465 ../gramps/cli/plug/__init__.py:555
 #: ../gramps/cli/plug/__init__.py:635
@@ -1869,9 +1877,8 @@ msgid "   Available options:"
 msgstr "   可用选项："
 
 #: ../gramps/cli/plug/__init__.py:633
-#, fuzzy
 msgid "(no help available)"
-msgstr "无效的"
+msgstr "（无可用帮助）"
 
 #: ../gramps/cli/plug/__init__.py:641
 msgid "   Available values are:"
@@ -3015,35 +3022,31 @@ msgstr "家庭数量"
 msgid "Number of sources"
 msgstr "族‘姓’的数量"
 
-#: ../gramps/gen/db/generic.py:2413 ../gramps/plugins/db/bsddb/read.py:1941
+#: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/read.py:1941
 #: ../gramps/plugins/db/bsddb/write.py:2299
 #: ../gramps/plugins/webreport/statistics.py:163
 #: ../gramps/plugins/webreport/statistics.py:211
-#, fuzzy
 msgid "Number of citations"
-msgstr "后代数目"
+msgstr "引用数量"
 
-#: ../gramps/gen/db/generic.py:2414 ../gramps/plugins/db/bsddb/read.py:1942
+#: ../gramps/gen/db/generic.py:2421 ../gramps/plugins/db/bsddb/read.py:1942
 #: ../gramps/plugins/db/bsddb/write.py:2300
 #: ../gramps/plugins/webreport/statistics.py:152
 #: ../gramps/plugins/webreport/statistics.py:202
-#, fuzzy
 msgid "Number of events"
-msgstr "父母人数"
+msgstr "事件数量"
 
-#: ../gramps/gen/db/generic.py:2415 ../gramps/plugins/db/bsddb/read.py:1943
+#: ../gramps/gen/db/generic.py:2422 ../gramps/plugins/db/bsddb/read.py:1943
 #: ../gramps/plugins/db/bsddb/write.py:2301
-#, fuzzy
 msgid "Number of media"
-msgstr "家庭数量"
+msgstr "媒体文件数量"
 
-#: ../gramps/gen/db/generic.py:2416 ../gramps/plugins/db/bsddb/read.py:1944
+#: ../gramps/gen/db/generic.py:2423 ../gramps/plugins/db/bsddb/read.py:1944
 #: ../gramps/plugins/db/bsddb/write.py:2302
 #: ../gramps/plugins/webreport/statistics.py:155
 #: ../gramps/plugins/webreport/statistics.py:205
-#, fuzzy
 msgid "Number of places"
-msgstr "人数"
+msgstr "地点数量"
 
 #: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1945
 #: ../gramps/plugins/db/bsddb/write.py:2303
@@ -3059,11 +3062,10 @@ msgstr "搜寻文库"
 msgid "Number of notes"
 msgstr "父母人数"
 
-#: ../gramps/gen/db/generic.py:2419 ../gramps/plugins/db/bsddb/read.py:1947
+#: ../gramps/gen/db/generic.py:2426 ../gramps/plugins/db/bsddb/read.py:1947
 #: ../gramps/plugins/db/bsddb/write.py:2305
-#, fuzzy
 msgid "Number of tags"
-msgstr "结婚次数"
+msgstr "标签数量"
 
 #: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/write.py:2306
 #, fuzzy
@@ -3217,9 +3219,8 @@ msgid "Wrong name format string %s"
 msgstr "错误的名字格式字符串 %s"
 
 #: ../gramps/gen/display/name.py:1126
-#, fuzzy
 msgid "ERROR, Edit Name format in Preferences"
-msgstr "寻找无效名称格式"
+msgstr "错误，在偏好设置中编辑名字格式"
 
 #: ../gramps/gen/filters/_filterparser.py:119
 #, python-format
@@ -5439,6 +5440,14 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr "匹配在收录的列表中的成员，其祖先未能超过 N 代的"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "默认的成员的祖先 不超过 <N> 代"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "匹配默认的成员，其祖先 不超过 N 代"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11650,6 +11659,10 @@ msgid "Place format (auto place title)"
 msgstr "地点匹配筛查器<filter>"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 
@@ -11838,6 +11851,12 @@ msgstr "导入 GEDCOM 时添加默认源信息"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "导入时添加标签"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19400,6 +19419,13 @@ msgstr "由于没有选中内容，书签不能被设定."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "未设置主人翁"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -29895,6 +29921,17 @@ msgstr "设置为主人翁(_H)"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "前往默认成员"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "前往默认成员"
 
@@ -30488,6 +30525,23 @@ msgstr "钩选反向排列顺序."
 #, fuzzy, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "无法创建目录:%s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -36753,6 +36807,15 @@ msgstr "教会堂区"
 msgid "Locations"
 msgstr "位置"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "背景"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -37271,6 +37334,14 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "初始图像的最大宽度"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"这将会允许您设定在媒体页面上，显示图像的最大尺寸。设定为0代表没有限制。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -38232,6 +38303,10 @@ msgstr "无样式表"
 #, fuzzy
 #~ msgid "Home Person"
 #~ msgstr "未设置主人翁"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "选中默认人"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "健在女性边框颜色"
@@ -42892,3 +42967,4 @@ msgstr "无样式表"
 #~ "视图 %(name)s 未读取. 参照帮助菜单，插件管理了解更多信息。\n"
 #~ "利用 https://gramps-project.org/bugs/  提交官方视图的故障报告,  或者联系视"
 #~ "图的作者 (%(firstauthoremail)s) . "
+

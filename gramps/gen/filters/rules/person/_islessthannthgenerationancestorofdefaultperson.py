@@ -44,10 +44,10 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     not more than N generations away"""
 
     labels = [ _('Number of generations:') ]
-    name = _('Ancestors of the default person '
+    name = _('Ancestors of the Home Person '
                     'not more than <N> generations away')
     category = _('Ancestral filters')
-    description = _("Matches ancestors of the default person "
+    description = _("Matches ancestors of the Home Person "
                     "not more than N generations away")
 
     def prepare(self, db, user):

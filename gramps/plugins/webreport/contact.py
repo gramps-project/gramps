@@ -128,10 +128,11 @@ class ContactPage(BasePage):
                     note_id = report.options['contactnote']
                     if note_id:
                         note = self.r_db.get_note_from_gramps_id(note_id)
-                        note_text = self.get_note_format(note, False)
+                        if note:
+                            note_text = self.get_note_format(note, False)
 
-                        # attach note
-                        summaryarea += note_text
+                            # attach note
+                            summaryarea += note_text
 
         # add clearline for proper styling
         # add footer section

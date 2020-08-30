@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2019-08-04" version="5.0.2"/>
+    <created date="1999-12-25" version="5.1.3"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -1302,7 +1302,7 @@
       </reporef>
     </source>
     <source handle="_0000008500000085" change="1" id="S0000">
-      <stitle>@S0@</stitle>
+      <stitle>Marriage Certificae</stitle>
       <noteref hlink="_000000e7000000e7"/>
       <reporef hlink="_000000e6000000e6" callno="what-321-ever" medium="Photo"/>
     </source>
@@ -1705,7 +1705,7 @@ Unknown tag                                                         Line  1111: 
         <range start="0" end="163"/>
       </style>
     </note>
-    <note handle="_000000f9000000f9" change="1564950708" id="N0036" type="General">
+    <note handle="_000000f9000000f9" change="1591544255" id="N0036" type="General">
       <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>

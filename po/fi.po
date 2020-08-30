@@ -9,19 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2019-10-21 12:12+0300\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
+"PO-Revision-Date: 2020-07-17 00:30+0300\n"
+"Last-Translator: Matti Niemelä <niememat@gmail.con>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../gramps/gramps\n"
+"X-Poedit-Basepath: ../Gramps/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -811,9 +811,9 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
-"<b>Paikkojen hallinta</b><br/>Paikkanäkymä näyttää listan kaikista "
-"tietokannassa olevista paikoista. Voit järjestää listan eri perusteiden "
-"mukaan, kuten paikkakunta, maakunnan, lääni tai osavaltio mukaan."
+"<b>Paikkojen hallinta</b><br/><b> Paikkanäkymä näyttää luettelon kaikista "
+"tietokannan paikoista. Lista voidaan lajitella useilla eri perusteilla, "
+"kuten paikkakunta, maakunta tai osavaltio."
 
 #: ../data/tips.xml.in.h:40
 msgid ""
@@ -3481,15 +3481,14 @@ msgstr "lempinimi"
 msgid "familynick"
 msgstr "perhelempinimi"
 
-# ok
 #: ../gramps/gen/display/name.py:1122
 #, python-format
 msgid "Wrong name format string %s"
-msgstr "Nimen muodossa virheellinen merkkijono %s"
+msgstr "Virheellinen nimen muotoilu %s"
 
 #: ../gramps/gen/display/name.py:1126
 msgid "ERROR, Edit Name format in Preferences"
-msgstr "VIRHE, päivitä asetuksissa nimien muotoiluja"
+msgstr "VIRHE, Muokkaa nimen muotoa asetuksissa"
 
 #: ../gramps/gen/display/place.py:73 ../gramps/gen/plug/utils.py:339
 #, python-format
@@ -5580,6 +5579,14 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Poimii suotimen hyväksymien henkilöiden lapset"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Kotihenkilö"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Poimii kotihenkilön"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
 msgid "Default person"
 msgstr "Kotihenkilö"
 
@@ -5690,6 +5697,16 @@ msgid ""
 msgstr ""
 "Poimii henkilöt, jotka ovat kirjanmerkittyjen henkilöiden esivanhempia "
 "enintään <N> sukupolven päässä"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Kotihenkilön esivanhemmat enintään <N> sukupolven päässä"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Poimii henkilöt, jotka ovat kotihenkilön esivanhempia enintään <N> "
+"sukupolven päässä"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -6248,7 +6265,7 @@ msgstr "Poimii paikat tietyllä etäisyydellä toiseen paikkaan"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr "Suodatinta ei voi käyttää \"alueen sisällä\""
+msgstr "Suodatinta ei voi käyttää alueella"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
@@ -8768,7 +8785,7 @@ msgstr "Piirikunta"
 
 #: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:607
 msgid "Borough"
-msgstr "Kaupunginosa/Kauppala"
+msgstr "Kaupunginosa"
 
 #: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:655
 msgid "Municipality"
@@ -8796,10 +8813,10 @@ msgstr "Rakennus tai Torppa"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
 #: ../gramps/plugins/view/geoplaces.py:622
-#: ../gramps/plugins/webreport/basepage.py:2802
+#: ../gramps/plugins/webreport/basepage.py:2752
 #: ../gramps/plugins/webreport/source.py:164
 msgid "Number"
-msgstr "Kutsunumero"
+msgstr "Sijaintinumero"
 
 #. 6
 #: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:781
@@ -11844,6 +11861,12 @@ msgid "Place format (auto place title)"
 msgstr "Paikkamuoto (automaattinen paikan nimi)"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+"Mahdollistaa automaattisen paikannustiedoston generoinnin määritettyä muotoa "
+"käyttäen."
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 "Mahdollistaa automaattisen paikannustiedoston generoinnin määritettyä muotoa "
@@ -12041,6 +12064,14 @@ msgstr "Lisää oletuslähde GEDCOM-tuonnissa"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Lisää oletustagi tuonnissa"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
+"Määritetty tunniste lisätään tuonnin yhteydessä.\n"
+"Poista valinta, jos haluat määrittää oletusarvon."
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -15550,7 +15581,7 @@ msgstr "Katu:"
 #: ../gramps/gui/glade/editaddress.glade:123
 #: ../gramps/gui/glade/editlocation.glade:93
 msgid "C_ity:"
-msgstr "_Paikkakunta:"
+msgstr "Pa_ikkakunta:"
 
 #: ../gramps/gui/glade/editaddress.glade:137
 msgid "The town or city of the address"
@@ -15559,7 +15590,7 @@ msgstr "Osoitteessa oleva paikkakunta"
 #: ../gramps/gui/glade/editaddress.glade:151
 #: ../gramps/plugins/tool/ownereditor.glade:192
 msgid "_State/County:"
-msgstr "Lääni tai Osavaltio:"
+msgstr "O_savaltio/Maakunta:"
 
 #: ../gramps/gui/glade/editaddress.glade:166
 #: ../gramps/gui/glade/editlocation.glade:248
@@ -16080,7 +16111,7 @@ msgstr "Kolmas taso paikkatiedossa. USA:ssa \"county\", Suomessa \"maakunta\"."
 
 #: ../gramps/gui/glade/editlocation.glade:192
 msgid "_State:"
-msgstr "_Lääni tai Osavaltio:"
+msgstr "Lääni tai O_savaltio:"
 
 #: ../gramps/gui/glade/editlocation.glade:206
 msgid ""
@@ -19772,6 +19803,16 @@ msgstr "Kotihenkilöä ei ole asetettu"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Sinun täytyy asettaa \"Kotihenkilö\" jatkaaksesi. Valitse Henkilönäkymä, "
+"valitse haluamasi henkilö kotihenkilöksi ja vahvista valintasi Muokkaa-> "
+"Aseta kotihenkilö-valinnalla."
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -21054,7 +21095,7 @@ msgstr "Kalenterini"
 #: ../gramps/plugins/drawreport/calendarreport.py:75
 #: ../gramps/plugins/textreport/birthdayreport.py:67
 msgid "Produced with Gramps"
-msgstr "Tuotettu Grampsilla"
+msgstr "Tuotettu Gramps ohjelmalla"
 
 #. generate the report:
 #. to see "nearby" comments
@@ -22808,9 +22849,9 @@ msgstr "Gramplet näyttää kaikki etunimet pilvikaaviona"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:205
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:127
-#: ../gramps/plugins/webreport/person.py:1359
+#: ../gramps/plugins/webreport/person.py:1358
 msgid "Pedigree"
-msgstr "Esipolvien taulu"
+msgstr "Sukupuu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:217
 msgid "Gramplet showing an active item Quick View"
@@ -23459,10 +23500,10 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Gramplet näyttää aktiivisen paikan ympäröimät paikat"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
-#: ../gramps/plugins/webreport/basepage.py:2673
-#: ../gramps/plugins/webreport/basepage.py:2736
+#: ../gramps/plugins/webreport/basepage.py:2623
+#: ../gramps/plugins/webreport/basepage.py:2686
 msgid "Place Encloses"
-msgstr "Paikka ympäröi"
+msgstr "Ympäröi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1309
 msgid "Gramplet showing the places that the active place encloses"
@@ -30052,6 +30093,17 @@ msgstr "_Aseta kotihenkilö"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Siirry kotihenkilöön"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Siirry kotihenkilöön"
 
@@ -30651,6 +30703,35 @@ msgstr "Valitse tiilille välimuistihakemisto käytettäväksi offline-tilassa"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Tiilien välimuistin %s hakemiston luonti epäonnistui"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
+"Sinun täytyy tarkistaa ja vaihtaa laatat välimuistin\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"gramps.ini tiedostossa :\n"
+"%s\n"
+"\n"
+"Ennen gramps.ini-tiedoston muuttamista sinun on suljettava gramps\n"
+"\n"
+"Seuraavat virheet ovat normaalia"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -37170,7 +37251,7 @@ msgstr "Pudota       -- vain WebKit moottoria käyttävät selaimet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1706
 msgid "Navigation Menu Layout"
-msgstr "Navigointi valikon asetelma"
+msgstr "Navigointivalikon asetelma"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1710
 msgid "Choose which layout for the Navigation Menus."
@@ -37397,6 +37478,12 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1891
 msgid "Max width of initial image"
 msgstr "Alkuperäisen kuvan suurin leveys"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr "Tämän avulla voit asettaa mediasivulla näkyvän kuvan enimmäisleveyden."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
@@ -38181,7 +38268,7 @@ msgstr "Linkittäänkö tiedot Kertova-nettisivusto raporttiin vai ei"
 
 #: ../gramps/plugins/webreport/webcal.py:1902
 msgid "Show data only after year"
-msgstr "Näytä vasta vuoden jälkeiset tapahtumat"
+msgstr "Näytä valitun vuoden jälkeiset tapahtumat"
 
 #: ../gramps/plugins/webreport/webcal.py:1905
 msgid ""
@@ -38302,3 +38389,4 @@ msgstr "Ei tyylitiedostoa"
 
 #~ msgid "%(event_type)s: %(place)s"
 #~ msgstr "%(event_type)s: %(place)s"
+

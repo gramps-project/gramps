@@ -187,9 +187,11 @@ class EditPlace(EditPrimary):
 
     def set_latlongitude(self, value):
         try:
-            coma = value.index(',')
-            self.longitude.set_text(value[coma+1:].strip())
-            self.latitude.set_text(value[:coma].strip())
+            coma = value.index(', ')
+            longitude = value[coma+2:].strip().replace(',','.')
+            latitude = value[:coma].strip().replace(',','.')
+            self.longitude.set_text(longitude)
+            self.latitude.set_text(latitude)
             self.top.get_object("lat_entry").validate(force=True)
             self.top.get_object("lon_entry").validate(force=True)
             self.obj.set_latitude(self.latitude.get_value())

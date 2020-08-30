@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-10 17:16+0100\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2019-07-10 15:32+0200\n"
 "Last-Translator: Nemeséri Lajos <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <x@gmail.com>\n"
@@ -5654,6 +5654,16 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr "Könyvjelzőlistás emberek ősei, akik N-nél nem távolibb generációjúak"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr ""
+"Alapértelmezett emberek ősei, akik nem több, mint <N> generációval "
+"távoliabbak"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr "Alapértelmezett emberek ősei, akik N-nél nem távolibb generációjúak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11833,6 +11843,11 @@ msgid "Place format (auto place title)"
 msgstr "Hely formátum (automatikus helycím)"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+"Az automatikus helynév létrehozás bekapcsolása meghatározott formátumban."
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 "Az automatikus helynév létrehozás bekapcsolása meghatározott formátumban."
@@ -12025,6 +12040,14 @@ msgstr "Alapértelmezett forrás hozzáadása a GEDCOM importhoz"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Címke hozzáadása az importhoz"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
+"Importnál meghatározott felirat lesz hozzáadva.\n"
+"Alapértelmezett értékhez törölje."
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -19752,6 +19775,16 @@ msgstr "A könyvjelző nem beállítható, mert semmi sincs kiválasztva."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Nincs kiinduló személy"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
+"nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá a "
+"Szerkesztés -> Kiinduló személy beállítása menün keresztül."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30131,6 +30164,17 @@ msgstr "A kii_nduló személy beállítása"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "A kiinduló személyhez ugrás"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "A kiinduló személyhez ugrás"
 
@@ -30735,6 +30779,23 @@ msgstr "Válassza ki a gyorsítótár könyvtárat offline módhoz"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "A csempék rejtett %s könyvtára nem létrehozható"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -36959,6 +37020,15 @@ msgstr "Egyházmegye"
 msgid "Locations"
 msgstr "Koordináták"
 
+#: ../gramps/plugins/webreport/basepage.py:2893
+msgid "circa"
+msgstr ""
+
+#: ../gramps/plugins/webreport/basepage.py:2895
+#, fuzzy
+msgid "around"
+msgstr "Háttér"
+
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
@@ -37485,6 +37555,15 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1887
 msgid "Max width of initial image"
 msgstr "A kezdőkép maximális szélessége"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Lehetővé teszi a kép maximális mutatott szélességének beállítását a média "
+"oldalon. állítsa 0-ra, ha nincs korlát."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
 msgid ""
@@ -38400,6 +38479,15 @@ msgstr "Nincs stíluslap"
 #~ msgstr "Segíthet megoldani a betűtípusok problémáit."
 
 #~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
+#~ "nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá "
+#~ "a Szerkesztés -> Kiinduló személy beállítása menün keresztül."
+
+#~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
@@ -38456,8 +38544,13 @@ msgstr "Nincs stíluslap"
 #~ msgid "Family Divorced"
 #~ msgstr "Elvált családok"
 
-#~ msgid "Home Person"
-#~ msgstr "Kiinduló személy"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Alapértelmezett személy"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Az alapértelmezettnek megfelelő személy"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Élő nő kerete"
@@ -41676,3 +41769,4 @@ msgstr "Nincs stíluslap"
 
 #~ msgid "Family Sources"
 #~ msgstr "Család források"
+

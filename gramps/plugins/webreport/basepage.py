@@ -2075,7 +2075,7 @@ class BasePage:
                         _linkurl = self.report.build_url_fname_html(_obj.handle,
                                                                     "ppl",
                                                                     linkurl)
-            elif classname == "Family":
+            elif classname == "Family" and self.inc_families:
                 _obj = self.r_db.get_family_from_handle(newhandle)
                 partner1_handle = _obj.get_father_handle()
                 partner2_handle = _obj.get_mother_handle()
@@ -2101,7 +2101,7 @@ class BasePage:
                                                                 "ppl", True)
                 if not _name:
                     _name = self._("Unknown")
-            elif classname == "Event":
+            elif classname == "Event" and self.inc_events:
                 _obj = self.r_db.get_event_from_handle(newhandle)
                 _name = _obj.get_description()
                 if not _name:
@@ -2186,7 +2186,6 @@ class BasePage:
                     newpath = self.copy_thumbnail(photo_handle, photo, region)
                     newpath = self.report.build_url_fname(newpath, uplink=True,
                                                           image=True)
-
                     snapshot += self.media_link(photo_handle, newpath, descr,
                                                 uplink=self.uplink,
                                                 usedescr=False)
@@ -2194,51 +2193,10 @@ class BasePage:
                     dummy_rpath, newpath = self.report.prepare_copy_media(photo)
                     newpath = self.report.build_url_fname(newpath, image=True,
                                                           uplink=self.uplink)
-
-                    # FIXME: There doesn't seem to be any point in highlighting
-                    # a sub-region in the thumbnail and linking back to the
-                    # person or whatever. First it is confusing when the link
-                    # probably has nothing to do with the page on which the
-                    # thumbnail is displayed, and second on a thumbnail it is
-                    # probably too small to see, and third, on the thumbnail,
-                    # the link is shown above the image (which is pretty
-                    # useless!)
-                    _region_items = self.media_ref_rect_regions(photo_handle,
-                                                                linkurl=False)
-                    if _region_items:
-                        with Html("div", id="GalleryDisplay") as mediadisplay:
-                            snapshot += mediadisplay
-
-                            ordered = Html("ol", class_="RegionBox")
-                            mediadisplay += ordered
-                            while _region_items:
-                                (name, coord_x, coord_y,
-                                 width, height, linkurl) = _region_items.pop()
-                                ordered += Html("li",
-                                                style="left:%d%%; top:%d%%; "
-                                                "width:%d%%; height:%d%%;" % (
-                                                    coord_x, coord_y,
-                                                    width, height))
-                                ordered += Html("a", name, href=linkurl)
-                            # Need to add link to mediadisplay to get the links:
-                            mediadisplay += self.media_link(photo_handle,
-                                                            newpath, descr,
-                                                            self.uplink, False)
-                    else:
-                        try:
-
-                            # Begin hyperlink. Description is given only for
-                            # the purpose of the alt tag in img element
-                            if self.create_images_index:
-                                snapshot += self.media_link(photo_handle,
-                                                            newpath,
-                                                            descr,
-                                                            uplink=self.uplink,
-                                                            usedescr=False)
-
-                        except (IOError, OSError) as msg:
-                            self.r_user.warn(_("Could not add photo to page"),
-                                             str(msg))
+                    snapshot += self.media_link(photo_handle, newpath,
+                                                descr,
+                                                uplink=self.uplink,
+                                                usedescr=False)
             else:
                 # begin hyperlink
                 snapshot += self.doc_link(photo_handle, descr,
@@ -2746,9 +2704,6 @@ class BasePage:
             # not necessarily mean that a page has been generated
             (link, name, gid) = result
 
-        if name_style == _NAME_STYLE_FIRST and person:
-            name = _get_short_name(person.get_gender(),
-                                   person.get_primary_name())
         name = html_escape(name)
         # construct the result
         if not self.noid and gid != "":
@@ -2896,6 +2851,7 @@ class BasePage:
                 (self._("State/ Province"),
                  mlocation.get(PlaceType.STATE, '')),
                 (self._("Postal Code"), place.get_code()),
+                (self._("Province"), mlocation.get(PlaceType.PROVINCE, '')),
                 (self._("Country"), mlocation.get(PlaceType.COUNTRY, ''))]:
             if data:
                 trow = Html("tr") + (

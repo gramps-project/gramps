@@ -299,6 +299,7 @@ class StyledText:
         """
         if self._tags:
             the_tags = [tag.serialize() for tag in self._tags]
+            the_tags.sort()
         else:
             the_tags = []
 

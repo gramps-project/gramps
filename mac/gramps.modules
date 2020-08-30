@@ -65,9 +65,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v5.1.1.tar.gz"
-	    repo="github-tarball" version="5.1.1"
-	    checkoutdir="gramps-gramps-5.1.1"/>
+    <branch module="gramps-project/gramps/archive/v5.1.3.tar.gz"
+	    repo="github-tarball" version="5.1.3"
+	    checkoutdir="gramps-gramps-5.1.3"/>
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -105,6 +105,25 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="xdg-utils">
     <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
   </autotools>
+
+  <meson id="json-glib">
+    <branch module="json-glib/1.4/json-glib-1.4.4.tar.xz"
+            version="1.4.4" repo="ftp.gnome.org"
+            hash="sha256:720c5f4379513dc11fd97dc75336eb0c0d3338c53128044d9fabec4374f4bc47"/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </meson>
+
+  <meson id="geocode-glib" mesonargs="-Denable-gtk-doc=false">
+    <branch module="geocode-glib/3.26/geocode-glib-3.26.2.tar.xz"
+            version="3.26.2" repo="ftp.gnome.org"
+            hash="sha256:01fe84cfa0be50c6e401147a2bc5e2f1574326e2293b55c69879be3e82030fd1"/>
+    <dependencies>
+      <dep package="json-glib"/>
+      <dep package="libsoup"/>
+    </dependencies>
+  </meson>
 
   <autotools id="osmgpsmap" skip-autogen="never"
 	     autogenargs="--disable-gtk-doc-html"
@@ -156,8 +175,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id='pyicu'>
-    <branch version='2.0.3' repo='pymodules'
-	    module='bb/ef/3a7fcbba81bfd213e479131ae21445a2ddd14b46d70ef0109640b580bc5d/PyICU-2.0.3.tar.gz'/>
+    <branch version='2.5' repo='pymodules'
+	    module='5a/99/c48c816095208bf3f4936ff67e571621fbddef461303a35a076f234e31f6/PyICU-2.5.tar.gz'/>
     <dependencies>
       <dep package='icu'/>
     </dependencies>
@@ -166,13 +185,14 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <metamodule id="meta-gramps-modules">
     <dependencies>
       <dep package="python3"/>
-      <dep package="meta-gtk-osx-gtk3.14"/>
+      <dep package="meta-gtk-osx-gtk3"/>
       <dep package="meta-gtk-osx-gtk3-core-themes"/>
       <dep package="goocanvas2"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
       <dep package="gtkspell3"/>
+      <dep package="geocode-glib"/>
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
       <dep package="gexiv2"/>

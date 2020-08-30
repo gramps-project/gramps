@@ -72,7 +72,7 @@ from gramps.gen.relationship import get_relationship_calculator
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              alphabet_navigation, sort_people,
-                                             _NAME_STYLE_FIRST, first_letter,
+                                             first_letter,
                                              get_index_letter, add_birthdate,
                                              primary_difference, FULLCLEAR,
                                              _find_birth_date, _find_death_date,
@@ -221,9 +221,9 @@ class PersonPages(BasePage):
                 thead += trow
 
                 # show surname and first name
-                trow += Html("th", self._("Surname"), class_="ColumnSurname",
+                trow += Html("th", self._("Group as"), class_="ColumnSurname",
                              inline=True)
-                trow += Html("th", self._("Given Name"), class_="ColumnName",
+                trow += Html("th", self._("Name"), class_="ColumnName",
                              inline=True)
 
                 if showbirth:
@@ -305,8 +305,7 @@ class PersonPages(BasePage):
                         tcell += "&nbsp;"
 
                     # firstname column
-                    link = self.new_person_link(person_handle, person=person,
-                                                name_style=_NAME_STYLE_FIRST)
+                    link = self.new_person_link(person_handle, person=person)
                     trow += Html("td", link, class_="ColumnName")
 
                     # birth column
@@ -743,9 +742,9 @@ class PersonPages(BasePage):
 
         # add MapService specific javascript code
         if self.mapservice == "Google":
-            src_js = GOOGLE_MAPS + "api/js?sensor=false"
+            src_js = GOOGLE_MAPS + "api/js"
             if self.googlemapkey:
-                src_js += "&key=" + self.googlemapkey
+                src_js += "?key=" + self.googlemapkey
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else: # OpenStreetMap, Stamen...

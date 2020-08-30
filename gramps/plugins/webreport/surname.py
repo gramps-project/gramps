@@ -56,7 +56,7 @@ from gramps.plugins.lib.libhtml import Html
 # specific narrative web import
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (name_to_md5, _NAME_STYLE_FIRST,
+from gramps.plugins.webreport.common import (name_to_md5,
                                              _find_birth_date, _find_death_date,
                                              FULLCLEAR, html_escape)
 
@@ -135,7 +135,7 @@ class SurnamePage(BasePage):
                 thead += trow
 
                 # Name Column
-                trow += Html("th", self._("Given Name"), class_="ColumnName",
+                trow += Html("th", self._("Name"), class_="ColumnName",
                              inline=True)
 
                 if showbirth:
@@ -171,8 +171,7 @@ class SurnamePage(BasePage):
 
                     # firstname column
                     link = self.new_person_link(person_handle, uplink=True,
-                                                person=person,
-                                                name_style=_NAME_STYLE_FIRST)
+                                                person=person)
                     trow += Html("td", link, class_="ColumnName")
 
                     # birth column

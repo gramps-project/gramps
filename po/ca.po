@@ -6,9 +6,8 @@
 # Copyright (C) 2008 PEL GRUP DE GRAMPS
 # Aquest fitxer es distribueix segons la mateixa llicència que Gramps
 #
-# Joan Creus <joan.creus at gmail dot com>, 2008, 2009, 2010, 2011, 2012, 2013.
 # Arnau <arnaullv at gmail dot com>, 2017, 2018, 2019, 2020.
-#
+# Joan Creus <joan.creus at gmail dot com>, 2008, 2009, 2010, 2011, 2012, 2013, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
@@ -22,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Lokalize 19.04.3\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -2618,51 +2617,51 @@ msgstr "Des"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgid "alternative month names for January||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgid "alternative month names for February||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgid "alternative month names for March||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgid "alternative month names for April||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgid "alternative month names for May||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgid "alternative month names for June||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgid "alternative month names for July||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgid "alternative month names for August||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgid "alternative month names for September||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgid "alternative month names for October||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgid "alternative month names for November||"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgid "alternative month names for December||"
-msgstr ""
+msgstr "|"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
@@ -3863,11 +3862,11 @@ msgstr "Sense descripció"
 #. more references to a filter than expected
 #: ../gramps/gen/filters/rules/_rule.py:94
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "La definició del filtre conté un bucle."
 
 #: ../gramps/gen/filters/rules/_rule.py:95
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Una regla en referencia una altra que acaba referenciant la primera."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -5762,6 +5761,16 @@ msgstr ""
 "que no estiguin a més de N generacions"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Avantpassats de la persona predeterminada a no més de <N> generacions"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Concorda amb avantpassats de la persona predeterminada que no estiguin a més "
+"de N generacions"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Avantpassats de la persona predeterminada a no més de <N> generacions"
 
@@ -6325,13 +6334,15 @@ msgstr "Concorda amb llocs en una distància donada d'un altre lloc"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "No es pot utilitzar el filtre 'dins una àrea'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"El lloc que ha seleccionat conté coordenades errònies. Si us plau, executeu "
+"l'eina 'netejar dades d'entrada'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -11206,7 +11217,7 @@ msgstr "transgènere"
 
 #: ../gramps/gen/utils/symbols.py:69
 msgid "Neuter"
-msgstr ""
+msgstr "Neutre"
 
 #: ../gramps/gen/utils/symbols.py:71
 msgid "Illegitimate"
@@ -11214,7 +11225,7 @@ msgstr "il·legitím"
 
 #: ../gramps/gen/utils/symbols.py:73
 msgid "Baptism/Christening"
-msgstr "Baptisme"
+msgstr "Baptisme religiós"
 
 #: ../gramps/gen/utils/symbols.py:74
 msgid "Engaged"
@@ -11230,7 +11241,7 @@ msgstr "Enterrat"
 
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Cremat/Urna funerària"
 
 #: ../gramps/gen/utils/symbols.py:80
 msgid "Killed in action"
@@ -11238,7 +11249,7 @@ msgstr "Mort en combat"
 
 #: ../gramps/gen/utils/symbols.py:81
 msgid "Extinct"
-msgstr ""
+msgstr "Extint"
 
 #. The following is used in the global preferences in the display tab.
 #. Name
@@ -11257,19 +11268,19 @@ msgstr "Ankh"
 
 #: ../gramps/gen/utils/symbols.py:110
 msgid "Orthodox cross"
-msgstr ""
+msgstr "Creu ortodoxa"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Chi rho"
-msgstr ""
+msgstr "Crismó"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Cross of Lorraine"
-msgstr ""
+msgstr "Creu de Lorena"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Cross of Jerusalem"
-msgstr ""
+msgstr "Creu de Jerusalem"
 
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Star and crescent"
@@ -11277,7 +11288,7 @@ msgstr "Creixent lunar i estrella"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
-msgstr ""
+msgstr "Creu siríaca occidental"
 
 #: ../gramps/gen/utils/symbols.py:116
 msgid "East Syriac cross"
@@ -11285,7 +11296,7 @@ msgstr "Creu Siríaca oriental"
 
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Creu grega plena"
 
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
@@ -11293,15 +11304,15 @@ msgstr "Creu llatina"
 
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Creu llatina blanca amb ombra"
 
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
-msgstr ""
+msgstr "Creu de Malta"
 
 #: ../gramps/gen/utils/symbols.py:121
 msgid "Star of David"
-msgstr ""
+msgstr "Estrella de David"
 
 #: ../gramps/gen/utils/symbols.py:122
 msgid "Dead"
@@ -11730,7 +11741,7 @@ msgstr "Restaura als predeterminats"
 
 #: ../gramps/gui/configure.py:695
 msgid "Restore colors for current theme to default."
-msgstr ""
+msgstr "Restaurar els colors del tema actual als predeterminats."
 
 #: ../gramps/gui/configure.py:701
 msgid "Colors for Male persons"
@@ -11738,7 +11749,7 @@ msgstr "Color del Fons pels homes"
 
 #: ../gramps/gui/configure.py:702
 msgid "Colors for Female persons"
-msgstr ""
+msgstr "Colors per a persones Femenines"
 
 #: ../gramps/gui/configure.py:703
 msgid "Colors for Unknown persons"
@@ -11809,7 +11820,7 @@ msgstr "Vora per la Persona Base"
 #: ../gramps/gui/configure.py:761
 #, python-format
 msgid "<b>%s</b>"
-msgstr ""
+msgstr "<b>%s</b>"
 
 #: ../gramps/gui/configure.py:774
 msgid "Colors"
@@ -11817,7 +11828,7 @@ msgstr "Colors"
 
 #: ../gramps/gui/configure.py:794
 msgid "Warnings and Error dialogs"
-msgstr ""
+msgstr "Avisos i diàlegs d'error"
 
 #: ../gramps/gui/configure.py:800
 msgid "Suppress warning when adding parents to a child"
@@ -11938,6 +11949,12 @@ msgid "Place format (auto place title)"
 msgstr "Format del lloc (títol del lloc automàtic)"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+"Habilita la generació automàtica de títols de llocs utilitzant el format "
+"especificat."
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 "Habilita la generació automática de títols de llocs utilitzant el format "
@@ -12052,9 +12069,9 @@ msgstr ""
 "Canviar el format de la data no tindrà efecte fins la propera vegada que "
 "s'engegui Gramps."
 
-#: ../gramps/gui/configure.py:1487
+#: ../gramps/gui/configure.py:1488
 msgid "Dates settings used for calculation operations"
-msgstr ""
+msgstr "Opcions de dates utilitzades per operacions de càlcul"
 
 #: ../gramps/gui/configure.py:1493
 msgid "Markup for invalid date format"
@@ -12125,9 +12142,9 @@ msgstr "Anys mitjans entre generacions"
 msgid "Dates"
 msgstr "Dates"
 
-#: ../gramps/gui/configure.py:1548
+#: ../gramps/gui/configure.py:1549
 msgid "General Gramps settings"
-msgstr ""
+msgstr "Configuració general del Gramps"
 
 #: ../gramps/gui/configure.py:1553
 msgid "Add default source on GEDCOM import"
@@ -12136,6 +12153,12 @@ msgstr "Afegeix font predeterminada en importar GEDCOM"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Afegeix etiqueta en importar"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -12160,9 +12183,9 @@ msgstr ""
 msgid "Display Tip of the Day"
 msgstr "Mostrar Consell del Dia"
 
-#: ../gramps/gui/configure.py:1597
+#: ../gramps/gui/configure.py:1598
 msgid "Show useful information about using Gramps on startup."
-msgstr ""
+msgstr "Mostrar informació útil sobre l'ús de Gramps en engegar."
 
 #: ../gramps/gui/configure.py:1600
 msgid "Remember last view displayed"
@@ -12180,9 +12203,9 @@ msgstr "Màxim de generacions per parentesc"
 msgid "Base path for relative media paths"
 msgstr "Camí (path) base per carpetes de medis audiovisuals"
 
-#: ../gramps/gui/configure.py:1617
+#: ../gramps/gui/configure.py:1618
 msgid "Third party addons management"
-msgstr ""
+msgstr "Gestió de complements de tercers"
 
 #: ../gramps/gui/configure.py:1626
 msgid "Once a month"
@@ -12265,9 +12288,11 @@ msgstr "nou"
 msgid "update"
 msgstr "actualitza"
 
-#: ../gramps/gui/configure.py:1729
+#: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
 msgstr ""
+"Opcions de base de dades de l'arbre genealògic i gestió de còpies de "
+"seguretat"
 
 #: ../gramps/gui/configure.py:1735
 msgid "Database backend"
@@ -12289,23 +12314,27 @@ msgstr "Camí de la Base de Dades d'Arbres Genealògics"
 msgid "Automatically load last Family Tree"
 msgstr "Carregar automàticament l'últim Arbre Genealògic"
 
-#: ../gramps/gui/configure.py:1761
+#: ../gramps/gui/configure.py:1762
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
+"No obrir el diàleg per escollir l'arbre genealògic a carregar en engegar, "
+"simplement carregar l'últim que s'ha utilitzat."
 
 #: ../gramps/gui/configure.py:1766
 msgid "Backup path"
 msgstr "Ruta de la còpia de seguretat"
 
-#: ../gramps/gui/configure.py:1771
+#: ../gramps/gui/configure.py:1772
 msgid "Backup on exit"
-msgstr "Fer còpia de seguretat en sortit"
+msgstr "Fer còpia de seguretat en sortir"
 
-#: ../gramps/gui/configure.py:1773
+#: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
+"En sortir , fer còpia de seguretat del vostre arbre genealògic a la ruta de "
+"còpia de seguretat especificada més amunt."
 
 #: ../gramps/gui/configure.py:1779
 msgid "Every 15 minutes"
@@ -12395,7 +12424,7 @@ msgstr "Selecciona el directori de bases de dades"
 msgid "Select backup directory"
 msgstr "Selecciona el directori de còpies de seguretat"
 
-#: ../gramps/gui/configure.py:1946
+#: ../gramps/gui/configure.py:1947
 msgid ""
 "This tab gives you the possibility to use one font which is able to show all "
 "genealogical symbols\n"
@@ -12403,37 +12432,50 @@ msgid ""
 "If you select the \"use symbols\" checkbox, Gramps will use the selected "
 "font if it exists."
 msgstr ""
+"Aquesta pestanya us dona la possibilitat d'utilitzar un tipus de lletra que "
+"pugui mostrar tots els símbols genealògics.\n"
+"\n"
+"Si marqueu la casella de verificació \"utilitzar símbols\", Gramps "
+"utilitzarà el tipus de lletra seleccionat si existeix."
 
-#: ../gramps/gui/configure.py:1952
+#: ../gramps/gui/configure.py:1953
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
+"Això pot ser útil si voleu afegir símbols fonètics en una nota per mostrar "
+"com es pronuncia un nom o si es barregen múltiples llengües com el grec i el "
+"rus."
 
-#: ../gramps/gui/configure.py:1959
+#: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
-msgstr ""
+msgstr "Utilitzar símbols"
 
-#: ../gramps/gui/configure.py:1964
+#: ../gramps/gui/configure.py:1965
 msgid ""
 "Be careful, if you click on the \"Try to find\" button, it can take a while "
 "before you can continue (10 minutes or more). \n"
 "If you cancel the process, nothing will be changed."
 msgstr ""
+"Vigileu, si cliqueu al botó \"Provar de trobar\" pot trigar una estona abans "
+"no pugueu continuar (10 minuts o més).\n"
+"Si cancel·leu el procés, no es modificarà res."
 
-#: ../gramps/gui/configure.py:1974
+#: ../gramps/gui/configure.py:1975
 msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
 msgstr ""
+"Ja heu executat l'eina per cerca tipus de lletra genealògics.\n"
+"Torneu-lo a executar només si heu afegit tipus de lletra al vostre sistema."
 
-#: ../gramps/gui/configure.py:1979
+#: ../gramps/gui/configure.py:1980
 msgid "Try to find"
-msgstr ""
+msgstr "Provar de trobar"
 
-#: ../gramps/gui/configure.py:1990 ../gramps/gui/configure.py:2091
+#: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
 msgid "Choose font"
-msgstr ""
+msgstr "Triar tipus de lletra"
 
 #: ../gramps/gui/configure.py:2003 ../gramps/gui/configure.py:2108
 msgid "Select default death symbol"
@@ -12443,29 +12485,33 @@ msgstr "Selecciona el símbol predeterminat de defunció"
 msgid "Genealogical Symbols"
 msgstr "Símbols Genealògics"
 
-#: ../gramps/gui/configure.py:2021
-msgid "Cannot look for genealogical fonts"
-msgstr ""
-
 #: ../gramps/gui/configure.py:2022
+msgid "Cannot look for genealogical fonts"
+msgstr "No es poden cercar tipus de lletra genealògics"
+
+#: ../gramps/gui/configure.py:2023
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
 msgstr ""
+"No puc seleccionar tipus de lletra genealògics. Si us plau, instal·leu el "
+"mòdul fontconfig per a python 3."
 
-#: ../gramps/gui/configure.py:2039
+#: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
-msgstr ""
+msgstr "Comprovant els tipus de lletra genealògics disponibles"
 
-#: ../gramps/gui/configure.py:2043
+#: ../gramps/gui/configure.py:2044
 msgid "Looking for all fonts with genealogical symbols."
-msgstr ""
+msgstr "Cercant totes les fonts amb símbols genealògics."
 
-#: ../gramps/gui/configure.py:2116
+#: ../gramps/gui/configure.py:2117
 msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
 msgstr ""
+"Al vostre sistema no hi ha cap tipus de lletra amb símbols genealògics. "
+"Gramps no podrà utilitzar símbols."
 
 #: ../gramps/gui/configure.py:2154
 msgid "What you will see"
@@ -14800,7 +14846,7 @@ msgstr "Afegeix Repositori"
 
 #: ../gramps/gui/editors/editrepository.py:60
 msgid "manual|New_Repository_dialog"
-msgstr "Dialeg_Nous_Repositoris"
+msgstr "Dialeg_de_Nous_Repositoris"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -16641,7 +16687,7 @@ msgstr "_Longitud:"
 #: ../gramps/gui/glade/editplace.glade:149
 #: ../gramps/gui/glade/editplaceref.glade:446
 msgid "Full title of this place."
-msgstr "Nom complet d'aquest lloc."
+msgstr "Títol complet d'aquest lloc."
 
 #: ../gramps/gui/glade/editplace.glade:177
 #: ../gramps/gui/glade/editplaceref.glade:460
@@ -16716,7 +16762,7 @@ msgstr "El nom d'aquest lloc."
 #: ../gramps/gui/glade/editplace.glade:456
 #: ../gramps/gui/glade/editplaceref.glade:618
 msgid "Invoke place name editor."
-msgstr "Cridar l'editor de noms de llocs"
+msgstr "Cridar l'editor de noms de llocs."
 
 #: ../gramps/gui/glade/editplaceformat.glade:124
 msgid "Levels:"
@@ -19397,7 +19443,7 @@ msgstr "Últim Canvi"
 
 #: ../gramps/gui/selectors/selectcitation.py:86
 msgid "manual|Select_Source_or_Citation_selector"
-msgstr "Selector_Selecciona_Font_Cita"
+msgstr "Selector_Selecciona_Font_o_Cita"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
@@ -19405,11 +19451,11 @@ msgstr "Selecciona un Esdeveniment"
 
 #: ../gramps/gui/selectors/selectevent.py:79
 msgid "manual|Select_Event_selector"
-msgstr "Selector_selecciona_esdeveniment"
+msgstr "Selector_Selecciona_Esdeveniment"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 msgid "manual|Select_Family_selector"
-msgstr "Selector_selecciona_familia"
+msgstr "Selector_Selecciona_Família"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -19417,7 +19463,7 @@ msgstr "Selecciona Nota"
 
 #: ../gramps/gui/selectors/selectnote.py:82
 msgid "manual|Select_Note_selector"
-msgstr "Selector_selecciona_nota"
+msgstr "Selector_Selecciona_Nota"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
@@ -19429,15 +19475,15 @@ msgstr "Selector_Selecciona_Objecte_Audiovisual"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgid "manual|Select_Father_selector"
-msgstr "Selector_selecciona_pare"
+msgstr "Selector_Selecciona_Pare"
 
 #: ../gramps/gui/selectors/selectperson.py:66
 msgid "manual|Select_Mother_selector"
-msgstr "Selector_selecciona_mare"
+msgstr "Selector_Selecciona_Mare"
 
 #: ../gramps/gui/selectors/selectperson.py:68
 msgid "manual|Select_Child_selector"
-msgstr "Selector_selecciona_fill"
+msgstr "Selector_Selecciona_Fill"
 
 #: ../gramps/gui/selectors/selectperson.py:70
 msgid "manual|Select_Person_selector"
@@ -19449,7 +19495,7 @@ msgstr "Selecciona Lloc"
 
 #: ../gramps/gui/selectors/selectplace.py:90
 msgid "manual|Select_Place_selector"
-msgstr "Selector_selecciona_lloc"
+msgstr "Selector_Selecciona_Lloc"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -19643,9 +19689,9 @@ msgstr "Importa Estadístiques"
 msgid "Read Only"
 msgstr "Només Lectura"
 
-#: ../gramps/gui/viewmanager.py:1023
+#: ../gramps/gui/viewmanager.py:1020
 msgid "Gramps had a problem the last time it was run."
-msgstr ""
+msgstr "Gramps va tenir un problema l'última vegada que es va executar."
 
 #: ../gramps/gui/viewmanager.py:1024
 msgid "Would you like to run the Check and Repair tool?"
@@ -19896,6 +19942,16 @@ msgstr ""
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Persona base no fixada"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista de "
+"Persones, seleccioneu la persona que voleu com a 'Persona Base', i llavors "
+"confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -20636,7 +20692,7 @@ msgstr "No s'ha pogut crear la versió jpeg de la imatge %(name)s"
 
 #: ../gramps/plugins/docgen/latexdoc.py:1240
 msgid "PIL (Python Imaging Library) not loaded."
-msgstr "No s'ha carregat PIL (Python Imaging Library)"
+msgstr "No s'ha carregat PIL (Python Imaging Library)."
 
 #: ../gramps/plugins/docgen/latexdoc.py:1241
 msgid ""
@@ -23665,7 +23721,7 @@ msgstr "Refresca"
 
 #: ../gramps/plugins/gramplet/leak.py:122
 msgid "Press Refresh to see initial results"
-msgstr ""
+msgstr "Premeu Refresca per veure els resultats inicials"
 
 #: ../gramps/plugins/gramplet/leak.py:158
 #, python-format
@@ -24062,7 +24118,7 @@ msgstr "Afegeix una nova nota Per Fer"
 
 #: ../gramps/plugins/gramplet/todo.py:201
 msgid "First select the object to which you want to attach a note"
-msgstr ""
+msgstr "Primer seleccioneu l'objecte al qual voleu associar una nota"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -24731,6 +24787,9 @@ msgid ""
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
+"Força l'ordre Sosa / Sosa-Stradonitz / Ahnentafel en la disposició per a "
+"tots els avantpassats, de manera que els pares sempre siguin a la branca "
+"esquerra i les mares a la dreta."
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "Ahnentafel number visible"
@@ -24741,6 +24800,8 @@ msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
 msgstr ""
+"Mostra el nombre Sosa / Sosa-Stradonitz / Ahnentafel a sota de totes les "
+"altres informacions."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:834
@@ -24814,6 +24875,8 @@ msgstr "Mostra tots els nodes familiars"
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
 msgstr ""
+"Mostrar els nodes familiars encara que la sortida només contingui un membre "
+"de la família."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "Include URLs"
@@ -25522,6 +25585,8 @@ msgid ""
 "Source reference text\n"
 "(Text & import Filename)."
 msgstr ""
+"Text de referència de la Font\n"
+"(Text i Nom de fitxer d'importació)."
 
 #: ../gramps/plugins/importer/importprogen.glade:155
 #: ../gramps/plugins/importer/importprogen.glade:325
@@ -25533,6 +25598,8 @@ msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Text de l'atribució de la font (Text, Nom de fitxer d'importació & Data (de "
+"Sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -25544,18 +25611,24 @@ msgid ""
 "Citation confidence level\n"
 "(Very low - very high)."
 msgstr ""
+"Nivell de confiança de la Cita\n"
+"(Molt baix - molt alt)."
 
 #: ../gramps/plugins/importer/importprogen.glade:308
 msgid ""
 "Citation volume/page text\n"
 "(Text & (System-)Date)."
 msgstr ""
+"Text per al volum/pàgina de la Cita\n"
+"(Text & Data (de Sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade:341
 msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Text d'atribució de la Cita\n"
+"(Text, Nom de fitxer d'importació & Data (de Sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade:362
 msgid "Import Text"
@@ -25566,6 +25639,8 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
+"Text de l'etiqueta predeterminat\n"
+"(fora de Configuració)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -25573,7 +25648,7 @@ msgstr "Importa Nom d'arxiu"
 
 #: ../gramps/plugins/importer/importprogen.glade:492
 msgid "Default (System-)Date."
-msgstr ""
+msgstr "Data (de Sistema) Predeterminada."
 
 #: ../gramps/plugins/importer/importprogen.glade:766
 #: ../gramps/plugins/importer/importprogen.glade:781
@@ -25583,19 +25658,23 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:841
 #: ../gramps/plugins/importer/importprogen.glade:856
 msgid "Combined default text + filename + date."
-msgstr ""
+msgstr "Combinació de text predeterminat + nom de fitxer + data."
 
 #: ../gramps/plugins/importer/importprogen.glade:1111
 msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
+"Copiar Text Predeterminat\n"
+"a tots els Textos d'Etiqueta'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copiar Nom de fitxer Predeterminat\n"
+"a tots els Textos d'Etiqueta sensible'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
 msgid ""
@@ -25612,6 +25691,8 @@ msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
+"Activar/Desactivar\n"
+"totes les etiquetes d'objecte."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -25626,30 +25707,40 @@ msgid ""
 "Enable/Disable\n"
 "Person import."
 msgstr ""
+"Activar/Desactivar\n"
+"Importació de Persona."
 
 #: ../gramps/plugins/importer/importprogen.glade:1260
 msgid ""
 "Enable/Disable\n"
 "Family import."
 msgstr ""
+"Activar/Desactivar\n"
+"Importació de Família."
 
 #: ../gramps/plugins/importer/importprogen.glade:1279
 msgid ""
 "Enable/Disable\n"
 "Child import."
 msgstr ""
+"Activar/Desactivar\n"
+"Importació de Fill."
 
 #: ../gramps/plugins/importer/importprogen.glade:1330
 msgid ""
 "Use original Person\n"
 "Identifier as Gramps ID."
 msgstr ""
+"Utilitzar Identificador de\n"
+"Persona original com a ID Gramps."
 
 #: ../gramps/plugins/importer/importprogen.glade:1349
 msgid ""
 "Use original Family\n"
 "Identifier as Gramps ID."
 msgstr ""
+"Utilitzar Identificador de\n"
+"Família original com a ID Gramps."
 
 #: ../gramps/plugins/importer/importprogen.glade:1369
 msgid "Identifier"
@@ -25661,7 +25752,7 @@ msgstr "Canvi de nom"
 
 #: ../gramps/plugins/importer/importprogen.glade:1461
 msgid "Event date"
-msgstr "Data d'Esdeveniment"
+msgstr "Data d'esdeveniment"
 
 #: ../gramps/plugins/importer/importprogen.glade:1476
 msgid ""
@@ -25681,17 +25772,19 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
-msgstr ""
+msgstr "Divers"
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 msgid ""
 "Store REFN number\n"
 "in event description."
 msgstr ""
+"Desar el número REFN\n"
+"a la descripció de l'esdeveniment."
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
@@ -25699,6 +25792,8 @@ msgid ""
 "Use death information\n"
 "as death cause event."
 msgstr ""
+"Utilitzar la informació de defunció\n"
+"com a causa de l'esdeveniment de defunció."
 
 #: ../gramps/plugins/importer/importprogen.glade:1598
 msgid "(-cause)"
@@ -25713,6 +25808,8 @@ msgid ""
 "Change name of male\n"
 "to e.g. wifes name."
 msgstr ""
+"Canviar nom de l'home\n"
+"a p.ex. el nom de la dona."
 
 #: ../gramps/plugins/importer/importprogen.glade:1629
 msgid "Female surname"
@@ -25723,10 +25820,12 @@ msgid ""
 "Change name of female\n"
 "to e.g. husbands name."
 msgstr ""
+"Canviar nom de la dona\n"
+"a p.ex. el nom de l'home."
 
 #: ../gramps/plugins/importer/importprogen.glade:1692
 msgid "Option"
-msgstr "Opcions"
+msgstr "Opció"
 
 #: ../gramps/plugins/importer/importprogen.glade:1731
 msgid "_Ok"
@@ -30236,6 +30335,17 @@ msgstr "Fixa Persona _Base"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Anar a la persona predeterminada"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Anar a la persona predeterminada"
 
@@ -30553,17 +30663,17 @@ msgstr "Causa de defunció"
 msgid "Importing families."
 msgstr "S'estan important famílies."
 
-#: ../gramps/plugins/lib/libprogen.py:1689
+#: ../gramps/plugins/lib/libprogen.py:1691
 msgid "Civil union"
-msgstr "Unió Civil"
+msgstr "Unió civil"
 
 #: ../gramps/plugins/lib/libprogen.py:1794
 msgid "Wedding"
 msgstr "Casament"
 
-#: ../gramps/plugins/lib/libprogen.py:1829
+#: ../gramps/plugins/lib/libprogen.py:1831
 msgid "future"
-msgstr ""
+msgstr "futur"
 
 #. We have seen some case insensitivity in DEF files ...
 #. F13: Father
@@ -30844,6 +30954,35 @@ msgstr "Selecciona el directori cau per les caselles per al mode fora de línia"
 msgid "Can't create tiles cache directory %s"
 msgstr "No s'ha pogut crear el directori de reserva de caselles %s"
 
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
+"Heu de verificar i modificar la reserva de caselles\n"
+"...\n"
+"[geography\n"
+"...\n"
+"path='camí/incorrecte'\n"
+"...\n"
+"al fitxer gramps.ini:\n"
+"%s\n"
+"\n"
+"Abans de canviar el fitxer gramps.ini, heu de tancar Gramps\n"
+"\n"
+"Els següents errors seran normals"
+
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
 #, python-format
@@ -30869,12 +31008,17 @@ msgid ""
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"A la següent taula podeu tenir:\n"
+"- una fila verda relacionada amb un lloc seleccionat."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:128
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+"- una fila vermella relacionada amb un resultat de geocodificació."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:165
 msgid "The green values in the row correspond to the current place values."
@@ -31895,7 +32039,7 @@ msgstr "Informe d'Aniversari"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:68
 msgid "✝"
-msgstr ""
+msgstr "✝"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:221
@@ -34702,7 +34846,7 @@ msgstr ""
 #: ../gramps/plugins/tool/removespaces.py:87
 #: ../gramps/plugins/tool/tools.gpr.py:489
 msgid "Clean input data"
-msgstr ""
+msgstr "Netejar dades d'entrada"
 
 #: ../gramps/plugins/tool/removespaces.py:104
 msgid ""
@@ -34710,6 +34854,9 @@ msgid ""
 "in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
+"Cercar espais al principi i/o al final per a persones i llocs. Cercar comes "
+"en camps de coordenades.\n"
+"Feu doble clic en una fila per editar-ne el contingut."
 
 #: ../gramps/plugins/tool/removespaces.py:113
 msgid "Looking for possible fields with leading or trailing spaces"
@@ -35684,7 +35831,7 @@ msgstr "Esborra Es_deveniment"
 #: ../gramps/plugins/view/eventview.py:400
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
-msgstr ""
+msgstr "Esborrar {type} [{gid}]?"
 
 #: ../gramps/plugins/view/eventview.py:443
 msgid "Cannot merge event objects."
@@ -36188,6 +36335,14 @@ msgid ""
 "To build it for Gramps see the Wiki (<F1>)\n"
 " and search for 'build from source'"
 msgstr ""
+"La funcionalitat de Geografia no estarà disponible.\n"
+"Proveu d'instal·lar:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 per a fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 per a openSuse\n"
+" ...\n"
+"Per construir-la per a Gramps vegeu la Wiki (<F1>)\n"
+"i cerqueu 'build from source'"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
@@ -37092,9 +37247,9 @@ msgstr "Parròquia"
 msgid "Locations"
 msgstr "Ubicacions"
 
-#: ../gramps/plugins/webreport/basepage.py:2943
+#: ../gramps/plugins/webreport/basepage.py:2893
 msgid "circa"
-msgstr ""
+msgstr "circa"
 
 #: ../gramps/plugins/webreport/basepage.py:2945
 msgid "around"
@@ -37436,11 +37591,11 @@ msgstr "Si s'ha d'incloure un graf d'avantpassats a cada pàgina individual"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1735
 msgid "Add previous/next"
-msgstr ""
+msgstr "Afegir previ/següent"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1736
 msgid "Add previous/next to the navigation bar."
-msgstr ""
+msgstr "Afegir previ/següent a la barra de navegació."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1739
 msgid "This is a secure site (https)"
@@ -37460,15 +37615,15 @@ msgstr "Nom de la pàgina extra"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1754
 msgid "Your extra page name like it is shown in the menubar"
-msgstr ""
+msgstr "El nom de la vostra pàgina addicional tal com surt a la barra del menú"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1759
 msgid "Your extra page path"
-msgstr ""
+msgstr "El camí de la vostra pàgina addicional"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1762
 msgid "Your extra page path without extension"
-msgstr ""
+msgstr "El camí de la vostra pàgina addicional sense extensió"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1782
 msgid "Sort all children in birth order"
@@ -37482,19 +37637,21 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1788
 msgid "Do we display coordinates in the places list?"
-msgstr ""
+msgstr "Mostrem les coordenades a la llista de llocs?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1790
 msgid "Whether to display latitude/longitude in the places list?"
-msgstr ""
+msgstr "Si s'ha de mostrar la latitud/longitud a la llista de llocs"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1794
 msgid "Sort places references either by date or by name"
-msgstr ""
+msgstr "Ordenar les referències de lloc bé per data o bé per nom"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1796
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
+"Ordenar les referències de lloc per data o per nom. Si no diu res vol dir "
+"que es fa per data."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1800
 msgid "Graph generations"
@@ -37506,13 +37663,15 @@ msgstr "El nombre de generacions a incloure al graf d'avantpassats"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1807
 msgid "Include narrative notes just after name, gender"
-msgstr ""
+msgstr "Incloure notes de narració després mateix del nom, gènere"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1809
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Incloure notes de narració després mateix del nom, gènere i edat de defunció "
+"(predeterminat) o incloure'ls abans mateix dels atributs."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1818
 msgid "Page Generation"
@@ -37632,6 +37791,14 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1891
 msgid "Max width of initial image"
 msgstr "Amplada màxima d'imatge inicial"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Això us permet de fixar l'amplada màxima de la imatge que es mostra a la "
+"pàgina d'audiovisuals."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
@@ -38421,13 +38588,16 @@ msgstr "Si s'han d'enllaçar les dades cap a l'informe web o no"
 
 #: ../gramps/plugins/webreport/webcal.py:1902
 msgid "Show data only after year"
-msgstr ""
+msgstr "Mostrar les dades només després de l'any"
 
 #: ../gramps/plugins/webreport/webcal.py:1905
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
+"Mostrar les dades només després d'aquest any. Per defecte és l'any actual - "
+"'màxima edat probablement viu' que està definit a la pestanya de "
+"preferències de dates."
 
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Link prefix"
@@ -38445,7 +38615,7 @@ msgstr "%s"
 #: ../gramps/plugins/webreport/webcal.py:2103
 #, python-format
 msgid "%s since death"
-msgstr ""
+msgstr "%s des de la defunció"
 
 #: ../gramps/plugins/webreport/webcal.py:2104
 msgid "death"
@@ -38594,8 +38764,13 @@ msgstr "Sense full d'estil"
 #~ msgid "Family Divorced"
 #~ msgstr "Família divorciada"
 
-#~ msgid "Home Person"
-#~ msgstr "Persona base"
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Home Person"
+msgstr "Persona predeterminada"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Concorda amb la persona predeterminada"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Contorn Femení Viva"
@@ -38643,6 +38818,15 @@ msgstr "Sense full d'estil"
 
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista "
+#~ "de Persones, seleccioneu la persona que voleu com a 'Persona Base', i "
+#~ "llavors confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
 
 #~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "

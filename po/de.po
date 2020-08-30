@@ -8,21 +8,21 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-19 16:37+0200\n"
-"PO-Revision-Date: 2019-10-19 16:49+0200\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
+"PO-Revision-Date: 2020-08-10 22:47+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 18.12.3\n"
+"X-Generator: Lokalize 19.12.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -5755,6 +5755,16 @@ msgid ""
 msgstr ""
 "Liefert Vorfahren einer Person aus den Lesezeichen, die aber nicht mehr als "
 "<N> Generationen entfernt sind."
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Liefert Personen, die Vorfahren der Hauptperson sind, die aber höchstens <N> "
+"Generationen entfernt sind."
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -11939,6 +11949,12 @@ msgid "Place format (auto place title)"
 msgstr "Ortsformat (automatischer Ortstitel)"
 
 #: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+"Aktiviert die automatische Generierung von Ortsbezeichnungen im angegebenen "
+"Format."
+
+#: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
 "aktiviert automatische Ortstitelgeneration unter Verwendung des angegebenen "
@@ -12134,6 +12150,14 @@ msgstr "Füge Standardquelle beim GEDCOM Import hinzu"
 #: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Markierung beim Import hinzufügen"
+
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
+"Angegebenes Kennzeichen wird bei Import hinzugefügt.\n"
+"Leeren um auf Standardwert zu setzen."
 
 #: ../gramps/gui/configure.py:1575
 msgid ""
@@ -12493,7 +12517,7 @@ msgstr "Was du sehen wirst"
 
 #: ../gramps/gui/dbloader.py:120 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
-msgstr "Warnung: Bearbeitungschronik zurück setzen."
+msgstr "Bearbeitungschronik zurücksetzen Warnung"
 
 #: ../gramps/gui/dbloader.py:121
 msgid ""
@@ -17766,7 +17790,7 @@ msgstr "Gramps _Mailinglisten"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Make Backup..."
-msgstr "Erstelle Sicherung..."
+msgstr "Sicherung erstellen..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Manage databases"
@@ -19785,9 +19809,9 @@ msgstr "Gramps XML Sicherung"
 msgid "File:"
 msgstr "Datei:"
 
-#: ../gramps/gui/viewmanager.py:1716
+#: ../gramps/gui/viewmanager.py:1713
 msgid "Media:"
-msgstr "Medium:"
+msgstr "Medien:"
 
 #: ../gramps/gui/viewmanager.py:1723
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
@@ -19954,6 +19978,16 @@ msgstr ""
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Keine Hauptperson"
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
+"Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
+"und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -30322,6 +30356,17 @@ msgstr "Hauptperson _setzen"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Springe zur Hauptperson"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
 msgstr "Springe zur Hauptperson"
 
@@ -30661,13 +30706,13 @@ msgstr "Zukunft"
 msgid "Adding children."
 msgstr "Kinder hinzufügen."
 
-#: ../gramps/plugins/lib/libprogen.py:1927
+#: ../gramps/plugins/lib/libprogen.py:1929
 msgid "Cannot find father for I%(person)s (Father=%(father))"
-msgstr ""
+msgstr "Kann Vater nicht finden für I%(person)s (Father=%(father))"
 
-#: ../gramps/plugins/lib/libprogen.py:1930
+#: ../gramps/plugins/lib/libprogen.py:1932
 msgid "Cannot find mother for I%(person)s (Mother=%(mother))"
-msgstr ""
+msgstr "Kann Mutter nicht finden für I%(person)s (Mother=%(mother))"
 
 #: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
@@ -30931,6 +30976,35 @@ msgstr "Wähle das Verzeichnis für die Kacheln für de offline Modus"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Das Kachelzwischenspeicherverzeichnis kann nicht erstellt werden %s."
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
+"Du musst den Kachel-Cache überprüfen und ändern\n"
+"...\n"
+"[Geographie]\n"
+"...\n"
+"path = 'ungültig/Pfad'\n"
+"...\n"
+"in der Datei gramps.ini:\n"
+"%s\n"
+"\n"
+"Bevor du die Datei gramps.ini ändern kannst, musst du gramps schließen\n"
+"\n"
+"Die nächsten Fehler sind normal"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
@@ -37733,6 +37807,14 @@ msgstr "Max. Breite für Anfangsbild"
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Dies erlaubt dir, die maximale Breite des Bildes zu bestimmen, das auf der "
+"Medienseite gezeigt wird."
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
 msgstr ""
 "Dies erlaubt dir, die maximale Breite des Bildes zu bestimmen, das auf der "
@@ -38661,6 +38743,15 @@ msgstr "Kein Stylesheet"
 #~ msgstr "Ex-Lebensgefährt(e/in)"
 
 #~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
+#~ "Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
+#~ "und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
+
+#~ msgid ""
 #~ "You need to set a 'default person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
@@ -38716,6 +38807,10 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Home Person"
 #~ msgstr "Hauptperson"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Liefert die Hauptperson"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Weiblich, lebt Rand"
@@ -41587,6 +41682,9 @@ msgstr "Kein Stylesheet"
 #~ "Die Grampsleiste wird zurückgesetzt, damit sie ihre original Gramplets "
 #~ "enthält. Dieser Vorgang kann nicht rückgängig gemacht werden."
 
+#~ msgid "You need to set a 'Home Person' to go to."
+#~ msgstr "Du musst eine 'Hauptperson' setzen um dorthin zu springen."
+
 #~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Du musst eine 'Hauptperson' setzen um dorthin zu springen."
 
@@ -43793,3 +43891,4 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
+

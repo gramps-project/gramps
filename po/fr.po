@@ -41,10 +41,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 06:47+0200\n"
 "PO-Revision-Date: 2020-04-30 07:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: français <>\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5961,6 +5961,11 @@ msgstr "Enfants du <filtre>"
 msgid "Matches children of anybody matched by a filter"
 msgstr "Renvoie les enfants de tout individu accepté par le filtre"
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the Home Person"
+msgstr "Correspond à l'individu par défaut"
+
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
 msgid "Default person"
 msgstr "Individu souche"
@@ -6083,6 +6088,17 @@ msgid ""
 "generations away"
 msgstr ""
 "Renvoie les ascendants des individus marqués (signets) sur au plus n "
+"générations"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the Home Person not more than <N> generations away"
+msgstr "Ascendants de l'individu de référence sur moins de <N> générations"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid "Matches ancestors of the Home Person not more than N generations away"
+msgstr ""
+"Correspond aux ascendants de l'individu de référence sur moins de N "
 "générations"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
@@ -10440,7 +10456,7 @@ msgstr "Tout petit"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Script"
-msgstr ""
+msgstr "Script"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:91
 msgid "Footnote"
@@ -12490,7 +12506,7 @@ msgstr "Fond pour la personne souche"
 #: ../gramps/gui/configure.py:761
 #, python-format
 msgid "<b>%s</b>"
-msgstr ""
+msgstr "<b>%s</b>"
 
 #: ../gramps/gui/configure.py:774
 msgid "Colors"
@@ -12628,6 +12644,14 @@ msgstr "Considérer le pa/matronyme unique comme nom de famille"
 #: ../gramps/gui/configure.py:1240
 msgid "Place format (auto place title)"
 msgstr "Format des noms de lieux (titre auto.)"
+
+# master
+# https://gramps-project.org/bugs/view.php?id=11286
+#: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specified format."
+msgstr ""
+"Active la génération automatique pour le titre du lieu en utilisant le "
+"format spécifié."
 
 # master
 # https://gramps-project.org/bugs/view.php?id=11286
@@ -12864,6 +12888,15 @@ msgstr "Ajouter une source à l'importation GEDCOM"
 #: ../gramps/gui/configure.py:1573
 msgid "Add tag on import"
 msgstr "Ajouter une étiquette à l'importation"
+
+# https://gramps-project.org/bugs/view.php?id=11286
+#: ../gramps/gui/configure.py:1576
+msgid ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
+"L'étiquette spécifiée sera ajoutée à l'importation.\n"
+"Effacer pour utiliser la valeur par défaut."
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/gui/configure.py:1576
@@ -20017,7 +20050,7 @@ msgstr "Cliquez pour voir l'aperçu des données non filtrées"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:182
 msgid "_Do not include records marked private"
-msgstr "_Ne pas inclure les données privés"
+msgstr "_Ne pas inclure les données privées"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:197
 #: ../gramps/gui/plug/export/_exportoptions.py:394
@@ -20169,7 +20202,7 @@ msgstr "Voir les données écartées par le filtre"
 # master
 #: ../gramps/gui/plug/report/_bookdialog.py:92
 msgid "Generate_Book_dialog"
-msgstr ""
+msgstr "Dialogue_génération_du_livre"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:172
 msgid "Available Books"
@@ -20510,7 +20543,7 @@ msgstr "Styles de document"
 # manuel wiki
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 msgid "manual|Document_Styles_dialog"
-msgstr ""
+msgstr "Dialogue_styles_document"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
@@ -20542,7 +20575,7 @@ msgstr "Éditeur de style"
 # manuel wiki
 #: ../gramps/gui/plug/report/_styleeditor.py:242
 msgid "manual|Style_editor_dialog"
-msgstr ""
+msgstr "Dialogue_style_éditeur"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:352
 #: ../gramps/gui/plug/report/_styleeditor.py:380
@@ -20691,7 +20724,7 @@ msgstr ""
 # manuel wiki
 #: ../gramps/gui/selectors/selectperson.py:70
 msgid "manual|Select_Person_selector"
-msgstr ""
+msgstr "Sélectionner_un_individu"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -20709,7 +20742,7 @@ msgstr "Choix d'un dépôt"
 # manuel wiki
 #: ../gramps/gui/selectors/selectrepository.py:75
 msgid "manual|Select_Repository_selector"
-msgstr ""
+msgstr "Sélectionner_un_dépôt"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -20718,7 +20751,7 @@ msgstr "Choix d'une source"
 # manuel wiki
 #: ../gramps/gui/selectors/selectsource.py:76
 msgid "manual|Select_Source_selector"
-msgstr ""
+msgstr "Sélectionner_une_source"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -21171,6 +21204,16 @@ msgstr "Individu souche non défini"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
+msgstr ""
+"Vous devez définir un 'individu de référence'. Allez dans la vue Individus, "
+"puis sélectionnez la personne qui sera la 'souche' de votre arbre, enfin "
+"confirmez votre choix via la menu Édition -> Définir la souche. "
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
@@ -21539,7 +21582,7 @@ msgstr "Information de progression"
 
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgid "manual|Reorder_Relationships_dialog"
-msgstr ""
+msgstr "Dialogue_réorganiser_les_relations"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -26542,97 +26585,97 @@ msgstr "individu"
 msgid "Occupation description"
 msgstr "Description de profession"
 
-#: ../gramps/plugins/importer/importcsv.py:213
+#: ../gramps/plugins/importer/importcsv.py:210
 msgid "occupationdescr"
-msgstr ""
+msgstr "professiondescr"
 
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "Occupation date"
 msgstr "Date de profession"
 
-#: ../gramps/plugins/importer/importcsv.py:214
+#: ../gramps/plugins/importer/importcsv.py:211
 msgid "occupationdate"
-msgstr ""
+msgstr "professiondate"
 
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "Occupation place"
 msgstr "Lieu de profession"
 
-#: ../gramps/plugins/importer/importcsv.py:215
+#: ../gramps/plugins/importer/importcsv.py:212
 msgid "occupationplace"
-msgstr ""
+msgstr "professionlieu"
 
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "Occupation place id"
 msgstr "ID de lieu de profession"
 
-#: ../gramps/plugins/importer/importcsv.py:216
+#: ../gramps/plugins/importer/importcsv.py:213
 msgid "occupationplace_id"
-msgstr ""
+msgstr "professionlieu_id"
 
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "Occupation source"
 msgstr "Source de profession"
 
-#: ../gramps/plugins/importer/importcsv.py:217
+#: ../gramps/plugins/importer/importcsv.py:214
 msgid "occupationsource"
-msgstr ""
+msgstr "professionsource"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residence date"
 msgstr "date de résidence"
 
-#: ../gramps/plugins/importer/importcsv.py:219
+#: ../gramps/plugins/importer/importcsv.py:216
 msgid "residencedate"
-msgstr ""
+msgstr "résidencedate"
 
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "residence place"
 msgstr "lieu de résidence"
 
-#: ../gramps/plugins/importer/importcsv.py:220
+#: ../gramps/plugins/importer/importcsv.py:217
 msgid "residenceplace"
-msgstr ""
+msgstr "résidencelieu"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "residence place id"
 msgstr "ID du lieu de résidence"
 
-#: ../gramps/plugins/importer/importcsv.py:221
+#: ../gramps/plugins/importer/importcsv.py:218
 msgid "residenceplace_id"
-msgstr ""
+msgstr "résidencelieu_id"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "residence source"
 msgstr "source de résidence"
 
-#: ../gramps/plugins/importer/importcsv.py:222
+#: ../gramps/plugins/importer/importcsv.py:219
 msgid "residencesource"
-msgstr ""
+msgstr "résidencesource"
 
 #: ../gramps/plugins/importer/importcsv.py:224
 msgid "attribute type"
 msgstr "type d'attribut"
 
-#: ../gramps/plugins/importer/importcsv.py:224
+#: ../gramps/plugins/importer/importcsv.py:221
 msgid "attributetype"
-msgstr ""
+msgstr "attributtype"
 
 #: ../gramps/plugins/importer/importcsv.py:225
 msgid "attribute value"
 msgstr "valeur d'attribut"
 
-#: ../gramps/plugins/importer/importcsv.py:225
+#: ../gramps/plugins/importer/importcsv.py:222
 msgid "attributevalue"
-msgstr ""
+msgstr "attributvalue"
 
 #: ../gramps/plugins/importer/importcsv.py:226
 msgid "attribute source"
 msgstr "source d'attribut"
 
-#: ../gramps/plugins/importer/importcsv.py:226
+#: ../gramps/plugins/importer/importcsv.py:223
 msgid "attributesource"
-msgstr ""
+msgstr "attributsource"
 
 #. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:229
@@ -27273,7 +27316,7 @@ msgstr "_Oui"
 
 #: ../gramps/plugins/importer/importprogen.py:62
 msgid "manual|Import_from_another_genealogy_program"
-msgstr ""
+msgstr "Import_from_another_genealogy_program/fr"
 
 # master
 #: ../gramps/plugins/importer/importprogen.py:121
@@ -32055,6 +32098,17 @@ msgstr "Définir comme s_ouche"
 #: ../gramps/plugins/view/geofamclose.py:109
 #: ../gramps/plugins/view/geomoves.py:108
 #: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
+msgid "Go to the home person"
+msgstr "Aller à l'individu par défaut"
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:694
 #: ../gramps/plugins/view/relview.py:436
 msgid "Go to the default person"
@@ -32124,14 +32178,14 @@ msgstr "Éditer..."
 #: ../gramps/plugins/lib/libplaceview.py:415
 #: ../gramps/plugins/view/citationlistview.py:306
 #: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/eventview.py:320
 #: ../gramps/plugins/view/familyview.py:279
 #: ../gramps/plugins/view/mediaview.py:395
 #: ../gramps/plugins/view/noteview.py:279
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
 msgid "Forward"
-msgstr "_Suivant"
+msgstr "Suivant"
 
 # objet sélectionné
 #: ../gramps/plugins/lib/libpersonview.py:454
@@ -32728,6 +32782,23 @@ msgstr "Sélectionner le répertoire de stockage des tuiles en mode hors ligne"
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Impossible de créer le répertoire cache des tuiles %s"
+
+#: ../gramps/plugins/lib/maps/osmgps.py:143
+#, python-format
+msgid ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:170
 #: ../gramps/plugins/lib/maps/osmgps.py:235
@@ -33821,7 +33892,7 @@ msgstr "Mon carnet d'anniversaires"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:68
 msgid "✝"
-msgstr ""
+msgstr "✝"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:221
@@ -40044,6 +40115,15 @@ msgstr "Pour créer une page d'index des vignettes"
 msgid "Max width of initial image"
 msgstr "Largeur max des images"
 
+#: ../gramps/plugins/webreport/narrativeweb.py:1893
+#, fuzzy
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page."
+msgstr ""
+"Permet de définir la largeur maximum de l'image affichée dans la page media. "
+"Définissez 0 pour ignorer la limitation."
+
 #: ../gramps/plugins/webreport/narrativeweb.py:1983
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
@@ -40338,6 +40418,16 @@ msgid ""
 msgstr ""
 "Sélectionnez l'option que vous souhaitez utiliser pour les pages "
 "cartographiques Stamenmap..."
+
+#~ msgid ""
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
+#~ msgstr ""
+#~ "Vous devez définir un 'individu de référence'. Allez dans la vue "
+#~ "Individus, puis sélectionnez la personne qui sera la 'souche' de votre "
+#~ "arbre, enfin confirmez votre choix via la menu Édition -> Définir la "
+#~ "souche. "
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2198
@@ -41069,3 +41159,4 @@ msgstr "Aucune feuille de style"
 
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Arbre de la famille Bernard"
+

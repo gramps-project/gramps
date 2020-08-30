@@ -232,6 +232,10 @@ class DBAPI(DbGeneric):
         _LOG.debug("    %sDBAPI %s transaction begin for '%s'",
                    "Batch " if transaction.batch else "",
                    hex(id(self)), transaction.get_description())
+        if transaction.batch:
+            # A batch transaction does not store the commits
+            # Aborting the session completely will become impossible.
+            self.abort_possible = False
         self.transaction = transaction
         self.dbapi.begin()
         return transaction
@@ -276,7 +280,7 @@ class DBAPI(DbGeneric):
         self.undodb.commit(txn, msg)
         self._after_commit(txn)
         txn.clear()
-        self.has_changed = True
+        self.has_changed += 1  # Also gives commits since startup
 
     def transaction_abort(self, txn):
         """

@@ -88,15 +88,17 @@ class IntroductionPage(BasePage):
                 section += introimg
 
             note_id = report.options['intronote']
+            ldatec = None
             if note_id:
                 note = self.r_db.get_note_from_gramps_id(note_id)
-                note_text = self.get_note_format(note, False)
+                if note:
+                    note_text = self.get_note_format(note, False)
 
-                # attach note
-                section += note_text
+                    # attach note
+                    section += note_text
 
-                # last modification of this note
-                ldatec = note.get_change_time()
+                    # last modification of this note
+                    ldatec = note.get_change_time()
 
         # add clearline for proper styling
         # create footer section

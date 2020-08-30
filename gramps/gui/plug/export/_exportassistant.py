@@ -586,11 +586,11 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
             ix = self.get_selected_format_index()
             config.set('behavior.recent-export-type', ix)
             export_function = self.map_exporters[ix].get_export_function()
-            success = export_function(self.dbstate.db,
-                            filename,
-                            User(error=ErrorDialog, parent=self.uistate.window,
-                                 callback=self.callback),
-                            self.option_box_instance)
+            success = export_function(
+                self.dbstate.db, filename,
+                User(error=ErrorDialog, parent=self.window,
+                     callback=self.callback),
+                self.option_box_instance)
         except:
             #an error not catched in the export_function itself
             success = False
