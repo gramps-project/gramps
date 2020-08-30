@@ -40,8 +40,8 @@ from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 #-------------------------------------------------------------------------
 #
@@ -171,17 +171,18 @@ def add_living_people_option(menu, category,
 
     living_people = EnumeratedListOption(_("Living People"), mode)
     items = [(LivingProxyDb.MODE_INCLUDE_ALL,
-              _T_("'living people'|Included, and all data"))]
+              _T_("Included, and all data", "'living people'"))]
     if process_names:
         items += [
             (LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
-             _T_("'living people'|Full names, but data removed")),
+             _T_("Full names, but data removed", "'living people'")),
             (LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-             _T_("'living people'|Given names replaced, and data removed")),
+             _T_("Given names replaced, and data removed", "'living people'")),
             (LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-             _T_("'living people'|Complete names replaced, and data removed"))]
+             _T_("Complete names replaced, and data removed",
+                 "'living people'"))]
     items += [(LivingProxyDb.MODE_EXCLUDE_ALL,
-               _T_("'living people'|Not included"))]
+               _T_("Not included", "'living people'"))]
     living_people.set_items(items, xml_items=True) # for deferred translation
     living_people.set_help(_("How to handle living people"))
     menu.add_option(category, "living_people", living_people)

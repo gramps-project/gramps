@@ -138,7 +138,7 @@ class QuickTable(SimpleTable):
             menu_item.show()
             # Now add more items to popup menu, if available
             # See details (edit, etc):
-            menu_item = Gtk.MenuItem(label=_("the object|See %s details") %
+            menu_item = Gtk.MenuItem(label=_("See %s details", "the object") %
                                      glocale.trans_objclass(objclass))
             menu_item.connect(
                 "activate", lambda widget: self.on_table_doubleclick(treeview))
@@ -146,7 +146,7 @@ class QuickTable(SimpleTable):
             menu_item.show()
             # Add other items to menu:
             if objclass == 'Person':
-                menu_item = Gtk.MenuItem(label=_("the object|Make %s active")
+                menu_item = Gtk.MenuItem(label=_("Make %s active", "the object")
                                          % glocale.trans_objclass('Person'))
                 menu_item.connect("activate",
                                   lambda widget: self.on_table_click(treeview))

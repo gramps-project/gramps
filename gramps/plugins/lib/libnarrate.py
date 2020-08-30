@@ -72,7 +72,7 @@ def _get_empty_endnote_numbers(obj):
     return ""
 
 # avoid normal translation!
-# enable deferred translations (see Python docs 22.1.3.4)
+# enable deferred translations
 # (these days this is done elsewhere as _T_ but it was done here first)
 ##from gramps.gen.const import GRAMPS_LOCALE as glocale
 ##_ = glocale.translation.gettext

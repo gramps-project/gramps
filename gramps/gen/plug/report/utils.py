@@ -46,9 +46,8 @@ from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value):
-    """ enable deferred translations (see Python docs 22.1.3.4) """
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 #-------------------------------------------------------------------------
 #

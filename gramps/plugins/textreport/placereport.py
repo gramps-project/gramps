@@ -196,7 +196,7 @@ class PlaceReport(Report):
                 place_names += '%s' % place_name.get_value()
                 if place_name.get_language() != '' or __debug__:
                     place_names += ' (%s)' % place_name.get_language()
-            place_details += [self._("places|All Names: %s") % place_names,]
+            place_details += [self._("All Names: %s", "places") % place_names,]
         self.doc.start_paragraph("PLC-PlaceTitle")
         place_title = _pd.display(self._db, place, None, self.place_format)
         self.doc.write_text(("%(nbr)s. %(place)s") % {'nbr' : place_nbr,

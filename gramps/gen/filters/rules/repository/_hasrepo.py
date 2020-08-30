@@ -43,7 +43,7 @@ class HasRepo(Rule):
     """Rule that checks for a repo with a particular value"""
 
 
-    labels = [ _('repo|Name:'),
+    labels = [ _('Name:', 'repo'),
                     _('Type:'),
                     _('Address:'),
                     _('URL:'),

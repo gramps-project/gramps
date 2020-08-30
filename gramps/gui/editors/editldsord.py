@@ -64,7 +64,7 @@ from gramps.gen.const import URL_MANUAL_SECT1
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|LDS_Ordinance_Editor')
+WIKI_HELP_SEC = _('LDS_Ordinance_Editor', 'manual')
 
 _DATA_MAP = {
     LdsOrd.BAPTISM : [

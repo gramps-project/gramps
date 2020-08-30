@@ -2145,7 +2145,8 @@ msgstr "Registro privado"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/config.py:319 ../gramps/gen/datehandler/_datestrings.py:79
-msgid "localized lexeme inflections||January"
+msgctxt "localized lexeme inflections"
+msgid "|January"
 msgstr "enero"
 
 #: ../gramps/gen/const.py:229
@@ -2160,12 +2161,14 @@ msgstr ""
 
 #: ../gramps/gen/const.py:259
 #, fuzzy
-msgid "surname|none"
+msgctxt "surname"
+msgid "none"
 msgstr "apellido desconocido"
 
 #: ../gramps/gen/const.py:260
 #, fuzzy
-msgid "given-name|none"
+msgctxt "given-name"
+msgid "none"
 msgstr "nombre de pila"
 
 #: ../gramps/gen/const.py:264 ../gramps/plugins/gramplet/todo.py:202
@@ -2199,7 +2202,8 @@ msgstr ""
 #. You may translate this as "Numerical", "System preferred", or similar.
 #: ../gramps/gen/datehandler/_datedisplay.py:77
 #, fuzzy
-msgid "date format|Numerical"
+msgctxt "date format"
+msgid "Numerical"
 msgstr "Formato de la fecha"
 
 #. Full month name, day, year
@@ -2235,7 +2239,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:189
 #, python-brace-format
-msgid "from|{long_month} {year}"
+msgctxt "from"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. second date in a span
@@ -2245,7 +2250,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:197
 #, python-brace-format
-msgid "to|{long_month} {year}"
+msgctxt "to"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. first date in a range
@@ -2255,7 +2261,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:205
 #, python-brace-format
-msgid "between|{long_month} {year}"
+msgctxt "between"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. second date in a range
@@ -2265,7 +2272,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
 #, python-brace-format
-msgid "and|{long_month} {year}"
+msgctxt "and"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "before <Month>" needs a special inflection in your
@@ -2274,7 +2282,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
 #, python-brace-format
-msgid "before|{long_month} {year}"
+msgctxt "before"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "after <Month>" needs a special inflection in your
@@ -2283,7 +2292,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
 #, python-brace-format
-msgid "after|{long_month} {year}"
+msgctxt "after"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "about <Month>" needs a special inflection in your
@@ -2292,7 +2302,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:234
 #, python-brace-format
-msgid "about|{long_month} {year}"
+msgctxt "about"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "estimated <Month>" needs a special inflection in your
@@ -2301,7 +2312,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
 #, python-brace-format
-msgid "estimated|{long_month} {year}"
+msgctxt "estimated"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "calculated <Month>" needs a special inflection in your
@@ -2310,7 +2322,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
 #, python-brace-format
-msgid "calculated|{long_month} {year}"
+msgctxt "calculated"
+msgid "{long_month} {year}"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:253
@@ -2325,7 +2338,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:261
 #, python-brace-format
-msgid "from|{short_month} {year}"
+msgctxt "from"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. second date in a span
@@ -2335,7 +2349,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:269
 #, python-brace-format
-msgid "to|{short_month} {year}"
+msgctxt "to"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. first date in a range
@@ -2345,7 +2360,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:277
 #, python-brace-format
-msgid "between|{short_month} {year}"
+msgctxt "between"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. second date in a range
@@ -2355,7 +2371,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:285
 #, python-brace-format
-msgid "and|{short_month} {year}"
+msgctxt "and"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "before <Month>" needs a special inflection in your
@@ -2364,7 +2381,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:292
 #, python-brace-format
-msgid "before|{short_month} {year}"
+msgctxt "before"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "after <Month>" needs a special inflection in your
@@ -2373,7 +2391,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:299
 #, python-brace-format
-msgid "after|{short_month} {year}"
+msgctxt "after"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "about <Month>" needs a special inflection in your
@@ -2382,7 +2401,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:306
 #, python-brace-format
-msgid "about|{short_month} {year}"
+msgctxt "about"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "estimated <Month>" needs a special inflection in your
@@ -2391,7 +2411,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:313
 #, python-brace-format
-msgid "estimated|{short_month} {year}"
+msgctxt "estimated"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "calculated <Month>" needs a special inflection in your
@@ -2400,14 +2421,16 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:320
 #, python-brace-format
-msgid "calculated|{short_month} {year}"
+msgctxt "calculated"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If there is no special inflection for "from <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:427
-msgid "from-date|"
+msgctxt "from-date"
+msgid ""
 msgstr ""
 
 #. If there is no special inflection for "to <Month>"
@@ -2415,7 +2438,8 @@ msgstr ""
 #. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:432
 #, fuzzy
-msgid "to-date|"
+msgctxt "to-date"
+msgid ""
 msgstr "fecha"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:433
@@ -2428,7 +2452,8 @@ msgstr ""
 #. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:452
 #, fuzzy
-msgid "between-date|"
+msgctxt "between-date"
+msgid ""
 msgstr "entre"
 
 #. If there is no special inflection for "and <Month>"
@@ -2436,7 +2461,8 @@ msgstr "entre"
 #. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:457
 #, fuzzy
-msgid "and-date|"
+msgctxt "and-date"
+msgid ""
 msgstr "fecha"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:458
@@ -2450,7 +2476,8 @@ msgstr ""
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:491
 #, fuzzy
-msgid "before-date|"
+msgctxt "before-date"
+msgid ""
 msgstr "antes de"
 
 #. If there is no special inflection for "after <Month>"
@@ -2458,7 +2485,8 @@ msgstr "antes de"
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 #, fuzzy
-msgid "after-date|"
+msgctxt "after-date"
+msgid ""
 msgstr "fecha"
 
 #. If there is no special inflection for "about <Month>"
@@ -2466,7 +2494,8 @@ msgstr "fecha"
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 #, fuzzy
-msgid "about-date|"
+msgctxt "about-date"
+msgid ""
 msgstr "fecha"
 
 #. If there is no special inflection for "estimated <Month>"
@@ -2474,7 +2503,8 @@ msgstr "fecha"
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:506
 #, fuzzy
-msgid "estimated-date|"
+msgctxt "estimated-date"
+msgid ""
 msgstr "estimada"
 
 #. If there is no special inflection for "calculated <Month>"
@@ -2482,7 +2512,8 @@ msgstr "estimada"
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:511
 #, fuzzy
-msgid "calculated-date|"
+msgctxt "calculated-date"
+msgid ""
 msgstr "calculado"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:530
@@ -2519,47 +2550,58 @@ msgid "today"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:80
-msgid "localized lexeme inflections||February"
+msgctxt "localized lexeme inflections"
+msgid "|February"
 msgstr "febrero"
 
 #: ../gramps/gen/datehandler/_datestrings.py:81
-msgid "localized lexeme inflections||March"
+msgctxt "localized lexeme inflections"
+msgid "|March"
 msgstr "marzo"
 
 #: ../gramps/gen/datehandler/_datestrings.py:82
-msgid "localized lexeme inflections||April"
+msgctxt "localized lexeme inflections"
+msgid "|April"
 msgstr "abril"
 
 #: ../gramps/gen/datehandler/_datestrings.py:83
-msgid "localized lexeme inflections||May"
+msgctxt "localized lexeme inflections"
+msgid "|May"
 msgstr "mayo"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
-msgid "localized lexeme inflections||June"
+msgctxt "localized lexeme inflections"
+msgid "|June"
 msgstr "junio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
-msgid "localized lexeme inflections||July"
+msgctxt "localized lexeme inflections"
+msgid "|July"
 msgstr "julio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
-msgid "localized lexeme inflections||August"
+msgctxt "localized lexeme inflections"
+msgid "|August"
 msgstr "agosto"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
-msgid "localized lexeme inflections||September"
+msgctxt "localized lexeme inflections"
+msgid "|September"
 msgstr "septiembre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
-msgid "localized lexeme inflections||October"
+msgctxt "localized lexeme inflections"
+msgid "|October"
 msgstr "octubre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
-msgid "localized lexeme inflections||November"
+msgctxt "localized lexeme inflections"
+msgid "|November"
 msgstr "noviembre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
-msgid "localized lexeme inflections||December"
+msgctxt "localized lexeme inflections"
+msgid "|December"
 msgstr "diciembre"
 
 #. TRANSLATORS: see
@@ -2567,51 +2609,63 @@ msgstr "diciembre"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:97
-msgid "localized lexeme inflections - short month form||Jan"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Jan"
 msgstr "enero"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
-msgid "localized lexeme inflections - short month form||Feb"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Feb"
 msgstr "feb."
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
-msgid "localized lexeme inflections - short month form||Mar"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Mar"
 msgstr "marzo"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
-msgid "localized lexeme inflections - short month form||Apr"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Apr"
 msgstr "abr."
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
-msgid "localized lexeme inflections - short month form||May"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|May"
 msgstr "mayo"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
-msgid "localized lexeme inflections - short month form||Jun"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Jun"
 msgstr "jun."
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
-msgid "localized lexeme inflections - short month form||Jul"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Jul"
 msgstr "jul."
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
-msgid "localized lexeme inflections - short month form||Aug"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Aug"
 msgstr "agosto"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
-msgid "localized lexeme inflections - short month form||Sep"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Sep"
 msgstr "set."
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
-msgid "localized lexeme inflections - short month form||Oct"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Oct"
 msgstr "oct."
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
-msgid "localized lexeme inflections - short month form||Nov"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Nov"
 msgstr "nov."
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
-msgid "localized lexeme inflections - short month form||Dec"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Dec"
 msgstr "dic"
 
 #. TRANSLATORS: see
@@ -2620,91 +2674,110 @@ msgstr "dic"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 #, fuzzy
-msgid "alternative month names for January||"
+msgctxt "alternative month names for January"
+msgid "|"
 msgstr "Nota del mes de enero"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 #, fuzzy
-msgid "alternative month names for February||"
+msgctxt "alternative month names for February"
+msgid "|"
 msgstr "Nota del mes de febrero"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 #, fuzzy
-msgid "alternative month names for March||"
+msgctxt "alternative month names for March"
+msgid "|"
 msgstr "Nombres alternativos"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 #, fuzzy
-msgid "alternative month names for April||"
+msgctxt "alternative month names for April"
+msgid "|"
 msgstr "Nombres alternativos"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 #, fuzzy
-msgid "alternative month names for May||"
+msgctxt "alternative month names for May"
+msgid "|"
 msgstr "Nombres alternativos"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 #, fuzzy
-msgid "alternative month names for June||"
+msgctxt "alternative month names for June"
+msgid "|"
 msgstr "Nombres alternativos"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 #, fuzzy
-msgid "alternative month names for July||"
+msgctxt "alternative month names for July"
+msgid "|"
 msgstr "Nombres alternativos"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 #, fuzzy
-msgid "alternative month names for August||"
+msgctxt "alternative month names for August"
+msgid "|"
 msgstr "Nombres alternativos"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 #, fuzzy
-msgid "alternative month names for September||"
+msgctxt "alternative month names for September"
+msgid "|"
 msgstr "Nota del mes de septiembre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 #, fuzzy
-msgid "alternative month names for October||"
+msgctxt "alternative month names for October"
+msgid "|"
 msgstr "Nota del mes de octubre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 #, fuzzy
-msgid "alternative month names for November||"
+msgctxt "alternative month names for November"
+msgid "|"
 msgstr "Nota del mes de noviembre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 #, fuzzy
-msgid "alternative month names for December||"
+msgctxt "alternative month names for December"
+msgid "|"
 msgstr "Nota del mes de diciembre"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
-msgid "calendar|Gregorian"
+msgctxt "calendar"
+msgid "Gregorian"
 msgstr "Gregoriano"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:610
-msgid "calendar|Julian"
+msgctxt "calendar"
+msgid "Julian"
 msgstr "Juliano"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:611
-msgid "calendar|Hebrew"
+msgctxt "calendar"
+msgid "Hebrew"
 msgstr "Hebreo"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
-msgid "calendar|French Republican"
+msgctxt "calendar"
+msgid "French Republican"
 msgstr "Republicano francés"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
-msgid "calendar|Persian"
+msgctxt "calendar"
+msgid "Persian"
 msgstr "Persa"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:614
-msgid "calendar|Islamic"
+msgctxt "calendar"
+msgid "Islamic"
 msgstr "Islámico"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:615
-msgid "calendar|Swedish"
+msgctxt "calendar"
+msgid "Swedish"
 msgstr "Sueco"
 
 #. TRANSLATORS: see
@@ -2712,55 +2785,68 @@ msgstr "Sueco"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:146
-msgid "Hebrew month lexeme|Tishri"
+msgctxt "Hebrew month lexeme"
+msgid "Tishri"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:147
-msgid "Hebrew month lexeme|Heshvan"
+msgctxt "Hebrew month lexeme"
+msgid "Heshvan"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:148
-msgid "Hebrew month lexeme|Kislev"
+msgctxt "Hebrew month lexeme"
+msgid "Kislev"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:149
-msgid "Hebrew month lexeme|Tevet"
+msgctxt "Hebrew month lexeme"
+msgid "Tevet"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:150
-msgid "Hebrew month lexeme|Shevat"
+msgctxt "Hebrew month lexeme"
+msgid "Shevat"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:151
-msgid "Hebrew month lexeme|AdarI"
+msgctxt "Hebrew month lexeme"
+msgid "AdarI"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:152
-msgid "Hebrew month lexeme|AdarII"
+msgctxt "Hebrew month lexeme"
+msgid "AdarII"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:153
-msgid "Hebrew month lexeme|Nisan"
+msgctxt "Hebrew month lexeme"
+msgid "Nisan"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:154
-msgid "Hebrew month lexeme|Iyyar"
+msgctxt "Hebrew month lexeme"
+msgid "Iyyar"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
-msgid "Hebrew month lexeme|Sivan"
+msgctxt "Hebrew month lexeme"
+msgid "Sivan"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
-msgid "Hebrew month lexeme|Tammuz"
+msgctxt "Hebrew month lexeme"
+msgid "Tammuz"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:157
-msgid "Hebrew month lexeme|Av"
+msgctxt "Hebrew month lexeme"
+msgid "Av"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:158
-msgid "Hebrew month lexeme|Elul"
+msgctxt "Hebrew month lexeme"
+msgid "Elul"
 msgstr ""
 
 #. TRANSLATORS: see
@@ -2768,55 +2854,68 @@ msgstr ""
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:167
-msgid "French month lexeme|Vendémiaire"
+msgctxt "French month lexeme"
+msgid "Vendémiaire"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
-msgid "French month lexeme|Brumaire"
+msgctxt "French month lexeme"
+msgid "Brumaire"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
-msgid "French month lexeme|Frimaire"
+msgctxt "French month lexeme"
+msgid "Frimaire"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
-msgid "French month lexeme|Nivôse"
+msgctxt "French month lexeme"
+msgid "Nivôse"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
-msgid "French month lexeme|Pluviôse"
+msgctxt "French month lexeme"
+msgid "Pluviôse"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
-msgid "French month lexeme|Ventôse"
+msgctxt "French month lexeme"
+msgid "Ventôse"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
-msgid "French month lexeme|Germinal"
+msgctxt "French month lexeme"
+msgid "Germinal"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
-msgid "French month lexeme|Floréal"
+msgctxt "French month lexeme"
+msgid "Floréal"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
-msgid "French month lexeme|Prairial"
+msgctxt "French month lexeme"
+msgid "Prairial"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:176
-msgid "French month lexeme|Messidor"
+msgctxt "French month lexeme"
+msgid "Messidor"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:177
-msgid "French month lexeme|Thermidor"
+msgctxt "French month lexeme"
+msgid "Thermidor"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:178
-msgid "French month lexeme|Fructidor"
+msgctxt "French month lexeme"
+msgid "Fructidor"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:179
-msgid "French month lexeme|Extra"
+msgctxt "French month lexeme"
+msgid "Extra"
 msgstr ""
 
 #. TRANSLATORS: see
@@ -2824,51 +2923,63 @@ msgstr ""
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:188
-msgid "Islamic month lexeme|Muharram"
+msgctxt "Islamic month lexeme"
+msgid "Muharram"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
-msgid "Islamic month lexeme|Safar"
+msgctxt "Islamic month lexeme"
+msgid "Safar"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
-msgid "Islamic month lexeme|Rabi`al-Awwal"
+msgctxt "Islamic month lexeme"
+msgid "Rabi`al-Awwal"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
-msgid "Islamic month lexeme|Rabi`ath-Thani"
+msgctxt "Islamic month lexeme"
+msgid "Rabi`ath-Thani"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
-msgid "Islamic month lexeme|Jumada l-Ula"
+msgctxt "Islamic month lexeme"
+msgid "Jumada l-Ula"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
-msgid "Islamic month lexeme|Jumada t-Tania"
+msgctxt "Islamic month lexeme"
+msgid "Jumada t-Tania"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
-msgid "Islamic month lexeme|Rajab"
+msgctxt "Islamic month lexeme"
+msgid "Rajab"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
-msgid "Islamic month lexeme|Sha`ban"
+msgctxt "Islamic month lexeme"
+msgid "Sha`ban"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
-msgid "Islamic month lexeme|Ramadan"
+msgctxt "Islamic month lexeme"
+msgid "Ramadan"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
-msgid "Islamic month lexeme|Shawwal"
+msgctxt "Islamic month lexeme"
+msgid "Shawwal"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
-msgid "Islamic month lexeme|Dhu l-Qa`da"
+msgctxt "Islamic month lexeme"
+msgid "Dhu l-Qa`da"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:199
-msgid "Islamic month lexeme|Dhu l-Hijja"
+msgctxt "Islamic month lexeme"
+msgid "Dhu l-Hijja"
 msgstr ""
 
 #. TRANSLATORS: see
@@ -2876,77 +2987,94 @@ msgstr ""
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:208
-msgid "Persian month lexeme|Farvardin"
+msgctxt "Persian month lexeme"
+msgid "Farvardin"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
-msgid "Persian month lexeme|Ordibehesht"
+msgctxt "Persian month lexeme"
+msgid "Ordibehesht"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
-msgid "Persian month lexeme|Khordad"
+msgctxt "Persian month lexeme"
+msgid "Khordad"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
-msgid "Persian month lexeme|Tir"
+msgctxt "Persian month lexeme"
+msgid "Tir"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
-msgid "Persian month lexeme|Mordad"
+msgctxt "Persian month lexeme"
+msgid "Mordad"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
-msgid "Persian month lexeme|Shahrivar"
+msgctxt "Persian month lexeme"
+msgid "Shahrivar"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
-msgid "Persian month lexeme|Mehr"
+msgctxt "Persian month lexeme"
+msgid "Mehr"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
-msgid "Persian month lexeme|Aban"
+msgctxt "Persian month lexeme"
+msgid "Aban"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
-msgid "Persian month lexeme|Azar"
+msgctxt "Persian month lexeme"
+msgid "Azar"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:217
-msgid "Persian month lexeme|Dey"
+msgctxt "Persian month lexeme"
+msgid "Dey"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:218
-msgid "Persian month lexeme|Bahman"
+msgctxt "Persian month lexeme"
+msgid "Bahman"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:219
-msgid "Persian month lexeme|Esfand"
+msgctxt "Persian month lexeme"
+msgid "Esfand"
 msgstr ""
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:225
-msgid "date modifier|before "
+msgctxt "date modifier"
+msgid "before "
 msgstr "antes de "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
-msgid "date modifier|after "
+msgctxt "date modifier"
+msgid "after "
 msgstr "después de "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:231
-msgid "date modifier|about "
+msgctxt "date modifier"
+msgid "about "
 msgstr "hacia "
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
-msgid "date quality|estimated "
+msgctxt "date quality"
+msgid "estimated "
 msgstr "estimado "
 
 #: ../gramps/gen/datehandler/_datestrings.py:236
-msgid "date quality|calculated "
+msgctxt "date quality"
+msgid "calculated "
 msgstr "calculado "
 
 #: ../gramps/gen/datehandler/_datestrings.py:242
@@ -3420,7 +3548,8 @@ msgid "Patronymic, Given"
 msgstr "Patronímico, Nombre"
 
 #: ../gramps/gen/display/name.py:602 ../gramps/gen/display/name.py:702
-msgid "Person|title"
+msgctxt "Person"
+msgid "title"
 msgstr "tratamiento"
 
 #: ../gramps/gen/display/name.py:604 ../gramps/gen/display/name.py:704
@@ -3442,11 +3571,13 @@ msgid "suffix"
 msgstr "sufijo"
 
 #: ../gramps/gen/display/name.py:610 ../gramps/gen/display/name.py:710
-msgid "Name|call"
+msgctxt "Name"
+msgid "call"
 msgstr "corto"
 
 #: ../gramps/gen/display/name.py:613 ../gramps/gen/display/name.py:712
-msgid "Name|common"
+msgctxt "Name"
+msgid "common"
 msgstr "habitual"
 
 #: ../gramps/gen/display/name.py:617 ../gramps/gen/display/name.py:715
@@ -3454,7 +3585,8 @@ msgid "initials"
 msgstr "iniciales"
 
 #: ../gramps/gen/display/name.py:620 ../gramps/gen/display/name.py:717
-msgid "Name|primary"
+msgctxt "Name"
+msgid "primary"
 msgstr "primario"
 
 #: ../gramps/gen/display/name.py:623 ../gramps/gen/display/name.py:719
@@ -3490,7 +3622,8 @@ msgid "notpatronymic"
 msgstr "no patronímico"
 
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
-msgid "Remaining names|rest"
+msgctxt "Remaining names"
+msgid "rest"
 msgstr "resto"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:737
@@ -5437,7 +5570,8 @@ msgid "Full Family name:"
 msgstr "Apellidos completos:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:48
-msgid "person|Title:"
+msgctxt "person"
+msgid "Title:"
 msgstr "Tratamiento:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
@@ -6492,7 +6626,8 @@ msgstr "Concide con los repositorios con un cierto número de referencias"
 #: ../gramps/gui/glade/mergerepository.glade:228
 #: ../gramps/gui/merge/mergerepository.py:46
 #, fuzzy
-msgid "repo|Name:"
+msgctxt "repo"
+msgid "Name:"
 msgstr "Nombre:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
@@ -7389,7 +7524,8 @@ msgstr "menos de"
 #: ../gramps/gen/lib/date.py:290 ../gramps/gen/lib/date.py:325
 #: ../gramps/gen/lib/date.py:331 ../gramps/gen/lib/date.py:333
 #: ../gramps/gen/lib/date.py:350
-msgid "age|about"
+msgctxt "age"
+msgid "about"
 msgstr "como"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:339
@@ -7490,7 +7626,8 @@ msgstr "El nue_vo año comienza:  "
 
 #: ../gramps/gen/lib/date.py:1856
 #, fuzzy
-msgid "date-quality|none"
+msgctxt "date-quality"
+msgid "none"
 msgstr "estimado "
 
 #: ../gramps/gen/lib/date.py:1857
@@ -7503,7 +7640,8 @@ msgstr "estimada"
 
 #: ../gramps/gen/lib/date.py:1871
 #, fuzzy
-msgid "date-modifier|none"
+msgctxt "date-modifier"
+msgid "none"
 msgstr "antes de "
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:314
@@ -7614,7 +7752,8 @@ msgid "Attributes"
 msgstr "Atributos"
 
 #: ../gramps/gen/lib/eventroletype.py:54
-msgid "Role|Primary"
+msgctxt "Role"
+msgid "Primary"
 msgstr "Primario"
 
 #: ../gramps/gen/lib/eventroletype.py:55
@@ -7638,7 +7777,8 @@ msgid "Groom"
 msgstr "Novio"
 
 #: ../gramps/gen/lib/eventroletype.py:61
-msgid "Role|Family"
+msgctxt "Role"
+msgid "Family"
 msgstr "Familia"
 
 #: ../gramps/gen/lib/eventroletype.py:62
@@ -7912,191 +8052,237 @@ msgstr "Matrimonio alternativo"
 #: ../gramps/gen/lib/eventtype.py:211
 #: ../gramps/plugins/drawreport/ancestortree.py:61
 #: ../gramps/plugins/drawreport/descendtree.py:57
-msgid "birth abbreviation|b."
+msgctxt "birth abbreviation"
+msgid "b."
 msgstr "n."
 
 #: ../gramps/gen/lib/eventtype.py:212
 #: ../gramps/plugins/drawreport/ancestortree.py:62
 #: ../gramps/plugins/drawreport/descendtree.py:58
-msgid "death abbreviation|d."
+msgctxt "death abbreviation"
+msgid "d."
 msgstr "f."
 
 #: ../gramps/gen/lib/eventtype.py:213
 #: ../gramps/plugins/drawreport/ancestortree.py:63
 #: ../gramps/plugins/drawreport/descendtree.py:59
-msgid "marriage abbreviation|m."
+msgctxt "marriage abbreviation"
+msgid "m."
 msgstr "c."
 
 #: ../gramps/gen/lib/eventtype.py:214
-msgid "Unknown abbreviation|unkn."
+msgctxt "Unknown abbreviation"
+msgid "unkn."
 msgstr "desc."
 
 #: ../gramps/gen/lib/eventtype.py:215
-msgid "Custom abbreviation|cust."
+msgctxt "Custom abbreviation"
+msgid "cust."
 msgstr "pers."
 
 #: ../gramps/gen/lib/eventtype.py:216
-msgid "Adopted abbreviation|adop."
+msgctxt "Adopted abbreviation"
+msgid "adop."
 msgstr "adop."
 
 #: ../gramps/gen/lib/eventtype.py:217
-msgid "Adult Christening abbreviation|a.chr."
+msgctxt "Adult Christening abbreviation"
+msgid "a.chr."
 msgstr "b.a."
 
 #: ../gramps/gen/lib/eventtype.py:218
-msgid "Baptism abbreviation|bap."
+msgctxt "Baptism abbreviation"
+msgid "bap."
 msgstr "b."
 
 #: ../gramps/gen/lib/eventtype.py:219
-msgid "Bar Mitzvah abbreviation|bar."
+msgctxt "Bar Mitzvah abbreviation"
+msgid "bar."
 msgstr "bar."
 
 #: ../gramps/gen/lib/eventtype.py:220
-msgid "Bat Mitzvah abbreviation|bat."
+msgctxt "Bat Mitzvah abbreviation"
+msgid "bat."
 msgstr "bas."
 
 #: ../gramps/gen/lib/eventtype.py:221
-msgid "Blessing abbreviation|bles."
+msgctxt "Blessing abbreviation"
+msgid "bles."
 msgstr "bend."
 
 #: ../gramps/gen/lib/eventtype.py:222
-msgid "Burial abbreviation|bur."
+msgctxt "Burial abbreviation"
+msgid "bur."
 msgstr "sep."
 
 #: ../gramps/gen/lib/eventtype.py:223
-msgid "Cause Of Death abbreviation|d.cau."
+msgctxt "Cause Of Death abbreviation"
+msgid "d.cau."
 msgstr "caus."
 
 #: ../gramps/gen/lib/eventtype.py:224
-msgid "Census abbreviation|cens."
+msgctxt "Census abbreviation"
+msgid "cens."
 msgstr "cens."
 
 #: ../gramps/gen/lib/eventtype.py:225
-msgid "Christening abbreviation|chr."
+msgctxt "Christening abbreviation"
+msgid "chr."
 msgstr "b."
 
 #: ../gramps/gen/lib/eventtype.py:226
-msgid "Confirmation abbreviation|conf."
+msgctxt "Confirmation abbreviation"
+msgid "conf."
 msgstr "conf."
 
 #: ../gramps/gen/lib/eventtype.py:227
-msgid "Cremation abbreviation|crem."
+msgctxt "Cremation abbreviation"
+msgid "crem."
 msgstr "inc."
 
 #: ../gramps/gen/lib/eventtype.py:228
-msgid "Degree abbreviation|deg."
+msgctxt "Degree abbreviation"
+msgid "deg."
 msgstr "tit."
 
 #: ../gramps/gen/lib/eventtype.py:229
-msgid "Education abbreviation|edu."
+msgctxt "Education abbreviation"
+msgid "edu."
 msgstr "educ."
 
 #: ../gramps/gen/lib/eventtype.py:230
-msgid "Elected abbreviation|elec."
+msgctxt "Elected abbreviation"
+msgid "elec."
 msgstr "eleg."
 
 #: ../gramps/gen/lib/eventtype.py:231
-msgid "Emigration abbreviation|em."
+msgctxt "Emigration abbreviation"
+msgid "em."
 msgstr "emig."
 
 #: ../gramps/gen/lib/eventtype.py:232
-msgid "First Communion abbreviation|f.comm."
+msgctxt "First Communion abbreviation"
+msgid "f.comm."
 msgstr "p.com."
 
 #: ../gramps/gen/lib/eventtype.py:233
-msgid "Immigration abbreviation|im."
+msgctxt "Immigration abbreviation"
+msgid "im."
 msgstr "inmig."
 
 #: ../gramps/gen/lib/eventtype.py:234
-msgid "Graduation abbreviation|grad."
+msgctxt "Graduation abbreviation"
+msgid "grad."
 msgstr "grad."
 
 #: ../gramps/gen/lib/eventtype.py:235
-msgid "Medical Information abbreviation|medinf."
+msgctxt "Medical Information abbreviation"
+msgid "medinf."
 msgstr "inf.med."
 
 #: ../gramps/gen/lib/eventtype.py:236
-msgid "Military Service abbreviation|milser."
+msgctxt "Military Service abbreviation"
+msgid "milser."
 msgstr "s.mil."
 
 #: ../gramps/gen/lib/eventtype.py:237
-msgid "Naturalization abbreviation|nat."
+msgctxt "Naturalization abbreviation"
+msgid "nat."
 msgstr "nacional."
 
 #: ../gramps/gen/lib/eventtype.py:238
-msgid "Nobility Title abbreviation|nob."
+msgctxt "Nobility Title abbreviation"
+msgid "nob."
 msgstr "tít.nob."
 
 #: ../gramps/gen/lib/eventtype.py:239
-msgid "Number of Marriages abbreviation|n.o.mar."
+msgctxt "Number of Marriages abbreviation"
+msgid "n.o.mar."
 msgstr "n.mat."
 
 #: ../gramps/gen/lib/eventtype.py:240
-msgid "Occupation abbreviation|occ."
+msgctxt "Occupation abbreviation"
+msgid "occ."
 msgstr "ocu."
 
 #: ../gramps/gen/lib/eventtype.py:241
-msgid "Ordination abbreviation|ord."
+msgctxt "Ordination abbreviation"
+msgid "ord."
 msgstr "ord."
 
 #: ../gramps/gen/lib/eventtype.py:242
-msgid "Probate abbreviation|prob."
+msgctxt "Probate abbreviation"
+msgid "prob."
 msgstr "aut.test."
 
 #: ../gramps/gen/lib/eventtype.py:243
-msgid "Property abbreviation|prop."
+msgctxt "Property abbreviation"
+msgid "prop."
 msgstr "prop."
 
 #: ../gramps/gen/lib/eventtype.py:244
-msgid "Religion abbreviation|rel."
+msgctxt "Religion abbreviation"
+msgid "rel."
 msgstr "rel."
 
 #: ../gramps/gen/lib/eventtype.py:245
-msgid "Residence abbreviation|res."
+msgctxt "Residence abbreviation"
+msgid "res."
 msgstr "res."
 
 #: ../gramps/gen/lib/eventtype.py:246
-msgid "Retirement abbreviation|ret."
+msgctxt "Retirement abbreviation"
+msgid "ret."
 msgstr "jub."
 
 #: ../gramps/gen/lib/eventtype.py:247
-msgid "Will abbreviation|will."
+msgctxt "Will abbreviation"
+msgid "will."
 msgstr "test."
 
 #: ../gramps/gen/lib/eventtype.py:248
-msgid "Marriage Settlement abbreviation|m.set."
+msgctxt "Marriage Settlement abbreviation"
+msgid "m.set."
 msgstr "ac.matr."
 
 #: ../gramps/gen/lib/eventtype.py:249
-msgid "Marriage License abbreviation|m.lic."
+msgctxt "Marriage License abbreviation"
+msgid "m.lic."
 msgstr "lic.m."
 
 #: ../gramps/gen/lib/eventtype.py:250
-msgid "Marriage Contract abbreviation|m.con."
+msgctxt "Marriage Contract abbreviation"
+msgid "m.con."
 msgstr "cap."
 
 #: ../gramps/gen/lib/eventtype.py:251
-msgid "Marriage Banns abbreviation|m.ban."
+msgctxt "Marriage Banns abbreviation"
+msgid "m.ban."
 msgstr "amon."
 
 #: ../gramps/gen/lib/eventtype.py:252
-msgid "Alternate Marriage abbreviation|alt.mar."
+msgctxt "Alternate Marriage abbreviation"
+msgid "alt.mar."
 msgstr "matr.alt."
 
 #: ../gramps/gen/lib/eventtype.py:253
-msgid "Engagement abbreviation|engd."
+msgctxt "Engagement abbreviation"
+msgid "engd."
 msgstr "compr."
 
 #: ../gramps/gen/lib/eventtype.py:254
-msgid "Divorce abbreviation|div."
+msgctxt "Divorce abbreviation"
+msgid "div."
 msgstr "div."
 
 #: ../gramps/gen/lib/eventtype.py:255
-msgid "Divorce Filing abbreviation|div.f."
+msgctxt "Divorce Filing abbreviation"
+msgid "div.f."
 msgstr "dem.div."
 
 #: ../gramps/gen/lib/eventtype.py:256
-msgid "Annulment abbreviation|annul."
+msgctxt "Annulment abbreviation"
+msgid "annul."
 msgstr "anul."
 
 #. The parent may not be birth father in ths family, because it
@@ -8568,15 +8754,18 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(persons)s y %(name)s (%(id)s)"
 
 #: ../gramps/gen/lib/nameorigintype.py:76
-msgid "Surname|Inherited"
+msgctxt "Surname"
+msgid "Inherited"
 msgstr "Heredado"
 
 #: ../gramps/gen/lib/nameorigintype.py:77
-msgid "Surname|Given"
+msgctxt "Surname"
+msgid "Given"
 msgstr "Recibido"
 
 #: ../gramps/gen/lib/nameorigintype.py:78
-msgid "Surname|Taken"
+msgctxt "Surname"
+msgid "Taken"
 msgstr "Usado"
 
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
@@ -8589,7 +8778,8 @@ msgid "Matronymic"
 msgstr "Matronímico"
 
 #: ../gramps/gen/lib/nameorigintype.py:81
-msgid "Surname|Feudal"
+msgctxt "Surname"
+msgid "Feudal"
 msgstr "Feudal"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
@@ -8698,12 +8888,14 @@ msgid "Html code"
 msgstr "Código HTML"
 
 #: ../gramps/gen/lib/notetype.py:82
-msgid "notetype|To Do"
+msgctxt "notetype"
+msgid "To Do"
 msgstr "Pendiente"
 
 #: ../gramps/gen/lib/notetype.py:83
 #, fuzzy
-msgid "notetype|Link"
+msgctxt "notetype"
+msgid "Link"
 msgstr "Pendiente"
 
 #: ../gramps/gen/lib/notetype.py:87
@@ -9975,12 +10167,14 @@ msgstr "Archivo de GraphViz"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 #, fuzzy
-msgid "paper size|Letter"
+msgctxt "paper size"
+msgid "Letter"
 msgstr "Nombre del tamaño de papel."
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:80
 #, fuzzy
-msgid "paper size|Legal"
+msgctxt "paper size"
+msgid "Legal"
 msgstr "Nombre del tamaño de papel."
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
@@ -10396,23 +10590,28 @@ msgid "Living People"
 msgstr "Personas vivas"
 
 #: ../gramps/gen/plug/report/stdoptions.py:174
-msgid "'living people'|Included, and all data"
+msgctxt "'living people'"
+msgid "Included, and all data"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:178
-msgid "'living people'|Full names, but data removed"
+msgctxt "'living people'"
+msgid "Full names, but data removed"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:180
-msgid "'living people'|Given names replaced, and data removed"
+msgctxt "'living people'"
+msgid "Given names replaced, and data removed"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:182
-msgid "'living people'|Complete names replaced, and data removed"
+msgctxt "'living people'"
+msgid "Complete names replaced, and data removed"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:184
-msgid "'living people'|Not included"
+msgctxt "'living people'"
+msgid "Not included"
 msgstr ""
 
 #. for deferred translation
@@ -10575,7 +10774,8 @@ msgstr "Actualizado"
 
 #: ../gramps/gen/plug/utils.py:262
 #, fuzzy
-msgid "updates|New"
+msgctxt "updates"
+msgid "New"
 msgstr "actualización"
 
 #: ../gramps/gen/plug/utils.py:291 ../gramps/gen/plug/utils.py:298
@@ -10692,7 +10892,8 @@ msgid "wife"
 msgstr "esposa"
 
 #: ../gramps/gen/relationship.py:2174
-msgid "gender unknown|spouse"
+msgctxt "gender unknown"
+msgid "spouse"
 msgstr "cónyuge"
 
 #: ../gramps/gen/relationship.py:2177
@@ -10704,79 +10905,98 @@ msgid "ex-wife"
 msgstr "ex-esposa"
 
 #: ../gramps/gen/relationship.py:2181
-msgid "gender unknown|ex-spouse"
+msgctxt "gender unknown"
+msgid "ex-spouse"
 msgstr "ex-cónyuge"
 
 #: ../gramps/gen/relationship.py:2184
-msgid "male,unmarried|partner"
+msgctxt "male,unmarried"
+msgid "partner"
 msgstr "compañero"
 
 #: ../gramps/gen/relationship.py:2186
-msgid "female,unmarried|partner"
+msgctxt "female,unmarried"
+msgid "partner"
 msgstr "compañera"
 
 #: ../gramps/gen/relationship.py:2188
-msgid "gender unknown,unmarried|partner"
+msgctxt "gender unknown,unmarried"
+msgid "partner"
 msgstr "pareja"
 
 #: ../gramps/gen/relationship.py:2191
-msgid "male,unmarried|ex-partner"
+msgctxt "male,unmarried"
+msgid "ex-partner"
 msgstr "ex-compañero"
 
 #: ../gramps/gen/relationship.py:2193
-msgid "female,unmarried|ex-partner"
+msgctxt "female,unmarried"
+msgid "ex-partner"
 msgstr "ex-compañera"
 
 #: ../gramps/gen/relationship.py:2195
-msgid "gender unknown,unmarried|ex-partner"
+msgctxt "gender unknown,unmarried"
+msgid "ex-partner"
 msgstr "ex-pareja"
 
 #: ../gramps/gen/relationship.py:2198
-msgid "male,civil union|partner"
+msgctxt "male,civil union"
+msgid "partner"
 msgstr "compañero"
 
 #: ../gramps/gen/relationship.py:2200
-msgid "female,civil union|partner"
+msgctxt "female,civil union"
+msgid "partner"
 msgstr "compañera"
 
 #: ../gramps/gen/relationship.py:2202
-msgid "gender unknown,civil union|partner"
+msgctxt "gender unknown,civil union"
+msgid "partner"
 msgstr "pareja"
 
 #: ../gramps/gen/relationship.py:2205
-msgid "male,civil union|former partner"
+msgctxt "male,civil union"
+msgid "former partner"
 msgstr "ex-compañero"
 
 #: ../gramps/gen/relationship.py:2207
-msgid "female,civil union|former partner"
+msgctxt "female,civil union"
+msgid "former partner"
 msgstr "ex-compañera"
 
 #: ../gramps/gen/relationship.py:2209
-msgid "gender unknown,civil union|former partner"
+msgctxt "gender unknown,civil union"
+msgid "former partner"
 msgstr "ex-pareja"
 
 #: ../gramps/gen/relationship.py:2212
-msgid "male,unknown relation|partner"
+msgctxt "male,unknown relation"
+msgid "partner"
 msgstr "compañero"
 
 #: ../gramps/gen/relationship.py:2214
-msgid "female,unknown relation|partner"
+msgctxt "female,unknown relation"
+msgid "partner"
 msgstr "compañera"
 
 #: ../gramps/gen/relationship.py:2216
-msgid "gender unknown,unknown relation|partner"
+msgctxt "gender unknown,unknown relation"
+msgid "partner"
 msgstr "pareja"
 
 #: ../gramps/gen/relationship.py:2221
-msgid "male,unknown relation|former partner"
+msgctxt "male,unknown relation"
+msgid "former partner"
 msgstr "ex-compañero"
 
 #: ../gramps/gen/relationship.py:2223
-msgid "female,unknown relation|former partner"
+msgctxt "female,unknown relation"
+msgid "former partner"
 msgstr "ex-compañera"
 
 #: ../gramps/gen/relationship.py:2225
-msgid "gender unknown,unknown relation|former partner"
+msgctxt "gender unknown,unknown relation"
+msgid "former partner"
 msgstr "ex-pareja"
 
 #: ../gramps/gen/relationship.py:2318
@@ -11133,12 +11353,14 @@ msgstr ""
 "recortadas en los informas."
 
 #: ../gramps/gen/utils/keyword.py:54
-msgid "Person|TITLE"
+msgctxt "Person"
+msgid "TITLE"
 msgstr "TRATAMIENTO"
 
 #: ../gramps/gen/utils/keyword.py:54 ../gramps/plugins/export/exportcsv.py:356
 #: ../gramps/plugins/tool/patchnames.py:446
-msgid "Person|Title"
+msgctxt "Person"
+msgid "Title"
 msgstr "Tratamiento"
 
 #: ../gramps/gen/utils/keyword.py:55
@@ -11153,21 +11375,25 @@ msgid "SURNAME"
 msgstr "APELLIDOS"
 
 #: ../gramps/gen/utils/keyword.py:57
-msgid "Name|CALL"
+msgctxt "Name"
+msgid "CALL"
 msgstr "CORTO"
 
 #: ../gramps/gen/utils/keyword.py:57
-msgid "Name|Call"
+msgctxt "Name"
+msgid "Call"
 msgstr "Corto"
 
 #: ../gramps/gen/utils/keyword.py:58
-msgid "Name|COMMON"
+msgctxt "Name"
+msgid "COMMON"
 msgstr "HABITUAL"
 
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:848
 #: ../gramps/gui/configure.py:850 ../gramps/gui/configure.py:853
 #: ../gramps/gui/configure.py:854 ../gramps/gui/configure.py:860
-msgid "Name|Common"
+msgctxt "Name"
+msgid "Common"
 msgstr "Habitual"
 
 #: ../gramps/gen/utils/keyword.py:59
@@ -11185,7 +11411,8 @@ msgstr "SUFIJO"
 #. name, sort, width, modelcol
 #: ../gramps/gen/utils/keyword.py:61
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
-msgid "Name|Primary"
+msgctxt "Name"
+msgid "Primary"
 msgstr "Primario"
 
 #: ../gramps/gen/utils/keyword.py:61
@@ -11315,7 +11542,8 @@ msgid "female"
 msgstr "femenino"
 
 #: ../gramps/gen/utils/string.py:48
-msgid "gender|unknown"
+msgctxt "gender"
+msgid "unknown"
 msgstr "desconocido"
 
 #: ../gramps/gen/utils/string.py:52
@@ -11621,7 +11849,8 @@ msgid "OS: %s"
 msgstr ": %s\n"
 
 #: ../gramps/gui/clipboard.py:70
-msgid "manual|Using_the_Clipboard"
+msgctxt "manual"
+msgid "Using_the_Clipboard"
 msgstr "Utilización del portapapeles"
 
 #: ../gramps/gui/clipboard.py:401
@@ -11634,7 +11863,8 @@ msgid "Family Attribute"
 msgstr "Atributos Familiares"
 
 #: ../gramps/gui/clipboard.py:483
-msgid "not available|NA"
+msgctxt "not available"
+msgid "NA"
 msgstr "No disponible"
 
 #: ../gramps/gui/clipboard.py:492
@@ -11665,17 +11895,20 @@ msgstr "Portapapeles"
 #. See details (edit, etc):
 #: ../gramps/gui/clipboard.py:1493 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
-msgid "the object|See %s details"
+msgctxt "the object"
+msgid "See %s details"
 msgstr "Ver los detalles de %s"
 
 #: ../gramps/gui/clipboard.py:1502 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
-msgid "the object|Make %s active"
+msgctxt "the object"
+msgid "Make %s active"
 msgstr "Hacer %s activo"
 
 #: ../gramps/gui/clipboard.py:1524
 #, python-format
-msgid "the object|Create Filter from %s selected..."
+msgctxt "the object"
+msgid "Create Filter from %s selected..."
 msgstr "Crear filtro a partir de %s seleccionado/a..."
 
 #: ../gramps/gui/columnorder.py:89
@@ -13328,7 +13561,8 @@ msgstr "No hay nota activa"
 
 #: ../gramps/gui/editors/addmedia.py:70
 #, fuzzy
-msgid "manual|Select_a_media_selector"
+msgctxt "manual"
+msgid "Select_a_media_selector"
 msgstr "Fusionar_objetos"
 
 #: ../gramps/gui/editors/addmedia.py:104
@@ -13682,7 +13916,8 @@ msgstr "_Galería"
 
 #. Translators: _View means "to look at this"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:142
-msgid "verb:look at this|_View"
+msgctxt "verb:look at this"
+msgid "_View"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
@@ -14081,7 +14316,8 @@ msgstr "Saltar"
 
 #: ../gramps/gui/editors/editaddress.py:65
 #, fuzzy
-msgid "manual|Address_Editor_dialog"
+msgctxt "manual"
+msgid "Address_Editor_dialog"
 msgstr "Editor de direcciones"
 
 #: ../gramps/gui/editors/editaddress.py:92
@@ -14091,7 +14327,8 @@ msgstr "Editor de direcciones"
 
 #: ../gramps/gui/editors/editattribute.py:62
 #, fuzzy
-msgid "manual|Attribute_Editor_dialog"
+msgctxt "manual"
+msgid "Attribute_Editor_dialog"
 msgstr "Editor de Atributos"
 
 #: ../gramps/gui/editors/editattribute.py:94
@@ -14114,7 +14351,8 @@ msgstr "El tipo de atributo no puede dejarse vacío"
 
 #: ../gramps/gui/editors/editchildref.py:66
 #, fuzzy
-msgid "manual|Child_Reference_Editor"
+msgctxt "manual"
+msgid "Child_Reference_Editor"
 msgstr "Editor de referencias a hijos"
 
 #: ../gramps/gui/editors/editchildref.py:99
@@ -14124,7 +14362,8 @@ msgstr "Editor de referencias a hijos"
 
 #: ../gramps/gui/editors/editcitation.py:69
 #, fuzzy
-msgid "manual|New_Citation_dialog"
+msgctxt "manual"
+msgid "New_Citation_dialog"
 msgstr "Fusionar_citas"
 
 #: ../gramps/gui/editors/editcitation.py:128
@@ -14225,7 +14464,8 @@ msgstr "Calculado"
 
 #: ../gramps/gui/editors/editdate.py:99
 #, fuzzy
-msgid "manual|Editing_dates"
+msgctxt "manual"
+msgid "Editing_dates"
 msgstr "Editar_fechas"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
@@ -14239,7 +14479,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:64
 #, fuzzy
-msgid "manual|New_Event_dialog"
+msgctxt "manual"
+msgid "New_Event_dialog"
 msgstr "Fusionar_eventos"
 
 #: ../gramps/gui/editors/editevent.py:98
@@ -14303,7 +14544,8 @@ msgstr "Eliminar evento (%s)"
 
 #: ../gramps/gui/editors/editeventref.py:57
 #, fuzzy
-msgid "manual|Event_Reference_Editor_dialog"
+msgctxt "manual"
+msgid "Event_Reference_Editor_dialog"
 msgstr "Editor de referencias a eventos"
 
 #: ../gramps/gui/editors/editeventref.py:76
@@ -14328,7 +14570,8 @@ msgid "Add Event"
 msgstr "Agregar evento"
 
 #: ../gramps/gui/editors/editfamily.py:92
-msgid "manual|Family_Editor_dialog"
+msgctxt "manual"
+msgid "Family_Editor_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:113
@@ -14593,7 +14836,8 @@ msgstr "Agregar familia"
 
 #: ../gramps/gui/editors/editldsord.py:67
 #, fuzzy
-msgid "manual|LDS_Ordinance_Editor"
+msgctxt "manual"
+msgid "LDS_Ordinance_Editor"
 msgstr "Editor de ordenanzas SUD"
 
 #: ../gramps/gui/editors/editldsord.py:158
@@ -14620,7 +14864,8 @@ msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../gramps/gui/editors/editlink.py:49
 #, fuzzy
-msgid "manual|Link_Editor"
+msgctxt "manual"
+msgid "Link_Editor"
 msgstr "Editor de enlaces"
 
 #: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:239
@@ -14637,7 +14882,8 @@ msgstr "Editor de lugares"
 
 #: ../gramps/gui/editors/editmedia.py:68
 #, fuzzy
-msgid "manual|New_Media_dialog"
+msgctxt "manual"
+msgid "New_Media_dialog"
 msgstr "Administrador_de_objetos_audiovisuales..."
 
 #: ../gramps/gui/editors/editmedia.py:99
@@ -14705,7 +14951,8 @@ msgstr "Quitar objeto audiovisual"
 
 #: ../gramps/gui/editors/editmediaref.py:71
 #, fuzzy
-msgid "manual|Media_Reference_Editor_dialog"
+msgctxt "manual"
+msgid "Media_Reference_Editor_dialog"
 msgstr "Editor de referencias a objetos"
 
 #: ../gramps/gui/editors/editmediaref.py:93
@@ -14717,7 +14964,8 @@ msgstr "Editor de referencias a objetos"
 #: ../gramps/gui/editors/editmediaref.py:98
 #: ../gramps/gui/glade/editmediaref.glade:133
 #: ../gramps/gui/glade/editmediaref.glade:257
-msgid "Y coordinate|Y"
+msgctxt "Y coordinate"
+msgid "Y"
 msgstr "Y"
 
 #: ../gramps/gui/editors/editname.py:120 ../gramps/gui/editors/editname.py:314
@@ -14726,7 +14974,8 @@ msgstr "Editor de nombres"
 
 #: ../gramps/gui/editors/editname.py:162
 #, fuzzy
-msgid "manual|Name_Editor"
+msgctxt "manual"
+msgid "Name_Editor"
 msgstr "Editor de nombres"
 
 #: ../gramps/gui/editors/editname.py:174
@@ -14782,7 +15031,8 @@ msgstr "Agrupar sólo este nombre"
 
 #: ../gramps/gui/editors/editnote.py:67
 #, fuzzy
-msgid "manual|Editing_information_about_notes"
+msgctxt "manual"
+msgid "Editing_information_about_notes"
 msgstr "Editar_información_de_los_eventos"
 
 #: ../gramps/gui/editors/editnote.py:150
@@ -14852,7 +15102,8 @@ msgstr "Nueva persona"
 
 #: ../gramps/gui/editors/editperson.py:242
 #, fuzzy
-msgid "manual|Editing_information_about_people"
+msgctxt "manual"
+msgid "Editing_information_about_people"
 msgstr "Editar_información_de_los_eventos"
 
 #: ../gramps/gui/editors/editperson.py:600
@@ -14944,7 +15195,8 @@ msgstr "_Desconocido"
 
 #: ../gramps/gui/editors/editpersonref.py:67
 #, fuzzy
-msgid "manual|Person_Reference_Editor"
+msgctxt "manual"
+msgid "Person_Reference_Editor"
 msgstr "Editor de referencias a personas"
 
 #: ../gramps/gui/editors/editpersonref.py:93
@@ -14965,13 +15217,15 @@ msgid "You must either select a person or Cancel the edit"
 msgstr "Debe seleccionar una persona o Cancelar la edición"
 
 #: ../gramps/gui/editors/editplace.py:69
-msgid "manual|Place_Editor_dialog"
+msgctxt "manual"
+msgid "Place_Editor_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:91
 #: ../gramps/gui/glade/editplace.glade:355 ../gramps/gui/merge/mergeplace.py:55
 #, fuzzy
-msgid "place|Name:"
+msgctxt "place"
+msgid "Name:"
 msgstr "Nombre del lugar"
 
 #: ../gramps/gui/editors/editplace.py:96
@@ -15052,7 +15306,8 @@ msgstr "Nuevo"
 
 #: ../gramps/gui/editors/editplacename.py:49
 #, fuzzy
-msgid "manual|Place_Name_Editor_dialog"
+msgctxt "manual"
+msgid "Place_Name_Editor_dialog"
 msgstr " Editor de nombres"
 
 #: ../gramps/gui/editors/editplacename.py:101
@@ -15139,7 +15394,8 @@ msgstr "Agregar repositorio"
 
 #: ../gramps/gui/editors/editrepository.py:60
 #, fuzzy
-msgid "manual|New_Repository_dialog"
+msgctxt "manual"
+msgid "New_Repository_dialog"
 msgstr "Fusionar_repositorios"
 
 #: ../gramps/gui/editors/editrepository.py:92
@@ -15174,7 +15430,8 @@ msgstr "Eliminar repositorio (%s)"
 
 #: ../gramps/gui/editors/editsource.py:64
 #, fuzzy
-msgid "manual|New_Source_dialog"
+msgctxt "manual"
+msgid "New_Source_dialog"
 msgstr "Fusionar_fuentes"
 
 #: ../gramps/gui/editors/editsource.py:88
@@ -15216,7 +15473,8 @@ msgstr "Eliminar fuente (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
 #, fuzzy
-msgid "manual|Tag_selection_dialog"
+msgctxt "manual"
+msgid "Tag_selection_dialog"
 msgstr "Selección de etiquetas"
 
 #: ../gramps/gui/editors/edittaglist.py:70
@@ -15226,7 +15484,8 @@ msgstr "Selección de etiquetas"
 
 #: ../gramps/gui/editors/editurl.py:47
 #, fuzzy
-msgid "manual|Internet_Address_Editor"
+msgctxt "manual"
+msgid "Internet_Address_Editor"
 msgstr "Editor de direcciones internet"
 
 #: ../gramps/gui/editors/editurl.py:68 ../gramps/gui/editors/editurl.py:103
@@ -15234,17 +15493,20 @@ msgid "Internet Address Editor"
 msgstr "Editor de direcciones internet"
 
 #: ../gramps/gui/editors/filtereditor.py:84
-msgid "manual|Add_Rule_dialog"
+msgctxt "manual"
+msgid "Add_Rule_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:85
 #, fuzzy
-msgid "manual|Define_Filter_dialog"
+msgctxt "manual"
+msgid "Define_Filter_dialog"
 msgstr "General"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 #, fuzzy
-msgid "manual|Custom_Filters"
+msgctxt "manual"
+msgid "Custom_Filters"
 msgstr "Filtro personalizado"
 
 #: ../gramps/gui/editors/filtereditor.py:90
@@ -15600,7 +15862,8 @@ msgstr "Volumen/Página"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 #, fuzzy
-msgid "Citation: Minimum Confidence|Min. Conf."
+msgctxt "Citation: Minimum Confidence"
+msgid "Min. Conf."
 msgstr "Conf. Mín."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
@@ -17784,7 +18047,8 @@ msgstr "Tamaño"
 
 #: ../gramps/gui/glade/styleeditor.glade:385
 #: ../gramps/gui/plug/report/_styleeditor.py:268
-msgid "point size|pt"
+msgctxt "point size"
+msgid "pt"
 msgstr "Tamaño de letra"
 
 #: ../gramps/gui/glade/styleeditor.glade:432
@@ -18536,7 +18800,8 @@ msgstr ""
 
 #: ../gramps/gui/logger/_errorview.py:46
 #, fuzzy
-msgid "manual|Error_Report"
+msgctxt "manual"
+msgid "Error_Report"
 msgstr "Reporte de error"
 
 #: ../gramps/gui/logger/_errorview.py:107
@@ -18575,7 +18840,8 @@ msgid "Created on %(year)4d/%(month)02d/%(day)02d"
 msgstr "Creado el %(day)02d/%(month)02d/%(year)4d"
 
 #: ../gramps/gui/merge/mergecitation.py:46
-msgid "manual|Merge_Citations"
+msgctxt "manual"
+msgid "Merge_Citations"
 msgstr "Fusionar_citas"
 
 #: ../gramps/gui/merge/mergecitation.py:68
@@ -18584,7 +18850,8 @@ msgid "Merge Citations"
 msgstr "Fusionar citas"
 
 #: ../gramps/gui/merge/mergeevent.py:45
-msgid "manual|Merge_Events"
+msgctxt "manual"
+msgid "Merge_Events"
 msgstr "Fusionar_eventos"
 
 #: ../gramps/gui/merge/mergeevent.py:67
@@ -18592,7 +18859,8 @@ msgid "Merge Events"
 msgstr "Fusionar eventos"
 
 #: ../gramps/gui/merge/mergefamily.py:46
-msgid "manual|Merge_Families"
+msgctxt "manual"
+msgid "Merge_Families"
 msgstr "Fusionar_familias"
 
 #: ../gramps/gui/merge/mergefamily.py:68
@@ -18606,11 +18874,13 @@ msgid "Cannot merge people"
 msgstr "No se pueden fusionar estas personas"
 
 #: ../gramps/gui/merge/mergemedia.py:44
-msgid "manual|Merge_Media_Objects"
+msgctxt "manual"
+msgid "Merge_Media_Objects"
 msgstr "Fusionar_objetos"
 
 #: ../gramps/gui/merge/mergenote.py:44
-msgid "manual|Merge_Notes"
+msgctxt "manual"
+msgid "Merge_Notes"
 msgstr "Fusionar_notas"
 
 #: ../gramps/gui/merge/mergenote.py:94
@@ -18622,7 +18892,8 @@ msgid "preformatted"
 msgstr "preformateado"
 
 #: ../gramps/gui/merge/mergeperson.py:58
-msgid "manual|Merge_People"
+msgctxt "manual"
+msgid "Merge_People"
 msgstr "Fusionar_personas"
 
 #. translators: needed for French, ignore otherwise
@@ -18695,15 +18966,18 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/merge/mergeplace.py:53
-msgid "manual|Merge_Places"
+msgctxt "manual"
+msgid "Merge_Places"
 msgstr "Fusionar_lugares"
 
 #: ../gramps/gui/merge/mergerepository.py:44
-msgid "manual|Merge_Repositories"
+msgctxt "manual"
+msgid "Merge_Repositories"
 msgstr "Fusionar_repositorios"
 
 #: ../gramps/gui/merge/mergesource.py:45
-msgid "manual|Merge_Sources"
+msgctxt "manual"
+msgid "Merge_Sources"
 msgstr "Fusionar_fuentes"
 
 #: ../gramps/gui/merge/mergesource.py:67
@@ -19491,7 +19765,8 @@ msgid "Landscape"
 msgstr "Apaisado"
 
 #: ../gramps/gui/plug/report/_papermenu.py:215
-msgid "inch|in."
+msgctxt "inch"
+msgid "in."
 msgstr "pul."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:143
@@ -19655,7 +19930,8 @@ msgstr "Tipos de Documentos"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 #, fuzzy
-msgid "manual|Document_Styles_dialog"
+msgctxt "manual"
+msgid "Document_Styles_dialog"
 msgstr "General"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
@@ -19688,7 +19964,8 @@ msgstr "Editor de estilos"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:242
 #, fuzzy
-msgid "manual|Style_editor_dialog"
+msgctxt "manual"
+msgid "Style_editor_dialog"
 msgstr " Editor de nombres"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:352
@@ -19782,7 +20059,8 @@ msgstr "Último cambio"
 
 #: ../gramps/gui/selectors/selectcitation.py:86
 #, fuzzy
-msgid "manual|Select_Source_or_Citation_selector"
+msgctxt "manual"
+msgid "Select_Source_or_Citation_selector"
 msgstr "Seleccionar fuente o cita"
 
 #: ../gramps/gui/selectors/selectevent.py:59
@@ -19791,12 +20069,14 @@ msgstr "Seleccionar evento"
 
 #: ../gramps/gui/selectors/selectevent.py:79
 #, fuzzy
-msgid "manual|Select_Event_selector"
+msgctxt "manual"
+msgid "Select_Event_selector"
 msgstr "Fusionar_eventos"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 #, fuzzy
-msgid "manual|Select_Family_selector"
+msgctxt "manual"
+msgid "Select_Family_selector"
 msgstr "Fusionar_familias"
 
 #: ../gramps/gui/selectors/selectnote.py:64
@@ -19805,7 +20085,8 @@ msgstr "Seleccionar nota"
 
 #: ../gramps/gui/selectors/selectnote.py:82
 #, fuzzy
-msgid "manual|Select_Note_selector"
+msgctxt "manual"
+msgid "Select_Note_selector"
 msgstr "Fusionar_notas"
 
 #: ../gramps/gui/selectors/selectobject.py:67
@@ -19814,24 +20095,29 @@ msgstr "Seleccional objeto audiovisual"
 
 #: ../gramps/gui/selectors/selectobject.py:108
 #, fuzzy
-msgid "manual|Select_Media_Object_selector"
+msgctxt "manual"
+msgid "Select_Media_Object_selector"
 msgstr "Fusionar_objetos"
 
 #: ../gramps/gui/selectors/selectperson.py:64
-msgid "manual|Select_Father_selector"
+msgctxt "manual"
+msgid "Select_Father_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectperson.py:66
-msgid "manual|Select_Mother_selector"
+msgctxt "manual"
+msgid "Select_Mother_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectperson.py:68
-msgid "manual|Select_Child_selector"
+msgctxt "manual"
+msgid "Select_Child_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectperson.py:70
 #, fuzzy
-msgid "manual|Select_Person_selector"
+msgctxt "manual"
+msgid "Select_Person_selector"
 msgstr "Fusionar_lugares"
 
 #: ../gramps/gui/selectors/selectplace.py:60
@@ -19840,7 +20126,8 @@ msgstr "Seleccionar lugar"
 
 #: ../gramps/gui/selectors/selectplace.py:90
 #, fuzzy
-msgid "manual|Select_Place_selector"
+msgctxt "manual"
+msgid "Select_Place_selector"
 msgstr "Fusionar_lugares"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
@@ -19849,7 +20136,8 @@ msgstr "Seleccionar repositorio"
 
 #: ../gramps/gui/selectors/selectrepository.py:75
 #, fuzzy
-msgid "manual|Select_Repository_selector"
+msgctxt "manual"
+msgid "Select_Repository_selector"
 msgstr "Fusionar_notas"
 
 #: ../gramps/gui/selectors/selectsource.py:59
@@ -19858,7 +20146,8 @@ msgstr "Seleccionar fuente"
 
 #: ../gramps/gui/selectors/selectsource.py:76
 #, fuzzy
-msgid "manual|Select_Source_selector"
+msgctxt "manual"
+msgid "Select_Source_selector"
 msgstr "Fusionar_notas"
 
 #: ../gramps/gui/spell.py:92
@@ -20129,7 +20418,8 @@ msgstr "Objetos:"
 #: ../gramps/gui/viewmanager.py:1723
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
 #: ../gramps/plugins/webreport/statistics.py:145
-msgid "Megabyte|MB"
+msgctxt "Megabyte"
+msgid "MB"
 msgstr "MB"
 
 #: ../gramps/gui/viewmanager.py:1725
@@ -20167,7 +20457,8 @@ msgid "Backup aborted"
 msgstr "Copia de seguridad cancelada"
 
 #: ../gramps/gui/views/bookmarks.py:69
-msgid "manual|Bookmarks"
+msgctxt "manual"
+msgid "Bookmarks"
 msgstr "Marcadores"
 
 #. this is meaningless while it's modal
@@ -20369,12 +20660,14 @@ msgstr "Organizar etiquetas..."
 
 #: ../gramps/gui/views/tags.py:112
 #, fuzzy
-msgid "manual|Organize_Tags_Window"
+msgctxt "manual"
+msgid "Organize_Tags_Window"
 msgstr "Organizar etiquetas"
 
 #: ../gramps/gui/views/tags.py:113
 #, fuzzy
-msgid "manual|New_Tag_dialog"
+msgctxt "manual"
+msgid "New_Tag_dialog"
 msgstr "Etiquetas"
 
 #: ../gramps/gui/views/tags.py:306
@@ -20651,7 +20944,8 @@ msgstr "Información de progreso"
 
 #: ../gramps/gui/widgets/reorderfam.py:63
 #, fuzzy
-msgid "manual|Reorder_Relationships_dialog"
+msgctxt "manual"
+msgid "Reorder_Relationships_dialog"
 msgstr "Reordenar relaciones"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
@@ -22223,7 +22517,8 @@ msgid "Women"
 msgstr "Mujeres"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:338
-msgid "person|Title"
+msgctxt "person"
+msgid "Title"
 msgstr "Tratamiento"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:342
@@ -22504,12 +22799,14 @@ msgstr "Estilo utilizado para el elementos y valores."
 
 #: ../gramps/plugins/drawreport/timeline.py:66
 #, fuzzy
-msgid "sorted by|Birth Date"
+msgctxt "sorted by"
+msgid "Birth Date"
 msgstr "Fecha de nacimiento"
 
 #: ../gramps/plugins/drawreport/timeline.py:67
 #, fuzzy
-msgid "sorted by|Name"
+msgctxt "sorted by"
+msgid "Name"
 msgstr "Ordenado por %s"
 
 #. Sort the people as requested
@@ -23418,7 +23715,8 @@ msgstr "Gramplete que muestra todos los apellidos como una nube de texto"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1235
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
-msgid "gramplet|To Do"
+msgctxt "gramplet"
+msgid "To Do"
 msgstr "Pendiente"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:291
@@ -24188,7 +24486,8 @@ msgstr ""
 "Desglose por generación:\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:254
-msgid "percent sign or text string|%"
+msgctxt "percent sign or text string"
+msgid "%"
 msgstr "%"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:261
@@ -24539,7 +24838,8 @@ msgstr "Manual en línea de Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
 #, fuzzy
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr "sufijo"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
@@ -25465,7 +25765,8 @@ msgstr "corto"
 
 #: ../gramps/plugins/importer/importcsv.py:166
 #, fuzzy
-msgid "Person or Place|title"
+msgctxt "Person or Place"
+msgid "title"
 msgstr "tratamiento"
 
 #: ../gramps/plugins/importer/importcsv.py:166
@@ -26276,7 +26577,8 @@ msgid "_Ok"
 msgstr "Correcto"
 
 #: ../gramps/plugins/importer/importprogen.py:62
-msgid "manual|Import_from_another_genealogy_program"
+msgctxt "manual"
+msgid "Import_from_another_genealogy_program"
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.py:121
@@ -30747,7 +31049,8 @@ msgstr "_Fusionar..."
 #: ../gramps/plugins/view/repoview.py:329
 #: ../gramps/plugins/view/sourceview.py:186
 #: ../gramps/plugins/view/sourceview.py:315
-msgid "action|_Edit..."
+msgctxt "action"
+msgid "_Edit..."
 msgstr "_Editar..."
 
 #: ../gramps/plugins/lib/libpersonview.py:246
@@ -31719,123 +32022,153 @@ msgstr "Hay %d personas con un nombre de atributo que coinciden.\n"
 
 #. else "nearby" comments are ignored
 #: ../gramps/plugins/quickview/filterbyname.py:41
-msgid "Filtering_on|all"
+msgctxt "Filtering_on"
+msgid "all"
 msgstr "todos"
 
 #: ../gramps/plugins/quickview/filterbyname.py:42
-msgid "Filtering_on|Inverse Person"
+msgctxt "Filtering_on"
+msgid "Inverse Person"
 msgstr "personas no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
-msgid "Filtering_on|Inverse Family"
+msgctxt "Filtering_on"
+msgid "Inverse Family"
 msgstr "familias no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
-msgid "Filtering_on|Inverse Event"
+msgctxt "Filtering_on"
+msgid "Inverse Event"
 msgstr "eventos no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:45
-msgid "Filtering_on|Inverse Place"
+msgctxt "Filtering_on"
+msgid "Inverse Place"
 msgstr "lugares no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
-msgid "Filtering_on|Inverse Source"
+msgctxt "Filtering_on"
+msgid "Inverse Source"
 msgstr "fuentes no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
-msgid "Filtering_on|Inverse Repository"
+msgctxt "Filtering_on"
+msgid "Inverse Repository"
 msgstr "repositorios no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse Media"
+msgctxt "Filtering_on"
+msgid "Inverse Media"
 msgstr "objetos audiovisuales no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
-msgid "Filtering_on|Inverse Note"
+msgctxt "Filtering_on"
+msgid "Inverse Note"
 msgstr "notas no presentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
-msgid "Filtering_on|all people"
+msgctxt "Filtering_on"
+msgid "all people"
 msgstr "todas las personas"
 
 #: ../gramps/plugins/quickview/filterbyname.py:51
-msgid "Filtering_on|all families"
+msgctxt "Filtering_on"
+msgid "all families"
 msgstr "todas las familias"
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
-msgid "Filtering_on|all events"
+msgctxt "Filtering_on"
+msgid "all events"
 msgstr "todos los eventos"
 
 #: ../gramps/plugins/quickview/filterbyname.py:53
-msgid "Filtering_on|all places"
+msgctxt "Filtering_on"
+msgid "all places"
 msgstr "todas los lugares"
 
 #: ../gramps/plugins/quickview/filterbyname.py:54
-msgid "Filtering_on|all sources"
+msgctxt "Filtering_on"
+msgid "all sources"
 msgstr "todas las fuentes"
 
 #: ../gramps/plugins/quickview/filterbyname.py:55
-msgid "Filtering_on|all repositories"
+msgctxt "Filtering_on"
+msgid "all repositories"
 msgstr "todos los repositorios"
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
-msgid "Filtering_on|all media"
+msgctxt "Filtering_on"
+msgid "all media"
 msgstr "todos los objetos audiovisuales"
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
-msgid "Filtering_on|all notes"
+msgctxt "Filtering_on"
+msgid "all notes"
 msgstr "todas las notas"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
-msgid "Filtering_on|males"
+msgctxt "Filtering_on"
+msgid "males"
 msgstr "hombres"
 
 #: ../gramps/plugins/quickview/filterbyname.py:59
-msgid "Filtering_on|females"
+msgctxt "Filtering_on"
+msgid "females"
 msgstr "mujeres"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-msgid "Filtering_on|people with unknown gender"
+msgctxt "Filtering_on"
+msgid "people with unknown gender"
 msgstr "personas de sexo desconocido"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
-msgid "Filtering_on|incomplete names"
+msgctxt "Filtering_on"
+msgid "incomplete names"
 msgstr "nombres incompletos"
 
 #: ../gramps/plugins/quickview/filterbyname.py:65
-msgid "Filtering_on|people with missing birth dates"
+msgctxt "Filtering_on"
+msgid "people with missing birth dates"
 msgstr "personas sin fecha de nacimiento conocida"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
-msgid "Filtering_on|disconnected people"
+msgctxt "Filtering_on"
+msgid "disconnected people"
 msgstr "personas desconectadas"
 
 #: ../gramps/plugins/quickview/filterbyname.py:67
-msgid "Filtering_on|unique surnames"
+msgctxt "Filtering_on"
+msgid "unique surnames"
 msgstr "apellidos distintos"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
-msgid "Filtering_on|people with media"
+msgctxt "Filtering_on"
+msgid "people with media"
 msgstr "personas que tienen audiovisuales"
 
 #: ../gramps/plugins/quickview/filterbyname.py:69
-msgid "Filtering_on|media references"
+msgctxt "Filtering_on"
+msgid "media references"
 msgstr "referencias a audivisuales"
 
 #: ../gramps/plugins/quickview/filterbyname.py:70
-msgid "Filtering_on|unique media"
+msgctxt "Filtering_on"
+msgid "unique media"
 msgstr "audiovisual distinto"
 
 #: ../gramps/plugins/quickview/filterbyname.py:71
-msgid "Filtering_on|missing media"
+msgctxt "Filtering_on"
+msgid "missing media"
 msgstr "audiovisual perdido"
 
 #: ../gramps/plugins/quickview/filterbyname.py:72
-msgid "Filtering_on|media by size"
+msgctxt "Filtering_on"
+msgid "media by size"
 msgstr "audiovisual por tamaño"
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
-msgid "Filtering_on|list of people"
+msgctxt "Filtering_on"
+msgid "list of people"
 msgstr "lista de personas"
 
 #: ../gramps/plugins/quickview/filterbyname.py:85
@@ -33214,16 +33547,19 @@ msgid "The style used for the subtitle."
 msgstr "Estilo utilizado para el subtítulo."
 
 #: ../gramps/plugins/textreport/familygroup.py:507
-msgid "acronym for male|M"
+msgctxt "acronym for male"
+msgid "M"
 msgstr "M"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
-msgid "acronym for female|F"
+msgctxt "acronym for female"
+msgid "F"
 msgstr "F"
 
 #: ../gramps/plugins/textreport/familygroup.py:511
 #, python-format
-msgid "acronym for unknown|%dU"
+msgctxt "acronym for unknown"
+msgid "%dU"
 msgstr "%d?"
 
 #: ../gramps/plugins/textreport/familygroup.py:618
@@ -33571,7 +33907,8 @@ msgstr "ID Gramps: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:199
 #, fuzzy, python-format
-msgid "places|All Names: %s"
+msgctxt "places"
+msgid "All Names: %s"
 msgstr "Nombre del lugar"
 
 #: ../gramps/plugins/textreport/placereport.py:221
@@ -33662,7 +33999,8 @@ msgid "Title of the Book"
 msgstr "Título del libro"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:136
-msgid "book|Title"
+msgctxt "book"
+msgid "Title"
 msgstr "Título"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:137
@@ -33959,7 +34297,8 @@ msgstr "_Aceptar cambios y cerrar la ventana"
 
 #: ../gramps/plugins/tool/changenames.py:64
 #, fuzzy
-msgid "manual|Fix_Capitalization_of_Family_Names"
+msgctxt "manual"
+msgid "Fix_Capitalization_of_Family_Names"
 msgstr "Arreglar_mayúsculas/minúsculas_en_los_apellidos..."
 
 #: ../gramps/plugins/tool/changenames.py:75
@@ -34643,7 +34982,8 @@ msgstr "_Editor de filtros personalizados"
 
 #: ../gramps/plugins/tool/eventcmp.py:70
 #, fuzzy
-msgid "manual|Compare_Individual_Events"
+msgctxt "manual"
+msgid "Compare_Individual_Events"
 msgstr "Comparar_eventos_individuales..."
 
 #: ../gramps/plugins/tool/eventcmp.py:138
@@ -34738,7 +35078,8 @@ msgstr "Co_mparar"
 
 #: ../gramps/plugins/tool/finddupes.py:66
 #, fuzzy
-msgid "manual|Find_Possible_Duplicate_People"
+msgctxt "manual"
+msgid "Find_Possible_Duplicate_People"
 msgstr "Buscar_personas_posiblemente_duplicadas..."
 
 #: ../gramps/plugins/tool/finddupes.py:126
@@ -34806,7 +35147,8 @@ msgid "Merge persons"
 msgstr "Fusionar persona"
 
 #: ../gramps/plugins/tool/findloop.py:58
-msgid "manual|Find_database_loop"
+msgctxt "manual"
+msgid "Find_database_loop"
 msgstr ""
 
 #: ../gramps/plugins/tool/findloop.py:73
@@ -34829,7 +35171,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Buscando %d persona"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager"
+msgctxt "manual"
+msgid "Media_Manager"
 msgstr "Administrador_de_objetos_audiovisuales"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
@@ -35050,7 +35393,8 @@ msgstr "Ignorar fecha y confianza"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
 #, fuzzy
-msgid "manual|Merge_citations"
+msgctxt "manual"
+msgid "Merge_citations"
 msgstr "Fusionar_citas"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
@@ -35090,7 +35434,8 @@ msgstr "E_tiqueta"
 
 #: ../gramps/plugins/tool/notrelated.py:60
 #, fuzzy
-msgid "manual|Not_Related"
+msgctxt "manual"
+msgid "Not_Related"
 msgstr "No_emparentados..."
 
 #: ../gramps/plugins/tool/notrelated.py:80
@@ -35180,7 +35525,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/ownereditor.py:56
 #, fuzzy
-msgid "manual|Edit_Database_Owner_Information"
+msgctxt "manual"
+msgid "Edit_Database_Owner_Information"
 msgstr "Editar_información_del_propietario_de_la_base_de_datos..."
 
 #: ../gramps/plugins/tool/ownereditor.py:102
@@ -35226,7 +35572,8 @@ msgstr ""
 "información múltiple que se pueda extraer."
 
 #: ../gramps/plugins/tool/patchnames.py:63
-msgid "manual|Extract_Information_from_Names"
+msgctxt "manual"
+msgid "Extract_Information_from_Names"
 msgstr "Extraer_la_información_de_los_nombres"
 
 #: ../gramps/plugins/tool/patchnames.py:105
@@ -35351,7 +35698,8 @@ msgid "Their common ancestors are: "
 msgstr "Sus ascendientes comúnes son: "
 
 #: ../gramps/plugins/tool/removespaces.py:54
-msgid "manual|Remove_leading_and_trailing_spaces"
+msgctxt "manual"
+msgid "Remove_leading_and_trailing_spaces"
 msgstr ""
 
 #: ../gramps/plugins/tool/removespaces.py:87
@@ -35526,7 +35874,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:64
 #, fuzzy
-msgid "manual|Reorder_Gramps_ID"
+msgctxt "manual"
+msgid "Reorder_Gramps_ID"
 msgstr "Reordenar los números de identificación Gramps"
 
 #. self.top.set_icon(ICON)
@@ -35986,7 +36335,8 @@ msgstr "_Ocultar marcados"
 
 #: ../gramps/plugins/tool/verify.py:83
 #, fuzzy
-msgid "manual|Verify_the_Data"
+msgctxt "manual"
+msgid "Verify_the_Data"
 msgstr "Verificar_los_datos..."
 
 #: ../gramps/plugins/tool/verify.py:295
@@ -37151,27 +37501,33 @@ msgstr ""
 "se pulsa en la nota deseada."
 
 #: ../gramps/plugins/view/pedigreeview.py:80
-msgid "short for born|b."
+msgctxt "short for born"
+msgid "b."
 msgstr "n."
 
 #: ../gramps/plugins/view/pedigreeview.py:81
-msgid "short for died|d."
+msgctxt "short for died"
+msgid "d."
 msgstr "f."
 
 #: ../gramps/plugins/view/pedigreeview.py:82
-msgid "short for baptized|bap."
+msgctxt "short for baptized"
+msgid "bap."
 msgstr "b."
 
 #: ../gramps/plugins/view/pedigreeview.py:83
-msgid "short for christened|chr."
+msgctxt "short for christened"
+msgid "chr."
 msgstr "b."
 
 #: ../gramps/plugins/view/pedigreeview.py:84
-msgid "short for buried|bur."
+msgctxt "short for buried"
+msgid "bur."
 msgstr "ent."
 
 #: ../gramps/plugins/view/pedigreeview.py:85
-msgid "short for cremated|crem."
+msgctxt "short for cremated"
+msgid "crem."
 msgstr "crem."
 
 #: ../gramps/plugins/view/pedigreeview.py:1205
@@ -37710,7 +38066,8 @@ msgstr "Visión reducida"
 
 #: ../gramps/plugins/webreport/basepage.py:1521
 #: ../gramps/plugins/webreport/basepage.py:1692
-msgid "Html|Home"
+msgctxt "Html"
+msgid "Home"
 msgstr "Página inicial"
 
 #: ../gramps/plugins/webreport/basepage.py:1534
@@ -37891,7 +38248,8 @@ msgstr ""
 "original.  "
 
 #: ../gramps/plugins/webreport/media.py:228
-msgid "Media | Name"
+msgctxt "Media "
+msgid " Name"
 msgstr "Nombre"
 
 #: ../gramps/plugins/webreport/media.py:231
@@ -38751,7 +39109,8 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:181
 #: ../gramps/plugins/webreport/place.py:193
-msgid "Place Name | Name"
+msgctxt "Place Name "
+msgid " Name"
 msgstr "Nombre"
 
 #: ../gramps/plugins/webreport/place.py:233
@@ -38780,7 +39139,8 @@ msgstr ""
 "llevará a la página de ese repositorio."
 
 #: ../gramps/plugins/webreport/repository.py:165
-msgid "Repository |Name"
+msgctxt "Repository "
+msgid "Name"
 msgstr "Nombre"
 
 #: ../gramps/plugins/webreport/source.py:102
@@ -38798,7 +39158,8 @@ msgstr ""
 "la página de esa fuente."
 
 #: ../gramps/plugins/webreport/source.py:166
-msgid "Source Name|Name"
+msgctxt "Source Name"
+msgid "Name"
 msgstr "Nombre"
 
 #: ../gramps/plugins/webreport/source.py:265

@@ -61,13 +61,13 @@ class SelectPerson(BaseSelector):
             self.title = title
         self.WIKI_HELP_PAGE = URL_MANUAL_SECT1
         if title == _("Select Father"):
-            self.WIKI_HELP_SEC = _('manual|Select_Father_selector')
+            self.WIKI_HELP_SEC = _('Select_Father_selector', 'manual')
         elif title == _("Select Mother"):
-            self.WIKI_HELP_SEC = _('manual|Select_Mother_selector')
+            self.WIKI_HELP_SEC = _('Select_Mother_selector', 'manual')
         elif title == _("Select Child"):
-            self.WIKI_HELP_SEC = _('manual|Select_Child_selector')
+            self.WIKI_HELP_SEC = _('Select_Child_selector', 'manual')
         else:
-            self.WIKI_HELP_SEC = _('manual|Select_Person_selector')
+            self.WIKI_HELP_SEC = _('Select_Person_selector', 'manual')
 
         BaseSelector.__init__(self, dbstate, uistate, track, filter,
                               skip, show_search_bar, default)

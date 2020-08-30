@@ -52,7 +52,7 @@ _ = glocale.translation.sgettext
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Remove_leading_and_trailing_spaces')
+WIKI_HELP_SEC = _('Remove_leading_and_trailing_spaces', 'manual')
 
 def validate_lat_lon(field):
     """

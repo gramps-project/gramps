@@ -166,7 +166,7 @@ class CSVParser:
                           _("Given"), _("Given name")),
             "callname": ("call name", _("Call name"), "callname", "call_name",
                          "call", _("Call"), _("call")),
-            "title": ("title", _("title"), _("Person or Place|title")),
+            "title": ("title", _("title"), _("title", "Person or Place")),
             "prefix": ("prefix", _("prefix"), _("Prefix")),
             "suffix": ("suffix", _("suffix"), _("Suffix")),
             "gender": ("gender", _("gender"), _("Gender")),

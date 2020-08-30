@@ -66,7 +66,7 @@ _ = glocale.translation.sgettext
 #-------------------------------------------------------------------------
 LOG = logging.getLogger(".Bookmarks")
 WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Bookmarks')
+WIKI_HELP_SEC = _('Bookmarks', 'manual')
 
 #-------------------------------------------------------------------------
 #

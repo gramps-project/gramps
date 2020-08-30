@@ -54,8 +54,8 @@ from gramps.gen.lib import Date
 #------------------------------------------------------------------------
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 #------------------------------------------------------------------------
 #
@@ -63,8 +63,8 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 #
 #------------------------------------------------------------------------
 def _get_sort_functions(sort):
-    return [(_T_("sorted by|Birth Date"), sort.by_birthdate_key),
-            (_T_("sorted by|Name"), sort.by_last_name_key),]
+    return [(_T_("Birth Date", "sorted by"), sort.by_birthdate_key),
+            (_T_("Name", "sorted by"), sort.by_last_name_key),]
 
 #------------------------------------------------------------------------
 #

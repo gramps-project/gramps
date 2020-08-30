@@ -89,7 +89,7 @@ from ..dbguielement import DbGUIElement
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|Family_Editor_dialog')
+WIKI_HELP_SEC = _('Family_Editor_dialog', 'manual')
 
 SelectPerson = SelectorFactory('Person')
 

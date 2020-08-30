@@ -41,7 +41,7 @@ from gramps.gen.merge import MergeNoteQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Merge_Notes')
+WIKI_HELP_SEC = _('Merge_Notes', 'manual')
 _GLADE_FILE = 'mergenote.glade'
 
 #-------------------------------------------------------------------------

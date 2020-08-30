@@ -43,7 +43,7 @@ from ..managedwindow import ManagedWindow
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Error_and_Warning_Reference' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Error_Report')
+WIKI_HELP_SEC = _('Error_Report', 'manual')
 
 class ErrorView(ManagedWindow):
     """

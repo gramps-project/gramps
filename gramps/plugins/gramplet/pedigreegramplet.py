@@ -251,7 +251,7 @@ class PedigreeGramplet(Gramplet):
         gens = sorted(self._generations)
         self.append_text(_("\nBreakdown by generation:\n"))
         all = [active_person.handle]
-        percent_sign = _("percent sign or text string|%")
+        percent_sign = _("%", "percent sign or text string")
         for g in gens:
             yield True
             count = len(self._generations[g])

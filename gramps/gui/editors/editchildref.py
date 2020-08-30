@@ -63,7 +63,7 @@ from gramps.gen.const import URL_MANUAL_SECT1
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|Child_Reference_Editor')
+WIKI_HELP_SEC = _('Child_Reference_Editor', 'manual')
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")

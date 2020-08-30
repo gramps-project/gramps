@@ -1553,7 +1553,7 @@ class BasePage: # pylint: disable=C1001
         # Sidebar order...
 
         navs = [
-            (self.report.index_fname, self._("Html|Home"),
+            (self.report.index_fname, self._("Home", "Html"),
              self.report.use_home),
             (self.report.intro_fname, self._("Introduction"),
              self.report.use_intro),
@@ -1727,7 +1727,7 @@ class BasePage: # pylint: disable=C1001
                     list_html = Html("li",
                                      self.get_nav_menu_hyperlink(
                                          self.report.index_fname,
-                                         self._("Html|Home")))
+                                         self._("Home", "Html")))
                     unordered += list_html
 
                 # add personal column

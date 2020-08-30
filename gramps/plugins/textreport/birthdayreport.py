@@ -59,8 +59,8 @@ import gramps.plugins.lib.libholiday as libholiday
 from gramps.gen.datehandler import displayer as date_displayer
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 
 _TITLE0 = _T_("Birthday and Anniversary Report")
 _TITLE1 = _T_("My Birthday Report")

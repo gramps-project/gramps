@@ -79,7 +79,7 @@ class SurnameTab(EmbeddedList):
         (_('Connector'), 2, 100, TEXT_EDIT_COL, -1, None),
         ]
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
-    _column_toggle = (_('Name|Primary'), -1, 80, 4)
+    _column_toggle = (_('Primary', 'Name'), -1, 80, 4)
 
     def __init__(self, dbstate, uistate, track, name, on_change=None,
                  top_label='<b>%s</b>' % _("Multiple Surnames") ):

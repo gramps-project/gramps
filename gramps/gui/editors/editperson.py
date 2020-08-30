@@ -240,7 +240,7 @@ class EditPerson(EditPrimary):
         self.define_ok_button(self.top.get_object("ok"), self.save)
         self.define_help_button(self.top.get_object("button134"),
                 WIKI_HELP_PAGE,
-                _('manual|Editing_information_about_people'))
+                _('Editing_information_about_people', 'manual'))
 
         self.given.connect("focus-out-event", self._given_focus_out_event)
         self.top.get_object("editnamebtn").connect("clicked",

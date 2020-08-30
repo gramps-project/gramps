@@ -42,7 +42,7 @@ from gramps.gen.merge import MergeEventQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Merge_Events')
+WIKI_HELP_SEC = _('Merge_Events', 'manual')
 _GLADE_FILE = 'mergeevent.glade'
 
 #-------------------------------------------------------------------------

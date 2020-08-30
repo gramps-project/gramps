@@ -197,7 +197,7 @@ class RepositoryView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
+''' % _("_Edit...", "action"),  # to use sgettext()
         '''
         <placeholder id='otheredit'>
         <item>
@@ -326,7 +326,7 @@ class RepositoryView(ListView):
         </placeholder>
       </section>
     </menu>
-    ''' % _('action|_Edit...')  # to use sgettext()
+    ''' % _('_Edit...', 'action')  # to use sgettext()
     ]
 
     def add(self, *obj):

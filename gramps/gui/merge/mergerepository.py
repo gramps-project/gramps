@@ -41,9 +41,9 @@ from gramps.gen.merge import MergeRepositoryQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Merge_Repositories')
+WIKI_HELP_SEC = _('Merge_Repositories', 'manual')
 _GLADE_FILE = 'mergerepository.glade'
-REPO_NAME = _('repo|Name:')
+REPO_NAME = _('Name:', 'repo')
 
 #-------------------------------------------------------------------------
 #

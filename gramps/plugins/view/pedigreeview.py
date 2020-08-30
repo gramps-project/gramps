@@ -78,12 +78,12 @@ from gramps.gen.utils.symbols import Symbols
 #-------------------------------------------------------------------------
 WIKI_PAGE = URL_WIKISTRING + URL_MANUAL_PAGE + '_-_Categories#Pedigree_View'
 _PERSON = "p"
-_BORN = _('short for born|b.')
-_DIED = _('short for died|d.')
-_BAPT = _('short for baptized|bap.')
-_CHRI = _('short for christened|chr.')
-_BURI = _('short for buried|bur.')
-_CREM = _('short for cremated|crem.')
+_BORN = _('b.', 'short for born')
+_DIED = _('d.', 'short for died')
+_BAPT = _('bap.', 'short for baptized')
+_CHRI = _('chr.', 'short for christened')
+_BURI = _('bur.', 'short for buried')
+_CREM = _('crem.', 'short for cremated')
 
 class _PersonWidgetBase(Gtk.DrawingArea):
     """

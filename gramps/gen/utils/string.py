@@ -33,8 +33,8 @@ from ..lib import Person, Citation, FamilyRelType
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 #-------------------------------------------------------------------------
@@ -45,7 +45,7 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 gender = {
     Person.MALE    : _("male"),
     Person.FEMALE  : _("female"),
-    Person.UNKNOWN : _("gender|unknown"),
+    Person.UNKNOWN : _("unknown", "gender"),
     }
 
 def format_gender(type):

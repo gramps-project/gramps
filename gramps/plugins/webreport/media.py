@@ -227,7 +227,7 @@ class MediaPages(BasePage):
                 trow.extend(
                     Html("th", trans, class_=colclass, inline=True)
                     for trans, colclass in [("&nbsp;", "ColumnRowLabel"),
-                                            (self._("Media | Name"),
+                                            (self._(" Name", "Media "),
                                              "ColumnName"),
                                             (self._("Date"), "ColumnDate"),
                                             (self._("Mime Type"), "ColumnMime")]

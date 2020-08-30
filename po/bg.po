@@ -2084,7 +2084,8 @@ msgstr "Поверителен запис"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/config.py:319 ../gramps/gen/datehandler/_datestrings.py:79
-msgid "localized lexeme inflections||January"
+msgctxt "localized lexeme inflections"
+msgid "|January"
 msgstr "януари"
 
 #: ../gramps/gen/const.py:229
@@ -2100,12 +2101,14 @@ msgstr ""
 
 #: ../gramps/gen/const.py:259
 #, fuzzy
-msgid "surname|none"
+msgctxt "surname"
+msgid "none"
 msgstr "фамилното име е неизвестно"
 
 #: ../gramps/gen/const.py:260
 #, fuzzy
-msgid "given-name|none"
+msgctxt "given-name"
+msgid "none"
 msgstr "собствено име"
 
 #: ../gramps/gen/const.py:264 ../gramps/plugins/gramplet/todo.py:202
@@ -2135,7 +2138,8 @@ msgstr ""
 #. You may translate this as "Numerical", "System preferred", or similar.
 #: ../gramps/gen/datehandler/_datedisplay.py:77
 #, fuzzy
-msgid "date format|Numerical"
+msgctxt "date format"
+msgid "Numerical"
 msgstr "Формат на датата"
 
 #. Full month name, day, year
@@ -2171,7 +2175,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:189
 #, python-brace-format
-msgid "from|{long_month} {year}"
+msgctxt "from"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. second date in a span
@@ -2181,7 +2186,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:197
 #, python-brace-format
-msgid "to|{long_month} {year}"
+msgctxt "to"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. first date in a range
@@ -2191,7 +2197,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:205
 #, python-brace-format
-msgid "between|{long_month} {year}"
+msgctxt "between"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. second date in a range
@@ -2201,7 +2208,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
 #, python-brace-format
-msgid "and|{long_month} {year}"
+msgctxt "and"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "before <Month>" needs a special inflection in your
@@ -2210,7 +2218,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
 #, python-brace-format
-msgid "before|{long_month} {year}"
+msgctxt "before"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "after <Month>" needs a special inflection in your
@@ -2219,7 +2228,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
 #, python-brace-format
-msgid "after|{long_month} {year}"
+msgctxt "after"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "about <Month>" needs a special inflection in your
@@ -2228,7 +2238,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:234
 #, python-brace-format
-msgid "about|{long_month} {year}"
+msgctxt "about"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "estimated <Month>" needs a special inflection in your
@@ -2237,7 +2248,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
 #, python-brace-format
-msgid "estimated|{long_month} {year}"
+msgctxt "estimated"
+msgid "{long_month} {year}"
 msgstr ""
 
 #. If "calculated <Month>" needs a special inflection in your
@@ -2246,7 +2258,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
 #, python-brace-format
-msgid "calculated|{long_month} {year}"
+msgctxt "calculated"
+msgid "{long_month} {year}"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:253
@@ -2261,7 +2274,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:261
 #, python-brace-format
-msgid "from|{short_month} {year}"
+msgctxt "from"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. second date in a span
@@ -2271,7 +2285,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:269
 #, python-brace-format
-msgid "to|{short_month} {year}"
+msgctxt "to"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. first date in a range
@@ -2281,7 +2296,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:277
 #, python-brace-format
-msgid "between|{short_month} {year}"
+msgctxt "between"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. second date in a range
@@ -2291,7 +2307,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:285
 #, python-brace-format
-msgid "and|{short_month} {year}"
+msgctxt "and"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "before <Month>" needs a special inflection in your
@@ -2300,7 +2317,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:292
 #, python-brace-format
-msgid "before|{short_month} {year}"
+msgctxt "before"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "after <Month>" needs a special inflection in your
@@ -2309,7 +2327,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:299
 #, python-brace-format
-msgid "after|{short_month} {year}"
+msgctxt "after"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "about <Month>" needs a special inflection in your
@@ -2318,7 +2337,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:306
 #, python-brace-format
-msgid "about|{short_month} {year}"
+msgctxt "about"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "estimated <Month>" needs a special inflection in your
@@ -2327,7 +2347,8 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:313
 #, python-brace-format
-msgid "estimated|{short_month} {year}"
+msgctxt "estimated"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If "calculated <Month>" needs a special inflection in your
@@ -2336,14 +2357,16 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:320
 #, python-brace-format
-msgid "calculated|{short_month} {year}"
+msgctxt "calculated"
+msgid "{short_month} {year}"
 msgstr ""
 
 #. If there is no special inflection for "from <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:427
-msgid "from-date|"
+msgctxt "from-date"
+msgid ""
 msgstr ""
 
 #. If there is no special inflection for "to <Month>"
@@ -2351,7 +2374,8 @@ msgstr ""
 #. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:432
 #, fuzzy
-msgid "to-date|"
+msgctxt "to-date"
+msgid ""
 msgstr "дата"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:433
@@ -2364,7 +2388,8 @@ msgstr ""
 #. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:452
 #, fuzzy
-msgid "between-date|"
+msgctxt "between-date"
+msgid ""
 msgstr "между"
 
 #. If there is no special inflection for "and <Month>"
@@ -2372,7 +2397,8 @@ msgstr "между"
 #. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:457
 #, fuzzy
-msgid "and-date|"
+msgctxt "and-date"
+msgid ""
 msgstr "дата"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:458
@@ -2386,7 +2412,8 @@ msgstr ""
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:491
 #, fuzzy
-msgid "before-date|"
+msgctxt "before-date"
+msgid ""
 msgstr "преди"
 
 #. If there is no special inflection for "after <Month>"
@@ -2394,7 +2421,8 @@ msgstr "преди"
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 #, fuzzy
-msgid "after-date|"
+msgctxt "after-date"
+msgid ""
 msgstr "дата"
 
 #. If there is no special inflection for "about <Month>"
@@ -2402,7 +2430,8 @@ msgstr "дата"
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 #, fuzzy
-msgid "about-date|"
+msgctxt "about-date"
+msgid ""
 msgstr "дата"
 
 #. If there is no special inflection for "estimated <Month>"
@@ -2410,7 +2439,8 @@ msgstr "дата"
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:506
 #, fuzzy
-msgid "estimated-date|"
+msgctxt "estimated-date"
+msgid ""
 msgstr "приблизително"
 
 #. If there is no special inflection for "calculated <Month>"
@@ -2418,7 +2448,8 @@ msgstr "приблизително"
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:511
 #, fuzzy
-msgid "calculated-date|"
+msgctxt "calculated-date"
+msgid ""
 msgstr "изчислено"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:530
@@ -2455,47 +2486,58 @@ msgid "today"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:80
-msgid "localized lexeme inflections||February"
+msgctxt "localized lexeme inflections"
+msgid "|February"
 msgstr "февруари"
 
 #: ../gramps/gen/datehandler/_datestrings.py:81
-msgid "localized lexeme inflections||March"
+msgctxt "localized lexeme inflections"
+msgid "|March"
 msgstr "март"
 
 #: ../gramps/gen/datehandler/_datestrings.py:82
-msgid "localized lexeme inflections||April"
+msgctxt "localized lexeme inflections"
+msgid "|April"
 msgstr "април"
 
 #: ../gramps/gen/datehandler/_datestrings.py:83
-msgid "localized lexeme inflections||May"
+msgctxt "localized lexeme inflections"
+msgid "|May"
 msgstr "май"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
-msgid "localized lexeme inflections||June"
+msgctxt "localized lexeme inflections"
+msgid "|June"
 msgstr "юни"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
-msgid "localized lexeme inflections||July"
+msgctxt "localized lexeme inflections"
+msgid "|July"
 msgstr "юли"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
-msgid "localized lexeme inflections||August"
+msgctxt "localized lexeme inflections"
+msgid "|August"
 msgstr "август"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
-msgid "localized lexeme inflections||September"
+msgctxt "localized lexeme inflections"
+msgid "|September"
 msgstr "септември"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
-msgid "localized lexeme inflections||October"
+msgctxt "localized lexeme inflections"
+msgid "|October"
 msgstr "октомври"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
-msgid "localized lexeme inflections||November"
+msgctxt "localized lexeme inflections"
+msgid "|November"
 msgstr "ноември"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
-msgid "localized lexeme inflections||December"
+msgctxt "localized lexeme inflections"
+msgid "|December"
 msgstr "декември"
 
 #. TRANSLATORS: see
@@ -2503,51 +2545,63 @@ msgstr "декември"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:97
-msgid "localized lexeme inflections - short month form||Jan"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Jan"
 msgstr "яну"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
-msgid "localized lexeme inflections - short month form||Feb"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Feb"
 msgstr "февр"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
-msgid "localized lexeme inflections - short month form||Mar"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Mar"
 msgstr "март"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
-msgid "localized lexeme inflections - short month form||Apr"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Apr"
 msgstr "апр"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
-msgid "localized lexeme inflections - short month form||May"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|May"
 msgstr "май"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
-msgid "localized lexeme inflections - short month form||Jun"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Jun"
 msgstr "юни"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
-msgid "localized lexeme inflections - short month form||Jul"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Jul"
 msgstr "юли"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
-msgid "localized lexeme inflections - short month form||Aug"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Aug"
 msgstr "авг"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
-msgid "localized lexeme inflections - short month form||Sep"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Sep"
 msgstr "септ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
-msgid "localized lexeme inflections - short month form||Oct"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Oct"
 msgstr "окт"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
-msgid "localized lexeme inflections - short month form||Nov"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Nov"
 msgstr "ное"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
-msgid "localized lexeme inflections - short month form||Dec"
+msgctxt "localized lexeme inflections - short month form"
+msgid "|Dec"
 msgstr "дек"
 
 #. TRANSLATORS: see
@@ -2556,91 +2610,110 @@ msgstr "дек"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 #, fuzzy
-msgid "alternative month names for January||"
+msgctxt "alternative month names for January"
+msgid "|"
 msgstr "Бележката за месец януари"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 #, fuzzy
-msgid "alternative month names for February||"
+msgctxt "alternative month names for February"
+msgid "|"
 msgstr "Бележката за месец февруари"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 #, fuzzy
-msgid "alternative month names for March||"
+msgctxt "alternative month names for March"
+msgid "|"
 msgstr "Заместващи имена"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 #, fuzzy
-msgid "alternative month names for April||"
+msgctxt "alternative month names for April"
+msgid "|"
 msgstr "Заместващи имена"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 #, fuzzy
-msgid "alternative month names for May||"
+msgctxt "alternative month names for May"
+msgid "|"
 msgstr "Заместващи имена"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 #, fuzzy
-msgid "alternative month names for June||"
+msgctxt "alternative month names for June"
+msgid "|"
 msgstr "Заместващи имена"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 #, fuzzy
-msgid "alternative month names for July||"
+msgctxt "alternative month names for July"
+msgid "|"
 msgstr "Заместващи имена"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 #, fuzzy
-msgid "alternative month names for August||"
+msgctxt "alternative month names for August"
+msgid "|"
 msgstr "Заместващи имена"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 #, fuzzy
-msgid "alternative month names for September||"
+msgctxt "alternative month names for September"
+msgid "|"
 msgstr "Бележката за месец септември"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 #, fuzzy
-msgid "alternative month names for October||"
+msgctxt "alternative month names for October"
+msgid "|"
 msgstr "Бележката за месец октомври"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 #, fuzzy
-msgid "alternative month names for November||"
+msgctxt "alternative month names for November"
+msgid "|"
 msgstr "Бележката за месец ноември"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 #, fuzzy
-msgid "alternative month names for December||"
+msgctxt "alternative month names for December"
+msgid "|"
 msgstr "Бележката за месец декември"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
-msgid "calendar|Gregorian"
+msgctxt "calendar"
+msgid "Gregorian"
 msgstr "Григориански"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:610
-msgid "calendar|Julian"
+msgctxt "calendar"
+msgid "Julian"
 msgstr "Юлиански"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:611
-msgid "calendar|Hebrew"
+msgctxt "calendar"
+msgid "Hebrew"
 msgstr "Еврейски"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
-msgid "calendar|French Republican"
+msgctxt "calendar"
+msgid "French Republican"
 msgstr "Френски републикански"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
-msgid "calendar|Persian"
+msgctxt "calendar"
+msgid "Persian"
 msgstr "Персийски"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:614
-msgid "calendar|Islamic"
+msgctxt "calendar"
+msgid "Islamic"
 msgstr "Ислямски"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:615
-msgid "calendar|Swedish"
+msgctxt "calendar"
+msgid "Swedish"
 msgstr "Шведски"
 
 #. TRANSLATORS: see
@@ -2648,55 +2721,68 @@ msgstr "Шведски"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:146
-msgid "Hebrew month lexeme|Tishri"
+msgctxt "Hebrew month lexeme"
+msgid "Tishri"
 msgstr "Тишрей"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147
-msgid "Hebrew month lexeme|Heshvan"
+msgctxt "Hebrew month lexeme"
+msgid "Heshvan"
 msgstr "Мархешван"
 
 #: ../gramps/gen/datehandler/_datestrings.py:148
-msgid "Hebrew month lexeme|Kislev"
+msgctxt "Hebrew month lexeme"
+msgid "Kislev"
 msgstr "Кислев"
 
 #: ../gramps/gen/datehandler/_datestrings.py:149
-msgid "Hebrew month lexeme|Tevet"
+msgctxt "Hebrew month lexeme"
+msgid "Tevet"
 msgstr "Тевет"
 
 #: ../gramps/gen/datehandler/_datestrings.py:150
-msgid "Hebrew month lexeme|Shevat"
+msgctxt "Hebrew month lexeme"
+msgid "Shevat"
 msgstr "Шват"
 
 #: ../gramps/gen/datehandler/_datestrings.py:151
-msgid "Hebrew month lexeme|AdarI"
+msgctxt "Hebrew month lexeme"
+msgid "AdarI"
 msgstr "Адар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:152
-msgid "Hebrew month lexeme|AdarII"
+msgctxt "Hebrew month lexeme"
+msgid "AdarII"
 msgstr "Адар бет"
 
 #: ../gramps/gen/datehandler/_datestrings.py:153
-msgid "Hebrew month lexeme|Nisan"
+msgctxt "Hebrew month lexeme"
+msgid "Nisan"
 msgstr "Нисан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:154
-msgid "Hebrew month lexeme|Iyyar"
+msgctxt "Hebrew month lexeme"
+msgid "Iyyar"
 msgstr "Ияр"
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
-msgid "Hebrew month lexeme|Sivan"
+msgctxt "Hebrew month lexeme"
+msgid "Sivan"
 msgstr "Сиван"
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
-msgid "Hebrew month lexeme|Tammuz"
+msgctxt "Hebrew month lexeme"
+msgid "Tammuz"
 msgstr "Тамуз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:157
-msgid "Hebrew month lexeme|Av"
+msgctxt "Hebrew month lexeme"
+msgid "Av"
 msgstr "Ав"
 
 #: ../gramps/gen/datehandler/_datestrings.py:158
-msgid "Hebrew month lexeme|Elul"
+msgctxt "Hebrew month lexeme"
+msgid "Elul"
 msgstr "Елул"
 
 #. TRANSLATORS: see
@@ -2704,55 +2790,68 @@ msgstr "Елул"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:167
-msgid "French month lexeme|Vendémiaire"
+msgctxt "French month lexeme"
+msgid "Vendémiaire"
 msgstr "Вандемер"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
-msgid "French month lexeme|Brumaire"
+msgctxt "French month lexeme"
+msgid "Brumaire"
 msgstr "Брюмер"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
-msgid "French month lexeme|Frimaire"
+msgctxt "French month lexeme"
+msgid "Frimaire"
 msgstr "Фример"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
-msgid "French month lexeme|Nivôse"
+msgctxt "French month lexeme"
+msgid "Nivôse"
 msgstr "Нивоз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
-msgid "French month lexeme|Pluviôse"
+msgctxt "French month lexeme"
+msgid "Pluviôse"
 msgstr "Плювиоз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
-msgid "French month lexeme|Ventôse"
+msgctxt "French month lexeme"
+msgid "Ventôse"
 msgstr "Вантоз"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
-msgid "French month lexeme|Germinal"
+msgctxt "French month lexeme"
+msgid "Germinal"
 msgstr "Жерминал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
-msgid "French month lexeme|Floréal"
+msgctxt "French month lexeme"
+msgid "Floréal"
 msgstr "Флореал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
-msgid "French month lexeme|Prairial"
+msgctxt "French month lexeme"
+msgid "Prairial"
 msgstr "Прериал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:176
-msgid "French month lexeme|Messidor"
+msgctxt "French month lexeme"
+msgid "Messidor"
 msgstr "Мессидор"
 
 #: ../gramps/gen/datehandler/_datestrings.py:177
-msgid "French month lexeme|Thermidor"
+msgctxt "French month lexeme"
+msgid "Thermidor"
 msgstr "Термидор"
 
 #: ../gramps/gen/datehandler/_datestrings.py:178
-msgid "French month lexeme|Fructidor"
+msgctxt "French month lexeme"
+msgid "Fructidor"
 msgstr "Фрюктидор"
 
 #: ../gramps/gen/datehandler/_datestrings.py:179
-msgid "French month lexeme|Extra"
+msgctxt "French month lexeme"
+msgid "Extra"
 msgstr "Допълнителен"
 
 #. TRANSLATORS: see
@@ -2760,51 +2859,63 @@ msgstr "Допълнителен"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:188
-msgid "Islamic month lexeme|Muharram"
+msgctxt "Islamic month lexeme"
+msgid "Muharram"
 msgstr "Мухаррам"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
-msgid "Islamic month lexeme|Safar"
+msgctxt "Islamic month lexeme"
+msgid "Safar"
 msgstr "Саффар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
-msgid "Islamic month lexeme|Rabi`al-Awwal"
+msgctxt "Islamic month lexeme"
+msgid "Rabi`al-Awwal"
 msgstr "Рабиу-л-ауал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
-msgid "Islamic month lexeme|Rabi`ath-Thani"
+msgctxt "Islamic month lexeme"
+msgid "Rabi`ath-Thani"
 msgstr "Рабиу-с-сани"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
-msgid "Islamic month lexeme|Jumada l-Ula"
+msgctxt "Islamic month lexeme"
+msgid "Jumada l-Ula"
 msgstr "Джумадал-уля"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
-msgid "Islamic month lexeme|Jumada t-Tania"
+msgctxt "Islamic month lexeme"
+msgid "Jumada t-Tania"
 msgstr "Джумада-с-сания"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
-msgid "Islamic month lexeme|Rajab"
+msgctxt "Islamic month lexeme"
+msgid "Rajab"
 msgstr "Раджаб"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
-msgid "Islamic month lexeme|Sha`ban"
+msgctxt "Islamic month lexeme"
+msgid "Sha`ban"
 msgstr "Шаабан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
-msgid "Islamic month lexeme|Ramadan"
+msgctxt "Islamic month lexeme"
+msgid "Ramadan"
 msgstr "Рамадан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
-msgid "Islamic month lexeme|Shawwal"
+msgctxt "Islamic month lexeme"
+msgid "Shawwal"
 msgstr "Шауал"
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
-msgid "Islamic month lexeme|Dhu l-Qa`da"
+msgctxt "Islamic month lexeme"
+msgid "Dhu l-Qa`da"
 msgstr "Зу-л-кида"
 
 #: ../gramps/gen/datehandler/_datestrings.py:199
-msgid "Islamic month lexeme|Dhu l-Hijja"
+msgctxt "Islamic month lexeme"
+msgid "Dhu l-Hijja"
 msgstr "Зул-л-хиджа"
 
 #. TRANSLATORS: see
@@ -2812,77 +2923,94 @@ msgstr "Зул-л-хиджа"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:208
-msgid "Persian month lexeme|Farvardin"
+msgctxt "Persian month lexeme"
+msgid "Farvardin"
 msgstr "Фарвардин"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
-msgid "Persian month lexeme|Ordibehesht"
+msgctxt "Persian month lexeme"
+msgid "Ordibehesht"
 msgstr "Урдбихищ"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
-msgid "Persian month lexeme|Khordad"
+msgctxt "Persian month lexeme"
+msgid "Khordad"
 msgstr "Хурдад"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
-msgid "Persian month lexeme|Tir"
+msgctxt "Persian month lexeme"
+msgid "Tir"
 msgstr "Тир"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
-msgid "Persian month lexeme|Mordad"
+msgctxt "Persian month lexeme"
+msgid "Mordad"
 msgstr "Мурдад"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
-msgid "Persian month lexeme|Shahrivar"
+msgctxt "Persian month lexeme"
+msgid "Shahrivar"
 msgstr "Шахривар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
-msgid "Persian month lexeme|Mehr"
+msgctxt "Persian month lexeme"
+msgid "Mehr"
 msgstr "Михр"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
-msgid "Persian month lexeme|Aban"
+msgctxt "Persian month lexeme"
+msgid "Aban"
 msgstr "Абан"
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
-msgid "Persian month lexeme|Azar"
+msgctxt "Persian month lexeme"
+msgid "Azar"
 msgstr "Азар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:217
-msgid "Persian month lexeme|Dey"
+msgctxt "Persian month lexeme"
+msgid "Dey"
 msgstr "Дай"
 
 #: ../gramps/gen/datehandler/_datestrings.py:218
-msgid "Persian month lexeme|Bahman"
+msgctxt "Persian month lexeme"
+msgid "Bahman"
 msgstr "Бахман"
 
 #: ../gramps/gen/datehandler/_datestrings.py:219
-msgid "Persian month lexeme|Esfand"
+msgctxt "Persian month lexeme"
+msgid "Esfand"
 msgstr "Исфаидармуз"
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:225
-msgid "date modifier|before "
+msgctxt "date modifier"
+msgid "before "
 msgstr "преди "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
-msgid "date modifier|after "
+msgctxt "date modifier"
+msgid "after "
 msgstr "след "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:231
-msgid "date modifier|about "
+msgctxt "date modifier"
+msgid "about "
 msgstr "около "
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
-msgid "date quality|estimated "
+msgctxt "date quality"
+msgid "estimated "
 msgstr "приблизително "
 
 #: ../gramps/gen/datehandler/_datestrings.py:236
-msgid "date quality|calculated "
+msgctxt "date quality"
+msgid "calculated "
 msgstr "изчислено "
 
 #: ../gramps/gen/datehandler/_datestrings.py:242
@@ -3259,7 +3387,8 @@ msgid "Patronymic, Given"
 msgstr "Бащино, Собствено"
 
 #: ../gramps/gen/display/name.py:602 ../gramps/gen/display/name.py:702
-msgid "Person|title"
+msgctxt "Person"
+msgid "title"
 msgstr "звание"
 
 #: ../gramps/gen/display/name.py:604 ../gramps/gen/display/name.py:704
@@ -3282,12 +3411,14 @@ msgstr "наставка"
 
 #: ../gramps/gen/display/name.py:610 ../gramps/gen/display/name.py:710
 #, fuzzy
-msgid "Name|call"
+msgctxt "Name"
+msgid "call"
 msgstr "Име"
 
 #: ../gramps/gen/display/name.py:613 ../gramps/gen/display/name.py:712
 #, fuzzy
-msgid "Name|common"
+msgctxt "Name"
+msgid "common"
 msgstr "основно"
 
 #: ../gramps/gen/display/name.py:617 ../gramps/gen/display/name.py:715
@@ -3296,7 +3427,8 @@ msgstr "инициали"
 
 #: ../gramps/gen/display/name.py:620 ../gramps/gen/display/name.py:717
 #, fuzzy
-msgid "Name|primary"
+msgctxt "Name"
+msgid "primary"
 msgstr "Първоначален"
 
 #: ../gramps/gen/display/name.py:623 ../gramps/gen/display/name.py:719
@@ -3340,7 +3472,8 @@ msgstr "бащино"
 
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
 #, fuzzy
-msgid "Remaining names|rest"
+msgctxt "Remaining names"
+msgid "rest"
 msgstr "Търсене на фамилни имена"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:737
@@ -5266,7 +5399,8 @@ msgid "Full Family name:"
 msgstr "Фамилно:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:48
-msgid "person|Title:"
+msgctxt "person"
+msgid "Title:"
 msgstr "Титла:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
@@ -6313,7 +6447,8 @@ msgstr "Подбира хранилища с определен брой отп�
 #: ../gramps/gui/glade/mergerepository.glade:228
 #: ../gramps/gui/merge/mergerepository.py:46
 #, fuzzy
-msgid "repo|Name:"
+msgctxt "repo"
+msgid "Name:"
 msgstr "Име:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
@@ -7202,7 +7337,8 @@ msgstr "по-малко от"
 #: ../gramps/gen/lib/date.py:290 ../gramps/gen/lib/date.py:325
 #: ../gramps/gen/lib/date.py:331 ../gramps/gen/lib/date.py:333
 #: ../gramps/gen/lib/date.py:350
-msgid "age|about"
+msgctxt "age"
+msgid "about"
 msgstr "възраст около"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:339
@@ -7303,7 +7439,8 @@ msgstr "Нова _Година започва:  "
 
 #: ../gramps/gen/lib/date.py:1856
 #, fuzzy
-msgid "date-quality|none"
+msgctxt "date-quality"
+msgid "none"
 msgstr "приблизително "
 
 #: ../gramps/gen/lib/date.py:1857
@@ -7316,7 +7453,8 @@ msgstr "приблизително"
 
 #: ../gramps/gen/lib/date.py:1871
 #, fuzzy
-msgid "date-modifier|none"
+msgctxt "date-modifier"
+msgid "none"
 msgstr "преди "
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:314
@@ -7428,7 +7566,8 @@ msgstr "Признаци"
 
 #: ../gramps/gen/lib/eventroletype.py:54
 #, fuzzy
-msgid "Role|Primary"
+msgctxt "Role"
+msgid "Primary"
 msgstr "Първоначален"
 
 #: ../gramps/gen/lib/eventroletype.py:55
@@ -7453,7 +7592,8 @@ msgstr "Младоженец"
 
 #: ../gramps/gen/lib/eventroletype.py:61
 #, fuzzy
-msgid "Role|Family"
+msgctxt "Role"
+msgid "Family"
 msgstr "Премахване на семейство"
 
 #: ../gramps/gen/lib/eventroletype.py:62
@@ -7726,235 +7866,281 @@ msgstr "Алтернативен брак"
 #: ../gramps/plugins/drawreport/ancestortree.py:61
 #: ../gramps/plugins/drawreport/descendtree.py:57
 #, fuzzy
-msgid "birth abbreviation|b."
+msgctxt "birth abbreviation"
+msgid "b."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:212
 #: ../gramps/plugins/drawreport/ancestortree.py:62
 #: ../gramps/plugins/drawreport/descendtree.py:58
 #, fuzzy
-msgid "death abbreviation|d."
+msgctxt "death abbreviation"
+msgid "d."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:213
 #: ../gramps/plugins/drawreport/ancestortree.py:63
 #: ../gramps/plugins/drawreport/descendtree.py:59
 #, fuzzy
-msgid "marriage abbreviation|m."
+msgctxt "marriage abbreviation"
+msgid "m."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:214
 #, fuzzy
-msgid "Unknown abbreviation|unkn."
+msgctxt "Unknown abbreviation"
+msgid "unkn."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:215
 #, fuzzy
-msgid "Custom abbreviation|cust."
+msgctxt "Custom abbreviation"
+msgid "cust."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:216
 #, fuzzy
-msgid "Adopted abbreviation|adop."
+msgctxt "Adopted abbreviation"
+msgid "adop."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:217
 #, fuzzy
-msgid "Adult Christening abbreviation|a.chr."
+msgctxt "Adult Christening abbreviation"
+msgid "a.chr."
 msgstr "Кръщене на възрастен"
 
 #: ../gramps/gen/lib/eventtype.py:218
 #, fuzzy
-msgid "Baptism abbreviation|bap."
+msgctxt "Baptism abbreviation"
+msgid "bap."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:219
 #, fuzzy
-msgid "Bar Mitzvah abbreviation|bar."
+msgctxt "Bar Mitzvah abbreviation"
+msgid "bar."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:220
 #, fuzzy
-msgid "Bat Mitzvah abbreviation|bat."
+msgctxt "Bat Mitzvah abbreviation"
+msgid "bat."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:221
 #, fuzzy
-msgid "Blessing abbreviation|bles."
+msgctxt "Blessing abbreviation"
+msgid "bles."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:222
 #, fuzzy
-msgid "Burial abbreviation|bur."
+msgctxt "Burial abbreviation"
+msgid "bur."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:223
 #, fuzzy
-msgid "Cause Of Death abbreviation|d.cau."
+msgctxt "Cause Of Death abbreviation"
+msgid "d.cau."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:224
 #, fuzzy
-msgid "Census abbreviation|cens."
+msgctxt "Census abbreviation"
+msgid "cens."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:225
 #, fuzzy
-msgid "Christening abbreviation|chr."
+msgctxt "Christening abbreviation"
+msgid "chr."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:226
 #, fuzzy
-msgid "Confirmation abbreviation|conf."
+msgctxt "Confirmation abbreviation"
+msgid "conf."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:227
 #, fuzzy
-msgid "Cremation abbreviation|crem."
+msgctxt "Cremation abbreviation"
+msgid "crem."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:228
 #, fuzzy
-msgid "Degree abbreviation|deg."
+msgctxt "Degree abbreviation"
+msgid "deg."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:229
 #, fuzzy
-msgid "Education abbreviation|edu."
+msgctxt "Education abbreviation"
+msgid "edu."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:230
 #, fuzzy
-msgid "Elected abbreviation|elec."
+msgctxt "Elected abbreviation"
+msgid "elec."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:231
 #, fuzzy
-msgid "Emigration abbreviation|em."
+msgctxt "Emigration abbreviation"
+msgid "em."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:232
 #, fuzzy
-msgid "First Communion abbreviation|f.comm."
+msgctxt "First Communion abbreviation"
+msgid "f.comm."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:233
 #, fuzzy
-msgid "Immigration abbreviation|im."
+msgctxt "Immigration abbreviation"
+msgid "im."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:234
 #, fuzzy
-msgid "Graduation abbreviation|grad."
+msgctxt "Graduation abbreviation"
+msgid "grad."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:235
 #, fuzzy
-msgid "Medical Information abbreviation|medinf."
+msgctxt "Medical Information abbreviation"
+msgid "medinf."
 msgstr "Медицинска информация"
 
 #: ../gramps/gen/lib/eventtype.py:236
 #, fuzzy
-msgid "Military Service abbreviation|milser."
+msgctxt "Military Service abbreviation"
+msgid "milser."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:237
 #, fuzzy
-msgid "Naturalization abbreviation|nat."
+msgctxt "Naturalization abbreviation"
+msgid "nat."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:238
 #, fuzzy
-msgid "Nobility Title abbreviation|nob."
+msgctxt "Nobility Title abbreviation"
+msgid "nob."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:239
 #, fuzzy
-msgid "Number of Marriages abbreviation|n.o.mar."
+msgctxt "Number of Marriages abbreviation"
+msgid "n.o.mar."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:240
 #, fuzzy
-msgid "Occupation abbreviation|occ."
+msgctxt "Occupation abbreviation"
+msgid "occ."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:241
 #, fuzzy
-msgid "Ordination abbreviation|ord."
+msgctxt "Ordination abbreviation"
+msgid "ord."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:242
 #, fuzzy
-msgid "Probate abbreviation|prob."
+msgctxt "Probate abbreviation"
+msgid "prob."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:243
 #, fuzzy
-msgid "Property abbreviation|prop."
+msgctxt "Property abbreviation"
+msgid "prop."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:244
 #, fuzzy
-msgid "Religion abbreviation|rel."
+msgctxt "Religion abbreviation"
+msgid "rel."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:245
 #, fuzzy
-msgid "Residence abbreviation|res."
+msgctxt "Residence abbreviation"
+msgid "res."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:246
 #, fuzzy
-msgid "Retirement abbreviation|ret."
+msgctxt "Retirement abbreviation"
+msgid "ret."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:247
 #, fuzzy
-msgid "Will abbreviation|will."
+msgctxt "Will abbreviation"
+msgid "will."
 msgstr "род"
 
 #: ../gramps/gen/lib/eventtype.py:248
 #, fuzzy
-msgid "Marriage Settlement abbreviation|m.set."
+msgctxt "Marriage Settlement abbreviation"
+msgid "m.set."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:249
 #, fuzzy
-msgid "Marriage License abbreviation|m.lic."
+msgctxt "Marriage License abbreviation"
+msgid "m.lic."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:250
 #, fuzzy
-msgid "Marriage Contract abbreviation|m.con."
+msgctxt "Marriage Contract abbreviation"
+msgid "m.con."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:251
 #, fuzzy
-msgid "Marriage Banns abbreviation|m.ban."
+msgctxt "Marriage Banns abbreviation"
+msgid "m.ban."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:252
 #, fuzzy
-msgid "Alternate Marriage abbreviation|alt.mar."
+msgctxt "Alternate Marriage abbreviation"
+msgid "alt.mar."
 msgstr "сватба"
 
 #: ../gramps/gen/lib/eventtype.py:253
 #, fuzzy
-msgid "Engagement abbreviation|engd."
+msgctxt "Engagement abbreviation"
+msgid "engd."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:254
 #, fuzzy
-msgid "Divorce abbreviation|div."
+msgctxt "Divorce abbreviation"
+msgid "div."
 msgstr "поч"
 
 #: ../gramps/gen/lib/eventtype.py:255
-msgid "Divorce Filing abbreviation|div.f."
+msgctxt "Divorce Filing abbreviation"
+msgid "div.f."
 msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:256
 #, fuzzy
-msgid "Annulment abbreviation|annul."
+msgctxt "Annulment abbreviation"
+msgid "annul."
 msgstr "поч"
 
 #. The parent may not be birth father in ths family, because it
@@ -8427,17 +8613,20 @@ msgid "%(first)s %(surname)s, %(suffix)s"
 msgstr "%(number)s. %(name)s (%(value)s)"
 
 #: ../gramps/gen/lib/nameorigintype.py:76
-msgid "Surname|Inherited"
+msgctxt "Surname"
+msgid "Inherited"
 msgstr ""
 
 #: ../gramps/gen/lib/nameorigintype.py:77
 #, fuzzy
-msgid "Surname|Given"
+msgctxt "Surname"
+msgid "Given"
 msgstr "Фамилия"
 
 #: ../gramps/gen/lib/nameorigintype.py:78
 #, fuzzy
-msgid "Surname|Taken"
+msgctxt "Surname"
+msgid "Taken"
 msgstr "Фамилия"
 
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
@@ -8452,7 +8641,8 @@ msgstr "Бащино"
 
 #: ../gramps/gen/lib/nameorigintype.py:81
 #, fuzzy
-msgid "Surname|Feudal"
+msgctxt "Surname"
+msgid "Feudal"
 msgstr "Фамилия"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
@@ -8564,12 +8754,14 @@ msgid "Html code"
 msgstr "Html изглед"
 
 #: ../gramps/gen/lib/notetype.py:82
-msgid "notetype|To Do"
+msgctxt "notetype"
+msgid "To Do"
 msgstr ""
 
 #: ../gramps/gen/lib/notetype.py:83
 #, fuzzy
-msgid "notetype|Link"
+msgctxt "notetype"
+msgid "Link"
 msgstr "Вид бележка:"
 
 #: ../gramps/gen/lib/notetype.py:87
@@ -9842,11 +10034,13 @@ msgid "Graphviz File"
 msgstr "Файл Graphviz"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
-msgid "paper size|Letter"
+msgctxt "paper size"
+msgid "Letter"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:80
-msgid "paper size|Legal"
+msgctxt "paper size"
+msgid "Legal"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
@@ -10265,23 +10459,28 @@ msgid "Living People"
 msgstr "Живи лица"
 
 #: ../gramps/gen/plug/report/stdoptions.py:174
-msgid "'living people'|Included, and all data"
+msgctxt "'living people'"
+msgid "Included, and all data"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:178
-msgid "'living people'|Full names, but data removed"
+msgctxt "'living people'"
+msgid "Full names, but data removed"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:180
-msgid "'living people'|Given names replaced, and data removed"
+msgctxt "'living people'"
+msgid "Given names replaced, and data removed"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:182
-msgid "'living people'|Complete names replaced, and data removed"
+msgctxt "'living people'"
+msgid "Complete names replaced, and data removed"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:184
-msgid "'living people'|Not included"
+msgctxt "'living people'"
+msgid "Not included"
 msgstr ""
 
 #. for deferred translation
@@ -10444,7 +10643,8 @@ msgstr "дата"
 
 #: ../gramps/gen/plug/utils.py:262
 #, fuzzy
-msgid "updates|New"
+msgctxt "updates"
+msgid "New"
 msgstr "дата"
 
 #: ../gramps/gen/plug/utils.py:291 ../gramps/gen/plug/utils.py:298
@@ -10559,7 +10759,8 @@ msgid "wife"
 msgstr "съпруга"
 
 #: ../gramps/gen/relationship.py:2174
-msgid "gender unknown|spouse"
+msgctxt "gender unknown"
+msgid "spouse"
 msgstr "полът неизвестен съпруг/а"
 
 #: ../gramps/gen/relationship.py:2177
@@ -10571,79 +10772,98 @@ msgid "ex-wife"
 msgstr "бивша съпруга"
 
 #: ../gramps/gen/relationship.py:2181
-msgid "gender unknown|ex-spouse"
+msgctxt "gender unknown"
+msgid "ex-spouse"
 msgstr "полът неизвестен бивш/а съпруг/а"
 
 #: ../gramps/gen/relationship.py:2184
-msgid "male,unmarried|partner"
+msgctxt "male,unmarried"
+msgid "partner"
 msgstr "без брак съпруг"
 
 #: ../gramps/gen/relationship.py:2186
-msgid "female,unmarried|partner"
+msgctxt "female,unmarried"
+msgid "partner"
 msgstr "без брак съпруга"
 
 #: ../gramps/gen/relationship.py:2188
-msgid "gender unknown,unmarried|partner"
+msgctxt "gender unknown,unmarried"
+msgid "partner"
 msgstr "неизвестен пол, неженен брачен партньор"
 
 #: ../gramps/gen/relationship.py:2191
-msgid "male,unmarried|ex-partner"
+msgctxt "male,unmarried"
+msgid "ex-partner"
 msgstr "без брак бивш съпруг"
 
 #: ../gramps/gen/relationship.py:2193
-msgid "female,unmarried|ex-partner"
+msgctxt "female,unmarried"
+msgid "ex-partner"
 msgstr "без брак бивша съпруга"
 
 #: ../gramps/gen/relationship.py:2195
-msgid "gender unknown,unmarried|ex-partner"
+msgctxt "gender unknown,unmarried"
+msgid "ex-partner"
 msgstr "неизвестен пол, неженен бивш брачен партньор"
 
 #: ../gramps/gen/relationship.py:2198
-msgid "male,civil union|partner"
+msgctxt "male,civil union"
+msgid "partner"
 msgstr "мъж, гражданско съжителство партньор"
 
 #: ../gramps/gen/relationship.py:2200
-msgid "female,civil union|partner"
+msgctxt "female,civil union"
+msgid "partner"
 msgstr "жена, гражданско съжителство партньор"
 
 #: ../gramps/gen/relationship.py:2202
-msgid "gender unknown,civil union|partner"
+msgctxt "gender unknown,civil union"
+msgid "partner"
 msgstr "неизвестен пол, гражданско съжителство партньор"
 
 #: ../gramps/gen/relationship.py:2205
-msgid "male,civil union|former partner"
+msgctxt "male,civil union"
+msgid "former partner"
 msgstr "мъж, гражданско съжителство бивш партньор"
 
 #: ../gramps/gen/relationship.py:2207
-msgid "female,civil union|former partner"
+msgctxt "female,civil union"
+msgid "former partner"
 msgstr "жена, гражданско съжителство бивш партньор"
 
 #: ../gramps/gen/relationship.py:2209
-msgid "gender unknown,civil union|former partner"
+msgctxt "gender unknown,civil union"
+msgid "former partner"
 msgstr "неизвестен пол, гражданско съжителство бивш партньор"
 
 #: ../gramps/gen/relationship.py:2212
-msgid "male,unknown relation|partner"
+msgctxt "male,unknown relation"
+msgid "partner"
 msgstr "мъж, неизвестна връзка партньор"
 
 #: ../gramps/gen/relationship.py:2214
-msgid "female,unknown relation|partner"
+msgctxt "female,unknown relation"
+msgid "partner"
 msgstr "жена, неизвестна връзка партньор"
 
 #: ../gramps/gen/relationship.py:2216
-msgid "gender unknown,unknown relation|partner"
+msgctxt "gender unknown,unknown relation"
+msgid "partner"
 msgstr "неизвестен пол, неизвестна връзка партньор"
 
 #: ../gramps/gen/relationship.py:2221
-msgid "male,unknown relation|former partner"
+msgctxt "male,unknown relation"
+msgid "former partner"
 msgstr "мъж, неизвестна връзка бивш партньор"
 
 #: ../gramps/gen/relationship.py:2223
-msgid "female,unknown relation|former partner"
+msgctxt "female,unknown relation"
+msgid "former partner"
 msgstr "жена, неизвестна връзка бивш партньор"
 
 #: ../gramps/gen/relationship.py:2225
-msgid "gender unknown,unknown relation|former partner"
+msgctxt "gender unknown,unknown relation"
+msgid "former partner"
 msgstr "неизвестен пол, неизвестна връзка бивш партньор"
 
 #: ../gramps/gen/relationship.py:2318
@@ -11011,12 +11231,14 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:54
-msgid "Person|TITLE"
+msgctxt "Person"
+msgid "TITLE"
 msgstr "ЗВАНИЕ"
 
 #: ../gramps/gen/utils/keyword.py:54 ../gramps/plugins/export/exportcsv.py:356
 #: ../gramps/plugins/tool/patchnames.py:446
-msgid "Person|Title"
+msgctxt "Person"
+msgid "Title"
 msgstr "Звание"
 
 #: ../gramps/gen/utils/keyword.py:55
@@ -11032,24 +11254,28 @@ msgstr "ФАМИЛИЯ"
 
 #: ../gramps/gen/utils/keyword.py:57
 #, fuzzy
-msgid "Name|CALL"
+msgctxt "Name"
+msgid "CALL"
 msgstr "Име"
 
 #: ../gramps/gen/utils/keyword.py:57
 #, fuzzy
-msgid "Name|Call"
+msgctxt "Name"
+msgid "Call"
 msgstr "Име"
 
 #: ../gramps/gen/utils/keyword.py:58
 #, fuzzy
-msgid "Name|COMMON"
+msgctxt "Name"
+msgid "COMMON"
 msgstr "ОСНОВНО"
 
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:848
 #: ../gramps/gui/configure.py:850 ../gramps/gui/configure.py:853
 #: ../gramps/gui/configure.py:854 ../gramps/gui/configure.py:860
 #, fuzzy
-msgid "Name|Common"
+msgctxt "Name"
+msgid "Common"
 msgstr "Основно"
 
 #: ../gramps/gen/utils/keyword.py:59
@@ -11068,7 +11294,8 @@ msgstr "НАСТАВКА"
 #: ../gramps/gen/utils/keyword.py:61
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
 #, fuzzy
-msgid "Name|Primary"
+msgctxt "Name"
+msgid "Primary"
 msgstr "Първоначален"
 
 #: ../gramps/gen/utils/keyword.py:61
@@ -11212,7 +11439,8 @@ msgid "female"
 msgstr "женски"
 
 #: ../gramps/gen/utils/string.py:48
-msgid "gender|unknown"
+msgctxt "gender"
+msgid "unknown"
 msgstr "неизвестен пол"
 
 #: ../gramps/gen/utils/string.py:52
@@ -11517,7 +11745,8 @@ msgid "OS: %s"
 msgstr ": %s\n"
 
 #: ../gramps/gui/clipboard.py:70
-msgid "manual|Using_the_Clipboard"
+msgctxt "manual"
+msgid "Using_the_Clipboard"
 msgstr ""
 
 #: ../gramps/gui/clipboard.py:401
@@ -11530,7 +11759,8 @@ msgid "Family Attribute"
 msgstr "Семеен признак"
 
 #: ../gramps/gui/clipboard.py:483
-msgid "not available|NA"
+msgctxt "not available"
+msgid "NA"
 msgstr "липсва"
 
 #: ../gramps/gui/clipboard.py:492
@@ -11563,17 +11793,20 @@ msgstr "Системен буфер"
 #. See details (edit, etc):
 #: ../gramps/gui/clipboard.py:1493 ../gramps/gui/plug/quick/_quicktable.py:141
 #, fuzzy, python-format
-msgid "the object|See %s details"
+msgctxt "the object"
+msgid "See %s details"
 msgstr "Показване на подробности"
 
 #: ../gramps/gui/clipboard.py:1502 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
-msgid "the object|Make %s active"
+msgctxt "the object"
+msgid "Make %s active"
 msgstr ""
 
 #: ../gramps/gui/clipboard.py:1524
 #, python-format
-msgid "the object|Create Filter from %s selected..."
+msgctxt "the object"
+msgid "Create Filter from %s selected..."
 msgstr ""
 
 #: ../gramps/gui/columnorder.py:89
@@ -13148,7 +13381,8 @@ msgstr "Няма активна бележка"
 
 #: ../gramps/gui/editors/addmedia.py:70
 #, fuzzy
-msgid "manual|Select_a_media_selector"
+msgctxt "manual"
+msgid "Select_a_media_selector"
 msgstr "Медийни обекти"
 
 #: ../gramps/gui/editors/addmedia.py:104
@@ -13515,7 +13749,8 @@ msgstr "_Галерия"
 
 #. Translators: _View means "to look at this"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:142
-msgid "verb:look at this|_View"
+msgctxt "verb:look at this"
+msgid "_View"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
@@ -13924,7 +14159,8 @@ msgstr "Прескачане до"
 
 #: ../gramps/gui/editors/editaddress.py:65
 #, fuzzy
-msgid "manual|Address_Editor_dialog"
+msgctxt "manual"
+msgid "Address_Editor_dialog"
 msgstr "Редактор на адреси"
 
 #: ../gramps/gui/editors/editaddress.py:92
@@ -13934,7 +14170,8 @@ msgstr "Редактор на адреси"
 
 #: ../gramps/gui/editors/editattribute.py:62
 #, fuzzy
-msgid "manual|Attribute_Editor_dialog"
+msgctxt "manual"
+msgid "Attribute_Editor_dialog"
 msgstr "Редактор на признаци"
 
 #: ../gramps/gui/editors/editattribute.py:94
@@ -13957,7 +14194,8 @@ msgstr "Не може да има празен тип признак"
 
 #: ../gramps/gui/editors/editchildref.py:66
 #, fuzzy
-msgid "manual|Child_Reference_Editor"
+msgctxt "manual"
+msgid "Child_Reference_Editor"
 msgstr "Редактор на отпратки за децата"
 
 #: ../gramps/gui/editors/editchildref.py:99
@@ -13967,7 +14205,8 @@ msgstr "Редактор на отпратки за децата"
 
 #: ../gramps/gui/editors/editcitation.py:69
 #, fuzzy
-msgid "manual|New_Citation_dialog"
+msgctxt "manual"
+msgid "New_Citation_dialog"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/editors/editcitation.py:128
@@ -14071,7 +14310,8 @@ msgstr "Изчислено"
 
 #: ../gramps/gui/editors/editdate.py:99
 #, fuzzy
-msgid "manual|Editing_dates"
+msgctxt "manual"
+msgid "Editing_dates"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
@@ -14084,7 +14324,8 @@ msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:64
-msgid "manual|New_Event_dialog"
+msgctxt "manual"
+msgid "New_Event_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:98
@@ -14148,7 +14389,8 @@ msgstr "Изтриване на събитие (%s)"
 
 #: ../gramps/gui/editors/editeventref.py:57
 #, fuzzy
-msgid "manual|Event_Reference_Editor_dialog"
+msgctxt "manual"
+msgid "Event_Reference_Editor_dialog"
 msgstr "Редактор на отпратките за събитията"
 
 #: ../gramps/gui/editors/editeventref.py:76
@@ -14173,7 +14415,8 @@ msgid "Add Event"
 msgstr "Добавяне на събитие"
 
 #: ../gramps/gui/editors/editfamily.py:92
-msgid "manual|Family_Editor_dialog"
+msgctxt "manual"
+msgid "Family_Editor_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:113
@@ -14437,7 +14680,8 @@ msgstr "Добавяне на семейство"
 
 #: ../gramps/gui/editors/editldsord.py:67
 #, fuzzy
-msgid "manual|LDS_Ordinance_Editor"
+msgctxt "manual"
+msgid "LDS_Ordinance_Editor"
 msgstr "Редактор на Мормонски обреди"
 
 #: ../gramps/gui/editors/editldsord.py:158
@@ -14464,7 +14708,8 @@ msgstr "[%(gramps_id)s] на %(mother)s"
 
 #: ../gramps/gui/editors/editlink.py:49
 #, fuzzy
-msgid "manual|Link_Editor"
+msgctxt "manual"
+msgid "Link_Editor"
 msgstr "Редактор за места"
 
 #: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:239
@@ -14483,7 +14728,8 @@ msgstr "Редактор за места"
 
 #: ../gramps/gui/editors/editmedia.py:68
 #, fuzzy
-msgid "manual|New_Media_dialog"
+msgctxt "manual"
+msgid "New_Media_dialog"
 msgstr "Медийни обекти"
 
 #: ../gramps/gui/editors/editmedia.py:99
@@ -14550,7 +14796,8 @@ msgstr "Премахване на медия обекта"
 
 #: ../gramps/gui/editors/editmediaref.py:71
 #, fuzzy
-msgid "manual|Media_Reference_Editor_dialog"
+msgctxt "manual"
+msgid "Media_Reference_Editor_dialog"
 msgstr "Редактор на отпратките за медиите"
 
 #: ../gramps/gui/editors/editmediaref.py:93
@@ -14562,7 +14809,8 @@ msgstr "Редактор на отпратките за медиите"
 #: ../gramps/gui/editors/editmediaref.py:98
 #: ../gramps/gui/glade/editmediaref.glade:133
 #: ../gramps/gui/glade/editmediaref.glade:257
-msgid "Y coordinate|Y"
+msgctxt "Y coordinate"
+msgid "Y"
 msgstr "Y"
 
 #: ../gramps/gui/editors/editname.py:120 ../gramps/gui/editors/editname.py:314
@@ -14571,7 +14819,8 @@ msgstr "Редактор на имена"
 
 #: ../gramps/gui/editors/editname.py:162
 #, fuzzy
-msgid "manual|Name_Editor"
+msgctxt "manual"
+msgid "Name_Editor"
 msgstr "Редактор на имена"
 
 #: ../gramps/gui/editors/editname.py:174
@@ -14626,7 +14875,8 @@ msgid "Group this name only"
 msgstr "Групиране само на това име"
 
 #: ../gramps/gui/editors/editnote.py:67
-msgid "manual|Editing_information_about_notes"
+msgctxt "manual"
+msgid "Editing_information_about_notes"
 msgstr ""
 
 #: ../gramps/gui/editors/editnote.py:150
@@ -14695,7 +14945,8 @@ msgid "New Person"
 msgstr "Ново лице"
 
 #: ../gramps/gui/editors/editperson.py:242
-msgid "manual|Editing_information_about_people"
+msgctxt "manual"
+msgid "Editing_information_about_people"
 msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:600
@@ -14786,7 +15037,8 @@ msgstr "_Неизвестен"
 
 #: ../gramps/gui/editors/editpersonref.py:67
 #, fuzzy
-msgid "manual|Person_Reference_Editor"
+msgctxt "manual"
+msgid "Person_Reference_Editor"
 msgstr "Редактор на отпратки към лицата"
 
 #: ../gramps/gui/editors/editpersonref.py:93
@@ -14807,13 +15059,15 @@ msgid "You must either select a person or Cancel the edit"
 msgstr "Трябва или да изберете лице или да откажете редакцията"
 
 #: ../gramps/gui/editors/editplace.py:69
-msgid "manual|Place_Editor_dialog"
+msgctxt "manual"
+msgid "Place_Editor_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:91
 #: ../gramps/gui/glade/editplace.glade:355 ../gramps/gui/merge/mergeplace.py:55
 #, fuzzy
-msgid "place|Name:"
+msgctxt "place"
+msgid "Name:"
 msgstr "Име на мястото:"
 
 #: ../gramps/gui/editors/editplace.py:96
@@ -14894,7 +15148,8 @@ msgstr "Ново име"
 
 #: ../gramps/gui/editors/editplacename.py:49
 #, fuzzy
-msgid "manual|Place_Name_Editor_dialog"
+msgctxt "manual"
+msgid "Place_Name_Editor_dialog"
 msgstr " Редактор на имена"
 
 #: ../gramps/gui/editors/editplacename.py:101
@@ -14980,7 +15235,8 @@ msgstr "Добавяне на хранилище"
 
 #: ../gramps/gui/editors/editrepository.py:60
 #, fuzzy
-msgid "manual|New_Repository_dialog"
+msgctxt "manual"
+msgid "New_Repository_dialog"
 msgstr "_Хранилища"
 
 #: ../gramps/gui/editors/editrepository.py:92
@@ -15015,7 +15271,8 @@ msgstr "Изтриване на хранилище (%s)"
 
 #: ../gramps/gui/editors/editsource.py:64
 #, fuzzy
-msgid "manual|New_Source_dialog"
+msgctxt "manual"
+msgid "New_Source_dialog"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/editors/editsource.py:88
@@ -15057,7 +15314,8 @@ msgstr "Изтриване на източник (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
 #, fuzzy
-msgid "manual|Tag_selection_dialog"
+msgctxt "manual"
+msgid "Tag_selection_dialog"
 msgstr "Избор на дата"
 
 #: ../gramps/gui/editors/edittaglist.py:70
@@ -15068,7 +15326,8 @@ msgstr "Избор на дата"
 
 #: ../gramps/gui/editors/editurl.py:47
 #, fuzzy
-msgid "manual|Internet_Address_Editor"
+msgctxt "manual"
+msgid "Internet_Address_Editor"
 msgstr "Редактор на Интернет адреси"
 
 #: ../gramps/gui/editors/editurl.py:68 ../gramps/gui/editors/editurl.py:103
@@ -15076,16 +15335,19 @@ msgid "Internet Address Editor"
 msgstr "Редактор на Интернет адреси"
 
 #: ../gramps/gui/editors/filtereditor.py:84
-msgid "manual|Add_Rule_dialog"
+msgctxt "manual"
+msgid "Add_Rule_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:85
-msgid "manual|Define_Filter_dialog"
+msgctxt "manual"
+msgid "Define_Filter_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:86
 #, fuzzy
-msgid "manual|Custom_Filters"
+msgctxt "manual"
+msgid "Custom_Filters"
 msgstr "Потребителски филтър"
 
 #: ../gramps/gui/editors/filtereditor.py:90
@@ -15437,7 +15699,8 @@ msgid "Volume/Page"
 msgstr "_Том/Страница:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
-msgid "Citation: Minimum Confidence|Min. Conf."
+msgctxt "Citation: Minimum Confidence"
+msgid "Min. Conf."
 msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
@@ -17581,7 +17844,8 @@ msgstr "Размер:"
 
 #: ../gramps/gui/glade/styleeditor.glade:385
 #: ../gramps/gui/plug/report/_styleeditor.py:268
-msgid "point size|pt"
+msgctxt "point size"
+msgid "pt"
 msgstr "пункта"
 
 #: ../gramps/gui/glade/styleeditor.glade:432
@@ -18302,7 +18566,8 @@ msgstr ""
 
 #: ../gramps/gui/logger/_errorview.py:46
 #, fuzzy
-msgid "manual|Error_Report"
+msgctxt "manual"
+msgid "Error_Report"
 msgstr "Доклад за грешка"
 
 #: ../gramps/gui/logger/_errorview.py:107
@@ -18341,7 +18606,8 @@ msgstr ""
 
 #: ../gramps/gui/merge/mergecitation.py:46
 #, fuzzy
-msgid "manual|Merge_Citations"
+msgctxt "manual"
+msgid "Merge_Citations"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/merge/mergecitation.py:68
@@ -18351,7 +18617,8 @@ msgid "Merge Citations"
 msgstr "Цитат"
 
 #: ../gramps/gui/merge/mergeevent.py:45
-msgid "manual|Merge_Events"
+msgctxt "manual"
+msgid "Merge_Events"
 msgstr ""
 
 #: ../gramps/gui/merge/mergeevent.py:67
@@ -18360,7 +18627,8 @@ msgid "Merge Events"
 msgstr "Събития за родителите"
 
 #: ../gramps/gui/merge/mergefamily.py:46
-msgid "manual|Merge_Families"
+msgctxt "manual"
+msgid "Merge_Families"
 msgstr ""
 
 #: ../gramps/gui/merge/mergefamily.py:68
@@ -18376,12 +18644,14 @@ msgstr "Невъзможно сливането на лицата"
 
 #: ../gramps/gui/merge/mergemedia.py:44
 #, fuzzy
-msgid "manual|Merge_Media_Objects"
+msgctxt "manual"
+msgid "Merge_Media_Objects"
 msgstr "Медийни обекти"
 
 #: ../gramps/gui/merge/mergenote.py:44
 #, fuzzy
-msgid "manual|Merge_Notes"
+msgctxt "manual"
+msgid "Merge_Notes"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/merge/mergenote.py:94
@@ -18395,7 +18665,8 @@ msgid "preformatted"
 msgstr "Предварително форматиран"
 
 #: ../gramps/gui/merge/mergeperson.py:58
-msgid "manual|Merge_People"
+msgctxt "manual"
+msgid "Merge_People"
 msgstr ""
 
 #. translators: needed for French, ignore otherwise
@@ -18468,16 +18739,19 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/merge/mergeplace.py:53
-msgid "manual|Merge_Places"
+msgctxt "manual"
+msgid "Merge_Places"
 msgstr ""
 
 #: ../gramps/gui/merge/mergerepository.py:44
 #, fuzzy
-msgid "manual|Merge_Repositories"
+msgctxt "manual"
+msgid "Merge_Repositories"
 msgstr "_Хранилища"
 
 #: ../gramps/gui/merge/mergesource.py:45
-msgid "manual|Merge_Sources"
+msgctxt "manual"
+msgid "Merge_Sources"
 msgstr ""
 
 #: ../gramps/gui/merge/mergesource.py:67
@@ -19292,7 +19566,8 @@ msgid "Landscape"
 msgstr "Пейзаж"
 
 #: ../gramps/gui/plug/report/_papermenu.py:215
-msgid "inch|in."
+msgctxt "inch"
+msgid "in."
 msgstr "инч."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:143
@@ -19453,7 +19728,8 @@ msgstr "Стилове на документите"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 #, fuzzy
-msgid "manual|Document_Styles_dialog"
+msgctxt "manual"
+msgid "Document_Styles_dialog"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
@@ -19486,7 +19762,8 @@ msgstr "Редактор за стилове"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:242
 #, fuzzy
-msgid "manual|Style_editor_dialog"
+msgctxt "manual"
+msgid "Style_editor_dialog"
 msgstr " Редактор на имена"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:352
@@ -19582,7 +19859,8 @@ msgstr "Последна промяна"
 
 #: ../gramps/gui/selectors/selectcitation.py:86
 #, fuzzy
-msgid "manual|Select_Source_or_Citation_selector"
+msgctxt "manual"
+msgid "Select_Source_or_Citation_selector"
 msgstr "Избор на източник"
 
 #: ../gramps/gui/selectors/selectevent.py:59
@@ -19590,11 +19868,13 @@ msgid "Select Event"
 msgstr "Избор на събитие"
 
 #: ../gramps/gui/selectors/selectevent.py:79
-msgid "manual|Select_Event_selector"
+msgctxt "manual"
+msgid "Select_Event_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectfamily.py:76
-msgid "manual|Select_Family_selector"
+msgctxt "manual"
+msgid "Select_Family_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectnote.py:64
@@ -19603,7 +19883,8 @@ msgstr "Избор на бележка"
 
 #: ../gramps/gui/selectors/selectnote.py:82
 #, fuzzy
-msgid "manual|Select_Note_selector"
+msgctxt "manual"
+msgid "Select_Note_selector"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/selectors/selectobject.py:67
@@ -19612,24 +19893,29 @@ msgstr "Избор на медия обекта"
 
 #: ../gramps/gui/selectors/selectobject.py:108
 #, fuzzy
-msgid "manual|Select_Media_Object_selector"
+msgctxt "manual"
+msgid "Select_Media_Object_selector"
 msgstr "Медийни обекти"
 
 #: ../gramps/gui/selectors/selectperson.py:64
-msgid "manual|Select_Father_selector"
+msgctxt "manual"
+msgid "Select_Father_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectperson.py:66
-msgid "manual|Select_Mother_selector"
+msgctxt "manual"
+msgid "Select_Mother_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectperson.py:68
-msgid "manual|Select_Child_selector"
+msgctxt "manual"
+msgid "Select_Child_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectperson.py:70
 #, fuzzy
-msgid "manual|Select_Person_selector"
+msgctxt "manual"
+msgid "Select_Person_selector"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/selectors/selectplace.py:60
@@ -19637,7 +19923,8 @@ msgid "Select Place"
 msgstr "Избор на място"
 
 #: ../gramps/gui/selectors/selectplace.py:90
-msgid "manual|Select_Place_selector"
+msgctxt "manual"
+msgid "Select_Place_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectrepository.py:59
@@ -19646,7 +19933,8 @@ msgstr "Избор на хранилище"
 
 #: ../gramps/gui/selectors/selectrepository.py:75
 #, fuzzy
-msgid "manual|Select_Repository_selector"
+msgctxt "manual"
+msgid "Select_Repository_selector"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/selectors/selectsource.py:59
@@ -19655,7 +19943,8 @@ msgstr "Избор на източник"
 
 #: ../gramps/gui/selectors/selectsource.py:76
 #, fuzzy
-msgid "manual|Select_Source_selector"
+msgctxt "manual"
+msgid "Select_Source_selector"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/spell.py:92
@@ -19901,7 +20190,8 @@ msgstr "Медия"
 #: ../gramps/gui/viewmanager.py:1723
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
 #: ../gramps/plugins/webreport/statistics.py:145
-msgid "Megabyte|MB"
+msgctxt "Megabyte"
+msgid "MB"
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1725
@@ -19941,7 +20231,8 @@ msgid "Backup aborted"
 msgstr ""
 
 #: ../gramps/gui/views/bookmarks.py:69
-msgid "manual|Bookmarks"
+msgctxt "manual"
+msgid "Bookmarks"
 msgstr ""
 
 #. this is meaningless while it's modal
@@ -20141,12 +20432,14 @@ msgstr "Организиране на отметките"
 
 #: ../gramps/gui/views/tags.py:112
 #, fuzzy
-msgid "manual|Organize_Tags_Window"
+msgctxt "manual"
+msgid "Organize_Tags_Window"
 msgstr "Организиране на отметките"
 
 #: ../gramps/gui/views/tags.py:113
 #, fuzzy
-msgid "manual|New_Tag_dialog"
+msgctxt "manual"
+msgid "New_Tag_dialog"
 msgstr "Бележка за януари"
 
 #: ../gramps/gui/views/tags.py:306
@@ -20425,7 +20718,8 @@ msgstr "Информация за напредъка"
 
 #: ../gramps/gui/widgets/reorderfam.py:63
 #, fuzzy
-msgid "manual|Reorder_Relationships_dialog"
+msgctxt "manual"
+msgid "Reorder_Relationships_dialog"
 msgstr "Преподреждане на роднинските връзки"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
@@ -22008,7 +22302,8 @@ msgid "Women"
 msgstr "Жени"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:338
-msgid "person|Title"
+msgctxt "person"
+msgid "Title"
 msgstr "Име"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:342
@@ -22289,12 +22584,14 @@ msgstr "Стилът, използван за елементите и стойн
 
 #: ../gramps/plugins/drawreport/timeline.py:66
 #, fuzzy
-msgid "sorted by|Birth Date"
+msgctxt "sorted by"
+msgid "Birth Date"
 msgstr "Рождена дата"
 
 #: ../gramps/plugins/drawreport/timeline.py:67
 #, fuzzy
-msgid "sorted by|Name"
+msgctxt "sorted by"
+msgid "Name"
 msgstr "Заключено от %s"
 
 #. Sort the people as requested
@@ -23230,7 +23527,8 @@ msgstr "Грамплет показващ всички фамилни имена
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1235
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
 #, fuzzy
-msgid "gramplet|To Do"
+msgctxt "gramplet"
+msgid "To Do"
 msgstr "Грамплет"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:291
@@ -24094,7 +24392,8 @@ msgstr ""
 "Разбивка по поколение:\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:254
-msgid "percent sign or text string|%"
+msgctxt "percent sign or text string"
+msgid "%"
 msgstr "%"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:261
@@ -24447,7 +24746,8 @@ msgstr "Домашна страница на Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
 #, fuzzy
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr "наставка"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
@@ -25368,7 +25668,8 @@ msgstr "прякор"
 
 #: ../gramps/plugins/importer/importcsv.py:166
 #, fuzzy
-msgid "Person or Place|title"
+msgctxt "Person or Place"
+msgid "title"
 msgstr "звание"
 
 #: ../gramps/plugins/importer/importcsv.py:166
@@ -26175,7 +26476,8 @@ msgid "_Ok"
 msgstr "Добре"
 
 #: ../gramps/plugins/importer/importprogen.py:62
-msgid "manual|Import_from_another_genealogy_program"
+msgctxt "manual"
+msgid "Import_from_another_genealogy_program"
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.py:121
@@ -30569,7 +30871,8 @@ msgstr "_Сливане..."
 #: ../gramps/plugins/view/repoview.py:329
 #: ../gramps/plugins/view/sourceview.py:186
 #: ../gramps/plugins/view/sourceview.py:315
-msgid "action|_Edit..."
+msgctxt "action"
+msgid "_Edit..."
 msgstr "_Редактиране..."
 
 #: ../gramps/plugins/lib/libpersonview.py:246
@@ -31541,138 +31844,168 @@ msgstr "Има %d души със съвпадащо на атрибута.\n"
 #. else "nearby" comments are ignored
 #: ../gramps/plugins/quickview/filterbyname.py:41
 #, fuzzy
-msgid "Filtering_on|all"
+msgctxt "Filtering_on"
+msgid "all"
 msgstr "мъже"
 
 #: ../gramps/plugins/quickview/filterbyname.py:42
 #, fuzzy
-msgid "Filtering_on|Inverse Person"
+msgctxt "Filtering_on"
+msgid "Inverse Person"
 msgstr "жени"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
 #, fuzzy
-msgid "Filtering_on|Inverse Family"
+msgctxt "Filtering_on"
+msgid "Inverse Family"
 msgstr "всички фамилни имена"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
 #, fuzzy
-msgid "Filtering_on|Inverse Event"
+msgctxt "Filtering_on"
+msgid "Inverse Event"
 msgstr "мъже"
 
 #: ../gramps/plugins/quickview/filterbyname.py:45
 #, fuzzy
-msgid "Filtering_on|Inverse Place"
+msgctxt "Filtering_on"
+msgid "Inverse Place"
 msgstr "жени"
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
 #, fuzzy
-msgid "Filtering_on|Inverse Source"
+msgctxt "Filtering_on"
+msgid "Inverse Source"
 msgstr "уникални фамилни имена"
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
 #, fuzzy
-msgid "Filtering_on|Inverse Repository"
+msgctxt "Filtering_on"
+msgid "Inverse Repository"
 msgstr "уникална медия"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 #, fuzzy
-msgid "Filtering_on|Inverse Media"
+msgctxt "Filtering_on"
+msgid "Inverse Media"
 msgstr "уникална медия"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
 #, fuzzy
-msgid "Filtering_on|Inverse Note"
+msgctxt "Filtering_on"
+msgid "Inverse Note"
 msgstr "мъже"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
-msgid "Filtering_on|all people"
+msgctxt "Filtering_on"
+msgid "all people"
 msgstr "всички хора"
 
 #: ../gramps/plugins/quickview/filterbyname.py:51
-msgid "Filtering_on|all families"
+msgctxt "Filtering_on"
+msgid "all families"
 msgstr "всички фамилни имена"
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
 #, fuzzy
-msgid "Filtering_on|all events"
+msgctxt "Filtering_on"
+msgid "all events"
 msgstr "мъже"
 
 #: ../gramps/plugins/quickview/filterbyname.py:53
 #, fuzzy
-msgid "Filtering_on|all places"
+msgctxt "Filtering_on"
+msgid "all places"
 msgstr "всички хора"
 
 #: ../gramps/plugins/quickview/filterbyname.py:54
 #, fuzzy
-msgid "Filtering_on|all sources"
+msgctxt "Filtering_on"
+msgid "all sources"
 msgstr "мъже"
 
 #: ../gramps/plugins/quickview/filterbyname.py:55
 #, fuzzy
-msgid "Filtering_on|all repositories"
+msgctxt "Filtering_on"
+msgid "all repositories"
 msgstr "всички фамилни имена"
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
 #, fuzzy
-msgid "Filtering_on|all media"
+msgctxt "Filtering_on"
+msgid "all media"
 msgstr "всички фамилни имена"
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
 #, fuzzy
-msgid "Filtering_on|all notes"
+msgctxt "Filtering_on"
+msgid "all notes"
 msgstr "мъже"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
-msgid "Filtering_on|males"
+msgctxt "Filtering_on"
+msgid "males"
 msgstr "мъже"
 
 #: ../gramps/plugins/quickview/filterbyname.py:59
-msgid "Filtering_on|females"
+msgctxt "Filtering_on"
+msgid "females"
 msgstr "жени"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
-msgid "Filtering_on|people with unknown gender"
+msgctxt "Filtering_on"
+msgid "people with unknown gender"
 msgstr "хора с неизвестен пол"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 #, fuzzy
-msgid "Filtering_on|incomplete names"
+msgctxt "Filtering_on"
+msgid "incomplete names"
 msgstr "хора с непълни имена"
 
 #: ../gramps/plugins/quickview/filterbyname.py:65
-msgid "Filtering_on|people with missing birth dates"
+msgctxt "Filtering_on"
+msgid "people with missing birth dates"
 msgstr "хора с липсващи рождени дати"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
-msgid "Filtering_on|disconnected people"
+msgctxt "Filtering_on"
+msgid "disconnected people"
 msgstr "несвързани лица"
 
 #: ../gramps/plugins/quickview/filterbyname.py:67
-msgid "Filtering_on|unique surnames"
+msgctxt "Filtering_on"
+msgid "unique surnames"
 msgstr "уникални фамилни имена"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
-msgid "Filtering_on|people with media"
+msgctxt "Filtering_on"
+msgid "people with media"
 msgstr "хора с медия"
 
 #: ../gramps/plugins/quickview/filterbyname.py:69
-msgid "Filtering_on|media references"
+msgctxt "Filtering_on"
+msgid "media references"
 msgstr "медийни отпратки"
 
 #: ../gramps/plugins/quickview/filterbyname.py:70
-msgid "Filtering_on|unique media"
+msgctxt "Filtering_on"
+msgid "unique media"
 msgstr "уникална медия"
 
 #: ../gramps/plugins/quickview/filterbyname.py:71
-msgid "Filtering_on|missing media"
+msgctxt "Filtering_on"
+msgid "missing media"
 msgstr "липсваща медия"
 
 #: ../gramps/plugins/quickview/filterbyname.py:72
-msgid "Filtering_on|media by size"
+msgctxt "Filtering_on"
+msgid "media by size"
 msgstr "медия според размера"
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
-msgid "Filtering_on|list of people"
+msgctxt "Filtering_on"
+msgid "list of people"
 msgstr "списък на лица"
 
 #: ../gramps/plugins/quickview/filterbyname.py:85
@@ -33081,16 +33414,19 @@ msgid "The style used for the subtitle."
 msgstr "Стилът на подзаглавието."
 
 #: ../gramps/plugins/textreport/familygroup.py:507
-msgid "acronym for male|M"
+msgctxt "acronym for male"
+msgid "M"
 msgstr "М"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
-msgid "acronym for female|F"
+msgctxt "acronym for female"
+msgid "F"
 msgstr "Ж"
 
 #: ../gramps/plugins/textreport/familygroup.py:511
 #, python-format
-msgid "acronym for unknown|%dU"
+msgctxt "acronym for unknown"
+msgid "%dU"
 msgstr "%dU"
 
 #: ../gramps/plugins/textreport/familygroup.py:618
@@ -33435,7 +33771,8 @@ msgstr "Gramps индекс: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:199
 #, fuzzy, python-format
-msgid "places|All Names: %s"
+msgctxt "places"
+msgid "All Names: %s"
 msgstr "Име на мястото:"
 
 #: ../gramps/plugins/textreport/placereport.py:221
@@ -33529,7 +33866,8 @@ msgid "Title of the Book"
 msgstr "Заглавие на книгата"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:136
-msgid "book|Title"
+msgctxt "book"
+msgid "Title"
 msgstr "Заглавие"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:137
@@ -33829,7 +34167,8 @@ msgstr "Приемане на промените и затваряне"
 
 #: ../gramps/plugins/tool/changenames.py:64
 #, fuzzy
-msgid "manual|Fix_Capitalization_of_Family_Names"
+msgctxt "manual"
+msgid "Fix_Capitalization_of_Family_Names"
 msgstr "manual|Fix_Capitalization_of_Family_Names..."
 
 #: ../gramps/plugins/tool/changenames.py:75
@@ -34504,7 +34843,8 @@ msgstr "_Редактор на потребителските филтри"
 
 #: ../gramps/plugins/tool/eventcmp.py:70
 #, fuzzy
-msgid "manual|Compare_Individual_Events"
+msgctxt "manual"
+msgid "Compare_Individual_Events"
 msgstr "Сравняване на отделни събития"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
@@ -34600,7 +34940,8 @@ msgstr "Сравняване"
 
 #: ../gramps/plugins/tool/finddupes.py:66
 #, fuzzy
-msgid "manual|Find_Possible_Duplicate_People"
+msgctxt "manual"
+msgid "Find_Possible_Duplicate_People"
 msgstr "Откриване на Възможно Дублиране на Хора"
 
 #: ../gramps/plugins/tool/finddupes.py:126
@@ -34668,7 +35009,8 @@ msgid "Merge persons"
 msgstr "Сливане на лица"
 
 #: ../gramps/plugins/tool/findloop.py:58
-msgid "manual|Find_database_loop"
+msgctxt "manual"
+msgid "Find_database_loop"
 msgstr ""
 
 #: ../gramps/plugins/tool/findloop.py:73
@@ -34691,7 +35033,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Търсене за %d лице"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager"
+msgctxt "manual"
+msgid "Media_Manager"
 msgstr "Управление_на_медиите"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
@@ -34913,7 +35256,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:83
 #, fuzzy
-msgid "manual|Merge_citations"
+msgctxt "manual"
+msgid "Merge_citations"
 msgstr "Бележка за януари"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
@@ -34955,7 +35299,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/notrelated.py:60
 #, fuzzy
-msgid "manual|Not_Related"
+msgctxt "manual"
+msgid "Not_Related"
 msgstr "Без връзка"
 
 #: ../gramps/plugins/tool/notrelated.py:80
@@ -35051,7 +35396,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/ownereditor.py:56
 #, fuzzy
-msgid "manual|Edit_Database_Owner_Information"
+msgctxt "manual"
+msgid "Edit_Database_Owner_Information"
 msgstr "Редактиране информацията за собственика на базата данни"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
@@ -35083,7 +35429,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/tool/patchnames.py:63
-msgid "manual|Extract_Information_from_Names"
+msgctxt "manual"
+msgid "Extract_Information_from_Names"
 msgstr ""
 
 #: ../gramps/plugins/tool/patchnames.py:105
@@ -35211,7 +35558,8 @@ msgid "Their common ancestors are: "
 msgstr "Техни общи прародители са: "
 
 #: ../gramps/plugins/tool/removespaces.py:54
-msgid "manual|Remove_leading_and_trailing_spaces"
+msgctxt "manual"
+msgid "Remove_leading_and_trailing_spaces"
 msgstr ""
 
 #: ../gramps/plugins/tool/removespaces.py:87
@@ -35387,7 +35735,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:64
 #, fuzzy
-msgid "manual|Reorder_Gramps_ID"
+msgctxt "manual"
+msgid "Reorder_Gramps_ID"
 msgstr "Преподреждане на индексите на Gramps"
 
 #. self.top.set_icon(ICON)
@@ -35843,7 +36192,8 @@ msgstr "Скриване на _маркираните"
 
 #: ../gramps/plugins/tool/verify.py:83
 #, fuzzy
-msgid "manual|Verify_the_Data"
+msgctxt "manual"
+msgid "Verify_the_Data"
 msgstr "Проверка на данните"
 
 #: ../gramps/plugins/tool/verify.py:295
@@ -37060,28 +37410,34 @@ msgstr ""
 "върху желания."
 
 #: ../gramps/plugins/view/pedigreeview.py:80
-msgid "short for born|b."
+msgctxt "short for born"
+msgid "b."
 msgstr "род."
 
 #: ../gramps/plugins/view/pedigreeview.py:81
-msgid "short for died|d."
+msgctxt "short for died"
+msgid "d."
 msgstr "поч."
 
 #: ../gramps/plugins/view/pedigreeview.py:82
-msgid "short for baptized|bap."
+msgctxt "short for baptized"
+msgid "bap."
 msgstr "кр."
 
 #: ../gramps/plugins/view/pedigreeview.py:83
 #, fuzzy
-msgid "short for christened|chr."
+msgctxt "short for christened"
+msgid "chr."
 msgstr "покр."
 
 #: ../gramps/plugins/view/pedigreeview.py:84
-msgid "short for buried|bur."
+msgctxt "short for buried"
+msgid "bur."
 msgstr "погр."
 
 #: ../gramps/plugins/view/pedigreeview.py:85
-msgid "short for cremated|crem."
+msgctxt "short for cremated"
+msgid "crem."
 msgstr "крем."
 
 #: ../gramps/plugins/view/pedigreeview.py:1205
@@ -37637,7 +37993,8 @@ msgstr "Затруднено виждане"
 
 #: ../gramps/plugins/webreport/basepage.py:1521
 #: ../gramps/plugins/webreport/basepage.py:1692
-msgid "Html|Home"
+msgctxt "Html"
+msgid "Home"
 msgstr "Html|Home"
 
 #: ../gramps/plugins/webreport/basepage.py:1534
@@ -37816,7 +38173,8 @@ msgstr ""
 "над изображението им. Щракнете два пъти върху него за да ги видите изцяло.  "
 
 #: ../gramps/plugins/webreport/media.py:228
-msgid "Media | Name"
+msgctxt "Media "
+msgid " Name"
 msgstr "Наименование"
 
 #: ../gramps/plugins/webreport/media.py:231
@@ -38665,7 +39023,8 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:181
 #: ../gramps/plugins/webreport/place.py:193
-msgid "Place Name | Name"
+msgctxt "Place Name "
+msgid " Name"
 msgstr " Наименование"
 
 #: ../gramps/plugins/webreport/place.py:233
@@ -38694,7 +39053,8 @@ msgstr ""
 "по име. Избирането на името на източник ще зареди страницата му."
 
 #: ../gramps/plugins/webreport/repository.py:165
-msgid "Repository |Name"
+msgctxt "Repository "
+msgid "Name"
 msgstr "Бележка на хранилище"
 
 #: ../gramps/plugins/webreport/source.py:102
@@ -38711,7 +39071,8 @@ msgstr ""
 "по име. Избирането на името на източник ще зареди страницата му."
 
 #: ../gramps/plugins/webreport/source.py:166
-msgid "Source Name|Name"
+msgctxt "Source Name"
+msgid "Name"
 msgstr "Наименование"
 
 #: ../gramps/plugins/webreport/source.py:265

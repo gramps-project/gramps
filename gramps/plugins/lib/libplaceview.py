@@ -319,7 +319,7 @@ class PlaceBaseView(ListView):
           <attribute name="label" translatable="yes">_Merge...</attribute>
         </item>
       </section>
-''' % _("action|_Edit..."),  # to use sgettext()
+''' % _("_Edit...", "action"),  # to use sgettext()
         '''
         <placeholder id='otheredit'>
         <item>
@@ -454,7 +454,7 @@ class PlaceBaseView(ListView):
         </item>
       </section>
     </menu>
-''' % _('action|_Edit...')]  # to use sgettext()
+''' % _('_Edit...', 'action')]  # to use sgettext()
 
     map_ui_menu = '''
       <menu id="MapBtnMenu">

@@ -109,8 +109,8 @@ TAG_MENU = (
 
 WIKI_HELP_PAGE = '%s_-_Filters' % \
                                 URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Organize_Tags_Window')
-WIKI_HELP_SEC2 = _('manual|New_Tag_dialog')
+WIKI_HELP_SEC = _('Organize_Tags_Window', 'manual')
+WIKI_HELP_SEC2 = _('New_Tag_dialog', 'manual')
 
 #-------------------------------------------------------------------------
 #

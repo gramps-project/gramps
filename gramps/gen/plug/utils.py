@@ -258,7 +258,7 @@ def available_updates():
                 if "new" in whattypes:
                     if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
                          plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
-                        addon_update_list.append((_("updates|New"),
+                        addon_update_list.append((_("New", "updates"),
                                                   "%s/download/%s" %
                                                   (config.get("behavior.addons-url"),
                                                    plugin_dict["z"]),

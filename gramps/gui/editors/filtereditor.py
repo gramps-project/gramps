@@ -81,9 +81,9 @@ from gramps.gen.config import config
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Add_Rule_dialog')
-WIKI_HELP_SEC2 = _('manual|Define_Filter_dialog')
-WIKI_HELP_SEC3 = _('manual|Custom_Filters')
+WIKI_HELP_SEC = _('Add_Rule_dialog', 'manual')
+WIKI_HELP_SEC2 = _('Define_Filter_dialog', 'manual')
+WIKI_HELP_SEC3 = _('Custom_Filters', 'manual')
 
 # dictionary mapping FILTER_TYPE of views to Filter window name
 _TITLES = {

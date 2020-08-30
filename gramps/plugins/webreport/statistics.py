@@ -142,7 +142,7 @@ class StatisticsPage(BasePage):
                          self.colon + "%d" % mobjects, inline=True)
             sec3 += Html("br", self._("Total size of media objects") +
                          self.colon +
-                         "%8s %s" % (mbytes, self._("Megabyte|MB")),
+                         "%8s %s" % (mbytes, self._("MB", "Megabyte")),
                          inline=True)
             sec3 += Html("br", self._("Missing Media Objects") +
                          self.colon + "%d" % len(notfound), inline=True)

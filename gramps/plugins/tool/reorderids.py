@@ -61,7 +61,7 @@ from gramps.gui.widgets import MonitoredCheckbox, MonitoredEntry
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Reorder_Gramps_ID')
+WIKI_HELP_SEC = _('Reorder_Gramps_ID', 'manual')
 
 PREFIXES = {'person': 'i', 'family': 'f', 'event': 'e', 'place': 'p',
             'source': 's', 'citation': 'c', 'repository': 'r',

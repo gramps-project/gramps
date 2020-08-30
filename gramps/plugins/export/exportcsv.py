@@ -353,7 +353,7 @@ class CSVWriter:
                 self.write_csv(
                     _("Person"), _("Surname"), _("Given"),
                     _("Call"), _("Suffix"), _("Prefix"),
-                    _("Person|Title"), _("Gender"),
+                    _("Title", "Person"), _("Gender"),
                     _("Birth date"), _("Birth place"), _("Birth source"),
                     _("Baptism date"), _("Baptism place"), _("Baptism source"),
                     _("Death date"), _("Death place"), _("Death source"),

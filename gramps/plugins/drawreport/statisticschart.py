@@ -318,8 +318,8 @@ class _options:
     ]
 
 
-def _T_(value):  # enable deferred translations (see Python docs 22.1.3.4)
-    return value
+def _T_(value, context=''): # enable deferred translations
+    return "%s\x04%s" % (context, value) if context else value
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 
@@ -335,7 +335,7 @@ class Extract:
         """Methods for extracting statistical data from the database"""
         # key, non-localized name, localized name, type method, data method
         self.extractors = {
-            'data_title':  ("Title", _T_("person|Title"),
+            'data_title':  ("Title", _T_("Title", "person"),
                             self.get_person, self.get_title),
             'data_sname':  ("Surname", _T_("Surname"),
                             self.get_person, self.get_surname),

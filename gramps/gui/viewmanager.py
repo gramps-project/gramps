@@ -1751,7 +1751,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         hbox.pack_start(label, False, True, 0)
         include = Gtk.RadioButton.new_with_mnemonic_from_widget(
             None, "%s (%s %s)" % (_("Include"),
-                                  mbytes, _("Megabyte|MB")))
+                                  mbytes, _("MB", "Megabyte")))
         exclude = Gtk.RadioButton.new_with_mnemonic_from_widget(include,
                                                                 _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget,

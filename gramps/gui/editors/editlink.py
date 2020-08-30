@@ -46,7 +46,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|Link_Editor')
+WIKI_HELP_SEC = _('Link_Editor', 'manual')
 
 WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE, CITATION = list(range(10))
 OBJECT_MAP = {

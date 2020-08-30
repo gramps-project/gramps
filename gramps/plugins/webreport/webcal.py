@@ -1564,10 +1564,10 @@ return false;
             if self.author and self.email:
                 bemail = '<a href="mailto:' + self.email + '?subject='
                 eemail = '">' + self.author + '</a>'
-                amsg = self._('the "WebCal" will be the potential-email'
-                              ' Subject|'
-                              '%(html_email_author_start)s'
-                              'WebCal%(html_email_author_end)s') % {
+                amsg = self._('%(html_email_author_start)s'
+                              'WebCal%(html_email_author_end)s',
+                              'the "WebCal" will be the potential-email'
+                              ' Subject') % {
                                   'html_email_author_start' : bemail,
                                   'html_email_author_end' : eemail}
             elif self.author:

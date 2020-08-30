@@ -61,7 +61,7 @@ from gramps.gen.utils.db import get_participant_from_event
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|New_Event_dialog')
+WIKI_HELP_SEC = _('New_Event_dialog', 'manual')
 
 #-------------------------------------------------------------------------
 #

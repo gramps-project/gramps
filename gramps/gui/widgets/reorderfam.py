@@ -60,7 +60,7 @@ from gramps.gen.display.name import displayer as name_displayer
 #-------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Categories"
-WIKI_HELP_SEC = _('manual|Reorder_Relationships_dialog')
+WIKI_HELP_SEC = _('Reorder_Relationships_dialog', 'manual')
 
 
 #-------------------------------------------------------------------------

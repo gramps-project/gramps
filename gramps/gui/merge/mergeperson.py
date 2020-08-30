@@ -55,7 +55,7 @@ from gramps.gen.merge import MergePersonQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _("manual|Merge_People")
+WIKI_HELP_SEC = _("Merge_People", "manual")
 _GLADE_FILE = "mergeperson.glade"
 
 # translators: needed for French, ignore otherwise

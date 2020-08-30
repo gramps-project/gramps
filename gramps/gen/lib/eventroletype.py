@@ -51,14 +51,14 @@ class EventRoleType(GrampsType):
     _DATAMAP = [
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        (PRIMARY, _("Role|Primary"), "Primary"),
+        (PRIMARY, _("Primary", "Role"), "Primary"),
         (CLERGY, _("Clergy"), "Clergy"),
         (CELEBRANT, _("Celebrant"), "Celebrant"),
         (AIDE, _("Aide"), "Aide"),
         (BRIDE, _("Bride"), "Bride"),
         (GROOM, _("Groom"), "Groom"),
         (WITNESS, _("Witness"), "Witness"),
-        (FAMILY, _("Role|Family"), "Family"),
+        (FAMILY, _("Family", "Role"), "Family"),
         (INFORMANT, _("Informant"), "Informant"),
         ]
 

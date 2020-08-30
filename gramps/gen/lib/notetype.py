@@ -79,8 +79,8 @@ class NoteType(GrampsType):
         (CITATION, _('Citation'), "Citation"),
         (REPORT_TEXT, _("Report"), "Report"),
         (HTML_CODE, _("Html code"), "Html code"),
-        (TODO, _("notetype|To Do"), "To Do"),
-        (LINK, _("notetype|Link"), "Link"),
+        (TODO, _("To Do", "notetype"), "To Do"),
+        (LINK, _("Link", "notetype"), "Link"),
         ]
 
     _DATAMAPIGNORE = [

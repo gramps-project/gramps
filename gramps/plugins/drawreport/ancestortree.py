@@ -57,9 +57,9 @@ PT2CM = utils.pt2cm
 # Constants
 #
 #------------------------------------------------------------------------
-_BORN = _("birth abbreviation|b."),
-_DIED = _("death abbreviation|d."),
-_MARR = _("marriage abbreviation|m."),
+_BORN = _("b.", "birth abbreviation"),
+_DIED = _("d.", "death abbreviation"),
+_MARR = _("m.", "marriage abbreviation"),
 
 LVL_GEN, LVL_INDX, LVL_Y = range(3)
 

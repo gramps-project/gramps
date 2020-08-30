@@ -62,7 +62,7 @@ class EditPlaceRef(EditReference):
         self.define_warn_box(self.top.get_object("warning"))
         self.define_expander(self.top.get_object("expander"))
         #self.place_name_label = self.top.get_object('place_name_label')
-        #self.place_name_label.set_text(_('place|Name:'))
+        #self.place_name_label.set_text(_('Name:', 'place'))
 
         tblref = self.top.get_object('table64')
         notebook = self.top.get_object('notebook_ref')

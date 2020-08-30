@@ -163,7 +163,7 @@ class SourcePages(BasePage):
                 header_row = [
                     (self._("Number"), "ColumnRowLabel"),
                     (self._("Author"), "ColumnAuthor"),
-                    (self._("Source Name|Name"), "ColumnName")]
+                    (self._("Name", "Source Name"), "ColumnName")]
 
                 trow.extend(
                     Html("th", label or "&nbsp;", class_=colclass, inline=True)

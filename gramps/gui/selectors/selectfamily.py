@@ -73,4 +73,4 @@ class SelectFamily(BaseSelector):
         return self.db.get_family_from_handle
 
     WIKI_HELP_PAGE = '%s_-_Categories' % URL_MANUAL_PAGE
-    WIKI_HELP_SEC = _('manual|Select_Family_selector')
+    WIKI_HELP_SEC = _('Select_Family_selector', 'manual')

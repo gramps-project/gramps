@@ -109,7 +109,7 @@ class WelcomeGramplet(Gramplet):
                           {'gramps_wiki_url': URL_WIKISTRING}) + '\n'
         welcome += linkst(_('Gramps online manual'),
                           URL_WIKISTRING + URL_MANUAL_PAGE +
-                          _('locale_suffix|')) + '\n'
+                          _('', 'locale_suffix')) + '\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
                           '%(gramps_home_url)scontact/' %
                           {'gramps_home_url': URL_HOMEPAGE}) + '\n\n'

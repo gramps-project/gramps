@@ -43,7 +43,7 @@ from gramps.gen.merge import MergeCitationQuery
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
-WIKI_HELP_SEC = _('manual|Merge_Citations')
+WIKI_HELP_SEC = _('Merge_Citations', 'manual')
 _GLADE_FILE = 'mergecitation.glade'
 
 #-------------------------------------------------------------------------

@@ -162,7 +162,8 @@ class RepositoryPages(BasePage):
                     Html("th", "&nbsp;", class_="ColumnRowLabel", inline=True),
                     Html("th", self._("Type"), class_="ColumnType",
                          inline=True),
-                    Html("th", self._("Repository |Name"), class_="ColumnName",
+                    Html("th", self._("Name", "Repository "),
+                         class_="ColumnName",
                          inline=True)
                     )
                 thead += trow

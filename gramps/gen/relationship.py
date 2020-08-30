@@ -2171,58 +2171,58 @@ class RelationshipCalculator:
             elif gender == FEMALE:
                 return trans_text("wife")
             else:
-                return trans_text("gender unknown|spouse")
+                return trans_text("spouse", "gender unknown")
         elif spouse_type == self.PARTNER_EX_MARRIED:
             if gender == MALE:
                 return trans_text("ex-husband")
             elif gender == FEMALE:
                 return trans_text("ex-wife")
             else:
-                return trans_text("gender unknown|ex-spouse")
+                return trans_text("ex-spouse", "gender unknown")
         elif spouse_type == self.PARTNER_UNMARRIED:
             if gender == MALE:
-                return trans_text("male,unmarried|partner")
+                return trans_text("partner", "male,unmarried")
             elif gender == FEMALE:
-                return trans_text("female,unmarried|partner")
+                return trans_text("partner", "female,unmarried")
             else:
-                return trans_text("gender unknown,unmarried|partner")
+                return trans_text("partner", "gender unknown,unmarried")
         elif spouse_type == self.PARTNER_EX_UNMARRIED:
             if gender == MALE:
-                return trans_text("male,unmarried|ex-partner")
+                return trans_text("ex-partner", "male,unmarried")
             elif gender == FEMALE:
-                return trans_text("female,unmarried|ex-partner")
+                return trans_text("ex-partner", "female,unmarried")
             else:
-                return trans_text("gender unknown,unmarried|ex-partner")
+                return trans_text("ex-partner", "gender unknown,unmarried")
         elif spouse_type == self.PARTNER_CIVIL_UNION:
             if gender == MALE:
-                return trans_text("male,civil union|partner")
+                return trans_text("partner", "male,civil union")
             elif gender == FEMALE:
-                return trans_text("female,civil union|partner")
+                return trans_text("partner", "female,civil union")
             else:
-                return trans_text("gender unknown,civil union|partner")
+                return trans_text("partner", "gender unknown,civil union")
         elif spouse_type == self.PARTNER_EX_CIVIL_UNION:
             if gender == MALE:
-                return trans_text("male,civil union|former partner")
+                return trans_text("former partner", "male,civil union")
             elif gender == FEMALE:
-                return trans_text("female,civil union|former partner")
+                return trans_text("former partner", "female,civil union")
             else:
-                return trans_text("gender unknown,civil union|former partner")
+                return trans_text("former partner", "gender unknown,civil union")
         elif spouse_type == self.PARTNER_UNKNOWN_REL:
             if gender == MALE:
-                return trans_text("male,unknown relation|partner")
+                return trans_text("partner", "male,unknown relation")
             elif gender == FEMALE:
-                return trans_text("female,unknown relation|partner")
+                return trans_text("partner", "female,unknown relation")
             else:
-                return trans_text("gender unknown,unknown relation|partner")
+                return trans_text("partner", "gender unknown,unknown relation")
         else:
             # here we have spouse_type == self.PARTNER_EX_UNKNOWN_REL
             #   or other not catched types
             if gender == MALE:
-                return trans_text("male,unknown relation|former partner")
+                return trans_text("former partner", "male,unknown relation")
             elif gender == FEMALE:
-                return trans_text("female,unknown relation|former partner")
+                return trans_text("former partner", "female,unknown relation")
             else:
-                return trans_text("gender unknown,unknown relation|former partner")
+                return trans_text("former partner", "gender unknown,unknown relation")
 
     def connect_db_signals(self, dbstate):
         """
