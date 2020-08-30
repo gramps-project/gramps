@@ -763,7 +763,7 @@ class PersonPages(BasePage):
             tracelife = "["
             seq_ = 0
             old_place_title = ""
-            links = ""
+            links = "''"
             ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
             ppl_lnk = ""
             for index in range(0, number_markers):
@@ -801,7 +801,7 @@ class PersonPages(BasePage):
                     evt_lnk = ln_str % (url, evt_date, evt_type)
                     evt_lnk += " (" + evt_date + ")"
 
-                    links += ' + "</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                    links += ' + "<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                     if index == number_markers - 1:
                         tracelife = self._create_family_tracelife(tracelife,
                                                                   placetitle,
@@ -853,7 +853,7 @@ class PersonPages(BasePage):
                         evt_lnk = ln_str % (url, date, evt_type)
                         evt_lnk += " (" + date + ")"
 
-                        links = '"</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                        links = '"<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                 elif index == number_markers-1:
                     tracelife = self._create_family_tracelife(tracelife,
                                                               placetitle,
@@ -893,7 +893,7 @@ class PersonPages(BasePage):
                         evt_lnk = ln_str % (url, evt_type, evt_type)
                         evt_lnk += " (" + date + ")"
                     if "<p>" in links:
-                        links += '"</br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
+                        links += '"<br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
                     else:
                         links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                     old_place_title = placetitle
@@ -1188,7 +1188,7 @@ class PersonPages(BasePage):
                 death = self.rlocale.get_date(dd_event.get_date_object())
             if death == "":
                 death = "..."
-            value = person_name + "<br/>*"+ birth+ "<br/>+"+ death
+            value = person_name + "<br>*"+ birth+ "<br>+"+ death
             tdval = Html("td", value, class_="name")
             table = Html("table", class_="table")
             if thumbnail_url is None:
