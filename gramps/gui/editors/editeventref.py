@@ -26,7 +26,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-
+from copy import deepcopy
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -66,7 +66,7 @@ class EditEventRef(EditReference):
     def __init__(self, state, uistate, track, event, event_ref, update):
         EditReference.__init__(self, state, uistate, track, event, event_ref,
                                update)
-        self.original = event.serialize()
+        self.original = deepcopy(event.serialize())
         self._init_event()
 
     def _local_init(self):
