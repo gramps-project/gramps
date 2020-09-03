@@ -33,7 +33,8 @@ if sys.version_info < (3, 2):
     raise SystemExit("Gramps requires Python 3.2 or later.")
 
 from distutils import log
-from distutils.core import setup, Command
+from setuptools import setup
+from distutils.core import Command
 from distutils.util import convert_path, newer
 from distutils.command.build import build as _build
 import os
@@ -400,6 +401,13 @@ setup(name = 'gramps',
       cmdclass = {'build': build, 'test': test},
       packages = packages,
       package_data = {'gramps': package_data},
+      extras_require={
+          "bsddb": ["bsddb3"],
+          "image": ["Pillow"],
+          "i18n": ["PyICU"],
+          "GUI":  ["PyGObject", "pycairo"],
+          "testing": ["jsonschema", "mock", "lxml"],
+      },
       data_files = data_files,
       scripts = ['scripts/gramps'],
       classifiers = [
