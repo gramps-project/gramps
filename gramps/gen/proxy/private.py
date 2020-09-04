@@ -1025,6 +1025,7 @@ def sanitize_event(db, event):
     copy_citation_ref_list(db, event, new_event)
     copy_notes(db, event, new_event)
     copy_media_ref_list(db, event, new_event)
+    copy_urls(db, event, new_event)
     copy_attributes(db, event, new_event)
 
     place_handle = event.get_place_handle()

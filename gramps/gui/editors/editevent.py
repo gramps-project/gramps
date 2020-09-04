@@ -48,7 +48,7 @@ from .editprimary import EditPrimary
 from .objectentries import PlaceEntry
 from ..glade import Glade
 from ..dialog import ErrorDialog
-from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab,
+from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab, WebEmbedList,
                           EventBackRefList, EventAttrEmbedList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredDataType,
                        MonitoredDate, MonitoredTagList)
@@ -201,6 +201,13 @@ class EditEvent(EditPrimary):
                                        self.track,
                                        self.obj.get_media_list())
         self._add_tab(notebook, self.gallery_list)
+
+        self.web_list = WebEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track,
+                                     self.obj.get_url_list())
+        self._add_tab(notebook, self.web_list)
+        self.track_ref_for_deletion("web_list")
 
         self.attr_list = EventAttrEmbedList(self.dbstate,
                                             self.uistate,

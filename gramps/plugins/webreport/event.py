@@ -436,6 +436,11 @@ class EventPages(BasePage):
                 if addgallery:
                     eventdetail += addgallery
 
+            # display web links
+            weblinks = self.display_url_list(event.get_url_list())
+            if weblinks is not None:
+                eventdetail += weblinks
+
             # References list
             ref_list = self.display_bkref_list(Event, event_handle)
             if ref_list is not None:

@@ -773,6 +773,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         for citation_handle in event.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
+        self.write_url_list(event.get_url_list(),index+1)
         self.write_media_list(event.get_media_list(),index+1)
 
         for tag_handle in event.get_tag_list():

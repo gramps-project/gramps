@@ -50,12 +50,37 @@ LOG = logging.getLogger(".upgrade")
 def gramps_upgrade_20(self):
     """
     Placeholder update.
+
+    1. Add web link to event objects.
     """
     length = 0
     self.set_total(length)
     self._txn_begin()
 
     # uid and place upgrade code goes here
+
+    # ---------------------------------
+    # Modify Event
+    # ---------------------------------
+    # Add new url field.
+
+    from gramps.gen.lib.event import Event
+
+    start_time = time.time()
+    for handle in self.get_event_handles():
+        event = self.get_raw_event_data(handle)
+        new_event = list(event)
+        urls_col = Event.columns.index('urls')
+        new_event = new_event[:urls_col] + [[]] + new_event[urls_col:]
+        new_event = tuple(new_event)
+        self._commit_raw(new_event, EVENT_KEY)
+        self.update()
+    LOG.debug("Url entry added to %d events in %d seconds" %
+              (self.get_number_of_events(),
+               int(time.time() - start_time)))
+    # ---------------------------------
+    
+
 
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.

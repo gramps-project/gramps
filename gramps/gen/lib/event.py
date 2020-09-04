@@ -41,6 +41,7 @@ from .primaryobj import PrimaryObject
 from .citationbase import CitationBase
 from .notebase import NoteBase
 from .mediabase import MediaBase
+from .urlbase import UrlBase
 from .attrbase import AttributeBase
 from .datebase import DateBase
 from .placebase import PlaceBase
@@ -56,7 +57,7 @@ LOG = logging.getLogger(".citation")
 # Event class
 #
 #-------------------------------------------------------------------------
-class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
+class Event(CitationBase, NoteBase, MediaBase, UrlBase, AttributeBase,
             DateBase, PlaceBase, PrimaryObject):
     """
     The Event record is used to store information about some type of
@@ -70,6 +71,23 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
     Compare this with attribute: :class:`~.attribute.Attribute`
     """
 
+    columns = (
+        'handle',          # 0
+        'gramps_id',       # 1
+        'type',            # 2
+        'date',            # 3
+        'description',     # 4
+        'place',           # 5
+        'citation_list',   # 6
+        'note_list',       # 7
+        'media_list',      # 8
+        'urls',            # 9
+        'attribute_list',  # 10
+        'change',          # 11
+        'tag_list',        # 12
+        'private'          # 13
+        )
+
     def __init__(self, source=None):
         """
         Create a new Event instance, copying from the source if present.
@@ -82,6 +100,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         MediaBase.__init__(self, source)
+        UrlBase.__init__(self)
         AttributeBase.__init__(self)
         DateBase.__init__(self, source)
         PlaceBase.__init__(self, source)
@@ -111,14 +130,20 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.__type.serialize(),
+        return (self.handle,
+                self.gramps_id,
+                self.__type.serialize(),
                 DateBase.serialize(self, no_text_date),
-                self.__description, self.place,
+                self.__description,
+                self.place,
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
+                UrlBase.serialize(self),
                 AttributeBase.serialize(self),
-                self.change, TagBase.serialize(self), self.private)
+                self.change,
+                TagBase.serialize(self),
+                self.private)
 
     @classmethod
     def get_schema(cls):
@@ -131,6 +156,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         from .attribute import Attribute
         from .date import Date
         from .mediaref import MediaRef
+        from .url import Url
         return {
             "type": "object",
             "title": _("Event"),
@@ -160,6 +186,9 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                 "media_list": {"type": "array",
                                "items": MediaRef.get_schema(),
                                "title": _("Media")},
+                "urls": {"type": "array",
+                         "items": Url.get_schema(),
+                         "title": _("Urls")},
                 "attribute_list": {"type": "array",
                                    "items": Attribute.get_schema(),
                                    "title": _("Media")},
@@ -183,15 +212,27 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                      Event object
         :type data: tuple
         """
-        (self.handle, self.gramps_id, the_type, date,
-         self.__description, self.place,
-         citation_list, note_list, media_list, attribute_list,
-         self.change, tag_list, self.private) = data
+        (self.handle,
+         self.gramps_id,
+         the_type,
+         date,
+         self.__description,
+         self.place,
+         citation_list,
+         note_list,
+         media_list,
+         urls,
+         attribute_list,
+         self.change,
+         tag_list, 
+         self.private
+        ) = data
 
         self.__type = EventType()
         self.__type.unserialize(the_type)
         DateBase.unserialize(self, date)
         MediaBase.unserialize(self, media_list)
+        UrlBase.unserialize(self, urls)
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
@@ -257,7 +298,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.media_list + self.attribute_list
+        return self.media_list + self.attribute_list + self.urls
 
     def get_citation_child_list(self):
         """
