@@ -615,6 +615,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_note_list(source.get_note_list(), index+1)
         self.write_media_list(source.get_media_list(), index+1)
         self.write_srcattribute_list(source.get_attribute_list(), index+1)
+        self.write_url_list(source.get_url_list(),index+1)
         self.write_reporef_list(source.get_reporef_list(), index+1)
 
         for tag_handle in source.get_tag_list():

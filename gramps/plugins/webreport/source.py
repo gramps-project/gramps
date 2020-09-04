@@ -287,6 +287,11 @@ class SourcePages(BasePage):
             src_data_map = self.write_srcattr(source.get_attribute_list())
             if src_data_map is not None:
                 sourcedetail += src_data_map
+                
+            # display web links
+            weblinks = self.display_url_list(source.get_url_list())
+            if weblinks is not None:
+                sourcedetail += weblinks
 
             # Source Repository list
             if inc_repositories:

@@ -925,6 +925,7 @@ def sanitize_source(db, source):
                 new_source.add_repo_reference(RepoRef(repo_ref))
 
     copy_srcattributes(db, source, new_source)
+    copy_urls(db, source, new_source)
     copy_media_ref_list(db, source, new_source)
     copy_notes(db, source, new_source)
 

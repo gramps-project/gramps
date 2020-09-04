@@ -36,6 +36,7 @@ from .mediabase import MediaBase
 from .notebase import NoteBase
 from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
+from .urlbase import UrlBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .citationbase import IndirectCitationBase
@@ -47,9 +48,26 @@ _ = glocale.translation.gettext
 # Source class
 #
 #-------------------------------------------------------------------------
-class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
-             PrimaryObject):
+class Source(MediaBase, NoteBase, SrcAttributeBase, UrlBase,
+             IndirectCitationBase, PrimaryObject):
     """A record of a source of information."""
+
+    columns = (
+        'handle',          # 0
+        'gramps_id',       # 1
+        'title',           # 2
+        'author',          # 3
+        'pubinfo',         # 4
+        'note_list',       # 5
+        'media_list',      # 6
+        'abbrev',          # 7
+        'change',          # 8
+        'attribute_list',  # 9
+        'urls',            # 10
+        'reporef_list',    # 11
+        'tag_list',        # 12
+        'private'          # 13
+        )
 
     def __init__(self):
         """Create a new Source instance."""
@@ -57,6 +75,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         MediaBase.__init__(self)
         NoteBase.__init__(self)
         SrcAttributeBase.__init__(self)
+        UrlBase.__init__(self)
         self.title = ""
         self.author = ""
         self.pubinfo = ""
@@ -67,19 +86,20 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.handle,                                       # 0
-                self.gramps_id,                                    # 1
-                str(self.title),                                  # 2
-                str(self.author),                                 # 3
-                str(self.pubinfo),                                # 4
-                NoteBase.serialize(self),                          # 5
-                MediaBase.serialize(self),                         # 6
-                str(self.abbrev),                                 # 7
-                self.change,                                       # 8
-                SrcAttributeBase.serialize(self),                  # 9
-                [rr.serialize() for rr in self.reporef_list],      # 10
-                TagBase.serialize(self),                           # 11
-                self.private)                                      # 12
+        return (self.handle,                                        # 0
+                self.gramps_id,                                     # 1
+                str(self.title),                                    # 2
+                str(self.author),                                   # 3
+                str(self.pubinfo),                                  # 4
+                NoteBase.serialize(self),                           # 5
+                MediaBase.serialize(self),                          # 6
+                str(self.abbrev),                                   # 7
+                self.change,                                        # 8
+                SrcAttributeBase.serialize(self),                   # 9
+                UrlBase.serialize(self),                            # 10
+                [rr.serialize() for rr in self.reporef_list],       # 11
+                TagBase.serialize(self),                            # 12
+                self.private)                                       # 13
 
     @classmethod
     def get_schema(cls):
@@ -90,6 +110,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :rtype: dict
         """
         from .srcattribute import SrcAttribute
+        from .url import Url
         from .reporef import RepoRef
         from .mediaref import MediaRef
         return {
@@ -122,6 +143,9 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 "attribute_list": {"type": "array",
                                    "items": SrcAttribute.get_schema(),
                                    "title": _("Source Attributes")},
+                "urls": {"type": "array",
+                         "items": Url.get_schema(),
+                         "title": _("Urls")},
                 "reporef_list": {"type": "array",
                                  "items": RepoRef.get_schema(),
                                  "title": _("Repositories")},
@@ -149,15 +173,17 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
          self.abbrev,       #  7
          self.change,       #  8
          srcattr_list,      #  9
-         reporef_list,      #  10
-         tag_list,          #  11
-         self.private       #  12
-        ) = data
+         urls,              #  10
+         reporef_list,      #  11
+         tag_list,          #  12
+         self.private       #  13
+         ) = data
 
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
         TagBase.unserialize(self, tag_list)
         SrcAttributeBase.unserialize(self, srcattr_list)
+        UrlBase.unserialize(self, urls)
         self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]
         return self
 
@@ -227,7 +253,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.media_list + self.reporef_list + self.attribute_list
+        return self.media_list + self.reporef_list + self.attribute_list + self.urls
 
     def get_citation_child_list(self):
         """
