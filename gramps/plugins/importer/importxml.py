@@ -1581,6 +1581,8 @@ class GrampsParser(UpdateCallback):
         url.type.set_from_xml_str(attrs.get('type', ''))
         if self.person:
             self.person.add_url(url)
+        elif self.family:
+            self.family.add_url(url)
         elif self.placeobj:
             self.placeobj.add_url(url)
         elif self.repo:

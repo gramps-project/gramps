@@ -42,6 +42,7 @@ from .primaryobj import PrimaryObject
 from .citationbase import CitationBase
 from .notebase import NoteBase
 from .mediabase import MediaBase
+from .urlbase import UrlBase
 from .attrbase import AttributeBase
 from .eventref import EventRef
 from .ldsordbase import LdsOrdBase
@@ -59,8 +60,8 @@ LOG = logging.getLogger(".citation")
 # Family class
 #
 #-------------------------------------------------------------------------
-class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
-             PrimaryObject):
+class Family(CitationBase, NoteBase, MediaBase, UrlBase, AttributeBase,
+             LdsOrdBase, PrimaryObject):
     """
     The Family record is the Gramps in-memory representation of the
     relationships between people. It contains all the information
@@ -77,6 +78,24 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
     to the database using the database object's commit_family function,
     or the changes will be lost.
     """
+    columns = (
+        'handle',           #0
+        'gramps_id',        #1
+        'father_handle',    #2
+        'mother_handle',    #3
+        'child_ref_list',   #4
+        'type',             #5
+        'event_ref_list',   #6
+        'media_list',       #7
+        'urls',             #8
+        'attribute_list',   #9
+        'lds_ord_list',     #10
+        'citation_list',    #11
+        'note_list',        #12
+        'change',           #13
+        'tag_list',         #14
+        'private'           #15
+        )
 
     def __init__(self):
         """
@@ -89,6 +108,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         CitationBase.__init__(self)
         NoteBase.__init__(self)
         MediaBase.__init__(self)
+        UrlBase.__init__(self)
         AttributeBase.__init__(self)
         LdsOrdBase.__init__(self)
         self.father_handle = None
@@ -116,17 +136,22 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                   be considered persistent.
         :rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.father_handle,
+        return (self.handle,
+                self.gramps_id,
+                self.father_handle,
                 self.mother_handle,
                 [cr.serialize() for cr in self.child_ref_list],
                 self.type.serialize(),
                 [er.serialize() for er in self.event_ref_list],
                 MediaBase.serialize(self),
+                UrlBase.serialize(self),
                 AttributeBase.serialize(self),
                 LdsOrdBase.serialize(self),
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, TagBase.serialize(self), self.private)
+                self.change,
+                TagBase.serialize(self),
+                self.private)
 
     @classmethod
     def get_schema(cls):
@@ -137,6 +162,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: dict
         """
         from .mediaref import MediaRef
+        from .url import Url
         from .ldsord import LdsOrd
         from .childref import ChildRef
         from .attribute import Attribute
@@ -166,6 +192,9 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 "media_list": {"type": "array",
                                "items": MediaRef.get_schema(),
                                "title": _("Media")},
+                "urls": {"type": "array",
+                         "items": Url.get_schema(),
+                         "title": _("Urls")},
                 "attribute_list": {"type": "array",
                                    "items": Attribute.get_schema(),
                                    "title": _("Attributes")},
@@ -196,10 +225,23 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Convert the data held in a tuple created by the serialize method
         back into the data in a Family structure.
         """
-        (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-         child_ref_list, the_type, event_ref_list, media_list,
-         attribute_list, lds_seal_list, citation_list, note_list,
-         self.change, tag_list, self.private) = data
+        (self.handle,
+         self.gramps_id,
+         self.father_handle,
+         self.mother_handle,
+         child_ref_list,
+         the_type,
+         event_ref_list,
+         media_list,
+         urls,
+         attribute_list,
+         lds_seal_list,
+         citation_list,
+         note_list,
+         self.change,
+         tag_list,
+         self.private
+         ) = data
 
         self.type = FamilyRelType()
         self.type.unserialize(the_type)
@@ -208,6 +250,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         self.child_ref_list = [ChildRef().unserialize(cr)
                                for cr in child_ref_list]
         MediaBase.unserialize(self, media_list)
+        UrlBase.unserialize(self, urls)
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
@@ -336,7 +379,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: list
         """
         add_list = [_f for _f in self.lds_ord_list if _f]
-        return self.media_list + self.attribute_list + add_list
+        return self.media_list + self.attribute_list + add_list + self.urls
 
     def get_citation_child_list(self):
         """

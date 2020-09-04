@@ -1098,6 +1098,7 @@ def sanitize_family(db, family):
     copy_citation_ref_list(db, family, new_family)
     copy_notes(db, family, new_family)
     copy_media_ref_list(db, family, new_family)
+    copy_urls(db, family, new_family)
     copy_attributes(db, family, new_family)
     copy_lds_ords(db, family, new_family)
 

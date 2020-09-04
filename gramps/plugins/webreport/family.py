@@ -366,6 +366,11 @@ class FamilyPages(BasePage):
                 if addgallery:
                     relationshipdetail += addgallery
 
+            # display web links
+            weblinks = self.display_url_list(family.get_url_list())
+            if weblinks is not None:
+                relationshipdetail += weblinks
+
             # Narrative subsection
             notelist = family.get_note_list()
             if notelist:

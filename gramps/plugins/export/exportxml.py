@@ -575,6 +575,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.dump_ordinance(lds_ord,index+1)
 
         self.write_media_list(family.get_media_list(),index+1)
+        self.write_url_list(family.get_url_list(),index+1)
 
         for child_ref in family.get_child_ref_list():
             self.dump_child_ref(child_ref,index+1)

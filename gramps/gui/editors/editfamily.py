@@ -67,7 +67,7 @@ from .editprimary import EditPrimary
 from .editchildref import EditChildRef
 from .editperson import EditPerson
 from .displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList,
-                         FamilyAttrEmbedList, NoteTab, GalleryTab,
+                         FamilyAttrEmbedList, NoteTab, GalleryTab, WebEmbedList,
                          FamilyLdsEmbedList, ChildModel,
                          TEXT_COL, MARKUP_COL, ICON_COL)
 from ..widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
@@ -788,6 +788,13 @@ class EditFamily(EditPrimary):
                                       self.obj.get_media_list())
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
+
+        self.web_list = WebEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track,
+                                     self.obj.get_url_list())
+        self._add_tab(notebook, self.web_list)
+        self.track_ref_for_deletion("web_list")
 
         self.lds_embed = FamilyLdsEmbedList(self.dbstate,
                                             self.uistate,

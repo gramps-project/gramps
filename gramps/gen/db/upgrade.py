@@ -50,12 +50,35 @@ LOG = logging.getLogger(".upgrade")
 def gramps_upgrade_20(self):
     """
     Placeholder update.
+
+    1. Add web link to family objects.
     """
     length = 0
     self.set_total(length)
     self._txn_begin()
 
     # uid and place upgrade code goes here
+
+    # ---------------------------------
+    # Modify Family
+    # ---------------------------------
+    # Add new url field.
+
+    from gramps.gen.lib.family import Family
+
+    start_time = time.time()
+    for handle in self.get_family_handles():
+        family = self.get_raw_family_data(handle)
+        new_family = list(family)
+        urls_col = Family.columns.index('urls')
+        new_family = new_family[:urls_col] + [[]] + new_family[urls_col:]
+        new_family = tuple(new_family)
+        self._commit_raw(new_family, FAMILY_KEY)
+        self.update()
+    LOG.debug("Url entry added to %d families in %d seconds" %
+              (self.get_number_of_families(),
+               int(time.time() - start_time)))
+    # ---------------------------------
 
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.

@@ -46,6 +46,7 @@ from .flatbasemodel import FlatBaseModel
 from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.lib.family import Family
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
@@ -106,11 +107,12 @@ class FamilyModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_father(self, data):
-        handle = data[0]
+        handle = data[Family.columns.index('handle')]
         cached, value = self.get_cached_value(handle, "FATHER")
         if not cached:
-            if data[2]:
-                person = self.db.get_person_from_handle(data[2])
+            if data[Family.columns.index('father_handle')]:
+                person = self.db.get_person_from_handle(
+                    data[Family.columns.index('father_handle')])
                 value = name_displayer.display_name(person.primary_name)
             else:
                 value = ""
@@ -118,11 +120,12 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def sort_father(self, data):
-        handle = data[0]
+        handle = data[Family.columns.index('handle')]
         cached, value = self.get_cached_value(handle, "SORT_FATHER")
         if not cached:
-            if data[2]:
-                person = self.db.get_person_from_handle(data[2])
+            if data[Family.columns.index('father_handle')]:
+                person = self.db.get_person_from_handle(
+                    data[Family.columns.index('father_handle')])
                 value = name_displayer.sorted_name(person.primary_name)
             else:
                 value = ""
@@ -130,11 +133,12 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def column_mother(self, data):
-        handle = data[0]
+        handle = data[Family.columns.index('handle')]
         cached, value = self.get_cached_value(handle, "MOTHER")
         if not cached:
-            if data[3]:
-                person = self.db.get_person_from_handle(data[3])
+            if data[Family.columns.index('mother_handle')]:
+                person = self.db.get_person_from_handle(
+                    data[Family.columns.index('mother_handle')])
                 value = name_displayer.display_name(person.primary_name)
             else:
                 value = ""
@@ -142,11 +146,12 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def sort_mother(self, data):
-        handle = data[0]
+        handle = data[Family.columns.index('handle')]
         cached, value = self.get_cached_value(handle, "SORT_MOTHER")
         if not cached:
-            if data[3]:
-                person = self.db.get_person_from_handle(data[3])
+            if data[Family.columns.index('mother_handle')]:
+                person = self.db.get_person_from_handle(
+                    data[Family.columns.index('mother_handle')])
                 value = name_displayer.sorted_name(person.primary_name)
             else:
                 value = ""
@@ -154,13 +159,14 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def column_type(self, data):
-        return str(FamilyRelType(data[5]))
+        return str(FamilyRelType(data[Family.columns.index('type')]))
 
     def column_marriage(self, data):
-        handle = data[0]
+        handle = data[Family.columns.index('handle')]
         cached, value = self.get_cached_value(handle, "MARRIAGE")
         if not cached:
-            family = self.db.get_family_from_handle(data[0])
+            family = self.db.get_family_from_handle(
+                data[Family.columns.index('handle')])
             event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
             if event:
                 if event.date.format:
@@ -175,10 +181,11 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def sort_marriage(self, data):
-        handle = data[0]
+        handle = data[Family.columns.index('handle')]
         cached, value = self.get_cached_value(handle, "SORT_MARRIAGE")
         if not cached:
-            family = self.db.get_family_from_handle(data[0])
+            family = self.db.get_family_from_handle(
+                data[Family.columns.index('handle')])
             event = get_marriage_or_fallback(self.db, family)
             if event:
                 value = "%09d" % event.date.get_sort_value()
@@ -188,20 +195,20 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def column_id(self, data):
-        return data[1]
+        return data[Family.columns.index('gramps_id')]
 
     def column_private(self, data):
-        if data[14]:
+        if data[Family.columns.index('private')]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
 
     def sort_change(self, data):
-        return "%012x" % data[12]
+        return "%012x" % data[Family.columns.index('change')]
 
     def column_change(self, data):
-        return format_time(data[12])
+        return format_time(data[Family.columns.index('change')])
 
     def get_tag_name(self, tag_handle):
         """
@@ -217,12 +224,12 @@ class FamilyModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data[Family.columns.index('handle')]
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[13]:
+            for handle in data[Family.columns.index('tag_list')]:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -235,6 +242,7 @@ class FamilyModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[13]))
+        tag_list = list(map(self.get_tag_name,
+                            data[Family.columns.index('tag_list')]))
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
