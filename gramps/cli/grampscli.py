@@ -128,7 +128,7 @@ class CLIDbLoader:
         """
         pass
 
-    def read_file(self, filename, username, password):
+    def read_file(self, filename, username, password, mode=None):
         """
         This method takes care of changing database, and loading the data.
         In 3.0 we only allow reading of real databases of filetype
@@ -143,16 +143,17 @@ class CLIDbLoader:
         should enable signals, as well as finish up with other UI goodies.
         """
 
-        if os.path.exists(filename):
-            if not os.access(filename, os.W_OK):
-                mode = "r"
-                self._warn(_('Read only database'),
-                           _('You do not have write access '
-                             'to the selected file.'))
+        if mode is None:
+            if os.path.exists(filename):
+                if not os.access(filename, os.W_OK):
+                    mode = "r"
+                    self._warn(_('Read only database'),
+                            _('You do not have write access '
+                                'to the selected file.'))
+                else:
+                    mode = "w"
             else:
-                mode = "w"
-        else:
-            mode = 'w'
+                mode = 'w'
 
         dbid_path = os.path.join(filename, DBBACKEND)
         if os.path.isfile(dbid_path):
@@ -211,11 +212,11 @@ class CLIManager:
         self._pmgr = BasePluginManager.get_instance()
         self.user = user
 
-    def open_activate(self, path, username=None, password=None):
+    def open_activate(self, path, username=None, password=None, mode=None):
         """
         Open and make a family tree active
         """
-        self._read_recent_file(path, username, password)
+        self._read_recent_file(path, username, password, mode=mode)
 
     def _errordialog(self, title, errormessage):
         """
@@ -224,7 +225,7 @@ class CLIManager:
         print(_('ERROR: %s') % errormessage, file=sys.stderr)
         sys.exit(1)
 
-    def _read_recent_file(self, filename, username=None, password=None):
+    def _read_recent_file(self, filename, username=None, password=None, mode=None):
         """
         Called when a file needs to be loaded
         """
@@ -245,7 +246,7 @@ class CLIManager:
                   "that the database is not in use."))
             return
 
-        if self.db_loader.read_file(filename, username, password):
+        if self.db_loader.read_file(filename, username, password, mode=mode):
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:
