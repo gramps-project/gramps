@@ -50,12 +50,35 @@ LOG = logging.getLogger(".upgrade")
 def gramps_upgrade_20(self):
     """
     Placeholder update.
+
+    1. Add web link to citation objects.
     """
     length = 0
     self.set_total(length)
     self._txn_begin()
 
     # uid and place upgrade code goes here
+
+    # ---------------------------------
+    # Modify Citation
+    # ---------------------------------
+    # Add new url field.
+
+    from gramps.gen.lib.citation import Citation
+
+    start_time = time.time()
+    for handle in self.get_citation_handles():
+        citation = self.get_raw_citation_data(handle)
+        new_citation = list(citation)
+        urls_col = Citation.columns.index('urls')
+        new_citation = new_citation[:urls_col] + [[]] + new_citation[urls_col:]
+        new_citation = tuple(new_citation)
+        self._commit_raw(new_citation, CITATION_KEY)
+        self.update()
+    LOG.debug("Url entry added to %d citations in %d seconds" %
+              (self.get_number_of_citations(),
+               int(time.time() - start_time)))
+    # ---------------------------------
 
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.
@@ -258,7 +281,7 @@ def gramps_upgrade_17(self):
     for handle in self.get_citation_handles():
         citation = self.get_raw_citation_data(handle)
         (handle, gramps_id, datelist, page, confidence, source_handle,
-            notelist, medialist, datamap, change, taglist, private) = citation
+         notelist, medialist, datamap, change, taglist, private) = citation
         srcattributelist = upgrade_datamap_17(datamap)
         new_citation = (handle, gramps_id, datelist, page, confidence,
                         source_handle, notelist, medialist, srcattributelist,

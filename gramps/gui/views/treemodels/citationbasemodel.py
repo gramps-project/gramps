@@ -44,34 +44,10 @@ from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
+from gramps.gen.lib.src import Source
+#from gramps.gen.lib.citation import Citation
 
 #-------------------------------------------------------------------------
-#
-# COLUMN constants
-#
-#-------------------------------------------------------------------------
-# These are the column numbers in the serialize/unserialize interfaces in
-# the Citation object
-COLUMN_HANDLE = 0
-COLUMN_ID = 1
-COLUMN_DATE = 2
-COLUMN_PAGE = 3
-COLUMN_CONFIDENCE = 4
-COLUMN_SOURCE = 5
-COLUMN_CHANGE = 9
-COLUMN_TAGS = 10
-COLUMN_PRIV = 11
-
-# Data for the Source object
-COLUMN2_HANDLE = 0
-COLUMN2_ID = 1
-COLUMN2_TITLE = 2
-COLUMN2_AUTHOR = 3
-COLUMN2_PUBINFO = 4
-COLUMN2_ABBREV = 7
-COLUMN2_CHANGE = 8
-COLUMN2_TAGS = 11
-COLUMN2_PRIV = 12
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -85,7 +61,7 @@ class CitationBaseModel:
 # Fields access when 'data' is a Citation
 
     def citation_date(self, data):
-        if data[COLUMN_DATE]:
+        if data[Citation.columns.index('date')]:
             citation = Citation()
             citation.unserialize(data)
             date_str = get_date(citation)
@@ -98,7 +74,7 @@ class CitationBaseModel:
         return ''
 
     def citation_sort_date(self, data):
-        if data[COLUMN_DATE]:
+        if data[Citation.columns.index('date')]:
             citation = Citation()
             citation.unserialize(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
@@ -109,21 +85,21 @@ class CitationBaseModel:
         return ''
 
     def citation_id(self, data):
-        return data[COLUMN_ID]
+        return data[Citation.columns.index('gramps_id')]
 
     def citation_page(self, data):
-        return data[COLUMN_PAGE]
+        return data[Citation.columns.index('page')]
 
     def citation_sort_confidence(self, data):
-        if data[COLUMN_CONFIDENCE]:
-            return str(data[COLUMN_CONFIDENCE])
+        if data[Citation.columns.index('confidence')]:
+            return str(data[Citation.columns.index('confidence')])
         return ''
 
     def citation_confidence(self, data):
-        return _(conf_strings[data[COLUMN_CONFIDENCE]])
+        return _(conf_strings[data[Citation.columns.index('confidence')]])
 
     def citation_private(self, data):
-        if data[COLUMN_PRIV]:
+        if data[Citation.columns.index('private')]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
@@ -133,7 +109,8 @@ class CitationBaseModel:
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+        tag_list = list(map(self.get_tag_name,
+                            data[Citation.columns.index('tag_list')]))
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
@@ -141,12 +118,12 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data[Citation.columns.index('handle')]
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[COLUMN_TAGS]:
+            for handle in data[Citation.columns.index('tag_list')]:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -156,16 +133,16 @@ class CitationBaseModel:
         return tag_color
 
     def citation_change(self, data):
-        return format_time(data[COLUMN_CHANGE])
+        return format_time(data[Citation.columns.index('change')])
 
     def citation_sort_change(self, data):
-        return "%012x" % data[COLUMN_CHANGE]
+        return "%012x" % data[Citation.columns.index('change')]
 
     def citation_source(self, data):
-        return data[COLUMN_SOURCE]
+        return data[Citation.columns.index('source_handle')]
 
     def citation_src_title(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_TITLE")
         if not cached:
             try:
@@ -177,7 +154,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_id(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_ID")
         if not cached:
             try:
@@ -189,7 +166,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_auth(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_AUTH")
         if not cached:
             try:
@@ -201,7 +178,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_abbr(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_ABBR")
         if not cached:
             try:
@@ -213,7 +190,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_pinfo(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_PINFO")
         if not cached:
             try:
@@ -225,7 +202,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_private(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_PRIVATE")
         if not cached:
             try:
@@ -241,7 +218,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_tags(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_TAGS")
         if not cached:
             try:
@@ -255,7 +232,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_chan(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_CHAN")
         if not cached:
             try:
@@ -267,7 +244,7 @@ class CitationBaseModel:
         return value
 
     def citation_src_sort_change(self, data):
-        source_handle = data[COLUMN_SOURCE]
+        source_handle = data[Citation.columns.index('source_handle')]
         cached, value = self.get_cached_value(source_handle, "SRC_CHAN")
         if not cached:
             try:
@@ -281,22 +258,22 @@ class CitationBaseModel:
 # Fields access when 'data' is a Source
 
     def source_src_title(self, data):
-        return data[COLUMN2_TITLE]
+        return data[Source.columns.index('title')]
 
     def source_src_id(self, data):
-        return data[COLUMN2_ID]
+        return data[Source.columns.index('gramps_id')]
 
     def source_src_auth(self, data):
-        return data[COLUMN2_AUTHOR]
+        return data[Source.columns.index('author')]
 
     def source_src_abbr(self, data):
-        return data[COLUMN2_ABBREV]
+        return data[Source.columns.index('abbrev')]
 
     def source_src_pinfo(self, data):
-        return data[COLUMN2_PUBINFO]
+        return data[Source.columns.index('pubinfo')]
 
     def source_src_private(self, data):
-        if data[COLUMN2_PRIV]:
+        if data[Source.columns.index('private')]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
@@ -306,7 +283,7 @@ class CitationBaseModel:
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[COLUMN2_TAGS]))
+        tag_list = list(map(self.get_tag_name, data[Source.columns.index('tag_list')]))
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
@@ -314,12 +291,12 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data[Source.columns.index('handle')]
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[COLUMN2_TAGS]:
+            for handle in data[Source.columns.index('tag_list')]:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -329,10 +306,10 @@ class CitationBaseModel:
         return tag_color
 
     def source_src_chan(self, data):
-        return format_time(data[COLUMN2_CHANGE])
+        return format_time(data[Source.columns.index('change')])
 
     def source_sort2_change(self, data):
-        return "%012x" % data[COLUMN2_CHANGE]
+        return "%012x" % data[Source.columns.index('change')]
 
     def dummy_sort_key(self, data):
         # dummy sort key for columns that don't have data

@@ -597,6 +597,7 @@ class GrampsXmlWriter(UpdateCallback):
                                citation.get_confidence_level(), index+1)
         self.write_note_list(citation.get_note_list(), index+1)
         self.write_media_list(citation.get_media_list(), index+1)
+        self.write_url_list(citation.get_url_list(),index+1)
         self.write_srcattribute_list(citation.get_attribute_list(), index+1)
         self.write_ref("sourceref", citation.get_reference_handle(), index+1)
 

@@ -51,7 +51,7 @@ from gramps.gen.lib import Citation, NoteType, Source
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 from .objectentries import SourceEntry
-from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
+from .displaytabs import (NoteTab, GalleryTab, WebEmbedList, SrcAttrEmbedList,
                           CitationBackRefList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                        MonitoredDate, MonitoredTagList)
@@ -245,6 +245,14 @@ class EditCitation(EditPrimary):
                        self.obj.get_media_list())
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
+
+        self.web_list = WebEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track,
+                                     self.obj.get_url_list())
+        self._add_tab(notebook, self.web_list)
+        self.track_ref_for_deletion("web_list")
+        
 
         self.attr_tab = SrcAttrEmbedList(self.dbstate, self.uistate, self.track,
                           self.obj.get_attribute_list())

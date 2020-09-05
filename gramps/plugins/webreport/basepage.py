@@ -2353,6 +2353,17 @@ class BasePage: # pylint: disable=C1001
                                             'str1' : str(this_note.get_type()),
                                             'str2' : note_format
                                             })
+                    for url in sref.get_url_list():
+                        tmp += Html("li",
+                                    _("%(str1)s: %(str2)s") % {
+                                        'str1' : str(url.get_type()),
+                                        'str2' : Html("p", html_escape(
+                                            url.get_description()))
+                                        + (
+                                            Html("a", self._(" [Click to Go]"),
+                                                 href=url.get_path(),
+                                                 title=url.get_path()))
+                                        })
                     if tmp:
                         cit_ref_li += tmp
                         ordered1 += cit_ref_li

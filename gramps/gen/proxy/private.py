@@ -773,6 +773,7 @@ def sanitize_citation(db, citation):
     copy_srcattributes(db, citation, new_citation)
     copy_notes(db, citation, new_citation)
     copy_media_ref_list(db, citation, new_citation)
+    copy_urls(db, citation, new_citation)
 
     return new_citation
 

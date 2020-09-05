@@ -39,6 +39,7 @@ import logging
 #-------------------------------------------------------------------------
 from .primaryobj import PrimaryObject
 from .mediabase import MediaBase
+from .urlbase import UrlBase
 from .notebase import NoteBase
 from .datebase import DateBase
 from .tagbase import TagBase
@@ -55,7 +56,7 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
-               DateBase, PrimaryObject):
+               UrlBase, DateBase, PrimaryObject):
     """
     A record of a citation of a source of information.
 
@@ -63,6 +64,22 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     The data provided in the <<SOURCE_CITATION>> structure is source-related
     information specific to the data being cited.
     """
+
+    columns = (
+        'handle',           # 0
+        'gramps_id',        # 1
+        'date',             # 2
+        'page',             # 3
+        'confidence',       # 4
+        'source_handle',    # 5
+        'note_list',        # 6
+        'media_list',       # 7
+        'urls',             # 8
+        'attribute_list',   # 9
+        'change',           # 10
+        'tag_list',         # 11
+        'private'           # 12
+        )
 
     CONF_VERY_HIGH = 4
     CONF_HIGH = 3
@@ -73,13 +90,14 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     def __init__(self):
         """Create a new Citation instance."""
         PrimaryObject.__init__(self)
-        MediaBase.__init__(self)                       #  7
-        NoteBase.__init__(self)                        #  6
-        DateBase.__init__(self)                        #  2
-        self.source_handle = None                      #  5
-        self.page = ""                                 #  3
-        self.confidence = Citation.CONF_NORMAL         #  4
-        SrcAttributeBase.__init__(self)                #  8
+        MediaBase.__init__(self)
+        UrlBase.__init__(self)
+        NoteBase.__init__(self)
+        DateBase.__init__(self)
+        self.source_handle = None
+        self.page = ""
+        self.confidence = Citation.CONF_NORMAL
+        SrcAttributeBase.__init__(self)
 
     @classmethod
     def get_schema(cls):
@@ -91,6 +109,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         from .srcattribute import SrcAttribute
         from .mediaref import MediaRef
+        from .url import Url
         from .date import Date
         return {
             "type": "object",
@@ -120,6 +139,9 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 "media_list": {"type": "array",
                                "items": MediaRef.get_schema(),
                                "title": _("Media")},
+                "urls": {"type": "array",
+                         "items": Url.get_schema(),
+                         "title": _("Urls")},
                 "attribute_list": {"type": "array",
                                    "items": SrcAttribute.get_schema(),
                                    "title": _("Source Attributes")},
@@ -138,18 +160,19 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.handle,                           #  0
-                self.gramps_id,                        #  1
-                DateBase.serialize(self, no_text_date),#  2
-                str(self.page),                       #  3
-                self.confidence,                       #  4
-                self.source_handle,                    #  5
-                NoteBase.serialize(self),              #  6
-                MediaBase.serialize(self),             #  7
-                SrcAttributeBase.serialize(self),      #  8
-                self.change,                           #  9
-                TagBase.serialize(self),               # 10
-                self.private)                          # 11
+        return (self.handle,                            #  0
+                self.gramps_id,                         #  1
+                DateBase.serialize(self, no_text_date), #  2
+                str(self.page),                         #  3
+                self.confidence,                        #  4
+                self.source_handle,                     #  5
+                NoteBase.serialize(self),               #  6
+                MediaBase.serialize(self),              #  7
+                UrlBase.serialize(self),                #  8
+                SrcAttributeBase.serialize(self),       #  9
+                self.change,                            # 10
+                TagBase.serialize(self),                # 11
+                self.private)                           # 12
 
     def unserialize(self, data):
         """
@@ -164,15 +187,17 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
          self.source_handle,                           #  5
          note_list,                                    #  6
          media_list,                                   #  7
-         srcattr_list,                                 #  8
-         self.change,                                  #  9
-         tag_list,                                     # 10
-         self.private                                  # 11
+         urls,                                         #  8
+         srcattr_list,                                 #  9
+         self.change,                                  # 19
+         tag_list,                                     # 11
+         self.private                                  # 12
         ) = data
 
         DateBase.unserialize(self, date)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
+        UrlBase.unserialize(self, urls)
         TagBase.unserialize(self, tag_list)
         SrcAttributeBase.unserialize(self, srcattr_list)
         return self
@@ -252,7 +277,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.media_list + self.attribute_list
+        return self.media_list + self.attribute_list + self.urls
 
     def get_note_child_list(self):
         """

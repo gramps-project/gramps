@@ -51,6 +51,22 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
              PrimaryObject):
     """A record of a source of information."""
 
+    columns = (
+        'handle',          # 0
+        'gramps_id',       # 1
+        'title',           # 2
+        'author',          # 3
+        'pubinfo',         # 4
+        'note_list',       # 5
+        'media_list',      # 6
+        'abbrev',          # 7
+        'change',          # 8
+        'attribute_list',  # 9
+        'reporef_list',    # 10
+        'tag_list',        # 11
+        'private'          # 12
+        )
+
     def __init__(self):
         """Create a new Source instance."""
         PrimaryObject.__init__(self)
