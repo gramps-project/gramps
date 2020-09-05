@@ -148,8 +148,8 @@ class CLIDbLoader:
                 if not os.access(filename, os.W_OK):
                     mode = "r"
                     self._warn(_('Read only database'),
-                            _('You do not have write access '
-                                'to the selected file.'))
+                               _('You do not have write access '
+                                 'to the selected file.'))
                 else:
                     mode = "w"
             else:
@@ -225,7 +225,9 @@ class CLIManager:
         print(_('ERROR: %s') % errormessage, file=sys.stderr)
         sys.exit(1)
 
-    def _read_recent_file(self, filename, username=None, password=None, mode=None):
+    def _read_recent_file(
+            self, filename, username=None, password=None, mode=None
+        ):
         """
         Called when a file needs to be loaded
         """
