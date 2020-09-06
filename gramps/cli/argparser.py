@@ -54,7 +54,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 _HELP = _("""
-Usage: gramps.py [OPTION...]
+Usage: gramps [OPTION...]
   --load-modules=MODULE1,MODULE2,...     Dynamic modules to load
 
 Help options
