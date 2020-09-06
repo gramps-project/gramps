@@ -47,7 +47,7 @@ LOG = logging.getLogger(".grampscli")
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.config import config
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
-from gramps.gen.db.dbconst import DBBACKEND
+from gramps.gen.db.dbconst import DBBACKEND, DBMODE_R, DBMODE_W
 from gramps.gen.db.utils import make_database
 from gramps.gen.errors import DbError
 from gramps.gen.dbstate import DbState
@@ -128,7 +128,7 @@ class CLIDbLoader:
         """
         pass
 
-    def read_file(self, filename, username, password, mode=None):
+    def read_file(self, filename, username, password, mode=DBMODE_W):
         """
         This method takes care of changing database, and loading the data.
         In 3.0 we only allow reading of real databases of filetype
@@ -143,17 +143,11 @@ class CLIDbLoader:
         should enable signals, as well as finish up with other UI goodies.
         """
 
-        if mode is None:
-            if os.path.exists(filename):
-                if not os.access(filename, os.W_OK):
-                    mode = "r"
-                    self._warn(_('Read only database'),
-                               _('You do not have write access '
-                                 'to the selected file.'))
-                else:
-                    mode = "w"
-            else:
-                mode = 'w'
+        if os.path.exists(filename) and not os.access(filename, os.W_OK):
+            mode = DBMODE_R
+            self._warn(_('Read only database'),
+                       _('You do not have write access '
+                         'to the selected file.'))
 
         dbid_path = os.path.join(filename, DBBACKEND)
         if os.path.isfile(dbid_path):
