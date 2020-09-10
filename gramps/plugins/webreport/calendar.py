@@ -91,6 +91,23 @@ window.location.replace(url);
 }
 </script>
 """
+
+CURRENT_DAY = """
+<script type="text/javascript">
+function CurrentDay() {
+var date = new Date();
+var months = "00" + (date.getMonth() + 1);
+var days = "00" + date.getDate();
+var day = days.substr(days.length-2);
+var month = months.substr(months.length-2);
+// Get the DOM reference
+var elem = month+day;
+var contentId = document.getElementById(elem);
+contentId.style.background = "GreenYellow";
+}
+</script>
+"""
+
 #------------------------------------------------------------------------
 #
 # WebCalReport
@@ -484,7 +501,7 @@ class CalendarPage(BasePage):
                     day = week[day_col]
 
                     # start the beginning variable for <td>, table cell
-                    tcell_id = "%s%02d" % (abbr_month_name, day)
+                    tcell_id = "%02d%02d" % (month, day)
 
                     # add calendar date division
                     datediv = Html("div", day, class_="date", inline=True)
@@ -661,13 +678,19 @@ class CalendarPage(BasePage):
                 # Add xml, doctype, meta and stylesheets
                 # body has already been added to webcal  already once
                 result = self.write_header(self.title_text, cal=nr_up)
-                webcal, dummy_head, dummy_body, outerwrapper = result
+                webcal, head, dummy_body, outerwrapper = result
 
                 # Create Month Navigation Menu
                 # identify currentsection for proper highlighting
                 currentsection = _dd.long_months[month]
                 outerwrapper += self.month_navigation(nr_up, year,
                                                       currentsection)
+
+                # Set the current day background to GreenYellow
+                # To do this, we force to load a bad image
+                head += CURRENT_DAY
+                current_day = Html("img", src="", onerror='CurrentDay()')
+                outerwrapper += current_day
 
                 # build the calendar
                 content = Html("div", class_="content", id="WebCal")
