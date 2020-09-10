@@ -1361,7 +1361,7 @@ class PersonPages(BasePage):
             # We know the height in 'pixels' where every Ancestor will sit
             # precisely on an integer unit boundary.
             disp = "none" if self.report.options['toggle'] else "block"
-            with Html("div", id="toggle_anc", class_="subsection tree",
+            with Html("div", id="toggle_anc", class_="tree",
                       style="display:%s" % disp) as tree:
                 treecont += tree
                 with Html("div", id="treeContainer",
