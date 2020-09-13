@@ -23,11 +23,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard Python Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import sys
 import time
@@ -35,29 +35,65 @@ from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
 from gramps.gen.const import URL_WIKISTRING
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 import re
 import logging
 from collections import abc
+
 LOG = logging.getLogger(".ImportXML")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.mime import get_type
-from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
-                            ChildRefType, Citation, Date, DateError, Event,
-                            EventRef, EventRoleType, EventType, Family, LdsOrd,
-                            Location, Media, MediaRef, Name,
-                            NameOriginType, NameType, Note, NoteType, Person,
-                            PersonRef, Place, PlaceName, PlaceRef, PlaceType,
-                            RepoRef, Repository, Researcher, Source,
-                            SrcAttribute, SrcAttributeType, StyledText,
-                            StyledTextTag, StyledTextTagType, Surname, Tag, Url)
+from gramps.gen.lib import (
+    Address,
+    Attribute,
+    AttributeType,
+    ChildRef,
+    ChildRefType,
+    Citation,
+    Date,
+    DateError,
+    Event,
+    EventRef,
+    EventRoleType,
+    EventType,
+    Family,
+    LdsOrd,
+    Location,
+    Media,
+    MediaRef,
+    Name,
+    NameOriginType,
+    NameType,
+    Note,
+    NoteType,
+    Person,
+    PersonRef,
+    Place,
+    PlaceName,
+    PlaceRef,
+    PlaceType,
+    RepoRef,
+    Repository,
+    Researcher,
+    Source,
+    SrcAttribute,
+    SrcAttributeType,
+    StyledText,
+    StyledTextTag,
+    StyledTextTagType,
+    Surname,
+    Tag,
+    Url,
+)
 from gramps.gen.db import DbTxn
-#from gramps.gen.db.write import CLASS_TO_KEY_MAP
+
+# from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
@@ -65,25 +101,36 @@ from gramps.gen.utils.unknown import make_unknown, create_explanation_note
 from gramps.gen.utils.file import create_checksum, media_path, expand_media_path
 from gramps.gen.datehandler import parser, set_date
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
-                                   EVENT_KEY, MEDIA_KEY, PLACE_KEY,
-                                   REPOSITORY_KEY, NOTE_KEY, TAG_KEY,
-                                   CITATION_KEY, CLASS_TO_KEY_MAP)
+from gramps.gen.db.dbconst import (
+    PERSON_KEY,
+    FAMILY_KEY,
+    SOURCE_KEY,
+    EVENT_KEY,
+    MEDIA_KEY,
+    PLACE_KEY,
+    REPOSITORY_KEY,
+    NOTE_KEY,
+    TAG_KEY,
+    CITATION_KEY,
+    CLASS_TO_KEY_MAP,
+)
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.version import VERSION
 from gramps.gen.config import config
-#import gramps.plugins.lib.libgrampsxml
+
+# import gramps.plugins.lib.libgrampsxml
 from gramps.plugins.lib import libgrampsxml
 from gramps.gen.plug.utils import version_str_to_tup
 from gramps.plugins.lib.libplaceimport import PlaceImport
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Try to detect the presence of gzip
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 try:
     import gzip
+
     GZIP_OK = True
 except:
     GZIP_OK = False
@@ -91,13 +138,13 @@ except:
 PERSON_RE = re.compile(r"\s*\<person\s(.*)$")
 
 CHILD_REL_MAP = {
-    "Birth"     : ChildRefType(ChildRefType.BIRTH),
-    "Adopted"   : ChildRefType(ChildRefType.ADOPTED),
-    "Stepchild" : ChildRefType(ChildRefType.STEPCHILD),
-    "Sponsored" : ChildRefType(ChildRefType.SPONSORED),
-    "Foster"    : ChildRefType(ChildRefType.FOSTER),
-    "Unknown"   : ChildRefType(ChildRefType.UNKNOWN),
-    }
+    "Birth": ChildRefType(ChildRefType.BIRTH),
+    "Adopted": ChildRefType(ChildRefType.ADOPTED),
+    "Stepchild": ChildRefType(ChildRefType.STEPCHILD),
+    "Sponsored": ChildRefType(ChildRefType.SPONSORED),
+    "Foster": ChildRefType(ChildRefType.FOSTER),
+    "Unknown": ChildRefType(ChildRefType.UNKNOWN),
+}
 
 # feature requests 2356, 1658: avoid genitive form
 EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
@@ -107,12 +154,12 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 HANDLE = 0
 INSTANTIATED = 1
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Importing data into the currently open database.
 # Must takes care of renaming media files according to their new IDs.
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def importData(database, filename, user):
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
@@ -126,18 +173,25 @@ def importData(database, filename, user):
         if xml_file is None:
             return
 
-        if filename == '-':
+        if filename == "-":
             change = time.time()
         else:
             change = os.path.getmtime(filename)
-        if database.get_feature("skip-import-additions"): # don't add source or tags
+        if database.get_feature("skip-import-additions"):  # don't add source or tags
             parser = GrampsParser(database, user, change, None)
         else:
-            parser = GrampsParser(database, user, change,
-                                  (config.get('preferences.tag-on-import-format') if
-                                   config.get('preferences.tag-on-import') else None))
+            parser = GrampsParser(
+                database,
+                user,
+                change,
+                (
+                    config.get("preferences.tag-on-import-format")
+                    if config.get("preferences.tag-on-import")
+                    else None
+                ),
+            )
 
-        if filename != '-':
+        if filename != "-":
             linecounter = LineParser(filename)
             line_cnt = linecounter.get_count()
             person_cnt = linecounter.get_person_count()
@@ -147,61 +201,82 @@ def importData(database, filename, user):
 
         try:
             info = parser.parse(xml_file, line_cnt, person_cnt)
-        except GrampsImportError as err: # version error
+        except GrampsImportError as err:  # version error
             user.notify_error(*err.messages())
             return
         except IOError as msg:
             user.notify_error(_("Error reading %s") % filename, str(msg))
             import traceback
+
             traceback.print_exc()
             return
         except ExpatError as msg:
-            user.notify_error(_("Error reading %s") % filename,
-                        str(msg) + "\n" +
-                        _("The file is probably either corrupt or not a "
-                          "valid Gramps database."))
+            user.notify_error(
+                _("Error reading %s") % filename,
+                str(msg)
+                + "\n"
+                + _(
+                    "The file is probably either corrupt or not a "
+                    "valid Gramps database."
+                ),
+            )
             return
 
     database.readonly = read_only
     return info
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Remove extraneous spaces
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 def rs(text):
-    return ' '.join(text.split())
+    return " ".join(text.split())
+
 
 def fix_spaces(text_list):
-    return '\n'.join(map(rs, text_list))
+    return "\n".join(map(rs, text_list))
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 #
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class ImportInfo:
     """
     Class object that can hold information about the import
     """
-    keyorder = [PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
-                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY, CITATION_KEY]
+
+    keyorder = [
+        PERSON_KEY,
+        FAMILY_KEY,
+        SOURCE_KEY,
+        EVENT_KEY,
+        MEDIA_KEY,
+        PLACE_KEY,
+        REPOSITORY_KEY,
+        NOTE_KEY,
+        TAG_KEY,
+        CITATION_KEY,
+    ]
     key2data = {
-            PERSON_KEY : 0,
-            FAMILY_KEY : 1,
-            SOURCE_KEY: 2,
-            EVENT_KEY: 3,
-            MEDIA_KEY: 4,
-            PLACE_KEY: 5,
-            REPOSITORY_KEY: 6,
-            NOTE_KEY: 7,
-            TAG_KEY: 8,
-            CITATION_KEY: 9
-            }
+        PERSON_KEY: 0,
+        FAMILY_KEY: 1,
+        SOURCE_KEY: 2,
+        EVENT_KEY: 3,
+        MEDIA_KEY: 4,
+        PLACE_KEY: 5,
+        REPOSITORY_KEY: 6,
+        NOTE_KEY: 7,
+        TAG_KEY: 8,
+        CITATION_KEY: 9,
+    }
 
     def __init__(self):
         """
@@ -212,8 +287,8 @@ class ImportInfo:
         self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
         self.data_newobject = [0] * 10
         self.data_unknownobject = [0] * 10
-        self.data_families = ''
-        self.expl_note = ''
+        self.data_families = ""
+        self.expl_note = ""
         self.data_relpath = False
 
     def add(self, category, key, obj, sec_obj=None):
@@ -221,16 +296,17 @@ class ImportInfo:
         Add info of a certain category. Key is one of the predefined keys,
         while obj is an object of which information will be extracted
         """
-        if category == 'merge-candidate':
-            self.data_mergecandidate[self.key2data[key]][obj.handle] = \
-                    self._extract_mergeinfo(key, obj, sec_obj)
-        elif category == 'new-object':
+        if category == "merge-candidate":
+            self.data_mergecandidate[self.key2data[key]][
+                obj.handle
+            ] = self._extract_mergeinfo(key, obj, sec_obj)
+        elif category == "new-object":
             self.data_newobject[self.key2data[key]] += 1
-        elif category == 'unknown-object':
+        elif category == "unknown-object":
             self.data_unknownobject[self.key2data[key]] += 1
-        elif category == 'relative-path':
+        elif category == "relative-path":
             self.data_relpath = True
-        elif category == 'unlinked-family':
+        elif category == "unlinked-family":
             # This is a bit ugly because it isn't using key in the same way as
             # the rest of the categories, but it is only the calling routine
             # that really knows what the error message should be.
@@ -325,6 +401,7 @@ class ImportInfo:
 
         return txt
 
+
 class LineParser:
     def __init__(self, filename):
 
@@ -346,6 +423,7 @@ class LineParser:
         try:
             if use_gzip:
                 import io
+
                 # Bug 6255. TextIOWrapper is required for python3 to
                 #           present file contents as text, otherwise they
                 #           are read as binary. However due to a missing
@@ -356,10 +434,11 @@ class LineParser:
                 #           will not work properly, going immediately to
                 #           100%.
                 #           It should work correctly from version 3.3.
-                ofile = io.TextIOWrapper(gzip.open(filename, "rb"),
-                                         encoding='utf8', errors='replace')
+                ofile = io.TextIOWrapper(
+                    gzip.open(filename, "rb"), encoding="utf8", errors="replace"
+                )
             else:
-                ofile = open(filename, "r", encoding='utf8', errors='replace')
+                ofile = open(filename, "r", encoding="utf8", errors="replace")
 
             for line in ofile:
                 self.count += 1
@@ -378,22 +457,24 @@ class LineParser:
     def get_person_count(self):
         return self.person_count
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # ImportOpenFileContextManager
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class ImportOpenFileContextManager:
     """
     Context manager to open a file or stdin for reading.
     """
+
     def __init__(self, filename, user):
         self.filename = filename
         self.filehandle = None
         self.user = user
 
     def __enter__(self):
-        if self.filename == '-':
+        if self.filename == "-":
             try:
                 self.filehandle = sys.stdin.buffer
             except:
@@ -403,7 +484,7 @@ class ImportOpenFileContextManager:
         return self.filehandle
 
     def __exit__(self, exc_type, exc_value, traceback):
-        if self.filename != '-':
+        if self.filename != "-":
             if self.filehandle:
                 self.filehandle.close()
         return False
@@ -440,17 +521,17 @@ class ImportOpenFileContextManager:
 
         return xml_file
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Gramps database parsing class.  Derived from SAX XML parser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GrampsParser(UpdateCallback):
-
     def __init__(self, database, user, change, default_tag_format=None):
         UpdateCallback.__init__(self, user.callback)
         self.user = user
-        self.__gramps_version = 'unknown'
+        self.__gramps_version = "unknown"
         self.__xml_version = (1, 0, 0)
         self.stext_list = []
         self.scomments_list = []
@@ -476,8 +557,9 @@ class GrampsParser(UpdateCallback):
         # needed and even unwanted if data is imported in an empty family tree
         # because NarWeb urls are based on handles. Also for debugging purposes
         # it can be advantageous to preserve the orginal handle.
-        self.replace_import_handle = (self.db.get_number_of_people() > 0 and
-                                      not LOG.isEnabledFor(logging.DEBUG))
+        self.replace_import_handle = (
+            self.db.get_number_of_people() > 0 and not LOG.isEnabledFor(logging.DEBUG)
+        )
 
         # Similarly, if the data is imported into an empty family tree, we also
         # import the Researcher; if the tree was not empty, the existing
@@ -535,8 +617,7 @@ class GrampsParser(UpdateCallback):
         # List of new name formats and a dict for remapping them
         self.name_formats = []
         self.name_formats_map = {}
-        self.taken_name_format_numbers = [num[0]
-                                          for num in self.db.name_formats]
+        self.taken_name_format_numbers = [num[0] for num in self.db.name_formats]
 
         self.event = None
         self.eventref = None
@@ -547,7 +628,7 @@ class GrampsParser(UpdateCallback):
         self.surnamepat = None
         self.home = None
         self.owner = Researcher()
-        self.func_list = [None]*50
+        self.func_list = [None] * 50
         self.func_index = 0
         self.func = None
         self.witness_comment = ""
@@ -575,24 +656,27 @@ class GrampsParser(UpdateCallback):
             self.default_tag = None
 
         self.func_map = {
-            #name part
+            # name part
             "name": (self.start_name, self.stop_name),
             "first": (None, self.stop_first),
             "call": (None, self.stop_call),
-            "aka": (self.start_name, self.stop_aka),     #deprecated < 1.3.0
-            "last": (self.start_last, self.stop_last),   #deprecated in 1.4.0
+            "aka": (self.start_name, self.stop_aka),  # deprecated < 1.3.0
+            "last": (self.start_last, self.stop_last),  # deprecated in 1.4.0
             "nick": (None, self.stop_nick),
             "title": (None, self.stop_title),
             "suffix": (None, self.stop_suffix),
-            "patronymic": (self.start_patronymic, self.stop_patronymic),  #deprecated in 1.4.0
-            "familynick": (None, self.stop_familynick),  #new in 1.4.0
-            "group": (None, self.stop_group),            #new in 1.4.0, replaces attribute
-            #new in 1.4.0
+            "patronymic": (
+                self.start_patronymic,
+                self.stop_patronymic,
+            ),  # deprecated in 1.4.0
+            "familynick": (None, self.stop_familynick),  # new in 1.4.0
+            "group": (None, self.stop_group),  # new in 1.4.0, replaces attribute
+            # new in 1.4.0
             "surname": (self.start_surname, self.stop_surname),
             #
             "namemaps": (None, None),
             "name-formats": (None, None),
-            #other
+            # other
             "address": (self.start_address, self.stop_address),
             "addresses": (None, None),
             "alt_name": (None, self.stop_alt_name),
@@ -628,7 +712,7 @@ class GrampsParser(UpdateCallback):
             "type": (None, self.stop_type),
             "witness": (self.start_witness, self.stop_witness),
             "eventref": (self.start_eventref, self.stop_eventref),
-            "data_item": (self.start_data_item, None),     #deprecated in 1.6.0
+            "data_item": (self.start_data_item, None),  # deprecated in 1.6.0
             "families": (None, self.stop_families),
             "family": (self.start_family, self.stop_family),
             "rel": (self.start_rel, None),
@@ -702,8 +786,9 @@ class GrampsParser(UpdateCallback):
             "reporef": (self.start_reporef, self.stop_reporef),
             "rname": (None, self.stop_rname),
         }
-        self.grampsuri = re.compile(r"^gramps://(?P<object_class>[A-Z][a-z]+)/"
-                                    r"handle/(?P<handle>\w+)$")
+        self.grampsuri = re.compile(
+            r"^gramps://(?P<object_class>[A-Z][a-z]+)/" r"handle/(?P<handle>\w+)$"
+        )
 
     def inaugurate(self, handle, target, prim_obj):
         """
@@ -727,30 +812,36 @@ class GrampsParser(UpdateCallback):
         :returns: The handle of the primary object.
         :rtype: str
         """
-        handle = str(handle.replace('_', ''))
+        handle = str(handle.replace("_", ""))
         orig_handle = handle
-        if (orig_handle in self.import_handles and
-                target in self.import_handles[orig_handle]):
+        if (
+            orig_handle in self.import_handles
+            and target in self.import_handles[orig_handle]
+        ):
             handle = self.import_handles[handle][target][HANDLE]
             if not isinstance(prim_obj, abc.Callable):
                 # This method is called by a start_<primary_object> method.
-                get_raw_obj_data = {"person": self.db.get_raw_person_data,
-                                    "family": self.db.get_raw_family_data,
-                                    "event": self.db.get_raw_event_data,
-                                    "place": self.db.get_raw_place_data,
-                                    "source": self.db.get_raw_source_data,
-                                    "citation": self.db.get_raw_citation_data,
-                                    "repository": self.db.get_raw_repository_data,
-                                    "media": self.db.get_raw_media_data,
-                                    "note": self.db.get_raw_note_data,
-                                    "tag": self.db.get_raw_tag_data}[target]
+                get_raw_obj_data = {
+                    "person": self.db.get_raw_person_data,
+                    "family": self.db.get_raw_family_data,
+                    "event": self.db.get_raw_event_data,
+                    "place": self.db.get_raw_place_data,
+                    "source": self.db.get_raw_source_data,
+                    "citation": self.db.get_raw_citation_data,
+                    "repository": self.db.get_raw_repository_data,
+                    "media": self.db.get_raw_media_data,
+                    "note": self.db.get_raw_note_data,
+                    "tag": self.db.get_raw_tag_data,
+                }[target]
                 raw = get_raw_obj_data(handle)
                 prim_obj.unserialize(raw)
                 self.import_handles[orig_handle][target][INSTANTIATED] = True
             return handle
         elif handle in self.import_handles:
-            LOG.warning("The file you import contains duplicate handles "
-                        "which is illegal and being fixed now.")
+            LOG.warning(
+                "The file you import contains duplicate handles "
+                "which is illegal and being fixed now."
+            )
             handle = create_id()
             while handle in self.import_handles:
                 handle = create_id()
@@ -762,16 +853,18 @@ class GrampsParser(UpdateCallback):
                 while handle in self.import_handles:
                     handle = create_id()
             else:
-                has_handle_func = {"person": self.db.has_person_handle,
-                                   "family": self.db.has_family_handle,
-                                   "event": self.db.has_event_handle,
-                                   "place": self.db.has_place_handle,
-                                   "source": self.db.has_source_handle,
-                                   "citation": self.db.get_raw_citation_data,
-                                   "repository": self.db.has_repository_handle,
-                                   "media": self.db.has_media_handle,
-                                   "note": self.db.has_note_handle,
-                                   "tag": self.db.has_tag_handle}[target]
+                has_handle_func = {
+                    "person": self.db.has_person_handle,
+                    "family": self.db.has_family_handle,
+                    "event": self.db.has_event_handle,
+                    "place": self.db.has_place_handle,
+                    "source": self.db.has_source_handle,
+                    "citation": self.db.get_raw_citation_data,
+                    "repository": self.db.has_repository_handle,
+                    "media": self.db.has_media_handle,
+                    "note": self.db.has_note_handle,
+                    "tag": self.db.has_tag_handle,
+                }[target]
                 while has_handle_func(handle):
                     handle = create_id()
             self.import_handles[orig_handle] = {target: [handle, False]}
@@ -784,15 +877,17 @@ class GrampsParser(UpdateCallback):
         if target == "tag":
             self.db.add_tag(prim_obj, self.trans)
         else:
-            add_func = {"person": self.db.add_person,
-                        "family": self.db.add_family,
-                        "event": self.db.add_event,
-                        "place": self.db.add_place,
-                        "source": self.db.add_source,
-                        "citation": self.db.add_citation,
-                        "repository": self.db.add_repository,
-                        "media": self.db.add_media,
-                        "note": self.db.add_note}[target]
+            add_func = {
+                "person": self.db.add_person,
+                "family": self.db.add_family,
+                "event": self.db.add_event,
+                "place": self.db.add_place,
+                "source": self.db.add_source,
+                "citation": self.db.add_citation,
+                "repository": self.db.add_repository,
+                "media": self.db.add_media,
+                "note": self.db.add_note,
+            }[target]
             add_func(prim_obj, self.trans, set_gid=False)
         return handle
 
@@ -801,67 +896,102 @@ class GrampsParser(UpdateCallback):
         Equivalent of inaugurate but for old style XML.
         """
         if id_ is None:
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
-                "import is malformed."), _("Attributes that link the data "
-                "together are missing."))
-        id2handle_map = [self.gid2id, self.gid2fid, self.gid2sid,
-                         self.gid2eid, self.gid2oid, self.gid2pid,
-                         self.gid2rid, 'reference', self.gid2nid][key]
-        has_handle_func = [self.db.has_person_handle,
-                           self.db.has_family_handle,
-                           self.db.has_source_handle,
-                           self.db.has_event_handle,
-                           self.db.has_media_handle,
-                           self.db.has_place_handle,
-                           self.db.has_repository_handle,
-                           'reference',
-                           self.db.has_note_handle][key]
-        add_func = [self.db.add_person,
-                    self.db.add_family,
-                    self.db.add_source,
-                    self.db.add_event,
-                    self.db.add_media,
-                    self.db.add_place,
-                    self.db.add_repository,
-                    'reference',
-                    self.db.add_note][key]
-        get_raw_obj_data = [self.db.get_raw_person_data,
-                            self.db.get_raw_family_data,
-                            self.db.get_raw_source_data,
-                            self.db.get_raw_event_data,
-                            self.db.get_raw_media_data,
-                            self.db.get_raw_place_data,
-                            self.db.get_raw_repository_data,
-                            'reference', self.db.get_raw_note_data][key]
-        id2id_map = [self.idswap, self.fidswap, self.sidswap, self.eidswap,
-                     self.oidswap, self.pidswap, self.ridswap, 'reference',
-                     self.nidswap][key]
-        id2user_format = [self.db.id2user_format, self.db.fid2user_format,
-                          self.db.sid2user_format, self.db.eid2user_format,
-                          self.db.oid2user_format, self.db.pid2user_format,
-                          self.db.rid2user_format, 'reference',
-                          self.db.nid2user_format][key]
-        find_next_gramps_id = [self.db.find_next_person_gramps_id,
-                               self.db.find_next_family_gramps_id,
-                               self.db.find_next_source_gramps_id,
-                               self.db.find_next_event_gramps_id,
-                               self.db.find_next_media_gramps_id,
-                               self.db.find_next_place_gramps_id,
-                               self.db.find_next_repository_gramps_id,
-                               'reference',
-                               self.db.find_next_note_gramps_id][key]
-        has_gramps_id = [self.db.has_person_gramps_id,
-                         self.db.has_family_gramps_id,
-                         self.db.has_source_gramps_id,
-                         self.db.has_event_gramps_id,
-                         self.db.has_media_gramps_id,
-                         self.db.has_place_gramps_id,
-                         self.db.has_repository_gramps_id,
-                         'reference',
-                         self.db.has_note_gramps_id][key]
+            raise GrampsImportError(
+                _("The Gramps Xml you are trying to " "import is malformed."),
+                _("Attributes that link the data " "together are missing."),
+            )
+        id2handle_map = [
+            self.gid2id,
+            self.gid2fid,
+            self.gid2sid,
+            self.gid2eid,
+            self.gid2oid,
+            self.gid2pid,
+            self.gid2rid,
+            "reference",
+            self.gid2nid,
+        ][key]
+        has_handle_func = [
+            self.db.has_person_handle,
+            self.db.has_family_handle,
+            self.db.has_source_handle,
+            self.db.has_event_handle,
+            self.db.has_media_handle,
+            self.db.has_place_handle,
+            self.db.has_repository_handle,
+            "reference",
+            self.db.has_note_handle,
+        ][key]
+        add_func = [
+            self.db.add_person,
+            self.db.add_family,
+            self.db.add_source,
+            self.db.add_event,
+            self.db.add_media,
+            self.db.add_place,
+            self.db.add_repository,
+            "reference",
+            self.db.add_note,
+        ][key]
+        get_raw_obj_data = [
+            self.db.get_raw_person_data,
+            self.db.get_raw_family_data,
+            self.db.get_raw_source_data,
+            self.db.get_raw_event_data,
+            self.db.get_raw_media_data,
+            self.db.get_raw_place_data,
+            self.db.get_raw_repository_data,
+            "reference",
+            self.db.get_raw_note_data,
+        ][key]
+        id2id_map = [
+            self.idswap,
+            self.fidswap,
+            self.sidswap,
+            self.eidswap,
+            self.oidswap,
+            self.pidswap,
+            self.ridswap,
+            "reference",
+            self.nidswap,
+        ][key]
+        id2user_format = [
+            self.db.id2user_format,
+            self.db.fid2user_format,
+            self.db.sid2user_format,
+            self.db.eid2user_format,
+            self.db.oid2user_format,
+            self.db.pid2user_format,
+            self.db.rid2user_format,
+            "reference",
+            self.db.nid2user_format,
+        ][key]
+        find_next_gramps_id = [
+            self.db.find_next_person_gramps_id,
+            self.db.find_next_family_gramps_id,
+            self.db.find_next_source_gramps_id,
+            self.db.find_next_event_gramps_id,
+            self.db.find_next_media_gramps_id,
+            self.db.find_next_place_gramps_id,
+            self.db.find_next_repository_gramps_id,
+            "reference",
+            self.db.find_next_note_gramps_id,
+        ][key]
+        has_gramps_id = [
+            self.db.has_person_gramps_id,
+            self.db.has_family_gramps_id,
+            self.db.has_source_gramps_id,
+            self.db.has_event_gramps_id,
+            self.db.has_media_gramps_id,
+            self.db.has_place_gramps_id,
+            self.db.has_repository_gramps_id,
+            "reference",
+            self.db.has_note_gramps_id,
+        ][key]
 
-        gramps_id = self.legalize_id(id_, key, id2id_map, id2user_format,
-                                     find_next_gramps_id, has_gramps_id)
+        gramps_id = self.legalize_id(
+            id_, key, id2id_map, id2user_format, find_next_gramps_id, has_gramps_id
+        )
         handle = id2handle_map.get(gramps_id)
         if handle:
             raw = get_raw_obj_data(handle)
@@ -878,8 +1008,9 @@ class GrampsParser(UpdateCallback):
             id2handle_map[gramps_id] = handle
         return handle
 
-    def legalize_id(self, id_, key, gramps_ids, id2user_format,
-                    find_next_gramps_id, has_gramps_id):
+    def legalize_id(
+        self, id_, key, gramps_ids, id2user_format, find_next_gramps_id, has_gramps_id
+    ):
         """
         Given an import id, adjust it so that it fits with the existing data.
 
@@ -944,14 +1075,20 @@ class GrampsParser(UpdateCallback):
             if self.mediapath:
                 if not self.db.get_mediapath():
                     self.db.set_mediapath(self.mediapath)
-                elif not media_path(self.db) == expand_media_path(self.mediapath, self.db):
-                    self.user.notify_error(_("Could not change media path"),
-                        _("The opened file has media path %s, which conflicts with"
-                          " the media path of the Family Tree you import into. "
-                          "The original media path has been retained. Copy the "
-                          "files to a correct directory or change the media "
-                          "path in the Preferences."
-                         ) % self.mediapath )
+                elif not media_path(self.db) == expand_media_path(
+                    self.mediapath, self.db
+                ):
+                    self.user.notify_error(
+                        _("Could not change media path"),
+                        _(
+                            "The opened file has media path %s, which conflicts with"
+                            " the media path of the Family Tree you import into. "
+                            "The original media path has been retained. Copy the "
+                            "files to a correct directory or change the media "
+                            "path in the Preferences."
+                        )
+                        % self.mediapath,
+                    )
 
             self.fix_not_instantiated()
             self.fix_families()
@@ -969,18 +1106,18 @@ class GrampsParser(UpdateCallback):
         """
         Get the xml version of the file.
         """
-        if 'xmlns' in attrs:
-            xmlns = attrs.get('xmlns').split('/')
-            if len(xmlns)>= 2 and not xmlns[2] == 'gramps-project.org':
+        if "xmlns" in attrs:
+            xmlns = attrs.get("xmlns").split("/")
+            if len(xmlns) >= 2 and not xmlns[2] == "gramps-project.org":
                 self.__xml_version = (0, 0, 0)
             else:
                 try:
                     self.__xml_version = version_str_to_tup(xmlns[4], 3)
                 except:
-                    #leave version at 1.0.0 although it could be 0.0.0 ??
+                    # leave version at 1.0.0 although it could be 0.0.0 ??
                     pass
         else:
-            #1.0 or before xml, no dtd schema yet on
+            # 1.0 or before xml, no dtd schema yet on
             # http://www.gramps-project.org/xml/
             self.__xml_version = (0, 0, 0)
 
@@ -988,67 +1125,74 @@ class GrampsParser(UpdateCallback):
         """
         Get the Gramps version that produced the file.
         """
-        if 'sources' in attrs:
-            self.num_srcs = int(attrs['sources'])
+        if "sources" in attrs:
+            self.num_srcs = int(attrs["sources"])
         else:
             self.num_srcs = 0
-        if 'places' in attrs:
-            self.num_places = int(attrs['places'])
+        if "places" in attrs:
+            self.num_places = int(attrs["places"])
         else:
             self.num_places = 0
-        if 'version' in attrs:
-            self.__gramps_version = attrs.get('version')
+        if "version" in attrs:
+            self.__gramps_version = attrs.get("version")
 
     def stop_header(self, *dummy):
         """
         Check the version of Gramps and XML.
         """
-        xmlversion_str = '.'.join(str(i) for i in self.__xml_version)
-        if self.__gramps_version == 'unknown':
-            msg = _("The .gramps file you are importing does not contain information about "
-                    "the version of Gramps with, which it was produced.\n\n"
-                    "The file will not be imported.")
-            raise GrampsImportError(_('Import file misses Gramps version'), msg)
+        xmlversion_str = ".".join(str(i) for i in self.__xml_version)
+        if self.__gramps_version == "unknown":
+            msg = _(
+                "The .gramps file you are importing does not contain information about "
+                "the version of Gramps with, which it was produced.\n\n"
+                "The file will not be imported."
+            )
+            raise GrampsImportError(_("Import file misses Gramps version"), msg)
         if self.__xml_version > libgrampsxml.GRAMPS_XML_VERSION_TUPLE:
-            msg = _("The .gramps file you are importing was made by "
-                    "version %(newer)s of "
-                    "Gramps, while you are running an older version %(older)s. "
-                    "The file will not be imported. Please upgrade to the "
-                    "latest version of Gramps and try again." ) % {
-                    'newer' : self.__gramps_version, 'older' : VERSION }
-            raise GrampsImportError('', msg)
+            msg = _(
+                "The .gramps file you are importing was made by "
+                "version %(newer)s of "
+                "Gramps, while you are running an older version %(older)s. "
+                "The file will not be imported. Please upgrade to the "
+                "latest version of Gramps and try again."
+            ) % {"newer": self.__gramps_version, "older": VERSION}
+            raise GrampsImportError("", msg)
         if self.__xml_version < (1, 0, 0):
-            msg = _("The .gramps file you are importing was made by version "
-                    "%(oldgramps)s of Gramps, while you are running a more "
-                    "recent version %(newgramps)s.\n\n"
-                    "The file will not be imported. Please use an older version"
-                    " of Gramps that supports version %(xmlversion)s of the "
-                    "xml.\nSee\n  %(gramps_wiki_xml_url)s\n for more info."
-                    ) % {'oldgramps': self.__gramps_version,
-                        'newgramps': VERSION,
-                        'xmlversion': xmlversion_str,
-                        'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
-                        }
-            raise GrampsImportError(_('The file will not be imported'), msg)
+            msg = _(
+                "The .gramps file you are importing was made by version "
+                "%(oldgramps)s of Gramps, while you are running a more "
+                "recent version %(newgramps)s.\n\n"
+                "The file will not be imported. Please use an older version"
+                " of Gramps that supports version %(xmlversion)s of the "
+                "xml.\nSee\n  %(gramps_wiki_xml_url)s\n for more info."
+            ) % {
+                "oldgramps": self.__gramps_version,
+                "newgramps": VERSION,
+                "xmlversion": xmlversion_str,
+                "gramps_wiki_xml_url": URL_WIKISTRING + "Gramps_XML",
+            }
+            raise GrampsImportError(_("The file will not be imported"), msg)
         elif self.__xml_version < (1, 1, 0):
-            msg = _("The .gramps file you are importing was made by version "
-                    "%(oldgramps)s of Gramps, while you are running a much "
-                    "more recent version %(newgramps)s.\n\n"
-                    "Ensure after import everything is imported correctly. In "
-                    "the event of problems, please submit a bug and use an "
-                    "older version of Gramps in the meantime to import this "
-                    "file, which is version %(xmlversion)s of the xml.\nSee\n  "
-                    "%(gramps_wiki_xml_url)s\nfor more info."
-                    ) % {'oldgramps': self.__gramps_version,
-                        'newgramps': VERSION,
-                        'xmlversion': xmlversion_str,
-                        'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
-                        }
-            self.user.warn(_('Old xml file'), msg)
+            msg = _(
+                "The .gramps file you are importing was made by version "
+                "%(oldgramps)s of Gramps, while you are running a much "
+                "more recent version %(newgramps)s.\n\n"
+                "Ensure after import everything is imported correctly. In "
+                "the event of problems, please submit a bug and use an "
+                "older version of Gramps in the meantime to import this "
+                "file, which is version %(xmlversion)s of the xml.\nSee\n  "
+                "%(gramps_wiki_xml_url)s\nfor more info."
+            ) % {
+                "oldgramps": self.__gramps_version,
+                "newgramps": VERSION,
+                "xmlversion": xmlversion_str,
+                "gramps_wiki_xml_url": URL_WIKISTRING + "Gramps_XML",
+            }
+            self.user.warn(_("Old xml file"), msg)
 
     def start_lds_ord(self, attrs):
         self.ord = LdsOrd()
-        self.ord.set_type_from_xml(attrs['type'])
+        self.ord.set_type_from_xml(attrs["type"])
         self.ord.private = bool(attrs.get("priv"))
         if self.person:
             self.person.lds_ord_list.append(self.ord)
@@ -1056,16 +1200,16 @@ class GrampsParser(UpdateCallback):
             self.family.lds_ord_list.append(self.ord)
 
     def start_temple(self, attrs):
-        self.ord.set_temple(attrs['val'])
+        self.ord.set_temple(attrs["val"])
 
     def start_data_item(self, attrs):
         """
         Deprecated in 1.6.0, replaced by srcattribute
         """
-        sat = SrcAttributeType(attrs['key'])
+        sat = SrcAttributeType(attrs["key"])
         sa = SrcAttribute()
         sa.set_type(sat)
-        sa.set_value(attrs['value'])
+        sa.set_value(attrs["value"])
         if self.source:
             self.source.add_attribute(sa)
         else:
@@ -1074,30 +1218,27 @@ class GrampsParser(UpdateCallback):
     def start_status(self, attrs):
         try:
             # old xml with integer statuses
-            self.ord.set_status(int(attrs['val']))
+            self.ord.set_status(int(attrs["val"]))
         except ValueError:
             # string
-            self.ord.set_status_from_xml(attrs['val'])
+            self.ord.set_status_from_xml(attrs["val"])
 
     def start_sealed_to(self, attrs):
         """
         Add a family reference to the LDS ordinance currently processed.
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "family", Family)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), FAMILY_KEY,
-                                        Family)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "family", Family)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), FAMILY_KEY, Family)
         self.ord.set_family_handle(handle)
 
     def start_place(self, attrs):
-        """A reference to a place in an object: event or lds_ord
-        """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "place", Place)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), PLACE_KEY,
-                                        Place)
+        """A reference to a place in an object: event or lds_ord"""
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "place", Place)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), PLACE_KEY, Place)
         if self.ord:
             self.ord.set_place_handle(handle)
         elif self.event:
@@ -1109,35 +1250,39 @@ class GrampsParser(UpdateCallback):
         id, privacy and changetime.
         """
         self.placeobj = Place()
-        if 'handle' in attrs:
-            orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = (self.replace_import_handle and
-                                  self.db.has_place_handle(orig_handle))
+        if "handle" in attrs:
+            orig_handle = attrs["handle"].replace("_", "")
+            is_merge_candidate = (
+                self.replace_import_handle and self.db.has_place_handle(orig_handle)
+            )
             self.inaugurate(orig_handle, "place", self.placeobj)
-            gramps_id = self.legalize_id(attrs.get('id'), PLACE_KEY,
-                                         self.pidswap, self.db.pid2user_format,
-                                         self.db.find_next_place_gramps_id,
-                                         self.db.has_place_gramps_id)
+            gramps_id = self.legalize_id(
+                attrs.get("id"),
+                PLACE_KEY,
+                self.pidswap,
+                self.db.pid2user_format,
+                self.db.find_next_place_gramps_id,
+                self.db.has_place_gramps_id,
+            )
             self.placeobj.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_place = self.db.get_place_from_handle(orig_handle)
-                self.info.add('merge-candidate', PLACE_KEY, orig_place,
-                              self.placeobj)
+                self.info.add("merge-candidate", PLACE_KEY, orig_place, self.placeobj)
         else:
-            self.inaugurate_id(attrs.get('id'), PLACE_KEY, self.placeobj)
+            self.inaugurate_id(attrs.get("id"), PLACE_KEY, self.placeobj)
         self.placeobj.private = bool(attrs.get("priv"))
-        self.placeobj.change = int(attrs.get('change', self.change))
+        self.placeobj.change = int(attrs.get("change", self.change))
         if self.__xml_version == (1, 6, 0):
             place_name = PlaceName()
-            place_name.set_value(attrs.get('name', ''))
+            place_name.set_value(attrs.get("name", ""))
             self.placeobj.name = place_name
-        if 'type' in attrs:
-            self.placeobj.place_type.set_from_xml_str(attrs.get('type'))
-        self.info.add('new-object', PLACE_KEY, self.placeobj)
+        if "type" in attrs:
+            self.placeobj.place_type.set_from_xml_str(attrs.get("type"))
+        self.info.add("new-object", PLACE_KEY, self.placeobj)
         self.place_names = 0
 
         # Gramps LEGACY: title in the placeobj tag
-        self.placeobj.title = attrs.get('title', '')
+        self.placeobj.title = attrs.get("title", "")
         self.locations = 0
         self.update(self.p.CurrentLineNumber)
         if self.default_tag:
@@ -1149,27 +1294,29 @@ class GrampsParser(UpdateCallback):
         take up quite a bit of time"""
 
         loc = Location()
-        loc.street = attrs.get('street', '')
-        loc.locality = attrs.get('locality', '')
-        loc.city = attrs.get('city', '')
-        loc.parish = attrs.get('parish', '')
-        loc.county = attrs.get('county', '')
-        loc.state = attrs.get('state', '')
-        loc.country = attrs.get('country', '')
-        loc.postal = attrs.get('postal', '')
-        loc.phone = attrs.get('phone', '')
+        loc.street = attrs.get("street", "")
+        loc.locality = attrs.get("locality", "")
+        loc.city = attrs.get("city", "")
+        loc.parish = attrs.get("parish", "")
+        loc.county = attrs.get("county", "")
+        loc.state = attrs.get("state", "")
+        loc.country = attrs.get("country", "")
+        loc.postal = attrs.get("postal", "")
+        loc.phone = attrs.get("phone", "")
 
         if self.__xml_version < (1, 6, 0):
             if self.locations > 0:
                 self.placeobj.add_alternate_locations(loc)
             else:
-                location = (attrs.get('street', ''),
-                            attrs.get('locality', ''),
-                            attrs.get('parish', ''),
-                            attrs.get('city', ''),
-                            attrs.get('county', ''),
-                            attrs.get('state', ''),
-                            attrs.get('country', ''))
+                location = (
+                    attrs.get("street", ""),
+                    attrs.get("locality", ""),
+                    attrs.get("parish", ""),
+                    attrs.get("city", ""),
+                    attrs.get("county", ""),
+                    attrs.get("state", ""),
+                    attrs.get("country", ""),
+                )
                 self.place_import.store_location(location, self.placeobj.handle)
 
                 for level, name in enumerate(location):
@@ -1180,8 +1327,8 @@ class GrampsParser(UpdateCallback):
                 self.placeobj.set_name(place_name)
                 type_num = 7 - level if name else PlaceType.UNKNOWN
                 self.placeobj.set_type(PlaceType(type_num))
-                codes = [attrs.get('postal'), attrs.get('phone')]
-                self.placeobj.set_code(' '.join(code for code in codes if code))
+                codes = [attrs.get("postal"), attrs.get("phone")]
+                self.placeobj.set_code(" ".join(code for code in codes if code))
         else:
             self.placeobj.add_alternate_locations(loc)
 
@@ -1196,24 +1343,24 @@ class GrampsParser(UpdateCallback):
         # Parse witnesses created by older gramps
         self.in_witness = True
         self.witness_comment = ""
-        if 'name' in attrs:
+        if "name" in attrs:
             note = Note()
             note.handle = create_id()
-            note.set(_("Witness name: %s") % attrs['name'])
+            note.set(_("Witness name: %s") % attrs["name"])
             note.type.set(NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
-            #set correct change time
+            # set correct change time
             self.db.commit_note(note, self.trans, self.change)
-            self.info.add('new-object', NOTE_KEY, note)
+            self.info.add("new-object", NOTE_KEY, note)
             self.event.add_note(note.handle)
             return
 
         person = Person()
-        if 'hlink' in attrs:
-            self.inaugurate(attrs['hlink'], "person", person)
-        elif 'ref' in attrs:
-            self.inaugurate_id(attrs['ref'], PERSON_KEY, person)
+        if "hlink" in attrs:
+            self.inaugurate(attrs["hlink"], "person", person)
+        elif "ref" in attrs:
+            self.inaugurate_id(attrs["ref"], PERSON_KEY, person)
         else:
             person = None
 
@@ -1227,8 +1374,8 @@ class GrampsParser(UpdateCallback):
             self.db.commit_person(person, self.trans, self.change)
 
     def start_coord(self, attrs):
-        self.placeobj.lat = attrs.get('lat', '')
-        self.placeobj.long = attrs.get('long', '')
+        self.placeobj.lat = attrs.get("lat", "")
+        self.placeobj.long = attrs.get("long", "")
 
     def start_event(self, attrs):
         """
@@ -1241,34 +1388,38 @@ class GrampsParser(UpdateCallback):
             self.event = Event()
             self.event.handle = create_id()
             self.event.type = EventType()
-            self.event.type.set_from_xml_str(attrs['type'])
+            self.event.type.set_from_xml_str(attrs["type"])
             self.db.add_event(self.event, self.trans)
-            #set correct change time
+            # set correct change time
             self.db.commit_event(self.event, self.trans, self.change)
-            self.info.add('new-object', EVENT_KEY, self.event)
+            self.info.add("new-object", EVENT_KEY, self.event)
         else:
             # This is new event, with ID and handle already existing
             self.update(self.p.CurrentLineNumber)
             self.event = Event()
-            if 'handle' in attrs:
-                orig_handle = attrs['handle'].replace('_', '')
-                is_merge_candidate = (self.replace_import_handle and
-                                      self.db.has_event_handle(orig_handle))
+            if "handle" in attrs:
+                orig_handle = attrs["handle"].replace("_", "")
+                is_merge_candidate = (
+                    self.replace_import_handle and self.db.has_event_handle(orig_handle)
+                )
                 self.inaugurate(orig_handle, "event", self.event)
-                gramps_id = self.legalize_id(attrs.get('id'), EVENT_KEY,
-                                          self.eidswap, self.db.eid2user_format,
-                                          self.db.find_next_event_gramps_id,
-                                          self.db.has_event_gramps_id)
+                gramps_id = self.legalize_id(
+                    attrs.get("id"),
+                    EVENT_KEY,
+                    self.eidswap,
+                    self.db.eid2user_format,
+                    self.db.find_next_event_gramps_id,
+                    self.db.has_event_gramps_id,
+                )
                 self.event.set_gramps_id(gramps_id)
                 if is_merge_candidate:
                     orig_event = self.db.get_event_from_handle(orig_handle)
-                    self.info.add('merge-candidate', EVENT_KEY, orig_event,
-                                  self.event)
-            else: #old style XML
-                self.inaugurate_id(attrs.get('id'), EVENT_KEY, self.event)
+                    self.info.add("merge-candidate", EVENT_KEY, orig_event, self.event)
+            else:  # old style XML
+                self.inaugurate_id(attrs.get("id"), EVENT_KEY, self.event)
             self.event.private = bool(attrs.get("priv"))
-            self.event.change = int(attrs.get('change', self.change))
-            self.info.add('new-object', EVENT_KEY, self.event)
+            self.event.change = int(attrs.get("change", self.change))
+            self.info.add("new-object", EVENT_KEY, self.event)
         if self.default_tag:
             self.event.add_tag(self.default_tag.handle)
         return self.event
@@ -1278,16 +1429,17 @@ class GrampsParser(UpdateCallback):
         Add an event reference to the object currently processed.
         """
         self.eventref = EventRef()
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "event", Event)
-        else: # there is no old style XML
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
-                "import is malformed."), _("Any event reference must have a "
-                "'hlink' attribute."))
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "event", Event)
+        else:  # there is no old style XML
+            raise GrampsImportError(
+                _("The Gramps Xml you are trying to " "import is malformed."),
+                _("Any event reference must have a " "'hlink' attribute."),
+            )
         self.eventref.ref = handle
-        self.eventref.private = bool(attrs.get('priv'))
-        if 'role' in attrs:
-            self.eventref.role.set_from_xml_str(attrs['role'])
+        self.eventref.private = bool(attrs.get("priv"))
+        if "role" in attrs:
+            self.eventref.role.set_from_xml_str(attrs["role"])
 
         # We count here on events being already parsed prior to parsing
         # people or families. This code will fail if this is not true.
@@ -1298,13 +1450,17 @@ class GrampsParser(UpdateCallback):
         if self.family:
             self.family.add_event_ref(self.eventref)
         elif self.person:
-            if (event.type == EventType.BIRTH) \
-                   and (self.eventref.role == EventRoleType.PRIMARY) \
-                   and (self.person.get_birth_ref() is None):
+            if (
+                (event.type == EventType.BIRTH)
+                and (self.eventref.role == EventRoleType.PRIMARY)
+                and (self.person.get_birth_ref() is None)
+            ):
                 self.person.set_birth_ref(self.eventref)
-            elif (event.type == EventType.DEATH) \
-                     and (self.eventref.role == EventRoleType.PRIMARY) \
-                     and (self.person.get_death_ref() is None):
+            elif (
+                (event.type == EventType.DEATH)
+                and (self.eventref.role == EventRoleType.PRIMARY)
+                and (self.person.get_death_ref() is None)
+            ):
                 self.person.set_death_ref(self.eventref)
             else:
                 self.person.add_event_ref(self.eventref)
@@ -1314,7 +1470,7 @@ class GrampsParser(UpdateCallback):
         Add a place reference to the place currently being processed.
         """
         self.placeref = PlaceRef()
-        handle = self.inaugurate(attrs['hlink'], "place", Place)
+        handle = self.inaugurate(attrs["hlink"], "place", Place)
         self.placeref.ref = handle
         self.placeobj.add_placeref(self.placeref)
 
@@ -1322,9 +1478,9 @@ class GrampsParser(UpdateCallback):
         self.attribute = Attribute()
         self.attribute.private = bool(attrs.get("priv"))
         self.attribute.type = AttributeType()
-        if 'type' in attrs:
+        if "type" in attrs:
             self.attribute.type.set_from_xml_str(attrs["type"])
-        self.attribute.value = attrs.get("value", '')
+        self.attribute.value = attrs.get("value", "")
         if self.photo:
             self.photo.add_attribute(self.attribute)
         elif self.object:
@@ -1344,9 +1500,9 @@ class GrampsParser(UpdateCallback):
         self.srcattribute = SrcAttribute()
         self.srcattribute.private = bool(attrs.get("priv"))
         self.srcattribute.type = SrcAttributeType()
-        if 'type' in attrs:
+        if "type" in attrs:
             self.srcattribute.type.set_from_xml_str(attrs["type"])
-        self.srcattribute.value = attrs.get("value", '')
+        self.srcattribute.value = attrs.get("value", "")
         if self.source:
             self.source.add_attribute(self.srcattribute)
         elif self.citation:
@@ -1360,67 +1516,83 @@ class GrampsParser(UpdateCallback):
         """
         Add a bookmark to db.
         """
-        target = attrs.get('target')
+        target = attrs.get("target")
         if not target:
             # Old XML. Can be either handle or id reference
             # and this is guaranteed to be a person bookmark
-            if 'hlink' in attrs:
-                handle = self.inaugurate(attrs['hlink'], "person",
-                                         Person)
+            if "hlink" in attrs:
+                handle = self.inaugurate(attrs["hlink"], "person", Person)
             else:
-                handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
-                                            Person)
+                handle = self.inaugurate_id(attrs.get("ref"), PERSON_KEY, Person)
             self.db.bookmarks.append(handle)
             return
 
         # This is new XML, so we are guaranteed to have a handle ref
-        handle = attrs['hlink'].replace('_', '')
+        handle = attrs["hlink"].replace("_", "")
         handle = self.import_handles[handle][target][HANDLE]
         # Due to pre 2.2.9 bug, bookmarks might be handle of other object
         # Make sure those are filtered out.
         # Bookmarks are at end, so all handle must exist before we do bookmrks
-        if target == 'person':
-            if (self.db.get_person_from_handle(handle) is not None
-                    and handle not in self.db.bookmarks.get() ):
+        if target == "person":
+            if (
+                self.db.get_person_from_handle(handle) is not None
+                and handle not in self.db.bookmarks.get()
+            ):
                 self.db.bookmarks.append(handle)
-        elif target == 'family':
-            if (self.db.get_family_from_handle(handle) is not None
-                    and handle not in self.db.family_bookmarks.get() ):
+        elif target == "family":
+            if (
+                self.db.get_family_from_handle(handle) is not None
+                and handle not in self.db.family_bookmarks.get()
+            ):
                 self.db.family_bookmarks.append(handle)
-        elif target == 'event':
-            if (self.db.get_event_from_handle(handle) is not None
-                    and handle not in self.db.event_bookmarks.get() ):
+        elif target == "event":
+            if (
+                self.db.get_event_from_handle(handle) is not None
+                and handle not in self.db.event_bookmarks.get()
+            ):
                 self.db.event_bookmarks.append(handle)
-        elif target == 'source':
-            if (self.db.get_source_from_handle(handle) is not None
-                    and handle not in self.db.source_bookmarks.get() ):
+        elif target == "source":
+            if (
+                self.db.get_source_from_handle(handle) is not None
+                and handle not in self.db.source_bookmarks.get()
+            ):
                 self.db.source_bookmarks.append(handle)
-        elif target == 'citation':
-            if (self.db.get_citation_from_handle(handle) is not None
-                    and handle not in self.db.citation_bookmarks.get() ):
+        elif target == "citation":
+            if (
+                self.db.get_citation_from_handle(handle) is not None
+                and handle not in self.db.citation_bookmarks.get()
+            ):
                 self.db.citation_bookmarks.append(handle)
-        elif target == 'place':
-            if (self.db.get_place_from_handle(handle) is not None
-                    and handle not in self.db.place_bookmarks.get() ):
+        elif target == "place":
+            if (
+                self.db.get_place_from_handle(handle) is not None
+                and handle not in self.db.place_bookmarks.get()
+            ):
                 self.db.place_bookmarks.append(handle)
-        elif target == 'media':
-            if (self.db.get_media_from_handle(handle) is not None
-                    and handle not in self.db.media_bookmarks.get() ):
+        elif target == "media":
+            if (
+                self.db.get_media_from_handle(handle) is not None
+                and handle not in self.db.media_bookmarks.get()
+            ):
                 self.db.media_bookmarks.append(handle)
-        elif target == 'repository':
-            if (self.db.get_repository_from_handle(handle)
-                    is not None and handle not in self.db.repo_bookmarks.get()):
+        elif target == "repository":
+            if (
+                self.db.get_repository_from_handle(handle) is not None
+                and handle not in self.db.repo_bookmarks.get()
+            ):
                 self.db.repo_bookmarks.append(handle)
-        elif target == 'note':
-            if (self.db.get_note_from_handle(handle) is not None
-                    and handle not in self.db.note_bookmarks.get() ):
+        elif target == "note":
+            if (
+                self.db.get_note_from_handle(handle) is not None
+                and handle not in self.db.note_bookmarks.get()
+            ):
                 self.db.note_bookmarks.append(handle)
 
     def start_format(self, attrs):
-        number = int(attrs['number'])
-        name = attrs['name']
-        fmt_str = attrs['fmt_str']
-        active = bool(attrs.get('active', True))
+        number = int(attrs["number"])
+        name = attrs["name"]
+        fmt_str = attrs["fmt_str"]
+        active = bool(attrs.get("active", True))
 
         if number in self.taken_name_format_numbers:
             number = self.remap_name_format(number)
@@ -1428,7 +1600,7 @@ class GrampsParser(UpdateCallback):
         self.name_formats.append((number, name, fmt_str, active))
 
     def remap_name_format(self, old_number):
-        if old_number in self.name_formats_map: # This should not happen
+        if old_number in self.name_formats_map:  # This should not happen
             return self.name_formats_map[old_number]
         # Find the lowest new number not taken yet:
         new_number = -1
@@ -1448,25 +1620,29 @@ class GrampsParser(UpdateCallback):
         """
         self.update(self.p.CurrentLineNumber)
         self.person = Person()
-        if 'handle' in attrs:
-            orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = (self.replace_import_handle and
-                                  self.db.has_person_handle(orig_handle))
+        if "handle" in attrs:
+            orig_handle = attrs["handle"].replace("_", "")
+            is_merge_candidate = (
+                self.replace_import_handle and self.db.has_person_handle(orig_handle)
+            )
             self.inaugurate(orig_handle, "person", self.person)
-            gramps_id = self.legalize_id(attrs.get('id'), PERSON_KEY,
-                                        self.idswap, self.db.id2user_format,
-                                        self.db.find_next_person_gramps_id,
-                                        self.db.has_person_gramps_id)
+            gramps_id = self.legalize_id(
+                attrs.get("id"),
+                PERSON_KEY,
+                self.idswap,
+                self.db.id2user_format,
+                self.db.find_next_person_gramps_id,
+                self.db.has_person_gramps_id,
+            )
             self.person.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_person = self.db.get_person_from_handle(orig_handle)
-                self.info.add('merge-candidate', PERSON_KEY, orig_person,
-                              self.person)
-        else: # old style XML
-            self.inaugurate_id(attrs.get('id'), PERSON_KEY, self.person)
+                self.info.add("merge-candidate", PERSON_KEY, orig_person, self.person)
+        else:  # old style XML
+            self.inaugurate_id(attrs.get("id"), PERSON_KEY, self.person)
         self.person.private = bool(attrs.get("priv"))
-        self.person.change = int(attrs.get('change', self.change))
-        self.info.add('new-object', PERSON_KEY, self.person)
+        self.person.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", PERSON_KEY, self.person)
         self.convert_marker(attrs, self.person)
         if self.default_tag:
             self.person.add_tag(self.default_tag.handle)
@@ -1476,30 +1652,28 @@ class GrampsParser(UpdateCallback):
         """
         Store the home person of the database.
         """
-        if 'home' in attrs:
-            handle = self.inaugurate(attrs['home'], "person", Person)
+        if "home" in attrs:
+            handle = self.inaugurate(attrs["home"], "person", Person)
             self.home = handle
 
     def start_father(self, attrs):
         """
         Add a father reference to the family currently processed.
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "person", Person)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
-                                        Person)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "person", Person)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), PERSON_KEY, Person)
         self.family.set_father_handle(handle)
 
     def start_mother(self, attrs):
         """
         Add a mother reference to the family currently processed.
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "person", Person)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
-                                        Person)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "person", Person)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), PERSON_KEY, Person)
         self.family.set_mother_handle(handle)
 
     def start_child(self, attrs):
@@ -1509,16 +1683,14 @@ class GrampsParser(UpdateCallback):
         Here we are handling the old XML, in which
         frel and mrel belonged to the "childof" tag
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "person", Person)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), PERSON_KEY,
-                                        Person)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "person", Person)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), PERSON_KEY, Person)
 
         # If that were the case then childref_map has the childref ready
         if (self.family.handle, handle) in self.childref_map:
-            self.family.add_child_ref(
-                self.childref_map[(self.family.handle, handle)])
+            self.family.add_child_ref(self.childref_map[(self.family.handle, handle)])
 
     def start_childref(self, attrs):
         """
@@ -1528,16 +1700,16 @@ class GrampsParser(UpdateCallback):
         belong to the "childref" tag under family.
         """
         self.childref = ChildRef()
-        handle = self.inaugurate(attrs['hlink'], "person", Person)
+        handle = self.inaugurate(attrs["hlink"], "person", Person)
         self.childref.ref = handle
-        self.childref.private = bool(attrs.get('priv'))
+        self.childref.private = bool(attrs.get("priv"))
 
         mrel = ChildRefType()
-        if attrs.get('mrel'):
-            mrel.set_from_xml_str(attrs['mrel'])
+        if attrs.get("mrel"):
+            mrel.set_from_xml_str(attrs["mrel"])
         frel = ChildRefType()
-        if attrs.get('frel'):
-            frel.set_from_xml_str(attrs['frel'])
+        if attrs.get("frel"):
+            frel.set_from_xml_str(attrs["frel"])
 
         if not mrel.is_default():
             self.childref.set_mother_relation(mrel)
@@ -1550,15 +1722,16 @@ class GrampsParser(UpdateCallback):
         Add a person reference to the person currently processed.
         """
         self.personref = PersonRef()
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "person", Person)
-        else: # there is no old style XML
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
-                "import is malformed."), _("Any person reference must have a "
-                "'hlink' attribute."))
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "person", Person)
+        else:  # there is no old style XML
+            raise GrampsImportError(
+                _("The Gramps Xml you are trying to " "import is malformed."),
+                _("Any person reference must have a " "'hlink' attribute."),
+            )
         self.personref.ref = handle
-        self.personref.private = bool(attrs.get('priv'))
-        self.personref.rel = attrs['rel']
+        self.personref.private = bool(attrs.get("priv"))
+        self.personref.rel = attrs["rel"]
         self.person.add_person_ref(self.personref)
 
     def start_url(self, attrs):
@@ -1566,9 +1739,9 @@ class GrampsParser(UpdateCallback):
             return
         url = Url()
         url.path = attrs["href"]
-        url.set_description(attrs.get("description", ''))
-        url.private = bool(attrs.get('priv'))
-        url.type.set_from_xml_str(attrs.get('type', ''))
+        url.set_description(attrs.get("description", ""))
+        url.private = bool(attrs.get("priv"))
+        url.type.set_from_xml_str(attrs.get("type", ""))
         if self.person:
             self.person.add_url(url)
         elif self.placeobj:
@@ -1583,28 +1756,32 @@ class GrampsParser(UpdateCallback):
         """
         self.update(self.p.CurrentLineNumber)
         self.family = Family()
-        if 'handle' in attrs:
-            orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = (self.replace_import_handle and
-                                  self.db.has_family_handle(orig_handle))
+        if "handle" in attrs:
+            orig_handle = attrs["handle"].replace("_", "")
+            is_merge_candidate = (
+                self.replace_import_handle and self.db.has_family_handle(orig_handle)
+            )
             self.inaugurate(orig_handle, "family", self.family)
-            gramps_id = self.legalize_id(attrs.get('id'), FAMILY_KEY,
-                                        self.fidswap, self.db.fid2user_format,
-                                        self.db.find_next_family_gramps_id,
-                                        self.db.has_family_gramps_id)
+            gramps_id = self.legalize_id(
+                attrs.get("id"),
+                FAMILY_KEY,
+                self.fidswap,
+                self.db.fid2user_format,
+                self.db.find_next_family_gramps_id,
+                self.db.has_family_gramps_id,
+            )
             self.family.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_family = self.db.get_family_from_handle(orig_handle)
-                self.info.add('merge-candidate', FAMILY_KEY, orig_family,
-                              self.family)
-        else: # old style XML
-            self.inaugurate_id(attrs.get('id'), FAMILY_KEY, self.family)
+                self.info.add("merge-candidate", FAMILY_KEY, orig_family, self.family)
+        else:  # old style XML
+            self.inaugurate_id(attrs.get("id"), FAMILY_KEY, self.family)
         self.family.private = bool(attrs.get("priv"))
-        self.family.change = int(attrs.get('change', self.change))
-        self.info.add('new-object', FAMILY_KEY, self.family)
+        self.family.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", FAMILY_KEY, self.family)
         # Gramps LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
-        if 'type' in attrs:
+        if "type" in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
         self.convert_marker(attrs, self.family)
         if self.default_tag:
@@ -1612,24 +1789,24 @@ class GrampsParser(UpdateCallback):
         return self.family
 
     def start_rel(self, attrs):
-        if 'type' in attrs:
+        if "type" in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
 
     def start_file(self, attrs):
-        self.object.mime = attrs['mime']
-        if 'description' in attrs:
-            self.object.desc = attrs['description']
+        self.object.mime = attrs["mime"]
+        if "description" in attrs:
+            self.object.desc = attrs["description"]
         else:
             self.object.desc = ""
-        #keep value of path, no longer make absolute paths on import
+        # keep value of path, no longer make absolute paths on import
         src = attrs["src"]
         if src:
             self.object.path = src
             if self.all_abs and not os.path.isabs(src):
                 self.all_abs = False
-                self.info.add('relative-path', None, None)
-        if 'checksum' in attrs:
-            self.object.checksum = attrs['checksum']
+                self.info.add("relative-path", None, None)
+        if "checksum" in attrs:
+            self.object.checksum = attrs["checksum"]
         else:
             if os.path.isabs(src):
                 full_path = src
@@ -1642,20 +1819,19 @@ class GrampsParser(UpdateCallback):
         Add a family reference to the person currently processed in which that
         person is a child.
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "family", Family)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), FAMILY_KEY,
-                                        Family)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "family", Family)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), FAMILY_KEY, Family)
 
         # Here we are handling the old XML, in which
         # frel and mrel belonged to the "childof" tag
         mrel = ChildRefType()
         frel = ChildRefType()
-        if 'mrel' in attrs:
-            mrel.set_from_xml_str(attrs['mrel'])
-        if 'frel' in attrs:
-            frel.set_from_xml_str(attrs['frel'])
+        if "mrel" in attrs:
+            mrel.set_from_xml_str(attrs["mrel"])
+        if "frel" in attrs:
+            frel.set_from_xml_str(attrs["frel"])
 
         childref = ChildRef()
         childref.ref = self.person.handle
@@ -1671,24 +1847,23 @@ class GrampsParser(UpdateCallback):
         Add a family reference to the person currently processed in which that
         person is a parent.
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "family", Family)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), FAMILY_KEY,
-                                        Family)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "family", Family)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), FAMILY_KEY, Family)
         self.person.add_family_handle(handle)
 
     def start_name(self, attrs):
         if self.person:
             self.start_person_name(attrs)
-        if self.placeobj: # XML 1.7.0
+        if self.placeobj:  # XML 1.7.0
             self.start_place_name(attrs)
 
     def start_place_name(self, attrs):
         self.place_name = PlaceName()
         self.place_name.set_value(attrs["value"])
         if "lang" in attrs:
-             self.place_name.set_language(attrs["lang"])
+            self.place_name.set_language(attrs["lang"])
         if self.place_names == 0:
             self.placeobj.set_name(self.place_name)
         else:
@@ -1698,9 +1873,9 @@ class GrampsParser(UpdateCallback):
     def start_person_name(self, attrs):
         if not self.in_witness:
             self.name = Name()
-            name_type = attrs.get('type', "Birth Name")
+            name_type = attrs.get("type", "Birth Name")
             # Mapping "Other Name" from gramps 2.0.x to Unknown
-            if (self.__xml_version == (1, 0, 0)) and (name_type == 'Other Name'):
+            if (self.__xml_version == (1, 0, 0)) and (name_type == "Other Name"):
                 self.name.set_type(NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
@@ -1736,53 +1911,59 @@ class GrampsParser(UpdateCallback):
         self.surname.origintype.set_from_xml_str(origin_type)
 
     def start_namemap(self, attrs):
-        type = attrs.get('type')
-        key = attrs['key']
-        value = attrs['value']
-        if type == 'group_as':
+        type = attrs.get("type")
+        key = attrs["key"]
+        value = attrs["value"]
+        if type == "group_as":
             if self.db.has_name_group_key(key):
                 present = self.db.get_name_group_mapping(key)
                 if not value == present:
-                    msg = _('Your Family Tree groups name "%(key)s" together'
-                            ' with "%(parent)s", did not change this grouping to "%(value)s".') % {
-                            'key' : key, 'parent' : present, 'value' : value }
+                    msg = _(
+                        'Your Family Tree groups name "%(key)s" together'
+                        ' with "%(parent)s", did not change this grouping to "%(value)s".'
+                    ) % {"key": key, "parent": present, "value": value}
                     self.user.warn(_("Gramps ignored a name grouping"), msg)
-            elif value != 'None':  # None test fixes file corrupted by 11011
+            elif value != "None":  # None test fixes file corrupted by 11011
                 self.db.set_name_group_mapping(key, value)
 
     def start_last(self, attrs):
-        """ This is the element in version < 1.4.0 to do the surname"""
+        """This is the element in version < 1.4.0 to do the surname"""
         self.surname = Surname()
-        self.surname.prefix = attrs.get('prefix', '')
-        self.name.group_as = attrs.get('group', '')
+        self.surname.prefix = attrs.get("prefix", "")
+        self.name.group_as = attrs.get("group", "")
 
     def start_patronymic(self, attrs):
-        """ This is the element in version < 1.4.0 to do the patronymic"""
+        """This is the element in version < 1.4.0 to do the patronymic"""
         self.surnamepat = Surname()
-        self.surnamepat.set_origintype(NameOriginType(
-                                       NameOriginType.PATRONYMIC))
+        self.surnamepat.set_origintype(NameOriginType(NameOriginType.PATRONYMIC))
 
     def start_style(self, attrs):
         """
         Styled text tag in notes (v1.4.0 onwards).
         """
         tagtype = StyledTextTagType()
-        tagtype.set_from_xml_str(attrs['name'].lower())
+        tagtype.set_from_xml_str(attrs["name"].lower())
         try:
-            val = attrs['value']
+            val = attrs["value"]
             match = self.grampsuri.match(val)
             if match:
-                target = {"Person" : "person", "Family" : "family",
-                          "Event" : "event", "Place" : "place",
-                          "Source" : "source", "Citation" : "citation",
-                          "Repository" : "repository", "Media" : "media",
-                          "Note" : "note"}[str(match.group('object_class'))]
-                if match.group('handle') in self.import_handles:
-                    if target in self.import_handles[match.group('handle')]:
+                target = {
+                    "Person": "person",
+                    "Family": "family",
+                    "Event": "event",
+                    "Place": "place",
+                    "Source": "source",
+                    "Citation": "citation",
+                    "Repository": "repository",
+                    "Media": "media",
+                    "Note": "note",
+                }[str(match.group("object_class"))]
+                if match.group("handle") in self.import_handles:
+                    if target in self.import_handles[match.group("handle")]:
                         val = "gramps://%s/handle/%s" % (
-                                match.group('object_class'),
-                                self.import_handles[match.group('handle')]
-                                                   [target][HANDLE])
+                            match.group("object_class"),
+                            self.import_handles[match.group("handle")][target][HANDLE],
+                        )
             tagvalue = StyledTextTagType.STYLE_TYPE[int(tagtype)](val)
         except KeyError:
             tagvalue = None
@@ -1802,12 +1983,12 @@ class GrampsParser(UpdateCallback):
 
         # Tag defintion
         self.tag = Tag()
-        self.inaugurate(attrs['handle'], "tag", self.tag)
-        self.tag.change = int(attrs.get('change', self.change))
-        self.info.add('new-object', TAG_KEY, self.tag)
-        self.tag.set_name(attrs.get('name', _('Unknown when imported')))
-        self.tag.set_color(attrs.get('color', '#000000000000'))
-        self.tag.set_priority(int(attrs.get('priority', 0)))
+        self.inaugurate(attrs["handle"], "tag", self.tag)
+        self.tag.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", TAG_KEY, self.tag)
+        self.tag.set_name(attrs.get("name", _("Unknown when imported")))
+        self.tag.set_color(attrs.get("color", "#000000000000"))
+        self.tag.set_priority(int(attrs.get("priority", 0)))
         return self.tag
 
     def stop_tag(self, *tag):
@@ -1821,7 +2002,7 @@ class GrampsParser(UpdateCallback):
         """
         Tag reference in a primary object.
         """
-        handle = self.inaugurate(attrs['hlink'], "tag", Tag)
+        handle = self.inaugurate(attrs["hlink"], "tag", Tag)
 
         if self.person:
             self.person.add_tag(handle)
@@ -1851,8 +2032,7 @@ class GrampsParser(UpdateCallback):
             self.citation.add_tag(handle)
 
     def start_range(self, attrs):
-        self.note_tags[-1].ranges.append((int(attrs['start']),
-                                          int(attrs['end'])))
+        self.note_tags[-1].ranges.append((int(attrs["start"]), int(attrs["end"])))
 
     def start_note(self, attrs):
         """
@@ -1860,32 +2040,35 @@ class GrampsParser(UpdateCallback):
         id, privacy, changetime, format and type.
         """
         self.in_note = 0
-        if 'handle' in attrs:
+        if "handle" in attrs:
             # This is new note, with ID and handle already existing
             self.update(self.p.CurrentLineNumber)
             self.note = Note()
-            if 'handle' in attrs:
-                orig_handle = attrs['handle'].replace('_', '')
-                is_merge_candidate = (self.replace_import_handle and
-                                      self.db.has_note_handle(orig_handle))
+            if "handle" in attrs:
+                orig_handle = attrs["handle"].replace("_", "")
+                is_merge_candidate = (
+                    self.replace_import_handle and self.db.has_note_handle(orig_handle)
+                )
                 self.inaugurate(orig_handle, "note", self.note)
-                gramps_id = self.legalize_id(attrs.get('id'), NOTE_KEY,
-                                          self.nidswap, self.db.nid2user_format,
-                                          self.db.find_next_note_gramps_id,
-                                          self.db.has_note_gramps_id)
+                gramps_id = self.legalize_id(
+                    attrs.get("id"),
+                    NOTE_KEY,
+                    self.nidswap,
+                    self.db.nid2user_format,
+                    self.db.find_next_note_gramps_id,
+                    self.db.has_note_gramps_id,
+                )
                 self.note.set_gramps_id(gramps_id)
                 if is_merge_candidate:
                     orig_note = self.db.get_note_from_handle(orig_handle)
-                    self.info.add('merge-candicate', NOTE_KEY, orig_note,
-                                  self.note)
+                    self.info.add("merge-candicate", NOTE_KEY, orig_note, self.note)
             else:
-                self.inaugurate_id(attrs.get('id'), NOTE_KEY, self.note)
+                self.inaugurate_id(attrs.get("id"), NOTE_KEY, self.note)
             self.note.private = bool(attrs.get("priv"))
-            self.note.change = int(attrs.get('change', self.change))
-            self.info.add('new-object', NOTE_KEY, self.note)
-            self.note.format = int(attrs.get('format', Note.FLOWED))
-            self.note.type.set_from_xml_str(attrs.get('type',
-                                                      NoteType.UNKNOWN))
+            self.note.change = int(attrs.get("change", self.change))
+            self.info.add("new-object", NOTE_KEY, self.note)
+            self.note.format = int(attrs.get("format", Note.FLOWED))
+            self.note.type.set_from_xml_str(attrs.get("type", NoteType.UNKNOWN))
             self.convert_marker(attrs, self.note)
 
             # Since StyledText was introduced (XML v1.3.0) the clear text
@@ -1901,7 +2084,7 @@ class GrampsParser(UpdateCallback):
             # On stop_note the reference to this note will be added
             self.note = Note()
             self.note.handle = create_id()
-            self.note.format = int(attrs.get('format', Note.FLOWED))
+            self.note.format = int(attrs.get("format", Note.FLOWED))
             # The order in this long if-then statement should reflect the
             # DTD: most deeply nested elements come first.
             if self.citation:
@@ -1960,9 +2143,9 @@ class GrampsParser(UpdateCallback):
                 self.note.private = self.repo.private
 
             self.db.add_note(self.note, self.trans)
-            #set correct change time
+            # set correct change time
             self.db.commit_note(self.note, self.trans, self.change)
-            self.info.add('new-object', NOTE_KEY, self.note)
+            self.info.add("new-object", NOTE_KEY, self.note)
         if self.default_tag:
             self.note.add_tag(self.default_tag.handle)
         return self.note
@@ -1971,12 +2154,13 @@ class GrampsParser(UpdateCallback):
         """
         Add a note reference to the object currently processed.
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "note", Note)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "note", Note)
         else:
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
-                "import is malformed."), _("Any note reference must have a "
-                "'hlink' attribute."))
+            raise GrampsImportError(
+                _("The Gramps Xml you are trying to " "import is malformed."),
+                _("Any note reference must have a " "'hlink' attribute."),
+            )
 
         # The order in this long if-then statement should reflect the
         # DTD: most deeply nested elements come first.
@@ -2052,7 +2236,7 @@ class GrampsParser(UpdateCallback):
         """
         Add a citation reference to the object currently processed.
         """
-        handle = self.inaugurate(attrs['hlink'], "citation", Citation)
+        handle = self.inaugurate(attrs["hlink"], "citation", Citation)
 
         self.__add_citation(handle)
 
@@ -2063,25 +2247,29 @@ class GrampsParser(UpdateCallback):
         """
         self.update(self.p.CurrentLineNumber)
         self.citation = Citation()
-        orig_handle = attrs['handle'].replace('_', '')
-        is_merge_candidate = (self.replace_import_handle and
-                              self.db.has_citation_handle(orig_handle))
+        orig_handle = attrs["handle"].replace("_", "")
+        is_merge_candidate = self.replace_import_handle and self.db.has_citation_handle(
+            orig_handle
+        )
         self.inaugurate(orig_handle, "citation", self.citation)
-        gramps_id = self.legalize_id(attrs.get('id'), CITATION_KEY,
-                                     self.cidswap, self.db.cid2user_format,
-                                     self.db.find_next_citation_gramps_id,
-                                     self.db.has_citation_gramps_id)
+        gramps_id = self.legalize_id(
+            attrs.get("id"),
+            CITATION_KEY,
+            self.cidswap,
+            self.db.cid2user_format,
+            self.db.find_next_citation_gramps_id,
+            self.db.has_citation_gramps_id,
+        )
         self.citation.set_gramps_id(gramps_id)
         if is_merge_candidate:
             orig_citation = self.db.get_citation_from_handle(orig_handle)
-            self.info.add('merge-candidate', CITATION_KEY, orig_citation,
-                          self.citation)
+            self.info.add("merge-candidate", CITATION_KEY, orig_citation, self.citation)
         self.citation.private = bool(attrs.get("priv"))
-        self.citation.change = int(attrs.get('change', self.change))
+        self.citation.change = int(attrs.get("change", self.change))
         self.citation.confidence = (
-                self.conf if self.__xml_version >= (1, 5, 1)
-                else 0 ) # See bug# 7125
-        self.info.add('new-object', CITATION_KEY, self.citation)
+            self.conf if self.__xml_version >= (1, 5, 1) else 0
+        )  # See bug# 7125
+        self.info.add("new-object", CITATION_KEY, self.citation)
         if self.default_tag:
             self.citation.add_tag(self.default_tag.handle)
         return self.citation
@@ -2090,11 +2278,10 @@ class GrampsParser(UpdateCallback):
         """
         Add a source reference to the object currently processed.
         """
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "source", Source)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "source", Source)
         else:
-            handle = self.inaugurate_id(attrs.get('ref'), SOURCE_KEY,
-                                        Source)
+            handle = self.inaugurate_id(attrs.get("ref"), SOURCE_KEY, Source)
 
         if self.citation:
             self.citation.set_reference_handle(handle)
@@ -2119,25 +2306,29 @@ class GrampsParser(UpdateCallback):
         """
         self.update(self.p.CurrentLineNumber)
         self.source = Source()
-        if 'handle' in attrs:
-            orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = (self.replace_import_handle and
-                                  self.db.has_source_handle(orig_handle))
+        if "handle" in attrs:
+            orig_handle = attrs["handle"].replace("_", "")
+            is_merge_candidate = (
+                self.replace_import_handle and self.db.has_source_handle(orig_handle)
+            )
             self.inaugurate(orig_handle, "source", self.source)
-            gramps_id = self.legalize_id(attrs.get('id'), SOURCE_KEY,
-                                         self.sidswap, self.db.sid2user_format,
-                                         self.db.find_next_source_gramps_id,
-                                         self.db.has_source_gramps_id)
+            gramps_id = self.legalize_id(
+                attrs.get("id"),
+                SOURCE_KEY,
+                self.sidswap,
+                self.db.sid2user_format,
+                self.db.find_next_source_gramps_id,
+                self.db.has_source_gramps_id,
+            )
             self.source.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_source = self.db.get_source_from_handle(orig_handle)
-                self.info.add('merge-candidate', SOURCE_KEY, orig_source,
-                              self.source)
-        else: # old style XML
-            self.inaugurate_id(attrs.get('id'), SOURCE_KEY, self.source)
+                self.info.add("merge-candidate", SOURCE_KEY, orig_source, self.source)
+        else:  # old style XML
+            self.inaugurate_id(attrs.get("id"), SOURCE_KEY, self.source)
         self.source.private = bool(attrs.get("priv"))
-        self.source.change = int(attrs.get('change', self.change))
-        self.info.add('new-object', SOURCE_KEY, self.source)
+        self.source.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", SOURCE_KEY, self.source)
         if self.default_tag:
             self.source.add_tag(self.default_tag.handle)
         return self.source
@@ -2147,16 +2338,14 @@ class GrampsParser(UpdateCallback):
         Add a repository reference to the source currently processed.
         """
         self.reporef = RepoRef()
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "repository",
-                                     Repository)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), REPOSITORY_KEY,
-                                        Repository)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "repository", Repository)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), REPOSITORY_KEY, Repository)
         self.reporef.ref = handle
-        self.reporef.call_number = attrs.get('callno', '')
-        if 'medium' in attrs:
-            self.reporef.media_type.set_from_xml_str(attrs['medium'])
+        self.reporef.call_number = attrs.get("callno", "")
+        if "medium" in attrs:
+            self.reporef.media_type.set_from_xml_str(attrs["medium"])
         self.reporef.private = bool(attrs.get("priv"))
         # we count here on self.source being available
         # reporefs can only be found within source
@@ -2167,14 +2356,12 @@ class GrampsParser(UpdateCallback):
         Add a media object reference to the object currently processed.
         """
         self.objref = MediaRef()
-        if 'hlink' in attrs:
-            handle = self.inaugurate(attrs['hlink'], "media",
-                                     Media)
-        else: # old style XML
-            handle = self.inaugurate_id(attrs.get('ref'), MEDIA_KEY,
-                                        Media)
+        if "hlink" in attrs:
+            handle = self.inaugurate(attrs["hlink"], "media", Media)
+        else:  # old style XML
+            handle = self.inaugurate_id(attrs.get("ref"), MEDIA_KEY, Media)
         self.objref.ref = handle
-        self.objref.private = bool(attrs.get('priv'))
+        self.objref.private = bool(attrs.get("priv"))
         if self.event:
             self.event.add_media_reference(self.objref)
         elif self.family:
@@ -2189,10 +2376,12 @@ class GrampsParser(UpdateCallback):
             self.citation.add_media_reference(self.objref)
 
     def start_region(self, attrs):
-        rect = (int(attrs.get('corner1_x')),
-                int(attrs.get('corner1_y')),
-                int(attrs.get('corner2_x')),
-                int(attrs.get('corner2_y')) )
+        rect = (
+            int(attrs.get("corner1_x")),
+            int(attrs.get("corner1_y")),
+            int(attrs.get("corner2_x")),
+            int(attrs.get("corner2_y")),
+        )
         self.objref.set_rectangle(rect)
 
     def start_media(self, attrs):
@@ -2201,32 +2390,36 @@ class GrampsParser(UpdateCallback):
         id, privacy and changetime.
         """
         self.object = Media()
-        if 'handle' in attrs:
-            orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = (self.replace_import_handle and
-                                  self.db.has_media_handle(orig_handle))
+        if "handle" in attrs:
+            orig_handle = attrs["handle"].replace("_", "")
+            is_merge_candidate = (
+                self.replace_import_handle and self.db.has_media_handle(orig_handle)
+            )
             self.inaugurate(orig_handle, "media", self.object)
-            gramps_id = self.legalize_id(attrs.get('id'), MEDIA_KEY,
-                                         self.oidswap, self.db.oid2user_format,
-                                         self.db.find_next_media_gramps_id,
-                                         self.db.has_media_gramps_id)
+            gramps_id = self.legalize_id(
+                attrs.get("id"),
+                MEDIA_KEY,
+                self.oidswap,
+                self.db.oid2user_format,
+                self.db.find_next_media_gramps_id,
+                self.db.has_media_gramps_id,
+            )
             self.object.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_media = self.db.get_media_from_handle(orig_handle)
-                self.info.add('merge-candidate', MEDIA_KEY, orig_media,
-                              self.object)
+                self.info.add("merge-candidate", MEDIA_KEY, orig_media, self.object)
         else:
-            self.inaugurate_id(attrs.get('id'), MEDIA_KEY, self.object)
+            self.inaugurate_id(attrs.get("id"), MEDIA_KEY, self.object)
         self.object.private = bool(attrs.get("priv"))
-        self.object.change = int(attrs.get('change', self.change))
-        self.info.add('new-object', MEDIA_KEY, self.object)
+        self.object.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", MEDIA_KEY, self.object)
 
         # Gramps LEGACY: src, mime, and description attributes
         # now belong to the <file> tag. Here we are supporting
         # the old format of <object src="blah"...>
-        self.object.mime = attrs.get('mime', '')
-        self.object.desc = attrs.get('description', '')
-        src = attrs.get("src", '')
+        self.object.mime = attrs.get("mime", "")
+        self.object.desc = attrs.get("description", "")
+        src = attrs.get("src", "")
         if src:
             self.object.path = src
         if self.default_tag:
@@ -2239,25 +2432,30 @@ class GrampsParser(UpdateCallback):
         id, privacy and changetime.
         """
         self.repo = Repository()
-        if 'handle' in attrs:
-            orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = (self.replace_import_handle and
-                                  self.db.has_repository_handle(orig_handle))
+        if "handle" in attrs:
+            orig_handle = attrs["handle"].replace("_", "")
+            is_merge_candidate = (
+                self.replace_import_handle
+                and self.db.has_repository_handle(orig_handle)
+            )
             self.inaugurate(orig_handle, "repository", self.repo)
-            gramps_id = self.legalize_id(attrs.get('id'), REPOSITORY_KEY,
-                                         self.ridswap, self.db.rid2user_format,
-                                         self.db.find_next_repository_gramps_id,
-                                         self.db.has_repository_gramps_id)
+            gramps_id = self.legalize_id(
+                attrs.get("id"),
+                REPOSITORY_KEY,
+                self.ridswap,
+                self.db.rid2user_format,
+                self.db.find_next_repository_gramps_id,
+                self.db.has_repository_gramps_id,
+            )
             self.repo.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_repo = self.db.get_repository_from_handle(orig_handle)
-                self.info.add('merge-candidate', REPOSITORY_KEY, orig_repo,
-                              self.repo)
-        else: # old style XML
-            self.inaugurate_id(attrs.get('id'), REPOSITORY_KEY, self.repo)
+                self.info.add("merge-candidate", REPOSITORY_KEY, orig_repo, self.repo)
+        else:  # old style XML
+            self.inaugurate_id(attrs.get("id"), REPOSITORY_KEY, self.repo)
         self.repo.private = bool(attrs.get("priv"))
-        self.repo.change = int(attrs.get('change', self.change))
-        self.info.add('new-object', REPOSITORY_KEY, self.repo)
+        self.repo.change = int(attrs.get("change", self.change))
+        self.info.add("new-object", REPOSITORY_KEY, self.repo)
         if self.default_tag:
             self.repo.add_tag(self.default_tag.handle)
         return self.repo
@@ -2269,16 +2467,14 @@ class GrampsParser(UpdateCallback):
         self.update(self.p.CurrentLineNumber)
 
     def stop_media(self, *tag):
-        self.db.commit_media(self.object, self.trans,
-                                    self.object.get_change_time())
+        self.db.commit_media(self.object, self.trans, self.object.get_change_time())
         self.object = None
 
     def stop_objref(self, *tag):
         self.objref = None
 
     def stop_repo(self, *tag):
-        self.db.commit_repository(self.repo, self.trans,
-                                  self.repo.get_change_time())
+        self.db.commit_repository(self.repo, self.trans, self.repo.get_change_time())
         self.repo = None
 
     def stop_reporef(self, *tag):
@@ -2305,9 +2501,9 @@ class GrampsParser(UpdateCallback):
                 self.photo.add_attribute(attr)
         self.photo.set_mime_type(get_type(self.photo.get_path()))
         self.db.add_media(self.photo, self.trans)
-        #set correct change time
+        # set correct change time
         self.db.commit_media(self.photo, self.trans, self.change)
-        self.info.add('new-object', MEDIA_KEY, self.photo)
+        self.info.add("new-object", MEDIA_KEY, self.photo)
         if self.family:
             self.family.add_media_reference(self.pref)
         elif self.source:
@@ -2341,8 +2537,8 @@ class GrampsParser(UpdateCallback):
         elif self.place_name:
             date_value = self.place_name.get_date_object()
 
-        start = attrs['start'].split('-')
-        stop = attrs['stop'].split('-')
+        start = attrs["start"].split("-")
+        stop = attrs["stop"].split("-")
 
         try:
             year = int(start[0])
@@ -2375,15 +2571,15 @@ class GrampsParser(UpdateCallback):
             rng_day = 0
 
         if "cformat" in attrs:
-            cal = Date.calendar_names.index(attrs['cformat'])
+            cal = Date.calendar_names.index(attrs["cformat"])
         else:
             cal = Date.CAL_GREGORIAN
 
-        if 'quality' in attrs:
-            val = attrs['quality']
-            if val == 'estimated':
+        if "quality" in attrs:
+            val = attrs["quality"]
+            if val == "estimated":
                 qual = Date.QUAL_ESTIMATED
-            elif val == 'calculated':
+            elif val == "calculated":
                 qual = Date.QUAL_CALCULATED
             else:
                 qual = Date.QUAL_NONE
@@ -2391,29 +2587,34 @@ class GrampsParser(UpdateCallback):
             qual = Date.QUAL_NONE
 
         dualdated = False
-        if 'dualdated' in attrs:
-            val = attrs['dualdated']
+        if "dualdated" in attrs:
+            val = attrs["dualdated"]
             if val == "1":
                 dualdated = True
 
         newyear = Date.NEWYEAR_JAN1
-        if 'newyear' in attrs:
-            newyear = attrs['newyear']
+        if "newyear" in attrs:
+            newyear = attrs["newyear"]
             if newyear.isdigit():
                 newyear = int(newyear)
             else:
                 newyear = Date.newyear_to_code(newyear)
 
         try:
-            date_value.set(qual, mode, cal,
-                           (day, month, year, dualdated,
-                            rng_day, rng_month, rng_year, dualdated),
-                           newyear=newyear)
+            date_value.set(
+                qual,
+                mode,
+                cal,
+                (day, month, year, dualdated, rng_day, rng_month, rng_year, dualdated),
+                newyear=newyear,
+            )
         except DateError as e:
-            self._set_date_to_xml_text(date_value, e,
-                    xml_element_name = ("datespan" if mode == Date.MOD_SPAN
-                        else "daterange"),
-                    xml_attrs = attrs)
+            self._set_date_to_xml_text(
+                date_value,
+                e,
+                xml_element_name=("datespan" if mode == Date.MOD_SPAN else "daterange"),
+                xml_attrs=attrs,
+            )
 
     def start_dateval(self, attrs):
         if self.citation:
@@ -2434,13 +2635,13 @@ class GrampsParser(UpdateCallback):
             date_value = self.place_name.get_date_object()
 
         bce = 1
-        val = attrs['val']
-        if val[0] == '-':
+        val = attrs["val"]
+        if val[0] == "-":
             bce = -1
             val = val[1:]
-        start = val.split('-')
+        start = val.split("-")
         try:
-            year = int(start[0])*bce
+            year = int(start[0]) * bce
         except:
             year = 0
 
@@ -2455,26 +2656,30 @@ class GrampsParser(UpdateCallback):
             day = 0
 
         if "cformat" in attrs:
-            cal = Date.calendar_names.index(attrs['cformat'])
+            cal = Date.calendar_names.index(attrs["cformat"])
         else:
             cal = Date.CAL_GREGORIAN
 
-        if 'type' in attrs:
-            val = attrs['type']
+        if "type" in attrs:
+            val = attrs["type"]
             if val == "about":
                 mod = Date.MOD_ABOUT
             elif val == "after":
                 mod = Date.MOD_AFTER
-            else:
+            elif val == "before":
                 mod = Date.MOD_BEFORE
+            elif val == "from":
+                mod = Date.MOD_FROM
+            else:
+                mod = Date.MOD_TO
         else:
             mod = Date.MOD_NONE
 
-        if 'quality' in attrs:
-            val = attrs['quality']
-            if val == 'estimated':
+        if "quality" in attrs:
+            val = attrs["quality"]
+            if val == "estimated":
                 qual = Date.QUAL_ESTIMATED
-            elif val == 'calculated':
+            elif val == "calculated":
                 qual = Date.QUAL_CALCULATED
             else:
                 qual = Date.QUAL_NONE
@@ -2482,26 +2687,29 @@ class GrampsParser(UpdateCallback):
             qual = Date.QUAL_NONE
 
         dualdated = False
-        if 'dualdated' in attrs:
-            val = attrs['dualdated']
+        if "dualdated" in attrs:
+            val = attrs["dualdated"]
             if val == "1":
                 dualdated = True
 
         newyear = Date.NEWYEAR_JAN1
-        if 'newyear' in attrs:
-            newyear = attrs['newyear']
+        if "newyear" in attrs:
+            newyear = attrs["newyear"]
             if newyear.isdigit():
                 newyear = int(newyear)
             else:
                 newyear = Date.newyear_to_code(newyear)
 
         try:
-            date_value.set(qual, mod, cal, (day, month, year, dualdated),
-                           newyear=newyear)
+            date_value.set(
+                qual, mod, cal, (day, month, year, dualdated), newyear=newyear
+            )
         except DateError as e:
-            self._set_date_to_xml_text(date_value, e, 'dateval', attrs)
+            self._set_date_to_xml_text(date_value, e, "dateval", attrs)
 
-    def _set_date_to_xml_text(self, date_value, date_error, xml_element_name, xml_attrs):
+    def _set_date_to_xml_text(
+        self, date_value, date_error, xml_element_name, xml_attrs
+    ):
         """
         Common handling of invalid dates for the date... element handlers.
 
@@ -2509,14 +2717,21 @@ class GrampsParser(UpdateCallback):
         with the problematic XML inside.
         """
         xml = "<{element_name} {attrs}/>".format(
-            element_name = xml_element_name,
-            attrs = " ".join(
-                ['{}="{}"'.format(k,escape(v, entities={'"' : "&quot;"}))
-                    for k,v in xml_attrs.items()]))
+            element_name=xml_element_name,
+            attrs=" ".join(
+                [
+                    '{}="{}"'.format(k, escape(v, entities={'"': "&quot;"}))
+                    for k, v in xml_attrs.items()
+                ]
+            ),
+        )
         # Translators: leave the {date} and {xml} untranslated in the format string,
         # but you may re-order them if needed.
-        LOG.warning(_("Invalid date {date} in XML {xml}, preserving XML as text"
-            ).format(date=date_error.date.__dict__, xml=xml))
+        LOG.warning(
+            _("Invalid date {date} in XML {xml}, preserving XML as text").format(
+                date=date_error.date.__dict__, xml=xml
+            )
+        )
         date_value.set(modifier=Date.MOD_TEXTONLY, text=xml)
 
     def start_datestr(self, attrs):
@@ -2537,7 +2752,7 @@ class GrampsParser(UpdateCallback):
         else:
             date_value = self.place_name.get_date_object()
 
-        date_value.set_as_text(attrs['val'])
+        date_value.set_as_text(attrs["val"])
 
     def start_pos(self, attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))
@@ -2571,9 +2786,9 @@ class GrampsParser(UpdateCallback):
             note.type.set(NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
-            #set correct change time
+            # set correct change time
             self.db.commit_note(note, self.trans, self.change)
-            self.info.add('new-object', NOTE_KEY, note)
+            self.info.add("new-object", NOTE_KEY, note)
             self.event.add_note(note.handle)
         self.in_witness = False
 
@@ -2611,15 +2826,13 @@ class GrampsParser(UpdateCallback):
         self.placeobj.add_alternative_name(place_name)
 
     def stop_placeobj(self, *tag):
-        if self.placeobj.name.get_value() == '':
+        if self.placeobj.name.get_value() == "":
             self.placeobj.name.set_value(self.placeobj.title)
-        self.db.commit_place(self.placeobj, self.trans,
-                             self.placeobj.get_change_time())
+        self.db.commit_place(self.placeobj, self.trans, self.placeobj.get_change_time())
         self.placeobj = None
 
     def stop_family(self, *tag):
-        self.db.commit_family(self.family, self.trans,
-                              self.family.get_change_time())
+        self.db.commit_family(self.family, self.trans, self.family.get_change_time())
         self.family = None
 
     def stop_type(self, tag):
@@ -2654,39 +2867,42 @@ class GrampsParser(UpdateCallback):
             ref.ref = self.event.handle
             ref.private = self.event.private
             ref.role.set(EventRoleType.PRIMARY)
-            if (self.event.type == EventType.BIRTH) \
-                   and (self.person.get_birth_ref() is None):
+            if (self.event.type == EventType.BIRTH) and (
+                self.person.get_birth_ref() is None
+            ):
                 self.person.set_birth_ref(ref)
-            elif (self.event.type == EventType.DEATH) \
-                     and (self.person.get_death_ref() is None):
+            elif (self.event.type == EventType.DEATH) and (
+                self.person.get_death_ref() is None
+            ):
                 self.person.set_death_ref(ref)
             else:
                 self.person.add_event_ref(ref)
 
-        if self.event.get_description() == "" and \
-               self.event.get_type() != EventType.CUSTOM:
+        if (
+            self.event.get_description() == ""
+            and self.event.get_type() != EventType.CUSTOM
+        ):
             if self.family:
                 text = EVENT_FAMILY_STR % {
-                    'event_name' : str(self.event.get_type()),
-                    'family' : family_name(self.family, self.db),
-                    }
+                    "event_name": str(self.event.get_type()),
+                    "family": family_name(self.family, self.db),
+                }
             elif self.person:
                 text = EVENT_PERSON_STR % {
-                    'event_name' : str(self.event.get_type()),
-                    'person' : name_displayer.display(self.person),
-                    }
+                    "event_name": str(self.event.get_type()),
+                    "person": name_displayer.display(self.person),
+                }
             else:
-                text = ''
+                text = ""
             self.event.set_description(text)
 
-        self.db.commit_event(self.event, self.trans,
-                             self.event.get_change_time())
+        self.db.commit_event(self.event, self.trans, self.event.get_change_time())
         self.event = None
 
     def stop_name(self, attrs):
         if self.person:
             self.stop_person_name(attrs)
-        if self.placeobj: # XML 1.7.0
+        if self.placeobj:  # XML 1.7.0
             self.stop_place_name(attrs)
 
     def stop_place_name(self, tag):
@@ -2701,12 +2917,12 @@ class GrampsParser(UpdateCallback):
             note.type.set(NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
-            #set correct change time
+            # set correct change time
             self.db.commit_note(note, self.trans, self.change)
-            self.info.add('new-object', NOTE_KEY, note)
+            self.info.add("new-object", NOTE_KEY, note)
             self.event.add_note(note.handle)
         else:
-            #first correct old xml that has no nametype set
+            # first correct old xml that has no nametype set
             if self.alt_name:
                 # alternate name or former aka tag
                 if self.name.get_type() == "":
@@ -2715,21 +2931,21 @@ class GrampsParser(UpdateCallback):
                 if self.name.get_type() == "":
                     self.name.set_type(NameType.BIRTH)
 
-            #same logic as bsddb upgrade for xml < 1.4.0 which will
-            #have a surnamepat and/or surname. From 1.4.0 surname has been
-            #added to name in self.stop_surname
+            # same logic as bsddb upgrade for xml < 1.4.0 which will
+            # have a surnamepat and/or surname. From 1.4.0 surname has been
+            # added to name in self.stop_surname
             if not self.surnamepat:
-                #no patronymic, only add surname if present
+                # no patronymic, only add surname if present
                 if self.surname:
                     self.name.add_surname(self.surname)
                     self.name.set_primary_surname(0)
             else:
-                #a patronymic, if no surname, a single surname
+                # a patronymic, if no surname, a single surname
                 if not self.surname:
                     self.name.add_surname(self.surnamepat)
                     self.name.set_primary_surname(0)
                 else:
-                    #two surnames, first patronymic, then surname which is primary
+                    # two surnames, first patronymic, then surname which is primary
                     self.name.add_surname(self.surnamepat)
                     self.name.add_surname(self.surname)
                     self.name.set_primary_surname(1)
@@ -2745,17 +2961,17 @@ class GrampsParser(UpdateCallback):
         if self.name.get_type() == "":
             self.name.set_type(NameType.AKA)
         if not self.surnamepat:
-            #no patronymic, only add surname if present
+            # no patronymic, only add surname if present
             if self.surname:
                 self.name.add_surname(self.surname)
                 self.name.set_primary_surname(0)
         else:
-            #a patronymic, if no surname, a single surname
+            # a patronymic, if no surname, a single surname
             if not self.surname:
                 self.name.add_surname(self.surnamepat)
                 self.name.set_primary_surname(0)
             else:
-                #two surnames, first patronymic, then surname which is primary
+                # two surnames, first patronymic, then surname which is primary
                 self.name.add_surname(self.surnamepat)
                 self.name.add_surname(self.surname)
                 self.name.set_primary_surname(1)
@@ -2782,8 +2998,8 @@ class GrampsParser(UpdateCallback):
 
     def stop_place(self, tag):
         """end of a reference to place, should do nothing ...
-           Note, if we encounter <place>blabla</place> this method is called
-                with tag='blabla
+        Note, if we encounter <place>blabla</place> this method is called
+             with tag='blabla
         """
         ##place = None
         ##handle = None
@@ -2828,8 +3044,7 @@ class GrampsParser(UpdateCallback):
         self.family = None
 
     def stop_person(self, *tag):
-        self.db.commit_person(self.person, self.trans,
-                              self.person.get_change_time())
+        self.db.commit_person(self.person, self.trans, self.person.get_change_time())
         self.person = None
 
     def stop_description(self, tag):
@@ -2845,13 +3060,13 @@ class GrampsParser(UpdateCallback):
     def stop_gender(self, tag):
         t = tag
         if t == "M":
-            self.person.set_gender (Person.MALE)
+            self.person.set_gender(Person.MALE)
         elif t == "F":
             self.person.set_gender (Person.FEMALE)
         elif t == "X":
             self.person.set_gender (Person.OTHER)
         else:
-            self.person.set_gender (Person.UNKNOWN)
+            self.person.set_gender(Person.UNKNOWN)
 
     def stop_stitle(self, tag):
         self.source.title = tag
@@ -2859,19 +3074,20 @@ class GrampsParser(UpdateCallback):
     def stop_sourceref(self, *tag):
         # if we are in an old style sourceref we need to commit the citation
         if self.in_old_sourceref:
-            self.db.commit_citation(self.citation, self.trans,
-                                    self.citation.get_change_time())
+            self.db.commit_citation(
+                self.citation, self.trans, self.citation.get_change_time()
+            )
             self.citation = None
             self.in_old_sourceref = False
 
     def stop_source(self, *tag):
-        self.db.commit_source(self.source, self.trans,
-                              self.source.get_change_time())
+        self.db.commit_source(self.source, self.trans, self.source.get_change_time())
         self.source = None
 
     def stop_citation(self, *tag):
-        self.db.commit_citation(self.citation, self.trans,
-                                self.citation.get_change_time())
+        self.db.commit_citation(
+            self.citation, self.trans, self.citation.get_change_time()
+        )
         self.citation = None
 
     def stop_sauthor(self, tag):
@@ -2936,9 +3152,9 @@ class GrampsParser(UpdateCallback):
         note.set(text)
         note.type.set(NoteType.SOURCE_TEXT)
         self.db.add_note(note, self.trans)
-        #set correct change time
+        # set correct change time
         self.db.commit_note(note, self.trans, self.change)
-        self.info.add('new-object', NOTE_KEY, note)
+        self.info.add("new-object", NOTE_KEY, note)
         self.citation.add_note(note.handle)
 
     def stop_scomments(self, tag):
@@ -2953,16 +3169,16 @@ class GrampsParser(UpdateCallback):
         note.set(text)
         note.type.set(NoteType.CITATION)
         self.db.add_note(note, self.trans)
-        #set correct change time
+        # set correct change time
         self.db.commit_note(note, self.trans, self.change)
-        self.info.add('new-object', NOTE_KEY, note)
+        self.info.add("new-object", NOTE_KEY, note)
         self.citation.add_note(note.handle)
 
     def stop_last(self, tag):
         if self.surname:
             self.surname.set_surname(tag)
         if not tag.strip() and not self.surname.get_prefix().strip():
-            #consider empty surname as no surname
+            # consider empty surname as no surname
             self.surname = None
 
     def stop_surname(self, tag):
@@ -2975,7 +3191,7 @@ class GrampsParser(UpdateCallback):
         self.surname = None
 
     def stop_group(self, tag):
-        """ group name of a name"""
+        """group name of a name"""
         if self.name:
             self.name.set_group_as(tag)
 
@@ -2995,7 +3211,7 @@ class GrampsParser(UpdateCallback):
 
     def stop_nick(self, tag):
         """in < 1.3.0 nick is on person and mapped to attribute
-           from 1.4.0 it is a name element
+        from 1.4.0 it is a name element
         """
         if self.name:
             self.name.set_nick_name(tag)
@@ -3133,7 +3349,7 @@ class GrampsParser(UpdateCallback):
 
     def endElement(self, tag):
         if self.func:
-            self.func(''.join(self.tlist))
+            self.func("".join(self.tlist))
         self.func_index -= 1
         self.func, self.tlist = self.func_list[self.func_index]
 
@@ -3147,10 +3363,10 @@ class GrampsParser(UpdateCallback):
 
         Old and new markers: complete=1 and marker=word
         """
-        if attrs.get('complete'): # this is only true for complete=1
-            tag_name = 'Complete'
+        if attrs.get("complete"):  # this is only true for complete=1
+            tag_name = "Complete"
         else:
-            tag_name = attrs.get('marker')
+            tag_name = attrs.get("marker")
 
         if tag_name is not None:
             tag_name = _(tag_name)
@@ -3167,8 +3383,11 @@ class GrampsParser(UpdateCallback):
     def fix_not_instantiated(self):
         uninstantiated = []
         for orig_handle in self.import_handles.keys():
-            tglist = [target for target in self.import_handles[orig_handle].keys() if
-                    not self.import_handles[orig_handle][target][INSTANTIATED]]
+            tglist = [
+                target
+                for target in self.import_handles[orig_handle].keys()
+                if not self.import_handles[orig_handle][target][INSTANTIATED]
+            ]
             for target in tglist:
                 uninstantiated += [(orig_handle, target)]
         if uninstantiated:
@@ -3176,33 +3395,54 @@ class GrampsParser(UpdateCallback):
             self.db.commit_note(expl_note, self.trans, time.time())
             self.info.expl_note = expl_note.get_gramps_id()
             for orig_handle, target in uninstantiated:
-                class_arg = {'handle': orig_handle, 'id': None, 'priv': False}
-                if target == 'family':
-                    objs = make_unknown(class_arg, expl_note.handle,
-                            self.func_map[target][0], self.func_map[target][1],
-                            self.trans, db=self.db)
-                elif target == 'citation':
-                    objs = make_unknown(class_arg, expl_note.handle,
-                            self.func_map[target][0], self.func_map[target][1],
-                            self.trans,
-                            source_class_func=self.func_map['source'][0],
-                            source_commit_func=self.func_map['source'][1],
-                            source_class_arg={'handle':create_id(), 'id':None, 'priv':False})
-                elif target == 'note':
-                    objs = make_unknown(class_arg, expl_note.handle,
-                            self.func_map[target][0], self.stop_note_asothers,
-                            self.trans)
+                class_arg = {"handle": orig_handle, "id": None, "priv": False}
+                if target == "family":
+                    objs = make_unknown(
+                        class_arg,
+                        expl_note.handle,
+                        self.func_map[target][0],
+                        self.func_map[target][1],
+                        self.trans,
+                        db=self.db,
+                    )
+                elif target == "citation":
+                    objs = make_unknown(
+                        class_arg,
+                        expl_note.handle,
+                        self.func_map[target][0],
+                        self.func_map[target][1],
+                        self.trans,
+                        source_class_func=self.func_map["source"][0],
+                        source_commit_func=self.func_map["source"][1],
+                        source_class_arg={
+                            "handle": create_id(),
+                            "id": None,
+                            "priv": False,
+                        },
+                    )
+                elif target == "note":
+                    objs = make_unknown(
+                        class_arg,
+                        expl_note.handle,
+                        self.func_map[target][0],
+                        self.stop_note_asothers,
+                        self.trans,
+                    )
                 else:
-                    if target == 'place':
-                        target = 'placeobj'
-                    elif target == 'media':
-                        target = 'object'
-                    objs = make_unknown(class_arg, expl_note.handle,
-                            self.func_map[target][0], self.func_map[target][1],
-                            self.trans)
+                    if target == "place":
+                        target = "placeobj"
+                    elif target == "media":
+                        target = "object"
+                    objs = make_unknown(
+                        class_arg,
+                        expl_note.handle,
+                        self.func_map[target][0],
+                        self.func_map[target][1],
+                        self.trans,
+                    )
                 for obj in objs:
                     key = CLASS_TO_KEY_MAP[obj.__class__.__name__]
-                    self.info.add('unknown-object', key, obj)
+                    self.info.add("unknown-object", key, obj)
 
     def fix_families(self):
         # Fix any imported families where there is a link from the family to an
@@ -3210,7 +3450,7 @@ class GrampsParser(UpdateCallback):
         # family.
         for orig_handle in list(self.import_handles.keys()):
             for target in list(self.import_handles[orig_handle].keys()):
-                if target == 'family':
+                if target == "family":
                     family_handle = self.import_handles[orig_handle][target][HANDLE]
                     family = self.db.get_family_from_handle(family_handle)
                     father_handle = family.get_father_handle()
@@ -3218,63 +3458,83 @@ class GrampsParser(UpdateCallback):
 
                     if father_handle:
                         father = self.db.get_person_from_handle(father_handle)
-                        if father and \
-                            family_handle not in father.get_family_handle_list():
+                        if (
+                            father
+                            and family_handle not in father.get_family_handle_list()
+                        ):
                             father.add_family_handle(family_handle)
                             self.db.commit_person(father, self.trans)
-                            txt = _("Error: family '%(family)s'"
-                                           " father '%(father)s'"
-                                           " does not refer"
-                                           " back to the family."
-                                           " Reference added." %
-                                           {'family' : family.gramps_id,
-                                            'father' : father.gramps_id})
-                            self.info.add('unlinked-family', txt, None)
+                            txt = _(
+                                "Error: family '%(family)s'"
+                                " father '%(father)s'"
+                                " does not refer"
+                                " back to the family."
+                                " Reference added."
+                                % {
+                                    "family": family.gramps_id,
+                                    "father": father.gramps_id,
+                                }
+                            )
+                            self.info.add("unlinked-family", txt, None)
                             LOG.warning(txt)
 
                     if mother_handle:
                         mother = self.db.get_person_from_handle(mother_handle)
-                        if mother and \
-                            family_handle not in mother.get_family_handle_list():
+                        if (
+                            mother
+                            and family_handle not in mother.get_family_handle_list()
+                        ):
                             mother.add_family_handle(family_handle)
                             self.db.commit_person(mother, self.trans)
-                            txt = _("Error: family '%(family)s'"
-                                           " mother '%(mother)s'"
-                                           " does not refer"
-                                           " back to the family."
-                                           " Reference added." %
-                                           {'family' : family.gramps_id,
-                                            'mother' : mother.gramps_id})
-                            self.info.add('unlinked-family', txt, None)
+                            txt = _(
+                                "Error: family '%(family)s'"
+                                " mother '%(mother)s'"
+                                " does not refer"
+                                " back to the family."
+                                " Reference added."
+                                % {
+                                    "family": family.gramps_id,
+                                    "mother": mother.gramps_id,
+                                }
+                            )
+                            self.info.add("unlinked-family", txt, None)
                             LOG.warning(txt)
 
                     for child_ref in family.get_child_ref_list():
                         child_handle = child_ref.ref
                         child = self.db.get_person_from_handle(child_handle)
                         if child:
-                            if family_handle not in \
-                                child.get_parent_family_handle_list():
+                            if (
+                                family_handle
+                                not in child.get_parent_family_handle_list()
+                            ):
                                 # The referenced child has no reference to the
                                 # family. There was a link from the FAM record
                                 # to the child, but no FAMC link from the child
                                 # to the FAM.
                                 child.add_parent_family_handle(family_handle)
                                 self.db.commit_person(child, self.trans)
-                                txt = _("Error: family '%(family)s'"
-                                               " child '%(child)s'"
-                                               " does not "
-                                               "refer back to the family. "
-                                               "Reference added." %
-                                               {'family' : family.gramps_id,
-                                                'child' : child.gramps_id})
-                                self.info.add('unlinked-family', txt, None)
+                                txt = _(
+                                    "Error: family '%(family)s'"
+                                    " child '%(child)s'"
+                                    " does not "
+                                    "refer back to the family. "
+                                    "Reference added."
+                                    % {
+                                        "family": family.gramps_id,
+                                        "child": child.gramps_id,
+                                    }
+                                )
+                                self.info.add("unlinked-family", txt, None)
                                 LOG.warning(txt)
+
 
 def append_value(orig, val):
     if orig:
         return "%s, %s" % (orig, val)
     else:
         return val
+
 
 def build_place_title(loc):
     "Builds a title from a location"
@@ -3290,4 +3550,3 @@ def build_place_title(loc):
     if loc.country:
         value = append_value(value, loc.country)
     return value
-

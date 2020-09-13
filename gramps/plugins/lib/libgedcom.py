@@ -83,14 +83,15 @@ all lines until the next level 2 token is found (in this case, skipping the
 "3 NOTE DATA" line.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 import re
 import time
+
 # from xml.parsers.expat import ParserCreate
 from collections import defaultdict, OrderedDict
 import string
@@ -98,30 +99,64 @@ import mimetypes
 from io import StringIO, TextIOWrapper
 from urllib.parse import urlparse
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import logging
+
 LOG = logging.getLogger(".libgedcom")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 from gramps.gen.errors import GedcomError
 from gramps.gen.lib import (
-    Address, Attribute, AttributeType, ChildRef,
-    ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
-    EventType, Family, FamilyRelType, LdsOrd, Location, Media,
-    MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
-    RepoRef, Repository, RepositoryType, Researcher,
-    Source, SourceMediaType, SrcAttribute,
-    Surname, Tag, Url, UrlType, PlaceType, PlaceRef, PlaceName)
+    Address,
+    Attribute,
+    AttributeType,
+    ChildRef,
+    ChildRefType,
+    Citation,
+    Date,
+    Event,
+    EventRef,
+    EventRoleType,
+    EventType,
+    Family,
+    FamilyRelType,
+    LdsOrd,
+    Location,
+    Media,
+    MediaRef,
+    Name,
+    NameType,
+    Note,
+    NoteType,
+    Person,
+    PersonRef,
+    Place,
+    RepoRef,
+    Repository,
+    RepositoryType,
+    Researcher,
+    Source,
+    SourceMediaType,
+    SrcAttribute,
+    Surname,
+    Tag,
+    Url,
+    UrlType,
+    PlaceType,
+    PlaceRef,
+    PlaceName,
+)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path
@@ -131,17 +166,17 @@ from gramps.gen.utils.unknown import make_unknown, create_explanation_note
 from gramps.gen.datehandler._dateparser import DateParser
 from gramps.gen.db.dbconst import EVENT_KEY
 from gramps.gen.lib.const import IDENTICAL
-from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
+from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gramps.gen.lib.urlbase import UrlBase
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.grampslocale import GrampsLocale
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 TOKEN_UNKNOWN = 0
 TOKEN_ABBR = 1
 TOKEN_ADDR = 2
@@ -524,74 +559,73 @@ TYPE_BIRTH = ChildRefType()
 TYPE_ADOPT = ChildRefType(ChildRefType.ADOPTED)
 TYPE_FOSTER = ChildRefType(ChildRefType.FOSTER)
 
-RELATION_TYPES = (
-    ChildRefType.BIRTH,
-    ChildRefType.UNKNOWN,
-    ChildRefType.NONE)
+RELATION_TYPES = (ChildRefType.BIRTH, ChildRefType.UNKNOWN, ChildRefType.NONE)
 
 PEDIGREE_TYPES = {
-    'birth'  : ChildRefType(),
-    'natural': ChildRefType(),
-    'step'   : ChildRefType(ChildRefType.STEPCHILD),
-    'adopted': TYPE_ADOPT,
-    'foster' : TYPE_FOSTER, }
+    "birth": ChildRefType(),
+    "natural": ChildRefType(),
+    "step": ChildRefType(ChildRefType.STEPCHILD),
+    "adopted": TYPE_ADOPT,
+    "foster": TYPE_FOSTER,
+}
 
 FTW_BAD_PLACE = [
     EventType.OCCUPATION,
     EventType.RELIGION,
-    EventType.DEGREE, ]
+    EventType.DEGREE,
+]
 
 MEDIA_MAP = {
-    'audio'      : SourceMediaType.AUDIO,
-    'book'       : SourceMediaType.BOOK,
-    'card'       : SourceMediaType.CARD,
-    'electronic' : SourceMediaType.ELECTRONIC,
-    'fiche'      : SourceMediaType.FICHE,
-    'microfiche' : SourceMediaType.FICHE,
-    'microfilm'  : SourceMediaType.FICHE,
-    'film'       : SourceMediaType.FILM,
-    'magazine'   : SourceMediaType.MAGAZINE,
-    'manuscript' : SourceMediaType.MANUSCRIPT,
-    'map'        : SourceMediaType.MAP,
-    'newspaper'  : SourceMediaType.NEWSPAPER,
-    'photo'      : SourceMediaType.PHOTO,
-    'tombstone'  : SourceMediaType.TOMBSTONE,
-    'grave'      : SourceMediaType.TOMBSTONE,
-    'video'      : SourceMediaType.VIDEO,
+    "audio": SourceMediaType.AUDIO,
+    "book": SourceMediaType.BOOK,
+    "card": SourceMediaType.CARD,
+    "electronic": SourceMediaType.ELECTRONIC,
+    "fiche": SourceMediaType.FICHE,
+    "microfiche": SourceMediaType.FICHE,
+    "microfilm": SourceMediaType.FICHE,
+    "film": SourceMediaType.FILM,
+    "magazine": SourceMediaType.MAGAZINE,
+    "manuscript": SourceMediaType.MANUSCRIPT,
+    "map": SourceMediaType.MAP,
+    "newspaper": SourceMediaType.NEWSPAPER,
+    "photo": SourceMediaType.PHOTO,
+    "tombstone": SourceMediaType.TOMBSTONE,
+    "grave": SourceMediaType.TOMBSTONE,
+    "video": SourceMediaType.VIDEO,
 }
 
 OBJ_NOTETYPE = {
-    "Attribute"  : NoteType.ATTRIBUTE,
-    "Address"    : NoteType.ADDRESS,
-    "Citation"   : NoteType.CITATION,
-    "Event"      : NoteType.EVENT,
-    "Family"     : NoteType.FAMILY,
-    "LdsOrd"     : NoteType.LDS,
-    "Media"      : NoteType.MEDIA,
-    "Name"       : NoteType.GENERAL,
-    "Place"      : NoteType.PLACE,
-    "Person"     : NoteType.PERSON,
-    "Repository" : NoteType.REPO,
-    "RepoRef"    : NoteType.REPOREF,
-    "Source"     : NoteType.SOURCE,
-    "PersonRef"  : NoteType.ASSOCIATION,
+    "Attribute": NoteType.ATTRIBUTE,
+    "Address": NoteType.ADDRESS,
+    "Citation": NoteType.CITATION,
+    "Event": NoteType.EVENT,
+    "Family": NoteType.FAMILY,
+    "LdsOrd": NoteType.LDS,
+    "Media": NoteType.MEDIA,
+    "Name": NoteType.GENERAL,
+    "Place": NoteType.PLACE,
+    "Person": NoteType.PERSON,
+    "Repository": NoteType.REPO,
+    "RepoRef": NoteType.REPOREF,
+    "Source": NoteType.SOURCE,
+    "PersonRef": NoteType.ASSOCIATION,
 }
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Integer to GEDCOM tag mappings for constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 CALENDAR_MAP_GEDCOM2XML = {
-    "FRENCH R" : Date.CAL_FRENCH,
-    "JULIAN"   : Date.CAL_JULIAN,
-    "HEBREW"   : Date.CAL_HEBREW,
+    "FRENCH R": Date.CAL_FRENCH,
+    "JULIAN": Date.CAL_JULIAN,
+    "HEBREW": Date.CAL_HEBREW,
 }
 
 QUALITY_MAP = {
-    'CAL' : Date.QUAL_CALCULATED,
-    'INT' : Date.QUAL_CALCULATED,
-    'EST' : Date.QUAL_ESTIMATED,
+    "CAL": Date.QUAL_CALCULATED,
+    "INT": Date.QUAL_CALCULATED,
+    "EST": Date.QUAL_ESTIMATED,
 }
 
 SEX_MAP = {
@@ -601,85 +635,85 @@ SEX_MAP = {
 }
 
 FAMILYCONSTANTEVENTS = {
-    EventType.ANNULMENT  : "ANUL",
-    EventType.DIV_FILING : "DIVF",
-    EventType.DIVORCE    : "DIV",
-    EventType.CENSUS     : "CENS",
-    EventType.ENGAGEMENT : "ENGA",
-    EventType.MARR_BANNS : "MARB",
-    EventType.MARR_CONTR : "MARC",
-    EventType.MARR_LIC   : "MARL",
-    EventType.MARR_SETTL : "MARS",
-    EventType.MARRIAGE   : "MARR"
+    EventType.ANNULMENT: "ANUL",
+    EventType.DIV_FILING: "DIVF",
+    EventType.DIVORCE: "DIV",
+    EventType.CENSUS: "CENS",
+    EventType.ENGAGEMENT: "ENGA",
+    EventType.MARR_BANNS: "MARB",
+    EventType.MARR_CONTR: "MARC",
+    EventType.MARR_LIC: "MARL",
+    EventType.MARR_SETTL: "MARS",
+    EventType.MARRIAGE: "MARR",
 }
 
 PERSONALCONSTANTEVENTS = {
-    EventType.ADOPT            : "ADOP",
-    EventType.ADULT_CHRISTEN   : "CHRA",
-    EventType.BIRTH            : "BIRT",
-    EventType.DEATH            : "DEAT",
-    EventType.BAPTISM          : "BAPM",
-    EventType.BAR_MITZVAH      : "BARM",
-    EventType.BAS_MITZVAH      : "BASM",
-    EventType.BLESS            : "BLES",
-    EventType.BURIAL           : "BURI",
+    EventType.ADOPT: "ADOP",
+    EventType.ADULT_CHRISTEN: "CHRA",
+    EventType.BIRTH: "BIRT",
+    EventType.DEATH: "DEAT",
+    EventType.BAPTISM: "BAPM",
+    EventType.BAR_MITZVAH: "BARM",
+    EventType.BAS_MITZVAH: "BASM",
+    EventType.BLESS: "BLES",
+    EventType.BURIAL: "BURI",
     # EventType.CAUSE_DEATH      : "CAUS",  Not legal Gedcom since v5.0
-    EventType.ORDINATION       : "ORDN",
-    EventType.CENSUS           : "CENS",
-    EventType.CHRISTEN         : "CHR",
-    EventType.CONFIRMATION     : "CONF",
-    EventType.CREMATION        : "CREM",
-    EventType.DEGREE           : "_DEG",
-    EventType.DIV_FILING       : "DIVF",
-    EventType.EDUCATION        : "EDUC",
-    EventType.ELECTED          : "_ELEC",  # FTM custom tag
-    EventType.EMIGRATION       : "EMIG",
-    EventType.FIRST_COMMUN     : "FCOM",
-    EventType.GRADUATION       : "GRAD",
-    EventType.MED_INFO         : "_MDCL",
-    EventType.MILITARY_SERV    : "_MILT",
-    EventType.NATURALIZATION   : "NATU",
-    EventType.NOB_TITLE        : "TITL",
-    EventType.NUM_MARRIAGES    : "NMR",
-    EventType.IMMIGRATION      : "IMMI",
-    EventType.OCCUPATION       : "OCCU",
-    EventType.PROBATE          : "PROB",
-    EventType.PROPERTY         : "PROP",
-    EventType.RELIGION         : "RELI",
-    EventType.RESIDENCE        : "RESI",
-    EventType.RETIREMENT       : "RETI",
-    EventType.WILL             : "WILL",
+    EventType.ORDINATION: "ORDN",
+    EventType.CENSUS: "CENS",
+    EventType.CHRISTEN: "CHR",
+    EventType.CONFIRMATION: "CONF",
+    EventType.CREMATION: "CREM",
+    EventType.DEGREE: "_DEG",
+    EventType.DIV_FILING: "DIVF",
+    EventType.EDUCATION: "EDUC",
+    EventType.ELECTED: "_ELEC",  # FTM custom tag
+    EventType.EMIGRATION: "EMIG",
+    EventType.FIRST_COMMUN: "FCOM",
+    EventType.GRADUATION: "GRAD",
+    EventType.MED_INFO: "_MDCL",
+    EventType.MILITARY_SERV: "_MILT",
+    EventType.NATURALIZATION: "NATU",
+    EventType.NOB_TITLE: "TITL",
+    EventType.NUM_MARRIAGES: "NMR",
+    EventType.IMMIGRATION: "IMMI",
+    EventType.OCCUPATION: "OCCU",
+    EventType.PROBATE: "PROB",
+    EventType.PROPERTY: "PROP",
+    EventType.RELIGION: "RELI",
+    EventType.RESIDENCE: "RESI",
+    EventType.RETIREMENT: "RETI",
+    EventType.WILL: "WILL",
 }
 
 FAMILYCONSTANTATTRIBUTES = {
-    AttributeType.NUM_CHILD   : "NCHI",
+    AttributeType.NUM_CHILD: "NCHI",
 }
 
 PERSONALCONSTANTATTRIBUTES = {
-    AttributeType.CASTE       : "CAST",
-    AttributeType.DESCRIPTION : "DSCR",
-    AttributeType.ID          : "IDNO",
-    AttributeType.NATIONAL    : "NATI",
-    AttributeType.NUM_CHILD   : "NCHI",
-    AttributeType.SSN         : "SSN",
+    AttributeType.CASTE: "CAST",
+    AttributeType.DESCRIPTION: "DSCR",
+    AttributeType.ID: "IDNO",
+    AttributeType.NATIONAL: "NATI",
+    AttributeType.NUM_CHILD: "NCHI",
+    AttributeType.SSN: "SSN",
 }
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gedcom to int constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 LDS_STATUS = {
-    "BIC"      : LdsOrd.STATUS_BIC,
-    "CANCELED" : LdsOrd.STATUS_CANCELED,
-    "CHILD"    : LdsOrd.STATUS_CHILD,
-    "CLEARED"  : LdsOrd.STATUS_CLEARED,
+    "BIC": LdsOrd.STATUS_BIC,
+    "CANCELED": LdsOrd.STATUS_CANCELED,
+    "CHILD": LdsOrd.STATUS_CHILD,
+    "CLEARED": LdsOrd.STATUS_CLEARED,
     "COMPLETED": LdsOrd.STATUS_COMPLETED,
-    "DNS"      : LdsOrd.STATUS_DNS,
-    "INFANT"   : LdsOrd.STATUS_INFANT,
-    "PRE-1970" : LdsOrd.STATUS_PRE_1970,
+    "DNS": LdsOrd.STATUS_DNS,
+    "INFANT": LdsOrd.STATUS_INFANT,
+    "PRE-1970": LdsOrd.STATUS_PRE_1970,
     "QUALIFIED": LdsOrd.STATUS_QUALIFIED,
-    "DNS/CAN"  : LdsOrd.STATUS_DNS_CAN,
+    "DNS/CAN": LdsOrd.STATUS_DNS_CAN,
     "STILLBORN": LdsOrd.STATUS_STILLBORN,
     "SUBMITTED": LdsOrd.STATUS_SUBMITTED,
     "UNCLEARED": LdsOrd.STATUS_UNCLEARED,
@@ -699,39 +733,38 @@ LDS_STATUS = {
 #
 # -------------------------------------------------------------------------
 CUSTOMEVENTTAGS = {
-    "_CIRC"     : _("Circumcision"),
-    "_COML"     : _("Common Law Marriage"),
-    "_DEST"     : _("Destination"),
-    "_DNA"      : _("DNA"),
-    "_DCAUSE"   : _("Cause of Death"),
-    "_EMPLOY"   : _("Employment"),
-    "_EXCM"     : _("Excommunication"),
-    "_EYC"      : _("Eye Color"),
-    "_FUN"      : _("Funeral"),
-    "_HEIG"     : _("Height"),
-    "_INIT"     : _("Initiatory (LDS)"),
-    "_MILTID"   : _("Military ID"),
-    "_MISN"     : _("Mission (LDS)"),
-    "_NAMS"     : _("Namesake"),
-    "_ORDI"     : _("Ordinance"),
-    "_ORIG"     : _("Origin"),
-    "_SEPR"     : _("Separation"),         # Applies to Families
-    "_WEIG"     : _("Weight"),
+    "_CIRC": _("Circumcision"),
+    "_COML": _("Common Law Marriage"),
+    "_DEST": _("Destination"),
+    "_DNA": _("DNA"),
+    "_DCAUSE": _("Cause of Death"),
+    "_EMPLOY": _("Employment"),
+    "_EXCM": _("Excommunication"),
+    "_EYC": _("Eye Color"),
+    "_FUN": _("Funeral"),
+    "_HEIG": _("Height"),
+    "_INIT": _("Initiatory (LDS)"),
+    "_MILTID": _("Military ID"),
+    "_MISN": _("Mission (LDS)"),
+    "_NAMS": _("Namesake"),
+    "_ORDI": _("Ordinance"),
+    "_ORIG": _("Origin"),
+    "_SEPR": _("Separation"),  # Applies to Families
+    "_WEIG": _("Weight"),
 }
 # table for skipping illegal control chars in GEDCOM import
 # Only 09, 0A, 0D are allowed.
-STRIP_DICT = dict.fromkeys(list(range(9)) + list(range(11, 13)) +
-                           list(range(14, 32)))
+STRIP_DICT = dict.fromkeys(list(range(9)) + list(range(11, 13)) + list(range(14, 32)))
 # The C1 Control characters are not treated in Latin-1 (ISO-8859-1) as
 # undefined, but if they have been used, the file is probably supposed to be
 # cp1252
 DEL_AND_C1 = dict.fromkeys(list(range(0x7F, 0x9F)))
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GEDCOM events to Gramps events conversion
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 GED_TO_GRAMPS_EVENT = {}
 for __val, __key in PERSONALCONSTANTEVENTS.items():
     if __key != "":
@@ -746,70 +779,109 @@ for __val, __key in PERSONALCONSTANTATTRIBUTES.items():
     if __key != "":
         GED_TO_GRAMPS_ATTR[__key] = __val
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GEDCOM Date Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 HMONTH = [
-    "", "TSH", "CSH", "KSL", "TVT", "SHV", "ADR",
-    "ADS", "NSN", "IYR", "SVN", "TMZ", "AAV", "ELL"]
+    "",
+    "TSH",
+    "CSH",
+    "KSL",
+    "TVT",
+    "SHV",
+    "ADR",
+    "ADS",
+    "NSN",
+    "IYR",
+    "SVN",
+    "TMZ",
+    "AAV",
+    "ELL",
+]
 
 FMONTH = [
-    "", "VEND", "BRUM", "FRIM", "NIVO", "PLUV", "VENT",
-    "GERM", "FLOR", "PRAI", "MESS", "THER", "FRUC", "COMP"]
+    "",
+    "VEND",
+    "BRUM",
+    "FRIM",
+    "NIVO",
+    "PLUV",
+    "VENT",
+    "GERM",
+    "FLOR",
+    "PRAI",
+    "MESS",
+    "THER",
+    "FRUC",
+    "COMP",
+]
 
 MONTH = [
-    "", "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
-    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    "",
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC",
+]
 
 CALENDAR_MAP = {
-    Date.CAL_HEBREW : (HMONTH, '@#DHEBREW@'),
-    Date.CAL_FRENCH : (FMONTH, '@#DFRENCH R@'),
-    Date.CAL_JULIAN : (MONTH, '@#DJULIAN@'),
-    Date.CAL_SWEDISH : (MONTH, '@#DUNKNOWN@'),
+    Date.CAL_HEBREW: (HMONTH, "@#DHEBREW@"),
+    Date.CAL_FRENCH: (FMONTH, "@#DFRENCH R@"),
+    Date.CAL_JULIAN: (MONTH, "@#DJULIAN@"),
+    Date.CAL_SWEDISH: (MONTH, "@#DUNKNOWN@"),
 }
 
 CALENDAR_MAP_PARSESTRING = {
-    Date.CAL_HEBREW : ' (h)',
-    Date.CAL_FRENCH : ' (f)',
-    Date.CAL_JULIAN : ' (j)',
-    Date.CAL_SWEDISH : ' (s)',
+    Date.CAL_HEBREW: " (h)",
+    Date.CAL_FRENCH: " (f)",
+    Date.CAL_JULIAN: " (j)",
+    Date.CAL_SWEDISH: " (s)",
 }
 
-#how wrong calendar use is shown
+# how wrong calendar use is shown
 CALENDAR_MAP_WRONGSTRING = {
-    Date.CAL_HEBREW : ' <hebrew>',
-    Date.CAL_FRENCH : ' <french rep>',
-    Date.CAL_JULIAN : ' <julian>',
-    Date.CAL_SWEDISH : ' <swedish>',
+    Date.CAL_HEBREW: " <hebrew>",
+    Date.CAL_FRENCH: " <french rep>",
+    Date.CAL_JULIAN: " <julian>",
+    Date.CAL_SWEDISH: " <swedish>",
 }
 
 DATE_MODIFIER = {
-    Date.MOD_ABOUT   : "ABT",
-    Date.MOD_BEFORE  : "BEF",
-    Date.MOD_AFTER   : "AFT",
-    #Date.MOD_INTERPRETED : "INT",
+    Date.MOD_ABOUT: "ABT",
+    Date.MOD_BEFORE: "BEF",
+    Date.MOD_AFTER: "AFT",
+    Date.MOD_FROM: "FROM",
+    Date.MOD_TO: "TO",
+    # Date.MOD_INTERPRETED : "INT",
 }
 
 DATE_QUALITY = {
-    Date.QUAL_CALCULATED : "CAL",
-    Date.QUAL_ESTIMATED  : "EST",
+    Date.QUAL_CALCULATED: "CAL",
+    Date.QUAL_ESTIMATED: "EST",
 }
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # regular expressions
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 NOTE_RE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
 CONT_RE = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 MOD = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
-CAL = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D?([^@]+)@\s*(.*)$")
-RANGE = re.compile(
-    r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
+CAL = re.compile(r"\s*(ABT|BEF|AFT|FROM|TO)?\s*@#D?([^@]+)@\s*(.*)$")
+RANGE = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
 RANGE1 = re.compile(r"\s*BET\s+\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
 RANGE2 = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+\s*(.*)$")
 SPAN = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
@@ -819,32 +891,44 @@ NAME_RE = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 #
 # GedcomDateParser
 #
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 class GedcomDateParser(DateParser):
-    """ Parse the dates """
-    month_to_int = {
-        'jan' : 1, 'feb' : 2, 'mar' : 3, 'apr' : 4,
-        'may' : 5, 'jun' : 6, 'jul' : 7, 'aug' : 8,
-        'sep' : 9, 'oct' : 10, 'nov' : 11, 'dec' : 12, }
+    """Parse the dates"""
 
-    _locale = GrampsLocale(lang='en_US')  # no register_datehandler here
+    month_to_int = {
+        "jan": 1,
+        "feb": 2,
+        "mar": 3,
+        "apr": 4,
+        "may": 5,
+        "jun": 6,
+        "jul": 7,
+        "aug": 8,
+        "sep": 9,
+        "oct": 10,
+        "nov": 11,
+        "dec": 12,
+    }
+
+    _locale = GrampsLocale(lang="en_US")  # no register_datehandler here
 
     def dhformat_changed(self):
-        """ Allow overriding so a subclass can modify it """
+        """Allow overriding so a subclass can modify it"""
         self.dhformat = "%m/%d/%y"
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Lexer - serves as the lexical analysis engine
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class Lexer:
-    """ low level line reading and early parsing """
+    """low level line reading and early parsing"""
+
     def __init__(self, ifile, __add_msg):
         self.ifile = ifile
         self.current_list = []
@@ -852,23 +936,25 @@ class Lexer:
         self.cnv = None
         self.cnt = 0
         self.index = 0
-        self.func_map = {TOKEN_CONT : self.__fix_token_cont,
-                         TOKEN_CONC : self.__fix_token_conc}
+        self.func_map = {
+            TOKEN_CONT: self.__fix_token_cont,
+            TOKEN_CONC: self.__fix_token_conc,
+        }
         self.__add_msg = __add_msg
 
     def readline(self):
-        """ read a line from file with possibility of putting it back """
+        """read a line from file with possibility of putting it back"""
         if len(self.current_list) <= 1 and not self.eof:
             self.__readahead()
         try:
             return GedLine(self.current_list.pop())
         except:
-            LOG.debug('Error in reading Gedcom line', exc_info=True)
+            LOG.debug("Error in reading Gedcom line", exc_info=True)
             return None
 
     def __fix_token_cont(self, data):
         line = self.current_list[0]
-        new_value = line[2] + '\n' + data[2]
+        new_value = line[2] + "\n" + data[2]
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
     def __fix_token_conc(self, data):
@@ -881,7 +967,7 @@ class Lexer:
             # space to separate the new line from the tag. This prevents the
             # first letter of the new line being lost later
             # in _GedcomParse.__parse_record
-            new_value = line[2] + ' ' + data[2]
+            new_value = line[2] + " " + data[2]
         else:
             new_value = line[2] + data[2]
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
@@ -901,44 +987,45 @@ class Lexer:
                 # a GEDCOM line should be ignored"
                 # We will also strip the terminator which is any combination
                 # of carriage_return and line_feed
-                line = line.lstrip(' ').rstrip('\n\r')
+                line = line.lstrip(" ").rstrip("\n\r")
                 # split into level+delim+rest
-                line = line.partition(' ')
+                line = line.partition(" ")
                 level = int(line[0])
                 # there should only be one space after the level,
                 # but we can ignore more,
-                line = line[2].lstrip(' ')
+                line = line[2].lstrip(" ")
                 # then split into tag+delim+line_value
                 # or xfef_id+delim+rest
                 # the xref_id can have spaces in it
-                if line.startswith('@'):
-                    line = line.split('@', 2)
+                if line.startswith("@"):
+                    line = line.split("@", 2)
                     # line is now [None, alphanum+pointer_string, rest]
-                    tag = '@' + line[1] + '@'
+                    tag = "@" + line[1] + "@"
                     line_value = line[2].lstrip()
                     # Ignore meaningless @IDENT@ on CONT or CONC line
                     # as noted at http://www.tamurajones.net/IdentCONT.xhtml
-                    if (line_value.lstrip().startswith("CONT ") or
-                            line_value.lstrip().startswith("CONC ")):
-                        line = line_value.lstrip().partition(' ')
+                    if line_value.lstrip().startswith(
+                        "CONT "
+                    ) or line_value.lstrip().startswith("CONC "):
+                        line = line_value.lstrip().partition(" ")
                         tag = line[0]
                         line_value = line[2]
                 else:
-                    line = line.partition(' ')
+                    line = line.partition(" ")
                     tag = line[0]
                     line_value = line[2]
             except:
                 problem = _("Line ignored ")
-                text = original_line.rstrip('\n\r')
+                text = original_line.rstrip("\n\r")
                 prob_width = 66
-                problem = problem.ljust(prob_width)[0:(prob_width - 1)]
+                problem = problem.ljust(prob_width)[0 : (prob_width - 1)]
                 text = text.replace("\n", "\n".ljust(prob_width + 22))
                 message = "%s              %s" % (problem, text)
                 self.__add_msg(message)
                 continue
 
             # Need to un-double '@' See Gedcom 5.5 spec 'any_char'
-            line_value = line_value.replace('@@', '@')
+            line_value = line_value.replace("@@", "@")
             token = TOKENS.get(tag, TOKEN_UNKNOWN)
             data = (level, token, line_value, tag, self.index)
 
@@ -965,11 +1052,11 @@ class Lexer:
         del self.func_map
 
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 #
 # GedLine - represents a tokenized version of a GEDCOM line
 #
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 class GedLine:
     """
     GedLine is a class the represents a GEDCOM line. The form of a  GEDCOM line
@@ -989,6 +1076,7 @@ class GedLine:
     TOKEN_SEX    - Person gender item
     TOEKN_UKNOWN - Check to see if this is a known event
     """
+
     __DATE_CNV = GedcomDateParser()
 
     @staticmethod
@@ -999,15 +1087,15 @@ class GedLine:
         dateobj = Date()
         # Horrible hack for importing illegal GEDCOM from Apple Macintosh
         # Classic 'Gene' program
-        text = text.replace('BET ABT', 'EST BET')
+        text = text.replace("BET ABT", "EST BET")
 
         # extract out the MOD line
         match = MOD.match(text)
-        mod = ''
+        mod = ""
         if match:
             (mod, text) = match.groups()
             qual = QUALITY_MAP.get(mod, Date.QUAL_NONE)
-            mod += ' '
+            mod += " "
         else:
             qual = Date.QUAL_NONE
 
@@ -1027,20 +1115,30 @@ class GedLine:
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
-                #not supported by GRAMPS, import as text, we construct a string
+                # not supported by GRAMPS, import as text, we construct a string
                 # that the parser will not parse as a correct date
                 return GedLine.__DATE_CNV.parse(
-                    '%sbetween %s%s and %s%s' %
-                    (mod, data1, CALENDAR_MAP_WRONGSTRING.get(cal1, ''),
-                     CALENDAR_MAP_WRONGSTRING.get(cal2, ''), data2))
+                    "%sbetween %s%s and %s%s"
+                    % (
+                        mod,
+                        data1,
+                        CALENDAR_MAP_WRONGSTRING.get(cal1, ""),
+                        CALENDAR_MAP_WRONGSTRING.get(cal2, ""),
+                        data2,
+                    )
+                )
 
-            #add hebrew, ... calendar so that months are recognized
-            data1 += CALENDAR_MAP_PARSESTRING.get(cal1, '')
-            data2 += CALENDAR_MAP_PARSESTRING.get(cal2, '')
+            # add hebrew, ... calendar so that months are recognized
+            data1 += CALENDAR_MAP_PARSESTRING.get(cal1, "")
+            data2 += CALENDAR_MAP_PARSESTRING.get(cal2, "")
             start = GedLine.__DATE_CNV.parse(data1)
             stop = GedLine.__DATE_CNV.parse(data2)
-            dateobj.set(Date.QUAL_NONE, Date.MOD_RANGE, cal1,
-                        start.get_start_date() + stop.get_start_date())
+            dateobj.set(
+                Date.QUAL_NONE,
+                Date.MOD_RANGE,
+                cal1,
+                start.get_start_date() + stop.get_start_date(),
+            )
             dateobj.set_quality(qual)
             return dateobj
 
@@ -1060,19 +1158,29 @@ class GedLine:
             cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, Date.CAL_GREGORIAN)
             cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, Date.CAL_GREGORIAN)
             if cal1 != cal2:
-                #not supported by GRAMPS, import as text, we construct a string
+                # not supported by GRAMPS, import as text, we construct a string
                 # that the parser will not parse as a correct date
                 return GedLine.__DATE_CNV.parse(
-                    '%sfrom %s%s to %s%s' %
-                    (mod, data1, CALENDAR_MAP_WRONGSTRING.get(cal1, ''),
-                     CALENDAR_MAP_WRONGSTRING.get(cal2, ''), data2))
-            #add hebrew, ... calendar so that months are recognized
-            data1 += CALENDAR_MAP_PARSESTRING.get(cal1, '')
-            data2 += CALENDAR_MAP_PARSESTRING.get(cal2, '')
+                    "%sfrom %s%s to %s%s"
+                    % (
+                        mod,
+                        data1,
+                        CALENDAR_MAP_WRONGSTRING.get(cal1, ""),
+                        CALENDAR_MAP_WRONGSTRING.get(cal2, ""),
+                        data2,
+                    )
+                )
+            # add hebrew, ... calendar so that months are recognized
+            data1 += CALENDAR_MAP_PARSESTRING.get(cal1, "")
+            data2 += CALENDAR_MAP_PARSESTRING.get(cal2, "")
             start = GedLine.__DATE_CNV.parse(data1)
             stop = GedLine.__DATE_CNV.parse(data2)
-            dateobj.set(Date.QUAL_NONE, Date.MOD_SPAN, cal1,
-                        start.get_start_date() + stop.get_start_date())
+            dateobj.set(
+                Date.QUAL_NONE,
+                Date.MOD_SPAN,
+                cal1,
+                start.get_start_date() + stop.get_start_date(),
+            )
             dateobj.set_quality(qual)
             return dateobj
 
@@ -1080,7 +1188,7 @@ class GedLine:
         if match:
             (abt, call, data) = match.groups()
             call = CALENDAR_MAP_GEDCOM2XML.get(call, Date.CAL_GREGORIAN)
-            data += CALENDAR_MAP_PARSESTRING.get(call, '')
+            data += CALENDAR_MAP_PARSESTRING.get(call, "")
             if abt:
                 dateobj = GedLine.__DATE_CNV.parse("%s %s" % (abt, data))
             else:
@@ -1108,8 +1216,11 @@ class GedLine:
         self.data = str(data[2])
 
         if self.level == 0:
-            if (self.token_text and self.token_text[0] == '@' and
-                    self.token_text[-1] == '@'):
+            if (
+                self.token_text
+                and self.token_text[0] == "@"
+                and self.token_text[-1] == "@"
+            ):
                 self.token = TOKEN_ID
                 self.token_text = self.token_text[1:-1]
                 self.data = self.data.strip()
@@ -1123,8 +1234,7 @@ class GedLine:
         Converts the data field to a gen.lib token indicating the gender
         """
         try:
-            self.data = SEX_MAP.get(self.data.strip()[0],
-                                    Person.UNKNOWN)
+            self.data = SEX_MAP.get(self.data.strip()[0], Person.UNKNOWN)
         except:
             self.data = Person.UNKNOWN
 
@@ -1158,14 +1268,14 @@ class GedLine:
                 self.data = attr
 
     def calc_note(self):
-        """ look for a note xref @N0001@ """
+        """look for a note xref @N0001@"""
         gid = self.data.strip()
-        if len(gid) > 2 and gid[0] == '@' and gid[-1] == '@':
+        if len(gid) > 2 and gid[0] == "@" and gid[-1] == "@":
             self.token = TOKEN_RNOTE
             self.data = gid[1:-1]
 
     def calc_nchi(self):
-        """ set attribute for number of children """
+        """set attribute for number of children"""
         attr = Attribute()
         attr.set_value(self.data)
         attr.set_type(AttributeType.NUM_CHILD)
@@ -1173,7 +1283,7 @@ class GedLine:
         self.token = TOKEN_ATTR
 
     def calc_attr(self):
-        """ set attribure for general attributes """
+        """set attribure for general attributes"""
         attr = Attribute()
         attr.set_value(self.data)
         attr.set_type((AttributeType.CUSTOM, self.token_text))
@@ -1181,63 +1291,74 @@ class GedLine:
         self.token = TOKEN_ATTR
 
     def __repr__(self):
-        return "%d: %d (%d:%s) %s" % (self.line, self.level, self.token,
-                                      self.token_text, self.data)
+        return "%d: %d (%d:%s) %s" % (
+            self.line,
+            self.level,
+            self.token,
+            self.token_text,
+            self.data,
+        )
+
 
 _MAP_DATA = {
-    TOKEN_UNKNOWN : GedLine.calc_unknown,
-    TOKEN_DATE    : GedLine.calc_date,
-    TOKEN__DATE   : GedLine.calc_date,
-    TOKEN_SEX     : GedLine.calc_sex,
-    TOKEN_NOTE    : GedLine.calc_note,
-    TOKEN_NCHI    : GedLine.calc_nchi,
-    TOKEN__STAT   : GedLine.calc_attr,
-    TOKEN__UID    : GedLine.calc_attr,
-    TOKEN_AFN     : GedLine.calc_attr,
-    TOKEN__FSFTID : GedLine.calc_attr, }
+    TOKEN_UNKNOWN: GedLine.calc_unknown,
+    TOKEN_DATE: GedLine.calc_date,
+    TOKEN__DATE: GedLine.calc_date,
+    TOKEN_SEX: GedLine.calc_sex,
+    TOKEN_NOTE: GedLine.calc_note,
+    TOKEN_NCHI: GedLine.calc_nchi,
+    TOKEN__STAT: GedLine.calc_attr,
+    TOKEN__UID: GedLine.calc_attr,
+    TOKEN_AFN: GedLine.calc_attr,
+    TOKEN__FSFTID: GedLine.calc_attr,
+}
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # File Readers
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class BaseReader:
-    """ base char level reader """
+    """base char level reader"""
+
     def __init__(self, ifile, encoding, __add_msg):
         self.ifile = ifile
         self.enc = encoding
         self.__add_msg = __add_msg
 
     def reset(self):
-        """ return to beginning """
+        """return to beginning"""
         self.ifile.seek(0)
 
     def readline(self):
-        """ Read a single line """
+        """Read a single line"""
         raise NotImplementedError()
 
     def report_error(self, problem, line):
-        """ Create an error message """
-        line = line.rstrip('\n\r')
+        """Create an error message"""
+        line = line.rstrip("\n\r")
         prob_width = 66
-        problem = problem.ljust(prob_width)[0:(prob_width - 1)]
+        problem = problem.ljust(prob_width)[0 : (prob_width - 1)]
         text = line.replace("\n", "\n".ljust(prob_width + 22))
         message = "%s               %s" % (problem, text)
         self.__add_msg(message)
 
 
 class UTF8Reader(BaseReader):
-    """ The main UTF-8 reader, uses Python for char handling """
+    """The main UTF-8 reader, uses Python for char handling"""
+
     def __init__(self, ifile, __add_msg, enc):
         BaseReader.__init__(self, ifile, enc, __add_msg)
         self.reset()
-        if enc == 'UTF_8_SIG':
-            self.ifile = TextIOWrapper(ifile, encoding='utf_8_sig',
-                                       errors='replace', newline=None)
+        if enc == "UTF_8_SIG":
+            self.ifile = TextIOWrapper(
+                ifile, encoding="utf_8_sig", errors="replace", newline=None
+            )
         else:
-            self.ifile = TextIOWrapper(ifile, encoding='utf_8',
-                                       errors='replace', newline=None)
+            self.ifile = TextIOWrapper(
+                ifile, encoding="utf_8", errors="replace", newline=None
+            )
 
     def readline(self):
         line = self.ifile.readline()
@@ -1245,11 +1366,13 @@ class UTF8Reader(BaseReader):
 
 
 class UTF16Reader(BaseReader):
-    """ The main UTF-16 reader, uses Python for char handling """
+    """The main UTF-16 reader, uses Python for char handling"""
+
     def __init__(self, ifile, __add_msg):
-        BaseReader.__init__(self, ifile, 'UTF16', __add_msg)
-        self.ifile = TextIOWrapper(ifile, encoding='utf_16',
-                                   errors='replace', newline=None)
+        BaseReader.__init__(self, ifile, "UTF16", __add_msg)
+        self.ifile = TextIOWrapper(
+            ifile, encoding="utf_16", errors="replace", newline=None
+        )
         self.reset()
 
     def readline(self):
@@ -1258,26 +1381,31 @@ class UTF16Reader(BaseReader):
 
 
 class AnsiReader(BaseReader):
-    """ The main ANSI (latin1) reader, uses Python for char handling """
+    """The main ANSI (latin1) reader, uses Python for char handling"""
+
     def __init__(self, ifile, __add_msg):
-        BaseReader.__init__(self, ifile, 'latin1', __add_msg)
-        self.ifile = TextIOWrapper(ifile, encoding='latin1',
-                                   errors='replace', newline=None)
+        BaseReader.__init__(self, ifile, "latin1", __add_msg)
+        self.ifile = TextIOWrapper(
+            ifile, encoding="latin1", errors="replace", newline=None
+        )
 
     def readline(self):
         line = self.ifile.readline()
         if line.translate(DEL_AND_C1) != line:
-            self.report_error("DEL or C1 control chars in line did you mean "
-                              "CHAR cp1252??", line)
+            self.report_error(
+                "DEL or C1 control chars in line did you mean " "CHAR cp1252??", line
+            )
         return line.translate(STRIP_DICT)
 
 
 class CP1252Reader(BaseReader):
-    """ The extra credit CP1252 reader, uses Python for char handling """
+    """The extra credit CP1252 reader, uses Python for char handling"""
+
     def __init__(self, ifile, __add_msg):
-        BaseReader.__init__(self, ifile, 'cp1252', __add_msg)
-        self.ifile = TextIOWrapper(ifile, encoding='cp1252',
-                                   errors='replace', newline=None)
+        BaseReader.__init__(self, ifile, "cp1252", __add_msg)
+        self.ifile = TextIOWrapper(
+            ifile, encoding="cp1252", errors="replace", newline=None
+        )
 
     def readline(self):
         line = self.ifile.readline()
@@ -1302,26 +1430,55 @@ class AnselReader(BaseReader):
     ---
     ?: should we allow TAB, as a Gramps extension?
     """
+
     __printable_ascii = list(map(chr, list(range(32, 127))))  # up thru 126
     #                            LF  CR  Esc GS  RS  US
     __use_ASCII = list(map(chr, [10, 13, 27, 29, 30, 31])) + __printable_ascii
 
     # mappings of single byte ANSEL codes to unicode
     __onebyte = {
-        b'\xA1' : '\u0141', b'\xA2' : '\u00d8', b'\xA3' : '\u0110',
-        b'\xA4' : '\u00de', b'\xA5' : '\u00c6', b'\xA6' : '\u0152',
-        b'\xA7' : '\u02b9', b'\xA8' : '\u00b7', b'\xA9' : '\u266d',
-        b'\xAA' : '\u00ae', b'\xAB' : '\u00b1', b'\xAC' : '\u01a0',
-        b'\xAD' : '\u01af', b'\xAE' : '\u02bc', b'\xB0' : '\u02bb',
-        b'\xB1' : '\u0142', b'\xB2' : '\u00f8', b'\xB3' : '\u0111',
-        b'\xB4' : '\u00fe', b'\xB5' : '\u00e6', b'\xB6' : '\u0153',
-        b'\xB7' : '\u02ba', b'\xB8' : '\u0131', b'\xB9' : '\u00a3',
-        b'\xBA' : '\u00f0', b'\xBC' : '\u01a1', b'\xBD' : '\u01b0',
-        b'\xBE' : '\u25a1', b'\xBF' : '\u25a0',
-        b'\xC0' : '\u00b0', b'\xC1' : '\u2113', b'\xC2' : '\u2117',
-        b'\xC3' : '\u00a9', b'\xC4' : '\u266f', b'\xC5' : '\u00bf',
-        b'\xC6' : '\u00a1', b'\xC7' : '\u00df', b'\xC8' : '\u20ac',
-        b'\xCD' : '\u0065', b'\xCE' : '\u006f', b'\xCF' : '\u00df', }
+        b"\xA1": "\u0141",
+        b"\xA2": "\u00d8",
+        b"\xA3": "\u0110",
+        b"\xA4": "\u00de",
+        b"\xA5": "\u00c6",
+        b"\xA6": "\u0152",
+        b"\xA7": "\u02b9",
+        b"\xA8": "\u00b7",
+        b"\xA9": "\u266d",
+        b"\xAA": "\u00ae",
+        b"\xAB": "\u00b1",
+        b"\xAC": "\u01a0",
+        b"\xAD": "\u01af",
+        b"\xAE": "\u02bc",
+        b"\xB0": "\u02bb",
+        b"\xB1": "\u0142",
+        b"\xB2": "\u00f8",
+        b"\xB3": "\u0111",
+        b"\xB4": "\u00fe",
+        b"\xB5": "\u00e6",
+        b"\xB6": "\u0153",
+        b"\xB7": "\u02ba",
+        b"\xB8": "\u0131",
+        b"\xB9": "\u00a3",
+        b"\xBA": "\u00f0",
+        b"\xBC": "\u01a1",
+        b"\xBD": "\u01b0",
+        b"\xBE": "\u25a1",
+        b"\xBF": "\u25a0",
+        b"\xC0": "\u00b0",
+        b"\xC1": "\u2113",
+        b"\xC2": "\u2117",
+        b"\xC3": "\u00a9",
+        b"\xC4": "\u266f",
+        b"\xC5": "\u00bf",
+        b"\xC6": "\u00a1",
+        b"\xC7": "\u00df",
+        b"\xC8": "\u20ac",
+        b"\xCD": "\u0065",
+        b"\xCE": "\u006f",
+        b"\xCF": "\u00df",
+    }
 
     # combining forms (in ANSEL, they precede the modified ASCII character
     # whereas the unicode combining term follows the character modified
@@ -1331,174 +1488,346 @@ class AnselReader(BaseReader):
     #  (strange things) probably not commonly found in our needs, unless one
     #   starts writing persian (or???) poetry in ANSEL
     __acombiners = {
-        b'\x8D' : '\u200d', b'\x8E' : '\u200c', b'\xE0' : '\u0309',
-        b'\xE1' : '\u0300', b'\xE2' : '\u0301', b'\xE3' : '\u0302',
-        b'\xE4' : '\u0303', b'\xE5' : '\u0304', b'\xE6' : '\u0306',
-        b'\xE7' : '\u0307', b'\xE8' : '\u0308', b'\xE9' : '\u030c',
-        b'\xEA' : '\u030a', b'\xEB' : '\ufe20', b'\xEC' : '\ufe21',
-        b'\xED' : '\u0315', b'\xEE' : '\u030b', b'\xEF' : '\u0310',
-        b'\xF0' : '\u0327', b'\xF1' : '\u0328', b'\xF2' : '\u0323',
-        b'\xF3' : '\u0324', b'\xF4' : '\u0325', b'\xF5' : '\u0333',
-        b'\xF6' : '\u0332', b'\xF7' : '\u0326', b'\xF8' : '\u031c',
-        b'\xF9' : '\u032e', b'\xFA' : '\ufe22', b'\xFB' : '\ufe23',
-        b'\xFC' : '\u0338',
-        b'\xFE' : '\u0313', }
+        b"\x8D": "\u200d",
+        b"\x8E": "\u200c",
+        b"\xE0": "\u0309",
+        b"\xE1": "\u0300",
+        b"\xE2": "\u0301",
+        b"\xE3": "\u0302",
+        b"\xE4": "\u0303",
+        b"\xE5": "\u0304",
+        b"\xE6": "\u0306",
+        b"\xE7": "\u0307",
+        b"\xE8": "\u0308",
+        b"\xE9": "\u030c",
+        b"\xEA": "\u030a",
+        b"\xEB": "\ufe20",
+        b"\xEC": "\ufe21",
+        b"\xED": "\u0315",
+        b"\xEE": "\u030b",
+        b"\xEF": "\u0310",
+        b"\xF0": "\u0327",
+        b"\xF1": "\u0328",
+        b"\xF2": "\u0323",
+        b"\xF3": "\u0324",
+        b"\xF4": "\u0325",
+        b"\xF5": "\u0333",
+        b"\xF6": "\u0332",
+        b"\xF7": "\u0326",
+        b"\xF8": "\u031c",
+        b"\xF9": "\u032e",
+        b"\xFA": "\ufe22",
+        b"\xFB": "\ufe23",
+        b"\xFC": "\u0338",
+        b"\xFE": "\u0313",
+    }
 
     # mappings of two byte (precomposed forms) ANSEL codes to unicode
     __twobyte = {
-        b'\xE0\x41' : '\u1ea2', b'\xE0\x45' : '\u1eba',
-        b'\xE0\x49' : '\u1ec8', b'\xE0\x4F' : '\u1ece',
-        b'\xE0\x55' : '\u1ee6', b'\xE0\x59' : '\u1ef6',
-        b'\xE0\x61' : '\u1ea3', b'\xE0\x65' : '\u1ebb',
-        b'\xE0\x69' : '\u1ec9', b'\xE0\x6F' : '\u1ecf',
-        b'\xE0\x75' : '\u1ee7', b'\xE0\x79' : '\u1ef7',
-        b'\xE1\x41' : '\u00c0', b'\xE1\x45' : '\u00c8',
-        b'\xE1\x49' : '\u00cc', b'\xE1\x4F' : '\u00d2',
-        b'\xE1\x55' : '\u00d9', b'\xE1\x57' : '\u1e80',
-        b'\xE1\x59' : '\u1ef2', b'\xE1\x61' : '\u00e0',
-        b'\xE1\x65' : '\u00e8', b'\xE1\x69' : '\u00ec',
-        b'\xE1\x6F' : '\u00f2', b'\xE1\x75' : '\u00f9',
-        b'\xE1\x77' : '\u1e81', b'\xE1\x79' : '\u1ef3',
-        b'\xE2\x41' : '\u00c1', b'\xE2\x43' : '\u0106',
-        b'\xE2\x45' : '\u00c9', b'\xE2\x47' : '\u01f4',
-        b'\xE2\x49' : '\u00cd', b'\xE2\x4B' : '\u1e30',
-        b'\xE2\x4C' : '\u0139', b'\xE2\x4D' : '\u1e3e',
-        b'\xE2\x4E' : '\u0143', b'\xE2\x4F' : '\u00d3',
-        b'\xE2\x50' : '\u1e54', b'\xE2\x52' : '\u0154',
-        b'\xE2\x53' : '\u015a', b'\xE2\x55' : '\u00da',
-        b'\xE2\x57' : '\u1e82', b'\xE2\x59' : '\u00dd',
-        b'\xE2\x5A' : '\u0179', b'\xE2\x61' : '\u00e1',
-        b'\xE2\x63' : '\u0107', b'\xE2\x65' : '\u00e9',
-        b'\xE2\x67' : '\u01f5', b'\xE2\x69' : '\u00ed',
-        b'\xE2\x6B' : '\u1e31', b'\xE2\x6C' : '\u013a',
-        b'\xE2\x6D' : '\u1e3f', b'\xE2\x6E' : '\u0144',
-        b'\xE2\x6F' : '\u00f3', b'\xE2\x70' : '\u1e55',
-        b'\xE2\x72' : '\u0155', b'\xE2\x73' : '\u015b',
-        b'\xE2\x75' : '\u00fa', b'\xE2\x77' : '\u1e83',
-        b'\xE2\x79' : '\u00fd', b'\xE2\x7A' : '\u017a',
-        b'\xE2\xA5' : '\u01fc', b'\xE2\xB5' : '\u01fd',
-        b'\xE3\x41' : '\u00c2', b'\xE3\x43' : '\u0108',
-        b'\xE3\x45' : '\u00ca', b'\xE3\x47' : '\u011c',
-        b'\xE3\x48' : '\u0124', b'\xE3\x49' : '\u00ce',
-        b'\xE3\x4A' : '\u0134', b'\xE3\x4F' : '\u00d4',
-        b'\xE3\x53' : '\u015c', b'\xE3\x55' : '\u00db',
-        b'\xE3\x57' : '\u0174', b'\xE3\x59' : '\u0176',
-        b'\xE3\x5A' : '\u1e90', b'\xE3\x61' : '\u00e2',
-        b'\xE3\x63' : '\u0109', b'\xE3\x65' : '\u00ea',
-        b'\xE3\x67' : '\u011d', b'\xE3\x68' : '\u0125',
-        b'\xE3\x69' : '\u00ee', b'\xE3\x6A' : '\u0135',
-        b'\xE3\x6F' : '\u00f4', b'\xE3\x73' : '\u015d',
-        b'\xE3\x75' : '\u00fb', b'\xE3\x77' : '\u0175',
-        b'\xE3\x79' : '\u0177', b'\xE3\x7A' : '\u1e91',
-        b'\xE4\x41' : '\u00c3', b'\xE4\x45' : '\u1ebc',
-        b'\xE4\x49' : '\u0128', b'\xE4\x4E' : '\u00d1',
-        b'\xE4\x4F' : '\u00d5', b'\xE4\x55' : '\u0168',
-        b'\xE4\x56' : '\u1e7c', b'\xE4\x59' : '\u1ef8',
-        b'\xE4\x61' : '\u00e3', b'\xE4\x65' : '\u1ebd',
-        b'\xE4\x69' : '\u0129', b'\xE4\x6E' : '\u00f1',
-        b'\xE4\x6F' : '\u00f5', b'\xE4\x75' : '\u0169',
-        b'\xE4\x76' : '\u1e7d', b'\xE4\x79' : '\u1ef9',
-        b'\xE5\x41' : '\u0100', b'\xE5\x45' : '\u0112',
-        b'\xE5\x47' : '\u1e20', b'\xE5\x49' : '\u012a',
-        b'\xE5\x4F' : '\u014c', b'\xE5\x55' : '\u016a',
-        b'\xE5\x61' : '\u0101', b'\xE5\x65' : '\u0113',
-        b'\xE5\x67' : '\u1e21', b'\xE5\x69' : '\u012b',
-        b'\xE5\x6F' : '\u014d', b'\xE5\x75' : '\u016b',
-        b'\xE5\xA5' : '\u01e2', b'\xE5\xB5' : '\u01e3',
-        b'\xE6\x41' : '\u0102', b'\xE6\x45' : '\u0114',
-        b'\xE6\x47' : '\u011e', b'\xE6\x49' : '\u012c',
-        b'\xE6\x4F' : '\u014e', b'\xE6\x55' : '\u016c',
-        b'\xE6\x61' : '\u0103', b'\xE6\x65' : '\u0115',
-        b'\xE6\x67' : '\u011f', b'\xE6\x69' : '\u012d',
-        b'\xE6\x6F' : '\u014f', b'\xE6\x75' : '\u016d',
-        b'\xE7\x42' : '\u1e02', b'\xE7\x43' : '\u010a',
-        b'\xE7\x44' : '\u1e0a', b'\xE7\x45' : '\u0116',
-        b'\xE7\x46' : '\u1e1e', b'\xE7\x47' : '\u0120',
-        b'\xE7\x48' : '\u1e22', b'\xE7\x49' : '\u0130',
-        b'\xE7\x4D' : '\u1e40', b'\xE7\x4E' : '\u1e44',
-        b'\xE7\x50' : '\u1e56', b'\xE7\x52' : '\u1e58',
-        b'\xE7\x53' : '\u1e60', b'\xE7\x54' : '\u1e6a',
-        b'\xE7\x57' : '\u1e86', b'\xE7\x58' : '\u1e8a',
-        b'\xE7\x59' : '\u1e8e', b'\xE7\x5A' : '\u017b',
-        b'\xE7\x62' : '\u1e03', b'\xE7\x63' : '\u010b',
-        b'\xE7\x64' : '\u1e0b', b'\xE7\x65' : '\u0117',
-        b'\xE7\x66' : '\u1e1f', b'\xE7\x67' : '\u0121',
-        b'\xE7\x68' : '\u1e23', b'\xE7\x6D' : '\u1e41',
-        b'\xE7\x6E' : '\u1e45', b'\xE7\x70' : '\u1e57',
-        b'\xE7\x72' : '\u1e59', b'\xE7\x73' : '\u1e61',
-        b'\xE7\x74' : '\u1e6b', b'\xE7\x77' : '\u1e87',
-        b'\xE7\x78' : '\u1e8b', b'\xE7\x79' : '\u1e8f',
-        b'\xE7\x7A' : '\u017c', b'\xE8\x41' : '\u00c4',
-        b'\xE8\x45' : '\u00cb', b'\xE8\x48' : '\u1e26',
-        b'\xE8\x49' : '\u00cf', b'\xE8\x4F' : '\u00d6',
-        b'\xE8\x55' : '\u00dc', b'\xE8\x57' : '\u1e84',
-        b'\xE8\x58' : '\u1e8c', b'\xE8\x59' : '\u0178',
-        b'\xE8\x61' : '\u00e4', b'\xE8\x65' : '\u00eb',
-        b'\xE8\x68' : '\u1e27', b'\xE8\x69' : '\u00ef',
-        b'\xE8\x6F' : '\u00f6', b'\xE8\x74' : '\u1e97',
-        b'\xE8\x75' : '\u00fc', b'\xE8\x77' : '\u1e85',
-        b'\xE8\x78' : '\u1e8d', b'\xE8\x79' : '\u00ff',
-        b'\xE9\x41' : '\u01cd', b'\xE9\x43' : '\u010c',
-        b'\xE9\x44' : '\u010e', b'\xE9\x45' : '\u011a',
-        b'\xE9\x47' : '\u01e6', b'\xE9\x49' : '\u01cf',
-        b'\xE9\x4B' : '\u01e8', b'\xE9\x4C' : '\u013d',
-        b'\xE9\x4E' : '\u0147', b'\xE9\x4F' : '\u01d1',
-        b'\xE9\x52' : '\u0158', b'\xE9\x53' : '\u0160',
-        b'\xE9\x54' : '\u0164', b'\xE9\x55' : '\u01d3',
-        b'\xE9\x5A' : '\u017d', b'\xE9\x61' : '\u01ce',
-        b'\xE9\x63' : '\u010d', b'\xE9\x64' : '\u010f',
-        b'\xE9\x65' : '\u011b', b'\xE9\x67' : '\u01e7',
-        b'\xE9\x69' : '\u01d0', b'\xE9\x6A' : '\u01f0',
-        b'\xE9\x6B' : '\u01e9', b'\xE9\x6C' : '\u013e',
-        b'\xE9\x6E' : '\u0148', b'\xE9\x6F' : '\u01d2',
-        b'\xE9\x72' : '\u0159', b'\xE9\x73' : '\u0161',
-        b'\xE9\x74' : '\u0165', b'\xE9\x75' : '\u01d4',
-        b'\xE9\x7A' : '\u017e', b'\xEA\x41' : '\u00c5',
-        b'\xEA\x61' : '\u00e5', b'\xEA\x75' : '\u016f',
-        b'\xEA\x77' : '\u1e98', b'\xEA\x79' : '\u1e99',
-        b'\xEA\xAD' : '\u016e', b'\xEE\x4F' : '\u0150',
-        b'\xEE\x55' : '\u0170', b'\xEE\x6F' : '\u0151',
-        b'\xEE\x75' : '\u0171', b'\xF0\x20' : '\u00b8',
-        b'\xF0\x43' : '\u00c7', b'\xF0\x44' : '\u1e10',
-        b'\xF0\x47' : '\u0122', b'\xF0\x48' : '\u1e28',
-        b'\xF0\x4B' : '\u0136', b'\xF0\x4C' : '\u013b',
-        b'\xF0\x4E' : '\u0145', b'\xF0\x52' : '\u0156',
-        b'\xF0\x53' : '\u015e', b'\xF0\x54' : '\u0162',
-        b'\xF0\x63' : '\u00e7', b'\xF0\x64' : '\u1e11',
-        b'\xF0\x67' : '\u0123', b'\xF0\x68' : '\u1e29',
-        b'\xF0\x6B' : '\u0137', b'\xF0\x6C' : '\u013c',
-        b'\xF0\x6E' : '\u0146', b'\xF0\x72' : '\u0157',
-        b'\xF0\x73' : '\u015f', b'\xF0\x74' : '\u0163',
-        b'\xF1\x41' : '\u0104', b'\xF1\x45' : '\u0118',
-        b'\xF1\x49' : '\u012e', b'\xF1\x4F' : '\u01ea',
-        b'\xF1\x55' : '\u0172', b'\xF1\x61' : '\u0105',
-        b'\xF1\x65' : '\u0119', b'\xF1\x69' : '\u012f',
-        b'\xF1\x6F' : '\u01eb', b'\xF1\x75' : '\u0173',
-        b'\xF2\x41' : '\u1ea0', b'\xF2\x42' : '\u1e04',
-        b'\xF2\x44' : '\u1e0c', b'\xF2\x45' : '\u1eb8',
-        b'\xF2\x48' : '\u1e24', b'\xF2\x49' : '\u1eca',
-        b'\xF2\x4B' : '\u1e32', b'\xF2\x4C' : '\u1e36',
-        b'\xF2\x4D' : '\u1e42', b'\xF2\x4E' : '\u1e46',
-        b'\xF2\x4F' : '\u1ecc', b'\xF2\x52' : '\u1e5a',
-        b'\xF2\x53' : '\u1e62', b'\xF2\x54' : '\u1e6c',
-        b'\xF2\x55' : '\u1ee4', b'\xF2\x56' : '\u1e7e',
-        b'\xF2\x57' : '\u1e88', b'\xF2\x59' : '\u1ef4',
-        b'\xF2\x5A' : '\u1e92', b'\xF2\x61' : '\u1ea1',
-        b'\xF2\x62' : '\u1e05', b'\xF2\x64' : '\u1e0d',
-        b'\xF2\x65' : '\u1eb9', b'\xF2\x68' : '\u1e25',
-        b'\xF2\x69' : '\u1ecb', b'\xF2\x6B' : '\u1e33',
-        b'\xF2\x6C' : '\u1e37', b'\xF2\x6D' : '\u1e43',
-        b'\xF2\x6E' : '\u1e47', b'\xF2\x6F' : '\u1ecd',
-        b'\xF2\x72' : '\u1e5b', b'\xF2\x73' : '\u1e63',
-        b'\xF2\x74' : '\u1e6d', b'\xF2\x75' : '\u1ee5',
-        b'\xF2\x76' : '\u1e7f', b'\xF2\x77' : '\u1e89',
-        b'\xF2\x79' : '\u1ef5', b'\xF2\x7A' : '\u1e93',
-        b'\xF3\x55' : '\u1e72', b'\xF3\x75' : '\u1e73',
-        b'\xF4\x41' : '\u1e00', b'\xF4\x61' : '\u1e01',
-        b'\xF9\x48' : '\u1e2a', b'\xF9\x68' : '\u1e2b', }
+        b"\xE0\x41": "\u1ea2",
+        b"\xE0\x45": "\u1eba",
+        b"\xE0\x49": "\u1ec8",
+        b"\xE0\x4F": "\u1ece",
+        b"\xE0\x55": "\u1ee6",
+        b"\xE0\x59": "\u1ef6",
+        b"\xE0\x61": "\u1ea3",
+        b"\xE0\x65": "\u1ebb",
+        b"\xE0\x69": "\u1ec9",
+        b"\xE0\x6F": "\u1ecf",
+        b"\xE0\x75": "\u1ee7",
+        b"\xE0\x79": "\u1ef7",
+        b"\xE1\x41": "\u00c0",
+        b"\xE1\x45": "\u00c8",
+        b"\xE1\x49": "\u00cc",
+        b"\xE1\x4F": "\u00d2",
+        b"\xE1\x55": "\u00d9",
+        b"\xE1\x57": "\u1e80",
+        b"\xE1\x59": "\u1ef2",
+        b"\xE1\x61": "\u00e0",
+        b"\xE1\x65": "\u00e8",
+        b"\xE1\x69": "\u00ec",
+        b"\xE1\x6F": "\u00f2",
+        b"\xE1\x75": "\u00f9",
+        b"\xE1\x77": "\u1e81",
+        b"\xE1\x79": "\u1ef3",
+        b"\xE2\x41": "\u00c1",
+        b"\xE2\x43": "\u0106",
+        b"\xE2\x45": "\u00c9",
+        b"\xE2\x47": "\u01f4",
+        b"\xE2\x49": "\u00cd",
+        b"\xE2\x4B": "\u1e30",
+        b"\xE2\x4C": "\u0139",
+        b"\xE2\x4D": "\u1e3e",
+        b"\xE2\x4E": "\u0143",
+        b"\xE2\x4F": "\u00d3",
+        b"\xE2\x50": "\u1e54",
+        b"\xE2\x52": "\u0154",
+        b"\xE2\x53": "\u015a",
+        b"\xE2\x55": "\u00da",
+        b"\xE2\x57": "\u1e82",
+        b"\xE2\x59": "\u00dd",
+        b"\xE2\x5A": "\u0179",
+        b"\xE2\x61": "\u00e1",
+        b"\xE2\x63": "\u0107",
+        b"\xE2\x65": "\u00e9",
+        b"\xE2\x67": "\u01f5",
+        b"\xE2\x69": "\u00ed",
+        b"\xE2\x6B": "\u1e31",
+        b"\xE2\x6C": "\u013a",
+        b"\xE2\x6D": "\u1e3f",
+        b"\xE2\x6E": "\u0144",
+        b"\xE2\x6F": "\u00f3",
+        b"\xE2\x70": "\u1e55",
+        b"\xE2\x72": "\u0155",
+        b"\xE2\x73": "\u015b",
+        b"\xE2\x75": "\u00fa",
+        b"\xE2\x77": "\u1e83",
+        b"\xE2\x79": "\u00fd",
+        b"\xE2\x7A": "\u017a",
+        b"\xE2\xA5": "\u01fc",
+        b"\xE2\xB5": "\u01fd",
+        b"\xE3\x41": "\u00c2",
+        b"\xE3\x43": "\u0108",
+        b"\xE3\x45": "\u00ca",
+        b"\xE3\x47": "\u011c",
+        b"\xE3\x48": "\u0124",
+        b"\xE3\x49": "\u00ce",
+        b"\xE3\x4A": "\u0134",
+        b"\xE3\x4F": "\u00d4",
+        b"\xE3\x53": "\u015c",
+        b"\xE3\x55": "\u00db",
+        b"\xE3\x57": "\u0174",
+        b"\xE3\x59": "\u0176",
+        b"\xE3\x5A": "\u1e90",
+        b"\xE3\x61": "\u00e2",
+        b"\xE3\x63": "\u0109",
+        b"\xE3\x65": "\u00ea",
+        b"\xE3\x67": "\u011d",
+        b"\xE3\x68": "\u0125",
+        b"\xE3\x69": "\u00ee",
+        b"\xE3\x6A": "\u0135",
+        b"\xE3\x6F": "\u00f4",
+        b"\xE3\x73": "\u015d",
+        b"\xE3\x75": "\u00fb",
+        b"\xE3\x77": "\u0175",
+        b"\xE3\x79": "\u0177",
+        b"\xE3\x7A": "\u1e91",
+        b"\xE4\x41": "\u00c3",
+        b"\xE4\x45": "\u1ebc",
+        b"\xE4\x49": "\u0128",
+        b"\xE4\x4E": "\u00d1",
+        b"\xE4\x4F": "\u00d5",
+        b"\xE4\x55": "\u0168",
+        b"\xE4\x56": "\u1e7c",
+        b"\xE4\x59": "\u1ef8",
+        b"\xE4\x61": "\u00e3",
+        b"\xE4\x65": "\u1ebd",
+        b"\xE4\x69": "\u0129",
+        b"\xE4\x6E": "\u00f1",
+        b"\xE4\x6F": "\u00f5",
+        b"\xE4\x75": "\u0169",
+        b"\xE4\x76": "\u1e7d",
+        b"\xE4\x79": "\u1ef9",
+        b"\xE5\x41": "\u0100",
+        b"\xE5\x45": "\u0112",
+        b"\xE5\x47": "\u1e20",
+        b"\xE5\x49": "\u012a",
+        b"\xE5\x4F": "\u014c",
+        b"\xE5\x55": "\u016a",
+        b"\xE5\x61": "\u0101",
+        b"\xE5\x65": "\u0113",
+        b"\xE5\x67": "\u1e21",
+        b"\xE5\x69": "\u012b",
+        b"\xE5\x6F": "\u014d",
+        b"\xE5\x75": "\u016b",
+        b"\xE5\xA5": "\u01e2",
+        b"\xE5\xB5": "\u01e3",
+        b"\xE6\x41": "\u0102",
+        b"\xE6\x45": "\u0114",
+        b"\xE6\x47": "\u011e",
+        b"\xE6\x49": "\u012c",
+        b"\xE6\x4F": "\u014e",
+        b"\xE6\x55": "\u016c",
+        b"\xE6\x61": "\u0103",
+        b"\xE6\x65": "\u0115",
+        b"\xE6\x67": "\u011f",
+        b"\xE6\x69": "\u012d",
+        b"\xE6\x6F": "\u014f",
+        b"\xE6\x75": "\u016d",
+        b"\xE7\x42": "\u1e02",
+        b"\xE7\x43": "\u010a",
+        b"\xE7\x44": "\u1e0a",
+        b"\xE7\x45": "\u0116",
+        b"\xE7\x46": "\u1e1e",
+        b"\xE7\x47": "\u0120",
+        b"\xE7\x48": "\u1e22",
+        b"\xE7\x49": "\u0130",
+        b"\xE7\x4D": "\u1e40",
+        b"\xE7\x4E": "\u1e44",
+        b"\xE7\x50": "\u1e56",
+        b"\xE7\x52": "\u1e58",
+        b"\xE7\x53": "\u1e60",
+        b"\xE7\x54": "\u1e6a",
+        b"\xE7\x57": "\u1e86",
+        b"\xE7\x58": "\u1e8a",
+        b"\xE7\x59": "\u1e8e",
+        b"\xE7\x5A": "\u017b",
+        b"\xE7\x62": "\u1e03",
+        b"\xE7\x63": "\u010b",
+        b"\xE7\x64": "\u1e0b",
+        b"\xE7\x65": "\u0117",
+        b"\xE7\x66": "\u1e1f",
+        b"\xE7\x67": "\u0121",
+        b"\xE7\x68": "\u1e23",
+        b"\xE7\x6D": "\u1e41",
+        b"\xE7\x6E": "\u1e45",
+        b"\xE7\x70": "\u1e57",
+        b"\xE7\x72": "\u1e59",
+        b"\xE7\x73": "\u1e61",
+        b"\xE7\x74": "\u1e6b",
+        b"\xE7\x77": "\u1e87",
+        b"\xE7\x78": "\u1e8b",
+        b"\xE7\x79": "\u1e8f",
+        b"\xE7\x7A": "\u017c",
+        b"\xE8\x41": "\u00c4",
+        b"\xE8\x45": "\u00cb",
+        b"\xE8\x48": "\u1e26",
+        b"\xE8\x49": "\u00cf",
+        b"\xE8\x4F": "\u00d6",
+        b"\xE8\x55": "\u00dc",
+        b"\xE8\x57": "\u1e84",
+        b"\xE8\x58": "\u1e8c",
+        b"\xE8\x59": "\u0178",
+        b"\xE8\x61": "\u00e4",
+        b"\xE8\x65": "\u00eb",
+        b"\xE8\x68": "\u1e27",
+        b"\xE8\x69": "\u00ef",
+        b"\xE8\x6F": "\u00f6",
+        b"\xE8\x74": "\u1e97",
+        b"\xE8\x75": "\u00fc",
+        b"\xE8\x77": "\u1e85",
+        b"\xE8\x78": "\u1e8d",
+        b"\xE8\x79": "\u00ff",
+        b"\xE9\x41": "\u01cd",
+        b"\xE9\x43": "\u010c",
+        b"\xE9\x44": "\u010e",
+        b"\xE9\x45": "\u011a",
+        b"\xE9\x47": "\u01e6",
+        b"\xE9\x49": "\u01cf",
+        b"\xE9\x4B": "\u01e8",
+        b"\xE9\x4C": "\u013d",
+        b"\xE9\x4E": "\u0147",
+        b"\xE9\x4F": "\u01d1",
+        b"\xE9\x52": "\u0158",
+        b"\xE9\x53": "\u0160",
+        b"\xE9\x54": "\u0164",
+        b"\xE9\x55": "\u01d3",
+        b"\xE9\x5A": "\u017d",
+        b"\xE9\x61": "\u01ce",
+        b"\xE9\x63": "\u010d",
+        b"\xE9\x64": "\u010f",
+        b"\xE9\x65": "\u011b",
+        b"\xE9\x67": "\u01e7",
+        b"\xE9\x69": "\u01d0",
+        b"\xE9\x6A": "\u01f0",
+        b"\xE9\x6B": "\u01e9",
+        b"\xE9\x6C": "\u013e",
+        b"\xE9\x6E": "\u0148",
+        b"\xE9\x6F": "\u01d2",
+        b"\xE9\x72": "\u0159",
+        b"\xE9\x73": "\u0161",
+        b"\xE9\x74": "\u0165",
+        b"\xE9\x75": "\u01d4",
+        b"\xE9\x7A": "\u017e",
+        b"\xEA\x41": "\u00c5",
+        b"\xEA\x61": "\u00e5",
+        b"\xEA\x75": "\u016f",
+        b"\xEA\x77": "\u1e98",
+        b"\xEA\x79": "\u1e99",
+        b"\xEA\xAD": "\u016e",
+        b"\xEE\x4F": "\u0150",
+        b"\xEE\x55": "\u0170",
+        b"\xEE\x6F": "\u0151",
+        b"\xEE\x75": "\u0171",
+        b"\xF0\x20": "\u00b8",
+        b"\xF0\x43": "\u00c7",
+        b"\xF0\x44": "\u1e10",
+        b"\xF0\x47": "\u0122",
+        b"\xF0\x48": "\u1e28",
+        b"\xF0\x4B": "\u0136",
+        b"\xF0\x4C": "\u013b",
+        b"\xF0\x4E": "\u0145",
+        b"\xF0\x52": "\u0156",
+        b"\xF0\x53": "\u015e",
+        b"\xF0\x54": "\u0162",
+        b"\xF0\x63": "\u00e7",
+        b"\xF0\x64": "\u1e11",
+        b"\xF0\x67": "\u0123",
+        b"\xF0\x68": "\u1e29",
+        b"\xF0\x6B": "\u0137",
+        b"\xF0\x6C": "\u013c",
+        b"\xF0\x6E": "\u0146",
+        b"\xF0\x72": "\u0157",
+        b"\xF0\x73": "\u015f",
+        b"\xF0\x74": "\u0163",
+        b"\xF1\x41": "\u0104",
+        b"\xF1\x45": "\u0118",
+        b"\xF1\x49": "\u012e",
+        b"\xF1\x4F": "\u01ea",
+        b"\xF1\x55": "\u0172",
+        b"\xF1\x61": "\u0105",
+        b"\xF1\x65": "\u0119",
+        b"\xF1\x69": "\u012f",
+        b"\xF1\x6F": "\u01eb",
+        b"\xF1\x75": "\u0173",
+        b"\xF2\x41": "\u1ea0",
+        b"\xF2\x42": "\u1e04",
+        b"\xF2\x44": "\u1e0c",
+        b"\xF2\x45": "\u1eb8",
+        b"\xF2\x48": "\u1e24",
+        b"\xF2\x49": "\u1eca",
+        b"\xF2\x4B": "\u1e32",
+        b"\xF2\x4C": "\u1e36",
+        b"\xF2\x4D": "\u1e42",
+        b"\xF2\x4E": "\u1e46",
+        b"\xF2\x4F": "\u1ecc",
+        b"\xF2\x52": "\u1e5a",
+        b"\xF2\x53": "\u1e62",
+        b"\xF2\x54": "\u1e6c",
+        b"\xF2\x55": "\u1ee4",
+        b"\xF2\x56": "\u1e7e",
+        b"\xF2\x57": "\u1e88",
+        b"\xF2\x59": "\u1ef4",
+        b"\xF2\x5A": "\u1e92",
+        b"\xF2\x61": "\u1ea1",
+        b"\xF2\x62": "\u1e05",
+        b"\xF2\x64": "\u1e0d",
+        b"\xF2\x65": "\u1eb9",
+        b"\xF2\x68": "\u1e25",
+        b"\xF2\x69": "\u1ecb",
+        b"\xF2\x6B": "\u1e33",
+        b"\xF2\x6C": "\u1e37",
+        b"\xF2\x6D": "\u1e43",
+        b"\xF2\x6E": "\u1e47",
+        b"\xF2\x6F": "\u1ecd",
+        b"\xF2\x72": "\u1e5b",
+        b"\xF2\x73": "\u1e63",
+        b"\xF2\x74": "\u1e6d",
+        b"\xF2\x75": "\u1ee5",
+        b"\xF2\x76": "\u1e7f",
+        b"\xF2\x77": "\u1e89",
+        b"\xF2\x79": "\u1ef5",
+        b"\xF2\x7A": "\u1e93",
+        b"\xF3\x55": "\u1e72",
+        b"\xF3\x75": "\u1e73",
+        b"\xF4\x41": "\u1e00",
+        b"\xF4\x61": "\u1e01",
+        b"\xF9\x48": "\u1e2a",
+        b"\xF9\x68": "\u1e2b",
+    }
 
     def __ansel_to_unicode(self, text):
-        """ Convert an ANSEL encoded text to unicode """
+        """Convert an ANSEL encoded text to unicode"""
 
         buff = StringIO()
         error = ""
@@ -1509,7 +1838,7 @@ class AnselReader(BaseReader):
                 else:
                     # substitute space for disallowed (control) chars
                     error += " (%#X)" % text[0]
-                    head = ' '
+                    head = " "
                 text = text[1:]
             else:
                 if text[0:2] in AnselReader.__twobyte:
@@ -1523,8 +1852,10 @@ class AnselReader(BaseReader):
                     # always consume the combiner
                     text = text[1:]
                     next_byte = text[0]
-                    if next_byte < 128 and chr(next_byte) in \
-                            AnselReader.__printable_ascii:
+                    if (
+                        next_byte < 128
+                        and chr(next_byte) in AnselReader.__printable_ascii
+                    ):
                         # consume next as well
                         text = text[1:]
                         # unicode: combiner follows base-char
@@ -1535,7 +1866,7 @@ class AnselReader(BaseReader):
                         continue
                 else:
                     error += " (%#X)" % text[0]
-                    head = '\ufffd'  # "Replacement Char"
+                    head = "\ufffd"  # "Replacement Char"
                     text = text[1:]
             buff.write(head)
         ans = buff.getvalue()
@@ -1550,25 +1881,26 @@ class AnselReader(BaseReader):
         BaseReader.__init__(self, ifile, "ANSEL", __add_msg)
         # In theory, we should have been able to skip the encode/decode from
         # ascii.  But this way allows us to use pythons universal newline
-        self.ifile = TextIOWrapper(ifile, encoding='ascii',
-                                   errors='surrogateescape', newline=None)
+        self.ifile = TextIOWrapper(
+            ifile, encoding="ascii", errors="surrogateescape", newline=None
+        )
 
     def readline(self):
         line = self.ifile.readline()
-        linebytes = line.encode(encoding='ascii',
-                                errors='surrogateescape')
+        linebytes = line.encode(encoding="ascii", errors="surrogateescape")
         return self.__ansel_to_unicode(linebytes)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # CurrentState
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class CurrentState:
     """
     Keep track of the current state variables.
     """
+
     def __init__(self, person=None, level=0, event=None, event_ref=None):
         """
         Initialize the object.
@@ -1584,20 +1916,20 @@ class CurrentState:
         self.note = None
         self.lds_ord = None
         self.msg = ""
-        self.primary = False        # _PRIMARY tag on an INDI.FAMC tag
+        self.primary = False  # _PRIMARY tag on an INDI.FAMC tag
         self.filename = ""
         self.title = ""
         self.addr = None
         self.res = None
         self.source = None
         self.ftype = None
-        self.pf = None              # method for parsing places
+        self.pf = None  # method for parsing places
         self.location = None
-        self.place_fields = None    # method for parsing places
-        self.ref = None             # PersonRef
-        self.handle = None          #
-        self.form = ""              # Multimedia format
-        self.frel = None            # Child relation to father
+        self.place_fields = None  # method for parsing places
+        self.ref = None  # PersonRef
+        self.handle = None  #
+        self.form = ""  # Multimedia format
+        self.frel = None  # Child relation to father
         self.mrel = None
         self.repo = None
         self.attr = None
@@ -1607,8 +1939,8 @@ class CurrentState:
         self.repo_ref = None
         self.place = None
         self.media = None
-        self.photo = ""             # Person primary photo
-        self.prim = None            # Photo is primary
+        self.photo = ""  # Person primary photo
+        self.prim = None  # Photo is primary
 
     def __getattr__(self, name):
         """
@@ -1623,11 +1955,11 @@ class CurrentState:
         self.__dict__[name] = value
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # PlaceParser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class PlaceParser:
     """
     Provide the ability to parse GEDCOM FORM statements for places, and
@@ -1636,27 +1968,28 @@ class PlaceParser:
     """
 
     __field_map = {
-        'addr'          : Location.set_street,
-        'subdivision'   : Location.set_street,
-        'addr1'         : Location.set_street,
-        'adr1'          : Location.set_street,
-        'street'        : Location.set_street,
-        'addr2'         : Location.set_locality,
-        'adr2'          : Location.set_locality,
-        'locality'      : Location.set_locality,
-        'neighborhood'  : Location.set_locality,
-        'city'          : Location.set_city,
-        'town'          : Location.set_city,
-        'village'       : Location.set_city,
-        'county'        : Location.set_county,
-        'country'       : Location.set_country,
-        'state'         : Location.set_state,
-        'state/province': Location.set_state,
-        'region'        : Location.set_state,
-        'province'      : Location.set_state,
-        'area code'     : Location.set_postal_code,
-        'post code'     : Location.set_postal_code,
-        'zip code'      : Location.set_postal_code, }
+        "addr": Location.set_street,
+        "subdivision": Location.set_street,
+        "addr1": Location.set_street,
+        "adr1": Location.set_street,
+        "street": Location.set_street,
+        "addr2": Location.set_locality,
+        "adr2": Location.set_locality,
+        "locality": Location.set_locality,
+        "neighborhood": Location.set_locality,
+        "city": Location.set_city,
+        "town": Location.set_city,
+        "village": Location.set_city,
+        "county": Location.set_county,
+        "country": Location.set_country,
+        "state": Location.set_state,
+        "state/province": Location.set_state,
+        "region": Location.set_state,
+        "province": Location.set_state,
+        "area code": Location.set_postal_code,
+        "post code": Location.set_postal_code,
+        "zip code": Location.set_postal_code,
+    }
 
     def __init__(self, line=None):
         self.parse_function = []
@@ -1671,7 +2004,7 @@ class PlaceParser:
         (separated by commas) to the corresponding Location
         method via the __field_map variable
         """
-        for item in line.data.split(','):
+        for item in line.data.split(","):
             item = item.lower().strip()
             fcn = self.__field_map.get(item, lambda x, y: None)
             self.parse_function.append(fcn)
@@ -1683,7 +2016,7 @@ class PlaceParser:
         function based of its position, depending on the parsed value
         from the FORM statement.
         """
-        items = [item.strip() for item in text.split(',')]
+        items = [item.strip() for item in text.split(",")]
         if len(items) != len(self.parse_function):
             return
         index = 0
@@ -1692,13 +2025,15 @@ class PlaceParser:
             self.parse_function[index](loc, item)
             index += 1
 
-        location = (loc.get_street(),
-                    loc.get_locality(),
-                    loc.get_parish(),
-                    loc.get_city(),
-                    loc.get_county(),
-                    loc.get_state(),
-                    loc.get_country())
+        location = (
+            loc.get_street(),
+            loc.get_locality(),
+            loc.get_parish(),
+            loc.get_city(),
+            loc.get_county(),
+            loc.get_state(),
+            loc.get_country(),
+        )
 
         for level, name in enumerate(location):
             if name:
@@ -1713,21 +2048,22 @@ class PlaceParser:
         place.set_type(PlaceType(type_num))
         code = loc.get_postal_code()
         place.set_code(code)
-        if place.handle:    # if handle is available, store immediately
+        if place.handle:  # if handle is available, store immediately
             place_import.store_location(location, place.handle)
-        else:               # return for storage later
+        else:  # return for storage later
             return location
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # IdFinder
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IdFinder:
     """
     Provide method of finding the next available ID.
     """
+
     def __init__(self, keys, prefix):
         """
         Initialize the object.
@@ -1753,14 +2089,15 @@ class IdFinder:
         return index
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # IdMapper
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IdMapper:
-    """ This class provide methods to keep track of the correspoindence between
-    Gedcom xrefs (@P1023@) and Gramps IDs. """
+    """This class provide methods to keep track of the correspoindence between
+    Gedcom xrefs (@P1023@) and Gramps IDs."""
+
     def __init__(self, has_gid, find_next, id2user_format):
         self.has_gid = has_gid
         self.find_next = find_next
@@ -1787,8 +2124,9 @@ class IdMapper:
                 # have found it. If we had already encountered I0001 and we are
                 # now looking for I1, it wouldn't be in self.swap, and we now
                 # find that I0001 is in use, so we have to create a new id.
-                if self.has_gid(formatted_gid) or \
-                        (formatted_gid in list(self.swap.values())):
+                if self.has_gid(formatted_gid) or (
+                    formatted_gid in list(self.swap.values())
+                ):
                     new_val = self.find_next()
                     while new_val in list(self.swap.values()):
                         new_val = self.find_next()
@@ -1800,30 +2138,31 @@ class IdMapper:
         return new_val
 
     def clean(self, gid):
-        """ remove '@' from start and end of xref """
+        """remove '@' from start and end of xref"""
         temp = gid.strip()
-        if len(temp) > 1 and temp[0] == '@' and temp[-1] == '@':
+        if len(temp) > 1 and temp[0] == "@" and temp[-1] == "@":
             temp = temp[1:-1]
         return temp
 
     def map(self):
-        """ return the xref to GID translation map """
+        """return the xref to GID translation map"""
         return self.swap
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GedcomParser
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GedcomParser(UpdateCallback):
     """
     Performs the second pass of the GEDCOM parser, which does all the heavy
     lifting.
     """
 
-    __TRUNC_MSG = _("Your GEDCOM file is corrupted. "
-                    "It appears to have been truncated.")
+    __TRUNC_MSG = _(
+        "Your GEDCOM file is corrupted. " "It appears to have been truncated."
+    )
     _EMPTY_LOC = Location().serialize()
 
     SyntaxError = "Syntax Error"
@@ -1853,7 +2192,7 @@ class GedcomParser(UpdateCallback):
 
         match = SURNAME_RE.match(text)
         if match:
-            #/surname/ extra, we assume extra is given name
+            # /surname/ extra, we assume extra is given name
             names = match.groups()
             name.set_first_name(names[1].strip())
             surn = Surname()
@@ -1875,8 +2214,16 @@ class GedcomParser(UpdateCallback):
                 name.set_first_name(text.strip())
         return name
 
-    def __init__(self, dbase, ifile, filename, user, stage_one,
-                 default_source, default_tag_format=None):
+    def __init__(
+        self,
+        dbase,
+        ifile,
+        filename,
+        user,
+        stage_one,
+        default_source,
+        default_tag_format=None,
+    ):
         UpdateCallback.__init__(self, user.callback)
         self.user = user
         self.set_total(stage_one.get_line_count())
@@ -1905,7 +2252,7 @@ class GedcomParser(UpdateCallback):
         self.func_list = []
         if self.use_def_src:
             self.def_src = Source()
-            fname = os.path.basename(filename).split('\\')[-1]
+            fname = os.path.basename(filename).split("\\")[-1]
             self.def_src.set_title(_("Import from GEDCOM (%s)") % fname)
         if default_tag_format:
             name = time.strftime(default_tag_format)
@@ -1926,27 +2273,33 @@ class GedcomParser(UpdateCallback):
         self.pid_map = IdMapper(
             self.dbase.has_person_gramps_id,
             self.dbase.find_next_person_gramps_id,
-            self.dbase.id2user_format)
+            self.dbase.id2user_format,
+        )
         self.fid_map = IdMapper(
             self.dbase.has_family_gramps_id,
             self.dbase.find_next_family_gramps_id,
-            self.dbase.fid2user_format)
+            self.dbase.fid2user_format,
+        )
         self.sid_map = IdMapper(
             self.dbase.has_source_gramps_id,
             self.dbase.find_next_source_gramps_id,
-            self.dbase.sid2user_format)
+            self.dbase.sid2user_format,
+        )
         self.oid_map = IdMapper(
             self.dbase.has_media_gramps_id,
             self.dbase.find_next_media_gramps_id,
-            self.dbase.oid2user_format)
+            self.dbase.oid2user_format,
+        )
         self.rid_map = IdMapper(
             self.dbase.has_repository_gramps_id,
             self.dbase.find_next_repository_gramps_id,
-            self.dbase.rid2user_format)
+            self.dbase.rid2user_format,
+        )
         self.nid_map = IdMapper(
             self.dbase.has_note_gramps_id,
             self.dbase.find_next_note_gramps_id,
-            self.dbase.nid2user_format)
+            self.dbase.nid2user_format,
+        )
 
         self.gid2id = {}
         self.oid2id = {}
@@ -1974,22 +2327,23 @@ class GedcomParser(UpdateCallback):
         # (N.B. GEDCOM allows multiple SUBMitter records)
         self.subm_parse_tbl = {
             # +1 NAME <SUBMITTER_NAME>
-            TOKEN_NAME  : self.__subm_name,
+            TOKEN_NAME: self.__subm_name,
             # +1 <<ADDRESS_STRUCTURE>>
-            TOKEN_ADDR  : self.__subm_addr,
-            TOKEN_PHON  : self.__subm_phon,
-            TOKEN_EMAIL : self.__subm_email,
-            TOKEN_WWW   : self.__repo_www,
-            TOKEN_FAX   : self.__repo_fax,
+            TOKEN_ADDR: self.__subm_addr,
+            TOKEN_PHON: self.__subm_phon,
+            TOKEN_EMAIL: self.__subm_email,
+            TOKEN_WWW: self.__repo_www,
+            TOKEN_FAX: self.__repo_fax,
             # +1 <<MULTIMEDIA_LINK>>
             # +1 LANG <LANGUAGE_PREFERENCE>
             # +1 <<NOTE_STRUCTURE>>
-            TOKEN_NOTE  : self.__repo_note,
-            TOKEN_RNOTE : self.__repo_note,
+            TOKEN_NOTE: self.__repo_note,
+            TOKEN_RNOTE: self.__repo_note,
             # +1 RFN <SUBMITTER_REGISTERED_RFN>
             # +1 RIN <AUTOMATED_RECORD_ID>
             # +1 <<CHANGE_DATE>>
-            TOKEN_CHAN  : self.__repo_chan, }
+            TOKEN_CHAN: self.__repo_chan,
+        }
         self.func_list.append(self.subm_parse_tbl)
 
         #
@@ -2021,107 +2375,109 @@ class GedcomParser(UpdateCallback):
 
         self.indi_parse_tbl = {
             # +1 RESN <RESTRICTION_NOTICE> {0:1}
-            TOKEN_RESN  : self.__person_resn,
+            TOKEN_RESN: self.__person_resn,
             # +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}
-            TOKEN_NAME  : self.__person_name,
+            TOKEN_NAME: self.__person_name,
             # +1 SEX <SEX_VALUE> {0:1}
-            TOKEN_SEX   : self.__person_sex,
+            TOKEN_SEX: self.__person_sex,
             # +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M}
-            TOKEN_EVEN  : self.__person_even,
+            TOKEN_EVEN: self.__person_even,
             TOKEN_GEVENT: self.__person_std_event,
-            TOKEN_BIRT  : self.__person_birt,
-            TOKEN_RELI  : self.__person_reli,
-            TOKEN_ADOP  : self.__person_adop,
-            TOKEN_DEAT  : self.__person_deat,
+            TOKEN_BIRT: self.__person_birt,
+            TOKEN_RELI: self.__person_reli,
+            TOKEN_ADOP: self.__person_adop,
+            TOKEN_DEAT: self.__person_deat,
             # +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
             # +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
-            TOKEN_ATTR  : self.__person_std_attr,
-            TOKEN_FACT  : self.__person_fact,
-            #+1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
-            TOKEN_BAPL  : self.__person_bapl,
-            TOKEN_CONL  : self.__person_conl,
-            TOKEN_ENDL  : self.__person_endl,
-            TOKEN_SLGC  : self.__person_slgc,
-            #+1 <<CHILD_TO_FAMILY_LINK>> {0:M}
-            TOKEN_FAMC  : self.__person_famc,
+            TOKEN_ATTR: self.__person_std_attr,
+            TOKEN_FACT: self.__person_fact,
+            # +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M}
+            TOKEN_BAPL: self.__person_bapl,
+            TOKEN_CONL: self.__person_conl,
+            TOKEN_ENDL: self.__person_endl,
+            TOKEN_SLGC: self.__person_slgc,
+            # +1 <<CHILD_TO_FAMILY_LINK>> {0:M}
+            TOKEN_FAMC: self.__person_famc,
             # +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M}
-            TOKEN_FAMS  : self.__person_fams,
+            TOKEN_FAMS: self.__person_fams,
             # +1 SUBM @<XREF:SUBM>@ {0:M}
-            TOKEN_SUBM  : self.__skip_record,
+            TOKEN_SUBM: self.__skip_record,
             # +1 <<ASSOCIATION_STRUCTURE>> {0:M}
-            TOKEN_ASSO  : self.__person_asso,
+            TOKEN_ASSO: self.__person_asso,
             # +1 ALIA @<XREF:INDI>@ {0:M}
-            TOKEN_ALIA  : self.__person_alt_name,
+            TOKEN_ALIA: self.__person_alt_name,
             # +1 ANCI @<XREF:SUBM>@ {0:M}
-            TOKEN_ANCI  : self.__skip_record,
+            TOKEN_ANCI: self.__skip_record,
             # +1 DESI @<XREF:SUBM>@ {0:M}
-            TOKEN_DESI  : self.__skip_record,
+            TOKEN_DESI: self.__skip_record,
             # +1 <<SOURCE_CITATION>> {0:M}
-            TOKEN_SOUR  : self.__person_sour,
+            TOKEN_SOUR: self.__person_sour,
             # +1 <<MULTIMEDIA_LINK>> {0:M}
-            TOKEN_OBJE  : self.__person_object,
+            TOKEN_OBJE: self.__person_object,
             # +1 <<NOTE_STRUCTURE>> {0:M}
-            TOKEN_NOTE  : self.__person_note,
-            TOKEN_RNOTE : self.__person_note,
-            TOKEN__COMM : self.__person_note,
+            TOKEN_NOTE: self.__person_note,
+            TOKEN_RNOTE: self.__person_note,
+            TOKEN__COMM: self.__person_note,
             # +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1}
-            TOKEN_RFN   : self.__person_attr,
+            TOKEN_RFN: self.__person_attr,
             # +1 REFN <USER_REFERENCE_NUMBER> {0:M}
             # +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-            TOKEN_REFN  : self.__person_refn,
+            TOKEN_REFN: self.__person_refn,
             # TYPE should be below REFN, but will work here anyway
-            TOKEN_TYPE  : self.__person_attr,
+            TOKEN_TYPE: self.__person_attr,
             # +1 RIN <AUTOMATED_RECORD_ID> {0:1}
-            TOKEN_RIN   : self.__person_attr,
+            TOKEN_RIN: self.__person_attr,
             # +1 <<CHANGE_DATE>> {0:1}
-            TOKEN_CHAN  : self.__person_chan,
+            TOKEN_CHAN: self.__person_chan,
             # The following tags are not part of Gedcom spec but are commonly
             # found here anyway
-            TOKEN_ADDR  : self.__person_addr,
-            TOKEN_PHON  : self.__person_phon,
-            TOKEN_FAX   : self.__person_fax,
-            TOKEN_EMAIL : self.__person_email,
-            TOKEN_WWW   : self.__person_www,
-            TOKEN__TODO : self.__skip_record,
-            TOKEN_TITL  : self.__person_titl,
-            TOKEN__PHOTO: self.__person_photo, }
+            TOKEN_ADDR: self.__person_addr,
+            TOKEN_PHON: self.__person_phon,
+            TOKEN_FAX: self.__person_fax,
+            TOKEN_EMAIL: self.__person_email,
+            TOKEN_WWW: self.__person_www,
+            TOKEN__TODO: self.__skip_record,
+            TOKEN_TITL: self.__person_titl,
+            TOKEN__PHOTO: self.__person_photo,
+        }
         self.func_list.append(self.indi_parse_tbl)
 
         self.name_parse_tbl = {
             # +1 NPFX <NAME_PIECE_PREFIX> {0:1}
-            TOKEN_NPFX   : self.__name_npfx,
+            TOKEN_NPFX: self.__name_npfx,
             # +1 GIVN <NAME_PIECE_GIVEN> {0:1}
-            TOKEN_GIVN   : self.__name_givn,
+            TOKEN_GIVN: self.__name_givn,
             # NICK <NAME_PIECE_NICKNAME> {0:1}
             TOKEN_NICK   : self.__name_nick,
             # _RUFNAME <NAME_PIECE_CALLNAME> {0:1}
             TOKEN__CALLNAME: self.__name_call,
             # +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
-            TOKEN_SPFX   : self.__name_spfx,
+            TOKEN_SPFX: self.__name_spfx,
             # +1 SURN <NAME_PIECE_SURNAME> {0:1}
-            TOKEN_SURN   : self.__name_surn,
+            TOKEN_SURN: self.__name_surn,
             # +1 NSFX <NAME_PIECE_SUFFIX> {0:1}
-            TOKEN_NSFX   : self.__name_nsfx,
+            TOKEN_NSFX: self.__name_nsfx,
             # +1 <<SOURCE_CITATION>> {0:M}
-            TOKEN_SOUR   : self.__name_sour,
+            TOKEN_SOUR: self.__name_sour,
             # +1 <<NOTE_STRUCTURE>> {0:M}
-            TOKEN_NOTE   : self.__name_note,
-            TOKEN_RNOTE  : self.__name_note,
+            TOKEN_NOTE: self.__name_note,
+            TOKEN_RNOTE: self.__name_note,
             # Extensions
-            TOKEN_ALIA   : self.__name_alia,
-            TOKEN__MARNM : self.__name_marnm,
-            TOKEN__MAR   : self.__name_marnm,   # Generated by geni.com
-            TOKEN__MARN  : self.__name_marnm,   # Gen'd by BROSKEEP 6.1.31 WIN
-            TOKEN__AKA   : self.__name_aka,     # PAF and AncestQuest
-            TOKEN_TYPE   : self.__name_type,    # This is legal GEDCOM 5.5.1
-            TOKEN_BIRT   : self.__ignore,
-            TOKEN_DATE   : self.__name_date,
+            TOKEN_ALIA: self.__name_alia,
+            TOKEN__MARNM: self.__name_marnm,
+            TOKEN__MAR: self.__name_marnm,  # Generated by geni.com
+            TOKEN__MARN: self.__name_marnm,  # Gen'd by BROSKEEP 6.1.31 WIN
+            TOKEN__AKA: self.__name_aka,  # PAF and AncestQuest
+            TOKEN_TYPE: self.__name_type,  # This is legal GEDCOM 5.5.1
+            TOKEN_BIRT: self.__ignore,
+            TOKEN_DATE: self.__name_date,
             # This handles date as a subsidiary of "1 ALIA" which might be used
             # by Family Tree Maker and Reunion, and by cheating (handling a
             # lower level from the current parse table) handles date as
             # subsidiary to "2 _MARN", "2 _AKAN" and "2 _ADPN" which has been
             # found in Brother's keeper.
-            TOKEN__ADPN   : self.__name_adpn, }
+            TOKEN__ADPN: self.__name_adpn,
+        }
         self.func_list.append(self.name_parse_tbl)
 
         #
@@ -2137,162 +2493,163 @@ class GedcomParser(UpdateCallback):
         #   +1 <<CHANGE_DATE>>                            {0:1}
 
         self.repo_parse_tbl = {
-            TOKEN_NAME   : self.__repo_name,
-            TOKEN_ADDR   : self.__repo_addr,
-            TOKEN_RIN    : self.__ignore,
-            TOKEN_NOTE   : self.__repo_note,
-            TOKEN_RNOTE  : self.__repo_note,
-            TOKEN_CHAN   : self.__repo_chan,
-            TOKEN_PHON   : self.__repo_phon,
-            TOKEN_EMAIL  : self.__repo_email,
-            TOKEN_WWW    : self.__repo_www,
-            TOKEN_FAX    : self.__repo_fax, }
+            TOKEN_NAME: self.__repo_name,
+            TOKEN_ADDR: self.__repo_addr,
+            TOKEN_RIN: self.__ignore,
+            TOKEN_NOTE: self.__repo_note,
+            TOKEN_RNOTE: self.__repo_note,
+            TOKEN_CHAN: self.__repo_chan,
+            TOKEN_PHON: self.__repo_phon,
+            TOKEN_EMAIL: self.__repo_email,
+            TOKEN_WWW: self.__repo_www,
+            TOKEN_FAX: self.__repo_fax,
+        }
         self.func_list.append(self.repo_parse_tbl)
 
         self.event_parse_tbl = {
             # n TYPE <EVENT_DESCRIPTOR> {0:1}
-            TOKEN_TYPE   : self.__event_type,
+            TOKEN_TYPE: self.__event_type,
             # n DATE <DATE_VALUE> {0:1} p.*/*
-            TOKEN_DATE   : self.__event_date,
+            TOKEN_DATE: self.__event_date,
             # n <<PLACE_STRUCTURE>> {0:1} p.*
-            TOKEN_PLAC   : self.__event_place,
+            TOKEN_PLAC: self.__event_place,
             # n <<ADDRESS_STRUCTURE>> {0:1} p.*
-            TOKEN_ADDR   : self.__event_addr,
+            TOKEN_ADDR: self.__event_addr,
             # n AGE <AGE_AT_EVENT> {0:1} p.*
-            TOKEN_AGE    : self.__event_age,
+            TOKEN_AGE: self.__event_age,
             # n AGNC <RESPONSIBLE_AGENCY> {0:1} p.*
-            TOKEN_AGNC   : self.__event_agnc,
+            TOKEN_AGNC: self.__event_agnc,
             # n CAUS <CAUSE_OF_EVENT> {0:1} p.*
-            TOKEN_CAUS   : self.__event_cause,
+            TOKEN_CAUS: self.__event_cause,
             # n <<SOURCE_CITATION>> {0:M} p.*
-            TOKEN_SOUR   : self.__event_source,
+            TOKEN_SOUR: self.__event_source,
             # n <<MULTIMEDIA_LINK>> {0:M} p.*, *
-            TOKEN_OBJE   : self.__event_object,
+            TOKEN_OBJE: self.__event_object,
             # n <<NOTE_STRUCTURE>> {0:M} p.
-            TOKEN_NOTE   : self.__event_inline_note,
-            TOKEN_RNOTE  : self.__event_note,
+            TOKEN_NOTE: self.__event_inline_note,
+            TOKEN_RNOTE: self.__event_note,
             # Other
-            TOKEN__PRIV  : self.__event_privacy,
-            TOKEN_OFFI   : self.__event_note,
-            TOKEN_PHON   : self.__event_phon,
-            TOKEN__GODP  : self.__event_witness,
-            TOKEN__WITN  : self.__event_witness,
-            TOKEN__WTN   : self.__event_witness,
-            TOKEN_RELI   : self.__ignore,
+            TOKEN__PRIV: self.__event_privacy,
+            TOKEN_OFFI: self.__event_note,
+            TOKEN_PHON: self.__event_phon,
+            TOKEN__GODP: self.__event_witness,
+            TOKEN__WITN: self.__event_witness,
+            TOKEN__WTN: self.__event_witness,
+            TOKEN_RELI: self.__ignore,
             # Not legal, but inserted by PhpGedView
-            TOKEN_TIME   : self.__event_time,
-            TOKEN_ASSO   : self.__ignore,
-            TOKEN_IGNORE : self.__ignore,
-            TOKEN_STAT   : self.__ignore,
-            TOKEN_TEMP   : self.__ignore,
-            TOKEN_HUSB   : self.__event_husb,
-            TOKEN_WIFE   : self.__event_wife,
-            TOKEN_FAMC   : self.__person_birth_famc,
+            TOKEN_TIME: self.__event_time,
+            TOKEN_ASSO: self.__ignore,
+            TOKEN_IGNORE: self.__ignore,
+            TOKEN_STAT: self.__ignore,
+            TOKEN_TEMP: self.__ignore,
+            TOKEN_HUSB: self.__event_husb,
+            TOKEN_WIFE: self.__event_wife,
+            TOKEN_FAMC: self.__person_birth_famc,
             # Not legal, but inserted by Ultimate Family Tree
-            TOKEN_CHAN   : self.__ignore,
-            TOKEN_QUAY  : self.__ignore,
+            TOKEN_CHAN: self.__ignore,
+            TOKEN_QUAY: self.__ignore,
             # Not legal, but inserted by FamilyTreeBuilder
-            TOKEN_RIN    : self.__event_rin,
-            TOKEN_ATTR   : self.__event_attr,   # FTB for _UID
-            TOKEN_EMAIL  : self.__event_email,  # FTB for RESI events
-            TOKEN_WWW    : self.__event_www,    # FTB for RESI events
-            TOKEN_FAX    : self.__event_fax,    # legal...
+            TOKEN_RIN: self.__event_rin,
+            TOKEN_ATTR: self.__event_attr,  # FTB for _UID
+            TOKEN_EMAIL: self.__event_email,  # FTB for RESI events
+            TOKEN_WWW: self.__event_www,  # FTB for RESI events
+            TOKEN_FAX: self.__event_fax,  # legal...
         }
         self.func_list.append(self.event_parse_tbl)
 
         self.adopt_parse_tbl = {
-            TOKEN_TYPE   : self.__event_type,
-            TOKEN__PRIV  : self.__event_privacy,
-            TOKEN_DATE   : self.__event_date,
-            TOKEN_SOUR   : self.__event_source,
-            TOKEN_PLAC   : self.__event_place,
-            TOKEN_ADDR   : self.__event_addr,
-            TOKEN_PHON   : self.__event_phon,
-            TOKEN_CAUS   : self.__event_cause,
-            TOKEN_AGNC   : self.__event_agnc,
-            TOKEN_AGE    : self.__event_age,
-            TOKEN_NOTE   : self.__event_note,
-            TOKEN_RNOTE  : self.__event_note,
-            TOKEN_OFFI   : self.__event_note,
-            TOKEN__GODP  : self.__event_witness,
-            TOKEN__WITN  : self.__event_witness,
-            TOKEN__WTN   : self.__event_witness,
-            TOKEN_RELI   : self.__ignore,
-            TOKEN_TIME   : self.__ignore,
-            TOKEN_ASSO   : self.__ignore,
-            TOKEN_IGNORE : self.__ignore,
-            TOKEN_STAT   : self.__ignore,
-            TOKEN_TEMP   : self.__ignore,
-            TOKEN_OBJE   : self.__event_object,
-            TOKEN_FAMC   : self.__person_adopt_famc,
+            TOKEN_TYPE: self.__event_type,
+            TOKEN__PRIV: self.__event_privacy,
+            TOKEN_DATE: self.__event_date,
+            TOKEN_SOUR: self.__event_source,
+            TOKEN_PLAC: self.__event_place,
+            TOKEN_ADDR: self.__event_addr,
+            TOKEN_PHON: self.__event_phon,
+            TOKEN_CAUS: self.__event_cause,
+            TOKEN_AGNC: self.__event_agnc,
+            TOKEN_AGE: self.__event_age,
+            TOKEN_NOTE: self.__event_note,
+            TOKEN_RNOTE: self.__event_note,
+            TOKEN_OFFI: self.__event_note,
+            TOKEN__GODP: self.__event_witness,
+            TOKEN__WITN: self.__event_witness,
+            TOKEN__WTN: self.__event_witness,
+            TOKEN_RELI: self.__ignore,
+            TOKEN_TIME: self.__ignore,
+            TOKEN_ASSO: self.__ignore,
+            TOKEN_IGNORE: self.__ignore,
+            TOKEN_STAT: self.__ignore,
+            TOKEN_TEMP: self.__ignore,
+            TOKEN_OBJE: self.__event_object,
+            TOKEN_FAMC: self.__person_adopt_famc,
             # Not legal, but inserted by Ultimate Family Tree
-            TOKEN_CHAN   : self.__ignore,
-            TOKEN_QUAY   : self.__ignore,
+            TOKEN_CHAN: self.__ignore,
+            TOKEN_QUAY: self.__ignore,
         }
         self.func_list.append(self.adopt_parse_tbl)
 
         self.famc_parse_tbl = {
             # n FAMC @<XREF:FAM>@ {1:1}
             # +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:1} p.*
-            TOKEN_PEDI   : self.__person_famc_pedi,
+            TOKEN_PEDI: self.__person_famc_pedi,
             # +1 _FREL <Father PEDIGREE_LINKAGE_TYPE> {0:1}  non-standard
-            TOKEN__FREL  : self.__person_famc_frel,
+            TOKEN__FREL: self.__person_famc_frel,
             # +1 _MREL <Mother PEDIGREE_LINKAGE_TYPE> {0:1}  non-standard
-            TOKEN__MREL  : self.__person_famc_mrel,
+            TOKEN__MREL: self.__person_famc_mrel,
             # +1 <<NOTE_STRUCTURE>> {0:M} p.*
-            TOKEN_NOTE   : self.__person_famc_note,
-            TOKEN_RNOTE  : self.__person_famc_note,
+            TOKEN_NOTE: self.__person_famc_note,
+            TOKEN_RNOTE: self.__person_famc_note,
             # Extras
             TOKEN__PRIMARY: self.__person_famc_primary,
-            TOKEN_SOUR   : self.__person_famc_sour,
+            TOKEN_SOUR: self.__person_famc_sour,
             # GEDit
-            TOKEN_STAT   : self.__ignore,
+            TOKEN_STAT: self.__ignore,
         }
         self.func_list.append(self.famc_parse_tbl)
 
         self.person_fact_parse_tbl = {
-            TOKEN_TYPE   : self.__person_fact_type,
-            TOKEN_SOUR   : self.__person_attr_source,
-            TOKEN_NOTE   : self.__person_attr_note,
-            TOKEN_RNOTE  : self.__person_attr_note,
+            TOKEN_TYPE: self.__person_fact_type,
+            TOKEN_SOUR: self.__person_attr_source,
+            TOKEN_NOTE: self.__person_attr_note,
+            TOKEN_RNOTE: self.__person_attr_note,
         }
         self.func_list.append(self.person_fact_parse_tbl)
 
         self.person_attr_parse_tbl = {
-            TOKEN_TYPE   : self.__person_attr_type,
-            TOKEN_CAUS   : self.__ignore,
-            TOKEN_DATE   : self.__ignore,
-            TOKEN_TIME   : self.__ignore,
-            TOKEN_ADDR   : self.__ignore,
-            TOKEN_IGNORE : self.__ignore,
-            TOKEN_STAT   : self.__ignore,
-            TOKEN_TEMP   : self.__ignore,
-            TOKEN_OBJE   : self.__ignore,
-            TOKEN_SOUR   : self.__person_attr_source,
-            TOKEN_PLAC   : self.__person_attr_place,
-            TOKEN_NOTE   : self.__person_attr_note,
-            TOKEN_RNOTE  : self.__person_attr_note,
+            TOKEN_TYPE: self.__person_attr_type,
+            TOKEN_CAUS: self.__ignore,
+            TOKEN_DATE: self.__ignore,
+            TOKEN_TIME: self.__ignore,
+            TOKEN_ADDR: self.__ignore,
+            TOKEN_IGNORE: self.__ignore,
+            TOKEN_STAT: self.__ignore,
+            TOKEN_TEMP: self.__ignore,
+            TOKEN_OBJE: self.__ignore,
+            TOKEN_SOUR: self.__person_attr_source,
+            TOKEN_PLAC: self.__person_attr_place,
+            TOKEN_NOTE: self.__person_attr_note,
+            TOKEN_RNOTE: self.__person_attr_note,
         }
         self.func_list.append(self.person_attr_parse_tbl)
 
         self.lds_parse_tbl = {
-            TOKEN_TEMP   : self.__lds_temple,
-            TOKEN_DATE   : self.__lds_date,
-            TOKEN_FAMC   : self.__lds_famc,
-            TOKEN_FORM   : self.__lds_form,
-            TOKEN_PLAC   : self.__lds_plac,
-            TOKEN_SOUR   : self.__lds_sour,
-            TOKEN_NOTE   : self.__lds_note,
-            TOKEN_RNOTE  : self.__lds_note,
-            TOKEN_STAT   : self.__lds_stat,
+            TOKEN_TEMP: self.__lds_temple,
+            TOKEN_DATE: self.__lds_date,
+            TOKEN_FAMC: self.__lds_famc,
+            TOKEN_FORM: self.__lds_form,
+            TOKEN_PLAC: self.__lds_plac,
+            TOKEN_SOUR: self.__lds_sour,
+            TOKEN_NOTE: self.__lds_note,
+            TOKEN_RNOTE: self.__lds_note,
+            TOKEN_STAT: self.__lds_stat,
         }
         self.func_list.append(self.lds_parse_tbl)
 
         self.asso_parse_tbl = {
-            TOKEN_RELA   : self.__person_asso_rela,
-            TOKEN_SOUR   : self.__person_asso_sour,
-            TOKEN_NOTE   : self.__person_asso_note,
-            TOKEN_RNOTE  : self.__person_asso_note,
+            TOKEN_RELA: self.__person_asso_rela,
+            TOKEN_SOUR: self.__person_asso_sour,
+            TOKEN_NOTE: self.__person_asso_note,
+            TOKEN_RNOTE: self.__person_asso_note,
         }
         self.func_list.append(self.asso_parse_tbl)
 
@@ -2316,33 +2673,33 @@ class GedcomParser(UpdateCallback):
         self.func_list.append(self.citation_parse_tbl)
 
         self.media_parse_tbl = {
-            TOKEN_FORM   : self.__media_ref_form,
-            TOKEN_MEDI   : self.__media_ref_medi,        # v5.5.1
-            TOKEN_TITL   : self.__media_ref_titl,
-            TOKEN_FILE   : self.__media_ref_file,
-            TOKEN_NOTE   : self.__obje_note,  # illegal, but often there
-            TOKEN_RNOTE  : self.__obje_note,  # illegal, but often there
-            TOKEN__PRIM  : self.__media_ref_prim,        # LFT etc.
-            TOKEN_IGNORE : self.__ignore,
+            TOKEN_FORM: self.__media_ref_form,
+            TOKEN_MEDI: self.__media_ref_medi,  # v5.5.1
+            TOKEN_TITL: self.__media_ref_titl,
+            TOKEN_FILE: self.__media_ref_file,
+            TOKEN_NOTE: self.__obje_note,  # illegal, but often there
+            TOKEN_RNOTE: self.__obje_note,  # illegal, but often there
+            TOKEN__PRIM: self.__media_ref_prim,  # LFT etc.
+            TOKEN_IGNORE: self.__ignore,
         }
         self.func_list.append(self.media_parse_tbl)
 
         self.parse_loc_tbl = {
-            TOKEN_ADR1   : self.__location_adr1,
-            TOKEN_ADR2   : self.__location_adr2,
-            TOKEN_CITY   : self.__location_city,
-            TOKEN_STAE   : self.__location_stae,
-            TOKEN_POST   : self.__location_post,
-            TOKEN_CTRY   : self.__location_ctry,
+            TOKEN_ADR1: self.__location_adr1,
+            TOKEN_ADR2: self.__location_adr2,
+            TOKEN_CITY: self.__location_city,
+            TOKEN_STAE: self.__location_stae,
+            TOKEN_POST: self.__location_post,
+            TOKEN_CTRY: self.__location_ctry,
             # Not legal GEDCOM - not clear why these are included at this level
-            TOKEN_ADDR   : self.__ignore,
-            TOKEN_DATE   : self.__ignore,  # there is nowhere to put a date
-            TOKEN_NOTE   : self.__location_note,
-            TOKEN_RNOTE  : self.__location_note,
-            TOKEN__LOC   : self.__ignore,
-            TOKEN__NAME  : self.__ignore,
-            TOKEN_PHON   : self.__location_phone,
-            TOKEN_IGNORE : self.__ignore,
+            TOKEN_ADDR: self.__ignore,
+            TOKEN_DATE: self.__ignore,  # there is nowhere to put a date
+            TOKEN_NOTE: self.__location_note,
+            TOKEN_RNOTE: self.__location_note,
+            TOKEN__LOC: self.__ignore,
+            TOKEN__NAME: self.__ignore,
+            TOKEN_PHON: self.__location_phone,
+            TOKEN_IGNORE: self.__ignore,
         }
         self.func_list.append(self.parse_loc_tbl)
 
@@ -2366,46 +2723,46 @@ class GedcomParser(UpdateCallback):
 
         self.family_func = {
             # +1 <<FAMILY_EVENT_STRUCTURE>>  {0:M}
-            TOKEN_GEVENT : self.__family_std_event,
-            TOKEN_EVEN   : self.__fam_even,
+            TOKEN_GEVENT: self.__family_std_event,
+            TOKEN_EVEN: self.__fam_even,
             # +1 HUSB @<XREF:INDI>@  {0:1}
-            TOKEN_HUSB   : self.__family_husb,
+            TOKEN_HUSB: self.__family_husb,
             # +1 WIFE @<XREF:INDI>@  {0:1}
-            TOKEN_WIFE   : self.__family_wife,
+            TOKEN_WIFE: self.__family_wife,
             # +1 CHIL @<XREF:INDI>@  {0:M}
-            TOKEN_CHIL   : self.__family_chil,
+            TOKEN_CHIL: self.__family_chil,
             # +1 NCHI <COUNT_OF_CHILDREN>  {0:1}
             # +1 SUBM @<XREF:SUBM>@  {0:M}
             # +1 <<LDS_SPOUSE_SEALING>>  {0:M}
-            TOKEN_SLGS   : self.__family_slgs,
+            TOKEN_SLGS: self.__family_slgs,
             # +1 <<SOURCE_CITATION>>  {0:M}
-            TOKEN_SOUR   : self.__family_source,
+            TOKEN_SOUR: self.__family_source,
             # +1 <<MULTIMEDIA_LINK>>  {0:M}
-            TOKEN_OBJE   : self.__family_object,
+            TOKEN_OBJE: self.__family_object,
             # +1 <<NOTE_STRUCTURE>>  {0:M}
-            TOKEN__COMM  : self.__family_comm,
-            TOKEN_NOTE   : self.__family_note,
-            TOKEN_RNOTE  : self.__family_note,
+            TOKEN__COMM: self.__family_comm,
+            TOKEN_NOTE: self.__family_note,
+            TOKEN_RNOTE: self.__family_note,
             # +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
-            TOKEN_REFN   : self.__family_refn,
+            TOKEN_REFN: self.__family_refn,
             # TYPE should be below REFN, but will work here anyway
-            TOKEN_TYPE   : self.__family_cust_attr,
+            TOKEN_TYPE: self.__family_cust_attr,
             # +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
             # +1 <<CHANGE_DATE>>  {0:1}
-            TOKEN_CHAN   : self.__family_chan,
-            TOKEN_ENDL   : self.__ignore,
-            TOKEN_ADDR   : self.__ignore,
-            TOKEN_RIN    : self.__family_cust_attr,
-            TOKEN_SUBM   : self.__ignore,
-            TOKEN_ATTR   : self.__family_attr,
+            TOKEN_CHAN: self.__family_chan,
+            TOKEN_ENDL: self.__ignore,
+            TOKEN_ADDR: self.__ignore,
+            TOKEN_RIN: self.__family_cust_attr,
+            TOKEN_SUBM: self.__ignore,
+            TOKEN_ATTR: self.__family_attr,
         }
         self.func_list.append(self.family_func)
 
         self.family_rel_tbl = {
-            TOKEN__FREL  : self.__family_frel,
-            TOKEN__MREL  : self.__family_mrel,
-            TOKEN_ADOP   : self.__family_adopt,
-            TOKEN__STAT  : self.__family_stat,
+            TOKEN__FREL: self.__family_frel,
+            TOKEN__MREL: self.__family_mrel,
+            TOKEN_ADOP: self.__family_adopt,
+            TOKEN__STAT: self.__family_stat,
         }
         self.func_list.append(self.family_rel_tbl)
 
@@ -2437,26 +2794,26 @@ class GedcomParser(UpdateCallback):
         #   +1 <<CHANGE_DATE>>                            {0:1}
 
         self.source_func = {
-            TOKEN_TITL   : self.__source_title,
-            TOKEN_TAXT   : self.__source_taxt_peri,
-            TOKEN_PERI   : self.__source_taxt_peri,
-            TOKEN_AUTH   : self.__source_auth,
-            TOKEN_PUBL   : self.__source_publ,
-            TOKEN_NOTE   : self.__source_note,
-            TOKEN_RNOTE  : self.__source_note,
-            TOKEN_TEXT   : self.__source_text,
-            TOKEN_ABBR   : self.__source_abbr,
-            TOKEN_REFN   : self.__source_attr,
-            TOKEN_RIN    : self.__source_attr,
-            TOKEN_REPO   : self.__source_repo,
-            TOKEN_OBJE   : self.__source_object,
-            TOKEN_CHAN   : self.__source_chan,
-            TOKEN_MEDI   : self.__source_attr,
-            TOKEN__NAME  : self.__source_attr,
-            TOKEN_DATA   : self.__ignore,
+            TOKEN_TITL: self.__source_title,
+            TOKEN_TAXT: self.__source_taxt_peri,
+            TOKEN_PERI: self.__source_taxt_peri,
+            TOKEN_AUTH: self.__source_auth,
+            TOKEN_PUBL: self.__source_publ,
+            TOKEN_NOTE: self.__source_note,
+            TOKEN_RNOTE: self.__source_note,
+            TOKEN_TEXT: self.__source_text,
+            TOKEN_ABBR: self.__source_abbr,
+            TOKEN_REFN: self.__source_attr,
+            TOKEN_RIN: self.__source_attr,
+            TOKEN_REPO: self.__source_repo,
+            TOKEN_OBJE: self.__source_object,
+            TOKEN_CHAN: self.__source_chan,
+            TOKEN_MEDI: self.__source_attr,
+            TOKEN__NAME: self.__source_attr,
+            TOKEN_DATA: self.__ignore,
             # TYPE should be below REFN, but will work here anyway
-            TOKEN_TYPE   : self.__source_attr,
-            TOKEN_CALN   : self.__ignore,
+            TOKEN_TYPE: self.__source_attr,
+            TOKEN_CALN: self.__ignore,
             # not legal, but Ultimate Family Tree does this
             TOKEN_DATE   : self.__ignore,
             TOKEN_IGNORE : self.__ignore,
@@ -2495,99 +2852,99 @@ class GedcomParser(UpdateCallback):
         #   +1 <<CHANGE_DATE>>                {0:1}
 
         self.obje_func = {
-            TOKEN_FORM   : self.__obje_form,
-            TOKEN_TYPE   : self.__obje_type,    # v5.5.1
-            TOKEN_TITL   : self.__obje_title,
-            TOKEN_FILE   : self.__obje_file,    # de-facto extension
-            TOKEN_TEXT   : self.__obje_text,    # FTM extension
-            TOKEN__TEXT  : self.__obje_text,    # FTM 2017 extension
-            TOKEN_DATE   : self.__obje_date,    # FTM extension
-            TOKEN__DATE  : self.__obje_date,    # FTM 2017 extension
-            TOKEN_NOTE   : self.__obje_note,
-            TOKEN_RNOTE  : self.__obje_note,
-            TOKEN_SOUR   : self.__obje_sour,
-            TOKEN_BLOB   : self.__ignore,       # v5.5.1 deprecated
-            TOKEN_REFN   : self.__obje_refn,
-            TOKEN_RIN    : self.__obje_rin,
-            TOKEN_CHAN   : self.__obje_chan,
+            TOKEN_FORM: self.__obje_form,
+            TOKEN_TYPE: self.__obje_type,  # v5.5.1
+            TOKEN_TITL: self.__obje_title,
+            TOKEN_FILE: self.__obje_file,  # de-facto extension
+            TOKEN_TEXT: self.__obje_text,  # FTM extension
+            TOKEN__TEXT: self.__obje_text,  # FTM 2017 extension
+            TOKEN_DATE: self.__obje_date,  # FTM extension
+            TOKEN__DATE: self.__obje_date,  # FTM 2017 extension
+            TOKEN_NOTE: self.__obje_note,
+            TOKEN_RNOTE: self.__obje_note,
+            TOKEN_SOUR: self.__obje_sour,
+            TOKEN_BLOB: self.__ignore,  # v5.5.1 deprecated
+            TOKEN_REFN: self.__obje_refn,
+            TOKEN_RIN: self.__obje_rin,
+            TOKEN_CHAN: self.__obje_chan,
         }
         self.func_list.append(self.obje_func)
 
         self.parse_addr_tbl = {
-            TOKEN_DATE   : self.__address_date,
-            TOKEN_ADR1   : self.__address_adr1,
-            TOKEN_ADR2   : self.__address_adr2,
-            TOKEN_CITY   : self.__address_city,
-            TOKEN_STAE   : self.__address_state,
-            TOKEN_POST   : self.__address_post,
-            TOKEN_CTRY   : self.__address_country,
-            TOKEN_PHON   : self.__ignore,
-            TOKEN_SOUR   : self.__address_sour,
-            TOKEN_NOTE   : self.__address_note,
-            TOKEN_RNOTE  : self.__address_note,
-            TOKEN__LOC   : self.__ignore,
-            TOKEN__NAME  : self.__ignore,
-            TOKEN_IGNORE : self.__ignore,
-            TOKEN_TYPE   : self.__ignore,
-            TOKEN_CAUS   : self.__ignore,
+            TOKEN_DATE: self.__address_date,
+            TOKEN_ADR1: self.__address_adr1,
+            TOKEN_ADR2: self.__address_adr2,
+            TOKEN_CITY: self.__address_city,
+            TOKEN_STAE: self.__address_state,
+            TOKEN_POST: self.__address_post,
+            TOKEN_CTRY: self.__address_country,
+            TOKEN_PHON: self.__ignore,
+            TOKEN_SOUR: self.__address_sour,
+            TOKEN_NOTE: self.__address_note,
+            TOKEN_RNOTE: self.__address_note,
+            TOKEN__LOC: self.__ignore,
+            TOKEN__NAME: self.__ignore,
+            TOKEN_IGNORE: self.__ignore,
+            TOKEN_TYPE: self.__ignore,
+            TOKEN_CAUS: self.__ignore,
         }
         self.func_list.append(self.parse_addr_tbl)
 
         self.event_cause_tbl = {
-            TOKEN_SOUR   : self.__event_cause_source,
+            TOKEN_SOUR: self.__event_cause_source,
         }
         self.func_list.append(self.event_cause_tbl)
 
         self.event_place_map = {
-            TOKEN_NOTE   : self.__event_place_note,
-            TOKEN_RNOTE  : self.__event_place_note,
-            TOKEN_FORM   : self.__event_place_form,
+            TOKEN_NOTE: self.__event_place_note,
+            TOKEN_RNOTE: self.__event_place_note,
+            TOKEN_FORM: self.__event_place_form,
             # Not legal.
-            TOKEN_OBJE   : self.__event_place_object,
-            TOKEN_SOUR   : self.__event_place_sour,
-            TOKEN__LOC   : self.__ignore,
-            TOKEN_MAP    : self.__place_map,
+            TOKEN_OBJE: self.__event_place_object,
+            TOKEN_SOUR: self.__event_place_sour,
+            TOKEN__LOC: self.__ignore,
+            TOKEN_MAP: self.__place_map,
             # Not legal,  but generated by Ultimate Family Tree
-            TOKEN_QUAY   : self.__ignore,
+            TOKEN_QUAY: self.__ignore,
         }
         self.func_list.append(self.event_place_map)
 
         self.place_map_tbl = {
-            TOKEN_LATI   : self.__place_lati,
-            TOKEN_LONG   : self.__place_long,
+            TOKEN_LATI: self.__place_lati,
+            TOKEN_LONG: self.__place_long,
         }
         self.func_list.append(self.place_map_tbl)
 
         self.repo_ref_tbl = {
-            TOKEN_CALN   : self.__repo_ref_call,
-            TOKEN_NOTE   : self.__repo_ref_note,
-            TOKEN_RNOTE  : self.__repo_ref_note,
-            TOKEN_MEDI   : self.__repo_ref_medi,
-            TOKEN_IGNORE : self.__ignore,
+            TOKEN_CALN: self.__repo_ref_call,
+            TOKEN_NOTE: self.__repo_ref_note,
+            TOKEN_RNOTE: self.__repo_ref_note,
+            TOKEN_MEDI: self.__repo_ref_medi,
+            TOKEN_IGNORE: self.__ignore,
         }
         self.func_list.append(self.repo_ref_tbl)
 
         self.parse_person_adopt = {
-            TOKEN_ADOP   : self.__person_adopt_famc_adopt,
+            TOKEN_ADOP: self.__person_adopt_famc_adopt,
         }
         self.func_list.append(self.parse_person_adopt)
 
         self.opt_note_tbl = {
-            TOKEN_RNOTE  : self.__optional_note,
-            TOKEN_NOTE   : self.__optional_note,
+            TOKEN_RNOTE: self.__optional_note,
+            TOKEN_NOTE: self.__optional_note,
         }
         self.func_list.append(self.opt_note_tbl)
 
         self.citation_data_tbl = {
-            TOKEN_DATE   : self.__citation_data_date,
-            TOKEN_TEXT   : self.__citation_data_text,
-            TOKEN_RNOTE  : self.__citation_data_note,
-            TOKEN_NOTE   : self.__citation_data_note,
+            TOKEN_DATE: self.__citation_data_date,
+            TOKEN_TEXT: self.__citation_data_text,
+            TOKEN_RNOTE: self.__citation_data_note,
+            TOKEN_NOTE: self.__citation_data_note,
         }
         self.func_list.append(self.citation_data_tbl)
 
         self.citation_even_tbl = {
-            TOKEN_ROLE   : self.__citation_even_role,
+            TOKEN_ROLE: self.__citation_even_role,
         }
         self.func_list.append(self.citation_even_tbl)
 
@@ -2626,57 +2983,57 @@ class GedcomParser(UpdateCallback):
         #  DESTination of ANSTFILE or TempleReady.
 
         self.head_parse_tbl = {
-            TOKEN_SOUR  : self.__header_sour,
-            TOKEN_NAME  : self.__header_sour_name,  # This should be below SOUR
-            TOKEN_VERS  : self.__header_sour_vers,  # This should be below SOUR
-            TOKEN_FILE  : self.__header_file,
-            TOKEN_COPR  : self.__header_copr,
-            TOKEN_SUBM  : self.__header_subm,
-            TOKEN_CORP  : self.__ignore,           # This should be below SOUR
-            TOKEN_DATA  : self.__ignore,       # This should be below SOUR
-            TOKEN_SUBN  : self.__header_subn,
-            TOKEN_LANG  : self.__header_lang,
-            TOKEN_TIME  : self.__ignore,       # This should be below DATE
-            TOKEN_DEST  : self.__header_dest,
-            TOKEN_CHAR  : self.__header_char,
-            TOKEN_GEDC  : self.__header_gedc,
-            TOKEN_PLAC  : self.__header_plac,
-            TOKEN_DATE  : self.__header_date,
-            TOKEN_NOTE  : self.__header_note,
+            TOKEN_SOUR: self.__header_sour,
+            TOKEN_NAME: self.__header_sour_name,  # This should be below SOUR
+            TOKEN_VERS: self.__header_sour_vers,  # This should be below SOUR
+            TOKEN_FILE: self.__header_file,
+            TOKEN_COPR: self.__header_copr,
+            TOKEN_SUBM: self.__header_subm,
+            TOKEN_CORP: self.__ignore,  # This should be below SOUR
+            TOKEN_DATA: self.__ignore,  # This should be below SOUR
+            TOKEN_SUBN: self.__header_subn,
+            TOKEN_LANG: self.__header_lang,
+            TOKEN_TIME: self.__ignore,  # This should be below DATE
+            TOKEN_DEST: self.__header_dest,
+            TOKEN_CHAR: self.__header_char,
+            TOKEN_GEDC: self.__header_gedc,
+            TOKEN_PLAC: self.__header_plac,
+            TOKEN_DATE: self.__header_date,
+            TOKEN_NOTE: self.__header_note,
             TOKEN__SCHEMA: self.__ignore,
         }
         self.func_list.append(self.head_parse_tbl)
 
         self.header_sour_parse_tbl = {
-            TOKEN_VERS   : self.__header_sour_vers,
-            TOKEN_NAME   : self.__header_sour_name,
-            TOKEN_CORP   : self.__header_sour_corp,
-            TOKEN_DATA   : self.__header_sour_data,
+            TOKEN_VERS: self.__header_sour_vers,
+            TOKEN_NAME: self.__header_sour_name,
+            TOKEN_CORP: self.__header_sour_corp,
+            TOKEN_DATA: self.__header_sour_data,
         }
         self.func_list.append(self.header_sour_parse_tbl)
 
         self.header_sour_data = {
-            TOKEN_DATE   : self.__header_sour_date,
-            TOKEN_COPR   : self.__header_sour_copr,
+            TOKEN_DATE: self.__header_sour_date,
+            TOKEN_COPR: self.__header_sour_copr,
         }
         self.func_list.append(self.header_sour_data)
 
         self.header_corp_addr = {
-            TOKEN_ADDR   : self.__repo_addr,
-            TOKEN_PHON   : self.__repo_phon,
-            TOKEN_FAX    : self.__repo_fax,
-            TOKEN_WWW    : self.__repo_www,
-            TOKEN_EMAIL  : self.__repo_email,
+            TOKEN_ADDR: self.__repo_addr,
+            TOKEN_PHON: self.__repo_phon,
+            TOKEN_FAX: self.__repo_fax,
+            TOKEN_WWW: self.__repo_www,
+            TOKEN_EMAIL: self.__repo_email,
         }
         self.func_list.append(self.header_corp_addr)
 
         self.header_subm = {
-            TOKEN_NAME   : self.__header_subm_name,
+            TOKEN_NAME: self.__header_subm_name,
         }
         self.func_list.append(self.header_subm)
 
         self.place_form = {
-            TOKEN_FORM   : self.__place_form,
+            TOKEN_FORM: self.__place_form,
         }
         self.func_list.append(self.place_form)
 
@@ -2692,10 +3049,10 @@ class GedcomParser(UpdateCallback):
         #   +1 <<CHANGE_DATE>>                            {0:1}
 
         self.note_parse_tbl = {
-            TOKEN_SOUR   : self.__ignore,
-            TOKEN_REFN   : self.__ignore,
-            TOKEN_RIN    : self.__ignore,
-            TOKEN_CHAN   : self.__note_chan,
+            TOKEN_SOUR: self.__ignore,
+            TOKEN_REFN: self.__ignore,
+            TOKEN_RIN: self.__ignore,
+            TOKEN_CHAN: self.__note_chan,
         }
         self.func_list.append(self.note_parse_tbl)
 
@@ -2746,8 +3103,7 @@ class GedcomParser(UpdateCallback):
           0 TRLR                                          {1:1}
 
         """
-        with DbTxn(_("GEDCOM import"), self.dbase,
-                   not use_trans) as self.trans:
+        with DbTxn(_("GEDCOM import"), self.dbase, not use_trans) as self.trans:
 
             self.dbase.disable_signals()
             self.__parse_header_head()
@@ -2776,14 +3132,16 @@ class GedcomParser(UpdateCallback):
         if self.number_of_errors == 0:
             message = _("GEDCOM import report: No errors detected")
         else:
-            message = _("GEDCOM import report: %s errors detected") % \
-                self.number_of_errors
-        if hasattr(self.user.uistate, 'window'):
+            message = (
+                _("GEDCOM import report: %s errors detected") % self.number_of_errors
+            )
+        if hasattr(self.user.uistate, "window"):
             parent_window = self.user.uistate.window
         else:
             parent_window = None
-        self.user.info(message, "".join(self.errors),
-                       parent=parent_window, monospaced=True)
+        self.user.info(
+            message, "".join(self.errors), parent=parent_window, monospaced=True
+        )
 
     def __clean_up(self):
         """
@@ -2964,15 +3322,17 @@ class GedcomParser(UpdateCallback):
         for place_handle in self.place_names[title]:
             place = self.dbase.get_place_from_handle(place_handle)
             if place.get_title() == title:
-                if self.__loc_is_empty(location) and \
-                   self.__loc_is_empty(self.__get_first_loc(place)) and \
-                   place.get_placeref_list() == placeref_list:
+                if (
+                    self.__loc_is_empty(location)
+                    and self.__loc_is_empty(self.__get_first_loc(place))
+                    and place.get_placeref_list() == placeref_list
+                ):
                     return place
-                elif (not self.__loc_is_empty(location) and
-                      not self.__loc_is_empty(self.__get_first_loc(place)) and
-                      self.__get_first_loc(place).is_equivalent(location) ==
-                      IDENTICAL) and \
-                        place.get_placeref_list() == placeref_list:
+                elif (
+                    not self.__loc_is_empty(location)
+                    and not self.__loc_is_empty(self.__get_first_loc(place))
+                    and self.__get_first_loc(place).is_equivalent(location) == IDENTICAL
+                ) and place.get_placeref_list() == placeref_list:
                     return place
         return None
 
@@ -2989,14 +3349,17 @@ class GedcomParser(UpdateCallback):
         """
         if sub_state.place:
             # see whether this place already exists
-            place = self.__find_place(sub_state.place.get_title(),
-                                      self.__get_first_loc(sub_state.place),
-                                      sub_state.place.get_placeref_list())
+            place = self.__find_place(
+                sub_state.place.get_title(),
+                self.__get_first_loc(sub_state.place),
+                sub_state.place.get_placeref_list(),
+            )
             if place is None:
                 place = sub_state.place
                 place_title = _pd.display(self.dbase, place)
-                location = sub_state.pf.load_place(self.place_import, place,
-                                                   place_title)
+                location = sub_state.pf.load_place(
+                    self.place_import, place, place_title
+                )
                 self.dbase.add_place(place, self.trans)
                 # if 'location was created, then store it, now that we have a
                 # handle.
@@ -3007,8 +3370,9 @@ class GedcomParser(UpdateCallback):
             else:
                 place.merge(sub_state.place)
                 place_title = _pd.display(self.dbase, place)
-                location = sub_state.pf.load_place(self.place_import, place,
-                                                   place_title)
+                location = sub_state.pf.load_place(
+                    self.place_import, place, place_title
+                )
                 self.dbase.commit_place(place, self.trans)
                 if location:
                     self.place_import.store_location(location, place.handle)
@@ -3016,7 +3380,7 @@ class GedcomParser(UpdateCallback):
 
     def __find_file(self, fullname, altpath):
         # try to find the media file
-        fullname = fullname.replace('\\', os.path.sep)
+        fullname = fullname.replace("\\", os.path.sep)
 
         try:
             if os.path.isfile(fullname):
@@ -3026,7 +3390,7 @@ class GedcomParser(UpdateCallback):
             # in filename
             return (0, fullname)
         # strip off Windows drive letter, if present
-        if len(fullname) > 3 and fullname[1] == ':':
+        if len(fullname) > 3 and fullname[1] == ":":
             fullname = fullname[2:]
         # look where we found the '.ged', using the full path in fullname
         other = os.path.join(altpath, fullname)
@@ -3041,8 +3405,7 @@ class GedcomParser(UpdateCallback):
         if os.path.isfile(other):
             return (1, fullname)
         # lets try using the base path for relative media paths with base name
-        other = os.path.join(media_path(self.dbase),
-                             os.path.basename(fullname))
+        other = os.path.join(media_path(self.dbase), os.path.basename(fullname))
         if os.path.isfile(other):
             return (1, os.path.basename(fullname))
         return (0, fullname)
@@ -3096,8 +3459,7 @@ class GedcomParser(UpdateCallback):
             if line.token == token:
                 got_line = line
             else:
-                self.__add_msg(_("Line ignored as not understood"),
-                               line, state)
+                self.__add_msg(_("Line ignored as not understood"), line, state)
                 skips += 1
 
     def __undefined(self, line, state):
@@ -3178,11 +3540,15 @@ class GedcomParser(UpdateCallback):
             self.number_of_errors += 1
         if line:
             prob_width = 66
-            problem = problem.ljust(prob_width)[0:(prob_width - 1)]
+            problem = problem.ljust(prob_width)[0 : (prob_width - 1)]
             text = str(line.data).replace("\n", "\n".ljust(prob_width + 22))
-            message = "%s   Line %5d: %s %s %s\n" % (problem, line.line,
-                                                     line.level,
-                                                     line.token_text, text)
+            message = "%s   Line %5d: %s %s %s\n" % (
+                problem,
+                line.line,
+                line.level,
+                line.token_text,
+                text,
+            )
         else:
             message = problem + "\n"
         if state:
@@ -3192,11 +3558,11 @@ class GedcomParser(UpdateCallback):
     def __check_msgs(self, record_name, state, obj):
         if state.msg == "":
             return
-        message = _("Records not imported into ") + record_name + ":\n\n" + \
-            state.msg
+        message = _("Records not imported into ") + record_name + ":\n\n" + state.msg
         new_note = Note()
-        tag = StyledTextTag(StyledTextTagType.FONTFACE, 'Monospace',
-                            [(0, len(message))])
+        tag = StyledTextTag(
+            StyledTextTagType.FONTFACE, "Monospace", [(0, len(message))]
+        )
         text = StyledText(message, [tag])
         new_note.set_styledtext(text)
         new_note.set_handle(create_id())
@@ -3218,56 +3584,99 @@ class GedcomParser(UpdateCallback):
         self.backoff = True
 
     def __check_xref(self):
-
-        def __check(_map, has_gid_func, class_func, commit_func,
-                    gramps_id2handle, msg):
+        def __check(_map, has_gid_func, class_func, commit_func, gramps_id2handle, msg):
             for input_id, gramps_id in _map.map().items():
                 # Check whether an object exists for the mapped gramps_id
                 if not has_gid_func(gramps_id):
-                    _handle = self.__find_from_handle(gramps_id,
-                                                      gramps_id2handle)
+                    _handle = self.__find_from_handle(gramps_id, gramps_id2handle)
                     if msg == "FAM":
-                        make_unknown(gramps_id, self.explanation.handle,
-                                     class_func, commit_func, self.trans,
-                                     db=self.dbase)
+                        make_unknown(
+                            gramps_id,
+                            self.explanation.handle,
+                            class_func,
+                            commit_func,
+                            self.trans,
+                            db=self.dbase,
+                        )
                         self.missing_references += 1
-                        self.__add_msg(_("Error: %(msg)s  '%(gramps_id)s'"
-                                         " (input as @%(xref)s@) not in input"
-                                         " GEDCOM. Record synthesised") %
-                                       {'msg' : msg, 'gramps_id' : gramps_id,
-                                        'xref' : input_id})
+                        self.__add_msg(
+                            _(
+                                "Error: %(msg)s  '%(gramps_id)s'"
+                                " (input as @%(xref)s@) not in input"
+                                " GEDCOM. Record synthesised"
+                            )
+                            % {"msg": msg, "gramps_id": gramps_id, "xref": input_id}
+                        )
                     else:
-                        make_unknown(gramps_id, self.explanation.handle,
-                                     class_func, commit_func, self.trans)
+                        make_unknown(
+                            gramps_id,
+                            self.explanation.handle,
+                            class_func,
+                            commit_func,
+                            self.trans,
+                        )
                         self.missing_references += 1
-                        self.__add_msg(_("Error: %(msg)s '%(gramps_id)s'"
-                                         " (input as @%(xref)s@) not in input"
-                                         " GEDCOM. Record with typifying"
-                                         " attribute 'Unknown' created") %
-                                       {'msg' : msg, 'gramps_id' : gramps_id,
-                                        'xref' : input_id})
+                        self.__add_msg(
+                            _(
+                                "Error: %(msg)s '%(gramps_id)s'"
+                                " (input as @%(xref)s@) not in input"
+                                " GEDCOM. Record with typifying"
+                                " attribute 'Unknown' created"
+                            )
+                            % {"msg": msg, "gramps_id": gramps_id, "xref": input_id}
+                        )
 
         self.explanation = create_explanation_note(self.dbase)
 
         self.missing_references = 0
-        __check(self.pid_map, self.dbase.has_person_gramps_id,
-                self.__find_or_create_person, self.dbase.commit_person,
-                self.gid2id, "INDI")
-        __check(self.fid_map, self.dbase.has_family_gramps_id,
-                self.__find_or_create_family, self.dbase.commit_family,
-                self.fid2id, "FAM")
-        __check(self.sid_map, self.dbase.has_source_gramps_id,
-                self.__find_or_create_source, self.dbase.commit_source,
-                self.sid2id, "SOUR")
-        __check(self.oid_map, self.dbase.has_media_gramps_id,
-                self.__find_or_create_media, self.dbase.commit_media,
-                self.oid2id, "OBJE")
-        __check(self.rid_map, self.dbase.has_repository_gramps_id,
-                self.__find_or_create_repository, self.dbase.commit_repository,
-                self.rid2id, "REPO")
-        __check(self.nid_map, self.dbase.has_note_gramps_id,
-                self.__find_or_create_note, self.dbase.commit_note,
-                self.nid2id, "NOTE")
+        __check(
+            self.pid_map,
+            self.dbase.has_person_gramps_id,
+            self.__find_or_create_person,
+            self.dbase.commit_person,
+            self.gid2id,
+            "INDI",
+        )
+        __check(
+            self.fid_map,
+            self.dbase.has_family_gramps_id,
+            self.__find_or_create_family,
+            self.dbase.commit_family,
+            self.fid2id,
+            "FAM",
+        )
+        __check(
+            self.sid_map,
+            self.dbase.has_source_gramps_id,
+            self.__find_or_create_source,
+            self.dbase.commit_source,
+            self.sid2id,
+            "SOUR",
+        )
+        __check(
+            self.oid_map,
+            self.dbase.has_media_gramps_id,
+            self.__find_or_create_media,
+            self.dbase.commit_media,
+            self.oid2id,
+            "OBJE",
+        )
+        __check(
+            self.rid_map,
+            self.dbase.has_repository_gramps_id,
+            self.__find_or_create_repository,
+            self.dbase.commit_repository,
+            self.rid2id,
+            "REPO",
+        )
+        __check(
+            self.nid_map,
+            self.dbase.has_note_gramps_id,
+            self.__find_or_create_note,
+            self.dbase.commit_note,
+            self.nid2id,
+            "NOTE",
+        )
 
         # Check persons membership in referenced families
         def __input_fid(gramps_id):
@@ -3280,20 +3689,28 @@ class GedcomParser(UpdateCallback):
             person = self.dbase.get_person_from_handle(person_handle)
             for family_handle in person.get_family_handle_list():
                 family = self.dbase.get_family_from_handle(family_handle)
-                if family and family.get_father_handle() != person_handle and \
-                        family.get_mother_handle() != person_handle:
+                if (
+                    family
+                    and family.get_father_handle() != person_handle
+                    and family.get_mother_handle() != person_handle
+                ):
                     person.remove_family_handle(family_handle)
                     self.dbase.commit_person(person, self.trans)
-                    self.__add_msg(_("Error: family '%(family)s' (input as"
-                                     " @%(orig_family)s@) person %(person)s"
-                                     " (input as %(orig_person)s) is not a"
-                                     " member of the referenced family."
-                                     " Family reference removed from person") %
-                                   {'family' : family.gramps_id,
-                                    'orig_family' :
-                                        __input_fid(family.gramps_id),
-                                    'person' : person.gramps_id,
-                                    'orig_person' : input_id})
+                    self.__add_msg(
+                        _(
+                            "Error: family '%(family)s' (input as"
+                            " @%(orig_family)s@) person %(person)s"
+                            " (input as %(orig_person)s) is not a"
+                            " member of the referenced family."
+                            " Family reference removed from person"
+                        )
+                        % {
+                            "family": family.gramps_id,
+                            "orig_family": __input_fid(family.gramps_id),
+                            "person": person.gramps_id,
+                            "orig_person": input_id,
+                        }
+                    )
 
         def __input_pid(gramps_id):
             for (key, val) in self.pid_map.map().items():
@@ -3308,67 +3725,73 @@ class GedcomParser(UpdateCallback):
 
             if father_handle:
                 father = self.dbase.get_person_from_handle(father_handle)
-                if father and \
-                        family_handle not in father.get_family_handle_list():
+                if father and family_handle not in father.get_family_handle_list():
                     father.add_family_handle(family_handle)
                     self.dbase.commit_person(father, self.trans)
-                    self.__add_msg("Error: family '%(family)s' (input as"
-                                   " @%(orig_family)s@) father '%(father)s'"
-                                   " (input as '%(orig_father)s') does not "
-                                   "refer back to the family. Reference added."
-                                   % {'family' : family.gramps_id,
-                                      'orig_family' : input_id,
-                                      'father' : father.gramps_id,
-                                      'orig_father' :
-                                          __input_pid(father.gramps_id)})
+                    self.__add_msg(
+                        "Error: family '%(family)s' (input as"
+                        " @%(orig_family)s@) father '%(father)s'"
+                        " (input as '%(orig_father)s') does not "
+                        "refer back to the family. Reference added."
+                        % {
+                            "family": family.gramps_id,
+                            "orig_family": input_id,
+                            "father": father.gramps_id,
+                            "orig_father": __input_pid(father.gramps_id),
+                        }
+                    )
 
             if mother_handle:
                 mother = self.dbase.get_person_from_handle(mother_handle)
-                if mother and \
-                        family_handle not in mother.get_family_handle_list():
+                if mother and family_handle not in mother.get_family_handle_list():
                     mother.add_family_handle(family_handle)
                     self.dbase.commit_person(mother, self.trans)
-                    self.__add_msg("Error: family '%(family)s' (input as"
-                                   " @%(orig_family)s@) mother '%(mother)s'"
-                                   " (input as '%(orig_mother)s') does not "
-                                   "refer back to the family. Reference added."
-                                   % {'family' : family.gramps_id,
-                                      'orig_family' : input_id,
-                                      'mother' : mother.gramps_id,
-                                      'orig_mother' :
-                                          __input_pid(mother.gramps_id)})
+                    self.__add_msg(
+                        "Error: family '%(family)s' (input as"
+                        " @%(orig_family)s@) mother '%(mother)s'"
+                        " (input as '%(orig_mother)s') does not "
+                        "refer back to the family. Reference added."
+                        % {
+                            "family": family.gramps_id,
+                            "orig_family": input_id,
+                            "mother": mother.gramps_id,
+                            "orig_mother": __input_pid(mother.gramps_id),
+                        }
+                    )
 
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
                 child = self.dbase.get_person_from_handle(child_handle)
                 if child:
-                    if family_handle not in \
-                            child.get_parent_family_handle_list():
+                    if family_handle not in child.get_parent_family_handle_list():
                         # The referenced child has no reference to the family.
                         # There was a link from the FAM record to the child,
                         # but no FAMC link from the child to the FAM.
                         child.add_parent_family_handle(family_handle)
                         self.dbase.commit_person(child, self.trans)
-                        self.__add_msg("Error: family '%(family)s' (input as"
-                                       " @%(orig_family)s@) child '%(child)s'"
-                                       " (input as '%(orig_child)s') does not "
-                                       "refer back to the family. "
-                                       "Reference added." %
-                                       {'family' : family.gramps_id,
-                                        'orig_family' : input_id,
-                                        'child' : child.gramps_id,
-                                        'orig_child' :
-                                            __input_pid(child.gramps_id)})
+                        self.__add_msg(
+                            "Error: family '%(family)s' (input as"
+                            " @%(orig_family)s@) child '%(child)s'"
+                            " (input as '%(orig_child)s') does not "
+                            "refer back to the family. "
+                            "Reference added."
+                            % {
+                                "family": family.gramps_id,
+                                "orig_family": input_id,
+                                "child": child.gramps_id,
+                                "orig_child": __input_pid(child.gramps_id),
+                            }
+                        )
 
         if self.missing_references:
             self.dbase.commit_note(self.explanation, self.trans, time.time())
-            txt = _("\nThe imported file was not self-contained.\n"
-                    "To correct for that, %(new)d objects were created and\n"
-                    "their typifying attribute was set to 'Unknown'.\n"
-                    "Where possible these 'Unknown' objects are \n"
-                    "referenced by note %(unknown)s.\n"
-                    ) % {'new': self.missing_references,
-                         'unknown': self.explanation.gramps_id}
+            txt = _(
+                "\nThe imported file was not self-contained.\n"
+                "To correct for that, %(new)d objects were created and\n"
+                "their typifying attribute was set to 'Unknown'.\n"
+                "Where possible these 'Unknown' objects are \n"
+                "referenced by note %(unknown)s.\n"
+            ) % {"new": self.missing_references, "unknown": self.explanation.gramps_id}
             self.__add_msg(txt)
             self.number_of_errors -= 1
 
@@ -3414,11 +3837,15 @@ class GedcomParser(UpdateCallback):
         then just the structrued address is used.
         The routine returns a string suitable for a title.
         """
-        title = ''
-        free_form_address = free_form_address.replace('\n', ', ')
-        if not (addr.get_street() or addr.get_locality() or
-                addr.get_city() or addr.get_state() or
-                addr.get_postal_code()):
+        title = ""
+        free_form_address = free_form_address.replace("\n", ", ")
+        if not (
+            addr.get_street()
+            or addr.get_locality()
+            or addr.get_city()
+            or addr.get_state()
+            or addr.get_postal_code()
+        ):
 
             addr.set_street(free_form_address)
             return free_form_address
@@ -3426,25 +3853,28 @@ class GedcomParser(UpdateCallback):
             # structured address provided
             addr_list = free_form_address.split(",")
             str_list = []
-            for func in (addr.get_street(), addr.get_locality(),
-                         addr.get_city(), addr.get_state(),
-                         addr.get_postal_code(), addr.get_country()):
-                str_list += [i.strip(',' + string.whitespace)
-                             for i in func.split("\n")]
+            for func in (
+                addr.get_street(),
+                addr.get_locality(),
+                addr.get_city(),
+                addr.get_state(),
+                addr.get_postal_code(),
+                addr.get_country(),
+            ):
+                str_list += [i.strip("," + string.whitespace) for i in func.split("\n")]
             for elmn in addr_list:
-                if elmn.strip(',' + string.whitespace) not in str_list:
+                if elmn.strip("," + string.whitespace) not in str_list:
                     # message means that the element %s was ignored, but
                     # expressed the wrong way round because the message is
                     # truncated for output
-                    self.__add_msg(_("ADDR element ignored '%s'"
-                                     % elmn), line, state)
+                    self.__add_msg(_("ADDR element ignored '%s'" % elmn), line, state)
             # The free-form address ADDR is discarded
             # Assemble a title out of structured address
             for elmn in str_list:
                 if elmn:
-                    if title != '':
+                    if title != "":
                         # TODO for Arabic, should the next comma be translated?
-                        title += ', '
+                        title += ", "
                     title += elmn
             return title
 
@@ -3488,12 +3918,13 @@ class GedcomParser(UpdateCallback):
 
         localized_submitter = _("(Submitter):")
         if state.res.get_name() == "":
-            submitter_name = "SUBM %s @%s@" % (localized_submitter,
-                                               line.token_text)
+            submitter_name = "SUBM %s @%s@" % (localized_submitter, line.token_text)
         else:
-            submitter_name = "SUBM %s (@%s@) %s" % (localized_submitter,
-                                                    line.token_text,
-                                                    state.res.get_name())
+            submitter_name = "SUBM %s (@%s@) %s" % (
+                localized_submitter,
+                line.token_text,
+                state.res.get_name(),
+            )
         if self.use_def_src:
             repo.set_name(submitter_name)
             repo.set_handle(create_id())
@@ -3510,14 +3941,14 @@ class GedcomParser(UpdateCallback):
             addr.set_phone(state.res.get_phone())
             repo.add_address(addr)
             rtype = RepositoryType()
-            rtype.set((RepositoryType.CUSTOM, _('GEDCOM data')))
+            rtype.set((RepositoryType.CUSTOM, _("GEDCOM data")))
             repo.set_type(rtype)
             self.__check_msgs(submitter_name, state, repo)
             self.dbase.commit_repository(repo, self.trans, state.repo.change)
             repo_ref = RepoRef()
             repo_ref.set_reference_handle(repo.handle)
             mtype = SourceMediaType()
-            mtype.set((SourceMediaType.UNKNOWN, ''))
+            mtype.set((SourceMediaType.UNKNOWN, ""))
             repo_ref.set_media_type(mtype)
             self.def_src.add_repo_reference(repo_ref)
             self.dbase.commit_source(self.def_src, self.trans)
@@ -3578,8 +4009,7 @@ class GedcomParser(UpdateCallback):
                 self.__check_msgs(_("Top Level"), state, None)
             elif key in ("SOUR", "SOURCE"):
                 self.__parse_source(line.token_text, 1)
-            elif (line.data.startswith("SOUR ") or
-                  line.data.startswith("SOURCE ")):
+            elif line.data.startswith("SOUR ") or line.data.startswith("SOURCE "):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
                 source = self.__find_or_create_source(self.sid_map[line.data])
@@ -3616,11 +4046,11 @@ class GedcomParser(UpdateCallback):
                 func = __map.get(line.token, default)
                 func(line, state)
 
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
     #
     # INDI parsing
     #
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
 
     def __parse_indi(self, line):
         """
@@ -3671,8 +4101,9 @@ class GedcomParser(UpdateCallback):
         # Set up primary photo if present
         self.__do_photo(state)
 
-        self.__check_msgs(_("INDI (individual) Gramps ID %s") %
-                          person.get_gramps_id(), state, person)
+        self.__check_msgs(
+            _("INDI (individual) Gramps ID %s") % person.get_gramps_id(), state, person
+        )
         # commit the person to the database
         self.dbase.commit_person(person, self.trans, state.person.change)
 
@@ -3720,9 +4151,9 @@ class GedcomParser(UpdateCallback):
         # the TYPE in a custom event
         cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
         cust_type = EventType((EventType.CUSTOM, cust_tag))
-        event_ref = self.__build_event_pair(state, cust_type,
-                                            self.event_parse_tbl,
-                                            str(line.data))
+        event_ref = self.__build_event_pair(
+            state, cust_type, self.event_parse_tbl, str(line.data)
+        )
         state.person.add_event_ref(event_ref)
 
     def __fam_even(self, line, state):
@@ -3732,10 +4163,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_family_event_pair(state,
-                                                   EventType.CUSTOM,
-                                                   self.event_parse_tbl,
-                                                   line.data)
+        event_ref = self.__build_family_event_pair(
+            state, EventType.CUSTOM, self.event_parse_tbl, line.data
+        )
         state.family.add_event_ref(event_ref)
 
     def __person_chan(self, line, state):
@@ -3757,7 +4187,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         attr = Attribute()
-        attr.set_type((AttributeType.CUSTOM, 'RESN'))
+        attr.set_type((AttributeType.CUSTOM, "RESN"))
         state.person.add_attribute(attr)
 
     def __person_alt_name(self, line, state):
@@ -3798,11 +4228,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if line.data == '':
-            self.__add_msg(_("Empty Alias <NAME PERSONAL> ignored"),
-                           line, state)
+        if line.data == "":
+            self.__add_msg(_("Empty Alias <NAME PERSONAL> ignored"), line, state)
             self.__skip_subordinate_levels(state.level + 1, state)
-        elif line.data[0] == '@':
+        elif line.data[0] == "@":
             handle = self.__find_person_handle(self.pid_map[line.data])
             ref = PersonRef()
             ref.ref = handle
@@ -3863,7 +4292,7 @@ class GedcomParser(UpdateCallback):
         This handles the FTM _PHOTO feature, which identifies an OBJE to use
         as the person's primary photo.
         """
-        state.photo = line.data     # Just save it for now.
+        state.photo = line.data  # Just save it for now.
 
     def __person_name(self, line, state):
         """
@@ -3943,8 +4372,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, EventType.CUSTOM,
-                                            self.event_parse_tbl, line.data)
+        event_ref = self.__build_event_pair(
+            state, EventType.CUSTOM, self.event_parse_tbl, line.data
+        )
         state.person.add_event_ref(event_ref)
 
     def __person_std_event(self, line, state):
@@ -3993,8 +4423,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, EventType.RELIGION,
-                                            self.event_parse_tbl, line.data)
+        event_ref = self.__build_event_pair(
+            state, EventType.RELIGION, self.event_parse_tbl, line.data
+        )
         state.person.add_event_ref(event_ref)
 
     def __person_birt(self, line, state):
@@ -4016,8 +4447,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, EventType.BIRTH,
-                                            self.event_parse_tbl, line.data)
+        event_ref = self.__build_event_pair(
+            state, EventType.BIRTH, self.event_parse_tbl, line.data
+        )
         if state.person.get_birth_ref():
             state.person.add_event_ref(event_ref)
         else:
@@ -4038,8 +4470,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, EventType.ADOPT,
-                                            self.adopt_parse_tbl, line.data)
+        event_ref = self.__build_event_pair(
+            state, EventType.ADOPT, self.adopt_parse_tbl, line.data
+        )
         state.person.add_event_ref(event_ref)
 
     def __person_deat(self, line, state):
@@ -4056,8 +4489,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, EventType.DEATH,
-                                            self.event_parse_tbl, line.data)
+        event_ref = self.__build_event_pair(
+            state, EventType.DEATH, self.event_parse_tbl, line.data
+        )
         if state.person.get_death_ref():
             state.person.add_event_ref(event_ref)
         else:
@@ -4133,9 +4567,10 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.backoff = True  # reprocess the current ADDR line
-        line.level += 1      # as if it was next level down
-        event_ref = self.__build_event_pair(state, EventType.RESIDENCE,
-                                            self.event_parse_tbl, '')
+        line.level += 1  # as if it was next level down
+        event_ref = self.__build_event_pair(
+            state, EventType.RESIDENCE, self.event_parse_tbl, ""
+        )
         state.person.add_event_ref(event_ref)
 
     def __person_phon(self, line, state):
@@ -4149,7 +4584,7 @@ class GedcomParser(UpdateCallback):
         """
         url = Url()
         url.set_path(line.data)
-        url.set_type(UrlType(_('Phone')))
+        url.set_type(UrlType(_("Phone")))
         state.person.add_url(url)
 
     def __person_fax(self, line, state):
@@ -4164,7 +4599,7 @@ class GedcomParser(UpdateCallback):
         """
         url = Url()
         url.set_path(line.data)
-        url.set_type(UrlType(_('FAX')))
+        url.set_type(UrlType(_("FAX")))
         state.person.add_url(url)
 
     def __person_email(self, line, state):
@@ -4410,13 +4845,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.name.get_suffix() == "" or \
-           state.name.get_suffix() == line.data:
-            #suffix might be set before when parsing name string
+        if state.name.get_suffix() == "" or state.name.get_suffix() == line.data:
+            # suffix might be set before when parsing name string
             state.name.set_suffix(line.data)
         else:
-            #previously set suffix different, to not loose information, append
-            state.name.set_suffix(state.name.get_suffix() + ' ' + line.data)
+            # previously set suffix different, to not loose information, append
+            state.name.set_suffix(state.name.get_suffix() + " " + line.data)
         self.__skip_subordinate_levels(state.level + 1, state)
 
     def __name_nick(self, line, state):
@@ -4481,8 +4915,8 @@ class GedcomParser(UpdateCallback):
             surname.set_surname(lname[-1].strip())
             surname.set_primary()
             name.set_surname_list([surname])
-            name.set_first_name(' '.join(lname[0:name_len - 1]))
-#            name = self.__parse_name_personal(line.data)
+            name.set_first_name(" ".join(lname[0 : name_len - 1]))
+            #            name = self.__parse_name_personal(line.data)
             name.set_type(NameType.AKA)
             state.person.add_alternate_name(name)
 
@@ -4532,8 +4966,7 @@ class GedcomParser(UpdateCallback):
         sub_state.attr = line.data
         sub_state.level = state.level + 1
         state.person.add_attribute(sub_state.attr)
-        self.__parse_level(sub_state, self.person_attr_parse_tbl,
-                           self.__ignore)
+        self.__parse_level(sub_state, self.person_attr_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
 
     def __person_fact(self, line, state):
@@ -4551,8 +4984,7 @@ class GedcomParser(UpdateCallback):
         sub_state.attr.set_value(line.data)
         sub_state.level = state.level + 1
         state.person.add_attribute(sub_state.attr)
-        self.__parse_level(sub_state, self.person_fact_parse_tbl,
-                           self.__ignore)
+        self.__parse_level(sub_state, self.person_fact_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
 
     def __person_fact_type(self, line, state):
@@ -4625,9 +5057,9 @@ class GedcomParser(UpdateCallback):
 
         if sub_state.place:
             place_title = _pd.display(self.dbase, sub_state.place)
-            sub_state.place_fields.load_place(self.place_import,
-                                              sub_state.place,
-                                              place_title)
+            sub_state.place_fields.load_place(
+                self.place_import, sub_state.place, place_title
+            )
 
     def __lds_temple(self, line, state):
         """
@@ -4777,8 +5209,7 @@ class GedcomParser(UpdateCallback):
             state.person.add_parent_family_handle(handle)
 
             # search childrefs
-            family, _new = self.dbase.find_family_from_handle(handle,
-                                                              self.trans)
+            family, _new = self.dbase.find_family_from_handle(handle, self.trans)
             family.set_gramps_id(gid)
 
             for ref in family.get_child_ref_list():
@@ -4811,8 +5242,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.ftype = PEDIGREE_TYPES.get(line.data.lower(),
-                                         ChildRefType.UNKNOWN)
+        state.ftype = PEDIGREE_TYPES.get(line.data.lower(), ChildRefType.UNKNOWN)
 
     def __person_famc_frel(self, line, state):
         """
@@ -4982,11 +5412,11 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.ref, state)
 
-    #-------------------------------------------------------------------
+    # -------------------------------------------------------------------
     #
     # FAM parsing
     #
-    #-------------------------------------------------------------------
+    # -------------------------------------------------------------------
 
     def __parse_fam(self, line):
         """
@@ -5043,8 +5473,9 @@ class GedcomParser(UpdateCallback):
         # Add a default tag if provided
         self.__add_default_tag(family)
 
-        self.__check_msgs(_("FAM (family) Gramps ID %s") %
-                          family.get_gramps_id(), state, family)
+        self.__check_msgs(
+            _("FAM (family) Gramps ID %s") % family.get_gramps_id(), state, family
+        )
         # commit family to database
         self.dbase.commit_family(family, self.trans, family.change)
 
@@ -5058,7 +5489,7 @@ class GedcomParser(UpdateCallback):
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
-            """
+        """
         handle = self.__find_person_handle(self.pid_map[line.data])
         state.family.set_father_handle(handle)
 
@@ -5072,7 +5503,7 @@ class GedcomParser(UpdateCallback):
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
-            """
+        """
         handle = self.__find_person_handle(self.pid_map[line.data])
         state.family.set_mother_handle(handle)
 
@@ -5110,14 +5541,14 @@ class GedcomParser(UpdateCallback):
             descr = event.get_description()
             if descr == "Civil Union":
                 state.family.type.set(FamilyRelType.CIVIL_UNION)
-                event.set_description('')
+                event.set_description("")
             elif descr == "Unmarried":
                 state.family.type.set(FamilyRelType.UNMARRIED)
-                event.set_description('')
+                event.set_description("")
             else:
                 state.family.type.set(FamilyRelType.MARRIED)
             if descr == "Y":
-                event.set_description('')
+                event.set_description("")
 
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
@@ -5147,7 +5578,7 @@ class GedcomParser(UpdateCallback):
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(cust_type)
         # in case a description ever shows up
-        if line.data and line.data != 'Y':
+        if line.data and line.data != "Y":
             event.set_description(str(line.data))
         self.dbase.add_event(event, self.trans)
 
@@ -5189,8 +5620,9 @@ class GedcomParser(UpdateCallback):
 
         child = self.__find_or_create_person(self.pid_map[line.data])
 
-        reflist = [ref for ref in state.family.get_child_ref_list()
-                   if ref.ref == child.handle]
+        reflist = [
+            ref for ref in state.family.get_child_ref_list() if ref.ref == child.handle
+        ]
 
         if reflist:  # The child has been referenced already
             ref = reflist[0]
@@ -5233,7 +5665,7 @@ class GedcomParser(UpdateCallback):
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
-            """
+        """
         sub_state = CurrentState()
         sub_state.level = state.level + 1
         sub_state.lds_ord = LdsOrd()
@@ -5248,9 +5680,9 @@ class GedcomParser(UpdateCallback):
 
         if sub_state.place:
             place_title = _pd.display(self.dbase, sub_state.place)
-            sub_state.place_fields.load_place(self.place_import,
-                                              sub_state.place,
-                                              place_title)
+            sub_state.place_fields.load_place(
+                self.place_import, sub_state.place, place_title
+            )
 
     def __family_source(self, line, state):
         """
@@ -5333,8 +5765,7 @@ class GedcomParser(UpdateCallback):
         sub_state.attr = line.data
         sub_state.level = state.level + 1
         state.family.add_attribute(line.data)
-        self.__parse_level(sub_state, self.person_attr_parse_tbl,
-                           self.__ignore)
+        self.__parse_level(sub_state, self.person_attr_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
 
     def __family_refn(self, line, state):
@@ -5360,36 +5791,36 @@ class GedcomParser(UpdateCallback):
 
     def __obje(self, line, state, pri_obj):
         """
-       Embedded form
+        Embedded form
 
-          n OBJE @<XREF:OBJE>@ {1:1}
-          +1 _PRIM <Y/N>       {0:1}                # Indicates primary photo
+           n OBJE @<XREF:OBJE>@ {1:1}
+           +1 _PRIM <Y/N>       {0:1}                # Indicates primary photo
 
-        Linked form
+         Linked form
 
-          n  OBJE {1:1}
-          +1 FORM <MULTIMEDIA_FORMAT> {1:1}         # v5.5 layout
-          +1 TITL <DESCRIPTIVE_TITLE> {0:1}
-          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1} # v5.5.1 allows multiple
-            +2 FORM <MULTIMEDIA_FORMAT> {1:1}       # v5.5.1 layout
-              +3 MEDI <SOURCE_MEDIA_TYPE> {0:1}     # v5.5.1 layout
-          +1 <<NOTE_STRUCTURE>> {0:M}
-          +1 _PRIM <Y/N>       {0:1}                # Indicates primary photo
+           n  OBJE {1:1}
+           +1 FORM <MULTIMEDIA_FORMAT> {1:1}         # v5.5 layout
+           +1 TITL <DESCRIPTIVE_TITLE> {0:1}
+           +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1} # v5.5.1 allows multiple
+             +2 FORM <MULTIMEDIA_FORMAT> {1:1}       # v5.5.1 layout
+               +3 MEDI <SOURCE_MEDIA_TYPE> {0:1}     # v5.5.1 layout
+           +1 <<NOTE_STRUCTURE>> {0:M}
+           +1 _PRIM <Y/N>       {0:1}                # Indicates primary photo
 
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        @param pri_obj: The Primary object to which this is attached
-        @type state: Person # or Family, or Source etc.
+         @param line: The current line in GedLine format
+         @type line: GedLine
+         @param state: The current state
+         @type state: CurrentState
+         @param pri_obj: The Primary object to which this is attached
+         @type state: Person # or Family, or Source etc.
         """
-        if line.data and line.data[0] == '@':
+        if line.data and line.data[0] == "@":
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
             handle = self.__find_media_handle(gramps_id)
             # check to see if this is a primary photo
             line = self.__chk_subordinate(state.level + 1, state, TOKEN__PRIM)
-            if line and line.data == 'Y':
+            if line and line.data == "Y":
                 state.photo = handle
             oref = MediaRef()
             oref.set_reference_handle(handle)
@@ -5433,8 +5864,9 @@ class GedcomParser(UpdateCallback):
                 new_note = Note(sub_state.filename)
                 new_note.set_gramps_id(self.nid_map[""])
                 new_note.set_handle(create_id())
-                new_note.set_type(OBJ_NOTETYPE.get(type(pri_obj).__name__,
-                                                   NoteType.GENERAL))
+                new_note.set_type(
+                    OBJ_NOTETYPE.get(type(pri_obj).__name__, NoteType.GENERAL)
+                )
                 self.dbase.commit_note(new_note, self.trans, new_note.change)
                 pri_obj.add_note(new_note.get_handle())
 
@@ -5442,14 +5874,14 @@ class GedcomParser(UpdateCallback):
             # to allow import of references to URLs (especially for import from
             # geni.com), do not try to find the file if it is blatently a URL
             res = urlparse(sub_state.filename)
-            if sub_state.filename != '' and (res.scheme == '' or
-                                             len(res.scheme) == 1 or
-                                             res.scheme == 'file'):
-                (valid, path) = self.__find_file(sub_state.filename,
-                                                 self.dir_path)
+            if sub_state.filename != "" and (
+                res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
+            ):
+                (valid, path) = self.__find_file(sub_state.filename, self.dir_path)
                 if not valid:
-                    self.__add_msg(_("Could not import %s") %
-                                   sub_state.filename, line, state)
+                    self.__add_msg(
+                        _("Could not import %s") % sub_state.filename, line, state
+                    )
             else:
                 path = sub_state.filename
             # Multiple references to the same media silently drops the later
@@ -5461,18 +5893,19 @@ class GedcomParser(UpdateCallback):
                 if sub_state.title:
                     photo.set_description(sub_state.title)
                 else:
-                    photo.set_description(path.replace('\\', '/'))
+                    photo.set_description(path.replace("\\", "/"))
                 full_path = os.path.abspath(path)
                 # deal with mime types
                 value = mimetypes.guess_type(full_path)
                 if value and value[0]:  # found from filename
                     photo.set_mime_type(value[0])
                 else:  # get from OBJE.FILE.FORM
-                    if '/' in sub_state.form:  # already has expanded mime type
+                    if "/" in sub_state.form:  # already has expanded mime type
                         photo.set_mime_type(sub_state.form)
                     else:
-                        value = mimetypes.types_map.get('.' + sub_state.form,
-                                                        _('unknown'))
+                        value = mimetypes.types_map.get(
+                            "." + sub_state.form, _("unknown")
+                        )
                         photo.set_mime_type(value)
                 if sub_state.attr:
                     photo.attribute_list.append(sub_state.attr)
@@ -5512,9 +5945,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.attr = Attribute()
-        mtype = MEDIA_MAP.get(line.data.lower(),
-                              (SourceMediaType.CUSTOM, line.data))
-        state.attr.set_type(_('Media-Type'))
+        mtype = MEDIA_MAP.get(line.data.lower(), (SourceMediaType.CUSTOM, line.data))
+        state.attr.set_type(_("Media-Type"))
         state.attr.set_value(str(SourceMediaType(mtype)))
 
     def __media_ref_titl(self, line, state):
@@ -5538,8 +5970,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if state.filename != "":
-            self.__add_msg(_("Multiple FILE in a single OBJE ignored"),
-                           line, state)
+            self.__add_msg(_("Multiple FILE in a single OBJE ignored"), line, state)
             self.__skip_subordinate_levels(state.level + 1, state)
             return
         state.filename = line.data
@@ -5636,8 +6067,7 @@ class GedcomParser(UpdateCallback):
             state.event.set_type(name)
         else:
             try:
-                if line.data not in GED_TO_GRAMPS_EVENT and \
-                        line.data[0] != 'Y':
+                if line.data not in GED_TO_GRAMPS_EVENT and line.data[0] != "Y":
                     state.event.set_description(line.data)
             except IndexError:
                 return
@@ -5668,8 +6098,11 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        if self.is_ftw and (state.event.type in FTW_BAD_PLACE) \
-                and not state.event.get_description():
+        if (
+            self.is_ftw
+            and (state.event.type in FTW_BAD_PLACE)
+            and not state.event.get_description()
+        ):
             state.event.set_description(line.data)
         else:
             place = state.place
@@ -5694,11 +6127,10 @@ class GedcomParser(UpdateCallback):
             sub_state.place = place
             sub_state.level = state.level + 1
 
-            self.__parse_level(sub_state, self.event_place_map,
-                               self.__undefined)
+            self.__parse_level(sub_state, self.event_place_map, self.__undefined)
             state.msg += sub_state.msg
-            if sub_state.pf:                # if we found local PLAC:FORM
-                state.pf = sub_state.pf     # save to override global value
+            if sub_state.pf:  # if we found local PLAC:FORM
+                state.pf = sub_state.pf  # save to override global value
             # merge notes etc into place
             state.place.merge(sub_state.place)
 
@@ -5792,15 +6224,15 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
         state.msg += sub_state.msg
 
-        title = self.__merge_address(free_form, sub_state.location,
-                                     line, state)
+        title = self.__merge_address(free_form, sub_state.location, line, state)
 
         location = sub_state.location
 
         if self.addr_is_detail and state.place:
             # Commit the enclosing place
-            place = self.__find_place(state.place.get_title(), None,
-                                      state.place.get_placeref_list())
+            place = self.__find_place(
+                state.place.get_title(), None, state.place.get_placeref_list()
+            )
             if place is None:
                 place = state.place
                 self.dbase.add_place(place, self.trans)
@@ -5825,12 +6257,15 @@ class GedcomParser(UpdateCallback):
             place = state.place
             if place:
                 # We encounter an ADDR having previously encountered a PLAC
-                if len(place.get_alternate_locations()) != 0 and \
-                        not self.__get_first_loc(place).is_empty():
+                if (
+                    len(place.get_alternate_locations()) != 0
+                    and not self.__get_first_loc(place).is_empty()
+                ):
                     # We have perviously found an ADDR, or have populated
                     # location from PLAC title
-                    self.__add_msg(_("Location already populated; ADDR "
-                                     "ignored"), line, state)
+                    self.__add_msg(
+                        _("Location already populated; ADDR " "ignored"), line, state
+                    )
                     # ignore this second ADDR, and use the old one
                 else:
                     # This is the first ADDR
@@ -6037,7 +6472,7 @@ class GedcomParser(UpdateCallback):
                 attr.set_value(line.data)
                 state.event_ref.add_attribute(attr)
             elif line.token == TOKEN_WIFE:
-                #wife event can be on same level, if so call it and finish
+                # wife event can be on same level, if so call it and finish
                 self.__event_wife(line, state)
                 break
 
@@ -6058,7 +6493,7 @@ class GedcomParser(UpdateCallback):
                 attr.set_value(line.data)
                 state.event_ref.add_attribute(attr)
             elif line.token == TOKEN_HUSB:
-                #husband event can be on same level, if so call it and finish
+                # husband event can be on same level, if so call it and finish
                 self.__event_husb(line, state)
                 break
 
@@ -6081,8 +6516,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if hasattr(state, 'event'):
-            #read in time as attribute of event
+        if hasattr(state, "event"):
+            # read in time as attribute of event
             attr = Attribute()
             attr.set_type(AttributeType.TIME)
             attr.set_value(line.data)
@@ -6110,11 +6545,9 @@ class GedcomParser(UpdateCallback):
                     break
                 elif line.token == TOKEN_TYPE:
                     if line.data == "WITNESS_OF_MARRIAGE":
-                        role = EventRoleType(
-                            EventRoleType.WITNESS)
+                        role = EventRoleType(EventRoleType.WITNESS)
                     else:
-                        role = EventRoleType(
-                            (EventRoleType.CUSTOM, line.data))
+                        role = EventRoleType((EventRoleType.CUSTOM, line.data))
                     event_ref.set_role(role)
             wit.add_event_ref(event_ref)
             self.dbase.commit_person(wit, self.trans)
@@ -6140,18 +6573,20 @@ class GedcomParser(UpdateCallback):
         sub_state.mrel = TYPE_BIRTH
         sub_state.frel = TYPE_BIRTH
 
-        self.__parse_level(sub_state, self.parse_person_adopt,
-                           self.__undefined)
+        self.__parse_level(sub_state, self.parse_person_adopt, self.__undefined)
         state.msg += sub_state.msg
 
-        if (int(sub_state.mrel) == ChildRefType.BIRTH and
-                int(sub_state.frel) == ChildRefType.BIRTH):
+        if (
+            int(sub_state.mrel) == ChildRefType.BIRTH
+            and int(sub_state.frel) == ChildRefType.BIRTH
+        ):
             sub_state.mrel = sub_state.frel = TYPE_ADOPT
 
         state.person.add_parent_family_handle(handle)
 
-        reflist = [ref for ref in family.get_child_ref_list()
-                   if ref.ref == state.person.handle]
+        reflist = [
+            ref for ref in family.get_child_ref_list() if ref.ref == state.person.handle
+        ]
         if reflist:
             ref = reflist[0]
             ref.set_father_relation(sub_state.frel)
@@ -6193,8 +6628,9 @@ class GedcomParser(UpdateCallback):
         frel = mrel = ChildRefType.BIRTH
 
         family, _new = self.dbase.find_family_from_handle(handle, self.trans)
-        reflist = [ref for ref in family.get_child_ref_list()
-                   if ref.ref == state.person.handle]
+        reflist = [
+            ref for ref in family.get_child_ref_list() if ref.ref == state.person.handle
+        ]
         if reflist:
             ref = reflist[0]
             ref.set_father_relation(frel)
@@ -6376,9 +6812,7 @@ class GedcomParser(UpdateCallback):
         note with styled text so link can be followed in reports etc.
         """
         note = Note()
-        tags = StyledTextTag(StyledTextTagType.LINK,
-                             line.data,
-                             [(0, len(line.data))])
+        tags = StyledTextTag(StyledTextTagType.LINK, line.data, [(0, len(line.data))])
         note.set_styledtext(StyledText(line.data, [tags]))
         gramps_id = self.nid_map[""]
         note.set_gramps_id(gramps_id)
@@ -6500,11 +6934,11 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.citation, state)
 
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
     #
     # SOUR parsing
     #
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
 
     def __parse_source(self, name, level):
         """
@@ -6532,14 +6966,15 @@ class GedcomParser(UpdateCallback):
         state = CurrentState()
         state.source = self.__find_or_create_source(self.sid_map[name])
         # SOURce with the given gramps_id had no title
-        state.source.set_title(_("No title - ID %s") %
-                               state.source.get_gramps_id())
+        state.source.set_title(_("No title - ID %s") % state.source.get_gramps_id())
         state.level = level
 
         self.__parse_level(state, self.source_func, self.__undefined)
-        self.__check_msgs(_("SOUR (source) Gramps ID %s") %
-                          state.source.get_gramps_id(),
-                          state, state.source)
+        self.__check_msgs(
+            _("SOUR (source) Gramps ID %s") % state.source.get_gramps_id(),
+            state,
+            state.source,
+        )
         self.dbase.commit_source(state.source, self.trans, state.source.change)
 
     def __source_attr(self, line, state):
@@ -6580,7 +7015,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if line.data and line.data[0] == '@':
+        if line.data and line.data[0] == "@":
             # This deals with the standard GEDCOM
             # SOURCE_REPOSITORY_CITATION: =
             #   n  REPO @<XREF:REPO>@                {1:1}
@@ -6589,7 +7024,7 @@ class GedcomParser(UpdateCallback):
             #        +2 MEDI <SOURCE_MEDIA_TYPE>     {0:1}
             gid = self.rid_map[line.data]
             repo = self.__find_or_create_repository(gid)
-        elif line.data == '':
+        elif line.data == "":
             # This deals with the non-standard GEDCOM format found in Family
             # Tree Maker for Windows, Broderbund Software, Banner Blue
             # Division:
@@ -6642,12 +7077,11 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.repo_ref.set_call_number(line.data)
-        #self.__skip_subordinate_levels(state.level + 1, state)
+        # self.__skip_subordinate_levels(state.level + 1, state)
 
     def __repo_ref_medi(self, line, state):
         name = line.data
-        mtype = MEDIA_MAP.get(name.lower(),
-                              (SourceMediaType.CUSTOM, name))
+        mtype = MEDIA_MAP.get(name.lower(), (SourceMediaType.CUSTOM, name))
         state.repo_ref.set_media_type(mtype)
 
     def __repo_ref_note(self, line, state):
@@ -6724,7 +7158,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.source.set_title(line.data.replace('\n', ' '))
+        state.source.set_title(line.data.replace("\n", " "))
 
     def __source_taxt_peri(self, line, state):
         """
@@ -6734,13 +7168,13 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if state.source.get_title() == "":
-            state.source.set_title(line.data.replace('\n', ' '))
+            state.source.set_title(line.data.replace("\n", " "))
 
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
     #
     # OBJE parsing
     #
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
 
     def __parse_obje(self, line):
         """
@@ -6787,11 +7221,10 @@ class GedcomParser(UpdateCallback):
         if value and value[0]:  # found from filename
             state.media.set_mime_type(value[0])
         else:  # get from OBJE.FILE.FORM
-            if '/' in state.form:  # already has expanded mime type
+            if "/" in state.form:  # already has expanded mime type
                 state.media.set_mime_type(state.form)
             else:
-                value = mimetypes.types_map.get('.' + state.form,
-                                                _('unknown'))
+                value = mimetypes.types_map.get("." + state.form, _("unknown"))
                 state.media.set_mime_type(value)
         # Add the default reference if no source has found
         self.__add_default_source(media)
@@ -6799,8 +7232,11 @@ class GedcomParser(UpdateCallback):
         # Add a default tag if provided
         self.__add_default_tag(media)
 
-        self.__check_msgs(_("OBJE (multi-media object) Gramps ID %s") %
-                          media.get_gramps_id(), state, media)
+        self.__check_msgs(
+            _("OBJE (multi-media object) Gramps ID %s") % media.get_gramps_id(),
+            state,
+            media,
+        )
         # commit the person to the database
         self.dbase.commit_media(media, self.trans, media.change)
 
@@ -6823,26 +7259,25 @@ class GedcomParser(UpdateCallback):
         # The following checks for the odd "feature" of GEDCOM 5.5.1 that
         # allows multiple files to be attached to a single OBJE; not supported
         if state.media.get_path() != "":
-            self.__add_msg(_("Multiple FILE in a single OBJE ignored"),
-                           line, state)
+            self.__add_msg(_("Multiple FILE in a single OBJE ignored"), line, state)
             self.__skip_subordinate_levels(state.level + 1, state)
             return
         res = urlparse(line.data)
-        if line.data != '' and (res.scheme == '' or
-                                len(res.scheme) == 1 or res.scheme == 'file'):
+        if line.data != "" and (
+            res.scheme == "" or len(res.scheme) == 1 or res.scheme == "file"
+        ):
             (file_ok, filename) = self.__find_file(line.data, self.dir_path)
             if state.form != "url":
                 # Might not work if FORM doesn't precede FILE
                 if not file_ok:
-                    self.__add_msg(_("Could not import %s") % line.data, line,
-                                   state)
+                    self.__add_msg(_("Could not import %s") % line.data, line, state)
             path = filename
         else:
             path = line.data
 
         state.media.set_path(path)
         if not state.media.get_description():
-            state.media.set_description(path.replace('\\', '/'))
+            state.media.set_description(path.replace("\\", "/"))
 
     def __obje_title(self, line, state):
         """
@@ -6853,7 +7288,7 @@ class GedcomParser(UpdateCallback):
         """
         state.media.set_description(line.data)
 
-# FTM non-standard TEXT in OBJE, treat as note.
+    # FTM non-standard TEXT in OBJE, treat as note.
     def __obje_text(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6868,7 +7303,7 @@ class GedcomParser(UpdateCallback):
         self.dbase.commit_note(new_note, self.trans, new_note.change)
         state.media.add_note(new_note.get_handle())
 
-# FTM non-standard DATE in OBJE, treat as Media Date.
+    # FTM non-standard DATE in OBJE, treat as Media Date.
     def __obje_date(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6919,9 +7354,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         attr = Attribute()
-        mtype = MEDIA_MAP.get(line.data.lower(),
-                              (SourceMediaType.CUSTOM, line.data))
-        attr.set_type(_('Media-Type'))
+        mtype = MEDIA_MAP.get(line.data.lower(), (SourceMediaType.CUSTOM, line.data))
+        attr.set_type(_("Media-Type"))
         attr.set_value(str(SourceMediaType(mtype)))
         state.media.attribute_list.append(attr)
 
@@ -6994,11 +7428,11 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.attr, state)
 
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
     #
     # REPO parsing
     #
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
 
     def __parse_repo(self, line):
         """
@@ -7017,8 +7451,9 @@ class GedcomParser(UpdateCallback):
         state.level = 1
         self.__parse_level(state, self.repo_parse_tbl, self.__ignore)
 
-        self.__check_msgs(_("REPO (repository) Gramps ID %s") %
-                          repo.get_gramps_id(), state, repo)
+        self.__check_msgs(
+            _("REPO (repository) Gramps ID %s") % repo.get_gramps_id(), state, repo
+        )
         self.dbase.commit_repository(repo, self.trans, repo.change)
 
     def __repo_name(self, line, state):
@@ -7078,8 +7513,7 @@ class GedcomParser(UpdateCallback):
         address_list = state.repo.get_address_list()
         if address_list:
             if address_list[0].get_phone():
-                self.__add_msg(_("Only one phone number supported"),
-                               line, state)
+                self.__add_msg(_("Only one phone number supported"), line, state)
             else:
                 address_list[0].set_phone(line.data)
 
@@ -7092,7 +7526,7 @@ class GedcomParser(UpdateCallback):
         """
         url = Url()
         url.set_path(line.data)
-        url.set_type(UrlType(_('FAX')))
+        url.set_type(UrlType(_("FAX")))
         state.repo.add_url(url)
 
     def __repo_www(self, line, state):
@@ -7220,11 +7654,11 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.obj, state)
 
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
     #
     # HEAD parsing
     #
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
 
     def __parse_header(self):
         """
@@ -7278,7 +7712,7 @@ class GedcomParser(UpdateCallback):
         # Some software (e.g. RootsMagic (http://files.rootsmagic.com/PAF-
         # Book/RootsMagic-for-PAF-Users-Printable.pdf) use the Addr fields for
         # 'Place Details (address, hospital, cemetary)'
-        if line.data.strip().lower() in ['rootsmagic']:
+        if line.data.strip().lower() in ["rootsmagic"]:
             self.addr_is_detail = True
         # We will use the approved system ID as the name of the generating
         # software, in case we do not get the name in the proper place
@@ -7289,8 +7723,7 @@ class GedcomParser(UpdateCallback):
             sattr.set_value("%s" % self.genby)
             self.def_src.add_attribute(sattr)
         sub_state = CurrentState(level=state.level + 1)
-        self.__parse_level(sub_state, self.header_sour_parse_tbl,
-                           self.__undefined)
+        self.__parse_level(sub_state, self.header_sour_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
         # We can't produce the 'Generated by' statement till the end of the
         # SOUR level, because the name and version may come in any order
@@ -7345,16 +7778,15 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if self.use_def_src:
-            repo.set_name(_("Business that produced the product: %s") %
-                          line.data)
+            repo.set_name(_("Business that produced the product: %s") % line.data)
             rtype = RepositoryType()
-            rtype.set((RepositoryType.CUSTOM, _('GEDCOM data')))
+            rtype.set((RepositoryType.CUSTOM, _("GEDCOM data")))
             repo.set_type(rtype)
             self.dbase.add_repository(repo, self.trans)
             repo_ref = RepoRef()
             repo_ref.set_reference_handle(repo.handle)
             mtype = SourceMediaType()
-            mtype.set((SourceMediaType.UNKNOWN, ''))
+            mtype.set((SourceMediaType.UNKNOWN, ""))
             repo_ref.set_media_type(mtype)
             self.def_src.add_repo_reference(repo_ref)
 
@@ -7371,8 +7803,7 @@ class GedcomParser(UpdateCallback):
             sattr.set_value(line.data)
             self.def_src.add_attribute(sattr)
         sub_state = CurrentState(level=state.level + 1)
-        self.__parse_level(sub_state, self.header_sour_data,
-                           self.__undefined)
+        self.__parse_level(sub_state, self.header_sour_data, self.__undefined)
         state.msg += sub_state.msg
 
     def __header_sour_copr(self, line, state):
@@ -7413,7 +7844,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if self.use_def_src:
-            filename = os.path.basename(line.data).split('\\')[-1]
+            filename = os.path.basename(line.data).split("\\")[-1]
             # feature request 2356: avoid genitive form
             self.def_src.set_title(_("Import from %s") % filename)
 
@@ -7454,7 +7885,7 @@ class GedcomParser(UpdateCallback):
         """
         if self.use_def_src:
             sattr = SrcAttribute()
-            sattr.set_type(_('Submission record identifier'))
+            sattr.set_type(_("Submission record identifier"))
             sattr.set_value(line.token_text)
             self.def_src.add_attribute(sattr)
 
@@ -7467,7 +7898,7 @@ class GedcomParser(UpdateCallback):
         """
         if self.use_def_src:
             sattr = SrcAttribute()
-            sattr.set_type(_('Language of GEDCOM text'))
+            sattr.set_type(_("Language of GEDCOM text"))
             sattr.set_value(line.data)
             self.def_src.add_attribute(sattr)
 
@@ -7489,10 +7920,13 @@ class GedcomParser(UpdateCallback):
         if self.genby.upper() == "LEGACY":
             fname = os.path.basename(self.filename)
             self.user.warn(
-                _("Import of GEDCOM file %(filename)s with DEST=%(by)s, "
-                  "could cause errors in the resulting database!") %
-                {'filename': fname, 'by': self.genby},
-                _("Look for nameless events."))
+                _(
+                    "Import of GEDCOM file %(filename)s with DEST=%(by)s, "
+                    "could cause errors in the resulting database!"
+                )
+                % {"filename": fname, "by": self.genby},
+                _("Look for nameless events."),
+            )
 
     def __header_char(self, line, state):
         """
@@ -7515,12 +7949,12 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             if version == "":
                 sattr = SrcAttribute()
-                sattr.set_type(_('Character set'))
+                sattr.set_type(_("Character set"))
                 sattr.set_value(encoding)
                 self.def_src.add_attribute(sattr)
             else:
                 sattr = SrcAttribute()
-                sattr.set_type(_('Character set and version'))
+                sattr.set_type(_("Character set and version"))
                 sattr.set_value("%s %s" % (encoding, version))
                 self.def_src.add_attribute(sattr)
 
@@ -7537,11 +7971,10 @@ class GedcomParser(UpdateCallback):
                 break
             elif line.token == TOKEN_VERS:
                 if (not line.data) or line.data[0] != "5":
-                    self.__add_msg(_("GEDCOM version not supported"),
-                                   line, state)
+                    self.__add_msg(_("GEDCOM version not supported"), line, state)
                 if self.use_def_src:
                     sattr = SrcAttribute()
-                    sattr.set_type(_('GEDCOM version'))
+                    sattr.set_type(_("GEDCOM version"))
                     sattr.set_value(line.data)
                     self.def_src.add_attribute(sattr)
             elif line.token == TOKEN_FORM:
@@ -7550,13 +7983,12 @@ class GedcomParser(UpdateCallback):
                 elif line.data.upper() == "LINEAGE-LINKED":
                     # Allow Lineage-Linked etc. though it should be in
                     # uppercase  (Note: Gramps is not a validator! prc)
-                    self.__add_msg(_("GEDCOM FORM should be in uppercase"),
-                                   line, state)
+                    self.__add_msg(_("GEDCOM FORM should be in uppercase"), line, state)
                 else:
                     self.__add_msg(_("GEDCOM FORM not supported"), line, state)
                 if self.use_def_src:
                     sattr = SrcAttribute()
-                    sattr.set_type(_('GEDCOM form'))
+                    sattr.set_type(_("GEDCOM form"))
                     sattr.set_value(line.data)
                     self.def_src.add_attribute(sattr)
 
@@ -7607,12 +8039,12 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             if tx_time == "":
                 sattr = SrcAttribute()
-                sattr.set_type(_('Creation date of GEDCOM'))
+                sattr.set_type(_("Creation date of GEDCOM"))
                 sattr.set_value(tx_date)
                 self.def_src.add_attribute(sattr)
             else:
                 sattr = SrcAttribute()
-                sattr.set_type(_('Creation date and time of GEDCOM'))
+                sattr.set_type(_("Creation date and time of GEDCOM"))
                 sattr.set_value("%s %s" % (tx_date, tx_time))
                 self.def_src.add_attribute(sattr)
 
@@ -7639,16 +8071,17 @@ class GedcomParser(UpdateCallback):
     def __parse_note(self, line, obj, state):
         if line.token == TOKEN_RNOTE:
             # reference to a named note defined elsewhere
-            #NOTE_STRUCTURE: =
+            # NOTE_STRUCTURE: =
             #  n  NOTE @<XREF:NOTE>@  {1:1}
             #    +1 SOUR @<XREF:SOUR>@  {0:M}  # 5.5 only, not in 5.5.1
             handle = self.__find_note_handle(self.nid_map[line.data])
             obj.add_note(handle)
-            self.note_type_map[handle] = OBJ_NOTETYPE.get(type(obj).__name__,
-                                                          NoteType.GENERAL)
+            self.note_type_map[handle] = OBJ_NOTETYPE.get(
+                type(obj).__name__, NoteType.GENERAL
+            )
         else:
             # Embedded note
-            #NOTE_STRUCTURE: =
+            # NOTE_STRUCTURE: =
             #  n  NOTE [<SUBMITTER_TEXT> | <NULL>]  {1:1}
             #    +1 [ CONC | CONT ] <SUBMITTER_TEXT>  {0:M}
             #    +1 SOUR @<XREF:SOUR>@  {0:M}
@@ -7662,23 +8095,23 @@ class GedcomParser(UpdateCallback):
 
                 sub_state = CurrentState(level=state.level + 1)
                 sub_state.note = new_note
-                self.__parse_level(sub_state, self.note_parse_tbl,
-                                   self.__undefined)
+                self.__parse_level(sub_state, self.note_parse_tbl, self.__undefined)
                 state.msg += sub_state.msg
 
                 # Add a default tag if provided
                 self.__add_default_tag(new_note)
                 # Set the type of the note
-                new_note.set_type(OBJ_NOTETYPE.get(type(obj).__name__,
-                                                   NoteType.GENERAL))
+                new_note.set_type(
+                    OBJ_NOTETYPE.get(type(obj).__name__, NoteType.GENERAL)
+                )
                 self.dbase.commit_note(new_note, self.trans, new_note.change)
                 obj.add_note(new_note.get_handle())
 
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
     #
     # NOTE parsing
     #
-    #----------------------------------------------------------------------
+    # ----------------------------------------------------------------------
 
     def __parse_inline_note(self, line, level):
         """
@@ -7693,8 +8126,10 @@ class GedcomParser(UpdateCallback):
           +1 <<CHANGE_DATE>>  {0:1}
         """
         state = CurrentState(level=1)
-        if not line.data and \
-                self.nid_map.clean(line.token_text) not in self.nid_map.map():
+        if (
+            not line.data
+            and self.nid_map.clean(line.token_text) not in self.nid_map.map()
+        ):
             self.__add_msg(_("Empty note ignored"), line)
             self.__skip_subordinate_levels(level, state)
         else:
@@ -7707,13 +8142,13 @@ class GedcomParser(UpdateCallback):
                 new_note.set_type(self.note_type_map[handle])
             sub_state = CurrentState(level=state.level)
             sub_state.note = new_note
-            self.__parse_level(sub_state, self.note_parse_tbl,
-                               self.__undefined)
+            self.__parse_level(sub_state, self.note_parse_tbl, self.__undefined)
             state.msg += sub_state.msg
 
             self.dbase.commit_note(new_note, self.trans, new_note.change)
-            self.__check_msgs(_("NOTE Gramps ID %s") %
-                              new_note.get_gramps_id(), state, None)
+            self.__check_msgs(
+                _("NOTE Gramps ID %s") % new_note.get_gramps_id(), state, None
+            )
 
     def __note_chan(self, line, state):
         if state.note:
@@ -7843,7 +8278,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_TIME:
                 tstr = line.data
             elif line.token == TOKEN_DATE:
-                #Lexer converted already to Date object
+                # Lexer converted already to Date object
                 dobj = line.data
             elif line.token == TOKEN_NOTE or line.token == TOKEN_RNOTE:
                 self.__ignore(line, state)
@@ -7852,17 +8287,18 @@ class GedcomParser(UpdateCallback):
 
         # Attempt to convert the values to a valid change time
         if dobj:
-            dstr = "%s %s %s" % (dobj.get_day(), dobj.get_month(),
-                                 dobj.get_year())
+            dstr = "%s %s %s" % (dobj.get_day(), dobj.get_month(), dobj.get_year())
             try:
                 if tstr:
                     try:
-                        tstruct = time.strptime("%s %s" % (dstr, tstr),
-                                                "%d %m %Y %H:%M:%S")
+                        tstruct = time.strptime(
+                            "%s %s" % (dstr, tstr), "%d %m %Y %H:%M:%S"
+                        )
                     except ValueError:
-                        #seconds is optional in GEDCOM
-                        tstruct = time.strptime("%s %s" % (dstr, tstr),
-                                                "%d %m %Y %H:%M")
+                        # seconds is optional in GEDCOM
+                        tstruct = time.strptime(
+                            "%s %s" % (dstr, tstr), "%d %m %Y %H:%M"
+                        )
                 else:
                     tstruct = time.strptime(dstr, "%d %m %Y")
                 val = time.mktime(tstruct)
@@ -7886,7 +8322,7 @@ class GedcomParser(UpdateCallback):
         @type obj: Gramps primary object
         """
         attr = Attribute()
-        attr.set_type(line.token_text)          # Atrribute : REFN
+        attr.set_type(line.token_text)  # Atrribute : REFN
         attr.set_value(line.data)
         # if there is a subsequent TYPE, we add it as a note to the attribute
         line = self.__chk_subordinate(state.level + 1, state, TOKEN_TYPE)
@@ -7894,7 +8330,7 @@ class GedcomParser(UpdateCallback):
             new_note = Note(line.data)
             new_note.set_gramps_id(self.nid_map[""])
             new_note.set_handle(create_id())
-            new_note.set_type('REFN-TYPE')
+            new_note.set_type("REFN-TYPE")
             self.dbase.commit_note(new_note, self.trans, new_note.change)
             attr.add_note(new_note.get_handle())
         obj.attribute_list.append(attr)
@@ -7917,7 +8353,7 @@ class GedcomParser(UpdateCallback):
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(event_type)
 
-        if description and description != 'Y':
+        if description and description != "Y":
             event.set_description(description)
         self.dbase.add_event(event, self.trans)
 
@@ -7929,8 +8365,12 @@ class GedcomParser(UpdateCallback):
         sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, event_map, self.__undefined)
-        if(description == 'Y' and event.date.is_empty() and
-           event.type == EventType.BIRTH and not event.place):
+        if (
+            description == "Y"
+            and event.date.is_empty()
+            and event.type == EventType.BIRTH
+            and not event.place
+        ):
             event.set_description(_("No Date Information"))
         state.msg += sub_state.msg
 
@@ -7941,13 +8381,12 @@ class GedcomParser(UpdateCallback):
         event_ref.set_reference_handle(event.handle)
         return event_ref
 
-    def __build_family_event_pair(self, state, event_type, event_map,
-                                  description):
+    def __build_family_event_pair(self, state, event_type, event_map, description):
         event = Event()
         event_ref = EventRef()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(event_type)
-        if description and description != 'Y':
+        if description and description != "Y":
             event.set_description(description)
 
         self.dbase.add_event(event, self.trans)
@@ -7992,7 +8431,7 @@ class GedcomParser(UpdateCallback):
         This is run after all of the person processing is complete but before
         committing the person.
         """
-        if state.photo.startswith('@'):
+        if state.photo.startswith("@"):
             gramps_id = self.oid_map[state.photo]
             handle = self.__find_media_handle(gramps_id)
         elif state.photo:
@@ -8009,9 +8448,10 @@ class GedcomParser(UpdateCallback):
         state.person.media_list.insert(0, mref)
 
     def __extract_temple(self, line):
-        """ Determine the LDS Temple from the input line """
+        """Determine the LDS Temple from the input line"""
+
         def get_code(code):
-            """ get the Temple code """
+            """get the Temple code"""
             if TEMPLES.is_valid_code(code):
                 return code
             elif TEMPLES.is_valid_name(code):
@@ -8109,11 +8549,11 @@ class GedcomParser(UpdateCallback):
         self.__repo_email(line, state)
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GedcomStageOne
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GedcomStageOne:
     """
     The GedcomStageOne parser scans the file quickly, looking for a few things.
@@ -8124,9 +8564,12 @@ class GedcomStageOne:
     3. Child to family references, since Ancestry.com creates GEDCOM files
        without the FAMC references.
     """
-    __BAD_UTF16 = _("Your GEDCOM file is corrupted. "
-                    "The file appears to be encoded using the UTF16 "
-                    "character set, but is missing the BOM marker.")
+
+    __BAD_UTF16 = _(
+        "Your GEDCOM file is corrupted. "
+        "The file appears to be encoded using the UTF16 "
+        "character set, but is missing the BOM marker."
+    )
     __EMPTY_GED = _("Your GEDCOM file is empty.")
 
     @staticmethod
@@ -8135,7 +8578,7 @@ class GedcomStageOne:
         Return True if value is in the form of a XREF value. We assume that
         if we have a leading '@' character, then we are okay.
         """
-        return value and value[0] == '@'
+        return value and value[0] == "@"
 
     def __init__(self, ifile):
         self.ifile = ifile
@@ -8160,21 +8603,24 @@ class GedcomStageOne:
         if line == b"\xef\xbb":
             input_file.read(1)
             self.enc = "utf_8_sig"
-            return TextIOWrapper(input_file, encoding='utf_8_sig',
-                                 errors='replace', newline=None)
+            return TextIOWrapper(
+                input_file, encoding="utf_8_sig", errors="replace", newline=None
+            )
         elif line == b"\xff\xfe" or line == b"\xfe\xff":
             self.enc = "UTF16"
             input_file.seek(0)
-            return TextIOWrapper(input_file, encoding='utf_16',
-                                 errors='replace', newline=None)
+            return TextIOWrapper(
+                input_file, encoding="utf_16", errors="replace", newline=None
+            )
         elif not line:
             raise GedcomError(self.__EMPTY_GED)
         elif line == b"\x30\x00" or line == b"\x00\x30":
             raise GedcomError(self.__BAD_UTF16)
         else:
             input_file.seek(0)
-            return TextIOWrapper(input_file, encoding='utf-8',
-                                 errors='replace', newline=None)
+            return TextIOWrapper(
+                input_file, encoding="utf-8", errors="replace", newline=None
+            )
 
     def parse(self):
         """
@@ -8193,7 +8639,7 @@ class GedcomStageOne:
             self.lcnt += 1
 
             try:
-                data = line.split(None, 3) + ['']
+                data = line.split(None, 3) + [""]
                 (level, key, value) = data[:3]
                 level = int(level)
                 key = key.strip()
@@ -8201,17 +8647,16 @@ class GedcomStageOne:
             except:
                 continue
 
-            if level == 0 and key[0] == '@':
+            if level == 0 and key[0] == "@":
                 if value in ("FAM", "FAMILY"):
                     current_family_id = key.strip()[1:-1]
                 elif value in ("INDI", "INDIVIDUAL"):
                     self.pcnt += 1
-            elif key in ("HUSB", "HUSBAND", "WIFE") and \
-                    self.__is_xref_value(value):
+            elif key in ("HUSB", "HUSBAND", "WIFE") and self.__is_xref_value(value):
                 self.fams[value[1:-1]].append(current_family_id)
             elif key in ("CHIL", "CHILD") and self.__is_xref_value(value):
                 self.famc[value[1:-1]].append(current_family_id)
-            elif key == 'CHAR' and not self.enc:
+            elif key == "CHAR" and not self.enc:
                 assert isinstance(value, str)
                 self.enc = value
         LOG.debug("parse pcnt %d", self.pcnt)
@@ -8257,11 +8702,11 @@ class GedcomStageOne:
         return self.lcnt
 
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # make_gedcom_date
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def make_gedcom_date(subdate, calendar, mode, quality):
     """
     Convert a Gramps date structure into a GEDCOM compatible date.
@@ -8307,13 +8752,13 @@ def __build_date_string(day, mon, year, bce, mmap):
     """
     if day == 0:
         if mon == 0:
-            retval = '%d%s' % (year, bce)
+            retval = "%d%s" % (year, bce)
         elif year == 0:
-            retval = '(%s)' % mmap[mon]
+            retval = "(%s)" % mmap[mon]
         else:
             retval = "%s %d%s" % (mmap[mon], year, bce)
     elif mon == 0:
-        retval = '%d%s' % (year, bce)
+        retval = "%d%s" % (year, bce)
     elif year == 0:
         retval = "(%d %s)" % (day, mmap[mon])
     else:
