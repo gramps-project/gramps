@@ -324,12 +324,16 @@ class Callback:
             return
 
         # Check signal exists
+        frame = inspect.currentframe()
+        c_frame = frame.f_back
+        c_code = c_frame.f_code
+        frame_info = (c_code.co_filename, c_frame.f_lineno, c_code.co_name)
         if signal_name not in self.__signal_map:
             self._warn("Attempt to emit to unknown signal: %s\n"
                        "         from: file: %s\n"
                        "               line: %d\n"
                        "               func: %s\n"
-                       % ((str(signal_name), ) + inspect.stack()[1][1:4]))
+                       % ((str(signal_name), ) + frame_info))
             return
 
         # check that the signal is not already being emitted. This prevents
@@ -340,7 +344,7 @@ class Callback:
                        "        from: file: %s\n"
                        "              line: %d\n"
                        "              func: %s\n"
-                       % ((str(signal_name), ) + inspect.stack()[1][1:4]))
+                       % ((str(signal_name), ) + frame_info))
             return
 
         try:
@@ -358,7 +362,7 @@ class Callback:
                            "         from: file: %s\n"
                            "               line: %d\n"
                            "               func: %s\n"
-                           % ((str(signal_name), ) + inspect.stack()[1][1:4]))
+                           % ((str(signal_name), ) + frame_info))
                 return
 
             # type check arguments
@@ -369,7 +373,7 @@ class Callback:
                            "         from: file: %s\n"
                            "               line: %d\n"
                            "               func: %s\n"
-                           % ((str(signal_name), ) + inspect.stack()[1][1:4]))
+                           % ((str(signal_name), ) + frame_info))
                 return
 
             if len(args) > 0:
@@ -379,7 +383,7 @@ class Callback:
                                "         from: file: %s\n"
                                "               line: %d\n"
                                "               func: %s\n"
-                               % ((str(signal_name), ) + inspect.stack()[1][1:4]))
+                               % ((str(signal_name), ) + frame_info))
                     return
 
                 if arg_types is not None:
@@ -391,7 +395,7 @@ class Callback:
                                        "               line: %d\n"
                                        "               func: %s\n"
                                        "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
-                                       % ((str(signal_name), ) + inspect.stack()[1][1:4] +\
+                                       % ((str(signal_name), ) + frame_info +\
                                           (args[i], repr(type(args[i])), repr(arg_types[i]))))
                             return
             if signal_name in self.__callback_map:

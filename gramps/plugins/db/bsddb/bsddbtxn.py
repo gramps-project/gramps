@@ -29,7 +29,6 @@ BSDDBTxn class: Wrapper for BSDDB transaction-oriented methods
 #-------------------------------------------------------------------------
 import logging
 import inspect
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -73,14 +72,13 @@ class BSDDBTxn:
         """
         # Conditional on __debug__ because all that frame stuff may be slow
         if __debug__:
-            caller_frame = inspect.stack()[1]
+            frame = inspect.currentframe()
+            c_frame = frame.f_back
+            c_code = c_frame.f_code
             _LOG.debug("        BSDDBTxn %s instantiated. Called from file %s,"
-                       " line %s, in %s" %
-                       ((hex(id(self)),)+
-                        (os.path.split(caller_frame[1])[1],)+
-                        (tuple(caller_frame[i] for i in range(2, 4)))
-                       )
-                      )
+                       " line %s, in %s", hex(id(self)), c_code.co_filename,
+                       c_frame.f_lineno, c_code.co_name)
+
         self.env = env
         self.db = db
         self.txn = None
