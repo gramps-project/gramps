@@ -496,6 +496,16 @@ class UIManager():
         """
         return group.act_group.lookup_action(actionname)
 
+    def enable_all_actions(self, state):
+        for group in self.action_groups:
+            if group.act_group:
+                for item in group.actionlist:
+                    action = group.act_group.lookup_action(item[ACTION_NAME])
+                    if action:
+                        # We check in case the group has not been inserted into
+                        # UIManager yet
+                        action.set_enabled(group.sensitive if state else False)
+
     def dump_all_accels(self):
         ''' A function used diagnostically to see what accels are present.
         This will only dump the current accel set, if other non-open windows
