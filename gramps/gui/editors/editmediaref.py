@@ -29,6 +29,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+from copy import deepcopy
 
 #-------------------------------------------------------------------------
 #
@@ -85,7 +86,7 @@ class EditMediaRef(EditReference):
             AddMedia(state, self.uistate, self.track, self.source,
                      self._update_addmedia)
         else:
-            self.original = self.source.serialize()
+            self.original = deepcopy(self.source.serialize())
 
     def _local_init(self):
 

@@ -24,7 +24,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-
+from copy import deepcopy
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -51,7 +51,7 @@ class EditRepoRef(EditReference):
 
         EditReference.__init__(self, state, uistate, track, source,
                                source_ref, update)
-        self.original = source.serialize()
+        self.original = deepcopy(source.serialize())
 
     def _local_init(self):
 

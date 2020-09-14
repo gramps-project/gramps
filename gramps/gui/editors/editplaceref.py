@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
+from copy import deepcopy
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -51,7 +51,7 @@ class EditPlaceRef(EditReference):
     def __init__(self, state, uistate, track, place, place_ref, update):
         EditReference.__init__(self, state, uistate, track, place, place_ref,
                                update)
-        self.original = place.serialize()
+        self.original = deepcopy(place.serialize())
 
     def _local_init(self):
 
