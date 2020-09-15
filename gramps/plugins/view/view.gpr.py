@@ -24,7 +24,7 @@
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-MODULE_VERSION="5.1"
+MODULE_VERSION="5.2"
 
 #------------------------------------------------------------------------
 #
