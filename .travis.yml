@@ -122,3 +122,25 @@ after_success:
 # picks up coverage from /usr/bin, rather than from
 # /home/travis/virtualenv/python3.3.6/bin/
  - PATH=/usr/bin:$PATH bash <(curl -s https://codecov.io/bash)
+
+stages:
+  - test
+  # Only execute deployment stage on tagged commits, and from our repository
+  # (e.g. not PRs).
+  - name: deploy
+    if: tag IS PRESENT AND repo = gramps-project/gramps
+
+env:
+  global:
+    - TWINE_USERNAME=__token__
+
+jobs:
+  include:
+    # Deploy source distribution
+    - stage: deploy
+      name: Deploy source distribution and wheel
+      install: skip
+      script: python3 setup.py sdist bdist_wheel
+      after_success: |
+        python3 -m pip install twine
+        python3 -m twine upload --repository testpypi --skip-existing dist/*
