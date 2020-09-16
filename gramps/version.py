@@ -20,6 +20,6 @@
 
 DEV_VERSION = False
 VERSION_TUPLE = (5, 2, 0)
-VERSION_QUALIFIER = "-dev1"
+VERSION_QUALIFIER = "-dev2"
 VERSION = '.'.join(map(str,VERSION_TUPLE)) + VERSION_QUALIFIER
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
