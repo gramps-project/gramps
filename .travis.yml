@@ -27,7 +27,7 @@ os: linux
 dist: xenial
 language: python
 python:
- - 3.4 # This is irrelevant, because the virtualenv is not used at all
+ - 3.5
 
 addons:
   apt:
