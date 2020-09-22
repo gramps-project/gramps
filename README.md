@@ -8,13 +8,13 @@ Please read the **INSTALL** file if you intend to build from source.
 
 Requirements
 ============
-The following packages **MUST** be installed in order for Gramps to work:
+The following three packages **MUST** be installed in order for Gramps to work:
 
 * **Python** 3.3 or greater - The programming language used by Gramps. https://www.python.org/
 * **GTK** 3.12 or greater - A cross-platform widget toolkit for creating graphical user interfaces. http://www.gtk.org/
 * **pygobject** 3.12 or greater - Python Bindings for GLib/GObject/GIO/GTK+ https://wiki.gnome.org/Projects/PyGObject
 
-The following three packages with GObject Introspection bindings (the gi packages)
+The following packages with GObject Introspection bindings (the gi packages)
 
 * **cairo** 1.13.1 or greater - a 2D graphics library with support for multiple output devices. http://cairographics.org/
 * **Pycairo** 1.13.3 or greater - GObject Introspection bindings for cairo. https://github.com/pygobject/pycairo
