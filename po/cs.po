@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-08-21 11:01+0200\n"
+"PO-Revision-Date: 2020-09-25 09:02+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -2514,7 +2514,7 @@ msgstr "P=červen|D=června|T=červnu|O=červnem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections||July"
-msgstr "P=červenec|D=července|T=červenci|O=červencen"
+msgstr "P=červenec|D=července|T=červenci|O=červencem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgid "localized lexeme inflections||August"
@@ -14099,7 +14099,7 @@ msgstr "Link_Editor"
 
 #: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:239
 msgid "Link Editor"
-msgstr " Editor linků"
+msgstr "Editor linků"
 
 #: ../gramps/gui/editors/editlink.py:91
 msgid "Internet Address"
@@ -15390,7 +15390,7 @@ msgstr "Příště se již neptat"
 
 #: ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps Warnings"
-msgstr " Varování Gramps"
+msgstr "Varování Gramps"
 
 #: ../gramps/gui/glade/editaddress.glade:44
 #: ../gramps/gui/glade/editchildref.glade:47
@@ -23435,7 +23435,7 @@ msgstr "Dvojklikem zobrazit osoby v generacích"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:264
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
-msgstr "zahrnuje pouze jednoho jednotlivce (dokončeno z %(percent)s)\n"
+msgstr " zahrnuje pouze jednoho jednotlivce (dokončeno z %(percent)s)\n"
 
 #. Create the Generation title, set an index marker
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:267
@@ -25070,7 +25070,7 @@ msgstr "Oddělený(á)"
 
 #: ../gramps/plugins/importer/importgeneweb.py:197
 msgid "GeneWeb import"
-msgstr "importovat GeneWeb"
+msgstr "Importovat GeneWeb"
 
 #: ../gramps/plugins/importer/importgeneweb.py:912
 #, python-brace-format
@@ -25331,7 +25331,7 @@ msgid ""
 "event description."
 msgstr ""
 "Uložit datum narození\n"
-"v popisu události"
+"v popisu události."
 
 #: ../gramps/plugins/importer/importprogen.glade:1495
 msgid ""
@@ -25339,7 +25339,7 @@ msgid ""
 "event description."
 msgstr ""
 "Uložit datum úmrtí\n"
-"v popisu události"
+"v popisu události."
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
@@ -25606,7 +25606,7 @@ msgstr "  Štítky: %d\n"
 #: ../gramps/plugins/importer/importxml.py:291
 #, python-format
 msgid "  Citations: %d\n"
-msgstr "Citací: %d\n"
+msgstr " Citací: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:293
 msgid "Number of new objects imported:\n"
@@ -25917,7 +25917,7 @@ msgstr "Řádek ignorován "
 #: ../gramps/plugins/lib/libgedcom.py:1540
 #, python-format
 msgid "Illegal character%s"
-msgstr "neplatný znak%s"
+msgstr "Neplatný znak%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -30079,7 +30079,7 @@ msgstr "Importují se osoby."
 
 #: ../gramps/plugins/lib/libprogen.py:1414
 msgid "see address on "
-msgstr "viz adresa"
+msgstr "viz adresa "
 
 #: ../gramps/plugins/lib/libprogen.py:1417
 msgid "see also address"
@@ -30092,7 +30092,7 @@ msgstr "Důvod úmrtí"
 #. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1586
 msgid "Importing families."
-msgstr "Importují se rodiny"
+msgstr "Importují se rodiny."
 
 #: ../gramps/plugins/lib/libprogen.py:1691
 msgid "Civil union"
@@ -30468,12 +30468,12 @@ msgstr "Dánsko"
 #. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:81
 msgid " parish"
-msgstr "farnost"
+msgstr " farnost"
 
 #. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " state"
-msgstr "kraj"
+msgstr " kraj"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:150
 msgid "Latitude not within '54.55' to '69.05'\n"
@@ -31643,7 +31643,7 @@ msgstr "sp.  %(reference)s : %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:393
 #, python-format
 msgid "%s sp."
-msgstr " %s  sp."
+msgstr "%s  sp."
 
 #: ../gramps/plugins/textreport/descendreport.py:526
 #: ../gramps/plugins/textreport/detdescendantreport.py:1011
@@ -36237,7 +36237,7 @@ msgstr " (1 bratr)"
 #: ../gramps/plugins/view/relview.py:1053
 #: ../gramps/plugins/view/relview.py:1108
 msgid " (1 sister)"
-msgstr "(1 sestra)"
+msgstr " (1 sestra)"
 
 #: ../gramps/plugins/view/relview.py:1055
 #: ../gramps/plugins/view/relview.py:1110
@@ -36304,14 +36304,14 @@ msgstr "Spusťte prosím nástroj pro ověření integrity/opravy databáze"
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
-msgstr[0] "({number_of} potomek)"
-msgstr[1] "({number_of} potomci)"
-msgstr[2] "({number_of} potomků)"
+msgstr[0] " ({number_of} potomek)"
+msgstr[1] " ({number_of} potomci)"
+msgstr[2] " ({number_of} potomků)"
 
 #: ../gramps/plugins/view/relview.py:1567
 #: ../gramps/plugins/view/relview.py:1613
 msgid " (no children)"
-msgstr "(bez dětí)"
+msgstr " (bez dětí)"
 
 #: ../gramps/plugins/view/relview.py:1871
 msgid "Use shading"
@@ -36550,7 +36550,7 @@ msgstr "Poslední změna nastala %(date)s"
 #: ../gramps/plugins/webreport/basepage.py:1319
 #, python-format
 msgid " on %(date)s"
-msgstr "%(date)s"
+msgstr " %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1340
 #: ../gramps/plugins/webreport/basepage.py:1345
@@ -36616,7 +36616,7 @@ msgstr "Další"
 
 #: ../gramps/plugins/webreport/basepage.py:2127
 msgid " [Click to Go]"
-msgstr "[Kliknout pro pokračování]"
+msgstr " [Kliknout pro pokračování]"
 
 #: ../gramps/plugins/webreport/basepage.py:2151
 msgid "Latter-Day Saints/ LDS Ordinance"
@@ -36907,7 +36907,7 @@ msgstr "Volby Html"
 #: ../gramps/plugins/webreport/narrativeweb.py:1678
 #: ../gramps/plugins/webreport/webcal.py:1685
 msgid "File extension"
-msgstr "přípona souboru"
+msgstr "Přípona souboru"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1681
 #: ../gramps/plugins/webreport/webcal.py:1688
