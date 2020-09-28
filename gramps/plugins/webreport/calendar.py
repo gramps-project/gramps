@@ -131,9 +131,6 @@ class CalendarPage(BasePage):
         self.title_text = the_title
         self.name_format = report.options['name_format']
 
-        #self.country = report.options['country']
-        #self.country1 = report.options['country1']
-
         self.multiyear = False
         self.end_year = self.start_year = Today().get_year()
 
@@ -1002,16 +999,6 @@ class CalendarPage(BasePage):
 
                         # add link to NarrativeWeb
                         if self.link_to_narweb:
-                            #if self.the_lang:
-                            #    if self.report.archive:
-                            #        sub_cal = 2
-                            #    else:
-                            #        sub_cal = 0
-                            #else:
-                            #    if self.report.archive:
-                            #        sub_cal = 2
-                            #    else:
-                            #        sub_cal = 0
                             url = self.report.build_url_fname_html(
                                 person.handle, "ppl", uplink=False)
                             if self.usecms:
@@ -1189,11 +1176,6 @@ class CalendarPage(BasePage):
             for cal_year in range(self.start_year,
                                   (self.start_year + num_years)):
 
-
-                # get the information, zero is equal to None
-                #if self.country != 0:
-                #    self.__get_holidays(cal_year)
-
                 # create webcalendar() calendar pages
                 self.webcalendar(cal_year)
 
@@ -1208,12 +1190,6 @@ class CalendarPage(BasePage):
         else:
             cal_year = self.start_year
 
-            #self.holidays = {}
-
-            # get the information, first from holidays:
-            #if self.country != 0:
-            #    self.__get_holidays(cal_year)
-
             # create webcalendar() calendar pages
             self.webcalendar(cal_year)
 
@@ -1222,8 +1198,6 @@ class CalendarPage(BasePage):
             if self.fullyear:
                 self.year_glance(cal_year)
 
-            #if self.link_to_narweb:
-            #    self.create_page_index()
             self.create_page_index()
 
     def create_page_index(self):
@@ -1232,14 +1206,6 @@ class CalendarPage(BasePage):
         """
         cal_fname = "cal/%s/index" % str(Today().get_year())
         output_file, sio = self.report.create_file(cal_fname)
-
-        # page title
-        #title = self.title_text
-
-        #if self.the_lang:
-        #    nr_up = 2
-        #else:
-        #    nr_up = 2
 
         # Create page header
         # body has already been added to yearglance  already once
@@ -1379,7 +1345,6 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
 
         # number of years for birthday, ex: 10 years
         age_str = event_date - date
-        #age_str.format(precision=1, as_age=False, dlocale=rlocale)
         age_str = age_str.format(precision=1, as_age=False, dlocale=rlocale)
 
         symbols = Symbols()

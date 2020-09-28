@@ -1623,14 +1623,11 @@ class NavWebReport(Report):
                 subdirs = self.build_subdirs(subdir, second_field,
                                              uplink, image)
                 if not uplink:
-                    subdirs =  [".."] + subdirs
+                    subdirs = [".."] + subdirs
             else:
                 subdirs = self.build_subdirs(subdir, fname, uplink, image)
         else:
             subdirs = self.build_subdirs(subdir, fname, uplink, image)
-            #print("subd :", subdirs, fname, uplink)
-            #if not uplink and fname[0:3] in ["ima"]:
-            #    subdirs =  ["..", ".." ] + subdirs
         return "/".join(subdirs + [fname])
 
     def create_file(self, fname, subdir=None, ext=None):

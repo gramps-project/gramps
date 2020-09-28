@@ -82,9 +82,7 @@ from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.location import get_main_location
-from gramps.plugins.webreport.common import (_NAME_STYLE_DEFAULT, HTTP,
-                                             _NAME_STYLE_FIRST, HTTPS,
-                                             _get_short_name,
+from gramps.plugins.webreport.common import (_NAME_STYLE_DEFAULT, HTTP, HTTPS,
                                              add_birthdate, CSS, html_escape,
                                              _NARRATIVESCREEN, _NARRATIVEPRINT,
                                              FULLCLEAR, _has_webpage_extension)
@@ -1682,7 +1680,8 @@ class BasePage:
         points = "0,100 100,100, 50,10"
         svg = Html("svg", viewBox=viewbox, class_="triangle", inline=False)
         svg += Html("polygon", points=points)
-        outerwrapperdiv += Html("button", svg, id="gototop", title=_("Go to top"), onclick="GoToTop()")
+        outerwrapperdiv += Html("button", svg, id="gototop",
+                                title=_("Go to top"), onclick="GoToTop()")
         outerwrapperdiv += GOTOTOP # This must be positioned
                                    # after the button for it to work
 
