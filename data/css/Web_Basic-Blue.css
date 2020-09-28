@@ -1440,7 +1440,8 @@ div.Residence table.infolist tr td {
 #indivgallery .thumbnail {
     margin: 0;
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     text-align: center;
     background-color: white;
 }

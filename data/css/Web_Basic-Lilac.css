@@ -720,7 +720,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow-x: auto;
 }
 .subsection p {
     margin: 0px;
@@ -757,6 +757,12 @@ div#families table.attrlist td.ColumnType {
 #indivgallery {
     background-color: white;
 }
+#indivgallery a {
+    color: black;
+    text-decoration: none;
+    word-wrap: break-word;
+    display: block;
+}
 #gallery .gallerycell {
     float: left;
     width: 130px;
@@ -773,7 +779,8 @@ div#families table.attrlist td.ColumnType {
 }
 #indivgallery .thumbnail {
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     font-size: smaller;
     text-align: center;
     margin: 0.8em 0.5em;

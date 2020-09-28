@@ -594,7 +594,7 @@ table.IndividualList tr:hover td.ColumnSurname {
     position: relative;
 }
 #GalleryDisplay img {
-    margin: 0px auto;
+    margin: 10px auto;
     display:block;
     border: solid 1px #7D5925;
     height: auto;
@@ -623,11 +623,6 @@ div#SourceDetail {
     padding-bottom: 0px;
     margin: 0px;
 }
-#Contact #summaryarea #GalleryDisplay img {
-    display: block;
-    margin: 0px auto 1em auto;
-    border: solid 1px #7D5925;
-}
 #Contact #researcher {
     text-align: center;
 }
@@ -653,17 +648,19 @@ div#SourceDetail {
     float: right;
     margin-left: 10px;
     margin-right: 10px;
+    margin: 10px auto;
 }
 #Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
       #Contact #GalleryDisplay img {
     display: block;
     max-width: 950px;
+    width: 100%;
     height: auto;
     float: right;
 }
 @media only screen and (max-width: 1080px) {
     #Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
-          #Contact #GalleryDisplay {
+          #Contact #GalleryDisplay img {
         margin: 0 auto;
         max-width: 100%;
     }
@@ -673,7 +670,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow-x: auto;
 }
 .subsection p {
     margin: 0px;
@@ -713,7 +710,6 @@ div#families .infolist h4 {
     height: 150px;
     text-align: center;
     margin: 0;
-    background-color: white;
     border-top: solid 1px #999;
     border-right: solid 1px #999;
 }
@@ -725,9 +721,18 @@ div#families .infolist h4 {
     /* float container stretch, see www.quirksmode.org/css/clearing.html */
     overflow: hidden;
 }
+div#indivgallery div.thumbnail a,
+div#gallerycell div.thumbnail a {
+    color: #7D5925;
+    text-decoration: none;
+    word-wrap: break-word;
+    width: 160px;
+    display: block;
+}
 #indivgallery .thumbnail {
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     font-size: smaller;
     text-align: center;
     margin: 0.5em;
