@@ -78,6 +78,7 @@ class ContactPage(BasePage):
         output_file, sio = self.report.create_file("contact")
         result = self.write_header(self._('Contact'))
         contactpage, head, dummy_body, outerwrapper = result
+        ldatec = 0
 
         # begin contact division
         with Html("div", class_="content", id="Contact") as section:
@@ -134,9 +135,12 @@ class ContactPage(BasePage):
                             # attach note
                             summaryarea += note_text
 
+                            # last modification of this note
+                            ldatec = note.get_change_time()
+
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer(None)
+        footer = self.write_footer(ldatec)
         outerwrapper += (FULLCLEAR, footer)
 
         # send page out for porcessing
