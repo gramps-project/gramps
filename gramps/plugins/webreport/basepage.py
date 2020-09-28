@@ -1455,8 +1455,16 @@ class BasePage:
                         'person' : self.author, 'year' : year}
             elif copy_nr < len(_CC):
                 # Note. This is a URL
-                fname = "/".join(["images", "somerights20.gif"])
-                url = self.report.build_url_fname(fname, None, self.uplink)
+                sub_cal = cal + 1 if cal > 0 else 1
+                if self.usecms:
+                    fname = "/".join(["images", "somerights20.gif"])
+                elif self.the_lang:
+                    fname = "/".join(([".."]*sub_cal + ['images',
+                                                        'somerights20.gif']))
+                else:
+                    fname = "/".join(['images', "somerights20.gif"])
+                url = self.report.build_url_fname(fname, None, self.uplink,
+                                                  image=True)
                 text = _CC[copy_nr] % {'gif_fname' : url}
             footer += Html("p", text, id='copyright')
 
@@ -1534,7 +1542,8 @@ class BasePage:
             fname = "/".join(([".."]*cal + ["images", "favicon2.ico"]))
         else:
             fname = "/".join(['images', 'favicon2.ico'])
-        url4 = self.report.build_url_image(fname, None, self.uplink)
+        url4 = self.report.build_url_fname(fname, None, self.uplink,
+                                           image=True)
 
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
@@ -2014,10 +2023,6 @@ class BasePage:
                                                             "img", False,
                                                             image=True,
                                                            ) + self.ext
-                        if self.the_lang and not self.usecms:
-                            newpath = "/".join(["..", newpath])
-                        if self.the_lang and self.usecms:
-                            fname = "/".join(["..", fname])
                         inc_gallery = self.report.options['gallery']
                         if not self.create_thumbs_only and inc_gallery:
                             img_link = Html("a", href=fname, title=descr) + (

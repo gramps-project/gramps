@@ -1602,6 +1602,9 @@ class NavWebReport(Report):
                 else:
                     if fname[0:3] in ["css", "ima", "thu"]:
                         subdirs = [self.target_uri]
+                    elif fname[3:6] in ["css", "ima", "thu"]:
+                        subdirs = [self.target_uri]
+                        fname = fname[3:]
                     else:
                         subdirs = [self.target_uri] + [self.the_lang]
             else:
@@ -1619,10 +1622,15 @@ class NavWebReport(Report):
                 fname = second_field
                 subdirs = self.build_subdirs(subdir, second_field,
                                              uplink, image)
+                if not uplink:
+                    subdirs =  [".."] + subdirs
             else:
                 subdirs = self.build_subdirs(subdir, fname, uplink, image)
         else:
             subdirs = self.build_subdirs(subdir, fname, uplink, image)
+            #print("subd :", subdirs, fname, uplink)
+            #if not uplink and fname[0:3] in ["ima"]:
+            #    subdirs =  ["..", ".." ] + subdirs
         return "/".join(subdirs + [fname])
 
     def create_file(self, fname, subdir=None, ext=None):

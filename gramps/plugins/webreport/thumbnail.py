@@ -154,8 +154,6 @@ class ThumbnailPreviewPage(BasePage):
                  newpath) = self.report.prepare_copy_media(photo)
                 newpath = self.report.build_url_fname(newpath, image=True)
                 newpathc = newpath
-                if self.the_lang and not self.usecms:
-                    newpathc = "/".join(["..", newpath])
 
                 # attach thumbnail to list...
                 gallerycell += self.thumb_hyper_image(newpathc, "img",
