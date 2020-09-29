@@ -2137,7 +2137,7 @@ class NavWebOptions(MenuReportOptions):
               ' Not set means by date.'))
         addopt("reference_sort", reference_sort)
 
-        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 10)
+        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 20)
         self.__graphgens.set_help(_("The number of generations to include in "
                                     "the ancestor graph"))
         addopt("graphgens", self.__graphgens)
