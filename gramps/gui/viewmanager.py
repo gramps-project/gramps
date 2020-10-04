@@ -273,13 +273,13 @@ class ViewManager(CLIManager):
                 Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
-        hpane = Gtk.Paned()
+        self.hpane = Gtk.Paned()
         self.ebox = Gtk.EventBox()
 
         self.navigator = Navigator(self)
         self.ebox.add(self.navigator.get_top())
-        hpane.pack1(self.ebox, False, False)
-        hpane.show()
+        self.hpane.pack1(self.ebox, False, False)
+        self.hpane.show()
 
         self.notebook = Gtk.Notebook()
         self.notebook.set_scrollable(True)
@@ -288,13 +288,13 @@ class ViewManager(CLIManager):
         self.__init_lists()
         self.__build_ui_manager()
 
-        hpane.add2(self.notebook)
+        self.hpane.add2(self.notebook)
         toolbar = self.uimanager.get_widget('ToolBar')
         self.statusbar = Statusbar()
         self.statusbar.show()
         vbox.pack_end(self.statusbar, False, True, 0)
         vbox.pack_start(toolbar, False, True, 0)
-        vbox.pack_end(hpane, True, True, 0)
+        vbox.pack_end(self.hpane, True, True, 0)
         vbox.show()
 
         self.uistate = DisplayState(self.window, self.statusbar,
@@ -958,8 +958,7 @@ class ViewManager(CLIManager):
                 self.dbstate.db.close(user=self.user)
             (filename, title) = value
             self.db_loader.read_file(filename)
-            if self.dbstate.db.is_open():
-                self._post_load_newdb(filename, 'x-directory/normal', title)
+            self._post_load_newdb(filename, 'x-directory/normal', title)
         else:
             if dialog.after_change != "":
                 # We change the title of the main window.
@@ -1009,11 +1008,16 @@ class ViewManager(CLIManager):
         if title:
             name = title
 
-        rw = not self.dbstate.db.readonly
-        if rw:
-            msg = "%s - Gramps" % name
+        isopen = self.dbstate.is_open()
+        if not isopen:
+            rw = False
+            msg = "Gramps"
         else:
-            msg = "%s (%s) - Gramps" % (name, _('Read Only'))
+            rw = not self.dbstate.db.readonly
+            if rw:
+                msg = "%s - Gramps" % name
+            else:
+                msg = "%s (%s) - Gramps" % (name, _('Read Only'))
         self.uistate.window.set_title(msg)
 
         if(bool(config.get('behavior.runcheck')) and QuestionDialog2(
@@ -1032,7 +1036,7 @@ class ViewManager(CLIManager):
         config.set('behavior.runcheck', False)
         self.__change_page(self.notebook.get_current_page())
         self.uimanager.set_actions_visible(self.actiongroup, rw)
-        self.uimanager.set_actions_visible(self.readonlygroup, True)
+        self.uimanager.set_actions_visible(self.readonlygroup, isopen)
         self.uimanager.set_actions_visible(self.undoactions, rw)
         self.uimanager.set_actions_visible(self.redoactions, rw)
 
@@ -1056,51 +1060,6 @@ class ViewManager(CLIManager):
         self.uimanager.update_menu()
         config.set('paths.recent-file', '')
         config.save()
-
-    def enable_menu(self, enable):
-        """ Enable/disable the menues.  Used by the dbloader for import to
-        prevent other operations during import.  Needed because simpler methods
-        don't work under Gnome with application menus at top of screen (instead
-        of Gramps window).
-        Note: enable must be set to False on first call.
-        """
-        if not enable:
-            self.action_st = (
-                self.uimanager.get_actions_sensitive(self.actiongroup),
-                self.uimanager.get_actions_sensitive(self.readonlygroup),
-                self.uimanager.get_actions_sensitive(self.undoactions),
-                self.uimanager.get_actions_sensitive(self.redoactions),
-                self.uimanager.get_actions_sensitive(self.fileactions),
-                self.uimanager.get_actions_sensitive(self.toolactions),
-                self.uimanager.get_actions_sensitive(self.reportactions),
-                self.uimanager.get_actions_sensitive(
-                    self.recent_manager.action_group))
-            self.uimanager.set_actions_sensitive(self.actiongroup, enable)
-            self.uimanager.set_actions_sensitive(self.readonlygroup, enable)
-            self.uimanager.set_actions_sensitive(self.undoactions, enable)
-            self.uimanager.set_actions_sensitive(self.redoactions, enable)
-            self.uimanager.set_actions_sensitive(self.fileactions, enable)
-            self.uimanager.set_actions_sensitive(self.toolactions, enable)
-            self.uimanager.set_actions_sensitive(self.reportactions, enable)
-            self.uimanager.set_actions_sensitive(
-                self.recent_manager.action_group, enable)
-        else:
-            self.uimanager.set_actions_sensitive(
-                self.actiongroup, self.action_st[0])
-            self.uimanager.set_actions_sensitive(
-                self.readonlygroup, self.action_st[1])
-            self.uimanager.set_actions_sensitive(
-                self.undoactions, self.action_st[2])
-            self.uimanager.set_actions_sensitive(
-                self.redoactions, self.action_st[3])
-            self.uimanager.set_actions_sensitive(
-                self.fileactions, self.action_st[4])
-            self.uimanager.set_actions_sensitive(
-                self.toolactions, self.action_st[5])
-            self.uimanager.set_actions_sensitive(
-                self.reportactions, self.action_st[6])
-            self.uimanager.set_actions_sensitive(
-                self.recent_manager.action_group, self.action_st[7])
 
     def __change_undo_label(self, label, update_menu=True):
         """

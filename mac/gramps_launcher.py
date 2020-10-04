@@ -40,6 +40,8 @@ environ['USERPROFILE'] = environ['HOME']
 environ['APPDATA'] = join(environ['HOME'], 'Library', 'Application Support')
 environ['PATH'] = join(bundle_contents, 'MacOS') + ':' + environ['PATH']
 
+if __name__ == '__main__':
+    __file__ = 'gramps_launcher.py'
 import gramps.grampsapp as app
 app.main()
 

@@ -2393,9 +2393,6 @@ class BasePage: # pylint: disable=C1001
             # not necessarily mean that a page has been generated
             (link, name, gid) = result
 
-        if name_style == _NAME_STYLE_FIRST and person:
-            name = _get_short_name(person.get_gender(),
-                                   person.get_primary_name())
         name = html_escape(name)
         # construct the result
         if not self.noid and gid != "":
@@ -2546,6 +2543,7 @@ class BasePage: # pylint: disable=C1001
                 (self._("State/ Province"),
                  mlocation.get(PlaceType.STATE, '')),
                 (self._("Postal Code"), place.get_code()),
+                (self._("Province"), mlocation.get(PlaceType.PROVINCE, '')),
                 (self._("Country"), mlocation.get(PlaceType.COUNTRY, ''))]:
             if data:
                 trow = Html("tr") + (

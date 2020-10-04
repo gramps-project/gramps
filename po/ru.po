@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-03 10:22+0300\n"
+"POT-Creation-Date: 2020-07-15 22:20+0200\n"
 "PO-Revision-Date: 2020-06-03 10:23+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
@@ -5557,11 +5557,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Выбирает детей соответствующих фильтру лиц"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Базовое лицо"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Выбирает базовое лицо"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5670,13 +5670,12 @@ msgstr ""
 "N поколений"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
+msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr ""
 "Предки лица по умолчанию, отстоящие от него не более чем на <N> поколений"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 "Выбирает предков лица по умолчанию, отстоящих от него не более чем на N "
 "поколений"
@@ -6607,7 +6606,7 @@ msgstr "Цитаты"
 #: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/basepage.py:1264
-#: ../gramps/plugins/webreport/person.py:1255
+#: ../gramps/plugins/webreport/person.py:1254
 msgid "Notes"
 msgstr "Заметки"
 
@@ -6683,7 +6682,7 @@ msgstr "Заметки"
 #: ../gramps/plugins/webreport/event.py:177
 #: ../gramps/plugins/webreport/media.py:230
 #: ../gramps/plugins/webreport/media.py:571
-#: ../gramps/plugins/webreport/person.py:898
+#: ../gramps/plugins/webreport/person.py:897
 msgid "Date"
 msgstr "Дата"
 
@@ -6694,8 +6693,8 @@ msgstr "Дата"
 #: ../gramps/plugins/view/geoplaces.py:601
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1128
-#: ../gramps/plugins/webreport/basepage.py:2540
-#: ../gramps/plugins/webreport/basepage.py:2606
+#: ../gramps/plugins/webreport/basepage.py:2537
+#: ../gramps/plugins/webreport/basepage.py:2603
 msgid "Street"
 msgstr "Улица"
 
@@ -6706,8 +6705,8 @@ msgstr "Улица"
 #: ../gramps/plugins/view/geoplaces.py:598
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1129
-#: ../gramps/plugins/webreport/basepage.py:2541
-#: ../gramps/plugins/webreport/basepage.py:2607
+#: ../gramps/plugins/webreport/basepage.py:2538
+#: ../gramps/plugins/webreport/basepage.py:2604
 msgid "Locality"
 msgstr "Местность"
 
@@ -6718,8 +6717,8 @@ msgstr "Местность"
 #: ../gramps/plugins/view/geoplaces.py:649
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1130
-#: ../gramps/plugins/webreport/basepage.py:2542
-#: ../gramps/plugins/webreport/basepage.py:2608
+#: ../gramps/plugins/webreport/basepage.py:2539
+#: ../gramps/plugins/webreport/basepage.py:2605
 msgid "City"
 msgstr "Город"
 
@@ -6730,8 +6729,8 @@ msgstr "Город"
 #: ../gramps/plugins/lib/maps/placeselection.py:151
 #: ../gramps/plugins/view/geoplaces.py:631
 #: ../gramps/plugins/webreport/basepage.py:1132
-#: ../gramps/plugins/webreport/basepage.py:2545
-#: ../gramps/plugins/webreport/basepage.py:2610
+#: ../gramps/plugins/webreport/basepage.py:2542
+#: ../gramps/plugins/webreport/basepage.py:2607
 msgid "County"
 msgstr "Область/Район/Уезд"
 
@@ -6753,8 +6752,8 @@ msgstr "Республика"
 #: ../gramps/plugins/view/geoplaces.py:625
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1134
-#: ../gramps/plugins/webreport/basepage.py:2549
-#: ../gramps/plugins/webreport/basepage.py:2613
+#: ../gramps/plugins/webreport/basepage.py:2546
+#: ../gramps/plugins/webreport/basepage.py:2610
 #: ../gramps/plugins/webreport/place.py:183
 #: ../gramps/plugins/webreport/place.py:195
 msgid "Country"
@@ -6762,8 +6761,8 @@ msgstr "Государство/Страна"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1133
-#: ../gramps/plugins/webreport/basepage.py:2548
-#: ../gramps/plugins/webreport/basepage.py:2612
+#: ../gramps/plugins/webreport/basepage.py:2545
+#: ../gramps/plugins/webreport/basepage.py:2609
 msgid "Postal Code"
 msgstr "Индекс/Почтовый код"
 
@@ -6832,7 +6831,7 @@ msgstr "Каста"
 #: ../gramps/plugins/webreport/basepage.py:643
 #: ../gramps/plugins/webreport/basepage.py:933
 #: ../gramps/plugins/webreport/basepage.py:2093
-#: ../gramps/plugins/webreport/basepage.py:2825
+#: ../gramps/plugins/webreport/basepage.py:2822
 #: ../gramps/plugins/webreport/download.py:128
 msgid "Description"
 msgstr "Описание"
@@ -7007,11 +7006,11 @@ msgstr "Цитата"
 #: ../gramps/plugins/quickview/filterbyname.py:276
 #: ../gramps/plugins/tool/findloop.py:112
 #: ../gramps/plugins/tool/findloop.py:116
-#: ../gramps/plugins/webreport/basepage.py:2515
+#: ../gramps/plugins/webreport/basepage.py:2512
 #: ../gramps/plugins/webreport/event.py:178
 #: ../gramps/plugins/webreport/event.py:391
 #: ../gramps/plugins/webreport/media.py:548
-#: ../gramps/plugins/webreport/person.py:1483
+#: ../gramps/plugins/webreport/person.py:1482
 #: ../gramps/plugins/webreport/repository.py:245
 #: ../gramps/plugins/webreport/source.py:261
 msgid "Gramps ID"
@@ -7142,7 +7141,7 @@ msgstr "Метки"
 #: ../gramps/plugins/textreport/indivcomplete.py:663
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:791
-#: ../gramps/plugins/webreport/person.py:431
+#: ../gramps/plugins/webreport/person.py:430
 msgid "unknown"
 msgstr "неизвестен"
 
@@ -7170,7 +7169,7 @@ msgid "age|about"
 msgstr "около"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:339
-#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2885
+#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2882
 msgid "between"
 msgstr "между"
 
@@ -7179,7 +7178,7 @@ msgstr "между"
 #: ../gramps/plugins/quickview/all_relations.py:282
 #: ../gramps/plugins/view/relview.py:1159
 #: ../gramps/plugins/webreport/basepage.py:846
-#: ../gramps/plugins/webreport/basepage.py:2886
+#: ../gramps/plugins/webreport/basepage.py:2883
 msgid "and"
 msgstr "и"
 
@@ -7281,18 +7280,18 @@ msgid "date-modifier|none"
 msgstr "отсутствует"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:314
-#: ../gramps/plugins/webreport/basepage.py:2894
+#: ../gramps/plugins/webreport/basepage.py:2891
 msgid "about"
 msgstr "около"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1841
 #: ../gramps/plugins/lib/libsubstkeyword.py:313
-#: ../gramps/plugins/webreport/basepage.py:2890
+#: ../gramps/plugins/webreport/basepage.py:2887
 msgid "after"
 msgstr "после"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:313
-#: ../gramps/plugins/webreport/basepage.py:2892
+#: ../gramps/plugins/webreport/basepage.py:2889
 msgid "before"
 msgstr "до"
 
@@ -7482,7 +7481,7 @@ msgstr "Правовое"
 #: ../gramps/plugins/lib/libprogen.py:1829
 #: ../gramps/plugins/lib/libprogen.py:1832
 #: ../gramps/plugins/webreport/addressbooklist.py:114
-#: ../gramps/plugins/webreport/basepage.py:2802
+#: ../gramps/plugins/webreport/basepage.py:2799
 msgid "Residence"
 msgstr "Проживание"
 
@@ -7889,7 +7888,7 @@ msgstr "аннул."
 #: ../gramps/plugins/textreport/tagreport.py:252
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:1069
-#: ../gramps/plugins/webreport/person.py:1644
+#: ../gramps/plugins/webreport/person.py:1643
 msgid "Father"
 msgstr "Отец"
 
@@ -7911,7 +7910,7 @@ msgstr "Отец"
 #: ../gramps/plugins/textreport/tagreport.py:258
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:1070
-#: ../gramps/plugins/webreport/person.py:1657
+#: ../gramps/plugins/webreport/person.py:1656
 msgid "Mother"
 msgstr "Мать"
 
@@ -7940,7 +7939,7 @@ msgstr "Дети"
 #: ../gramps/plugins/webreport/basepage.py:1650
 #: ../gramps/plugins/webreport/event.py:141
 #: ../gramps/plugins/webreport/event.py:366
-#: ../gramps/plugins/webreport/person.py:1542
+#: ../gramps/plugins/webreport/person.py:1541
 msgid "Events"
 msgstr "События"
 
@@ -8019,7 +8018,7 @@ msgstr "Гражданский союз"
 #: ../gramps/plugins/webreport/basepage.py:960
 #: ../gramps/plugins/webreport/basepage.py:1262
 #: ../gramps/plugins/webreport/basepage.py:2092
-#: ../gramps/plugins/webreport/basepage.py:2759
+#: ../gramps/plugins/webreport/basepage.py:2756
 #: ../gramps/plugins/webreport/event.py:176
 #: ../gramps/plugins/webreport/repository.py:163
 #: ../gramps/plugins/webreport/repository.py:253
@@ -8186,6 +8185,7 @@ msgstr "Регион"
 #. Priority
 #. Handle
 #. Add column with object name
+#. Name Column
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
 #: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:562
 #: ../gramps/gui/configure.py:608
@@ -8229,9 +8229,11 @@ msgstr "Регион"
 #: ../gramps/plugins/tool/dumpgenderstats.py:99
 #: ../gramps/plugins/tool/notrelated.py:126
 #: ../gramps/plugins/tool/removeunused.py:205
-#: ../gramps/plugins/tool/verify.py:579 ../gramps/plugins/view/repoview.py:85
+#: ../gramps/plugins/tool/verify.py:582 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/basepage.py:397
-#: ../gramps/plugins/webreport/person.py:1868
+#: ../gramps/plugins/webreport/person.py:215
+#: ../gramps/plugins/webreport/person.py:1867
+#: ../gramps/plugins/webreport/surname.py:137
 msgid "Name"
 msgstr "Имя"
 
@@ -8281,11 +8283,12 @@ msgstr "Суффикс"
 #: ../gramps/plugins/textreport/tagreport.py:745
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/basepage.py:2757
+#: ../gramps/plugins/webreport/basepage.py:2754
 msgid "Title"
 msgstr "Название"
 
-#: ../gramps/gen/lib/name.py:169
+#. show surname and first name
+#: ../gramps/gen/lib/name.py:169 ../gramps/plugins/webreport/person.py:213
 msgid "Group as"
 msgstr "Группировать как"
 
@@ -8587,7 +8590,7 @@ msgstr "Заметка о ссылке на ребёнка"
 #: ../gramps/plugins/tool/reorderids.glade:761
 #: ../gramps/plugins/webreport/event.py:180
 #: ../gramps/plugins/webreport/family.py:188
-#: ../gramps/plugins/webreport/person.py:1253
+#: ../gramps/plugins/webreport/person.py:1252
 msgid "Person"
 msgstr "Лицо"
 
@@ -8601,7 +8604,7 @@ msgstr "Лицо"
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:928
-#: ../gramps/plugins/webreport/person.py:1494
+#: ../gramps/plugins/webreport/person.py:1493
 msgid "Gender"
 msgstr "Пол"
 
@@ -8676,7 +8679,7 @@ msgstr "Связь"
 #: ../gramps/plugins/gramplet/coordinates.py:96
 #: ../gramps/plugins/gramplet/placedetails.py:136
 #: ../gramps/plugins/lib/libplaceview.py:91
-#: ../gramps/plugins/webreport/basepage.py:2532
+#: ../gramps/plugins/webreport/basepage.py:2529
 #: ../gramps/plugins/webreport/place.py:185
 msgid "Longitude"
 msgstr "Долгота"
@@ -8685,7 +8688,7 @@ msgstr "Долгота"
 #: ../gramps/plugins/gramplet/coordinates.py:95
 #: ../gramps/plugins/gramplet/placedetails.py:134
 #: ../gramps/plugins/lib/libplaceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:2524
+#: ../gramps/plugins/webreport/basepage.py:2521
 #: ../gramps/plugins/webreport/place.py:184
 msgid "Latitude"
 msgstr "Широта"
@@ -8707,7 +8710,7 @@ msgstr "Места"
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/plugins/textreport/indivcomplete.py:391
-#: ../gramps/plugins/webreport/basepage.py:2576
+#: ../gramps/plugins/webreport/basepage.py:2573
 msgid "Alternate Names"
 msgstr "Альтернативные имена"
 
@@ -8719,7 +8722,7 @@ msgstr "Альтернативные имена"
 msgid "Code"
 msgstr "Код"
 
-#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2600
+#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2597
 msgid "Alternate Locations"
 msgstr "Альтернативные местоположения"
 
@@ -8734,7 +8737,7 @@ msgstr "Название места"
 
 #: ../gramps/gen/lib/placename.py:103
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
-#: ../gramps/plugins/webreport/basepage.py:2578
+#: ../gramps/plugins/webreport/basepage.py:2575
 msgid "Language"
 msgstr "Язык"
 
@@ -8788,7 +8791,7 @@ msgstr "Здание"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
 #: ../gramps/plugins/view/geoplaces.py:622
-#: ../gramps/plugins/webreport/basepage.py:2755
+#: ../gramps/plugins/webreport/basepage.py:2752
 #: ../gramps/plugins/webreport/source.py:164
 msgid "Number"
 msgstr "Номер"
@@ -8884,7 +8887,7 @@ msgstr "Аббревиатура"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/basepage.py:1532
 #: ../gramps/plugins/webreport/basepage.py:1653
-#: ../gramps/plugins/webreport/basepage.py:2746
+#: ../gramps/plugins/webreport/basepage.py:2743
 #: ../gramps/plugins/webreport/repository.py:138
 #: ../gramps/plugins/webreport/repository.py:224
 msgid "Repositories"
@@ -9014,7 +9017,6 @@ msgstr "Верхний индекс"
 msgid "Link"
 msgstr "Ссылка"
 
-#. show surname and first name
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:596
 #: ../gramps/gui/configure.py:844 ../gramps/gui/configure.py:846
@@ -9027,7 +9029,6 @@ msgstr "Ссылка"
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:160
 #: ../gramps/plugins/quickview/filterbyname.py:354
-#: ../gramps/plugins/webreport/person.py:213
 #: ../gramps/plugins/webreport/surname.py:98
 #: ../gramps/plugins/webreport/surnamelist.py:147
 msgid "Surname"
@@ -10987,7 +10988,7 @@ msgstr "%(west_longitude)s З"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/person.py:429
+#: ../gramps/plugins/webreport/person.py:428
 msgid "male"
 msgstr "мужской"
 
@@ -10996,7 +10997,7 @@ msgstr "мужской"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/person.py:430
+#: ../gramps/plugins/webreport/person.py:429
 msgid "female"
 msgstr "женский"
 
@@ -11834,7 +11835,7 @@ msgid "Place format (auto place title)"
 msgstr "Формат мест (автоматическое создание названий)"
 
 #: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
+msgid "Enables automatic place title generation using specified format."
 msgstr "Включает автоматическое создание названия места в указанном формате."
 
 #: ../gramps/gui/configure.py:1254
@@ -12026,7 +12027,7 @@ msgstr "Добавлять метку при импорте"
 
 #: ../gramps/gui/configure.py:1576
 msgid ""
-"Specifed tag will be added on import.\n"
+"Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
 "Указанная метка будет добавлена при импорте.\n"
@@ -13071,7 +13072,7 @@ msgstr "Атрибуты"
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:199
-#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:572
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:575
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:79
@@ -13546,8 +13547,8 @@ msgstr "Альтернативные имена"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:72
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:111
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
-#: ../gramps/plugins/webreport/basepage.py:2649
-#: ../gramps/plugins/webreport/basepage.py:2667
+#: ../gramps/plugins/webreport/basepage.py:2646
+#: ../gramps/plugins/webreport/basepage.py:2664
 msgid "Enclosed By"
 msgstr "Входит в"
 
@@ -13829,13 +13830,13 @@ msgid "manual|New_Event_dialog"
 msgstr "Изменение информации о событиях"
 
 #: ../gramps/gui/editors/editevent.py:98
-#: ../gramps/gui/editors/editeventref.py:263
+#: ../gramps/gui/editors/editeventref.py:264
 #, python-format
 msgid "Event: %s"
 msgstr "Событие: %s"
 
 #: ../gramps/gui/editors/editevent.py:100
-#: ../gramps/gui/editors/editeventref.py:265
+#: ../gramps/gui/editors/editeventref.py:266
 msgid "New Event"
 msgstr "Новое событие"
 
@@ -13892,7 +13893,7 @@ msgid "manual|Event_Reference_Editor_dialog"
 msgstr "Редактор_ссылки_на_событие"
 
 #: ../gramps/gui/editors/editeventref.py:76
-#: ../gramps/gui/editors/editeventref.py:266
+#: ../gramps/gui/editors/editeventref.py:267
 msgid "Event Reference Editor"
 msgstr "Редактор ссылки на событие"
 
@@ -13904,11 +13905,11 @@ msgstr "Редактор ссылки на событие"
 msgid "_General"
 msgstr "_Общее"
 
-#: ../gramps/gui/editors/editeventref.py:271
+#: ../gramps/gui/editors/editeventref.py:272
 msgid "Modify Event"
 msgstr "Изменить событие"
 
-#: ../gramps/gui/editors/editeventref.py:276
+#: ../gramps/gui/editors/editeventref.py:277
 msgid "Add Event"
 msgstr "Добавить событие"
 
@@ -15165,7 +15166,7 @@ msgstr "Участники"
 #: ../gramps/gui/widgets/reorderfam.py:103
 #: ../gramps/plugins/textreport/tagreport.py:264
 #: ../gramps/plugins/view/familyview.py:82
-#: ../gramps/plugins/webreport/person.py:1254
+#: ../gramps/plugins/webreport/person.py:1253
 msgid "Relationship"
 msgstr "Отношение"
 
@@ -15175,7 +15176,7 @@ msgstr "любой"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/webreport/person.py:1869
+#: ../gramps/plugins/webreport/person.py:1868
 msgid "Birth date"
 msgstr "Дата рождения"
 
@@ -15187,7 +15188,7 @@ msgstr "пример: «%(msg1)s» или «%(msg2)s»"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/webreport/person.py:1870
+#: ../gramps/plugins/webreport/person.py:1869
 msgid "Death date"
 msgstr "Дата смерти"
 
@@ -16626,7 +16627,7 @@ msgid "Street Number"
 msgstr "Улица Номер"
 
 #: ../gramps/gui/glade/editplacename.glade:156
-#: ../gramps/plugins/webreport/basepage.py:2574
+#: ../gramps/plugins/webreport/basepage.py:2571
 msgid "Date range in which the name is valid."
 msgstr "Диапазон дат в котором имя действительно."
 
@@ -18140,7 +18141,7 @@ msgstr "Объединить людей"
 #: ../gramps/plugins/view/relview.py:667 ../gramps/plugins/view/relview.py:1033
 #: ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/webreport/person.py:232
-#: ../gramps/plugins/webreport/person.py:1852
+#: ../gramps/plugins/webreport/person.py:1851
 #: ../gramps/plugins/webreport/surname.py:154
 msgid "Parents"
 msgstr "Родители"
@@ -18178,7 +18179,7 @@ msgid "No spouses or children found"
 msgstr "Супруги и дети не найдены"
 
 #. Add column with the warning text
-#: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:565
+#: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:568
 msgid "Warning"
 msgstr "Внимание"
 
@@ -19758,9 +19759,9 @@ msgstr "Базовое лицо не назначено"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
 msgstr ""
 "Нужно назначить «базовое лицо». Выберите вид «Люди», выберите лицо, которое "
 "хотите назначить в качестве базового, затем подтвердите выбор из меню "
@@ -22732,7 +22733,7 @@ msgstr "Показывает потомков активного лица"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:104
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:111
-#: ../gramps/plugins/webreport/person.py:1190
+#: ../gramps/plugins/webreport/person.py:1189
 msgid "Ancestors"
 msgstr "Предки"
 
@@ -22798,7 +22799,7 @@ msgstr "Показывает имена в виде текстового обл�
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:205
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:127
-#: ../gramps/plugins/webreport/person.py:1359
+#: ../gramps/plugins/webreport/person.py:1358
 msgid "Pedigree"
 msgstr "Родословная"
 
@@ -23216,8 +23217,8 @@ msgstr "Показывает все записи, ссылающиеся на в
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/basepage.py:2935
-#: ../gramps/plugins/webreport/person.py:884
+#: ../gramps/plugins/webreport/basepage.py:2932
+#: ../gramps/plugins/webreport/person.py:883
 #: ../gramps/plugins/webreport/thumbnail.py:164
 msgid "References"
 msgstr "Ссылки"
@@ -23453,8 +23454,8 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Показывает места входящие в выбранное местоположение"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
-#: ../gramps/plugins/webreport/basepage.py:2626
-#: ../gramps/plugins/webreport/basepage.py:2689
+#: ../gramps/plugins/webreport/basepage.py:2623
+#: ../gramps/plugins/webreport/basepage.py:2686
 msgid "Place Encloses"
 msgstr "Место включает"
 
@@ -30128,7 +30129,7 @@ msgstr "У_становить базовое лицо"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "Перейти на базовое лицо"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
@@ -30942,7 +30943,7 @@ msgstr "Место события"
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
-#: ../gramps/plugins/webreport/person.py:900
+#: ../gramps/plugins/webreport/person.py:899
 msgid "Event Type"
 msgstr "Событие"
 
@@ -31216,7 +31217,7 @@ msgstr "Люди"
 #: ../gramps/plugins/webreport/basepage.py:1531
 #: ../gramps/plugins/webreport/basepage.py:1583
 #: ../gramps/plugins/webreport/basepage.py:1652
-#: ../gramps/plugins/webreport/person.py:1256
+#: ../gramps/plugins/webreport/person.py:1255
 #: ../gramps/plugins/webreport/source.py:130
 #: ../gramps/plugins/webreport/source.py:227
 msgid "Sources"
@@ -31350,7 +31351,7 @@ msgstr "Нет родительской связи с ребенком"
 
 #: ../gramps/plugins/quickview/lineage.py:160
 #: ../gramps/plugins/quickview/lineage.py:180
-#: ../gramps/plugins/tool/verify.py:1062
+#: ../gramps/plugins/tool/verify.py:1066
 msgid "Unknown gender"
 msgstr "Неизвестный пол"
 
@@ -31542,7 +31543,7 @@ msgid "No references for this %s"
 msgstr "Нет ссылок на %s"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/basepage.py:2761
+#: ../gramps/plugins/webreport/basepage.py:2758
 msgid "Call number"
 msgstr "Номер"
 
@@ -32673,7 +32674,7 @@ msgid "Alternate Parents"
 msgstr "Альтернативные родители"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:445
-#: ../gramps/plugins/webreport/person.py:1241
+#: ../gramps/plugins/webreport/person.py:1240
 msgid "Associations"
 msgstr "Связи"
 
@@ -34737,7 +34738,7 @@ msgstr "Неиспользуемые объекты"
 #. Add mark column
 #. Add ignore column
 #: ../gramps/plugins/tool/removeunused.py:188
-#: ../gramps/plugins/tool/verify.py:554
+#: ../gramps/plugins/tool/verify.py:557
 msgid "Mark"
 msgstr "Отметка"
 
@@ -35248,7 +35249,7 @@ msgstr "Максимальная разница в возрасте двух р�
 msgid "Maximum _span of years for all children"
 msgstr "Максимальная разница в возрасте всех д_етей"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:673
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:670
 msgid "_Hide marked"
 msgstr "Скр_ыть отмеченное"
 
@@ -35270,159 +35271,159 @@ msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgid "Data Verification Results"
 msgstr "Результаты проверки базы данных"
 
-#: ../gramps/plugins/tool/verify.py:663
+#: ../gramps/plugins/tool/verify.py:667
 msgid "_Show all"
 msgstr "По_казать всех"
 
-#: ../gramps/plugins/tool/verify.py:945
+#: ../gramps/plugins/tool/verify.py:949
 msgid "Baptism before birth"
 msgstr "Крещение раньше рождения"
 
-#: ../gramps/plugins/tool/verify.py:961
+#: ../gramps/plugins/tool/verify.py:965
 msgid "Death before baptism"
 msgstr "Смерть раньше крещения"
 
-#: ../gramps/plugins/tool/verify.py:977
+#: ../gramps/plugins/tool/verify.py:981
 msgid "Burial before birth"
 msgstr "Похороны раньше рождения"
 
-#: ../gramps/plugins/tool/verify.py:993
+#: ../gramps/plugins/tool/verify.py:997
 msgid "Burial before death"
 msgstr "Похороны раньше смерти"
 
-#: ../gramps/plugins/tool/verify.py:1009
+#: ../gramps/plugins/tool/verify.py:1013
 msgid "Death before birth"
 msgstr "Смерть раньше рождения"
 
-#: ../gramps/plugins/tool/verify.py:1025
+#: ../gramps/plugins/tool/verify.py:1029
 msgid "Burial before baptism"
 msgstr "Похороны раньше крещения"
 
-#: ../gramps/plugins/tool/verify.py:1048
+#: ../gramps/plugins/tool/verify.py:1052
 msgid "Old age at death"
 msgstr "Большой возраст в момент смерти"
 
-#: ../gramps/plugins/tool/verify.py:1075
+#: ../gramps/plugins/tool/verify.py:1079
 msgid "Multiple parents"
 msgstr "Много родителей"
 
-#: ../gramps/plugins/tool/verify.py:1097
+#: ../gramps/plugins/tool/verify.py:1101
 msgid "Married often"
 msgstr "Много браков"
 
-#: ../gramps/plugins/tool/verify.py:1121
+#: ../gramps/plugins/tool/verify.py:1125
 msgid "Old and unmarried"
 msgstr "Старый холостяк"
 
-#: ../gramps/plugins/tool/verify.py:1153
+#: ../gramps/plugins/tool/verify.py:1157
 msgid "Too many children"
 msgstr "Много детей"
 
-#: ../gramps/plugins/tool/verify.py:1171
+#: ../gramps/plugins/tool/verify.py:1175
 msgid "Same sex marriage"
 msgstr "Однополый брак"
 
-#: ../gramps/plugins/tool/verify.py:1184
+#: ../gramps/plugins/tool/verify.py:1188
 msgid "Female husband"
 msgstr "Муж-женщина"
 
-#: ../gramps/plugins/tool/verify.py:1197
+#: ../gramps/plugins/tool/verify.py:1201
 msgid "Male wife"
 msgstr "Жена-мужчина"
 
-#: ../gramps/plugins/tool/verify.py:1227
+#: ../gramps/plugins/tool/verify.py:1231
 msgid "Husband and wife with the same surname"
 msgstr "Супруги с одинаковой фамилией"
 
-#: ../gramps/plugins/tool/verify.py:1257
+#: ../gramps/plugins/tool/verify.py:1261
 msgid "Large age difference between spouses"
 msgstr "Большая разница в возрасте у супругов"
 
-#: ../gramps/plugins/tool/verify.py:1293
+#: ../gramps/plugins/tool/verify.py:1297
 msgid "Marriage before birth"
 msgstr "Брак до рождения"
 
-#: ../gramps/plugins/tool/verify.py:1329
+#: ../gramps/plugins/tool/verify.py:1333
 msgid "Marriage after death"
 msgstr "Брак после смерти"
 
-#: ../gramps/plugins/tool/verify.py:1370
+#: ../gramps/plugins/tool/verify.py:1374
 msgid "Early marriage"
 msgstr "Ранний брак"
 
-#: ../gramps/plugins/tool/verify.py:1409
+#: ../gramps/plugins/tool/verify.py:1413
 msgid "Late marriage"
 msgstr "Поздний брак"
 
-#: ../gramps/plugins/tool/verify.py:1458
+#: ../gramps/plugins/tool/verify.py:1462
 msgid "Old father"
 msgstr "Старый отец"
 
-#: ../gramps/plugins/tool/verify.py:1462
+#: ../gramps/plugins/tool/verify.py:1466
 msgid "Old mother"
 msgstr "Старая мать"
 
-#: ../gramps/plugins/tool/verify.py:1511
+#: ../gramps/plugins/tool/verify.py:1515
 msgid "Young father"
 msgstr "Молодой отец"
 
-#: ../gramps/plugins/tool/verify.py:1515
+#: ../gramps/plugins/tool/verify.py:1519
 msgid "Young mother"
 msgstr "Молодая мать"
 
-#: ../gramps/plugins/tool/verify.py:1559
+#: ../gramps/plugins/tool/verify.py:1563
 msgid "Unborn father"
 msgstr "Нерождённый отец"
 
-#: ../gramps/plugins/tool/verify.py:1563
+#: ../gramps/plugins/tool/verify.py:1567
 msgid "Unborn mother"
 msgstr "Нерождённая мать"
 
-#: ../gramps/plugins/tool/verify.py:1614
+#: ../gramps/plugins/tool/verify.py:1618
 msgid "Dead father"
 msgstr "Мёртвый отец"
 
-#: ../gramps/plugins/tool/verify.py:1618
+#: ../gramps/plugins/tool/verify.py:1622
 msgid "Dead mother"
 msgstr "Мёртвая мать"
 
-#: ../gramps/plugins/tool/verify.py:1644
+#: ../gramps/plugins/tool/verify.py:1648
 msgid "Large year span for all children"
 msgstr "Большой интервал в возрасте детей"
 
-#: ../gramps/plugins/tool/verify.py:1671
+#: ../gramps/plugins/tool/verify.py:1675
 msgid "Large age differences between children"
 msgstr "Большая разница в возрасте у детей"
 
-#: ../gramps/plugins/tool/verify.py:1684
+#: ../gramps/plugins/tool/verify.py:1688
 msgid "Disconnected individual"
 msgstr "Несвязанное лицо"
 
-#: ../gramps/plugins/tool/verify.py:1711
+#: ../gramps/plugins/tool/verify.py:1715
 msgid "Invalid birth date"
 msgstr "Неверная дата рождения"
 
-#: ../gramps/plugins/tool/verify.py:1738
+#: ../gramps/plugins/tool/verify.py:1742
 msgid "Invalid death date"
 msgstr "Неверная дата смерти"
 
-#: ../gramps/plugins/tool/verify.py:1758
+#: ../gramps/plugins/tool/verify.py:1762
 msgid "Marriage date but not married"
 msgstr "Указанна дата брака, но в браке не состоят"
 
-#: ../gramps/plugins/tool/verify.py:1786
+#: ../gramps/plugins/tool/verify.py:1790
 msgid "Old age but no death"
 msgstr "Большой возраст без указания смерти"
 
-#: ../gramps/plugins/tool/verify.py:1802
+#: ../gramps/plugins/tool/verify.py:1806
 msgid "Birth equals death"
 msgstr "Рождение совпадает со смертью"
 
-#: ../gramps/plugins/tool/verify.py:1820
+#: ../gramps/plugins/tool/verify.py:1824
 msgid "Birth equals marriage"
 msgstr "Рождение совпадает с браком"
 
-#: ../gramps/plugins/tool/verify.py:1838
+#: ../gramps/plugins/tool/verify.py:1842
 msgid "Death equals marriage"
 msgstr "Смерть совпадает с браком"
 
@@ -36918,8 +36919,8 @@ msgid "Narrative"
 msgstr "Рассказ"
 
 #: ../gramps/plugins/webreport/basepage.py:1131
-#: ../gramps/plugins/webreport/basepage.py:2546
-#: ../gramps/plugins/webreport/basepage.py:2611
+#: ../gramps/plugins/webreport/basepage.py:2543
+#: ../gramps/plugins/webreport/basepage.py:2608
 #: ../gramps/plugins/webreport/place.py:182
 #: ../gramps/plugins/webreport/place.py:194
 msgid "State/ Province"
@@ -37013,25 +37014,25 @@ msgstr "С.П.Д."
 
 #: ../gramps/plugins/webreport/basepage.py:2297
 #: ../gramps/plugins/webreport/basepage.py:2298
-#: ../gramps/plugins/webreport/person.py:638
-#: ../gramps/plugins/webreport/person.py:947
+#: ../gramps/plugins/webreport/person.py:637
+#: ../gramps/plugins/webreport/person.py:946
 msgid "Family Map"
 msgstr "Карта семьи"
 
-#: ../gramps/plugins/webreport/basepage.py:2543
-#: ../gramps/plugins/webreport/basepage.py:2609
+#: ../gramps/plugins/webreport/basepage.py:2540
+#: ../gramps/plugins/webreport/basepage.py:2606
 msgid "Church Parish"
 msgstr "Церковный приход"
 
-#: ../gramps/plugins/webreport/basepage.py:2564
+#: ../gramps/plugins/webreport/basepage.py:2561
 msgid "Locations"
 msgstr "Расположения"
 
-#: ../gramps/plugins/webreport/basepage.py:2896
+#: ../gramps/plugins/webreport/basepage.py:2893
 msgid "circa"
 msgstr "примерно"
 
-#: ../gramps/plugins/webreport/basepage.py:2898
+#: ../gramps/plugins/webreport/basepage.py:2895
 msgid "around"
 msgstr "около"
 
@@ -37875,12 +37876,6 @@ msgstr ""
 "Эта страница содержит список лиц из базы данных, отсортированный по фамилии. "
 "Выбор лица приведёт к странице этого лица."
 
-#. Name Column
-#: ../gramps/plugins/webreport/person.py:215
-#: ../gramps/plugins/webreport/surname.py:137
-msgid "Given Name"
-msgstr "Имя"
-
 #: ../gramps/plugins/webreport/person.py:251
 #: ../gramps/plugins/webreport/surname.py:94
 #: ../gramps/plugins/webreport/surnamelist.py:192
@@ -37892,13 +37887,13 @@ msgstr "<отсутствует>"
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Фамилии %(surname)s на букву %(letter)s"
 
-#: ../gramps/plugins/webreport/person.py:798
+#: ../gramps/plugins/webreport/person.py:797
 #, python-format
 msgid "Tracking %s"
 msgstr "Отслеживание %s"
 
 #. page description
-#: ../gramps/plugins/webreport/person.py:803
+#: ../gramps/plugins/webreport/person.py:802
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/ places. If you place your mouse over the marker it will display the "
@@ -37911,47 +37906,47 @@ msgstr ""
 "Отметки и ссылки хранятся с сортировкой по дате (если такая есть). Клик на "
 "имени места в разделе ссылок перенесёт Вас на страницу данного места."
 
-#: ../gramps/plugins/webreport/person.py:874
+#: ../gramps/plugins/webreport/person.py:873
 msgid "Drop Markers"
 msgstr "Не показывать маркеры"
 
-#: ../gramps/plugins/webreport/person.py:899
+#: ../gramps/plugins/webreport/person.py:898
 msgid "Place Title"
 msgstr "Название места"
 
-#: ../gramps/plugins/webreport/person.py:1453
+#: ../gramps/plugins/webreport/person.py:1452
 msgid "Call Name"
 msgstr "Бытовое имя"
 
-#: ../gramps/plugins/webreport/person.py:1471
+#: ../gramps/plugins/webreport/person.py:1470
 msgid "Nick Name"
 msgstr "Прозвище"
 
-#: ../gramps/plugins/webreport/person.py:1517
+#: ../gramps/plugins/webreport/person.py:1516
 msgid "Age at Death"
 msgstr "Возраст на момент смерти"
 
-#: ../gramps/plugins/webreport/person.py:1647
+#: ../gramps/plugins/webreport/person.py:1646
 msgid "Stepfather"
 msgstr "Отчим"
 
-#: ../gramps/plugins/webreport/person.py:1660
+#: ../gramps/plugins/webreport/person.py:1659
 msgid "Stepmother"
 msgstr "Мачеха"
 
-#: ../gramps/plugins/webreport/person.py:1688
+#: ../gramps/plugins/webreport/person.py:1687
 msgid "Not siblings"
 msgstr "Не братья/сестры"
 
-#: ../gramps/plugins/webreport/person.py:1830
+#: ../gramps/plugins/webreport/person.py:1829
 msgid "Relation to the center person"
 msgstr "Родство с базовым лицом"
 
-#: ../gramps/plugins/webreport/person.py:1867
+#: ../gramps/plugins/webreport/person.py:1866
 msgid "Relation to main person"
 msgstr "Родство с базовым лицом"
 
-#: ../gramps/plugins/webreport/person.py:1871
+#: ../gramps/plugins/webreport/person.py:1870
 msgid "Relation within this family (if not by birth)"
 msgstr "Отношение к этой семье (для не родных)"
 
@@ -38458,6 +38453,9 @@ msgstr "Небраска"
 msgid "No style sheet"
 msgstr "Без стилевого листа"
 
+#~ msgid "Given Name"
+#~ msgstr "Имя"
+
 #~ msgid "Use alternate Font handler for GUI and Reports (requires restart)"
 #~ msgstr ""
 #~ "Использовать другой шрифт для интерфейса и отчётов (необходим перезапуск)"
@@ -38484,9 +38482,9 @@ msgstr "Без стилевого листа"
 #~ msgstr "бывший гражданский супруг(-а)"
 
 #~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
+#~ "You need to set a 'Home Person' to go to. Select the People View, select "
+#~ "the person you want as 'Home Person', then confirm your choice via the "
+#~ "menu Edit ->Set Home Person."
 #~ msgstr ""
 #~ "Нужно назначить «базовое лицо». Выберите вид «Люди», выберите лицо, "
 #~ "которое хотите назначить в качестве базового, затем подтвердите выбор из "
@@ -38539,9 +38537,6 @@ msgstr "Без стилевого листа"
 
 #~ msgid "Family Divorced"
 #~ msgstr "Разведённая семья"
-
-#~ msgid "Home Person"
-#~ msgstr "Базовое лицо"
 
 #~ msgid "Border Female Alive"
 #~ msgstr "Рамка для живых женского пола"

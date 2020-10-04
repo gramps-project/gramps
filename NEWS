@@ -1,3 +1,56 @@
+2020-08-11
+Version 5.1.3
+* Update ca, de, fi, fr, ja, pl, ru, sl, sv, uk, zh_CN translation
+* Events View: "Main Participants" column does not show the full list
+  of participants when expanded.
+* mac/gramps.modules: Use current Gtk release instead of Gtk-3.14.
+* mac/gramps.modules: Upgrade pymodules for Python 3.8 compatibility.
+* Fix XML export when 'Group-as" name contains XML invalid chars
+* Fix NarWeb: Province place-type is not displayed
+* Fix ManagedWindow so that new windows don't appear offscreen when
+  system 'screen' sizes change in part time multi-monitor setups.
+* Fix menus when db fails to open due to upgrade/downgrade etc.
+* Fix issue with attach source tool, results panel
+* Fix GEDCOM export; don't include ADDR when address is missing
+* EditPlace: Allow Coordinates containing a comma instead of a period
+* NarrativeWeb:
+  * Should show patronymic in individuals.
+    In the individuals and in surnames pages, we should show the
+    complete name like defined in the display tab from the narrative web
+    configuration.
+  * Fix Narrated Website Google Maps Output JS Warning SensorNotRequired
+  * Fix incorrect link type for osm css files
+  * Fix image size limit doesn't match tooltip
+* Update all translations for changes from 'Default' to 'Home' Person
+* Change GUI references to 'Home Person' instead of 'Default Person'
+* Use event attribute types in the event reference editor.
+  In the event reference editor, custom event attribute types should
+  be used rather than the default person attribute types.
+* Fix Verify tool bug caused by bad change in GObject introspection
+* Fix RemoveUnused tool for crash caused by Gtk introspection bug
+* Fix import test for change cause by previous change which was:
+  Fix GEDCOM import for bad source title when sources precede references.
+* Fix GEDCOM import for bad source title when sources precede references.
+* Fix some reports for CLI where warning message about Value not found
+* Fix Genealogy Tree reports for crash in CLI
+* Add uistate to tree views filter initialization
+* Fix some Python syntax errors that appear in v3.8.x
+* Suppress age = 0 days in events list. If the reference event date is equal
+  to the event date, don't show the age except if the date is estimated,
+  calculated, etc.
+* Fix Dashboard Gramplets to update during db close when not shown
+* Fix Windows GUI mode startup for crash with some languages
+* Fix dbapi to support "Abandon Changes & Quit" feature
+* Fix GrampsType for comparison bug with empty string as one value
+* Fix Date Display so that it uses LC_TIME if defined
+* Fix StyledText so serialize will match for style list order changes
+* Try to fix exceptions on ManagedWindow close
+* Fix Mac SQLite3 locale bug when locale contains non-ascii characters
+* Fix issue when Person has Same date of birth and death; gives an error.
+* Geography: add a popup for a bad tiles path
+* Fix GEDCOM export of estimated/calculated dates with modifers
+* Bump to v5.1.3
+
 2020-01-14
 Version 5.1.2
 * Narweb: Private notes for home, intro and contact. If the notes are private,
