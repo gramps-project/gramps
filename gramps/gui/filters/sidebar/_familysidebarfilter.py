@@ -163,16 +163,43 @@ class FamilySidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             if father:
-                rule = RegExpFatherName([father], use_regex=regex)
-                generic_filter.add_rule(rule)
+                # if the name is not empty, split the name in multiple part if
+                # we don't use regexp. if the regexp is used, don't split the
+                # field
+                if not regex:
+                    name_parts = father.split(sep=" ")
+                    for name_part in name_parts:
+                        rule = RegExpFatherName([name_part], use_regex=regex)
+                        generic_filter.add_rule(rule)
+                else:
+                    rule = RegExpFatherName([father], use_regex=regex)
+                    generic_filter.add_rule(rule)
 
             if mother:
-                rule = RegExpMotherName([mother], use_regex=regex)
-                generic_filter.add_rule(rule)
+                # if the name is not empty, split the name in multiple part if
+                # we don't use regexp. if the regexp is used, don't split the
+                # field
+                if not regex:
+                    name_parts = mother.split(sep=" ")
+                    for name_part in name_parts:
+                        rule = RegExpMotherName([name_part], use_regex=regex)
+                        generic_filter.add_rule(rule)
+                else:
+                    rule = RegExpMotherName([mother], use_regex=regex)
+                    generic_filter.add_rule(rule)
 
             if child:
-                rule = RegExpChildName([child], use_regex=regex)
-                generic_filter.add_rule(rule)
+                # if the name is not empty, split the name in multiple part if
+                # we don't use regexp. if the regexp is used, don't split the
+                # field
+                if not regex:
+                    name_parts = child.split(sep=" ")
+                    for name_part in name_parts:
+                        rule = RegExpChildName([name_part], use_regex=regex)
+                        generic_filter.add_rule(rule)
+                else:
+                    rule = RegExpChildName([child], use_regex=regex)
+                    generic_filter.add_rule(rule)
 
             if etype:
                 rule = HasEvent([etype, '', '', '', ''], use_regex=regex)
