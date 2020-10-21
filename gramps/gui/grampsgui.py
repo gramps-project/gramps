@@ -300,12 +300,10 @@ UIDEFAULT = (
       </section>
     </submenu>
   </section></menu>
-
   <object class="GtkMenu"  id="OpenBtnMenu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
   </object>
-
   <object class="GtkToolbar" id="ToolBar">
     <property name="hexpand">1</property>
     <property name="toolbar-style">GTK_TOOLBAR_ICONS</property>
@@ -408,10 +406,8 @@ UIDEFAULT = (
     <placeholder id='AfterTools'>
     </placeholder>
   </object>
-
   <menu id="Popup">
   </menu>
-
 </interface>
 ''')
 
@@ -488,7 +484,6 @@ except ImportError:
 def _display_gtk_gettext_message(parent=None):
     """
     Display a GTK-translations-missing message to the user.
-
     Note: the warning dialog below will likely have wrong stock icons!
     """
     LOG.warning("GTK translations missing, GUI will be broken, "
@@ -549,7 +544,6 @@ def _display_translator_message(parent=None):
 class Gramps:
     """
     Main class corresponding to a running gramps process.
-
     There can be only one instance of this class per gramps application
     process. It may spawn several windows and control several databases.
     """
