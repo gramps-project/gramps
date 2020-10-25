@@ -405,6 +405,32 @@ UIDEFAULT = (
      </child>
     <placeholder id='AfterTools'>
     </placeholder>
+    <child>
+      <object class="GtkToolButton" id="Addons">
+        <property name="icon-name">gramps.manage-addons</property>
+        <property name="action-name">win.PluginStatus</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Open Plugin Manager</property>
+        <property name="label" translatable="yes">Preferences</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
+    <child>
+      <object class="GtkToolButton" id="Preferences">
+        <property name="icon-name">gramps-preferences</property>
+        <property name="action-name">app.preferences</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Open Preferences</property>
+        <property name="label" translatable="yes">Preferences</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
   </object>
   <menu id="Popup">
   </menu>
