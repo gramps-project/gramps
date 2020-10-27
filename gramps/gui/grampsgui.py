@@ -407,7 +407,7 @@ UIDEFAULT = (
     </placeholder>
     <child>
       <object class="GtkToolButton" id="Addons">
-        <property name="icon-name">gramps.manage-addons</property>
+        <property name="icon-name">gramps-plugin-manager</property>
         <property name="action-name">win.PluginStatus</property>
         <property name="tooltip_text" translatable="yes">'''
     '''Open Plugin Manager</property>
