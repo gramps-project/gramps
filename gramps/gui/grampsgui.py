@@ -411,7 +411,7 @@ UIDEFAULT = (
         <property name="action-name">win.PluginStatus</property>
         <property name="tooltip_text" translatable="yes">'''
     '''Open Plugin Manager</property>
-        <property name="label" translatable="yes">Preferences</property>
+        <property name="label" translatable="yes">Plugins</property>
         <property name="use-underline">True</property>
       </object>
       <packing>
