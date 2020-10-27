@@ -1120,7 +1120,7 @@ h4 button.icon-open {
     transition: transform 0.2s linear;
 }
 svg {
-  fill: #454;
+  fill: #9DBF9D;
 }
 /* Go to the top of the page */
 #gototop {
@@ -1130,7 +1130,7 @@ svg {
   right: 20px;
   z-index: 999;
   border: none;
-  background-color: transparent;
+  background-color: white;
   color: black;
   cursor: pointer;
   border-radius: 4px;
