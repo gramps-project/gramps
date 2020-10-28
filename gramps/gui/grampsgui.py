@@ -406,6 +406,9 @@ UIDEFAULT = (
     <placeholder id='AfterTools'>
     </placeholder>
     <child>
+      <object class="GtkSeparatorToolItem"/>
+    </child>
+    <child>
       <object class="GtkToolButton" id="Addons">
         <property name="icon-name">gramps-plugin-manager</property>
         <property name="action-name">win.PluginStatus</property>
