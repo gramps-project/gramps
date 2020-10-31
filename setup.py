@@ -29,8 +29,8 @@ Gramps distutils module.
 #check python version first
 import sys
 
-if sys.version_info < (3, 2):
-    raise SystemExit("Gramps requires Python 3.2 or later.")
+if sys.version_info < (3, 5):
+    raise SystemExit("Gramps requires Python 3.5 or later.")
 
 from distutils import log
 from setuptools import setup
