@@ -75,9 +75,4 @@ def display_url(link, uistate=None):
     """
     Open the specified URL in a browser.
     """
-    if (mac() and sys.version_info.major == 3 and sys.version_info.minor < 5):
-        import subprocess
-        proc = subprocess.call(['/usr/bin/open', link],
-                               stderr=subprocess.STDOUT)
-    else:
-        webbrowser.open_new_tab(link)
+    webbrowser.open_new_tab(link)

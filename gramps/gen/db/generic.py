@@ -35,6 +35,7 @@ import ast
 import sys
 import datetime
 import glob
+from pathlib import Path
 
 #------------------------------------------------------------------------
 #
@@ -66,17 +67,6 @@ LOG = logging.getLogger(DBLOGNAME)
 
 SIGBASE = ('person', 'family', 'source', 'event', 'media',
            'place', 'repository', 'reference', 'note', 'tag', 'citation')
-
-def touch(fname, mode=0o666, dir_fd=None, **kwargs):
-    ## After http://stackoverflow.com/questions/1158076/implement-touch-using-python
-    if sys.version_info < (3, 3, 0):
-        with open(fname, 'a'):
-            os.utime(fname, None) # set to now
-    else:
-        flags = os.O_CREAT | os.O_APPEND
-        with os.fdopen(os.open(fname, flags=flags, mode=mode, dir_fd=dir_fd)) as f:
-            os.utime(f.fileno() if os.utime in os.supports_fd else fname,
-                     dir_fd=None if os.supports_fd else dir_fd, **kwargs)
 
 class DbGenericUndo(DbUndo):
     def __init__(self, grampsdb, path):
@@ -691,7 +681,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 # This is just a dummy file to indicate last modified time of
                 # the database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")
-                touch(filename)
+                Path(filename).touch()
 
                 # Save metadata
                 self._set_metadata('name_formats', self.name_formats)
