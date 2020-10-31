@@ -21,16 +21,8 @@
 """ Unittest for editreference.py """
 
 import unittest
-import sys
+from unittest.mock import Mock, patch
 import os
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock, patch
-    else:
-        from unittest.mock import Mock, patch
-    MOCKING = True
-except:
-    MOCKING = False
 
 from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
                              Repository, Media, Note, Tag)
@@ -54,7 +46,6 @@ class MockEditReference(EditReference):
 
 class TestEditReference(unittest.TestCase):
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_editreference(self):
         dbstate = DbState()
         db = make_database("sqlite")
