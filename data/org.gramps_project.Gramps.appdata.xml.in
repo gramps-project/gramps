@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.gramps.gramps</id>
+  <id>org.gramps_project.Gramps</id>
   <name>Gramps</name>
   <summary>Manage genealogical information, perform genealogical research and analysis</summary>
   <description>
@@ -36,7 +36,7 @@
     </screenshot>
   </screenshots>
 
-  <launchable type="desktop-id">gramps.desktop</launchable>
+  <launchable type="desktop-id">org.gramps_project.Gramps.desktop</launchable>
   <provides>
     <binary>gramps</binary>
   </provides>
