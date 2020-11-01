@@ -164,7 +164,7 @@ def build_intl(build_cmd):
     base = build_cmd.build_base
 
     merge_files = (('data/org.gramps_project.Gramps.desktop', 'share/applications', '--desktop'),
-                   ('data/gramps.xml', 'share/mime/packages', '--xml'),
+                   ('data/org.gramps_project.Gramps.xml', 'share/mime/packages', '--xml'),
                    ('data/org.gramps_project.Gramps.appdata.xml', 'share/metainfo', '--xml'))
 
     for filename, target, option in merge_files:
