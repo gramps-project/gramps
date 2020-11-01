@@ -3,11 +3,11 @@
 
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-gramps">
-    <_comment>Gramps database</_comment>
+    <comment>Gramps database</comment>
     <glob pattern="*.grdb"/>
   </mime-type>
   <mime-type type="application/x-gedcom">
-    <_comment>GEDCOM</_comment>
+    <comment>GEDCOM</comment>
     <glob pattern="*.ged"/>
     <glob pattern="*.gedcom"/>
     <glob pattern="*.GED"/>
@@ -17,11 +17,11 @@
     </magic>
   </mime-type>
   <mime-type type="application/x-gramps-package">
-    <_comment>Gramps package</_comment>
+    <comment>Gramps package</comment>
     <glob pattern="*.gpkg"/>
   </mime-type>
   <mime-type type="application/x-gramps-xml">
-    <_comment>Gramps XML database</_comment>
+    <comment>Gramps XML database</comment>
     <glob pattern="*.gramps"/>
     <magic priority="80">
       <match type="string" value="&lt;!DOCTYPE database" offset="0:256"/>
@@ -29,7 +29,7 @@
     </magic>
   </mime-type>
   <mime-type type="application/x-geneweb">
-    <_comment>GeneWeb source file</_comment>
+    <comment>GeneWeb source file</comment>
     <glob pattern="*.gw"/>
     <glob pattern="*.GW"/>
     <magic priority="80">
