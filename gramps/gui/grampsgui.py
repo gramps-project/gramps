@@ -677,7 +677,7 @@ from gramps.gen.constfunc import is_quartz
 class GrampsApplication(Gtk.Application):
 
     def __init__(self, errors, argparser):
-        super().__init__(application_id="org.gramps-project.Gramps")
+        super().__init__(application_id="org.gramps_project.Gramps")
         self.window = None
         self.errors = errors
         self.argparser = argparser
