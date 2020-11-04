@@ -1304,7 +1304,7 @@ class GedcomWriter(UpdateCallback):
 
         self._writeln(1, 'NAME', gedcom_name)
         if int(name.get_type()) == NameType.BIRTH:
-            pass
+            self._writeln(2, 'TYPE', 'birth')
         elif int(name.get_type()) == NameType.MARRIED:
             self._writeln(2, 'TYPE', 'married')
         elif int(name.get_type()) == NameType.AKA:
