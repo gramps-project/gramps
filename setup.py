@@ -440,8 +440,8 @@ data_files_core.append(('share/gramps/css/swanky-purse/images', SWANKY_IMG))
 
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
-data_files_core.append(('share/icons/gnome/48x48/mimetypes', PNG_FILES))
-data_files_core.append(('share/icons/gnome/scalable/mimetypes', SVG_FILES))
+data_files_core.append(('share/icons/hicolor/48x48/mimetypes', PNG_FILES))
+data_files_core.append(('share/icons/hicolor/scalable/mimetypes', SVG_FILES))
 
 DTD_FILES = glob.glob(os.path.join('data', '*.dtd'))
 RNG_FILES = glob.glob(os.path.join('data', '*.rng'))
