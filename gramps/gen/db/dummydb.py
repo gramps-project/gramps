@@ -157,7 +157,7 @@ def wrapper(method):
         This 'wrapped' method logs the original function that was called, and
         where it was called from.
         """
-        if __debug__:
+        if __debug__ and LOG.isEnabledFor(logging.DEBUG):
             class_name = args[0].__class__.__name__
             func_name = method.__name__
             frame = inspect.currentframe()

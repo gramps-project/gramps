@@ -85,7 +85,7 @@ class DbState(Callback):
         This replaces tests on DbState.open, DbState.db, DbState.db.is_open()
         and DbState.db.db_is_open all of which are deprecated.
         """
-        if __debug__:
+        if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
             class_name = self.__class__.__name__
             func_name = "is_open"
             frame = inspect.currentframe()

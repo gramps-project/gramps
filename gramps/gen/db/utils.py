@@ -71,7 +71,7 @@ def make_database(plugin_id):
         if mod:
             database = getattr(mod, pdata.databaseclass)
             db = database()
-            if __debug__:
+            if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
                 import inspect
                 frame = inspect.currentframe()
                 c_frame = frame.f_back
