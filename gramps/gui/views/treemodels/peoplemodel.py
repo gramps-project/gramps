@@ -266,7 +266,7 @@ class PeopleBaseModel(BaseModel):
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
             date_str = get_date(event)
-            if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
+            if (etype.is_birth_fallback()
                 and er.get_role() == EventRoleType.PRIMARY
                 and date_str != ""):
                 if sort_mode:
@@ -323,9 +323,7 @@ class PeopleBaseModel(BaseModel):
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
             date_str = get_date(event)
-            if (etype in [EventType.BURIAL,
-                          EventType.CREMATION,
-                          EventType.CAUSE_DEATH]
+            if (etype.is_death_fallback()
                 and er.get_role() == EventRoleType.PRIMARY
                 and date_str):
                 if sort_mode:
@@ -367,8 +365,8 @@ class PeopleBaseModel(BaseModel):
                 er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
-                if (etype in [EventType.BAPTISM, EventType.CHRISTEN] and
-                    er.get_role() == EventRoleType.PRIMARY):
+                if (etype.is_birth_fallback()
+                    and er.get_role() == EventRoleType.PRIMARY):
                         place_title = place_displayer.display_event(self.db, event)
                         if place_title:
                             value = "<i>%s</i>" % escape(place_title)
@@ -407,8 +405,7 @@ class PeopleBaseModel(BaseModel):
                 er.unserialize(event_ref)
                 event = self.db.get_event_from_handle(er.ref)
                 etype = event.get_type()
-                if (etype in [EventType.BURIAL, EventType.CREMATION,
-                              EventType.CAUSE_DEATH]
+                if (etype.is_death_fallback()
                     and er.get_role() == EventRoleType.PRIMARY):
 
                         place_title = place_displayer.display_event(self.db, event)
