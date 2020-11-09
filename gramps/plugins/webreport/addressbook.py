@@ -65,11 +65,13 @@ class AddressBookPage(BasePage):
     """
     Create one page for one Address
     """
-    def __init__(self, report, title, person_handle, has_add, has_res, has_url):
+    def __init__(self, report, the_lang, the_title, person_handle,
+                 has_add, has_res, has_url):
         """
         @param: report        -- The instance of the main report class
                                  for this report
-        @param: title         -- Is the title of the web page
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         @param: person_handle -- the url, address and residence to use
                                  for the report
         @param: has_add       -- the address to use for the report
@@ -77,7 +79,7 @@ class AddressBookPage(BasePage):
         @param: has_url       -- the url to use for the report
         """
         person = report.database.get_person_from_handle(person_handle)
-        BasePage.__init__(self, report, title, person.gramps_id)
+        BasePage.__init__(self, report, the_lang, the_title, person.gramps_id)
         self.bibli = Bibliography()
 
         self.uplink = True

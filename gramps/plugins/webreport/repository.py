@@ -79,19 +79,23 @@ class RepositoryPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.repos_dict = defaultdict(set)
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Repository tab, namely the
         repository index and the individual repository pages.
 
-        @param: title  -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Repository].items():
@@ -99,7 +103,8 @@ class RepositoryPages(BasePage):
 
         # set progress bar pass for Repositories
         message = _('Creating repository pages')
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Repository]) + 1
                                  ) as step:
             # Sort the repositories
@@ -112,26 +117,29 @@ class RepositoryPages(BasePage):
             keys = sorted(repos_dict, key=self.rlocale.sort_key)
 
             # RepositoryListPage Class
-            self.repositorylistpage(self.report, title, repos_dict, keys)
+            self.repositorylistpage(self.report, the_lang, the_title,
+                                    repos_dict, keys)
 
             idx = 1
             for dummy_index, key in enumerate(keys):
                 (repo, handle) = repos_dict[key]
                 step()
                 idx += 1
-                self.repositorypage(self.report, title, repo, handle)
+                self.repositorypage(self.report, the_lang, the_title,
+                                    repo, handle)
 
-    def repositorylistpage(self, report, title, repos_dict, keys):
+    def repositorylistpage(self, report, the_lang, the_title, repos_dict, keys):
         """
         Create Index for repositories
 
         @param: report     -- The instance of the main report class
                               for this report
-        @param: title      -- Is the title of the web page
+        @param: the_lang   -- The lang to process
+        @param: the_title  -- The title page related to the language
         @param: repos_dict -- The dictionary for all repositories
         @param: keys       -- The keys used to access repositories
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         #inc_repos = self.report.options["inc_repository"]
 
         output_file, sio = self.report.create_file("repositories")
@@ -207,17 +215,19 @@ class RepositoryPages(BasePage):
         # and close the file
         self.xhtml_writer(repolistpage, output_file, sio, ldatec)
 
-    def repositorypage(self, report, title, repo, handle):
+    def repositorypage(self, report, the_lang, the_title, repo, handle):
         """
         Create one page for one repository.
 
-        @param: report -- The instance of the main report class for this report
-        @param: title  -- Is the title of the web page
-        @param: repo   -- the repository to use
-        @param: handle -- the handle to use
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: repo      -- the repository to use
+        @param: handle    -- the handle to use
         """
         gid = repo.get_gramps_id()
-        BasePage.__init__(self, report, title, gid)
+        BasePage.__init__(self, report, the_lang, the_title, gid)
         ldatec = repo.get_change_time()
 
         output_file, sio = self.report.create_file(handle, 'repo')
@@ -257,6 +267,17 @@ class RepositoryPages(BasePage):
                          class_="ColumnValue",
                          inline=True)
                 )
+                tbody += trow
+
+            # Tags
+            tags = self.show_tags(repo)
+            if tags and self.report.inc_tags:
+                trow = Html("tr") + (
+                    Html("td", self._("Tags"),
+                         class_="ColumnAttribute", inline=True),
+                    Html("td", tags,
+                         class_="ColumnValue", inline=True)
+                    )
                 tbody += trow
 
             # repository: address(es)...

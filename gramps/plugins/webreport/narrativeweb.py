@@ -65,6 +65,7 @@ from gramps.gen.lib import (EventType, Name,
                             Person,
                             Family, Event, Place, PlaceName, Source,
                             Citation, Media, Repository, Note, Tag)
+from gramps.gen.lib.date import Today
 from gramps.gen.plug.menu import (PersonOption, NumberOption, StringOption,
                                   BooleanOption, EnumeratedListOption,
                                   FilterOption, NoteOption, MediaOption,
@@ -75,6 +76,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.constfunc import win, get_curr_dir
 from gramps.gen.config import config
+from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
@@ -98,12 +100,14 @@ from gramps.plugins.webreport.surname import SurnamePage
 from gramps.plugins.webreport.thumbnail import ThumbnailPreviewPage
 from gramps.plugins.webreport.statistics import StatisticsPage
 from gramps.plugins.webreport.updates import UpdatesPage
+from gramps.plugins.webreport.multilang import IndexPage
 from gramps.plugins.webreport.home import HomePage
 from gramps.plugins.webreport.contact import ContactPage
 from gramps.plugins.webreport.download import DownloadPage
 from gramps.plugins.webreport.introduction import IntroductionPage
 from gramps.plugins.webreport.addressbook import AddressBookPage
 from gramps.plugins.webreport.addressbooklist import AddressBookListPage
+from gramps.plugins.webreport.calendar import CalendarPage
 
 from gramps.plugins.webreport.common import (get_gendex_data,
                                              HTTP, HTTPS, _WEB_EXT, CSS,
@@ -142,7 +146,8 @@ class NavWebReport(Report):
 
         self.set_locale(options.menu.get_option_by_name('trans').get_value())
         stdoptions.run_date_format_option(self, menu)
-        self.rlocale = self._locale
+        self.rlocale = self._ = self._locale
+        self.the_lang = self.rlocale.language[0]
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu)
@@ -158,6 +163,8 @@ class NavWebReport(Report):
         self.css = self.options['css']
         self.navigation = self.options["navigation"]
         self.citationreferents = self.options['citationreferents']
+
+        self.inc_tags = self.options['inc_tags']
 
         self.title = self.options['title']
 
@@ -224,7 +231,7 @@ class NavWebReport(Report):
 
         # Do we need to include web calendar ?
         self.usecal = self.options['usecal']
-        self.target_cal_uri = self.options['caluri']
+        self.calendar = None
 
         # Do we need to include news and updates page ?
         self.inc_updates = self.options['updates']
@@ -279,11 +286,19 @@ class NavWebReport(Report):
             self.secure_mode = HTTPS
         else:
             self.secure_mode = HTTP
+        self.languages = None
+        self.default_lang = None
+        self.the_title = None
 
     def write_report(self):
         """
         The first method called to write the Narrative Web after loading options
         """
+        # begin performance check initialization
+        #import cProfile, pstats, io
+        #pr = cProfile.Profile()
+        #pr.enable()
+        # end performance check
         global _WRONGMEDIAPATH
 
         _WRONGMEDIAPATH = []
@@ -350,9 +365,6 @@ class NavWebReport(Report):
         if self.usecms:
             config.set('paths.website-cms-uri',
                        os.path.dirname(self.target_uri))
-        if self.usecal:
-            config.set('paths.website-cal-uri',
-                       os.path.dirname(self.target_cal_uri))
 
         # for use with discovering biological, half, and step siblings for use
         # in display_ind_parents()...
@@ -381,22 +393,22 @@ class NavWebReport(Report):
             # FIXME: Would it be better if the Web Page plugins used a different
             # base class rather than BasePage, which is really just for each web
             # page
-            self.tab[obj_class] = BasePage(report=self, title="")
+            self.tab[obj_class] = BasePage(self, None, None)
 
         # Note that by not initialising any Web Page plugins that are not going
         # to generate pages, we ensure that there is not performance implication
         # for such plugins.
-        self.tab["Person"] = PersonPages(self)
+        self.tab["Person"] = PersonPages(self, None, None)
         if self.inc_families:
-            self.tab["Family"] = FamilyPages(self)
+            self.tab["Family"] = FamilyPages(self, None, None)
         if self.inc_events:
-            self.tab["Event"] = EventPages(self)
+            self.tab["Event"] = EventPages(self, None, None)
         if self.inc_gallery:
-            self.tab["Media"] = MediaPages(self)
-        self.tab["Place"] = PlacePages(self)
-        self.tab["Source"] = SourcePages(self)
-        self.tab["Repository"] = RepositoryPages(self)
-        self.tab["Citation"] = CitationPages(self)
+            self.tab["Media"] = MediaPages(self, None, None)
+        self.tab["Place"] = PlacePages(self, None, None)
+        self.tab["Source"] = SourcePages(self, None, None)
+        self.tab["Repository"] = RepositoryPages(self, None, None)
+        self.tab["Citation"] = CitationPages(self, None, None)
 
         # FIXME: The following routines that are not run in two passes have not
         # yet been converted to a form suitable for separation into Web Page
@@ -443,54 +455,84 @@ class NavWebReport(Report):
         #
         #################################################
 
-        self.base_pages()
+        self.languages = []
+        self.default_lang = self.options['trans']
+        if self.default_lang == "default":
+            self.default_lang = self.rlocale.language[0]
+        self.languages.append((self.default_lang, self.options['title']))
+        if self.options['multitrans']:
+            for idx in range(2, 7):
+                lang = "lang%c" % str(idx)
+                titl = "title%c" % str(idx)
+                if self.options[lang] != "default":
+                    cur_lang = self.options[lang]
+                    cur_title = self.options[titl]
+                    self.languages.append((cur_lang, cur_title))
+
         self.visited = []
+        if len(self.languages) > 1:
+            IndexPage(self, self.languages)
 
-        # build classes IndividualListPage and IndividualPage
-        self.tab["Person"].display_pages(self.title)
+        for the_lang, the_title in self.languages:
+            if len(self.languages) == 1:
+                the_lang = None
+                the_title = self.title
+            if the_lang == "default":
+                the_lang = self.rlocale.language[0]
+            self.the_lang = the_lang
+            self.the_title = the_title
+            self.base_pages()
 
-        self.build_gendex(self.obj_dict[Person])
+            # build classes IndividualListPage and IndividualPage
+            self.tab["Person"].display_pages(the_lang, the_title)
 
-        # build classes SurnameListPage and SurnamePage
-        self.surname_pages(self.obj_dict[Person])
+            self.build_gendex(self.obj_dict[Person], the_lang)
 
-        # build classes FamilyListPage and FamilyPage
-        if self.inc_families:
-            self.tab["Family"].display_pages(self.title)
+            # build classes SurnameListPage and SurnamePage
+            self.surname_pages(self.obj_dict[Person], the_lang, the_title)
 
-        # build classes EventListPage and EventPage
-        if self.inc_events:
-            self.tab["Event"].display_pages(self.title)
+            # build classes FamilyListPage and FamilyPage
+            if self.inc_families:
+                self.tab["Family"].display_pages(the_lang, the_title)
 
-        # build classes PlaceListPage and PlacePage
-        self.tab["Place"].display_pages(self.title)
+            # build classes EventListPage and EventPage
+            if self.inc_events:
+                self.tab["Event"].display_pages(the_lang, the_title)
 
-        # build classes RepositoryListPage and RepositoryPage
-        if self.inc_repository:
-            self.tab["Repository"].display_pages(self.title)
+            # build classes PlaceListPage and PlacePage
+            self.tab["Place"].display_pages(the_lang, the_title)
 
-        # build classes MediaListPage and MediaPage
-        if self.inc_gallery:
-            if not self.create_thumbs_only:
-                self.tab["Media"].display_pages(self.title)
+            # build classes RepositoryListPage and RepositoryPage
+            if self.inc_repository:
+                self.tab["Repository"].display_pages(the_lang, the_title)
 
-            # build Thumbnail Preview Page...
-            self.thumbnail_preview_page()
+            # build classes MediaListPage and MediaPage
+            if self.inc_gallery:
+                if not self.create_thumbs_only:
+                    self.tab["Media"].display_pages(the_lang, the_title)
 
-        # build classes AddressBookListPage and AddressBookPage
-        if self.inc_addressbook:
-            self.addressbook_pages(self.obj_dict[Person])
+                # build Thumbnail Preview Page...
+                self.thumbnail_preview_page()
 
-        # build classes SourceListPage and SourcePage
-        self.tab["Source"].display_pages(self.title)
+            # build classes AddressBookListPage and AddressBookPage
+            if self.inc_addressbook:
+                self.addressbook_pages(self.obj_dict[Person])
 
-        # build classes StatisticsPage
-        if self.inc_stats:
-            self.statistics_preview_page(self.title)
+            # build classes SourceListPage and SourcePage
+            self.tab["Source"].display_pages(the_lang, the_title)
 
-        # build classes Updates
-        if self.inc_updates:
-            self.updates_preview_page(self.title)
+            # build calendar for the current year
+            if self.usecal:
+                self.calendar = CalendarPage(self, None, None)
+                self.calendar.display_pages(the_lang, the_title)
+
+            # build classes StatisticsPage
+            if self.inc_stats:
+                self.statistics_preview_page()
+
+            # build classes Updates
+            if self.inc_updates:
+                self.updates_preview_page()
 
         # copy all of the necessary files
         self.copy_narrated_files()
@@ -508,6 +550,10 @@ class NavWebReport(Report):
                 error += '\n ...'
             self.user.warn(_("Missing media objects:"), error)
         self.database.clear_cache()
+        # begin print performance check
+        #pr.disable()
+        #pr.print_stats()
+        # end print performance check
 
     def _build_obj_dict(self):
         """
@@ -539,7 +585,8 @@ class NavWebReport(Report):
         ind_list = self.filter.apply(self._db, ind_list, user=self.user)
 
         message = _('Constructing list of other objects...')
-        with self.user.progress(_("Narrated Web Site Report"), message,
+        pgr_title = self.pgrs_title(None)
+        with self.user.progress(pgr_title, message,
                                 sum(1 for _ in ind_list)) as step:
             index = 1
             for handle in ind_list:
@@ -568,7 +615,7 @@ class NavWebReport(Report):
         if person:
             person_name = self.get_person_name(person)
             person_fname = self.build_url_fname(person_handle, "ppl",
-                                                False) + self.ext
+                                                False, init=True) + self.ext
             self.obj_dict[Person][person_handle] = (person_fname, person_name,
                                                     person.gramps_id)
             self.bkref_dict[Person][person_handle].add((bkref_class,
@@ -665,6 +712,10 @@ class NavWebReport(Report):
                                 self._add_media(media_handle, Person,
                                                 person_handle)
 
+            ############### Associations section ##############
+            for assoc in person.get_person_ref_list():
+                self._add_person(assoc.ref, "", "")
+
             ############### LDS Ordinance section ##############
             for lds_ord in person.get_lds_ord_list():
                 for citation_handle in lds_ord.get_citation_list():
@@ -712,7 +763,7 @@ class NavWebReport(Report):
         family_name = self.get_family_name(family)
         if self.inc_families:
             family_fname = self.build_url_fname(family_handle, "fam",
-                                                False) + self.ext
+                                                False, init=True) + self.ext
         else:
             family_fname = ""
         self.obj_dict[Family][family_handle] = (family_fname, family_name,
@@ -768,6 +819,8 @@ class NavWebReport(Report):
 
         @param: family -- family object from database
         """
+        self.rlocale = self.set_locale(self.the_lang)
+        self._ = self.rlocale.translation.sgettext
         husband_handle = family.get_father_handle()
         spouse_handle = family.get_mother_handle()
 
@@ -834,7 +887,7 @@ class NavWebReport(Report):
             # end descriptions to media pages
         if self.inc_events:
             event_fname = self.build_url_fname(event_handle, "evt",
-                                               False) + self.ext
+                                               False, init=True) + self.ext
         else:
             event_fname = ""
         self.obj_dict[Event][event_handle] = (event_fname, event_name,
@@ -898,7 +951,7 @@ class NavWebReport(Report):
         else:
             role_or_date = ""
         place_fname = self.build_url_fname(place_handle, "plc",
-                                           False) + self.ext
+                                           False, init=True) + self.ext
         self.obj_dict[Place][place_handle] = (place_fname, place_name,
                                               place.gramps_id, event)
         self.obj_dict[PlaceName][place_name] = (place_handle, place_name,
@@ -935,7 +988,7 @@ class NavWebReport(Report):
         source = self._db.get_source_from_handle(source_handle)
         source_name = source.get_title()
         source_fname = self.build_url_fname(source_handle, "src",
-                                            False) + self.ext
+                                            False, init=True) + self.ext
         self.obj_dict[Source][source_handle] = (source_fname, source_name,
                                                 source.gramps_id)
         self.bkref_dict[Source][source_handle].add((bkref_class,
@@ -1011,7 +1064,7 @@ class NavWebReport(Report):
         #end media title
         if self.inc_gallery:
             media_fname = self.build_url_fname(media_handle, "img",
-                                               False) + self.ext
+                                               False, init=True) + self.ext
         else:
             media_fname = ""
         self.obj_dict[Media][media_handle] = (media_fname, media_name,
@@ -1045,7 +1098,7 @@ class NavWebReport(Report):
         repos_name = repos.name
         if self.inc_repository:
             repos_fname = self.build_url_fname(repos_handle, "repo",
-                                               False) + self.ext
+                                               False, init=True) + self.ext
         else:
             repos_fname = ""
         self.obj_dict[Repository][repos_handle] = (repos_fname, repos_name,
@@ -1057,16 +1110,16 @@ class NavWebReport(Report):
 
     def copy_narrated_files(self):
         """
-        Copy all of the CSS, image, and JavaScript files for Narrated Web
+        Copy all of the CSS, image, and javascript files for Narrative Web
         """
         imgs = []
 
         # copy all screen style sheet
         for css_f in CSS:
-            already_done = False
+            already_done = []
             for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska", "Vis"):
-                if css_fn in css_f and not already_done:
-                    already_done = True
+                if css_fn in css_f and css_f not in already_done:
+                    already_done.append(css_f)
                     fname = CSS[css_f]["filename"]
                     # add images for this css
                     imgs += CSS[css_f]["images"]
@@ -1138,16 +1191,17 @@ class NavWebReport(Report):
         fname = CSS["marker"]["filename"]
         self.copy_file(fname, "marker.png", "images")
 
-    def build_gendex(self, ind_list):
+    def build_gendex(self, ind_list, the_lang):
         """
         Create a gendex file
 
         @param: ind_list -- The list of person to use
+        @param: the_lang -- The lang to process
         """
         if self.inc_gendex:
             message = _('Creating GENDEX file')
-            with self.user.progress(_("Narrated Web Site Report"), message,
-                                    len(ind_list)) as step:
+            pgr_title = self.pgrs_title(the_lang)
+            with self.user.progress(pgr_title, message, len(ind_list)) as step:
                 fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
                 date = 0
                 index = 1
@@ -1194,28 +1248,31 @@ class NavWebReport(Report):
         else:
             filep.write(linew)
 
-    def surname_pages(self, ind_list):
+    def surname_pages(self, ind_list, the_lang, the_title):
         """
         Generates the surname related pages from list of individual
         people.
 
-        @param: ind_list -- The list of person to use
+        @param: ind_list  -- The list of person to use
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page for the lang
         """
         local_list = sort_people(self._db, ind_list, self.rlocale)
 
         message = _("Creating surname pages")
-        with self.user.progress(_("Narrated Web Site Report"), message,
-                                len(local_list)) as step:
+        pgr_title = self.pgrs_title(the_lang)
+        with self.user.progress(pgr_title, message, len(local_list)) as step:
 
-            SurnameListPage(self, self.title, ind_list,
+            SurnameListPage(self, the_lang, the_title, ind_list,
                             SurnameListPage.ORDER_BY_NAME, self.surname_fname)
 
-            SurnameListPage(self, self.title, ind_list,
+            SurnameListPage(self, the_lang, the_title, ind_list,
                             SurnameListPage.ORDER_BY_COUNT, "surnames_count")
 
             index = 1
             for (surname, handle_list) in local_list:
-                SurnamePage(self, self.title, surname, sorted(handle_list))
+                SurnamePage(self, the_lang, the_title, surname,
+                            sorted(handle_list))
                 step()
                 index += 1
 
@@ -1227,28 +1284,31 @@ class NavWebReport(Report):
             media_count = len(self._db.get_media_handles())
         else:
             media_count = len(self.obj_dict[Media])
-        with self.user.progress(_("Narrated Web Site Report"),
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title,
                                 _("Creating thumbnail preview page..."),
                                 media_count) as step:
-            ThumbnailPreviewPage(self, self.title, step)
+            ThumbnailPreviewPage(self, self.the_lang, self.the_title, step)
 
-    def statistics_preview_page(self, title):
+    def statistics_preview_page(self):
         """
         creates the statistics preview page
         """
-        with self.user.progress(_("Narrated Web Site Report"),
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title,
                                 _("Creating statistics page..."),
                                 1) as step:
-            StatisticsPage(self, title, step)
+            StatisticsPage(self, self.the_lang, self.the_title, step)
 
-    def updates_preview_page(self, title):
+    def updates_preview_page(self):
         """
         creates the statistics preview page
         """
-        with self.user.progress(_("Narrated Web Site Report"),
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title,
                                 _("Creating updates page..."),
                                 1):
-            UpdatesPage(self, title)
+            UpdatesPage(self, self.the_lang, self.the_title)
 
     def addressbook_pages(self, ind_list):
         """
@@ -1282,17 +1342,18 @@ class NavWebReport(Report):
                 url_addr_res.append((sort_name, person_handle, add, res, url))
 
         url_addr_res.sort()
-        AddressBookListPage(self, self.title, url_addr_res)
+        AddressBookListPage(self, self.the_lang, self.the_title, url_addr_res)
 
         # begin Address Book pages
         addr_size = len(url_addr_res)
 
         message = _("Creating address book pages ...")
-        with self.user.progress(_("Narrated Web Site Report"), message,
-                                addr_size) as step:
+        pgr_title = self.pgrs_title(self.the_lang)
+        with self.user.progress(pgr_title, message, addr_size) as step:
             index = 1
             for (sort_name, person_handle, add, res, url) in url_addr_res:
-                AddressBookPage(self, self.title, person_handle, add, res, url)
+                AddressBookPage(self, self.the_lang, self.the_title,
+                                person_handle, add, res, url)
                 step()
                 index += 1
 
@@ -1302,50 +1363,70 @@ class NavWebReport(Report):
         if requested by options in plugin
         """
         if self.use_home:
-            HomePage(self, self.title)
+            HomePage(self, self.the_lang, self.the_title)
 
         if self.inc_contact:
-            ContactPage(self, self.title)
+            ContactPage(self, self.the_lang, self.the_title)
 
         if self.inc_download:
-            DownloadPage(self, self.title)
+            DownloadPage(self, self.the_lang, self.the_title)
 
         if self.use_intro:
-            IntroductionPage(self, self.title)
+            IntroductionPage(self, self.the_lang, self.the_title)
 
-    def build_subdirs(self, subdir, fname, uplink=False):
+    def build_subdirs(self, subdir, fname, uplink=False, image=False,
+                      init=False):
         """
         If subdir is given, then two extra levels of subdirectory are inserted
         between 'subdir' and the filename. The reason is to prevent directories
         with too many entries.
-
         For example, this may return "8/1/aec934857df74d36618"
-
         @param: subdir -- The subdirectory name to use
         @param: fname  -- The file name for which we need to build the path
         @param: uplink -- If True, then "../../../" is inserted in front of the
                           result.
                           If uplink = None then [./] for use in EventListPage
+        @param: image  -- We are processing a thumbnail or an image
+        @param: init   -- We are building the objects table.
+                          Don't try to manage the lang.
         """
         subdirs = []
         if subdir:
             subdirs.append(subdir)
             subdirs.append(fname[-1].lower())
             subdirs.append(fname[-2].lower())
+        if init:
+            return subdirs
+        nb_dir = 0
+        if self.the_lang and image:
+            nb_dir = 1
 
         if self.usecms:
-            if self.target_uri not in subdirs:
-                subdirs = [self.target_uri] + subdirs
+            if subdir:
+                if self.the_lang and subdir not in ["css", "images", "thumb"]:
+                    subdirs = [self.target_uri] + [self.the_lang] + subdirs
+                else:
+                    subdirs = [self.target_uri] + subdirs
+            elif self.target_uri not in fname:
+                subdirs = [self.target_uri] + [fname]
+            else:
+                subdirs = []
         else:
             if uplink is True:
-                subdirs = ['..']*3 + subdirs
+                nb_dir += 3
+                subdirs = ['..']*nb_dir + subdirs
 
-            # added for use in EventListPage
+            elif uplink == 2:
+                # special case for the add_image method
+                if subdir and subdir[0:3] in ["css", "ima", "thu"]:
+                    if nb_dir == 1:
+                        subdirs = ['..'] + subdirs
             elif uplink is None:
+                # added for use in EventListPage
                 subdirs = ['.'] + subdirs
         return subdirs
 
-    def build_path(self, subdir, fname, uplink=False):
+    def build_path(self, subdir, fname, uplink=False, image=False):
         """
         Return the name of the subdirectory.
 
@@ -1355,8 +1436,47 @@ class NavWebReport(Report):
         @param: fname  -- The file name for which we need to build the path
         @param: uplink -- If True, then "../../../" is inserted in front of the
                           result.
+        @param: image  -- We are processing a thumbnail or an image
         """
-        return os.path.join(*self.build_subdirs(subdir, fname, uplink))
+        return os.path.join(*self.build_subdirs(subdir, fname, uplink, image))
+
+    def build_url_lang(self, fname, subdir=None, uplink=False):
+        """
+        builds a url for an extra language
+
+        @param: fname  -- The file name for which we need to build the path
+        @param: subdir -- The subdirectory name to use
+        @param: uplink -- If True, then "../../../" is inserted in front of the
+                          result.
+        """
+        subdirs = []
+        if uplink:
+            nb_dir = 4 if self.the_lang else 3
+        else:
+            nb_dir = 1
+        if self.usecms:
+            # remove self.target_uri
+            fname = fname.replace(self.target_uri + "/", "")
+            # remove the lang
+            (dummy_1_field, dummy_sep, second_field) = fname.partition("/")
+            fname = second_field
+        elif self.the_lang:
+            (first_field, dummy_sep, second_field) = fname.partition("/")
+            if [(lang, title) for lang, title in self.languages
+                    if lang == first_field]:
+                # remove the lang
+                fname = second_field
+        if subdir:
+            subdirs.append(subdir)
+        if self.usecms:
+            if self.target_uri not in subdirs:
+                subdirs = [self.target_uri] + subdirs
+        else:
+            subdirs = ['..']*nb_dir + subdirs
+        nname = "/".join(subdirs + [fname])
+        if win():
+            nname = nname.replace('\\', "/")
+        return nname
 
     def build_url_image(self, fname, subdir=None, uplink=False):
         """
@@ -1368,14 +1488,18 @@ class NavWebReport(Report):
                           result.
         """
         subdirs = []
+        if uplink:
+            nb_dir = 4 if self.the_lang else 3
+        else:
+            nb_dir = 1
         if subdir:
             subdirs.append(subdir)
         if self.usecms:
-            if self.target_uri not in subdirs:
+            if self.target_uri not in fname:
                 subdirs = [self.target_uri] + subdirs
         else:
             if uplink:
-                subdirs = ['..']*3 + subdirs
+                subdirs = ['..']*nb_dir + subdirs
         nname = "/".join(subdirs + [fname])
         if win():
             nname = nname.replace('\\', "/")
@@ -1436,7 +1560,8 @@ class NavWebReport(Report):
             return None
         return self.build_url_fname(handle, subdir, uplink) + self.ext
 
-    def build_url_fname(self, fname, subdir=None, uplink=False):
+    def build_url_fname(self, fname, subdir=None, uplink=False,
+                        image=False, init=False):
         """
         Create part of the URL given the filename and optionally the
         subdirectory. If the subdirectory is given, then two extra levels of
@@ -1447,6 +1572,9 @@ class NavWebReport(Report):
         @param: subdir -- The subdirectory name to use
         @param: uplink -- if True, then "../../../" is inserted in front of the
                           result.
+        @param: image  -- We are processing a thumbnail or an image
+        @param: init   -- We are building the objects table.
+                          Don't try to manage the lang.
 
         The extension is added to the filename as well.
 
@@ -1456,14 +1584,50 @@ class NavWebReport(Report):
         """
         if not fname:
             return ""
-
         if win():
             fname = fname.replace('\\', "/")
+        if init:
+            subdirs = self.build_subdirs(subdir, fname, False, init=init)
+            return "/".join(subdirs + [fname])
         fname = fname.replace(self.target_uri + "/", "")
         if self.usecms:
-            subdirs = self.build_subdirs(subdir, fname, False)
+            if self.the_lang:
+                if subdir:
+                    subdirs = self.build_subdirs(subdir, fname,
+                                                 False, image)
+                    if self.target_uri in subdirs and image:
+                        subdirs.remove(self.target_uri)
+                    if subdir[0:3] in ["css", "ima", "thu"]:
+                        subdirs = [self.target_uri] + subdirs
+                else:
+                    if fname[0:3] in ["css", "ima", "thu"]:
+                        subdirs = [self.target_uri]
+                    elif fname[3:6] in ["css", "ima", "thu"]:
+                        subdirs = [self.target_uri]
+                        fname = fname[3:]
+                    else:
+                        subdirs = [self.target_uri] + [self.the_lang]
+            else:
+                if subdir:
+                    subdirs = self.build_subdirs(subdir, fname,
+                                                 False, image)
+                else:
+                    subdirs = [self.target_uri]
+                # remove None value in subdir. this is related to the lang
+                if isinstance(subdirs, list):
+                    subdirs = [val for val in subdirs if val is not None]
+        elif self.the_lang:
+            (dummy_1_field, separator, second_field) = fname.partition("/")
+            if separator == "/" and second_field[0:3] in ["ima", "thu"]:
+                fname = second_field
+                subdirs = self.build_subdirs(subdir, second_field,
+                                             uplink, image)
+                if not uplink:
+                    subdirs = [".."] + subdirs
+            else:
+                subdirs = self.build_subdirs(subdir, fname, uplink, image)
         else:
-            subdirs = self.build_subdirs(subdir, fname, uplink)
+            subdirs = self.build_subdirs(subdir, fname, uplink, image)
         return "/".join(subdirs + [fname])
 
     def create_file(self, fname, subdir=None, ext=None):
@@ -1476,14 +1640,31 @@ class NavWebReport(Report):
         """
         if ext is None:
             ext = self.ext
-        if self.usecms and subdir is None:
-            self.cur_fname = os.path.join(self.target_uri, fname) + ext
+        if self.usecms and not subdir:
+            if self.the_lang:
+                if ext != "index":
+                    target = os.path.join(self.target_uri, self.the_lang)
+                    self.cur_fname = os.path.join(target, fname) + ext
+                else:
+                    self.cur_fname = os.path.join(self.target_uri,
+                                                  fname) + self.ext
+            else:
+                self.cur_fname = os.path.join(self.target_uri, fname) + ext
         else:
+            if self.the_lang and self.archive:
+                if subdir:
+                    if not self.usecms:
+                        subdir = os.path.join(self.the_lang, subdir)
+                elif ext != "index":
+                    fname = os.path.join(self.the_lang, fname)
             if subdir:
                 subdir = self.build_path(subdir, fname)
                 self.cur_fname = os.path.join(subdir, fname) + ext
             else:
-                self.cur_fname = fname + ext
+                if ext == "index":
+                    self.cur_fname = os.path.join(fname) + self.ext
+                else:
+                    self.cur_fname = fname + ext
         if self.archive:
             string_io = BytesIO()
             output_file = TextIOWrapper(string_io, encoding=self.encoding,
@@ -1491,10 +1672,27 @@ class NavWebReport(Report):
         else:
             string_io = None
             if subdir:
-                subdir = os.path.join(self.html_dir, subdir)
-                if not os.path.isdir(subdir):
-                    os.makedirs(subdir)
-            fname = os.path.join(self.html_dir, self.cur_fname)
+                if self.the_lang:
+                    subdir = os.path.join(self.html_dir, self.the_lang, subdir)
+                else:
+                    subdir = os.path.join(self.html_dir, subdir)
+            else:
+                if self.the_lang:
+                    subdir = os.path.join(self.html_dir, self.the_lang)
+                else:
+                    subdir = os.path.join(self.html_dir)
+            if self.the_lang:
+                if ext == "index":
+                    self.cur_fname = os.path.join(fname) + self.ext
+                    fname = os.path.join(self.html_dir, self.cur_fname)
+                else:
+                    fname = os.path.join(self.html_dir, self.the_lang,
+                                         self.cur_fname)
+            else:
+                fname = os.path.join(self.html_dir, self.cur_fname)
+            dir_name = os.path.dirname(fname)
+            if not os.path.isdir(dir_name):
+                os.makedirs(dir_name)
             output_file = open(fname, 'w', encoding=self.encoding,
                                errors='xmlcharrefreplace')
         return (output_file, string_io)
@@ -1537,9 +1735,11 @@ class NavWebReport(Report):
         """
         handle = photo.get_handle()
         ext = os.path.splitext(photo.get_path())[1]
-        real_path = os.path.join(self.build_path('images', handle),
+        real_path = os.path.join(self.build_path('images', handle,
+                                                 uplink=2, image=True),
                                  handle + ext)
-        thumb_path = os.path.join(self.build_path('thumb', handle),
+        thumb_path = os.path.join(self.build_path('thumb', handle,
+                                                  uplink=2, image=True),
                                   handle + '.png')
         return real_path, thumb_path
 
@@ -1555,7 +1755,7 @@ class NavWebReport(Report):
                               It will be prepended before 'to_fname'.
         """
         if self.usecms:
-            to_dir = "/" + self.target_uri + "/" + to_dir
+            to_dir = "/".join([self.target_uri, to_dir])
         LOG.debug("copying '%s' to '%s/%s'", from_fname, to_dir, to_fname)
         mtime = os.stat(from_fname).st_mtime
         if self.archive:
@@ -1583,13 +1783,14 @@ class NavWebReport(Report):
                 os.makedirs(destdir)
 
             if from_fname != dest:
-                try:
-                    shutil.copyfile(from_fname, dest)
-                    os.utime(dest, (mtime, mtime))
-                except Exception as exception:
-                    LOG.exception(exception)
-                    print("Copying error: %s" % sys.exc_info()[1])
-                    print("Continuing...")
+                if not os.path.exists(dest):
+                    try:
+                        shutil.copyfile(from_fname, dest)
+                        os.utime(dest, (mtime, mtime))
+                    except Exception as exception:
+                        LOG.exception(exception)
+                        print("Copying error: %s" % sys.exc_info()[1])
+                        print("Continuing...")
             elif self.warn_dir:
                 self.user.warn(
                     _("Possible destination error") + "\n" +
@@ -1608,6 +1809,19 @@ class NavWebReport(Report):
         @param: person_handle -- The person we are looking for
         """
         return person_handle in self.obj_dict[Person]
+
+    def pgrs_title(self, the_lang):
+        """Set the user progress popup message depending on the lang."""
+        if the_lang:
+            languages = glocale.get_language_dict()
+            lang = "???"
+            for language in languages:
+                if languages[language] == the_lang:
+                    lang = language
+                    break
+            return _("Narrative Web Site Report for the %s language") % lang
+        else:
+            return _("Narrative Web Site Report")
 
 #################################################
 #
@@ -1661,12 +1875,31 @@ class NavWebOptions(MenuReportOptions):
         self.__maxupdates = None
         self.__unused = None
         self.__navigation = None
-        self.__target_cal_uri = None
         self.__securesite = False
         self.__extra_page_name = None
         self.__extra_page = None
         self.__relation = False
         self.__prevnext = False
+        self.__multitrans = False
+        self.__lang_2 = None
+        self.__lang_3 = None
+        self.__lang_4 = None
+        self.__lang_5 = None
+        self.__lang_6 = None
+        self.__titl_2 = None
+        self.__titl_3 = None
+        self.__titl_4 = None
+        self.__titl_5 = None
+        self.__titl_6 = None
+        self.__start_dow = None
+        self.__maiden_name = None
+        self.__makeoneday = None
+        self.__birthdays = None
+        self.__anniv = None
+        self.__alive = None
+        self.__toggle = None
+        self.__death_anniv = None
+        self.__after_year = None
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -1687,11 +1920,15 @@ class NavWebOptions(MenuReportOptions):
         self.__add_advanced_options_2(menu)
         self.__add_place_map_options(menu)
         self.__add_others_options(menu)
+        self.__add_translations(menu)
+        self.__add_calendar_options(menu)
 
 
     def __add_report_options(self, menu):
         """
         Options on the "Report Options" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Report Options")
         addopt = partial(menu.add_option, category_name)
@@ -1750,6 +1987,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_report_html(self, menu):
         """
         Html Options for the Report.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Html options")
         addopt = partial(menu.add_option, category_name)
@@ -1822,9 +2061,16 @@ class NavWebOptions(MenuReportOptions):
         self.__securesite.set_help(_('Whether to use http:// or https://'))
         addopt("securesite", self.__securesite)
 
+        self.__toggle = BooleanOption(_("Toggle sections"), False)
+        self.__toggle.set_help(_('Check it if you want to open/close'
+                                 ' a section'))
+        addopt("toggle", self.__toggle)
+
     def __add_more_pages(self, menu):
         """
         Add more extra pages to the report
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Extra pages")
         addopt = partial(menu.add_option, category_name)
@@ -1847,6 +2093,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_report_display(self, menu):
         """
         How to display names, datyes, ...
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Display")
         addopt = partial(menu.add_option, category_name)
@@ -1854,10 +2102,21 @@ class NavWebOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
 
+        self.__multitrans = BooleanOption(
+            _('Do we use multiple translations?'), False)
+        self.__multitrans.set_help(
+            _('Whether to display the narrative web in multiple languages.'
+              '\nSee the translation tab to add new languages to the default'
+              ' one defined in the next field.'))
+        addopt("multitrans", self.__multitrans)
+        self.__multitrans.connect('value-changed',
+                                  self.__activate_translations)
+
         locale_opt = stdoptions.add_localization_option(menu, category_name)
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
         stdoptions.add_gramps_id_option(menu, category_name)
+        stdoptions.add_tags_option(menu, category_name)
 
         birthorder = BooleanOption(
             _('Sort all children in birth order'), False)
@@ -1878,7 +2137,7 @@ class NavWebOptions(MenuReportOptions):
               ' Not set means by date.'))
         addopt("reference_sort", reference_sort)
 
-        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 10)
+        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 20)
         self.__graphgens.set_help(_("The number of generations to include in "
                                     "the ancestor graph"))
         addopt("graphgens", self.__graphgens)
@@ -1895,6 +2154,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_page_generation_options(self, menu):
         """
         Options on the "Page Generation" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Page Generation")
         addopt = partial(menu.add_option, category_name)
@@ -1940,6 +2201,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_images_generation_options(self, menu):
         """
         Options on the "Page Generation" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Images Generation")
         addopt = partial(menu.add_option, category_name)
@@ -1996,6 +2259,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_download_options(self, menu):
         """
         Options for the download tab ...
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Download")
         addopt = partial(menu.add_option, category_name)
@@ -2035,6 +2300,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_advanced_options(self, menu):
         """
         Options on the "Advanced" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Advanced Options")
         addopt = partial(menu.add_option, category_name)
@@ -2083,6 +2350,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_advanced_options_2(self, menu):
         """
         Continue options on the "Advanced" tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Include")
         addopt = partial(menu.add_option, category_name)
@@ -2130,6 +2399,8 @@ class NavWebOptions(MenuReportOptions):
     def __add_place_map_options(self, menu):
         """
         options for the Place Map tab.
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Place Map Options")
         addopt = partial(menu.add_option, category_name)
@@ -2201,12 +2472,15 @@ class NavWebOptions(MenuReportOptions):
     def __add_others_options(self, menu):
         """
         Options for the cms tab, web calendar inclusion, php ...
+
+        @param: menu -- The menu for which we add options
         """
         category_name = _("Other inclusion (CMS, Web Calendar, Php)")
         addopt = partial(menu.add_option, category_name)
 
         self.__usecms = BooleanOption(
             _("Do we include these pages in a cms web ?"), False)
+        self.__usecms.connect('value-changed', self.__usecms_changed)
         addopt("usecms", self.__usecms)
 
         default_dir = "/NAVWEB"
@@ -2222,23 +2496,6 @@ class NavWebOptions(MenuReportOptions):
 
         self.__cms_uri_changed()
 
-        self.__usecal = BooleanOption(
-            _("Do we include the web calendar ?"), False)
-        addopt("usecal", self.__usecal)
-
-        default_calendar = "/WEBCAL"
-        self.__calendar_uri = DestinationOption(_("URI"),
-                                                os.path.join(
-                                                    config.get('paths.website'
-                                                               '-cal-uri'),
-                                                    default_calendar))
-        self.__calendar_uri.set_help(
-            _("Where do you place your web site ? default = /WEBCAL"))
-        self.__calendar_uri.connect('value-changed',
-                                    self.__calendar_uri_changed)
-        addopt("caluri", self.__calendar_uri)
-
-        self.__calendar_uri_changed()
         self.__graph_changed()
 
         self.__updates = BooleanOption(_("Include the news and updates page"),
@@ -2259,6 +2516,74 @@ class NavWebOptions(MenuReportOptions):
                                     ))
         addopt("maxupdates", self.__maxupdates)
 
+    def __add_translations(self, menu):
+        """
+        Options for selecting multiple languages. The default one is
+        displayed in the display tab. If the option "use multiple
+        languages is not selected, all the fields in this menu will be grayed.
+
+        @param: menu -- The menu for which we add options
+        """
+        category_name = _("Translations")
+        addopt = partial(menu.add_option, category_name)
+
+        mess = _("second language")
+        self.__lang_2 = stdoptions.add_extra_localization_option(menu,
+                                                                 category_name,
+                                                                 mess, "lang2")
+        self.__titl_2 = StringOption(_("Site name for your second language"),
+                                     _('This site title'))
+        self.__titl_2.set_help(_('Give a title in the appropriate language'))
+        addopt("title2", self.__titl_2)
+        mess = _("third language")
+        self.__lang_3 = stdoptions.add_extra_localization_option(menu,
+                                                                 category_name,
+                                                                 mess, "lang3")
+        self.__titl_3 = StringOption(_("Site name for your third language"),
+                                     _('This site title'))
+        self.__titl_3.set_help(_('Give a title in the appropriate language'))
+        addopt("title3", self.__titl_3)
+        mess = _("fourth language")
+        self.__lang_4 = stdoptions.add_extra_localization_option(menu,
+                                                                 category_name,
+                                                                 mess, "lang4")
+        self.__titl_4 = StringOption(_("Site name for your fourth language"),
+                                     _('This site title'))
+        self.__titl_4.set_help(_('Give a title in the appropriate language'))
+        addopt("title4", self.__titl_4)
+        mess = _("fifth language")
+        self.__lang_5 = stdoptions.add_extra_localization_option(menu,
+                                                                 category_name,
+                                                                 mess, "lang5")
+        self.__titl_5 = StringOption(_("Site name for your fifth language"),
+                                     _('This site title'))
+        self.__titl_5.set_help(_('Give a title in the appropriate language'))
+        addopt("title5", self.__titl_5)
+        mess = _("sixth language")
+        self.__lang_6 = stdoptions.add_extra_localization_option(menu,
+                                                                 category_name,
+                                                                 mess, "lang6")
+        self.__titl_6 = StringOption(_("Site name for your sixth language"),
+                                     _('This site title'))
+        self.__titl_6.set_help(_('Give a title in the appropriate language'))
+        addopt("title6", self.__titl_6)
+
+    def __activate_translations(self):
+        """
+        Make the possible extra languages selectable.
+        """
+        status = self.__multitrans.get_value()
+        self.__lang_2.set_available(status)
+        self.__titl_2.set_available(status)
+        self.__lang_3.set_available(status)
+        self.__titl_3.set_available(status)
+        self.__lang_4.set_available(status)
+        self.__titl_4.set_available(status)
+        self.__lang_5.set_available(status)
+        self.__titl_5.set_available(status)
+        self.__lang_6.set_available(status)
+        self.__titl_6.set_available(status)
+
     def __updates_changed(self):
         """
         Update the change of storage: archive or directory
@@ -2271,22 +2596,20 @@ class NavWebOptions(MenuReportOptions):
             self.__maxupdates.set_available(False)
             self.__maxdays.set_available(False)
 
+    def __usecms_changed(self):
+        """
+        We need to use cms or not
+        If we use a cms, the storage must be an archive
+        """
+        if self.__usecms.get_value():
+            self.__archive.set_value(True)
+        self.__target_uri = self.__cms_uri.get_value()
+
     def __cms_uri_changed(self):
         """
         Update the change of storage: archive or directory
         """
         self.__target_uri = self.__cms_uri.get_value()
-
-    def __calendar_uri_changed(self):
-        """
-        Update the change of storage: Where is the web calendar ?
-
-        Possible cases :
-        1 - /WEBCAL                  (relative URI to the navweb site)
-        2 - http://mysite.org/WEBCAL (URL is on another website)
-        3 - //mysite.org/WEBCAL      (PRL depend on the protocol used)
-        """
-        self.__target_cal_uri = self.__calendar_uri.get_value()
 
     def __extra_page_name_changed(self):
         """
@@ -2313,6 +2636,9 @@ class NavWebOptions(MenuReportOptions):
             self.__target.set_directory_entry(False)
         else:
             self.__target.set_directory_entry(True)
+            # We don't use an archive. If usecms is True, set it to False
+            if self.__usecms:
+                self.__usecms.set_value(False)
 
     def __update_filters(self):
         """
@@ -2436,13 +2762,103 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__googlemapkey.set_available(False)
 
+    def __add_calendar_options(self, menu):
+        """
+        Options on the "Calendar Options" tab.
+        """
+        category_name = _("Calendar Options")
+        addopt = partial(menu.add_option, category_name)
+
+        # set to today's date for use in menu, etc.
+        today = Today()
+
+        self.__usecal = BooleanOption(
+            _("Do we include the web calendar ?"), False)
+        self.__usecal.set_help(_('Whether to include '
+                                 'a calendar for year %s' % today.get_year()))
+        self.__usecal.connect('value-changed', self.__usecal_changed)
+        addopt("usecal", self.__usecal)
+
+        self.__start_dow = EnumeratedListOption(_("First day of week"), 1)
+        for count in range(1, 8):
+            self.__start_dow.add_item(count, _dd.long_days[count].capitalize())
+        self.__start_dow.set_help(_("Select the first day of the week "
+                                    "for the calendar"))
+        menu.add_option(category_name, "start_dow", self.__start_dow)
+
+        maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
+        maiden_name.add_item('spouse_first', _("Wives use husband's surname "
+                                               "(from first family listed)"))
+        maiden_name.add_item('spouse_last', _("Wives use husband's surname "
+                                              "(from last family listed)"))
+        maiden_name.add_item("own", _("Wives use their own surname"))
+        maiden_name.set_help(_("Select married women's displayed surname"))
+        menu.add_option(category_name, "maiden_name", maiden_name)
+        self.__maiden_name = maiden_name
+
+        self.__makeoneday = BooleanOption(_('Create one day event pages for'
+                                            ' Year At A Glance calendar'),
+                                          False)
+        self.__makeoneday.set_help(_('Whether to create one day pages or not'))
+        menu.add_option(category_name, 'makeoneday', self.__makeoneday)
+
+        self.__birthdays = BooleanOption(_("Include birthdays"), True)
+        self.__birthdays.set_help(_("Include birthdays in the calendar"))
+        menu.add_option(category_name, "birthdays", self.__birthdays)
+
+        self.__anniv = BooleanOption(_("Include anniversaries"), True)
+        self.__anniv.set_help(_("Include anniversaries in the calendar"))
+        menu.add_option(category_name, "anniversaries", self.__anniv)
+
+        self.__death_anniv = BooleanOption(_('Include death dates'), False)
+        self.__death_anniv.set_help(_('Include death anniversaries in '
+                                      'the calendar'))
+        menu.add_option(category_name, 'death_anniv', self.__death_anniv)
+
+        self.__alive = BooleanOption(_("Include only living people"), True)
+        self.__alive.set_help(_("Include only living people in the calendar"))
+        menu.add_option(category_name, "alive", self.__alive)
+
+        default_before = config.get('behavior.max-age-prob-alive')
+        self.__after_year = NumberOption(_('Show data only after year'),
+                                         (today.get_year() - default_before),
+                                         0, today.get_year())
+        self.__after_year.set_help(_("Show data only after this year."
+                                     " Default is current year - "
+                                     " 'maximum age probably alive' which is "
+                                     "defined in the dates preference tab."))
+        menu.add_option(category_name, 'after_year', self.__after_year)
+
+    def __usecal_changed(self):
+        """
+        Do we need to choose calendar options ?
+        """
+        if self.__usecal.get_value():
+            self.__start_dow.set_available(True)
+            self.__maiden_name.set_available(True)
+            self.__makeoneday.set_available(True)
+            self.__birthdays.set_available(True)
+            self.__anniv.set_available(True)
+            self.__alive.set_available(True)
+            self.__death_anniv.set_available(True)
+            self.__after_year.set_available(True)
+        else:
+            self.__start_dow.set_available(False)
+            self.__maiden_name.set_available(False)
+            self.__makeoneday.set_available(False)
+            self.__birthdays.set_available(False)
+            self.__anniv.set_available(False)
+            self.__alive.set_available(False)
+            self.__death_anniv.set_available(False)
+            self.__after_year.set_available(False)
+
 # See : http://www.gramps-project.org/bugs/view.php?id = 4423
 
 # Contraction data taken from CLDR 22.1. Only the default variant is considered.
-# The languages included below are, by no means, all the langauges that have
-# contractions - just a sample of langauges that have been supported
+# The languages included below are, by no means, all the languages that have
+# contractions - just a sample of languages that have been supported
 
-# At the time of writing (Feb 2013), the following langauges have greater that
+# At the time of writing (Feb 2013), the following languages have greater that
 # 50% coverage of translation of Gramps: bg Bulgarian, ca Catalan, cs Czech, da
 # Danish, de German, el Greek, en_GB, es Spanish, fi Finish, fr French, he
 # Hebrew, hr Croation, hu Hungarian, it Italian, ja Japanese, lt Lithuanian, nb

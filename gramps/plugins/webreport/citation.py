@@ -67,12 +67,14 @@ class CitationPages(BasePage):
     database objects. It passes this information to the 'Sources' tab. It is
     told by the 'add_instances' call which 'Citation's to display.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         pass

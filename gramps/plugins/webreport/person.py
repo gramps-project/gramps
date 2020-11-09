@@ -54,6 +54,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (ChildRefType, Date, Name, Person, EventRoleType,
                             Family, Event, EventType)
 from gramps.gen.lib.date import Today
+from gramps.gen.mime import is_image_type
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import utils
 from gramps.gen.utils.alive import probably_alive
@@ -63,6 +64,7 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.proxy import LivingProxyDb
+from gramps.gen.relationship import get_relationship_calculator
 
 #------------------------------------------------
 # specific narrative web import
@@ -111,11 +113,14 @@ class PersonPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.ind_dict = defaultdict(set)
         self.mapservice = None
         self.sort_name = None
@@ -128,19 +133,22 @@ class PersonPages(BasePage):
         self.rel_class = None
         self.placemappages = None
         self.name = None
+        self.gender_map = None
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Individuals tab, namely the
         individual index and the individual pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Person].items():
             LOG.debug("    %s", str(item))
         message = _('Creating individual pages')
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Person]) + 1
                                  ) as step:
             index = 1
@@ -148,9 +156,9 @@ class PersonPages(BasePage):
                 step()
                 index += 1
                 person = self.r_db.get_person_from_handle(person_handle)
-                self.individualpage(self.report, title, person)
+                self.individualpage(self.report, the_lang, the_title, person)
             step()
-            self.individuallistpage(self.report, title,
+            self.individuallistpage(self.report, the_lang, the_title,
                                     self.report.obj_dict[Person].keys())
 
 #################################################
@@ -158,17 +166,18 @@ class PersonPages(BasePage):
 #    creates the Individual List Page
 #
 #################################################
-    def individuallistpage(self, report, title, ppl_handle_list):
+    def individuallistpage(self, report, the_lang, the_title, ppl_handle_list):
         """
         Creates an individual page
 
         @param: report          -- The instance of the main report class
                                    for this report
-        @param: title           -- Is the title of the web page
+        @param: the_lang        -- The lang to process
+        @param: the_title       -- The title page related to the language
         @param: ppl_handle_list -- The list of people for whom we need
                                    to create a page.
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         prev_letter = " "
 
         # plugin variables for this module
@@ -426,22 +435,25 @@ class PersonPages(BasePage):
 #    creates an Individual Page
 #
 #################################################
-    gender_map = {
-        Person.MALE    : _('male'),
-        Person.FEMALE  : _('female'),
-        Person.UNKNOWN : _('unknown'),
-        }
-
-    def individualpage(self, report, title, person):
+    def individualpage(self, report, the_lang, the_title, person):
         """
         Creates an individual page
 
-        @param: report -- The instance of the main report class for this report
-        @param: title  -- Is the title of the web page
-        @param: person -- The person to use for this page.
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: person    -- The person to use for this page.
         """
-        BasePage.__init__(self, report, title, person.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          person.get_gramps_id())
         place_lat_long = []
+
+        self.gender_map = {
+            Person.MALE    : self._('male'),
+            Person.FEMALE  : self._('female'),
+            Person.UNKNOWN : self._('unknown'),
+            }
 
         self.person = person
         self.bibli = Bibliography()
@@ -463,7 +475,8 @@ class PersonPages(BasePage):
 
         # get the Relationship Calculator so that we can determine
         # bio, half, step- siblings for use in display_ind_parents() ...
-        self.rel_class = self.report.rel_class
+        self.rel_class = get_relationship_calculator(reinit=True,
+                                                     clocale=self.rlocale)
 
         output_file, sio = self.report.create_file(person.get_handle(), "ppl")
         self.uplink = True
@@ -619,8 +632,12 @@ class PersonPages(BasePage):
         """
         creates individual family tracelife map events
 
-        @param: person -- person from database
-        @param: links  -- used to add links in the popup html page
+        @param: tracelife  -- The family event list
+        @param: placetitle -- The place title to add to the event list
+        @param: latitude   -- The latitude for this place
+        @param: longitude  -- The longitude for this place
+        @param: seq_       -- The sequence number for this event (googlemap)
+        @param: links      -- Used to add links in the popup html page
         """
         # are we using Google?
         if self.mapservice == "Google":
@@ -715,8 +732,8 @@ class PersonPages(BasePage):
         # call_(report, up, head)
 
         # add narrative-maps style sheet
-        if self.usecms:
-            fname = "/".join([self.target_uri, "css", "narrative-maps.css"])
+        if self.the_lang and not self.usecms:
+            fname = "/".join(["..", "css", "narrative-maps.css"])
         else:
             fname = "/".join(["css", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.uplink)
@@ -731,11 +748,6 @@ class PersonPages(BasePage):
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else: # OpenStreetMap, Stamen...
-            url = self.secure_mode
-            url += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                    "css/bootstrap.min.css")
-            head += Html("link", href=url, type="text/javascript",
-                         rel="stylesheet")
             src_js = self.secure_mode
             src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
             head += Html("script", type="text/javascript",
@@ -746,17 +758,12 @@ class PersonPages(BasePage):
             url = "https://openlayers.org/en/latest/css/ol.css"
             head += Html("link", href=url, type="text/css",
                          rel="stylesheet")
-            src_js = self.secure_mode
-            src_js += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                       "js/bootstrap.min.js")
-            head += Html("script", type="text/javascript",
-                         src=src_js, inline=True)
 
         if number_markers > 0:
             tracelife = "["
             seq_ = 0
             old_place_title = ""
-            links = ""
+            links = "''"
             ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
             ppl_lnk = ""
             for index in range(0, number_markers):
@@ -789,12 +796,12 @@ class PersonPages(BasePage):
                                                     self.get_name(pers))
                     url = self.report.build_url_fname_html(event.get_handle(),
                                                            "evt", self.uplink)
-                    evt_type = self._(str(event.get_type()))
+                    evt_type = self._(event.get_type().xml_str())
                     evt_date = self.rlocale.get_date(event.get_date_object())
                     evt_lnk = ln_str % (url, evt_date, evt_type)
                     evt_lnk += " (" + evt_date + ")"
 
-                    links += ' + "</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                    links += ' + "<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                     if index == number_markers - 1:
                         tracelife = self._create_family_tracelife(tracelife,
                                                                   placetitle,
@@ -841,12 +848,12 @@ class PersonPages(BasePage):
                         url = self.report.build_url_fname_html(event.handle,
                                                                "evt",
                                                                self.uplink)
-                        evt_type = self._(str(event.get_type()))
+                        evt_type = self._(event.get_type().xml_str())
                         date = self.rlocale.get_date(event.get_date_object())
                         evt_lnk = ln_str % (url, date, evt_type)
                         evt_lnk += " (" + date + ")"
 
-                        links = '"</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                        links = '"<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                 elif index == number_markers-1:
                     tracelife = self._create_family_tracelife(tracelife,
                                                               placetitle,
@@ -881,12 +888,12 @@ class PersonPages(BasePage):
                         url = self.report.build_url_fname_html(event.handle,
                                                                "evt",
                                                                self.uplink)
-                        evt_type = self._(str(event.get_type()))
+                        evt_type = self._(event.get_type().xml_str())
                         date = self.rlocale.get_date(event.get_date_object())
                         evt_lnk = ln_str % (url, evt_type, evt_type)
                         evt_lnk += " (" + date + ")"
                     if "<p>" in links:
-                        links += '"</br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
+                        links += '"<br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
                     else:
                         links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                     old_place_title = placetitle
@@ -963,9 +970,9 @@ class PersonPages(BasePage):
                     trow.extend(
                         Html("th", label, class_=colclass, inline=True)
                         for (label, colclass) in [
-                            (_("Date"), "ColumnDate"),
-                            (_("Place Title"), "ColumnPlace"),
-                            (_("Event Type"), "ColumnType")
+                            (self._("Date"), "ColumnDate"),
+                            (self._("Place Title"), "ColumnPlace"),
+                            (self._("Event Type"), "ColumnType")
                         ]
                     )
 
@@ -982,6 +989,7 @@ class PersonPages(BasePage):
                         tbody += trow
 
                         date = event.get_date_object()
+                        evt_name = self._(event.get_type().xml_str())
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
@@ -989,7 +997,7 @@ class PersonPages(BasePage):
                                 (self.place_link(handle, placetitle,
                                                  uplink=True),
                                  "ColumnPlace"),
-                                (self._(str(event.get_type())), "ColumnType")
+                                (evt_name, "ColumnType")
                             ]
                         )
 
@@ -1066,7 +1074,7 @@ class PersonPages(BasePage):
             # if Google and Drop Markers are selected,
             # then add "Drop Markers" button?
             if self.mapservice == "Google" and self.googleopts == "Drop":
-                mapdetail += Html("button", _("Drop Markers"),
+                mapdetail += Html("button", self._("Drop Markers"),
                                   id="drop", onclick="drop()", inline=True)
 
         # add body id for this page...
@@ -1093,12 +1101,20 @@ class PersonPages(BasePage):
 
         # begin family map division plus section title
         with Html("div", class_="subsection", id="familymap") as familymap:
-            familymap += Html("h4", self._("Family Map"), inline=True)
+            with self.create_toggle("map") as h4_head:
+                familymap += h4_head
+                h4_head += self._("Family Map")
 
-            # add family map link
-            person_handle = person.get_handle()
-            url = self.report.build_url_fname_html(person_handle, "maps", True)
-            familymap += self.family_map_link(person_handle, url)
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("div", style="display:%s" % disp,
+                      id="toggle_map") as toggle:
+
+                familymap += toggle
+                # add family map link
+                person_handle = person.get_handle()
+                url = self.report.build_url_fname_html(person_handle,
+                                                       "maps", True)
+                toggle += self.family_map_link(person_handle, url)
 
         # return family map link to its caller
         return familymap
@@ -1106,6 +1122,7 @@ class PersonPages(BasePage):
     def draw_box(self, node, col, person):
         """
         Draw the box around the AncestorTree Individual name box...
+
         @param: node   -- The node defining the box location
         @param: col    -- The generation number
         @param: person -- The person to set in the box
@@ -1135,28 +1152,30 @@ class PersonPages(BasePage):
             boxbg += Html("span", person_name, class_="unlinked", inline=True)
         else:
             thumbnail_url = None
-            if self.create_media and col < 5:
+            if self.create_media:
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
                     photo = self.r_db.get_media_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
-                    if mime_type:
+                    if mime_type and is_image_type(mime_type):
                         region = self.media_ref_region_to_object(photo_handle,
                                                                  person)
+                        rbuf = self.report.build_url_fname
                         if region:
                             # make a thumbnail of this region
                             newpath = self.copy_thumbnail(
                                 photo_handle, photo, region)
-                            # TODO. Check if build_url_fname can be used.
-                            newpath = "/".join(['..']*3 + [newpath])
+                            newpath = rbuf(newpath, None, self.uplink,
+                                           image=True)
                             if win():
                                 newpath = newpath.replace('\\', "/")
                             thumbnail_url = newpath
                         else:
                             (dummy_photo_url, thumbnail_url) = \
                                 self.report.prepare_copy_media(photo)
-                            thumbnail_url = "/".join(['..']*3 + [thumbnail_url])
+                            thumbnail_url = rbuf(thumbnail_url, None,
+                                                 self.uplink, image=True)
                             if win():
                                 thumbnail_url = thumbnail_url.replace('\\', "/")
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
@@ -1169,7 +1188,7 @@ class PersonPages(BasePage):
                 death = self.rlocale.get_date(dd_event.get_date_object())
             if death == "":
                 death = "..."
-            value = person_name + "<br/>*"+ birth+ "<br/>+"+ death
+            value = person_name + "<br>*"+ birth+ "<br>+"+ death
             tdval = Html("td", value, class_="name")
             table = Html("table", class_="table")
             if thumbnail_url is None:
@@ -1333,19 +1352,26 @@ class PersonPages(BasePage):
                                        _HEIGHT, _VGAP)
 
         top = abs(top)
-        # We know the height in 'pixels' where every Ancestor will sit
-        # precisely on an integer unit boundary.
-        with Html("div", id="tree", class_="subsection") as tree:
-            tree += Html("h4", _('Ancestors'), inline=True)
-            with Html("div", id="treeContainer",
-                      style="width:%dpx; height:%dpx; top: %dpx" % (
-                          l_tree.width + _XOFFSET* (generations + 1) + _WIDTH,
-                          height + top + _HEIGHT + _VGAP, top)
-                     ) as container:
-                tree += container
-                container += self.draw_tree(l_tree, 1, None)
+        tree_width = l_tree.width + _XOFFSET* (generations + 1) + _WIDTH
+        tree_height = height + top + _HEIGHT + _VGAP
+        with Html("div", id="tree", class_="subsection") as treecont:
+            with self.create_toggle("anc") as h4_head:
+                treecont += h4_head
+                h4_head += self._("Ancestors")
+            # We know the height in 'pixels' where every Ancestor will sit
+            # precisely on an integer unit boundary.
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("div", id="toggle_anc", class_="tree",
+                      style="display:%s" % disp) as tree:
+                treecont += tree
+                with Html("div", id="treeContainer",
+                          style="width:%dpx; height:%dpx; top: %dpx" % (
+                              tree_width, tree_height, top)
+                         ) as container:
+                    tree += container
+                    container += self.draw_tree(l_tree, 1, None)
 
-        return tree
+        return treecont
 
     def draw_tree(self, l_node, gen_nr, c_node):
         """
@@ -1387,9 +1413,13 @@ class PersonPages(BasePage):
         """
         # begin Associations division
         with Html("div", class_="subsection", id="Associations") as section:
-            section += Html("h4", self._('Associations'), inline=True)
+            with self.create_toggle("assoc") as h4_head:
+                section += h4_head
+                h4_head += self._("Associations")
 
-            with Html("table", class_="infolist assoclist") as table:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_="infolist assoclist",
+                      id="toggle_assoc", style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
@@ -1505,8 +1535,12 @@ class PersonPages(BasePage):
             mother = None
 
         with Html("div", id="pedigree", class_="subsection") as ped:
-            ped += Html("h4", self._('Pedigree'), inline=True)
-            with Html("ol", class_="pedigreegen") as pedol:
+            with self.create_toggle("pedigree") as h4_head:
+                ped += h4_head
+                h4_head += self._("Pedigree")
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("ol", class_="pedigreegen", style="display:%s" % disp,
+                      id="toggle_pedigree") as pedol:
                 ped += pedol
                 if father and mother:
                     pedfa = Html("li") + self.pedigree_person(father)
@@ -1599,8 +1633,8 @@ class PersonPages(BasePage):
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
                         trow = Html("tr") + (
-                            Html("td", _("Call Name"), class_="ColumnAttribute",
-                                 inline=True),
+                            Html("td", self._("Call Name"),
+                                 class_="ColumnAttribute", inline=True),
                             Html("td", call_name, class_="ColumnValue",
                                  inline=True)
                             )
@@ -1613,7 +1647,7 @@ class PersonPages(BasePage):
                     # (see http://gramps.1791082.n4.nabble.com/Where-is-
                     # nickname-stored-tp4469779p4484272.html), and also because
                     # the attribute is (normally) displayed lower down the
-                    # wNarrative Web report.
+                    # Narrative Web report.
                     nick_name = name.get_nick_name()
                     if nick_name and nick_name != first_name:
                         trow = Html("tr") + (
@@ -1654,10 +1688,10 @@ class PersonPages(BasePage):
                     if birth:
                         birth_date = birth.get_date_object()
 
+                death_date = _find_death_date(self.r_db, self.person)
                 if birth_date and birth_date is not Date.EMPTY:
                     alive = probably_alive(self.person, self.r_db, Today())
 
-                    death_date = _find_death_date(self.r_db, self.person)
                     if not alive and death_date is not None:
                         nyears = death_date - birth_date
                         nyears = nyears.format(precision=3,
@@ -1669,6 +1703,35 @@ class PersonPages(BasePage):
                                  class_="ColumnValue", inline=True)
                             )
                         table += trow
+                if self.report.options['toggle']:
+                    # Show birth and/or death date if we use the close button.
+                    if birth_date and birth_date is not Date.EMPTY:
+                        trow = Html("tr") + (
+                            Html("td", self._("Birth date"),
+                                 class_="ColumnAttribute", inline=True),
+                            Html("td", self.rlocale.get_date(birth_date),
+                                 class_="ColumnValue", inline=True)
+                            )
+                        table += trow
+                    if death_date and death_date is not Date.EMPTY:
+                        trow = Html("tr") + (
+                            Html("td", self._("Death date"),
+                                 class_="ColumnAttribute", inline=True),
+                            Html("td", self.rlocale.get_date(death_date),
+                                 class_="ColumnValue", inline=True)
+                            )
+                        table += trow
+
+                # Tags
+                tags = self.show_tags(self.person)
+                if tags and self.report.inc_tags:
+                    trow = Html("tr") + (
+                        Html("td", self._("Tags"),
+                             class_="ColumnAttribute", inline=True),
+                        Html("td", tags,
+                             class_="ColumnValue", inline=True)
+                        )
+                    table += trow
 
         # return all three pieces to its caller
         # do NOT combine before returning
@@ -1688,10 +1751,15 @@ class PersonPages(BasePage):
 
         # begin events division and section title
         with Html("div", id="events", class_="subsection") as section:
-            section += Html("h4", self._("Events"), inline=True)
+            with self.create_toggle("event") as h4_head:
+                section += h4_head
+                h4_head += self._("Events")
 
             # begin events table
-            with Html("table", class_="infolist eventlist") as table:
+            classe = "infolist eventlist toggle_event"
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_=classe, id="toggle_event",
+                      style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
@@ -1829,9 +1897,6 @@ class PersonPages(BasePage):
 
                         reln = self.rel_class.get_sibling_relationship_string(
                             sibling_type, self.person.gender, child.gender)
-                        # We have a problem here : reln is never in the choosen
-                        # language but in the default language.
-                        # Does get_sibling_relationship_string work ?
                         reln = reln[0].upper() + reln[1:]
                     except Exception:
                         reln = self._("Not siblings")
@@ -1998,10 +2063,14 @@ class PersonPages(BasePage):
 
         # begin parents division
         with Html("div", class_="subsection", id="parents") as section:
-            section += Html("h4", self._("Parents"), inline=True)
+            with self.create_toggle("parent") as h4_head:
+                section += h4_head
+                h4_head += self._("Parents")
 
             # begin parents table
-            with Html("table", class_="infolist") as table:
+            disp = "none" if self.report.options['toggle'] else "block"
+            with Html("table", class_="infolist toggle_parent",
+                      id="toggle_parent", style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
