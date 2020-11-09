@@ -3354,10 +3354,10 @@ class BasePage:
             svg += Html("polygon", points=points)
             toggle_name = 'toggle_' + element
             id_name = 'icon_' + element
-            with Html("h4") as toggle:
+            with Html("h4",
+                      onclick="toggleContent('" + toggle_name
+                      + "', '" + id_name + "');") as toggle:
                 toggle += Html("button", svg,
-                               onclick="toggleContent('" + toggle_name
-                               + "', '" + id_name + "');",
                                id=id_name, class_='icon')
         else:
             toggle = Html("h4", inline=True)
