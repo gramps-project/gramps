@@ -2225,13 +2225,13 @@ class BasePage:
                     newpath = self.copy_thumbnail(photo_handle, photo, region)
                     newpath = self.report.build_url_fname(newpath, uplink=True,
                                                           image=True)
-
                     snapshot += self.media_link(photo_handle, newpath, descr,
                                                 uplink=self.uplink,
                                                 usedescr=False)
                 else:
                     dummy_rpath, newpath = self.report.prepare_copy_media(photo)
-                    newpath = self.report.build_url_fname(newpath, uplink=True)
+                    newpath = self.report.build_url_fname(newpath, image=True,
+                                                          uplink=self.uplink)
                     snapshot += self.media_link(photo_handle, newpath,
                                                 descr,
                                                 uplink=self.uplink,
