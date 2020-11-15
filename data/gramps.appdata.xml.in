@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>org.gramps.gramps</id>
-  <metadata_license>CC0-1.0</metadata_license>
   <name>Gramps</name>
-  <summary>Genealogical research program</summary>
-
+  <summary>Manage genealogical information, perform genealogical research and analysis</summary>
   <description>
     <p>Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.</p>
     <p>It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events.</p>
     <p>All of your research is kept organized, searchable and as precise as you need it to be.</p>
   </description>
 
-  <launchable type="desktop-id">gramps.desktop</launchable>
+  <developer_name>Gramps Development Team</developer_name>
+  <project_license>GPL-2.0-or-later</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+
   <url type="homepage">https://gramps-project.org/</url>
   <url type="bugtracker">https://gramps-project.org/bugs/</url>
   <url type="help">https://gramps-project.org/wiki/index.php?title=Main_page</url>
   <url type="translate">https://www.gramps-project.org/wiki/index.php?title=Translating_Gramps</url>
-  <translation type="gettext">gramps</translation>
-  <project_license>GPL-2.0+</project_license>
-  <developer_name>Gramps Development Team</developer_name>
 
   <screenshots>
     <screenshot>
@@ -38,9 +36,12 @@
     </screenshot>
   </screenshots>
 
+  <launchable type="desktop-id">gramps.desktop</launchable>
   <provides>
     <binary>gramps</binary>
   </provides>
+
+  <translation type="gettext">gramps</translation>
 
   <content_rating type="oars-1.1" />
 
