@@ -22,20 +22,8 @@
 """ Unittest for user.py """
 
 import unittest
+from unittest.mock import Mock, patch
 from .. import user
-import sys
-
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock, patch
-    else:
-        from unittest.mock import Mock, patch
-
-    MOCKING = True
-
-except:
-    MOCKING = False
-    print ("Mocking disabled", sys.exc_info()[0:2])
 
 class TestUser:
     TITLE = "Testing prompt"
@@ -47,7 +35,6 @@ class TestUser_prompt(unittest.TestCase):
     def setUp(self):
         self.user = user.User()
 
-    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_runs_QuestionDialog2(self):
         with patch('gramps.gui.user.QuestionDialog2') as MockQD:
             self.user.prompt(TestUser.TITLE, TestUser.MSG,

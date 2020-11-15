@@ -22,20 +22,8 @@
 """ Unittest for argparser.py """
 
 import unittest
+from unittest.mock import Mock
 from ..argparser import ArgParser
-import sys
-
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock
-    else:
-        from unittest.mock import Mock
-
-    MOCKING = True
-
-except:
-    MOCKING = False
-    print ("Mocking disabled", sys.exc_info()[0:2])
 
 class TestArgParser(unittest.TestCase):
     def setUp(self):

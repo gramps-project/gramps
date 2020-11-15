@@ -20,19 +20,7 @@
 #
 
 import unittest
-import sys
-
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock
-    else:
-        from unittest.mock import Mock
-
-    MOCKING = True
-
-except:
-    MOCKING = False
-    print ("Mocking disabled, some testing skipped", sys.exc_info()[0:2])
+from unittest.mock import Mock
 
 class LexGettextTest(unittest.TestCase):
     SRC_WORD = "Inflect-me"
@@ -45,19 +33,15 @@ class LexGettextTest(unittest.TestCase):
         self.trans = GrampsTranslations()
 
     def setup_sgettext_mock(self, msgval_expected):
-        if MOCKING:
-            mock = Mock(return_value=msgval_expected)
-        else:
-            mock = lambda msgid: msgval_expected
+        mock = Mock(return_value=msgval_expected)
         self.trans.sgettext = mock
 
     def tearDown(self):
-        if MOCKING:
-            try:
-                self.trans.sgettext.assert_called_once_with(
-                    self.MSGID, self.CONTEXT)
-            except AttributeError as e:
-                print ("Apparently the test has never set up the mock: ", e)
+        try:
+            self.trans.sgettext.assert_called_once_with(
+                self.MSGID, self.CONTEXT)
+        except AttributeError as e:
+            print ("Apparently the test has never set up the mock: ", e)
 
     def testSrcWordOnlyIfNoTranslation(self):
         self.setup_sgettext_mock(self.SRC_WORD)
