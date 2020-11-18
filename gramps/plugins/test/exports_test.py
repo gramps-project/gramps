@@ -24,9 +24,10 @@ import os
 import difflib
 from unittest.mock import patch
 from time import localtime, strptime
+import tempfile
 
 from gramps.test.test_util import Gramps
-from gramps.gen.const import TEMP_DIR, DATA_DIR
+from gramps.gen.const import DATA_DIR
 from gramps.gen.datehandler import set_format
 from gramps.gen.user import User
 from gramps.gen.utils.config import config
@@ -57,22 +58,23 @@ def do_it(srcfile, tstfile, dfilter=None):
     """
     tst_file = os.path.join(TEST_DIR, srcfile)
     expect_file = os.path.join(TEST_DIR, tstfile)
-    result_file = os.path.join(TEMP_DIR, tstfile)
-    err = call("-C", TREE_NAME, "-q",
-               "--import", tst_file,
-               "--export", result_file)[1]
-    if "Cleaning up." not in err:
-        return "Export failed, no 'Cleaning up.'"
-    msg = compare(expect_file, result_file, dfilter)
-    if not msg:
-        # we will leave the result_file in place if there was an error.
-        try:
-            os.remove(result_file)
-        except OSError:
-            pass
-        return
-    else:
-        return msg
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        result_file = os.path.join(tmpdirname, tstfile)
+        err = call("-C", TREE_NAME, "-q",
+                   "--import", tst_file,
+                   "--export", result_file)[1]
+        if "Cleaning up." not in err:
+            return "Export failed, no 'Cleaning up.'"
+        msg = compare(expect_file, result_file, dfilter)
+        if not msg:
+            # we will leave the result_file in place if there was an error.
+            try:
+                os.remove(result_file)
+            except OSError:
+                pass
+            return
+        else:
+            return msg
 
 
 def compare(expect_file, result_file, dfilter=None):

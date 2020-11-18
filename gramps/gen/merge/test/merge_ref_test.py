@@ -29,11 +29,12 @@ from io import BytesIO
 import difflib
 import copy
 import lxml.etree as ET
+import tempfile
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
-from gramps.gen.const import DATA_DIR, USER_PLUGINS, TEMP_DIR
+from gramps.gen.const import DATA_DIR, USER_PLUGINS
 from gramps.version import VERSION
 from gramps.gen.lib import Name, Surname
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -104,53 +105,43 @@ class BaseMergeCheck(unittest.TestCase):
 
     def check_results(self, input_doc, expect_doc, result_str, err_str,
                       test_error_str=''):
-        input_file = os.path.join(TEMP_DIR, "merge_test_input.gramps")
-        try:
-            os.remove(input_file)
-        except OSError:
-            pass
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            input_file = os.path.join(tmpdirname, "merge_test_input.gramps")
 
-        if err_str:
-            if test_error_str:
-                self.assertIn(test_error_str, err_str)
-                return
-            else:
-                if "Traceback (most recent call last):" in err_str:
-                    inp = self.canonicalize(input_doc)
-                    inpt = open(input_file, mode='wb')
-                    inpt.write(inp)
-                    inpt.close()
-                    raise Exception(err_str)
-        result = self.canonicalize(result_str)
-        result_file = os.path.join(TEMP_DIR, "merge_test_result.gramps")
-        try:
-            os.remove(result_file)
-        except OSError:
-            pass
-        expect = self.canonicalize(expect_doc)
-        expect_file = os.path.join(TEMP_DIR, "merge_test_expected.gramps")
-        try:
-            os.remove(expect_file)
-        except OSError:
-            pass
-        if result != expect:
-            res = open(result_file, mode='wb')
-            res.write(result)
-            res.close()
-            eres = open(expect_file, mode='wb')
-            eres.write(expect)
-            eres.close()
-            inp = self.canonicalize(input_doc)
-            inpt = open(input_file, mode='wb')
-            inpt.write(inp)
-            inpt.close()
-            result = result.decode('utf-8')
-            expect = expect.decode('utf-8')
-            diff = difflib.ndiff(result, expect)
-            msg = ""
-            for line in diff:
-                msg += line
-            self.fail(msg)
+            if err_str:
+                if test_error_str:
+                    self.assertIn(test_error_str, err_str)
+                    return
+                else:
+                    if "Traceback (most recent call last):" in err_str:
+                        inp = self.canonicalize(input_doc)
+                        inpt = open(input_file, mode='wb')
+                        inpt.write(inp)
+                        inpt.close()
+                        raise Exception(err_str)
+            result = self.canonicalize(result_str)
+            result_file = os.path.join(tmpdirname, "merge_test_result.gramps")
+            expect = self.canonicalize(expect_doc)
+            expect_file = os.path.join(tmpdirname, "merge_test_expected.gramps")
+
+            if result != expect:
+                res = open(result_file, mode='wb')
+                res.write(result)
+                res.close()
+                eres = open(expect_file, mode='wb')
+                eres.write(expect)
+                eres.close()
+                inp = self.canonicalize(input_doc)
+                inpt = open(input_file, mode='wb')
+                inpt.write(inp)
+                inpt.close()
+                result = result.decode('utf-8')
+                expect = expect.decode('utf-8')
+                diff = difflib.ndiff(result, expect)
+                msg = ""
+                for line in diff:
+                    msg += line
+                self.fail(msg)
 
     def do_family_case(self, phoenix_id, titanic_id, father_h, mother_h,
                        input_doc, expect_doc, test_error_str=''):
@@ -180,15 +171,12 @@ class BaseMergeCheck(unittest.TestCase):
             msg = '\n***** result:\n' + result_str + \
                 '\n***** expect:\n' + expect_str
             inp = self.canonicalize(input_doc)
-            input_file = os.path.join(TEMP_DIR, "merge_test_input.gramps")
-            try:
-                os.remove(input_file)
-            except OSError:
-                pass
-            inpt = open(input_file, mode='wb')
-            inpt.write(inp)
-            inpt.close()
-            self.fail(msg)
+            with tempfile.TemporaryDirectory() as tmpdirname:
+                input_file = os.path.join(tmpdirname, "merge_test_input.gramps")
+                inpt = open(input_file, mode='wb')
+                inpt.write(inp)
+                inpt.close()
+                self.fail(msg)
 
 
 #-------------------------------------------------------------------------

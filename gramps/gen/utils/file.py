@@ -32,6 +32,7 @@ File and folder related utility functions
 import os
 import sys
 import shutil
+import tempfile
 import hashlib
 import logging
 LOG = logging.getLogger(".gen.utils.file")
@@ -42,7 +43,7 @@ LOG = logging.getLogger(".gen.utils.file")
 #
 #-------------------------------------------------------------------------
 from ..constfunc import win, mac, get_env_var
-from ..const import TEMP_DIR, USER_HOME, ENV, GRAMPS_LOCALE as glocale
+from ..const import USER_HOME, ENV, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -94,15 +95,12 @@ def get_empty_tempdir(dirname):
     or for inadequate permissions to delete dir/files or create dir(s)
 
     """
-    dirpath = os.path.join(TEMP_DIR, str(dirname))
-    if os.path.isdir(dirpath):
-        shutil.rmtree(dirpath)
-    os.makedirs(dirpath)
+    dirpath = tempfile.mkdtemp(prefix='gramps-', suffix='-'+dirname)
     return dirpath
 
 def rm_tempdir(path):
     """Remove a tempdir created with get_empty_tempdir"""
-    if path.startswith(TEMP_DIR) and os.path.isdir(path):
+    if path.startswith(tempfile.gettempdir()) and os.path.isdir(path):
         shutil.rmtree(path)
 
 def relative_path(original, base):
