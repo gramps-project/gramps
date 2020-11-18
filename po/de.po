@@ -9217,7 +9217,7 @@ msgstr "Manuskript"
 
 #: ../gramps/gen/lib/srcmediatype.py:66
 msgid "Map"
-msgstr "Karte"
+msgstr "Landkarte"
 
 #: ../gramps/gen/lib/srcmediatype.py:67
 msgid "Newspaper"
@@ -23918,11 +23918,11 @@ msgstr "Personen 'zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1144
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Gramplet zeigt die zu erledigen' Notizen für eine Person."
+msgstr "Gramplet zeigt die 'zu erledigen' Notizen für eine Person."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
 msgid "Event To Do"
-msgstr "Ereignis zu erledigen'"
+msgstr "Ereignis 'zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1158
 msgid "Gramplet showing the To Do notes for an event"
@@ -33112,7 +33112,7 @@ msgstr "M"
 #: ../gramps/plugins/textreport/familygroup.py:509
 msgctxt "acronym for female"
 msgid "F"
-msgstr "F"
+msgstr "W"
 
 #: ../gramps/plugins/textreport/familygroup.py:511
 #, python-format
