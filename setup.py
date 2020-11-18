@@ -351,11 +351,6 @@ data_files_core.append(('share/gramps/css', CSS_FILES))
 data_files_core.append(('share/gramps/css/swanky-purse', SWANKY_PURSE))
 data_files_core.append(('share/gramps/css/swanky-purse/images', SWANKY_IMG))
 
-PNG_FILES = glob.glob(os.path.join('data', '*.png'))
-SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
-data_files_core.append(('share/icons/hicolor/48x48/mimetypes', PNG_FILES))
-data_files_core.append(('share/icons/hicolor/scalable/mimetypes', SVG_FILES))
-
 DTD_FILES = glob.glob(os.path.join('data', '*.dtd'))
 RNG_FILES = glob.glob(os.path.join('data', '*.rng'))
 XML_FILES = glob.glob(os.path.join('data', '*.xml'))
@@ -391,6 +386,10 @@ data_files_gui.append(('share/icons/hicolor/48x48/apps', [APP_48]))
 data_files_gui.append(('share/icons/hicolor/128x128/apps', [APP_128]))
 data_files_gui.append(('share/icons/hicolor/256x256/apps', [APP_256]))
 data_files_gui.append(('share/icons/hicolor/scalable/apps', [APP_SC]))
+MIME_48 = glob.glob(os.path.join(THEME, '48x48', 'mimetypes', '*.png'))
+MIME_SC = glob.glob(os.path.join(THEME, 'scalable', 'mimetypes', '*.svg'))
+data_files_gui.append(('share/icons/hicolor/48x48/mimetypes', MIME_48))
+data_files_gui.append(('share/icons/hicolor/scalable/mimetypes', MIME_SC))
 
 data_files = data_files_core + data_files_gui
 
