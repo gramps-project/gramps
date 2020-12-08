@@ -151,7 +151,7 @@ class Note(BasicPrimaryObject):
         :returns: The list of all textual attributes of the object.
         :rtype: list
         """
-        return [str(self.text)]
+        return [str(self.text), self.gramps_id]
 
     def get_referenced_handles(self):
         """
