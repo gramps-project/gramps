@@ -1343,6 +1343,25 @@ class GrampsPreferences(ConfigureDialog):
             tooltip=_("Show or hide text beside Navigator buttons "
                       "(People, Families, Events...).\n"
                       "Requires Gramps restart to apply."))
+
+        row += 1
+        # Show Plugins Icon:
+        self.add_checkbox(
+            grid, _("Show Plugins icon on toolbar "
+                    "(requires restart)"),
+            row, 'interface.toolbar-plugin', start=0, stop=2,
+            tooltip=_("Show or hide the Plugins icon on the toolbar.\n"
+                      "Requires Gramps restart to apply."))
+
+        row += 1
+        # Show Preferences icon:
+        self.add_checkbox(
+            grid, _("Show Preferences icon on toolbar "
+                    "(requires restart)"),
+            row, 'interface.toolbar-preference', start=0, stop=2,
+            tooltip=_("Show or hide the Preferences icon on the toolbar.\n"
+                      "Requires Gramps restart to apply."))
+
         row += 1
         # Gramplet bar close buttons:
         self.add_checkbox(
@@ -2193,4 +2212,3 @@ class GrampsPreferences(ConfigureDialog):
         entry = obj.get_active()
         config.set(constant, entry)
         self.utf8_show_example()
-

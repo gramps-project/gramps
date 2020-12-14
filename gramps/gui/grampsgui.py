@@ -405,10 +405,10 @@ UIDEFAULT = (
      </child>
     <placeholder id='AfterTools'>
     </placeholder>
-    <child>
+    <child groups="PP1 PP2">
       <object class="GtkSeparatorToolItem"/>
     </child>
-    <child>
+    <child groups="PP1">
       <object class="GtkToolButton" id="Addons">
         <property name="icon-name">gramps-plugin-manager</property>
         <property name="action-name">win.PluginStatus</property>
@@ -421,7 +421,7 @@ UIDEFAULT = (
         <property name="homogeneous">False</property>
       </packing>
      </child>
-    <child>
+    <child groups="PP2">
       <object class="GtkToolButton" id="Preferences">
         <property name="icon-name">gramps-preferences</property>
         <property name="action-name">app.preferences</property>
@@ -708,8 +708,15 @@ class GrampsApplication(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
         self.uimanager = UIManager(self, UIDEFAULT)
+        s_show = []
         if not is_quartz():
-            self.uimanager.show_groups = ['OSX']
+            s_show.append('OSX')
+        if config.get('interface.toolbar-plugin'):
+            s_show.append('PP1')
+        if config.get('interface.toolbar-preference'):
+            s_show.append('PP2')
+        if s_show:
+            self.uimanager.show_groups = s_show
         self.uimanager.update_menu(init=True)
 
         if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
