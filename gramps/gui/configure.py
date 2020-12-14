@@ -1619,6 +1619,22 @@ class GrampsPreferences(ConfigureDialog):
                       "Requires Gramps restart to apply."))
 
         row += 1
+        # Show Plugins Icon:
+        self.add_checkbox(
+           grid, _("Show Plugins icon on toolbar *"),
+           row, 'interface.toolbar-plugin', start=1, stop=3,
+           tooltip=_("Show or hide the Plugins icon on the toolbar.\n"
+                     "Requires Gramps restart to apply."))
+
+        row += 1
+        # Show Preferences icon:
+        self.add_checkbox(
+           grid, _("Show Preferences icon on toolbar *"),
+           row, 'interface.toolbar-preference', start=1, stop=3,
+           tooltip=_("Show or hide the Preferences icon on the toolbar.\n"
+                     "Requires Gramps restart to apply."))
+
+        row += 1
         # Gramplet bar close buttons:
         self.add_checkbox(
             grid, _("Show close button in gramplet bar tabs"),
