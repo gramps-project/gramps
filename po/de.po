@@ -17062,7 +17062,7 @@ msgstr "Ebenen:"
 
 #: ../gramps/gui/glade/editplaceformat.glade:136
 msgid "Street format:"
-msgstr "Sraßenformat:"
+msgstr "Straßenformat:"
 
 #: ../gramps/gui/glade/editplaceformat.glade:148
 #: ../gramps/gui/glade/editplacename.glade:108
