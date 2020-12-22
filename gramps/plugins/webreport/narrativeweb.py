@@ -1408,10 +1408,16 @@ class NavWebReport(Report):
                 else:
                     subdirs = [self.target_uri] + subdirs
             elif self.target_uri not in fname:
-                subdirs = [self.target_uri] + [fname]
+                if self.the_lang and subdir not in ["css", "images", "thumb"]:
+                    subdirs = [self.target_uri] + [self.the_lang] + [fname]
+                else:
+                    subdirs = [self.target_uri] + [fname]
             else:
                 subdirs = []
         else:
+            if self.the_lang and image and uplink != 2:
+                if subdir and subdir[0:3] not in ["css", "ima", "thu"]:
+                    subdirs = [self.the_lang] + subdirs
             if uplink is True:
                 nb_dir += 3
                 subdirs = ['..']*nb_dir + subdirs
@@ -1597,12 +1603,12 @@ class NavWebReport(Report):
                                                  False, image)
                     if self.target_uri in subdirs and image:
                         subdirs.remove(self.target_uri)
-                    if subdir[0:3] in ["css", "ima", "thu"]:
+                    if subdir[0:3] in ["css", "img", "ima", "thu"]:
                         subdirs = [self.target_uri] + subdirs
                 else:
-                    if fname[0:3] in ["css", "ima", "thu"]:
+                    if fname[0:3] in ["css", "img", "ima", "thu"]:
                         subdirs = [self.target_uri]
-                    elif fname[3:6] in ["css", "ima", "thu"]:
+                    elif fname[3:6] in ["css", "img", "ima", "thu"]:
                         subdirs = [self.target_uri]
                         fname = fname[3:]
                     else:

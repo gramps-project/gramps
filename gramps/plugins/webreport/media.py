@@ -335,7 +335,8 @@ class MediaPages(BasePage):
                           result.
         """
         # get media url
-        url = self.report.build_url_fname_html(handle, "img", uplink)
+        url = self.report.build_url_fname(handle, "img", uplink=2,
+                                          image=True) + self.ext
 
         # get name
         name = html_escape(name)
@@ -642,7 +643,8 @@ class MediaPages(BasePage):
         @param: uplink -- If True, then "../../../" is inserted in front of the
                           result.
         """
-        url = self.report.build_url_fname_html(handle, "img", uplink)
+        url = self.report.build_url_fname(handle, "img", uplink,
+                                          image=True) + self.ext
         name = html_escape(name)
         return Html("a", name, name=name, id=name, href=url,
                     title=name, inline=True)
