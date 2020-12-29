@@ -2054,7 +2054,7 @@ class BasePage:
                                                               image=True)
                         imag.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
                         fname = self.report.build_url_fname(obj.get_handle(),
-                                                            "img", False,
+                                                            "img", uplink=2,
                                                             image=True,
                                                            ) + self.ext
                         inc_gallery = self.report.options['gallery']
@@ -2771,7 +2771,8 @@ class BasePage:
                                 of the result.
         @param: usedescr     -- Add media description
         """
-        url = self.report.build_url_fname_html(media_handle, "img", uplink)
+        url = self.report.build_url_fname(media_handle, "img", uplink,
+                                          image=True) + self.ext
         name = html_escape(name)
 
         # begin thumbnail division
