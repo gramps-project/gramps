@@ -1326,6 +1326,14 @@ i + div.grampsstylednote p {
 div.grampsstylednote p {
     padding-bottom: 0.6em;
 }
+div.grampsstylednote a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #542;
+}
+div.grampsstylednote a:visited {
+    color: red;
+}
 .narrative p {
     margin: 0.1em 0 0.2em 0;
     font:normal .9em/1.4em sans-serif;

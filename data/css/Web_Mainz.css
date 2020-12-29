@@ -800,6 +800,14 @@ i + div.grampsstylednote p {
 div.grampsstylednote p {
     padding-bottom: 0.6em;
 }
+div.grampsstylednote a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #7D5925;
+}
+div.grampsstylednote a:visited {
+    color: red;
+}
 
 /* Subsection : References
 ----------------------------------------------------- */
