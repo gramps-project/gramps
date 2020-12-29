@@ -10450,7 +10450,7 @@ msgstr "Nicht aufnehmen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:324
 msgid "Share an existing line"
-msgstr "An einem existierenden Linie teilnehmen"
+msgstr "Bei gemeinsamer Linie"
 
 #: ../gramps/gen/plug/report/stdoptions.py:325
 msgid "On a line of its own"
