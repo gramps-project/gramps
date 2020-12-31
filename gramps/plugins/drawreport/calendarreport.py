@@ -4,6 +4,7 @@
 # Copyright (C) 2008-2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012-2014  Paul Franklin
+# Copyright (C) 2020,2021  Matthias Balk
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,40 +25,39 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from functools import partial
 import datetime
 import time
+from functools import partial
 
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
+import gramps.plugins.lib.libholiday as libholiday
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.const import URL_HOMEPAGE
+from gramps.gen.datehandler import displayer as date_displayer
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.errors import ReportError
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                                    FONT_SERIF, PARA_ALIGN_CENTER,
-                                    PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
-                                    IndexMark, INDEX_TYPE_TOC)
-from gramps.gen.plug.docgen.fontscale import string_trim
-from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption,
-                                  EnumeratedListOption, FilterOption,
-                                  PersonOption)
-from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils
-from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.plug.report import stdoptions
-from gramps.gen.utils.alive import probably_alive
-from gramps.gen.datehandler import displayer as date_displayer
 from gramps.gen.lib import (Date, EventRoleType, EventType, Name, NameType,
                             Person, Surname)
 from gramps.gen.lib.date import gregorian
-
-import gramps.plugins.lib.libholiday as libholiday
+from gramps.gen.plug.docgen import (FONT_SERIF, INDEX_TYPE_TOC,
+                                    PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
+                                    PARA_ALIGN_RIGHT, FontStyle, GraphicsStyle,
+                                    IndexMark, ParagraphStyle)
+from gramps.gen.plug.docgen.fontscale import string_trim
+from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption,
+                                  FilterOption, NumberOption, PersonOption,
+                                  StringOption)
+from gramps.gen.plug.report import MenuReportOptions, Report, stdoptions, utils
+from gramps.gen.utils.alive import probably_alive
+from gramps.gen.utils.symbols import Symbols
 from gramps.plugins.lib.libholiday import g2iso
+
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
@@ -101,6 +101,7 @@ class Calendar(Report):
         self.start_dow = get_value('start_dow')
         self.maiden_name = get_value('maiden_name')
         self.alive = get_value('alive')
+        self.include_death_date = get_value('include_death_date')
         self.birthdays = get_value('birthdays')
         self.text1 = get_value('text1')
         self.text2 = get_value('text2')
@@ -114,6 +115,15 @@ class Calendar(Report):
             raise ReportError(_("Person %s is not in the Database") % pid)
 
         self.set_locale(get_value('trans'))
+
+        self.__setup_symbols()
+
+    def __setup_symbols(self):
+        symbols = Symbols()
+        self.symb_bth = symbols.get_symbol_for_string(symbols.SYMBOL_BIRTH)
+        self.symb_mrg = symbols.get_symbol_for_string(symbols.SYMBOL_MARRIAGE)
+        death_symbol_idx = config.get('utf8.death-symbol')
+        self.symb_dth = symbols.get_death_symbol_for_char(death_symbol_idx)
 
     def get_name(self, person, maiden_name = None):
         """ Return person's name, unless maiden_name given,
@@ -307,137 +317,212 @@ class Calendar(Report):
         This method runs through the data, and collects the relevant dates
         and text.
         """
-        db = self.database
-        people = db.iter_person_handles()
+        people = self.database.iter_person_handles()
         people = self.filter.apply(self.database, people, user=self._user)
-
-        ngettext = self._locale.translation.ngettext # to see "nearby" comments
 
         with self._user.progress(_('Calendar Report'),
                                  _('Reading database...'),
                                  len(people)) as step:
             for person_handle in people:
                 step()
-                person = db.get_person_from_handle(person_handle)
-                mark = utils.get_person_mark(db, person)
-                birth_ref = person.get_birth_ref()
-                birth_date = None
-                if birth_ref:
-                    birth_event = db.get_event_from_handle(birth_ref.ref)
-                    birth_date = birth_event.get_date_object()
+                person = self.database.get_person_from_handle(person_handle)
 
-                if (self.birthdays and birth_date is not None and birth_date.is_valid()):
-                    birth_date = gregorian(birth_date)
+                self._add_birthday(person)
+                self._add_anniversaries(person)
+                self._add_death_date(person)
 
-                    year = birth_date.get_year()
-                    month = birth_date.get_month()
-                    day = birth_date.get_day()
+    def _add_birthday(self, person):
+        if not self.birthdays:
+            return
 
-                    prob_alive_date = Date(self.year, month, day)
+        birth_ref = person.get_birth_ref()
+        if not birth_ref:
+            return
 
-                    nyears = self.year - year
-                    # add some things to handle maiden name:
-                    father_lastname = None # husband, actually
-                    if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
-                        if person.get_gender() == Person.FEMALE:
-                            family_list = person.get_family_handle_list()
-                            if family_list:
-                                if self.maiden_name == 'spouse_first':
-                                    fhandle = family_list[0]
-                                else:
-                                    fhandle = family_list[-1]
-                                fam = db.get_family_from_handle(fhandle)
-                                father_handle = fam.get_father_handle()
-                                mother_handle = fam.get_mother_handle()
-                                if mother_handle == person_handle:
-                                    if father_handle:
-                                        father = db.get_person_from_handle(father_handle)
-                                        if father:
-                                            father_lastname = father.get_primary_name().get_surname()
-                    short_name = self.get_name(person, father_lastname)
-                    alive = probably_alive(person, db, prob_alive_date)
+        def get_surname_of_husband():
+            if self.maiden_name not in ['spouse_first', 'spouse_last']:
+                return None
 
-                    if  not self.alive or alive:
-                        if nyears == 0:
-                            text = self._('%(person)s, birth') % {
-                                                'person' : short_name }
-                        else:
-                            # Translators: leave all/any {...} untranslated
-                            text = ngettext('{person}, {age}',
-                                            '{person}, {age}',
-                                            nyears).format(person=short_name,
-                                                           age=nyears)
-                        self.add_day_item(text, month, day, marks=[mark])
-                if self.anniversaries:
-                    family_list = person.get_family_handle_list()
-                    for fhandle in family_list:
-                        fam = db.get_family_from_handle(fhandle)
-                        father_handle = fam.get_father_handle()
-                        mother_handle = fam.get_mother_handle()
-                        if father_handle == person.get_handle():
-                            spouse_handle = mother_handle
-                        else:
-                            continue # with next person if the father is not "person"
-                                     # this will keep from duplicating the anniversary
-                        if spouse_handle:
-                            spouse = db.get_person_from_handle(spouse_handle)
-                            if spouse:
-                                s_m = utils.get_person_mark(db, spouse)
-                                spouse_name = self.get_name(spouse)
-                                short_name = self.get_name(person)
-                                # TEMP: this will handle ordered events
-                                # Gramps 3.0 will have a new mechanism for start/stop events
-                                are_married = None
-                                for event_ref in fam.get_event_ref_list():
-                                    event = db.get_event_from_handle(event_ref.ref)
-                                    et = EventType
-                                    rt = EventRoleType
-                                    if event.type in [et.MARRIAGE,
-                                                      et.MARR_ALT] and \
-                                        (event_ref.get_role() == rt.FAMILY or
-                                         event_ref.get_role() == rt.PRIMARY ):
-                                        are_married = event
-                                    elif event.type in [et.DIVORCE,
-                                                        et.ANNULMENT,
-                                                        et.DIV_FILING] and \
-                                        (event_ref.get_role() == rt.FAMILY or
-                                         event_ref.get_role() == rt.PRIMARY ):
-                                        are_married = None
-                                if are_married is not None:
-                                    for event_ref in fam.get_event_ref_list():
-                                        event = db.get_event_from_handle(event_ref.ref)
-                                        event_obj = event.get_date_object()
+            if person.get_gender() == Person.FEMALE:
+                family_list = person.get_family_handle_list()
+                if family_list:
+                    if self.maiden_name == 'spouse_first':
+                        family_handle = family_list[0]
+                    else:
+                        family_handle = family_list[-1]
+                    family = self.database.get_family_from_handle(
+                            family_handle)
+                    husband_handle = family.get_father_handle()
+                    wife_handle = family.get_mother_handle()
+                    if wife_handle == person.get_handle():
+                        if husband_handle:
+                            father = self.database.get_person_from_handle(
+                                    husband_handle)
+                            if father:
+                                return father.get_primary_name().get_surname()
 
-                                        if event_obj.is_valid():
-                                            event_obj = gregorian(event_obj)
+            return None
 
-                                            year = event_obj.get_year()
-                                            month = event_obj.get_month()
-                                            day = event_obj.get_day()
+        birth_event = self.database.get_event_from_handle(birth_ref.ref)
+        birth_date = birth_event.get_date_object()
 
-                                            prob_alive_date = Date(self.year, month, day)
+        if birth_date is not None and birth_date.is_valid():
+            birth_date = gregorian(birth_date)
 
-                                            nyears = self.year - year
-                                            if nyears == 0:
-                                                text = self._('%(spouse)s and\n %(person)s, wedding') % {
-                                                        'spouse' : spouse_name,
-                                                        'person' : short_name,
-                                                        }
-                                            else:
-                                                # Translators: leave all/any {...} untranslated
-                                                text = ngettext("{spouse} and\n {person}, {nyears}",
-                                                                "{spouse} and\n {person}, {nyears}",
-                                                                nyears).format(spouse=spouse_name, person=short_name, nyears=nyears)
+            year = birth_date.get_year()
+            month = birth_date.get_month()
+            day = birth_date.get_day()
 
-                                            alive1 = probably_alive(person,
-                                                        self.database,
-                                                        prob_alive_date)
-                                            alive2 = probably_alive(spouse,
-                                                        self.database,
-                                                        prob_alive_date)
-                                            if ((self.alive and alive1 and alive2) or not self.alive):
-                                                self.add_day_item(text, month, day,
-                                                                  marks=[mark,s_m])
+            prob_alive_date = Date(self.year, month, day)
+
+            nyears = self.year - year
+            short_name = self.get_name(
+                    person,
+                    get_surname_of_husband())
+            alive = probably_alive(person, self.database, prob_alive_date)
+
+            if not self.alive or alive:
+                if nyears == 0:
+                    text = self._('%(person)s, birth') % {
+                                        'person' : short_name }
+                else:
+                    # to see "nearby" comments
+                    ngettext = self._locale.translation.ngettext
+
+                    # Translators: leave all/any {...} untranslated
+                    text = ngettext('{person}, {age}',
+                                    '{person}, {age}',
+                                    nyears).format(person=short_name,
+                                                   age=nyears)
+
+                dth = ' (%s)' % (self.symb_dth) if not alive else ''
+                text = '%s %s%s' % (self.symb_bth, text, dth)
+
+                self.add_day_item(text,
+                                  month,
+                                  day,
+                                  marks=[utils.get_person_mark(self.database,
+                                                               person)])
+
+
+    def _add_anniversaries(self, person):
+        if not self.anniversaries:
+            return
+
+        def is_father(family):
+            return person.get_handle() == family.get_father_handle()
+
+        def marriage_still_active(family):
+            for event_ref in family.get_event_ref_list():
+                if event_ref.get_role() not in [EventRoleType.FAMILY,
+                                                EventRoleType.PRIMARY]:
+                    continue
+
+                event = self.database.get_event_from_handle(event_ref.ref)
+                if event.type in [EventType.DIVORCE,
+                                  EventType.ANNULMENT,
+                                  EventType.DIV_FILING]:
+                    return False
+
+            return True
+
+        families = filter(marriage_still_active, filter(is_father,
+                map(self.database.get_family_from_handle,
+                    person.get_family_handle_list())))
+
+        def get_marriage_event(family):
+            for event_ref in family.get_event_ref_list():
+                if event_ref.get_role() not in [EventRoleType.FAMILY,
+                                                EventRoleType.PRIMARY]:
+                    continue
+
+                event = self.database.get_event_from_handle(event_ref.ref)
+                if event.type in [EventType.MARRIAGE, EventType.MARR_ALT]:
+                    return event
+
+            return None
+
+        def get_wife(family):
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                return self.database.get_person_from_handle(mother_handle)
+            else:
+                return None
+
+        short_name = self.get_name(person)
+
+        for family in families:
+            wife = get_wife(family)
+            event = get_marriage_event(family)
+            if event is None or wife is None:
+                continue
+
+            event_date = event.get_date_object()
+
+            if event_date.is_valid():
+                event_date = gregorian(event_date)
+
+                year = event_date.get_year()
+                month = event_date.get_month()
+                day = event_date.get_day()
+
+                prob_alive_date = Date(self.year, month, day)
+
+                alive1 = probably_alive(person, self.database, prob_alive_date)
+                alive2 = probably_alive(wife, self.database, prob_alive_date)
+
+                nyears = self.year - year
+                if nyears == 0:
+                    text = self._('%(wife)s and\n %(person)s, wedding') % {
+                            'wife' : self.get_name(wife),
+                            'person' : short_name,
+                            }
+                else:
+                    p_dead = ' (%s)' % (self.symb_dth) if not alive1 else ''
+                    w_dead = ' (%s)' % (self.symb_dth) if not alive2 else ''
+
+                    # to see "nearby" comments
+                    ngettext = self._locale.translation.ngettext
+
+                    # Translators: leave all/any {...} untranslated
+                    text = ngettext("{wife} and\n {person}, {nyears}",
+                                    "{wife} and\n {person}, {nyears}",
+                                    nyears).format(wife=self.get_name(wife) +
+                                                   w_dead,
+                                                   person=short_name + p_dead,
+                                                   nyears=nyears)
+
+                text = '%s %s' % (self.symb_mrg, text)
+
+                if ((self.alive and alive1 and alive2) or not self.alive):
+                    mark = utils.get_person_mark(self.database, person)
+                    wife_mark = utils.get_person_mark(self.database, wife)
+                    self.add_day_item(
+                            text, month, day,
+                            marks=[mark, wife_mark])
+
+    def _add_death_date(self, person):
+        if not self.include_death_date:
+            return
+
+        death_ref = person.get_death_ref()
+        if not death_ref:
+            return
+
+        death_event = self.database.get_event_from_handle(death_ref.ref)
+        death_date = death_event.get_date_object()
+
+        if death_date is not None and death_date.is_valid():
+            death_date = gregorian(death_date)
+            text = '{symbol} {name}, {nyears}'.format(
+                    symbol=self.symb_dth,
+                    name=self.get_name(person),
+                    nyears=self.year - death_date.get_year())
+            self.add_day_item(text,
+                              death_date.get_month(),
+                              death_date.get_day(),
+                              marks=[utils.get_person_mark(self.database,
+                                                           person)])
 
 #------------------------------------------------------------------------
 #
@@ -558,6 +643,11 @@ class CalendarOptions(MenuReportOptions):
         anniversaries = BooleanOption(_("Include anniversaries"), True)
         anniversaries.set_help(_("Whether to include anniversaries"))
         add_option("anniversaries", anniversaries)
+
+        include_death_date = BooleanOption(_("Include death dates"), False)
+        include_death_date.set_help(
+                _("Include death anniversaries in the calendar"))
+        add_option("include_death_date", include_death_date)
 
     def __update_filters(self):
         """
