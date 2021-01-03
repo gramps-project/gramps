@@ -163,8 +163,8 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
                              size=SIZE_NORMAL):
     """
     Generates the thumbnail image for a file. If the mime type is specified,
-    and is not an 'image', then we attempt to find and run a thumbnailer
-    utility to create a thumbnail. For images, we simply create a smaller
+    and is not an 'image' and 'pdf', then we attempt to find and run a thumbnailer
+    utility to create a thumbnail. For images and pdf, we simply create a smaller
     image, scaled to thumbnail size.
 
     :param src_file: filename of the source file
@@ -178,10 +178,9 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
     """
     filename = __build_thumb_path(src_file, rectangle, size)
 
-    if mtype and not mtype.startswith('image/'):
-        # Not an image, so run the thumbnailer
-        return run_thumbnailer(mtype, src_file, filename)
-    else:
+# mime type - image/*
+    if mtype and mtype.startswith('image/'):
+        # An image
         # build a thumbnail by scaling the image using GTK's built in
         # routines.
         try:
@@ -219,6 +218,133 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
         except Exception as err:
             LOG.warning("Error scaling image down: %s", str(err))
             return False
+
+# mime type - application/pdf
+    elif mtype and mtype.endswith('/pdf'):
+        # An pdf
+        try:
+# Using PyMuPDF. I install with this command:
+# $ pip3 install --upgrade PyMuPDF
+# May be GdkPixbuf can do it... Not know.
+
+            import fitz  # import the binding
+
+            doc = fitz.open(src_file)
+            pixbuf = doc[0].getPixmap(alpha = False)  # create preview for first page
+
+# Resize. Not work for me...
+
+# 1-th way from
+# https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/image-maintenance.py
+#            zoom = pixbuf.h / 96
+            pixbuf.zoom = 5
+            pixbuf.shrink = ~pixbuf.zoom
+
+
+# 2-th way from
+# https://pymupdf.readthedocs.io/en/latest/faq.html#how-to-increase-image-resolution
+# Work to magnification only
+            zoom_x = 0.2  # horizontal zoom
+            zoom_y = 0.2  # vertical zoom
+            mat = fitz.Matrix(zoom_x, zoom_y)  # zoom factor 0.2 in each dimension
+            pix = doc[0].getPixmap(matrix = mat)  # use 'mat' instead of the identity matrix
+
+# 3-th way from code above
+            width = pixbuf.w
+            height = pixbuf.h
+
+            if rectangle is not None:
+                upper_x = min(rectangle[0], rectangle[2])/100.
+                lower_x = max(rectangle[0], rectangle[2])/100.
+                upper_y = min(rectangle[1], rectangle[3])/100.
+                lower_y = max(rectangle[1], rectangle[3])/100.
+                sub_x = int(upper_x * width)
+                sub_y = int(upper_y * height)
+                sub_width = int((lower_x - upper_x) * width)
+                sub_height = int((lower_y - upper_y) * height)
+                if sub_width > 0 and sub_height > 0:
+#                    pixbuf = pixbuf.new_subpixbuf(sub_x, sub_y, sub_width, sub_height)
+                    width = sub_width
+                    height = sub_height
+
+            if size == SIZE_LARGE:
+                thumbscale = THUMBSCALE_LARGE
+            else:
+                thumbscale = THUMBSCALE
+            scale = thumbscale / (float(max(width, height)))
+
+            scaled_width = int(width * scale)
+            scaled_height = int(height * scale)
+
+#            pixbuf = pixbuf.scale_simple(scaled_width, scaled_height,
+#                                         GdkPixbuf.InterpType.BILINEAR)
+
+# Save preview to png
+# Pure picture
+            pixbuf.writePNG(filename)
+# After resize. Not work...
+#            pix.writePNG(filename)
+            return True
+
+# P.S. After close GRAMP with this code in terminal I see error message:
+#
+# $ python3 Gramps.py
+# /usr/lib/python3/dist-packages/gi/overrides/GObject.py:502: Warning:
+# ../../../gobject/gsignal.c:2735: instance '0x44822d0' has no handler with id '15303'
+#  return func(*args, **kwargs)
+#
+
+        except Exception as err:
+            LOG.warning("Error imaging pdf file: %s", str(err))
+            return False
+
+#   other
+    elif mtype:
+        # Not an image, so run the thumbnailer
+        return run_thumbnailer(mtype, src_file, filename)
+
+
+#    if mtype and not mtype.startswith('image/'):
+#        # Not an image, so run the thumbnailer
+#        return run_thumbnailer(mtype, src_file, filename)
+#    else:
+#        # build a thumbnail by scaling the image using GTK's built in
+#        # routines.
+#        try:
+#            pixbuf = GdkPixbuf.Pixbuf.new_from_file(src_file)
+#            width = pixbuf.get_width()
+#            height = pixbuf.get_height()
+#
+#            if rectangle is not None:
+#                upper_x = min(rectangle[0], rectangle[2])/100.
+#                lower_x = max(rectangle[0], rectangle[2])/100.
+#                upper_y = min(rectangle[1], rectangle[3])/100.
+#                lower_y = max(rectangle[1], rectangle[3])/100.
+#                sub_x = int(upper_x * width)
+#                sub_y = int(upper_y * height)
+#                sub_width = int((lower_x - upper_x) * width)
+#                sub_height = int((lower_y - upper_y) * height)
+#                if sub_width > 0 and sub_height > 0:
+#                    pixbuf = pixbuf.new_subpixbuf(sub_x, sub_y, sub_width, sub_height)
+#                    width = sub_width
+#                    height = sub_height
+#
+#            if size == SIZE_LARGE:
+#                thumbscale = THUMBSCALE_LARGE
+#            else:
+#                thumbscale = THUMBSCALE
+#            scale = thumbscale / (float(max(width, height)))
+#
+#            scaled_width = int(width * scale)
+#            scaled_height = int(height * scale)
+#
+#            pixbuf = pixbuf.scale_simple(scaled_width, scaled_height,
+#                                         GdkPixbuf.InterpType.BILINEAR)
+#            pixbuf.savev(filename, "png", "", "")
+#            return True
+#        except Exception as err:
+#            LOG.warning("Error scaling image down: %s", str(err))
+#            return False
 
 #-------------------------------------------------------------------------
 #
