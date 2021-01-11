@@ -1503,6 +1503,16 @@ class BasePage:
         @param: title -- Is the title of the web page
         @param: cal   -- The number of directories to use
         """
+        # If .php extension and a note selected, add it to the head section.
+        phpnote = self.report.options['phpnote']
+        note = None
+        if phpnote and self.ext == ".php":
+            # This is used to give the ability to have a php init session.
+            # This note must not contains formatting
+            # and should only contains php code. ie:
+            # <? php session_start (); ?>
+            note = self.r_db.get_note_from_gramps_id(phpnote).get()
+
         # begin each html page...
         if self.the_lang:
             xmllang = self.the_lang.replace('_', '-')
@@ -1512,11 +1522,11 @@ class BasePage:
                                      (html_escape(self.title_str.strip()),
                                       html_escape(the_title)),
                                      self.report.encoding,
-                                     xmllang, cms=self.usecms)
+                                     xmllang, cms=self.usecms, php_session=note)
 
         # temporary fix for .php parsing error
-        if self.ext in [".php", ".php3", ".cgi"]:
-            del page[0]
+        if self.ext in [".php", ".cgi"]:
+            del page[0] # remove the "DOCTYPE" directive
 
         # Header constants
         _meta1 = 'name ="viewport" content="width=device-width, '

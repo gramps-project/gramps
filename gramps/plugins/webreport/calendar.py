@@ -56,7 +56,7 @@ from gramps.gen.display.name import displayer as _nd
 
 import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import do_we_have_holidays
+from gramps.plugins.webreport.common import (do_we_have_holidays, _WEB_EXT)
 from gramps.plugins.lib.libhtml import Html #, xml_lang
 from gramps.gui.pluginmanager import GuiPluginManager
 
@@ -72,9 +72,6 @@ _LOG = logging.getLogger(".WebPage")
 # full clear line for proper styling
 
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
-
-# Web page filename extensions
-_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 
 # Calendar stylesheet names
 _CALENDARSCREEN = 'calendar-screen.css'

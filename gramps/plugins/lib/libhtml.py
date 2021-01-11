@@ -152,7 +152,7 @@ class Html(list):
             ).rstrip() + '>'
 #
     @staticmethod
-    def html(xmlns=_XMLNS, lang='en', *args, **keywargs):
+    def html(xmlns=_XMLNS, lang='en', php_session=None, *args, **keywargs):
         """
         Build and return a properly-formated <html> object
 
@@ -161,12 +161,14 @@ class Html(list):
         :type  lang: string
         :param lang: language to be used. Defaul = 'en'
         :rtype:   reference to new Html instance
+        :php_session:  If we need to have a php session start
         :returns:  reference to the newly-created Html instances for <html> object
         """
         return Html('html',
             indent=False,
             xmlns=xmlns,
             attr='xml:lang="%s" lang="%s"' % ((lang,)*2),
+            php=php_session,
             *args, **keywargs
             )
 #
@@ -199,7 +201,8 @@ class Html(list):
         return head
 #
     @staticmethod
-    def page(title=None, encoding='utf-8', lang='en', html5=True, cms=False, *args, **keywargs):
+    def page(title=None, encoding='utf-8', lang='en', html5=True, cms=False,
+             php_session=None, *args, **keywargs):
         """
         This function prepares a new Html class based page and returns
 
@@ -214,8 +217,9 @@ class Html(list):
         :rtype:   three object references
         :returns:  references to the newly-created Html instances for
                   page, head and body
+        :php_session: The note to include before all html code
         """
-        page = Html.html(lang=lang, *args, **keywargs)
+        page = Html.html(lang=lang, php_session=php_session, *args, **keywargs)
         if html5:
             page.addDOCTYPE(external_id=_HTML5)
         else:
@@ -284,12 +288,15 @@ class Html(list):
 #       Keywords we don't recognize are saved for later
 #       addition to the opening tag as attributes.
 #
+        phpnote = None
         for keyw, arg in sorted(keywargs.items()):
             if (keyw in ['indent', 'close', 'inline'] and
                arg in [True, False, None]):
                 setattr(self, keyw, arg)
             elif keyw == 'attr':                        # pass attributes along
                 attr += ' ' + arg
+            elif keyw == 'php':                         # php init session
+                phpnote = arg
             elif keyw[-1] == '_':                       # avoid Python conflicts
                 attr += ' %s="%s"' % (keyw[:-1], arg)   # pass keyword arg along
             else:
@@ -301,7 +308,13 @@ class Html(list):
         else:
             if tag in _START_CLOSE:     # if tag in special list
                 self.close = False      #   it needs no closing tag
-            begin = '<%s%s%s>' % (      # build opening tag with attributes
+            if phpnote:
+                # We need to insert php code before the html tag
+                # This is used to initiate a php session.
+                htmlhead = phpnote + '<%s%s%s>'
+            else:
+                htmlhead = '<%s%s%s>'
+            begin = htmlhead % (        # build opening tag with attributes
                 tag,
                 attr,
                 ('' if self.close is not False else ' /')

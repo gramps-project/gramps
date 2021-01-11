@@ -50,7 +50,7 @@ LOG = logging.getLogger(".NarrativeWeb")
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 # define all possible web page filename extensions
-_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
+_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.cgi']
 # used to select secured web site or not
 HTTP = "http://"
 HTTPS = "https://"
