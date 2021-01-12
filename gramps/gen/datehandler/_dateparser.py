@@ -481,7 +481,7 @@ class DateParser:
                                   % self._smon_str, re.IGNORECASE)
         self._numeric = re.compile(
             r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
-        self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)-(\d+)\s*$")
+        self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)(-(\d+))?\s*$")
         self._isotimestamp = re.compile(
             r"^\s*?(\d{4})([01]\d)([0123]\d)(?:(?:[012]\d[0-5]\d[0-5]\d)|"
             r"(?:\s+[012]\d:[0-5]\d(?::[0-5]\d)?))?\s*?$")
@@ -630,7 +630,7 @@ class DateParser:
             groups = match.groups()
             y = self._get_int(groups[0])
             m = self._get_int(groups[3])
-            d = self._get_int(groups[4])
+            d = self._get_int(groups[5])
             if groups[2] and julian_valid((d, m, y + 1)):
                 return (d, m, y + 1, True) # slash year
             if check is None or check((d, m, y)):
