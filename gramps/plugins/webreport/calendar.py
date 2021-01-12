@@ -45,6 +45,7 @@ import logging
 # Gramps module
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
 from gramps.gen.utils.alive import probably_alive
@@ -1348,7 +1349,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
         age_str = age_str.format(precision=1, as_age=False, dlocale=rlocale)
 
         symbols = Symbols()
-        death_idx = symbols.DEATH_SYMBOL_SHADOWED_LATIN_CROSS
+        death_idx = config.get('utf8.death-symbol')
         death_symbol = symbols.get_death_symbol_for_char(death_idx)
 
         # a birthday
