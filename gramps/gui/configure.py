@@ -193,6 +193,7 @@ class ConfigureDialog(ManagedWindow):
         self.window.vbox.pack_start(self.panel, True, True, 0)
         self.__on_close = on_close
         self.window.connect('response', self.done)
+        self.window.set_tooltip_text(_("Any changes are instantly saved"))
 
         self.__setup_pages(configure_page_funcs)
 

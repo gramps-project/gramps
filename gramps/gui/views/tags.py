@@ -384,6 +384,7 @@ class OrganizeTagsDialog(ManagedWindow):
         self.top = self._create_dialog()
         self.set_window(self.top, None, _('Organize Tags'))
         self.setup_configs('interface.organizetagsdialog', 400, 350)
+        self.get_window().set_tooltip_text(_("Any changes are instantly saved"))
         self.show()
         self.run()
 

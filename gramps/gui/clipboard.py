@@ -1374,6 +1374,7 @@ class ClipboardWindow(ManagedWindow):
         self.top = Glade()
         self.set_window(self.top.toplevel, None, None, msg=_("Clipboard"))
         self.setup_configs('interface.clipboard', 500, 300)
+        self.get_window().set_tooltip_text(_("Any changes are instantly saved"))
 
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
