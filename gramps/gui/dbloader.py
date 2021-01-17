@@ -382,6 +382,11 @@ class GrampsImportFileDialog(ManagedWindow):
         self.setup_configs('interface.grampsimportfiledialog', 780, 630)
         import_dialog.set_local_only(False)
 
+        # Add all supported files depending on available plugins
+        gramps_filter = Gtk.FileFilter()
+        gramps_filter.set_name(_("All supported files"))
+        import_dialog.add_filter(gramps_filter)
+
         # Always add automatic (match all files) filter
         add_all_files_filter(import_dialog)   # *
 
@@ -391,6 +396,7 @@ class GrampsImportFileDialog(ManagedWindow):
             name = "%s (.%s)" % (plugin.get_name(), plugin.get_extension())
             file_filter.set_name(name)
             file_filter.add_pattern("*.%s" % icase(plugin.get_extension()))
+            gramps_filter.add_pattern("*.%s" % icase(plugin.get_extension()))
             import_dialog.add_filter(file_filter)
 
         (box, type_selector) = format_maker()
