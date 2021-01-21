@@ -520,7 +520,10 @@ class DisplayState(Callback):
             history.push(handle)
 
     def set_sensitive(self, state):
-        self.window.set_sensitive(state)
+        tbar = self.uimanager.get_widget('ToolBar')
+        tbar.set_sensitive(state)
+        self.viewmanager.hpane.set_sensitive(state)
+        self.uimanager.enable_all_actions(state)
 
     def db_changed(self, db):
         db.connect('long-op-start', self.progress_monitor.add_op)

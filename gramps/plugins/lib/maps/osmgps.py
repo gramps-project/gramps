@@ -64,6 +64,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.config import config
 from gramps.gui.dialog import ErrorDialog
 from gramps.gen.constfunc import get_env_var
+from gramps.gen.const import VERSION_DIR
 
 #-------------------------------------------------------------------------
 #
@@ -138,7 +139,19 @@ class OsmGps:
                 ErrorDialog(_("Can't create "
                               "tiles cache directory %s") % cache_path,
                             parent=self.uistate.window)
-                return self.vbox
+                gini = os.path.join(VERSION_DIR, 'gramps.ini')
+                ErrorDialog(_("You must verify and change the tiles cache"
+                              "\n..."
+                              "\n[geography]"
+                              "\n..."
+                              "\npath='bad/path'"
+                              "\n..."
+                              "\nin the gramps.ini file :\n%s"
+                              "\n\nBefore to change the gramps.ini file, "
+                              "you need to close gramps"
+                              "\n\nThe next errors will be normal") % gini,
+                            parent=self.uistate.window)
+                return None
 
         self.change_map(None, config.get("geography.map_service"))
         return self.vbox

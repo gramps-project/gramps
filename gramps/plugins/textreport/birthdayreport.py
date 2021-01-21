@@ -271,6 +271,7 @@ class BirthdayReport(Report):
             for person_handle in people:
                 step()
                 person = self.database.get_person_from_handle(person_handle)
+                short_name = self.get_name(person)
                 birth_ref = person.get_birth_ref()
                 birth_date = None
                 if birth_ref:

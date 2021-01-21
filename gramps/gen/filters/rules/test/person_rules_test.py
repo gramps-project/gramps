@@ -99,7 +99,8 @@ class BaseTest(unittest.TestCase):
         stime = perf_counter()
         results = filter_.apply(self.db)
         if __debug__:
-            rulename = inspect.stack()[1][3]
+            frame = inspect.currentframe()
+            rulename = frame.f_back.f_code.co_name
             print("%s: %.2f\n" % (rulename, perf_counter() - stime))
         return set(results)
 

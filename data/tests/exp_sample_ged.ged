@@ -1,12 +1,12 @@
 0 HEAD
 1 SOUR Gramps
-2 VERS 5.0.2
+2 VERS 5.1.2
 2 NAME Gramps
-1 DATE 4 AUG 2019
-2 TIME 15:26:44
+1 DATE 7 JAN 2020
+2 TIME 13:39:43
 1 SUBM @SUBM@
 1 FILE C:\Users\prc\AppData\Roaming\gramps\temp\exp_sample_ged.ged
-1 COPR Copyright (c) 2019 Alex Roitman,,,.
+1 COPR Copyright (c) 2020 Alex Roitman,,,.
 1 GEDC
 2 VERS 5.5.1
 2 FORM LINEAGE-LINKED
@@ -911,7 +911,7 @@
 2 DATE I think 1970 to 1971
 2 PLAC San Francisco, San Francisco Co., CA
 1 SLGC
-2 DATE EST ABT 1999
+2 DATE ABT 1999
 2 FAMC @F0016@
 2 TEMP DENVE
 2 PLAC Denver, Denver Co., CO, Denver Co., Colorado, USA
@@ -1424,7 +1424,7 @@
 0 @N0018@ NOTE Another Citation Note
 0 @N0019@ NOTE A bad photo for sure
 0 @O0000@ OBJE
-1 FILE c:\users\prc\workspace\grampsm\main\data\tests\O0.jpg
+1 FILE d:\users\prc\documents\gramps\data\tests\O0.jpg
 2 FORM jpg
 2 TITL Michael O'Toole 2015-11
 1 NOTE @N0019@
