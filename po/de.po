@@ -8,21 +8,21 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-08-26 18:07+0200\n"
+"PO-Revision-Date: 2021-01-26 18:53+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 20.08.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -439,7 +439,7 @@ msgstr ""
 "Untersuchung &gt; Einzelne Ereignisse vergleichen...&quot; kannst du die "
 "Daten von Personen in deiner Datenbank vergleichen. Das ist nützlich, z.B. "
 "wenn du vorhast, die Geburtsdaten von jedem aus deiner Datenbank aufzulisten."
-"Zum Eingrenzen der Ergebnisse kannst du einen Anwenderfilter verwenden."
+"Zum Eingrenzen der Ergebnisse kannst du einen Benutzerfilter verwenden."
 
 #: ../data/tips.xml.in.h:12
 msgid ""
@@ -853,7 +853,7 @@ msgstr ""
 "<b>Filter</b><br/>Filter erlauben dir, die Personen in der Personenansicht "
 "zu limitieren. Zu den vielen vorkonfigurierten Filtern kannst du "
 "maßgeschneiderte Filter anlegen, die nach deinen Vorstellungen gestaltet "
-"werden können. Maßgeschneiderte Filter werden unter &quot;Bearbeiten &gt; "
+"werden können. Benutzerfilter werden unter &quot;Bearbeiten &gt; "
 "Filtereditor für Personen Personen&quot; angelegt."
 
 #: ../data/tips.xml.in.h:42
@@ -3861,7 +3861,7 @@ msgstr "Filtername:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:70
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr "Kann den Filter %s in den Anwenderfiltern nicht finden"
+msgstr "Kann den Filter %s in den Benutzerfiltern nicht finden"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:47
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:48
@@ -6908,7 +6908,7 @@ msgstr "Wert"
 #: ../gramps/plugins/textreport/indivcomplete.py:74
 #: ../gramps/plugins/view/geoplaces.py:595
 msgid "Custom"
-msgstr "Selbst definiert"
+msgstr "Benutzerdefiniert"
 
 #: ../gramps/gen/lib/attrtype.py:65
 msgid "Caste"
@@ -9814,7 +9814,7 @@ msgstr "Legal"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgid "Custom Size"
-msgstr "Selbst definierte Größe"
+msgstr "Benutzerdefinierte Größe"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
@@ -14928,7 +14928,7 @@ msgstr "Filter_definieren_Dialog"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 msgid "manual|Custom_Filters"
-msgstr "Anwenderfilter"
+msgstr "Benutzerfilter"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Person Filters"
@@ -15294,7 +15294,7 @@ msgstr "Min. Vert.:"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:110
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:93
 msgid "Custom filter"
-msgstr "Eigener Filter"
+msgstr "Benutzerfilter"
 
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
 #: ../gramps/plugins/textreport/tagreport.py:347
@@ -32160,7 +32160,7 @@ msgstr "Monatstext Stil"
 #: ../gramps/plugins/textreport/custombooktext.py:93
 #: ../gramps/plugins/textreport/textplugins.gpr.py:81
 msgid "Custom Text"
-msgstr "Verwendeter Text"
+msgstr "Benutzerdefinierter Text"
 
 #: ../gramps/plugins/textreport/custombooktext.py:134
 msgid "Initial Text"
@@ -33322,7 +33322,7 @@ msgstr "Erstellt einen Bericht über Geburtstage und Jahrestage"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:82
 msgid "Add custom text to the book report"
-msgstr "Benutzer definierten Text zum Buch hinzufügen"
+msgstr "Benutzerdefinierten Text zum Buch hinzufügen"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:103
 msgid "Descendant Report"
@@ -34101,8 +34101,8 @@ msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
-"Das Werkzeug zum Vergleichen von Ereignissen verwendet die Filter, die im "
-"Filtereditor definiert sind."
+"Das Dienstprogramm zum Ereignisvergleich verwendet die im"
+" Benutzerfiltereditor definierten Filter."
 
 #: ../gramps/plugins/tool/eventcmp.glade:249
 msgid "Custom filter _editor"
@@ -35227,7 +35227,7 @@ msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
 msgstr ""
-"Hilft bei der Analyse der Daten durch die Möglichkeit, eigene Filter zu "
+"Hilft bei der Analyse der Daten durch die Möglichkeit, Benutzerfilter zu "
 "entwickeln. Filter, die zum Beispiel ähnliche Ereignisse finden."
 
 #: ../gramps/plugins/tool/tools.gpr.py:132
