@@ -166,47 +166,59 @@ Note: Use Events instead for relations connected to specific time frames or occa
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="add_person">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="relief">none</property>
+                  <object class="GtkBox" id="hbox149">
                     <child>
-                      <object class="GtkImage" id="image2728">
+                      <object class="GtkButton" id="add_person">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">list-add</property>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="image2728-atkobject">
-                            <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="relief">none</property>
+                        <child>
+                          <object class="GtkImage" id="image2728">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="icon_name">list-add</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2728-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
-                    <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                  <object class="GtkButton" id="del_person">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="relief">none</property>
                     <child>
-                      <object class="GtkImage" id="image2729">
+                      <object class="GtkButton" id="del_person">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">list-remove</property>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="image2729-atkobject">
-                            <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="relief">none</property>
+                        <child>
+                          <object class="GtkImage" id="image2729">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="icon_name">list-remove</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2729-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
+                        <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
-                    <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>

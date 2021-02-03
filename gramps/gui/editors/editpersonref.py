@@ -87,6 +87,19 @@ class EditPersonRef(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track,
                                personref, callback)
 
+    def _post_init(self):
+        p = None
+        if self.obj.ref:
+            p = self.dbstate.db.get_person_from_handle(self.obj.ref)
+
+        if p:
+            self.btn_add.hide()
+            self.btn_del.show()
+        else:
+            self.btn_add.show()
+            self.btn_del.hide()            
+
+
     def _local_init(self):
 
         self.top = Glade()
@@ -128,11 +141,6 @@ class EditPersonRef(EditSecondary):
         if self.obj.ref:
             p = self.dbstate.db.get_person_from_handle(self.obj.ref)
             self.person_label.set_text(name_displayer.display(p))
-            self.btn_add.hide()
-            self.btn_del.show()
-        else:
-            self.btn_add.show()
-            self.btn_del.hide()            
 
         self.street = MonitoredEntry(
             self.top.get_object("relationship"),
@@ -202,9 +210,6 @@ class EditPersonRef(EditSecondary):
 
         
     def del_person_clicked(self, obj):
-        for i in self.hidden:
-            i.set_sensitive(True)
-
         self.update_person(None)
 
     def update_person(self, person):
@@ -214,6 +219,8 @@ class EditPersonRef(EditSecondary):
             self.btn_add.hide()
             self.btn_del.show()
         else:
+            self.obj.ref = None
+            self.person_label.set_text("")
             self.btn_add.show()
             self.btn_del.hide() 
         self._update_dnd_capability()
