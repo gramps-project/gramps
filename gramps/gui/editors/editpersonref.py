@@ -46,9 +46,11 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from .editsecondary import EditSecondary
-from gramps.gen.lib import NoteType
+from .editperson import EditPerson
+from gramps.gen.lib import NoteType, Person, Name, Surname
 from ..widgets import MonitoredEntry, PrivacyButton
 from ..selectors import SelectorFactory
 from .displaytabs import CitationEmbedList, NoteTab
@@ -95,6 +97,12 @@ class EditPersonRef(EditSecondary):
 
         self.person_label = self.top.get_object('person')
 
+        self.btn_add = self.top.get_object("add_person")
+        self.btn_del = self.top.get_object("del_person")
+
+        self.btn_add.connect('clicked', self.add_person_clicked)
+        self.btn_del.connect('clicked', self.del_person_clicked)
+
         #allow for drop:
         self.person_label.drag_dest_set(Gtk.DestDefaults.MOTION |
                                         Gtk.DestDefaults.DROP,
@@ -120,6 +128,11 @@ class EditPersonRef(EditSecondary):
         if self.obj.ref:
             p = self.dbstate.db.get_person_from_handle(self.obj.ref)
             self.person_label.set_text(name_displayer.display(p))
+            self.btn_add.hide()
+            self.btn_del.show()
+        else:
+            self.btn_add.show()
+            self.btn_del.hide()            
 
         self.street = MonitoredEntry(
             self.top.get_object("relationship"),
@@ -162,11 +175,47 @@ class EditPersonRef(EditSecondary):
         sel = SelectPerson(self.dbstate, self.uistate, self.track)
         person = sel.run()
         self.update_person(person)
+        
+
+
+    def no_name(self):
+        name = Name()
+        #the editor requires a surname
+        name.add_surname(Surname())
+        name.set_primary_surname(0)
+        return name
+
+    def add_person_clicked(self, obj):
+        person = Person()
+        autoname = config.get('behavior.surname-guessing')
+        #_("Father's surname"),
+        #_("None"),
+        #_("Combination of mother's and father's surname"),
+        #_("Icelandic style"),
+        if autoname == 2:
+            name = self.latin_american_child("mother")
+        else:
+            name = self.no_name()
+        person.set_primary_name(name)
+        EditPerson(self.dbstate, self.uistate, self.track, person,
+                   self.update_person)
+
+        
+    def del_person_clicked(self, obj):
+        for i in self.hidden:
+            i.set_sensitive(True)
+
+        self.update_person(None)
 
     def update_person(self, person):
         if person:
             self.obj.ref = person.get_handle()
             self.person_label.set_text(name_displayer.display(person))
+            self.btn_add.hide()
+            self.btn_del.show()
+        else:
+            self.btn_add.show()
+            self.btn_del.hide() 
         self._update_dnd_capability()
 
     def on_drag_persondata_received(self, widget, context, x, y, sel_data,

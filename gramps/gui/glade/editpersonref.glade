@@ -166,57 +166,117 @@ Note: Use Events instead for relations connected to specific time frames or occa
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEventBox" id="person_event_box">
-                    <property name="can_focus">False</property>
-                    <property name="visible_window">False</property>
-                    <child>
-                      <object class="GtkLabel" id="person">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Use the select button to choose a person that has an association to the edited person.</property>
-                        <property name="halign">start</property>
-                        <property name="hexpand">True</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="select">
-                    <property name="use_action_appearance">False</property>
+                  <object class="GtkButton" id="add_person">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Select a person that has an association to the edited person.</property>
+                    <property name="relief">none</property>
                     <child>
-                      <object class="GtkImage" id="image2695">
+                      <object class="GtkImage" id="image2728">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="icon_name">gtk-index</property>
+                        <property name="icon_name">list-add</property>
                         <child internal-child="accessible">
-                          <object class="AtkObject" id="image2695-atkobject">
-                            <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
+                          <object class="AtkObject" id="image2728-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Add</property>
                           </object>
                         </child>
                       </object>
                     </child>
-                    <accessibility>
-                      <relation type="labelled-by" target="label649"/>
-                    </accessibility>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="select-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Person</property>
-                      </object>
-                    </child>
-                    <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
                     <property name="top_attach">0</property>
                   </packing>
+                  <object class="GtkButton" id="del_person">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="relief">none</property>
+                    <child>
+                      <object class="GtkImage" id="image2729">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">list-remove</property>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="image2729-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="hbox148">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkEventBox" id="person_event_box">
+                        <property name="can_focus">False</property>
+                        <property name="visible_window">False</property>
+                        <child>
+                          <object class="GtkLabel" id="person">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">Use the select button to choose a person that has an association to the edited person.</property>
+                            <property name="halign">start</property>
+                            <property name="hexpand">True</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="select">
+                        <property name="use_action_appearance">False</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Select a person that has an association to the edited person.</property>
+                        <child>
+                          <object class="GtkImage" id="image2695">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="icon_name">gtk-index</property>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="image2695-atkobject">
+                                <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <accessibility>
+                          <relation type="labelled-by" target="label649"/>
+                        </accessibility>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="select-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Person</property>
+                          </object>
+                        </child>
+                        <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object> 
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>   
+                    </child>
+                  </object>
+                    <packing>
+                      <property name="left_attach">1</property>
+                      <property name="top_attach">0</property>
+                    </packing>                
                 </child>
               </object>
               <packing>
