@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-05 23:59+0100\n"
-"PO-Revision-Date: 2021-02-05 23:55+0100\n"
+"PO-Revision-Date: 2021-02-06 22:01+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -8548,7 +8548,7 @@ msgstr "Abschrift"
 
 #: ../gramps/gen/lib/notetype.py:78
 msgid "Source text"
-msgstr "Quelltext"
+msgstr "Quellentext"
 
 #: ../gramps/gen/lib/notetype.py:80 ../gramps/gen/plug/_pluginreg.py:79
 #: ../gramps/gui/logger/_errorview.py:174
