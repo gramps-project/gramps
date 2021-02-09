@@ -179,8 +179,9 @@ def image_size(source):
             img = img[found:]
         size = re.search('(\d+)\s*x\s*(\d+)', img).groups()
         return (int(size[0]), int(size[1]))
-    except ImportError:
-        # python-magic is not installed. So Trying to get image size with Gdk.
+    except (ImportError, FileNotFoundError):
+        # python-magic is not installed or the file does not exist.
+        # So Trying to get image size with Gdk.
         try:
             img = GdkPixbuf.Pixbuf.new_from_file(source)
             width = img.get_width()
