@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-05 23:59+0100\n"
-"PO-Revision-Date: 2021-02-06 22:01+0100\n"
+"PO-Revision-Date: 2021-02-11 12:05+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -17932,7 +17932,7 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Ihre Gtk erfüllt nicht Vorgaben.\n"
+"Deine Gtk erfüllt nicht die Vorgaben.\n"
 "Mindestens %(major)d.%(minor)d wird benötigt, um Gramps mit GUI zu starten.\n"
 "\n"
 "Gramps wird nun beendet."
@@ -17983,7 +17983,7 @@ msgstr ""
 "1) Anders arbeiten als erwartet.\n"
 "2) Generell nicht funktionieren.\n"
 "3) Oft abstürzen.\n"
-"4) Ihre Daten beschädigen.\n"
+"4) Deine Daten beschädigen.\n"
 "5) Daten in einem Format speichern, das mit der offiziellen Version nicht "
 "kompatibel ist.\n"
 "\n"
@@ -18676,7 +18676,7 @@ msgstr "Exportassistent"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:181
 msgid "Saving your data"
-msgstr "Ihre Daten speichern"
+msgstr "Deine Daten speichern"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:227
 msgid "Choose the output format"
@@ -18819,7 +18819,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:597
 msgid "Error exporting your Family Tree"
-msgstr "Fehler beim Exportieren ihres Stammbaum"
+msgstr "Fehler beim Exportieren deines Stammbaums"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:605
 #: ../gramps/gui/plug/export/_exportassistant.py:639
