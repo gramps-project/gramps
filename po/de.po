@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-05 23:59+0100\n"
-"PO-Revision-Date: 2021-02-11 12:05+0100\n"
+"PO-Revision-Date: 2021-02-12 21:34+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -526,7 +526,8 @@ msgid ""
 "button from the People View). Then go to the Relationship View and create "
 "relationships between people."
 msgstr ""
-"<b>Einen neuen Stammbaum anlegen</b><br/>Ein guter Weg anzufangen ist, alle "
+"<b>Einen neuen Stammbaum anlegen</b><br/>Ein guter Weg einen neuen Stammbaum"
+" anzufangen ist, alle "
 "Mitglieder der Familie in die Datenbank unter Verwendung der Personenansicht "
 "einzugeben (verwende &quot;Bearbeiten &gt; Hinzufügen&quot; oder klicke auf "
 "die Hinzufügen-Schaltfläche in der Personenansicht). Dann gehe in die "
@@ -1719,7 +1720,7 @@ msgstr "Importiere Daten..."
 
 #: ../gramps/cli/clidbman.py:425
 msgid "Remove family tree warning"
-msgstr "Stammbaum Warnung entfernen"
+msgstr "Stammbaum entfernen Warnung"
 
 #: ../gramps/cli/clidbman.py:426
 #, python-format
@@ -17767,7 +17768,7 @@ msgstr "Sicherung erstellen..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Manage databases"
-msgstr "Datenbanken verwalten"
+msgstr "Stammbäume verwalten"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open _Recent"
