@@ -41,14 +41,16 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 class Citations(Gramplet, DbGUIElement):
+    """
+    Displays the citations for an object.
+    """
 
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
         DbGUIElement.__init__(self, self.dbstate.db)
+        self.model = None
+        self.source_nodes = {}
 
-    """
-    Displays the citations for an object.
-    """
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
