@@ -1906,6 +1906,8 @@ class NavWebOptions(MenuReportOptions):
         self.__toggle = None
         self.__death_anniv = None
         self.__after_year = None
+        self.__ext = None
+        self.__phpnote = None
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -1928,7 +1930,6 @@ class NavWebOptions(MenuReportOptions):
         self.__add_others_options(menu)
         self.__add_translations(menu)
         self.__add_calendar_options(menu)
-
 
     def __add_report_options(self, menu):
         """
@@ -1999,11 +2000,12 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Html options")
         addopt = partial(menu.add_option, category_name)
 
-        ext = EnumeratedListOption(_("File extension"), ".html")
+        self.__ext = EnumeratedListOption(_("File extension"), ".html")
         for etype in _WEB_EXT:
-            ext.add_item(etype, etype)
-        ext.set_help(_("The extension to be used for the web files"))
-        addopt("ext", ext)
+            self.__ext.add_item(etype, etype)
+        self.__ext.set_help(_("The extension to be used for the web files"))
+        addopt("ext", self.__ext)
+        self.__ext.connect("value-changed", self.__ext_changed)
 
         cright = EnumeratedListOption(_('Copyright'), 0)
         for index, copt in enumerate(_COPY_OPTIONS):
@@ -2197,12 +2199,21 @@ class NavWebOptions(MenuReportOptions):
         addopt("contactimg", contactimg)
 
         headernote = NoteOption(_('HTML user header'))
-        headernote.set_help(_("A note to be used as the page header"))
+        headernote.set_help(_("A note to be used as the page header"
+                              " or a php code to insert."))
         addopt("headernote", headernote)
 
         footernote = NoteOption(_('HTML user footer'))
         footernote.set_help(_("A note to be used as the page footer"))
         addopt("footernote", footernote)
+
+        # This option will be available only if you select ".php" in the
+        # "File extension" from the "Html" tab
+        self.__phpnote = NoteOption(_('PHP user session'))
+        self.__phpnote.set_help(_("A note to use for starting the php session."
+                                  "\nThis option will be available only if "
+                                  "the .php file extension is selected."))
+        addopt("phpnote", self.__phpnote)
 
     def __add_images_generation_options(self, menu):
         """
@@ -2601,6 +2612,16 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__maxupdates.set_available(False)
             self.__maxdays.set_available(False)
+
+    def __ext_changed(self):
+        """
+        The file extension changed.
+        If .php selected, we must set the PHP user session available
+        """
+        if self.__ext.get_value()[:4] == ".php":
+            self.__phpnote.set_available(True)
+        else:
+            self.__phpnote.set_available(False)
 
     def __usecms_changed(self):
         """
