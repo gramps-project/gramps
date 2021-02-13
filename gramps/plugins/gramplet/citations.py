@@ -48,7 +48,6 @@ class Citations(Gramplet, DbGUIElement):
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
         DbGUIElement.__init__(self, self.dbstate.db)
-        self.model = None
         self.source_nodes = {}
 
     def init(self):
