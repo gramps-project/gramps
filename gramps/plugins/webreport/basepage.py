@@ -742,13 +742,15 @@ class BasePage:
             if this_note is not None:
                 idx += 1
                 if len(notelist) > 1:
-                    if self.default_note(parent, int(this_note.type)):
+                    if (self.default_note(parent, int(this_note.type)) or
+                            int(this_note.type) == NoteType.HTML_CODE):
                         title_text = self._("Note: %s") % str(idx)
                     else:
                         title = " (" + title + ")"
                         title_text = self._("Note: %s") % str(idx) + title
                 else:
-                    if self.default_note(parent, int(this_note.type)):
+                    if (self.default_note(parent, int(this_note.type)) or
+                            int(this_note.type) == NoteType.HTML_CODE):
                         title_text = self._("Note")
                     else:
                         title_text = title
@@ -2393,13 +2395,15 @@ class BasePage:
                 note_text = self.get_note_format(note, True)
                 idx += 1
                 if len(notelist) > 1:
-                    if self.default_note(parent, int(note.type)):
+                    if (self.default_note(parent, int(note.type)) or
+                            int(note.type) == NoteType.HTML_CODE):
                         title_text = self._("Note: %s") % str(idx)
                     else:
                         title = " (" + title + ")"
                         title_text = self._("Note: %s") % str(idx) + title
                 else:
-                    if self.default_note(parent, int(note.type)):
+                    if (self.default_note(parent, int(note.type)) or
+                            int(note.type) == NoteType.HTML_CODE):
                         title_text = self._("Note")
                     else:
                         title_text = title
