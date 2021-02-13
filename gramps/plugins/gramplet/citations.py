@@ -33,6 +33,8 @@ from gi.repository import Gtk
 from gramps.gui.editors import EditSource, EditCitation
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
+from gramps.gen.utils.string import conf_strings
+from gramps.gen.datehandler._dateutils import get_date
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -80,9 +82,11 @@ class Citations(Gramplet, DbGUIElement):
         self.set_tooltip(tip)
         top = Gtk.TreeView()
         titles = [('', NOSORT, 50,),
-                  (_('Source/Citation'), 1, 350),
-                  (_('Author'), 2, 200),
-                  (_('Publisher'), 3, 150)]
+                  (_('Source/Date'), 1, 350),
+                  (_('Volume/Page'), 2, 150),
+                  (_('Confidence Level'), 3, 150),
+                  (_('Author'), 4, 200),
+                  (_('Publisher'), 5, 150)]
         self.model = ListModel(top, titles, list_mode="tree",
                                event_func=self.invoke_editor)
         return top
@@ -159,18 +163,21 @@ class Citations(Gramplet, DbGUIElement):
         citation = self.dbstate.db.get_citation_from_handle(citation_handle)
         page = citation.get_page()
         if not page:
-            page = _('<No Citation>')
+            page = _('<No Volume/Page>')
         source_handle = citation.get_reference_handle()
         source = self.dbstate.db.get_source_from_handle(source_handle)
         title = source.get_title()
         author = source.get_author()
         publisher = source.get_publication_info()
+        confidence = citation.get_confidence_level()
 
         if source_handle not in self.source_nodes:
-            node = self.model.add([source_handle, title, author, publisher])
+            node = self.model.add([source_handle, title, '', '',
+                                   author, publisher])
             self.source_nodes[source_handle] = node
 
-        self.model.add([citation_handle, page, '', ''],
+        self.model.add([citation_handle, get_date(citation), page,
+                        _(conf_strings[confidence]), '', ''],
                        node=self.source_nodes[source_handle])
 
     def check_citations(self, obj):
