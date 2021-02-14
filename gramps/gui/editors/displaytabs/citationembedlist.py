@@ -77,13 +77,13 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Title'), 0, 150, TEXT_COL, -1, None),
-        (_('Author'), 1, 150, TEXT_COL, -1, None),
-        (_('Date'), 2, 150, TEXT_COL, -1, None),
-        (_('Publisher'), 3, 150, TEXT_COL, -1, None),
-        (_('Confidence Level'), 4, 100, TEXT_COL, -1, None),
-        (_('Page'), 5, 80, TEXT_COL, -1, None),
-        (_('ID'), 6, 75, TEXT_COL, -1, None),
+        (_('Title'), 0, 350, TEXT_COL, -1, None),
+        (_('Author'), 1, 200, TEXT_COL, -1, None),
+        (_('Date'), 2, 180, TEXT_COL, -1, None),
+        (_('Publisher'), 3, 200, TEXT_COL, -1, None),
+        (_('Confidence Level'), 4, 120, TEXT_COL, -1, None),
+        (_('Page'), 5, 100, TEXT_COL, -1, None),
+        (_('ID'), 6, 80, TEXT_COL, -1, None),
         (_('Private'), 7, 30, ICON_COL, -1, 'gramps-lock')
     ]
 
@@ -124,7 +124,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Return the column order of the columns in the display tab.
         """
-        return ((1, 7), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6))
+        return ((1, 0), (1, 1), (1, 5), (1, 2), (1, 3), (1, 6), (1, 4), (1, 7))
 
     def add_button_clicked(self, obj):
         """
