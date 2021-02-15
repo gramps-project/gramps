@@ -61,7 +61,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     Derives from the EmbeddedList class.
     """
 
-    _HANDLE_COL = 8  # Column number from CitationRefModel
+    _HANDLE_COL = 9  # Column number from CitationRefModel
     _DND_TYPE = DdTargets.CITATION_LINK
     _DND_EXTRA = DdTargets.SOURCE_LINK
 
