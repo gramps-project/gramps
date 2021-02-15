@@ -79,12 +79,13 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     _column_names = [
         (_('Title'), 0, 350, TEXT_COL, -1, None),
         (_('Author'), 1, 200, TEXT_COL, -1, None),
-        (_('Date'), 2, 180, TEXT_COL, -1, None),
+        (_('Date'), 8, 180, MARKUP_COL, -1, None),
         (_('Publisher'), 3, 200, TEXT_COL, -1, None),
         (_('Confidence Level'), 4, 120, TEXT_COL, -1, None),
         (_('Page'), 5, 100, TEXT_COL, -1, None),
         (_('ID'), 6, 80, TEXT_COL, -1, None),
-        (_('Private'), 7, 30, ICON_COL, -1, 'gramps-lock')
+        (_('Private'), 7, 30, ICON_COL, -1, 'gramps-lock'),
+        (_('Sorted date'), 8, 80, TEXT_COL, -1, None)
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None):
