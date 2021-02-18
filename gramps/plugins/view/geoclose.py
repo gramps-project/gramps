@@ -648,7 +648,7 @@ class GeoClose(GeoGraphyView):
         """
         Add specific entry to the navigation menu.
         """
-        add_item = Gtk.MenuItem()
+        add_item = Gtk.SeparatorMenuItem()
         add_item.show()
         menu.append(add_item)
         add_item = Gtk.MenuItem(

@@ -539,9 +539,10 @@ class GeoPlaces(GeoGraphyView):
         """
         Add specific entry to the navigation menu.
         """
-        add_item = Gtk.MenuItem()
+        add_item = Gtk.SeparatorMenuItem()
         add_item.show()
         menu.append(add_item)
+
         add_item = Gtk.MenuItem(label=_("Show all places"))
         add_item.connect("activate", self.show_all_places, event, lat, lon)
         add_item.show()

@@ -437,7 +437,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         # Add specific module menu
         self.add_specific_menu(menu, event, lat, lon)
         # Add a separator line
-        add_item = Gtk.MenuItem()
+        add_item = Gtk.SeparatorMenuItem()
         add_item.show()
         menu.append(add_item)
 
