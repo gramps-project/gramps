@@ -453,7 +453,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         add_item.set_submenu(changemap)
         # show in the map menu all available providers
         for my_map in constants.MAP_TYPE:
-            changemapitem = Gtk.MenuItem(label=constants.MAP_TITLE[my_map])
+            changemapitem = Gtk.CheckMenuItem(label=constants.MAP_TITLE[my_map])
+            changemapitem.set_active(constants.MAP_TITLE[my_map] == map_name)
             changemapitem.show()
             changemapitem.connect("activate", self.change_map, my_map)
             changemap.append(changemapitem)
