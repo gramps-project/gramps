@@ -539,27 +539,21 @@ class GeoPlaces(GeoGraphyView):
         """
         Add specific entry to the navigation menu.
         """
-        add_item = Gtk.SeparatorMenuItem()
-        add_item.show()
-        menu.append(add_item)
+        menu.append(Gtk.SeparatorMenuItem())
 
         add_item = Gtk.MenuItem(label=_("Show all places"))
         add_item.connect("activate", self.show_all_places, event, lat, lon)
-        add_item.show()
         menu.append(add_item)
         add_item = Gtk.MenuItem(label=_("Centering on Place"))
-        add_item.show()
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.show()
         add_item.set_submenu(itemoption)
         oldplace = ""
         for mark in self.sort:
             if mark[0] != oldplace:
                 oldplace = mark[0]
                 modify = Gtk.MenuItem(label=mark[0])
-                modify.show()
                 modify.connect("activate", self.goto_place,
                                float(mark[3]), float(mark[4]))
                 itemoption.append(modify)
