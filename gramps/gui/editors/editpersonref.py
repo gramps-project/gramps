@@ -97,7 +97,7 @@ class EditPersonRef(EditSecondary):
             self.btn_del.show()
         else:
             self.btn_add.show()
-            self.btn_del.hide()            
+            self.btn_del.hide()
 
 
     def _local_init(self):
@@ -183,7 +183,7 @@ class EditPersonRef(EditSecondary):
         sel = SelectPerson(self.dbstate, self.uistate, self.track)
         person = sel.run()
         self.update_person(person)
-        
+
 
 
     def no_name(self):
@@ -208,7 +208,7 @@ class EditPersonRef(EditSecondary):
         EditPerson(self.dbstate, self.uistate, self.track, person,
                    self.update_person)
 
-        
+
     def del_person_clicked(self, obj):
         self.update_person(None)
 
