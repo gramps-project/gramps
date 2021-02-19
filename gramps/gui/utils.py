@@ -450,7 +450,7 @@ def open_file_with_default_application(path, uistate):
     GLib.timeout_add_seconds(1, poll_external, (proc, errstrings, uistate))
     return
 
-def process_pending_events(max_count=10):
+def process_pending_events(max_count=20):
     """
     Process pending events, but don't get into an infinite loop.
     """

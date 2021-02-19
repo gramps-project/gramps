@@ -1013,7 +1013,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         """
         Handle the reception of drag data
         """
-        drag_value = selection.get_data().decode()
+        drag_value = selection.get_data().decode().strip(' \r\n\x00')
         fname = None
         type = None
         title = None

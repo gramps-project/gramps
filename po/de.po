@@ -8,21 +8,21 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-08-10 22:47+0200\n"
+"POT-Creation-Date: 2021-02-05 23:59+0100\n"
+"PO-Revision-Date: 2021-02-12 21:34+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 20.08.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -439,7 +439,7 @@ msgstr ""
 "Untersuchung &gt; Einzelne Ereignisse vergleichen...&quot; kannst du die "
 "Daten von Personen in deiner Datenbank vergleichen. Das ist nützlich, z.B. "
 "wenn du vorhast, die Geburtsdaten von jedem aus deiner Datenbank aufzulisten."
-"Zum Eingrenzen der Ergebnisse kannst du einen Anwenderfilter verwenden."
+"Zum Eingrenzen der Ergebnisse kannst du einen Benutzerfilter verwenden."
 
 #: ../data/tips.xml.in.h:12
 msgid ""
@@ -526,7 +526,8 @@ msgid ""
 "button from the People View). Then go to the Relationship View and create "
 "relationships between people."
 msgstr ""
-"<b>Einen neuen Stammbaum anlegen</b><br/>Ein guter Weg anzufangen ist, alle "
+"<b>Einen neuen Stammbaum anlegen</b><br/>Ein guter Weg einen neuen Stammbaum"
+" anzufangen ist, alle "
 "Mitglieder der Familie in die Datenbank unter Verwendung der Personenansicht "
 "einzugeben (verwende &quot;Bearbeiten &gt; Hinzufügen&quot; oder klicke auf "
 "die Hinzufügen-Schaltfläche in der Personenansicht). Dann gehe in die "
@@ -853,7 +854,7 @@ msgstr ""
 "<b>Filter</b><br/>Filter erlauben dir, die Personen in der Personenansicht "
 "zu limitieren. Zu den vielen vorkonfigurierten Filtern kannst du "
 "maßgeschneiderte Filter anlegen, die nach deinen Vorstellungen gestaltet "
-"werden können. Maßgeschneiderte Filter werden unter &quot;Bearbeiten &gt; "
+"werden können. Benutzerfilter werden unter &quot;Bearbeiten &gt; "
 "Filtereditor für Personen Personen&quot; angelegt."
 
 #: ../data/tips.xml.in.h:42
@@ -1684,7 +1685,7 @@ msgstr "Stammbaum \"%s\":"
 #: ../gramps/cli/clidbman.py:201 ../gramps/gen/plug/report/utils.py:160
 #: ../gramps/gui/editors/editattribute.py:135
 #: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:687
-#: ../gramps/gui/plug/_windows.py:1118
+#: ../gramps/gui/plug/_windows.py:1123
 #: ../gramps/plugins/gramplet/whatsnext.py:494
 #: ../gramps/plugins/textreport/birthdayreport.py:187
 #: ../gramps/plugins/textreport/birthdayreport.py:191
@@ -1719,7 +1720,7 @@ msgstr "Importiere Daten..."
 
 #: ../gramps/cli/clidbman.py:425
 msgid "Remove family tree warning"
-msgstr "Stammbaum Warnung entfernen"
+msgstr "Stammbaum entfernen Warnung"
 
 #: ../gramps/cli/clidbman.py:426
 #, python-format
@@ -3577,7 +3578,7 @@ msgstr "Anwendung ..."
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 #: ../gramps/plugins/graph/gvrelgraph.py:804
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
-#: ../gramps/plugins/textreport/birthdayreport.py:473
+#: ../gramps/plugins/textreport/birthdayreport.py:474
 #: ../gramps/plugins/textreport/familygroup.py:714
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
 #: ../gramps/plugins/textreport/recordsreport.py:217
@@ -3861,7 +3862,7 @@ msgstr "Filtername:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:70
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr "Kann den Filter %s in den Anwenderfiltern nicht finden"
+msgstr "Kann den Filter %s in den Benutzerfiltern nicht finden"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:47
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:48
@@ -4893,7 +4894,7 @@ msgstr "Typ:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1660
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1619
 msgid "Path:"
 msgstr "Pfad:"
 
@@ -6797,7 +6798,7 @@ msgstr "Datum"
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1128
 #: ../gramps/plugins/webreport/basepage.py:2537
-#: ../gramps/plugins/webreport/basepage.py:2603
+#: ../gramps/plugins/webreport/basepage.py:2604
 msgid "Street"
 msgstr "Straße"
 
@@ -6809,7 +6810,7 @@ msgstr "Straße"
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1129
 #: ../gramps/plugins/webreport/basepage.py:2538
-#: ../gramps/plugins/webreport/basepage.py:2604
+#: ../gramps/plugins/webreport/basepage.py:2605
 msgid "Locality"
 msgstr "Lokalität"
 
@@ -6821,7 +6822,7 @@ msgstr "Lokalität"
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1130
 #: ../gramps/plugins/webreport/basepage.py:2539
-#: ../gramps/plugins/webreport/basepage.py:2605
+#: ../gramps/plugins/webreport/basepage.py:2606
 msgid "City"
 msgstr "Stadt"
 
@@ -6833,7 +6834,7 @@ msgstr "Stadt"
 #: ../gramps/plugins/view/geoplaces.py:631
 #: ../gramps/plugins/webreport/basepage.py:1132
 #: ../gramps/plugins/webreport/basepage.py:2542
-#: ../gramps/plugins/webreport/basepage.py:2607
+#: ../gramps/plugins/webreport/basepage.py:2608
 msgid "County"
 msgstr "Kreis"
 
@@ -6855,8 +6856,8 @@ msgstr "Bundesland"
 #: ../gramps/plugins/view/geoplaces.py:625
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1134
-#: ../gramps/plugins/webreport/basepage.py:2546
-#: ../gramps/plugins/webreport/basepage.py:2610
+#: ../gramps/plugins/webreport/basepage.py:2547
+#: ../gramps/plugins/webreport/basepage.py:2611
 #: ../gramps/plugins/webreport/place.py:183
 #: ../gramps/plugins/webreport/place.py:195
 msgid "Country"
@@ -6865,7 +6866,7 @@ msgstr "Land"
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1133
 #: ../gramps/plugins/webreport/basepage.py:2545
-#: ../gramps/plugins/webreport/basepage.py:2609
+#: ../gramps/plugins/webreport/basepage.py:2610
 msgid "Postal Code"
 msgstr "Postleitzahl"
 
@@ -6908,7 +6909,7 @@ msgstr "Wert"
 #: ../gramps/plugins/textreport/indivcomplete.py:74
 #: ../gramps/plugins/view/geoplaces.py:595
 msgid "Custom"
-msgstr "Selbst definiert"
+msgstr "Benutzerdefiniert"
 
 #: ../gramps/gen/lib/attrtype.py:65
 msgid "Caste"
@@ -6922,7 +6923,7 @@ msgstr "Gesellschaftsklasse"
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:104
 #: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:278
 #: ../gramps/gui/plug/_windows.py:134 ../gramps/gui/plug/_windows.py:243
-#: ../gramps/gui/plug/_windows.py:622 ../gramps/gui/plug/_windows.py:1107
+#: ../gramps/gui/plug/_windows.py:622 ../gramps/gui/plug/_windows.py:1112
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/plugins/gramplet/coordinates.py:90
 #: ../gramps/plugins/gramplet/events.py:87
@@ -6934,7 +6935,7 @@ msgstr "Gesellschaftsklasse"
 #: ../gramps/plugins/webreport/basepage.py:643
 #: ../gramps/plugins/webreport/basepage.py:933
 #: ../gramps/plugins/webreport/basepage.py:2093
-#: ../gramps/plugins/webreport/basepage.py:2822
+#: ../gramps/plugins/webreport/basepage.py:2823
 #: ../gramps/plugins/webreport/download.py:128
 msgid "Description"
 msgstr "Beschreibung"
@@ -7272,7 +7273,7 @@ msgid "age|about"
 msgstr "um"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:339
-#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2882
+#: ../gramps/gen/lib/date.py:358 ../gramps/plugins/webreport/basepage.py:2883
 msgid "between"
 msgstr "zwischen"
 
@@ -7281,7 +7282,7 @@ msgstr "zwischen"
 #: ../gramps/plugins/quickview/all_relations.py:282
 #: ../gramps/plugins/view/relview.py:1159
 #: ../gramps/plugins/webreport/basepage.py:846
-#: ../gramps/plugins/webreport/basepage.py:2883
+#: ../gramps/plugins/webreport/basepage.py:2884
 msgid "and"
 msgstr "und"
 
@@ -7380,18 +7381,18 @@ msgid "date-modifier|none"
 msgstr "kein"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:314
-#: ../gramps/plugins/webreport/basepage.py:2891
+#: ../gramps/plugins/webreport/basepage.py:2892
 msgid "about"
 msgstr "um"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1841
 #: ../gramps/plugins/lib/libsubstkeyword.py:313
-#: ../gramps/plugins/webreport/basepage.py:2887
+#: ../gramps/plugins/webreport/basepage.py:2888
 msgid "after"
 msgstr "nach"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:313
-#: ../gramps/plugins/webreport/basepage.py:2889
+#: ../gramps/plugins/webreport/basepage.py:2890
 msgid "before"
 msgstr "vor"
 
@@ -7580,7 +7581,7 @@ msgstr "Juristisch"
 #: ../gramps/plugins/lib/libprogen.py:1829
 #: ../gramps/plugins/lib/libprogen.py:1832
 #: ../gramps/plugins/webreport/addressbooklist.py:114
-#: ../gramps/plugins/webreport/basepage.py:2799
+#: ../gramps/plugins/webreport/basepage.py:2800
 msgid "Residence"
 msgstr "Wohnort"
 
@@ -8080,7 +8081,7 @@ msgstr "Gesetzliche Partnerschaft"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
 #: ../gramps/gui/merge/mergeperson.py:253 ../gramps/gui/plug/_windows.py:123
-#: ../gramps/gui/plug/_windows.py:239 ../gramps/gui/plug/_windows.py:1105
+#: ../gramps/gui/plug/_windows.py:239 ../gramps/gui/plug/_windows.py:1110
 #: ../gramps/gui/plug/report/_bookdialog.py:384
 #: ../gramps/gui/plug/report/_bookdialog.py:388
 #: ../gramps/gui/selectors/selectevent.py:66
@@ -8117,7 +8118,7 @@ msgstr "Gesetzliche Partnerschaft"
 #: ../gramps/plugins/webreport/basepage.py:960
 #: ../gramps/plugins/webreport/basepage.py:1262
 #: ../gramps/plugins/webreport/basepage.py:2092
-#: ../gramps/plugins/webreport/basepage.py:2756
+#: ../gramps/plugins/webreport/basepage.py:2757
 #: ../gramps/plugins/webreport/event.py:176
 #: ../gramps/plugins/webreport/repository.py:163
 #: ../gramps/plugins/webreport/repository.py:253
@@ -8289,7 +8290,7 @@ msgstr "Region"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:104
 #: ../gramps/gui/plug/_guioptions.py:1176 ../gramps/gui/plug/_windows.py:130
-#: ../gramps/gui/plug/_windows.py:1106
+#: ../gramps/gui/plug/_windows.py:1111
 #: ../gramps/gui/plug/report/_bookdialog.py:383
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
@@ -8370,7 +8371,7 @@ msgstr "Suffix"
 #: ../gramps/plugins/textreport/tagreport.py:745
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/basepage.py:2754
+#: ../gramps/plugins/webreport/basepage.py:2755
 msgid "Title"
 msgstr "Titel"
 
@@ -8480,7 +8481,7 @@ msgstr "Name nach der Hochzeit"
 
 #. ###############################
 #. 3
-#: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:265
+#: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:269
 #: ../gramps/gen/plug/docgen/treedoc.py:199 ../gramps/gui/clipboard.py:375
 #: ../gramps/gui/configure.py:667 ../gramps/gui/editors/editlink.py:95
 #: ../gramps/gui/editors/editmedia.py:98 ../gramps/gui/editors/editmedia.py:181
@@ -8548,7 +8549,7 @@ msgstr "Abschrift"
 
 #: ../gramps/gen/lib/notetype.py:78
 msgid "Source text"
-msgstr "Quelltext"
+msgstr "Quellentext"
 
 #: ../gramps/gen/lib/notetype.py:80 ../gramps/gen/plug/_pluginreg.py:79
 #: ../gramps/gui/logger/_errorview.py:174
@@ -8797,7 +8798,7 @@ msgstr "Orte"
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/plugins/textreport/indivcomplete.py:391
-#: ../gramps/plugins/webreport/basepage.py:2573
+#: ../gramps/plugins/webreport/basepage.py:2574
 msgid "Alternate Names"
 msgstr "Alternative Namen"
 
@@ -8809,7 +8810,7 @@ msgstr "Alternative Namen"
 msgid "Code"
 msgstr "Kennung"
 
-#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2597
+#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2598
 msgid "Alternate Locations"
 msgstr "Alternative Ortsangaben"
 
@@ -8824,7 +8825,7 @@ msgstr "Ortsname"
 
 #: ../gramps/gen/lib/placename.py:103
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
-#: ../gramps/plugins/webreport/basepage.py:2575
+#: ../gramps/plugins/webreport/basepage.py:2576
 msgid "Language"
 msgstr "Sprache"
 
@@ -8833,6 +8834,7 @@ msgid "Place ref"
 msgstr "Orts ref"
 
 #: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:634
+#: ../gramps/plugins/webreport/basepage.py:2546
 msgid "Province"
 msgstr "Provinz"
 
@@ -8878,7 +8880,7 @@ msgstr "Gebäude"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
 #: ../gramps/plugins/view/geoplaces.py:622
-#: ../gramps/plugins/webreport/basepage.py:2752
+#: ../gramps/plugins/webreport/basepage.py:2753
 #: ../gramps/plugins/webreport/source.py:164
 msgid "Number"
 msgstr "Standortnummer/Signatur"
@@ -8974,7 +8976,7 @@ msgstr "Abkürzung"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/basepage.py:1532
 #: ../gramps/plugins/webreport/basepage.py:1653
-#: ../gramps/plugins/webreport/basepage.py:2743
+#: ../gramps/plugins/webreport/basepage.py:2744
 #: ../gramps/plugins/webreport/repository.py:138
 #: ../gramps/plugins/webreport/repository.py:224
 msgid "Repositories"
@@ -9549,17 +9551,17 @@ msgid "Orthogonal"
 msgstr "Rechtwinklig"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:141
+#: ../gramps/gen/plug/docgen/graphdoc.py:145
 msgid "Graphviz Layout"
 msgstr "Graphviz Layout"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:143
+#: ../gramps/gen/plug/docgen/graphdoc.py:147
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Font family"
 msgstr "Schriftfamilie"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:146
+#: ../gramps/gen/plug/docgen/graphdoc.py:150
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -9568,29 +9570,29 @@ msgstr ""
 "werden, benutze die FreeSans-Schrift. FreeSans ist verfügbar unter: https://"
 "www.nongnu.org/freefont/"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:152
+#: ../gramps/gen/plug/docgen/graphdoc.py:156
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Font size"
 msgstr "Schriftgröße"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:153
+#: ../gramps/gen/plug/docgen/graphdoc.py:157
 msgid "The font size, in points."
 msgstr "Die Schriftgröße in Punkten."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:156
+#: ../gramps/gen/plug/docgen/graphdoc.py:160
 msgid "Graph Direction"
 msgstr "Ausrichtung der Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:159
+#: ../gramps/gen/plug/docgen/graphdoc.py:163
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr ""
 "Legt fest, ob der Graph von oben nach unten, oder von links nach rechts geht."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:163
+#: ../gramps/gen/plug/docgen/graphdoc.py:167
 msgid "Number of Horizontal Pages"
 msgstr "Horizontale Seitenzahl"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:164
+#: ../gramps/gen/plug/docgen/graphdoc.py:168
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9601,11 +9603,11 @@ msgstr ""
 "horizontale Anzahl an Seiten vor. Nur gültig für DOT und PDF über "
 "Ghostscript."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:171
+#: ../gramps/gen/plug/docgen/graphdoc.py:175
 msgid "Number of Vertical Pages"
 msgstr "Vertikale Seitenzahl"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:172
+#: ../gramps/gen/plug/docgen/graphdoc.py:176
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9615,11 +9617,11 @@ msgstr ""
 "rechteckige Fläche aus mehreren Seiten verteilt wird. Dies gibt die "
 "vertikale Anzahl an Seiten vor. Nur gültig für DOT und PDF über Ghostscript."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:179
+#: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "Paging Direction"
 msgstr "Seitenwechsel Richtung"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:182
+#: ../gramps/gen/plug/docgen/graphdoc.py:186
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -9627,33 +9629,33 @@ msgstr ""
 "Reihenfolge, in der die Diagrammseiten ausgegeben werden. Diese Option wirkt "
 "nur, wenn die horizontale oder vertikale Seitenzahl größer 1 ist."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:187
+#: ../gramps/gen/plug/docgen/graphdoc.py:191
 msgid "Connecting lines"
 msgstr "Verbindungslinien"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:190
+#: ../gramps/gen/plug/docgen/graphdoc.py:194
 msgid "How the lines between objects will be drawn."
 msgstr "Wie die Linien zwischen Objekten gezeichnet werden."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:193
+#: ../gramps/gen/plug/docgen/graphdoc.py:197
 msgid "Alternate line attachment"
 msgstr "Alternative Linien hinzufügen"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:194
+#: ../gramps/gen/plug/docgen/graphdoc.py:198
 msgid "Whether lines attach to nodes differently"
 msgstr "Ob unterschiedliche Linien an Notizen angehängt werden"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:210
+#: ../gramps/gen/plug/docgen/graphdoc.py:214
 msgid "Graphviz Options"
 msgstr "Optionen für Graphviz"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:213
+#: ../gramps/gen/plug/docgen/graphdoc.py:217
 msgid "Aspect ratio"
 msgstr "Streckung"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:217
+#: ../gramps/gen/plug/docgen/graphdoc.py:221
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -9684,11 +9686,11 @@ msgstr ""
 "  Ausdehnen verkleinert die Grafik gleichmäßig, damit sie in den "
 "Druckbereich passt."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:233
+#: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid "DPI"
 msgstr "DPI"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:234
+#: ../gramps/gen/plug/docgen/graphdoc.py:238
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
@@ -9698,11 +9700,11 @@ msgstr ""
 "erstellst, versuche Werte wie 100 oder 300 DPI. Für PostScript und PDF "
 "Dateien verwende immer 72 DPI."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:241
+#: ../gramps/gen/plug/docgen/graphdoc.py:245
 msgid "Node spacing"
 msgstr "Knotenabstand"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:242
+#: ../gramps/gen/plug/docgen/graphdoc.py:246
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -9712,11 +9714,11 @@ msgstr ""
 "Grafen entspricht das dem Abstand zwischen Spalten. Für waagerechte Grafen "
 "entspricht das dem Abstand zwischen Zeilen."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:249
+#: ../gramps/gen/plug/docgen/graphdoc.py:253
 msgid "Rank spacing"
 msgstr "Ebenenabstand"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:250
+#: ../gramps/gen/plug/docgen/graphdoc.py:254
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -9726,11 +9728,11 @@ msgstr ""
 "entspricht dies dem Abstand zwischen Zeilen. Für waagerechte Grafen "
 "entspricht das dem Abstand zwischen Spalten."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:257
+#: ../gramps/gen/plug/docgen/graphdoc.py:261
 msgid "Use subgraphs"
 msgstr "Benutze Unterdiagramme"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:258
+#: ../gramps/gen/plug/docgen/graphdoc.py:262
 msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
@@ -9740,67 +9742,67 @@ msgstr ""
 "größeren Diagrammen führen."
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:268
+#: ../gramps/gen/plug/docgen/graphdoc.py:272
 msgid "Note to add to the graph"
 msgstr "Notizen zur Grafik hinzufügen."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:270
+#: ../gramps/gen/plug/docgen/graphdoc.py:274
 msgid "This text will be added to the graph."
 msgstr "Dieser Text wird der Grafik hinzugefügt."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:273
+#: ../gramps/gen/plug/docgen/graphdoc.py:277
 #: ../gramps/gen/plug/docgen/treedoc.py:206
 msgid "Note location"
 msgstr "Position der Notiz"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:276
+#: ../gramps/gen/plug/docgen/graphdoc.py:280
 #: ../gramps/gen/plug/docgen/treedoc.py:209
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Legt fest, ob die Notiz oben oder unten auf der Seite erscheint."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:280
+#: ../gramps/gen/plug/docgen/graphdoc.py:284
 #: ../gramps/gen/plug/docgen/treedoc.py:213
 msgid "Note size"
 msgstr "Notizgröße"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:281
+#: ../gramps/gen/plug/docgen/graphdoc.py:285
 msgid "The size of note text, in points."
 msgstr "Die Größe des Notizentext in Punkten."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1073
+#: ../gramps/gen/plug/docgen/graphdoc.py:1077
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1079
+#: ../gramps/gen/plug/docgen/graphdoc.py:1083
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1085
+#: ../gramps/gen/plug/docgen/graphdoc.py:1089
 #: ../gramps/plugins/docgen/docgen.gpr.py:161
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1091
+#: ../gramps/gen/plug/docgen/graphdoc.py:1095
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Strukturierte Vektor Grafiken (SVG)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1097
+#: ../gramps/gen/plug/docgen/graphdoc.py:1101
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Komprimierte SVG-Grafik (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1103
+#: ../gramps/gen/plug/docgen/graphdoc.py:1107
 msgid "JPEG image"
 msgstr "JPEG-Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1109
+#: ../gramps/gen/plug/docgen/graphdoc.py:1113
 msgid "GIF image"
 msgstr "GIF-Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1115
+#: ../gramps/gen/plug/docgen/graphdoc.py:1119
 msgid "PNG image"
 msgstr "PNG-Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1121
+#: ../gramps/gen/plug/docgen/graphdoc.py:1125
 msgid "Graphviz File"
 msgstr "Graphviz Datei"
 
@@ -9814,7 +9816,7 @@ msgstr "Legal"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgid "Custom Size"
-msgstr "Selbst definierte Größe"
+msgstr "Benutzerdefinierte Größe"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
@@ -10254,7 +10256,7 @@ msgstr "Ob (und wo) Gramps-IDs enthalten sind"
 #. #########################
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:328
-#: ../gramps/gui/viewmanager.py:1719
+#: ../gramps/gui/viewmanager.py:1678
 #: ../gramps/plugins/graph/gvfamilylines.py:219
 #: ../gramps/plugins/graph/gvrelgraph.py:862
 #: ../gramps/plugins/textreport/detancestralreport.py:900
@@ -11462,7 +11464,7 @@ msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position."
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1835
 #: ../gramps/gui/configure.py:1859 ../gramps/gui/configure.py:1885
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1791
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1750
 #: ../gramps/plugins/lib/maps/geography.py:997
 #: ../gramps/plugins/lib/maps/geography.py:1294
 msgid "_Apply"
@@ -11510,7 +11512,7 @@ msgstr "Namenseditor anzeigen"
 #: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:693
 #: ../gramps/gui/plug/_windows.py:749
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:1654 ../gramps/gui/views/bookmarks.py:298
+#: ../gramps/gui/viewmanager.py:1613 ../gramps/gui/views/bookmarks.py:298
 #: ../gramps/gui/views/tags.py:466 ../gramps/gui/widgets/grampletbar.py:637
 #: ../gramps/gui/widgets/grampletpane.py:240
 #: ../gramps/plugins/lib/maps/placeselection.py:120
@@ -12299,7 +12301,7 @@ msgstr "Sicherungspfad"
 
 #: ../gramps/gui/configure.py:1772
 msgid "Backup on exit"
-msgstr "Beim beenden sichern"
+msgstr "Beim Beenden sichern"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
@@ -12373,7 +12375,7 @@ msgstr "Wähle ein Medienverzeichnis"
 #: ../gramps/gui/plug/_guioptions.py:1744 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1789 ../gramps/gui/views/listview.py:1065
+#: ../gramps/gui/viewmanager.py:1748 ../gramps/gui/views/listview.py:1065
 #: ../gramps/gui/views/navigationview.py:348 ../gramps/gui/views/tags.py:682
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
@@ -12389,7 +12391,7 @@ msgstr "_Abbrechen"
 msgid "Select database directory"
 msgstr "Wähle ein Datenbankverzeichnis."
 
-#: ../gramps/gui/configure.py:1880 ../gramps/gui/viewmanager.py:1786
+#: ../gramps/gui/configure.py:1880 ../gramps/gui/viewmanager.py:1745
 msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
@@ -12612,12 +12614,12 @@ msgstr "Du hast keinen Lesezugriff auf die ausgewählte Datei."
 msgid "Cannot create file"
 msgstr "Die Datei kann nicht erstellt werden."
 
-#: ../gramps/gui/dbloader.py:564
+#: ../gramps/gui/dbloader.py:563
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Die Datei kann nicht importiert werden: %s."
 
-#: ../gramps/gui/dbloader.py:565
+#: ../gramps/gui/dbloader.py:564
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -12688,7 +12690,7 @@ msgstr "Datumsinformation"
 #: ../gramps/gui/glade/styleeditor.glade:1754
 #: ../gramps/gui/plug/_guioptions.py:80
 #: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
-#: ../gramps/gui/viewmanager.py:1656 ../gramps/gui/views/tags.py:683
+#: ../gramps/gui/viewmanager.py:1615 ../gramps/gui/views/tags.py:683
 #: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -13038,7 +13040,7 @@ msgstr "Keine aktiven Medien"
 msgid "No active note"
 msgstr "Keine aktive Notiz"
 
-#: ../gramps/gui/displaystate.py:644 ../gramps/plugins/gramplet/todo.py:200
+#: ../gramps/gui/displaystate.py:647 ../gramps/plugins/gramplet/todo.py:200
 msgid "No active object"
 msgstr "Kein aktives Objekt"
 
@@ -13507,14 +13509,14 @@ msgstr "Als Standardnamen setzen"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
-#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1022
+#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1026
 #: ../gramps/gui/views/tags.py:532
 #: ../gramps/plugins/quickview/all_relations.py:306
 msgid "Yes"
 msgstr "Ja"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
-#: ../gramps/gui/plug/_guioptions.py:1257 ../gramps/gui/viewmanager.py:1022
+#: ../gramps/gui/plug/_guioptions.py:1257 ../gramps/gui/viewmanager.py:1026
 #: ../gramps/gui/views/tags.py:533
 #: ../gramps/plugins/quickview/all_relations.py:310
 msgid "No"
@@ -13666,8 +13668,8 @@ msgstr "Alternative Namen"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:72
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:111
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
-#: ../gramps/plugins/webreport/basepage.py:2646
-#: ../gramps/plugins/webreport/basepage.py:2664
+#: ../gramps/plugins/webreport/basepage.py:2647
+#: ../gramps/plugins/webreport/basepage.py:2665
 msgid "Enclosed By"
 msgstr "Teil von"
 
@@ -13870,7 +13872,7 @@ msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 #: ../gramps/gui/editors/editevent.py:251
 #: ../gramps/gui/editors/editmedia.py:300
 #: ../gramps/gui/editors/editperson.py:845
-#: ../gramps/gui/editors/editplace.py:324
+#: ../gramps/gui/editors/editplace.py:326
 #: ../gramps/gui/editors/editreference.py:288
 #: ../gramps/gui/editors/editrepository.py:189
 #: ../gramps/gui/editors/editsource.py:210
@@ -14685,8 +14687,8 @@ msgid "New Place"
 msgstr "Neuer Ort"
 
 #. translators: translate the "S" too (and the "or" of course)
-#: ../gramps/gui/editors/editplace.py:207
-#: ../gramps/gui/editors/editplaceref.py:200
+#: ../gramps/gui/editors/editplace.py:209
+#: ../gramps/gui/editors/editplaceref.py:202
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
@@ -14695,8 +14697,8 @@ msgstr ""
 "(Syntax: 18\\u00b09'48.21\"S, -18.2412 oder -18:9:48.21)"
 
 #. translators: translate the "E" too (and the "or" of course)
-#: ../gramps/gui/editors/editplace.py:212
-#: ../gramps/gui/editors/editplaceref.py:205
+#: ../gramps/gui/editors/editplace.py:214
+#: ../gramps/gui/editors/editplaceref.py:207
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -14704,38 +14706,38 @@ msgstr ""
 "Ungültiger Längengrad\n"
 "(Syntax: 18\\u00b09'48.21\"E, -18.2412 oder -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:223
+#: ../gramps/gui/editors/editplace.py:225
 #: ../gramps/plugins/lib/maps/geography.py:891
 #: ../gramps/plugins/view/geoplaces.py:496
 #: ../gramps/plugins/view/geoplaces.py:522
 msgid "Edit Place"
 msgstr "Ort bearbeiten"
 
-#: ../gramps/gui/editors/editplace.py:313
-#: ../gramps/gui/editors/editplaceref.py:308
+#: ../gramps/gui/editors/editplace.py:315
+#: ../gramps/gui/editors/editplaceref.py:310
 msgid "Cannot save place. Name not entered."
 msgstr "Kann Ort nicht speichern. Name nicht eingegeben."
 
-#: ../gramps/gui/editors/editplace.py:314
-#: ../gramps/gui/editors/editplaceref.py:309
+#: ../gramps/gui/editors/editplace.py:316
+#: ../gramps/gui/editors/editplaceref.py:311
 msgid "You must enter a name before saving."
 msgstr "Du musst einen Namen eingeben bevor du speicherst."
 
-#: ../gramps/gui/editors/editplace.py:323
+#: ../gramps/gui/editors/editplace.py:325
 msgid "Cannot save place. ID already exists."
 msgstr "Der Ort kann nicht gespeichert werden. ID besteht bereits."
 
-#: ../gramps/gui/editors/editplace.py:335
+#: ../gramps/gui/editors/editplace.py:337
 #, python-format
 msgid "Add Place (%s)"
 msgstr "Ort (%s) hinzufügen"
 
-#: ../gramps/gui/editors/editplace.py:340
+#: ../gramps/gui/editors/editplace.py:342
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Ort (%s) bearbeiten"
 
-#: ../gramps/gui/editors/editplace.py:368
+#: ../gramps/gui/editors/editplace.py:370
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Ort (%s) löschen"
@@ -14774,11 +14776,11 @@ msgstr "Der Ortsname darf nicht leer sein"
 msgid "Place Reference Editor"
 msgstr "Ortsreferenzeditor"
 
-#: ../gramps/gui/editors/editplaceref.py:315
+#: ../gramps/gui/editors/editplaceref.py:317
 msgid "Modify Place"
 msgstr "Ort ändern"
 
-#: ../gramps/gui/editors/editplaceref.py:320
+#: ../gramps/gui/editors/editplaceref.py:322
 msgid "Add Place"
 msgstr "Ort hinzufügen"
 
@@ -14928,7 +14930,7 @@ msgstr "Filter_definieren_Dialog"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 msgid "manual|Custom_Filters"
-msgstr "Anwenderfilter"
+msgstr "Benutzerfilter"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Person Filters"
@@ -15294,7 +15296,7 @@ msgstr "Min. Vert.:"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:110
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:93
 msgid "Custom filter"
-msgstr "Eigener Filter"
+msgstr "Benutzerfilter"
 
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
 #: ../gramps/plugins/textreport/tagreport.py:347
@@ -16791,7 +16793,7 @@ msgid "Street Number"
 msgstr "Straße Nummer"
 
 #: ../gramps/gui/glade/editplacename.glade:156
-#: ../gramps/plugins/webreport/basepage.py:2571
+#: ../gramps/plugins/webreport/basepage.py:2572
 msgid "Date range in which the name is valid."
 msgstr "Zeitraum, in dem der Name gültig ist."
 
@@ -17028,7 +17030,7 @@ msgstr "Zusa_mmenführen und schließen"
 
 #. name, click?, width, toggle
 #: ../gramps/gui/glade/mergedata.glade:173
-#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1100
+#: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1105
 #: ../gramps/plugins/tool/changenames.py:196
 #: ../gramps/plugins/tool/patchnames.py:401
 msgid "Select"
@@ -17701,7 +17703,7 @@ msgid "Install Selected _Addons"
 msgstr "Gewählte _Erweiterungen installieren"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
-#: ../gramps/gui/plug/_windows.py:1080
+#: ../gramps/gui/plug/_windows.py:1085
 msgid "Available Gramps Updates for Addons"
 msgstr "Verfügbare Gramps-Aktualisierungen für die Erweiterungen (Addons)"
 
@@ -17766,7 +17768,7 @@ msgstr "Sicherung erstellen..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Manage databases"
-msgstr "Datenbanken verwalten"
+msgstr "Stammbäume verwalten"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open _Recent"
@@ -17931,7 +17933,7 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Ihre Gtk erfüllt nicht Vorgaben.\n"
+"Deine Gtk erfüllt nicht die Vorgaben.\n"
 "Mindestens %(major)d.%(minor)d wird benötigt, um Gramps mit GUI zu starten.\n"
 "\n"
 "Gramps wird nun beendet."
@@ -17982,7 +17984,7 @@ msgstr ""
 "1) Anders arbeiten als erwartet.\n"
 "2) Generell nicht funktionieren.\n"
 "3) Oft abstürzen.\n"
-"4) Ihre Daten beschädigen.\n"
+"4) Deine Daten beschädigen.\n"
 "5) Daten in einem Format speichern, das mit der offiziellen Version nicht "
 "kompatibel ist.\n"
 "\n"
@@ -18629,42 +18631,42 @@ msgstr "Zusatzmodul Fehler"
 msgid "_Execute"
 msgstr "_Ausführen"
 
-#: ../gramps/gui/plug/_windows.py:1049
+#: ../gramps/gui/plug/_windows.py:1054
 #: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/tool/ownereditor.py:164
 #: ../gramps/plugins/tool/reorderids.py:221
 msgid "Main window"
 msgstr "Hauptfenster"
 
-#: ../gramps/gui/plug/_windows.py:1177
+#: ../gramps/gui/plug/_windows.py:1182
 msgid "Downloading and installing selected addons..."
 msgstr "Herunterladen und installieren der gewählten Erweiterungen..."
 
-#: ../gramps/gui/plug/_windows.py:1212
+#: ../gramps/gui/plug/_windows.py:1217
 msgid "Installation Errors"
 msgstr "Installationsfehler"
 
-#: ../gramps/gui/plug/_windows.py:1213
+#: ../gramps/gui/plug/_windows.py:1218
 msgid "The following addons had errors: "
 msgstr "Die folgenden Erweiterungen hatten Fehler: "
 
-#: ../gramps/gui/plug/_windows.py:1219 ../gramps/gui/plug/_windows.py:1227
+#: ../gramps/gui/plug/_windows.py:1224 ../gramps/gui/plug/_windows.py:1232
 msgid "Done downloading and installing addons"
 msgstr "Herunterladen und Installation der Erweiterungen abgeschlossen"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/gui/plug/_windows.py:1221
+#: ../gramps/gui/plug/_windows.py:1226
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} Zusatzmodul wurde installiert."
 msgstr[1] "{number_of} Zusatzmodule wurden installiert."
 
-#: ../gramps/gui/plug/_windows.py:1224
+#: ../gramps/gui/plug/_windows.py:1229
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgstr "Wenn du eine 'Grampsansicht' hast, musst du Gramps neu starten."
 
-#: ../gramps/gui/plug/_windows.py:1228
+#: ../gramps/gui/plug/_windows.py:1233
 msgid "No addons were installed."
 msgstr "Es wurden keine Erweiterungen installiert."
 
@@ -18675,7 +18677,7 @@ msgstr "Exportassistent"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:181
 msgid "Saving your data"
-msgstr "Ihre Daten speichern"
+msgstr "Deine Daten speichern"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:227
 msgid "Choose the output format"
@@ -18818,7 +18820,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:597
 msgid "Error exporting your Family Tree"
-msgstr "Fehler beim Exportieren ihres Stammbaum"
+msgstr "Fehler beim Exportieren deines Stammbaums"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:605
 #: ../gramps/gui/plug/export/_exportassistant.py:639
@@ -19211,7 +19213,7 @@ msgstr "Stil"
 #: ../gramps/plugins/graph/gvrelgraph.py:800
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
-#: ../gramps/plugins/textreport/birthdayreport.py:471
+#: ../gramps/plugins/textreport/birthdayreport.py:472
 #: ../gramps/plugins/textreport/descendreport.py:520
 #: ../gramps/plugins/textreport/detancestralreport.py:828
 #: ../gramps/plugins/textreport/detdescendantreport.py:1003
@@ -19557,11 +19559,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1117
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1076
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1137
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1096
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
@@ -19644,7 +19646,7 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Der neue Fundstelleneditor kann nicht geöffnet werden."
 
-#: ../gramps/gui/viewmanager.py:331 ../gramps/gui/viewmanager.py:1049
+#: ../gramps/gui/viewmanager.py:331 ../gramps/gui/viewmanager.py:1053
 msgid "No Family Tree"
 msgstr "Kein Stammbaum"
 
@@ -19694,31 +19696,31 @@ msgstr "Ansicht konnte nicht geladen werden. Fehlerbericht kontrollieren."
 msgid "Import Statistics"
 msgstr "Importstatistiken"
 
-#: ../gramps/gui/viewmanager.py:1016
+#: ../gramps/gui/viewmanager.py:1020
 msgid "Read Only"
 msgstr "Nur lesen"
 
-#: ../gramps/gui/viewmanager.py:1020
+#: ../gramps/gui/viewmanager.py:1024
 msgid "Gramps had a problem the last time it was run."
 msgstr "Gramps hatte ein Problem als es das letzte mal gelaufen ist."
 
-#: ../gramps/gui/viewmanager.py:1021
+#: ../gramps/gui/viewmanager.py:1025
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "Möchtest du Werkzeug \"Datenbank prüfen und reparieren\" starten?"
 
-#: ../gramps/gui/viewmanager.py:1186
+#: ../gramps/gui/viewmanager.py:1145
 msgid "Autobackup..."
 msgstr "Automatisches Backup..."
 
-#: ../gramps/gui/viewmanager.py:1191
+#: ../gramps/gui/viewmanager.py:1150
 msgid "Error saving backup data"
 msgstr "Fehler beim Speichern der Sicherungsdaten."
 
-#: ../gramps/gui/viewmanager.py:1478
+#: ../gramps/gui/viewmanager.py:1437
 msgid "Failed Loading View"
 msgstr "Laden der Ansicht fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1479
+#: ../gramps/gui/viewmanager.py:1438
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19743,11 +19745,11 @@ msgstr ""
 "Wenn du nicht willst, das Gramps weiter versucht diese Ansicht zu laden, "
 "kannst du sie in der Zusatzmodulverwaltung über das Hilfemenü verstecken."
 
-#: ../gramps/gui/viewmanager.py:1571
+#: ../gramps/gui/viewmanager.py:1530
 msgid "Failed Loading Plugin"
 msgstr "Laden des Zusatzmodul fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1572
+#: ../gramps/gui/viewmanager.py:1531
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19773,55 +19775,55 @@ msgstr ""
 "laden, kannst du es in der Zusatzmodulverwaltung über das Hilfemenü "
 "verstecken."
 
-#: ../gramps/gui/viewmanager.py:1652
+#: ../gramps/gui/viewmanager.py:1611
 msgid "Gramps XML Backup"
 msgstr "Gramps XML Sicherung"
 
-#: ../gramps/gui/viewmanager.py:1681
+#: ../gramps/gui/viewmanager.py:1640
 msgid "File:"
 msgstr "Datei:"
 
-#: ../gramps/gui/viewmanager.py:1713
+#: ../gramps/gui/viewmanager.py:1672
 msgid "Media:"
 msgstr "Medien:"
 
-#: ../gramps/gui/viewmanager.py:1720
+#: ../gramps/gui/viewmanager.py:1679
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
 #: ../gramps/plugins/webreport/statistics.py:145
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1722
+#: ../gramps/gui/viewmanager.py:1681
 msgid "Exclude"
 msgstr "Ausschließen"
 
-#: ../gramps/gui/viewmanager.py:1742
+#: ../gramps/gui/viewmanager.py:1701
 msgid "Backup file already exists! Overwrite?"
 msgstr "Sicherungsdatei existiert bereits! Überschreiben?"
 
-#: ../gramps/gui/viewmanager.py:1743
+#: ../gramps/gui/viewmanager.py:1702
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Die Datei '%s' existiert."
 
-#: ../gramps/gui/viewmanager.py:1744
+#: ../gramps/gui/viewmanager.py:1703
 msgid "Proceed and overwrite"
 msgstr "Fortsetzen und überschreiben"
 
-#: ../gramps/gui/viewmanager.py:1745
+#: ../gramps/gui/viewmanager.py:1704
 msgid "Cancel the backup"
 msgstr "Sicherung abbrechen"
 
-#: ../gramps/gui/viewmanager.py:1760
+#: ../gramps/gui/viewmanager.py:1719
 msgid "Making backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../gramps/gui/viewmanager.py:1773
+#: ../gramps/gui/viewmanager.py:1732
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sicherung gespeichert in '%s'"
 
-#: ../gramps/gui/viewmanager.py:1776
+#: ../gramps/gui/viewmanager.py:1735
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
@@ -21002,7 +21004,7 @@ msgstr "Ob leere Seiten enthalten sind."
 #: ../gramps/plugins/graph/gvhourglass.py:404
 #: ../gramps/plugins/graph/gvrelgraph.py:844
 #: ../gramps/plugins/textreport/ancestorreport.py:310
-#: ../gramps/plugins/textreport/birthdayreport.py:500
+#: ../gramps/plugins/textreport/birthdayreport.py:501
 #: ../gramps/plugins/textreport/descendreport.py:557
 #: ../gramps/plugins/textreport/detancestralreport.py:856
 #: ../gramps/plugins/textreport/detdescendantreport.py:1045
@@ -21321,7 +21323,7 @@ msgid "The center person for the report"
 msgstr "Die Hauptperson für den Bericht"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:477
-#: ../gramps/plugins/textreport/birthdayreport.py:488
+#: ../gramps/plugins/textreport/birthdayreport.py:489
 msgid "Text Area 1"
 msgstr "Textbereich 1"
 
@@ -21330,7 +21332,7 @@ msgid "First line of text at bottom of calendar"
 msgstr "Erste Textzeile am Fuß des Kalenders."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:481
-#: ../gramps/plugins/textreport/birthdayreport.py:492
+#: ../gramps/plugins/textreport/birthdayreport.py:493
 msgid "Text Area 2"
 msgstr "Textbereich 2"
 
@@ -21339,7 +21341,7 @@ msgid "Second line of text at bottom of calendar"
 msgstr "Zweite Textzeile am Fuß des Kalenders."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:485
-#: ../gramps/plugins/textreport/birthdayreport.py:496
+#: ../gramps/plugins/textreport/birthdayreport.py:497
 msgid "Text Area 3"
 msgstr "Textbereich 3"
 
@@ -21348,7 +21350,7 @@ msgid "Third line of text at bottom of calendar"
 msgstr "Dritte Textzeile am Fuß des Kalenders."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:501
-#: ../gramps/plugins/textreport/birthdayreport.py:507
+#: ../gramps/plugins/textreport/birthdayreport.py:508
 #: ../gramps/plugins/webreport/webcal.py:1730
 msgid "Include only living people"
 msgstr "Nur lebende Personen einbeziehen"
@@ -21362,7 +21364,7 @@ msgstr "Kalender nur mit lebenden Personen"
 #. Content options
 #. Content
 #: ../gramps/plugins/drawreport/calendarreport.py:508
-#: ../gramps/plugins/textreport/birthdayreport.py:523
+#: ../gramps/plugins/textreport/birthdayreport.py:524
 #: ../gramps/plugins/textreport/detancestralreport.py:873
 #: ../gramps/plugins/textreport/detdescendantreport.py:1062
 #: ../gramps/plugins/view/relview.py:1899
@@ -21376,13 +21378,13 @@ msgid "Year of calendar"
 msgstr "Kalenderjahr"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:517
-#: ../gramps/plugins/textreport/birthdayreport.py:530
+#: ../gramps/plugins/textreport/birthdayreport.py:531
 #: ../gramps/plugins/webreport/webcal.py:1767
 msgid "Country for holidays"
 msgstr "Land für Feiertage"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:528
-#: ../gramps/plugins/textreport/birthdayreport.py:541
+#: ../gramps/plugins/textreport/birthdayreport.py:542
 msgid "Select the country to see associated holidays"
 msgstr "Wähle ein Land aus, um die dazugehörigen Feiertage zu sehen."
 
@@ -21398,56 +21400,56 @@ msgid "Select the first day of the week for the calendar"
 msgstr "Wähle den ersten Tag der Kalenderwoche."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:542
-#: ../gramps/plugins/textreport/birthdayreport.py:544
+#: ../gramps/plugins/textreport/birthdayreport.py:545
 #: ../gramps/plugins/webreport/webcal.py:1792
 msgid "Birthday surname"
 msgstr "Nachname bei Geburtstagen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:545
-#: ../gramps/plugins/textreport/birthdayreport.py:547
+#: ../gramps/plugins/textreport/birthdayreport.py:548
 #: ../gramps/plugins/webreport/webcal.py:1793
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 "Frauen benutzen den Nachnamen vom Mann (von der ersten gelisteten Familie)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:548
-#: ../gramps/plugins/textreport/birthdayreport.py:550
+#: ../gramps/plugins/textreport/birthdayreport.py:551
 #: ../gramps/plugins/webreport/webcal.py:1795
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 "Frauen benutzen den Nachnamen vom Mann (von der letzten gelisteten Familie)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:549
-#: ../gramps/plugins/textreport/birthdayreport.py:551
+#: ../gramps/plugins/textreport/birthdayreport.py:552
 #: ../gramps/plugins/webreport/webcal.py:1797
 msgid "Wives use their own surname"
 msgstr "Frauen benutzen ihren Mädchennamen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:550
-#: ../gramps/plugins/textreport/birthdayreport.py:552
+#: ../gramps/plugins/textreport/birthdayreport.py:553
 #: ../gramps/plugins/webreport/webcal.py:1798
 msgid "Select married women's displayed surname"
 msgstr "Wähle den anzuzeigenden Nachnamen für verheiratete Frauen."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:553
-#: ../gramps/plugins/textreport/birthdayreport.py:555
+#: ../gramps/plugins/textreport/birthdayreport.py:556
 #: ../gramps/plugins/webreport/webcal.py:1883
 msgid "Include birthdays"
 msgstr "Geburtstage mit einbeziehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:554
-#: ../gramps/plugins/textreport/birthdayreport.py:556
+#: ../gramps/plugins/textreport/birthdayreport.py:557
 msgid "Whether to include birthdays"
 msgstr "Ob Geburtstage aufgenommen werden"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:557
-#: ../gramps/plugins/textreport/birthdayreport.py:559
+#: ../gramps/plugins/textreport/birthdayreport.py:560
 #: ../gramps/plugins/webreport/webcal.py:1887
 msgid "Include anniversaries"
 msgstr "Jubiläen mit einbeziehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:558
-#: ../gramps/plugins/textreport/birthdayreport.py:560
+#: ../gramps/plugins/textreport/birthdayreport.py:561
 msgid "Whether to include anniversaries"
 msgstr "Ob Gedenktage aufgenommen werden"
 
@@ -21472,17 +21474,17 @@ msgid "Days of the week text"
 msgstr "Text der Wochentage"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:643
-#: ../gramps/plugins/textreport/birthdayreport.py:649
+#: ../gramps/plugins/textreport/birthdayreport.py:650
 msgid "Text at bottom, line 1"
 msgstr "Text unten, Zeile 1"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:645
-#: ../gramps/plugins/textreport/birthdayreport.py:651
+#: ../gramps/plugins/textreport/birthdayreport.py:652
 msgid "Text at bottom, line 2"
 msgstr "Text unten, Zeile 2"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:647
-#: ../gramps/plugins/textreport/birthdayreport.py:653
+#: ../gramps/plugins/textreport/birthdayreport.py:654
 msgid "Text at bottom, line 3"
 msgstr "Text unten, Zeile 3"
 
@@ -22026,7 +22028,7 @@ msgstr "Legt fest, welche Personen im Bericht enthalten sind."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1018
 #: ../gramps/plugins/drawreport/timeline.py:422
-#: ../gramps/plugins/textreport/birthdayreport.py:479
+#: ../gramps/plugins/textreport/birthdayreport.py:480
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
@@ -22036,7 +22038,7 @@ msgid "Filter Person"
 msgstr "Personenfilter"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1019
-#: ../gramps/plugins/textreport/birthdayreport.py:480
+#: ../gramps/plugins/textreport/birthdayreport.py:481
 #: ../gramps/plugins/textreport/indivcomplete.py:1069
 msgid "The center person for the filter."
 msgstr "Die Hauptperson für den Filter."
@@ -23421,7 +23423,7 @@ msgstr "Gramplet zeigt die rückwärts Referenzen für eine Person"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/basepage.py:2932
+#: ../gramps/plugins/webreport/basepage.py:2933
 #: ../gramps/plugins/webreport/person.py:883
 #: ../gramps/plugins/webreport/thumbnail.py:164
 msgid "References"
@@ -23471,7 +23473,7 @@ msgstr "Gramplet zeigt die rückwärts Referenzen für eine Fundstelle"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:959
 #: ../gramps/plugins/quickview/quickview.gpr.py:251
 msgid "Repository References"
-msgstr "Aufbewahrungsortreferenz"
+msgstr "Aufbewahrungsortreferenzen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:960
 msgid "Gramplet showing the backlink references for a repository"
@@ -23658,8 +23660,8 @@ msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Gramplet zeigt die  Orte die im aktuellen Ort enthalten sind"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
-#: ../gramps/plugins/webreport/basepage.py:2623
-#: ../gramps/plugins/webreport/basepage.py:2686
+#: ../gramps/plugins/webreport/basepage.py:2624
+#: ../gramps/plugins/webreport/basepage.py:2687
 msgid "Place Encloses"
 msgstr "Enthaltene Orte"
 
@@ -24884,7 +24886,7 @@ msgstr ""
 "\" erstellten Dateien enthalten."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:899
-#: ../gramps/plugins/textreport/birthdayreport.py:568
+#: ../gramps/plugins/textreport/birthdayreport.py:569
 #: ../gramps/plugins/textreport/indivcomplete.py:1145
 msgid "Include relationship to center person"
 msgstr "Mit Beziehungen zur Hauptperson"
@@ -31738,7 +31740,7 @@ msgid "No references for this %s"
 msgstr "Keine Referenzen für diese %s"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/basepage.py:2758
+#: ../gramps/plugins/webreport/basepage.py:2759
 msgid "Call number"
 msgstr "Standortnummer/Signatur:"
 
@@ -32023,20 +32025,20 @@ msgstr "✝"
 msgid "Relationships shown are to %s"
 msgstr "Beziehungen gezeigt zu %s"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:333
+#: ../gramps/plugins/textreport/birthdayreport.py:334
 #, python-format
 msgid "* %(person)s, birth%(relation)s"
 msgstr "* %(person)s, Geburt%(relation)s"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/textreport/birthdayreport.py:338
+#: ../gramps/plugins/textreport/birthdayreport.py:339
 #, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
 msgstr[0] "* {year}{person}{dead}, {age}{relation}"
 msgstr[1] "* {year}{person}{dead}, {age}{relation}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:402
+#: ../gramps/plugins/textreport/birthdayreport.py:403
 #, python-format
 msgid ""
 "⚭ %(spouse)s and\n"
@@ -32046,7 +32048,7 @@ msgstr ""
 " %(person)s, Heirat"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/textreport/birthdayreport.py:407
+#: ../gramps/plugins/textreport/birthdayreport.py:408
 #, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
@@ -32061,96 +32063,96 @@ msgstr[1] ""
 "⚭ {year}{spouse}{deadtxt2} und\n"
 " {person}{deadtxt1}, {nyears}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:442
+#: ../gramps/plugins/textreport/birthdayreport.py:443
 #, python-brace-format
 msgid "✝ {person}, death {relation}"
 msgstr "✝ {person}, tot {relation}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:444
+#: ../gramps/plugins/textreport/birthdayreport.py:445
 #, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
 msgstr[0] "✝ {year}{person}, {age}{relation}"
 msgstr[1] "✝ {year}{person}, {age}{relation}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:475
+#: ../gramps/plugins/textreport/birthdayreport.py:476
 #: ../gramps/plugins/textreport/familygroup.py:716
 #: ../gramps/plugins/textreport/indivcomplete.py:1064
 msgid "Select the filter to be applied to the report."
 msgstr "Filter wählen, um ihn auf den Bericht anzuwenden."
 
-#: ../gramps/plugins/textreport/birthdayreport.py:484
+#: ../gramps/plugins/textreport/birthdayreport.py:485
 msgid "Title text"
 msgstr "Titeltext"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:485
+#: ../gramps/plugins/textreport/birthdayreport.py:486
 msgid "Title of report"
 msgstr "Titel des Berichts"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:489
+#: ../gramps/plugins/textreport/birthdayreport.py:490
 msgid "First line of text at bottom of report"
 msgstr "Erste Textzeile am Fuß des Berichts."
 
-#: ../gramps/plugins/textreport/birthdayreport.py:493
+#: ../gramps/plugins/textreport/birthdayreport.py:494
 msgid "Second line of text at bottom of report"
 msgstr "Zweite Textzeile am Fuß des Berichts."
 
-#: ../gramps/plugins/textreport/birthdayreport.py:497
+#: ../gramps/plugins/textreport/birthdayreport.py:498
 msgid "Third line of text at bottom of report"
 msgstr "Dritte Textzeile am Fuß des Berichts."
 
-#: ../gramps/plugins/textreport/birthdayreport.py:508
+#: ../gramps/plugins/textreport/birthdayreport.py:509
 msgid "Include only living people in the report"
 msgstr "Nur lebende Personen in den Bericht aufnehmen"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:511
+#: ../gramps/plugins/textreport/birthdayreport.py:512
 msgid "Dead Symbol"
 msgstr "Tod Symbol"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:512
+#: ../gramps/plugins/textreport/birthdayreport.py:513
 msgid "This will show after name to indicate that person is dead"
 msgstr ""
 "Dies wird nach dem Namen gezeigt, um anzuzeigen das die Person verstorben ist"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:519
+#: ../gramps/plugins/textreport/birthdayreport.py:520
 msgid "Show event year"
 msgstr "Zeige Ereignisjahr"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:520
+#: ../gramps/plugins/textreport/birthdayreport.py:521
 msgid "Prints the year the event took place in the report"
 msgstr "Druckt das Jahr an dem das Ereignis stattfand in dem Bericht"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:525
-#: ../gramps/plugins/textreport/birthdayreport.py:527
+#: ../gramps/plugins/textreport/birthdayreport.py:526
+#: ../gramps/plugins/textreport/birthdayreport.py:528
 msgid "Year of report"
 msgstr "Jahr des Berichts"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:563
+#: ../gramps/plugins/textreport/birthdayreport.py:564
 msgid "Include death anniversaries"
 msgstr "Todestage aufnehmen"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:564
+#: ../gramps/plugins/textreport/birthdayreport.py:565
 msgid "Whether to include anniversaries of death"
 msgstr "Ob Todestage aufgenommen werden"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:570
+#: ../gramps/plugins/textreport/birthdayreport.py:571
 #: ../gramps/plugins/textreport/indivcomplete.py:1147
 msgid "Whether to include relationships to the center person"
 msgstr "Ob die Beziehungen zur Hauptperson aufgenommen werden"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:639
+#: ../gramps/plugins/textreport/birthdayreport.py:640
 msgid "Title text style"
 msgstr "Titeltext Stil"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:642
+#: ../gramps/plugins/textreport/birthdayreport.py:643
 msgid "Data text display"
 msgstr "Daten Textanzeige"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:644
+#: ../gramps/plugins/textreport/birthdayreport.py:645
 msgid "Day text style"
 msgstr "Tagestext Stil"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:647
+#: ../gramps/plugins/textreport/birthdayreport.py:648
 msgid "Month text style"
 msgstr "Monatstext Stil"
 
@@ -32160,7 +32162,7 @@ msgstr "Monatstext Stil"
 #: ../gramps/plugins/textreport/custombooktext.py:93
 #: ../gramps/plugins/textreport/textplugins.gpr.py:81
 msgid "Custom Text"
-msgstr "Verwendeter Text"
+msgstr "Benutzerdefinierter Text"
 
 #: ../gramps/plugins/textreport/custombooktext.py:134
 msgid "Initial Text"
@@ -33322,7 +33324,7 @@ msgstr "Erstellt einen Bericht über Geburtstage und Jahrestage"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:82
 msgid "Add custom text to the book report"
-msgstr "Benutzer definierten Text zum Buch hinzufügen"
+msgstr "Benutzerdefinierten Text zum Buch hinzufügen"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:103
 msgid "Descendant Report"
@@ -34101,8 +34103,8 @@ msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
-"Das Werkzeug zum Vergleichen von Ereignissen verwendet die Filter, die im "
-"Filtereditor definiert sind."
+"Das Dienstprogramm zum Ereignisvergleich verwendet die im "
+"Benutzerfiltereditor definierten Filter."
 
 #: ../gramps/plugins/tool/eventcmp.glade:249
 msgid "Custom filter _editor"
@@ -35227,7 +35229,7 @@ msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
 msgstr ""
-"Hilft bei der Analyse der Daten durch die Möglichkeit, eigene Filter zu "
+"Hilft bei der Analyse der Daten durch die Möglichkeit, Benutzerfilter zu "
 "entwickeln. Filter, die zum Beispiel ähnliche Ereignisse finden."
 
 #: ../gramps/plugins/tool/tools.gpr.py:132
@@ -37104,7 +37106,7 @@ msgstr "Erzählend"
 
 #: ../gramps/plugins/webreport/basepage.py:1131
 #: ../gramps/plugins/webreport/basepage.py:2543
-#: ../gramps/plugins/webreport/basepage.py:2608
+#: ../gramps/plugins/webreport/basepage.py:2609
 #: ../gramps/plugins/webreport/place.py:182
 #: ../gramps/plugins/webreport/place.py:194
 msgid "State/ Province"
@@ -37203,19 +37205,19 @@ msgid "Family Map"
 msgstr "Familienkarte"
 
 #: ../gramps/plugins/webreport/basepage.py:2540
-#: ../gramps/plugins/webreport/basepage.py:2606
+#: ../gramps/plugins/webreport/basepage.py:2607
 msgid "Church Parish"
 msgstr "Kirchengemeinde"
 
-#: ../gramps/plugins/webreport/basepage.py:2561
+#: ../gramps/plugins/webreport/basepage.py:2562
 msgid "Locations"
 msgstr "Lagen"
 
-#: ../gramps/plugins/webreport/basepage.py:2893
+#: ../gramps/plugins/webreport/basepage.py:2894
 msgid "circa"
 msgstr "circa"
 
-#: ../gramps/plugins/webreport/basepage.py:2895
+#: ../gramps/plugins/webreport/basepage.py:2896
 msgid "around"
 msgstr "um"
 
@@ -37638,7 +37640,7 @@ msgid ""
 "or include them just before attributes."
 msgstr ""
 "Mit erzählenden Anmerkungen direkt nach Namen, Geschlecht und Alter beim Tod "
-"(Standard) oder plazier sie direkt vor den Attributen."
+"(Standard) oder platziere sie direkt vor den Attributen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1818
 msgid "Page Generation"
@@ -43858,4 +43860,3 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
-

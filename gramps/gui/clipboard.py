@@ -471,27 +471,36 @@ class ClipCitation(ClipHandleWrapper):
 
     def refresh(self):
         if self._handle:
-            citation = clipdb.get_citation_from_handle(self._handle)
-            if citation:
-                self._title = citation.get_gramps_id()
-                notelist = list(map(clipdb.get_note_from_handle,
-                                    citation.get_note_list()))
-                srctxtlist = [note for note in notelist
-                              if note.get_type() == NoteType.SOURCE_TEXT]
-                page = citation.get_page()
-                if not page:
-                    page = _('not available|NA')
-                text = ""
-                if srctxtlist:
-                    text = " ".join(srctxtlist[0].get().split())
-                #String must be unicode for truncation to work for non
-                #ascii characters
-                    text = str(text)
-                    if len(text) > 60:
-                        text = text[:60] + "..."
-                self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
-                    'pag' : page,
-                    'sourcetext' : text}
+            try:
+                citation = clipdb.get_citation_from_handle(self._handle)
+                if citation:
+                    self._title = citation.get_gramps_id()
+                    notelist = list(map(clipdb.get_note_from_handle,
+                                        citation.get_note_list()))
+                    srctxtlist = [note for note in notelist
+                                  if note.get_type() == NoteType.SOURCE_TEXT]
+                    page = citation.get_page()
+                    if not page:
+                        page = _('not available|NA')
+                    text = ""
+                    if srctxtlist:
+                        text = " ".join(srctxtlist[0].get().split())
+                    #String must be unicode for truncation to work for non
+                    #ascii characters
+                        text = str(text)
+                        if len(text) > 60:
+                            text = text[:60] + "..."
+                    self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s"
+                                   ) % { 'pag' : page,
+                                         'sourcetext' : text}
+            except:
+                # We are in the Source tree view. The shortcuts only
+                # work for citations.
+                print("We cannot copy the source from this view."
+                      " Use drag and drop.")
+                self._title = self._value = ''
+                self._pickle = self._type = self._objclass = None
+                self._handle = self._dbid = self._dbname = None
 
 
 class ClipRepoRef(ClipObjWrapper):
@@ -1281,6 +1290,14 @@ class ClipboardListView:
                         model.insert_before(node, data)
                     else:
                         model.insert_after(node, data)
+                elif isinstance(data[1], ClipCitation):
+                    if data[3]:
+                        # we have a real citation
+                        model.append(data)
+                    #else:
+                    #   We are in a Source treeview and trying
+                    #   to copy a source with a shortcut.
+                    #   Use drag and drop to do that.
                 else:
                     model.append(data)
 

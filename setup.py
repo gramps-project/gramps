@@ -419,8 +419,7 @@ package_data = package_data_core + package_data_gui
 # Resources
 #
 #-------------------------------------------------------------------------
-data_files_core = [('share/mime-info', ['data/gramps.mime']),
-                   ('share/icons', ['images/gramps.png'])]
+data_files_core = [('share/mime-info', ['data/gramps.mime'])]
 DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'NEWS', 'README.md',
              'TODO']
 GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
@@ -441,8 +440,8 @@ data_files_core.append(('share/gramps/css/swanky-purse/images', SWANKY_IMG))
 
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
-data_files_core.append(('share/icons/gnome/48x48/mimetypes', PNG_FILES))
-data_files_core.append(('share/icons/gnome/scalable/mimetypes', SVG_FILES))
+data_files_core.append(('share/icons/hicolor/48x48/mimetypes', PNG_FILES))
+data_files_core.append(('share/icons/hicolor/scalable/mimetypes', SVG_FILES))
 
 DTD_FILES = glob.glob(os.path.join('data', '*.dtd'))
 RNG_FILES = glob.glob(os.path.join('data', '*.rng'))
@@ -465,6 +464,20 @@ data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_22))
 data_files_gui.append(('share/gramps/images/hicolor/24x24/actions', ICON_24))
 data_files_gui.append(('share/gramps/images/hicolor/48x48/actions', ICON_48))
 data_files_gui.append(('share/gramps/images/hicolor/scalable/actions', ICON_SC))
+APP_16 = os.path.join(THEME, '16x16', 'apps', 'gramps.png')
+APP_22 = os.path.join(THEME, '22x22', 'apps', 'gramps.png')
+APP_24 = os.path.join(THEME, '24x24', 'apps', 'gramps.png')
+APP_48 = os.path.join(THEME, '48x48', 'apps', 'gramps.png')
+APP_128 = os.path.join(THEME, '128x128', 'apps', 'gramps.png')
+APP_256 = os.path.join(THEME, '256x256', 'apps', 'gramps.png')
+APP_SC = os.path.join(THEME, 'scalable', 'apps', 'gramps.svg')
+data_files_gui.append(('share/icons/hicolor/16x16/apps', [APP_16]))
+data_files_gui.append(('share/icons/hicolor/22x22/apps', [APP_22]))
+data_files_gui.append(('share/icons/hicolor/24x24/apps', [APP_24]))
+data_files_gui.append(('share/icons/hicolor/48x48/apps', [APP_48]))
+data_files_gui.append(('share/icons/hicolor/128x128/apps', [APP_128]))
+data_files_gui.append(('share/icons/hicolor/256x256/apps', [APP_256]))
+data_files_gui.append(('share/icons/hicolor/scalable/apps', [APP_SC]))
 
 data_files = data_files_core + data_files_gui
 

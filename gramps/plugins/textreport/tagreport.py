@@ -441,7 +441,8 @@ class TagReport(Report):
 
         for place_handle in place_list:
             place = self.database.get_place_from_handle(place_handle)
-            place_title = _pd.display(self.database, place, self.place_format)
+            place_title = _pd.display(self.database, place, None,
+                                      self.place_format)
 
             self.doc.start_row()
 
