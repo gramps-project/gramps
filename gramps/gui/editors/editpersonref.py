@@ -222,7 +222,7 @@ class EditPersonRef(EditSecondary):
             self.obj.ref = None
             self.person_label.set_text("")
             self.btn_add.show()
-            self.btn_del.hide() 
+            self.btn_del.hide()
         self._update_dnd_capability()
 
     def on_drag_persondata_received(self, widget, context, x, y, sel_data,
