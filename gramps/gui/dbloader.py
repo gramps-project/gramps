@@ -532,7 +532,7 @@ class GrampsImportFileDialog(ManagedWindow):
                 return True
         else:
             try:
-                f = file(filename,'w')
+                f = open(filename, 'w')
                 f.close()
                 os.remove(filename)
             except IOError:
