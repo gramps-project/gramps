@@ -42,6 +42,8 @@ from ..const import PLUGINS_DIR, USER_PLUGINS
 from ..constfunc import win, get_env_var
 from ..config import config
 from .dbconst import DBLOGNAME, DBLOCKFN, DBBACKEND
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -211,8 +213,8 @@ def write_lock_file(name):
         if win():
             user = get_env_var('USERNAME')
             host = get_env_var('USERDOMAIN')
-            if host is None:
-                host = ""
+            if not user:
+                user = _("Unknown")
         else:
             host = os.uname()[1]
             # An ugly workaround for os.getlogin() issue with Konsole
