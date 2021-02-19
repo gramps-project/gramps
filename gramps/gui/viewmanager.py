@@ -295,7 +295,7 @@ class ViewManager(CLIManager):
         vbox.pack_end(self.statusbar, False, True, 0)
         vbox.pack_start(toolbar, False, True, 0)
         vbox.pack_end(self.hpane, True, True, 0)
-        vbox.show()
+        vbox.show_all()
 
         self.uistate = DisplayState(self.window, self.statusbar,
                                     self.uimanager, self)
@@ -835,6 +835,7 @@ class ViewManager(CLIManager):
         hbox.add(Gtk.Label(label=pdata.name))
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
+        self.active_page.post_create()
         if not self.file_loaded:
             self.uimanager.set_actions_visible(self.actiongroup, False)
             self.uimanager.set_actions_visible(self.readonlygroup, False)

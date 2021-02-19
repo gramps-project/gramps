@@ -138,6 +138,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.sidebar = None
         self.bottombar = None
         self.widget = None
+        self.vpane = None
 
         DbGUIElement.__init__(self, dbstate.db)
 
@@ -154,18 +155,20 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
                                      self.ident + "_bottombar",
                                      defaults[1])
         hpane = Gtk.Paned()
-        vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
-        hpane.pack1(vpane, resize=True, shrink=False)
+        self.vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
+        hpane.pack1(self.vpane, resize=True, shrink=False)
         hpane.pack2(self.sidebar, resize=False, shrink=False)
         hpane.show()
-        vpane.show()
+        self.vpane.show()
 
         self.widget = self.build_widget()
         self.widget.show_all()
         self.widget.set_name('view')
-        vpane.pack1(self.widget, resize=True, shrink=False)
-        vpane.pack2(self.bottombar, resize=False, shrink=True)
-        self._setup_slider_config(vpane, 'vpane.slider-position')
+        self.vpane.pack1(self.widget, resize=True, shrink=False)
+        self.vpane.pack2(self.bottombar, resize=False, shrink=True)
+        self.vpane.show_all()
+        self._config.register('vpane.slider-position', -1)
+        self.vpane.set_position(self._config.get('vpane.slider-position'))
 
         self.sidebar_toggled(self.sidebar.get_property('visible'))
         self.hpane_sig = hpane.connect("draw", self.set_page_slider)
@@ -342,6 +345,11 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.sidebar.set_inactive()
         self.bottombar.set_inactive()
         self.active = False
+
+    def post_create(self):
+        if self.vpane:
+            self._setup_slider_config(self.vpane, 'vpane.slider-position')
+            self.vpane = None
 
     @abstractmethod
     def build_tree(self):
