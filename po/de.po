@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 23:16+0100\n"
-"PO-Revision-Date: 2021-03-01 23:19+0100\n"
+"PO-Revision-Date: 2021-03-11 22:57+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -25134,7 +25134,7 @@ msgstr "Beruf Beschreibung"
 
 #: ../gramps/plugins/importer/importcsv.py:210
 msgid "occupationdescr"
-msgstr "Berufsbeschr."
+msgstr "Berufsbeschreibung"
 
 #: ../gramps/plugins/importer/importcsv.py:211
 msgid "Occupation date"
@@ -25142,7 +25142,7 @@ msgstr "Beruf Datum"
 
 #: ../gramps/plugins/importer/importcsv.py:211
 msgid "occupationdate"
-msgstr "barufdatum"
+msgstr "Berufdatum"
 
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "Occupation place"
@@ -25150,7 +25150,7 @@ msgstr "Beruf Ort"
 
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "occupationplace"
-msgstr "berufort"
+msgstr "Berufort"
 
 #: ../gramps/plugins/importer/importcsv.py:213
 msgid "Occupation place id"
@@ -25158,7 +25158,7 @@ msgstr "Beruf Ort ID"
 
 #: ../gramps/plugins/importer/importcsv.py:213
 msgid "occupationplace_id"
-msgstr "berufort_id"
+msgstr "Berufort_id"
 
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "Occupation source"
@@ -25174,7 +25174,7 @@ msgstr "Wohnort Datum"
 
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "residencedate"
-msgstr "wohnortdatum"
+msgstr "Wohnortdatum"
 
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "residence place"
@@ -25182,7 +25182,7 @@ msgstr "Wohnort Ort"
 
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "residenceplace"
-msgstr "wohnortort"
+msgstr "Wohnortort"
 
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "residence place id"
@@ -25190,7 +25190,7 @@ msgstr "Wohnort Ort ID"
 
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "residenceplace_id"
-msgstr "wohnortort_id"
+msgstr "Wohnortort_id"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residence source"
@@ -25198,7 +25198,7 @@ msgstr "Wohnort Quelle"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residencesource"
-msgstr "wohnortquelle"
+msgstr "Wohnortquelle"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attribute type"
@@ -25206,7 +25206,7 @@ msgstr "Attribut Art"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attributetype"
-msgstr "attributart"
+msgstr "Attributart"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attribute value"
@@ -25214,7 +25214,7 @@ msgstr "Attribut Wert"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attributevalue"
-msgstr "attributwert"
+msgstr "Attributwert"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attribute source"
@@ -25222,7 +25222,7 @@ msgstr "Attribut Quelle"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attributesource"
-msgstr "attributquelle"
+msgstr "Attributquelle"
 
 #. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:226
