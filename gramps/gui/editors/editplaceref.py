@@ -181,9 +181,13 @@ class EditPlaceRef(EditReference):
 
     def set_latlongitude(self, value):
         try:
-            coma = value.index(', ')
-            longitude = value[coma+2:].strip().replace(',','.')
-            latitude = value[:coma].strip().replace(',','.')
+            parts = value.index(', ')
+            if len(parts) == 2:
+                longitude = parts[0].strip().replace(',', '.')
+                latitude = parts[1].strip().replace(',', '.')
+            else:
+                longitude, latitude = value.split(',')
+
             self.longitude.set_text(longitude)
             self.latitude.set_text(latitude)
             self.top.get_object("lat_entry").validate(force=True)
