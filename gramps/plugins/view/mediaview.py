@@ -169,7 +169,10 @@ class MediaView(ListView):
         """
         if not sel_data:
             return
+
         files = sel_data.get_uris()
+        photo = None
+
         for file in files:
             protocol, site, mfile, j, k, l = urlparse(file)
             if protocol == "file":
@@ -191,6 +194,10 @@ class MediaView(ListView):
                 photo.set_description(root)
                 with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
                     self.dbstate.db.add_media(photo, trans)
+
+        if photo:
+            self.uistate.set_active(photo.handle, "Media")
+
         widget.emit_stop_by_name('drag_data_received')
 
     def define_actions(self):
