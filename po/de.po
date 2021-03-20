@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 23:16+0100\n"
-"PO-Revision-Date: 2021-03-11 22:57+0100\n"
+"PO-Revision-Date: 2021-03-21 00:17+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -8045,7 +8045,7 @@ msgstr "Ereignisse"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
-msgstr "LDS Ordinationen"
+msgstr "HLT Ordinationen"
 
 #: ../gramps/gen/lib/familyreltype.py:47
 #: ../gramps/plugins/webreport/webcal.py:2115
@@ -8208,7 +8208,7 @@ msgstr "Nicht freigegeben"
 #: ../gramps/plugins/textreport/indivcomplete.py:704
 #: ../gramps/plugins/webreport/basepage.py:435
 msgid "LDS Ordinance"
-msgstr "LDS Ordination"
+msgstr "HLT Ordination"
 
 #: ../gramps/gen/lib/ldsord.py:190
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
@@ -14312,7 +14312,7 @@ msgstr "LDS_Ordinationseditor"
 #: ../gramps/gui/editors/editldsord.py:352
 #: ../gramps/gui/editors/editldsord.py:443
 msgid "LDS Ordinance Editor"
-msgstr "LDS Ordinationseditor"
+msgstr "HLT Ordinationseditor"
 
 #: ../gramps/gui/editors/editldsord.py:288
 #, python-format
@@ -25418,7 +25418,7 @@ msgstr "Exkommunikation"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
 msgid "LDS Family Link"
-msgstr "LDS Familienverknüpfung"
+msgstr "HLT Familienverknüpfung"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
 #: ../gramps/plugins/lib/libgedcom.py:705
@@ -25451,7 +25451,7 @@ msgstr "Militärische Beförderung"
 
 #: ../gramps/plugins/importer/importgeneweb.py:120
 msgid "LDS Seal to child"
-msgstr "LDS Siegelung zum Kind"
+msgstr "HLT Siegelung zum Kind"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
 msgid "Sold property"
@@ -26320,7 +26320,7 @@ msgstr "Höhe"
 
 #: ../gramps/plugins/lib/libgedcom.py:707
 msgid "Initiatory (LDS)"
-msgstr ""
+msgstr "Initiatory (HLT)"
 
 #: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Military ID"
@@ -26328,7 +26328,7 @@ msgstr "Militär-ID"
 
 #: ../gramps/plugins/lib/libgedcom.py:709
 msgid "Mission (LDS)"
-msgstr ""
+msgstr "Mission (HLT)"
 
 #: ../gramps/plugins/lib/libgedcom.py:710
 msgid "Namesake"
