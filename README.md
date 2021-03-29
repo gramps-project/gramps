@@ -163,6 +163,10 @@ The User Manual is maintained on the Gramps website:
 
 * https://www.gramps-project.org/wiki/index.php?title=User_manual
 
+Issue Tracker
+-------------
+Gramps bug and issue tracker can be found [here](https://gramps-project.org/bugs/my_view_page.php).
+
 Translation
 -------------
 Gramps uses Hosted Weblate for its translations:
