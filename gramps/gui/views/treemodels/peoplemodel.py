@@ -422,11 +422,14 @@ class PeopleBaseModel(BaseModel):
     def _get_parents_data(self, data):
         parents = 0
         if data[COLUMN_PARENT]:
-            family = self.db.get_family_from_handle(data[COLUMN_PARENT][0])
-            if family.get_father_handle():
-                parents += 1
-            if family.get_mother_handle():
-                parents += 1
+            person = self.db.get_person_from_gramps_id(data[COLUMN_ID])
+            family_list = person.get_parent_family_handle_list()
+            for fam_hdle in family_list:
+                family = self.db.get_family_from_handle(fam_hdle)
+                if family.get_father_handle():
+                    parents += 1
+                if family.get_mother_handle():
+                    parents += 1
         return parents
 
     def _get_marriages_data(self, data):
