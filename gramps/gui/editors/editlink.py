@@ -39,6 +39,9 @@ from ..glade import Glade
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.const import URL_MANUAL_SECT2
 
+import logging
+_LOG = logging.getLogger("editlink")
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -154,6 +157,12 @@ class EditLink(ManagedWindow):
 
     def _on_new_callback(self, obj):
         object_class = obj.__class__.__name__
+        # workaround for bug12260
+        try:
+            test = obj.handle
+        except AttributeError:
+            _LOG.warn(str(object_class))
+            return
         self.selected.set_text(self.display_link(
                 object_class, "handle", obj.handle))
         self.url_link.set_text("gramps://%s/%s/%s" %
