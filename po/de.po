@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 23:16+0100\n"
-"PO-Revision-Date: 2021-03-21 00:17+0100\n"
+"PO-Revision-Date: 2021-04-13 00:02+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -8883,7 +8883,7 @@ msgstr "Gebäude"
 #: ../gramps/plugins/webreport/basepage.py:2753
 #: ../gramps/plugins/webreport/source.py:164
 msgid "Number"
-msgstr "Standortnummer/Signatur"
+msgstr "Nummer"
 
 #. 6
 #: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:790
