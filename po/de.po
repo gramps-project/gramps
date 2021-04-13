@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 23:16+0100\n"
-"PO-Revision-Date: 2021-04-13 00:02+0200\n"
+"POT-Creation-Date: 2021-04-14 00:00+0200\n"
+"PO-Revision-Date: 2021-04-14 00:18+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -4890,7 +4890,7 @@ msgstr "Liefert ein Medienobjekt mit einer bestimmten Gramps-ID"
 #: ../gramps/gui/glade/mergerepository.glade:245
 #: ../gramps/gui/glade/mergerepository.glade:261
 msgid "Type:"
-msgstr "Typ:"
+msgstr "Art:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
@@ -5027,7 +5027,7 @@ msgstr "Liefert eine Notiz mit einer bestimmten Gramps-ID"
 #: ../gramps/gui/editors/filtereditor.py:110
 #: ../gramps/gui/editors/filtereditor.py:556
 msgid "Note type:"
-msgstr "Notiztyp:"
+msgstr "Notizart:"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:49
 msgid "Notes matching parameters"
@@ -5426,15 +5426,15 @@ msgstr "Liefert Personen mit einer Nachnamenherkunft"
 #: ../gramps/gui/editors/filtereditor.py:111
 #: ../gramps/gui/editors/filtereditor.py:558
 msgid "Name type:"
-msgstr "Namenstyp:"
+msgstr "Namensart:"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:47
 msgid "People with the <Name type>"
-msgstr "Personen mit dem <Namenstyp>"
+msgstr "Personen mit der <Namensart>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 msgid "Matches people with a type of name"
-msgstr "Liefert Personen mit einem Namenstyp"
+msgstr "Liefert Personen mit einer Namensart"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:45
 msgid "People with a nickname"
@@ -6055,7 +6055,7 @@ msgstr "Liefert Orte mit einer Fundstelle mit dem vorgegebenen Wert."
 #: ../gramps/gui/editors/filtereditor.py:113
 #: ../gramps/gui/editors/filtereditor.py:562
 msgid "Place type:"
-msgstr "Ortstyp:"
+msgstr "Ortsart:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:50
 #: ../gramps/gui/glade/editplace.glade:282
@@ -10379,7 +10379,7 @@ msgstr "Fehler beim Lesen von \"%s\""
 #: ../gramps/gen/plug/utils.py:320
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "FEHLER: unbekannter Dateityp: '%s'."
+msgstr "FEHLER: unbekannter Dateiart: '%s'."
 
 #: ../gramps/gen/plug/utils.py:326
 #, python-format
@@ -10864,47 +10864,47 @@ msgstr "Chinesisch (Hong Kong)"
 msgid "Chinese (Traditional)"
 msgstr "Chinesisch (traditionell)"
 
-#: ../gramps/gen/utils/grampslocale.py:896
+#: ../gramps/gen/utils/grampslocale.py:898
 msgid "the person"
 msgstr "die Person"
 
-#: ../gramps/gen/utils/grampslocale.py:898
+#: ../gramps/gen/utils/grampslocale.py:900
 msgid "the family"
 msgstr "die Familie"
 
-#: ../gramps/gen/utils/grampslocale.py:900
+#: ../gramps/gen/utils/grampslocale.py:902
 msgid "the place"
 msgstr "der Ort"
 
-#: ../gramps/gen/utils/grampslocale.py:902
+#: ../gramps/gen/utils/grampslocale.py:904
 msgid "the event"
 msgstr "das Ereignis"
 
-#: ../gramps/gen/utils/grampslocale.py:904
+#: ../gramps/gen/utils/grampslocale.py:906
 msgid "the repository"
 msgstr "der Aufbewahrungsort"
 
-#: ../gramps/gen/utils/grampslocale.py:906
+#: ../gramps/gen/utils/grampslocale.py:908
 msgid "the note"
 msgstr "die Notiz"
 
-#: ../gramps/gen/utils/grampslocale.py:908
+#: ../gramps/gen/utils/grampslocale.py:910
 msgid "the media"
 msgstr "das Medium"
 
-#: ../gramps/gen/utils/grampslocale.py:910
+#: ../gramps/gen/utils/grampslocale.py:912
 msgid "the source"
 msgstr "die Quelle"
 
-#: ../gramps/gen/utils/grampslocale.py:912
+#: ../gramps/gen/utils/grampslocale.py:914
 msgid "the filter"
 msgstr "der Filter"
 
-#: ../gramps/gen/utils/grampslocale.py:914
+#: ../gramps/gen/utils/grampslocale.py:916
 msgid "the citation"
 msgstr "die Fundstelle"
 
-#: ../gramps/gen/utils/grampslocale.py:916
+#: ../gramps/gen/utils/grampslocale.py:918
 msgid "See details"
 msgstr "Siehe Details"
 
@@ -12243,7 +12243,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1694
 msgid "There are no available addons of this type"
-msgstr "Es sind keine Erweiterungen dieses Typs verfügbar"
+msgstr "Es sind keine Erweiterungen dieser Art verfügbar"
 
 #: ../gramps/gui/configure.py:1695
 #, python-format
@@ -16035,7 +16035,8 @@ msgstr "Selektor"
 
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr "Was für ein Ereignis es ist. Z.B. \"Beerdigung\", \"Promotion\",... ."
+msgstr ""
+"Was für eine Art Ereignis es ist. Z.B. \"Beerdigung\", \"Promotion\",... ."
 
 #: ../gramps/gui/glade/editevent.glade:326
 msgid ""
@@ -16127,14 +16128,14 @@ msgstr "Eine eindeutige Kennzeichnung für die Familie"
 #: ../gramps/gui/glade/editrepository.glade:112
 #: ../gramps/gui/glade/editurl.glade:126
 msgid "_Type:"
-msgstr "_Typ:"
+msgstr "_Art:"
 
 #: ../gramps/gui/glade/editfamily.glade:712
 msgid ""
 "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
 "details."
 msgstr ""
-"Der Beziehungstyp z.B. \"Verheiratet\" oder \"Unverheiratet\". Verwende "
+"Der Beziehungsart z.B. \"Verheiratet\" oder \"Unverheiratet\". Verwende "
 "Ereignisse für genauere Informationen."
 
 #: ../gramps/gui/glade/editfamily.glade:733
@@ -16530,7 +16531,7 @@ msgstr "Gestylter Texteditor"
 
 #: ../gramps/gui/glade/editnote.glade:146
 msgid "A type to classify the note."
-msgstr "Ein Typ, um die Notiz zu klassifizieren."
+msgstr "Eine Art, um die Notiz zu klassifizieren."
 
 #: ../gramps/gui/glade/editnote.glade:179
 msgid "A unique ID to identify the note."
@@ -25270,7 +25271,7 @@ msgstr "Name"
 
 #: ../gramps/plugins/importer/importcsv.py:240
 msgid "type"
-msgstr "Typ"
+msgstr "Art"
 
 #. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:241
@@ -31434,7 +31435,7 @@ msgstr "Filtern nach %s"
 #: ../gramps/plugins/quickview/samesurnames.py:115
 #: ../gramps/plugins/quickview/samesurnames.py:160
 msgid "Name type"
-msgstr "Namenstyp"
+msgstr "Namensart"
 
 #: ../gramps/plugins/quickview/filterbyname.py:332
 msgid "birth event but no date"
@@ -33071,7 +33072,7 @@ msgstr "Ereignisse, die an diesem Ort stattfanden."
 #: ../gramps/plugins/textreport/placereport.py:225
 #: ../gramps/plugins/textreport/placereport.py:302
 msgid "Type of Event"
-msgstr "Ereignisart"
+msgstr "Art des Ereignis"
 
 #: ../gramps/plugins/textreport/placereport.py:271
 #, python-format
@@ -33486,7 +33487,7 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Dieses Werkzeug benennt alle Ereignisse eines Typs in einen anderen Typ um. "
+"Dieses Werkzeug benennt alle Ereignisse einer Art in einer anderen Art um. "
 "Nach der Durchführung ist dies nur durch Beenden ohne zu sichern wieder "
 "rückgängig zu machen."
 
@@ -36484,8 +36485,9 @@ msgid ""
 "You can use filtering."
 msgstr ""
 "Klicke rechts auf die Karte und wähle 'zeige alle Orte', um alle bekannten "
-"Orte mit Koordinaten zu zeigen. Du kannst die Markierungsfarbe abhängig vom "
-"Ortstyp ändern. Du kannst Filter verwenden."
+"Orte mit Koordinaten zu zeigen. Du kannst die Markierungsfarbe abhängig von"
+" der "
+"Ortsart ändern. Du kannst Filter verwenden."
 
 #: ../gramps/plugins/view/geoplaces.py:447
 msgid ""
@@ -36495,7 +36497,7 @@ msgid ""
 msgstr ""
 "Klicke rechts auf die Karte und wähle 'zeige alle Orte', um alle bekannten "
 "Orte mit Koordinaten zu zeigen. Du kannst den Verlauf verwenden, um auf der "
-"Karte zu navigieren. Du kannst die Markierungsfarbe abhängig vom Ortstyp "
+"Karte zu navigieren. Du kannst die Markierungsfarbe abhängig von der Ortsart "
 "ändern. Du kannst Filter verwenden."
 
 #: ../gramps/plugins/view/geoplaces.py:462
@@ -37271,7 +37273,7 @@ msgid ""
 "ID will open a page for that event."
 msgstr ""
 "Diese Seite enthält einen Index mit allen Ereignissen in der Datenbank, die "
-"nach ihrem Typ, Datum (wenn vorhanden) sortiert sind. Klicken auf eine "
+"nach ihrer Art, Datum (wenn vorhanden) sortiert sind. Klicken auf eine "
 "Grampsereignis-ID öffnet eine Seite für dieses Ereignis."
 
 #: ../gramps/plugins/webreport/event.py:174
