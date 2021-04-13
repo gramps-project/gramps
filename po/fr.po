@@ -20871,7 +20871,7 @@ msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-"Les changements ne peuvent être complètement abandonner car le nombre de "
+"Les changements ne peuvent être complètement abandonnés car le nombre de "
 "modifications effectuées pendant la session excèdent la limite."
 
 #: ../gramps/gui/viewmanager.py:802
