@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 00:00+0200\n"
-"PO-Revision-Date: 2021-04-14 00:18+0200\n"
+"PO-Revision-Date: 2021-04-17 00:06+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -9040,7 +9040,7 @@ msgstr "Gestylter Text"
 
 #: ../gramps/gen/lib/styledtext.py:325
 msgid "Styled Text Tags"
-msgstr "Gestylte Textmarkierung"
+msgstr "Gestylte Textmarkierungen"
 
 #: ../gramps/gen/lib/styledtexttag.py:101 ../gramps/gen/lib/tag.py:115
 #: ../gramps/gui/editors/edittaglist.py:109
@@ -15929,7 +15929,7 @@ msgstr "Eine eindeutige ID zur Identifizierung der Fundstelle"
 #: ../gramps/gui/glade/editrepository.glade:234
 #: ../gramps/gui/glade/editsource.glade:229
 msgid "Tags:"
-msgstr "Markierung:"
+msgstr "Markierungen:"
 
 #: ../gramps/gui/glade/editdate.glade:140
 msgid "Calenda_r:"
@@ -16144,7 +16144,7 @@ msgstr ""
 #: ../gramps/gui/glade/editnote.glade:248
 #: ../gramps/gui/glade/editperson.glade:650
 msgid "_Tags:"
-msgstr "_Markierung:"
+msgstr "_Markierungen:"
 
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:847
@@ -20056,7 +20056,7 @@ msgstr ""
 
 #: ../gramps/gui/views/tags.py:562
 msgid "Removing Tags"
-msgstr "Entferne Markierung"
+msgstr "Entferne Markierungen"
 
 #: ../gramps/gui/views/tags.py:567
 #, python-format
@@ -26037,7 +26037,7 @@ msgstr "  Notizen: %d\n"
 #: ../gramps/plugins/importer/importxml.py:290
 #, python-format
 msgid "  Tags: %d\n"
-msgstr "  Markierung: %d\n"
+msgstr "  Markierungen: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:291
 #, python-format
