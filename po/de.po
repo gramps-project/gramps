@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 00:00+0200\n"
-"PO-Revision-Date: 2021-04-17 00:06+0200\n"
+"PO-Revision-Date: 2021-04-19 23:21+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -12056,7 +12056,7 @@ msgstr "Datumseinstellungen die für Berechnungen verwendet werden"
 
 #: ../gramps/gui/configure.py:1494
 msgid "Markup for invalid date format"
-msgstr "Markierung für ungültiges Datumsformat"
+msgstr "Hervorhebung für ungültiges Datumsformat"
 
 #: ../gramps/gui/configure.py:1498
 #, python-format
@@ -20312,7 +20312,7 @@ msgstr "Hintergrundfarbe"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Clear Markup"
-msgstr "Markierungen löschen"
+msgstr "Hervorhebungen löschen"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Font Color"
