@@ -956,6 +956,7 @@ def sanitize_media(db, media):
     new_media.set_tag_list(media.get_tag_list())
 
     copy_citation_ref_list(db, media, new_media)
+    copy_urls(db, media, new_media)
     copy_attributes(db, media, new_media)
     copy_notes(db, media, new_media)
 

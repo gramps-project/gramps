@@ -1583,6 +1583,8 @@ class GrampsParser(UpdateCallback):
             self.person.add_url(url)
         elif self.placeobj:
             self.placeobj.add_url(url)
+        elif self.object:
+             self.object.add_url(url)           
         elif self.repo:
             self.repo.add_url(url)
 

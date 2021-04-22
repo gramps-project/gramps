@@ -51,7 +51,7 @@ from gramps.gen.utils.file import (media_path_full, find_file, create_checksum)
 from .editprimary import EditPrimary
 from ..widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
-from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, NoteTab,
+from .displaytabs import (CitationEmbedList, WebEmbedList, MediaAttrEmbedList, NoteTab,
                          MediaBackRefList)
 from .addmedia import AddMedia
 from ..dialog import ErrorDialog
@@ -210,6 +210,13 @@ class EditMedia(EditPrimary):
         self._add_tab(notebook, self.citation_tab)
         self.track_ref_for_deletion("citation_tab")
 
+        self.web_list = WebEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track,
+                                     self.obj.get_url_list())
+        self._add_tab(notebook, self.web_list)
+        self.track_ref_for_deletion("web_list")
+        
         self.attr_tab = MediaAttrEmbedList(self.dbstate,
                                       self.uistate,
                                       self.track,

@@ -54,8 +54,8 @@ from gramps.gen.utils.file import (media_path_full, find_file, create_checksum)
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
-from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, MediaBackRefList,
-                         NoteTab)
+from .displaytabs import (CitationEmbedList, WebEmbedList, MediaAttrEmbedList,
+                          MediaBackRefList, NoteTab)
 from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
                        MonitoredDate, MonitoredTagList, SelectionWidget, Region)
 from .editreference import RefTab, EditReference
@@ -478,6 +478,13 @@ class EditMediaRef(EditReference):
         self._add_tab(notebook_ref, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
+        self.web_list = WebEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track,
+                                     self.source.get_url_list())
+        self._add_tab(notebook_ref, self.web_list)
+        self.track_ref_for_deletion("web_list")
+
         self.attr_list = MediaAttrEmbedList(self.dbstate,self.uistate,self.track,
                                        self.source_ref.get_attribute_list())
         self._add_tab(notebook_ref, self.attr_list)
@@ -502,6 +509,13 @@ class EditMediaRef(EditReference):
                                              self.source.get_citation_list())
         self._add_tab(notebook_src, self.src_srcref_list)
         self.track_ref_for_deletion("src_srcref_list")
+
+        self.src_web_list = WebEmbedList(self.dbstate,
+                                         self.uistate,
+                                         self.track,
+                                         self.source.get_url_list())
+        self._add_tab(notebook_src, self.src_web_list)
+        self.track_ref_for_deletion("src_web_list")
 
         self.src_attr_list = MediaAttrEmbedList(self.dbstate,self.uistate,self.track,
                                            self.source.get_attribute_list())

@@ -1285,6 +1285,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write('%s<file src="%s" mime="%s"%s%s/>\n'
                      % ("  "*(index+1), self.fix(path), self.fix(mime_type),
                         checksum_text, desc_text))
+        self.write_url_list(obj.get_url_list(), index+1)
         self.write_attribute_list(obj.get_attribute_list())
         self.write_note_list(obj.get_note_list(), index+1)
         dval = obj.get_date_object()

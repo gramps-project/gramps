@@ -50,13 +50,36 @@ LOG = logging.getLogger(".upgrade")
 def gramps_upgrade_20(self):
     """
     Placeholder update.
+    
+    1. Add web link to media objects.
     """
     length = 0
     self.set_total(length)
     self._txn_begin()
 
     # uid and place upgrade code goes here
-
+    
+    # ---------------------------------
+    # Modify Media
+    # ---------------------------------
+    # Add new url field
+    
+    from gramps.gen.lib.media import Media
+    
+    start_time = time.time()
+    for handle in self.get_media_handles():
+        media = self.get_raw_media_data(handle)
+        new_media = list(media)
+        urls_col = Media.columns.index('urls')
+        new_media = new_media[:urls_col] + [[]] + new_media[urls_col:]
+        new_media = tuple(new_media)
+        self._commit_raw(new_media, MEDIA_KEY)
+        self.update()
+    LOG.debug("Url entry added to %d medias in %d seconds" %
+                (self.get_number_of_media(),
+                 int(time.time() - start_time)))
+    # ---------------------------------
+                 
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.
     self._set_metadata('version', 20)

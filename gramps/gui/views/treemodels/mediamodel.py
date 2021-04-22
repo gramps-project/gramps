@@ -104,25 +104,25 @@ class MediaModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_description(self, data):
-        return data[4]
+        return data[Media.columns.index('desc')]
 
     def column_path(self, data):
-        return data[2]
+        return data[Media.columns.index('path')]
 
     def column_mime(self, data):
-        mime = data[3]
+        mime = data[Media.columns.index('mime')]
         if mime:
             return mime
         else:
             return _('Note')
 
     def column_id(self,data):
-        return data[1]
+        return data[Media.columns.index('gramps_id')]
 
     def column_date(self,data):
-        if data[10]:
+        if data[Media.columns.index('date')]:
             date = Date()
-            date.unserialize(data[10])
+            date.unserialize(data[Media.columns.index('date')])
             return displayer.display(date)
         return ''
 
@@ -136,20 +136,20 @@ class MediaModel(FlatBaseModel):
             return ''
 
     def column_handle(self,data):
-        return str(data[0])
+        return str(data[Media.columns.index('handle')])
 
     def column_private(self, data):
-        if data[12]:
+        if data[Media.columns.index('private')]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
 
     def sort_change(self,data):
-        return "%012x" % data[9]
+        return "%012x" % data[Media.columns.index('change')]
 
     def column_change(self,data):
-        return format_time(data[9])
+        return format_time(data[Media.columns.index('change')])
 
     def column_tooltip(self,data):
         return 'Media tooltip'
@@ -173,7 +173,7 @@ class MediaModel(FlatBaseModel):
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[11]:
+            for handle in data[Media.columns.index('tag_list')]:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -186,6 +186,6 @@ class MediaModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[11]))
+        tag_list = list(map(self.get_tag_name, data[Media.columns.index('tag_list')]))
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))

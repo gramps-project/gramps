@@ -43,6 +43,7 @@ from .primaryobj import PrimaryObject
 from .citationbase import CitationBase
 from .notebase import NoteBase
 from .datebase import DateBase
+from .urlbase import UrlBase
 from .attrbase import AttributeBase
 from .tagbase import TagBase
 from ..const import GRAMPS_LOCALE as glocale
@@ -55,12 +56,28 @@ LOG = logging.getLogger(".citation")
 # Media class
 #
 #-------------------------------------------------------------------------
-class Media(CitationBase, NoteBase, DateBase, AttributeBase,
+class Media(CitationBase, NoteBase, DateBase, UrlBase, AttributeBase,
                   PrimaryObject):
     """
     Container for information about an image file, including location,
     description and privacy.
     """
+    columns = (
+        'handle',           #0
+        'gramps_id',        #1
+        'path',             #2
+        'mime',             #3
+        'desc',             #4
+        'checksum',         #5
+        'urls',             #6
+        'attribute_list',   #7
+        'citation_list',    #8
+        'note_list',        #9
+        'change',           #10
+        'date',             #11
+        'tag_list',         #12
+        'private'           #13
+        )
 
     def __init__(self, source=None):
         """
@@ -76,6 +93,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
+        UrlBase.__init__(self, source)
         AttributeBase.__init__(self, source)
 
         if source:
@@ -111,6 +129,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         """
         return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
                 self.checksum,
+                UrlBase.serialize(self),
                 AttributeBase.serialize(self),
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
@@ -127,6 +146,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns a dict containing the schema.
         :rtype: dict
         """
+        from .url import Url
         from .attribute import Attribute
         from .date import Date
         return {
@@ -147,6 +167,9 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
                          "title": _("Description")},
                 "checksum": {"type": "string",
                              "title": _("Checksum")},
+                "urls": {"type": "array",
+                         "items": Url.get_schema(),
+                         "title": _("Urls")},
                 "attribute_list": {"type": "array",
                                    "items": Attribute.get_schema(),
                                    "title": _("Attributes")},
@@ -179,9 +202,10 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         self.checksum, attribute_list, citation_list, note_list, self.change,
+         self.checksum, urls, attribute_list, citation_list, note_list, self.change,
          date, tag_list, self.private) = data
 
+        UrlBase.unserialize(self, urls)
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
@@ -205,7 +229,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.attribute_list
+        return self.attribute_list + self.urls
 
     def get_citation_child_list(self):
         """
