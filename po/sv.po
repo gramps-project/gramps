@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2021-04-24 13:11+0200\n"
+"PO-Revision-Date: 2021-04-24 15:13+0200\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -7509,7 +7509,7 @@ msgstr "Första nattvarden"
 
 #: ../gramps/gen/lib/eventtype.py:183
 msgid "Immigration"
-msgstr "Inflyttning"
+msgstr "Invandring"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Graduation"
@@ -7712,7 +7712,7 @@ msgstr "1.nattv."
 
 #: ../gramps/gen/lib/eventtype.py:233
 msgid "Immigration abbreviation|im."
-msgstr "infl."
+msgstr "inv."
 
 #: ../gramps/gen/lib/eventtype.py:234
 msgid "Graduation abbreviation|grad."
