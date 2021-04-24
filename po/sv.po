@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-29 01:17+0100\n"
-"PO-Revision-Date: 2021-02-15 13:53+0100\n"
+"PO-Revision-Date: 2021-04-24 13:23+0200\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -5562,7 +5562,7 @@ msgstr "Vald"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Emigration"
-msgstr "Utflyttning"
+msgstr "Utvandring"
 
 #: ../gramps/gen/lib/eventtype.py:182
 msgid "First Communion"
