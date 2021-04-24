@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 00:00+0200\n"
-"PO-Revision-Date: 2021-04-19 23:21+0200\n"
+"PO-Revision-Date: 2021-04-24 22:04+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -20116,7 +20116,7 @@ msgstr "Datensatz ist vertraulich"
 
 #: ../gramps/gui/widgets/buttons.py:163
 msgid "Record is public"
-msgstr "Information ist öffentlich"
+msgstr "Datensatz ist öffentlich"
 
 #: ../gramps/gui/widgets/expandcollapsearrow.py:86
 msgid "Expand this section"
@@ -33514,15 +33514,15 @@ msgstr "Ereignisse analysieren"
 
 #: ../gramps/plugins/tool/changetypes.py:134
 msgid "No event record was modified."
-msgstr "Kein Ereigniseintrag wurde geändert."
+msgstr "Kein Ereignisdatensatz wurde geändert."
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/changetypes.py:137
 #, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "{number_of} Ereigniseintrag wurde geändert."
-msgstr[1] "{number_of} Ereigniseinträge wurden geändert."
+msgstr[0] "{number_of} Ereignisdatensatz wurde geändert."
+msgstr[1] "{number_of} Ereignisdatensätze wurden geändert."
 
 #: ../gramps/plugins/tool/check.py:119 ../gramps/plugins/tool/check.py:295
 msgid "Checking Database"
