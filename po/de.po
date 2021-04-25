@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 00:00+0200\n"
-"PO-Revision-Date: 2021-04-24 22:04+0200\n"
+"PO-Revision-Date: 2021-04-25 12:10+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -11496,7 +11496,7 @@ msgstr "Isländischer Stil"
 
 #: ../gramps/gui/configure.py:114 ../gramps/gui/configure.py:115
 msgid "Display Name Editor"
-msgstr "Namenseditor anzeigen"
+msgstr "Anzeigename-Editor"
 
 #. self.window.connect('response', self.close)
 #: ../gramps/gui/configure.py:116 ../gramps/gui/configure.py:189
