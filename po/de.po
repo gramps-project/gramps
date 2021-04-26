@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 00:00+0200\n"
-"PO-Revision-Date: 2021-04-25 12:10+0200\n"
+"PO-Revision-Date: 2021-04-26 17:59+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -4231,7 +4231,7 @@ msgstr "Wert:"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 msgid "Events with the attribute <attribute>"
-msgstr "Ereignisse mit dem <Attribut>"
+msgstr "Ereignisse mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Matches events with the event attribute of a particular value"
@@ -4537,7 +4537,7 @@ msgstr ""
 #: ../gramps/gui/editors/filtereditor.py:106
 #: ../gramps/gui/editors/filtereditor.py:548
 msgid "Family attribute:"
-msgstr "Attribut einer Familie:"
+msgstr "Familienattribut:"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:45
 msgid "Families with the family <attribute>"
@@ -4545,7 +4545,7 @@ msgstr "Familien mit dem <Attribut>"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:46
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Liefert Familien mit einem bestimmten familiären Ereignis"
+msgstr "Liefert Familien mit einem Familienattribut mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
 msgid "Families with the <citation>"
@@ -5219,11 +5219,11 @@ msgstr "Liefert Personen, mit einer bestimmten Anzahl von Verbindungen"
 #: ../gramps/gui/editors/filtereditor.py:105
 #: ../gramps/gui/editors/filtereditor.py:546
 msgid "Personal attribute:"
-msgstr "Attribut einer Person:"
+msgstr "Personenattribut:"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 msgid "People with the personal <attribute>"
-msgstr "Hat das persönliche <Attribut>"
+msgstr "Personen mit dem persönlichen <Attribut>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 msgid "Matches people with the personal attribute of a particular value"
@@ -11406,7 +11406,7 @@ msgstr "Familiäres Ereignis"
 
 #: ../gramps/gui/clipboard.py:451
 msgid "Family Attribute"
-msgstr "Familiäres Attribut"
+msgstr "Familienattribut"
 
 #: ../gramps/gui/clipboard.py:484
 msgid "not available|NA"
@@ -13818,7 +13818,7 @@ msgstr "Neues Attribut"
 
 #: ../gramps/gui/editors/editattribute.py:149
 msgid "Cannot save attribute"
-msgstr "Das Attribut kann nicht gespeichert werden."
+msgstr "Kann das Attribut nicht speichern"
 
 #: ../gramps/gui/editors/editattribute.py:150
 msgid "The attribute type cannot be empty"
@@ -15788,7 +15788,7 @@ msgstr "Der Ort der Adresse"
 
 #: ../gramps/gui/glade/editattribute.glade:93
 msgid "_Attribute:"
-msgstr "_Attribute:"
+msgstr "_Attribut:"
 
 #: ../gramps/gui/glade/editattribute.glade:108
 msgid "_Value:"
@@ -25203,7 +25203,7 @@ msgstr "Wohnortquelle"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attribute type"
-msgstr "Attribut Art"
+msgstr "Attributart"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attributetype"
@@ -25211,7 +25211,7 @@ msgstr "Attributart"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attribute value"
-msgstr "Attribut Wert"
+msgstr "Attributwert"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attributevalue"
@@ -25219,7 +25219,7 @@ msgstr "Attributwert"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attribute source"
-msgstr "Attribut Quelle"
+msgstr "Attributquelle"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attributesource"
@@ -25623,7 +25623,7 @@ msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
-"Fundstellen Attribute Text\n"
+"Fundstellenattributtext\n"
 "(Text, Importdateiname & (System-)Datum)."
 
 #: ../gramps/plugins/importer/importprogen.glade:362
@@ -26062,7 +26062,7 @@ msgstr ""
 "\n"
 " Die importierte Datei war nicht in sich abgeschlossen.\n"
 "Um dies zu korrigieren, wurden %(new)d Objekte erstellt\n"
-"und ihre klassifizierenden Attribute wurden auf 'Unbekannt'\n"
+"und ihr klassifizierendes Attribut wurden auf 'Unbekannt'\n"
 "gesetzt. Die Aufschlüsselung pro Kategorie wird durch die\n"
 " Zahl in Klammern dargestellt. Wo es möglich ist, werden\n"
 "diese 'Unbekannten' Objekte für Notiz %(unknown)s referenziert.\n"
@@ -26443,7 +26443,7 @@ msgstr ""
 "\n"
 " Die importierte Datei war nicht in sich abgeschlossen\n"
 "Um dies zu korrigieren, wurden %(new)d Objekte erstellt und\n"
-"ihre klassifizierenden Attribute wurden auf 'Unbekannt'\n"
+"ihr klassifizierendes Attribut wurden auf 'Unbekannt'\n"
 "gesetzt. Wo es möglich ist, werden diese 'Unbekannten' Objekte\n"
 "durch Notiz %(unknown)s referenziert.\n"
 
