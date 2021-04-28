@@ -134,8 +134,8 @@ class UIManager():
         self.et_xml = ET.fromstring(initial_xml)
         self.builder = None
         self.toolbar = None
-        self.old_toolbar = None  # holds previous toolbar until Gtk is idle
-        self.old_toolbar_items = None
+        self.old_toolbar = []  # holds previous toolbars until Gtk is idle
+        self.old_toolbar_items = []
         self.action_groups = []  # current list of action groups
         self.show_groups = []  # groups to show at the moment
         self.accel_dict = {}  # used to store accel overrides from file
@@ -244,11 +244,9 @@ class UIManager():
         # the following updates the toolbar from the new builder
         toolbar_parent = toolbar.get_parent()
         tb_show = toolbar.get_visible()
-        if not self.old_toolbar:
-            self.old_toolbar = toolbar
-            self.old_toolbar_items = toolbar.get_children()
-        else:
-            print("Problem: multiple Toolbar updates before idle")
+        self.old_toolbar.append(toolbar)
+        self.old_toolbar_items.append(toolbar.get_children())
+        print("Saved %d toolbars" % len(self.old_toolbar))
         toolbar_parent.remove(toolbar)
         toolbar = self.builder.get_object("ToolBar")  # new toolbar
         if config.get('interface.toolbar-text'):
@@ -258,16 +256,18 @@ class UIManager():
             toolbar.show_all()
         else:
             toolbar.hide()
-        GLib.idle_add(self.delete_old_toolbar)
+        GLib.timeout_add_seconds(10, self.delete_old_toolbar)
         #print('*** Update ui')
 
     def delete_old_toolbar(self):
-        """ This is used to finish removal of the old toolbar after Gtk is
-        idle.  To avoid an issue with the toolbar being removed before all
+        """ This is used to finish removal of the old toolbar after Gtk has
+        had a (long) chance to finish its work.
+        To avoid an issue with the toolbar being removed before all
         references were removed.
         """
-        self.old_toolbar = None
-        self.old_toolbar_items = None
+        print("Removing first of %d retained toolbars" % len(self.old_toolbar))
+        self.old_toolbar.pop(0)
+        self.old_toolbar_items.pop(0)
         return False
 
     def add_ui_from_string(self, changexml):
