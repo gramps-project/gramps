@@ -25,14 +25,13 @@
 #
 #-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject, GLib
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -40,7 +39,6 @@ from gi.repository import GObject, GLib
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Citation, Source
 from ...dbguielement import DbGUIElement
@@ -49,6 +47,8 @@ from .citationrefmodel import CitationRefModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...ddtargets import DdTargets
 
+LOG = logging.getLogger(".citation")
+_ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 #
 # CitationEmbedList
@@ -61,7 +61,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     Derives from the EmbeddedList class.
     """
 
-    _HANDLE_COL = 5  # Column number from CitationRefModel
+    _HANDLE_COL = 9  # Column number from CitationRefModel
     _DND_TYPE = DdTargets.CITATION_LINK
     _DND_EXTRA = DdTargets.SOURCE_LINK
 
@@ -77,11 +77,15 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Title'),   0, 200, TEXT_COL, -1, None),
-        (_('Author'),  1, 125, TEXT_COL, -1, None),
-        (_('Page'),    2, 100, TEXT_COL, -1, None),
-        (_('ID'),      3,  75, TEXT_COL, -1, None),
-        (_('Private'), 4,  30, ICON_COL, -1, 'gramps-lock')
+        (_('Title'), 0, 350, TEXT_COL, -1, None),
+        (_('Author'), 1, 200, TEXT_COL, -1, None),
+        (_('Date'), 8, 180, MARKUP_COL, -1, None),
+        (_('Publisher'), 3, 200, TEXT_COL, -1, None),
+        (_('Confidence Level'), 4, 120, TEXT_COL, -1, None),
+        (_('Page'), 5, 100, TEXT_COL, -1, None),
+        (_('ID'), 6, 80, TEXT_COL, -1, None),
+        (_('Private'), 7, 30, ICON_COL, -1, 'gramps-lock'),
+        (_('Sorted date'), 8, 80, TEXT_COL, -1, None)
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None):
@@ -100,9 +104,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         #citation: citation-rebuild closes the editors, so no need to connect
         # to it
         self.callman.register_callbacks(
-           {'citation-delete': self.citation_delete,
-            'citation-update': self.citation_update,
-           })
+            {'citation-delete': self.citation_delete,
+             'citation-update': self.citation_update,
+            })
         self.callman.connect_all(keys=['citation'])
 
     def get_icon_name(self):
@@ -121,7 +125,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Return the column order of the columns in the display tab.
         """
-        return ((1, 4), (1, 0), (1, 1), (1, 2), (1, 3))
+        return ((1, 0), (1, 1), (1, 5), (1, 2), (1, 3), (1, 6), (1, 4), (1, 7))
 
     def add_button_clicked(self, obj):
         """
@@ -155,15 +159,15 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         SelectCitation = SelectorFactory('Citation')
 
         sel = SelectCitation(self.dbstate, self.uistate, self.track)
-        object = sel.run()
-        LOG.debug("selected object: %s" % object)
+        objct = sel.run()
+        LOG.debug("selected object: %s" % objct)
         # the object returned should either be a Source or a Citation
-        if object:
-            if isinstance(object, Source):
+        if objct:
+            if isinstance(objct, Source):
                 try:
                     from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track,
-                                 Citation(), object,
+                                 Citation(), objct,
                                  callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
@@ -171,11 +175,11 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text(),
                                   parent=self.uistate.window)
-            elif isinstance(object, Citation):
+            elif isinstance(objct, Citation):
                 try:
                     from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track,
-                                 object, callback=self.add_callback,
+                                 objct, callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
@@ -190,10 +194,10 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         Return the common text used when citation cannot be edited
         """
         return _("This citation cannot be created at this time. "
-                    "Either the associated Source object is already being "
-                    "edited, or another citation associated with the same "
-                    "source is being edited.\n\nTo edit this "
-                    "citation, you need to close the object.")
+                 "Either the associated Source object is already being "
+                 "edited, or another citation associated with the same "
+                 "source is being edited.\n\nTo edit this "
+                 "citation, you need to close the object.")
 
     def edit_button_clicked(self, obj):
         """
@@ -210,7 +214,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             try:
                 from .. import EditCitation
                 EditCitation(self.dbstate, self.uistate, self.track, citation,
-                             callertitle = self.callertitle)
+                             callertitle=self.callertitle)
             except WindowActiveError:
                 pass
 
@@ -222,7 +226,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             so this method need not do this
         """
         rebuild = False
-        for handle in del_citation_handle_list :
+        for handle in del_citation_handle_list:
             while self.data.count(handle) > 0:
                 self.data.remove(handle)
                 rebuild = True
@@ -234,7 +238,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         Outside of this tab citation objects have been updated. Check if tab
         and object must be updated.
         """
-        for handle in upd_citation_handle_list :
+        for handle in upd_citation_handle_list:
             if handle in self.data:
                 self.rebuild()
                 break
@@ -244,12 +248,12 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         A CITATION_LINK has been dragged
         """
         if handle:
-            object = self.dbstate.db.get_citation_from_handle(handle)
-            if isinstance(object, Citation):
+            objct = self.dbstate.db.get_citation_from_handle(handle)
+            if isinstance(objct, Citation):
                 try:
                     from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track,
-                                 object, callback=self.add_callback,
+                                 objct, callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
@@ -264,12 +268,12 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         A SOURCE_LINK object has been dragged
         """
         if handle:
-            object = self.dbstate.db.get_source_from_handle(handle)
-            if isinstance(object, Source):
+            objct = self.dbstate.db.get_source_from_handle(handle)
+            if isinstance(objct, Source):
                 try:
                     from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track,
-                                 Citation(), object,
+                                 Citation(), objct,
                                  callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
