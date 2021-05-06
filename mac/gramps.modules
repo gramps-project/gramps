@@ -127,9 +127,10 @@ https://files.pythonhosted.org/packages/
   </distutils>
 
  <distutils id='pyicu'>
-    <branch version='2.7.1' repo='pymodules'
-            module='76/5d/6318f86c81665ddccc4a14408525297aec0c73a71a14994a3cbf822aef2a/PyICU-2.7.1.tar.gz'
-            hash="sha256:23191ec5cae0cf6172f84d3d06010d5c348b8d4d5428edbed4f817beecff2642"/>
+    <branch version='2.7.2' repo='pymodules'
+            module='17/0f/9d6b7eb01650960239a5d4dc21cd6e7a96921807c043d287bae4b2f440e1/PyICU-2.7.2.tar.gz'
+            hash="sha256:1382869b22d91cc99274f9b525fa7d9199b44d9007ff0036a09747839a01e9dc"/>
+
     <dependencies>
       <dep package='icu'/>
     </dependencies>
