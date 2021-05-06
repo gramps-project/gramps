@@ -49,7 +49,7 @@ class CSVTab(TabbedDoc):
         else:
             self.filename = filename
 
-        self.f = open(self.filename, "w",
+        self.f = open(self.filename, "w", newline='',
                       encoding='utf_8_sig' if win() else 'utf_8')
         self.writer = csv.writer(self.f)
 
