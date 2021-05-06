@@ -326,6 +326,7 @@ class EditMedia(EditPrimary):
             with DbTxn(_("Add Media Object (%s)") % self.obj.get_description(),
                        self.db) as trans:
                 self.db.add_media(self.obj, trans)
+            self.uistate.set_active(self.obj.handle, "Media")
         else:
             if self.data_has_changed():
                 with DbTxn(_("Edit Media Object (%s)") % self.obj.get_description(),
