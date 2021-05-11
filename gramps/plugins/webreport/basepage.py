@@ -1118,7 +1118,7 @@ class BasePage:
 
             disp = "none" if self.report.options['toggle'] else "block"
             with Html("table", class_="infolist",
-                      id="toggle_attr", style="display:%s" % disp) as table:
+                      id="toggle_srcattr", style="display:%s" % disp) as table:
                 section += table
 
                 thead = Html("thead")
