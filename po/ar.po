@@ -9,18 +9,19 @@ msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2014-06-29 15:50+0300\n"
-"Last-Translator: Munzir Taha (منذر طه) <munzirtaha@gmail.com>\n"
-"Language-Team: Arabic <>\n"
+"PO-Revision-Date: 2021-05-13 20:17+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Arabic\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.7-dev\n"
+"X-Poedit-Language: Arabic\n"
 "X-Language: ar\n"
 "X-Source-Language: C\n"
-"X-Generator: Lokalize 1.5\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -568,12 +569,12 @@ msgid ""
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
-"<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge..."
-"&quot; allows you to combine separately listed people into one. Select the "
-"second entry by holding the Control key as you click. This is very useful "
-"for combining two databases with overlapping people, or combining "
-"erroneously entered differing names for one individual. This also works for "
-"the Places, Sources and Repositories views."
+"<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and "
+"Merge...&quot; allows you to combine separately listed people into one. "
+"Select the second entry by holding the Control key as you click. This is "
+"very useful for combining two databases with overlapping people, or "
+"combining erroneously entered differing names for one individual. This also "
+"works for the Places, Sources and Repositories views."
 
 #: ../data/tips.xml.in.h:22
 msgid ""
@@ -597,8 +598,8 @@ msgid ""
 msgstr ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People, Events and . You can move forward and "
-"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
-"&gt; Back&quot; or the arrow buttons."
+"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt;"
+" Back&quot; or the arrow buttons."
 
 #: ../data/tips.xml.in.h:24
 msgid ""
@@ -1261,8 +1262,8 @@ msgstr "اسم تقرير مجهول."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
-"لم يتم تزويد اسم تقرير. قم باختيار أحد هذه التقارير "
-"%(donottranslate)s=reportname "
+"لم يتم تزويد اسم تقرير. قم باختيار أحد هذه التقارير %(donottranslate)"
+"s=reportname "
 
 #: ../gramps/cli/arghandler.py:643 ../gramps/cli/arghandler.py:691
 #: ../gramps/cli/arghandler.py:725
@@ -1282,8 +1283,8 @@ msgstr "اسم أداة مجهولة."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"لم يتم تزويد اسم أداة. قم باختيار أحد هذه الأدوات "
-"%(donottranslate)s=toolname. "
+"لم يتم تزويد اسم أداة. قم باختيار أحد هذه الأدوات %(donottranslate)"
+"s=toolname. "
 
 #: ../gramps/cli/arghandler.py:719
 msgid "Unknown book name."
@@ -1456,8 +1457,8 @@ msgstr ""
 "\n"
 "4. To save any error messages of the above example into files outfile and "
 "errfile, run:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. To import three databases and start interactive Gramps session with the "
 "result:\n"
@@ -1998,8 +1999,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"تجاهل '%(notranslate1)s=%(notranslate2)s' و استعمال '%(notranslate1)s="
-"%(notranslate3)s'."
+"تجاهل '%(notranslate1)s=%(notranslate2)s' و استعمال "
+"'%(notranslate1)s=%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -5050,8 +5051,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"العثور على سجلات الأشخاص الذين تم تعديلهم بعد تاريخ-وقت محدد (yyyy-mm-dd hh:"
-"mm:ss) أو ضمن مجال."
+"العثور على سجلات الأشخاص الذين تم تعديلهم بعد تاريخ-وقت محدد (yyyy-mm-dd "
+"hh:mm:ss) أو ضمن مجال."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -11446,8 +11447,8 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"اصدارة بايثون غير متوافقة مع متطلبات التشغيل. حتى تكون قادراً على تشغيل غرمبز "
-"أنت بحاجة للإصدارة %d.%d.%d على الأقل.\n"
+"اصدارة بايثون غير متوافقة مع متطلبات التشغيل. حتى تكون قادراً على تشغيل "
+"غرمبز أنت بحاجة للإصدارة %d.%d.%d على الأقل.\n"
 "\n"
 "سيتم إنهاء غرمبز الآن."
 
@@ -15187,8 +15188,8 @@ msgid ""
 "This filter is currently being used as the base for other filters. Deleting "
 "this filter will result in removing all other filters that depend on it."
 msgstr ""
-"يستعمل هذا المرشّح من قبل مرشحات أخرى. حذفه سيؤدي لحذف كل المرشحات التي تعتمد "
-"عليه."
+"يستعمل هذا المرشّح من قبل مرشحات أخرى. حذفه سيؤدي لحذف كل المرشحات التي "
+"تعتمد عليه."
 
 #: ../gramps/gui/editors/filtereditor.py:1204
 msgid "Delete Filter"
@@ -17880,8 +17881,8 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"اصدارة بايثون غير متوافقة مع متطلبات التشغيل. حتى تكون قادراً على تشغيل غرمبز "
-"أنت بحاجة للإصدارة %d.%d.%d على الأقل.\n"
+"اصدارة بايثون غير متوافقة مع متطلبات التشغيل. حتى تكون قادراً على تشغيل "
+"غرمبز أنت بحاجة للإصدارة %d.%d.%d على الأقل.\n"
 "\n"
 "سيتم إنهاء غرمبز الآن."
 
@@ -17902,8 +17903,8 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"اصدارة بايثون غير متوافقة مع متطلبات التشغيل. حتى تكون قادراً على تشغيل غرمبز "
-"أنت بحاجة للإصدارة %d.%d.%d على الأقل.\n"
+"اصدارة بايثون غير متوافقة مع متطلبات التشغيل. حتى تكون قادراً على تشغيل "
+"غرمبز أنت بحاجة للإصدارة %d.%d.%d على الأقل.\n"
 "\n"
 "سيتم إنهاء غرمبز الآن."
 
@@ -22630,9 +22631,9 @@ msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
 msgstr ""
-"  7. <a wiki='%s_-"
-"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's "
-"the difference between a residence and an address?</a>\n"
+"  7. <a wiki='%s_-_FAQ#"
+"What_is_the_difference_between_a_residence_and_an_address.3F'>What's the "
+"difference between a residence and an address?</a>\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:120
 msgid "Media Files"
@@ -26901,8 +26902,7 @@ msgstr "%(female_name)s ماتت في %(death_date)s في %(death_place)s."
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
-msgstr ""
-"%(female_name)s ماتت في %(death_date)s في %(death_place)s بعمر %(age)s."
+msgstr "%(female_name)s ماتت في %(death_date)s في %(death_place)s بعمر %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:204
 #, python-format
@@ -27184,8 +27184,7 @@ msgstr "%(female_name)s ماتت في %(month_year)s في %(death_place)s."
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
-msgstr ""
-"%(female_name)s ماتت في %(month_year)s في %(death_place)s بعمر %(age)s."
+msgstr "%(female_name)s ماتت في %(month_year)s في %(death_place)s بعمر %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:336
 #, python-format
@@ -27712,15 +27711,15 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, fuzzy, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:598
 #, fuzzy, python-format
@@ -27728,15 +27727,15 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, fuzzy, python-format
 msgid "She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:602
 #, fuzzy, python-format
@@ -27744,8 +27743,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, fuzzy, python-format
@@ -27753,15 +27752,15 @@ msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:605
 #, fuzzy, python-format
 msgid "Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:610
 #, fuzzy, python-format
@@ -27888,15 +27887,15 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, fuzzy, python-format
 msgid "He was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:662
 #, fuzzy, python-format
@@ -27904,15 +27903,15 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, fuzzy, python-format
 msgid "She was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:666
 #, fuzzy, python-format
@@ -27920,23 +27919,23 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, fuzzy, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:669
 #, fuzzy, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:674
 #, fuzzy, python-format
@@ -27982,8 +27981,8 @@ msgstr "%(female_name)s دُفنت في %(burial_place)s%(endnotes)s."
 #, fuzzy, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:694
 #, fuzzy, python-format
@@ -27994,29 +27993,29 @@ msgstr "%(female_name)s دُفنت في %(burial_place)s%(endnotes)s."
 #, fuzzy, python-format
 msgid "She was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:698
 #, fuzzy, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:699
 #, fuzzy, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:701
 #, fuzzy, python-format
 msgid "Baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 # شك
 #: ../gramps/plugins/lib/libnarrate.py:706
@@ -28076,8 +28075,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s عُمّدت في %(christening_date)s في %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s عُمّدت في %(christening_date)s في "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
@@ -28160,7 +28159,8 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s عُمّدت في %(month_year)s في %(christening_place)s%(endnotes)s."
+"%(female_name)s عُمّدت في %(month_year)s في "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
@@ -28241,8 +28241,8 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s عُمّدت في %(modified_date)s في %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s عُمّدت في %(modified_date)s في "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
@@ -40323,4 +40323,3 @@ msgstr "إذهب للشخص الإفتراضي"
 #, fuzzy
 #~ msgid "Include Marriage information"
 #~ msgstr "تضمين معلومات المصدر"
-
