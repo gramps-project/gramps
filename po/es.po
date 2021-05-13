@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-09-13 12:45-0300\n"
-"Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2021-05-13 20:30+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -480,10 +481,10 @@ msgstr ""
 "resuelve un problema persistente en genealogía: cómo manejar las variaciones "
 "ortográficas. El gramplete SoundEx toma un apellido y genera una forma "
 "simplificada que es equivalente para apellidos que suenan parecido. Conocer "
-"el Código SoundEx de un apellido es muy útil al investigar datos de censos "
-"(en microficha) en una biblioteca u otro local de investigación. Para ver "
-"los códigos SoundEx de los apellidos de su base de datos, agregue el "
-"Gramplete SoundEx."
+"el Código SoundEx de un apellido es muy útil al investigar datos de censos ("
+"en microficha) en una biblioteca u otro local de investigación. Para ver los "
+"códigos SoundEx de los apellidos de su base de datos, agregue el Gramplete "
+"SoundEx."
 
 #: ../data/tips.xml.in.h:15
 msgid ""
@@ -622,11 +623,11 @@ msgid ""
 "operations intuitive but the manual is full of information that will make "
 "your time spent on genealogy more productive."
 msgstr ""
-"<b>Lea el manual</b><br/>No olvide leer el manual de Gramps, &quot;Ayuda "
-"&gt; Manual de usuario&quot;. Los desarrolladores han dedicado un gran "
-"esfuerzo en hacer la mayoría de las operaciones intuitivas, pero el manual "
-"está repleto de información que hará más productivo el tiempo que dedique a "
-"la genealogía."
+"<b>Lea el manual</b><br/>No olvide leer el manual de Gramps, &quot;Ayuda &gt;"
+" Manual de usuario&quot;. Los desarrolladores han dedicado un gran esfuerzo "
+"en hacer la mayoría de las operaciones intuitivas, pero el manual está "
+"repleto de información que hará más productivo el tiempo que dedique a la "
+"genealogía."
 
 #: ../data/tips.xml.in.h:26
 msgid ""
@@ -743,8 +744,8 @@ msgstr ""
 "para almacenar los nombres de personas visitadas a menudo. Al pulsar en una "
 "persona recordada en Marcadores, ésta se convertirá en la nueva persona "
 "activa.  Para agregar una persona a los marcadores, haga que sea la persona "
-"activa y vaya a &quot;Marcadores &gt; Agregar marcador&quot; o pulse Ctrl"
-"+D.  Puede poner marcadores en objetos de muchos otros tipos."
+"activa y vaya a &quot;Marcadores &gt; Agregar marcador&quot; o pulse Ctrl+"
+"D.  Puede poner marcadores en objetos de muchos otros tipos."
 
 #: ../data/tips.xml.in.h:34
 msgid ""
@@ -955,8 +956,8 @@ msgid ""
 "experiment and create new functionality."
 msgstr ""
 "<b>Reportes y herramientas adicionales</b><br/>Se pueden añadir a Gramps "
-"herramientas y reportes adicionales mediante le sistema de &quot;"
-"Extensiones&quot;. Véalos en &quot;Ayuda &gt; Reportes/Herramientas "
+"herramientas y reportes adicionales mediante le sistema de "
+"&quot;Extensiones&quot;. Véalos en &quot;Ayuda &gt; Reportes/Herramientas "
 "adicionales&quot;. Es la mejor manera en que los usuarios avanzados pueden "
 "experimentar y crear nueva funcionalidad."
 
@@ -967,10 +968,10 @@ msgid ""
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"<b>Reportes libro</b><br/>El reporte libro en &quot;Reportes &gt; Libros "
-"&gt; Reporte Libro&quot;, permite juntar varios reportes en un único "
-"documento. Este reporte combinado es más fácil de distribuir que los "
-"reportes múltiples, especialmente en forma impresa."
+"<b>Reportes libro</b><br/>El reporte libro en &quot;Reportes &gt; Libros &gt;"
+" Reporte Libro&quot;, permite juntar varios reportes en un único documento. "
+"Este reporte combinado es más fácil de distribuir que los reportes "
+"múltiples, especialmente en forma impresa."
 
 #: ../data/tips.xml.in.h:52
 msgid ""
@@ -1060,9 +1061,9 @@ msgid ""
 "when the home button is pressed."
 msgstr ""
 "<b>La persona inicial</b><br/>Puede elegir cualquier persona como Persona "
-"Inicial en Gramps. Utilice &quot;Editar &gt; Establecer persona "
-"inicial&quot;. La persona inicial es la que resulta seleccionada cuando se "
-"abre la base de datos o cuando se pulsa el botón Inicio."
+"Inicial en Gramps. Utilice &quot;Editar &gt; Establecer persona inicial&quot;"
+". La persona inicial es la que resulta seleccionada cuando se abre la base "
+"de datos o cuando se pulsa el botón Inicio."
 
 #: ../data/tips.xml.in.h:60
 msgid ""
@@ -1474,15 +1475,15 @@ msgstr ""
 "\n"
 "1. Para importar cuatro bases de datos (cuyos formatos pueden determinarse "
 "de sus nombres)\n"
-"y verificar si la base de datos resultante contiene errores, puede "
-"teclearse:\n"
+"y verificar si la base de datos resultante contiene errores, puede teclearse:"
+"\n"
 "gramps -i archivo1.ged -i archivo2.gpkg -i ~/bd3.gramps -i archivo4.wft -a "
 "tool -p name=check. \n"
 "\n"
 "2. Para especificar explícitamente los formatos en el ejemplo anterior, "
 "añada las apropiadas opciones -f a los nombres de archivo:\n"
-"gramps -i archivo1.ged -f gedcom -i archivo2.gpkg -f gramps-pkg -i ~/bd3."
-"gramps -f gramps-xml -i archivo4.wft -f wft -a tool -p name=check. \n"
+"gramps -i archivo1.ged -f gedcom -i archivo2.gpkg -f gramps-pkg -i ~/"
+"bd3.gramps -f gramps-xml -i archivo4.wft -f wft -a tool -p name=check. \n"
 "\n"
 "3. Para salvar la base de datos resultante de todas las importaciones, use "
 "la opción -e (use también -f si el nombre de archivo no permite a Gramps "
@@ -1501,8 +1502,8 @@ msgstr ""
 "6. Para abrir una base de datos y, a partir de esos datos, generar un "
 "reporte de timeline en formato PDF\n"
 "colocando la salida en el archivo mi_timeline:\n"
-"gramps -O 'Árbol genealógico 1' -a report -p name=timeline,off=pdf,"
-"of=mi_timeline.pdf\n"
+"gramps -O 'Árbol genealógico 1' -a report -p "
+"name=timeline,off=pdf,of=mi_timeline.pdf\n"
 "\n"
 "7. Para generar un resumen de una base de datos:\n"
 "gramps -O 'Árbol genealógico 1' -a report -p name=summary\n"
@@ -1510,8 +1511,8 @@ msgstr ""
 "8. Lista de opciones de un reporte\n"
 "Use la opción name=timeline,show=all para saber de las opciones disponibles "
 "para el reporte timeline.\n"
-"Para saber detalles de una opción particular, use la cadena "
-"show=option_name , p.ej. name=timeline,show=off.\n"
+"Para saber detalles de una opción particular, use la cadena show=option_name "
+", p.ej. name=timeline,show=off.\n"
 "Para conocer los nombres de reportes disponibles, utilice la cadena "
 "name=show.\n"
 "\n"
@@ -2042,8 +2043,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Ignorando '%(notranslate1)s=%(notranslate2)s' y utilizando '%(notranslate1)s="
-"%(notranslate3)s'."
+"Ignorando '%(notranslate1)s=%(notranslate2)s' y utilizando "
+"'%(notranslate1)s=%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -2102,8 +2103,8 @@ msgid ""
 "\n"
 msgstr ""
 "Gramps ha detectado un error en la base de datos. Esto puede resolverse "
-"normamente ejecutando la herramienta \"Comprobar y reparar la base de datos"
-"\".\n"
+"normamente ejecutando la herramienta \"Comprobar y reparar la base de datos\""
+".\n"
 "\n"
 "Si el problema persiste tras ejecutar la herramienta, por favor reporte el "
 "error en %(gramps_bugtracker_url)s\n"
@@ -3177,9 +3178,9 @@ msgid ""
 "can then import this backup into this version of Gramps."
 msgstr ""
 "El árbol genealógico que intenta cargar está en el formato de Bsddb versión "
-"%(env_version)s. Esta versión de Gramps utiliza Bsddb versión "
-"%(bdb_version)s. Así que está tratando de cargar datos creados en un formato "
-"más moderno en un programa más antiguo y la carga seguramente fallará.\n"
+"%(env_version)s. Esta versión de Gramps utiliza Bsddb versión %(bdb_version)"
+"s. Así que está tratando de cargar datos creados en un formato más moderno "
+"en un programa más antiguo y la carga seguramente fallará.\n"
 "\n"
 "Debe lanzar su versión <b>más nueva</b> de Gramps y <a href=\"http://www."
 "gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">hacer una "
@@ -3200,10 +3201,10 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 "El árbol genealógico que intenta cargar está en formato de Bsddb versión "
-"%(env_version)s. Esta versión de Gramps utiliza Bsddb versión "
-"%(bdb_version)s. Así que está intentando cargar datos creados en un formato "
-"más nuevo en un programa más antiguo. En este caso en particular, la "
-"diferencia es muy pequeña, así que puede que funcione.\n"
+"%(env_version)s. Esta versión de Gramps utiliza Bsddb versión %(bdb_version)"
+"s. Así que está intentando cargar datos creados en un formato más nuevo en "
+"un programa más antiguo. En este caso en particular, la diferencia es muy "
+"pequeña, así que puede que funcione.\n"
 "\n"
 "Si no ha hecho aún una copia de seguridad de su árbol genealógico, debería "
 "lanzar su versión <b>más nueva</b> de Gramps y <a href=\"http://www.gramps-"
@@ -3227,9 +3228,9 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 "El árbol genealógico que intenta cargar utiliza el formato de Bsddb versión "
-"%(env_version)s. Esta versión de Gramps utiliza Bsddb versión "
-"%(bdb_version)s. Por tanto, no puede cargar este árbol genealógico sin "
-"actualizar la versión de Bsddb de su árbol genealógico.\n"
+"%(env_version)s. Esta versión de Gramps utiliza Bsddb versión %(bdb_version)"
+"s. Por tanto, no puede cargar este árbol genealógico sin actualizar la "
+"versión de Bsddb de su árbol genealógico.\n"
 "\n"
 "Abrir este árbol genealógico con esta versión de Gramps podría corromper su "
 "árbol genealógico de modo que no pudiera recuperarse. Se le recomienda "
@@ -3291,11 +3292,11 @@ msgstr ""
 "\n"
 "Si actualiza el formato, ya no podrá utilizar la versión anterior de Gramps, "
 "incluso si posteriormente <a href=\"http://www.gramps-project.org/wiki/index."
-"php?title=Gramps_4.0_Wiki_Manual_-"
-"_Manage_Family_Trees#Backing_up_a_Family_Tree\">hace una copia de seguridad</"
-"a> o <a href=\"http://www.gramps-project.org/wiki/index.php?"
-"title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats"
-"\">exporta</a> su árbol genealógico actualizado.\n"
+"php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#"
+"Backing_up_a_Family_Tree\">hace una copia de seguridad</a> o <a href=\"http"
+"://www.gramps-project.org/wiki/index.php?title=Gramps_4."
+"0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats\">exporta</a> "
+"su árbol genealógico actualizado.\n"
 "\n"
 "La actualización es una tarea difícil que podría corromper sin remedio su "
 "árbol genealógico si se interrumpe el proceso o si falla.\n"
@@ -3354,12 +3355,12 @@ msgstr ""
 "genealógico sin actualizar la versión de Python del árbol genealógico.\n"
 "\n"
 "Si lo actualiza, ya no podrá usar la versión previa de Gramps, incluso si "
-"posteriormente <a href=\"http://www.gramps-project.org/wiki/index.php?"
-"title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Backing_up_a_Family_Tree"
-"\">hace una copia de seguridad</a> o <a href=\"http://www.gramps-project.org/"
-"wiki/index.php?title=Gramps_4.0_Wiki_Manual_-"
-"_Manage_Family_Trees#Export_into_Gramps_formats\">exporta</a> su árbol "
-"genealógico actualizado.\n"
+"posteriormente <a href=\"http://www.gramps-project.org/wiki/index."
+"php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#"
+"Backing_up_a_Family_Tree\">hace una copia de seguridad</a> o <a href=\"http"
+"://www.gramps-project.org/wiki/index.php?title=Gramps_4."
+"0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats\">exporta</a> "
+"su árbol genealógico actualizado.\n"
 "\n"
 "La actualización es una tarea difícil que puede corromper irremediablemente "
 "su árbol genealógico si el proceso se interrumpe o falla.\n"
@@ -3777,8 +3778,8 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Sólo se aceptan valores de fecha-hora en el formato ISO aaaa-mm-dd hh:mm:ss "
-"(la parte hh:mm:ss es opcional). %s no tiene ese formato."
+"Sólo se aceptan valores de fecha-hora en el formato ISO aaaa-mm-dd hh:mm:ss ("
+"la parte hh:mm:ss es opcional). %s no tiene ese formato."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:49
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:48
@@ -4275,8 +4276,7 @@ msgstr "Citas cuyos ID contienen <subcadena>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr ""
-"Coincide con las citas cuyo ID Gramps coincide con la expresión regular"
+msgstr "Coincide con las citas cuyo ID Gramps coincide con la expresión regular"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:48
 #, fuzzy
@@ -4342,8 +4342,7 @@ msgstr "Eventos con el atributo <atributo>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Matches events with the event attribute of a particular value"
-msgstr ""
-"Coincide con los eventos que tienen un atributo con un valor particular"
+msgstr "Coincide con los eventos que tienen un atributo con un valor particular"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 #, fuzzy
@@ -5255,8 +5254,7 @@ msgstr "Notas cuya ID contiene <subcadena>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:48
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr ""
-"Coincide con las notas cuyo ID Gramps coincide con la expresión regular"
+msgstr "Coincide con las notas cuyo ID Gramps coincide con la expresión regular"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:47
 msgid "Persons changed after <date time>"
@@ -5293,8 +5291,8 @@ msgid ""
 msgstr ""
 "Busca en la base de datos a partir de una persona y devuelve todas las "
 "personas comprendidas entre esa persona y una serie de personas "
-"seleccionadas por un filtro.  Produce un conjunto de líneas de parentesco "
-"(incluidas las creadas por matrimonio) entre la persona especificada y las "
+"seleccionadas por un filtro.  Produce un conjunto de líneas de parentesco ("
+"incluidas las creadas por matrimonio) entre la persona especificada y las "
 "personas seleccionadas por el filtro.  Cada línea no es necesariamente la "
 "más corta entre las personas."
 
@@ -5807,7 +5805,6 @@ msgid "Home Person"
 msgstr "Persona inicial"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-#| msgid "Matches the default person"
 msgid "Matches the Home Person"
 msgstr "Coincide con la persona inicial"
 
@@ -5898,8 +5895,7 @@ msgstr "Número de generaciones:"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:46
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr ""
-"Ascendientes de una <persona> a no más de <N> generaciones de distancia"
+msgstr "Ascendientes de una <persona> a no más de <N> generaciones de distancia"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:48
 msgid ""
@@ -5924,14 +5920,11 @@ msgstr ""
 "persona que se encuentre en la lista de favoritos"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-#| msgid "Ancestors of the default person not more than <N> generations away"
 msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr ""
 "Ascendientes a no más de <N> generaciones de distancia de la persona inicial"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-#| msgid ""
-#| "Matches ancestors of the default person not more than N generations away"
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 "Coincide con los ascendientes a no más de N generaciones de distancia de la "
@@ -5980,8 +5973,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:46
 msgid "Descendants of <person> at least <N> generations away"
-msgstr ""
-"Descendientes de una <persona> al menos a <N> generaciones de distancia"
+msgstr "Descendientes de una <persona> al menos a <N> generaciones de distancia"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:48
 msgid ""
@@ -6612,8 +6604,7 @@ msgstr "Nombres de repositorios que contienen <subcadena>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:44
 msgid "Matches repositories whose name contains a certain substring"
-msgstr ""
-"Coincide con los repositorios cuyo nombre contiene una cierta subcadena"
+msgstr "Coincide con los repositorios cuyo nombre contiene una cierta subcadena"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
 #, fuzzy
@@ -6722,8 +6713,8 @@ msgstr ""
 #, fuzzy
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
-"Fuentes cuyas referencias a repositorios contienen <subcadena> en el "
-"\"Número de Catálogo\""
+"Fuentes cuyas referencias a repositorios contienen <subcadena> en el \"Número"
+" de Catálogo\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
@@ -9624,9 +9615,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"ERROR: El archivo del complemento %(filename)s tiene versión "
-"\"%(gramps_target_version)s\" que no es válida en Gramps \"%(gramps_version)s"
-"\"."
+"ERROR: El archivo del complemento %(filename)s tiene versión \""
+"%(gramps_target_version)s\" que no es válida en Gramps \"%(gramps_version)s\""
+"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -9830,8 +9821,8 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Elija la familia de fuentes.  Si no se muestran los caracteres "
-"internacionales, utilice la funete FreeSans, disponible en: http://www."
-"nongnu.org/freefont/"
+"internacionales, utilice la funete FreeSans, disponible en: http://www.nongnu"
+".org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:152
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -10375,8 +10366,7 @@ msgstr "Estilo utilizado para la generación del encabezamiento."
 
 #: ../gramps/gen/plug/report/endnotes.py:68
 msgid "The basic style used for the endnotes source display."
-msgstr ""
-"Estilo básico para la presentación de las fuentes en las notas finales."
+msgstr "Estilo básico para la presentación de las fuentes en las notas finales."
 
 #: ../gramps/gen/plug/report/endnotes.py:76
 msgid "The basic style used for the endnotes notes display."
@@ -10744,8 +10734,8 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"El árbol genealógico llega más allá del máximo de %d generaciones "
-"analizadas.\n"
+"El árbol genealógico llega más allá del máximo de %d generaciones analizadas."
+"\n"
 "Es posible que no se hayan encontrado algunos parentescos"
 
 #: ../gramps/gen/relationship.py:1406
@@ -11886,8 +11876,8 @@ msgstr ""
 "<tt>  \n"
 "  <b>Nombre</b>     - nombre de pila          <b>Apellido</b>     - "
 "apellidos (con prefijo y conectores)\n"
-"  <b>Tratamiento</b>- tratamiento (Dr., Sra.) <b>Sufijo</b>       - sufijo "
-"(Jr., Sr.)\n"
+"  <b>Tratamiento</b>- tratamiento (Dr., Sra.) <b>Sufijo</b>       - sufijo ("
+"Jr., Sr.)\n"
 "  <b>Corto</b>      - nombre corto            <b>Apodo</b>        - apodo\n"
 "  <b>Iniciales</b>  - iniciales de Nombre     <b>Habitual</b>     - apodo o "
 "primera parte de Nombre en otro caso\n"
@@ -11906,14 +11896,14 @@ msgstr ""
 "paréntesis innecesarios y las comas se quitan. Otro texto aparece "
 "literalmente.\n"
 "\n"
-"<b>Ejemplo</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
-"- Underhills'\n"
+"<b>Ejemplo</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") -"
+" Underhills'\n"
 "     <i>Edwin Jose</i> is el nombre de pila, <i>von der</i> es el prefijo, "
 "<i>Smith</i> y <i>Weston</i> son apellidos, \n"
 "     <i>and</i> es un conector, <i>Wilson</i> es un apellido patronímico, "
 "<i>Dr.</i> es el tratamiento, <i>Sr</i> el sufijo, <i>Ed</i> es un apodo, \n"
-"     <i>Underhills</i> es un apodo familiar, <i>Jose</i> es el nombre "
-"corto.\n"
+"     <i>Underhills</i> es un apodo familiar, <i>Jose</i> es el nombre corto."
+"\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -13110,8 +13100,8 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"El intento de cambiar el nombre a una versión falló con el siguiente "
-"mensaje:\n"
+"El intento de cambiar el nombre a una versión falló con el siguiente mensaje:"
+"\n"
 "\n"
 "%s"
 
@@ -13271,8 +13261,8 @@ msgstr ""
 "una copia de seguridad. Si la reparación falla o se ha perdido demasiada "
 "información, puede arreglar el árbol genealógico original manualmente. Para "
 "más detalles, visite la página web\n"
-"http://gramps-project.org/wiki/index.php?"
-"title=Recover_corrupted_family_tree\n"
+"http://gramps-project.org/wiki/index.php?title="
+"Recover_corrupted_family_tree\n"
 "Antes de hacer una reparación, intente abrir el árbol genealógico "
 "normalmente.  Varios errores que hacen que se muestre el botón de reparación "
 "pueden arreglarse automáticamente. En tal caso, puede desactivar el botón de "
@@ -13289,8 +13279,7 @@ msgstr "Parar"
 
 #: ../gramps/gui/dbman.py:944
 msgid "Rebuilding database from backup files"
-msgstr ""
-"Reconstruyendo la base de datos a partir de los archivos de salvaguarda"
+msgstr "Reconstruyendo la base de datos a partir de los archivos de salvaguarda"
 
 #: ../gramps/gui/dbman.py:949
 msgid "Error restoring backup data"
@@ -16353,8 +16342,7 @@ msgstr "El nue_vo año comienza:  "
 
 #: ../gramps/gui/glade/editdate.glade:231
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
-msgstr ""
-"Mes-Día del primer día del nuevo año (p.ej. \"1-1\", \"3-1\", \"3-25\")"
+msgstr "Mes-Día del primer día del nuevo año (p.ej. \"1-1\", \"3-1\", \"3-25\")"
 
 #: ../gramps/gui/glade/editdate.glade:261
 msgid "Q_uality"
@@ -16876,8 +16864,8 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Las personas se muestra según el formato de nombre elegido en Preferencias "
-"(el predeterminado).\n"
+"Las personas se muestra según el formato de nombre elegido en Preferencias ("
+"el predeterminado).\n"
 "Aquí se puede hacer que esta persona se muestre según un formato de nombre "
 "particularizado (se pueden crear formatos adicionales en Preferencias)."
 
@@ -16892,8 +16880,8 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Las personas se ordenan según el formato de nombre elegido en Preferencias "
-"(el predeterminado).\n"
+"Las personas se ordenan según el formato de nombre elegido en Preferencias ("
+"el predeterminado).\n"
 "Aquí se puede hacer que esta persona se ordene según un formato de nombre "
 "particularizado (se pueden crera formatos adicionales en Preferencias)."
 
@@ -17096,8 +17084,8 @@ msgid ""
 msgstr ""
 "Latitud (posición respecto al Ecuador) del lugar en notación decimal o de "
 "grados, minutos segundos.\n"
-"P.ej. valores válidos son 12.0154, 50°52′21.92″N, N50°52′21.92″ or "
-"50:52:21.92\n"
+"P.ej. valores válidos son 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21."
+"92\n"
 "Puede fijar estos valores mediante la Vista Geografía y buscando el lugar o "
 "mediante el servicio de mapas en la vista del lugar."
 
@@ -17113,8 +17101,8 @@ msgid ""
 msgstr ""
 "Longitud (posición respecto al meridiano base o de Greenwich) del lugar en "
 "notación decimal o de grados, minutos segundos.\n"
-"P.ej. valores válidos son 12.0154, 50°52′21.92″N, N50°52′21.92″ or "
-"50:52:21.92\n"
+"P.ej. valores válidos son 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21."
+"92\n"
 "Puede fijar estos valores mediante la Vista Geografía y buscando el lugar o "
 "mediante el servicio de mapas en la vista del lugar."
 
@@ -17124,8 +17112,8 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"o use copiar/pegar de su proveedor de mapas favorito (formato : latitud,"
-"longitud) en el campo siguiente:"
+"o use copiar/pegar de su proveedor de mapas favorito (formato : "
+"latitud,longitud) en el campo siguiente:"
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
@@ -17280,8 +17268,8 @@ msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
 msgstr ""
-"Información del editor, como ciudad y año de publicación, nombre del "
-"editor, ..."
+"Información del editor, como ciudad y año de publicación, nombre del editor, "
+"..."
 
 #: ../gramps/gui/glade/editsource.glade:181
 msgid ""
@@ -17325,8 +17313,7 @@ msgstr "Abrir la dirección web con el visor predeterminado."
 
 #: ../gramps/gui/glade/editurl.glade:217
 msgid "A descriptive caption of the Internet location you are storing."
-msgstr ""
-"Una leyenda descriptiva de la dirección Internet que se está guardando."
+msgstr "Una leyenda descriptiva de la dirección Internet que se está guardando."
 
 #: ../gramps/gui/glade/grampletpane.glade:63
 msgid "Drag to move; click to detach"
@@ -21057,8 +21044,7 @@ msgstr "Documento SVG"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:204
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr ""
-"Genera documentos en formato de Gráficos Vectoriales Escalables (.svg)."
+msgstr "Genera documentos en formato de Gráficos Vectoriales Escalables (.svg)."
 
 #: ../gramps/plugins/docgen/gtkprint.glade:6
 msgid "Print Preview"
@@ -22011,8 +21997,7 @@ msgstr "Nivel de cónyuges"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr ""
-"0=sin Cónyuges, 1=incluir Cónyuges, 2=incluir Cónyuges del cónyuge, etc"
+msgstr "0=sin Cónyuges, 1=incluir Cónyuges, 2=incluir Cónyuges del cónyuge, etc"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1554
 msgid "Start with the parent(s) of the selected first"
@@ -22036,8 +22021,8 @@ msgstr "Descendientes directos en negrita"
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
-"Si se deben poner en negrita las personas que sean descendientes directos "
-"(se excluyen hijastros, nietastros y similares)."
+"Si se deben poner en negrita las personas que sean descendientes directos ("
+"se excluyen hijastros, nietastros y similares)."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1574
 msgid "Indent Spouses"
@@ -22824,8 +22809,7 @@ msgstr "Encerrado_por"
 #: ../gramps/plugins/export/exportcsv.py:340
 #, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr ""
-"La exportación CSV no soporta apellidos no primarios, {count} excluidos"
+msgstr "La exportación CSV no soporta apellidos no primarios, {count} excluidos"
 
 #: ../gramps/plugins/export/exportcsv.py:357
 msgid "Birth source"
@@ -23226,9 +23210,8 @@ msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
 msgstr ""
-"  7. <a wiki='%s_-_FAQ/"
-"es#¿Cuál_es_la_diferencia_entre_residencia_y_dirección.3F'>¿Cuál es la "
-"diferencia entre residencia y dirección?</a>\n"
+"  7. <a wiki='%s_-_FAQ/es#¿Cuál_es_la_diferencia_entre_residencia_y_dirección"
+".3F'>¿Cuál es la diferencia entre residencia y dirección?</a>\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:120
 msgid "Media Files"
@@ -23281,8 +23264,7 @@ msgstr ""
 msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
-msgstr ""
-" 14. <a wiki='Category:Es:Tutorials'>¿Hay tutoriales disponibles?</a>\n"
+msgstr " 14. <a wiki='Category:Es:Tutorials'>¿Hay tutoriales disponibles?</a>\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -26011,8 +25993,9 @@ msgstr ""
 "de sus datos al formato XML Gramps. Después debe actualizarse a la última "
 "versión de Gramps (por ejemplo esta versión), crear una nueva base de datos "
 "vacía e importar el archivo XML Gramps a esa versión. Por favor, consulte "
-"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-"
-"_Manage_Family_Trees/es#Llevar_una_base_de_datos_de_Gramps_2.2_a_Gramps_3.x"
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_3."
+"4_Wiki_Manual_-_Manage_Family_Trees/es#Llevar_una_base_de_datos_de_Gramps_2."
+"2_a_Gramps_3.x"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -26595,10 +26578,10 @@ msgid ""
 "while you are running an older version %(older)s. The file will not be "
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
-"El archivo .gramps que está importando fue realizado con la versión "
-"%(newer)s of Gramps, mentras que Vd. está utilizando una versión más antigua "
-"%(older)s. No se importará el archivo. Actualice por favor a la última "
-"versión de Gramps y pruebe otra vez."
+"El archivo .gramps que está importando fue realizado con la versión %(newer)"
+"s of Gramps, mentras que Vd. está utilizando una versión más antigua %(older)"
+"s. No se importará el archivo. Actualice por favor a la última versión de "
+"Gramps y pruebe otra vez."
 
 #: ../gramps/plugins/importer/importxml.py:1031
 #, python-format
@@ -26639,9 +26622,9 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-"El archivo .gramps que está importando fue hecho por la versión "
-"%(oldgramps)s de Gramps, mientras que usted está utilizando una versión "
-"%(newgramps)s, mucho más reciente .\n"
+"El archivo .gramps que está importando fue hecho por la versión %(oldgramps)"
+"s de Gramps, mientras que usted está utilizando una versión %(newgramps)s, "
+"mucho más reciente .\n"
 "\n"
 "Asegúrese tras la importación de que todo se ha importado correctamente. En "
 "caso de problemas, repórtelo por favor y utilice mientras tanto una versión "
@@ -26876,9 +26859,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"Error: familia '%(family)s' (@%(orig_family)s@ en entrada) persona "
-"%(person)s (%(orig_person)s en entrada) no es miembro de la familia "
-"referenciada. La referencia a la familia se quitó de la persona"
+"Error: familia '%(family)s' (@%(orig_family)s@ en entrada) persona %(person)"
+"s (%(orig_person)s en entrada) no es miembro de la familia referenciada. La "
+"referencia a la familia se quitó de la persona"
 
 #: ../gramps/plugins/lib/libgedcom.py:3357
 #, python-format
@@ -28049,8 +28032,8 @@ msgstr "Falleció (%(age)s)."
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s recibió sepultura el %(burial_date)s en %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s recibió sepultura el %(burial_date)s en "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:462
 #, python-format
@@ -28063,8 +28046,8 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s recibió sepultura el %(burial_date)s en %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s recibió sepultura el %(burial_date)s en "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
@@ -28132,8 +28115,8 @@ msgstr "Recibió sepultura %(burial_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s recibió sepultura en %(month_year)s en %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s recibió sepultura en %(month_year)s en "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:494
 #, python-format
@@ -28145,8 +28128,8 @@ msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s recibió sepultura en %(month_year)s en %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s recibió sepultura en %(month_year)s en "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
@@ -28214,8 +28197,8 @@ msgstr "Recibió sepultura %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s recibió sepultura %(modified_date)s en %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s recibió sepultura %(modified_date)s en "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:526
 #, python-format
@@ -28227,8 +28210,8 @@ msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s recibió sepultura %(modified_date)s en %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s recibió sepultura %(modified_date)s en "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
@@ -28368,8 +28351,8 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado el %(baptism_date)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado el %(baptism_date)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
@@ -28382,8 +28365,8 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada el %(baptism_date)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada el %(baptism_date)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
@@ -28454,8 +28437,8 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado en %(month_year)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado en %(month_year)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
@@ -28468,8 +28451,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada en %(month_year)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada en %(month_year)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -28489,14 +28472,12 @@ msgstr ""
 #, python-format
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Recibió el bautismo en %(month_year)s en %(baptism_place)s%(endnotes)s."
+msgstr "Recibió el bautismo en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:637
 #, python-format
 msgid "Baptized %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Recibió el bautismo en %(month_year)s en %(baptism_place)s%(endnotes)s."
+msgstr "Recibió el bautismo en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:642
 #, python-format
@@ -28540,8 +28521,8 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado %(modified_date)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado %(modified_date)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
@@ -28554,8 +28535,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada %(modified_date)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada %(modified_date)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
@@ -28575,14 +28556,12 @@ msgstr ""
 #, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Recibió el bautismo %(modified_date)s en %(baptism_place)s%(endnotes)s."
+msgstr "Recibió el bautismo %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:669
 #, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Recibió el bautismo %(modified_date)s en %(baptism_place)s%(endnotes)s."
+msgstr "Recibió el bautismo %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:674
 #, python-format
@@ -28697,8 +28676,8 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado el %(christening_date)s en %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado el %(christening_date)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:728
 #, python-format
@@ -28740,8 +28719,8 @@ msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Esta persona fue bautizada el %(christening_date)s en %(christening_place)s"
-"%(endnotes)s."
+"Esta persona fue bautizada el %(christening_date)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:738
 #, python-format
@@ -28792,8 +28771,8 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado en %(month_year)s en %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado en %(month_year)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
@@ -28807,8 +28786,8 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada en %(month_year)s en %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada en %(month_year)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
@@ -28830,8 +28809,7 @@ msgstr ""
 msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
-msgstr ""
-"Fue bautizado/a en %(month_year)s en %(christening_place)s%(endnotes)s."
+msgstr "Fue bautizado/a en %(month_year)s en %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:770
 #, python-format
@@ -28879,8 +28857,8 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado %(modified_date)s en %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado %(modified_date)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:792
 #, python-format
@@ -28894,8 +28872,8 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada %(modified_date)s en %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada %(modified_date)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
@@ -28917,8 +28895,7 @@ msgstr ""
 msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
-msgstr ""
-"Fue bautizado/a %(modified_date)s en %(christening_place)s%(endnotes)s."
+msgstr "Fue bautizado/a %(modified_date)s en %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:802
 #, python-format
@@ -28986,8 +28963,8 @@ msgstr "Fue bautizada en %(christening_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s recibió el bautismo en %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s recibió el bautismo en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:832
 #, python-format
@@ -29690,8 +29667,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Relación sin matrimonio con %(spouse)s en %(partial_date)s en %(place)s"
-"%(endnotes)s."
+"Relación sin matrimonio con %(spouse)s en %(partial_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1114
 #: ../gramps/plugins/lib/libnarrate.py:1137
@@ -29700,8 +29677,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Relación sin matrimonio con %(spouse)s el %(full_date)s en %(place)s"
-"%(endnotes)s."
+"Relación sin matrimonio con %(spouse)s el %(full_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1115
 #: ../gramps/plugins/lib/libnarrate.py:1138
@@ -29710,8 +29687,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Relación sin matrimonio con %(spouse)s %(modified_date)s en %(place)s"
-"%(endnotes)s."
+"Relación sin matrimonio con %(spouse)s %(modified_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1121
 #, python-format
@@ -29719,8 +29696,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s en "
-"%(partial_date)s en %(place)s%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s en %(partial_date)"
+"s en %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1122
 #, python-format
@@ -29746,8 +29723,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s en "
-"%(partial_date)s en %(place)s%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s en %(partial_date)"
+"s en %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -29773,8 +29750,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s en "
-"%(partial_date)s en %(place)s%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s en %(partial_date)"
+"s en %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
@@ -29800,8 +29777,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s en %(partial_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s en "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
@@ -29809,8 +29786,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s el %(full_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s el "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -29818,8 +29795,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
@@ -29827,8 +29804,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s en %(partial_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s en "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
@@ -29836,8 +29813,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s el %(full_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s el "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1151
 #, python-format
@@ -29845,8 +29822,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1154
 #, python-format
@@ -29854,8 +29831,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s en %(partial_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s en "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1155
 #, python-format
@@ -29863,8 +29840,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s el %(full_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s el "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1156
 #, python-format
@@ -29872,14 +29849,13 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación sin matrimonio con %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Mantuvo una relación sin matrimonio con %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1159
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"Relación sin matrimonio con %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Relación sin matrimonio con %(spouse)s en %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1160
 #, python-format
@@ -29906,8 +29882,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimono con %(spouse)s el %(full_date)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimono con %(spouse)s el "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1169
 #, python-format
@@ -29915,8 +29891,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1172
 #, python-format
@@ -29933,8 +29909,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s el %(full_date)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s el "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
@@ -29942,8 +29918,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1177
 #, python-format
@@ -29960,8 +29936,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s el %(full_date)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s el "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1179
 #, python-format
@@ -29969,16 +29945,16 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
-"También relación sin matrimonio con %(spouse)s en %(partial_date)s"
-"%(endnotes)s."
+"También relación sin matrimonio con %(spouse)s en "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1183
 #, python-format
@@ -30027,8 +30003,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1197
 #, python-format
@@ -30036,8 +30012,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1198
 #, python-format
@@ -30045,8 +30021,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación sin matrimonio con %(spouse)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación sin matrimonio con %(spouse)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1203
 #, python-format
@@ -30091,8 +30067,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con con %(spouse)s en %(partial_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con con %(spouse)s en %(partial_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -30100,8 +30076,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s el %(full_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s el %(full_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -30109,8 +30085,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s %(modified_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s %(modified_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -30118,8 +30094,8 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s en %(partial_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s en %(partial_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -30127,8 +30103,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s el %(full_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s el %(full_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -30136,8 +30112,8 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s %(modified_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s %(modified_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
@@ -30145,8 +30121,8 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s en %(partial_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s en %(partial_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -30154,8 +30130,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s el %(full_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s el %(full_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
@@ -30163,8 +30139,8 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s %(modified_date)s en %(place)s"
-"%(endnotes)s."
+"Mantuvo una relación con %(spouse)s %(modified_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
@@ -30188,8 +30164,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s en %(partial_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s en %(partial_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1248
 #, python-format
@@ -30197,8 +30173,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s el %(full_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s el %(full_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1249
 #, python-format
@@ -30206,8 +30182,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s %(modified_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s %(modified_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1252
 #, python-format
@@ -30215,8 +30191,8 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s en %(partial_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s en %(partial_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1253
 #, python-format
@@ -30224,8 +30200,8 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s el %(full_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s el %(full_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1254
 #, python-format
@@ -30233,8 +30209,8 @@ msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s %(modified_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s %(modified_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1257
 #, python-format
@@ -30242,8 +30218,8 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s en %(partial_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s en %(partial_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
@@ -30251,8 +30227,8 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s el %(full_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s el %(full_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1259
 #, python-format
@@ -30260,8 +30236,8 @@ msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"También mantuvo una relación con %(spouse)s %(modified_date)s en %(place)s"
-"%(endnotes)s."
+"También mantuvo una relación con %(spouse)s %(modified_date)s en "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1262
 #, python-format
@@ -30757,7 +30733,6 @@ msgstr "_Establecer persona inicial"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
-#| msgid "Go to the default person"
 msgid "Go to the home person"
 msgstr "Ir a la persona inicial"
 
@@ -30899,8 +30874,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Intentar ver los lugares seleccionados con un servicio de mapas "
-"(OpenstreetMap, Google Maps, ...)"
+"Intentar ver los lugares seleccionados con un servicio de mapas ("
+"OpenstreetMap, Google Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:466
 msgid "Select a Map Service"
@@ -32170,8 +32145,7 @@ msgstr "Mismos nombres de pila"
 #: ../gramps/plugins/quickview/quickview.gpr.py:287
 #: ../gramps/plugins/quickview/quickview.gpr.py:301
 msgid "Display people with the same given name as a person."
-msgstr ""
-"Agrupar todas las personas con el mismo nombre de pila que una persona."
+msgstr "Agrupar todas las personas con el mismo nombre de pila que una persona."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:300
 msgid "Same Given Names - stand-alone"
@@ -32385,8 +32359,7 @@ msgstr "Barra lateral de categorías"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "A sidebar to allow the selection of view categories"
-msgstr ""
-"Una barra lateral para permitir la selección de categorías a visualizar"
+msgstr "Una barra lateral para permitir la selección de categorías a visualizar"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:42
 msgid "Category"
@@ -32920,8 +32893,7 @@ msgstr "Incluir otros eventos"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:916
 msgid "Whether to include other events people participated in."
-msgstr ""
-"Si se deben incluir otros eventos en los que participaron las personas."
+msgstr "Si se deben incluir otros eventos en los que participaron las personas."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:921
 #: ../gramps/plugins/textreport/detdescendantreport.py:1110
@@ -34318,8 +34290,7 @@ msgstr[1] "{quantity} repositorio están referenciados, pero no existen\n"
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "{quantity} objeto audiovisual está referenciado, pero no existe\n"
-msgstr[1] ""
-"{quantity} objetos audiovisuales están referenciados, pero no existen\n"
+msgstr[1] "{quantity} objetos audiovisuales están referenciados, pero no existen\n"
 
 #: ../gramps/plugins/tool/check.py:2583
 #, python-brace-format
@@ -34405,8 +34376,7 @@ msgstr[1] "{quantity} objetos de notas están referenciados, pero no existen\n"
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "{quantity} objeto de etiqueta está referenciado, pero no existe\n"
-msgstr[1] ""
-"{quantity} objetos de etiqueta están referenciados, pero no existen\n"
+msgstr[1] "{quantity} objetos de etiqueta están referenciados, pero no existen\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2698
@@ -34482,8 +34452,8 @@ msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
-"Esta prueba creará muchas personas y eventos en la base de datos actual. "
-"¿Realmente quiere ejecutar esta prueba?"
+"Esta prueba creará muchas personas y eventos en la base de datos actual. ¿"
+"Realmente quiere ejecutar esta prueba?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:71
 msgid "Run test"
@@ -35152,8 +35122,8 @@ msgid ""
 "that can be extracted."
 msgstr ""
 "Se muestra a continuación una lista de apodos, tratamientos, prefijos y "
-"apellidos compuestos que Gramps ha conseguido extraer del árbol "
-"genealógico.\n"
+"apellidos compuestos que Gramps ha conseguido extraer del árbol genealógico."
+"\n"
 "Si acepta los cambios, Gramps modificará las entradas que se hayan "
 "seleccionado.\n"
 "\n"
@@ -36861,8 +36831,8 @@ msgid ""
 "A view showing the places visited by two persons during their life: have "
 "these two people been able to meet?"
 msgstr ""
-"Vista que muestra los lugares visitados por dos personas durante su vida: "
-"¿han podido conocerse estas dos personas?"
+"Vista que muestra los lugares visitados por dos personas durante su vida: ¿"
+"han podido conocerse estas dos personas?"
 
 #: ../gramps/plugins/view/geography.gpr.py:178
 msgid "All known Places"
@@ -37514,8 +37484,7 @@ msgstr "Personas agrupadas"
 
 #: ../gramps/plugins/view/view.gpr.py:189
 msgid "The view showing all people in the Family Tree grouped per family name"
-msgstr ""
-"Vista que muestra todas las personas del árbol genealógico por apellido"
+msgstr "Vista que muestra todas las personas del árbol genealógico por apellido"
 
 #: ../gramps/plugins/view/view.gpr.py:206
 msgid "The view showing all people in the Family Tree in a flat list"
@@ -37845,8 +37814,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s de %(strong2_strt)s"
-"%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s de "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:413
