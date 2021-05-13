@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-23 20:57+0300\n"
-"PO-Revision-Date: 2020-08-23 22:53+0300\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
-"Language-Team: suomi <niememat@gmail.com>\n"
+"PO-Revision-Date: 2021-05-13 20:32+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
@@ -264,7 +265,6 @@ msgstr "New Zealand"
 
 # 20200823
 #: ../data/holidays.xml.in.h:42
-#| msgid "Russian"
 msgid "Russia"
 msgstr "Russia"
 
@@ -376,8 +376,8 @@ msgstr ""
 "suotimista. Esimerkiksi voit valita kaikki henkilöt, jotka on adoptoitu. Tai "
 "henkilöt, joilla ei ole syntymäaikaa. Saadaksesi tuloksia sulje suodin ja "
 "valitse suodin sivupalkin alaosan Käyttäjän suodin painikkeesta, ja napsauta "
-"Etsi. Jos suodinsivupalkki ei ole näkyvissä, lisää sivupalkkiin Gramplet "
-"&gt; Suodin."
+"Etsi. Jos suodinsivupalkki ei ole näkyvissä, lisää sivupalkkiin Gramplet &gt;"
+" Suodin."
 
 #: ../data/tips.xml.in.h:7
 msgid ""
@@ -567,10 +567,10 @@ msgid ""
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
-"<b>Tietojen sulauttaminen</b><br/>Toiminto &quot;Muokkaa &gt; Sulauta..."
-"&quot; sallii sinun liittää erikseen listattuja henkilöitä yhteen. Valitse "
-"toinen merkintä pitämällä CTRL-näppäintä alhaalla ja napsauta. Tästä on "
-"hyötyä yhdistettäessä samoja ihmisiä sisältäviä tietokantoja tai "
+"<b>Tietojen sulauttaminen</b><br/>Toiminto &quot;Muokkaa &gt; "
+"Sulauta...&quot; sallii sinun liittää erikseen listattuja henkilöitä yhteen. "
+"Valitse toinen merkintä pitämällä CTRL-näppäintä alhaalla ja napsauta. Tästä "
+"on hyötyä yhdistettäessä samoja ihmisiä sisältäviä tietokantoja tai "
 "yhdistettäessä vahingossa useampaan kertaan syötettyjä henkilöitä. Pätee "
 "myös paikka-, lähde- ja arkistonäkymiin."
 
@@ -630,8 +630,8 @@ msgid ""
 msgstr ""
 "<b>Lasten lisääminen</b><br/>Grampsissa on kaksi tapaa lasten lisäämiseen. "
 "Hae ensin toinen vanhemmista perheet näkymässä ja avaa perhe. Luo uusi "
-"henkilö lapset välilehdellä ja lisää henkilö lapseksi. Voit lisätä lapsia "
-"(tai sisaruksia) myös suhteet näkymässä."
+"henkilö lapset välilehdellä ja lisää henkilö lapseksi. Voit lisätä lapsia ("
+"tai sisaruksia) myös suhteet näkymässä."
 
 #: ../data/tips.xml.in.h:27
 msgid ""
@@ -753,8 +753,8 @@ msgstr ""
 "muoto on virheellinen. Sopimattomat päivämäärämuodot osoitetaan tekstin "
 "punertavalla taustalla tai punaisella pisteellä kentän lopussa. Voit korjata "
 "päivämäärän käyttämällä valintamuokkainta, joka avataan napsauttamalla "
-"päivämäärä painiketta. Päiväyksen muoto asetetaan kohdassa &quot;Muokkaa "
-"&gt; Asetukset &gt; Näyttö&quot;."
+"päivämäärä painiketta. Päiväyksen muoto asetetaan kohdassa &quot;Muokkaa &gt;"
+" Asetukset &gt; Näyttö&quot;."
 
 #: ../data/tips.xml.in.h:35
 msgid ""
@@ -904,8 +904,8 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/"
 msgstr ""
-"<b>Gramps kotisivu</b><br/>Gramps-projektin kotisivu on osoitteessa http://"
-"Gramps-project.org/"
+"<b>Gramps kotisivu</b><br/>Gramps-projektin kotisivu on osoitteessa http"
+"://Gramps-project.org/"
 
 #: ../data/tips.xml.in.h:48
 msgid ""
@@ -1290,8 +1290,7 @@ msgstr "Työkalun nimi tuntematon."
 #: ../gramps/cli/arghandler.py:687
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
-msgstr ""
-"Työkalun nimi puuttuu. Käytä jotain näistä %(donottranslate)s=toolname."
+msgstr "Työkalun nimi puuttuu. Käytä jotain näistä %(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:719
 msgid "Unknown book name."
@@ -1386,8 +1385,8 @@ msgstr ""
 "  -q, --quiet                            Jätä pois edistys merkinnän lähtö "
 "(non-GUI tila)\n"
 "  -v, --version                          Näytä versiot\n"
-"  -S, --safe                             Käynnistä Gramps "
-"'vikasietotilassa'\n"
+"  -S, --safe                             Käynnistä Gramps 'vikasietotilassa'"
+"\n"
 "                                          (käytetään oletusasetuksia "
 "tilapäisesti)\n"
 "  -D, --default=[APXFE]                  Palauta oletusasetukset;\n"
@@ -1476,8 +1475,8 @@ msgstr ""
 "\n"
 "4. Virheilmoitusten tallentamiseksi yo. esimerkissä tulostiedostoon(outfile) "
 "ja virhelokiin (errfile), aja:\n"
-"Gramps -i file1.ged -i file2.dpkg -e ~/new-package -f Gramps-pkg >outfile "
-"2>errfile\n"
+"Gramps -i file1.ged -i file2.dpkg -e ~/new-package -f Gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. Tuodaksesi kolme tietokantaa ja käynnistääksesi interaktiivinen Gramps "
 "istunnon tuloksella:\n"
@@ -1497,19 +1496,19 @@ msgstr ""
 "olevat timelime raportin optiot.\n"
 "Löytääksesi tietyn option yksityiskohdat käytä näytä=option_nimi, esim. "
 "nimi=timeline,näytä=off string.\n"
-"Käytettävissä olevien raporttien nimet saa selville, käytä name=show "
-"string.\n"
+"Käytettävissä olevien raporttien nimet saa selville, käytä name=show string."
+"\n"
 "\n"
 "9. Sukupuun muunto lennosta Gramps xml muotoiseksi tiedostoksi:\n"
 "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
 "\n"
-"10. Tuottaaksesi nettisivuston paikallisasetuksilla (local) (esim. "
-"saksaksi):\n"
+"10. Tuottaaksesi nettisivuston paikallisasetuksilla (local) (esim. saksaksi):"
+"\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 Gramps -O 'Family Tree 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. Lopulta, avataksesi Grampsin normaaliin interaktiiviseen tilaan "
-"kirjoita:\n"
+"11. Lopulta, avataksesi Grampsin normaaliin interaktiiviseen tilaan kirjoita:"
+"\n"
 "gramps\n"
 "\n"
 "Huomaa: Nämä esimerkit pätevät Linuxin oletuskomentotulkkiin.\n"
@@ -2020,8 +2019,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Hylätään '%(notranslate1)s=%(notranslate2)s' ja käytetään '%(notranslate1)s="
-"%(notranslate3)s'."
+"Hylätään '%(notranslate1)s=%(notranslate2)s' ja käytetään "
+"'%(notranslate1)s=%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -2120,8 +2119,8 @@ msgstr "Yksityinen tietue"
 msgctxt "localized lexeme inflections"
 msgid "|January"
 msgstr ""
-"N=tammikuu|G=tammikuun|IN=tammikuussa|P=tammikuuta|IL=tammikuuhun|"
-"E=tammikuusta"
+"N=tammikuu|G=tammikuun|IN=tammikuussa|P=tammikuuta|IL=tammikuuhun|E=tammikuus"
+"ta"
 
 #: ../gramps/gen/const.py:229
 msgid ""
@@ -2536,32 +2535,32 @@ msgstr "tänään"
 msgctxt "localized lexeme inflections"
 msgid "|February"
 msgstr ""
-"N=helmikuu|G=helmikuun|IN=helmikuussa|P=helmikuuta|IL=helmikuuhun|"
-"E=helmikuusta"
+"N=helmikuu|G=helmikuun|IN=helmikuussa|P=helmikuuta|IL=helmikuuhun|E=helmikuus"
+"ta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:81
 msgctxt "localized lexeme inflections"
 msgid "|March"
 msgstr ""
-"N=maaliskuu|G=maaliskuun|IN=maaliskuussa|P=maaliskuuta|IL=maaliskuuhun|"
-"E=maaliskuusta"
+"N=maaliskuu|G=maaliskuun|IN=maaliskuussa|P=maaliskuuta|IL=maaliskuuhun|E=maal"
+"iskuusta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:82
 msgctxt "localized lexeme inflections"
 msgid "|April"
 msgstr ""
-"N=huhtikuu|G=huhtikuun|IN=huhtikuussa|P=huhtikuuta|IL=huhtikuuhun|"
-"E=huhtikuusta"
+"N=huhtikuu|G=huhtikuun|IN=huhtikuussa|P=huhtikuuta|IL=huhtikuuhun|E=huhtikuus"
+"ta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgctxt "localized lexeme inflections"
 msgid "|May"
 msgstr ""
-"N=toukokuu|G=toukokuun|IN=toukokuussa|P=toukokuuta|IL=toukokuuhun|"
-"E=toukokuusta"
+"N=toukokuu|G=toukokuun|IN=toukokuussa|P=toukokuuta|IL=toukokuuhun|E=toukokuus"
+"ta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:84
@@ -2575,8 +2574,8 @@ msgstr ""
 msgctxt "localized lexeme inflections"
 msgid "|July"
 msgstr ""
-"N=heinäkuu|G=heinäkuun|IN=heinäkuussa|P=heinäkuuta|IL=heinäkuuhun|"
-"E=heinäkuusta"
+"N=heinäkuu|G=heinäkuun|IN=heinäkuussa|P=heinäkuuta|IL=heinäkuuhun|E=heinäkuus"
+"ta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:86
@@ -2603,16 +2602,16 @@ msgstr ""
 msgctxt "localized lexeme inflections"
 msgid "|November"
 msgstr ""
-"N=marraskuu|G=marraskuun|IN=marraskuussa|P=marraskuuta|IL=marraskuuhun|"
-"E=marraskuusta"
+"N=marraskuu|G=marraskuun|IN=marraskuussa|P=marraskuuta|IL=marraskuuhun|E=marr"
+"askuusta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
 msgid "|December"
 msgstr ""
-"N=joulukuu|G=joulukuun|IN=joulukuussa|P=joulukuuta|IL=joulukuuhun|"
-"E=joulukuusta"
+"N=joulukuu|G=joulukuun|IN=joulukuussa|P=joulukuuta|IL=joulukuuhun|E=joulukuus"
+"ta"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -3216,16 +3215,17 @@ msgstr ""
 "\n"
 "Jos päivität skeeman, et voi enää käyttää Grampsin aikaisempaa versiota, "
 "vaikka myöhemmin varmuuskopioisit ja veisit (export) päivitetyn sukupuusi. "
-"Katso tarkemmin (englanniksi) %(wiki_manual_backup_html_start)svarmuuskopio"
-"%(html_end)s tai %(wiki_manual_export_html_start)svienti%(html_end)s your "
-"upgraded Family Tree.\n"
+"Katso tarkemmin (englanniksi) "
+"%(wiki_manual_backup_html_start)svarmuuskopio%(html_end)s tai "
+"%(wiki_manual_export_html_start)svienti%(html_end)s your upgraded Family "
+"Tree.\n"
 "\n"
 "Päivittäminen on haastava tehtävä ja jos se jää kesken tai epäonnistuu, "
 "sukupuusi voi rikkoutua peruuttamattomasti.\n"
 "\n"
 "Jollet ole vielä varmuuskopioinut sukupuutasi, sinun pitäisi käynnistää "
-"%(bold_start)svanha%(bold_end)s Gramps versio ja "
-"%(wiki_backup_html_start)stehdä varmuuskopio%(html_end)s sukupuustasi."
+"%(bold_start)svanha%(bold_end)s Gramps versio ja %(wiki_backup_html_start)"
+"stehdä varmuuskopio%(html_end)s sukupuustasi."
 
 #: ../gramps/gen/db/exceptions.py:174
 #, python-format
@@ -3263,15 +3263,16 @@ msgstr ""
 "Sukupuu, jota yrität ladata, on %(dbtype)s tietokanta, jota ei enää tueta.\n"
 "Siksi et voi ladata tätä sukupuuta päivittämättä.\n"
 "\n"
-"Jos päivität, et voi käyttää  %(wiki_manual_backup_html_start)svarmuuskopiota"
-"%(html_end)s tai %(wiki_manual_export_html_start)svientiä%(html_end)s "
-"aiemman Gramps version sukupuun päivittämiseen.\n"
+"Jos päivität, et voi käyttää  "
+"%(wiki_manual_backup_html_start)svarmuuskopiota%(html_end)s tai "
+"%(wiki_manual_export_html_start)svientiä%(html_end)s aiemman Gramps version "
+"sukupuun päivittämiseen.\n"
 "\n"
 "Sinua suositellaan varmuuskopioimaan sukupuusi.\n"
 "\n"
 "Jos et ole jo tehnyt varmuuskopiota sukupuustasi, sinun tulisi käynnistää "
-"aiempi Gramps versio ja %(wiki_backup_html_start)stehdä varmuuskopio"
-"%(html_end)s sukupuustasi."
+"aiempi Gramps versio ja %(wiki_backup_html_start)stehdä "
+"varmuuskopio%(html_end)s sukupuustasi."
 
 #: ../gramps/gen/db/generic.py:162 ../gramps/gen/db/generic.py:212
 #: ../gramps/gen/db/generic.py:2034
@@ -4516,8 +4517,8 @@ msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Poimii perheet, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp hh:"
-"mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
+"Poimii perheet, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp "
+"hh:mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
@@ -5312,8 +5313,7 @@ msgstr "Esivanhempien suotimet"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr ""
-"Poimii henkilöt, joilla on yhteinen esivanhempi valitun henkilön kanssa"
+msgstr "Poimii henkilöt, joilla on yhteinen esivanhempi valitun henkilön kanssa"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:48
 msgid "People with a common ancestor with <filter> match"
@@ -6080,8 +6080,8 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Poimii paikat, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp hh:"
-"mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
+"Poimii paikat, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp "
+"hh:mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
@@ -6333,8 +6333,7 @@ msgstr "Paikat, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr ""
-"Poimii paikat, joiden Gramps ID vastaa annettua säännöllistä lauseketta"
+msgstr "Poimii paikat, joiden Gramps ID vastaa annettua säännöllistä lauseketta"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:57
 #: ../gramps/gui/editors/filtereditor.py:591
@@ -6513,8 +6512,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Poimii lähteet, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp hh:"
-"mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
+"Poimii lähteet, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp "
+"hh:mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
 
 # 10
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
@@ -9484,9 +9483,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"VIRHE: Laajennustiedosto %(filename)s on Gramps versioille "
-"\"%(gramps_target_version)s\" mikä ei kelpaa Gramps versioille "
-"\"%(gramps_version)s\"."
+"VIRHE: Laajennustiedosto %(filename)s on Gramps versioille \""
+"%(gramps_target_version)s\" mikä ei kelpaa Gramps versioille \""
+"%(gramps_version)s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -11984,8 +11983,7 @@ msgstr "Älä näytä varoitusta perumisesta kun tietoja on muutettu"
 
 #: ../gramps/gui/configure.py:808
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
-msgstr ""
-"Älä näytä varoitusta puuttuvista tutkijan tiedoista GEDCOMiin vietäessä"
+msgstr "Älä näytä varoitusta puuttuvista tutkijan tiedoista GEDCOMiin vietäessä"
 
 #: ../gramps/gui/configure.py:813
 msgid "Show plugin status dialog on plugin load error"
@@ -12634,8 +12632,8 @@ msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
 msgstr ""
-"Genealogisia kirjasimia ei voi valita. Asenna moduuli fontconfig python 3:"
-"lle."
+"Genealogisia kirjasimia ei voi valita. Asenna moduuli fontconfig python "
+"3:lle."
 
 #: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
@@ -15885,8 +15883,8 @@ msgstr "Osoitteeseen liitetty puhelinnumero."
 msgid ""
 "The state or county of the address in case a mail address must contain this."
 msgstr ""
-"Sähköpostiosoitteessa on jossain tapauksessa sijaintia tarkentava osio "
-"(lääni, maakunta tms.)."
+"Sähköpostiosoitteessa on jossain tapauksessa sijaintia tarkentava osio ("
+"lääni, maakunta tms.)."
 
 #: ../gramps/gui/glade/editaddress.glade:250
 msgid "Country of the address"
@@ -16116,8 +16114,8 @@ msgstr "Uusi _vuosi alkaa:  "
 #: ../gramps/gui/glade/editdate.glade:231
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
 msgstr ""
-"Kuukausi ja päivä osoittamaan milloin uusi vuosi alkaa (esim. \"1-1\", "
-"\"3-1\", \"3-25\")"
+"Kuukausi ja päivä osoittamaan milloin uusi vuosi alkaa (esim. \"1-1\", \"3-"
+"1\", \"3-25\")"
 
 #: ../gramps/gui/glade/editdate.glade:261
 msgid "Q_uality"
@@ -16426,8 +16424,7 @@ msgstr "Mediatiedostoa kuvaava nimi."
 
 #: ../gramps/gui/glade/editmedia.glade:270
 msgid "Open File Browser to select a media file on your computer."
-msgstr ""
-"Avaa tiedostoselain avataksesi tietokoneeltasi löytyvän mediatiedoston."
+msgstr "Avaa tiedostoselain avataksesi tietokoneeltasi löytyvän mediatiedoston."
 
 #: ../gramps/gui/glade/editmedia.glade:279
 #: ../gramps/gui/glade/editmediaref.glade:660
@@ -16869,8 +16866,8 @@ msgstr ""
 msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
-"Kenttää käytetään liittämään nettisivun tieto kuten Google, "
-"OpenStreedMap, ... "
+"Kenttää käytetään liittämään nettisivun tieto kuten Google, OpenStreedMap, "
+"... "
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -17048,8 +17045,7 @@ msgstr "Nettiosoitteen tyyppi, esim. Sähköposti, Nettisivu,.."
 msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
-msgstr ""
-"Internet selailuun tarvittava osoite on esim. http://gramps-project.org"
+msgstr "Internet selailuun tarvittava osoite on esim. http://gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:205
 msgid "Open the web address in the default browser."
@@ -21469,8 +21465,7 @@ msgstr "Syntymäpäivä sukunimi"
 #: ../gramps/plugins/textreport/birthdayreport.py:547
 #: ../gramps/plugins/webreport/webcal.py:1875
 msgid "Wives use husband's surname (from first family listed)"
-msgstr ""
-"Vaimoilla on aviomiehensä sukunimi (ensimmäisestä listatusta perheestä)"
+msgstr "Vaimoilla on aviomiehensä sukunimi (ensimmäisestä listatusta perheestä)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:548
 #: ../gramps/plugins/textreport/birthdayreport.py:550
@@ -22812,8 +22807,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sMiten lisään muun puolison?"
-"%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sMiten lisään muun "
+"puolison?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
@@ -22821,8 +22816,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sMiten poistan puolison?"
-"%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sMiten poistan "
+"puolison?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -22878,8 +22873,8 @@ msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
 msgstr ""
-"  8. %(gramps_FAQ_html_start)s%(faq_section)sKuinka lisään valokuvan "
-"henkilöön/lähteeseen/tapahtumaan?%(html_end)s\n"
+"  8. %(gramps_FAQ_html_start)s%(faq_section)sKuinka lisään valokuvan henkilöö"
+"n/lähteeseen/tapahtumaan?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
@@ -22920,8 +22915,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sOnko Grampsia varten opasta?"
-"%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sOnko Grampsia varten "
+"opasta?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -22942,8 +22937,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sMiten saan apua Grampsiin?"
-"%(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sMiten saan apua "
+"Grampsiin?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:53
 msgid "Double-click given name for details"
@@ -23032,8 +23027,7 @@ msgstr "Gramplet näyttää aktiivisen henkilön esivanhemmat"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:122
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
-msgstr ""
-"Gramplet näyttää aktiivisen henkilön suorat esivanhemmat viuhkakaaviona"
+msgstr "Gramplet näyttää aktiivisen henkilön suorat esivanhemmat viuhkakaaviona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:138
 #: ../gramps/plugins/view/fanchartdescview.py:76
@@ -24265,9 +24259,9 @@ msgid ""
 "\n"
 msgstr ""
 "Luo aluksi uusi sukupuu (sitä kutsutaan joskus tietokannaksi tai "
-"sukukannaksi) valitsemalla ensin \"Sukupuut\" ja sitten \"Hallinnoi sukupuita"
-"\". Napsauta \"Uusi\" ja anna sukupuullesi nimi. Tarkempia ohjeita saat yllä "
-"olevien linkkien kautta.\n"
+"sukukannaksi) valitsemalla ensin \"Sukupuut\" ja sitten \"Hallinnoi "
+"sukupuita\". Napsauta \"Uusi\" ja anna sukupuullesi nimi. Tarkempia ohjeita "
+"saat yllä olevien linkkien kautta.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
@@ -25605,12 +25599,12 @@ msgid ""
 "media objects."
 msgstr ""
 "Sukupuussa, jonne yrität tuoda tietoja, peruspolku mediatiedostoille on: "
-"%(orig_path)s. Tuotavat mediatiedostot ovat kuitenkin suhteessa "
-"peruspolkuun: %(path)s. Voit muuttaa mediatiedostojen polun Asetuksista tai "
-"voit muuttaa tuodut tiedostot käyttämään nykyistä mediatiedostojen "
-"peruspolkua. Jälkimmäisen saat tehtyä siirtämällä mediatiedostosi oikeaan "
-"hakemistoon ja käyttämällä Medianhallinta työkalun 'Korvaa merkkijono "
-"polussa' -toimintoa, jolla asetat mediatiedostoillesi oikean polun."
+"%(orig_path)s. Tuotavat mediatiedostot ovat kuitenkin suhteessa peruspolkuun:"
+" %(path)s. Voit muuttaa mediatiedostojen polun Asetuksista tai voit muuttaa "
+"tuodut tiedostot käyttämään nykyistä mediatiedostojen peruspolkua. "
+"Jälkimmäisen saat tehtyä siirtämällä mediatiedostosi oikeaan hakemistoon ja "
+"käyttämällä Medianhallinta työkalun 'Korvaa merkkijono polussa' -toimintoa, "
+"jolla asetat mediatiedostoillesi oikean polun."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
 #: ../gramps/plugins/importer/importprogen.py:189
@@ -26492,9 +26486,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"Virhe: perheessä '%(family)s' (tuonnissa @%(orig_family)s@) henkilö "
-"%(person)s (tuonnissa %(orig_person)s) ei ole viitatun perheen jäsen. "
-"Henkilöltä poistettu viittaus perheeseen"
+"Virhe: perheessä '%(family)s' (tuonnissa @%(orig_family)s@) henkilö %(person)"
+"s (tuonnissa %(orig_person)s) ei ole viitatun perheen jäsen. Henkilöltä "
+"poistettu viittaus perheeseen"
 
 #: ../gramps/plugins/lib/libgedcom.py:3357
 #, python-format
@@ -27661,8 +27655,8 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s haudattiin %(burial_date)s %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s haudattiin %(burial_date)s "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
@@ -27725,8 +27719,7 @@ msgstr "Haudattiin %(month_year)s %(burial_place)s%(endnotes)s."
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(female_name)s haudattiin %(month_year)s %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s haudattiin %(month_year)s %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
@@ -27739,8 +27732,8 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s haudattiin %(month_year)s %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s haudattiin %(month_year)s "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
@@ -27818,8 +27811,8 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s haudattiin %(modified_date)s %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s haudattiin %(modified_date)s "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:534
 #, python-format
@@ -27970,8 +27963,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s kastettiin %(baptism_date)s %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s kastettiin %(baptism_date)s "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
@@ -28051,8 +28044,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s kastettiin %(month_year)s %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s kastettiin %(month_year)s "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
@@ -28132,8 +28125,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s kastettiin %(modified_date)s %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s kastettiin %(modified_date)s "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format
@@ -28257,8 +28250,8 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s, ristiäiset oli %(christening_date)s %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s, ristiäiset oli %(christening_date)s "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:728
 #, python-format
@@ -28273,8 +28266,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s, ristiäiset oli %(christening_date)s %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s, ristiäiset oli %(christening_date)s "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
@@ -28347,8 +28340,8 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s, ristiäiset oli %(month_year)s %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s, ristiäiset oli %(month_year)s "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
@@ -28362,8 +28355,8 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s, ristiäiset oli %(month_year)s %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s, ristiäiset oli %(month_year)s "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
@@ -28377,8 +28370,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s, ristiäiset oli %(month_year)s %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s, ristiäiset oli %(month_year)s "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:768
 #, python-format
@@ -28433,8 +28426,8 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s, ristiäiset oli %(modified_date)s %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s, ristiäiset oli %(modified_date)s "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:792
 #, python-format
@@ -28448,8 +28441,8 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s, ristiäiset oli %(modified_date)s %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s, ristiäiset oli %(modified_date)s "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
@@ -28539,8 +28532,8 @@ msgstr "Ristiäispaikka oli %(christening_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s, ristiäispaikka oli %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s, ristiäispaikka oli "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:832
 #, python-format
@@ -28889,8 +28882,8 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:997
 #, python-format
@@ -28898,8 +28891,8 @@ msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:998
 #, python-format
@@ -28907,73 +28900,73 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1006
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1007
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1008
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1011
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1013
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Aviopuoliso: %(spouse)s, vihitty uudelleen %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1019
 #, python-format
@@ -29193,8 +29186,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde on alkanut %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde on alkanut %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1099
 #, python-format
@@ -29210,8 +29203,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1103
 #, python-format
@@ -29219,8 +29212,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde alkoi %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde alkoi %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1104
 #, python-format
@@ -29236,8 +29229,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1108
 #, python-format
@@ -29245,8 +29238,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde alkoi %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde alkoi %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1109
 #, python-format
@@ -29262,8 +29255,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -29272,8 +29265,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde alkoi %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde alkoi %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1114
 #: ../gramps/plugins/lib/libnarrate.py:1137
@@ -29291,8 +29284,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, parisuhde alkoi %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1121
 #, python-format
@@ -29300,8 +29293,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1122
 #, python-format
@@ -29309,8 +29302,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1123
 #, python-format
@@ -29318,8 +29311,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1126
 #, python-format
@@ -29327,8 +29320,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -29336,8 +29329,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
@@ -29345,8 +29338,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -29354,8 +29347,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
@@ -29363,8 +29356,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
@@ -29372,8 +29365,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1144
 #, python-format
@@ -29466,8 +29459,7 @@ msgstr ""
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
+msgstr "Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1169
 #, python-format
@@ -29490,8 +29482,7 @@ msgstr ""
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
+msgstr "Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
@@ -29514,8 +29505,7 @@ msgstr ""
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
+msgstr "Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1179
 #, python-format
@@ -29535,8 +29525,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1183
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
-"Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
+msgstr "Avopuoliso: %(spouse)s, uusi parisuhde alkoi %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1184
 #, python-format
@@ -29634,8 +29623,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -29643,8 +29632,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -29652,8 +29641,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -29661,8 +29650,8 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -29670,8 +29659,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -29679,8 +29668,8 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
@@ -29688,8 +29677,8 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -29697,8 +29686,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
@@ -29706,30 +29695,30 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1240
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1241
 #, python-format
 msgid ""
 "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröitiin %(modified_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1247
 #, python-format
@@ -29737,8 +29726,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1248
 #, python-format
@@ -29746,8 +29735,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1249
 #, python-format
@@ -29764,8 +29753,8 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1253
 #, python-format
@@ -29773,8 +29762,8 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1254
 #, python-format
@@ -29791,8 +29780,8 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
@@ -29800,8 +29789,8 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1259
 #, python-format
@@ -29817,16 +29806,16 @@ msgstr ""
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1263
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(full_date)s "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1264
 #, python-format
@@ -29918,8 +29907,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
 #, python-format
@@ -29935,16 +29924,16 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(modified_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1298
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1299
 #, python-format
@@ -29958,16 +29947,16 @@ msgstr ""
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(modified_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1303
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1304
 #, python-format
@@ -29981,15 +29970,15 @@ msgstr ""
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(modified_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1308
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(partial_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1309
 #, python-format
@@ -30001,16 +29990,16 @@ msgstr ""
 #, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin %(modified_date)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1315
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, parisuhde rekisteröintiin paikassa %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, parisuhde rekisteröintiin paikassa "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1316
 #, python-format
@@ -30035,29 +30024,29 @@ msgstr ""
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1323
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1324
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1325
 #, python-format
 msgid "Also relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa %(place)s"
-"%(endnotes)s."
+"Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1329
 #, python-format
@@ -33864,8 +33853,7 @@ msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
 msgstr[0] "{quantity} löydetty perhe ilman vanhempia tai lapsia, poistetaan.\n"
-msgstr[1] ""
-"{quantity} löydetty perheitä ilman vanhempia tai lapsia, poistetaan.\n"
+msgstr[1] "{quantity} löydetty perheitä ilman vanhempia tai lapsia, poistetaan.\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2518
@@ -34593,8 +34581,7 @@ msgstr "Sulauta_lainaukset"
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
-msgstr ""
-"Yhteensopivien lainauksien lisätiedot ja mediatiedostot kootaan yhteen."
+msgstr "Yhteensopivien lainauksien lisätiedot ja mediatiedostot kootaan yhteen."
 
 #: ../gramps/plugins/tool/mergecitations.py:164
 msgid "Merge citations tool"
@@ -37456,8 +37443,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s / %(strong2_strt)s"
-"%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s / "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:416
@@ -37654,8 +37641,7 @@ msgstr "Lainausviitteiden asetelma"
 #: ../gramps/plugins/webreport/narrativeweb.py:1806
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
-msgstr ""
-"Määritä oletusasetelma käytettäväksi lähdesivun lainausviitteet osiossa"
+msgstr "Määritä oletusasetelma käytettäväksi lähdesivun lainausviitteet osiossa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1810
 msgid "Include ancestor's tree"
@@ -37947,8 +37933,7 @@ msgstr "Lisää linkki kotihenkilöön jokaiselle sivulle"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2052
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr ""
-"Lisää linkki kotihenkilöön jokaiselle sivulle (jos heillä on nettisivu)"
+msgstr "Lisää linkki kotihenkilöön jokaiselle sivulle (jos heillä on nettisivu)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2056
 msgid "Include a column for birth dates on the index pages"
@@ -38097,8 +38082,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2158
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr ""
-"Ota mukaan perheen karttasivut, joilla näytetään kartalla kaikki paikat"
+msgstr "Ota mukaan perheen karttasivut, joilla näytetään kartalla kaikki paikat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2162
 msgid ""
