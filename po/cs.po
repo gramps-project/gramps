@@ -38,17 +38,18 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-29 01:17+0100\n"
-"PO-Revision-Date: 2020-12-18 19:05+0100\n"
-"Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
-"Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
+"PO-Revision-Date: 2021-05-13 20:22+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.3\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -574,9 +575,9 @@ msgid ""
 "Possible Duplicate People...&quot; allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Duplicitní záznamy</b><br/>&quot;Nástroje  &gt;  Zpracování rodokmenu "
-"&gt; Najít možné duplicitní osoby...&quot; vám dovolí nalézt (a sloučit) "
-"záznamy stejné osoby zadané do databáze více než jednou."
+"<b>Duplicitní záznamy</b><br/>&quot;Nástroje  &gt;  Zpracování rodokmenu &gt;"
+" Najít možné duplicitní osoby...&quot; vám dovolí nalézt (a sloučit) záznamy "
+"stejné osoby zadané do databáze více než jednou."
 
 #: ../data/tips.xml.in.h:21
 msgid ""
@@ -587,9 +588,9 @@ msgid ""
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
-"<b>Slučování záznamů</b><br/>Funkce&quot;Úpravy &gt; Porovnat a sloučit..."
-"&quot; vám umožní sloučit odděleně uvedené osoby do jedné. Vyberte druhý "
-"záznam kliknutím myši za současného držení klávesy Ctrl. To je velmi "
+"<b>Slučování záznamů</b><br/>Funkce&quot;Úpravy &gt; Porovnat a "
+"sloučit...&quot; vám umožní sloučit odděleně uvedené osoby do jedné. Vyberte "
+"druhý záznam kliknutím myši za současného držení klávesy Ctrl. To je velmi "
 "užitečné při slučování dvou databází obsahující stejné osoby, nebo slučování "
 "chybně zadaných osob s různými jmény představujících stejnou osobu. Funkci "
 "je možné využít v pohledech pramenů, míst a archivů."
@@ -650,8 +651,8 @@ msgid ""
 msgstr ""
 "<b>Přidávání potomků</b><br/>Pro přidávání potomků jsou v Gramps dvě "
 "možnosti. Můžete vyhledat jednoho z rodičů v Náhledu rodin a otevřít rodinu. "
-"Poté můžete vytvořit novou, nebo přidat existující osobu. Přidání potomka "
-"(nebo sourozenců) je také možné přímo v Editoru rodiny."
+"Poté můžete vytvořit novou, nebo přidat existující osobu. Přidání potomka ("
+"nebo sourozenců) je také možné přímo v Editoru rodiny."
 
 #: ../data/tips.xml.in.h:27
 msgid ""
@@ -917,8 +918,8 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/"
 msgstr ""
-"<b>Domovská stránka Gramps</b><br/>Domovskou stránku Gramps najdete na "
-"http://gramps-project.org/"
+"<b>Domovská stránka Gramps</b><br/>Domovskou stránku Gramps najdete na http"
+"://gramps-project.org/"
 
 #: ../data/tips.xml.in.h:48
 msgid ""
@@ -1098,8 +1099,8 @@ msgid ""
 msgstr ""
 "<b>The Gramps Software Licence</b><br/>Gramps můžete volně používat a sdílet "
 "s ostatními. Gramps je volně šiřitelný pod licencí GNU General Public "
-"License,  podrobnosti o právech a omezeních této licence naleznete na http://"
-"www.gnu.org/licenses/licenses.html#GPL."
+"License,  podrobnosti o právech a omezeních této licence naleznete na "
+"http://www.gnu.org/licenses/licenses.html#GPL."
 
 #: ../data/tips.xml.in.h:63
 msgid ""
@@ -1386,8 +1387,8 @@ msgstr ""
 "  -C, --create=RODOKMEN                 Vytvořit při otevření pokud je nový\n"
 "  -i, --import=SOUBOR                    Importovat soubor\n"
 "  -e, --export=SOUBOR                    Exportovat soubor\n"
-"  -r, --remove=ŠABLONA_RODOKMENU       Odebrat odpovídající rodokmen(y) "
-"(použijte regex)\n"
+"  -r, --remove=ŠABLONA_RODOKMENU       Odebrat odpovídající rodokmen(y) ("
+"použijte regex)\n"
 "  -f, --format=FORMÁT                    Specifikovat formát rodokmenu\n"
 "  -a, --action=AKCE                      Specifikovat akce\n"
 "  -p, --options=ŘETĚZEC_MOŽNOSTÍ         Specifikovat volby\n"
@@ -1401,12 +1402,12 @@ msgstr ""
 "spustit Gramps\n"
 "  -y, --yes                             Nevyžadovat potvrzení nebezpečných "
 "operací (pouze non GUI režim)\n"
-"  -q, --quiet                            Potlačit výpis průběhové indikace "
-"(non GUI režim)\n"
+"  -q, --quiet                            Potlačit výpis průběhové indikace ("
+"non GUI režim)\n"
 "  -v, --version                          Zobrazit verze\n"
 " -S, --safe                             Spustit Gramps v 'Safe mode'\n"
-"                                          (dočasně použít výchozí "
-"nastavení)\n"
+"                                          (dočasně použít výchozí nastavení)"
+"\n"
 "  -D, --default=[APXFE]                  Resetovat nastavení na výchozí "
 "hodnoty\n"
 "                 A - vyčistit moduly\n"
@@ -1478,10 +1479,10 @@ msgstr ""
 "\n"
 "Příklady použití Gramps z příkazové řádky\n"
 "\n"
-"1. Import čtyř databází (jejichž formáty jsou stanoveny podle názvů "
-"souborů)\n"
-"a následná kontrola bezchybnosti výsledné databáze může být provedena "
-"takto:\n"
+"1. Import čtyř databází (jejichž formáty jsou stanoveny podle názvů souborů)"
+"\n"
+"a následná kontrola bezchybnosti výsledné databáze může být provedena takto:"
+"\n"
 " gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
 "name=check. \n"
 "\n"
@@ -1491,13 +1492,13 @@ msgstr ""
 "f gramps-xml -i file4.wft -f wft -a tool -p name=check. \n"
 "\n"
 "3. Zapsání výsledné databáze vytvořené ze všech importů zajistí parametr -e\n"
-"(použijte -f pokud nelze uhodnout formát z názvu souboru):gramps -i file1."
-"ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
+"(použijte -f pokud nelze uhodnout formát z názvu souboru):gramps -i "
+"file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. Uložení možných chybových hlášení předchozího příkladu do souborů outfile "
 "a errfile:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/novy-balicek -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/novy-balicek -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. Import tří databází a spuštění interaktivní Gramps relace nad výsledkem:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
@@ -1515,14 +1516,14 @@ msgstr ""
 "zprávy časové linie.\n"
 "Podrobnosti konkrétní možnosti zjistíte prostřednictvím řetězce "
 "show=option_name , např. name=timeline,show=off string .\n"
-"Pro zjištění názvů všech dostupných zpráv použijte řetězec name=show  "
-"string.\n"
+"Pro zjištění názvů všech dostupných zpráv použijte řetězec name=show  string."
+"\n"
 "\n"
 "9. Konvertovat rodokmen do .gramps.xml souboru za běhu:\n"
 "gramps -O 'Rodokmen 1' -e output.gramps -f gramps-xml\n"
 "\n"
-"10. Vytvoření webových stránek v jiném jazykovém prostředí (např. v "
-"němčině):\n"
+"10. Vytvoření webových stránek v jiném jazykovém prostředí (např. v němčině):"
+"\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Rodokmen 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
@@ -2031,8 +2032,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Ignoruje se '%(notranslate1)s=%(notranslate2)s' a používá '%(notranslate1)s="
-"%(notranslate3)s'."
+"Ignoruje se '%(notranslate1)s=%(notranslate2)s' a používá "
+"'%(notranslate1)s=%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -3183,9 +3184,9 @@ msgstr ""
 "Aktualizace je náročná operace. Pokud selže nebo je přerušena, může nevratně "
 "poškodit váš rodokmen.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit %(bold_start)sstarou"
-"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
-"%(html_end)s svého rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit "
+"%(bold_start)sstarou%(bold_end)s verzi Gramps a %(wiki_backup_html_start)"
+"sprovést zálohu%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/exceptions.py:174
 #, python-format
@@ -3233,9 +3234,9 @@ msgstr ""
 "Aktualizace je náročná operace. Pokud selže nebo je přerušena, může nevratně "
 "poškodit váš rodokmen.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit %(bold_start)sstarou"
-"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
-"%(html_end)s svého rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit "
+"%(bold_start)sstarou%(bold_end)s verzi Gramps a %(wiki_backup_html_start)"
+"sprovést zálohu%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/generic.py:162 ../gramps/gen/db/generic.py:212
 #: ../gramps/gen/db/generic.py:2034
@@ -3315,8 +3316,7 @@ msgstr "%(n1)6d  Osob        aktualizováno %(n2)6d citací  během %(n3)6d sec\
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"%(n1)6d  Rodin        aktualizováno %(n2)6d citací  během %(n3)6d sec\n"
+msgstr "%(n1)6d  Rodin        aktualizováno %(n2)6d citací  během %(n3)6d sec\n"
 
 #: ../gramps/gen/db/upgrade.py:376
 #, python-format
@@ -3342,8 +3342,7 @@ msgstr ""
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"%(n1)6d  Archivů      aktualizováno %(n2)6d citací  během %(n3)6d sec\n"
+msgstr "%(n1)6d  Archivů      aktualizováno %(n2)6d citací  během %(n3)6d sec\n"
 
 #: ../gramps/gen/db/upgrade.py:384
 #, python-format
@@ -4034,8 +4033,7 @@ msgstr "Citace s poznámkami obsahujícími <text>"
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
-msgstr ""
-"Vyhovují citace jejichž poznámky obsahují text odpovídající reg. výrazu"
+msgstr "Vyhovují citace jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:43
 msgid "Citations with a reference count of <count>"
@@ -4443,8 +4441,7 @@ msgstr "Události s pramenem odpovídajícím filtru <source filter>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
 msgid "Matches events with sources that match the specified source filter name"
-msgstr ""
-"Vyhovují události s pramenem který odpovídá danému názvu filtru pramenů"
+msgstr "Vyhovují události s pramenem který odpovídá danému názvu filtru pramenů"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:47
 msgid "Events with Id containing <text>"
@@ -4632,8 +4629,7 @@ msgstr "Rodiny mající poznámky obsahující <text>"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:42
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr ""
-"Vyhovují rodiny jejichž poznámky obsahují text odpovídající reg. výrazu"
+msgstr "Vyhovují rodiny jejichž poznámky obsahují text odpovídající reg. výrazu"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:42
 msgid "Families with a reference count of <count>"
@@ -4842,8 +4838,8 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Vyhovují záznamy objektů médií změněné po určitém datu:čase (rrrr-mm-dd hh:"
-"mm:ss) nebo určitém období, pokud je zadáno druhé datum:čas."
+"Vyhovují záznamy objektů médií změněné po určitém datu:čase (rrrr-mm-dd "
+"hh:mm:ss) nebo určitém období, pokud je zadáno druhé datum:čas."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:44
 #: ../gramps/gui/editors/filtereditor.py:108
@@ -4972,8 +4968,7 @@ msgstr "Média  s přímým pramenem >= <confidence level>"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:45
 msgid "Matches media with at least one direct source with confidence level(s)"
-msgstr ""
-"Vyhovují média s alespoň jedním pramenem určitého stupně důvěryhodnosti"
+msgstr "Vyhovují média s alespoň jedním pramenem určitého stupně důvěryhodnosti"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:42
 msgid "Media objects marked private"
@@ -5646,8 +5641,7 @@ msgstr "Filtry potomků"
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
-msgstr ""
-"Vyhovují osoby, které jsou potomky, nebo partnerem potomka určité osoby"
+msgstr "Vyhovují osoby, které jsou potomky, nebo partnerem potomka určité osoby"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:47
 msgid "Descendant family members of <filter> match"
@@ -5858,8 +5852,7 @@ msgstr "Osoby s alespoň jedním >= <stupeň důvěryhodnosti> přímého pramen
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
-msgstr ""
-"Vyhovují osoby s alespoň jedním pramenem určitého stupně důvěryhodnosti"
+msgstr "Vyhovují osoby s alespoň jedním pramenem určitého stupně důvěryhodnosti"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:43
 msgid "People missing parents"
@@ -6235,8 +6228,7 @@ msgstr "Místo s přímým pramenem >= <confidence level>"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Matches places with at least one direct source with confidence level(s)"
-msgstr ""
-"Vyhovuje místo s alespoň jedním pramenem určitého stupně důvěryhodnosti"
+msgstr "Vyhovuje místo s alespoň jedním pramenem určitého stupně důvěryhodnosti"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:42
 msgid "Places marked private"
@@ -6468,8 +6460,7 @@ msgstr "Prameny mající poznámky obsahující <substring>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:43
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr ""
-"Vyhovují prameny jejichž poznámky obsahují text odpovídající podřetězci"
+msgstr "Vyhovují prameny jejichž poznámky obsahují text odpovídající podřetězci"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:41
 msgid "Sources having notes containing <text>"
@@ -11093,8 +11084,7 @@ msgstr "Nespecifikovaný vztah mezi mužem a ženou"
 msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
-msgstr ""
-"Data mohou být obnovena pouze operací Zpět nebo Zrušit změny a skončit."
+msgstr "Data mohou být obnovena pouze operací Zpět nebo Zrušit změny a skončit."
 
 #. Name                     UNICODE       SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:61
@@ -11496,12 +11486,12 @@ msgstr ""
 "<tt>  \n"
 "  <b>křestní</b>    -  křestní jméno (jméno)  <b>Příjmení</b>     -  "
 "příjmení (s předponami a spojkami)\n"
-"  <b>titul</b>      - titul (Dr., ing.)       <b>přípona</b>      - přípona "
-"(ml., st.)\n"
+"  <b>titul</b>      - titul (Dr., ing.)       <b>přípona</b>      - přípona ("
+"ml., st.)\n"
 "  <b>běžné</b>      - běžné jméno             <b>přezdívka</b>     - "
 "přezdívka\n"
-"  <b>iniciály</b>   - první písmena jména  <b>obvyklé</b>       - přezdívka,"
-"běžné nebo křestní jméno\n"
+"  <b>iniciály</b>   - první písmena jména  <b>obvyklé</b>       - "
+"přezdívka,běžné nebo křestní jméno\n"
 "  <b>předpona</b> - všechny předpony (von, de)\n"
 " Příjmení:   <b>zbytek</b>     - další (ne primární) příjmení\n"
 "    <b>holépříjmení</b>  - celé příjmení vyjma příjmení po otci/matce &amp; "
@@ -11517,8 +11507,8 @@ msgstr ""
 "závorky, čárky a uvozovky navíc jsou odstraněny. Ostatní text se zobrazí "
 "doslovně.\n"
 "\n"
-"<b>Příklad</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
-"- Underhills'\n"
+"<b>Příklad</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") -"
+" Underhills'\n"
 "     <i>Edwin Jose</i> je křestní jméno, <i>von der</i> je předpona, "
 "<i>Smith</i> a <i>Weston</i> příjmení, \n"
 "     <i>Wilson</i> příjmení po otci, <i>Dr.</i> titul, <i>Sr</i> přípona, "
@@ -12234,8 +12224,7 @@ msgstr "Zálohovat při ukončení"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr ""
-"Zálohovat váš rodokmen při ukončení programu do adresáře zadaného výše."
+msgstr "Zálohovat váš rodokmen při ukončení programu do adresáře zadaného výše."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12795,9 +12784,9 @@ msgstr ""
 "obnovit váš rodokmen z poslední platné zálohy. Je několik situací, kdy dojít "
 "k neočekávané situaci, proto nejprve %(bold_start)szálohujte%(bold_end)s "
 "rodokmen.\n"
-"Vámi zvolený rodokmen je uložen v %(dirname)s.\\nPřed opravou se ujistěte, "
-"že rodokmen skutečně nelze otevřít. Z některých chyb je databázový backend "
-"schopen se zotavit sám.\n"
+"Vámi zvolený rodokmen je uložen v %(dirname)s.\\n"
+"Před opravou se ujistěte, že rodokmen skutečně nelze otevřít. Z některých "
+"chyb je databázový backend schopen se zotavit sám.\n"
 "\n"
 "%(bold_start)sPodrobnosti:%(bold_end)s Oprava rodokmenu použije poslední "
 "zálohu, kterou Gramps uložil při posledním použití. Pokud jste pracovali "
@@ -12809,8 +12798,8 @@ msgstr ""
 "%(gramps_wiki_recover_url)s\n"
 "Před započetím opravy se pokuste otevřít rodokmen normálně. Mnoho chyb "
 "aktivujících tlačítko oprav může být opraveno automaticky. Pokud je to tento "
-"případ, můžete tlačítko oprav deaktivovat odstraněním souboru "
-"%(recover_file)s ve složce s rodokmenem."
+"případ, můžete tlačítko oprav deaktivovat odstraněním souboru %(recover_file)"
+"s ve složce s rodokmenem."
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
@@ -15815,9 +15804,9 @@ msgstr ""
 "Konkrétní místo v odkazované informaci. V publikované práci může zahrnovat "
 "svazek z vícesvazkové práce a čísla stran. V periodiku jím může být ročník, "
 "číslo a čísla stran. V novinách může zahrnovat číslo sloupce a číslo strany. "
-"Pro nepublikované prameny může zahrnovat číslo strany, tabulky, rámu, ..."
-"atd. Záznam ze sčítání osob/domů by krom toho měl obsahovat číslo řádky nebo "
-"obydlí a čísla rodin. "
+"Pro nepublikované prameny může zahrnovat číslo strany, tabulky, rámu, "
+"...atd. Záznam ze sčítání osob/domů by krom toho měl obsahovat číslo řádky "
+"nebo obydlí a čísla rodin. "
 
 #: ../gramps/gui/glade/editcitation.glade:152
 msgid "_Volume/Page:"
@@ -15989,8 +15978,7 @@ msgstr "Volič"
 
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr ""
-"O jaký druh události se jedná. Např. 'Pohřeb', 'Ukončení studia', ... ."
+msgstr "O jaký druh události se jedná. Např. 'Pohřeb', 'Ukončení studia', ... ."
 
 #: ../gramps/gui/glade/editevent.glade:326
 msgid ""
@@ -16621,8 +16609,8 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné "
-"formě .\n"
+"Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné formě "
+".\n"
 "Platné hodnoty jsou  12.0154, 50°52′21.92″N, N50°52′21.92″ nebo 50:52:21.92\n"
 "Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním "
 "místa, nebo přes mapovou službu v pohledu míst."
@@ -16639,8 +16627,8 @@ msgid ""
 msgstr ""
 "Zeměpisná délka (pozice vztažená k nultému nebo Grenwichskému poledníku) "
 "místa ve stupních nebo v desetinné formě .\n"
-"Platné hodnoty jsou  -124.3647, 124°52′21.92″E, E124°52′21.92″ nebo "
-"124:52:21.92\n"
+"Platné hodnoty jsou  -124.3647, 124°52′21.92″E, E124°52′21.92″ nebo 124:52:21"
+".92\n"
 "Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním "
 "místa, nebo přes mapovou službu v pohledu míst."
 
@@ -16744,8 +16732,8 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné "
-"formě .\n"
+"Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné formě "
+".\n"
 "Platné hodnoty jsou  12.0154, 50°52′21.92″N, N50°52′21.92″ nebo 50:52:21.92\n"
 "Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním "
 "místa, nebo přes mapovou službu v pohledu míst."
@@ -16761,8 +16749,8 @@ msgid ""
 msgstr ""
 "Zeměpisná délka (pozice vztažená k nultému nebo Grenwichskému poledníku) "
 "místa ve stupních nebo v desetinné formě .\n"
-"Platné hodnoty jsou  -124.3647, 124°52′21.92″E, E124°52′21.92″ nebo "
-"124:52:21.92\n"
+"Platné hodnoty jsou  -124.3647, 124°52′21.92″E, E124°52′21.92″ nebo 124:52:21"
+".92\n"
 "Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním "
 "místa, nebo přes mapovou službu v pohledu míst."
 
@@ -17840,8 +17828,8 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Verze pygobject, kterou používáte neodpovídá požadavkům.\n"
-"Pro spuštění Gramps s GUI potřebujete pygobject nejméně ve verzi  %(major)d."
-"%(feature)d.%(minor)d .\n"
+"Pro spuštění Gramps s GUI potřebujete pygobject nejméně ve verzi  "
+"%(major)d.%(feature)d.%(minor)d .\n"
 "\n"
 "Gramps bude nyní ukončeno."
 
@@ -17911,8 +17899,8 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Tato verze není určena pro normální použití. Používáte ji na vlastní "
-"riziko.\n"
+"Tato verze není určena pro normální použití. Používáte ji na vlastní riziko."
+"\n"
 "\n"
 "Tato verze může:\n"
 "1) Pracovat jinak než očekáváte.\n"
@@ -22362,8 +22350,8 @@ msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"Databáze·nemůže·být·uložena,·protože·nemáte·právo·zápisu·do·souboru."
-"·Získejte prosím·právo·zápisu·do·souboru·a·zkuste·to·znovu."
+"Databáze·nemůže·být·uložena,·protože·nemáte·právo·zápisu·do·souboru.·"
+"Získejte prosím·právo·zápisu·do·souboru·a·zkuste·to·znovu."
 
 #. GUI setup:
 #: ../gramps/plugins/gramplet/ageondategramplet.py:52
@@ -22572,8 +22560,8 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sČasto kladené dotazy"
-"%(html_end)s%(bold_end)s\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sČasto kladené "
+"dotazy%(html_end)s%(bold_end)s\n"
 "(potřebuje připojení k internetu)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
@@ -22604,8 +22592,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sJak odeberu manželku/manžela?"
-"%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sJak odeberu manželku/"
+"manžela?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -22617,8 +22605,8 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
-"  4. %(gramps_FAQ_html_start)s%(faq_section)sJak bezpečně vytvořím zálohu?"
-"%(html_end)s\n"
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sJak bezpečně vytvořím "
+"zálohu?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
 #, python-format
@@ -22702,8 +22690,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sExistuje pro Gramps příručka?"
-"%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sExistuje pro Gramps "
+"příručka?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -22711,14 +22699,13 @@ msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. %(gramps_wiki_html_start)s%(section)sExistují nějaké návody?"
-"%(html_end)s\n"
+" 14. %(gramps_wiki_html_start)s%(section)sExistují nějaké návody?%(html_end)"
+"s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
-msgstr ""
-" 15. %(gramps_wiki_html_start)s%(section)sJak udělám ...?%(html_end)s\n"
+msgstr " 15. %(gramps_wiki_html_start)s%(section)sJak udělám ...?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:174
 #, python-format
@@ -22726,8 +22713,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sJak mohu pomoci s Gramps?"
-"%(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sJak mohu pomoci s "
+"Gramps?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:53
 msgid "Double-click given name for details"
@@ -22816,8 +22803,7 @@ msgstr "Gramplet zobrazující předky aktivní osoby"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:122
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
-msgstr ""
-"Gramplet zobrazující přímé předky aktivní osoby formou vějířového grafu"
+msgstr "Gramplet zobrazující přímé předky aktivní osoby formou vějířového grafu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:138
 #: ../gramps/plugins/view/fanchartdescview.py:76
@@ -24047,10 +24033,10 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"První věc, kterou musíte udělat, je vytvoření nového rodokmenu. Rodokmen "
-"(někdy zvaný též 'databáze') vytvoříte volbou \"Rodokmeny\" z nabídky, "
-"zvolte \"Spravovat Rodokmeny\", stiskněte \"Nový\" a pojmenujte svůj "
-"rodokmen. Pro více informací navštivte odkazy výše\n"
+"První věc, kterou musíte udělat, je vytvoření nového rodokmenu. Rodokmen ("
+"někdy zvaný též 'databáze') vytvoříte volbou \"Rodokmeny\" z nabídky, zvolte "
+"\"Spravovat Rodokmeny\", stiskněte \"Nový\" a pojmenujte svůj rodokmen. Pro "
+"více informací navštivte odkazy výše\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
@@ -24361,8 +24347,8 @@ msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Výchozí osoby jsou použity jako startovní bod pro vytváření \"rodových linií"
-"\"."
+"Výchozí osoby jsou použity jako startovní bod pro vytváření \"rodových "
+"linií\"."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:193
 msgid "Limit the number of ancestors"
@@ -25712,8 +25698,7 @@ msgstr "Import VCard verze %s není  podporován Gramps."
 msgid ""
 "VCard is malformed missing the compulsory N property, so there is no name; "
 "skip it."
-msgstr ""
-"VCard je chybný, chybí povinná direktiva N. Není jméno, bude vynecháno."
+msgstr "VCard je chybný, chybí povinná direktiva N. Není jméno, bude vynecháno."
 
 #: ../gramps/plugins/importer/importvcard.py:371
 msgid ""
@@ -26043,8 +26028,8 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"Ve vašem rodokmenu se jméno \"%(key)s\"  seskupuje se jménem \" %(parent)s"
-"\" , seskupování na \" %(value)s\"  nebylo změněno."
+"Ve vašem rodokmenu se jméno \"%(key)s\"  seskupuje se jménem \" %(parent)s\" "
+", seskupování na \" %(value)s\"  nebylo změněno."
 
 #: ../gramps/plugins/importer/importxml.py:1759
 msgid "Gramps ignored a name grouping"
@@ -26642,8 +26627,7 @@ msgstr "Narodil(a) se %(birth_date)s  %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:102
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s se narodil %(modified_date)s v %(birth_place)s."
+msgstr "%(unknown_gender_name)s se narodil %(modified_date)s v %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:103
 #, python-format
@@ -27418,8 +27402,8 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pohřben %(burial_date)s v %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pohřben %(burial_date)s v "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
@@ -27498,15 +27482,14 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pohřben %(month_year)s v %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pohřben %(month_year)s v "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Tato osoba byla pohřbena %(month_year)s v %(burial_place)s%(endnotes)s."
+msgstr "Tato osoba byla pohřbena %(month_year)s v %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:504
 #, python-format
@@ -27565,8 +27548,8 @@ msgstr "Byl pohřben %(modified_date)s v %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s byla pohřbena %(modified_date)s v %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s byla pohřbena %(modified_date)s v "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
@@ -27579,8 +27562,8 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pohřben %(modified_date)s v %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pohřben %(modified_date)s v "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:534
 #, python-format
@@ -27718,8 +27701,8 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s byla pokřtěna %(baptism_date)s v %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s byla pokřtěna %(baptism_date)s v "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
@@ -27732,8 +27715,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pokřtěn %(baptism_date)s v %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pokřtěn %(baptism_date)s v "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
@@ -27803,8 +27786,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s byla pokřtěn v %(month_year)s v %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s byla pokřtěn v %(month_year)s v "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -27817,8 +27800,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pokřtěn v %(month_year)s v %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pokřtěn v %(month_year)s v "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
@@ -27886,8 +27869,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s byla pokřtěna %(modified_date)s v %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s byla pokřtěna %(modified_date)s v "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
@@ -27900,8 +27883,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pokřtěn %(modified_date)s v %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pokřtěn %(modified_date)s v "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format
@@ -28026,8 +28009,8 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s byl pokřtěn %(christening_date)s v %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s byl pokřtěn %(christening_date)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:728
 #, python-format
@@ -28042,16 +28025,15 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s byla pokřtěna %(christening_date)s v %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s byla pokřtěna %(christening_date)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
 msgid ""
 "She was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
-msgstr ""
-"Byla pokřtěna %(christening_date)s v %(christening_place)s%(endnotes)s."
+msgstr "Byla pokřtěna %(christening_date)s v %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:735
 #, python-format
@@ -28068,8 +28050,8 @@ msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Tato osoba byla pokřtěna %(christening_date)s v %(christening_place)s"
-"%(endnotes)s."
+"Tato osoba byla pokřtěna %(christening_date)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:738
 #, python-format
@@ -28118,8 +28100,8 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s byl pokřtěn v %(month_year)s v %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s byl pokřtěn v %(month_year)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
@@ -28133,8 +28115,8 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s byla pokřtěna v %(month_year)s v %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s byla pokřtěna v %(month_year)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
@@ -28148,8 +28130,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pokřtěn v %(month_year)s v %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pokřtěn v %(month_year)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:768
 #, python-format
@@ -28157,8 +28139,8 @@ msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Tato osoba byla pokřtěna v %(month_year)s v %(christening_place)s"
-"%(endnotes)s."
+"Tato osoba byla pokřtěna v %(month_year)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:770
 #, python-format
@@ -28206,8 +28188,8 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s byl pokřtěn %(modified_date)s v %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s byl pokřtěn %(modified_date)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:792
 #, python-format
@@ -28221,8 +28203,8 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s byla pokřtěna %(modified_date)s v %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s byla pokřtěna %(modified_date)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
@@ -28236,8 +28218,8 @@ msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s byl pokřtěn %(modified_date)s v %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s byl pokřtěn %(modified_date)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:800
 #, python-format
@@ -28245,8 +28227,8 @@ msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Tato osoba byla pokřtěna %(modified_date)s v %(christening_place)s"
-"%(endnotes)s."
+"Tato osoba byla pokřtěna %(modified_date)s v "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:802
 #, python-format
@@ -28590,24 +28572,24 @@ msgstr "Její matka je %(mother)s."
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství s %(spouse)s %(partial_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství s %(spouse)s %(partial_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:974
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství s %(spouse)s %(full_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství s %(spouse)s %(full_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:975
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství s %(spouse)s %(modified_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství s %(spouse)s %(modified_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:978
 #, python-format
@@ -28717,29 +28699,29 @@ msgstr "Vdala se také za %(spouse)s %(modified_date)s v %(place)s%(endnotes)s."
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Vstoupil do manželství také s %(spouse)s %(partial_date)s v %(place)s"
-"%(endnotes)s."
+"Vstoupil do manželství také s %(spouse)s %(partial_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Vstoupil do manželství také s %(spouse)s %(full_date)s v %(place)s"
-"%(endnotes)s."
+"Vstoupil do manželství také s %(spouse)s %(full_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1013
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Vstoupil do manželství také s %(spouse)s %(modified_date)s v %(place)s"
-"%(endnotes)s."
+"Vstoupil do manželství také s %(spouse)s %(modified_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1019
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství s %(spouse)s v %(partial_date)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství s %(spouse)s v "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1020
 #, python-format
@@ -28751,8 +28733,8 @@ msgstr ""
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství s %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství s %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1024
 #, python-format
@@ -28804,22 +28786,22 @@ msgstr "Oženil se s %(spouse)s %(modified_date)s%(endnotes)s."
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství také s %(spouse)s %(partial_date)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství také s %(spouse)s "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství také s %(spouse)s %(full_date)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství také s %(spouse)s "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1044
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba vstoupila do manželství také s %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Tato osoba vstoupila do manželství také s %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1047
 #, python-format
@@ -28954,8 +28936,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah s %(spouse)s %(partial_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah s %(spouse)s %(partial_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1099
 #, python-format
@@ -28963,8 +28945,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah s %(spouse)s %(full_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah s %(spouse)s %(full_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1100
 #, python-format
@@ -28972,8 +28954,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah s %(spouse)s %(modified_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah s %(spouse)s %(modified_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1103
 #, python-format
@@ -29021,8 +29003,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Měla nemanželský vztah s %(spouse)s %(modified_date)s v %(place)s"
-"%(endnotes)s."
+"Měla nemanželský vztah s %(spouse)s %(modified_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -29065,8 +29047,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah také s %(spouse)s %(full_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah také s %(spouse)s %(full_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1123
 #, python-format
@@ -29083,8 +29065,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Měl nemanželský vztah také s %(spouse)s %(partial_date)s v %(place)s"
-"%(endnotes)s."
+"Měl nemanželský vztah také s %(spouse)s %(partial_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -29092,8 +29074,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Měl nemanželský vztah také s %(spouse)s %(full_date)s v %(place)s"
-"%(endnotes)s."
+"Měl nemanželský vztah také s %(spouse)s %(full_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
@@ -29101,8 +29083,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Měl nemanželský vztah také s %(spouse)s %(modified_date)s v %(place)s"
-"%(endnotes)s."
+"Měl nemanželský vztah také s %(spouse)s %(modified_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -29110,8 +29092,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Měla nemanželský vztah také s %(spouse)s %(partial_date)s v %(place)s"
-"%(endnotes)s."
+"Měla nemanželský vztah také s %(spouse)s %(partial_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
@@ -29119,8 +29101,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Měla nemanželský vztah také s %(spouse)s %(full_date)s v %(place)s"
-"%(endnotes)s."
+"Měla nemanželský vztah také s %(spouse)s %(full_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
@@ -29128,8 +29110,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Měla nemanželský vztah také s %(spouse)s %(modified_date)s v %(place)s"
-"%(endnotes)s."
+"Měla nemanželský vztah také s %(spouse)s %(modified_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1144
 #, python-format
@@ -29137,8 +29119,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah s %(spouse)s v %(partial_date)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah s %(spouse)s v "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
@@ -29220,8 +29202,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah také s %(spouse)s %(partial_date)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah také s %(spouse)s "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
@@ -29229,8 +29211,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah také s %(spouse)s %(full_date)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah také s %(spouse)s "
+"%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1169
 #, python-format
@@ -29238,8 +29220,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla nemanželský vztah také s %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Tato osoba měla nemanželský vztah také s %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1172
 #, python-format
@@ -29254,8 +29236,7 @@ msgstr ""
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"Také měl nemanželský vztah také s %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Také měl nemanželský vztah také s %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
@@ -29284,8 +29265,7 @@ msgstr "Měla nemanželský vztah také s %(spouse)s %(full_date)s%(endnotes)s."
 msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr ""
-"Měla nemanželský vztah také s %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Měla nemanželský vztah také s %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
@@ -29309,8 +29289,7 @@ msgstr "Nemanželský vztah také s %(spouse)s %(modified_date)s%(endnotes)s."
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"Tato osoba měla nemanželský vztah s %(spouse)s v %(place)s%(endnotes)s."
+msgstr "Tato osoba měla nemanželský vztah s %(spouse)s v %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1190
 #, python-format
@@ -29377,8 +29356,7 @@ msgstr "Nemanželský vztah s osobou  %(spouse)s%(endnotes)s."
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
-"Tato osoba měla také nemanželský vztah s osobou %(spouse)s%(endnotes)s."
+msgstr "Tato osoba měla také nemanželský vztah s osobou %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1211
 #, python-format
@@ -29396,8 +29374,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla %(partial_date)s v %(place)s vztah s osobou %(spouse)s"
-"%(endnotes)s."
+"Tato osoba měla %(partial_date)s v %(place)s vztah s osobou "
+"%(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -29405,8 +29383,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Tato osoba měla %(full_date)s v %(place)s vztah s osobou %(spouse)s"
-"%(endnotes)s."
+"Tato osoba měla %(full_date)s v %(place)s vztah s osobou "
+"%(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -29414,16 +29392,15 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Tato osoba měla %(modified_date)s v %(place)s vztah s osobou %(spouse)s"
-"%(endnotes)s."
+"Tato osoba měla %(modified_date)s v %(place)s vztah s osobou "
+"%(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
 msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"%(partial_date)s v %(place)s měl vztah s osobou %(spouse)s%(endnotes)s."
+msgstr "%(partial_date)s v %(place)s měl vztah s osobou %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -29485,8 +29462,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla vztah také s %(spouse)s %(partial_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba měla vztah také s %(spouse)s %(partial_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1248
 #, python-format
@@ -29494,8 +29471,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla vztah také s %(spouse)s %(full_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba měla vztah také s %(spouse)s %(full_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1249
 #, python-format
@@ -29503,8 +29480,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Tato osoba měla vztah také s %(spouse)s %(modified_date)s v %(place)s"
-"%(endnotes)s."
+"Tato osoba měla vztah také s %(spouse)s %(modified_date)s v "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1252
 #, python-format
@@ -29532,8 +29509,7 @@ msgstr "Měl vztah také s %(spouse)s %(modified_date)s v %(place)s%(endnotes)s.
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"Měla vztah také s  %(spouse)s %(partial_date)s v %(place)s%(endnotes)s."
+msgstr "Měla vztah také s  %(spouse)s %(partial_date)s v %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
@@ -29547,8 +29523,7 @@ msgstr "Měla vztah také s %(spouse)s %(full_date)s v %(place)s%(endnotes)s."
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"Měla vztah také s %(spouse)s %(modified_date)s v %(place)s%(endnotes)s."
+msgstr "Měla vztah také s %(spouse)s %(modified_date)s v %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1262
 #, python-format
@@ -29639,8 +29614,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Tato osoba měla také vztah s osobou %(spouse)s v %(partial_date)s"
-"%(endnotes)s."
+"Tato osoba měla také vztah s osobou %(spouse)s v "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
 #, python-format
@@ -33525,8 +33500,7 @@ msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "Byl nalezen {quantity} duplicitní odkaz na rodinu/manžela(ku)\n"
 msgstr[1] "Byly nalezeny {quantity} duplicitní odkazy na rodinu/manžela(ku)\n"
-msgstr[2] ""
-"Bylo nalezeno {quantity} duplicitních odkazů na rodinu/manžela(ku)\n"
+msgstr[2] "Bylo nalezeno {quantity} duplicitních odkazů na rodinu/manžela(ku)\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2506
@@ -33534,10 +33508,8 @@ msgstr[2] ""
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] ""
-"{quantity} rodina bez rodičů nebo dětí bylo nalezena a odstraněna.\n"
-msgstr[1] ""
-"{quantity} rodiny bez rodičů nebo dětí bylo nalezena a odstraněna.\n"
+msgstr[0] "{quantity} rodina bez rodičů nebo dětí bylo nalezena a odstraněna.\n"
+msgstr[1] "{quantity} rodiny bez rodičů nebo dětí bylo nalezena a odstraněna.\n"
 msgstr[2] "{quantity} rodin bez rodičů nebo dětí bylo nalezena a odstraněna.\n"
 
 #. translators: leave all/any {...} untranslated
@@ -36130,8 +36102,8 @@ msgid ""
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"Pohled ukazující všechna místa navštívená všemi osobami během jejich "
-"života.\n"
+"Pohled ukazující všechna místa navštívená všemi osobami během jejich života."
+"\n"
 "Je určen pro jednu osobu a kteréhokoli potomka.\n"
 "Umožňuje též vidět  všechna data odpovídající danému období."
 
@@ -37099,8 +37071,8 @@ msgid ""
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
-"Tato stránka obsahuje seznam všech rodin/vztahů v databázi, řazený podle "
-"jména/příjmení. Kliknutí na jméno osoby vás přenese na stránku rodiny/vztahů."
+"Tato stránka obsahuje seznam všech rodin/vztahů v databázi, řazený podle jmé"
+"na/příjmení. Kliknutí na jméno osoby vás přenese na stránku rodiny/vztahů."
 
 #: ../gramps/plugins/webreport/family.py:234
 msgid "Families beginning with letter "
@@ -37158,8 +37130,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s z %(strong2_strt)s"
-"%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s z "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:416
@@ -37272,8 +37244,7 @@ msgstr "Název webové stránky"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1724
 msgid "Select filter to restrict people that appear on web site"
-msgstr ""
-"Vyberte filtr pro omezení osob, které se objeví v na webových stránkách"
+msgstr "Vyberte filtr pro omezení osob, které se objeví v na webových stránkách"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1733
 msgid "Show the relationship between the current person and the active person"
@@ -37955,8 +37926,8 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Tato mapová stránka reprezentuje osobu a její potomky se všemi jejich "
-"událostmi/místy. Umístíte-li kurzor myši na značku, zobrazí se název místa. "
+"Tato mapová stránka reprezentuje osobu a její potomky se všemi jejich udá"
+"lostmi/místy. Umístíte-li kurzor myši na značku, zobrazí se název místa. "
 "Značky a seznam odkazů jsou chronologicky setříděny. Kliknutí na název místa "
 "v sekci Odkazy vás přenese na stránku místa."
 
