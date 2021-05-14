@@ -2729,7 +2729,7 @@ msgstr "Kislev"
 #: ../gramps/gen/datehandler/_datestrings.py:149
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr "Hebrew month lexeme|Tevet"
+msgstr "Tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:150
 msgctxt "Hebrew month lexeme"
