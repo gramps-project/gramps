@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 00:00+0200\n"
-"PO-Revision-Date: 2021-04-28 23:02+0200\n"
+"PO-Revision-Date: 2021-05-14 21:17+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.08.2\n"
+"X-Generator: Lokalize 20.12.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -24352,7 +24352,7 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:36
 msgid "Family Lines Graph"
-msgstr "Grafik der Familienlinien"
+msgstr "Familienliniengrafik"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:37
 msgid "Produces family line graphs using Graphviz."
@@ -32709,7 +32709,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/endoflinereport.py:159
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Sackgassen-Liste für %s"
+msgstr "Sackgassenbericht für %s"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:166
@@ -32741,13 +32741,13 @@ msgstr "%dU"
 #: ../gramps/plugins/textreport/familygroup.py:618
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Familien-Blockbericht - Generation %d"
+msgstr "Familienblockbericht - Generation %d"
 
 #: ../gramps/plugins/textreport/familygroup.py:620
 #: ../gramps/plugins/textreport/familygroup.py:672
 #: ../gramps/plugins/textreport/textplugins.gpr.py:191
 msgid "Family Group Report"
-msgstr "Familien-Blockbericht"
+msgstr "Familienblockbericht"
 
 #: ../gramps/plugins/textreport/familygroup.py:720
 msgid "Center Family"
@@ -33049,7 +33049,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/placereport.py:159
 #: ../gramps/plugins/textreport/textplugins.gpr.py:303
 msgid "Place Report"
-msgstr "Ortsliste"
+msgstr "Ortebericht"
 
 #: ../gramps/plugins/textreport/placereport.py:129
 msgid "Please select at least one place before running this."
@@ -33353,18 +33353,18 @@ msgstr "Erstellt eine ausführliche Nachkommenübersicht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:169
 msgid "End of Line Report"
-msgstr "Sackgassen-Liste"
+msgstr "Sackgassenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:170
 msgid "Produces a textual end of line report"
-msgstr "Erstellt eine schriftliche Sackgassen-Liste"
+msgstr "Erstellt eine schriftlichen Sackgassenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:192
 msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Erstellt einen Familiengruppenbericht, der Informationen über einen Satz "
+"Erstellt einen Familienblockbericht, der Informationen über einen Satz "
 "Eltern und deren Kinder enthält."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:215
@@ -33393,7 +33393,7 @@ msgstr "Zählt die Anzahl der Vorfahren der gewählten Person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:304
 msgid "Produces a textual place report"
-msgstr "Erstellt eine schriftliche Ortsliste"
+msgstr "Erstellt einen schriftlichen Ortebericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:326
 msgid "Title Page"
@@ -33417,7 +33417,7 @@ msgstr "Erstellt einen alphabetischen Index für Buchberichte."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:415
 msgid "Records Report"
-msgstr "Rekorde-Liste"
+msgstr "Rekordebericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:437
 msgid "Note Link Report"
