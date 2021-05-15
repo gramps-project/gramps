@@ -92,58 +92,63 @@ msgstr "GeneWeb"
 msgid "GeneWeb source file"
 msgstr "GeneWeb ソースファイル"
 
-#: ../data/holidays.xml.in.h:3
-#, fuzzy
+#: ../data/holidays.xml.in.h:1
 msgid "Bulgaria"
 msgstr "ブルガリア"
 
-#: ../data/holidays.xml.in.h:52
-#, fuzzy
+#: ../data/holidays.xml.in.h:2
 msgid "Canada"
 msgstr "カナダ"
 
-#: ../data/holidays.xml.in.h:84
-#, fuzzy
+#: ../data/holidays.xml.in.h:3
+msgid "Czech Republic"
+msgstr "チェコ共和国"
+
+#: ../data/holidays.xml.in.h:4
 msgid "Chile"
 msgstr "チリ"
 
-#: ../data/holidays.xml.in.h:107
-#, fuzzy
+#: ../data/holidays.xml.in.h:5
 msgid "China"
 msgstr "中国"
 
-#: ../data/holidays.xml.in.h:110
-#, fuzzy
+#: ../data/holidays.xml.in.h:6
 msgid "Croatia"
 msgstr "クロアチア"
-
-#: ../data/holidays.xml.in.h:126
-#, fuzzy
-msgid "Czech Republic"
-msgstr "チェコ共和国"
 
 #: ../data/holidays.xml.in.h:7
 msgid "England"
 msgstr "イングランド"
 
-#: ../data/holidays.xml.in.h:171
-#, fuzzy
+#: ../data/holidays.xml.in.h:8
 msgid "Finland"
 msgstr "フィンランド"
 
-#: ../data/holidays.xml.in.h:265
-#, fuzzy
+#: ../data/holidays.xml.in.h:9
 msgid "France"
 msgstr "フランス"
 
-#: ../data/holidays.xml.in.h:301
-#, fuzzy
+#: ../data/holidays.xml.in.h:10
 msgid "Germany"
 msgstr "ドイツ"
 
 #: ../data/holidays.xml.in.h:11
 msgid "Japan"
 msgstr "日本"
+
+#: ../data/holidays.xml.in.h:12
+msgid "Slovakia"
+msgstr "スロヴァキア"
+
+#. Make upper case of translaed country so string search works later
+#: ../data/holidays.xml.in.h:13
+#: ../gramps/plugins/mapservices/eniroswedenmap.py:47
+msgid "Sweden"
+msgstr "スウェーデン"
+
+#: ../data/holidays.xml.in.h:14
+msgid "United States of America"
+msgstr "アメリカ合衆国"
 
 #: ../data/holidays.xml.in.h:15
 msgid "Jewish Holidays"
@@ -265,9 +270,9 @@ msgstr "ハヌカー8日目"
 msgid "New Zealand"
 msgstr "ニュージーランド"
 
-#: ../data/holidays.xml.in.h:387
-msgid "Russia"
-msgstr "ロシア"
+#: ../data/holidays.xml.in.h:45
+msgid "Ukraine"
+msgstr "ウクライナ"
 
 #: ../data/holidays.xml.in.h:46
 msgid "Serbia"
@@ -276,26 +281,6 @@ msgstr "セルビア"
 #: ../data/holidays.xml.in.h:47
 msgid "Serbia (Latin)"
 msgstr "セルビア(ラテン)"
-
-#: ../data/holidays.xml.in.h:12
-msgid "Slovakia"
-msgstr "スロヴァキア"
-
-#. Make upper case of translated country so string search works later
-#: ../data/holidays.xml.in.h:447
-#: ../gramps/plugins/mapservices/eniroswedenmap.py:47
-#, fuzzy
-msgid "Sweden"
-msgstr "スウェーデン"
-
-#: ../data/holidays.xml.in.h:45
-msgid "Ukraine"
-msgstr "ウクライナ"
-
-#: ../data/holidays.xml.in.h:501
-#, fuzzy
-msgid "United States of America"
-msgstr "アメリカ合衆国"
 
 #: ../data/tips.xml.in.h:1
 msgid ""
@@ -873,7 +858,6 @@ msgstr "いいえ"
 
 #: ../gramps/cli/arghandler.py:297 ../gramps/cli/arghandler.py:298
 #: ../gramps/cli/clidbman.py:429
-#, fuzzy
 msgid "yes"
 msgstr "はい"
 
@@ -916,7 +900,7 @@ msgstr "Grampsの家系図:"
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
 #: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
-#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1790
+#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1791
 msgid "Family Tree"
 msgstr "家系図"
 
@@ -1206,7 +1190,7 @@ msgid "Gramps: no such config setting: '%s'"
 msgstr "このGrampsの設定は存在しません: ‘%s’"
 
 #: ../gramps/cli/argparser.py:471
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode, supply at least one input file to process."
@@ -1276,8 +1260,8 @@ msgstr "家系図 “%s”:"
 #: ../gramps/plugins/textreport/indivcomplete.py:1028
 #: ../gramps/plugins/textreport/placereport.py:185
 #: ../gramps/plugins/webreport/basepage.py:715
-#: ../gramps/plugins/webreport/basepage.py:2275
-#: ../gramps/plugins/webreport/basepage.py:2320
+#: ../gramps/plugins/webreport/basepage.py:2228
+#: ../gramps/plugins/webreport/basepage.py:2273
 #, fuzzy, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(first)s %(second)s"
@@ -1314,7 +1298,6 @@ msgid "Could not delete Family Tree"
 msgstr "家系図を削除できませんでした"
 
 #: ../gramps/cli/clidbman.py:450
-#, fuzzy
 msgid "Could not rename Family Tree"
 msgstr "家系図の名前を変更できませんでした"
 
@@ -1376,10 +1359,10 @@ msgstr "%s によりロックされています"
 #: ../gramps/plugins/gramplet/persondetails.py:222
 #: ../gramps/plugins/gramplet/relativegramplet.py:126
 #: ../gramps/plugins/gramplet/relativegramplet.py:137
-#: ../gramps/plugins/graph/gvfamilylines.py:287
-#: ../gramps/plugins/graph/gvhourglass.py:427
-#: ../gramps/plugins/graph/gvrelgraph.py:948
-#: ../gramps/plugins/lib/libprogen.py:1057
+#: ../gramps/plugins/graph/gvfamilylines.py:288
+#: ../gramps/plugins/graph/gvhourglass.py:429
+#: ../gramps/plugins/graph/gvrelgraph.py:951
+#: ../gramps/plugins/lib/libprogen.py:1058
 #: ../gramps/plugins/lib/maps/geography.py:802
 #: ../gramps/plugins/lib/maps/geography.py:812
 #: ../gramps/plugins/lib/maps/geography.py:813
@@ -1426,22 +1409,22 @@ msgstr "%s によりロックされています"
 #: ../gramps/plugins/webreport/basepage.py:1868
 #: ../gramps/plugins/webreport/basepage.py:1873
 #: ../gramps/plugins/webreport/basepage.py:1880
-#: ../gramps/plugins/webreport/basepage.py:2264
-#: ../gramps/plugins/webreport/basepage.py:2436
+#: ../gramps/plugins/webreport/basepage.py:2217
+#: ../gramps/plugins/webreport/basepage.py:2389
 msgid "Unknown"
 msgstr "不明"
 
-#: ../gramps/cli/grampscli.py:85
+#: ../gramps/cli/grampscli.py:86
 #, python-format
 msgid "WARNING: %s"
 msgstr "警告: %s"
 
-#: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:254
+#: ../gramps/cli/grampscli.py:93 ../gramps/cli/grampscli.py:255
 #, python-format
 msgid "ERROR: %s"
 msgstr "エラー: %s"
 
-#: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:200
+#: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:200
 #: ../gramps/gui/dialog.py:295
 msgid "Low level database corruption detected"
 msgstr "低レベルのデータベース故障が検出されました"
@@ -1457,37 +1440,37 @@ msgstr ""
 "ネージャによって修復できます。データベースを選択し「修復」ボタンをクリックし"
 "て下さい"
 
-#: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:165
+#: ../gramps/cli/grampscli.py:154 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
 msgstr "読み取り専用データベース"
 
-#: ../gramps/cli/grampscli.py:154 ../gramps/gui/dbloader.py:166
-#: ../gramps/gui/dbloader.py:535
+#: ../gramps/cli/grampscli.py:155 ../gramps/gui/dbloader.py:166
+#: ../gramps/gui/dbloader.py:541
 msgid "You do not have write access to the selected file."
 msgstr "選択したファイルに対する読み取り権限がありません。"
 
-#: ../gramps/cli/grampscli.py:180 ../gramps/cli/grampscli.py:183
-#: ../gramps/cli/grampscli.py:186 ../gramps/cli/grampscli.py:189
-#: ../gramps/cli/grampscli.py:192 ../gramps/cli/grampscli.py:195
-#: ../gramps/cli/grampscli.py:198 ../gramps/cli/grampscli.py:201
-#: ../gramps/cli/grampscli.py:204 ../gramps/cli/grampscli.py:207
+#: ../gramps/cli/grampscli.py:181 ../gramps/cli/grampscli.py:184
+#: ../gramps/cli/grampscli.py:187 ../gramps/cli/grampscli.py:190
+#: ../gramps/cli/grampscli.py:193 ../gramps/cli/grampscli.py:196
+#: ../gramps/cli/grampscli.py:199 ../gramps/cli/grampscli.py:202
+#: ../gramps/cli/grampscli.py:205 ../gramps/cli/grampscli.py:208
 #: ../gramps/gui/dbloader.py:277 ../gramps/gui/dbloader.py:280
 #: ../gramps/gui/dbloader.py:283 ../gramps/gui/dbloader.py:286
 #: ../gramps/gui/dbloader.py:289 ../gramps/gui/dbloader.py:292
 msgid "Cannot open database"
 msgstr "データベースを開けません"
 
-#: ../gramps/cli/grampscli.py:211 ../gramps/gui/dbloader.py:296
-#: ../gramps/gui/dbloader.py:492
+#: ../gramps/cli/grampscli.py:212 ../gramps/gui/dbloader.py:296
+#: ../gramps/gui/dbloader.py:498
 #, python-format
 msgid "Could not open file: %s"
 msgstr "ファイルを開けません: %s"
 
-#: ../gramps/cli/grampscli.py:267
+#: ../gramps/cli/grampscli.py:268
 msgid "Could not load a recent Family Tree."
 msgstr "最近開いた家系図を読み込むことができません。"
 
-#: ../gramps/cli/grampscli.py:268
+#: ../gramps/cli/grampscli.py:269
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "家系図が存在しません(削除されました)"
 
@@ -1503,17 +1486,17 @@ msgstr ""
 "このデータベースが使われていない場合は、強制ロック解除を使用してください."
 
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:352
+#: ../gramps/cli/grampscli.py:353
 #, python-format
 msgid "Error encountered: %s"
 msgstr "エラーが発生しました: %s"
 
-#: ../gramps/cli/grampscli.py:354 ../gramps/cli/grampscli.py:362
+#: ../gramps/cli/grampscli.py:355 ../gramps/cli/grampscli.py:363
 #, python-format
 msgid "  Details: %s"
 msgstr "  詳細: %s"
 
-#: ../gramps/cli/grampscli.py:359
+#: ../gramps/cli/grampscli.py:360
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "構文解析の際にエラーが発生しました: %s"
@@ -1617,7 +1600,7 @@ msgstr " 有効なオプション:"
 #: ../gramps/gen/plug/report/endnotes.py:197
 #: ../gramps/gen/plug/report/endnotes.py:204
 #: ../gramps/gen/plug/report/endnotes.py:210
-#: ../gramps/plugins/drawreport/descendtree.py:352
+#: ../gramps/plugins/drawreport/descendtree.py:358
 #: ../gramps/plugins/drawreport/fanchart.py:364
 #: ../gramps/plugins/drawreport/fanchart.py:380
 #: ../gramps/plugins/gramplet/persondetails.py:237
@@ -2890,24 +2873,23 @@ msgid ""
 "%(settings_file)s"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
-#: ../gramps/gen/db/generic.py:2018 ../gramps/plugins/db/bsddb/undoredo.py:251
+#: ../gramps/gen/db/generic.py:162 ../gramps/gen/db/generic.py:212
+#: ../gramps/gen/db/generic.py:2025 ../gramps/plugins/db/bsddb/undoredo.py:251
 #: ../gramps/plugins/db/bsddb/undoredo.py:293
 #: ../gramps/plugins/db/bsddb/write.py:2141
 #, python-format
 msgid "_Undo %s"
 msgstr "元に戻す(_U) %s"
 
-#: ../gramps/gen/db/generic.py:166 ../gramps/gen/db/generic.py:217
+#: ../gramps/gen/db/generic.py:167 ../gramps/gen/db/generic.py:218
 #: ../gramps/plugins/db/bsddb/undoredo.py:257
 #: ../gramps/plugins/db/bsddb/undoredo.py:299
 #, python-format
 msgid "_Redo %s"
 msgstr "やり直し(_R) %s"
 
-#: ../gramps/gen/db/generic.py:2410 ../gramps/plugins/db/bsddb/read.py:1938
+#: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1938
 #: ../gramps/plugins/db/bsddb/write.py:2296
-#, fuzzy
 msgid "Number of people"
 msgstr "人物の数"
 
@@ -3120,6 +3102,20 @@ msgstr "誤った名前フォーマット文字列 %s"
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "エラー: 名前フォーマットを設定で編集してください"
 
+#: ../gramps/gen/display/place.py:73 ../gramps/gen/plug/utils.py:339
+#, python-format
+msgid "Error in '%s' file: cannot load."
+msgstr "'%s' ファイルのエラー: 読み込みできません。"
+
+#. -------------------------------------------------------------------------
+#.
+#. Private Constants
+#.
+#. -------------------------------------------------------------------------
+#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:63
+msgid "Full"
+msgstr "最大"
+
 #: ../gramps/gen/filters/_filterparser.py:119
 #, fuzzy, python-format
 msgid ""
@@ -3169,15 +3165,15 @@ msgstr "適用しています…"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
-#: ../gramps/plugins/graph/gvrelgraph.py:801
+#: ../gramps/plugins/graph/gvrelgraph.py:804
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
 #: ../gramps/plugins/textreport/birthdayreport.py:473
 #: ../gramps/plugins/textreport/familygroup.py:714
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:168
-#: ../gramps/plugins/webreport/narrativeweb.py:1639
-#: ../gramps/plugins/webreport/webcal.py:1671
+#: ../gramps/plugins/webreport/narrativeweb.py:1643
+#: ../gramps/plugins/webreport/webcal.py:1672
 msgid "Filter"
 msgstr "フィルタ"
 
@@ -3656,7 +3652,6 @@ msgstr "特定の値のソースの引用をマッチする"
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:49
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:55
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:51
-#, fuzzy
 msgid "Source filters"
 msgstr "ソースフィルタ"
 
@@ -4125,7 +4120,7 @@ msgstr "家族のイベント:"
 #: ../gramps/gen/filters/rules/family/_hasevent.py:51
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:83
 #: ../gramps/gui/selectors/selectevent.py:67
-#: ../gramps/plugins/gramplet/events.py:92
+#: ../gramps/plugins/gramplet/events.py:93
 #: ../gramps/plugins/view/eventview.py:86
 msgid "Main Participants"
 msgstr "主な参加者"
@@ -4438,7 +4433,7 @@ msgstr "タイプ:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1663
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1660
 msgid "Path:"
 msgstr "パス:"
 
@@ -5147,11 +5142,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "フィルターで抽出した人物の子供とマッチする"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "デフォルトの人物"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "デフォルトの人物にマッチする"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5209,9 +5204,9 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:149
-#: ../gramps/plugins/graph/gvfamilylines.py:283
-#: ../gramps/plugins/graph/gvhourglass.py:423
-#: ../gramps/plugins/graph/gvrelgraph.py:944
+#: ../gramps/plugins/graph/gvfamilylines.py:284
+#: ../gramps/plugins/graph/gvhourglass.py:425
+#: ../gramps/plugins/graph/gvrelgraph.py:947
 #: ../gramps/plugins/webreport/statistics.py:124
 #: ../gramps/plugins/webreport/statistics.py:189
 msgid "Females"
@@ -5259,15 +5254,6 @@ msgstr "デフォルトの <N> 世代以内の人物の祖先"
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr "デフォルトの人物のN世代以内の祖先とマッチする"
 
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
-msgstr ""
-
-#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
-msgstr ""
-
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
 msgid "Descendants of <person> not more than <N> generations away"
 msgstr "<N>世代以内の <person> の子孫"
@@ -5282,9 +5268,9 @@ msgstr "指定の人物の<N>世代以内の子孫とマッチする"
 #. ###############################
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
-#: ../gramps/plugins/graph/gvfamilylines.py:279
-#: ../gramps/plugins/graph/gvhourglass.py:419
-#: ../gramps/plugins/graph/gvrelgraph.py:940
+#: ../gramps/plugins/graph/gvfamilylines.py:280
+#: ../gramps/plugins/graph/gvhourglass.py:421
+#: ../gramps/plugins/graph/gvrelgraph.py:943
 #: ../gramps/plugins/webreport/statistics.py:122
 #: ../gramps/plugins/webreport/statistics.py:187
 msgid "Males"
@@ -6054,8 +6040,8 @@ msgstr "プライベートのソースとマッチする"
 #: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:136
-#: ../gramps/plugins/lib/libgedcom.py:5656
-#: ../gramps/plugins/lib/libgedcom.py:5823
+#: ../gramps/plugins/lib/libgedcom.py:5657
+#: ../gramps/plugins/lib/libgedcom.py:5824
 #: ../gramps/plugins/textreport/familygroup.py:352
 #: ../gramps/plugins/webreport/addressbooklist.py:113
 msgid "Address"
@@ -6071,7 +6057,7 @@ msgstr "住所"
 #: ../gramps/gen/lib/place.py:182 ../gramps/gen/lib/repo.py:114
 #: ../gramps/gen/lib/reporef.py:110 ../gramps/gen/lib/src.py:133
 #: ../gramps/gen/lib/srcattribute.py:74 ../gramps/gen/lib/url.py:92
-#: ../gramps/gen/proxy/private.py:830
+#: ../gramps/gen/proxy/private.py:831
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
@@ -6135,7 +6121,6 @@ msgstr "プライベート"
 #: ../gramps/plugins/textreport/tagreport.py:809
 #: ../gramps/plugins/view/view.gpr.py:283
 #: ../gramps/plugins/view/view.gpr.py:291
-#, fuzzy
 msgid "Citations"
 msgstr "引用"
 
@@ -6207,7 +6192,7 @@ msgstr "ノート"
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
 #: ../gramps/plugins/gramplet/coordinates.py:91
-#: ../gramps/plugins/gramplet/events.py:87
+#: ../gramps/plugins/gramplet/events.py:88
 #: ../gramps/plugins/gramplet/locations.py:87
 #: ../gramps/plugins/gramplet/personresidence.py:60
 #: ../gramps/plugins/importer/importcsv.py:236
@@ -6234,11 +6219,11 @@ msgstr "ノート"
 #: ../gramps/plugins/webreport/basepage.py:930
 #: ../gramps/plugins/webreport/basepage.py:961
 #: ../gramps/plugins/webreport/basepage.py:1127
-#: ../gramps/plugins/webreport/basepage.py:2269
+#: ../gramps/plugins/webreport/basepage.py:2222
 #: ../gramps/plugins/webreport/event.py:177
 #: ../gramps/plugins/webreport/media.py:230
-#: ../gramps/plugins/webreport/media.py:564
-#: ../gramps/plugins/webreport/person.py:898
+#: ../gramps/plugins/webreport/media.py:571
+#: ../gramps/plugins/webreport/person.py:897
 msgid "Date"
 msgstr "日付"
 
@@ -6249,8 +6234,8 @@ msgstr "日付"
 #: ../gramps/plugins/view/geoplaces.py:601
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1128
-#: ../gramps/plugins/webreport/basepage.py:2587
-#: ../gramps/plugins/webreport/basepage.py:2653
+#: ../gramps/plugins/webreport/basepage.py:2537
+#: ../gramps/plugins/webreport/basepage.py:2603
 msgid "Street"
 msgstr "番地"
 
@@ -6261,8 +6246,8 @@ msgstr "番地"
 #: ../gramps/plugins/view/geoplaces.py:598
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1129
-#: ../gramps/plugins/webreport/basepage.py:2588
-#: ../gramps/plugins/webreport/basepage.py:2654
+#: ../gramps/plugins/webreport/basepage.py:2538
+#: ../gramps/plugins/webreport/basepage.py:2604
 msgid "Locality"
 msgstr "地方"
 
@@ -6273,8 +6258,8 @@ msgstr "地方"
 #: ../gramps/plugins/view/geoplaces.py:649
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1130
-#: ../gramps/plugins/webreport/basepage.py:2589
-#: ../gramps/plugins/webreport/basepage.py:2655
+#: ../gramps/plugins/webreport/basepage.py:2539
+#: ../gramps/plugins/webreport/basepage.py:2605
 msgid "City"
 msgstr "都市"
 
@@ -6308,8 +6293,8 @@ msgstr "州"
 #: ../gramps/plugins/view/geoplaces.py:625
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1134
-#: ../gramps/plugins/webreport/basepage.py:2596
-#: ../gramps/plugins/webreport/basepage.py:2660
+#: ../gramps/plugins/webreport/basepage.py:2546
+#: ../gramps/plugins/webreport/basepage.py:2610
 #: ../gramps/plugins/webreport/place.py:183
 #: ../gramps/plugins/webreport/place.py:195
 msgid "Country"
@@ -6317,17 +6302,17 @@ msgstr "国または地域"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1133
-#: ../gramps/plugins/webreport/basepage.py:2595
-#: ../gramps/plugins/webreport/basepage.py:2659
+#: ../gramps/plugins/webreport/basepage.py:2545
+#: ../gramps/plugins/webreport/basepage.py:2609
 msgid "Postal Code"
 msgstr "郵便番号"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:105
 #: ../gramps/gui/configure.py:626 ../gramps/plugins/export/exportgedcom.py:788
-#: ../gramps/plugins/export/exportgedcom.py:1161
+#: ../gramps/plugins/export/exportgedcom.py:1162
 #: ../gramps/plugins/gramplet/repositorydetails.py:124
-#: ../gramps/plugins/lib/libgedcom.py:4143
-#: ../gramps/plugins/lib/libgedcom.py:5920
+#: ../gramps/plugins/lib/libgedcom.py:4144
+#: ../gramps/plugins/lib/libgedcom.py:5921
 #: ../gramps/plugins/webreport/basepage.py:1135
 msgid "Phone"
 msgstr "電話番号"
@@ -6427,7 +6412,7 @@ msgstr "エージェンシー"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:88
 #: ../gramps/plugins/drawreport/statisticschart.py:377
 #: ../gramps/plugins/gramplet/agestats.py:176
-#: ../gramps/plugins/gramplet/events.py:89
+#: ../gramps/plugins/gramplet/events.py:90
 #: ../gramps/plugins/quickview/ageondate.py:54
 msgid "Age"
 msgstr "年齢"
@@ -6450,7 +6435,7 @@ msgstr "時間"
 
 #: ../gramps/gen/lib/attrtype.py:79 ../gramps/gen/lib/eventtype.py:190
 #: ../gramps/gen/lib/nameorigintype.py:85
-#: ../gramps/gen/plug/docgen/treedoc.py:454
+#: ../gramps/gen/plug/docgen/treedoc.py:451
 #: ../gramps/plugins/gramplet/persondetails.py:163
 msgid "Occupation"
 msgstr "職業"
@@ -6478,12 +6463,12 @@ msgstr "肩書"
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:209
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:155
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:154
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:252
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:257
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:191
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
 #: ../gramps/gui/glade/editplaceformat.glade:185
-#: ../gramps/plugins/graph/gvfamilylines.py:82
+#: ../gramps/plugins/graph/gvfamilylines.py:83
 #: ../gramps/plugins/tool/check.py:2494
 msgid "None"
 msgstr "なし"
@@ -6532,7 +6517,7 @@ msgstr "養育"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
 #: ../gramps/plugins/importer/importprogen.glade:209
 #: ../gramps/plugins/importer/importprogen.glade:739
-#: ../gramps/plugins/lib/libprogen.py:935
+#: ../gramps/plugins/lib/libprogen.py:936
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
 #: ../gramps/plugins/quickview/references.py:89
 #: ../gramps/plugins/tool/reorderids.glade:823
@@ -6576,7 +6561,7 @@ msgstr ""
 #: ../gramps/gen/lib/citation.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
 #: ../gramps/plugins/importer/importprogen.glade:295
-#: ../gramps/plugins/webreport/basepage.py:2271
+#: ../gramps/plugins/webreport/basepage.py:2224
 msgid "Page"
 msgstr "ページ"
 
@@ -6600,7 +6585,7 @@ msgstr "信頼度"
 #: ../gramps/plugins/importer/importcsv.py:170
 #: ../gramps/plugins/importer/importprogen.glade:52
 #: ../gramps/plugins/importer/importprogen.glade:724
-#: ../gramps/plugins/lib/libprogen.py:882
+#: ../gramps/plugins/lib/libprogen.py:883
 #: ../gramps/plugins/quickview/filterbyname.py:195
 #: ../gramps/plugins/quickview/filterbyname.py:258
 #: ../gramps/plugins/quickview/quickview.gpr.py:205
@@ -6636,7 +6621,7 @@ msgstr "ソース"
 #: ../gramps/plugins/webreport/basepage.py:1592
 #: ../gramps/plugins/webreport/basepage.py:1660
 #: ../gramps/plugins/webreport/basepage.py:1707
-#: ../gramps/plugins/webreport/basepage.py:2044
+#: ../gramps/plugins/webreport/basepage.py:1997
 #: ../gramps/plugins/webreport/media.py:196
 #: ../gramps/plugins/webreport/media.py:378
 msgid "Media"
@@ -6693,12 +6678,12 @@ msgstr "タグ"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
-#: ../gramps/plugins/lib/libgedcom.py:5453
-#: ../gramps/plugins/lib/libgedcom.py:6761
+#: ../gramps/plugins/lib/libgedcom.py:5454
+#: ../gramps/plugins/lib/libgedcom.py:6762
 #: ../gramps/plugins/textreport/indivcomplete.py:663
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:791
-#: ../gramps/plugins/webreport/person.py:431
+#: ../gramps/plugins/webreport/person.py:430
 msgid "unknown"
 msgstr "不明"
 
@@ -6799,9 +6784,9 @@ msgid "Values"
 msgstr "値"
 
 #: ../gramps/gen/lib/date.py:719 ../gramps/gen/lib/placename.py:99
-#: ../gramps/gen/lib/styledtext.py:321
+#: ../gramps/gen/lib/styledtext.py:322
 #: ../gramps/gen/plug/report/_constants.py:54 ../gramps/gui/clipboard.py:613
-#: ../gramps/gui/clipboard.py:621 ../gramps/gui/configure.py:1395
+#: ../gramps/gui/clipboard.py:621 ../gramps/gui/configure.py:1396
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/importer/importprogen.glade:403
 #: ../gramps/plugins/importer/importprogen.glade:1107
@@ -6841,12 +6826,14 @@ msgstr ""
 msgid "about"
 msgstr "約"
 
-#: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1839
+#: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1841
 #: ../gramps/plugins/lib/libsubstkeyword.py:313
+#: ../gramps/plugins/webreport/basepage.py:2887
 msgid "after"
 msgstr "後"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:313
+#: ../gramps/plugins/webreport/basepage.py:2889
 msgid "before"
 msgstr "前"
 
@@ -6898,7 +6885,7 @@ msgstr "イベント"
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/coordinates.py:93
-#: ../gramps/plugins/gramplet/events.py:91
+#: ../gramps/plugins/gramplet/events.py:92
 #: ../gramps/plugins/gramplet/personresidence.py:61
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/importer/importcsv.py:237
@@ -7013,7 +7000,6 @@ msgid "Family"
 msgstr "家族"
 
 #: ../gramps/gen/lib/eventtype.py:142
-#, fuzzy
 msgid "Religious"
 msgstr "宗教"
 
@@ -7035,10 +7021,10 @@ msgstr "法的手続"
 
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
-#: ../gramps/plugins/lib/libprogen.py:1827
-#: ../gramps/plugins/lib/libprogen.py:1830
+#: ../gramps/plugins/lib/libprogen.py:1829
+#: ../gramps/plugins/lib/libprogen.py:1832
 #: ../gramps/plugins/webreport/addressbooklist.py:114
-#: ../gramps/plugins/webreport/basepage.py:2849
+#: ../gramps/plugins/webreport/basepage.py:2799
 msgid "Residence"
 msgstr "住居"
 
@@ -7050,8 +7036,7 @@ msgid "Other"
 msgstr "その他"
 
 #: ../gramps/gen/lib/eventtype.py:166 ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/plugins/export/exportvcalendar.py:174
-#: ../gramps/plugins/export/exportvcalendar.py:179
+#: ../gramps/plugins/export/exportvcalendar.py:160
 #: ../gramps/plugins/importer/importprogen.glade:1491
 #: ../gramps/plugins/textreport/familygroup.py:328
 #: ../gramps/plugins/textreport/familygroup.py:534
@@ -7180,11 +7165,10 @@ msgstr "引退"
 msgid "Will"
 msgstr "遺書"
 
-#. feature requests 2356, 1657: avoid genitive form
 #: ../gramps/gen/lib/eventtype.py:198 ../gramps/gen/plug/docgen/treedoc.py:150
 #: ../gramps/gen/utils/symbols.py:75 ../gramps/gui/merge/mergeperson.py:258
 #: ../gramps/plugins/export/exportcsv.py:465
-#: ../gramps/plugins/export/exportvcalendar.py:136
+#: ../gramps/plugins/export/exportvcalendar.py:138
 #: ../gramps/plugins/importer/importcsv.py:235
 #: ../gramps/plugins/textreport/familygroup.py:406
 #: ../gramps/plugins/textreport/familygroup.py:415
@@ -7493,7 +7477,7 @@ msgstr "婚姻無効."
 #: ../gramps/plugins/textreport/tagreport.py:252
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:1069
-#: ../gramps/plugins/webreport/person.py:1637
+#: ../gramps/plugins/webreport/person.py:1643
 msgid "Father"
 msgstr "父親"
 
@@ -7515,7 +7499,7 @@ msgstr "父親"
 #: ../gramps/plugins/textreport/tagreport.py:258
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:1070
-#: ../gramps/plugins/webreport/person.py:1650
+#: ../gramps/plugins/webreport/person.py:1656
 msgid "Mother"
 msgstr "母親"
 
@@ -7525,7 +7509,7 @@ msgstr "母親"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:869
 #: ../gramps/plugins/textreport/familygroup.py:646
 #: ../gramps/plugins/textreport/indivcomplete.py:678
-#: ../gramps/plugins/view/pedigreeview.py:1829
+#: ../gramps/plugins/view/pedigreeview.py:1830
 #: ../gramps/plugins/view/relview.py:1595
 #: ../gramps/plugins/webreport/basepage.py:381
 msgid "Children"
@@ -7544,17 +7528,16 @@ msgstr "子供"
 #: ../gramps/plugins/webreport/basepage.py:1650
 #: ../gramps/plugins/webreport/event.py:141
 #: ../gramps/plugins/webreport/event.py:366
-#: ../gramps/plugins/webreport/person.py:1535
+#: ../gramps/plugins/webreport/person.py:1541
 msgid "Events"
 msgstr "イベント"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
-#, fuzzy
 msgid "LDS ordinances"
 msgstr "LDS儀式"
 
 #: ../gramps/gen/lib/familyreltype.py:47
-#: ../gramps/plugins/webreport/webcal.py:2114
+#: ../gramps/plugins/webreport/webcal.py:2115
 msgid "Married"
 msgstr "既婚"
 
@@ -7597,7 +7580,7 @@ msgstr "シビルユニオン"
 #: ../gramps/plugins/export/exportcsv.py:287
 #: ../gramps/plugins/gramplet/backlinks.py:55
 #: ../gramps/plugins/gramplet/coordinates.py:89
-#: ../gramps/plugins/gramplet/events.py:85
+#: ../gramps/plugins/gramplet/events.py:86
 #: ../gramps/plugins/gramplet/locations.py:86
 #: ../gramps/plugins/gramplet/placedetails.py:126
 #: ../gramps/plugins/importer/importcsv.py:240
@@ -7623,8 +7606,8 @@ msgstr "シビルユニオン"
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/basepage.py:960
 #: ../gramps/plugins/webreport/basepage.py:1262
-#: ../gramps/plugins/webreport/basepage.py:2139
-#: ../gramps/plugins/webreport/basepage.py:2806
+#: ../gramps/plugins/webreport/basepage.py:2092
+#: ../gramps/plugins/webreport/basepage.py:2756
 #: ../gramps/plugins/webreport/event.py:176
 #: ../gramps/plugins/webreport/repository.py:163
 #: ../gramps/plugins/webreport/repository.py:253
@@ -7772,7 +7755,6 @@ msgstr "メディア参照"
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
 #: ../gramps/plugins/view/geoplaces.py:637
-#, fuzzy
 msgid "Region"
 msgstr "宗教"
 
@@ -7780,6 +7762,7 @@ msgstr "宗教"
 #. Priority
 #. Handle
 #. Add column with object name
+#. Name Column
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
 #: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:562
 #: ../gramps/gui/configure.py:608
@@ -7822,10 +7805,12 @@ msgstr "宗教"
 #: ../gramps/plugins/tool/dumpgenderstats.py:95
 #: ../gramps/plugins/tool/dumpgenderstats.py:99
 #: ../gramps/plugins/tool/notrelated.py:126
-#: ../gramps/plugins/tool/removeunused.py:201
-#: ../gramps/plugins/tool/verify.py:579 ../gramps/plugins/view/repoview.py:85
+#: ../gramps/plugins/tool/removeunused.py:205
+#: ../gramps/plugins/tool/verify.py:582 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/basepage.py:397
-#: ../gramps/plugins/webreport/person.py:1861
+#: ../gramps/plugins/webreport/person.py:215
+#: ../gramps/plugins/webreport/person.py:1867
+#: ../gramps/plugins/webreport/surname.py:137
 msgid "Name"
 msgstr "名前"
 
@@ -7875,7 +7860,7 @@ msgstr "接尾辞"
 #: ../gramps/plugins/textreport/tagreport.py:745
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/basepage.py:2804
+#: ../gramps/plugins/webreport/basepage.py:2754
 msgid "Title"
 msgstr "タイトル"
 
@@ -7919,7 +7904,7 @@ msgstr ""
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:465 ../gramps/gen/lib/name.py:480
 #: ../gramps/gen/plug/report/utils.py:257
-#: ../gramps/plugins/graph/gvfamilylines.py:490
+#: ../gramps/plugins/graph/gvfamilylines.py:491
 #: ../gramps/plugins/textreport/detancestralreport.py:454
 #: ../gramps/plugins/textreport/detdescendantreport.py:487
 #: ../gramps/plugins/textreport/indivcomplete.py:202
@@ -8007,7 +7992,7 @@ msgstr "婚姻名"
 #: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
-#: ../gramps/plugins/drawreport/descendtree.py:1701
+#: ../gramps/plugins/drawreport/descendtree.py:1707
 #: ../gramps/plugins/export/exportcsv.py:361
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:112
@@ -8029,7 +8014,7 @@ msgstr "ノート"
 msgid "Format"
 msgstr "フォーマット"
 
-#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1673
+#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1674
 #: ../gramps/gui/editors/editeventref.py:89
 #: ../gramps/gui/editors/editmediaref.py:107
 #: ../gramps/gui/editors/editplaceref.py:71
@@ -8189,7 +8174,7 @@ msgstr "子供参照ノート"
 #: ../gramps/plugins/tool/reorderids.glade:761
 #: ../gramps/plugins/webreport/event.py:180
 #: ../gramps/plugins/webreport/family.py:188
-#: ../gramps/plugins/webreport/person.py:1246
+#: ../gramps/plugins/webreport/person.py:1252
 msgid "Person"
 msgstr "人物"
 
@@ -8203,12 +8188,11 @@ msgstr "人物"
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:928
-#: ../gramps/plugins/webreport/person.py:1487
+#: ../gramps/plugins/webreport/person.py:1493
 msgid "Gender"
 msgstr "性別"
 
 #: ../gramps/gen/lib/person.py:188
-#, fuzzy
 msgid "Alternate names"
 msgstr "代替名"
 
@@ -8259,7 +8243,6 @@ msgid "Urls"
 msgstr "URL"
 
 #: ../gramps/gen/lib/person.py:237
-#, fuzzy
 msgid "Person references"
 msgstr "人物参照"
 
@@ -8280,7 +8263,7 @@ msgstr "関連"
 #: ../gramps/plugins/gramplet/coordinates.py:96
 #: ../gramps/plugins/gramplet/placedetails.py:136
 #: ../gramps/plugins/lib/libplaceview.py:91
-#: ../gramps/plugins/webreport/basepage.py:2579
+#: ../gramps/plugins/webreport/basepage.py:2529
 #: ../gramps/plugins/webreport/place.py:185
 msgid "Longitude"
 msgstr "経度"
@@ -8289,7 +8272,7 @@ msgstr "経度"
 #: ../gramps/plugins/gramplet/coordinates.py:95
 #: ../gramps/plugins/gramplet/placedetails.py:134
 #: ../gramps/plugins/lib/libplaceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:2571
+#: ../gramps/plugins/webreport/basepage.py:2521
 #: ../gramps/plugins/webreport/place.py:184
 msgid "Latitude"
 msgstr "緯度"
@@ -8311,7 +8294,7 @@ msgstr "場所"
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/plugins/textreport/indivcomplete.py:391
-#: ../gramps/plugins/webreport/basepage.py:2623
+#: ../gramps/plugins/webreport/basepage.py:2573
 msgid "Alternate Names"
 msgstr "代替名"
 
@@ -8323,7 +8306,7 @@ msgstr "代替名"
 msgid "Code"
 msgstr "コード"
 
-#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2647
+#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2597
 msgid "Alternate Locations"
 msgstr "代替の場所"
 
@@ -8347,7 +8330,6 @@ msgid "Place ref"
 msgstr "場所ref"
 
 #: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:634
-#, fuzzy
 msgid "Province"
 msgstr "州/都道府県"
 
@@ -8394,7 +8376,7 @@ msgstr "建物"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
 #: ../gramps/plugins/view/geoplaces.py:622
-#: ../gramps/plugins/webreport/basepage.py:2802
+#: ../gramps/plugins/webreport/basepage.py:2752
 #: ../gramps/plugins/webreport/source.py:164
 msgid "Number"
 msgstr "数"
@@ -8471,7 +8453,6 @@ msgid "Author"
 msgstr "作者"
 
 #: ../gramps/gen/lib/src.py:110
-#, fuzzy
 msgid "Publication info"
 msgstr "発行情報"
 
@@ -8491,7 +8472,7 @@ msgstr "略称"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/basepage.py:1532
 #: ../gramps/plugins/webreport/basepage.py:1653
-#: ../gramps/plugins/webreport/basepage.py:2793
+#: ../gramps/plugins/webreport/basepage.py:2743
 #: ../gramps/plugins/webreport/repository.py:138
 #: ../gramps/plugins/webreport/repository.py:224
 msgid "Repositories"
@@ -8575,7 +8556,6 @@ msgid "Tag"
 msgstr "タグ"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
-#, fuzzy
 msgid "Ranges"
 msgstr "範囲"
 
@@ -8595,17 +8575,14 @@ msgid "Underline"
 msgstr "下線"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:64
-#, fuzzy
 msgid "Fontface"
 msgstr "フォント"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:65
-#, fuzzy
 msgid "Fontsize"
 msgstr "フォントサイズ"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
-#, fuzzy
 msgid "Fontcolor"
 msgstr "フォント色"
 
@@ -8625,7 +8602,6 @@ msgstr "上付き文字"
 msgid "Link"
 msgstr "リンク"
 
-#. show surname and first name
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:596
 #: ../gramps/gui/configure.py:844 ../gramps/gui/configure.py:846
@@ -8638,7 +8614,6 @@ msgstr "リンク"
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:160
 #: ../gramps/plugins/quickview/filterbyname.py:354
-#: ../gramps/plugins/webreport/person.py:213
 #: ../gramps/plugins/webreport/surname.py:98
 #: ../gramps/plugins/webreport/surnamelist.py:147
 msgid "Surname"
@@ -8653,7 +8628,6 @@ msgid "Prefix"
 msgstr "接頭辞"
 
 #: ../gramps/gen/lib/surname.py:95
-#, fuzzy
 msgid "Primary"
 msgstr "本人"
 
@@ -8938,19 +8912,19 @@ msgstr "ファイル %s は既に開いています。まず閉じてくださ�
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
-#: ../gramps/plugins/export/exportftree.py:135
-#: ../gramps/plugins/export/exportgedcom.py:1602
-#: ../gramps/plugins/export/exportgeneweb.py:108
-#: ../gramps/plugins/export/exportgeneweb.py:112
-#: ../gramps/plugins/export/exportvcalendar.py:120
-#: ../gramps/plugins/export/exportvcalendar.py:124
+#: ../gramps/plugins/export/exportftree.py:136
+#: ../gramps/plugins/export/exportgedcom.py:1597
+#: ../gramps/plugins/export/exportgeneweb.py:109
+#: ../gramps/plugins/export/exportgeneweb.py:113
+#: ../gramps/plugins/export/exportvcalendar.py:123
+#: ../gramps/plugins/export/exportvcalendar.py:127
 #: ../gramps/plugins/export/exportvcard.py:71
 #: ../gramps/plugins/export/exportvcard.py:75
 #: ../gramps/plugins/lib/libhtmlbackend.py:249
 #: ../gramps/plugins/lib/libhtmlbackend.py:253
 #: ../gramps/plugins/lib/libhtmlbackend.py:259
 #: ../gramps/plugins/lib/libhtmlbackend.py:263
-#: ../gramps/plugins/webreport/narrativeweb.py:333
+#: ../gramps/plugins/webreport/narrativeweb.py:332
 #, python-format
 msgid "Could not create %s"
 msgstr "%s を作成できません"
@@ -8991,14 +8965,12 @@ msgid "Vertical (↑)"
 msgstr "垂直 (下から上)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:74
-#: ../gramps/plugins/view/pedigreeview.py:2121
-#, fuzzy
+#: ../gramps/plugins/view/pedigreeview.py:2122
 msgid "Horizontal (→)"
 msgstr "水平 (左から右)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:75
-#: ../gramps/plugins/view/pedigreeview.py:2122
-#, fuzzy
+#: ../gramps/plugins/view/pedigreeview.py:2123
 msgid "Horizontal (←)"
 msgstr "水平 (左から右)"
 
@@ -9035,7 +9007,6 @@ msgid "Left, top"
 msgstr "左, 上"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:91
-#, fuzzy
 msgid "Compress to minimal size"
 msgstr "最小サイズ"
 
@@ -9060,7 +9031,6 @@ msgid "Bottom"
 msgstr "下"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:98
-#, fuzzy
 msgid "Straight"
 msgstr "まっすぐ"
 
@@ -9074,7 +9044,6 @@ msgstr "直角"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
-#, fuzzy
 msgid "Graphviz Layout"
 msgstr "GraphViz レイアウト"
 
@@ -9161,7 +9130,6 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
-#, fuzzy
 msgid "Graphviz Options"
 msgstr "GraphViz オプション"
 
@@ -9315,15 +9283,6 @@ msgstr "Legal"
 msgid "Custom Size"
 msgstr "カスタムサイズ"
 
-#. -------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:63
-msgid "Full"
-msgstr "最大"
-
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
 msgid "Medium"
@@ -9347,7 +9306,7 @@ msgid "Not shown"
 msgstr "両親が見つかりません"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:99
-#: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1938
+#: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1939
 #: ../gramps/gui/views/pageview.py:591
 msgid "Preferences"
 msgstr "設定"
@@ -9408,7 +9367,7 @@ msgid "Normal"
 msgstr "標準"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:94
-#: ../gramps/plugins/graph/gvfamilylines.py:263
+#: ../gramps/plugins/graph/gvfamilylines.py:264
 msgid "Large"
 msgstr ""
 
@@ -9478,7 +9437,7 @@ msgstr "ノードの色。"
 #. #################
 #: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:791
-#: ../gramps/plugins/drawreport/descendtree.py:1527
+#: ../gramps/plugins/drawreport/descendtree.py:1533
 msgid "Tree Options"
 msgstr "ツリーのオプション"
 
@@ -9525,7 +9484,7 @@ msgstr "このテキストは家系図に追加されます。"
 msgid "The size of note text."
 msgstr "ノートテキストのサイズ。"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:655
+#: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
 msgstr ""
 
@@ -9668,7 +9627,6 @@ msgid "%s:"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:58
-#, fuzzy
 msgid "Translation"
 msgstr "対訳"
 
@@ -9677,12 +9635,12 @@ msgid "The translation to be used for the report."
 msgstr "レポートに使用される対訳。"
 
 #: ../gramps/gen/plug/report/stdoptions.py:73 ../gramps/gui/configure.py:1194
-#: ../gramps/plugins/webreport/webcal.py:1720
+#: ../gramps/plugins/webreport/webcal.py:1721
 msgid "Name format"
 msgstr "名前の形式"
 
 #: ../gramps/gen/plug/report/stdoptions.py:78
-#: ../gramps/plugins/webreport/webcal.py:1724
+#: ../gramps/plugins/webreport/webcal.py:1725
 msgid "Select the format to display names"
 msgstr "表示する名前のフォーマットを選択してください"
 
@@ -9766,14 +9724,14 @@ msgstr "Gramps IDを使用するか、どこに使用するか"
 #. #########################
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:328
-#: ../gramps/gui/viewmanager.py:1722
-#: ../gramps/plugins/graph/gvfamilylines.py:218
-#: ../gramps/plugins/graph/gvrelgraph.py:859
+#: ../gramps/gui/viewmanager.py:1719
+#: ../gramps/plugins/graph/gvfamilylines.py:219
+#: ../gramps/plugins/graph/gvrelgraph.py:862
 #: ../gramps/plugins/textreport/detancestralreport.py:900
 #: ../gramps/plugins/textreport/detdescendantreport.py:1085
 #: ../gramps/plugins/textreport/familygroup.py:752
 #: ../gramps/plugins/textreport/indivcomplete.py:1102
-#: ../gramps/plugins/webreport/narrativeweb.py:1993
+#: ../gramps/plugins/webreport/narrativeweb.py:1997
 msgid "Include"
 msgstr "含む"
 
@@ -9798,9 +9756,8 @@ msgstr "ファイルがありません"
 #: ../gramps/plugins/textreport/indivcomplete.py:915
 #: ../gramps/plugins/textreport/simplebooktitle.py:106
 #: ../gramps/plugins/webreport/basepage.py:1799
-#: ../gramps/plugins/webreport/basepage.py:2004
-#: ../gramps/plugins/webreport/basepage.py:2070
-#: ../gramps/plugins/webreport/basepage.py:2078
+#: ../gramps/plugins/webreport/basepage.py:2023
+#: ../gramps/plugins/webreport/basepage.py:2031
 msgid "Could not add photo to page"
 msgstr "ページに写真を追加できません"
 
@@ -9898,11 +9855,6 @@ msgstr "エラー: 未知のファイル形式: '%s'"
 msgid "Examining '%s'..."
 msgstr "'%s' を検査しています..."
 
-#: ../gramps/gen/display/place.py:73 ../gramps/gen/plug/utils.py:339
-#, python-format
-msgid "Error in '%s' file: cannot load."
-msgstr "'%s' ファイルのエラー: 読み込みできません。"
-
 #: ../gramps/gen/plug/utils.py:353
 #, python-format
 msgid "'%s' is for this version of Gramps."
@@ -9953,7 +9905,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/relationship.py:1273
-#: ../gramps/plugins/view/pedigreeview.py:1600
+#: ../gramps/plugins/view/pedigreeview.py:1601
 msgid "Relationship loop detected"
 msgstr "関係のループが検出されました"
 
@@ -10218,7 +10170,6 @@ msgid "Arabic"
 msgstr "アラビア語"
 
 #: ../gramps/gen/utils/grampslocale.py:72
-#, fuzzy
 msgid "Bulgarian"
 msgstr "ブルガリア語"
 
@@ -10228,22 +10179,18 @@ msgstr "ブルターニュ語"
 
 #. Windows has no translation for Breton
 #: ../gramps/gen/utils/grampslocale.py:74
-#, fuzzy
 msgid "Catalan"
 msgstr "カタロニア語"
 
 #: ../gramps/gen/utils/grampslocale.py:75
-#, fuzzy
 msgid "Czech"
 msgstr "チェコ語"
 
 #: ../gramps/gen/utils/grampslocale.py:76
-#, fuzzy
 msgid "Danish"
 msgstr "デンマーク語"
 
 #: ../gramps/gen/utils/grampslocale.py:77
-#, fuzzy
 msgid "German"
 msgstr "ドイツ語"
 
@@ -10265,7 +10212,6 @@ msgstr "エスペラント"
 
 #. Windows has no translation for Esperanto
 #: ../gramps/gen/utils/grampslocale.py:82
-#, fuzzy
 msgid "Spanish"
 msgstr "スペイン語"
 
@@ -10274,7 +10220,6 @@ msgid "Finnish"
 msgstr "フィンランド語"
 
 #: ../gramps/gen/utils/grampslocale.py:84
-#, fuzzy
 msgid "French"
 msgstr "フランス語"
 
@@ -10288,12 +10233,10 @@ msgid "Hebrew"
 msgstr "ヘブライ語"
 
 #: ../gramps/gen/utils/grampslocale.py:87
-#, fuzzy
 msgid "Croatian"
 msgstr "クロアチア語"
 
 #: ../gramps/gen/utils/grampslocale.py:88
-#, fuzzy
 msgid "Hungarian"
 msgstr "ハンガリー語"
 
@@ -10302,7 +10245,6 @@ msgid "Icelandic"
 msgstr "アイスランド語"
 
 #: ../gramps/gen/utils/grampslocale.py:90
-#, fuzzy
 msgid "Italian"
 msgstr "イタリア語"
 
@@ -10311,12 +10253,10 @@ msgid "Japanese"
 msgstr "日本語"
 
 #: ../gramps/gen/utils/grampslocale.py:92
-#, fuzzy
 msgid "Lithuanian"
 msgstr "リトアニア語"
 
 #: ../gramps/gen/utils/grampslocale.py:93
-#, fuzzy
 msgid "Macedonian"
 msgstr "マケドニア語"
 
@@ -10326,17 +10266,14 @@ msgid "Norwegian Bokmal"
 msgstr "ブークモール・ノルウェー語"
 
 #: ../gramps/gen/utils/grampslocale.py:95
-#, fuzzy
 msgid "Dutch"
 msgstr "オランダ語"
 
 #: ../gramps/gen/utils/grampslocale.py:96
-#, fuzzy
 msgid "Norwegian Nynorsk"
 msgstr "ニーノシュク・ノルウェー語"
 
 #: ../gramps/gen/utils/grampslocale.py:97
-#, fuzzy
 msgid "Polish"
 msgstr "ポーランド語"
 
@@ -10349,27 +10286,22 @@ msgid "Portuguese (Portugal)"
 msgstr "ポルトガル語(ポルトガル)"
 
 #: ../gramps/gen/utils/grampslocale.py:100
-#, fuzzy
 msgid "Romanian"
 msgstr "ルーマニア語"
 
 #: ../gramps/gen/utils/grampslocale.py:101
-#, fuzzy
 msgid "Russian"
 msgstr "ロシア語"
 
 #: ../gramps/gen/utils/grampslocale.py:102
-#, fuzzy
 msgid "Slovak"
 msgstr "スロヴァキア語"
 
 #: ../gramps/gen/utils/grampslocale.py:103
-#, fuzzy
 msgid "Slovenian"
 msgstr "スロヴェニア語"
 
 #: ../gramps/gen/utils/grampslocale.py:104
-#, fuzzy
 msgid "Albanian"
 msgstr "アルバニア語"
 
@@ -10378,7 +10310,6 @@ msgid "Serbian"
 msgstr "セルビア語"
 
 #: ../gramps/gen/utils/grampslocale.py:106
-#, fuzzy
 msgid "Swedish"
 msgstr "スウェーデン語"
 
@@ -10388,12 +10319,10 @@ msgstr "タミル語"
 
 #. Windows has no codepage for Tamil
 #: ../gramps/gen/utils/grampslocale.py:108
-#, fuzzy
 msgid "Turkish"
 msgstr "トルコ語"
 
 #: ../gramps/gen/utils/grampslocale.py:109
-#, fuzzy
 msgid "Ukrainian"
 msgstr "ウクライナ語"
 
@@ -10450,7 +10379,6 @@ msgid "the filter"
 msgstr "フィルタ"
 
 #: ../gramps/gen/utils/grampslocale.py:914
-#, fuzzy
 msgid "the citation"
 msgstr "引用"
 
@@ -10642,7 +10570,7 @@ msgstr "%(west_longitude)s W"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/person.py:429
+#: ../gramps/plugins/webreport/person.py:428
 msgid "male"
 msgstr "男性"
 
@@ -10651,7 +10579,7 @@ msgstr "男性"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/person.py:430
+#: ../gramps/plugins/webreport/person.py:429
 msgid "female"
 msgstr "女性"
 
@@ -10665,12 +10593,12 @@ msgid "Invalid"
 msgstr "無効"
 
 #: ../gramps/gen/utils/string.py:55 ../gramps/gui/editors/editcitation.py:216
-#: ../gramps/plugins/importer/importprogen.py:489
+#: ../gramps/plugins/importer/importprogen.py:490
 msgid "Very High"
 msgstr "非常に高い"
 
 #: ../gramps/gen/utils/string.py:56 ../gramps/gui/editors/editcitation.py:215
-#: ../gramps/plugins/importer/importprogen.py:488
+#: ../gramps/plugins/importer/importprogen.py:489
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "High"
 msgstr "高い"
@@ -10682,7 +10610,7 @@ msgid "Low"
 msgstr "低い"
 
 #: ../gramps/gen/utils/string.py:59 ../gramps/gui/editors/editcitation.py:212
-#: ../gramps/plugins/importer/importprogen.py:485
+#: ../gramps/plugins/importer/importprogen.py:486
 msgid "Very Low"
 msgstr "非常に低い"
 
@@ -10770,7 +10698,6 @@ msgid "Baptism/Christening"
 msgstr "洗礼/命名式"
 
 #: ../gramps/gen/utils/symbols.py:74
-#, fuzzy
 msgid "Engaged"
 msgstr "婚約"
 
@@ -10779,7 +10706,6 @@ msgid "Unmarried partnership"
 msgstr "婚姻関係にないパートナーシップ"
 
 #: ../gramps/gen/utils/symbols.py:78
-#, fuzzy
 msgid "Buried"
 msgstr "土葬"
 
@@ -11016,19 +10942,19 @@ msgstr "ツリービュー: 最初のカラム \"%s\" は変更できません"
 msgid "Drag and drop the columns to change the order"
 msgstr "順序を変更するには、カラムをドラッグ&ドロップしてください"
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1834
-#: ../gramps/gui/configure.py:1858 ../gramps/gui/configure.py:1884
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1794
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1835
+#: ../gramps/gui/configure.py:1859 ../gramps/gui/configure.py:1885
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1791
 #: ../gramps/plugins/lib/maps/geography.py:997
 #: ../gramps/plugins/lib/maps/geography.py:1294
 msgid "_Apply"
 msgstr "適用(_A)"
 
 #. #################
-#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1353
+#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1354
 #: ../gramps/plugins/drawreport/ancestortree.py:909
-#: ../gramps/plugins/drawreport/descendtree.py:1652
-#: ../gramps/plugins/webreport/narrativeweb.py:1766
+#: ../gramps/plugins/drawreport/descendtree.py:1658
+#: ../gramps/plugins/webreport/narrativeweb.py:1770
 msgid "Display"
 msgstr "表示"
 
@@ -11122,11 +11048,11 @@ msgstr "無効または不完全なフォーマット定義です。"
 #: ../gramps/gui/configure.py:482 ../gramps/gui/configure.py:519
 #: ../gramps/gui/configure.py:541 ../gramps/gui/configure.py:689
 #: ../gramps/gui/configure.py:1194 ../gramps/gui/configure.py:1222
-#: ../gramps/gui/configure.py:1240 ../gramps/gui/configure.py:1267
-#: ../gramps/gui/configure.py:1281 ../gramps/gui/configure.py:1294
-#: ../gramps/gui/configure.py:1307 ../gramps/gui/configure.py:1332
-#: ../gramps/gui/configure.py:1634 ../gramps/gui/configure.py:1652
-#: ../gramps/gui/configure.py:1735 ../gramps/gui/configure.py:1786
+#: ../gramps/gui/configure.py:1240 ../gramps/gui/configure.py:1268
+#: ../gramps/gui/configure.py:1282 ../gramps/gui/configure.py:1295
+#: ../gramps/gui/configure.py:1308 ../gramps/gui/configure.py:1333
+#: ../gramps/gui/configure.py:1635 ../gramps/gui/configure.py:1653
+#: ../gramps/gui/configure.py:1736 ../gramps/gui/configure.py:1787
 #: ../gramps/gui/views/navigationview.py:343
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
@@ -11331,7 +11257,6 @@ msgid "<b>%s</b>"
 msgstr "<b>%s</b>"
 
 #: ../gramps/gui/configure.py:774
-#, fuzzy
 msgid "Colors"
 msgstr "色"
 
@@ -11340,7 +11265,6 @@ msgid "Warnings and Error dialogs"
 msgstr "警告とエラーダイアログ"
 
 #: ../gramps/gui/configure.py:800
-#, fuzzy
 msgid "Suppress warning when adding parents to a child"
 msgstr "子供に親を追加する際の警告を抑制する"
 
@@ -11349,12 +11273,10 @@ msgid "Suppress warning when canceling with changed data"
 msgstr "データ変更後のキャンセル時の警告を抑制する"
 
 #: ../gramps/gui/configure.py:808
-#, fuzzy
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr "GEDCOMエクスポート時、調査者(researcher)が無い旨の警告を抑制する"
 
 #: ../gramps/gui/configure.py:813
-#, fuzzy
 msgid "Show plugin status dialog on plugin load error"
 msgstr "プラグイン読み込みエラー時にステータスダイアログを表示"
 
@@ -11416,8 +11338,8 @@ msgstr "追加(_A)"
 #: ../gramps/gui/glade/editlink.glade:222 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/plug/report/_bookdialog.py:639 ../gramps/gui/views/tags.py:459
 #: ../gramps/gui/widgets/fanchart.py:1817
-#: ../gramps/plugins/view/pedigreeview.py:1738
-#: ../gramps/plugins/view/pedigreeview.py:1966
+#: ../gramps/plugins/view/pedigreeview.py:1739
+#: ../gramps/plugins/view/pedigreeview.py:1967
 msgid "_Edit"
 msgstr "編集(_E)"
 
@@ -11462,10 +11384,6 @@ msgstr "場所フォーマット (オート場所タイトル)"
 msgid "Enables automatic place title generation using specified format."
 msgstr "指定のフォーマットを使用した自動場所タイトル生成を許可。"
 
-#: ../gramps/gui/configure.py:1243
-msgid "Enables automatic place title generation using specifed format."
-msgstr ""
-
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
 msgstr "年"
@@ -11482,11 +11400,11 @@ msgstr "年、月、日"
 msgid "Age display precision (requires restart)"
 msgstr "年齢表示精度 (再起動が必要)"
 
-#: ../gramps/gui/configure.py:1281
+#: ../gramps/gui/configure.py:1282
 msgid "Calendar on reports"
 msgstr "レポートカレンダー"
 
-#: ../gramps/gui/configure.py:1294
+#: ../gramps/gui/configure.py:1295
 msgid "Surname guessing"
 msgstr "姓の推定"
 
@@ -11494,20 +11412,20 @@ msgstr "姓の推定"
 msgid "Default family relationship"
 msgstr "デフォルトの家族関係"
 
-#: ../gramps/gui/configure.py:1314
+#: ../gramps/gui/configure.py:1315
 msgid "Height multiple surname box (pixels)"
 msgstr "複数姓ボックスの高さ (ピクセル)"
 
-#: ../gramps/gui/configure.py:1321
+#: ../gramps/gui/configure.py:1322
 msgid "Active person's name and ID"
 msgstr "アクティブな人物の名前とID"
 
-#: ../gramps/gui/configure.py:1322
+#: ../gramps/gui/configure.py:1323
 #: ../gramps/plugins/textreport/indivcomplete.py:370
 msgid "Relationship to home person"
 msgstr "ホームの人物との関係"
 
-#: ../gramps/gui/configure.py:1332
+#: ../gramps/gui/configure.py:1333
 msgid "Status bar"
 msgstr "ステータスバー"
 
@@ -11535,36 +11453,35 @@ msgstr "バーからGrampletを簡単に取り除くための「閉じる」ボ�
 msgid "Default text used for conditions"
 msgstr "条件に使用するデフォルトテキスト"
 
-#: ../gramps/gui/configure.py:1375
+#: ../gramps/gui/configure.py:1376
 msgid "Missing surname"
 msgstr "欠落した苗字"
 
-#: ../gramps/gui/configure.py:1378
+#: ../gramps/gui/configure.py:1379
 msgid "Missing given name"
 msgstr "欠落した名前"
 
-#: ../gramps/gui/configure.py:1381
+#: ../gramps/gui/configure.py:1382
 msgid "Missing record"
 msgstr "欠落したレコード"
 
-#: ../gramps/gui/configure.py:1384
+#: ../gramps/gui/configure.py:1385
 msgid "Private surname"
 msgstr "プライベート姓"
 
-#: ../gramps/gui/configure.py:1388
+#: ../gramps/gui/configure.py:1389
 msgid "Private given name"
 msgstr "プライベート名"
 
-#: ../gramps/gui/configure.py:1392
+#: ../gramps/gui/configure.py:1393
 msgid "Private record"
 msgstr "プライベートレコード"
 
-#: ../gramps/gui/configure.py:1461
+#: ../gramps/gui/configure.py:1462
 msgid "Change is not immediate"
 msgstr "変更はすぐに反映されません"
 
-#: ../gramps/gui/configure.py:1462
-#, fuzzy
+#: ../gramps/gui/configure.py:1463
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
@@ -11574,39 +11491,11 @@ msgstr "日付フォーマットの変更は次回のGramps起動まで有効に
 msgid "Dates settings used for calculation operations"
 msgstr "計算に使用される日付設定"
 
-#: ../gramps/gui/configure.py:1514
-msgid "Date about range"
-msgstr "期間頃の日付"
-
-#: ../gramps/gui/configure.py:1497
-msgid "Date after range"
-msgstr "期間後の日付"
-
-#: ../gramps/gui/configure.py:1501
-msgid "Date before range"
-msgstr "期間前の日付"
-
-#: ../gramps/gui/configure.py:1505
-msgid "Maximum age probably alive"
-msgstr "生存していると思われる最高年齢"
-
-#: ../gramps/gui/configure.py:1509
-msgid "Maximum sibling age difference"
-msgstr "兄弟姉妹間の最大年齢差"
-
-#: ../gramps/gui/configure.py:1513
-msgid "Minimum years between generations"
-msgstr "世代間の最小年数"
-
-#: ../gramps/gui/configure.py:1517
-msgid "Average years between generations"
-msgstr "世代間の平均年数"
-
-#: ../gramps/gui/configure.py:1521
+#: ../gramps/gui/configure.py:1494
 msgid "Markup for invalid date format"
 msgstr "無効な日付フォーマットをマークアップする"
 
-#: ../gramps/gui/configure.py:1525
+#: ../gramps/gui/configure.py:1498
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -11624,7 +11513,35 @@ msgid ""
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1540
+#: ../gramps/gui/configure.py:1514
+msgid "Date about range"
+msgstr "期間頃の日付"
+
+#: ../gramps/gui/configure.py:1518
+msgid "Date after range"
+msgstr "期間後の日付"
+
+#: ../gramps/gui/configure.py:1522
+msgid "Date before range"
+msgstr "期間前の日付"
+
+#: ../gramps/gui/configure.py:1526
+msgid "Maximum age probably alive"
+msgstr "生存していると思われる最高年齢"
+
+#: ../gramps/gui/configure.py:1530
+msgid "Maximum sibling age difference"
+msgstr "兄弟姉妹間の最大年齢差"
+
+#: ../gramps/gui/configure.py:1534
+msgid "Minimum years between generations"
+msgstr "世代間の最小年数"
+
+#: ../gramps/gui/configure.py:1538
+msgid "Average years between generations"
+msgstr "世代間の平均年数"
+
+#: ../gramps/gui/configure.py:1541
 msgid "Dates"
 msgstr "日付"
 
@@ -11646,13 +11563,7 @@ msgid ""
 "Clear to set default value."
 msgstr "指定されたタグがインポートに追加される。デフォルト値をクリア。"
 
-#: ../gramps/gui/configure.py:1575
-msgid ""
-"Specifed tag will be added on import.\n"
-"Clear to set default value."
-msgstr ""
-
-#: ../gramps/gui/configure.py:1580
+#: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
 msgstr "スペルチェッカーを有効にする"
 
@@ -11666,7 +11577,7 @@ msgstr ""
 "Grampsでスペルチェッカーを利用するには、%(gramps_wiki_build_spell_url)sを参照"
 "して下さい"
 
-#: ../gramps/gui/configure.py:1595
+#: ../gramps/gui/configure.py:1596
 msgid "Display Tip of the Day"
 msgstr "毎日のヒントを表示する"
 
@@ -11682,11 +11593,11 @@ msgstr "最後に表示したウインドウを保存する"
 msgid "Remember last view displayed and open it next time."
 msgstr "最後に表示したウインドウを次回使用する際に開く。"
 
-#: ../gramps/gui/configure.py:1605
+#: ../gramps/gui/configure.py:1606
 msgid "Max generations for relationships"
 msgstr "関係の最大世代数"
 
-#: ../gramps/gui/configure.py:1611
+#: ../gramps/gui/configure.py:1612
 msgid "Base path for relative media paths"
 msgstr "相対メディアパスのためのベースパス"
 
@@ -11694,19 +11605,19 @@ msgstr "相対メディアパスのためのベースパス"
 msgid "Third party addons management"
 msgstr "第三者アドオンの管理"
 
-#: ../gramps/gui/configure.py:1626
+#: ../gramps/gui/configure.py:1627
 msgid "Once a month"
 msgstr "毎月"
 
-#: ../gramps/gui/configure.py:1627
+#: ../gramps/gui/configure.py:1628
 msgid "Once a week"
 msgstr "毎週"
 
-#: ../gramps/gui/configure.py:1628
+#: ../gramps/gui/configure.py:1629
 msgid "Once a day"
 msgstr "毎日"
 
-#: ../gramps/gui/configure.py:1629
+#: ../gramps/gui/configure.py:1630
 msgid "Always"
 msgstr "常に"
 
@@ -11714,19 +11625,19 @@ msgstr "常に"
 msgid "Check for addon updates"
 msgstr "アドオン更新の確認"
 
-#: ../gramps/gui/configure.py:1640
+#: ../gramps/gui/configure.py:1641
 msgid "Updated addons only"
 msgstr "更新済みのアドオンのみ"
 
-#: ../gramps/gui/configure.py:1641
+#: ../gramps/gui/configure.py:1642
 msgid "New addons only"
 msgstr "新しいアドオンのみ"
 
-#: ../gramps/gui/configure.py:1642
+#: ../gramps/gui/configure.py:1643
 msgid "New and updated addons"
 msgstr "新規および更新されたアドオン"
 
-#: ../gramps/gui/configure.py:1652
+#: ../gramps/gui/configure.py:1653
 msgid "What to check"
 msgstr "確認する項目"
 
@@ -11750,16 +11661,16 @@ msgstr "不具合のあるアドオンをチェックしています"
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "アドオンのレポジトリは現在使用不可のようです。後で再度試してください。"
 
-#: ../gramps/gui/configure.py:1693
+#: ../gramps/gui/configure.py:1694
 msgid "There are no available addons of this type"
 msgstr "このタイプの取得可能なアドオンはありません"
 
-#: ../gramps/gui/configure.py:1694
+#: ../gramps/gui/configure.py:1695
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Checked for '%s'"
 
-#: ../gramps/gui/configure.py:1695
+#: ../gramps/gui/configure.py:1696
 msgid "' and '"
 msgstr "' と '"
 
@@ -11789,16 +11700,15 @@ msgstr "ホスト"
 msgid "Port"
 msgstr "ポート"
 
-#: ../gramps/gui/configure.py:1755
+#: ../gramps/gui/configure.py:1756
 msgid "Family Tree Database path"
 msgstr "家系図データベースのパス"
 
-#: ../gramps/gui/configure.py:1759
-#, fuzzy
+#: ../gramps/gui/configure.py:1760
 msgid "Automatically load last Family Tree"
 msgstr "前回の家系図を自動的に読み込む"
 
-#: ../gramps/gui/configure.py:1761
+#: ../gramps/gui/configure.py:1762
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
@@ -11812,7 +11722,7 @@ msgstr "バックアップパス"
 msgid "Backup on exit"
 msgstr "終了時にバックアップ"
 
-#: ../gramps/gui/configure.py:1773
+#: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
 
@@ -11832,7 +11742,7 @@ msgstr "60分毎"
 msgid "Autobackup"
 msgstr "自動保存"
 
-#: ../gramps/gui/configure.py:1829
+#: ../gramps/gui/configure.py:1830
 msgid "Select media directory"
 msgstr "メディアフォルダを選択"
 
@@ -11900,11 +11810,11 @@ msgstr "キャンセル(_C)"
 msgid "Select database directory"
 msgstr "データベースフォルダを選択してください"
 
-#: ../gramps/gui/configure.py:1879 ../gramps/gui/viewmanager.py:1789
+#: ../gramps/gui/configure.py:1880 ../gramps/gui/viewmanager.py:1786
 msgid "Select backup directory"
 msgstr "バックアップするフォルダを選択してください"
 
-#: ../gramps/gui/configure.py:1946
+#: ../gramps/gui/configure.py:1947
 msgid ""
 "This tab gives you the possibility to use one font which is able to show all "
 "genealogical symbols\n"
@@ -11913,34 +11823,34 @@ msgid ""
 "font if it exists."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1952
+#: ../gramps/gui/configure.py:1953
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1959
+#: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1964
+#: ../gramps/gui/configure.py:1965
 msgid ""
 "Be careful, if you click on the \"Try to find\" button, it can take a while "
 "before you can continue (10 minutes or more). \n"
 "If you cancel the process, nothing will be changed."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1974
+#: ../gramps/gui/configure.py:1975
 msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1979
+#: ../gramps/gui/configure.py:1980
 msgid "Try to find"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1990 ../gramps/gui/configure.py:2091
+#: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
 msgid "Choose font"
 msgstr ""
 
@@ -11953,31 +11863,31 @@ msgstr "デフォルトの死亡の記号として設定"
 msgid "Genealogical Symbols"
 msgstr "Genealogy System"
 
-#: ../gramps/gui/configure.py:2021
+#: ../gramps/gui/configure.py:2022
 msgid "Cannot look for genealogical fonts"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2022
+#: ../gramps/gui/configure.py:2023
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2039
+#: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
 msgstr ""
 
-#: ../gramps/gui/configure.py:2043
+#: ../gramps/gui/configure.py:2044
 msgid "Looking for all fonts with genealogical symbols."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2116
+#: ../gramps/gui/configure.py:2117
 msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
 msgstr ""
 
-#: ../gramps/gui/configure.py:2154
+#: ../gramps/gui/configure.py:2155
 msgid "What you will see"
 msgstr ""
 
@@ -12047,7 +11957,7 @@ msgstr ""
 msgid "All files"
 msgstr "全てのファイル"
 
-#: ../gramps/gui/dbloader.py:357
+#: ../gramps/gui/dbloader.py:364
 msgid "Automatically detected"
 msgstr "自動検出されました"
 
@@ -12071,7 +11981,7 @@ msgstr "パスワード: "
 msgid "Import Family Tree"
 msgstr "家系図をインポートする"
 
-#: ../gramps/gui/dbloader.py:436
+#: ../gramps/gui/dbloader.py:443
 msgid "Import"
 msgstr "インポート"
 
@@ -12088,11 +11998,11 @@ msgstr ""
 "有効なファイル形式: Gramps データベース, Gramps XML, Gramps パッケージ, "
 "GEDCOM, 等。"
 
-#: ../gramps/gui/dbloader.py:516 ../gramps/gui/dbloader.py:523
+#: ../gramps/gui/dbloader.py:522 ../gramps/gui/dbloader.py:529
 msgid "Cannot open file"
 msgstr "ファイルを開けません"
 
-#: ../gramps/gui/dbloader.py:517
+#: ../gramps/gui/dbloader.py:523
 msgid "The selected file is a directory, not a file.\n"
 msgstr "選択されたのはフォルダで、ファイルではありません\n"
 
@@ -12100,11 +12010,11 @@ msgstr "選択されたのはフォルダで、ファイルではありません
 msgid "You do not have read access to the selected file."
 msgstr "選択されたファイルの読み取り権限がありません。"
 
-#: ../gramps/gui/dbloader.py:534
+#: ../gramps/gui/dbloader.py:540
 msgid "Cannot create file"
 msgstr "ファイルを作成できません"
 
-#: ../gramps/gui/dbloader.py:558
+#: ../gramps/gui/dbloader.py:564
 #, python-format
 msgid "Could not import file: %s"
 msgstr "ファイルをインポートできませんでした: %s"
@@ -12196,7 +12106,6 @@ msgid "Family Trees"
 msgstr "家系図"
 
 #: ../gramps/gui/dbman.py:381
-#, fuzzy
 msgid "Family Tree name"
 msgstr "家系図の名前"
 
@@ -12257,7 +12166,7 @@ msgid "Importing archive..."
 msgstr "アーカイブをインポートしています..."
 
 #: ../gramps/gui/dbman.py:695
-#, fuzzy, python-format
+#, python-format
 msgid "Remove the '%s' Family Tree?"
 msgstr "家系図 '%s' を削除しますか?"
 
@@ -12266,7 +12175,6 @@ msgid "Removing this Family Tree will permanently destroy the data."
 msgstr "家系図を削除すると、元に戻すことができません。"
 
 #: ../gramps/gui/dbman.py:698
-#, fuzzy
 msgid "Remove Family Tree"
 msgstr "家系図を削除"
 
@@ -12311,7 +12219,6 @@ msgid ""
 msgstr "この家系図を%(database_type)s形式のデータベースに変換しますか?"
 
 #: ../gramps/gui/dbman.py:786
-#, fuzzy
 msgid "Convert"
 msgstr "変換"
 
@@ -12348,7 +12255,6 @@ msgid "An attempt to import into the database failed."
 msgstr "データベースへのインポートに失敗しました。"
 
 #: ../gramps/gui/dbman.py:892
-#, fuzzy
 msgid "Repair Family Tree?"
 msgstr "家系図を修復しますか?"
 
@@ -12669,8 +12575,8 @@ msgstr "属性(_A)"
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
-#: ../gramps/plugins/tool/removeunused.py:195
-#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:572
+#: ../gramps/plugins/tool/removeunused.py:199
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:575
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:79
@@ -12830,7 +12736,7 @@ msgid "Move the selected event downwards"
 msgstr "選択されたイベントを下に移動"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:82
-#: ../gramps/plugins/gramplet/events.py:93
+#: ../gramps/plugins/gramplet/events.py:94
 msgid "Role"
 msgstr "役割"
 
@@ -12857,7 +12763,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:355
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 #: ../gramps/plugins/drawreport/ancestortree.py:1095
-#: ../gramps/plugins/drawreport/descendtree.py:1810
+#: ../gramps/plugins/drawreport/descendtree.py:1816
 msgid "Cannot edit this reference"
 msgstr "この参照を編集できません"
 
@@ -12973,7 +12879,6 @@ msgid "Group As"
 msgstr "グループ化"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:79
-#, fuzzy
 msgid "Notes Preview"
 msgstr "ノートのプレビュー"
 
@@ -12991,14 +12896,14 @@ msgstr "デフォルトの名前として設定"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
-#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1025
+#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1022
 #: ../gramps/gui/views/tags.py:532
 #: ../gramps/plugins/quickview/all_relations.py:306
 msgid "Yes"
 msgstr "はい"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
-#: ../gramps/gui/plug/_guioptions.py:1257 ../gramps/gui/viewmanager.py:1025
+#: ../gramps/gui/plug/_guioptions.py:1257 ../gramps/gui/viewmanager.py:1022
 #: ../gramps/gui/views/tags.py:533
 #: ../gramps/plugins/quickview/all_relations.py:310
 msgid "No"
@@ -13054,7 +12959,6 @@ msgstr "ノート(_N)"
 #. add personal column
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
 #: ../gramps/plugins/webreport/basepage.py:1696
-#, fuzzy
 msgid "Personal"
 msgstr "人物"
 
@@ -13115,7 +13019,7 @@ msgid "_Associations"
 msgstr "関連(_A)"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:138
-#: ../gramps/plugins/lib/libprogen.py:1467
+#: ../gramps/plugins/lib/libprogen.py:1469
 msgid "Godfather"
 msgstr "名付け親"
 
@@ -13141,7 +13045,6 @@ msgstr "選択された場所名を下に移動"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:71
 #: ../gramps/plugins/gramplet/placedetails.py:146
-#, fuzzy
 msgid "Alternative Names"
 msgstr "代替名"
 
@@ -13304,7 +13207,6 @@ msgid "The attribute type cannot be empty"
 msgstr "属性タイプは空にできません"
 
 #: ../gramps/gui/editors/editchildref.py:66
-#, fuzzy
 msgctxt "manual"
 msgid "Child_Reference_Editor"
 msgstr "子供の参照エディタ"
@@ -13437,13 +13339,13 @@ msgid "New_Event_dialog"
 msgstr "新規イベントダイアログ"
 
 #: ../gramps/gui/editors/editevent.py:98
-#: ../gramps/gui/editors/editeventref.py:263
+#: ../gramps/gui/editors/editeventref.py:264
 #, python-format
 msgid "Event: %s"
 msgstr "イベント: %s"
 
 #: ../gramps/gui/editors/editevent.py:100
-#: ../gramps/gui/editors/editeventref.py:265
+#: ../gramps/gui/editors/editeventref.py:266
 msgid "New Event"
 msgstr "新しいイベント"
 
@@ -13501,7 +13403,7 @@ msgid "Event_Reference_Editor_dialog"
 msgstr "イベント参照エディタダイアログ"
 
 #: ../gramps/gui/editors/editeventref.py:76
-#: ../gramps/gui/editors/editeventref.py:266
+#: ../gramps/gui/editors/editeventref.py:267
 msgid "Event Reference Editor"
 msgstr "イベント参照エディタ"
 
@@ -13513,11 +13415,11 @@ msgstr "イベント参照エディタ"
 msgid "_General"
 msgstr "一般(_G)"
 
-#: ../gramps/gui/editors/editeventref.py:271
+#: ../gramps/gui/editors/editeventref.py:272
 msgid "Modify Event"
 msgstr "イベントの変更"
 
-#: ../gramps/gui/editors/editeventref.py:276
+#: ../gramps/gui/editors/editeventref.py:277
 msgid "Add Event"
 msgstr "イベントの追加"
 
@@ -13778,7 +13680,6 @@ msgid "Add Family"
 msgstr "家族を追加"
 
 #: ../gramps/gui/editors/editldsord.py:67
-#, fuzzy
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
 msgstr "LDS儀式エディタ"
@@ -13806,7 +13707,6 @@ msgid "%(mother)s [%(gramps_id)s]"
 msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../gramps/gui/editors/editlink.py:49
-#, fuzzy
 msgctxt "manual"
 msgid "Link_Editor"
 msgstr "リンクエディタ"
@@ -13911,7 +13811,6 @@ msgid "Name Editor"
 msgstr "名前エディタ"
 
 #: ../gramps/gui/editors/editname.py:162
-#, fuzzy
 msgctxt "manual"
 msgid "Name_Editor"
 msgstr "名前エディタ"
@@ -13994,7 +13893,7 @@ msgid "_Note"
 msgstr "ノート(_N)"
 
 #: ../gramps/gui/editors/editnote.py:294 ../gramps/gui/editors/editnote.py:343
-#: ../gramps/gui/editors/objectentries.py:433
+#: ../gramps/gui/editors/objectentries.py:437
 msgid "Edit Note"
 msgstr "メモを編集する"
 
@@ -14193,7 +14092,7 @@ msgstr ""
 "無効な経度 \n"
 "(入力形式: 18\\u00b09’48.21”E, -18.2412 あるいは -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:217
+#: ../gramps/gui/editors/editplace.py:223
 #: ../gramps/plugins/lib/maps/geography.py:891
 #: ../gramps/plugins/view/geoplaces.py:496
 #: ../gramps/plugins/view/geoplaces.py:522
@@ -14210,21 +14109,21 @@ msgstr "場所を保存できません。名前が入力されていません。
 msgid "You must enter a name before saving."
 msgstr "保存する前に名前を入力してください。"
 
-#: ../gramps/gui/editors/editplace.py:317
+#: ../gramps/gui/editors/editplace.py:323
 msgid "Cannot save place. ID already exists."
 msgstr "場所を保存できません。IDが既に存在しています。"
 
-#: ../gramps/gui/editors/editplace.py:329
+#: ../gramps/gui/editors/editplace.py:335
 #, python-format
 msgid "Add Place (%s)"
 msgstr "場所を追加 (%s)"
 
-#: ../gramps/gui/editors/editplace.py:334
+#: ../gramps/gui/editors/editplace.py:340
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "場所を編集 (%s)"
 
-#: ../gramps/gui/editors/editplace.py:362
+#: ../gramps/gui/editors/editplace.py:368
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "場所を削除 (%s)"
@@ -14264,8 +14163,7 @@ msgstr "場所名は空白にできません"
 msgid "Place Reference Editor"
 msgstr "場所参照エディタ"
 
-#: ../gramps/gui/editors/editplaceref.py:309
-#, fuzzy
+#: ../gramps/gui/editors/editplaceref.py:315
 msgid "Modify Place"
 msgstr "場所を編集"
 
@@ -14404,7 +14302,6 @@ msgid "Tag selection"
 msgstr "タグを選択"
 
 #: ../gramps/gui/editors/editurl.py:47
-#, fuzzy
 msgctxt "manual"
 msgid "Internet_Address_Editor"
 msgstr "インターネットアクセスエディタ"
@@ -14424,7 +14321,6 @@ msgid "Define_Filter_dialog"
 msgstr "フィルタ定義ダイアログ"
 
 #: ../gramps/gui/editors/filtereditor.py:86
-#, fuzzy
 msgctxt "manual"
 msgid "Custom_Filters"
 msgstr "カスタムフィルタ"
@@ -14450,7 +14346,6 @@ msgid "Source Filters"
 msgstr "ソースフィルタ"
 
 #: ../gramps/gui/editors/filtereditor.py:95
-#, fuzzy
 msgid "Media Filters"
 msgstr "メディアフィルタ"
 
@@ -14510,7 +14405,6 @@ msgid "Use regular expression"
 msgstr "正規表現を使用する"
 
 #: ../gramps/gui/editors/filtereditor.py:573
-#, fuzzy
 msgid "Also family events where person is spouse"
 msgstr "人物が夫/妻である場合の家族イベントも同様です"
 
@@ -14639,8 +14533,7 @@ msgstr "ソースを選択するには、ドラッグドロップするかボタ
 msgid "First add a source using the button"
 msgstr "ボタンを使って最初にソースを追加"
 
-#: ../gramps/gui/editors/objectentries.py:341
-#, fuzzy
+#: ../gramps/gui/editors/objectentries.py:344
 msgid "Edit source"
 msgstr "ソースを編集"
 
@@ -14648,7 +14541,7 @@ msgstr "ソースを編集"
 msgid "Select an existing source"
 msgstr "既存のソースを選択してください"
 
-#: ../gramps/gui/editors/objectentries.py:343
+#: ../gramps/gui/editors/objectentries.py:346
 #: ../gramps/plugins/view/citationlistview.py:125
 #: ../gramps/plugins/view/citationtreeview.py:122
 #: ../gramps/plugins/view/sourceview.py:98
@@ -14670,21 +14563,21 @@ msgstr ""
 msgid "No image given, click button to select one"
 msgstr "画像が選択されていません。ボタンをクリックして選択してください"
 
-#: ../gramps/gui/editors/objectentries.py:387
+#: ../gramps/gui/editors/objectentries.py:390
 msgid "Edit media object"
 msgstr "メディアオブジェクトを編集"
 
-#: ../gramps/gui/editors/objectentries.py:388
+#: ../gramps/gui/editors/objectentries.py:391
 #: ../gramps/gui/plug/_guioptions.py:1094
 msgid "Select an existing media object"
 msgstr "既存のメディアオブジェクトを選択してください"
 
-#: ../gramps/gui/editors/objectentries.py:389
+#: ../gramps/gui/editors/objectentries.py:392
 #: ../gramps/plugins/view/mediaview.py:112
 msgid "Add a new media object"
 msgstr "新しいメディアオブジェクトを追加"
 
-#: ../gramps/gui/editors/objectentries.py:390
+#: ../gramps/gui/editors/objectentries.py:393
 msgid "Remove media object"
 msgstr "メディアオブジェクトを削除"
 
@@ -14697,17 +14590,17 @@ msgstr "ノートを選択するには、ドラッグドロップするかボタ
 msgid "No note given, click button to select one"
 msgstr "ノートが選択されていません。ボタンをクリックして選択してください"
 
-#: ../gramps/gui/editors/objectentries.py:434
+#: ../gramps/gui/editors/objectentries.py:438
 #: ../gramps/gui/plug/_guioptions.py:989
 msgid "Select an existing note"
 msgstr "既存のノートを選択してください"
 
-#: ../gramps/gui/editors/objectentries.py:435
+#: ../gramps/gui/editors/objectentries.py:439
 #: ../gramps/plugins/view/noteview.py:93
 msgid "Add a new note"
 msgstr "新しいノートを追加"
 
-#: ../gramps/gui/editors/objectentries.py:436
+#: ../gramps/gui/editors/objectentries.py:440
 msgid "Remove note"
 msgstr "ノートを削除"
 
@@ -14741,8 +14634,8 @@ msgstr "%s でない"
 msgid "%s does not contain"
 msgstr "%s が含まれていない"
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1198
-#: ../gramps/gui/views/listview.py:1218 ../gramps/plugins/gramplet/leak.py:193
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1199
+#: ../gramps/gui/views/listview.py:1219 ../gramps/plugins/gramplet/leak.py:193
 #: ../gramps/plugins/gramplet/leak.py:200
 msgid "Updating display..."
 msgstr "表示を更新しています..."
@@ -14793,7 +14686,7 @@ msgstr "参加者"
 #: ../gramps/gui/widgets/reorderfam.py:103
 #: ../gramps/plugins/textreport/tagreport.py:264
 #: ../gramps/plugins/view/familyview.py:82
-#: ../gramps/plugins/webreport/person.py:1247
+#: ../gramps/plugins/webreport/person.py:1253
 msgid "Relationship"
 msgstr "関係"
 
@@ -14803,7 +14696,7 @@ msgstr "いずれか"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/webreport/person.py:1862
+#: ../gramps/plugins/webreport/person.py:1868
 msgid "Birth date"
 msgstr "誕生日"
 
@@ -14815,7 +14708,7 @@ msgstr "例: “%(msg1)s” または “%(msg2)s”"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/webreport/person.py:1863
+#: ../gramps/plugins/webreport/person.py:1869
 msgid "Death date"
 msgstr "死亡日"
 
@@ -15378,7 +15271,6 @@ msgstr "引用を特定するユニークID"
 #: ../gramps/gui/glade/editplaceref.glade:545
 #: ../gramps/gui/glade/editrepository.glade:234
 #: ../gramps/gui/glade/editsource.glade:229
-#, fuzzy
 msgid "Tags:"
 msgstr "タグ:"
 
@@ -15480,7 +15372,6 @@ msgstr "場所(_P):"
 #: ../gramps/gui/glade/editldsord.glade:257
 #: ../gramps/gui/glade/editlink.glade:164
 #: ../gramps/gui/glade/editpersonref.glade:201
-#, fuzzy
 msgid "Selector"
 msgstr "選択"
 
@@ -15596,7 +15487,7 @@ msgid "_Tags:"
 msgstr "タグ(_T):"
 
 #: ../gramps/gui/glade/editfamily.glade:764
-#: ../gramps/gui/widgets/monitoredwidgets.py:853
+#: ../gramps/gui/widgets/monitoredwidgets.py:847
 msgid "Edit the tag list"
 msgstr "タグリストを編集"
 
@@ -15778,7 +15669,6 @@ msgstr ""
 "コンピュータに表示されているメディアオブジェクトの種類。例.画像、ビデオ…"
 
 #: ../gramps/gui/glade/editmediaref.glade:650
-#, fuzzy
 msgid "Select a file"
 msgstr "ファイルの選択"
 
@@ -16144,12 +16034,11 @@ msgid "Number Street"
 msgstr "結婚の回数"
 
 #: ../gramps/gui/glade/editplaceformat.glade:187
-#, fuzzy
 msgid "Street Number"
 msgstr "番地"
 
 #: ../gramps/gui/glade/editplacename.glade:156
-#: ../gramps/plugins/webreport/basepage.py:2621
+#: ../gramps/plugins/webreport/basepage.py:2571
 msgid "Date range in which the name is valid."
 msgstr ""
 
@@ -16288,7 +16177,6 @@ msgid "Drag to move; click to detach"
 msgstr "移動するにはドラッグし、外すにはクリックします"
 
 #: ../gramps/gui/glade/grampletpane.glade:71
-#, fuzzy
 msgid "Config"
 msgstr "設定"
 
@@ -16305,7 +16193,6 @@ msgid "Click to delete gramplet from view"
 msgstr "クリックしてgrampletをビューから削除"
 
 #: ../gramps/gui/glade/grampletpane.glade:144
-#, fuzzy
 msgid "Delete"
 msgstr "削除"
 
@@ -16498,7 +16385,7 @@ msgid "Note 2"
 msgstr "ノート 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1069
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1070
 msgid "Format:"
 msgstr "フォーマット:"
 
@@ -16756,7 +16643,6 @@ msgstr "選択されたルールを削除"
 #: ../gramps/plugins/tool/finddupes.glade:132
 #: ../gramps/plugins/tool/mergecitations.glade:132
 #: ../gramps/plugins/tool/sortevents.py:83
-#, fuzzy
 msgid "Options"
 msgstr "オプション"
 
@@ -16951,7 +16837,6 @@ msgid "Style:"
 msgstr "スタイル:"
 
 #: ../gramps/gui/glade/styleeditor.glade:1481
-#, fuzzy
 msgid "Width:"
 msgstr "幅:"
 
@@ -17417,7 +17302,6 @@ msgid "Further Information"
 msgstr "詳細な情報"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:484
-#, fuzzy
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occurred."
@@ -17439,7 +17323,6 @@ msgid "Bug Report Summary"
 msgstr "バグレポート要約"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:548
-#, fuzzy
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
@@ -17496,7 +17379,6 @@ msgstr ""
 "を割いていただいたことに感謝致します。"
 
 #: ../gramps/gui/logger/_errorview.py:46
-#, fuzzy
 msgctxt "manual"
 msgid "Error_Report"
 msgstr "エラー報告"
@@ -17607,11 +17489,11 @@ msgstr "人物のマージ"
 #: ../gramps/gui/widgets/fanchart.py:1994
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:128
-#: ../gramps/plugins/view/pedigreeview.py:1866
+#: ../gramps/plugins/view/pedigreeview.py:1867
 #: ../gramps/plugins/view/relview.py:667 ../gramps/plugins/view/relview.py:1033
 #: ../gramps/plugins/view/relview.py:1068
 #: ../gramps/plugins/webreport/person.py:232
-#: ../gramps/plugins/webreport/person.py:1845
+#: ../gramps/plugins/webreport/person.py:1851
 #: ../gramps/plugins/webreport/surname.py:154
 msgid "Parents"
 msgstr "親"
@@ -17630,7 +17512,7 @@ msgstr "両親が見つかりません"
 #: ../gramps/gui/merge/mergeperson.py:238
 #: ../gramps/gui/widgets/fanchart.py:1857
 #: ../gramps/plugins/textreport/kinshipreport.py:133
-#: ../gramps/plugins/view/pedigreeview.py:1753
+#: ../gramps/plugins/view/pedigreeview.py:1754
 msgid "Spouses"
 msgstr "配偶者"
 
@@ -17649,7 +17531,7 @@ msgid "No spouses or children found"
 msgstr "配偶者または子供が見つかりません"
 
 #. Add column with the warning text
-#: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:565
+#: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:568
 msgid "Warning"
 msgstr "警告"
 
@@ -17763,7 +17645,7 @@ msgstr "名前を付けて保存"
 msgid "_Open"
 msgstr "開く(_O)"
 
-#: ../gramps/gui/plug/_guioptions.py:1823
+#: ../gramps/gui/plug/_guioptions.py:1824
 #: ../gramps/gui/plug/report/_reportdialog.py:329
 msgid "Style Editor"
 msgstr "スタイルエディタ"
@@ -17919,9 +17801,9 @@ msgid "_Execute"
 msgstr "実行(_E)"
 
 #: ../gramps/gui/plug/_windows.py:1049
-#: ../gramps/plugins/importer/importprogen.py:457
+#: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/tool/ownereditor.py:164
-#: ../gramps/plugins/tool/reorderids.py:218
+#: ../gramps/plugins/tool/reorderids.py:221
 msgid "Main window"
 msgstr "メインウインドウ"
 
@@ -18845,11 +18727,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1120
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1117
 msgid "_Undo"
 msgstr "元に戻す(_U)"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1140
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1137
 msgid "_Redo"
 msgstr "やり直し(_R)"
 
@@ -18888,7 +18770,6 @@ msgid "History cleared"
 msgstr "履歴を消去しました"
 
 #: ../gramps/gui/utils.py:230
-#, fuzzy
 msgid "Canceling..."
 msgstr "キャンセルしています..."
 
@@ -18910,7 +18791,7 @@ msgstr "外部プログラムによるエラー"
 msgid "File %s does not exist"
 msgstr "ファイル%s は存在しません"
 
-#: ../gramps/gui/utils.py:627
+#: ../gramps/gui/utils.py:628
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -18969,12 +18850,12 @@ msgstr ""
 msgid "View failed to load. Check error output."
 msgstr "ビューの読み込みに失敗しました。エラー出力を確認してください。"
 
-#: ../gramps/gui/viewmanager.py:948
+#: ../gramps/gui/viewmanager.py:945
 #: ../gramps/plugins/importer/importprogen.py:195
 msgid "Import Statistics"
 msgstr "インポート統計"
 
-#: ../gramps/gui/viewmanager.py:1019
+#: ../gramps/gui/viewmanager.py:1016
 msgid "Read Only"
 msgstr "読み取り専用"
 
@@ -18986,19 +18867,19 @@ msgstr "Grampsの前回使用時に問題が発生しました。"
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "チェックと修復ツールを起動しますか？"
 
-#: ../gramps/gui/viewmanager.py:1189
+#: ../gramps/gui/viewmanager.py:1186
 msgid "Autobackup..."
 msgstr "自動保存..."
 
-#: ../gramps/gui/viewmanager.py:1194
+#: ../gramps/gui/viewmanager.py:1191
 msgid "Error saving backup data"
 msgstr "バックアップデータのセーブでエラーが発生しました"
 
-#: ../gramps/gui/viewmanager.py:1481
+#: ../gramps/gui/viewmanager.py:1478
 msgid "Failed Loading View"
 msgstr "ビューの読み込みに失敗しました"
 
-#: ../gramps/gui/viewmanager.py:1482
+#: ../gramps/gui/viewmanager.py:1479
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19013,11 +18894,11 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1574
+#: ../gramps/gui/viewmanager.py:1571
 msgid "Failed Loading Plugin"
 msgstr "プラグインの読み込みに失敗しました"
 
-#: ../gramps/gui/viewmanager.py:1575
+#: ../gramps/gui/viewmanager.py:1572
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19032,30 +18913,30 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1655
+#: ../gramps/gui/viewmanager.py:1652
 msgid "Gramps XML Backup"
 msgstr "Gramps XML バックアップ"
 
-#: ../gramps/gui/viewmanager.py:1684
+#: ../gramps/gui/viewmanager.py:1681
 msgid "File:"
 msgstr "ファイル:"
 
-#: ../gramps/gui/viewmanager.py:1716
+#: ../gramps/gui/viewmanager.py:1713
 msgid "Media:"
 msgstr "メディア:"
 
-#: ../gramps/gui/viewmanager.py:1723
+#: ../gramps/gui/viewmanager.py:1720
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
 #: ../gramps/plugins/webreport/statistics.py:145
 msgctxt "Megabyte"
 msgid "MB"
 msgstr "メガバイト|MB"
 
-#: ../gramps/gui/viewmanager.py:1725
+#: ../gramps/gui/viewmanager.py:1722
 msgid "Exclude"
 msgstr "排除する"
 
-#: ../gramps/gui/viewmanager.py:1745
+#: ../gramps/gui/viewmanager.py:1742
 msgid "Backup file already exists! Overwrite?"
 msgstr "バックアップファイルはすでに存在します。上書きしますか?"
 
@@ -19064,24 +18945,24 @@ msgstr "バックアップファイルはすでに存在します。上書きし
 msgid "The file '%s' exists."
 msgstr "ファイル '%s' が存在しています。"
 
-#: ../gramps/gui/viewmanager.py:1747
+#: ../gramps/gui/viewmanager.py:1744
 msgid "Proceed and overwrite"
 msgstr "継続して上書きする"
 
-#: ../gramps/gui/viewmanager.py:1748
+#: ../gramps/gui/viewmanager.py:1745
 msgid "Cancel the backup"
 msgstr "バックアップをキャンセル"
 
-#: ../gramps/gui/viewmanager.py:1763
+#: ../gramps/gui/viewmanager.py:1760
 msgid "Making backup..."
 msgstr "バックアップを作成しています..."
 
-#: ../gramps/gui/viewmanager.py:1776
+#: ../gramps/gui/viewmanager.py:1773
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "バックアップが '%s' へ保存されました"
 
-#: ../gramps/gui/viewmanager.py:1779
+#: ../gramps/gui/viewmanager.py:1776
 msgid "Backup aborted"
 msgstr "バックアップが中断されました"
 
@@ -19177,19 +19058,19 @@ msgstr "%s を削除しますか?"
 msgid "Column clicked, sorting..."
 msgstr "カラムがクリックされました。並び替えています..."
 
-#: ../gramps/gui/views/listview.py:1061
+#: ../gramps/gui/views/listview.py:1062
 msgid "Export View as Spreadsheet"
 msgstr "ビューを表計算シートとして保存"
 
-#: ../gramps/gui/views/listview.py:1074
+#: ../gramps/gui/views/listview.py:1075
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1075
+#: ../gramps/gui/views/listview.py:1076
 msgid "OpenDocument Spreadsheet"
 msgstr "OpenDocument 表計算"
 
-#: ../gramps/gui/views/listview.py:1266
+#: ../gramps/gui/views/listview.py:1267
 msgid "Columns"
 msgstr "カラム"
 
@@ -19218,13 +19099,6 @@ msgstr ""
 "「デフォルトの人物」を設定する必要があります。人物ビューから「ホームの人物」"
 "にしたい人物を選択し、メニューバーの編集から「ホームの人物に指定」で設定して"
 "ください。"
-
-#: ../gramps/gui/views/navigationview.py:324
-msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
-"the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
-msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:337
@@ -19414,7 +19288,7 @@ msgstr "兄弟姉妹"
 
 #. Go over parents and build their menu
 #: ../gramps/gui/widgets/fanchart.py:2037
-#: ../gramps/plugins/view/pedigreeview.py:1914
+#: ../gramps/plugins/view/pedigreeview.py:1915
 msgid "Related"
 msgstr "関連した項目"
 
@@ -19916,13 +19790,13 @@ msgid "of %d"
 msgstr "%dの"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
-#: ../gramps/plugins/webreport/narrativeweb.py:1517
+#: ../gramps/plugins/webreport/narrativeweb.py:1521
 #: ../gramps/plugins/webreport/webcal.py:270
 msgid "Possible destination error"
 msgstr "読み込み場所のエラー"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:1518
+#: ../gramps/plugins/webreport/narrativeweb.py:1522
 #: ../gramps/plugins/webreport/webcal.py:271
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -20016,10 +19890,10 @@ msgstr "%s の祖先グラフ"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:362
 #: ../gramps/plugins/drawreport/calendarreport.py:114
-#: ../gramps/plugins/drawreport/descendtree.py:689
+#: ../gramps/plugins/drawreport/descendtree.py:695
 #: ../gramps/plugins/drawreport/fanchart.py:194
-#: ../gramps/plugins/graph/gvhourglass.py:109
-#: ../gramps/plugins/graph/gvrelgraph.py:184
+#: ../gramps/plugins/graph/gvhourglass.py:110
+#: ../gramps/plugins/graph/gvrelgraph.py:185
 #: ../gramps/plugins/textreport/ancestorreport.py:117
 #: ../gramps/plugins/textreport/birthdayreport.py:115
 #: ../gramps/plugins/textreport/descendreport.py:453
@@ -20049,8 +19923,8 @@ msgstr "ツリーを印刷しています..."
 #: ../gramps/plugins/drawreport/ancestortree.py:793
 #: ../gramps/plugins/drawreport/calendarreport.py:472
 #: ../gramps/plugins/drawreport/fanchart.py:689
-#: ../gramps/plugins/graph/gvhourglass.py:366
-#: ../gramps/plugins/graph/gvrelgraph.py:807
+#: ../gramps/plugins/graph/gvhourglass.py:368
+#: ../gramps/plugins/graph/gvrelgraph.py:810
 #: ../gramps/plugins/textreport/ancestorreport.py:290
 #: ../gramps/plugins/textreport/descendreport.py:522
 #: ../gramps/plugins/textreport/detancestralreport.py:831
@@ -20075,7 +19949,7 @@ msgid ""
 msgstr "中央の人物のみを表示する、あるいはその兄弟姉妹もすべて表示する"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:804
-#: ../gramps/plugins/drawreport/descendtree.py:1538
+#: ../gramps/plugins/drawreport/descendtree.py:1544
 #: ../gramps/plugins/drawreport/fanchart.py:693
 #: ../gramps/plugins/textreport/ancestorreport.py:294
 #: ../gramps/plugins/textreport/descendreport.py:537
@@ -20085,7 +19959,7 @@ msgid "Generations"
 msgstr "世代"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:805
-#: ../gramps/plugins/drawreport/descendtree.py:1539
+#: ../gramps/plugins/drawreport/descendtree.py:1545
 msgid "The number of generations to include in the tree"
 msgstr "ツリー上に収める世代数"
 
@@ -20113,13 +19987,13 @@ msgid ""
 msgstr "未知の人物の末端に設定されるブランクスペースを削除するかどうか"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:837
-#: ../gramps/plugins/drawreport/descendtree.py:1575
+#: ../gramps/plugins/drawreport/descendtree.py:1581
 msgid "Report Title"
 msgstr "レポートのタイトル"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:838
-#: ../gramps/plugins/drawreport/descendtree.py:1576
-#: ../gramps/plugins/drawreport/descendtree.py:1749
+#: ../gramps/plugins/drawreport/descendtree.py:1582
+#: ../gramps/plugins/drawreport/descendtree.py:1755
 msgid "Do not include a title"
 msgstr "タイトルを含めない"
 
@@ -20128,12 +20002,12 @@ msgid "Include Report Title"
 msgstr "レポートのタイトルを含める"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:840
-#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/descendtree.py:1590
 msgid "Choose a title for the report"
 msgstr "レポートのタイトルを選択してください"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:843
-#: ../gramps/plugins/drawreport/descendtree.py:1588
+#: ../gramps/plugins/drawreport/descendtree.py:1594
 msgid "Include a border"
 msgstr "ボーダーを含む"
 
@@ -20143,7 +20017,7 @@ msgid "Whether to make a border around the report."
 msgstr "レポート周辺のボーダーを含めるかどうか。"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:847
-#: ../gramps/plugins/drawreport/descendtree.py:1592
+#: ../gramps/plugins/drawreport/descendtree.py:1598
 msgid "Include Page Numbers"
 msgstr "ページ番号を含める"
 
@@ -20152,27 +20026,27 @@ msgid "Whether to print page numbers on each page."
 msgstr "各ページのページ番号を印刷するかどうか。"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#: ../gramps/plugins/drawreport/descendtree.py:1596
+#: ../gramps/plugins/drawreport/descendtree.py:1602
 msgid "Scale tree to fit"
 msgstr "ツリーを収めるようズーム"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:852
-#: ../gramps/plugins/drawreport/descendtree.py:1597
+#: ../gramps/plugins/drawreport/descendtree.py:1603
 msgid "Do not scale tree"
 msgstr "ツリーをズームしない"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#: ../gramps/plugins/drawreport/descendtree.py:1598
+#: ../gramps/plugins/drawreport/descendtree.py:1604
 msgid "Scale tree to fit page width only"
 msgstr "ツリーをページ幅に収まるようズーム"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:854
-#: ../gramps/plugins/drawreport/descendtree.py:1599
+#: ../gramps/plugins/drawreport/descendtree.py:1605
 msgid "Scale tree to fit the size of the page"
 msgstr "ツリーをページ全体に収まるようズーム"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
-#: ../gramps/plugins/drawreport/descendtree.py:1601
+#: ../gramps/plugins/drawreport/descendtree.py:1607
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "ページを特定の用紙サイズに収まるようズームする"
 
@@ -20188,7 +20062,7 @@ msgstr ""
 "注意: '用紙オプション'タブ中のオプションを上書きします"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:869
-#: ../gramps/plugins/drawreport/descendtree.py:1614
+#: ../gramps/plugins/drawreport/descendtree.py:1620
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -20207,7 +20081,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:889
-#: ../gramps/plugins/drawreport/descendtree.py:1634
+#: ../gramps/plugins/drawreport/descendtree.py:1640
 msgid "Include Blank Pages"
 msgstr "空のページを含める"
 
@@ -20296,7 +20170,7 @@ msgid "The display format for the center person"
 msgstr "中央の人物の表示フォーマット"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
-#: ../gramps/plugins/drawreport/descendtree.py:1675
+#: ../gramps/plugins/drawreport/descendtree.py:1681
 msgid "Include Marriage box"
 msgstr "結婚ボックスを含める"
 
@@ -20306,7 +20180,7 @@ msgid "Whether to include a separate marital box in the report"
 msgstr "別々の結婚ボックスをレポートに含める"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:947
-#: ../gramps/plugins/drawreport/descendtree.py:1681
+#: ../gramps/plugins/drawreport/descendtree.py:1687
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -20319,14 +20193,14 @@ msgstr "結婚ボックスのフォーマットを表示。"
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:954
-#: ../gramps/plugins/drawreport/descendtree.py:1688
+#: ../gramps/plugins/drawreport/descendtree.py:1694
 #: ../gramps/plugins/lib/libmetadata.py:104
 #, fuzzy
 msgid "Advanced"
 msgstr "高度なオプション"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:957
-#: ../gramps/plugins/drawreport/descendtree.py:1691
+#: ../gramps/plugins/drawreport/descendtree.py:1697
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -20335,7 +20209,7 @@ msgstr ""
 "'この項目を'/'この項目と置換'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:959
-#: ../gramps/plugins/drawreport/descendtree.py:1693
+#: ../gramps/plugins/drawreport/descendtree.py:1699
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -20350,7 +20224,7 @@ msgstr ""
 #. _("Whether to include thumbnails of people."))
 #. menu.add_option(category_name, "includeImages", self.__include_images)
 #: ../gramps/plugins/drawreport/ancestortree.py:969
-#: ../gramps/plugins/drawreport/descendtree.py:1696
+#: ../gramps/plugins/drawreport/descendtree.py:1702
 msgid "Include a note"
 msgstr "ノートを含める"
 
@@ -20360,7 +20234,7 @@ msgid "Whether to include a note on the report."
 msgstr "レポートにノートを含めるかどうか。"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:975
-#: ../gramps/plugins/drawreport/descendtree.py:1702
+#: ../gramps/plugins/drawreport/descendtree.py:1708
 msgid ""
 "Add a note\n"
 "\n"
@@ -20371,7 +20245,7 @@ msgstr ""
 "$T は今日の日付を挿入します"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:980
-#: ../gramps/plugins/drawreport/descendtree.py:1707
+#: ../gramps/plugins/drawreport/descendtree.py:1713
 msgid "Note Location"
 msgstr "ノートの場所"
 
@@ -20531,13 +20405,13 @@ msgstr[1] ""
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:468
-#: ../gramps/plugins/webreport/webcal.py:1673
+#: ../gramps/plugins/webreport/webcal.py:1674
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "カレンダーに表示される人物を制限するためのフィルターを選択してください"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:473
 #: ../gramps/plugins/drawreport/fanchart.py:690
-#: ../gramps/plugins/graph/gvrelgraph.py:808
+#: ../gramps/plugins/graph/gvrelgraph.py:811
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:523
 #: ../gramps/plugins/textreport/detancestralreport.py:832
@@ -20577,12 +20451,12 @@ msgstr "カレンダー下にあるテキストの3行目"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:501
 #: ../gramps/plugins/textreport/birthdayreport.py:507
-#: ../gramps/plugins/webreport/webcal.py:1729
+#: ../gramps/plugins/webreport/webcal.py:1730
 msgid "Include only living people"
 msgstr "生存中の人物のみを含める"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:502
-#: ../gramps/plugins/webreport/webcal.py:1730
+#: ../gramps/plugins/webreport/webcal.py:1731
 msgid "Include only living people in the calendar"
 msgstr "カレンダーで生存中の人物のみ含める"
 
@@ -20605,7 +20479,7 @@ msgstr "カレンダーの年"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:517
 #: ../gramps/plugins/textreport/birthdayreport.py:530
-#: ../gramps/plugins/webreport/webcal.py:1766
+#: ../gramps/plugins/webreport/webcal.py:1767
 msgid "Country for holidays"
 msgstr "国民の休日"
 
@@ -20621,7 +20495,7 @@ msgid "First day of week"
 msgstr "週の開始"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:539
-#: ../gramps/plugins/webreport/webcal.py:1787
+#: ../gramps/plugins/webreport/webcal.py:1788
 msgid "Select the first day of the week for the calendar"
 msgstr "カレンダーで週の開始日を選択してください"
 
@@ -20652,13 +20526,13 @@ msgstr "自分自身の姓を使う"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:550
 #: ../gramps/plugins/textreport/birthdayreport.py:552
-#: ../gramps/plugins/webreport/webcal.py:1797
+#: ../gramps/plugins/webreport/webcal.py:1798
 msgid "Select married women's displayed surname"
 msgstr "結婚した女性に表示する姓を選んでください"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:553
 #: ../gramps/plugins/textreport/birthdayreport.py:555
-#: ../gramps/plugins/webreport/webcal.py:1882
+#: ../gramps/plugins/webreport/webcal.py:1883
 msgid "Include birthdays"
 msgstr "誕生日を含める"
 
@@ -20669,7 +20543,7 @@ msgstr "誕生日を含むかどうか"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:557
 #: ../gramps/plugins/textreport/birthdayreport.py:559
-#: ../gramps/plugins/webreport/webcal.py:1886
+#: ../gramps/plugins/webreport/webcal.py:1887
 msgid "Include anniversaries"
 msgstr "記念日を含める"
 
@@ -20747,12 +20621,12 @@ msgstr "%(father)s と %(mother)s の子孫チャート"
 msgid "Descendant Graph"
 msgstr "子孫グラフ"
 
-#: ../gramps/plugins/drawreport/descendtree.py:326
+#: ../gramps/plugins/drawreport/descendtree.py:332
 #, python-format
 msgid "Family Chart for %(person)s"
 msgstr "%(person)s の家族チャート"
 
-#: ../gramps/plugins/drawreport/descendtree.py:329
+#: ../gramps/plugins/drawreport/descendtree.py:335
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "%(father1)s と %(mother1)s の家族チャート"
@@ -20762,7 +20636,7 @@ msgstr "%(father1)s と %(mother1)s の家族チャート"
 msgid "Cousin Chart for %(names)s"
 msgstr "%(names)s のいとこチャート"
 
-#: ../gramps/plugins/drawreport/descendtree.py:758
+#: ../gramps/plugins/drawreport/descendtree.py:764
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "家族 %s はデータベース中にありません"
@@ -20773,23 +20647,23 @@ msgstr "家族 %s はデータベース中にありません"
 msgid "Report for"
 msgstr "レポート"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1531
+#: ../gramps/plugins/drawreport/descendtree.py:1537
 msgid "The main person for the report"
 msgstr "レポートの中心となる人物"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1535
+#: ../gramps/plugins/drawreport/descendtree.py:1541
 msgid "The main family for the report"
 msgstr "レポートの中心となる家族"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1542
+#: ../gramps/plugins/drawreport/descendtree.py:1548
 msgid "Level of Spouses"
 msgstr "配偶者のレベル"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1543
+#: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr "0=配偶者なし, 1=配偶者を含む, 2=配偶者の配偶者を含む,など"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1548
+#: ../gramps/plugins/drawreport/descendtree.py:1554
 msgid "Start with the parent(s) of the selected first"
 msgstr "最初に選択した両親から開始する"
 
@@ -20801,7 +20675,7 @@ msgstr "選択した人物の親、兄弟姉妹を表示する。"
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr "人物を上の可能な場所に移動し、小さなツリーを作るかどうか"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1561
+#: ../gramps/plugins/drawreport/descendtree.py:1567
 msgid "Bold direct descendants"
 msgstr "直径の子孫を太字にする"
 
@@ -20810,7 +20684,7 @@ msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr "直系の(継父母や異父母でない)子孫を表示するかどうか。"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1568
+#: ../gramps/plugins/drawreport/descendtree.py:1574
 msgid "Indent Spouses"
 msgstr "配偶者をインデント"
 
@@ -20818,18 +20692,18 @@ msgstr "配偶者をインデント"
 msgid "Whether to indent the spouses in the tree."
 msgstr "ツリー上で配偶者をインデントするかどうか。"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1577
-#: ../gramps/plugins/drawreport/descendtree.py:1750
+#: ../gramps/plugins/drawreport/descendtree.py:1583
+#: ../gramps/plugins/drawreport/descendtree.py:1756
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "[selected person(s)] の子孫チャート"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1580
-#: ../gramps/plugins/drawreport/descendtree.py:1754
+#: ../gramps/plugins/drawreport/descendtree.py:1586
+#: ../gramps/plugins/drawreport/descendtree.py:1760
 msgid "Family Chart for [names of chosen family]"
 msgstr "[names of chosen family] の家族チャート"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1583
-#: ../gramps/plugins/drawreport/descendtree.py:1758
+#: ../gramps/plugins/drawreport/descendtree.py:1589
+#: ../gramps/plugins/drawreport/descendtree.py:1764
 msgid "Cousin Chart for [names of children]"
 msgstr "[names of children] のいとこチャート"
 
@@ -20837,7 +20711,7 @@ msgstr "[names of children] のいとこチャート"
 msgid "Whether to include page numbers on each page."
 msgstr "各ページのページ番号を含めるかどうか。"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1654
+#: ../gramps/plugins/drawreport/descendtree.py:1660
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -20966,7 +20840,7 @@ msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "%(person)s の %(generations)d 世代ファンチャート"
 
 #: ../gramps/plugins/drawreport/fanchart.py:271
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
@@ -21052,7 +20926,7 @@ msgid "Item count"
 msgstr "項目数"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:315
-#: ../gramps/plugins/graph/gvfamilylines.py:85
+#: ../gramps/plugins/graph/gvfamilylines.py:86
 msgid "Both"
 msgstr "両方"
 
@@ -21246,8 +21120,8 @@ msgstr "レポートにどの人物が含まれているか特定する。"
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
-#: ../gramps/plugins/webreport/narrativeweb.py:1645
-#: ../gramps/plugins/webreport/webcal.py:1677
+#: ../gramps/plugins/webreport/narrativeweb.py:1649
+#: ../gramps/plugins/webreport/webcal.py:1678
 msgid "Filter Person"
 msgstr "人物をフィルタ"
 
@@ -21395,8 +21269,8 @@ msgstr "レポートにどの人物が含まれているか特定する"
 #: ../gramps/plugins/drawreport/timeline.py:423
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:174
-#: ../gramps/plugins/webreport/narrativeweb.py:1646
-#: ../gramps/plugins/webreport/webcal.py:1678
+#: ../gramps/plugins/webreport/narrativeweb.py:1650
+#: ../gramps/plugins/webreport/webcal.py:1679
 msgid "The center person for the filter"
 msgstr "フィルタの中心人物"
 
@@ -21623,14 +21497,14 @@ msgstr "埋葬のソース"
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:233
 #: ../gramps/plugins/textreport/familygroup.py:627
-#: ../gramps/plugins/webreport/basepage.py:2366
+#: ../gramps/plugins/webreport/basepage.py:2319
 msgid "Husband"
 msgstr "夫"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:230
 #: ../gramps/plugins/textreport/familygroup.py:636
-#: ../gramps/plugins/webreport/basepage.py:2364
+#: ../gramps/plugins/webreport/basepage.py:2317
 msgid "Wife"
 msgstr "妻"
 
@@ -21682,11 +21556,11 @@ msgstr "メディアを書き込み"
 msgid "GEDCOM Export failed"
 msgstr "GEDCOM エクスポートに失敗しました"
 
-#: ../gramps/plugins/export/exportgeneweb.py:96
+#: ../gramps/plugins/export/exportgeneweb.py:97
 msgid "No families matched by selected filter"
 msgstr "選択されたフィルタに該当する家族がいません"
 
-#: ../gramps/plugins/export/exportpkg.py:185
+#: ../gramps/plugins/export/exportpkg.py:212
 #: ../gramps/plugins/export/exportxml.py:139
 #: ../gramps/plugins/export/exportxml.py:155
 #: ../gramps/plugins/export/exportxml.py:173
@@ -21877,7 +21751,6 @@ msgid "Edit the event"
 msgstr "イベントを編集"
 
 #: ../gramps/plugins/gramplet/coordinates.py:148
-#, fuzzy
 msgid "Edit the place"
 msgstr "場所を編集"
 
@@ -22167,7 +22040,6 @@ msgstr "2方向ファン"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:172
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:178
-#, fuzzy
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -22188,7 +22060,7 @@ msgstr "全ての名前をテキストクラウドとして表示するGramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:205
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:127
-#: ../gramps/plugins/webreport/person.py:1352
+#: ../gramps/plugins/webreport/person.py:1358
 msgid "Pedigree"
 msgstr "家系図"
 
@@ -22604,10 +22476,9 @@ msgstr "人物のバックリンク参照を表示するGramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/basepage.py:2959
-#: ../gramps/plugins/webreport/person.py:884
+#: ../gramps/plugins/webreport/basepage.py:2932
+#: ../gramps/plugins/webreport/person.py:883
 #: ../gramps/plugins/webreport/thumbnail.py:164
-#, fuzzy
 msgid "References"
 msgstr "参照"
 
@@ -22636,7 +22507,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "場所のバックリンク参照を表示するGramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:931
-#: ../gramps/plugins/webreport/basepage.py:2234
+#: ../gramps/plugins/webreport/basepage.py:2187
 msgid "Source References"
 msgstr "ソース参照"
 
@@ -23150,7 +23021,7 @@ msgstr "１未満"
 
 #. -------------------------
 #: ../gramps/plugins/gramplet/statsgramplet.py:140
-#: ../gramps/plugins/graph/gvfamilylines.py:276
+#: ../gramps/plugins/graph/gvfamilylines.py:277
 #: ../gramps/plugins/textreport/summary.py:113
 #: ../gramps/plugins/webreport/basepage.py:1526
 #: ../gramps/plugins/webreport/basepage.py:1577
@@ -23872,12 +23743,11 @@ msgstr "母親: %s"
 msgid "child: %s"
 msgstr "子: %s"
 
-#: ../gramps/plugins/graph/gvhourglass.py:62
-#, fuzzy
+#: ../gramps/plugins/graph/gvhourglass.py:63
 msgid "Center -> Others"
 msgstr "中央揃え"
 
-#: ../gramps/plugins/graph/gvhourglass.py:63
+#: ../gramps/plugins/graph/gvhourglass.py:64
 #, fuzzy
 msgid "Center <- Others"
 msgstr "中央揃え"
@@ -23887,7 +23757,7 @@ msgstr "中央揃え"
 msgid "Center <-> Other"
 msgstr "中央 <-> 他"
 
-#: ../gramps/plugins/graph/gvhourglass.py:65
+#: ../gramps/plugins/graph/gvhourglass.py:66
 #, fuzzy
 msgid "Center - Other"
 msgstr "中央揃え"
@@ -23940,30 +23810,30 @@ msgstr "女性と男性の区別などに丸められた角を使用する。"
 msgid "Graph Style"
 msgstr "グラフスタイル"
 
-#: ../gramps/plugins/graph/gvhourglass.py:436
+#: ../gramps/plugins/graph/gvhourglass.py:438
 #, fuzzy
 msgid "Force Ahnentafel order"
 msgstr "血統レポート"
 
-#: ../gramps/plugins/graph/gvhourglass.py:438
+#: ../gramps/plugins/graph/gvhourglass.py:440
 msgid ""
 "Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so "
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:441
+#: ../gramps/plugins/graph/gvhourglass.py:443
 #, fuzzy
 msgid "Ahnentafel number visible"
 msgstr "血統レポート"
 
-#: ../gramps/plugins/graph/gvhourglass.py:443
+#: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:208
+#: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:834
 #: ../gramps/plugins/textreport/notelinkreport.py:103
 #: ../gramps/plugins/textreport/placereport.py:160
@@ -24209,7 +24079,6 @@ msgid "title"
 msgstr "タイトル"
 
 #: ../gramps/plugins/importer/importcsv.py:166
-#, fuzzy
 msgid "title"
 msgstr "タイトル"
 
@@ -24218,7 +24087,6 @@ msgid "gender"
 msgstr "性別"
 
 #: ../gramps/plugins/importer/importcsv.py:170
-#, fuzzy
 msgid "source"
 msgstr "ソース"
 
@@ -24407,7 +24275,6 @@ msgstr "子供"
 
 #. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:229
-#, fuzzy
 msgid "mother"
 msgstr "母親"
 
@@ -24416,7 +24283,6 @@ msgid "parent2"
 msgstr "親2"
 
 #: ../gramps/plugins/importer/importcsv.py:232
-#, fuzzy
 msgid "father"
 msgstr "父親"
 
@@ -24429,7 +24295,6 @@ msgid "marriage"
 msgstr "結婚"
 
 #: ../gramps/plugins/importer/importcsv.py:236
-#, fuzzy
 msgid "date"
 msgstr "日付"
 
@@ -24454,14 +24319,12 @@ msgstr "タイプ"
 #. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:241
 #: ../gramps/plugins/tool/removespaces.py:188
-#, fuzzy
 msgid "latitude"
 msgstr "緯度"
 
 #. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:242
 #: ../gramps/plugins/tool/removespaces.py:192
-#, fuzzy
 msgid "longitude"
 msgstr "経度"
 
@@ -24639,7 +24502,6 @@ msgid "Sold property"
 msgstr "財産の売却"
 
 #: ../gramps/plugins/importer/importgeneweb.py:130
-#, fuzzy
 msgid "No mention"
 msgstr "説明がありません"
 
@@ -24753,7 +24615,6 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:155
 #: ../gramps/plugins/importer/importprogen.glade:325
-#, fuzzy
 msgid "Attribut"
 msgstr "属性"
 
@@ -24980,7 +24841,6 @@ msgstr ""
 "夫の名前などに変更。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1692
-#, fuzzy
 msgid "Option"
 msgstr "オプション"
 
@@ -25092,7 +24952,7 @@ msgstr "%(person)s の%(event_name)s"
 
 #: ../gramps/plugins/importer/importxml.py:154
 #: ../gramps/plugins/importer/importxml.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Error reading %s"
 msgstr "\"%s\" を読み込み中にエラーが発生しました"
 
@@ -25396,8 +25256,8 @@ msgid "Common Law Marriage"
 msgstr "事実婚"
 
 #: ../gramps/plugins/lib/libgedcom.py:699
-#: ../gramps/plugins/webreport/narrativeweb.py:1626
-#: ../gramps/plugins/webreport/webcal.py:1661
+#: ../gramps/plugins/webreport/narrativeweb.py:1630
+#: ../gramps/plugins/webreport/webcal.py:1662
 msgid "Destination"
 msgstr "Destination"
 
@@ -25406,7 +25266,6 @@ msgid "DNA"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:701
-#, fuzzy
 msgid "Cause of Death"
 msgstr "死因"
 
@@ -25505,21 +25364,21 @@ msgstr ""
 msgid "Records not imported into "
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3225
+#: ../gramps/plugins/lib/libgedcom.py:3226
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3234
+#: ../gramps/plugins/lib/libgedcom.py:3235
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3278
+#: ../gramps/plugins/lib/libgedcom.py:3279
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -25527,7 +25386,7 @@ msgid ""
 "reference removed from person"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3356
+#: ../gramps/plugins/lib/libgedcom.py:3357
 #, python-format
 msgid ""
 "\n"
@@ -25541,12 +25400,12 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3430
+#: ../gramps/plugins/lib/libgedcom.py:3431
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3451
+#: ../gramps/plugins/lib/libgedcom.py:3452
 msgid "TRLR (trailer)"
 msgstr ""
 
@@ -25600,39 +25459,38 @@ msgstr "インポートできませんでした: %s"
 msgid "Media-Type"
 msgstr "メディアの種類"
 
-#: ../gramps/plugins/lib/libgedcom.py:5519
-#: ../gramps/plugins/lib/libgedcom.py:6793
+#: ../gramps/plugins/lib/libgedcom.py:5520
+#: ../gramps/plugins/lib/libgedcom.py:6794
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr ""
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5658
+#: ../gramps/plugins/lib/libgedcom.py:5659
 msgid "A second PLAC ignored"
 msgstr ""
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, ...
-#: ../gramps/plugins/lib/libgedcom.py:5797
-#, fuzzy
+#: ../gramps/plugins/lib/libgedcom.py:5798
 msgid "Detail"
 msgstr "詳細"
 
 #. We have perviously found an ADDR, or have populated
 #. location from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5810
+#: ../gramps/plugins/lib/libgedcom.py:5811
 msgid "Location already populated; ADDR ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6211
-#: ../gramps/plugins/lib/libgedcom.py:7099
+#: ../gramps/plugins/lib/libgedcom.py:6212
+#: ../gramps/plugins/lib/libgedcom.py:7100
 msgid "Warn: ADDR overwritten"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6376
+#: ../gramps/plugins/lib/libgedcom.py:6377
 #, fuzzy
 msgid "Citation Justification"
 msgstr "<b>関係情報</b>"
 
-#: ../gramps/plugins/lib/libgedcom.py:6403
+#: ../gramps/plugins/lib/libgedcom.py:6404
 msgid "REFN ignored"
 msgstr ""
 
@@ -25657,8 +25515,8 @@ msgstr "OBJE (マルチメディアオブジェクト) Gramps ID %s"
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (レポジトリ) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7048
-#: ../gramps/plugins/lib/libgedcom.py:8059
+#: ../gramps/plugins/lib/libgedcom.py:7049
+#: ../gramps/plugins/lib/libgedcom.py:8061
 msgid "Only one phone number supported"
 msgstr ""
 
@@ -25670,7 +25528,7 @@ msgstr "HEAD (ヘッダー)"
 msgid "Approved system identification"
 msgstr "承認済みシステム識別子"
 
-#: ../gramps/plugins/lib/libgedcom.py:7267
+#: ../gramps/plugins/lib/libgedcom.py:7268
 #, fuzzy
 msgid "Generated By"
 msgstr "生成(_G)"
@@ -25683,7 +25541,7 @@ msgstr "ソフトウェア名"
 msgid "Version number of software product"
 msgstr "ソフトウェアバージョン番号"
 
-#: ../gramps/plugins/lib/libgedcom.py:7315
+#: ../gramps/plugins/lib/libgedcom.py:7316
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr ""
@@ -29060,7 +28918,7 @@ msgstr "戻る(_B)"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:652
 #: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/pedigreeview.py:1647
+#: ../gramps/plugins/view/pedigreeview.py:1648
 #: ../gramps/plugins/view/relview.py:372 ../gramps/plugins/view/relview.py:436
 msgid "_Home"
 msgstr "ホーム(_H)"
@@ -29163,7 +29021,7 @@ msgstr "人物フィルタエディタ"
 
 #: ../gramps/plugins/lib/libpersonview.py:246
 #: ../gramps/plugins/lib/libpersonview.py:355
-#: ../gramps/plugins/view/pedigreeview.py:1657
+#: ../gramps/plugins/view/pedigreeview.py:1658
 msgid "Set _Home Person"
 msgstr "ホームの人物に指定(_H)"
 
@@ -29176,17 +29034,6 @@ msgstr "ホームの人物に指定(_H)"
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
 msgid "Go to the home person"
-msgstr "デフォルトの人物へ戻る"
-
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
-#: ../gramps/plugins/view/geoperson.py:109
-#: ../gramps/plugins/view/pedigreeview.py:693
-#: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
 msgstr "デフォルトの人物へ戻る"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
@@ -29464,7 +29311,7 @@ msgid "Pro-Gen Import"
 msgstr "Pro-Genインポート"
 
 #. Hmmm. Just use the plain text.
-#: ../gramps/plugins/lib/libprogen.py:1137
+#: ../gramps/plugins/lib/libprogen.py:1138
 #, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
 msgstr ""
@@ -29498,8 +29345,7 @@ msgstr "死因"
 msgid "Importing families."
 msgstr "家族をインポートしています。"
 
-#: ../gramps/plugins/lib/libprogen.py:1689
-#, fuzzy
+#: ../gramps/plugins/lib/libprogen.py:1691
 msgid "Civil union"
 msgstr "シビルユニオン"
 
@@ -29507,7 +29353,7 @@ msgstr "シビルユニオン"
 msgid "Wedding"
 msgstr "婚礼"
 
-#: ../gramps/plugins/lib/libprogen.py:1829
+#: ../gramps/plugins/lib/libprogen.py:1831
 msgid "future"
 msgstr ""
 
@@ -29519,12 +29365,12 @@ msgstr ""
 msgid "Adding children."
 msgstr "子供を追加しています。"
 
-#: ../gramps/plugins/lib/libprogen.py:1927
+#: ../gramps/plugins/lib/libprogen.py:1929
 #, fuzzy
 msgid "Cannot find father for I%(person)s (Father=%(father))"
 msgstr "%(person)s と %(father1)s, %(mother1)s の子孫チャート"
 
-#: ../gramps/plugins/lib/libprogen.py:1930
+#: ../gramps/plugins/lib/libprogen.py:1932
 #, fuzzy
 msgid "Cannot find mother for I%(person)s (Mother=%(mother))"
 msgstr "%(person)s と %(father1)s, %(mother1)s の子孫チャート"
@@ -29629,22 +29475,18 @@ msgid "\"%(callname)s\" (%(firstname)s)"
 msgstr ""
 
 #: ../gramps/plugins/lib/libtreebase.py:756
-#, fuzzy
 msgid "Top Left"
 msgstr "左上"
 
 #: ../gramps/plugins/lib/libtreebase.py:757
-#, fuzzy
 msgid "Top Right"
 msgstr "右上"
 
 #: ../gramps/plugins/lib/libtreebase.py:758
-#, fuzzy
 msgid "Bottom Left"
 msgstr "左下"
 
 #: ../gramps/plugins/lib/libtreebase.py:759
-#, fuzzy
 msgid "Bottom Right"
 msgstr "右下"
 
@@ -29782,7 +29624,7 @@ msgstr "地図"
 msgid "Select tile cache directory for offline mode"
 msgstr "オフラインモードのタイトルキャッシュディレクトリを選択"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:138
+#: ../gramps/plugins/lib/maps/osmgps.py:139
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr ""
@@ -29804,8 +29646,8 @@ msgid ""
 "The next errors will be normal"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/osmgps.py:161
-#: ../gramps/plugins/lib/maps/osmgps.py:226
+#: ../gramps/plugins/lib/maps/osmgps.py:174
+#: ../gramps/plugins/lib/maps/osmgps.py:239
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr ""
@@ -29921,7 +29763,7 @@ msgid "Open on maps.google.com"
 msgstr ""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:2044
+#: ../gramps/plugins/webreport/narrativeweb.py:2048
 msgid "OpenStreetMap"
 msgstr ""
 
@@ -30070,7 +29912,6 @@ msgid "Partner"
 msgstr "パートナー"
 
 #: ../gramps/plugins/quickview/all_relations.py:313
-#, fuzzy
 msgid "Partial"
 msgstr "一部"
 
@@ -30262,7 +30103,6 @@ msgstr "カウント/合計"
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
 #: ../gramps/plugins/tool/reorderids.glade:1401
-#, fuzzy
 msgid "Object"
 msgstr "オブジェクト"
 
@@ -30288,7 +30128,7 @@ msgstr "人物"
 #: ../gramps/plugins/webreport/basepage.py:1531
 #: ../gramps/plugins/webreport/basepage.py:1583
 #: ../gramps/plugins/webreport/basepage.py:1652
-#: ../gramps/plugins/webreport/person.py:1249
+#: ../gramps/plugins/webreport/person.py:1255
 #: ../gramps/plugins/webreport/source.py:130
 #: ../gramps/plugins/webreport/source.py:227
 msgid "Sources"
@@ -31735,12 +31575,11 @@ msgid "Alternate Parents"
 msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:445
-#: ../gramps/plugins/webreport/person.py:1234
+#: ../gramps/plugins/webreport/person.py:1240
 msgid "Associations"
 msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:591
-#, fuzzy
 msgid "Images"
 msgstr "画像"
 
@@ -31884,7 +31723,6 @@ msgid "Links To"
 msgstr ""
 
 #: ../gramps/plugins/textreport/notelinkreport.py:117
-#, fuzzy
 msgid "Failed"
 msgstr "失敗"
 
@@ -32002,12 +31840,10 @@ msgid "Don't use call name"
 msgstr "呼称を使用しない"
 
 #: ../gramps/plugins/textreport/recordsreport.py:234
-#, fuzzy
 msgid "Replace first names with call name"
 msgstr "ファーストネームを呼称で置き換える"
 
 #: ../gramps/plugins/textreport/recordsreport.py:236
-#, fuzzy
 msgid "Underline call name in first names / add call name to first name"
 msgstr ""
 "ファーストネーム中の呼称に下線を引く / ファーストネームに呼称を追加する"
@@ -32100,7 +31936,7 @@ msgid "Individuals with unknown gender: %d"
 msgstr "性別不明の個人: %d"
 
 #: ../gramps/plugins/textreport/summary.py:184
-#, fuzzy, python-format
+#, python-format
 msgid "Incomplete names: %d"
 msgstr "不完全な名前の個人: %d"
 
@@ -32970,7 +32806,6 @@ msgid "Custom filter _editor"
 msgstr "カスタムフィルタエディタ(_E)"
 
 #: ../gramps/plugins/tool/eventcmp.py:70
-#, fuzzy
 msgctxt "manual"
 msgid "Compare_Individual_Events"
 msgstr "個人イベントを比較"
@@ -33178,7 +33013,6 @@ msgid "Introduction"
 msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:104
-#, fuzzy
 msgid "Selection"
 msgstr "選択"
 
@@ -33213,7 +33047,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:389
-#, fuzzy
 msgid "Operation successfully finished"
 msgstr "操作は正しく完了しました"
 
@@ -33550,12 +33383,10 @@ msgid "Extract information from names"
 msgstr "名前から情報を抽出"
 
 #: ../gramps/plugins/tool/rebuild.py:77
-#, fuzzy
 msgid "Rebuilding secondary indexes..."
 msgstr "二次インデックスの再構築をしています..."
 
 #: ../gramps/plugins/tool/rebuild.py:86
-#, fuzzy
 msgid "Secondary indexes rebuilt"
 msgstr "二次インデックスの再構築"
 
@@ -33655,7 +33486,6 @@ msgstr "ファーストネーム"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
-#, fuzzy
 msgid "alternate name"
 msgstr "代替名"
 
@@ -33718,12 +33548,12 @@ msgstr "未使用のオブジェクト"
 
 #. Add mark column
 #. Add ignore column
-#: ../gramps/plugins/tool/removeunused.py:184
-#: ../gramps/plugins/tool/verify.py:554
+#: ../gramps/plugins/tool/removeunused.py:188
+#: ../gramps/plugins/tool/verify.py:557
 msgid "Mark"
 msgstr "マーク"
 
-#: ../gramps/plugins/tool/removeunused.py:299
+#: ../gramps/plugins/tool/removeunused.py:303
 msgid "Remove unused objects"
 msgstr "未使用のオブジェクトを削除"
 
@@ -33794,17 +33624,16 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:64
-#, fuzzy
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
 msgstr "Gramps IDを再配置"
 
 #. self.top.set_icon(ICON)
-#: ../gramps/plugins/tool/reorderids.py:218
-#: ../gramps/plugins/tool/reorderids.py:441
-#: ../gramps/plugins/tool/reorderids.py:533
-#: ../gramps/plugins/tool/reorderids.py:616
-#: ../gramps/plugins/tool/reorderids.py:621
+#: ../gramps/plugins/tool/reorderids.py:221
+#: ../gramps/plugins/tool/reorderids.py:444
+#: ../gramps/plugins/tool/reorderids.py:536
+#: ../gramps/plugins/tool/reorderids.py:626
+#: ../gramps/plugins/tool/reorderids.py:631
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
 msgstr "Gramps IDを再配置"
@@ -34075,12 +33904,10 @@ msgid ""
 msgstr "名前もしくは姓からタイトル、接頭辞、複合姓を抽出。"
 
 #: ../gramps/plugins/tool/tools.gpr.py:265
-#, fuzzy
 msgid "Rebuild Secondary Indexes"
 msgstr "二次インデックスを再構築"
 
 #: ../gramps/plugins/tool/tools.gpr.py:266
-#, fuzzy
 msgid "Rebuilds secondary indexes"
 msgstr "二次インデックスを再構築"
 
@@ -34221,12 +34048,11 @@ msgstr "子供間の最大年齢差(_B)"
 msgid "Maximum _span of years for all children"
 msgstr "子供間の最長間隔(_S)"
 
-#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:673
+#: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:670
 msgid "_Hide marked"
 msgstr "マーク分を隠す(_H)"
 
 #: ../gramps/plugins/tool/verify.py:83
-#, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "データの検証"
@@ -34245,63 +34071,63 @@ msgstr ""
 msgid "Data Verification Results"
 msgstr "データ検証結果"
 
-#: ../gramps/plugins/tool/verify.py:663
+#: ../gramps/plugins/tool/verify.py:667
 msgid "_Show all"
 msgstr "すべて表示(_S)"
 
-#: ../gramps/plugins/tool/verify.py:945
+#: ../gramps/plugins/tool/verify.py:949
 msgid "Baptism before birth"
 msgstr "誕生前の洗礼"
 
-#: ../gramps/plugins/tool/verify.py:961
+#: ../gramps/plugins/tool/verify.py:965
 msgid "Death before baptism"
 msgstr "洗礼前の死亡"
 
-#: ../gramps/plugins/tool/verify.py:977
+#: ../gramps/plugins/tool/verify.py:981
 msgid "Burial before birth"
 msgstr "誕生前の土葬"
 
-#: ../gramps/plugins/tool/verify.py:993
+#: ../gramps/plugins/tool/verify.py:997
 msgid "Burial before death"
 msgstr "死亡前の土葬"
 
-#: ../gramps/plugins/tool/verify.py:1009
+#: ../gramps/plugins/tool/verify.py:1013
 msgid "Death before birth"
 msgstr "誕生前の死亡"
 
-#: ../gramps/plugins/tool/verify.py:1025
+#: ../gramps/plugins/tool/verify.py:1029
 msgid "Burial before baptism"
 msgstr "洗礼前の土葬"
 
-#: ../gramps/plugins/tool/verify.py:1048
+#: ../gramps/plugins/tool/verify.py:1052
 msgid "Old age at death"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1075
+#: ../gramps/plugins/tool/verify.py:1079
 msgid "Multiple parents"
 msgstr "複数の親"
 
-#: ../gramps/plugins/tool/verify.py:1097
+#: ../gramps/plugins/tool/verify.py:1101
 msgid "Married often"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1121
+#: ../gramps/plugins/tool/verify.py:1125
 msgid "Old and unmarried"
 msgstr "年配で未婚"
 
-#: ../gramps/plugins/tool/verify.py:1153
+#: ../gramps/plugins/tool/verify.py:1157
 msgid "Too many children"
 msgstr "子供が多すぎる"
 
-#: ../gramps/plugins/tool/verify.py:1171
+#: ../gramps/plugins/tool/verify.py:1175
 msgid "Same sex marriage"
 msgstr "同性婚"
 
-#: ../gramps/plugins/tool/verify.py:1184
+#: ../gramps/plugins/tool/verify.py:1188
 msgid "Female husband"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1197
+#: ../gramps/plugins/tool/verify.py:1201
 msgid "Male wife"
 msgstr ""
 
@@ -34313,51 +34139,51 @@ msgstr "同姓の夫婦"
 msgid "Large age difference between spouses"
 msgstr "配偶者間の年齢差大"
 
-#: ../gramps/plugins/tool/verify.py:1293
+#: ../gramps/plugins/tool/verify.py:1297
 msgid "Marriage before birth"
 msgstr "誕生前の結婚"
 
-#: ../gramps/plugins/tool/verify.py:1329
+#: ../gramps/plugins/tool/verify.py:1333
 msgid "Marriage after death"
 msgstr "死亡後の結婚"
 
-#: ../gramps/plugins/tool/verify.py:1370
+#: ../gramps/plugins/tool/verify.py:1374
 msgid "Early marriage"
 msgstr "早婚"
 
-#: ../gramps/plugins/tool/verify.py:1409
+#: ../gramps/plugins/tool/verify.py:1413
 msgid "Late marriage"
 msgstr "晩婚"
 
-#: ../gramps/plugins/tool/verify.py:1458
+#: ../gramps/plugins/tool/verify.py:1462
 msgid "Old father"
 msgstr "古い父親"
 
-#: ../gramps/plugins/tool/verify.py:1462
+#: ../gramps/plugins/tool/verify.py:1466
 msgid "Old mother"
 msgstr "古い母親"
 
-#: ../gramps/plugins/tool/verify.py:1511
+#: ../gramps/plugins/tool/verify.py:1515
 msgid "Young father"
 msgstr "若い父親"
 
-#: ../gramps/plugins/tool/verify.py:1515
+#: ../gramps/plugins/tool/verify.py:1519
 msgid "Young mother"
 msgstr "若い母親"
 
-#: ../gramps/plugins/tool/verify.py:1559
+#: ../gramps/plugins/tool/verify.py:1563
 msgid "Unborn father"
 msgstr "胎児の父親"
 
-#: ../gramps/plugins/tool/verify.py:1563
+#: ../gramps/plugins/tool/verify.py:1567
 msgid "Unborn mother"
 msgstr "胎児の母親"
 
-#: ../gramps/plugins/tool/verify.py:1614
+#: ../gramps/plugins/tool/verify.py:1618
 msgid "Dead father"
 msgstr "死亡した父親"
 
-#: ../gramps/plugins/tool/verify.py:1618
+#: ../gramps/plugins/tool/verify.py:1622
 msgid "Dead mother"
 msgstr "死亡した母親"
 
@@ -34373,11 +34199,11 @@ msgstr "子供間の年齢差大"
 msgid "Disconnected individual"
 msgstr "関連がない個人"
 
-#: ../gramps/plugins/tool/verify.py:1711
+#: ../gramps/plugins/tool/verify.py:1715
 msgid "Invalid birth date"
 msgstr "無効な誕生日"
 
-#: ../gramps/plugins/tool/verify.py:1738
+#: ../gramps/plugins/tool/verify.py:1742
 msgid "Invalid death date"
 msgstr "無効な死亡日"
 
@@ -34385,7 +34211,7 @@ msgstr "無効な死亡日"
 msgid "Marriage date but not married"
 msgstr "結婚していない婚姻日"
 
-#: ../gramps/plugins/tool/verify.py:1786
+#: ../gramps/plugins/tool/verify.py:1790
 #, fuzzy
 msgid "Old age but no death"
 msgstr "死亡した年齢"
@@ -34705,7 +34531,6 @@ msgstr "時期に基づくグラデーション"
 #: ../gramps/plugins/view/fanchart2wayview.py:296
 #: ../gramps/plugins/view/fanchartdescview.py:294
 #: ../gramps/plugins/view/fanchartview.py:391
-#, fuzzy
 msgid "White"
 msgstr "白"
 
@@ -34795,7 +34620,7 @@ msgstr "Gramps IDを表示"
 #: ../gramps/plugins/view/fanchart2wayview.py:346
 #: ../gramps/plugins/view/fanchartdescview.py:345
 #: ../gramps/plugins/view/fanchartview.py:437
-#: ../gramps/plugins/view/pedigreeview.py:2128
+#: ../gramps/plugins/view/pedigreeview.py:2129
 #: ../gramps/plugins/view/relview.py:1882
 msgid "Layout"
 msgstr "レイアウト"
@@ -34814,13 +34639,11 @@ msgstr "ファンチャートタイプ"
 
 #: ../gramps/plugins/view/fanchartdescview.py:318
 #: ../gramps/plugins/view/fanchartview.py:413
-#, fuzzy
 msgid "Full Circle"
 msgstr "円"
 
 #: ../gramps/plugins/view/fanchartdescview.py:319
 #: ../gramps/plugins/view/fanchartview.py:413
-#, fuzzy
 msgid "Half Circle"
 msgstr "半円"
 
@@ -35222,7 +35045,6 @@ msgid "The animation parameters"
 msgstr "アニメーションパラメータ"
 
 #: ../gramps/plugins/view/geoplaces.py:207
-#, fuzzy
 msgid "Places map"
 msgstr "場所マップ"
 
@@ -35384,19 +35206,19 @@ msgctxt "short for cremated"
 msgid "crem."
 msgstr "火葬."
 
-#: ../gramps/plugins/view/pedigreeview.py:1205
+#: ../gramps/plugins/view/pedigreeview.py:1206
 msgid "Jump to child..."
 msgstr "子供へジャンプ..."
 
-#: ../gramps/plugins/view/pedigreeview.py:1219
+#: ../gramps/plugins/view/pedigreeview.py:1220
 msgid "Jump to father"
 msgstr "父親へジャンプ"
 
-#: ../gramps/plugins/view/pedigreeview.py:1233
+#: ../gramps/plugins/view/pedigreeview.py:1234
 msgid "Jump to mother"
 msgstr "母親へジャンプ"
 
-#: ../gramps/plugins/view/pedigreeview.py:1601
+#: ../gramps/plugins/view/pedigreeview.py:1602
 msgid "A person was found to be his/her own ancestor."
 msgstr ""
 
@@ -35409,32 +35231,32 @@ msgid "_Next"
 msgstr "次(_N)"
 
 #. Mouse scroll direction setting.
-#: ../gramps/plugins/view/pedigreeview.py:1675
+#: ../gramps/plugins/view/pedigreeview.py:1676
 msgid "Mouse scroll direction"
 msgstr "マウススクロールの方向"
 
-#: ../gramps/plugins/view/pedigreeview.py:1679
+#: ../gramps/plugins/view/pedigreeview.py:1680
 msgid "Top <-> Bottom"
 msgstr "上 <-> 下"
 
-#: ../gramps/plugins/view/pedigreeview.py:1686
+#: ../gramps/plugins/view/pedigreeview.py:1687
 msgid "Left <-> Right"
 msgstr "左 <-> 右"
 
-#: ../gramps/plugins/view/pedigreeview.py:1903
+#: ../gramps/plugins/view/pedigreeview.py:1904
 #: ../gramps/plugins/view/relview.py:393
 msgid "Add New Parents..."
 msgstr "新しい親を追加..."
 
-#: ../gramps/plugins/view/pedigreeview.py:2098
+#: ../gramps/plugins/view/pedigreeview.py:2099
 msgid "Show images"
 msgstr "画像を表示"
 
-#: ../gramps/plugins/view/pedigreeview.py:2101
+#: ../gramps/plugins/view/pedigreeview.py:2102
 msgid "Show marriage data"
 msgstr "結婚データを表示"
 
-#: ../gramps/plugins/view/pedigreeview.py:2104
+#: ../gramps/plugins/view/pedigreeview.py:2105
 msgid "Show unknown people"
 msgstr "未知の人物を表示"
 
@@ -35442,11 +35264,11 @@ msgstr "未知の人物を表示"
 msgid "Show tags"
 msgstr "タグを表示"
 
-#: ../gramps/plugins/view/pedigreeview.py:2110
+#: ../gramps/plugins/view/pedigreeview.py:2111
 msgid "Tree style"
 msgstr "ツリースタイル"
 
-#: ../gramps/plugins/view/pedigreeview.py:2112
+#: ../gramps/plugins/view/pedigreeview.py:2113
 msgid "Standard"
 msgstr "標準"
 
@@ -35454,15 +35276,15 @@ msgstr "標準"
 msgid "Compact"
 msgstr "圧縮"
 
-#: ../gramps/plugins/view/pedigreeview.py:2114
+#: ../gramps/plugins/view/pedigreeview.py:2115
 msgid "Expanded"
 msgstr "展開された"
 
-#: ../gramps/plugins/view/pedigreeview.py:2117
+#: ../gramps/plugins/view/pedigreeview.py:2118
 msgid "Tree direction"
 msgstr "ツリーの展開方向"
 
-#: ../gramps/plugins/view/pedigreeview.py:2124
+#: ../gramps/plugins/view/pedigreeview.py:2125
 msgid "Tree size"
 msgstr "ツリーサイズ"
 
@@ -35849,19 +35671,19 @@ msgid "Full Name"
 msgstr "フルネーム"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:115
-#: ../gramps/plugins/webreport/basepage.py:2126
+#: ../gramps/plugins/webreport/basepage.py:2079
 msgid "Web Links"
 msgstr "Webリンク"
 
 #. add section title
 #: ../gramps/plugins/webreport/basepage.py:369
-#: ../gramps/plugins/webreport/basepage.py:2107
+#: ../gramps/plugins/webreport/basepage.py:2060
 msgid "Narrative"
 msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:1131
-#: ../gramps/plugins/webreport/basepage.py:2593
-#: ../gramps/plugins/webreport/basepage.py:2658
+#: ../gramps/plugins/webreport/basepage.py:2543
+#: ../gramps/plugins/webreport/basepage.py:2608
 #: ../gramps/plugins/webreport/place.py:182
 #: ../gramps/plugins/webreport/place.py:194
 msgid "State/ Province"
@@ -35918,7 +35740,7 @@ msgstr "サムネイル"
 #: ../gramps/plugins/webreport/basepage.py:1535
 #: ../gramps/plugins/webreport/basepage.py:1668
 #: ../gramps/plugins/webreport/download.py:94
-#: ../gramps/plugins/webreport/narrativeweb.py:1906
+#: ../gramps/plugins/webreport/narrativeweb.py:1910
 msgid "Download"
 msgstr "ダウンロード"
 
@@ -35945,18 +35767,18 @@ msgstr "前へ"
 msgid "Next"
 msgstr "次"
 
-#: ../gramps/plugins/webreport/basepage.py:2174
+#: ../gramps/plugins/webreport/basepage.py:2127
 msgid " [Click to Go]"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2198
+#: ../gramps/plugins/webreport/basepage.py:2151
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr ""
 
-#: ../gramps/plugins/webreport/basepage.py:2344
-#: ../gramps/plugins/webreport/basepage.py:2345
-#: ../gramps/plugins/webreport/person.py:638
-#: ../gramps/plugins/webreport/person.py:947
+#: ../gramps/plugins/webreport/basepage.py:2297
+#: ../gramps/plugins/webreport/basepage.py:2298
+#: ../gramps/plugins/webreport/person.py:637
+#: ../gramps/plugins/webreport/person.py:946
 msgid "Family Map"
 msgstr "家族マップ"
 
@@ -36004,12 +35826,12 @@ msgstr "イベントページの作成"
 #: ../gramps/plugins/webreport/family.py:108
 #: ../gramps/plugins/webreport/media.py:116
 #: ../gramps/plugins/webreport/media.py:244
-#: ../gramps/plugins/webreport/narrativeweb.py:501
-#: ../gramps/plugins/webreport/narrativeweb.py:1084
-#: ../gramps/plugins/webreport/narrativeweb.py:1142
-#: ../gramps/plugins/webreport/narrativeweb.py:1165
-#: ../gramps/plugins/webreport/narrativeweb.py:1174
-#: ../gramps/plugins/webreport/narrativeweb.py:1217
+#: ../gramps/plugins/webreport/narrativeweb.py:500
+#: ../gramps/plugins/webreport/narrativeweb.py:1088
+#: ../gramps/plugins/webreport/narrativeweb.py:1146
+#: ../gramps/plugins/webreport/narrativeweb.py:1169
+#: ../gramps/plugins/webreport/narrativeweb.py:1178
+#: ../gramps/plugins/webreport/narrativeweb.py:1221
 #: ../gramps/plugins/webreport/person.py:141
 #: ../gramps/plugins/webreport/place.py:117
 #: ../gramps/plugins/webreport/repository.py:102
@@ -36054,8 +35876,12 @@ msgstr ""
 msgid "Families beginning with letter "
 msgstr "文字で始まる家族 "
 
+#. Note. We use '/' here because it is a URL, not a OS
+#. dependent pathname need to leave home link alone,
+#. so look for it ...
 #: ../gramps/plugins/webreport/home.py:78
 #: ../gramps/plugins/webreport/webcal.py:576
+#: ../gramps/plugins/webreport/webcal.py:599
 msgid "Home"
 msgstr "ホーム"
 
@@ -36101,11 +35927,11 @@ msgstr ""
 msgid "The file has been moved or deleted."
 msgstr "ファイルが移動されたか削除されています。"
 
-#: ../gramps/plugins/webreport/media.py:552
+#: ../gramps/plugins/webreport/media.py:559
 msgid "File Type"
 msgstr "ファイル形式"
 
-#: ../gramps/plugins/webreport/media.py:655
+#: ../gramps/plugins/webreport/media.py:662
 msgid "Missing media object:"
 msgstr "メディアオブジェクトがありません:"
 
@@ -36114,15 +35940,15 @@ msgstr "メディアオブジェクトがありません:"
 msgid "Neither %(current)s nor %(parent)s are directories"
 msgstr "%(current)s と %(parent)s のいずれもディレクトリではありません"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:294
-#: ../gramps/plugins/webreport/narrativeweb.py:300
-#: ../gramps/plugins/webreport/narrativeweb.py:313
-#: ../gramps/plugins/webreport/narrativeweb.py:319
+#: ../gramps/plugins/webreport/narrativeweb.py:293
+#: ../gramps/plugins/webreport/narrativeweb.py:299
+#: ../gramps/plugins/webreport/narrativeweb.py:312
+#: ../gramps/plugins/webreport/narrativeweb.py:318
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "ディレクトリを作成できませんでした: %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:326
+#: ../gramps/plugins/webreport/narrativeweb.py:325
 msgid "Invalid file name"
 msgstr "無効なファイル名です"
 
@@ -36130,12 +35956,12 @@ msgstr "無効なファイル名です"
 msgid "The archive file must be a file, not a directory"
 msgstr "アーカイブファイルは、ディレクトリではなくファイルでなければなりません"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:463
+#: ../gramps/plugins/webreport/narrativeweb.py:462
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:468
+#: ../gramps/plugins/webreport/narrativeweb.py:467
 msgid "Missing media objects:"
 msgstr "メディアオブジェクトがありません:"
 
@@ -36156,11 +35982,11 @@ msgstr "%(husband)s と %(spouse)s の家族"
 msgid "Family of %s"
 msgstr "%s の家族"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1083
+#: ../gramps/plugins/webreport/narrativeweb.py:1087
 msgid "Creating GENDEX file"
 msgstr "GENDEX ファイルを作成"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1141
+#: ../gramps/plugins/webreport/narrativeweb.py:1145
 msgid "Creating surname pages"
 msgstr "姓ページの作成"
 
@@ -36176,7 +36002,7 @@ msgstr "統計ページを作成しています…"
 msgid "Creating address book pages ..."
 msgstr "連絡帳ページを作成しています…"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1616
+#: ../gramps/plugins/webreport/narrativeweb.py:1620
 msgid "Store web pages in .tar.gz archive"
 msgstr ""
 
@@ -36184,20 +36010,20 @@ msgstr ""
 msgid "Whether to store the web pages in an archive file"
 msgstr "ウェブページをアーカイブファイルに保存するかどうか"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1629
-#: ../gramps/plugins/webreport/webcal.py:1663
+#: ../gramps/plugins/webreport/narrativeweb.py:1633
+#: ../gramps/plugins/webreport/webcal.py:1664
 msgid "The destination directory for the web files"
 msgstr "Webファイルの出力先ディレクトリ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1635
+#: ../gramps/plugins/webreport/narrativeweb.py:1639
 msgid "My Family Tree"
 msgstr "私の家系図"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1635
+#: ../gramps/plugins/webreport/narrativeweb.py:1639
 msgid "Web site title"
 msgstr "Webサイトのタイトル"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1636
+#: ../gramps/plugins/webreport/narrativeweb.py:1640
 msgid "The title of the web site"
 msgstr "Webサイトのタイトル"
 
@@ -36219,8 +36045,8 @@ msgstr "各人物のページに、この人物とアクティブな人物との
 msgid "Html options"
 msgstr "HTMLオプション"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1674
-#: ../gramps/plugins/webreport/webcal.py:1684
+#: ../gramps/plugins/webreport/narrativeweb.py:1678
+#: ../gramps/plugins/webreport/webcal.py:1685
 msgid "File extension"
 msgstr "ファイル拡張子"
 
@@ -36239,6 +36065,11 @@ msgstr "版権"
 msgid "The copyright to be used for the web files"
 msgstr "Webファイルに使用する版権"
 
+#: ../gramps/plugins/webreport/narrativeweb.py:1690
+#: ../gramps/plugins/webreport/webcal.py:1700
+msgid "StyleSheet"
+msgstr "スタイルシート"
+
 #: ../gramps/plugins/webreport/narrativeweb.py:1696
 #: ../gramps/plugins/webreport/webcal.py:1703
 msgid "The stylesheet to be used for the web pages"
@@ -36252,16 +36083,16 @@ msgstr "水平 (右から左) — デフォルト"
 msgid "Vertical   -- Left Side"
 msgstr "垂直 — 左寄せ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1699
+#: ../gramps/plugins/webreport/narrativeweb.py:1703
 msgid "Fade       -- WebKit Browsers Only"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1700
-#: ../gramps/plugins/webreport/narrativeweb.py:1714
+#: ../gramps/plugins/webreport/narrativeweb.py:1704
+#: ../gramps/plugins/webreport/narrativeweb.py:1718
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1702
+#: ../gramps/plugins/webreport/narrativeweb.py:1706
 msgid "Navigation Menu Layout"
 msgstr "ナビゲーションメニュー レイアウト"
 
@@ -36282,7 +36113,7 @@ msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr "ソースページの引用参照セクションのデフォルトレイアウトを決定する"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1725
+#: ../gramps/plugins/webreport/narrativeweb.py:1729
 msgid "Include ancestor's tree"
 msgstr "祖先ツリーも含める"
 
@@ -36358,21 +36189,21 @@ msgstr "グラフの世代数"
 msgid "The number of generations to include in the ancestor graph"
 msgstr "祖先グラフに含める世代の数"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1803
+#: ../gramps/plugins/webreport/narrativeweb.py:1807
 msgid "Include narrative notes just after name, gender"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1805
+#: ../gramps/plugins/webreport/narrativeweb.py:1809
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1814
+#: ../gramps/plugins/webreport/narrativeweb.py:1818
 msgid "Page Generation"
 msgstr "ページ生成"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1817
+#: ../gramps/plugins/webreport/narrativeweb.py:1821
 msgid "Home page note"
 msgstr "ホームページノート"
 
@@ -36380,7 +36211,7 @@ msgstr "ホームページノート"
 msgid "A note to be used on the home page"
 msgstr "ホームページに使用するノート"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1821
+#: ../gramps/plugins/webreport/narrativeweb.py:1825
 msgid "Home page image"
 msgstr "ホームページ画像"
 
@@ -36388,23 +36219,23 @@ msgstr "ホームページ画像"
 msgid "An image to be used on the home page"
 msgstr "ホームページに使用する画像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1825
+#: ../gramps/plugins/webreport/narrativeweb.py:1829
 msgid "Introduction note"
 msgstr "紹介ノート"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1826
+#: ../gramps/plugins/webreport/narrativeweb.py:1830
 msgid "A note to be used as the introduction"
 msgstr "紹介に使われるノート"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1829
+#: ../gramps/plugins/webreport/narrativeweb.py:1833
 msgid "Introduction image"
 msgstr "紹介画像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1830
+#: ../gramps/plugins/webreport/narrativeweb.py:1834
 msgid "An image to be used as the introduction"
 msgstr "紹介に使われる画像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1833
+#: ../gramps/plugins/webreport/narrativeweb.py:1837
 msgid "Publisher contact note"
 msgstr "発行者のコンタクトノート"
 
@@ -36418,7 +36249,7 @@ msgstr ""
 "発行者情報が含まれない場合は、\n"
 "コンタクトページは作成されません"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1840
+#: ../gramps/plugins/webreport/narrativeweb.py:1844
 msgid "Publisher contact image"
 msgstr "発行者のコンタクト画像"
 
@@ -36468,7 +36299,7 @@ msgstr "未使用の画像とメディアオブジェクトを含める"
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "未使用あるいは参照されていないメディアオブジェクトを含めるかどうか"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1876
+#: ../gramps/plugins/webreport/narrativeweb.py:1880
 msgid "Create and only use thumbnail- sized images"
 msgstr ""
 
@@ -36482,7 +36313,7 @@ msgstr ""
 "イルサイズの画像のみ作成されます。これによってウェブホストにアップロードする"
 "サイズを大幅に小さくすることができます。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1887
+#: ../gramps/plugins/webreport/narrativeweb.py:1891
 msgid "Max width of initial image"
 msgstr "初期画像の最大幅"
 
@@ -36494,13 +36325,7 @@ msgid ""
 msgstr ""
 "メディアページに表示する画像の最大幅を設定できます。0すると無制限になります。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1889
-msgid ""
-"This allows you to set the maximum width of the image shown on the media "
-"page. Set to 0 for no limit."
-msgstr ""
-
-#: ../gramps/plugins/webreport/narrativeweb.py:1894
+#: ../gramps/plugins/webreport/narrativeweb.py:1898
 msgid "Max height of initial image"
 msgstr "初期画像の最大高さ"
 
@@ -36512,7 +36337,7 @@ msgstr ""
 "メディアページに表示する画像の最大高さを設定できます。0すると無制限になりま"
 "す。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1909
+#: ../gramps/plugins/webreport/narrativeweb.py:1913
 msgid "Include download page"
 msgstr "ダウンロードしたページを含む"
 
@@ -36520,8 +36345,8 @@ msgstr "ダウンロードしたページを含む"
 msgid "Whether to include a database download option"
 msgstr "データベースダウンロードオプションを含むかどうか"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1916
-#: ../gramps/plugins/webreport/narrativeweb.py:1928
+#: ../gramps/plugins/webreport/narrativeweb.py:1920
+#: ../gramps/plugins/webreport/narrativeweb.py:1932
 msgid "Download Filename"
 msgstr "ダウンロードファイル名"
 
@@ -36535,7 +36360,7 @@ msgstr "データベースのダウンロードに使用されるファイル"
 msgid "Description for download"
 msgstr "ダウンロードの説明"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1923
+#: ../gramps/plugins/webreport/narrativeweb.py:1927
 msgid "Smith Family Tree"
 msgstr "スミスの家系図"
 
@@ -36544,17 +36369,17 @@ msgstr "スミスの家系図"
 msgid "Give a description for this file."
 msgstr "このファイルの記述。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1935
+#: ../gramps/plugins/webreport/narrativeweb.py:1939
 msgid "Johnson Family Tree"
 msgstr "ジョンソンの家系図"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1945
-#: ../gramps/plugins/webreport/webcal.py:1868
+#: ../gramps/plugins/webreport/narrativeweb.py:1949
+#: ../gramps/plugins/webreport/webcal.py:1869
 msgid "Advanced Options"
 msgstr "高度なオプション"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1948
-#: ../gramps/plugins/webreport/webcal.py:1870
+#: ../gramps/plugins/webreport/narrativeweb.py:1952
+#: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Character set encoding"
 msgstr "文字セットエンコーディング"
 
@@ -36620,7 +36445,7 @@ msgstr "家族ページを含む"
 msgid "Whether or not to include family pages."
 msgstr "家族ページを表示するかどうか。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2000
+#: ../gramps/plugins/webreport/narrativeweb.py:2004
 msgid "Include event pages"
 msgstr "イベントページをインクルード"
 
@@ -36644,7 +36469,7 @@ msgstr "ソースページを表示"
 msgid "Whether or not to include the sources Pages."
 msgstr "ソースページを表示するかどうか。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2015
+#: ../gramps/plugins/webreport/narrativeweb.py:2019
 msgid "Include repository pages"
 msgstr "レポジトリページをインクルード"
 
@@ -36652,7 +36477,7 @@ msgstr "レポジトリページをインクルード"
 msgid "Whether or not to include the Repository Pages."
 msgstr "レポジトリページを表示するかどうか。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2021
+#: ../gramps/plugins/webreport/narrativeweb.py:2025
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "GENDEX ファイルをインクルード (/gendex.txt)"
 
@@ -36664,7 +36489,7 @@ msgstr "GENDEX ファイルを含むかどうか"
 msgid "Include address book pages"
 msgstr "連絡帳ページを含む"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2026
+#: ../gramps/plugins/webreport/narrativeweb.py:2030
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -36682,12 +36507,11 @@ msgstr "統計ページを追加するかどうか"
 msgid "Place Map Options"
 msgstr "場所マップオプション"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2045
+#: ../gramps/plugins/webreport/narrativeweb.py:2049
 msgid "Google"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2046
-#, fuzzy
+#: ../gramps/plugins/webreport/narrativeweb.py:2050
 msgid "Map Service"
 msgstr "地図サービス"
 
@@ -36722,7 +36546,7 @@ msgstr ""
 msgid "Family Links"
 msgstr "家族のリンク"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2076
+#: ../gramps/plugins/webreport/narrativeweb.py:2080
 msgid "Drop"
 msgstr ""
 
@@ -36748,7 +36572,7 @@ msgstr "Googleマップ APIキー"
 msgid "The API key used for the Google maps"
 msgstr "Googleマップに使用するAPIキー"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2097
+#: ../gramps/plugins/webreport/narrativeweb.py:2101
 msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgstr ""
 
@@ -36785,9 +36609,6 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 
-#~ msgid "Given Name"
-#~ msgstr "与えられた名前"
-
 #: ../gramps/plugins/webreport/person.py:251
 #: ../gramps/plugins/webreport/surname.py:94
 #: ../gramps/plugins/webreport/surnamelist.py:192
@@ -36799,13 +36620,13 @@ msgstr ""
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "頭文字 %(letter)s の姓 %(surname)s"
 
-#: ../gramps/plugins/webreport/person.py:798
+#: ../gramps/plugins/webreport/person.py:797
 #, python-format
 msgid "Tracking %s"
 msgstr ""
 
 #. page description
-#: ../gramps/plugins/webreport/person.py:803
+#: ../gramps/plugins/webreport/person.py:802
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/ places. If you place your mouse over the marker it will display the "
@@ -36814,24 +36635,23 @@ msgid ""
 "you to that place&#8217;s page."
 msgstr ""
 
-#: ../gramps/plugins/webreport/person.py:874
+#: ../gramps/plugins/webreport/person.py:873
 msgid "Drop Markers"
 msgstr ""
 
-#: ../gramps/plugins/webreport/person.py:899
-#, fuzzy
+#: ../gramps/plugins/webreport/person.py:898
 msgid "Place Title"
 msgstr "場所のタイトル"
 
-#: ../gramps/plugins/webreport/person.py:1446
+#: ../gramps/plugins/webreport/person.py:1452
 msgid "Call Name"
 msgstr "呼び名"
 
-#: ../gramps/plugins/webreport/person.py:1464
+#: ../gramps/plugins/webreport/person.py:1470
 msgid "Nick Name"
 msgstr "ニックネーム"
 
-#: ../gramps/plugins/webreport/person.py:1510
+#: ../gramps/plugins/webreport/person.py:1516
 msgid "Age at Death"
 msgstr "死亡年齢"
 
@@ -36975,9 +36795,9 @@ msgstr ""
 #. Number of directory levels up to get to root
 #. generate progress pass for "Year At A Glance"
 #: ../gramps/plugins/webreport/webcal.py:332
-#: ../gramps/plugins/webreport/webcal.py:975
-#: ../gramps/plugins/webreport/webcal.py:1061
-#: ../gramps/plugins/webreport/webcal.py:1284
+#: ../gramps/plugins/webreport/webcal.py:976
+#: ../gramps/plugins/webreport/webcal.py:1062
+#: ../gramps/plugins/webreport/webcal.py:1285
 msgid "Web Calendar Report"
 msgstr "Webカレンダーレポート"
 
@@ -37003,7 +36823,7 @@ msgstr "%(author)s 向けに作成"
 msgid "Year Glance"
 msgstr "年のまとめ"
 
-#: ../gramps/plugins/webreport/webcal.py:623
+#: ../gramps/plugins/webreport/webcal.py:624
 #, fuzzy
 msgid "NarrativeWeb Home"
 msgstr "Narrated のウェブサイト"
@@ -37012,7 +36832,7 @@ msgstr "Narrated のウェブサイト"
 msgid "Full year at a Glance"
 msgstr "年間カレンダー"
 
-#: ../gramps/plugins/webreport/webcal.py:976
+#: ../gramps/plugins/webreport/webcal.py:977
 msgid "Formatting months ..."
 msgstr "月の書式をフォーマットしています..."
 
@@ -37021,12 +36841,12 @@ msgid "Creating Year At A Glance calendar"
 msgstr "一覧カレンダーを作成しています"
 
 #. page title
-#: ../gramps/plugins/webreport/webcal.py:1068
+#: ../gramps/plugins/webreport/webcal.py:1069
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr "%(year)d, 一覧"
 
-#: ../gramps/plugins/webreport/webcal.py:1083
+#: ../gramps/plugins/webreport/webcal.py:1084
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
@@ -37034,40 +36854,33 @@ msgid ""
 msgstr ""
 
 #. page title
-#: ../gramps/plugins/webreport/webcal.py:1137
+#: ../gramps/plugins/webreport/webcal.py:1138
 msgid "One Day Within A Year"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1473
+#: ../gramps/plugins/webreport/webcal.py:1474
 #, python-format
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s と %(person)s"
 
-#: ../gramps/plugins/webreport/webcal.py:1496
+#: ../gramps/plugins/webreport/webcal.py:1497
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
 msgstr ""
 
-#. page title
-#: ../gramps/plugins/webreport/webcal.py:1601
-#: ../gramps/plugins/webreport/webcal.py:1667
-msgid "My Family Calendar"
-msgstr "私の家族カレンダー"
-
-#: ../gramps/plugins/webreport/webcal.py:1667
+#: ../gramps/plugins/webreport/webcal.py:1668
 msgid "Calendar Title"
 msgstr "カレンダーのタイトル"
 
 #: ../gramps/plugins/webreport/webcal.py:1668
+msgid "My Family Calendar"
+msgstr "私の家族カレンダー"
+
+#: ../gramps/plugins/webreport/webcal.py:1669
 msgid "The title of the calendar"
 msgstr "このカレンダーのタイトル"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1690
-#: ../gramps/plugins/webreport/webcal.py:1700
-msgid "StyleSheet"
-msgstr "スタイルシート"
-
-#: ../gramps/plugins/webreport/webcal.py:1740
+#: ../gramps/plugins/webreport/webcal.py:1741
 msgid "Content Options"
 msgstr "コンテンツオプション"
 
@@ -37099,7 +36912,7 @@ msgstr "カレンダーの終了年を1900年から3000年の間で入力。"
 msgid "Holidays will be included for the selected country"
 msgstr "選択した国/地域の祝日が含まれます"
 
-#: ../gramps/plugins/webreport/webcal.py:1802
+#: ../gramps/plugins/webreport/webcal.py:1803
 msgid "Home link"
 msgstr "ホームリンク"
 
@@ -37108,55 +36921,55 @@ msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr "ウェブサイトのメインページへジャンプするためのリンク"
 
-#: ../gramps/plugins/webreport/webcal.py:1811
+#: ../gramps/plugins/webreport/webcal.py:1812
 msgid "Jan - Jun Notes"
 msgstr "1月 - 6月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1813
+#: ../gramps/plugins/webreport/webcal.py:1814
 msgid "January Note"
 msgstr "1月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1814
+#: ../gramps/plugins/webreport/webcal.py:1815
 msgid "The note for the month of January"
 msgstr "1月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1817
+#: ../gramps/plugins/webreport/webcal.py:1818
 msgid "February Note"
 msgstr "2月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1818
+#: ../gramps/plugins/webreport/webcal.py:1819
 msgid "The note for the month of February"
 msgstr "2月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1821
+#: ../gramps/plugins/webreport/webcal.py:1822
 msgid "March Note"
 msgstr "3月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1822
+#: ../gramps/plugins/webreport/webcal.py:1823
 msgid "The note for the month of March"
 msgstr "3月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1825
+#: ../gramps/plugins/webreport/webcal.py:1826
 msgid "April Note"
 msgstr "4月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1826
+#: ../gramps/plugins/webreport/webcal.py:1827
 msgid "The note for the month of April"
 msgstr "4月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1829
+#: ../gramps/plugins/webreport/webcal.py:1830
 msgid "May Note"
 msgstr "5月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1830
+#: ../gramps/plugins/webreport/webcal.py:1831
 msgid "The note for the month of May"
 msgstr "5月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1833
+#: ../gramps/plugins/webreport/webcal.py:1834
 msgid "June Note"
 msgstr "6月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1834
+#: ../gramps/plugins/webreport/webcal.py:1835
 msgid "The note for the month of June"
 msgstr "6月に対するノート"
 
@@ -37164,51 +36977,51 @@ msgstr "6月に対するノート"
 msgid "Jul - Dec Notes"
 msgstr "7月 - 12月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1839
+#: ../gramps/plugins/webreport/webcal.py:1840
 msgid "July Note"
 msgstr "7月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1840
+#: ../gramps/plugins/webreport/webcal.py:1841
 msgid "The note for the month of July"
 msgstr "7月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1843
+#: ../gramps/plugins/webreport/webcal.py:1844
 msgid "August Note"
 msgstr "8月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1844
+#: ../gramps/plugins/webreport/webcal.py:1845
 msgid "The note for the month of August"
 msgstr "8月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1847
+#: ../gramps/plugins/webreport/webcal.py:1848
 msgid "September Note"
 msgstr "9月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1848
+#: ../gramps/plugins/webreport/webcal.py:1849
 msgid "The note for the month of September"
 msgstr "9月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1851
+#: ../gramps/plugins/webreport/webcal.py:1852
 msgid "October Note"
 msgstr "10月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1852
+#: ../gramps/plugins/webreport/webcal.py:1853
 msgid "The note for the month of October"
 msgstr "10月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1855
+#: ../gramps/plugins/webreport/webcal.py:1856
 msgid "November Note"
 msgstr "11月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1856
+#: ../gramps/plugins/webreport/webcal.py:1857
 msgid "The note for the month of November"
 msgstr "11月に対するノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1859
+#: ../gramps/plugins/webreport/webcal.py:1860
 msgid "December Note"
 msgstr "12月のノート"
 
-#: ../gramps/plugins/webreport/webcal.py:1860
+#: ../gramps/plugins/webreport/webcal.py:1861
 msgid "The note for the month of December"
 msgstr "12月に対するノート"
 
@@ -37220,11 +37033,11 @@ msgstr "一覧カレンダーにイベント日のページを作成"
 msgid "Whether to create one day pages or not"
 msgstr "日のページを作成するかどうか"
 
-#: ../gramps/plugins/webreport/webcal.py:1883
+#: ../gramps/plugins/webreport/webcal.py:1884
 msgid "Include birthdays in the calendar"
 msgstr "カレンダー上で誕生日を含める"
 
-#: ../gramps/plugins/webreport/webcal.py:1887
+#: ../gramps/plugins/webreport/webcal.py:1888
 msgid "Include anniversaries in the calendar"
 msgstr "カレンダーに記念日を含める"
 
@@ -37236,7 +37049,7 @@ msgstr "死亡日を含む"
 msgid "Include death anniversaries in the calendar"
 msgstr "カレンダーに命日を含める"
 
-#: ../gramps/plugins/webreport/webcal.py:1894
+#: ../gramps/plugins/webreport/webcal.py:1895
 msgid "Link to Narrated Web Report"
 msgstr ""
 
@@ -37244,45 +37057,44 @@ msgstr ""
 msgid "Whether to link data to web report or not"
 msgstr "ウェブレポートへデータをリンクするかどうか"
 
-#: ../gramps/plugins/webreport/webcal.py:1901
+#: ../gramps/plugins/webreport/webcal.py:1902
 msgid "Show data only after year"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1904
+#: ../gramps/plugins/webreport/webcal.py:1905
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:1912
+#: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Link prefix"
 msgstr "リンクのプレフィックス"
 
-#: ../gramps/plugins/webreport/webcal.py:1913
+#: ../gramps/plugins/webreport/webcal.py:1914
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:2092
+#: ../gramps/plugins/webreport/webcal.py:2093
 #, python-format
 msgid "%s old"
 msgstr "%s 古い"
 
-#: ../gramps/plugins/webreport/webcal.py:2102
+#: ../gramps/plugins/webreport/webcal.py:2103
 #, python-format
 msgid "%s since death"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:2103
-#, fuzzy
+#: ../gramps/plugins/webreport/webcal.py:2104
 msgid "death"
 msgstr "死亡"
 
-#: ../gramps/plugins/webreport/webcal.py:2110
+#: ../gramps/plugins/webreport/webcal.py:2111
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr ""
 
-#: ../gramps/plugins/webreport/webcal.py:2118
+#: ../gramps/plugins/webreport/webcal.py:2119
 msgid "Until"
 msgstr ""
 
@@ -37357,17 +37169,69 @@ msgstr "ネブラスカ"
 msgid "No style sheet"
 msgstr "スタイルシートなし"
 
+#: ../data/holidays.xml.in.h:387
+msgid "Russia"
+msgstr "ロシア"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
+msgid "Default person"
+msgstr "デフォルトの人物"
+
+#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
+msgid "Matches the default person"
+msgstr "デフォルトの人物にマッチする"
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
+msgid "Ancestors of the default person not more than <N> generations away"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
+msgid ""
+"Matches ancestors of the default person not more than N generations away"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1243
+msgid "Enables automatic place title generation using specifed format."
+msgstr ""
+
+#: ../gramps/gui/configure.py:1575
+msgid ""
+"Specifed tag will be added on import.\n"
+"Clear to set default value."
+msgstr ""
+
+#: ../gramps/gui/views/navigationview.py:324
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+
+#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/view/fanchartview.py:184
+#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoperson.py:109
+#: ../gramps/plugins/view/pedigreeview.py:693
+#: ../gramps/plugins/view/relview.py:436
+msgid "Go to the default person"
+msgstr "デフォルトの人物へ戻る"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1889
+msgid ""
+"This allows you to set the maximum width of the image shown on the media "
+"page. Set to 0 for no limit."
+msgstr ""
+
+#~ msgid "Given Name"
+#~ msgstr "与えられた名前"
+
 #~ msgid "unmarried|husband"
 #~ msgstr "未婚|夫"
 
 #~ msgid "unmarried|wife"
 #~ msgstr "未婚|妻"
-
-#~ msgid "gender unknown,unmarried|spouse"
-#~ msgstr "性別不明,未婚|配偶者"
-
-#~ msgid "unmarried|ex-husband"
-#~ msgstr "未婚|前夫"
 
 #~ msgid "unmarried|ex-wife"
 #~ msgstr "未婚|前妻"
@@ -37383,8 +37247,9 @@ msgstr "スタイルシートなし"
 #~ "「デフォルトの人物」を設定する必要があります。People Viewから「ホームの人"
 #~ "物」にしたい人物を選択し、メニューのEditからSet Homeで確定してください。"
 
-#~ msgid "gender unknown,unmarried|ex-spouse"
-#~ msgstr "性別不明,未婚|前配偶者"
+#, fuzzy
+#~ msgid "_Print..."
+#~ msgstr "印刷..."
 
 #~ msgid "Male Alive"
 #~ msgstr "存命中の男性"
@@ -37407,26 +37272,6 @@ msgstr "スタイルシートなし"
 #~ msgid "Family Divorced"
 #~ msgstr "離婚した家族"
 
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Home Person"
-msgstr "デフォルトの人物"
-
-#: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the Home Person"
-msgstr "デフォルトの人物にマッチする"
-
-#, fuzzy
-#~ msgid "Border Female Dead"
-#~ msgstr "死亡年齢"
-
-#, fuzzy
-#~ msgid "Border Unknown Dead"
-#~ msgstr "未知の父親"
-
-#, fuzzy
-#~ msgid "Border Family"
-#~ msgstr "家族を統合"
-
 #~ msgid "Web Connect"
 #~ msgstr "ウェブへ接続"
 
@@ -37447,38 +37292,32 @@ msgstr "デフォルトの人物にマッチする"
 #~ msgid "Undo History..."
 #~ msgstr "操作の履歴を表示..."
 
-#, python-format
 #~ msgid "Key %s is not bound"
 #~ msgstr "キー %s が見つかりません"
 
 #~ msgid "_Delete Item"
 #~ msgstr "項目を削除(_D)"
 
-#, python-format
 #~ msgid "%(title)s..."
 #~ msgstr "%(title)s..."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
 #~ msgstr "%(genders)s %(year_from)04d-%(year_to)04d: 生 %(chart_title)s"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "Persons born %(year_from)04d-%(year_to)04d"
 #~ msgstr "%(year_from)04d-%(year_to)04d の人物: %(chart_title)s"
 
-#, python-format
 #~ msgid "Marriage of %s"
 #~ msgstr "%s の結婚"
 
-#, python-format
 #~ msgid "Birth of %s"
 #~ msgstr "%s の誕生日"
 
-#, python-format
 #~ msgid "Death of %s"
 #~ msgstr "%s の死亡日"
 
-#, python-format
 #~ msgid "Anniversary: %s"
 #~ msgstr "記念日: %s"
 
@@ -37491,15 +37330,8 @@ msgstr "デフォルトの人物にマッチする"
 #~ msgstr "アイコンの読み込みでエラー: %s"
 
 #, fuzzy
-#~ msgid "_Print..."
-#~ msgstr "印刷..."
-
-#, fuzzy
 #~ msgid "Map Menu"
 #~ msgstr "メニュー・バー"
-
-#~ msgid "manual|Media_Manager..."
-#~ msgstr "メディアマネージャ(_M)..."
 
 #~ msgid "Suppress Gramps ID"
 #~ msgstr "Gramps IDを抑制する"
@@ -37510,10 +37342,6 @@ msgstr "デフォルトの人物にマッチする"
 
 #, fuzzy
 #~ msgid "Gender Male Death"
-#~ msgstr "死亡年齢"
-
-#, fuzzy
-#~ msgid "Border Male Death"
 #~ msgstr "死亡年齢"
 
 #, fuzzy
@@ -39012,6 +38840,34 @@ msgstr "デフォルトの人物にマッチする"
 #~ msgid "Family Sources"
 #~ msgstr "家族ソース"
 
+#~ msgid "gender unknown,unmarried|spouse"
+#~ msgstr "性別不明,未婚|配偶者"
+
+#~ msgid "unmarried|ex-husband"
+#~ msgstr "未婚|前夫"
+
+#~ msgid "gender unknown,unmarried|ex-spouse"
+#~ msgstr "性別不明,未婚|前配偶者"
+
+#, fuzzy
+#~ msgid "Border Female Dead"
+#~ msgstr "死亡年齢"
+
+#, fuzzy
+#~ msgid "Border Unknown Dead"
+#~ msgstr "未知の父親"
+
+#, fuzzy
+#~ msgid "Border Family"
+#~ msgstr "家族を統合"
+
+#~ msgid "manual|Media_Manager..."
+#~ msgstr "メディアマネージャ(_M)..."
+
+#, fuzzy
+#~ msgid "Border Male Death"
+#~ msgstr "死亡年齢"
+
 #~ msgid ""
 #~ "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 #~ "Use https://gramps-project.org/bugs/ to submit bugs of official plugins, "
@@ -39032,4 +38888,3 @@ msgstr "デフォルトの人物にマッチする"
 #~ "ニュー「プラグインマネージャ」の項を参照下さい。\n"
 #~ "公式ビューのバグ報告は https://gramps-project.org/bugs/ を利用するか、"
 #~ "ビューの作者 (%(firstauthoremail)s) に連絡を取ってください。"
-
