@@ -8,14 +8,14 @@
 # 黄友诚 <grampscn@gmail.com>, 2009, 2010, 2011.
 # Yin Hoe TAN <astyh83@gmail.com> 2014.
 # Anthony Fok (霍东灵) <foka@debian.org>, 2015.
-# Shixiong Tian <tiansworld@fedoraproject.org>, 2020.
+# Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2020-09-07 13:15+0800\n"
+"PO-Revision-Date: 2021-05-07 13:24+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
 "Language: zh_CN\n"
@@ -40,12 +40,14 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"它能让您记录个人生活的方方面面，同时也可记录多人、多地间及多个事件间的复杂关"
+"系。"
 
 #: ../data/gramps.appdata.xml.in.h:3
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
-msgstr ""
+msgstr "您的研究内容会被准确而有条不紊的保存起来，方便搜索。"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "Gramps"
@@ -1110,11 +1112,11 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:467
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "正在导出：文件 %(filename)s，格式为 %(format)s。"
 
 #: ../gramps/cli/arghandler.py:478
 msgid "Cleaning up."
-msgstr ""
+msgstr "清理中。"
 
 #: ../gramps/cli/arghandler.py:514
 msgid "Created empty Family Tree successfully"
@@ -1562,7 +1564,6 @@ msgstr ""
 "家族树吗？"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:738
-#, fuzzy
 msgid "Could not delete Family Tree"
 msgstr "无法删除家族树"
 
@@ -2272,9 +2273,8 @@ msgstr "{date_quality}自{date_start} 至{date_stop}{nonstd_calendar_and_ny}"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:452
-#, fuzzy
 msgid "between-date|"
-msgstr "在...之间"
+msgstr ""
 
 #. If there is no special inflection for "and <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2294,41 +2294,36 @@ msgstr ""
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:491
-#, fuzzy
 msgid "before-date|"
-msgstr "以前"
+msgstr ""
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:496
-#, fuzzy
 msgid "after-date|"
-msgstr "之后"
+msgstr ""
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:501
-#, fuzzy
 msgid "about-date|"
-msgstr "大约"
+msgstr ""
 
 #. If there is no special inflection for "estimated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:506
-#, fuzzy
 msgid "estimated-date|"
-msgstr "估计的日期"
+msgstr ""
 
 #. If there is no special inflection for "calculated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:511
-#, fuzzy
 msgid "calculated-date|"
-msgstr "计算的"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:530
 #, python-brace-format
@@ -2843,7 +2838,6 @@ msgid "Mon"
 msgstr "星期一"
 
 #: ../gramps/gen/datehandler/_datestrings.py:254
-#, fuzzy
 msgid "Tue"
 msgstr "星期二"
 
@@ -2856,7 +2850,6 @@ msgid "Thu"
 msgstr "星期四"
 
 #: ../gramps/gen/datehandler/_datestrings.py:257
-#, fuzzy
 msgid "Fri"
 msgstr "星期五"
 
@@ -8512,9 +8505,8 @@ msgid "Families"
 msgstr "家庭"
 
 #: ../gramps/gen/lib/person.py:203
-#, fuzzy
 msgid "Parent families"
-msgstr "所有家庭"
+msgstr "父母家庭"
 
 #: ../gramps/gen/lib/person.py:209 ../gramps/gen/lib/repo.py:103
 #: ../gramps/gui/merge/mergeperson.py:268
@@ -8528,7 +8520,6 @@ msgid "Urls"
 msgstr "Urls"
 
 #: ../gramps/gen/lib/person.py:237
-#, fuzzy
 msgid "Person references"
 msgstr "成员参照"
 
@@ -9246,15 +9237,13 @@ msgstr "垂直的 (↑)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:74
 #: ../gramps/plugins/view/pedigreeview.py:2122
-#, fuzzy
 msgid "Horizontal (→)"
-msgstr "水平(从左到右)"
+msgstr "水平 (→)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:75
 #: ../gramps/plugins/view/pedigreeview.py:2123
-#, fuzzy
 msgid "Horizontal (←)"
-msgstr "水平(从左到右)"
+msgstr "水平 (←)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:82
 msgid "Bottom, left"
@@ -9638,7 +9627,6 @@ msgid "Script"
 msgstr "脚本"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:91
-#, fuzzy
 msgid "Footnote"
 msgstr "脚注"
 
@@ -9772,9 +9760,8 @@ msgid "This text will be added to the tree."
 msgstr "文本将被添加到图表。"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:216
-#, fuzzy
 msgid "The size of note text."
-msgstr "笔记文本尺寸，in points."
+msgstr "注释文本大小"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
@@ -9939,14 +9926,12 @@ msgid "Select the format to display names"
 msgstr "选择用于显示姓名的格式"
 
 #: ../gramps/gen/plug/report/stdoptions.py:106
-#, fuzzy
 msgid "Include data marked private"
-msgstr "包含标记为私有的记录"
+msgstr "包括标记为隐私的数据"
 
 #: ../gramps/gen/plug/report/stdoptions.py:107
-#, fuzzy
 msgid "Whether to include private data"
-msgstr "是否包含私有对象"
+msgstr "是否包括隐私数据"
 
 #: ../gramps/gen/plug/report/stdoptions.py:172
 msgid "Living People"
@@ -9982,9 +9967,8 @@ msgid "Years from death to consider living"
 msgstr "由死亡推测的生活年限"
 
 #: ../gramps/gen/plug/report/stdoptions.py:192
-#, fuzzy
 msgid "Whether to restrict data on recently-dead people"
-msgstr "_限制性的数据－关于健康人士(_R)"
+msgstr "是否对近期去世的成员进行数据限制"
 
 #: ../gramps/gen/plug/report/stdoptions.py:257 ../gramps/gui/configure.py:1222
 msgid "Date format"
@@ -9995,9 +9979,8 @@ msgid "The format and language for dates, with examples"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:322
-#, fuzzy
 msgid "Do not include"
-msgstr "不包含健在的成员"
+msgstr "不包括"
 
 #: ../gramps/gen/plug/report/stdoptions.py:324
 #, fuzzy
@@ -10009,9 +9992,8 @@ msgid "On a line of its own"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:326
-#, fuzzy
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "是否包含对象的 Gramps ID 编号"
+msgstr "是否（以及在何处）包含 Gramps ID"
 
 #. --------------------
 #. ###############################
@@ -10031,18 +10013,16 @@ msgid "Include"
 msgstr "包含"
 
 #: ../gramps/gen/plug/report/stdoptions.py:329
-#, fuzzy
 msgid "Whether to include Gramps IDs"
-msgstr "是否包含对象的 Gramps ID 编号"
+msgstr "是否包含 Gramps ID"
 
 #: ../gramps/gen/plug/report/stdoptions.py:337
 msgid "Place format"
 msgstr "地点格式"
 
 #: ../gramps/gen/plug/report/stdoptions.py:341
-#, fuzzy
 msgid "Select the format to display places"
-msgstr "选择用于显示姓名的格式"
+msgstr "选择地点显示格式"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:919
@@ -10108,21 +10088,20 @@ msgid "unknown mother"
 msgstr "未知母亲"
 
 #: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:905
-#, fuzzy, python-format
+#, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
-msgstr "%(father)s 和 %(mother)s (%(id)s)"
+msgstr "%(father_name)s 和 %(mother_name)s (%(family_id)s)"
 
 #. Do this in case of command line options query (show=filter)
 #: ../gramps/gen/plug/report/utils.py:369
-#, fuzzy
 msgid "FAMILY"
-msgstr "家族昵称"
+msgstr "家族"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:386
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Families of %s"
-msgstr "%s 的祖先"
+msgstr "%s 的祖先家庭"
 
 #: ../gramps/gen/plug/utils.py:250
 msgid "Updated"
@@ -10408,9 +10387,9 @@ msgid "ancestor death-related date"
 msgstr "先辈相关死亡日期"
 
 #: ../gramps/gen/utils/alive.py:460
-#, fuzzy, python-format
+#, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "数据库错误: %s 被定义为 他/她自己的祖先"
+msgstr "数据库错误：%s 的祖先关系中存在无限循环"
 
 #. no evidence, must consider alive
 #: ../gramps/gen/utils/alive.py:507
@@ -10613,9 +10592,8 @@ msgid "Chinese (Simplified)"
 msgstr "中文（简体）"
 
 #: ../gramps/gen/utils/grampslocale.py:112
-#, fuzzy
 msgid "Chinese (Hong Kong)"
-msgstr "中文（繁体）"
+msgstr "中文（香港）"
 
 #: ../gramps/gen/utils/grampslocale.py:113
 msgid "Chinese (Traditional)"
@@ -10627,19 +10605,16 @@ msgid "the person"
 msgstr "成员"
 
 #: ../gramps/gen/utils/grampslocale.py:898
-#, fuzzy
 msgid "the family"
-msgstr "字体字形"
+msgstr "家庭"
 
 #: ../gramps/gen/utils/grampslocale.py:900
-#, fuzzy
 msgid "the place"
-msgstr "出生地点"
+msgstr "地点"
 
 #: ../gramps/gen/utils/grampslocale.py:902
-#, fuzzy
 msgid "the event"
-msgstr "每个事件"
+msgstr "事件"
 
 #: ../gramps/gen/utils/grampslocale.py:904
 #, fuzzy
@@ -10662,19 +10637,16 @@ msgid "the source"
 msgstr "出生来源"
 
 #: ../gramps/gen/utils/grampslocale.py:912
-#, fuzzy
 msgid "the filter"
-msgstr "父亲筛选器"
+msgstr "筛选器"
 
 #: ../gramps/gen/utils/grampslocale.py:914
-#, fuzzy
 msgid "the citation"
 msgstr "引用"
 
 #: ../gramps/gen/utils/grampslocale.py:916
-#, fuzzy
 msgid "See details"
-msgstr "显示细节 %s"
+msgstr "查看细节"
 
 #: ../gramps/gen/utils/image.py:123
 msgid ""
@@ -11018,9 +10990,8 @@ msgstr ""
 #. Name
 #. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
-#, fuzzy
 msgid "Nothing"
-msgstr "使用(_W)"
+msgstr "无"
 
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
@@ -11226,9 +11197,9 @@ msgstr "剪贴板"
 #. Now add more items to popup menu, if available
 #. See details (edit, etc):
 #: ../gramps/gui/clipboard.py:1493 ../gramps/gui/plug/quick/_quicktable.py:141
-#, fuzzy, python-format
+#, python-format
 msgid "the object|See %s details"
-msgstr "显示细节 %s"
+msgstr "查看 %s 的细节"
 
 #: ../gramps/gui/clipboard.py:1502 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
@@ -11304,9 +11275,8 @@ msgstr "显示名称编辑器"
 #: ../gramps/gui/widgets/grampletpane.py:240
 #: ../gramps/plugins/lib/maps/placeselection.py:120
 #: ../gramps/plugins/tool/dumpgenderstats.py:85
-#, fuzzy
 msgid "_Close"
-msgstr "关闭"
+msgstr "关闭(_C)"
 
 #: ../gramps/gui/configure.py:119
 #, fuzzy
@@ -11340,34 +11310,33 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"The following keywords are replaced with the appropriate name parts:\n"
-"<tt>  \n"
-"  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames "
+"以下关键词已被合适的名字部分替换：<tt>\n"
+"  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
 "(with prefix and connectors)\n"
-"  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix "
+"  <b>Title</b>   - title (Dr., Mrs.)           <b>Suffix</b>   - suffix "
 "(Jr., Sr.)\n"
-"  <b>Call</b>       - call name               <b>Nickname</b>     - nick "
-"name\n"
-"  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick "
-"name, otherwise first of Given\n"
-"  <b>Primary</b>    - primary surname (main)  <b>Familynick</b>   - family "
-"nick name\n"
-"  <b>Patronymic</b> - father's surname        <b>Notpatronymic</b>- all "
-"surnames, except patronymic\n"
-"  <b>Prefix</b>     - all prefixes (von, de)  <b>Rawsurnames</b>  - surnames "
+"  <b>Call</b>    - call name                   <b>Nickname</b> - nick name\n"
+"  <b>Initials</b>- first letters of given      <b>Common</b>   - nick name, "
+"call, or first of given\n"
+"  <b>Prefix</b>  - all prefixes (von, de)\n"
+"Surnames:\n"
+"  <b>Rest</b>      - non primary surnames    <b>Notpatronymic</b>- all "
+"surnames, except pa/matronymic &amp; primary\n"
+"  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames "
 "(no prefixes and connectors)\n"
-"  <b>Rest</b>       - non primary surnames\n"
+"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
+"prefix, surname only, connector\n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic "
+"surname, prefix, surname only, connector\n"
 "</tt>\n"
-"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. "
-"Other text appears literally.\n"
+"大写关键词强制大写。删除了额外的圆括号和逗号。其他文字如实出现。\n"
 "\n"
-"<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
-"- Underhills'\n"
-"     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, "
-"<i>Smith</i> and <i>Weston</i> surnames, \n"
-"     <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, "
-"<i>Ed</i> nick name, \n"
-"     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
+"<b>示例</b>：Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"Underhills\n"
+"     <i>Edwin Jose</i>: 名字，<i>von der</i>: 前缀，<i>Smith</i> 和 "
+"<i>Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: 父系姓，\n"
+"     <i>Dr.</i>: 头衔，<i>Sr</i>: 后缀，<i>Ed</i>: Nickname, <i>Underhills</"
+"i>: Familynick, <i>Jose</i>: Call.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -11519,7 +11488,7 @@ msgstr "男性成员的颜色"
 
 #: ../gramps/gui/configure.py:702
 msgid "Colors for Female persons"
-msgstr ""
+msgstr "女性成员的颜色"
 
 #: ../gramps/gui/configure.py:703
 msgid "Colors for Unknown persons"
@@ -11584,9 +11553,8 @@ msgstr "离异人员边框"
 
 #. for other
 #: ../gramps/gui/configure.py:742
-#, fuzzy
 msgid "Background for Home Person"
-msgstr "与家庭成员的关系："
+msgstr "主成员的背景"
 
 #: ../gramps/gui/configure.py:761
 #, python-format
@@ -11599,27 +11567,23 @@ msgstr "颜色"
 
 #: ../gramps/gui/configure.py:794
 msgid "Warnings and Error dialogs"
-msgstr ""
+msgstr "警告和错误对话框"
 
 #: ../gramps/gui/configure.py:800
-#, fuzzy
 msgid "Suppress warning when adding parents to a child"
-msgstr "当为子女填写父母时不提示错误。"
+msgstr "当为子女添加父母时不提示警告。"
 
 #: ../gramps/gui/configure.py:804
-#, fuzzy
 msgid "Suppress warning when canceling with changed data"
-msgstr "当已变更数据，取消时时不提示错误。"
+msgstr "取消已作出的数据修改时不提示警告。"
 
 #: ../gramps/gui/configure.py:808
-#, fuzzy
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
-msgstr "导入缺失调查者的 GEDCOM 数据库时不提示错误。"
+msgstr "导出到 GEDCOM 时不提示关于缺少研究者的警告"
 
 #: ../gramps/gui/configure.py:813
-#, fuzzy
 msgid "Show plugin status dialog on plugin load error"
-msgstr "当插件读取错误时，显示插件状态栏。"
+msgstr "插件加载出错时显示插件状态对话框"
 
 #: ../gramps/gui/configure.py:816
 msgid "Warnings"
@@ -11665,9 +11629,8 @@ msgstr "例："
 #: ../gramps/gui/widgets/fanchart.py:2028
 #: ../gramps/gui/widgets/fanchart.py:2070
 #: ../gramps/plugins/view/pedigreeview.py:1704
-#, fuzzy
 msgid "_Add"
-msgstr "添加(_A)..."
+msgstr "添加(_A)"
 
 #: ../gramps/gui/configure.py:1057
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:149
@@ -11699,7 +11662,7 @@ msgstr "删除(_R)"
 
 #: ../gramps/gui/configure.py:1153
 msgid "Appearance and format settings"
-msgstr ""
+msgstr "外观和格式设置"
 
 #: ../gramps/gui/configure.py:1198 ../gramps/gui/configure.py:1237
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11721,7 +11684,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:1240
 #, fuzzy
 msgid "Place format (auto place title)"
-msgstr "地点匹配筛查器<filter>"
+msgstr "地点格式（自动设置标题）"
 
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specified format."
@@ -11773,20 +11736,20 @@ msgid "Status bar"
 msgstr "状态栏"
 
 #: ../gramps/gui/configure.py:1340
-#, fuzzy
 msgid "Show text label beside Navigator buttons (requires restart)"
-msgstr "在侧边栏显示文本信息（需要重启）"
+msgstr "在导航按钮旁显示文本标签（需要重启）"
 
 #: ../gramps/gui/configure.py:1343
-#, fuzzy
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
-msgstr "在侧边栏显示文本信息（需要重启）"
+msgstr ""
+"在导航按钮（成员，家庭，时间等）旁显示文本。\n"
+"Gramps 需重启应用更改。"
 
 #: ../gramps/gui/configure.py:1349
 msgid "Show close button in gramplet bar tabs"
-msgstr ""
+msgstr "在 gramplet 标签页框上显示关闭按钮"
 
 #: ../gramps/gui/configure.py:1352
 msgid "Show close button to simplify removing gramplets from bars."
@@ -11903,7 +11866,7 @@ msgstr "日期"
 
 #: ../gramps/gui/configure.py:1549
 msgid "General Gramps settings"
-msgstr ""
+msgstr "Gramps 常规设置"
 
 #: ../gramps/gui/configure.py:1554
 msgid "Add default source on GEDCOM import"
@@ -11918,6 +11881,8 @@ msgid ""
 "Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
+"导入时会加上特定标签。\n"
+"清除以设置默认值。"
 
 #: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
@@ -11929,6 +11894,8 @@ msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
+"GtkSpell 未加载。拼写检查将不可用。\n"
+"要为 Gramps 构建它，请阅读 %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1596
 msgid "Display Tip of the Day"
@@ -11936,7 +11903,7 @@ msgstr "显示当日提示"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Show useful information about using Gramps on startup."
-msgstr ""
+msgstr "在程序启动时显示有关使用 Gramps 的提示信息。"
 
 #: ../gramps/gui/configure.py:1601
 msgid "Remember last view displayed"
@@ -11956,7 +11923,7 @@ msgstr "相关媒体路径的基础路径"
 
 #: ../gramps/gui/configure.py:1618
 msgid "Third party addons management"
-msgstr ""
+msgstr "第三方加载项管理"
 
 #: ../gramps/gui/configure.py:1627
 msgid "Once a month"
@@ -12012,7 +11979,7 @@ msgstr "检查附加组件失败"
 
 #: ../gramps/gui/configure.py:1681
 msgid "The addon repository appears to be unavailable. Please try again later."
-msgstr ""
+msgstr "加载项软件库好像不可用。请稍后再试。"
 
 #: ../gramps/gui/configure.py:1694
 msgid "There are no available addons of this type"
@@ -12039,7 +12006,7 @@ msgstr "更新"
 
 #: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
-msgstr ""
+msgstr "家庭树数据库设置及备份管理"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
@@ -12065,7 +12032,7 @@ msgstr "自动载入上次使用的家族树"
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
-msgstr ""
+msgstr "程序启动时不要提示选择要加载的家庭树，直接加载上次使用的家庭树。"
 
 #: ../gramps/gui/configure.py:1767
 msgid "Backup path"
@@ -12077,7 +12044,7 @@ msgstr "退出时备份"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr ""
+msgstr "退出程序时将您的家庭树备份到上方设定的备份路径下。"
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12184,7 +12151,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
-msgstr ""
+msgstr "使用符号"
 
 #: ../gramps/gui/configure.py:1965
 msgid ""
@@ -12192,6 +12159,9 @@ msgid ""
 "before you can continue (10 minutes or more). \n"
 "If you cancel the process, nothing will be changed."
 msgstr ""
+"注意，如果点击“尝试查找”按钮，可能会让您等一些时间（10 分钟或更长）才能继续操"
+"作。\n"
+"如果您取消操作，则不会有任何修改发生。"
 
 #: ../gramps/gui/configure.py:1975
 msgid ""
@@ -12201,7 +12171,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1980
 msgid "Try to find"
-msgstr ""
+msgstr "尝试查找"
 
 #: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
 msgid "Choose font"
@@ -12227,7 +12197,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
-msgstr ""
+msgstr "查看可用的家谱学字体"
 
 #: ../gramps/gui/configure.py:2044
 msgid "Looking for all fonts with genealogical symbols."
@@ -12276,6 +12246,8 @@ msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
 msgstr ""
+"我已经做了备份，\n"
+"请升级我的家庭树"
 
 #: ../gramps/gui/dbloader.py:220 ../gramps/gui/dbloader.py:235
 #: ../gramps/gui/dbloader.py:250 ../gramps/gui/dbloader.py:265
@@ -12295,6 +12267,8 @@ msgid ""
 "I have made a backup,\n"
 "please downgrade my Family Tree"
 msgstr ""
+"我已经做了备份，\n"
+"请降级我的家庭树"
 
 #: ../gramps/gui/dbloader.py:316
 msgid "All files"
@@ -12310,15 +12284,13 @@ msgstr "选择文件类型(_T)："
 
 #: ../gramps/gui/dbloader.py:387 ../gramps/gui/dbloader.py:409
 msgid "Login"
-msgstr ""
+msgstr "登录"
 
 #: ../gramps/gui/dbloader.py:395
-#, fuzzy
 msgid "Username: "
 msgstr "用户名："
 
 #: ../gramps/gui/dbloader.py:400
-#, fuzzy
 msgid "Password: "
 msgstr "密码："
 
@@ -12559,11 +12531,11 @@ msgstr "转换数据库 '%s' 吗？"
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
-msgstr ""
+msgstr "您想将此家庭树转换成 %(database_type)s 数据库类型吗？"
 
 #: ../gramps/gui/dbman.py:786
 msgid "Convert"
-msgstr ""
+msgstr "转换"
 
 #: ../gramps/gui/dbman.py:796
 #, python-format
@@ -12581,7 +12553,7 @@ msgstr "正在转换数据库 ‘%s’"
 
 #: ../gramps/gui/dbman.py:809
 msgid "An attempt to export the database failed."
-msgstr ""
+msgstr "尝试导出数据库时失败。"
 
 #: ../gramps/gui/dbman.py:813
 msgid "Converting data..."
@@ -12594,14 +12566,14 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:835
 msgid "An attempt to import into the database failed."
-msgstr ""
+msgstr "尝试导入数据库时失败。"
 
 #: ../gramps/gui/dbman.py:892
 msgid "Repair Family Tree?"
 msgstr "修复 Family Tree？"
 
 #: ../gramps/gui/dbman.py:893
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
 "recover your Family Tree from the last good backup. There are several ways "
@@ -12626,28 +12598,23 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"如果您点击了按钮  <b>处理</b>, Gramps 将会尝试从最后一次正确的备份恢复您的家"
-"族树。但是仍然有某些可能性会导致不希望的效果，因此    请提前<b>备份</b>家族"
-"树 .\n"
-"您现在的家族树已经被保存在 %s中.\n"
+"如果您点击%(bold_start)s继续%(bold_end)s按钮，Gramps 将尝试从您上次的完好备份"
+"中恢复您的家族树。该操作可能会以多种方式造成预期外的结果，因此请"
+"先%(bold_start)s备份%(bold_end)s家族树。\n"
+"所选家族树保存在 %(dirname)s。\n"
 "\n"
-"Before doing a repair, verify that the Family Tree can really no longer be  "
-"opened, as the database back-end can recover from some errors "
-"automatically.\n"
+"进行修复前，请先确认家族树确实无法打开，因为数据库后端可从一些错误中自动恢"
+"复。\n"
 "\n"
-"<b>Details:</b> Repairing a Family Tree actually uses the last backup of the "
-"Family Tree, which Gramps stored on last use. If you have worked for several "
-"hours/days without closing Gramps, then all this information will be lost! "
-"If the repair fails, then the original family tree will be lost forever, "
-"hence a backup is needed. If the repair fails, or too much information is "
-"lost, you can fix the original family tree manually. For details, see the "
-"webpage\n"
-"http://gramps-project.org/wiki/index.php?"
-"title=Recover_corrupted_family_tree\n"
-"Before doing a repair, try to open the family tree in the normal manner. "
-"Several errors that trigger the repair button can be fixed automatically. If "
-"this is the case, you can disable the repair button by removing the file "
-"<i>need_recover</i> in the family tree directory."
+"%(bold_start)s详情：%(bold_end)s 修复家族树实际上是使用上次的家族树备份， 也"
+"就是上次使用 Gramps 时所保存的。如果您一直在Gramps 中编辑了好几小时或好多天而"
+"没有关闭程序，那么这些编辑的内容都将会丢失！如果修复失败，则初始的家族树会永"
+"久丢失，因此备份是必需的。如果修复失败或者丢失了过多的信息，您可尝试手动解决"
+"初始家族树的问题。 详情请参考网页\n"
+"%(gramps_wiki_recover_url)s\n"
+"进行修复前，请先尝试按正常方式打开家族树。某些触发修复按钮出现的错误是可以自"
+"动修复的。如果是这样的话，您可通过删除家族树目录中的 %(recover_file)s 文件来"
+"停止修复按钮的出现。"
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
@@ -12997,35 +12964,29 @@ msgid "Move right"
 msgstr "右移"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:69
-#, fuzzy
 msgid "Create and add a new citation and new source"
-msgstr "创建并添加一个来源"
+msgstr "创建并添加新的引用和来源"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:70
-#, fuzzy
 msgid "Remove the existing citation"
-msgstr "移除现有相关性"
+msgstr "移除已有来源"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
 #: ../gramps/plugins/view/citationlistview.py:127
-#, fuzzy
 msgid "Edit the selected citation"
-msgstr "编辑所选相关性"
+msgstr "编辑所选引用"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:72
-#, fuzzy
 msgid "Add an existing citation or source"
-msgstr "添加一个现存的源"
+msgstr "添加已有的引用或来源"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
 msgid "Move the selected citation upwards"
-msgstr "上移所选相关性"
+msgstr "上移所选的引用"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
-#, fuzzy
 msgid "Move the selected citation downwards"
-msgstr "下移所选相关性"
+msgstr "下移所选的引用"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:91
 msgid "_Source Citations"
@@ -13044,7 +13005,6 @@ msgstr "无法共享此参照"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:192
 #: ../gramps/plugins/view/citationtreeview.py:641
-#, fuzzy
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -13052,10 +13012,10 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"本来源索引无法被编辑.可能相关的来源正在被编辑或者另外一个指向相同来源的索引正"
-"在被编辑.\n"
+"当前无法创建此引用。可能是相关的源对象正在编辑中，或使用相同来源的另一个引用"
+"正在编辑中。\n"
 "\n"
-"编辑来源索引，您需要先关闭来源."
+"要编辑该引用，您需要先关闭相关的对象。"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Add a new family event"
@@ -13135,7 +13095,7 @@ msgstr "图库(_G)"
 #. Translators: _View means "to look at this"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:142
 msgid "verb:look at this|_View"
-msgstr ""
+msgstr "查看(_V)"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/plugins/view/mediaview.py:395
@@ -13226,7 +13186,6 @@ msgid "Group As"
 msgstr "分组为"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:79
-#, fuzzy
 msgid "Notes Preview"
 msgstr "注释预览"
 
@@ -13373,29 +13332,24 @@ msgid "Godfather"
 msgstr "代父"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:53
-#, fuzzy
 msgid "Create and add a new place name"
-msgstr "创建并添加一个新名称"
+msgstr "创建并添加新地点名称"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:54
-#, fuzzy
 msgid "Remove the existing place name"
-msgstr "移除现有名称"
+msgstr "删除已有地点名称"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:55
-#, fuzzy
 msgid "Edit the selected place name"
-msgstr "编辑所选地点"
+msgstr "编辑所选地点名称"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:56
-#, fuzzy
 msgid "Move the selected place name upwards"
-msgstr "上移所选名字"
+msgstr "上移所选地点名称"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:57
-#, fuzzy
 msgid "Move the selected place name downwards"
-msgstr "下移所选名称"
+msgstr "下移所选地点名称"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:71
 #: ../gramps/plugins/gramplet/placedetails.py:146
@@ -13412,7 +13366,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:189
 msgid "Place cycle detected"
-msgstr ""
+msgstr "检测到地点嵌套"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:190
 msgid "The place you are adding is already enclosed by this place"
@@ -13524,14 +13478,12 @@ msgstr "互联网(_I)"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:118
 #: ../gramps/gui/glade/editurl.glade:200
 #: ../gramps/gui/views/navigationview.py:349
-#, fuzzy
 msgid "_Jump to"
-msgstr "跳转到"
+msgstr "跳转到(_J)"
 
 #: ../gramps/gui/editors/editaddress.py:65
-#, fuzzy
 msgid "manual|Address_Editor_dialog"
-msgstr "地址编辑器"
+msgstr "地址编辑器对话框"
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:167
@@ -13539,9 +13491,8 @@ msgid "Address Editor"
 msgstr "地址编辑器"
 
 #: ../gramps/gui/editors/editattribute.py:62
-#, fuzzy
 msgid "manual|Attribute_Editor_dialog"
-msgstr "属性编辑器"
+msgstr "属性编辑器对话框"
 
 #: ../gramps/gui/editors/editattribute.py:94
 #: ../gramps/gui/editors/editattribute.py:137
@@ -13572,9 +13523,8 @@ msgid "Child Reference Editor"
 msgstr "子女参照编辑器"
 
 #: ../gramps/gui/editors/editcitation.py:69
-#, fuzzy
 msgid "manual|New_Citation_dialog"
-msgstr "合并引用"
+msgstr "新引用对话框"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -13671,9 +13621,8 @@ msgid "Calculated"
 msgstr "据计算"
 
 #: ../gramps/gui/editors/editdate.py:99
-#, fuzzy
 msgid "manual|Editing_dates"
-msgstr "编辑日期(_D)"
+msgstr "编辑日期"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
@@ -13685,9 +13634,8 @@ msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:64
-#, fuzzy
 msgid "manual|New_Event_dialog"
-msgstr "合并事件"
+msgstr "新事件对话框"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:264
@@ -14105,9 +14053,8 @@ msgid "Cannot save media object. ID already exists."
 msgstr "无法保存媒体对象，ID 编号已经存在。"
 
 #: ../gramps/gui/editors/editmedia.py:314
-#, fuzzy
 msgid "There is no media matching the current path value!"
-msgstr "共发现 %d位成员 匹配此姓名或者曾用名.\n"
+msgstr "当前路径下未发现匹配的媒体！"
 
 #: ../gramps/gui/editors/editmedia.py:315
 #, python-format
@@ -14154,7 +14101,6 @@ msgid "Name Editor"
 msgstr "名称编辑器"
 
 #: ../gramps/gui/editors/editname.py:162
-#, fuzzy
 msgid "manual|Name_Editor"
 msgstr "名称编辑器"
 
@@ -14407,20 +14353,22 @@ msgstr "新地点"
 #. translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:207
 #: ../gramps/gui/editors/editplaceref.py:200
-#, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "无效的纬度 (syntax: 18°9'"
+msgstr ""
+"无效的纬度\n"
+"(句法：18\\u00b09’48.21”S, -18.2412 or -18:9:48.21)"
 
 #. translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:212
 #: ../gramps/gui/editors/editplaceref.py:205
-#, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "无效的经度 (syntax: 18°9'"
+msgstr ""
+"无效的经度\n"
+"(句法：18\\u00b09’48.21”E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:223
 #: ../gramps/plugins/lib/maps/geography.py:891
@@ -14577,9 +14525,8 @@ msgid "Delete Repository (%s)"
 msgstr "删除文库(%s)"
 
 #: ../gramps/gui/editors/editsource.py:64
-#, fuzzy
 msgid "manual|New_Source_dialog"
-msgstr "合并来源"
+msgstr "新来源对话框"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -14617,9 +14564,8 @@ msgid "Delete Source (%s)"
 msgstr "删除源(%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
-#, fuzzy
 msgid "manual|Tag_selection_dialog"
-msgstr "选择标签"
+msgstr "标签选择对话框"
 
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:127
@@ -14640,14 +14586,12 @@ msgid "manual|Add_Rule_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:85
-#, fuzzy
 msgid "manual|Define_Filter_dialog"
-msgstr "纲要"
+msgstr "定义筛选对话框"
 
 #: ../gramps/gui/editors/filtereditor.py:86
-#, fuzzy
 msgid "manual|Custom_Filters"
-msgstr "定制筛选器"
+msgstr "自定义筛选器"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Person Filters"
@@ -14670,9 +14614,8 @@ msgid "Source Filters"
 msgstr "来源筛查器"
 
 #: ../gramps/gui/editors/filtereditor.py:95
-#, fuzzy
 msgid "Media Filters"
-msgstr "媒体文件"
+msgstr "媒体文件筛选"
 
 #: ../gramps/gui/editors/filtereditor.py:96
 msgid "Repository Filters"
@@ -14683,9 +14626,8 @@ msgid "Note Filters"
 msgstr "注释筛查器"
 
 #: ../gramps/gui/editors/filtereditor.py:98
-#, fuzzy
 msgid "Citation Filters"
-msgstr "地点"
+msgstr "引用筛选"
 
 #: ../gramps/gui/editors/filtereditor.py:252
 msgid "equal to"
@@ -14815,13 +14757,10 @@ msgid "Delete Filter?"
 msgstr "删除筛查器?"
 
 #: ../gramps/gui/editors/filtereditor.py:1200
-#, fuzzy
 msgid ""
 "This filter is currently being used as the base for other filters. Deleting "
 "this filter will result in removing all other filters that depend on it."
 msgstr ""
-"现在正在使用的筛查器作为其他筛查器的基础。删除本筛查器将会移除所有依赖本筛查"
-"器的其他筛查器。"
 
 #: ../gramps/gui/editors/filtereditor.py:1204
 msgid "Delete Filter"
@@ -14853,16 +14792,14 @@ msgid "Remove place"
 msgstr "移除地址"
 
 #: ../gramps/gui/editors/objectentries.py:341
-#, fuzzy
 msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr "选择注释，使用拖放功能或按钮"
+msgstr "要选择来源，可使用拖放功能或按钮"
 
 #: ../gramps/gui/editors/objectentries.py:343
 msgid "First add a source using the button"
 msgstr ""
 
 #: ../gramps/gui/editors/objectentries.py:344
-#, fuzzy
 msgid "Edit source"
 msgstr "编辑来源"
 
@@ -15294,7 +15231,7 @@ msgstr "否(_N)"
 #: ../gramps/gui/glade/dialog.glade:438
 #: ../gramps/plugins/tool/reorderids.glade:26
 msgid "Do not apply the operation to this item"
-msgstr ""
+msgstr "不要对此项目应用该操作"
 
 #: ../gramps/gui/glade/dialog.glade:449 ../gramps/gui/views/listview.py:572
 #: ../gramps/plugins/tool/reorderids.glade:37
@@ -15304,7 +15241,7 @@ msgstr ""
 #: ../gramps/gui/glade/dialog.glade:456
 #: ../gramps/plugins/tool/reorderids.glade:44
 msgid "Apply the operation to this item"
-msgstr ""
+msgstr "对此项目应用该操作"
 
 #: ../gramps/gui/glade/dialog.glade:529
 #: ../gramps/plugins/tool/reorderids.glade:117
@@ -15316,7 +15253,7 @@ msgstr "对剩余项目均采用该回答(_U)"
 msgid ""
 "If you check this button, your next answer will apply to the rest of the "
 "selected items"
-msgstr ""
+msgstr "如果您点此选项，则您接下来的回答会应用到其余的已选项目上。"
 
 #: ../gramps/gui/glade/dialog.glade:776 ../gramps/gui/glade/dialog.glade:793
 #: ../gramps/gui/glade/dialog.glade:906
@@ -15591,9 +15528,8 @@ msgid "_ID:"
 msgstr "编号(_I)："
 
 #: ../gramps/gui/glade/editcitation.glade:240
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "独有的ID辨别注释。"
+msgstr "用于识别引用的独有 ID"
 
 #: ../gramps/gui/glade/editcitation.glade:360
 #: ../gramps/gui/glade/editevent.glade:390
@@ -15626,9 +15562,8 @@ msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
 msgstr "新年第一天的月-日。 (比如 \"1-1\", \"3-1\", \"3-25\")"
 
 #: ../gramps/gui/glade/editdate.glade:261
-#, fuzzy
 msgid "Q_uality"
-msgstr "<b>准确度(_U)</b>"
+msgstr "质量(_U)"
 
 #: ../gramps/gui/glade/editdate.glade:293
 msgid "_Type"
@@ -16078,9 +16013,8 @@ msgid ""
 msgstr "一个描述性的名字或者是一个官方的名字。"
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
 msgid "Given Name(s) "
-msgstr "指定名称"
+msgstr "名字"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16093,9 +16027,8 @@ msgid ""
 msgstr "一个非官方的家庭名称用于区别拥有相同名字的家庭，通常比如,农场名字"
 
 #: ../gramps/gui/glade/editname.glade:424
-#, fuzzy
 msgid "Family Names "
-msgstr "家庭笔记"
+msgstr "姓氏"
 
 #: ../gramps/gui/glade/editname.glade:462
 msgid "G_roup as:"
@@ -16346,9 +16279,8 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:378
 #: ../gramps/gui/glade/editplaceref.glade:397
-#, fuzzy
 msgid "What type of place this is. Eg 'Country', 'City', ... ."
-msgstr "事件的类型，比如'Burial', 'Graduation', ... ."
+msgstr "该地点的类型。比如“国家”，“城市”，……"
 
 #: ../gramps/gui/glade/editplace.glade:441
 #: ../gramps/gui/glade/editplaceref.glade:599
@@ -16357,9 +16289,8 @@ msgstr "这个地点的名称。"
 
 #: ../gramps/gui/glade/editplace.glade:456
 #: ../gramps/gui/glade/editplaceref.glade:618
-#, fuzzy
 msgid "Invoke place name editor."
-msgstr "打开日期编辑器"
+msgstr "调用地点名称编辑器"
 
 #: ../gramps/gui/glade/editplaceformat.glade:124
 #, fuzzy
@@ -16367,9 +16298,8 @@ msgid "Levels:"
 msgstr "左上"
 
 #: ../gramps/gui/glade/editplaceformat.glade:136
-#, fuzzy
 msgid "Street format:"
-msgstr "日期格式"
+msgstr "街道格式："
 
 #: ../gramps/gui/glade/editplaceformat.glade:148
 #: ../gramps/gui/glade/editplacename.glade:108
@@ -16386,9 +16316,8 @@ msgid "Number Street"
 msgstr "父母人数"
 
 #: ../gramps/gui/glade/editplaceformat.glade:187
-#, fuzzy
 msgid "Street Number"
-msgstr "街道 (Street)"
+msgstr "街道编号"
 
 #: ../gramps/gui/glade/editplacename.glade:156
 #: ../gramps/plugins/webreport/basepage.py:2571
@@ -16405,7 +16334,7 @@ msgstr "这个地点的名称。"
 msgid ""
 "Language in which the name is written. Valid values are two character ISO "
 "codes. For example:  en, fr, de, nl ..."
-msgstr ""
+msgstr "名字所用的语言。有效值为两个字符的 ISO 编码。比如：en，fr，de，nl 等等"
 
 #: ../gramps/gui/glade/editplaceref.glade:295
 #, fuzzy
@@ -16594,9 +16523,8 @@ msgid "Gramps ID:"
 msgstr "Gramps ID 编号："
 
 #: ../gramps/gui/glade/mergecitation.glade:455
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
-msgstr "两个源的注释，媒体对象，数据项目和文库参考都将被合并"
+msgstr "两个引用中的注释，媒体对象，数据项目都将被合并。"
 
 #: ../gramps/gui/glade/mergecitation.glade:471
 #: ../gramps/gui/glade/mergeevent.glade:528
@@ -16632,9 +16560,8 @@ msgid ""
 msgstr "选择合并人时作为主要数据的人."
 
 #: ../gramps/gui/glade/mergedata.glade:564
-#, fuzzy
 msgid "Title selection"
-msgstr "筛选器选择"
+msgstr "标题选择"
 
 #: ../gramps/gui/glade/mergedata.glade:576
 #: ../gramps/gui/glade/mergeplace.glade:179
@@ -16725,14 +16652,12 @@ msgid ""
 msgstr "选择合并注释时作为主要数据的注释."
 
 #: ../gramps/gui/glade/mergenote.glade:186
-#, fuzzy
 msgid "Note 1"
-msgstr "摘录"
+msgstr "注释 1"
 
 #: ../gramps/gui/glade/mergenote.glade:200
-#, fuzzy
 msgid "Note 2"
-msgstr "摘录"
+msgstr "注释 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
 #: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1070
@@ -16778,11 +16703,10 @@ msgid ""
 msgstr "选择地点时作为合并时的主要的地点数据。"
 
 #: ../gramps/gui/glade/mergeplace.glade:619
-#, fuzzy
 msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
-msgstr "两个地点的代替地点、来源、URLs、媒体对象和注释都将被合并。"
+msgstr "两个地点的替代名称、来源、URL、媒体对象和注释都将被合并。"
 
 #: ../gramps/gui/glade/mergerepository.glade:97
 msgid ""
@@ -16910,32 +16834,28 @@ msgid "Arrow top"
 msgstr ""
 
 #: ../gramps/gui/glade/reorder.glade:124
-#, fuzzy
 msgid "Move parent up"
-msgstr "未找到父母"
+msgstr "上移父母"
 
 #: ../gramps/gui/glade/reorder.glade:147 ../gramps/gui/glade/reorder.glade:290
 msgid "Arrow bottom"
 msgstr ""
 
 #: ../gramps/gui/glade/reorder.glade:154
-#, fuzzy
 msgid "Move parent down"
-msgstr "未找到父母"
+msgstr "下移父母"
 
 #: ../gramps/gui/glade/reorder.glade:205
 msgid "Family relationships"
 msgstr "家庭关系"
 
 #: ../gramps/gui/glade/reorder.glade:267
-#, fuzzy
 msgid "Move family up"
-msgstr "每个家庭"
+msgstr "上移家庭"
 
 #: ../gramps/gui/glade/reorder.glade:297
-#, fuzzy
 msgid "Move family down"
-msgstr "移除家族树"
+msgstr "下移家庭"
 
 #: ../gramps/gui/glade/rule.glade:122
 msgid "Add a new filter"
@@ -16958,9 +16878,8 @@ msgid "Delete the selected filter"
 msgstr "删除选中的筛选器"
 
 #: ../gramps/gui/glade/rule.glade:256
-#, fuzzy
 msgid "Note: changes take effect only after this window is closed"
-msgstr "<i>注意：只有关闭这个窗口后，改变才起作用</i>"
+msgstr "注意：在关闭此窗口后，变更才会生效"
 
 #: ../gramps/gui/glade/rule.glade:288 gtklist.h:6
 msgid "All rules must apply"
@@ -16994,14 +16913,13 @@ msgid "Options"
 msgstr "选项"
 
 #: ../gramps/gui/glade/rule.glade:536
-#, fuzzy
 msgid "Rule list"
-msgstr "<b>规则列表</b>"
+msgstr "规则列表"
 
 #: ../gramps/gui/glade/rule.glade:551
 #, fuzzy
 msgid "Definition"
-msgstr "目的地"
+msgstr "定义"
 
 #: ../gramps/gui/glade/rule.glade:568
 msgid "Co_mment:"
@@ -17012,9 +16930,8 @@ msgid "Return values that do no_t match the filter rules"
 msgstr "显示不符过滤规则的值"
 
 #: ../gramps/gui/glade/rule.glade:895
-#, fuzzy
 msgid "Selected Rule"
-msgstr "<b>选择规则</b>"
+msgstr "已选规则"
 
 #: ../gramps/gui/glade/styleeditor.glade:174
 msgid "Style sheet n_ame:"
@@ -17058,14 +16975,12 @@ msgid "_Underline"
 msgstr "下划线(_U)"
 
 #: ../gramps/gui/glade/styleeditor.glade:542
-#, fuzzy
 msgid "Font options"
-msgstr "<b>字体选项</b>"
+msgstr "字体选项"
 
 #: ../gramps/gui/glade/styleeditor.glade:567
-#, fuzzy
 msgid "Alignment"
-msgstr "<b>排列</b>"
+msgstr "对齐"
 
 #: ../gramps/gui/glade/styleeditor.glade:586
 #: ../gramps/plugins/drawreport/fanchart.py:706
@@ -17190,7 +17105,6 @@ msgid "Style:"
 msgstr "样式："
 
 #: ../gramps/gui/glade/styleeditor.glade:1481
-#, fuzzy
 msgid "Width:"
 msgstr "宽度："
 
@@ -17212,23 +17126,20 @@ msgid "pt"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:1621
-#, fuzzy
 msgid "Spacing:"
-msgstr "<b>间距</b>"
+msgstr "间距："
 
 #: ../gramps/gui/glade/styleeditor.glade:1643
 msgid "Draw shadow"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:1685
-#, fuzzy
 msgid "Draw options"
-msgstr "<b>段落选项</b>"
+msgstr "绘制选项"
 
 #: ../gramps/gui/glade/styleeditor.glade:1855
-#, fuzzy
 msgid "Add a new style"
-msgstr "新增一项摘要"
+msgstr "新增样式"
 
 #: ../gramps/gui/glade/styleeditor.glade:1887
 msgid "Edit the selected style"
@@ -17301,10 +17212,11 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
-"Gramps 和各种插件一起，从何实现一系列所需的功能。而且，您可以通过辅助插件扩展"
-"这些功能。这些辅助插件提供报告，列表，查看，gramplet 和其他功能。 再此，您可"
-"以从中选择插件，它们将从 Gramps 网站离线获取并在本地电脑中安装。如果您已经关"
-"闭了对话框，您还可以通过菜单中的 “编辑 → 首选项” 安装插件。"
+"Gramps 拥有众多核心插件，这些插件提供了必要的功能。然而，您还可以通过安装额外"
+"的加载项来扩展这些功能。这些额外加载项提供了报告，列表，查看，gramplet 等其他"
+"功能。 您可从这里选择需要的加载项，它们将从 Gramps 网站下载并安装到您的电脑"
+"中。如果您现在关闭了本对话框，稍后也可以通过菜单中的 “编辑 → 首选项” 来安装额"
+"外加载项。"
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -17474,7 +17386,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/grampsgui.py:437
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your pygobject version does not meet the requirements.\n"
 "At least pygobject %(major)d.%(feature)d.%(minor)d is needed to start Gramps "
@@ -17482,7 +17394,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"您的 Python 版本不能满足系统要求。Gramps 需要 %d.%d.%d python 以上版本。\n"
+"您的 pygobject 版本不满足要求。\n"
+"Gramps 图形界面启动需要 pygobject %(major)d.%(feature)d.%(minor)d 以上版"
+"本。\n"
 "\n"
 "Gramps 将要终止。"
 
@@ -17496,14 +17410,15 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/grampsgui.py:466
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Gtk version does not meet the requirements.\n"
 "At least %(major)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"您的 Python 版本不能满足系统要求。Gramps 需要 %d.%d.%d python 以上版本。\n"
+"您的 Gtk 版本不满足要求。\n"
+"Gramps 图形界面启动需要 %(major)d.%(minor)d 以上版本。\n"
 "\n"
 "Gramps 将要终止。"
 
@@ -17526,7 +17441,7 @@ msgid "This Gramps ('%s') is a development release.\n"
 msgstr ""
 
 #: ../gramps/gui/grampsgui.py:511
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
@@ -17541,18 +17456,17 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"本 Gramps ('master') 是一个开发中版本。本版本不是针对普通用户，需要自行承担风"
-"险。\n"
+"本版本不适合普通使用，请谨慎使用。\n"
 "\n"
 "本版本可能：\n"
-"1）与您期待不同。\n"
-"2）无法运行。\n"
+"1）与您期待工作方式不同。\n"
+"2）根本无法运行。\n"
 "3）经常崩溃。\n"
-"4）破坏您的数据。\n"
-"5）保存的格式无法与官方版本兼容。\n"
+"4）损坏您的数据。\n"
+"5）保存的数据格式无法与正式版兼容。\n"
 "\n"
-"在使用本版本前，%(bold_start)s务必备份%(bold_end)s您现有的数据库。并不时确保"
-"用 XML 格式导出您的数据。"
+"在使用本版本打开您现有数据库前，请%(bold_start)s务必备份%(bold_end)s数据库。"
+"并不时地确保用 XML 格式导出您的数据。"
 
 #: ../gramps/gui/grampsgui.py:541
 msgid "Gramps detected an incomplete GTK installation"
@@ -17589,9 +17503,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/logger/_errorreportassistant.py:97
-#, fuzzy
 msgid "Error Report Assistant"
-msgstr "导出支持"
+msgstr "错误报告助手"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:259
 msgid "Report a bug"
@@ -17692,13 +17605,12 @@ msgid "Bug Report Summary"
 msgstr "错误报告汇总"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:548
-#, fuzzy
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
 msgstr ""
-"这个是完整的错误报告. 下一页在Gramps错误追踪系统网页，将会协助您提交一个错误"
-"文件."
+"这是完整的错误报告。下一页将协助您在 Gramps 错误追踪系统的网页上提交该错误报"
+"告。"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:579
 msgid ""
@@ -17745,9 +17657,8 @@ msgstr ""
 "时间提交错误报告."
 
 #: ../gramps/gui/logger/_errorview.py:46
-#, fuzzy
 msgid "manual|Error_Report"
-msgstr "错误报告"
+msgstr "错误报告(_R)"
 
 #: ../gramps/gui/logger/_errorview.py:107
 msgid "Error Report"
@@ -17835,9 +17746,9 @@ msgstr "合并成员"
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
-#, fuzzy, python-format
+#, python-format
 msgid "%(key)s:\t%(value)s"
-msgstr "%(type)s：%(value)s"
+msgstr "%(key)s:\t%(value)s"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
@@ -17986,9 +17897,9 @@ msgid "Select Person"
 msgstr "选择人员"
 
 #: ../gramps/gui/plug/_guioptions.py:1579
-#, fuzzy, python-format
+#, python-format
 msgid "Select color for %s"
-msgstr "选择字体颜色"
+msgstr "为 %s 选择颜色"
 
 #: ../gramps/gui/plug/_guioptions.py:1742
 #: ../gramps/gui/plug/report/_reportdialog.py:452
@@ -17998,9 +17909,8 @@ msgstr "保存为"
 #: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:442
 #: ../gramps/gui/plug/report/_bookdialog.py:638
 #: ../gramps/gui/plug/report/_fileentry.py:66
-#, fuzzy
 msgid "_Open"
-msgstr "打开(_O)..."
+msgstr "打开(_O)"
 
 #: ../gramps/gui/plug/_guioptions.py:1824
 #: ../gramps/gui/plug/report/_reportdialog.py:329
@@ -18129,9 +18039,8 @@ msgid "OK"
 msgstr "确认"
 
 #: ../gramps/gui/plug/_windows.py:621
-#, fuzzy
 msgid "Plugin name"
-msgstr "插件管理器"
+msgstr "插件名称"
 
 #: ../gramps/gui/plug/_windows.py:623
 msgid "Version"
@@ -18167,7 +18076,7 @@ msgstr "主窗口"
 
 #: ../gramps/gui/plug/_windows.py:1177
 msgid "Downloading and installing selected addons..."
-msgstr "下载并安装所选的插件..."
+msgstr "正在下载和安装所选加载项..."
 
 #: ../gramps/gui/plug/_windows.py:1212
 msgid "Installation Errors"
@@ -18247,7 +18156,7 @@ msgstr ""
 "按“应用”继续，“后退”去修改您的选项，“取消”退出"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:465
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -18257,13 +18166,14 @@ msgid ""
 "\n"
 "Press Apply to proceed, Go Back to revisit your options, or Cancel to abort"
 msgstr ""
-"数据将被保存如下:\n"
+"数据将以如下形式保存：\n"
 "\n"
-"格式:\t%s\n"
-"文件名:\t%s\n"
-"文件夹:\t%s\n"
+"格式：\t%(format)s\n"
+"名称：\t%(name)s\n"
+"文件夹：\t%(folder)s\n"
 "\n"
-"按“应用”继续，“后退”去修改您的选项，“取消”退出"
+"\n"
+"按“应用”继续，“后退”可再次查看选项，按“取消”放弃"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
 msgid ""
@@ -18355,9 +18265,8 @@ msgid "Selecting..."
 msgstr "选择... "
 
 #: ../gramps/gui/plug/export/_exportoptions.py:163
-#, fuzzy
 msgid "Unfiltered Family Tree:"
-msgstr "Smith 家族树"
+msgstr "未筛选的家族树："
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/export/_exportoptions.py:167
@@ -18805,15 +18714,15 @@ msgstr "未选中文库"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:539
 #: ../gramps/plugins/export/exportxml.py:147
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "There is no directory %s.\n"
 "\n"
 "Please select another directory or create it."
 msgstr ""
-"您没有在目录%s下编辑的权力\n"
+"目录 %s 不存在。\n"
 "\n"
-"请另选目录或者修正权限."
+"请选其他目录或创建此目录。"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:668
 #: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:157
@@ -19823,6 +19732,8 @@ msgid ""
 "\n"
 "Ctrl-Click to follow link"
 msgstr ""
+"\n"
+"Ctrl 单击打开链接"
 
 #. spell checker submenu
 #: ../gramps/gui/widgets/styledtexteditor.py:450
@@ -19879,7 +19790,7 @@ msgstr "'%s' 的值不是有效的日期"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
-msgstr ""
+msgstr "BSDDB"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 #, fuzzy
@@ -23698,7 +23609,7 @@ msgstr "在 gramps-users 邮件列表上发问"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:117
 msgid "Who makes Gramps?"
-msgstr "Gramps 是谁写的呢？"
+msgstr "是谁制作了 Gramps？"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:118
 msgid ""
@@ -24368,9 +24279,8 @@ msgid "Do not include any dates or places"
 msgstr "不包括标题"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:867
-#, fuzzy
 msgid "Include (birth, marriage, death) dates, but no places"
-msgstr "包含出生，结婚和死亡日期"
+msgstr "包含(出生，结婚和去世)日期，但不含地点"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:869
 #, fuzzy
@@ -24408,9 +24318,8 @@ msgid "Whether to include dates and/or places"
 msgstr "是否包含父母的注释."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:885
-#, fuzzy
 msgid "Show all family nodes"
-msgstr "显示家庭节点"
+msgstr "显示全部家庭节点"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
@@ -24433,14 +24342,12 @@ msgstr ""
 #: ../gramps/plugins/graph/gvrelgraph.py:899
 #: ../gramps/plugins/textreport/birthdayreport.py:568
 #: ../gramps/plugins/textreport/indivcomplete.py:1145
-#, fuzzy
 msgid "Include relationship to center person"
 msgstr "包含与中心人员的关系"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:900
-#, fuzzy
 msgid "Whether to show every person's relationship to the center person"
-msgstr "视图显示的是所选成员的所有关系"
+msgstr "是否显示每个人员与中心人员的关系"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:909
 msgid "Whether to include thumbnails of people."
@@ -24452,28 +24359,24 @@ msgstr "缩略图位置"
 
 #. occupation = BooleanOption(_("Include occupation"), False)
 #: ../gramps/plugins/graph/gvrelgraph.py:921
-#, fuzzy
 msgid "Include occupation"
-msgstr "包含堂兄弟"
+msgstr "包含职业"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:922
-#, fuzzy
 msgid "Do not include any occupation"
-msgstr "不包括标题"
+msgstr "不包含职业"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:923
-#, fuzzy
 msgid "Include description of most recent occupation"
-msgstr "包含与中心人员的关系"
+msgstr "包含最近期的职业介绍"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:925
 msgid "Include date, description and place of all occupations"
 msgstr "包括所有职业的日期，描述和地点"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:927
-#, fuzzy
 msgid "Whether to include the last occupation"
-msgstr "是否包含数据库下载选项"
+msgstr "是否包含上一个职业"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:931
 #, fuzzy
@@ -24525,13 +24428,10 @@ msgid "Gramps XML Family Tree"
 msgstr "Gramps XML 家族树"
 
 #: ../gramps/plugins/importer/import.gpr.py:111
-#, fuzzy
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
-msgstr ""
-"Gramps XML 数据库是一个家族树的文本格式。它与现有的 Gramps 数据库格式读写兼"
-"容。"
+msgstr "Gramps XML 是家庭树的文本格式。它与现有的 Gramps 数据库格式读写兼容。"
 
 #: ../gramps/plugins/importer/import.gpr.py:131
 msgid "Gramps 2.x database"
@@ -24581,9 +24481,8 @@ msgstr "结果"
 #: ../gramps/plugins/importer/importgeneweb.py:162
 #: ../gramps/plugins/importer/importprogen.py:197
 #: ../gramps/plugins/importer/importvcard.py:76
-#, fuzzy
 msgid "done"
-msgstr "完成!\n"
+msgstr "完成"
 
 #: ../gramps/plugins/importer/importcsv.py:162
 msgid "given name"
@@ -24594,9 +24493,8 @@ msgid "call"
 msgstr "称"
 
 #: ../gramps/plugins/importer/importcsv.py:166
-#, fuzzy
 msgid "Person or Place|title"
-msgstr "头衔"
+msgstr "头衔或名称"
 
 #: ../gramps/plugins/importer/importcsv.py:166
 msgid "title"
@@ -24619,9 +24517,8 @@ msgid "birth place"
 msgstr "出生地点"
 
 #: ../gramps/plugins/importer/importcsv.py:175
-#, fuzzy
 msgid "birth place id"
-msgstr "出生地点"
+msgstr "出生地点 ID 编号"
 
 #: ../gramps/plugins/importer/importcsv.py:180
 msgid "birth source"
@@ -24683,39 +24580,34 @@ msgid "person"
 msgstr "成员"
 
 #: ../gramps/plugins/importer/importcsv.py:210
-#, fuzzy
 msgid "Occupation description"
-msgstr "<b>版本描述</b>"
+msgstr "职业介绍"
 
 #: ../gramps/plugins/importer/importcsv.py:210
-#, fuzzy
 msgid "occupationdescr"
-msgstr "职业"
+msgstr "职业介绍"
 
 #: ../gramps/plugins/importer/importcsv.py:211
 #, fuzzy
 msgid "Occupation date"
-msgstr "职业"
+msgstr "就职日期"
 
 #: ../gramps/plugins/importer/importcsv.py:211
 #, fuzzy
 msgid "occupationdate"
-msgstr "职业"
+msgstr "就职日期"
 
 #: ../gramps/plugins/importer/importcsv.py:212
-#, fuzzy
 msgid "Occupation place"
-msgstr "职业"
+msgstr "就职地点"
 
 #: ../gramps/plugins/importer/importcsv.py:212
-#, fuzzy
 msgid "occupationplace"
-msgstr "职业"
+msgstr "就职地点"
 
 #: ../gramps/plugins/importer/importcsv.py:213
-#, fuzzy
 msgid "Occupation place id"
-msgstr "职业"
+msgstr "就职地点 ID 编号"
 
 #: ../gramps/plugins/importer/importcsv.py:213
 #, fuzzy
@@ -24733,68 +24625,56 @@ msgid "occupationsource"
 msgstr "职业"
 
 #: ../gramps/plugins/importer/importcsv.py:216
-#, fuzzy
 msgid "residence date"
-msgstr "居住地"
+msgstr "居住日期"
 
 #: ../gramps/plugins/importer/importcsv.py:216
-#, fuzzy
 msgid "residencedate"
-msgstr "居住地"
+msgstr "居住日期"
 
 #: ../gramps/plugins/importer/importcsv.py:217
-#, fuzzy
 msgid "residence place"
 msgstr "居住地"
 
 #: ../gramps/plugins/importer/importcsv.py:217
-#, fuzzy
 msgid "residenceplace"
 msgstr "居住地"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
 msgid "residence place id"
-msgstr "死亡地点"
+msgstr "居住地 ID 编号"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
 msgid "residenceplace_id"
-msgstr "居住地"
+msgstr "居住地 ID 编号"
 
 #: ../gramps/plugins/importer/importcsv.py:219
-#, fuzzy
 msgid "residence source"
-msgstr "参考"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:219
-#, fuzzy
 msgid "residencesource"
-msgstr "居住地"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:221
-#, fuzzy
 msgid "attribute type"
-msgstr "属性/ 类型"
+msgstr "属性类型"
 
 #: ../gramps/plugins/importer/importcsv.py:221
-#, fuzzy
 msgid "attributetype"
-msgstr "属性/ 类型"
+msgstr "属性类型"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attribute value"
 msgstr "属性值"
 
 #: ../gramps/plugins/importer/importcsv.py:222
-#, fuzzy
 msgid "attributevalue"
-msgstr "属性"
+msgstr "属性值"
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "attribute source"
-msgstr "属性笔记"
+msgstr "属性来源"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 #, fuzzy
@@ -24852,14 +24732,12 @@ msgstr "类型"
 #. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:241
 #: ../gramps/plugins/tool/removespaces.py:188
-#, fuzzy
 msgid "latitude"
 msgstr "纬度"
 
 #. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:242
 #: ../gramps/plugins/tool/removespaces.py:192
-#, fuzzy
 msgid "longitude"
 msgstr "经度"
 
@@ -24968,9 +24846,8 @@ msgstr "版本"
 
 #: ../gramps/plugins/importer/importgeneweb.py:83
 #: ../gramps/plugins/importer/importgeneweb.py:95
-#, fuzzy
 msgid "Award"
-msgstr "前进(_F)"
+msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
 msgid "Change Name"
@@ -25736,19 +25613,16 @@ msgstr ""
 "您的家族树组名 \"%(key)s\" 与 \"%(parent)s\", 不改变该组为 \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1761
-#, fuzzy
 msgid "Gramps ignored a name grouping"
 msgstr "Gramps 忽略了名称分组"
 
 #: ../gramps/plugins/importer/importxml.py:1820
-#, fuzzy
 msgid "Unknown when imported"
-msgstr "未知母亲"
+msgstr "导入时未知"
 
 #: ../gramps/plugins/importer/importxml.py:1990
-#, fuzzy
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "所有的索引地图已经被建立."
+msgstr "所有的注释参考必须有“hlink“属性。"
 
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
@@ -25791,9 +25665,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:698
-#, fuzzy
 msgid "Common Law Marriage"
-msgstr "晚婚"
+msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:699
 #: ../gramps/plugins/webreport/narrativeweb.py:1630
@@ -25843,9 +25716,8 @@ msgid "Ordinance"
 msgstr "教仪："
 
 #: ../gramps/plugins/lib/libgedcom.py:713
-#, fuzzy
 msgid "Separation"
-msgstr "省 (Department)"
+msgstr ""
 
 #. Applies to Families
 #: ../gramps/plugins/lib/libgedcom.py:714
@@ -25987,9 +25859,8 @@ msgstr "Gramps ID 编号：%s "
 
 #: ../gramps/plugins/lib/libgedcom.py:5396
 #: ../gramps/plugins/lib/libgedcom.py:6752
-#, fuzzy
 msgid "Filename omitted"
-msgstr "文件名"
+msgstr "忽略的文件名"
 
 #: ../gramps/plugins/lib/libgedcom.py:5430
 #: ../gramps/plugins/lib/libgedcom.py:6805
@@ -26014,7 +25885,6 @@ msgstr ""
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, ...
 #: ../gramps/plugins/lib/libgedcom.py:5798
-#, fuzzy
 msgid "Detail"
 msgstr "详细信息"
 
@@ -26751,18 +26621,18 @@ msgstr "她于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/webreport/webcal.py:2082
 #, python-format
 msgid "Died %(death_date)s."
-msgstr "于%(death_date)s死亡."
+msgstr "于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:284
 #: ../gramps/plugins/lib/libnarrate.py:317
 #, python-format
 msgid "Died %(death_date)s (%(age)s)."
-msgstr "卒于 %(death_date)s (%(age)s 岁)。"
+msgstr "于 %(death_date)s 去世(%(age)s 岁)。"
 
 #: ../gramps/plugins/lib/libnarrate.py:290
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s."
-msgstr "%(unknown_gender_name)s 卒于 %(death_date)s."
+msgstr "%(unknown_gender_name)s 于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:291
 #, python-format
@@ -26772,7 +26642,7 @@ msgstr "%(unknown_gender_name)s 于 %(death_date)s 去世，终年 %(age)s 岁�
 #: ../gramps/plugins/lib/libnarrate.py:294
 #, python-format
 msgid "%(male_name)s died %(death_date)s."
-msgstr "%(male_name)s 卒于 %(death_date)s."
+msgstr "%(male_name)s 于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
@@ -26792,7 +26662,7 @@ msgstr "%(female_name)s 于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:303
 #, python-format
 msgid "This person died %(death_date)s."
-msgstr "此人逝世于 %(death_date)s."
+msgstr "此人去世于 %(death_date)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:304
 #, python-format
@@ -26822,7 +26692,7 @@ msgstr "她于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:323
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s 卒于 %(month_year)s，%(death_place)s."
+msgstr "%(unknown_gender_name)s 于 %(month_year)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:324
 #, python-format
@@ -26836,7 +26706,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:327
 #, python-format
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s 卒于 %(month_year)s，%(death_place)s."
+msgstr "%(male_name)s 于 %(month_year)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:328
 #, python-format
@@ -26849,7 +26719,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:331
 #, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(female_name)s 卒于 %(month_year)s，%(death_place)s."
+msgstr "%(female_name)s 于 %(month_year)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:332
 #, python-format
@@ -26862,7 +26732,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:336
 #, python-format
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr "此人逝世于 %(month_year)s，%(death_place)s."
+msgstr "此人于 %(month_year)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:337
 #, python-format
@@ -26873,7 +26743,7 @@ msgstr "此人于 %(month_year)s 在 %(death_place)s 去世，终年 %(age)s 岁
 #: ../gramps/plugins/lib/libnarrate.py:340
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "他卒于 %(month_year)s，%(death_place)s."
+msgstr "他于 %(month_year)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:341
 #, python-format
@@ -26883,7 +26753,7 @@ msgstr "他于 %(month_year)s 在 %(death_place)s 去世，终年 %(age)s 岁。
 #: ../gramps/plugins/lib/libnarrate.py:344
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "她卒于 %(month_year)s，%(death_place)s."
+msgstr "她于 %(month_year)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:345
 #, python-format
@@ -26893,7 +26763,7 @@ msgstr "她于 %(month_year)s 在 %(death_place)s 去世，终年 %(age)s 岁。
 #: ../gramps/plugins/lib/libnarrate.py:349
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s."
-msgstr " %(month_year)s 卒于 %(death_place)s."
+msgstr "于 %(month_year)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:350
 #, python-format
@@ -26903,7 +26773,7 @@ msgstr "于 %(month_year)s 在 %(death_place)s 去世，(终年 %(age)s 岁)。"
 #: ../gramps/plugins/lib/libnarrate.py:356
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s."
-msgstr "%(unknown_gender_name)s 卒于 %(month_year)s."
+msgstr "%(unknown_gender_name)s 卒于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:357
 #, python-format
@@ -26913,7 +26783,7 @@ msgstr "%(unknown_gender_name)s 于 %(month_year)s 去世，终年 %(age)s 岁�
 #: ../gramps/plugins/lib/libnarrate.py:360
 #, python-format
 msgid "%(male_name)s died in %(month_year)s."
-msgstr "%(male_name)s 卒于 %(month_year)s."
+msgstr "%(male_name)s 卒于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:361
 #, python-format
@@ -26923,7 +26793,7 @@ msgstr "%(male_name)s 于 %(month_year)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:364
 #, python-format
 msgid "%(female_name)s died in %(month_year)s."
-msgstr "%(female_name)s 卒于 %(month_year)s."
+msgstr "%(female_name)s 卒于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:365
 #, python-format
@@ -26933,7 +26803,7 @@ msgstr "%(female_name)s 于 %(month_year)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:369
 #, python-format
 msgid "This person died in %(month_year)s."
-msgstr "此人逝世于 %(month_year)s."
+msgstr "此人去世于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:370
 #, python-format
@@ -26943,7 +26813,7 @@ msgstr "此人于 %(month_year)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:373
 #, python-format
 msgid "He died in %(month_year)s."
-msgstr "他卒于 %(month_year)s."
+msgstr "他卒于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:374
 #, python-format
@@ -26963,7 +26833,7 @@ msgstr "她于 %(month_year)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:382
 #, python-format
 msgid "Died %(month_year)s."
-msgstr " 卒于 %(month_year)s."
+msgstr " 卒于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:383
 #, python-format
@@ -26973,7 +26843,7 @@ msgstr "于 %(month_year)s 去世，(终年 %(age)s 岁)。"
 #: ../gramps/plugins/lib/libnarrate.py:389
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr "%(unknown_gender_name)s 卒于 %(death_place)s."
+msgstr "%(unknown_gender_name)s 在 %(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:390
 #, python-format
@@ -26983,7 +26853,7 @@ msgstr "%(unknown_gender_name)s 在 %(death_place)s 去世，终年 %(age)s 岁�
 #: ../gramps/plugins/lib/libnarrate.py:393
 #, python-format
 msgid "%(male_name)s died in %(death_place)s."
-msgstr "%(male_name)s 卒于 %(death_place)s."
+msgstr "%(male_name)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:394
 #, python-format
@@ -26993,7 +26863,7 @@ msgstr "%(male_name)s 在 %(death_place)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:397
 #, python-format
 msgid "%(female_name)s died in %(death_place)s."
-msgstr "%(female_name)s 卒于 %(death_place)s."
+msgstr "%(female_name)s 在%(death_place)s去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:398
 #, python-format
@@ -28109,107 +27979,107 @@ msgstr "受名洗礼过%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:861
 #, python-format
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的子女."
+msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:862
 #, python-format
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "%(male_name)s是 %(father)s 和 %(mother)s子女."
+msgstr "%(male_name)s是 %(father)s 和 %(mother)s子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:865
 #, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "此人是 %(father)s 和 %(mother)s的子女."
+msgstr "此人是 %(father)s 和 %(mother)s的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:866
 #, python-format
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr "这个人是 %(father)s 和 %(mother)s的子女."
+msgstr "此人是 %(father)s 和 %(mother)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:868
 #, python-format
 msgid "Child of %(father)s and %(mother)s."
-msgstr "%(father)s 和 %(mother)s的子女."
+msgstr "%(father)s 和 %(mother)s的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:872
 #, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子."
+msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:873
 #, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子."
+msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:876
 #, python-format
 msgid "He is the son of %(father)s and %(mother)s."
-msgstr "他是 %(father)s 和 %(mother)s的儿子."
+msgstr "他是 %(father)s 和 %(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:877
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
-msgstr "他是 %(father)s 和 %(mother)s的儿子."
+msgstr "他是 %(father)s 和 %(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:879
 #, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr "%(father)s 和 %(mother)s的儿子."
+msgstr "%(father)s 和 %(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:883
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr " %(female_name)s 是 %(father)s 和 %(mother)s的女儿."
+msgstr " %(female_name)s 是 %(father)s 和 %(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:884
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s 是 %(father)s 和 %(mother)s的女儿."
+msgstr "%(female_name)s 是 %(father)s 和 %(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:887
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr "她是 %(father)s 和 %(mother)s的女儿."
+msgstr "她是 %(father)s 和 %(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:888
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "她是 %(father)s 和 %(mother)s的女儿."
+msgstr "她是 %(father)s 和 %(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:890
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr "%(father)s 和 %(mother)s的女儿."
+msgstr "%(father)s 和 %(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:897
 #, python-format
 msgid "%(male_name)s is the child of %(father)s."
-msgstr "%(male_name)s 是 %(father)s 的子女."
+msgstr "%(male_name)s 是 %(father)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:898
 #, python-format
 msgid "%(male_name)s was the child of %(father)s."
-msgstr "%(male_name)s 是 %(father)s 的子女."
+msgstr "%(male_name)s 是 %(father)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:901
 #, python-format
 msgid "This person is the child of %(father)s."
-msgstr "此人是 %(father)s 的子女."
+msgstr "此人是 %(father)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:902
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr "此人是 %(father)s 的子女."
+msgstr "此人是 %(father)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:904
 #, python-format
 msgid "Child of %(father)s."
-msgstr "%(father)s的孩子."
+msgstr "%(father)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:908
 #, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr "%(male_name)s 是 %(father)s的儿子."
+msgstr "%(male_name)s 是 %(father)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:909
 #, python-format
@@ -28234,501 +28104,433 @@ msgstr " %(father)s 的儿子."
 #: ../gramps/plugins/lib/libnarrate.py:919
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr "%(female_name)s 是 %(father)s的女儿."
+msgstr "%(female_name)s 是 %(father)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:920
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr "%(female_name)s 是 %(father)s的女儿."
+msgstr "%(female_name)s 是 %(father)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:923
 #, python-format
 msgid "She is the daughter of %(father)s."
-msgstr "她是 %(father)s 的女儿."
+msgstr "她是 %(father)s 的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr "她是%(father)s的女儿."
+msgstr "她是%(father)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:926
 #, python-format
 msgid "Daughter of %(father)s."
-msgstr "%(father)s的女儿."
+msgstr "%(father)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:933
 #, python-format
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr "%(male_name)s 是 %(mother)s 子女."
+msgstr "%(male_name)s 是 %(mother)s 子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:934
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s 是 %(mother)s 子女."
+msgstr "%(male_name)s 是 %(mother)s 子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:937
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr "此人是%(mother)s 的子女."
+msgstr "此人是%(mother)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:938
 #, python-format
 msgid "This person was the child of %(mother)s."
-msgstr "此人是%(mother)s 的子女."
+msgstr "此人是%(mother)s 的子女。"
 
 #: ../gramps/plugins/lib/libnarrate.py:940
 #, python-format
 msgid "Child of %(mother)s."
-msgstr "%(mother)s的孩子."
+msgstr "%(mother)s的孩子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:944
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr "%(male_name)s 是 %(mother)s的儿子."
+msgstr "%(male_name)s 是 %(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:945
 #, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr "%(male_name)s 是 %(mother)s的儿子."
+msgstr "%(male_name)s 是 %(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:948
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr "他是%(mother)s的儿子."
+msgstr "他是%(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:949
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr "他是%(mother)s的儿子."
+msgstr "他是%(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:951
 #, python-format
 msgid "Son of %(mother)s."
-msgstr "%(mother)s的儿子."
+msgstr "%(mother)s的儿子。"
 
 #: ../gramps/plugins/lib/libnarrate.py:955
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr "%(female_name)s 是%(mother)s的女儿."
+msgstr "%(female_name)s 是%(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:956
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr "%(female_name)s 是 %(mother)s的女儿."
+msgstr "%(female_name)s 是 %(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:959
 #, python-format
 msgid "She is the daughter of %(mother)s."
-msgstr "她是%(mother)s 的女儿."
+msgstr "她是%(mother)s 的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:960
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr "她是%(mother)s 的女儿."
+msgstr "她是%(mother)s 的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:962
 #, python-format
 msgid "Daughter of %(mother)s."
-msgstr "%(mother)s的女儿."
+msgstr "%(mother)s的女儿。"
 
 #: ../gramps/plugins/lib/libnarrate.py:973
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"此人的配偶是%(spouse)s 婚礼不完整的日期是%(partial_date)s 婚礼举办地点 位于 "
-"%(place)s%(endnotes)s."
+msgstr "此人与 %(spouse)s 于 %(partial_date)s 在 %(place)s%(endnotes)s 成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:974
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"此人配偶是%(spouse)s 婚礼日期是 %(full_date)s 婚礼举办地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "此人与 %(spouse)s 于 %(full_date)s 在 %(place)s%(endnotes)s 成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:975
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"此人配偶是%(spouse)s 婚礼修改后的日期是%(modified_date)s 婚礼举办地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "此人与 %(spouse)s 于 %(modified_date)s 在 %(place)s%(endnotes)s 成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:978
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"他的配偶是 %(spouse)s举办婚礼的不完整的时间是 %(partial_date)s举办婚礼的地点"
-"位于%(place)s%(endnotes)s."
+msgstr "他与%(spouse)s于 %(partial_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"他的配偶是 %(spouse)s 举办婚礼的日期是 %(full_date)s 举办婚礼的地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "他与%(spouse)s于 %(full_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"他的配偶是 %(spouse)s 举办婚礼修改后的日期是%(modified_date)s 举办婚礼的地点"
-"位于 %(place)s%(endnotes)s."
+msgstr "他与%(spouse)s于 %(modified_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:983
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"她的配偶是 %(spouse)s举办婚礼的不完整的日期是 %(partial_date)s 举办婚礼的地点"
-"位于%(place)s%(endnotes)s."
+msgstr "她与%(spouse)s于 %(partial_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:984
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"她的配偶是%(spouse)s 举办婚礼的日期是 %(full_date)s 举办婚礼的地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "她与%(spouse)s于 %(full_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:985
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"她的配偶是%(spouse)s 婚礼举办的修改后的日期是%(modified_date)s 婚礼举办的地点"
-"位于 %(place)s%(endnotes)s."
+msgstr "她与%(spouse)s于 %(modified_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:988
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"配偶是 %(spouse)s 婚礼举办的修改后的日期是%(partial_date)s 婚礼举办的地点位"
-"于 %(place)s%(endnotes)s."
+msgstr "与%(spouse)s于 %(partial_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:989
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"配偶是%(spouse)s 婚礼举办日期是%(full_date)s 婚礼举办地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "与%(spouse)s于 %(full_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:990
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"配偶是%(spouse)s 婚礼举办修改后的日期是%(modified_date)s 婚礼举办地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "与%(spouse)s于 %(modified_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:996
 #, python-format
 msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"此人也迎娶过 %(spouse)s 婚礼举办的不完整的日期是 %(partial_date)s 婚礼举办的"
-"地点位于%(place)s%(endnotes)s."
+msgstr "此人也与%(spouse)s于 %(partial_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:997
 #, python-format
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"此人也迎娶过 %(spouse)s 婚礼举办的时间是 %(full_date)s 婚礼举办的地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "此人也与%(spouse)s于 %(full_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:998
 #, python-format
 msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"此人也迎娶过%(spouse)s婚礼举办修改过的日期是 %(modified_date)s 婚礼举办的地点"
-"位于 %(place)s%(endnotes)s."
+msgstr "此人也与%(spouse)s于 %(modified_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"他也迎娶过 %(spouse)s 婚礼举办的不完整记录的日期是 %(partial_date)s 婚礼举办"
-"的地点位于 %(place)s%(endnotes)s."
+msgstr "他也与%(spouse)s于 %(partial_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"他也迎娶过 %(spouse)s 婚礼举办的日期是 %(full_date)s 婚礼举办的地点位"
-"于%(place)s%(endnotes)s."
+msgstr "他也与%(spouse)s于 %(full_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"他也迎娶过%(spouse)s 婚礼举办的修改过的日期是%(modified_date)s 婚礼举办的地点"
-"位于 %(place)s%(endnotes)s."
+msgstr "他也与%(spouse)s于 %(modified_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1006
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"她也迎娶过%(spouse)s 婚礼举办的不完整记录的日期是%(partial_date)s 婚礼举办的"
-"地点位于 %(place)s%(endnotes)s."
+msgstr "她也与%(spouse)s于 %(partial_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1007
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"她也迎娶过 %(spouse)s 婚礼举办的日期是 %(full_date)s 婚礼举办的地点位"
-"于%(place)s%(endnotes)s."
+msgstr "她也与%(spouse)s于 %(full_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1008
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"她也迎娶过 %(spouse)s婚礼举办的修改过的日期是 %(modified_date)s 婚礼举办的地"
-"点位于 %(place)s%(endnotes)s."
+msgstr "她也与%(spouse)s于 %(modified_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1011
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"也迎娶过 %(spouse)s 婚礼举办的不完整记录的日期是%(partial_date)s 婚礼举办的地"
-"点位于%(place)s%(endnotes)s."
+msgstr "也与%(spouse)s于 %(partial_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"也迎娶过%(spouse)s婚礼举办日期是 %(full_date)s 婚礼举办地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "也与%(spouse)s于 %(full_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1013
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"也迎娶过%(spouse)s 婚礼举办修改过日期是%(modified_date)s 婚礼举办地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "也与%(spouse)s于 %(modified_date)s 在%(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1019
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"此人迎娶了%(spouse)s 婚礼举行的不完整记录的日期是%(partial_date)s"
-"%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(partial_date)s%(endnotes)s 成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1020
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "此人迎娶了 %(spouse)s 婚礼举办日期是%(full_date)s%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(full_date)s%(endnotes)s 成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1021
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"此人迎娶了%(spouse)s 婚礼举办修改后的日期是%(modified_date)s%(endnotes)s."
+msgstr "此人与%(spouse)s 于%(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1024
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"他迎娶了 %(spouse)s 婚礼举办不完整的记录的日期是 %(partial_date)s"
-"%(endnotes)s."
+msgstr "他与%(spouse)s 于 %(partial_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1025
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "他迎娶了%(spouse)s 婚礼举办日期是 %(full_date)s%(endnotes)s."
+msgstr "他与%(spouse)s 于 %(full_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1026
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"他迎娶了 %(spouse)s 婚礼举办修改后的日期是%(modified_date)s%(endnotes)s."
+msgstr "他与%(spouse)s 于 %(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1029
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"她嫁给了 %(spouse)s 婚礼举办不完整记录的日期是 %(partial_date)s%(endnotes)s."
+msgstr "她与%(spouse)s 于 %(partial_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1030
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "她嫁给了%(spouse)s 婚礼举办的日期是 %(full_date)s%(endnotes)s."
+msgstr "她与%(spouse)s 于 %(full_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1031
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"她嫁给了%(spouse)s 婚礼举办的修改后的日期是%(modified_date)s%(endnotes)s."
+msgstr "她与%(spouse)s 于 %(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1034
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"迎娶了%(spouse)s 婚礼举办的不完整记录的日期是%(partial_date)s%(endnotes)s."
+msgstr "与%(spouse)s 于 %(partial_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1035
 #, python-format
 msgid "Married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "迎娶了 %(spouse)s 婚礼举办的日期是%(full_date)s%(endnotes)s."
+msgstr "与%(spouse)s 于 %(full_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"迎娶了%(spouse)s婚礼举办的修改后的日期是 %(modified_date)s%(endnotes)s."
+msgstr "与%(spouse)s 于 %(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1042
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"此人也迎娶了%(spouse)s 婚礼举办的不完整的日期是 %(partial_date)s%(endnotes)s."
+msgstr "此人也与%(spouse)s 于 %(partial_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "此人也迎娶了%(spouse)s 婚礼举办的日期是 %(full_date)s%(endnotes)s."
+msgstr "此人也与%(spouse)s 于 %(full_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1044
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"此人也迎娶了 %(spouse)s 婚礼举办的修改后的日期是%(modified_date)s"
-"%(endnotes)s."
+msgstr "此人也与%(spouse)s 于 %(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1047
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"他也曾娶过%(spouse)s 婚礼举办的不完整记录的日期是 %(partial_date)s"
-"%(endnotes)s."
+msgstr "他也与%(spouse)s 于 %(partial_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "他也娶过%(spouse)s婚礼举办的日期是 %(full_date)s%(endnotes)s."
+msgstr "他也与%(spouse)s 于 %(full_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1049
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"他也娶过 %(spouse)s 婚礼举办的不完整的日期是%(modified_date)s%(endnotes)s."
+msgstr "他也与%(spouse)s 于 %(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1052
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"她也嫁给过%(spouse)s 婚礼举办的不完整的日期是 %(partial_date)s%(endnotes)s."
+msgstr "她也与%(spouse)s 于 %(partial_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1053
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "她也曾嫁给过 %(spouse)s 婚礼举办的日期是 %(full_date)s%(endnotes)s."
+msgstr "她也与%(spouse)s 于 %(full_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1054
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"她也曾嫁给过%(spouse)s 婚礼举办的修改后的日期是%(modified_date)s%(endnotes)s."
+msgstr "她也与%(spouse)s 于 %(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1057
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"也曾迎娶过 %(spouse)s 婚礼举办的不完整的日期是%(partial_date)s%(endnotes)s."
+msgstr "也与%(spouse)s 于 %(partial_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1058
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "也曾迎娶过%(spouse)s婚礼举办的日期是 %(full_date)s%(endnotes)s."
+msgstr "也与%(spouse)s 于 %(full_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1059
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"也曾迎娶过%(spouse)s 婚礼举办修改过的日期是%(modified_date)s%(endnotes)s."
+msgstr "也与%(spouse)s 于 %(modified_date)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1064
 #, python-format
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "此人也迎娶过%(spouse)s 婚礼举办的地点位于 %(place)s%(endnotes)s."
+msgstr "此人也与%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1065
 #, python-format
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "他娶了 %(spouse)s 婚礼举办的地点位于 %(place)s%(endnotes)s."
+msgstr "他与%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1066
 #, python-format
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "她嫁给 %(spouse)s婚礼举办地点位于 %(place)s%(endnotes)s."
+msgstr "她与%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1067
 #, python-format
 msgid "Married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "迎娶过%(spouse)s 婚礼举办地点位于 %(place)s%(endnotes)s."
+msgstr "%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1071
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "此人也迎娶过%(spouse)s 婚礼举办地点位于 %(place)s%(endnotes)s."
+msgstr "此人也与%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1072
 #, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "他也娶过%(spouse)s 婚礼举办地点位于 %(place)s%(endnotes)s."
+msgstr "他也与%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1073
 #, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "她也嫁给过 %(spouse)s 婚礼举办地点位于 %(place)s%(endnotes)s."
+msgstr "她也与%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1074
 #, python-format
 msgid "Also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "也迎娶过 %(spouse)s 婚礼举办地点位于%(place)s%(endnotes)s."
+msgstr "也与%(spouse)s 在 %(place)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1078
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "此人迎娶过 %(spouse)s%(endnotes)s."
+msgstr "此人与%(spouse)s%(endnotes)s 成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1079
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr "他娶了 %(spouse)s%(endnotes)s."
+msgstr "他与%(spouse)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1080
 #, python-format
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr "她嫁给了%(spouse)s%(endnotes)s."
+msgstr "她与%(spouse)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1081
 #, python-format
 msgid "Married %(spouse)s%(endnotes)s."
-msgstr "迎娶了%(spouse)s%(endnotes)s."
+msgstr "与%(spouse)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1085
 #, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "此人也迎娶过%(spouse)s%(endnotes)s."
+msgstr "此人也与%(spouse)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1086
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr "他也迎娶过%(spouse)s%(endnotes)s."
+msgstr "他也与%(spouse)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1087
 #, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
-msgstr "她也迎娶过%(spouse)s%(endnotes)s."
+msgstr "她也与%(spouse)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1088
 #, python-format
 msgid "Also married %(spouse)s%(endnotes)s."
-msgstr "也迎娶过 %(spouse)s%(endnotes)s."
+msgstr "也与%(spouse)s%(endnotes)s成婚。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1098
 #, python-format
@@ -28736,17 +28538,14 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"此人处于未结婚状态，同居人为 %(spouse)s 开始的不完整记录的时间 "
-"%(partial_date)s 地点位于 %(place)s%(endnotes)s."
+"此人与%(spouse)s于%(partial_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1099
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
-msgstr ""
-"此人处于未婚姻的状态，同居人员为%(spouse)s 开始的日期是 %(full_date)s 地点位"
-"于 %(place)s%(endnotes)s."
+msgstr "此人与%(spouse)s于%(full_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1100
 #, python-format
@@ -28754,8 +28553,7 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"此人处于无婚姻状态， 同居人员为 %(spouse)s 开始的修改后的日期是 "
-"%(modified_date)s 地点位于 %(place)s%(endnotes)s."
+"此人与%(spouse)s于%(modified_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1103
 #, python-format
@@ -28763,17 +28561,14 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他开始未婚同居，同居人为%(spouse)s 开始的不完整信息的日期是 %(partial_date)s "
-"地点位于 %(place)s%(endnotes)s."
+"他与%(spouse)s于%(partial_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1104
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr ""
-"他开始未婚同居，同居人为%(spouse)s 开始日期是 %(full_date)s 地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "他与%(spouse)s于%(full_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1105
 #, python-format
@@ -28781,8 +28576,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他开始未婚同居，同居人为 %(spouse)s 开始的修改过的日期是%(modified_date)s 地"
-"点位于 %(place)s%(endnotes)s."
+"他与%(spouse)s于%(modified_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1108
 #, python-format
@@ -28790,17 +28584,14 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她开始未婚同居，同住人是 %(spouse)s 开始的不完整记录的日期是 "
-"%(partial_date)s 地点位于%(place)s%(endnotes)s."
+"她与%(spouse)s于%(partial_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1109
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
-msgstr ""
-"她开始未婚同居，同住人是%(spouse)s 开始日期是 %(full_date)s 地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "她与%(spouse)s于%(full_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1110
 #, python-format
@@ -28808,8 +28599,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她开始未婚同居，同住人是 %(spouse)s开始的修改过的日期是 %(modified_date)s 地"
-"点位于 %(place)s%(endnotes)s."
+"她与%(spouse)s于%(modified_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -28817,9 +28607,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"开始未婚同居，同居人为%(spouse)s 开始的不完整信息的日期是 %(partial_date)s 地"
-"点位于 %(place)s%(endnotes)s."
+msgstr "与%(spouse)s于%(partial_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1114
 #: ../gramps/plugins/lib/libnarrate.py:1137
@@ -28827,9 +28615,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"开始未婚同居，同居人为%(spouse)s 开始日期是 %(full_date)s 地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "与%(spouse)s于%(full_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1115
 #: ../gramps/plugins/lib/libnarrate.py:1138
@@ -28837,9 +28623,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"开始未婚同居，同居人为 %(spouse)s 开始的修改过的日期是%(modified_date)s 地点"
-"位于 %(place)s%(endnotes)s."
+msgstr "与%(spouse)s于%(modified_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1121
 #, python-format
@@ -28847,17 +28631,14 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"此人开始未婚同居，同住人是 %(spouse)s 开始的不完整记录的日期是 "
-"%(partial_date)s 地点位于%(place)s%(endnotes)s."
+"此人与%(spouse)s于%(partial_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1122
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"此人开始未婚同居，同居人为%(spouse)s 开始日期是 %(full_date)s 地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "此人与%(spouse)s于%(full_date)s间在%(place)s%(endnotes)s有过未婚关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1123
 #, python-format
@@ -28865,8 +28646,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"此人开始未婚同居，同居人为 %(spouse)s 开始的修改过的日期是%(modified_date)s "
-"地点位于 %(place)s%(endnotes)s."
+"此人与%(spouse)s于%(modified_date)s间在%(place)s%(endnotes)s有过未婚同居关"
+"系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1126
 #, python-format
@@ -28874,8 +28655,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他开始未婚同居，同住人是 %(spouse)s 开始的不完整记录的日期是 "
-"%(partial_date)s 地点位于%(place)s%(endnotes)s."
+"他与%(spouse)s于%(partial_date)s间在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -28883,8 +28663,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他开始未婚同居，同居人为%(spouse)s 开始日期是 %(full_date)s 地点位于 "
-"%(place)s%(endnotes)s."
+"他与%(spouse)s于%(full_date)s间在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
@@ -28892,8 +28671,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"他开始未婚同居，同居人为 %(spouse)s 开始的修改过的日期是%(modified_date)s 地"
-"点位于 %(place)s%(endnotes)s."
+"他与%(spouse)s于%(modified_date)s间在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -28901,8 +28679,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"她开始未婚同居，同住人是 %(spouse)s 开始的不完整记录的日期是 "
-"%(partial_date)s 地点位于%(place)s%(endnotes)s."
+"她与%(spouse)s于%(partial_date)s间在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
@@ -28910,8 +28687,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她开始未婚同居，同居人为%(spouse)s 开始日期是 %(full_date)s 地点位于 "
-"%(place)s%(endnotes)s."
+"她与%(spouse)s于%(full_date)s间在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
@@ -28919,302 +28695,248 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"她开始未婚同居，同居人为 %(spouse)s 开始的修改过的日期是%(modified_date)s 地"
-"点位于 %(place)s%(endnotes)s."
+"她与%(spouse)s于%(modified_date)s间在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1144
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr ""
-"此人开始未婚同居，同居人为 %(spouse)s 开始的不完整记录的日期是 "
-"%(partial_date)s%(endnotes)s"
+msgstr "此人与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"此人开始未婚同居，同居人为 %(spouse)s 开始的日期是 %(full_date)s%(endnotes)s."
+msgstr "此人与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr ""
-"此人开始未婚同居，同居人为 %(spouse)s 开始的修改过的日期为%(modified_date)s"
-"%(endnotes)s."
+msgstr "此人与%(spouse)s于%(modified_date)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr ""
-"他开始未婚同居，同居人为 %(spouse)s 开始的不完整记录的日期是 %(partial_date)s"
-"%(endnotes)s."
+msgstr "他与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"他开始未婚同居，同居人为 %(spouse)s 开始的日期是 %(full_date)s%(endnotes)s."
+msgstr "他与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1151
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr ""
-"他开始未婚同居，同居人为 %(spouse)s开始的修改的日期是 %(modified_date)s"
-"%(endnotes)s."
+msgstr "他与%(spouse)s于%(modified_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1154
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr ""
-"她开始未婚同居，同居人为 %(spouse)s 开始的不完整记录的日期是%(partial_date)s"
-"%(endnotes)s."
+msgstr "她与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1155
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"她开始未婚同居，同居人为 %(spouse)s 开始的日期为 %(full_date)s%(endnotes)s."
+msgstr "她与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1156
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr ""
-"她开始未婚同居，同居人为%(spouse)s 开始的修改的日期为%(modified_date)s"
-"%(endnotes)s."
+msgstr "她与%(spouse)s于%(modified_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1159
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确立， 同居人为%(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s%(endnotes)s."
+msgstr "与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1160
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确立，同居人为 %(spouse)s开始的日期为 %(full_date)s%(endnotes)s."
+msgstr "与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1161
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人为 %(spouse)s 开始的修改后的日期为%(modified_date)s"
-"%(endnotes)s."
+msgstr "与%(spouse)s于%(modified_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1167
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
-msgstr ""
-"此人的未婚同居关系确立，同居人也是 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "此人也与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
-msgstr ""
-"此人的未婚同居关系确立，同居人也是 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "此人也与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1169
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
-msgstr ""
-"此人的未婚同居关系确立，同居人也是 %(spouse)s开始的修改后的日期为 "
-"%(modified_date)s%(endnotes)s."
+msgstr "此人也与%(spouse)s于%(modified_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1172
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "他也与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1173
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "他也与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "他也与%(spouse)s于%(modified_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1177
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "她也与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1178
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "她也与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1179
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "她也与%(spouse)s于%(modified_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s%(endnotes)s."
+msgstr "也与%(spouse)s于%(partial_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1183
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为%(full_date)s"
-"%(endnotes)s."
+msgstr "也与%(spouse)s于%(full_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1184
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期为%(modified_date)s"
-"%(endnotes)s."
+msgstr "也与%(spouse)s于%(modified_date)s%(endnotes)s间有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1189
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人是 %(spouse)s 居住的地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "此人与%(spouse)s在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1190
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人为 %(spouse)s 居住地点位于 %(place)s%(endnotes)s."
+msgstr "他与%(spouse)s在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1191
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人是 %(spouse)s 居住地点位于 %(place)s%(endnotes)s."
+msgstr "她与%(spouse)s在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1192
 #: ../gramps/plugins/lib/libnarrate.py:1199
 #, python-format
 msgid "Unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 居住地点位于 %(place)s%(endnotes)s."
+msgstr "与%(spouse)s在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1196
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s 居住地点位于%(place)s"
-"%(endnotes)s."
+msgstr "此人与%(spouse)s在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1197
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"他未婚同居关系确认，同居人也是 %(spouse)s 居住地点位于 %(place)s%(endnotes)s."
+msgstr "他也与%(spouse)s在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1198
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"她未婚同居关系确认，同居人也是 %(spouse)s 居住地点位于 %(place)s%(endnotes)s."
+msgstr "她也与%(spouse)s在%(place)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1203
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "此人未婚同居关系确认，同居人为 %(spouse)s%(endnotes)s."
+msgstr "此人与%(spouse)s%(endnotes)s 有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1204
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "他未婚同居关系确认，同居人为 %(spouse)s%(endnotes)s."
+msgstr "他与%(spouse)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1205
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "她的未婚同居关系确认，同居人为 %(spouse)s%(endnotes)s."
+msgstr "她与%(spouse)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1206
 #: ../gramps/plugins/lib/libnarrate.py:1213
 #, python-format
 msgid "Unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "未婚同居关系确认，同居人为 %(spouse)s%(endnotes)s."
+msgstr "与%(spouse)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1210
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "此人未婚同居关系确认，同居人为 %(spouse)s%(endnotes)s."
+msgstr "此人与%(spouse)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1211
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "他的未婚同居关系确认，同居人也是 %(spouse)s%(endnotes)s."
+msgstr "他也与%(spouse)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1212
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "她的未婚同居关系确认，同居人也是 %(spouse)s%(endnotes)s."
+msgstr "她也与%(spouse)s%(endnotes)s有过未婚同居关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1224
 #, python-format
@@ -29222,8 +28944,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人未婚同居关系确认，同居人为 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s 居住地点位于 %(place)s%(endnotes)s."
+"此人也与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关"
+"系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -29231,8 +28953,7 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"此人未婚同居关系确认，同居人为 %(spouse)s 开始日期为 %(full_date)s 居住地点位"
-"于 %(place)s%(endnotes)s."
+"此人也与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -29240,8 +28961,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"此人未婚同居关系确认，同居人为 %(spouse)s开始的修改过的日期为 "
-"%(modified_date)s 居住的地点位于 %(place)s%(endnotes)s."
+"此人也与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关"
+"系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -29249,8 +28970,7 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"他的未婚同居关系确认，同居人是 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s 居住地点位于 %(place)s%(endnotes)s."
+"他与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -29258,8 +28978,7 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"他的未婚同居关系确认，同居人为 %(spouse)s 开始的日期为 %(full_date)s 居住的地"
-"点位于 %(place)s%(endnotes)s."
+"他与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -29267,8 +28986,7 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"他的未婚同居关系确认，同居人为 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s 居住地点位于 %(place)s%(endnotes)s."
+"他与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
@@ -29276,8 +28994,7 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"她的未婚同居关系确认，同居人为 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s 居住地点位于 %(place)s%(endnotes)s."
+"她与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -29285,8 +29002,7 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"她的未婚同居关系确认，同居人为 %(spouse)s 开始的日期为 %(full_date)s 居住地点"
-"位于 %(place)s%(endnotes)s."
+"她与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
@@ -29294,30 +29010,25 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"她的未婚同居关系确认，同居人为 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s 居住地点位于 %(place)s%(endnotes)s."
+"她与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居关系确认，同居人为 %(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s 居住地点位于 %(place)s%(endnotes)s."
+"与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1240
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人为 %(spouse)s 开始日期为%(full_date)s 居住地点位于 "
-"%(place)s%(endnotes)s."
+msgstr "与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1241
 #, python-format
 msgid ""
 "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居关系确认，同居人为 %(spouse)s 开始的修改的日期为%(modified_date)s 居"
-"住地点位于 %(place)s%(endnotes)s."
+"与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1247
 #, python-format
@@ -29325,8 +29036,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s 居住地点位于 %(place)s%(endnotes)s."
+"此人也与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关"
+"系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1248
 #, python-format
@@ -29334,8 +29045,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s 开始日期为 %(full_date)s 居住地点"
-"位于 %(place)s%(endnotes)s."
+"此人也与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1249
 #, python-format
@@ -29343,8 +29053,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s开始的修改后代日期为 "
-"%(modified_date)s 居住地点位于 %(place)s%(endnotes)s."
+"此人也与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关"
+"系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1252
 #, python-format
@@ -29352,8 +29062,7 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s 居住的地点位于 %(place)s%(endnotes)s."
+"他也与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1253
 #, python-format
@@ -29361,8 +29070,7 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为 %(full_date)s 居住的"
-"地点位于 %(place)s%(endnotes)s."
+"他也与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1254
 #, python-format
@@ -29370,8 +29078,8 @@ msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s开始的修改后的日期为 "
-"%(modified_date)s 居住的地点位于 %(place)s%(endnotes)s."
+"他也与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关"
+"系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1257
 #, python-format
@@ -29379,8 +29087,7 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s 居住的地点位于 %(place)s%(endnotes)s."
+"她也与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
@@ -29388,8 +29095,7 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为 %(full_date)s 居住地"
-"点位于 %(place)s%(endnotes)s."
+"她也与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1259
 #, python-format
@@ -29397,310 +29103,247 @@ msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s 居住地点位于 %(place)s%(endnotes)s."
+"她也与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关"
+"系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1262
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s 居住的地点位于 %(place)s%(endnotes)s."
+"也与%(spouse)s 于 %(partial_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1263
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的日期位于%(full_date)s 居住的地"
-"点位于 %(place)s%(endnotes)s."
+"也与%(spouse)s 于 %(full_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1264
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s开始的修改后日期为 %(modified_date)s "
-"居住地点位于 %(place)s%(endnotes)s."
+"也与%(spouse)s 于 %(modified_date)s 间在 %(place)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1270
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人为 %(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1271
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人为 %(spouse)s 开始的日期为%(full_date)s"
-"%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1272
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"此人的未婚同居关系确认，同居人为 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1275
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人为 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "他与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1276
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人为 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "他与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1277
 #, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人为 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "他与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1280
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人为 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "她与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1281
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人为 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "她与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1282
 #, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人为 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "她与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1285
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人为 %(spouse)s开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1286
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人为 %(spouse)s 开始的日期为 %(full_date)s%(endnotes)s."
+msgstr "与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1287
 #, python-format
 msgid "Relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人为 %(spouse)s 开始的修改后的日期为%(modified_date)s"
-"%(endnotes)s."
+msgstr "与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1293
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1295
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "此人与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1298
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "他也与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1299
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "他也与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1300
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "他也与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1303
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期为 "
-"%(partial_date)s%(endnotes)s."
+msgstr "她也与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1304
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为 %(full_date)s"
-"%(endnotes)s."
+msgstr "她也与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1305
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期"
-"为%(modified_date)s%(endnotes)s."
+msgstr "她也与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1308
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的不完整记录的日期"
-"为%(partial_date)s%(endnotes)s."
+msgstr "也与%(spouse)s 于 %(partial_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1309
 #, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的日期为%(full_date)s"
-"%(endnotes)s."
+msgstr "也与%(spouse)s 于 %(full_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1310
 #, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 开始的修改后的日期为%(modified_date)s"
-"%(endnotes)s."
+msgstr "也与%(spouse)s 于 %(modified_date)s%(endnotes)s 间有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1315
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人为 %(spouse)s 居住的地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "此人与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1316
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人为%(spouse)s 居住的地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "他与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1317
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人为 %(spouse)s 居住地点位于 %(place)s%(endnotes)s."
+msgstr "她人与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1318
 #, python-format
 msgid "Relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人为%(spouse)s 居住地点位于 %(place)s%(endnotes)s."
+msgstr "与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1322
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"此人未婚同居关系确认，同居人也是 %(spouse)s 居住地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "此人也与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1323
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"他的未婚同居关系确认，同居人也是 %(spouse)s 居住地点位于 %(place)s"
-"%(endnotes)s."
+msgstr "他也与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1324
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"她的未婚同居关系确认，同居人也是 %(spouse)s 居住的地点位于%(place)s"
-"%(endnotes)s."
+msgstr "她也与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1325
 #, python-format
 msgid "Also relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"未婚同居关系确认，同居人也是 %(spouse)s 居住地点位于%(place)s%(endnotes)s."
+msgstr "也与%(spouse)s 在 %(place)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1329
 #, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
-msgstr "此人未婚同居关系确认，同居人为%(spouse)s%(endnotes)s."
+msgstr "此人与%(spouse)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1330
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
-msgstr "他的未婚同居关系确认，同居人为 %(spouse)s%(endnotes)s."
+msgstr "他与%(spouse)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1331
 #, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
-msgstr "她的未婚同居关系确认，同居人为 %(spouse)s%(endnotes)s."
+msgstr "她与%(spouse)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1332
 #, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
-msgstr "Relationship with %(spouse)s%(endnotes)s."
+msgstr "与%(spouse)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1336
 #, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "此人也有关联的人是%(spouse)s%(endnotes)s."
+msgstr "此人也与%(spouse)s%(endnotes)s 有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1337
 #, python-format
 msgid "He also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "他也有关联的人是%(spouse)s%(endnotes)s."
+msgstr "他也与%(spouse)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1338
 #, python-format
 msgid "She also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "她也有关联的人是%(spouse)s%(endnotes)s."
+msgstr "她也与%(spouse)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libnarrate.py:1339
 #, python-format
 msgid "Also relationship with %(spouse)s%(endnotes)s."
-msgstr "也有关联的人是 %(spouse)s%(endnotes)s."
+msgstr "也与%(spouse)s%(endnotes)s有过伴侣关系。"
 
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Number of Parents"
@@ -29720,7 +29363,7 @@ msgstr "待做注释数量"
 #: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:89
 msgid "Last Changed"
-msgstr "上次修订"
+msgstr "上次修改"
 
 #: ../gramps/plugins/lib/libpersonview.py:124
 msgid "Add a new person"
@@ -36233,7 +35876,7 @@ msgstr "人员被发现成为了他／她自己的祖先."
 
 #: ../gramps/plugins/view/pedigreeview.py:1646
 msgid "Pre_vious"
-msgstr "向前(_V)"
+msgstr "上一步(_V)"
 
 #: ../gramps/plugins/view/pedigreeview.py:1647
 msgid "_Next"
