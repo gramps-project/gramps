@@ -1,4 +1,4 @@
-The Gramps Project ( https://gramps-project.org ) [![Build Status](https://travis-ci.org/gramps-project/gramps.svg?branch=master)](https://travis-ci.org/gramps-project/gramps)[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=master)](https://codecov.io/github/gramps-project/gramps?branch=master)
+The Gramps Project ( https://gramps-project.org ) [![Build Status](https://travis-ci.org/gramps-project/gramps.svg?branch=master)](https://travis-ci.org/gramps-project/gramps)[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=master)](https://codecov.io/github/gramps-project/gramps?branch=master)[![Translation status](https://hosted.weblate.org/widgets/gramps-project/-/gramps/svg-badge.svg)](https://hosted.weblate.org/engage/gramps-project)
 ===================
 We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
 
@@ -63,7 +63,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  sorting is done through built-in libraries. PyICU is
  fairly widely available through the package managers of
  distributions. See http://pyicu.osafoundation.org/
- (These are Python bindings for the ICU package. 
+ (These are Python bindings for the ICU package.
  https://pypi.python.org/pypi/PyICU/)
 
 * **Ghostscript**
@@ -72,7 +72,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 
 The following packages are optional:
 ------------------------------------
-* **gtkspell** 
+* **gtkspell**
 
  Enable spell checking in the notes. Gtkspell depends on
  enchant. A version of gtkspell with gobject introspection
@@ -163,3 +163,8 @@ The User Manual is maintained on the Gramps website:
 
 * https://www.gramps-project.org/wiki/index.php?title=User_manual
 
+Translation
+-------------
+Gramps uses Hosted Weblate for its translations:
+
+* https://hosted.weblate.org/engage/gramps-project
