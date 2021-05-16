@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-16 18:03+0000\n"
+"PO-Revision-Date: 2021-05-16 18:30+0000\n"
 "Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -692,7 +692,6 @@ msgstr ""
 "båda e-postlistorna genom att välja \"Hjälp &gt; Gramps sändlistor\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -708,7 +707,7 @@ msgstr ""
 "skriva dokumentation till att testa utvecklingsversioner till att hjälpa "
 "till med webbplatsen. Börja med att anmäla dig till grampsutvecklarnas e-"
 "postlista gramps-devel och presentera dig. Anmälningsinformation finns på "
-"&quot; Hjälp &gt; Gramps sändlistor&quot;"
+"\"Hjälp &gt; Gramps sändlistor\""
 
 #: ../data/tips.xml:66
 msgid ""
@@ -727,7 +726,6 @@ msgstr ""
 "del användare hanterar genealogier innehållande hundratusentals personer."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -738,11 +736,10 @@ msgstr ""
 "<b>Att bokmärka personer</b><br/>Bokmärkesmenyn är ett bekvämt ställe för "
 "att spara personer som man använder ofta. Klicka på en bokmärkt person så "
 "aktiveras denna. För att skapa ett bokmärke för en person, så aktivera denne "
-"först, gå sedan till &quot;Bokmärke &gt; Lägg till bokmärke&quot; eller "
-"tryck Ctrl+D. Du kan även utnyttja bokmärken för de flesta övriga objekt."
+"först, gå sedan till \"Bokmärke &gt; Lägg till bokmärke\" eller tryck Ctrl+"
+"D. Du kan även utnyttja bokmärken för de flesta övriga objekt."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -755,10 +752,9 @@ msgstr ""
 "format. Felaktiga datumformat kommer att visas i Gramps med en rödaktig "
 "bakgrund eller en röd punkt vid fältets högra kant. Rätta till med hjälp av "
 "dialogrutan för datumval genom att klicka på datumknappen. Datumformatet "
-"ställs in under &quot;Redigera &gt; Inställningar &gt; Visa&quot;."
+"ställs in under \"Redigera &gt; Inställningar &gt; Visa\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
@@ -766,11 +762,11 @@ msgid ""
 "they will be added to the available events, but not translated."
 msgstr ""
 "<b>Listning av händelser</b><br/>Händelser läggs till genom att använda "
-"redigeraren öppnad med&quot;Person &gt; Redigera person &gt; "
-"Händelser&quot;. Det finns en lång lista med förbestämda typer. Du kan lägga "
-"till egna händelsetyper genom att skriva in texten i fältet. De kommer att "
-"läggas till tillgängliga händelser, men blir ej översatta. (Men observera de "
-"kan f.n. inte tas bort på ett enkelt sätt/ö.s. anm.)."
+"redigeraren öppnad med \"Person &gt; Redigera person &gt; Händelser\". Det "
+"finns en lång lista med förbestämda typer. Du kan lägga till egna "
+"händelsetyper genom att skriva in texten i fältet. De kommer att läggas till "
+"tillgängliga händelser, men blir ej översatta. (Men observera de kan f.n. "
+"inte tas bort på ett enkelt sätt/ö.s. anm.)."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -828,7 +824,6 @@ msgstr ""
 "kalkylblad, dokument med mera."
 
 #: ../data/tips.xml:84
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -837,8 +832,8 @@ msgid ""
 msgstr ""
 "<b>Filter</b><br/>Med ett filter kan du begränsa antalet av de personer du "
 "vill se i Personvyn. Förutom de många förinställda filtren kan du definiera "
-"egna, anpassade filter. Anpassade filter skapas från &quot;Redigera &gt; "
-"Redigera personfilter&quot;."
+"egna, anpassade filter. Anpassade filter skapas från \"Redigera &gt; "
+"Redigera personfilter\"."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -936,7 +931,6 @@ msgstr ""
 "är riktig."
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
@@ -944,25 +938,23 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Ytterligare rapporter och verktyg</b><br/>Nya typer av rapporter och "
-"verktyg kan läggas till Gramps med &quot;Tilläggs&quot;-system. Se under "
-"&quot;Hjälp &gt; Extra rapporttyper och verktyg&quot;. Detta är bästa sättet "
-"för avancerade användare att experimentera och skapa ny funktioner."
+"verktyg kan läggas till Gramps med \"Tilläggs\"-system. Se under \"Hjälp &gt;"
+" Extra rapporttyper och verktyg\". Detta är bästa sättet för avancerade "
+"användare att experimentera och skapa ny funktioner."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Bokrapporter</b><br/> Bokrapporten under &quot;Reports &gt; Böcker &gt; "
-"Bokrapport...&quot;, låter användare samla ett antal olika rapporter till "
-"ett enda dokument. En enda rapport är enklare att distribuera än flera "
+"<b>Bokrapporter</b><br/> Bokrapporten under \"Reports &gt; Böcker &gt; "
+"Bokrapport...\", låter användare samla ett antal olika rapporter till ett "
+"enda dokument. En enda rapport är enklare att distribuera än flera "
 "rapporter, speciellt om de är utskrivna."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -970,7 +962,7 @@ msgid ""
 msgstr ""
 "<b>Gramps tillkännagivanden </b><br/>Intresserad av att få ett meddelande "
 "när en ny Gramps-version släpps? Anmäl dig till e-postlistan Gramps-announce "
-"på &quot;Hjälp &gt; Gramps sändlistor&quot;"
+"på \"Hjälp &gt; Gramps sändlistor\""
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1040,7 +1032,6 @@ msgstr ""
 "Unicode. Tecken för alla språk visas korrekt."
 
 #: ../data/tips.xml:120
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
@@ -1048,8 +1039,8 @@ msgid ""
 "home button is pressed."
 msgstr ""
 "<b>Hempersonen</b><br/>Vem som helst kan väljas som 'hemperson' i Gramps. "
-"Använd &quot;Redigera &gt; Välj hemperson&quot;. Hempersonen är den person "
-"som väljes när databasen öppnas eller när man klickar på hemknappen."
+"Använd \"Redigera &gt; Välj hemperson\". Hempersonen är den person som "
+"väljes när databasen öppnas eller när man klickar på hemknappen."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1830,14 +1821,13 @@ msgstr "Databasfel på låg nivå upptäckt"
 
 #: ../gramps/cli/grampscli.py:104 ../gramps/cli/user.py:201
 #: ../gramps/gui/dialog.py:296
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps har upptäckt ett problem i den underliggande Berkeley-databasen. "
-"Detta kan repareras från Släktträdshanteraren. Välj databasen och klicka på "
+"Gramps har upptäckt ett problem i den underliggande databasen. Detta kan "
+"ibland repareras från Släktträdshanteraren. Välj databasen och klicka på "
 "Reparera-knappen"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:161
@@ -10123,9 +10113,8 @@ msgid "The translation to be used for the report."
 msgstr "Översättning för rapporten."
 
 #: ../gramps/gen/plug/report/stdoptions.py:80
-#, fuzzy
 msgid "The additional translation to be used for the report."
-msgstr "Översättning för rapporten."
+msgstr "Den extra översättning som ska användas för rapporten."
 
 #: ../gramps/gen/plug/report/stdoptions.py:89 ../gramps/gui/configure.py:1194
 #: ../gramps/plugins/webreport/webcal.py:1803
@@ -10219,9 +10208,8 @@ msgid "Include"
 msgstr "Ta med"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Huruvida ta med taggar."
+msgstr "Huruvida ta med taggar"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -13281,14 +13269,12 @@ msgstr "Utgivare"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Konfidensnivå:"
+msgstr "Konfidensnivå"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
-#, fuzzy
 msgid "Sorted date"
-msgstr "Andra datum"
+msgstr "Sorterat datum"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:95
 msgid "_Source Citations"
@@ -22622,14 +22608,12 @@ msgid "Double-click on a row to edit the selected source/citation."
 msgstr "Dubbelklicka på en rad för att redigera den valda källan/citeringen."
 
 #: ../gramps/plugins/gramplet/citations.py:86
-#, fuzzy
 msgid "Source/Date"
-msgstr "Källtext"
+msgstr "Källa/Datum"
 
 #: ../gramps/plugins/gramplet/citations.py:167
-#, fuzzy
 msgid "<No Volume/Page>"
-msgstr "Volym/sida"
+msgstr "<Ingen Volym/Sida>"
 
 #: ../gramps/plugins/gramplet/coordinates.py:83
 msgid "Right-click on a row to edit the selected event or the related place."
@@ -33679,9 +33663,8 @@ msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Söker efter problem med dubblerade Gramps-ID"
 
 #: ../gramps/plugins/tool/check.py:2300
-#, fuzzy
 msgid "Checking for bad links in Notes"
-msgstr "Kontrollera om det finns uppdateringar för tillägg"
+msgstr "Kontrollera om det finns felaktiga länkar i notiser"
 
 #: ../gramps/plugins/tool/check.py:2451
 msgid "No errors were found"
@@ -33944,7 +33927,7 @@ msgid "All reference maps have been rebuilt."
 msgstr "Alla referenskartor har byggts om."
 
 #: ../gramps/plugins/tool/check.py:2788
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad Note Links were fixed;\n"
 msgstr "%d felaktiga länkar lagades;\n"
 
@@ -37107,9 +37090,8 @@ msgid "Visually Impaired"
 msgstr "Synskadade"
 
 #: ../gramps/plugins/webreport/basepage.py:1696
-#, fuzzy
 msgid "Go to top"
-msgstr "Uppåt <-> neråt"
+msgstr "Gå till toppen"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
 #: ../gramps/plugins/webreport/basepage.py:1963
@@ -37150,9 +37132,8 @@ msgid "Web Calendar"
 msgstr "Webbkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:1786
-#, fuzzy
 msgid "Html|Home"
-msgstr "Hem"
+msgstr "Html|Hem"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -37418,12 +37399,11 @@ msgid "Creating address book pages ..."
 msgstr "Skapar adressbokssidor ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Web Site Report for the %s language"
-msgstr "Rapport som webbplats"
+msgstr "Rapport som webbplats för språket %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1830
-#, fuzzy
 msgid "Narrative Web Site Report"
 msgstr "Rapport som webbplats"
 
@@ -37563,9 +37543,8 @@ msgid "Whether to use http:// or https://"
 msgstr "Huruvida använda http:// eller https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2072
-#, fuzzy
 msgid "Toggle sections"
-msgstr "Titelval"
+msgstr "Växla sektioner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2073
 msgid "Check it if you want to open/close a section"
@@ -37720,9 +37699,9 @@ msgid "HTML user header"
 msgstr "HTML sidhuvud"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
 msgid "A note to be used as the page header or a php code to insert."
-msgstr "En notis som skall användas som sidhuvud"
+msgstr ""
+"En anteckning som ska användas som sidhuvud eller som en PHP-kod att infoga."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
@@ -38118,14 +38097,12 @@ msgid "How many updates do you want to see max"
 msgstr "För hur många uppdateringar vill du se max"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
-#, fuzzy
 msgid "Translations"
-msgstr "Översättning"
+msgstr "Översättningar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
-#, fuzzy
 msgid "second language"
-msgstr "Andra datum"
+msgstr "andra språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
 msgid "Site name for your second language"
@@ -38136,9 +38113,8 @@ msgstr "Webbplatsnamn för ditt andra språk"
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
 msgid "This site title"
-msgstr "Webbplatstitel"
+msgstr "Denna webbplatstitel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2553
 #: ../gramps/plugins/webreport/narrativeweb.py:2561
@@ -38149,54 +38125,49 @@ msgid "Give a title in the appropriate language"
 msgstr "Ge en titel på rätt språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
-#, fuzzy
 msgid "third language"
-msgstr "Språk"
+msgstr "tredje språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Site name for your third language"
 msgstr "Webbplatsnamn för ditt tredje språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2563
-#, fuzzy
 msgid "fourth language"
-msgstr "Språk"
+msgstr "fjärde språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Site name for your fourth language"
 msgstr "Webbplatsnamn för ditt fjärde språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
 msgid "fifth language"
-msgstr "Språk"
+msgstr "femte språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2575
 msgid "Site name for your fifth language"
 msgstr "Webbplatsnamn för ditt femte språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2579
-#, fuzzy
 msgid "sixth language"
-msgstr "Språk"
+msgstr "sjätte språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2583
 msgid "Site name for your sixth language"
 msgstr "Webbplatsnamn för ditt sjätte språk"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2796
-#, fuzzy
 msgid "Calendar Options"
-msgstr "Pappersalternativ"
+msgstr "Kalenderalternativ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2803
 msgid "Do we include the web calendar ?"
 msgstr "Ska webbkalendern tas med ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2804
-#, fuzzy, python-format
+#, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Huruvida ta med galleri med mediaobjekt"
+msgstr "Huruvida ta med en kalender för året %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2826
 #: ../gramps/plugins/webreport/webcal.py:1953
