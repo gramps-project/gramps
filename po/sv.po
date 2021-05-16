@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-16 18:30+0000\n"
+"PO-Revision-Date: 2021-05-18 06:36+0000\n"
 "Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -374,13 +374,13 @@ msgid ""
 msgstr ""
 "<b>Personfiltrering</b><br/>I personvyn kan du 'filtrera' individer efter "
 "flera olika kriterier. För att skapa ett nytt filter går du till \"Redigera "
-"%gt; Personfilter redigeraren\". Där kan du namnge ditt filter och lägga "
+"&gt; Personfilter redigeraren\". Där kan du namnge ditt filter och lägga "
 "till och kombinera regler genom att använda många fördefinierade regler. "
 "Till exempel kan alla adopterade personer i släktträdet hittas. Personer "
 "utan noterat födelsedatum kan också filtreras. För att få resultaten, spara "
 "ditt filter och välj det sedan nertill på filtersidopanelen samt klicka på "
-"Tillämpa. Om filtersidopanelen inte syns, så aktivera genom att välja "
-"<b>Visa &gt; Filter</b>."
+"Tillämpa. Om filtersidopanelen inte syns, så aktivera genom att välja Visa "
+"&gt; Filter."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -701,7 +701,7 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help "
 "&gt; Gramps Mailing Lists\""
 msgstr ""
-"<b>Att bidra till Gramps</b>: Vill du hjälpa till med Gramps men kan inte "
+"<b>Att bidra till Gramps</b><br/>Vill du hjälpa till med Gramps men kan inte "
 "programmera? Inget problem. Ett projekt som är så stort som Gramps behöver "
 "personer med en bred uppsättning kunskaper. Bidrag kan variera från att "
 "skriva dokumentation till att testa utvecklingsversioner till att hjälpa "
@@ -870,9 +870,9 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>Web Family Tree format/b><br/>Gramps kan exportera data till formatet Web "
-"Family Tree (WFT). Detta format möjliggör visning av ett släktträd online "
-"med hjälp av en enda fil, i stället för många html-filer."
+"<b>Web Family Tree format</b><br/>Gramps kan exportera data till formatet "
+"Web Family Tree (WFT). Detta format möjliggör visning av ett släktträd "
+"online med hjälp av en enda fil, i stället för många html-filer."
 
 #: ../data/tips.xml:92
 msgid ""
@@ -1275,7 +1275,7 @@ msgid ""
 " Available names are:"
 msgstr ""
 "%s\n"
-"  Tillgängliga namn är:"
+"Tillgängliga namn är:"
 
 #: ../gramps/cli/arghandler.py:685
 msgid "Unknown tool name."
@@ -1460,7 +1460,7 @@ msgstr ""
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
 "name=check.\n"
 "\n"
-"2. För att uttryckligen specificera formaten i ovanstående  exempel, lägg "
+"2. För att uttryckligen specificera formaten i ovanstående exempel, lägg "
 "till filnamn med lämpliga -f options:\n"
 "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
 "gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
@@ -1472,8 +1472,8 @@ msgstr ""
 "\n"
 "4. För att spara alla felmedelanden i ovanstående exempel till utfil och "
 "felfil, kör:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >utfil "
-"2>felfil\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >utfil 2>"
+"felfil\n"
 "\n"
 "5. För att impotera tre databaser och sedan starta en interaktiv Gramps "
 "session med resultatet:\n"
@@ -1482,8 +1482,8 @@ msgstr ""
 "6. För att öppna en databas, och grundat på dess data, skapa en "
 "tidslinjerapport i PDF-format\n"
 "läggande resultatet i min_tidslinje.pdf file:\n"
-"gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-"of=min_tidslinje.pdf\n"
+"gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=min_tidslinje"
+".pdf\n"
 "\n"
 "7. För att skapa en sammanfattning av en databas:\n"
 "gramps -O 'Family Tree 1' -a report -p name=summary\n"
@@ -1496,14 +1496,14 @@ msgstr ""
 "För att få reda på tillgängliga rapporters namn använd name=show string.\n"
 "\n"
 "9. För att omvandla ett familjeträd i flykten till en .gramps xml fil:\n"
-"gramps -O 'Familjeträd  1' -e otdata.gramps -f gramps-xml\n"
+"gramps -O 'Familjeträd 1' -e otdata.gramps -f gramps-xml\n"
 "\n"
-"10. För att skapa en hemsida på annat språk  (tyska):\n"
+"10. För att skapa en hemsida på annat språk (tyska):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Familjeträd 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. Slutligen, för att starta en normal interaktiv Grampskörning skriv "
-"bara:\n"
+"11. Slutligen, för att starta en normal interaktiv Grampskörning skriv bara:"
+"\n"
 "gramps\n"
 "\n"
 "Notera: Dessa exempel gäller för bash-skalet.\n"
@@ -8089,7 +8089,7 @@ msgstr "Beseglad till föräldrarna"
 
 #: ../gramps/gen/lib/ldsord.py:99
 msgid "Sealed to Spouse"
-msgstr "Beseglad till maka/maka"
+msgstr "Beseglad till make/maka"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
@@ -8388,7 +8388,7 @@ msgstr "%(first)s %(surname)s, %(suffix)s"
 #: ../gramps/gen/lib/nameorigintype.py:76
 msgctxt "Surname"
 msgid "Inherited"
-msgstr "Ärvt efternamn efter föräldrar "
+msgstr "Ärvt"
 
 #: ../gramps/gen/lib/nameorigintype.py:77
 msgctxt "Surname"
@@ -9708,7 +9708,7 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Det minsta fria utrymmet, i tum, mellan mellan nivåer. För vertikala diagram "
+"Det minsta fria utrymmet, i tum, mellan nivåer. För vertikala diagram "
 "motsvarar detta avståndet mellan rader. För horisontella diagram motsvarar "
 "detta avståndet mellan kolumner."
 
@@ -9987,7 +9987,7 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Det minsta fria utrymmet, i mm, mellan mellan nivåer. För vertikala diagram "
+"Det minsta fria utrymmet, i mm, mellan nivåer. För vertikala diagram "
 "motsvarar detta avståndet mellan rader. För horisontella diagram motsvarar "
 "detta avståndet mellan kolumner."
 
@@ -11946,7 +11946,7 @@ msgstr "Statusrad"
 
 #: ../gramps/gui/configure.py:1340
 msgid "Show text label beside Navigator buttons (requires restart)"
-msgstr "Visa textetiketter bredvid navigeringsknappar  (aktiveras vid omstart)"
+msgstr "Visa textetiketter bredvid navigeringsknappar (aktiveras vid omstart)"
 
 #: ../gramps/gui/configure.py:1343
 msgid ""
@@ -12418,7 +12418,7 @@ msgstr "Genealogiska symboler"
 
 #: ../gramps/gui/configure.py:2022
 msgid "Cannot look for genealogical fonts"
-msgstr "Kan inte söka efter genealogiska typsnitt."
+msgstr "Kan inte söka efter genealogiska typsnitt"
 
 #: ../gramps/gui/configure.py:2023
 msgid ""
@@ -12847,7 +12847,7 @@ msgstr ""
 "%(gramps_wiki_recover_url)s\n"
 "Innan en reparation görs, så försök att öppna släktträdet på vanligt sätt. "
 "Åtskilliga fel, som triggar reparationsknappen, kan lösas automatiskt. Om så "
-"är fallet, kan du inaktivera  reparationsknappen genom att ta bort filen "
+"är fallet, kan du inaktivera reparationsknappen genom att ta bort filen "
 "%(recover_file)s i släktträdsmappen."
 
 #: ../gramps/gui/dbman.py:924
@@ -14517,7 +14517,7 @@ msgstr "Gruppera endast detta namn"
 #: ../gramps/gui/editors/editnote.py:67
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "Redigera information om notiser "
+msgstr "Redigera information om notiser"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -16354,7 +16354,7 @@ msgid ""
 "bottom right corner."
 msgstr ""
 "Om media är en bild, välj den bilddel du vill referera till.\n"
-"Du kan använda musen i bilden för att välja ett område eller använda  "
+"Du kan använda musen i bilden för att välja ett område eller använda "
 "rullknapparna för att ställa in översta vänstra hörnet och nedersta högra i "
 "referensområdet. Punkten (0,0) är bildens övre vänstra hörn och (100,100) "
 "det nedre högra."
@@ -18283,7 +18283,7 @@ msgstr "Slå samman händelser"
 #: ../gramps/gui/merge/mergefamily.py:46
 msgctxt "manual"
 msgid "Merge_Families"
-msgstr "Slå samman familjer."
+msgstr "Slå samman familjer"
 
 #: ../gramps/gui/merge/mergefamily.py:68
 msgid "Merge Families"
@@ -19506,7 +19506,7 @@ msgstr "Välj mediaobjekt"
 #: ../gramps/gui/selectors/selectobject.py:108
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "Välj mediaobjektselektor "
+msgstr "Välj mediaobjektselektor"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
@@ -24076,7 +24076,7 @@ msgstr "Lägg till ny Att Göra notis"
 
 #: ../gramps/plugins/gramplet/todo.py:201
 msgid "First select the object to which you want to attach a note"
-msgstr "Välj  först objektet som du vill koppla en notis till"
+msgstr "Välj först objektet som du vill koppla en notis till"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -25530,7 +25530,7 @@ msgid ""
 msgstr ""
 "Databasversionen stöds ej av denna version av Gramps. Du borde använda en "
 "gammal version av Gramps av version 3.0.x och importera din databas till den "
-"versionen. Du bör sedan exportera en kopia av av dina data till Gramps XML "
+"versionen. Du bör sedan exportera en kopia av dina data till Gramps XML "
 "(släktträd). Sedan bör du uppgradera till Gramps av senaste version (till "
 "exempel denna), skapa en ny tom databas och importera Gramps XML in till "
 "denna version. Se:%(gramps_wiki_migrate_two_to_three_url)s"
@@ -25650,7 +25650,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
-msgstr " Objekt"
+msgstr "  Objekt"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -25931,7 +25931,7 @@ msgstr "  Familj %(id)s med %(id2)s\n"
 #: ../gramps/plugins/importer/importxml.py:254
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
-msgstr " Källa %(id)s med %(id2)s\n"
+msgstr "  Källa %(id)s med %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:257
 #, python-format
@@ -26133,7 +26133,7 @@ msgid ""
 " for more info."
 msgstr ""
 "Den gramps-fil du importerar gjordes med Gramps version %(oldgramps)s, medan "
-"du kör en en senare version av Gramps, %(newgramps)s.\n"
+"du kör en senare version av Gramps, %(newgramps)s.\n"
 "\n"
 "Filen kommer inte att importeras. Använd i stället en äldre version av "
 "Gramps, som stöder version %(xmlversion)s av xml.\n"
@@ -30379,8 +30379,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:557
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
-"Att slå ihop dessa platser skulle skapa en en slinga i platsstrukturen."
+msgstr "Att slå ihop dessa platser skulle skapa en slinga i platsstrukturen."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:35
 msgid "Provides a library for using Cairo to generate documents."
@@ -30805,7 +30804,7 @@ msgstr ""
 "url i följande fält.\n"
 "t.ex:\n"
 "http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
-"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\\n\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
@@ -31401,8 +31400,8 @@ msgstr "Storlek i byte"
 #, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] "Filter matchande  {number_of} post."
-msgstr[1] "Filter matchande  {number_of} poster."
+msgstr[0] "Filter matchande {number_of} post."
+msgstr[1] "Filter matchande {number_of} poster."
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -32122,7 +32121,7 @@ msgstr "m. %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:333
 #, python-format
 msgid "sp. see %(reference)s: %(spouse)s"
-msgstr "m. se  %(reference)s : %(spouse)s"
+msgstr "m. se %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:393
 #, python-format
@@ -33473,10 +33472,10 @@ msgid ""
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
 "Ditt släktträd innehåller korsvisa duplicerade referenser.\n"
-" Detta är inte bra men kan åtgärdas genom att ta en\n"
-"säkerhetskopia av släktträdet och importera den till ett tomt\n"
-" släktträd. Resterande kontroll hoppas över. Verktyget \"Kontrollera och "
-"reparera\" bör ånyo köras på det nya släktträdet."
+"Detta är inte bra men kan åtgärdas genom att ta ensäkerhetskopia av\n"
+"släktträdet och importera den till ett tomt \n"
+"släktträd. Resterande kontroll hoppas över. Verktyget \n"
+"\"Kontrollera och reparera\" bör ånyo köras på det nya släktträdet."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
@@ -33554,7 +33553,6 @@ msgstr ""
 "refereras till i databasen, men finns inte längre.\n"
 "Filen kan ha blivit raderad eller flyttats till en annan plats.\n"
 "Du kan välja antingen att ta bort referensen från databasen,\n"
-"\n"
 "behålla referensen till den saknade filen, eller välja en ny fil."
 
 #: ../gramps/plugins/tool/check.py:896
@@ -34760,7 +34758,7 @@ msgid ""
 msgstr ""
 "Sök efter inledande och/eller avslutande blankstegstecken för personer och "
 "platser. Sök efter kommatecken eller felaktiga tecken i koordinatfält.\n"
-"Dubbelklicka på på en rad för att redigera dess innehåll."
+"Dubbelklicka på en rad för att redigera dess innehåll."
 
 #: ../gramps/plugins/tool/removespaces.py:118
 msgid "Looking for possible fields with leading or trailing spaces"
@@ -37287,7 +37285,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Namn"
+msgstr " Namn"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -38321,7 +38319,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Platsnamn"
+msgstr " Platsnamn"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
@@ -38374,7 +38372,7 @@ msgstr "Namn"
 
 #: ../gramps/plugins/webreport/source.py:272
 msgid "Publication information"
-msgstr "Publiceringsinformation "
+msgstr "Publiceringsinformation"
 
 #: ../gramps/plugins/webreport/statistics.py:116
 msgid "Database overview"
