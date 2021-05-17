@@ -27,14 +27,16 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2012-05-10 21:26+0100\n"
-"Last-Translator: Nick Hall\n"
-"Language-Team: English (British)\n"
+"PO-Revision-Date: 2021-05-17 15:58+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/en_GB/>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -1869,7 +1871,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. second date in a span
 #. If "to <Month>" needs a special inflection in your
@@ -9006,9 +9008,8 @@ msgid "How the lines between objects will be drawn."
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
-#, fuzzy
 msgid "Alternate line attachment"
-msgstr "Alternative names"
+msgstr "Alternative line attachment"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:194
 msgid "Whether lines attach to nodes differently"
@@ -9555,9 +9556,8 @@ msgid "Include"
 msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Whether to include relationships to the centre person"
+msgstr ""
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -10956,9 +10956,8 @@ msgid "ID Formats"
 msgstr ""
 
 #: ../gramps/gui/configure.py:677
-#, fuzzy
 msgid "Colors used for boxes in the graphical views"
-msgstr "Set the colours used for boxes in the graphical views"
+msgstr "Colours used for boxes in the graphical views"
 
 #: ../gramps/gui/configure.py:683
 msgid "Light colors"
@@ -10981,9 +10980,8 @@ msgid "Restore colors for current theme to default."
 msgstr ""
 
 #: ../gramps/gui/configure.py:701
-#, fuzzy
 msgid "Colors for Male persons"
-msgstr "Colour for duplicates"
+msgstr "Colours for Male persons"
 
 #: ../gramps/gui/configure.py:702
 msgid "Colors for Female persons"
@@ -10994,24 +10992,20 @@ msgid "Colors for Unknown persons"
 msgstr ""
 
 #: ../gramps/gui/configure.py:704
-#, fuzzy
 msgid "Colors for Family nodes"
-msgstr "Colours to use for various family lines."
+msgstr "Colours for Family nodes"
 
 #: ../gramps/gui/configure.py:705
-#, fuzzy
 msgid "Other colors"
-msgstr "Gender colours"
+msgstr "Other colours"
 
 #: ../gramps/gui/configure.py:707
-#, fuzzy
 msgid "Background for Alive"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:708
-#, fuzzy
 msgid "Background for Dead"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:709
 msgid "Border for Alive"
@@ -11023,34 +11017,28 @@ msgstr ""
 
 #. for family
 #: ../gramps/gui/configure.py:730
-#, fuzzy
 msgid "Default background"
-msgstr "Select background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:731
-#, fuzzy
 msgid "Background for Married"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:732
-#, fuzzy
 msgid "Background for Unmarried"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:734
-#, fuzzy
 msgid "Background for Civil union"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:736
-#, fuzzy
 msgid "Background for Unknown"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:737
-#, fuzzy
 msgid "Background for Divorced"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:738
 msgid "Default border"
@@ -11062,9 +11050,8 @@ msgstr ""
 
 #. for other
 #: ../gramps/gui/configure.py:742
-#, fuzzy
 msgid "Background for Home Person"
-msgstr "Background colour"
+msgstr ""
 
 #: ../gramps/gui/configure.py:761
 #, python-format
@@ -11080,14 +11067,12 @@ msgid "Warnings and Error dialogs"
 msgstr ""
 
 #: ../gramps/gui/configure.py:800
-#, fuzzy
 msgid "Suppress warning when adding parents to a child"
-msgstr "Suppress warning when cancelling with changed data."
+msgstr ""
 
 #: ../gramps/gui/configure.py:804
-#, fuzzy
 msgid "Suppress warning when canceling with changed data"
-msgstr "Suppress warning when cancelling with changed data."
+msgstr "Suppress warning when cancelling with changed data"
 
 #: ../gramps/gui/configure.py:808
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
@@ -14163,9 +14148,8 @@ msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:533
-#, fuzzy
 msgid "Family filter name:"
-msgstr "Alternative names"
+msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:569
 msgid "Include selected Gramps ID"
@@ -20269,9 +20253,8 @@ msgid "The style for the direct descendant box."
 msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1844
-#, fuzzy
 msgid "The style for the note box."
-msgstr "The centre person for the filter."
+msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1849
 msgid "The style for the connection lines and report border."
@@ -20440,7 +20423,7 @@ msgstr ""
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
-"You can customize font and colour for each generation in the style editor"
+"You can customise font and colour for each generation in the style editor"
 
 #: ../gramps/plugins/drawreport/fanchart.py:782
 #, python-format
@@ -22538,9 +22521,8 @@ msgid "Individuals with unknown gender"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:156
-#, fuzzy
 msgid "Incomplete names"
-msgstr "Alternative names"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:160
 msgid "Individuals missing birth dates"
@@ -24757,7 +24739,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:3118
 msgid "Tag recognized but not supported"
-msgstr ""
+msgstr "Tag recognised but not supported"
 
 #: ../gramps/plugins/lib/libgedcom.py:3154
 msgid "Skipped subordinate line"
@@ -26210,8 +26192,8 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s was baptised on %(baptism_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
@@ -26224,8 +26206,8 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised on %(baptism_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
@@ -26238,8 +26220,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was baptised on %(baptism_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
@@ -26247,8 +26229,8 @@ msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"This person was baptised on %(baptism_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"This person was baptised on %(baptism_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:605
 #, python-format
@@ -26296,8 +26278,8 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s was baptised in %(month_year)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
@@ -26310,8 +26292,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised in %(month_year)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -26324,8 +26306,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was baptised in %(month_year)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
@@ -26380,8 +26362,8 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
@@ -26394,8 +26376,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
@@ -26408,8 +26390,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was baptised %(modified_date)s in "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format
@@ -26421,7 +26403,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:669
 #, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
+msgstr "Baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:674
 #, python-format
@@ -30187,9 +30169,8 @@ msgid "Include death anniversaries"
 msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:564
-#, fuzzy
 msgid "Whether to include anniversaries of death"
-msgstr "Whether to include relationships to the centre person"
+msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:570
 #: ../gramps/plugins/textreport/indivcomplete.py:1158
@@ -32320,7 +32301,7 @@ msgstr ""
 #: ../gramps/plugins/tool/mediamanager.py:68
 msgctxt "manual"
 msgid "Media_Manager"
-msgstr "Media Manager"
+msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:118
@@ -32807,9 +32788,8 @@ msgstr ""
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:148
-#, fuzzy
 msgid "alternate name"
-msgstr "Alternative names"
+msgstr "alternative name"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:152
@@ -34068,7 +34048,7 @@ msgid ""
 "The value is in tenth of degree."
 msgstr ""
 "The meeting zone probability radius.\n"
-"The coloured zone is approximative.\n"
+"The coloured zone is approximate.\n"
 "The meeting zone is only shown for the reference person.\n"
 "The value 9 means about 42 miles or 67 kms.\n"
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
@@ -34097,15 +34077,11 @@ msgid "Selecting all events"
 msgstr ""
 
 #: ../gramps/plugins/view/geoevents.py:368
-#, fuzzy
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Right click on the map and select 'show all places' to show all known places "
-"with coordinates. You can change the markers colour depending on place type. "
-"You can use filtering."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
@@ -34204,7 +34180,7 @@ msgid ""
 "The value is in tenth of degree."
 msgstr ""
 "The meeting zone probability radius.\n"
-"The coloured zone is approximative.\n"
+"The coloured zone is approximate.\n"
 "The meeting zone is only shown for the reference family.\n"
 "The value 9 means about 42 miles or 67 kms.\n"
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
@@ -34637,9 +34613,8 @@ msgid "Expand this Entire Group"
 msgstr ""
 
 #: ../gramps/plugins/view/relview.py:372
-#, fuzzy
 msgid "Organize Bookmarks..."
-msgstr "Organise Bookmarks"
+msgstr "Organise Bookmarks..."
 
 #: ../gramps/plugins/view/relview.py:393
 msgid "Add Existing Parents..."
@@ -35205,9 +35180,9 @@ msgid "Families beginning with letter "
 msgstr ""
 
 #: ../gramps/plugins/webreport/family.py:464
-#, fuzzy, python-format
+#, python-format
 msgid "Family Map for %s"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/plugins/webreport/home.py:79
 msgid "Home"
@@ -35376,9 +35351,8 @@ msgid "Select filter to restrict people that appear on web site"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1977
-#, fuzzy
 msgid "Show the relationship between the current person and the active person"
-msgstr "Whether to include relationships to the centre person"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1980
 msgid ""
@@ -35494,9 +35468,8 @@ msgid "Extra pages"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2086
-#, fuzzy
 msgid "Extra page name"
-msgstr "Alternative names"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2089
 msgid "Your extra page name like it is shown in the menubar"
@@ -35953,9 +35926,8 @@ msgid "Terrain"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2477
-#, fuzzy
 msgid "WaterColor"
-msgstr "Colour"
+msgstr "WaterColour"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2478
 msgid "Stamen Option"
@@ -35988,9 +35960,8 @@ msgid "Include the news and updates page"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
-#, fuzzy
 msgid "Whether to include a page with the last updates"
-msgstr "Whether to include relationships to the centre person"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2525
 msgid "Max days for updates"
@@ -36077,9 +36048,9 @@ msgid "Do we include the web calendar ?"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2804
-#, fuzzy, python-format
+#, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Whether to include relationships to the centre person"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2826
 #: ../gramps/plugins/webreport/webcal.py:1953
