@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2018-06-30 13:51+0000\n"
+"PO-Revision-Date: 2021-05-18 06:36+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/is/>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -56,9 +57,8 @@ msgstr ""
 "nákvæmi þeirra getur verið jafn mikil og þér hentar."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Gramps ættfræðikerfi"
+msgstr "Þróunarteymi Gramps"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -283,7 +283,6 @@ msgid "United States of America"
 msgstr "Bandaríki Norður-Ameríku"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -291,8 +290,8 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Sýsl með dagsetningar</b><br/>Hægt er að gefa til kynna tímabil á sniðinu "
-"&quot;á milli 4. janúar, 2000 og 20. mars, 2003&quot;. Þú getur einnig gefið "
-"upp stig áreiðanleika dagsetningar og jafnvel valið á milli sjö mismunandi "
+"\"á milli 4. janúar, 2000 og 20. mars, 2003\". Þú getur einnig gefið upp "
+"stig áreiðanleika dagsetningar og jafnvel valið á milli sjö mismunandi "
 "dagatalsgerða. Prófaðu að ýta á hnappinn sem næstur er dagsetningasviðinu í "
 "atburðastýringunni."
 
@@ -349,7 +348,6 @@ msgstr ""
 "muntu eftir sem áður heyra góðar sögur. Ekki gleyma að hljóðrita samtölin!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -360,16 +358,15 @@ msgid ""
 "the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is "
 "not visible, select View &gt; Filter."
 msgstr ""
-"<b>Síun á fólki</b><br/>Í sýninni &quot;Einstaklingar&quot;, geturðu 'síað' "
-"einstaklinga á marga vegu. Til að skilgreina nýja síu ferðu í &quot;Breyta "
-"&gt; Ritill fyrir síun einstaklinga&quot;. Þarna geturðu nefnt síuna, bætt "
-"við reglum og sameinað reglur með því að styðjast við fjölda forsniðinna "
-"reglna. Til dæmis geturðu skilgreint síu til að finna alla ættleidda "
-"einstaklinga í ættartölunni. Einnig má sía alla sem ekki eru með uppgefinn "
-"fæðingardag. Til að fá fram niðurstöðurnar þarftu að vista síuna og velja "
-"hana neðst á síuhliðarspjaldinu, síðan að velja &quot;Beita&quot;.  Ef "
-"síuhliðarspjaldið er ekki sýnilegt, veldu þá &quot;Skoða &gt; "
-"Hliðarspjald&quot;."
+"<b>Síun á fólki</b><br/>Í sýninni \"Einstaklingar\";, geturðu 'síað' "
+"einstaklinga á marga vegu. Til að skilgreina nýja síu ferðu í \"Breyta &gt; "
+"Ritill fyrir síun einstaklinga\". Þarna geturðu nefnt síuna, bætt við reglum "
+"og sameinað reglur með því að styðjast við fjölda forsniðinna reglna. Til "
+"dæmis geturðu skilgreint síu til að finna alla ættleidda einstaklinga í "
+"ættartölunni. Einnig má sía alla sem ekki eru með uppgefinn fæðingardag. Til "
+"að fá fram niðurstöðurnar þarftu að vista síuna og velja hana neðst á "
+"síuhliðarspjaldinu, síðan að velja \"Virkja\". Ef síuhliðarspjaldið er ekki "
+"sýnilegt, veldu þá \"Skoða &gt; Hliðarspjald\"."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -473,13 +470,13 @@ msgid ""
 "in your database, add the SoundEx Gramplet."
 msgstr ""
 "<b>SoundEx getur hjálpað við ættfræðirannsóknir</b><br/>SoundEx leysir "
-"vandamál sem lengi hefur verið til staðar í ættfræði;  hvernig á að "
-"meðhöndla mismunandi stafsetningu. SoundEx tæknin byggist á því að taka nöfn "
-"og útbúa einfaldað form sem er hið sama fyrir öll þau nöfn sem hljóma líkt í "
-"eyrum. Ef SoundEx-kóði fyrir nafn er þekktur, getur það hjálpað til við að "
-"leita í gömlum manntölum og öðrum slíkum gögnum. Til að fá fram SoundEx-kóða "
-"fyrir nöfnin í gagnagrunninum þínum, skaltu bæta við gramplingnum fyrir "
-"SoundEx-kóða."
+"vandamál sem lengi hefur verið til staðar í ættfræði; hvernig á að meðhöndla "
+"mismunandi stafsetningu. SoundEx tæknin byggist á því að taka nöfn og útbúa "
+"einfaldað form sem er hið sama fyrir öll þau nöfn sem hljóma líkt í eyrum. "
+"Ef SoundEx-kóði fyrir nafn er þekktur, getur það hjálpað til við að leita í "
+"gömlum manntölum og öðrum slíkum gögnum. Til að fá fram SoundEx-kóða fyrir "
+"nöfnin í gagnagrunninum þínum, skaltu bæta við gramplingnum fyrir SoundEx-"
+"kóða."
 
 #: ../data/tips.xml:32
 #, fuzzy
@@ -1089,7 +1086,7 @@ msgid ""
 msgstr ""
 "<b>Forritunarkóði Gramps</b><br/>Gramps er skrifað á forritunarmáli sem "
 "nefnist Python, og styðst við aðgerðasöfn GTK og GNOME fyrir myndræna "
-"framsetningu. Gramps  er stutt á öllum þeim stýrikerfum þar sem búið er að "
+"framsetningu. Gramps er stutt á öllum þeim stýrikerfum þar sem búið er að "
 "skrifa inn stuðning við þessi forrit/kerfi. Vitað er til þess að Gramps "
 "keyri á Linux, BSD, Solaris, Windows og Mac OS X."
 
@@ -1291,9 +1288,8 @@ msgid "Database needs recovery, cannot open it!"
 msgstr "Gagnagrunnur þarfnast endurheimtingar, get ekki opnað hann!"
 
 #: ../gramps/cli/arghandler.py:562
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Gagnagrunnur læstur, get ekki opnað hann!"
+msgstr "Bakendi gagnagrunns ekki tiltækur, get ekki opnað hann!"
 
 #: ../gramps/cli/arghandler.py:613 ../gramps/cli/arghandler.py:662
 #: ../gramps/cli/arghandler.py:709
@@ -2930,21 +2926,21 @@ msgstr "Esfand"
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "date modifier"
 msgid "before "
-msgstr "fyrir"
+msgstr "fyrir "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "date modifier"
 msgid "after "
-msgstr "eftir"
+msgstr "eftir "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "date modifier"
 msgid "about "
-msgstr "um"
+msgstr "um "
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgctxt "date quality"
@@ -3409,9 +3405,8 @@ msgstr "Villa í skránni '%s': get ekki hlaðið skrá."
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:63
-#, fuzzy
 msgid "Full"
-msgstr "Fullt nafn"
+msgstr "Fullt"
 
 #: ../gramps/gen/filters/_filterparser.py:119
 #, python-format
@@ -3834,9 +3829,8 @@ msgid "Matches citations that are indicated as private"
 msgstr "Samsvarar tilvitnunum sem merktar eru sem einka"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
-#, fuzzy
 msgid "Citation attribute:"
-msgstr "Eigindi tilvitnunar"
+msgstr "Eigindi tilvitnunar:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -5508,7 +5502,7 @@ msgstr "Fólk með ófullgerð nöfn"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:45
 msgid "Matches people with firstname or lastname missing"
-msgstr "Samsvarar einstaklingum sem  vantar eiginnafn eða kenninafn"
+msgstr "Samsvarar einstaklingum sem vantar eiginnafn eða kenninafn"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:45
 msgid "Ancestors of <person>"
@@ -8780,7 +8774,7 @@ msgstr "Umdæmi"
 
 #: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:604
 msgid "Borough"
-msgstr "Kaupstaður "
+msgstr "Kaupstaður"
 
 #: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:652
 msgid "Municipality"
@@ -9276,9 +9270,8 @@ msgid "Sidebar"
 msgstr "Hliðarspjald"
 
 #: ../gramps/gen/plug/_pluginreg.py:92
-#, fuzzy
 msgid "Rule"
-msgstr "Bæta við reglu"
+msgstr "Regla"
 
 #. add miscellaneous column
 #: ../gramps/gen/plug/_pluginreg.py:528
@@ -9306,15 +9299,15 @@ msgstr ""
 "uppsettum tungumálum, nota US_English í staðinn"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
-#, fuzzy, python-format
+#, python-format
 msgctxt "gramps_version"
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"VILLA: Viðbótarskráin %(filename)s er fyrir útgáfuna "
-"\"%(gramps_target_version)s\" sem gildir ekki fyrir Gramps "
-"\"%(gramps_version)s\"."
+"VILLA: Viðbótarskráin %(filename)s er fyrir útgáfuna \""
+"%(gramps_target_version)s\" sem gildir ekki fyrir Gramps \"%(gramps_version)"
+"s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -9750,21 +9743,19 @@ msgstr "Miðlungs"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Short"
-msgstr ""
+msgstr "Stutt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Above"
-msgstr ""
+msgstr "Fyrir ofan"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
 msgid "Below"
-msgstr "_Neðan:"
+msgstr "Fyrir neðan"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
 msgid "Not shown"
-msgstr "Fannst ekki"
+msgstr "Ekki birt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:99
 #: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1939
@@ -9774,55 +9765,51 @@ msgstr "Kjörstillingar"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:76
 msgid "Down (↓)"
-msgstr ""
+msgstr "Niður (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Up (↑)"
-msgstr ""
+msgstr "Upp (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
-#, fuzzy
 msgid "Right (→)"
-msgstr "Hægri"
+msgstr "Hægri (→)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Left (←)"
-msgstr ""
+msgstr "Vinstri (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Perpendicular"
-msgstr ""
+msgstr "Hornrétt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:82
-#, fuzzy
 msgid "Rounded"
-msgstr "óskilgreint"
+msgstr "Rúnnað"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
 msgid "Swing"
-msgstr ""
+msgstr "Sveiflu"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
 msgid "Mesh"
-msgstr ""
+msgstr "Möskvi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Tiny"
-msgstr ""
+msgstr "Örsmátt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
-#, fuzzy
 msgid "Script"
-msgstr "PostScript"
+msgstr "Skrifta"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:91
-#, fuzzy
 msgid "Footnote"
-msgstr "Síðufótur"
+msgstr "Neðanmálsgrein"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:92
 msgid "Small"
-msgstr ""
+msgstr "Lítið"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:214
@@ -9837,23 +9824,20 @@ msgid "Large"
 msgstr "Stór"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:95
-#, fuzzy
 msgid "Very large"
-msgstr "Allir staðir"
+msgstr "Mjög stórt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:96
-#, fuzzy
 msgid "Extra large"
-msgstr "Aukasíður"
+msgstr "Risavaxið"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
 msgid "Huge"
-msgstr ""
+msgstr "Flennistórt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
-#, fuzzy
 msgid "Extra huge"
-msgstr "Aukasíður"
+msgstr "Hrikalega stórt"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:141
@@ -9913,9 +9897,8 @@ msgstr "Valkostir ættartrés"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:178
-#, fuzzy
 msgid "Timeflow"
-msgstr "Tími"
+msgstr "Tímaflæði"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:181
 msgid "Direction that the graph will grow over time."
@@ -9953,22 +9936,20 @@ msgid "This text will be added to the tree."
 msgstr "Þessum texta mun verða bætt við grafið."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:216
-#, fuzzy
 msgid "The size of note text."
-msgstr "Stærð minnistexta, í punktum."
+msgstr "Stærð minnistexta."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:694
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
 msgid "Graph File for genealogytree"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
-#, fuzzy
 msgid "LaTeX File"
-msgstr "LaTeX"
+msgstr "LaTeX-skrá"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:145
 #, python-format
@@ -10021,9 +10002,8 @@ msgid "Graphs"
 msgstr "Skýringamyndir"
 
 #: ../gramps/gen/plug/report/_constants.py:51
-#, fuzzy
 msgid "Trees"
-msgstr "Stærð kvísla"
+msgstr "Greinar"
 
 #: ../gramps/gen/plug/report/_constants.py:55
 msgid "Graphics"
@@ -10182,9 +10162,8 @@ msgid "Whether to include Gramps IDs"
 msgstr "Hvort hafa eigi með Gramps auðkenni"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
-#, fuzzy
 msgid "Place format"
-msgstr "Pappírssnið"
+msgstr "Staðasnið"
 
 #: ../gramps/gen/plug/report/stdoptions.py:376
 #, fuzzy
@@ -11139,7 +11118,6 @@ msgid "Baptism/Christening"
 msgstr "Skírn"
 
 #: ../gramps/gen/utils/symbols.py:74
-#, fuzzy
 msgid "Engaged"
 msgstr "Trúlofun"
 
@@ -11149,7 +11127,6 @@ msgid "Unmarried partnership"
 msgstr "maki"
 
 #: ../gramps/gen/utils/symbols.py:78
-#, fuzzy
 msgid "Buried"
 msgstr "Jarðsetning"
 
@@ -11170,9 +11147,8 @@ msgstr ""
 #. Name
 #. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
-#, fuzzy
 msgid "Nothing"
-msgstr "innan"
+msgstr "Ekkert"
 
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
@@ -11199,9 +11175,8 @@ msgid "Cross of Jerusalem"
 msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:114
-#, fuzzy
 msgid "Star and crescent"
-msgstr "Hefja prófun á dagsetningum?"
+msgstr "Stjarna og vaxandi tungl"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
@@ -11233,9 +11208,8 @@ msgid "Star of David"
 msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:122
-#, fuzzy
 msgid "Dead"
-msgstr "Karlkyns eiginkona"
+msgstr "Látin/n"
 
 #: ../gramps/gen/utils/unknown.py:140
 msgid "Unknown, created to replace a missing note object."
@@ -11612,24 +11586,20 @@ msgid "Colors used for boxes in the graphical views"
 msgstr "Stilltu litina sem á að nota á reiti í myndrænum framsetningum"
 
 #: ../gramps/gui/configure.py:683
-#, fuzzy
 msgid "Light colors"
-msgstr "Litir fjölskyldu"
+msgstr "Ljósir litir"
 
 #: ../gramps/gui/configure.py:684
-#, fuzzy
 msgid "Dark colors"
-msgstr "Litir fjölskyldu"
+msgstr "Dökkir litir"
 
 #: ../gramps/gui/configure.py:689
-#, fuzzy
 msgid "Color scheme"
-msgstr "Litir"
+msgstr "Litastef"
 
 #: ../gramps/gui/configure.py:693
-#, fuzzy
 msgid "Restore to defaults"
-msgstr "Endurheimta sjálfgefið?"
+msgstr "Endurheimta sjálfgefin gildi"
 
 #: ../gramps/gui/configure.py:695
 msgid "Restore colors for current theme to default."
@@ -12237,14 +12207,12 @@ msgid "Every hour"
 msgstr "Á klukkustundar fresti"
 
 #: ../gramps/gui/configure.py:1783
-#, fuzzy
 msgid "Every 12 hours"
-msgstr "Á klukkustundar fresti"
+msgstr "Á 12 klukkustunda fresti"
 
 #: ../gramps/gui/configure.py:1784
-#, fuzzy
 msgid "Every day"
-msgstr "Allar fjölskyldur"
+msgstr "Daglega"
 
 #: ../gramps/gui/configure.py:1789
 msgid "Autobackup"
@@ -12368,9 +12336,8 @@ msgid "Select default death symbol"
 msgstr "Setja sem sjálfgefið nafn"
 
 #: ../gramps/gui/configure.py:2013
-#, fuzzy
 msgid "Genealogical Symbols"
-msgstr "Ættfræðikerfi"
+msgstr "Ættfræðitákn"
 
 #: ../gramps/gui/configure.py:2022
 msgid "Cannot look for genealogical fonts"
@@ -12465,11 +12432,11 @@ msgstr "Innskráning"
 
 #: ../gramps/gui/dbloader.py:332
 msgid "Username: "
-msgstr "Notandanafn:"
+msgstr "Notandanafn: "
 
 #: ../gramps/gui/dbloader.py:337
 msgid "Password: "
-msgstr "Lykilorð:"
+msgstr "Lykilorð: "
 
 #: ../gramps/gui/dbloader.py:369
 msgid "Import Family Tree"
@@ -12861,9 +12828,8 @@ msgstr ""
 "Veldu frekar einn af tiltækum möguleikum"
 
 #: ../gramps/gui/displaystate.py:282
-#, fuzzy
 msgid "Cannot load database"
-msgstr "Get ekki opnað gagnagrunn"
+msgstr "Get ekki hlaðið inn gagnagrunni"
 
 #: ../gramps/gui/displaystate.py:400
 #: ../gramps/plugins/gramplet/persondetails.py:174
@@ -13146,14 +13112,12 @@ msgid "Move Down"
 msgstr "Færa niður"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:76
-#, fuzzy
 msgid "Move Left"
-msgstr "Efst til vinstri"
+msgstr "Færa til vinstri"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:77
-#, fuzzy
 msgid "Move right"
-msgstr "Höfundarréttur"
+msgstr "Færa til hægri"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:69
 msgid "Create and add a new citation and new source"
@@ -13187,9 +13151,8 @@ msgstr "Útgefandi"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Stig áreiðanleika:"
+msgstr "Stig áreiðanleika"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
 #, fuzzy
@@ -16125,8 +16088,8 @@ msgid ""
 "Bundesland."
 msgstr ""
 "Annað. stig staðargreiningar Í BNA væri talað um fylki (state), í Þýskalandi "
-"er það Bundesland, en hugsanlega ætti best við að nota fjórðunga/kjördæmi "
-"(Norðurland eystra, Vestfirðir, Vesturland, o.s.frv.)  á Íslandi."
+"er það Bundesland, en hugsanlega ætti best við að nota fjórðunga/kjördæmi ("
+"Norðurland eystra, Vestfirðir, Vesturland, o.s.frv.) á Íslandi."
 
 #: ../gramps/gui/glade/editlocation.glade:234
 msgid "The country where the place is."
@@ -16604,9 +16567,8 @@ msgid "Invoke place name editor."
 msgstr "Ræsa staðarheitaritil"
 
 #: ../gramps/gui/glade/editplaceformat.glade:124
-#, fuzzy
 msgid "Levels:"
-msgstr "Efsta stig"
+msgstr "Stig:"
 
 #: ../gramps/gui/glade/editplaceformat.glade:136
 #, fuzzy
@@ -19955,9 +19917,8 @@ msgid "Gramplet Bar Help"
 msgstr "Gramplingastika"
 
 #: ../gramps/gui/widgets/grampletbar.py:525
-#, fuzzy
 msgid "About Gramplets"
-msgstr "Gramplingur"
+msgstr "Um Gramplinga"
 
 #: ../gramps/gui/widgets/grampletbar.py:564
 msgid "Restore to defaults?"
@@ -25021,9 +24982,8 @@ msgstr[0] "Innflutningi lokið: {number_of} sekúnda"
 msgstr[1] "Innflutningi lokið: {number_of} sekúndur"
 
 #: ../gramps/plugins/importer/importcsv.py:395
-#, fuzzy
 msgid "The following IDs were referenced but not found:\n"
-msgstr "Eftirfarandi vandamál komu upp:"
+msgstr "Eftirfarandi vandamál komu upp:\n"
 
 #: ../gramps/plugins/importer/importgedcom.glade:15
 msgid "ANSEL"
@@ -25941,7 +25901,7 @@ msgstr "Þyngd"
 
 #: ../gramps/plugins/lib/libgedcom.py:926
 msgid "Line ignored "
-msgstr "Lína hunsuð"
+msgstr "Lína hunsuð "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
 #: ../gramps/plugins/lib/libgedcom.py:1540
@@ -26039,7 +25999,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:3481
 msgid "(Submitter):"
-msgstr "(Sendandi): "
+msgstr "(Sendandi):"
 
 #: ../gramps/plugins/lib/libgedcom.py:3505
 #: ../gramps/plugins/lib/libgedcom.py:7319
@@ -29783,9 +29743,8 @@ msgstr "Breyta..."
 #: ../gramps/plugins/view/noteview.py:279
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
-#, fuzzy
 msgid "Forward"
-msgstr "Á_fram"
+msgstr "Áfram"
 
 #: ../gramps/plugins/lib/libpersonview.py:454
 msgid "_Delete Person"
@@ -31613,7 +31572,7 @@ msgstr "maki %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:333
 #, python-format
 msgid "sp. see %(reference)s: %(spouse)s"
-msgstr "maki, sjá  %(reference)s : %(spouse)s"
+msgstr "maki, sjá %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:393
 #, python-format
@@ -32305,9 +32264,8 @@ msgid "Whether to sort events into chronological order."
 msgstr "Hvort raða eigi atburðum í tímaröð."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Smelltu til að gera einstakling virkann\n"
+msgstr "Smelltu til að gera einstakling virkann"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
@@ -32462,7 +32420,7 @@ msgid ""
 "is %(count)d. %(percent)s"
 msgstr ""
 "Heildarfjöldi forfeðra í %(second_generation)d. to %(last_generation)d. "
-"kynslóð er %(count)d.  %(percent)s"
+"kynslóð er %(count)d. %(percent)s"
 
 #. Write the title line. Set in INDEX marker so that this section will be
 #. identified as a major category if this is included in a Book report.
@@ -32480,7 +32438,7 @@ msgstr "Veldu a.m.k. einn stað áður en þú keyrir þetta."
 #: ../gramps/plugins/textreport/placereport.py:182
 #, python-format
 msgid "Gramps ID: %s "
-msgstr "Gramps auðkenni: %s"
+msgstr "Gramps auðkenni: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:199
 #, python-format
@@ -32572,7 +32530,6 @@ msgid "The style used for the footer."
 msgstr "Stíllinn sem notaður verður fyrir síðufótinn."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:136
-#, fuzzy
 msgctxt "book"
 msgid "Title of the Book"
 msgstr "Titill bókarinnar"
@@ -36094,9 +36051,9 @@ msgstr "Breyta völdum einstaklingi"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36179,19 +36136,19 @@ msgid "Relationship type: %s"
 msgstr "Tegund vensla: %s"
 
 #: ../gramps/plugins/view/relview.py:1521
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s í %(place)s"
+msgstr "%(event_type)s %(date)s í %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1525
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1529
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1540
 msgid "Broken family detected"
@@ -36506,9 +36463,8 @@ msgstr "Tengiliður"
 
 #: ../gramps/plugins/webreport/basepage.py:1751
 #: ../gramps/plugins/webreport/basepage.py:1818
-#, fuzzy
 msgid "Updates"
-msgstr "Uppfært"
+msgstr "Uppfærslur"
 
 #: ../gramps/plugins/webreport/basepage.py:1753
 #: ../gramps/plugins/webreport/basepage.py:1824
@@ -36517,9 +36473,8 @@ msgid "Web Calendar"
 msgstr "Vefdagatal"
 
 #: ../gramps/plugins/webreport/basepage.py:1786
-#, fuzzy
 msgid "Html|Home"
-msgstr "Html kóði"
+msgstr "Upphaf"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -36667,7 +36622,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Heiti"
+msgstr " Heiti"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -36937,7 +36892,6 @@ msgid "Check it if you want to open/close a section"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2083
-#, fuzzy
 msgid "Extra pages"
 msgstr "Aukasíður"
 
@@ -37188,9 +37142,9 @@ msgid "Description for download"
 msgstr "Lýsing fyrir niðurhal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2310
-#, fuzzy, python-format
+#, python-format
 msgid "Family Tree #%c"
-msgstr "Ættartala"
+msgstr "Ættartala #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2311
 msgid "Give a description for this file."
@@ -37325,9 +37279,8 @@ msgid "Include the statistics page"
 msgstr "Taka með síðu yfir staði"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2413
-#, fuzzy
 msgid "Whether or not to add statistics page"
-msgstr "Hvort innifela eigi fjölskyldusíður."
+msgstr "Hvort innifela eigi tölfræðisíður."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2422
 msgid "Place Map Options"
@@ -37468,9 +37421,8 @@ msgid "How many updates do you want to see max"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
-#, fuzzy
 msgid "Translations"
-msgstr "Þýðing"
+msgstr "Þýðingar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
 #, fuzzy
@@ -37614,7 +37566,7 @@ msgid "<absent>"
 msgstr "<absent>"
 
 #: ../gramps/plugins/webreport/person.py:292
-#, fuzzy, python-format
+#, python-format
 msgctxt "letter"
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Kenninöfn %(surname)s sem byrja á stafnum %(letter)s"
@@ -37697,7 +37649,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Staðarheiti"
+msgstr " Staðarheiti"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
@@ -38067,9 +38019,8 @@ msgid "%s since death"
 msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:2196
-#, fuzzy
 msgid "death"
-msgstr "Andlát"
+msgstr "andlát"
 
 #: ../gramps/plugins/webreport/webcal.py:2220
 #, python-brace-format
