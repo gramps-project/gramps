@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-17 15:58+0000\n"
+"PO-Revision-Date: 2021-05-18 06:36+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -10977,7 +10977,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:695
 msgid "Restore colors for current theme to default."
-msgstr ""
+msgstr "Restore colours for current theme to default."
 
 #: ../gramps/gui/configure.py:701
 msgid "Colors for Male persons"
@@ -10985,11 +10985,11 @@ msgstr "Colours for Male persons"
 
 #: ../gramps/gui/configure.py:702
 msgid "Colors for Female persons"
-msgstr ""
+msgstr "Colours for Female persons"
 
 #: ../gramps/gui/configure.py:703
 msgid "Colors for Unknown persons"
-msgstr ""
+msgstr "Colours for Unknown persons"
 
 #: ../gramps/gui/configure.py:704
 msgid "Colors for Family nodes"
