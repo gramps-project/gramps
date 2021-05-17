@@ -63,15 +63,16 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2019-02-10 16:07+0100\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
-"Language-Team: Italian <tp@lists.linux.it>\n"
+"PO-Revision-Date: 2021-05-17 21:43+0000\n"
+"Last-Translator: Marcello Cuoghi <marcello.cuoghi@gmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -109,9 +110,8 @@ msgstr ""
 "precisa in base alle tue necessità."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Sistema Genealogico Gramps"
+msgstr "Team Sviluppatori Gramps"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -308,7 +308,7 @@ msgstr "Nuova Zelanda"
 
 #: ../data/holidays.xml:387
 msgid "Russia"
-msgstr ""
+msgstr "Russia"
 
 #: ../data/holidays.xml:400
 msgid "Serbia"
@@ -336,7 +336,6 @@ msgid "United States of America"
 msgstr "Stati Uniti d'America"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -344,10 +343,10 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Lavorare con le date</b><br/>È possibile fornire un intervallo di date "
-"usando il formato &quot; tra 4 gennaio 2000 e 20 marzo 2003&quot;. È "
-"possibile anche indicare il livello di fiducia in una data ed anche "
-"scegliere tra sette diversi calendari. Basta usare il pulsante vicino al "
-"campo della data nell'editor degli eventi."
+"usando il formato \"tra 4 gennaio 2000 e 20 marzo 2003\". È possibile anche "
+"indicare il livello di fiducia in una data ed anche scegliere tra sette "
+"diversi calendari. Basta usare il pulsante vicino al campo della data "
+"nell'editor degli eventi."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -402,7 +401,6 @@ msgstr ""
 
 # XXX Search?, not Apply; View &gt; Filter -> View &gt; Filter Sidebar
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -414,13 +412,13 @@ msgid ""
 "not visible, select View &gt; Filter."
 msgstr ""
 "<b>Filtri per le persone</b><br/>Nella vista persone è possibile filtrare le "
-"persone in base a vari criteri. Nuovi filtri sono definibili da &quot;"
-"Modifica &gt; Editor filtri persone&quot;. Da là è possibile dare un nome al "
-"filtro e aggiungere e combinare regole usando le varie regole predefinite. "
-"Ad esempio, è possibile definire un filtro per trovare nell'albero "
-"genealogico tutte le persone adottate. Anche le persone senza una data di "
-"nascita possono essere filtrate. Per ottenere i risultati, salvare il filtro "
-"e selezionarlo dalla barra laterale filtri, in basso, quindi fare clic su "
+"persone in base a vari criteri. Nuovi filtri sono definibili da \"Modifica "
+"&gt; Editor filtri persone\". Da là è possibile dare un nome al filtro e "
+"aggiungere e combinare regole usando le varie regole predefinite. Ad "
+"esempio, è possibile definire un filtro per trovare nell'albero genealogico "
+"tutte le persone adottate. Anche le persone senza una data di nascita "
+"possono essere filtrate. Per ottenere i risultati, salvare il filtro e "
+"selezionarlo dalla barra laterale filtri, in basso, quindi fare clic su "
 "Applica. Se la barra laterale dei filtri non è visibile, selezionare "
 "Visualizza &gt; Filtro."
 
@@ -471,7 +469,6 @@ msgstr ""
 "selezionarne coniugi, fratelli, figli o genitori."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -479,11 +476,11 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Chi è nato quando?</b><br/>Tramite &quot;Strumenti &gt; Analisi ed "
-"esplorazione &gt; Confronta eventi individuali...&quot; è possibile "
-"confrontare i dati delle persone nel database. Questo è utile, ad esempio, "
-"se si desidera elencare le date di nascita di tutte le persone nel database. "
-"Si può restringere il risultato con un filtro personalizzato."
+"<b>Chi è nato quando?</b><br/>Tramite \"Strumenti &gt; Analisi ed "
+"esplorazione &gt; Confronta eventi individuali...\" è possibile confrontare "
+"i dati delle persone nel database. Questo è utile, ad esempio, se si "
+"desidera elencare le date di nascita di tutte le persone nel database. Si "
+"può restringere il risultato con un filtro personalizzato."
 
 #: ../data/tips.xml:26
 #, fuzzy
