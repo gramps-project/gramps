@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2020-09-13 12:45-0300\n"
+"PO-Revision-Date: 2021-05-18 06:36+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -60,9 +61,8 @@ msgstr ""
 "necesita que sea."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Sistema de genealogía Gramps"
+msgstr "Equipo de Desarrollo de Gramps"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -258,9 +258,8 @@ msgid "New Zealand"
 msgstr "Nueva Zelanda"
 
 #: ../data/holidays.xml:387
-#, fuzzy
 msgid "Russia"
-msgstr "Ruso"
+msgstr "Rusia"
 
 #: ../data/holidays.xml:400
 msgid "Serbia"
@@ -288,7 +287,6 @@ msgid "United States of America"
 msgstr "Estados Unidos de América"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -296,10 +294,10 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Trabajar con fechas</b><br/>Se puede dar un rango de fechas usando el "
-"formato &quot;entre 4 de enero de 2000 y 20 de marzo de 2003&quot;. También "
-"puede indicar el nivel de confianza en una fecha e incluso escoger entre "
-"siete distintos sistemas de calendario. Pruebe el botón contiguo al campo de "
-"fecha en el editor de eventos."
+"formato \"de 4 enero 2000 a 20 marzo 2003\". También puede indicar el nivel "
+"de confianza en una fecha e incluso escoger entre siete distintos sistemas "
+"de calendario. Pruebe el botón contiguo al campo de fecha en el Editor de "
+"Eventos."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -354,7 +352,6 @@ msgstr ""
 "interesantes. ¡No olvide grabar las conversaciones!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -366,15 +363,15 @@ msgid ""
 "not visible, select View &gt; Filter."
 msgstr ""
 "<b>Filtrar personas</b><br/>En la vista de personas, puede 'filtrar' "
-"personas en función de muchos criterios.  Para definir un filtro, vaya a "
-"&quot;Editar &gt; Persona &gt; Editor de filtros&quot;. Ahí puede dar nombre "
-"a su filtro y agregar y combinar reglas a partir de las muchas reglas "
+"personas en función de muchos criterios. Para definir un nuevo filtro, vaya "
+"a \"Editar &gt; Editor de Filtros de Persona\". Ahí puede dar nombre a su "
+"filtro y agregar y combinar reglas a partir de las muchas reglas "
 "predefinidas. Por ejemplo, puede definir un filtro que seleccione todas las "
 "personas adoptadas del árbol genealógico. O todas las personas sin fecha de "
-"nacimiento. Para obtener los resultados, salve su filtro y selecciónelo en "
-"la parte inferior de la barra lateral de filtros, haga clic a continuación "
-"en Aplicar. Si la barra lateral de filtro no está visible, actívela con Ver "
-"&gt; Filtro."
+"nacimiento. Para obtener los resultados, guarde su filtro y selecciónelo en "
+"la parte inferior de la barra lateral de filtros, y luego haga clic en "
+"Buscar. Si la barra lateral de filtro no está visible, actívela con Ver &gt; "
+"Barra Lateral."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -425,7 +422,6 @@ msgstr ""
 "cónyuges, hermanos, hijos o padres."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -433,14 +429,13 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>¿Quién nació cuándo?</b><br/>Mediante &quot;Herramientas &gt; Análisis y "
-"exploración &gt; Comparar eventos individuales...&quot; se pueden comparar "
-"los datos de personas de su base de datos. Esto es útil si, por ejemplo, "
-"desea listar las fechas de nacimiento de todas las personas de su base de "
-"datos. Puede usar un filtro para limitar los resultados."
+"<b>¿Quién nació cuándo?</b><br/>Mediante \"Herramientas &gt; Análisis y "
+"exploración &gt; Comparar eventos personales...\"; se pueden comparar los "
+"datos de personas de su base de datos. Esto es útil si, por ejemplo, desea "
+"listar las fechas de nacimiento de todas las personas de su base de datos. "
+"Puede usar un filtro para limitar los resultados."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -449,14 +444,13 @@ msgid ""
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
 "<b>Herramientas de Gramps</b><br/>Gramps le proporciona un rico juego de "
-"herramientas.  Éstas le permiten realizar operaciones como buscar errores o "
+"herramientas. Éstas le permiten realizar operaciones como buscar errores o "
 "problemas de consistencia en la base de datos. Hay herramientas de "
 "investigación o análisis como comparación de eventos, búsqueda de personas "
-"duplicadas, navegador interactivo de descendientes y muchas otras.  Se puede "
-"acceder a todas estas herramientas mediante el menú &quot;Herramientas&quot;."
+"duplicadas, navegador interactivo de descendientes y muchas otras. Se puede "
+"acceder a todas estas herramientas mediante el menú \"Herramientas\"."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
@@ -465,8 +459,8 @@ msgid ""
 msgstr ""
 "<b>Cálculo de parentescos</b><br/>Para comprobar si dos personas en la base "
 "de datos están emparentadas (por sangre, no matrimonio) pruebe la "
-"herramienta que puede encontrar &quot;Herramientas &gt; Utilidades &gt; "
-"Calculador de parentesco...&quot;. Se proporciona tanto el parentesco exacto "
+"herramienta que puede encontrar en \"Herramientas &gt; Utilidades &gt; "
+"Calculador de parentesco...\". Se proporciona tanto el parentesco exacto "
 "como los ascendientes comunes."
 
 #: ../data/tips.xml:30
@@ -489,7 +483,6 @@ msgstr ""
 "Gramplete SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -497,11 +490,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\""
 msgstr ""
-"<b>Fijar preferencias</b><br/>&quot;Editar &gt; Preferencias...&quot; le "
+"<b>Definir sus preferencias</b><br/> \"Editar &gt; Preferencias...\" le "
 "permite modificar una serie de ajustes, como la ruta a sus archivos "
 "audiovisuales, y le permite ajustar a sus necesidades muchos aspectos de la "
 "presentación de Gramps. Cada vista separada puede configurarse también en "
-"&quot;Ver &gt; Configurar la vista...&quot;"
+"\"Ver &gt; Configurar...\""
 
 #: ../data/tips.xml:34
 msgid ""
@@ -519,7 +512,6 @@ msgstr ""
 "hay un reporte especial para hacerlo."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -529,10 +521,10 @@ msgid ""
 msgstr ""
 "<b>Comenzar un nuevo árbol genealógico</b><br/>Una buena manera de comenzar "
 "un nuevo árbol genealógico es introducir los miembros de la familia en la "
-"base de datos mediante la vista de personas (utilice &quot;Editar &gt; "
-"Agregar&quot; or haga clic en el botón Agregar una nueva persona en la vista "
-"de personas). A continuación, vaya a la vista de relaciones y cree las "
-"relaciones entre personas."
+"base de datos mediante la vista de personas (utilice \"Editar &gt; Agregar..."
+"\" o haga clic en el botón Agregar una nueva persona en la vista de personas)"
+". A continuación, vaya a la vista de relaciones y cree las relaciones entre "
+"personas."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -544,7 +536,6 @@ msgstr ""
 "segundos."
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -554,25 +545,22 @@ msgid ""
 msgstr ""
 "<b>¿No está seguro de una fecha?</b><br/>Si no está seguro de la fecha en "
 "que ocurrió un evento, Gramps le permite introducir una amplia gama de "
-"formatos basados en suposiciones o estimaciones.  Por ejemplo, &quot;hacia "
-"1908&quot; es una fecha de nacimiento válida para Gramps. Haga clic en el "
-"botón de fecha contiguo al campo de fecha y vea el manual de Gramps para "
-"saber más."
+"formatos basados en suposiciones o estimaciones. Por ejemplo, \"hacia 1908\" "
+"es una fecha de nacimiento válida para Gramps. Haga clic en el botón de "
+"fecha contiguo al campo de fecha y vea el manual de Gramps para saber más."
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Entradas duplicadas</b><br/>&quot;Herramientas &gt; Procesos sobre la "
-"Base de Datos &gt; Buscar personas posiblemente duplicadas&quot; le permite "
-"localizar (y fusionar) múltiples entradas de la misma persona resultantes de "
-"haber sido introducida más de una vez en la base de datos."
+"<b>Entradas duplicadas</b><br/>\"Herramientas &gt; Procesos de árboles "
+"genealógicos &gt; Buscar personas posiblemente duplicadas...\" le permite "
+"localizar (y fusionar) múltiples entradas de la misma persona introducida "
+"más de una vez en la base de datos."
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge...\" "
 "allows you to combine separately listed people into one. Select the second "
@@ -581,15 +569,14 @@ msgid ""
 "entered differing names for one individual. This also works for the Places, "
 "Sources and Repositories views."
 msgstr ""
-"<b>Mezclar entradas</b><br/>La función &quot;Editar &gt; Comparar y "
-"fusionar...&quot; le permite combinar varias personas en una sola. "
-"Seleccione la segunda persona manteniendo pulsada la tecla Control al hacer "
-"clic. Esto es muy útil para combinar dos bases de datos que tienen personas "
-"coincidentes o combinar personas que se han introducido varias veces por "
-"error. Esta facilidad también existe para lugares, fuentes y repositorios."
+"<b>Mezclar entradas</b><br/>La función \"Editar &gt; Fusionar...\" le "
+"permite combinar varias personas en una sola. Seleccione la segunda persona "
+"manteniendo pulsada la tecla Control al hacer clic. Esto es muy útil para "
+"combinar dos bases de datos que tienen personas coincidentes o combinar "
+"personas que se han introducido varias veces por error. Esta facilidad "
+"también existe para lugares, fuentes y repositorios."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
@@ -599,10 +586,9 @@ msgstr ""
 "<b>Organizar las vistas</b><br/>Muchas de las vistas pueden presentar los "
 "datos bien en forma de árbol jerárquico, bien como una simple lista. Cada "
 "vista puede también configurarse a su gusto. Mire a la derecha de la barra "
-"de herramientas o bajo el menú &quot;Ver&quot;."
+"de herramientas o bajo el menú \"Ver\"."
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -610,9 +596,9 @@ msgid ""
 "buttons."
 msgstr ""
 "<b>Navegar atrás y alante</b><br/>Gramps mantiene una lista de los últimos "
-"objetos activos como Personas y Eventos. Puede moverse alante y atrás por la "
-"lista utilizando &quot;Ir &gt; Adelante&quot; e &quot;Ir &gt; Atrás&quot; o "
-"los botones de flechas."
+"objetos activos como Personas y Eventos. Puede moverse adelante y atrás por "
+"la lista utilizando \"Ir &gt; Adelante\" e \"Ir &gt; Atrás\" o los botones "
+"de flechas."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -626,18 +612,16 @@ msgstr ""
 "del menú."
 
 #: ../data/tips.xml:52
-#, fuzzy
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
 "&gt; User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Lea el manual</b><br/>No olvide leer el manual de Gramps, &quot;Ayuda "
-"&gt; Manual de usuario&quot;. Los desarrolladores han dedicado un gran "
-"esfuerzo en hacer la mayoría de las operaciones intuitivas, pero el manual "
-"está repleto de información que hará más productivo el tiempo que dedique a "
-"la genealogía."
+"<b>Lea el manual</b><br/>No olvide leer el manual de Gramps, \"Ayuda &gt; "
+"Manual de usuario\". Los desarrolladores han dedicado un gran esfuerzo en "
+"hacer la mayoría de las operaciones intuitivas, pero el manual está repleto "
+"de información que hará más productivo el tiempo que dedique a la genealogía."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -692,7 +676,6 @@ msgstr ""
 "pero puede ser bueno discutir la idea en las listas de correo antes."
 
 #: ../data/tips.xml:62
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -701,14 +684,13 @@ msgid ""
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
 "<b>Listas de correo de Gramps</b><br/>¿Busca respuestas a sus preguntas "
-"sobre Gramps? Pruebe la lista de correo gramps-users. Hay muchas personas en "
-"la lista, así que es fácil que obtenga una respuesta en poco tiempo. Si "
-"tiene preguntas acerca del desarrollo de Gramps, pruebe en la lista gramps-"
-"devel. Puede encontrar información acerca de estas listas selecionando &quot;"
-"Ayuda &gt; Listas de correo de Gramps&quot;."
+"sobre Gramps? Pruebe la lista de correo gramps-users. En la lista hay muchas "
+"personas dispuestas a ayudar, así que es fácil que obtenga una respuesta en "
+"poco tiempo. Si tiene preguntas acerca del desarrollo de Gramps, pruebe la "
+"lista gramps-devel. Puede encontrar información acerca de estas listas "
+"seleccionando \"Ayuda &gt; Listas de correo de Gramps\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -718,13 +700,14 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help "
 "&gt; Gramps Mailing Lists\""
 msgstr ""
-"<b>Contribuir a Gramps</b>: ¿Le gustaría ayudar al proyecto Gramps pero no "
-"sabe programar? No es problema. Un proyecto tan grande como Gramps necesita "
-"gente de muchos perfiles. Las contribuciones pueden ir desde escribir "
-"documentación a probar las versiones de desarrollo o ayudar con el sitio "
-"web. Comience suscribéndose a la la lista de correo de los desarrolladores "
-"de Gramps, gramps-devel (en inglés) y presentándose.  Para conocer cómo "
-"subscribirse, lea &quot;Ayuda &gt; Listas de correo de Gramps&quot;"
+"<b>Contribuir a Gramps</b> ¿Le gustaría ayudar al proyecto Gramps pero no "
+"sabe programar? ¡No hay problema! Un proyecto tan grande como Gramps "
+"necesita gente con un gran variedad de habilidades. Las contribuciones "
+"pueden ir desde escribir documentación a probar las versiones de desarrollo "
+"o ayudar con el sitio web. Comience suscribiéndose a la la lista de correo "
+"de los desarrolladores de Gramps, gramps-devel, y presentándose. Información "
+"sobre cómo subscribirse puede ser consultada en \"Ayuda &gt; Listas de "
+"correo de Gramps\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -745,7 +728,6 @@ msgstr ""
 "cientos de miles de personas."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -754,14 +736,13 @@ msgid ""
 "also bookmark most of the other objects."
 msgstr ""
 "<b>Marcar personas</b><br/>El menú Marcadores le proporciona un sitio cómodo "
-"para almacenar los nombres de personas visitadas a menudo. Al pulsar en una "
-"persona recordada en Marcadores, ésta se convertirá en la nueva persona "
-"activa.  Para agregar una persona a los marcadores, haga que sea la persona "
-"activa y vaya a &quot;Marcadores &gt; Agregar marcador&quot; o pulse Ctrl"
-"+D.  Puede poner marcadores en objetos de muchos otros tipos."
+"para almacenar los nombres de personas usadas a menudo. Al pulsar un "
+"Marcador, esta persona se convertirá en la persona activa. Para agregar una "
+"persona a los marcadores, haga que sea la persona activa y vaya a "
+"\"Marcadores &gt; Agregar marcador\" o pulse Ctrl+D. Puede poner marcadores "
+"en objetos de muchos otros tipos."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -771,14 +752,13 @@ msgid ""
 "Preferences &gt; Display\"."
 msgstr ""
 "<b>Fechas incorrectas</b><br/>Todo el mundo introduce de vez en cuando "
-"fechas en formatos inválidos.  Estas fechas aparecen en Gramps con un fondo "
-"rojizo o un punto rojo a ls derecha del campo. Puede arreglar la fecha "
+"fechas en formatos inválidos. Estas fechas aparecen en Gramps con un fondo "
+"rojizo o un punto rojo a la derecha del campo. Puede arreglar la fecha "
 "mediante el diálogo de Selección de Fecha que puede abrirse haciendo clic "
-"sobre el botón de fecha. El formato de la fecha se fija en &quot;Editar &gt; "
-"Preferencias &gt; Presentación&quot;."
+"sobre el botón de fecha. El formato de la fecha se fija en \"Editar &gt; "
+"Preferencias... &gt; Mostrar\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
@@ -786,10 +766,10 @@ msgid ""
 "they will be added to the available events, but not translated."
 msgstr ""
 "<b>Listar eventos</b><br/>Los eventos se agregan usando el editor que se "
-"abre mediante &quot;Persona &gt; Editar persona &gt; Eventos&quot;. Hay una "
-"larga lista de tipos de eventos predefinidos. Puede agregar sus propios "
-"tipos de vento tecleando en el campo de texto, se agregarán a la lista de "
-"eventos disponibles, pero no resultarán traducidos a otros idiomas."
+"abre mediante \"Persona &gt; Editar... &gt; Eventos\". Hay una larga lista "
+"de tipos de eventos predefinidos. Puede agregar sus propios tipos de evento "
+"tecleando en el campo de texto, se agregarán a la lista de eventos "
+"disponibles, pero no resultarán traducidos a otros idiomas."
 
 #: ../data/tips.xml:74
 msgid ""
