@@ -1696,7 +1696,7 @@ class DescendTreeOptions(MenuReportOptions):
         repldisp = TextOption(
             _("Replace Display Format:\n'Replace this'/' with this'"),
             [])
-        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
+        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A."))
         menu.add_option(category_name, "replace_list", repldisp)
 
         self.usenote = BooleanOption(_('Include a note'), False)
