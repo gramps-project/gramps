@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2020-07-17 00:30+0300\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.con>\n"
-"Language-Team: suomi <niememat@gmail.com>\n"
+"PO-Revision-Date: 2021-05-21 17:06+0000\n"
+"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -59,9 +60,8 @@ msgstr ""
 "kuin sinulle on tarpeen."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Gramps sukututkimusjärjestelmä"
+msgstr "Gramps kehitystiimi"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -289,15 +289,14 @@ msgid "United States of America"
 msgstr "United States of America"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Päivämäärien käyttäminen</b><br/>Aikaväli voidaan antaa muodossa &quot;4 "
-"tammikuuta 2000 ja 20 maaliskuuta 2003 välillä&quot;. Voit myös antaa "
+"<b>Päivämäärien käyttäminen</b><br/>Aikaväli voidaan antaa muodossa \"4 "
+"tammikuuta 2000 ja 20 maaliskuuta 2003 välillä\". Voit myös antaa "
 "päivämäärän luotettavuudesta arvion ja valita päivämäärän useista "
 "kalentereista. Kokeile painiketta, joka on päivämääräkentän vieressä "
 "tapahtumaviite muokkaimessa."
@@ -354,7 +353,6 @@ msgstr ""
 "kuulet muutamia hyviä tarinoita. Älä unohda nauhoittaa keskustelujasi!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -366,13 +364,13 @@ msgid ""
 "not visible, select View &gt; Filter."
 msgstr ""
 "<b>Henkilöiden suodattaminen</b><br/>Henkilöt näkymässä voit 'suodattaa' "
-"henkilöitä monin eri perustein. Määritä uusi suodin valitsemalla &quot;"
-"Muokkaa &gt; Henkilösuodinmuokkain&quot; ja valita jokin monista valmiista "
-"suotimista. Esimerkiksi voit valita kaikki henkilöt, jotka on adoptoitu. Tai "
-"henkilöt, joilla ei ole syntymäaikaa. Saadaksesi tuloksia sulje suodin ja "
-"valitse suodin sivupalkin alaosan Käyttäjän suodin painikkeesta, ja napsauta "
-"Etsi. Jos suodinsivupalkki ei ole näkyvissä, lisää sivupalkkiin Gramplet "
-"&gt; Suodin."
+"henkilöitä monin eri perustein. Määritä uusi suodin valitsemalla \"Muokkaa "
+"&gt; Henkilösuodinmuokkain\" ja valita jokin monista valmiista suotimista. "
+"Esimerkiksi voit valita kaikki henkilöt, jotka on adoptoitu. Tai henkilöt, "
+"joilla ei ole syntymäaikaa. Saadaksesi tuloksia sulje suodin ja valitse "
+"suodin sivupalkin alaosan Käyttäjän suodin painikkeesta, ja napsauta Etsi. "
+"Jos suodinsivupalkki ei ole näkyvissä, lisää sivupalkkiin Gramplet &gt; "
+"Suodin."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -422,7 +420,6 @@ msgstr ""
 "sisaruksista, lapsista tai vanhemmista."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -430,14 +427,13 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Kuka syntyi ja milloin?</b><br/>&quot;Työkalut &gt; Analyysi ja tutkimus "
-"&gt; Vertaa henkilöiden tapahtumia ...&quot; työkalu sallii sinun verrata "
-"tietokannan henkilöiden tietoja. Tästä on hyötyä, jos haluat esimerkiksi "
-"listata kaikkien tietokannassasi olevien henkilöiden syntymäajat. Mukautetun "
+"<b>Kuka syntyi ja milloin?</b><br/>\"Työkalut &gt; Analyysi ja tutkimus &gt; "
+"Vertaa henkilöiden tapahtumia ...\" työkalu sallii sinun verrata tietokannan "
+"henkilöiden tietoja. Tästä on hyötyä, jos haluat esimerkiksi listata "
+"kaikkien tietokannassasi olevien henkilöiden syntymäajat. Mukautetun "
 "suotimen avulla voit rajata hakua."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -448,11 +444,9 @@ msgstr ""
 "<b>Gramps työkalut</b><br/>Grampsin mukana tulee runsas joukko työkaluja. "
 "Niillä voit tarkistaa tietokantasi virheiden ja epäyhtenäisyyksien varalta, "
 "verrata tapahtumia, löytää kahdennettuja tietoja, käyttää interaktiivista "
-"jälkeläisselainta jne. Kaikki työkalut löytyvät &quot;Työkalut&quot; "
-"valikosta."
+"jälkeläisselainta jne. Kaikki työkalut löytyvät \"Työkalut\" valikosta."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
@@ -460,8 +454,8 @@ msgid ""
 "as all common ancestors are reported."
 msgstr ""
 "<b>Sukulaisuussuhteiden laskenta</b><br/>Voit tarkistaa onko joku sukua "
-"sinulle (verisukulainen, ei avioliiton kautta) käyttämällä &quot;Työkalut "
-"&gt; Apuvälineet &gt; Suhdelaskin...&quot; työkalua. Se raportoi tarkan "
+"sinulle (verisukulainen, ei avioliiton kautta) käyttämällä \"Työkalut &gt; "
+"Apuvälineet &gt; Suhdelaskin...\" työkalua. Se raportoi tarkan "
 "sukulaisuussuhteen sekä yhteiset esivanhemmat."
 
 #: ../data/tips.xml:30
@@ -484,7 +478,6 @@ msgstr ""
 "ohjelmaan Soundex gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -492,10 +485,10 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\""
 msgstr ""
-"<b>Asetuksiesi antaminen</b><br/>&quot;Muuta &gt; Asetukset...&quot; antaa "
-"muuttaa joukon asetuksia, kuten mediatiedostojen polun ja muita Grampsin "
+"<b>Asetuksiesi antaminen</b><br/>\"Muuta &gt; Asetukset...\" antaa muuttaa "
+"joukon asetuksia, kuten mediatiedostojen polun ja muita Grampsin "
 "näyttötapoja, aina tarpeittesi mukaan. Jokainen näkymä on erikseen "
-"muokattavissa: &quot;Näytä &gt; Asetukset...&quot;"
+"muokattavissa: \"Näytä &gt; Asetukset...\""
 
 #: ../data/tips.xml:34
 msgid ""
@@ -511,7 +504,6 @@ msgstr ""
 "olet valmis näyttämään sukupuun nettisivuilla, siihen löytyy myös raportti."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -520,9 +512,9 @@ msgid ""
 "between people."
 msgstr ""
 "<b>Uuden sukupuun aloittaminen</b><br/>Hyvä tapa aloittaa uusi sukupuu on "
-"ensin syöttää kaikki haluamasi sukulaiset tietokantaan (käytä &quot;Muokkaa "
-"&gt; Lisää...&quot; tai napsauta Lisää painiketta henkilövalikossa). Sitten "
-"siirry suhdenäkymään ja lisää henkilöiden väliset suhteet."
+"ensin syöttää kaikki haluamasi sukulaiset tietokantaan (käytä \"Muokkaa &gt; "
+"Lisää...\" tai napsauta Lisää painiketta henkilövalikossa). Sitten siirry "
+"suhdenäkymään ja lisää henkilöiden väliset suhteet."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -534,7 +526,6 @@ msgstr ""
 "tulee näkyviin."
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -545,23 +536,20 @@ msgstr ""
 "<b>Epävarma päivämäärästä?</b><br/>Jos et ole varma milloin jokin tapahtuma "
 "tapahtui (esim. syntymä tai kuolema), Gramps sallii päivämäärän antamisen "
 "monissa eri muodoissa, arvaukseen tai arvioon perustuen. Gramps hyväksyy "
-"esimerkiksi muodon &quot;noin 1908&quot;. Napsauta Päivämäärän muokkain "
-"painiketta päivämäärän vieressä ja katso Grampsin käyttöohjeesta lisää."
+"esimerkiksi muodon \"noin 1908\". Napsauta Päivämäärän muokkain painiketta "
+"päivämäärän vieressä ja katso Grampsin käyttöohjeesta lisää."
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Kahdentuneet tiedot</b><br/>&quot;Työkalut &gt; Tietokannan prosessointi "
-"&gt; Etsi mahdolliset henkilöiden kahdennukset...&quot; sallii sinun "
-"paikantaa (ja sulauttaa) henkilöt, joiden tiedot on syötetty tietokantaan "
-"useamman kerran."
+"<b>Kahdentuneet tiedot</b><br/>\"Työkalut &gt; Tietokannan prosessointi &gt; "
+"Etsi mahdolliset henkilöiden kahdennukset...\" sallii sinun paikantaa (ja "
+"sulauttaa) henkilöt, joiden tiedot on syötetty tietokantaan useamman kerran."
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge...\" "
 "allows you to combine separately listed people into one. Select the second "
@@ -570,15 +558,14 @@ msgid ""
 "entered differing names for one individual. This also works for the Places, "
 "Sources and Repositories views."
 msgstr ""
-"<b>Tietojen sulauttaminen</b><br/>Toiminto &quot;Muokkaa &gt; Sulauta..."
-"&quot; sallii sinun liittää erikseen listattuja henkilöitä yhteen. Valitse "
-"toinen merkintä pitämällä CTRL-näppäintä alhaalla ja napsauta. Tästä on "
-"hyötyä yhdistettäessä samoja ihmisiä sisältäviä tietokantoja tai "
-"yhdistettäessä vahingossa useampaan kertaan syötettyjä henkilöitä. Pätee "
-"myös paikka-, lähde- ja arkistonäkymiin."
+"<b>Tietojen sulauttaminen</b><br/>Toiminto \"Muokkaa &gt; Sulauta...\" "
+"sallii sinun liittää erikseen listattuja henkilöitä yhteen. Valitse toinen "
+"merkintä pitämällä CTRL-näppäintä alhaalla ja napsauta. Tästä on hyötyä "
+"yhdistettäessä samoja ihmisiä sisältäviä tietokantoja tai yhdistettäessä "
+"vahingossa useampaan kertaan syötettyjä henkilöitä. Pätee myös paikka-, "
+"lähde- ja arkistonäkymiin."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
@@ -588,10 +575,9 @@ msgstr ""
 "<b>Näkymien hallinnointi</b><br/>Monet näkymät voivat näyttää tietosi "
 "rakennepuuna tai yksinkertaisena listana. Näkymien asetuksia voi myös "
 "muuttaa tarpeesi mukaan. Tutustu työkalupainikkeisiin yläpalkissa oikealla "
-"tai &quot;Näytä&quot; valikossa."
+"tai \"Näytä\" valikossa."
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -600,8 +586,8 @@ msgid ""
 msgstr ""
 "<b>Siirtyminen edelliseen ja seuraavaan</b><br/>Gramps pitää listaa "
 "aikaisemmista aktiivisista henkilöistä ja tapahtumista. Voit siirtyä "
-"seuraavaan ja edelliseen listassa &quot;Siirry &gt; Seuraava&quot; ja &quot;"
-"Siirry &gt; Edellinen&quot; toimintoja käyttämällä, tai nuolipainikkeilla."
+"seuraavaan ja edelliseen listassa \"Siirry &gt; Seuraava\" ja \"Siirry &gt; "
+"Edellinen\" toimintoja käyttämällä, tai nuolipainikkeilla."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -615,17 +601,16 @@ msgstr ""
 "valikon oikeassa reunassa."
 
 #: ../data/tips.xml:52
-#, fuzzy
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
 "&gt; User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta &quot;"
-"Ohjeet &gt; Käyttöohje&quot;. Kehittäjät ovat työskennelleet ahkerasti "
-"tehdäkseen useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä "
-"tietoa, jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
+"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta \"Ohjeet"
+" &gt; Käyttöohje\". Kehittäjät ovat työskennelleet ahkerasti tehdäkseen "
+"useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä tietoa, "
+"jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -681,7 +666,6 @@ msgstr ""
 "olla hyvä keskustella ideoistasi sähköpostilistoilla."
 
 #: ../data/tips.xml:62
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -693,11 +677,9 @@ msgstr ""
 "kysymyksiisi? Tarkista Gramps-users sähköpostilista. Listalla on useita "
 "käyttäjiä, joten todennäköisesti saat vastauksen nopeasti. Jos sinulla on "
 "Grampsin kehitystä koskevia kysymyksiä, yritä Gramps-devel listaa. Tietoja "
-"molemmista listoista saat valitsemalla &quot;Ohjeet &gt; Gramps "
-"postituslistat&quot;."
+"molemmista listoista saat valitsemalla \"Ohjeet &gt; Gramps postituslistat\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -712,8 +694,8 @@ msgstr ""
 "vaatii erilaisia kykyjä omaavia ihmisiä. Apu voi vaihdella dokumentaation "
 "kirjoittamisesta ja kehitysversioiden testaamisesta Gramps nettisivuston "
 "kehittämiseen. Aloita liittymällä Gramps-devel sähköpostilistalle ja "
-"esittelemällä itsesi. Liittymistiedot löytyvät &quot;Ohjeet &gt; Gramps "
-"postituslistat&quot;"
+"esittelemällä itsesi. Liittymistiedot löytyvät \"Ohjeet &gt; Gramps "
+"postituslistat\""
 
 #: ../data/tips.xml:66
 msgid ""
@@ -733,7 +715,6 @@ msgstr ""
 "satojen tuhansien henkilöiden Gramps tietokantoja."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -745,12 +726,11 @@ msgstr ""
 "kätevästi lisätä usein käytettyjen henkilöiden nimet. Kirjanmerkityn "
 "henkilön napsauttaminen tekee hänestä aktiivisen henkilön. Saat luotua "
 "kirjanmerkin henkilöön tekemällä hänestä aktiivisen henkilön, napsauttamalla "
-"hiiren oikealla painikkeella ja valitsemalla &quot;Kirjanmerkit &gt; Lisää "
-"kirjanmerkki&quot; tai painamalla Ctrl+D. Voit luoda kirjanmerkin myös "
-"muihin kohteisiin."
+"hiiren oikealla painikkeella ja valitsemalla \"Kirjanmerkit &gt; Lisää "
+"kirjanmerkki\" tai painamalla Ctrl+D. Voit luoda kirjanmerkin myös muihin "
+"kohteisiin."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -763,20 +743,19 @@ msgstr ""
 "muoto on virheellinen. Sopimattomat päivämäärämuodot osoitetaan tekstin "
 "punertavalla taustalla tai punaisella pisteellä kentän lopussa. Voit korjata "
 "päivämäärän käyttämällä valintamuokkainta, joka avataan napsauttamalla "
-"päivämäärä painiketta. Päiväyksen muoto asetetaan kohdassa &quot;Muokkaa "
-"&gt; Asetukset &gt; Näyttö&quot;."
+"päivämäärä painiketta. Päiväyksen muoto asetetaan kohdassa \"Muokkaa &gt; "
+"Asetukset &gt; Näyttö\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
 "event types. You can add your own event types by typing in the text field, "
 "they will be added to the available events, but not translated."
 msgstr ""
-"<b>Tapahtumaluettelo</b><br/>Tapahtumia voi lisätä valinnasta with &quot;"
-"Henkilö &gt; Muokkaa... &gt; Tapahtumat&quot;. Tapahtumatyyppejä on valmiina "
-"tarjolla pitkä luettelo. Voit lisätä omiakin tyyppejä näppäilemällä niitä "
+"<b>Tapahtumaluettelo</b><br/>Tapahtumia voi lisätä valinnasta with \"Henkilö "
+"&gt; Muokkaa... &gt; Tapahtumat\". Tapahtumatyyppejä on valmiina tarjolla "
+"pitkä luettelo. Voit lisätä omiakin tyyppejä näppäilemällä niitä "
 "tekstikenttään. Ne lisätään esillä oleviin tapahtumiin, ilman automaatista "
 "kääntämistä."
 
@@ -823,7 +802,7 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
-"<b>Paikkojen hallinta</b><br/><b> Paikkanäkymä näyttää luettelon kaikista "
+"<b>Paikkojen hallinta</b><br/> Paikkanäkymä näyttää luettelon kaikista "
 "tietokannan paikoista. Lista voidaan lajitella useilla eri perusteilla, "
 "kuten paikkakunta, maakunta tai osavaltio."
 
@@ -838,7 +817,6 @@ msgstr ""
 "taulukoita, dokumentteja jne."
 
 #: ../data/tips.xml:84
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -848,7 +826,7 @@ msgstr ""
 "<b>Suotimet</b><br/>Suotimilla voit rajoittaa henkilönäkymässä näkyviä "
 "henkilöitä. Monien oletussuotimien lisäksi voit luoda myös käyttäjän omia "
 "suotimia, joiden mahdollisuuksia rajoittaa vain mielikuvituksesi. Käyttäjän "
-"suotimia voit luoda &quot;Muokkaa &gt; Henkilösuodinmuokkain&quot; kautta."
+"suotimia voit luoda \"Muokkaa &gt; Henkilösuodinmuokkain\" kautta."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -947,7 +925,6 @@ msgstr ""
 "merkitset tallentaneesi sen tarkassa alkuperäismuodossa."
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
@@ -955,33 +932,31 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Muut raportit ja työkalut</b><br/>Muita työkaluja ja raportteja voidaan "
-"asentaa Grampsiin: &quot;Laajennus&quot; menettelyllä. Katso tarkemmin &quot;"
-"Ohjeet &gt; Muita raportteja ja työkaluja&quot;. Kokeneelle käyttäjälle tämä "
+"asentaa Grampsiin: &quot;Laajennus&quot; menettelyllä. Katso tarkemmin "
+"\"Ohjeet &gt; Muita raportteja ja työkaluja\". Kokeneelle käyttäjälle tämä "
 "on paras tapa kokeilla ja saada uusia toiminnallisuuksia."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Koostekirja raporteista</b><br/>Kirjaraportin &quot;Raportit &gt; Kirjat "
-"&gt; Kirjaraportti&quot; avulla käyttäjä voi kerätä erilaisia raportteja "
-"yhteen dokumenttiin. Tällaisen yksittäisen raportin valintoja on helpompi "
-"muuttaa. Se on myös helpompi tulostaa ja lähettää asianomaisille henkilöille."
+"<b>Koostekirja raporteista</b><br/>Kirjaraportin \"Raportit &gt; Kirjat &gt; "
+"Kirjaraporttien...\" avulla käyttäjä voi kerätä erilaisia raportteja yhteen "
+"dokumenttiin. Tällaisen yksittäisen raportin valintoja on helpompi muuttaa. "
+"Se on myös helpompi tulostaa ja lähettää asianomaisille henkilöille."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\""
 msgstr ""
 "<b>Gramps julkistukset</b><br/>Haluatko tietää milloin uusi Gramps versio "
-"julkaistaan? Liity Gramps-announce sähköpostilistalle &quot;Ohjeet &gt; "
-"Gramps postituslista&quot;"
+"julkaistaan? Liity Gramps-announce sähköpostilistalle \"Ohjeet &gt; Gramps "
+"postituslista\""
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1052,7 +1027,6 @@ msgstr ""
 "näkyvät oikein."
 
 #: ../data/tips.xml:120
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
@@ -1060,8 +1034,8 @@ msgid ""
 "home button is pressed."
 msgstr ""
 "<b>Kotihenkilö</b><br/>Voit asettaa kenet tahansa Grampsin 'kotihenkilöksi' "
-"valitsemalla &quot;Muokkaa &gt; Aseta kotihenkilö&quot;. Kotihenkilö on "
-"henkilö, joka valitaan kun tietokanta avataan tai painat Kotipainiketta."
+"valitsemalla \"Muokkaa &gt; Aseta kotihenkilö\". Kotihenkilö on henkilö, "
+"joka valitaan kun tietokanta avataan tai painat Kotipainiketta."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1842,14 +1816,13 @@ msgstr "Tietokanta havaittu rikkoutuneeksi"
 
 #: ../gramps/cli/grampscli.py:104 ../gramps/cli/user.py:201
 #: ../gramps/gui/dialog.py:296
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps havaitsi ongelman käytetyssä Berkeley tietokannassa. Se voidaan "
-"korjata Sukupuiden hallinnasta. Valitse tietokanta ja napsauta Korjaa-"
+"Gramps on havainnut ongelman taustalla olevassa tietokannassa. Tämä voidaan "
+"joskus korjata sukupuun hallinnasta. Valitse tietokanta ja napsauta Korjaa-"
 "painiketta"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:161
@@ -2161,7 +2134,7 @@ msgstr "ei valintaa"
 #: ../gramps/plugins/webreport/person.py:896
 #: ../gramps/plugins/webreport/person.py:898
 msgid ":"
-msgstr ": "
+msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:88
 #, python-format
@@ -2222,7 +2195,7 @@ msgstr "{long_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:189
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[E]} {year}"
@@ -2235,7 +2208,7 @@ msgstr "{long_month.f[E]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:197
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[IL]} {year}"
@@ -2248,7 +2221,7 @@ msgstr "{long_month.f[IL]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:205
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
@@ -2261,7 +2234,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
@@ -2273,7 +2246,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[P]} {year}"
@@ -2285,7 +2258,7 @@ msgstr "{long_month.f[P]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
@@ -2297,7 +2270,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:234
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
@@ -2309,7 +2282,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
@@ -2321,7 +2294,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
@@ -3274,15 +3247,16 @@ msgstr ""
 "Sukupuu, jota yrität ladata, on %(dbtype)s tietokanta, jota ei enää tueta.\n"
 "Siksi et voi ladata tätä sukupuuta päivittämättä.\n"
 "\n"
-"Jos päivität, et voi käyttää  %(wiki_manual_backup_html_start)svarmuuskopiota"
-"%(html_end)s tai %(wiki_manual_export_html_start)svientiä%(html_end)s "
-"aiemman Gramps version sukupuun päivittämiseen.\n"
+"Jos päivität, et voi käyttää "
+"%(wiki_manual_backup_html_start)svarmuuskopiota%(html_end)s tai "
+"%(wiki_manual_export_html_start)svientiä%(html_end)s aiemman Gramps version "
+"sukupuun päivittämiseen.\n"
 "\n"
 "Sinua suositellaan varmuuskopioimaan sukupuusi.\n"
 "\n"
 "Jos et ole jo tehnyt varmuuskopiota sukupuustasi, sinun tulisi käynnistää "
-"aiempi Gramps versio ja %(wiki_backup_html_start)stehdä varmuuskopio"
-"%(html_end)s sukupuustasi."
+"aiempi Gramps versio ja %(wiki_backup_html_start)stehdä "
+"varmuuskopio%(html_end)s sukupuustasi."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -9453,15 +9427,15 @@ msgstr ""
 "oleville kielille, käytetään US English sen sijaan"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
-#, fuzzy, python-format
+#, python-format
 msgctxt "gramps_version"
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"VIRHE: Laajennustiedosto %(filename)s on Gramps versioille "
-"\"%(gramps_target_version)s\" mikä ei kelpaa Gramps versioille "
-"\"%(gramps_version)s\"."
+"VIRHE: Laajennustiedosto %(filename)s on versioille \""
+"%(gramps_target_version)s\" mikä ei kelpaa Gramps versioille \""
+"%(gramps_version)s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -10217,9 +10191,8 @@ msgid "The translation to be used for the report."
 msgstr "Raportissa käytettävä käännös."
 
 #: ../gramps/gen/plug/report/stdoptions.py:80
-#, fuzzy
 msgid "The additional translation to be used for the report."
-msgstr "Raportissa käytettävä käännös."
+msgstr "Raportissa käytettävä lisäkäännös."
 
 #: ../gramps/gen/plug/report/stdoptions.py:89 ../gramps/gui/configure.py:1194
 #: ../gramps/plugins/webreport/webcal.py:1803
@@ -10315,9 +10288,8 @@ msgid "Include"
 msgstr "Ota mukaan"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Lisätäänkö tagit."
+msgstr "Lisätäänkö tagit"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -12791,7 +12763,7 @@ msgid ""
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
 "Sukupuuta ei voi avata muokkausta varten, koska se on lukittu. Jos kukaan ei "
-"muokkaa sitä tällä hetkellä, voit rikkoa lukon. Huomaa, että että jos samaa "
+"muokkaa sitä tällä hetkellä, voit rikkoa lukon. Huomaa, että jos samaa "
 "sukupuuta ollaan muokkaamassa jossain muussa (Gramps) ohjelmassa ja rikot "
 "lukon, sukupuu vahingoittuu."
 
@@ -13389,14 +13361,12 @@ msgstr "Julkaisija"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Luotettavuustaso:"
+msgstr "Luotettavuustaso"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
-#, fuzzy
 msgid "Sorted date"
-msgstr "Toinen päivämäärä"
+msgstr "Päivämäärä lajittelu"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:95
 msgid "_Source Citations"
@@ -13963,8 +13933,8 @@ msgid ""
 msgstr ""
 "Lähde voi olla mikä tahansa sellainen asia (todistajanlausunto, nauhoite, "
 "valokuva, lehtijuttu, hautakivi...), josta on saatavissa tietoa. Lainauksen "
-"luomiseksi valitaan ensin ensin ao. lähde ja sen jälkeen tallennetaan "
-"viitatun tiedon lähteessä oleva paikka \"Osa/Sivu\" kenttään."
+"luomiseksi valitaan ensin ao. lähde ja sen jälkeen tallennetaan viitatun "
+"tiedon lähteessä oleva paikka \"Osa/Sivu\" kenttään."
 
 #: ../gramps/gui/editors/editcitation.py:322
 msgid "Cannot save citation. ID already exists."
@@ -16847,7 +16817,6 @@ msgid "Full title of this place."
 msgstr "Paikan koko nimi."
 
 #: ../gramps/gui/glade/editplace.glade:177
-#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
 "notation.\n"
@@ -16855,14 +16824,13 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Leveysaste (etäisyys päiväntasaajasta) desimaali- tai astenotaatiolla. \n"
-"Esim. kelvollisia arvoja ovat 12.0154, 50°52′21.92″P, N50°52′21.92″ tai "
+"Leveysaste (päiväntasaajan yläpuolella) desimaali- tai astenotaatiolla.\n"
+"Esim. kelvollisia arvoja ovat 12.0154, 50°52′21.92″N, N50°52′21.92″ tai "
 "50:52:21.92\n"
 "Nämä arvot voi asettaa karttanäkymässä hakemalla paikka, tai karttapalvelun "
 "paikkanäkymässä."
 
 #: ../gramps/gui/glade/editplace.glade:192
-#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
 "place in decimal or degree notation.\n"
@@ -22225,7 +22193,7 @@ msgstr "Lisää puuttuvien tietojen määrä"
 msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
-msgstr "Lisätäänkö henkilöiden lukumäärä, joilla on puuttuvia tietoja"
+msgstr "Lisätäänkö henkilöiden lukumäärä, joilla on puuttuvia tietoja."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1102
 msgid "Charts 3"
@@ -22749,14 +22717,12 @@ msgid "Double-click on a row to edit the selected source/citation."
 msgstr "Kaksoisnapsauta riviä muokataksesi valittua lähdettä/lainausta."
 
 #: ../gramps/plugins/gramplet/citations.py:86
-#, fuzzy
 msgid "Source/Date"
-msgstr "Lähdeteksti"
+msgstr "Lähde/päivämäärä"
 
 #: ../gramps/plugins/gramplet/citations.py:167
-#, fuzzy
 msgid "<No Volume/Page>"
-msgstr "Osa/sivu"
+msgstr "<Ei osaa/sivu>"
 
 #: ../gramps/plugins/gramplet/coordinates.py:83
 msgid "Right-click on a row to edit the selected event or the related place."
@@ -25749,15 +25715,15 @@ msgid ""
 "(out of Settings)."
 msgstr ""
 "Oletus tagiteksti\n"
-"(asetusten ulkopuolella)"
+"(asetusten ulkopuolella)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
-msgstr "Tuontitiedoston nimi"
+msgstr "Tuontitiedoston nimi."
 
 #: ../gramps/plugins/importer/importprogen.glade:492
 msgid "Default (System-)Date."
-msgstr "Oletus (järjestelmä-) päivämäärä"
+msgstr "Oletus (järjestelmä-) päivämäärä."
 
 #: ../gramps/plugins/importer/importprogen.glade:766
 #: ../gramps/plugins/importer/importprogen.glade:781
@@ -25894,7 +25860,7 @@ msgid ""
 "Store REFN number\n"
 "in event description."
 msgstr ""
-"Tallenna REFN  numero\n"
+"Tallenna REFN numero\n"
 "tapahtumakuvaukseen."
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
@@ -26366,7 +26332,7 @@ msgid "Witness comment: %s"
 msgstr "Todistajan-kommentti: %s"
 
 #: ../gramps/plugins/importer/importxml.py:3233
-#, fuzzy, python-format
+#, python-format
 msgctxt "father"
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
@@ -26376,7 +26342,7 @@ msgstr ""
 "perheeseen. Viite lisätty."
 
 #: ../gramps/plugins/importer/importxml.py:3249
-#, fuzzy, python-format
+#, python-format
 msgctxt "mother"
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
@@ -26386,7 +26352,7 @@ msgstr ""
 "perheeseen. Viite lisätty."
 
 #: ../gramps/plugins/importer/importxml.py:3271
-#, fuzzy, python-format
+#, python-format
 msgctxt "child"
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
@@ -30876,7 +30842,7 @@ msgstr "Korvaa '%(map)s' tällä =>"
 #: ../gramps/plugins/lib/maps/geography.py:420
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "Päivitä kaikki näkyvä ruudut  '%(map)s'."
+msgstr "Päivitä kaikki näkyvä ruudut '%(map)s'."
 
 #: ../gramps/plugins/lib/maps/geography.py:429
 #, python-format
@@ -32157,11 +32123,11 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"⚭ {year}{spouse}{deadtxt2} and\n"
-" {person}{deadtxt1}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} ja\n"
+"{person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"⚭ {year}{spouse}{deadtxt2} and\n"
-" {person}{deadtxt1}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} ja\n"
+"{person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:442
 #, python-brace-format
@@ -33138,8 +33104,8 @@ msgstr "Esivanhempien lukumäärä henkilölle: %s"
 #, python-brace-format
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
-msgstr[0] "Sukupolvessa {count}  on {number}  henkilö. {percent}"
-msgstr[1] "Sukupolvessa {count}  on {number}  henkilöä. {percent}"
+msgstr[0] "Sukupolvessa {count} on {number} henkilö. {percent}"
+msgstr[1] "Sukupolvessa {count} on {number} henkilöä. {percent}"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
@@ -33258,7 +33224,6 @@ msgid "The style used for the footer."
 msgstr "Käytettävä tyyli alatunnisteelle."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:136
-#, fuzzy
 msgctxt "book"
 msgid "Title of the Book"
 msgstr "Kirjan nimike"
@@ -33834,12 +33799,11 @@ msgstr "Etsitään virheellisiä lähdeviitteitä"
 
 #: ../gramps/plugins/tool/check.py:2185
 msgid "Looking for Duplicated Gramps ID problems"
-msgstr "Etsitään mahdolliset Gramps ID  kahdennukset"
+msgstr "Etsitään mahdolliset Gramps ID kahdennukset"
 
 #: ../gramps/plugins/tool/check.py:2300
-#, fuzzy
 msgid "Checking for bad links in Notes"
-msgstr "Laajennusten päivityksien tarkistus"
+msgstr "Virheellisten lisätietolinkkien tarkistaminen"
 
 #: ../gramps/plugins/tool/check.py:2451
 msgid "No errors were found"
@@ -34104,9 +34068,9 @@ msgid "All reference maps have been rebuilt."
 msgstr "Kaikki viitekartat on luotu uudelleen."
 
 #: ../gramps/plugins/tool/check.py:2788
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "%d viallista taustalinkkiä on korjattu;\n"
+msgstr "%d viallista lisätietolinkkiä on korjattu;\n"
 
 #: ../gramps/plugins/tool/check.py:2817
 msgid "Integrity Check Results"
@@ -34660,7 +34624,7 @@ msgstr "Tehtyjen sulautusten määrä"
 #, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
-msgstr[0] "{number_of} lainausta sulautettu"
+msgstr[0] "{number_of} lainaus sulautettu"
 msgstr[1] "{number_of} lainausta sulautettu"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
@@ -34711,16 +34675,16 @@ msgstr[1] "Haetaan suhteita {number_of} henkilön välillä"
 #, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
-msgstr[0] "Haetaan {number_of}  henkilö"
-msgstr[1] "Haetaan {number_of}  henkilöä"
+msgstr[0] "Haetaan {number_of} henkilö"
+msgstr[1] "Haetaan {number_of} henkilöä"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:413
 #, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] "Haetaan {number_of}  henkilön nimi"
-msgstr[1] "Haetaan {number_of}  henkilön nimeä"
+msgstr[0] "Haetaan {number_of} henkilön nimi"
+msgstr[1] "Haetaan {number_of} henkilön nimeä"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
@@ -37274,9 +37238,8 @@ msgid "Visually Impaired"
 msgstr "Visuaalisesti heikentynyt"
 
 #: ../gramps/plugins/webreport/basepage.py:1696
-#, fuzzy
 msgid "Go to top"
-msgstr "Siirry kotihenkilöön"
+msgstr "Siirry ylös"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
 #: ../gramps/plugins/webreport/basepage.py:1963
@@ -37317,9 +37280,8 @@ msgid "Web Calendar"
 msgstr "Nettikalenteri"
 
 #: ../gramps/plugins/webreport/basepage.py:1786
-#, fuzzy
 msgid "Html|Home"
-msgstr "HTML koodi"
+msgstr "Html|Koti"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -37474,7 +37436,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Mediatiedosto"
+msgstr " Mediatiedosto"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -37586,12 +37548,11 @@ msgid "Creating address book pages ..."
 msgstr "Luodaan osoitekirjasivuja..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Web Site Report for the %s language"
-msgstr "Kertova-nettisivusto raportti"
+msgstr "Kertova-nettisivusto raportti kielelle %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1830
-#, fuzzy
 msgid "Narrative Web Site Report"
 msgstr "Kertova-nettisivusto raportti"
 
@@ -37634,7 +37595,7 @@ msgid ""
 "active person."
 msgstr ""
 "Näytä nykyisen henkilön ja aktiivihenkilön välinen suhde jokaiselle "
-"henkilösivulle"
+"henkilösivulle."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2000
 msgid "Html options"
@@ -37734,13 +37695,12 @@ msgid "Whether to use http:// or https://"
 msgstr "Käytetäänkö http:// vai https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2072
-#, fuzzy
 msgid "Toggle sections"
-msgstr "Nimikkeen valinta"
+msgstr "Vaihda osat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2073
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Valitse se, jos haluat avata/sulkea osan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2083
 msgid "Extra pages"
@@ -37764,7 +37724,7 @@ msgstr "Lisäsivun polku ilman päätettä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2114
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Käytämmekö useita käännöksiä?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2116
 msgid ""
@@ -37772,6 +37732,9 @@ msgid ""
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Näytetäänkö kertova-nettisivu useilla kielillä.\n"
+"Käännösvälilehdessä voit lisätä uusia kieliä seuraavassa kentässä "
+"määritettyihin oletuskieliin."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2130
 msgid "Sort all children in birth order"
@@ -37888,9 +37851,8 @@ msgid "HTML user header"
 msgstr "HTML ylätunniste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
 msgid "A note to be used as the page header or a php code to insert."
-msgstr "Sivun ylätunnisteena käytettävä lisätieto"
+msgstr "Huomautus, jota käytetään sivun otsikkona tai lisättävänä php-koodina."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
@@ -37904,13 +37866,15 @@ msgstr "Sivun alatunnisteena käytettävä lisätietoteksti"
 #. "File extension" from the "Html" tab
 #: ../gramps/plugins/webreport/narrativeweb.py:2212
 msgid "PHP user session"
-msgstr ""
+msgstr "PHP-käyttäjäistunto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2213
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"Huomautus, jota käytetään php-istunnon aloittamiseen.\n"
+"Tämä vaihtoehto on käytettävissä vain, jos .php tiedostopääte on valittu."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2224
 msgid "Images Generation"
@@ -38290,27 +38254,24 @@ msgid "How many updates do you want to see max"
 msgstr "Kuinka monta päivitystä haluat nähdä enintään"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
-#, fuzzy
 msgid "Translations"
-msgstr "Käännös"
+msgstr "Käännökset"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
-#, fuzzy
 msgid "second language"
-msgstr "Toinen päivämäärä"
+msgstr "toinen kieli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Sivuston nimi toisella kielellä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
 msgid "This site title"
-msgstr "Nettisivuston otsikko"
+msgstr "Sivuston otsikko"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2553
 #: ../gramps/plugins/webreport/narrativeweb.py:2561
@@ -38318,57 +38279,52 @@ msgstr "Nettisivuston otsikko"
 #: ../gramps/plugins/webreport/narrativeweb.py:2577
 #: ../gramps/plugins/webreport/narrativeweb.py:2585
 msgid "Give a title in the appropriate language"
-msgstr ""
+msgstr "Anna otsikko oletuskielellä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
-#, fuzzy
 msgid "third language"
-msgstr "Kieli"
+msgstr "kolmas kieli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Sivuston nimi kolmannella kielellä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2563
-#, fuzzy
 msgid "fourth language"
-msgstr "Kieli"
+msgstr "neljäs kieli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Sivuston nimi neljännellä kielellä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
 msgid "fifth language"
-msgstr "Kieli"
+msgstr "viides kieli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2575
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Sivuston nimi viidennellä kielellä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2579
-#, fuzzy
 msgid "sixth language"
-msgstr "Kieli"
+msgstr "kuudes kieli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2583
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Sivuston nimi kuudennella kielellä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2796
-#, fuzzy
 msgid "Calendar Options"
-msgstr "Paperivalinnat"
+msgstr "Kalenterin valinnat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2803
 msgid "Do we include the web calendar ?"
 msgstr "Lisätäänkö web-kalenteri?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2804
-#, fuzzy, python-format
+#, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Lisätäänkö kuvat ja muut mediatiedostot"
+msgstr "Lisätäänkö kalenteri vuodelle %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2826
 #: ../gramps/plugins/webreport/webcal.py:1953
@@ -38437,7 +38393,7 @@ msgid "<absent>"
 msgstr "<puuttuva>"
 
 #: ../gramps/plugins/webreport/person.py:292
-#, fuzzy, python-format
+#, python-format
 msgctxt "letter"
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Sukunimet %(surname)s alkaen kirjaimella %(letter)s"
@@ -38524,7 +38480,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Paikka"
+msgstr " Paikka"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
@@ -38638,14 +38594,14 @@ msgstr "Uudet ja päivitetyt kohteet"
 
 # uusi
 #: ../gramps/plugins/webreport/updates.py:88
-#, fuzzy, python-format
+#, python-format
 msgctxt "nb"
 msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
 "Tällä sivulla on tietokannan viimeiset päivitetyt kohteet viimeisen %(days)d "
-"päivän aikana ja korkeintaan %(nb)d kohde(tta) kohdetyyppiä kohden."
+"päivän aikana ja kohteita korkeintaan %(nb)d kohdetyyppiä kohden."
 
 #. An optional link to a home page
 #. Note. We use '/' here because it is a URL, not a OS
@@ -38713,12 +38669,10 @@ msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s ja %(person)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1567
-#, fuzzy, python-format
+#, python-format
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
-"\"WebCal\" on mahdollinen sähköpostin kohde| "
-"%(html_email_author_start)sWebCal%(html_email_author_end)s"
+msgstr "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format
@@ -38907,8 +38861,8 @@ msgstr "kuolema"
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] "{couple}, {years}. vuosipäivä"
-msgstr[1] "{couple}, {years}. vuosipäivä"
+msgstr[0] "{couple}, {years} vuosipäivä"
+msgstr[1] "{couple}, {years} vuosipäivä"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
