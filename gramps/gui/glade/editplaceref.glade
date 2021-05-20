@@ -373,7 +373,7 @@
                           <object class="ValidatableMaskedEntry" id="latlon_entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like google, openstreetmap, ... </property>
+                            <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like Google, OpenStreetMap...</property>
                             <property name="hexpand">True</property>
                             <property name="invisible_char">●</property>
                           </object>

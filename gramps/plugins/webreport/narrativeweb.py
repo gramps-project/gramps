@@ -2129,13 +2129,13 @@ class NavWebOptions(MenuReportOptions):
         birthorder = BooleanOption(
             _('Sort all children in birth order'), False)
         birthorder.set_help(
-            _('Whether to display children in birth order or in entry order?'))
+            _('Whether to display children in birth order or in entry order.'))
         addopt("birthorder", birthorder)
 
         coordinates = BooleanOption(
             _('Do we display coordinates in the places list?'), False)
         coordinates.set_help(
-            _('Whether to display latitude/longitude in the places list?'))
+            _('Whether to display latitude/longitude in the places list.'))
         addopt("coordinates", coordinates)
 
         reference_sort = BooleanOption(
@@ -2200,7 +2200,7 @@ class NavWebOptions(MenuReportOptions):
 
         headernote = NoteOption(_('HTML user header'))
         headernote.set_help(_("A note to be used as the page header"
-                              " or a php code to insert."))
+                              " or a PHP code to insert."))
         addopt("headernote", headernote)
 
         footernote = NoteOption(_('HTML user footer'))

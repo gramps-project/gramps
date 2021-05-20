@@ -330,7 +330,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="label" translatable="yes">Given Name(s) </property>
+                        <property name="label" translatable="yes">Given Name(s)</property>
                         <attributes>
                           <attribute name="style" value="italic"/>
                         </attributes>
