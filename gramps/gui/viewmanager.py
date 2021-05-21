@@ -608,51 +608,48 @@ class ViewManager(CLIManager):
         #                                                   - db.commit and close database,
         #                                                   - save config file)
         #                   - every backup (we need space 'last_backup_file_size'+ 5%)
-        try:
-            diskspace = 20             # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%        
-            if (self.checkdisk(config.get('database.path')) < diskspace):
-                self.uistate.push_message(self.dbstate, _("Disk space < " + str(diskspace) + " MB. Quit impossible. Clear your disk and repeat this operation."))
-                WarningDialog(
-                    _("Message for user:"),
-                    _('You have less ' + str(diskspace) + ' MB on system disk.\n'
-                      'Gramps need more space for save database and config file before quit.\n'
-                      'Clear your disk and repeat this operation again.'), parent=self.uistate.window)
-                return
-            else:
-                pass
+        diskspace = 20             # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%
+        if (self.checkdisk(config.get('database.path')) < diskspace):
+            self.uistate.push_message(self.dbstate, _("Disk space < " + str(diskspace) + " MB. Quit impossible. Clear your disk and repeat this operation."))
+            WarningDialog(
+                _("Message for user:"),
+                _('You have less ' + str(diskspace) + ' MB on system disk.\n'
+                  'Gramps need more space for save database and config file before quit.\n'
+                  'Clear your disk and repeat this operation again.'), parent=self.uistate.window)
+            return
+        else:
+            pass
 # ***********
 
-            # mark interface insenstitive to prevent unexpected events
-            self.uistate.set_sensitive(False)
-            # the following prevents reentering quit if user hits 'x' again
-            self.window.disconnect(self.del_event)
-            # the following prevents premature closing of main window if user
-            # hits 'x' multiple times.
-            self.window.connect('delete-event', self.no_del_event)
+        # mark interface insenstitive to prevent unexpected events
+        self.uistate.set_sensitive(False)
+        # the following prevents reentering quit if user hits 'x' again
+        self.window.disconnect(self.del_event)
+        # the following prevents premature closing of main window if user
+        # hits 'x' multiple times.
+        self.window.connect('delete-event', self.no_del_event)
 
-            # backup data
-            if config.get('database.backup-on-exit'):
-                self.autobackup()
+        # backup data
+        if config.get('database.backup-on-exit'):
+            self.autobackup()
 
-            # close the database
-            if self.dbstate.is_open():
-                self.dbstate.db.close(user=self.user)
+        # close the database
+        if self.dbstate.is_open():
+            self.dbstate.db.close(user=self.user)
 
-            # have each page save anything, if they need to:
-            self.__delete_pages()
+        # have each page save anything, if they need to:
+        self.__delete_pages()
 
-            # save the current window size
-            (width, height) = self.window.get_size()
-            config.set('interface.main-window-width', width)
-            config.set('interface.main-window-height', height)
-            # save the current window position
-            (horiz_position, vert_position) = self.window.get_position()
-            config.set('interface.main-window-horiz-position', horiz_position)
-            config.set('interface.main-window-vert-position', vert_position)
-            config.save()
-            self.app.quit()
-        except WindowActiveError:
-            return
+        # save the current window size
+        (width, height) = self.window.get_size()
+        config.set('interface.main-window-width', width)
+        config.set('interface.main-window-height', height)
+        # save the current window position
+        (horiz_position, vert_position) = self.window.get_position()
+        config.set('interface.main-window-horiz-position', horiz_position)
+        config.set('interface.main-window-vert-position', vert_position)
+        config.save()
+        self.app.quit()
 
     def abort(self, *obj):
         """
@@ -1244,7 +1241,7 @@ class ViewManager(CLIManager):
         bfile_size = round(os.path.getsize(os.path.join(path, blastfile))/(1024))
         bfile_new_size = round(bfile_size/100*105)
 
-        diskspace = bfile_new_size            # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%        
+        diskspace = bfile_new_size            # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%
         if (self.checkdisk(config.get('database.backup-path')) < diskspace):
             self.uistate.push_message(self.dbstate, _("Disk space < " + str(diskspace) + " MB. Backup impossible. Clear your disk and Gramps create backup next time."))
             print(_("Disk space < " + str(diskspace) + " kB. Backup impossible. Clear your disk and Gramps create backup next time."))
