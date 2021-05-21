@@ -609,7 +609,7 @@ class ViewManager(CLIManager):
         #                                                   - save config file)
         #                   - every backup (we need space 'last_backup_file_size'+ 5%)
         try:
-            diskspace = 20             # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%        
+            diskspace = 20             # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%
             if (self.checkdisk(config.get('database.path')) < diskspace):
                 self.uistate.push_message(self.dbstate, _("Disk space < " + str(diskspace) + " MB. Quit impossible. Clear your disk and repeat this operation."))
                 WarningDialog(
@@ -1244,7 +1244,7 @@ class ViewManager(CLIManager):
         bfile_size = round(os.path.getsize(os.path.join(path, blastfile))/(1024))
         bfile_new_size = round(bfile_size/100*105)
 
-        diskspace = bfile_new_size            # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%        
+        diskspace = bfile_new_size            # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%
         if (self.checkdisk(config.get('database.backup-path')) < diskspace):
             self.uistate.push_message(self.dbstate, _("Disk space < " + str(diskspace) + " MB. Backup impossible. Clear your disk and Gramps create backup next time."))
             print(_("Disk space < " + str(diskspace) + " kB. Backup impossible. Clear your disk and Gramps create backup next time."))
