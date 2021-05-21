@@ -239,6 +239,7 @@ register('paths.quick-backup-filename',
 
 register('preferences.quick-backup-include-mode', False)
 register('preferences.date-format', 0)
+register('preferences.calendar-format-input', 0)
 register('preferences.calendar-format-report', 0)
 register('preferences.cprefix', 'C%04d')
 register('preferences.default-source', False)

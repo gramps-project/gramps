@@ -60,6 +60,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from gramps.gen.config import config
 from gramps.gen.lib.date import Date, DateError, calendar_has_fixed_newyear
 from gramps.gen.datehandler import displayer
 from gramps.gen.const import URL_MANUAL_SECT1
@@ -198,6 +199,9 @@ class EditDate(ManagedWindow):
             self.calendar_box.set_sensitive(0)
             self.calendar_box.set_active(Date.CAL_JULIAN)
         self.dual_dated.connect('toggled', self.switch_dual_dated)
+
+        cal = config.get('preferences.calendar-format-input')
+        self.calendar_box.set_active(cal)
 
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
