@@ -80,7 +80,7 @@ from .displaystate import DisplayState, RecentDocsMenu
 from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE,
                               URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING,
                               WIKI_EXTRAPLUGINS, URL_BUGHOME)
-from gramps.gen.constfunc import is_quartz
+from gramps.gen.constfunc import is_quartz, win
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
@@ -580,39 +580,79 @@ class ViewManager(CLIManager):
         hits 'x' multiple times. """
         return True
 
+    def checkdisk(self, dbfolder): # TODO check this function
+        """
+        Check disk space
+        """
+        if win():                               # for windows:
+        # import psutil
+        # DISK = "C:"
+        # free = psutil.disk_usage(DISK).free/(1024*1024)
+        # print(f"{free:.4} Mb free on disk {DISK}")
+            pass
+        else:                                   # for linux:
+            fd = os.open(dbfolder, os.O_RDONLY)
+            stats = os.fstatvfs(fd)
+            os.close(fd)
+            freedisk = round(stats[1] * stats[4]/(1024*1024))
+            return freedisk
+
     def quit(self, *obj):
         """
         Closes out the program, backing up data
         """
-        # mark interface insenstitive to prevent unexpected events
-        self.uistate.set_sensitive(False)
-        # the following prevents reentering quit if user hits 'x' again
-        self.window.disconnect(self.del_event)
-        # the following prevents premature closing of main window if user
-        # hits 'x' multiple times.
-        self.window.connect('delete-event', self.no_del_event)
+#****************
+        # We must check disk space before:
+        #                   - run (Gramps need space for load config file)
+        #                   - quit (Gramps need some space for:
+        #                                                   - db.commit and close database,
+        #                                                   - save config file)
+        #                   - every backup (we need space 'last_backup_file_size'+ 5%)
+        try:
+            diskspace = 20             # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%        
+            if (self.checkdisk(config.get('database.path')) < diskspace):
+                self.uistate.push_message(self.dbstate, _("Disk space < " + str(diskspace) + " MB. Quit impossible. Clear your disk and repeat this operation."))
+                WarningDialog(
+                    _("Message for user:"),
+                    _('You have less ' + str(diskspace) + ' MB on system disk.\n'
+                      'Gramps need more space for save database and config file before quit.\n'
+                      'Clear your disk and repeat this operation again.'), parent=self.uistate.window)
+                return
+            else:
+                pass
+# ***********
 
-        # backup data
-        if config.get('database.backup-on-exit'):
-            self.autobackup()
+            # mark interface insenstitive to prevent unexpected events
+            self.uistate.set_sensitive(False)
+            # the following prevents reentering quit if user hits 'x' again
+            self.window.disconnect(self.del_event)
+            # the following prevents premature closing of main window if user
+            # hits 'x' multiple times.
+            self.window.connect('delete-event', self.no_del_event)
 
-        # close the database
-        if self.dbstate.is_open():
-            self.dbstate.db.close(user=self.user)
+            # backup data
+            if config.get('database.backup-on-exit'):
+                self.autobackup()
 
-        # have each page save anything, if they need to:
-        self.__delete_pages()
+            # close the database
+            if self.dbstate.is_open():
+                self.dbstate.db.close(user=self.user)
 
-        # save the current window size
-        (width, height) = self.window.get_size()
-        config.set('interface.main-window-width', width)
-        config.set('interface.main-window-height', height)
-        # save the current window position
-        (horiz_position, vert_position) = self.window.get_position()
-        config.set('interface.main-window-horiz-position', horiz_position)
-        config.set('interface.main-window-vert-position', vert_position)
-        config.save()
-        self.app.quit()
+            # have each page save anything, if they need to:
+            self.__delete_pages()
+
+            # save the current window size
+            (width, height) = self.window.get_size()
+            config.set('interface.main-window-width', width)
+            config.set('interface.main-window-height', height)
+            # save the current window position
+            (horiz_position, vert_position) = self.window.get_position()
+            config.set('interface.main-window-horiz-position', horiz_position)
+            config.set('interface.main-window-vert-position', vert_position)
+            config.save()
+            self.app.quit()
+        except WindowActiveError:
+            return
 
     def abort(self, *obj):
         """
@@ -1188,6 +1228,35 @@ class ViewManager(CLIManager):
         """
         Backup the current family tree.
         """
+#************
+        # Before every backup Gramps must check disk space.
+        # Needed space = last_backup_file_size + 5%
+#************
+
+        backup_name = self.dbstate.db.get_dbname()
+        backup_ext = ".gramps"
+        path = config.get('database.backup-path')
+        bpath = sorted(os.listdir(path))
+        for n, bfile in enumerate(bpath):
+            if os.path.isfile(os.path.join(path, bfile)) and bfile.startswith(backup_name) and bfile.endswith(backup_ext):
+                blastfile = bfile
+
+        bfile_size = round(os.path.getsize(os.path.join(path, blastfile))/(1024))
+        bfile_new_size = round(bfile_size/100*105)
+
+        diskspace = bfile_new_size            # Disk space for Linux - 20 MB, for Gramps - 5 MB, for backup 'last_backup_file_size' + 5%        
+        if (self.checkdisk(config.get('database.backup-path')) < diskspace):
+            self.uistate.push_message(self.dbstate, _("Disk space < " + str(diskspace) + " MB. Backup impossible. Clear your disk and Gramps create backup next time."))
+            print(_("Disk space < " + str(diskspace) + " kB. Backup impossible. Clear your disk and Gramps create backup next time."))
+            WarningDialog(
+                _("Message for user:"),
+                _('You have less ' + str(diskspace) + ' kB on backup disk.\n'
+                  'Gramps need more space for save backup.\n'
+                  'Clear your disk and Gramps create backup next time.'), parent=self.uistate.window)
+            return
+        else:
+            pass
+
         if self.delay_timer is not None:
             GLib.source_remove(self.delay_timer)
             self.delay_timer = None
@@ -1848,3 +1917,4 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             file_entry.set_text("%s.%s" % (base, extension))
         else:
             file_entry.set_text("%s.%s" % (filename, extension))
+
