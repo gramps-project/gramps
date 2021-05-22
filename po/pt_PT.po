@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-21 17:06+0000\n"
+"PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -2021,8 +2021,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"A ignorar \"%(notranslate1)s=%(notranslate2)s\" e a usar \"%(notranslate1)s="
-"%(notranslate3)s\"."
+"A ignorar \"%(notranslate1)s=%(notranslate2)s\" e a usar \""
+"%(notranslate1)s=%(notranslate3)s\"."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -2054,8 +2054,8 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"opção \"%(optionname)s\" inválida. Use \"%(donottranslate)s\" para ver todas "
-"as opções válidas."
+"opção \"%(optionname)s\" inválida. Use \"%(donottranslate)s\" para ver as "
+"opções válidas."
 
 #: ../gramps/cli/plug/__init__.py:669
 msgid "Failed to write report. "
@@ -2064,7 +2064,7 @@ msgstr "Falha ao escrever o relatório. "
 #: ../gramps/cli/plug/__init__.py:818
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Falha ao fazer relatório \"%s\"."
+msgstr "Falha ao fazer o relatório \"%s\"."
 
 #: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:281
 msgid "Error detected in database"
@@ -2174,17 +2174,17 @@ msgstr "AAAA-MM-DD (ISO)"
 #: ../gramps/gen/datehandler/_datedisplay.py:77
 msgctxt "date format"
 msgid "Numerical"
-msgstr "Predefinição"
+msgstr "Predefinição do sistema"
 
 #. Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:80
 msgid "Month Day, Year"
-msgstr "Mês Dia, Ano"
+msgstr "Mês Dia Ano"
 
 #. Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:83
 msgid "MON DAY, YEAR"
-msgstr "MÊS DIA, ANO"
+msgstr "MÊS (abreviado) DIA ANO"
 
 #. Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:86
@@ -2194,7 +2194,7 @@ msgstr "Dia Mês Ano"
 #. Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:89
 msgid "DAY MON YEAR"
-msgstr "DIA MÊS ANO"
+msgstr "DIA MÊS (abreviado) ANO"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:181
 #, python-brace-format
@@ -2400,7 +2400,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:427
 msgctxt "from-date"
 msgid ""
-msgstr "de"
+msgstr "from"
 
 #. If there is no special inflection for "to <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2408,7 +2408,7 @@ msgstr "de"
 #: ../gramps/gen/datehandler/_datedisplay.py:432
 msgctxt "to-date"
 msgid ""
-msgstr "até"
+msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:433
 #, python-brace-format
@@ -2421,7 +2421,7 @@ msgstr "{date_quality}de {date_start} a {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:452
 msgctxt "between-date"
 msgid ""
-msgstr "entre"
+msgstr "between"
 
 #. If there is no special inflection for "and <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2429,7 +2429,7 @@ msgstr "entre"
 #: ../gramps/gen/datehandler/_datedisplay.py:457
 msgctxt "and-date"
 msgid ""
-msgstr "e"
+msgstr "and"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:458
 #, python-brace-format
@@ -2443,7 +2443,7 @@ msgstr "{date_quality}entre {date_start} e {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:491
 msgctxt "before-date"
 msgid ""
-msgstr "antes de"
+msgstr "before"
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2451,7 +2451,7 @@ msgstr "antes de"
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 msgctxt "after-date"
 msgid ""
-msgstr "depois de"
+msgstr "after"
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2459,7 +2459,7 @@ msgstr "depois de"
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 msgctxt "about-date"
 msgid ""
-msgstr "cerca de"
+msgstr "about"
 
 #. If there is no special inflection for "estimated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2467,7 +2467,7 @@ msgstr "cerca de"
 #: ../gramps/gen/datehandler/_datedisplay.py:506
 msgctxt "estimated-date"
 msgid ""
-msgstr "estimado em"
+msgstr "estimated"
 
 #. If there is no special inflection for "calculated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2475,7 +2475,7 @@ msgstr "estimado em"
 #: ../gramps/gen/datehandler/_datedisplay.py:511
 msgctxt "calculated-date"
 msgid ""
-msgstr "calculado em"
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:530
 #, python-brace-format
@@ -2707,7 +2707,7 @@ msgstr "Juliano"
 #: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:611
 msgctxt "calendar"
 msgid "Hebrew"
-msgstr "Judaico"
+msgstr "Hebreu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgctxt "calendar"
@@ -3138,7 +3138,7 @@ msgstr ""
 "Esta árvore é da versão Python %(tree_vers)s e esta versão do Gramps só "
 "suporta versões de %(min_vers)s a %(max_vers)s\n"
 "\n"
-"Por favor actualize para a versão correspondente ou use XML para migrar "
+"Por favor, actualize para a versão correspondente ou use XML para migrar "
 "dados entre versões diferentes."
 
 #: ../gramps/gen/db/exceptions.py:137
@@ -3166,14 +3166,15 @@ msgstr ""
 "sem actualizar a versão da árvore.\n"
 "\n"
 "Se a actualizar, não poderá utilizá-la com a versão anterior do Gramps, "
-"mesmo que subsequentemente faça uma %(wiki_manual_backup_html_start)scópia"
-"%(html_end)s ou %(wiki_manual_export_html_start)sexporte%(html_end)s a sua "
-"árvore actualizada.\n"
+"mesmo que subsequentemente faça uma "
+"%(wiki_manual_backup_html_start)scópia%(html_end)s ou "
+"%(wiki_manual_export_html_start)sexporte%(html_end)s a sua árvore "
+"actualizada.\n"
 "\n"
 "A actualização é uma tarefa difícil que pode corromper irremediavelmente a "
 "sua árvore se for interrompida ou falhar.\n"
 "\n"
-"Se ainda não fez uma cópia da sua árvoere genealógica, deve iniciar a sua "
+"Se ainda não fez uma cópia da sua árvore genealógica, deve iniciar a sua "
 "versão mais %(bold_start)santiga%(bold_end)s do Gramps e "
 "%(wiki_backup_html_start)sfazer uma cópia%(html_end)s da sua árvore "
 "genealógica."
@@ -3301,49 +3302,49 @@ msgstr "Versão do esquema"
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Indivíduos actualizados com %(n2)6d citações em  %(n3)6d secs\n"
+"%(n1)6d  Indivíduos actualizados com %(n2)6d citações em  %(n3)6d segs\n"
 
 #: ../gramps/gen/db/upgrade.py:374
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Famílias   actualizadas com %(n2)6d citações em  %(n3)6d secs\n"
+"%(n1)6d  Famílias   actualizadas com %(n2)6d citações em  %(n3)6d segs\n"
 
 #: ../gramps/gen/db/upgrade.py:376
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Eventos     actulizados com %(n2)6d citações em  %(n3)6d secs\n"
+"%(n1)6d  Eventos     actualizados com %(n2)6d citações em  %(n3)6d segs\n"
 
 #: ../gramps/gen/db/upgrade.py:378
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Multimédia   actulizada com %(n2)6d citações em  %(n3)6d secs\n"
+"%(n1)6d  Multimédia   actualizada com %(n2)6d citações em  %(n3)6d segs\n"
 
 #: ../gramps/gen/db/upgrade.py:380
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Locais      actulizados com %(n2)6d citações em  %(n3)6d secs\n"
+"%(n1)6d  Locais      actualizados com %(n2)6d citações em  %(n3)6d segs\n"
 
 #: ../gramps/gen/db/upgrade.py:382
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Repositórios actulizados com %(n2)6d citações em %(n3)6d secs\n"
+"%(n1)6d  Repositórios actualizados com %(n2)6d citações em %(n3)6d segs\n"
 
 #: ../gramps/gen/db/upgrade.py:384
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Fontes      actulizadas com %(n2)6d citações em  %(n3)6d secs\n"
+"%(n1)6d  Fontes      actualizadas com %(n2)6d citações em  %(n3)6d segs\n"
 
 #: ../gramps/gen/db/upgrade.py:724
 msgid "Number of new objects upgraded:\n"
@@ -3510,7 +3511,7 @@ msgstr "alcunhafamiliar"
 #: ../gramps/gen/display/name.py:1122
 #, python-format
 msgid "Wrong name format string %s"
-msgstr "Formato de nome %s incorrecto"
+msgstr "Cadeia de formato de nome incorrecta: %s"
 
 #: ../gramps/gen/display/name.py:1126
 msgid "ERROR, Edit Name format in Preferences"
@@ -3757,7 +3758,7 @@ msgstr "Filtros de citações/fontes"
 #: ../gramps/gen/filters/rules/person/_iswitness.py:47
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:44
 msgid "Event filters"
-msgstr "Fitros de evento"
+msgstr "Filtros de evento"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:45
 #: ../gramps/gen/filters/rules/_hasldsbase.py:48
@@ -3865,7 +3866,7 @@ msgstr "Nome do filtro:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:70
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr "Impossível encontrar filtro %s nos filtros personalizados"
+msgstr "Impossível encontrar o filtro %s nos filtros personalizados"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:47
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:48
@@ -3937,8 +3938,8 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Encontra citações modificadas após uma data/hora especificada (aaaa-mm-dd hh:"
-"mm:ss) ou no intervalo, se uma segunda data for indicada."
+"Encontra citações modificadas após uma data/hora especificada (aaaa-mm-dd "
+"hh:mm:ss) ou no intervalo, se uma segunda data for indicada."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
@@ -4009,7 +4010,7 @@ msgstr "Citações com <n> notas"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Matches citations having a certain number of notes"
-msgstr "Encontra fontes com um dado número de notas"
+msgstr "Encontra citações com um dado número de notas"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:43
 msgid "Citations having notes containing <substring>"
@@ -4018,7 +4019,7 @@ msgstr "Citações com notas que contêm <sub-texto>"
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr ""
-"Encontra citações cujas notas contêm texto que coincide com dado sub-texto"
+"Encontra citações cujas notas contêm texto que coincide com um sub-texto"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:42
 msgid "Citations having notes containing <text>"
@@ -4222,8 +4223,8 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Encontra eventos modificados após uma data/hora especificada (aaaa-mm-dd hh:"
-"mm:ss) ou no intervalo, se uma segunda data/hora for indicada."
+"Encontra eventos modificados após uma data/hora especificada (aaaa-mm-dd "
+"hh:mm:ss) ou no intervalo, se uma segunda data/hora for indicada."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:42
 msgid "Events marked private"
@@ -4348,7 +4349,7 @@ msgstr "Eventos com notas que contêm <texto>"
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Encontra evenots cujas notas contêm texto que coincide com uma expressão "
+"Encontra eventos cujas notas contêm texto que coincide com uma expressão "
 "regular"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:42
@@ -4365,7 +4366,7 @@ msgstr "Eventos com <n> fontes"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:45
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Encontra eventos com um determinado número de fontes a eles ligados"
+msgstr "Encontra eventos com um determinado número de fontes a eles ligadas"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
 msgid "Events with the <tag>"
@@ -4408,7 +4409,7 @@ msgstr "Eventos de indivíduos encontrados por <filtro de indivíduos>"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr "Encontra eventos de indivíduos pelo filtro especificado"
+msgstr "Encontra eventos de indivíduos pelo filtro de indivíduo especificado"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:49
 #: ../gramps/gui/editors/filtereditor.py:541
@@ -4465,15 +4466,15 @@ msgstr "Encontra todas as famílias na base de dados"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:47
 msgid "Families changed after <date time>"
-msgstr "Famílias modificadas após <dara/hora>"
+msgstr "Famílias modificadas após <data/hora>"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:48
 msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Encontra famílias modificadas após uma data/hora especificada (aaaa-mm-dd hh:"
-"mm:ss) ou no intervalo, se uma segunda data for indicada."
+"Encontra famílias modificadas após uma data/hora especificada (aaaa-mm-dd "
+"hh:mm:ss) ou no intervalo, se uma segunda data for indicada."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
@@ -4621,8 +4622,7 @@ msgstr "Famílias com notas que contêm <sub-texto>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:43
 msgid "Matches families whose notes contain text matching a substring"
-msgstr ""
-"Encontra famílias cujas notas contêm texto que corresponda ao sub-texto"
+msgstr "Encontra famílias cujas notas contêm texto que corresponda ao sub-texto"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:41
 msgid "Families having notes containing <text>"
