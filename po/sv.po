@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-22 22:30+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2021-05-23 11:30+0000\n"
+"Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
 "Language: sv\n"
@@ -10184,7 +10184,7 @@ msgstr "Formatet och språket för datum, med exempel"
 #: ../gramps/gen/plug/report/stdoptions.py:333
 #: ../gramps/gen/plug/report/stdoptions.py:357
 msgid "Do not include"
-msgstr "Tag ej med"
+msgstr "Ta ej med"
 
 #. --------------------
 #. ###############################
@@ -10390,8 +10390,8 @@ msgid ""
 msgstr ""
 "Fel vid tolkning av lista med nyligen använd DBs från fil {fname}: {error}.\n"
 "Detta kan indikera en skada på dina filer.\n"
-"Om du är säker på att det inte är några problem med andra filer, tag bort "
-"den och starta om Gramps."
+"Om du är säker på att det inte är några problem med andra filer, ta bort den "
+"och starta om Gramps."
 
 #: ../gramps/gen/relationship.py:1273
 #: ../gramps/plugins/view/pedigreeview.py:1606
@@ -15064,7 +15064,7 @@ msgstr "Även familjehändelser där person är maka/make"
 
 #: ../gramps/gui/editors/filtereditor.py:577
 msgid "Only include primary participants"
-msgstr "Tag bara med primära deltagare"
+msgstr "Ta bara med primära deltagare"
 
 #: ../gramps/gui/editors/filtereditor.py:593
 #: ../gramps/gui/widgets/placewithin.py:73
@@ -15239,7 +15239,7 @@ msgstr "Lägg till nytt mediaobjekt"
 
 #: ../gramps/gui/editors/objectentries.py:393
 msgid "Remove media object"
-msgstr "Tag bort mediaobjekt"
+msgstr "Ta bort mediaobjekt"
 
 #: ../gramps/gui/editors/objectentries.py:434
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -18975,7 +18975,7 @@ msgstr "Byt ut fullständigt namn på levande personer"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:741
 msgid "Do not include living people"
-msgstr "Tag ej med levande personer"
+msgstr "Ta ej med levande personer"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:750
 msgid "Include all selected records"
@@ -20818,7 +20818,7 @@ msgstr "Rapporttitel"
 #: ../gramps/plugins/drawreport/descendtree.py:1582
 #: ../gramps/plugins/drawreport/descendtree.py:1755
 msgid "Do not include a title"
-msgstr "Tag ej med titel"
+msgstr "Ta ej med titel"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:847
 msgid "Include Report Title"
@@ -20842,7 +20842,7 @@ msgstr "Huruvida göra en ram runt rapporten."
 #: ../gramps/plugins/drawreport/ancestortree.py:855
 #: ../gramps/plugins/drawreport/descendtree.py:1598
 msgid "Include Page Numbers"
-msgstr "Tag med sidnummer"
+msgstr "Ta med sidnummer"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
 msgid "Whether to print page numbers on each page."
@@ -21513,7 +21513,7 @@ msgstr "Nivå för make/makar"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=inga makar, 1=tag med makar, 2=tag med makar till makar, etc"
+msgstr "0=inga makar, 1=ta med makar, 2=ta med makar till makar, etc"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1554
 msgid "Start with the parent(s) of the selected first"
@@ -22324,7 +22324,7 @@ msgstr "Ta med giftermål"
 #: ../gramps/plugins/textreport/detancestralreport.py:902
 #: ../gramps/plugins/textreport/detdescendantreport.py:1087
 msgid "Include children"
-msgstr "Tag med barn"
+msgstr "Ta med barn"
 
 #: ../gramps/plugins/export/exportcsv.py:139
 #: ../gramps/plugins/graph/gvfamilylines.py:235
@@ -24776,7 +24776,7 @@ msgstr "Datum och/eller platser"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:866
 msgid "Do not include any dates or places"
-msgstr "Tag ej med några datum eller platser"
+msgstr "Ta ej med några datum eller platser"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:867
 msgid "Include (birth, marriage, death) dates, but no places"
@@ -24875,7 +24875,7 @@ msgstr "Huruvida ta med det sista yrket"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:931
 msgid "Include relationship debugging numbers also"
-msgstr "Tag även med släktskapsavlusningsnummer"
+msgstr "Ta även med släktskapsavlusningsnummer"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:934
 msgid ""
@@ -32582,7 +32582,7 @@ msgstr "Huruvida ta med referenser till make/maka."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 msgid "Include sign of succession ('+') in child-list"
-msgstr "Tag med tecken på avkomma ('+') i barnlista"
+msgstr "Ta med tecken på avkomma ('+') i barnlista"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
 msgid ""
