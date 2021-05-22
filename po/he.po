@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-22 11:04+0000\n"
+"PO-Revision-Date: 2021-05-22 11:38+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -4733,7 +4733,7 @@ msgstr "אוב‎ייקט מדיה עם <מזהה>"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:45
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "תואם אובייקט מדיה בעל מזהה גרמפס שצוין"
+msgstr "שליפת אובייקט מדיה בעל מזהה גרמפס שצוין"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:47
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:47
@@ -5809,7 +5809,7 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"התאמת אבות קדמונים של שני אנשים לאבות קדמונים משותפים, תוך יצירת נתיב קשרי-"
+"שליפת אבות קדמונים של שני אנשים לאבות קדמונים משותפים, תוך יצירת נתיב קשרי-"
 "גומלין בין שני האנשים."
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:51
@@ -5821,7 +5821,7 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"התאמת אבות קדמונים של פרטים המסומנים בסימניה לאבות קדמונים משותפים, תוך "
+"שליפת אבות קדמונים של פרטים המסומנים בסימניה לאבות קדמונים משותפים, תוך "
 "יצירת נתיב(ים) קשרי-גומלין בין האנשים המסומנים בסימניה."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
@@ -6370,7 +6370,7 @@ msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"שליפת מקורות בעלי הפנית מאגר שתואם \n"
+"שליפת מקורות בעלי הפנית מאגר שתואם\n"
 "למסנן מאגר מסוים"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
@@ -30553,7 +30553,7 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 "\n"
-"התאמות חיים: %(alive)d, התאמות נפטרים: %(dead)d\n"
+"שליפת אנשים חיים: %(alive)d, שליפת נפטרים: %(dead)d\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
