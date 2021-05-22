@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-21 17:06+0000\n"
+"PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -7646,7 +7646,7 @@ msgstr "Koulutus"
 
 #: ../gramps/gen/lib/eventtype.py:180
 msgid "Elected"
-msgstr "Virkaan astuminen"
+msgstr "Valittu"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Emigration"
@@ -7662,7 +7662,7 @@ msgstr "Maahanmuutto"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Graduation"
-msgstr "Valmistujaiset"
+msgstr "Valmistuminen"
 
 #: ../gramps/gen/lib/eventtype.py:185
 msgid "Medical Information"
@@ -7914,7 +7914,7 @@ msgstr "aatelisarvo"
 #: ../gramps/gen/lib/eventtype.py:239
 msgctxt "Number of Marriages abbreviation"
 msgid "n.o.mar."
-msgstr "aviol. lkm"
+msgstr "aviol. lkm."
 
 #: ../gramps/gen/lib/eventtype.py:240
 msgctxt "Occupation abbreviation"
@@ -9448,8 +9448,7 @@ msgstr ""
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
-"VIRHE: Rekisteritiedostossa %(regfile)s olevaa Python tiedostoa %(filename)s "
-"ei ole olemassa"
+"VIRHE: Python-tiedostoa %(filename)s ei ole rekisteritiedostossa %(regfile)s"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:129
 msgid "Close file first"
@@ -12184,7 +12183,7 @@ msgid ""
 "Clear to set default value."
 msgstr ""
 "Määritetty tunniste lisätään tuonnin yhteydessä.\n"
-"Poista valinta, jos haluat määrittää oletusarvon."
+"Tyhjennä asettaaksesi oletusarvon."
 
 #: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
@@ -12818,7 +12817,7 @@ msgstr "Poista sukupuu"
 #: ../gramps/gui/dbman.py:703
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Poista '%(database)s' tietokannan versio '%(revision)s'"
+msgstr "Poista '%(revision)s' versio '%(database)s' tietokannasta"
 
 #: ../gramps/gui/dbman.py:707
 msgid ""
@@ -12948,7 +12947,7 @@ msgstr "Jatka, olen ottanut varmuuskopion"
 
 #: ../gramps/gui/dbman.py:925
 msgid "Stop"
-msgstr "_Keskeytä"
+msgstr "Keskeytä"
 
 #: ../gramps/gui/dbman.py:944
 msgid "Rebuilding database from backup files"
@@ -16841,7 +16840,7 @@ msgid ""
 msgstr ""
 "Pituusaste (etäisyys nollameridiaanista=Greenwichistä) desimaali- tai "
 "astenotaatiolla.\n"
-"Esim. kelvollisia arvoja ovat 124.3647, 124°52′21.92″I, E124°52′21.92″ tai "
+"Esim. kelvollisia arvoja ovat 124.3647, 124°52′21.92″E, E124°52′21.92″ tai "
 "124:52:21.92\n"
 "Nämä arvot voi asettaa karttanäkymässä hakemalla paikka, tai karttapalvelun "
 "paikkanäkymässä."
@@ -30987,7 +30986,7 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
-"Sinun täytyy tarkistaa ja vaihtaa laatat välimuistin\n"
+"Sinun on vahvistettava ja vaihdettava ruutujen välimuisti\n"
 "...\n"
 "[geography]\n"
 "...\n"
@@ -37281,7 +37280,7 @@ msgstr "Nettikalenteri"
 
 #: ../gramps/plugins/webreport/basepage.py:1786
 msgid "Html|Home"
-msgstr "Html|Koti"
+msgstr "Koti"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -38574,7 +38573,7 @@ msgstr "Henkilöiden määrä"
 #: ../gramps/plugins/webreport/surnamelist.py:206
 #, python-format
 msgid "Surnames beginning with letter %s"
-msgstr "Kirjaimella %s alkavat sukunimet"
+msgstr "Sukunimet alkavat kirjaimella %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
 msgid ""
