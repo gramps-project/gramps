@@ -37,8 +37,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-18 21:26+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2021-05-22 18:06+0000\n"
+"Last-Translator: romjerome <romjerome@yahoo.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -56,7 +56,7 @@ msgstr "Gramps"
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
-"Gestion des informations généalogiques, optimisation de la recherche et de "
+"Gestion de l'information généalogique, optimisation de la recherche et de "
 "l'analyse"
 
 #: ../data/gramps.appdata.xml.in:7
@@ -86,9 +86,8 @@ msgstr ""
 "confort d'utilisation."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Système de généalogie Gramps"
+msgstr "Équipe de développement Gramps"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -96,7 +95,7 @@ msgstr "Système de généalogie"
 
 #: ../data/gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Généalogie;Histoire familiale,Recherche,Arbre familial;Gedcom;"
+msgstr "Généalogie;Histoire familiale;Recherche;Arbre familial;Gedcom;"
 
 #: ../data/gramps.xml.in:6
 msgid "Gramps database"
@@ -1380,7 +1379,6 @@ msgstr "Action inconnue : %s."
 
 # master
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1428,7 +1426,7 @@ msgid ""
 msgstr ""
 "\n"
 "Utilisation : gramps.py [OPTION...]\n"
-"  --load-modules=MODULE1,MODULE2,...     Modules dynamiques à charger\n"
+"  --load-modules=MODULE1,MODULE2...     Modules dynamiques à charger\n"
 "\n"
 "Options d'aide\n"
 "  -?, --help                             Affiche ce message d'aide\n"
@@ -1477,7 +1475,7 @@ msgstr ""
 "                                         leurs valeurs par défaut;\n"
 "                 A - les greffons sont effacés\n"
 "                 P - les Préférences reprennent leurs valeurs par défaut\n"
-"                 X - les Livres sont effacés, les paramètres des rapports\n"
+"                 X - les livres sont effacés, les paramètres des rapports\n"
 "                     et des outils reprennent leurs valeurs par défaut\n"
 "                 F - les filtres sont effacés\n"
 "                 E - Tout est effacé et tous les paramètres reprennent\n"
@@ -8203,7 +8201,7 @@ msgstr "Confirmation"
 
 #: ../gramps/gen/lib/eventtype.py:177
 msgid "Cremation"
-msgstr "Incinération"
+msgstr "Crémation"
 
 #: ../gramps/gen/lib/eventtype.py:178
 msgid "Degree"
@@ -8427,7 +8425,7 @@ msgstr "conf."
 #: ../gramps/gen/lib/eventtype.py:227
 msgctxt "Cremation abbreviation"
 msgid "crem."
-msgstr "incin."
+msgstr "crém."
 
 #: ../gramps/gen/lib/eventtype.py:228
 msgctxt "Degree abbreviation"
@@ -10599,8 +10597,9 @@ msgid "Swing"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
+#, fuzzy
 msgid "Mesh"
-msgstr ""
+msgstr "Maillage"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Tiny"
@@ -39788,9 +39787,8 @@ msgid "Visually Impaired"
 msgstr "Malvoyants"
 
 #: ../gramps/plugins/webreport/basepage.py:1696
-#, fuzzy
 msgid "Go to top"
-msgstr "Aller à l'individu par défaut"
+msgstr "Aller vers le haut"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
 #: ../gramps/plugins/webreport/basepage.py:1963
@@ -40893,8 +40891,9 @@ msgid "second language"
 msgstr "Deuxième date"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
+#, fuzzy
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Nom du site pour une langue secondaire"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
@@ -40920,8 +40919,9 @@ msgid "third language"
 msgstr "Langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
+#, fuzzy
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Nom du site pour une troisième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2563
@@ -40930,8 +40930,9 @@ msgid "fourth language"
 msgstr "Langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
+#, fuzzy
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Nom du site pour une quatrième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
@@ -40940,8 +40941,9 @@ msgid "fifth language"
 msgstr "Langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2575
+#, fuzzy
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Nom du site pour une cinquième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2579
@@ -40950,8 +40952,9 @@ msgid "sixth language"
 msgstr "Langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2583
+#, fuzzy
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Nom du site pour une sixième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2796
 #, fuzzy
@@ -40965,9 +40968,9 @@ msgid "Do we include the web calendar ?"
 msgstr "Doit-on inclure le calendrier internet ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2804
-#, fuzzy, python-format
+#, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Inclure ou non une galerie des objets media"
+msgstr "Inclure ou non un calendrier pour l'année %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2826
 #: ../gramps/plugins/webreport/webcal.py:1953
