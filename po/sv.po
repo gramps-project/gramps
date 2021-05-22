@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-22 22:03+0000\n"
-"Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
+"PO-Revision-Date: 2021-05-22 22:30+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
 "Language: sv\n"
@@ -317,10 +317,10 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b>Redigera objekt</b><br/>Vanligen kan du genom att dubbelklicka på en "
-"namn-, käll-, plats- eller mediapost få fram ett fönster, där du kan "
-"redigera objektet. Notera att resultatet kan vara beroende av sammanhang. Om "
-"du exempelvis klickar på en förälder eller ett barn i familjevyn så kommer "
+"<b>Redigera objekt</b><br/>Vanligen kan du genom att dubbelklicka på en namn-"
+", käll-, plats- eller mediapost få fram ett fönster, där du kan redigera "
+"objektet. Notera att resultatet kan vara beroende av sammanhang. Om du "
+"exempelvis klickar på en förälder eller ett barn i familjevyn så kommer "
 "släktskapsredigeraren fram."
 
 #: ../data/tips.xml:8
@@ -2008,8 +2008,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Ignorerar '%(notranslate1)s=%(notranslate2)s' och använder '%(notranslate1)s="
-"%(notranslate3)s'."
+"Ignorerar '%(notranslate1)s=%(notranslate2)s' och använder "
+"'%(notranslate1)s=%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -3156,9 +3156,9 @@ msgstr ""
 "schema-versionen av släktträdet.\n"
 "\n"
 "Om du uppgraderar, kan du inte använda föregående version av Gramps, även om "
-"du följaktligen %(wiki_manual_backup_html_start)ssäkerhetskopierar"
-"%(html_end)s eller %(wiki_manual_export_html_start)sexporterar%(html_end)s "
-"ditt uppgraderade släktträd.\n"
+"du följaktligen %(wiki_manual_backup_html_start)ssäkerhetskopierar%(html_end)"
+"s eller %(wiki_manual_export_html_start)sexporterar%(html_end)s ditt "
+"uppgraderade släktträd.\n"
 "\n"
 "Uppgradering är en svår uppgift, som oåterkalleligen kan förstöra ditt "
 "släktträd, om den avbryts eller misslyckas.\n"
@@ -3206,9 +3206,10 @@ msgstr ""
 "Därför kan du inte ladda det här släktträdet utan uppgradering\n"
 "\n"
 "Om du uppgraderar kommer du inte att kunna använda den tidigare versionen av "
-"Gramps, även om du senare %(wiki_manual_backup_html_start)ssäkerhetskopierar"
-"%(html_end)s eller %(wiki_manual_export_html_start)sexporterar%(html_end)s "
-"ditt uppgraderade släktträd.\n"
+"Gramps, även om du senare "
+"%(wiki_manual_backup_html_start)ssäkerhetskopierar%(html_end)s eller "
+"%(wiki_manual_export_html_start)sexporterar%(html_end)s ditt uppgraderade "
+"släktträd.\n"
 "\n"
 "Du är starkt rekommenderad att göra en säkerhetskopia av ditt släktträd.\n"
 "\n"
@@ -3931,8 +3932,8 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Matchar citeringar ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:mm:"
-"ss) eller i intervall, om ett andra datum/tid givits."
+"Matchar citeringar ändrade efter en specificerad datum/tid (yyyy-mm-dd "
+"hh:mm:ss) eller i intervall, om ett andra datum/tid givits."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
@@ -4330,8 +4331,7 @@ msgstr "Händelser med notiser innehållande <delsträng>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:43
 msgid "Matches events whose notes contain text matching a substring"
-msgstr ""
-"Matchar händelser vars notiser innehåller text som matchar en delsträng"
+msgstr "Matchar händelser vars notiser innehåller text som matchar en delsträng"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:41
 msgid "Events having notes containing <text>"
@@ -4461,8 +4461,8 @@ msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Matchar familjeposter ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:"
-"mm:ss) eller i intervall, om ett andra datum/tid givits."
+"Matchar familjeposter ändrade efter en specificerad datum/tid (yyyy-mm-dd "
+"hh:mm:ss) eller i intervall, om ett andra datum/tid givits."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
@@ -4829,8 +4829,8 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Matchar mediaobjekt ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:"
-"mm:ss) eller i intervall, om ett andra datum/tid givits."
+"Matchar mediaobjekt ändrade efter en specificerad datum/tid (yyyy-mm-dd "
+"hh:mm:ss) eller i intervall, om ett andra datum/tid givits."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:44
 #: ../gramps/gui/editors/filtereditor.py:108
@@ -4993,8 +4993,8 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Matchar notiser ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:mm:"
-"ss) eller i intervall, om ett andra datum/tid givits."
+"Matchar notiser ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:mm:ss)"
+" eller i intervall, om ett andra datum/tid givits."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:44
 msgid "Note with <Id>"
@@ -5093,8 +5093,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Matchar personposter ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:"
-"mm:ss) eller i intervall, om ett andra datum/tid givits."
+"Matchar personposter ändrade efter en specificerad datum/tid (yyyy-mm-dd "
+"hh:mm:ss) eller i intervall, om ett andra datum/tid givits."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -5830,8 +5830,7 @@ msgstr "Personer med händelser matchande <händelsefilter>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
-msgstr ""
-"Matchar personer som har händelser som matchar ett givet händelsefilter"
+msgstr "Matchar personer som har händelser som matchar ett givet händelsefilter"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:44
 msgid "People matching the <filter>"
@@ -5995,8 +5994,8 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Matchar platsposter ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:"
-"mm:ss) eller i intervall, om ett andra datum/tid givits."
+"Matchar platsposter ändrade efter en specificerad datum/tid (yyyy-mm-dd "
+"hh:mm:ss) eller i intervall, om ett andra datum/tid givits."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
@@ -6301,8 +6300,7 @@ msgstr "Arkivplatser med attributet <attribut>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 msgid "Matches repositories with the attribute of a particular value"
-msgstr ""
-"Matchar arkivplatser där det angivna attributet har ett specifikt värde"
+msgstr "Matchar arkivplatser där det angivna attributet har ett specifikt värde"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
@@ -6418,8 +6416,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Matchar källposter ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:mm:"
-"ss) eller i intervall, om ett andra datum/tid givits."
+"Matchar källposter ändrade efter en specificerad datum/tid (yyyy-mm-dd "
+"hh:mm:ss) eller i intervall, om ett andra datum/tid givits."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Source attribute:"
@@ -9352,9 +9350,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"FEL: Insticksprogram-filen %(filename)s är av version "
-"\"%(gramps_target_version)s\" vilket ej gäller för Gramps "
-"\"%(gramps_version)s\"."
+"FEL: Insticksprogram-filen %(filename)s är av version \""
+"%(gramps_target_version)s\" vilket ej gäller för Gramps \"%(gramps_version)"
+"s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -9570,8 +9568,7 @@ msgstr "Riktning för diagram"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:159
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr ""
-"Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
+msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:163
 msgid "Number of Horizontal Pages"
@@ -12216,8 +12213,7 @@ msgstr "uppdatera"
 
 #: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
-msgstr ""
-"Databasinställningar för släktträd och hantering för säkerhetskopiering"
+msgstr "Databasinställningar för släktträd och hantering för säkerhetskopiering"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
@@ -13060,8 +13056,7 @@ msgstr "Kan inte visa %s"
 msgid ""
 "Gramps is not able to display the image file. This may be caused by a "
 "corrupt file."
-msgstr ""
-"Gramps kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
+msgstr "Gramps kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:61
 msgid "Create and add a new address"
@@ -16520,8 +16515,8 @@ msgid ""
 msgstr ""
 "Personer visas enligt det namnformat som ställts in i Inställningar "
 "(standard).\n"
-"Här kan du säkerställa att denna person visas enligt ett anpassat format "
-"(extra format kan ställas in i Inställningar)."
+"Här kan du säkerställa att denna person visas enligt ett anpassat format ("
+"extra format kan ställas in i Inställningar)."
 
 #: ../gramps/gui/glade/editname.glade:524
 msgid "Dat_e:"
@@ -16536,8 +16531,8 @@ msgid ""
 msgstr ""
 "Personer sorteras enligt det namnformat, som ställts in i Inställningar "
 "(standard).\n"
-"Här kan du säkerställa att denna person sorteras enligt ett anpassat format "
-"(extra format kan ställas in i Inställningar)."
+"Här kan du säkerställa att denna person sorteras enligt ett anpassat format ("
+"extra format kan ställas in i Inställningar)."
 
 #: ../gramps/gui/glade/editname.glade:601
 msgid ""
@@ -16734,8 +16729,8 @@ msgid ""
 msgstr ""
 "Latitud (position relativt ekvatorn) för platsen som decimal- eller "
 "gradnotation.\n"
-"Giltiga värden är t. ex. 12.0154, 50°52′21.92″N, N50°52′21.92″ or "
-"50:52:21.92\n"
+"Giltiga värden är t. ex. 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21."
+"92\n"
 "Du kan bestämma dessa värden via Geografivyn genom att söka efter platsen "
 "eller via en karttjänst i platsvyn."
 
@@ -16761,8 +16756,8 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"eller använd kopiera/klistra in från din favoritkarttjänst (format : latitud,"
-"longitud) i följande fält:"
+"eller använd kopiera/klistra in från din favoritkarttjänst (format : "
+"latitud,longitud) i följande fält:"
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
@@ -16858,8 +16853,8 @@ msgid ""
 msgstr ""
 "Latitud (position relativt ekvatorn) för platsen som decimal- eller "
 "gradnotation.\n"
-"Giltiga värden är t. ex. 12.0154, 50°52′21.92″N, N°52′21.92″ eller "
-"50:52:21.92.\n"
+"Giltiga värden är t. ex. 12.0154, 50°52′21.92″N, N°52′21.92″ eller 50:52:21."
+"92.\n"
 "Du kan bestämma dessa värden via Geografivyn genom att söka efter platsen "
 "eller via en karttjänst i platsvyn."
 
@@ -16984,8 +16979,8 @@ msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
 msgstr ""
-"Den internetadress som behövs för att navigera till den, t. ex. http://"
-"gramps-project.org"
+"Den internetadress som behövs för att navigera till den, t. ex. http"
+"://gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:205
 msgid "Open the web address in the default browser."
@@ -19435,8 +19430,8 @@ msgid ""
 msgstr ""
 "Att fortsätta med det här verktyget kommer att radera redigeringshistoriken "
 "för den här sessionen. De förändringar som det här verktyget gör kommer inte "
-"att kunna ångras. Tidigare förändringar kommer heller inte att kunna "
-"ångras.\n"
+"att kunna ångras. Tidigare förändringar kommer heller inte att kunna ångras."
+"\n"
 "\n"
 "Om du tror att du kan komma att vilja ångra förändringarna som det här "
 "verktyget gör, måste du avbryta nu och säkerhetskopiera databasen."
@@ -19447,8 +19442,7 @@ msgstr "_Fortsätt med verktyget"
 
 #: ../gramps/gui/plug/tool.py:137 ../gramps/plugins/tool/relcalc.py:158
 msgid "You must select an active person for this tool to work properly."
-msgstr ""
-"Du måste välja en aktiv person för att det här verktyget skall fungera."
+msgstr "Du måste välja en aktiv person för att det här verktyget skall fungera."
 
 #: ../gramps/gui/selectors/selectcitation.py:64
 msgid "Select Source or Citation"
@@ -19643,8 +19637,7 @@ msgstr "Försök inte tvinga nedstängning av den här viktiga dialogrutan."
 
 #: ../gramps/gui/utils.py:374
 msgid "The external program failed to launch or experienced an error"
-msgstr ""
-"Det gick ej att starta det externa programmet eller avbröts med ett fel"
+msgstr "Det gick ej att starta det externa programmet eller avbröts med ett fel"
 
 #: ../gramps/gui/utils.py:384
 msgid "Error from external program"
@@ -19667,8 +19660,8 @@ msgid ""
 "citation alone"
 msgstr ""
 "Kan ej öppna en citeringsredigerare just nu. Antingen redigeras citeringen "
-"redan eller redigeras den kopplade källan. Att öppna citeringsredigerare "
-"(som även tillåter att källan redigeras) skulle skapa tvetydigheter med två "
+"redan eller redigeras den kopplade källan. Att öppna citeringsredigerare ("
+"som även tillåter att källan redigeras) skulle skapa tvetydigheter med två "
 "redigerare med samma källa. \n"
 "\n"
 "För att redigera en citering, så stäng källredigeraren och öppna en "
@@ -19771,8 +19764,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Om du inte kan rätta till felet själv så kan du skicka in en felrapport via "
-"%(gramps_bugtracker_url)s eller kontakta författaren "
-"(%(firstauthoremail)s).\n"
+"%(gramps_bugtracker_url)s eller kontakta författaren (%(firstauthoremail)s)."
+"\n"
 "\n"
 "Om du inte vill att Gramps skall försöka ladda denna vy igen, kan du gömma "
 "den genom att använda Insticksmodulshanteraren under Hjälp-menyn."
@@ -19800,8 +19793,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Om du inte kan rätta till felet själv så kan du skicka in en felrapport via "
-"%(gramps_bugtracker_url)s eller kontakta författaren "
-"(%(firstauthoremail)s).\n"
+"%(gramps_bugtracker_url)s eller kontakta författaren (%(firstauthoremail)s)."
+"\n"
 "\n"
 "Om du inte vill att Gramps skall försöka ladda denna modul igen, kan du "
 "gömma den genom att använda Insticksmodulshanteraren under Hjälp-menyn."
@@ -21799,8 +21792,7 @@ msgstr "Använd textmall för alla generationer"
 #: ../gramps/plugins/drawreport/fanchart.py:726
 msgid ""
 "You can customize font and color for each generation in the style editor"
-msgstr ""
-"Du kan anpassa typsnitt och färg för varje generation i mallredigeraren"
+msgstr "Du kan anpassa typsnitt och färg för varje generation i mallredigeraren"
 
 #: ../gramps/plugins/drawreport/fanchart.py:782
 #, python-format
@@ -22682,8 +22674,8 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sOfta Ställda Frågor"
-"%(html_end)s%(bold_end)s\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sOfta Ställda "
+"Frågor%(html_end)s%(bold_end)s\n"
 "(internetförbindelse är nödvändig)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
@@ -22714,8 +22706,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sHur tar jag bort en make/maka?"
-"%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sHur tar jag bort en make/"
+"maka?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -22812,8 +22804,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sFinns det en handbok för Gramps?"
-"%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sFinns det en handbok för "
+"Gramps?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -22835,8 +22827,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sHur kan jag hjälpa till med Gramps?"
-"%(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sHur kan jag hjälpa till med "
+"Gramps?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:53
 msgid "Double-click given name for details"
@@ -24397,8 +24389,7 @@ msgstr "Följ föräldrar för att bestämma \"släktlinjer\""
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
-msgstr ""
-"Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
+msgstr "Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:131
 msgid "Follow children to determine \"family lines\""
@@ -24889,8 +24880,7 @@ msgstr "Tag även med släktskapsavlusningsnummer"
 #: ../gramps/plugins/graph/gvrelgraph.py:934
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr ""
-"Huruvida även ta med 'Ga' och 'Gb', för att avlusa släktskapsberäknaren"
+msgstr "Huruvida även ta med 'Ga' och 'Gb', för att avlusa släktskapsberäknaren"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:962
 msgid "Indicate non-birth relationships with dotted lines"
@@ -26393,8 +26383,8 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"FEL: familj '%(family)s' (indata som @%(orig_family)s@) person %(person)s "
-"(indata som %(orig_person)s) är inte en medlem i den refererade familjen. "
+"FEL: familj '%(family)s' (indata som @%(orig_family)s@) person %(person)s ("
+"indata som %(orig_person)s) är inte en medlem i den refererade familjen. "
 "Familjereferens borttagen från person"
 
 #: ../gramps/plugins/lib/libgedcom.py:3357
@@ -27545,8 +27535,7 @@ msgstr "Dog (vid en ålder av %(age)s)."
 #, python-format
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:462
 #, python-format
@@ -27572,8 +27561,8 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s begravdes %(burial_date)s i %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s begravdes %(burial_date)s i "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
@@ -27651,8 +27640,8 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s begravdes i %(month_year)s i %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s begravdes i %(month_year)s i "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
@@ -27730,8 +27719,8 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s begravdes %(modified_date)s i %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s begravdes %(modified_date)s i "
+"%(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:534
 #, python-format
@@ -27880,8 +27869,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes %(baptism_date)s i %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s döptes %(baptism_date)s i "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
@@ -27961,8 +27950,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes i %(month_year)s i %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s döptes i %(month_year)s i "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
@@ -28015,8 +28004,7 @@ msgstr "Döpt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
-msgstr ""
-"%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
@@ -28042,8 +28030,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes %(modified_date)s i %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s döptes %(modified_date)s i "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format
@@ -28167,8 +28155,8 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s döptes %(christening_date)s i %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s döptes %(christening_date)s i "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:728
 #, python-format
@@ -28183,8 +28171,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s döptes %(christening_date)s i %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s döptes %(christening_date)s i "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
@@ -28199,8 +28187,8 @@ msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes %(christening_date)s i %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s döptes %(christening_date)s i "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:736
 #, python-format
@@ -28285,8 +28273,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes %(month_year)s i %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s döptes %(month_year)s i "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:768
 #, python-format
@@ -28369,8 +28357,8 @@ msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes %(modified_date)s i %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s döptes %(modified_date)s i "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:800
 #, python-format
@@ -28749,8 +28737,7 @@ msgstr "Han gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:983
 #, python-format
@@ -28765,8 +28752,7 @@ msgstr "Hon gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:985
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:988
 #, python-format
@@ -28789,8 +28775,8 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen gifte om sig med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Personen gifte om sig med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:997
 #, python-format
@@ -28806,8 +28792,8 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen gifte om sig med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Personen gifte om sig med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1001
 #, python-format
@@ -29075,8 +29061,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Personen hade ett ogift förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Personen hade ett ogift förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1100
 #, python-format
@@ -29093,8 +29079,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade ett ogift förhållande med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1104
 #, python-format
@@ -29102,8 +29088,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade ett ogift förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1105
 #, python-format
@@ -29111,8 +29097,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade ett ogift förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1108
 #, python-format
@@ -29120,8 +29106,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade ett ogift förhållande med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1109
 #, python-format
@@ -29129,8 +29115,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade ett ogift förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1110
 #, python-format
@@ -29138,8 +29124,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -29156,8 +29142,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr ""
-"Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr "Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1115
 #: ../gramps/plugins/lib/libnarrate.py:1138
@@ -29210,8 +29195,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Han hade även ett ogift förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade även ett ogift förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
@@ -29237,8 +29222,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Hon hade även ett ogift förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade även ett ogift förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
@@ -29255,8 +29240,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Personen hade ett ogift förhållande med %(spouse)s %(partial_date)s"
-"%(endnotes)s."
+"Personen hade ett ogift förhållande med %(spouse)s "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
@@ -29272,8 +29257,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Personen hade ett ogift förhållande med %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Personen hade ett ogift förhållande med %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
@@ -29344,8 +29329,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
-"Personen hade ett ogift förhållande med %(spouse)s %(partial_date)s"
-"%(endnotes)s."
+"Personen hade ett ogift förhållande med %(spouse)s "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
@@ -29361,8 +29346,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Personen hade ett ogift förhållande med %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Personen hade ett ogift förhållande med %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1172
 #, python-format
@@ -29370,8 +29355,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade även ett ogift förhållande med %(spouse)s %(partial_date)s"
-"%(endnotes)s."
+"Han hade även ett ogift förhållande med %(spouse)s "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1173
 #, python-format
@@ -29387,8 +29372,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade även ett ogift förhållande med %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Han hade även ett ogift förhållande med %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1177
 #, python-format
@@ -29396,8 +29381,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade även ett ogift förhållande med %(spouse)s %(partial_date)s"
-"%(endnotes)s."
+"Hon hade även ett ogift förhållande med %(spouse)s "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1178
 #, python-format
@@ -29413,15 +29398,14 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade även ett ogift förhållande med %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Hon hade även ett ogift förhållande med %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1183
 #, python-format
@@ -29467,8 +29451,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen hade även ett ogift förhållande med %(spouse)s i %(place)s"
-"%(endnotes)s."
+"Personen hade även ett ogift förhållande med %(spouse)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1197
 #, python-format
@@ -29529,8 +29513,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Personen hade ett förhållande med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Personen hade ett förhållande med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -29538,8 +29522,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen hade ett förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Personen hade ett förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -29547,8 +29531,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen hade ett förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Personen hade ett förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -29556,8 +29540,8 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade ett förhållande med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade ett förhållande med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -29565,8 +29549,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade ett förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade ett förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -29574,8 +29558,8 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade ett förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade ett förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
@@ -29583,8 +29567,8 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade ett förhållande med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade ett förhållande med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -29592,8 +29576,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade ett förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade ett förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
@@ -29601,8 +29585,8 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade ett förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade ett förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
@@ -29635,8 +29619,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Personen hade även ett förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Personen hade även ett förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1249
 #, python-format
@@ -29653,8 +29637,8 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade även ett förhållande med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade även ett förhållande med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1253
 #, python-format
@@ -29662,8 +29646,8 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade även ett förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade även ett förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1254
 #, python-format
@@ -29671,8 +29655,8 @@ msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Han hade även ett förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Han hade även ett förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1257
 #, python-format
@@ -29680,8 +29664,8 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade även ett förhållande med %(spouse)s %(partial_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade även ett förhållande med %(spouse)s %(partial_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
@@ -29689,8 +29673,8 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade även ett förhållande med %(spouse)s %(full_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade även ett förhållande med %(spouse)s %(full_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1259
 #, python-format
@@ -29698,8 +29682,8 @@ msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Hon hade även ett förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Hon hade även ett förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1262
 #, python-format
@@ -29720,8 +29704,8 @@ msgstr ""
 msgid ""
 "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Även ett förhållande med %(spouse)s %(modified_date)s i %(place)s"
-"%(endnotes)s."
+"Även ett förhållande med %(spouse)s %(modified_date)s i "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1270
 #, python-format
@@ -29735,8 +29719,7 @@ msgstr ""
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Personen hade ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Personen hade ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1272
 #, python-format
@@ -29796,8 +29779,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Personen hade även ett förhållande med %(spouse)s %(partial_date)s"
-"%(endnotes)s."
+"Personen hade även ett förhållande med %(spouse)s "
+"%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
 #, python-format
@@ -29813,8 +29796,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Personen hade även ett förhållande med %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"Personen hade även ett förhållande med %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1298
 #, python-format
@@ -29827,8 +29810,7 @@ msgstr ""
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Han hade även ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Han hade även ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1300
 #, python-format
@@ -29848,8 +29830,7 @@ msgstr ""
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Hon hade även ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Hon hade även ett förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1305
 #, python-format
@@ -31416,8 +31397,8 @@ msgid ""
 "line. People in this lineage all share the same Y-chromosome."
 msgstr ""
 "Denna rapport visar släktlinjen för fader, även kallad den patronymiska "
-"härkomsten eller Y-linjen. Personer i denna släktlinje delar alla samma Y-"
-"kromosom."
+"härkomsten eller Y-linjen. Personer i denna släktlinje delar alla samma "
+"Y-kromosom."
 
 #: ../gramps/plugins/quickview/lineage.py:61
 msgid "Name Father"
@@ -31715,8 +31696,8 @@ msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] ""
-"Det finns {number_of} person med ett matchande namn, eller alternativt "
-"namn.\n"
+"Det finns {number_of} person med ett matchande namn, eller alternativt namn."
+"\n"
 msgstr[1] ""
 "Det finns {number_of} personer med ett matchande namn, eller alternativt "
 "namn.\n"
@@ -32922,8 +32903,8 @@ msgstr "Huruvida ta med kusiner"
 #: ../gramps/plugins/textreport/kinshipreport.py:378
 msgid "Include aunts/uncles/nephews/nieces"
 msgstr ""
-"Ta med fastrar/mostrar/farbröder/morbröder/brorsöner/systersöner/"
-"brorsdöttrar/systerdöttrar"
+"Ta med fastrar/mostrar/farbröder/morbröder/brorsöner/systersöner/brorsdö"
+"ttrar/systerdöttrar"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:379
 msgid "Whether to include aunts/uncles/nephews/nieces"
@@ -33725,8 +33706,7 @@ msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
 msgstr[0] "{quantity} familj utan föräldrar eller barn funnen, tog bort den.\n"
-msgstr[1] ""
-"{quantity} familjer utan föräldrar eller barn funna, tog bort dem.\n"
+msgstr[1] "{quantity} familjer utan föräldrar eller barn funna, tog bort dem.\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2554
@@ -37309,8 +37289,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s av %(strong2_strt)s"
-"%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s av "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:427
@@ -37886,8 +37866,7 @@ msgstr "Ta med halv- och/eller styvsyskon på de individuella sidorna"
 #: ../gramps/plugins/webreport/narrativeweb.py:2363
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr ""
-"Huruvida ta med halv- och/eller styvsyskon med föräldrarna och syskonen"
+msgstr "Huruvida ta med halv- och/eller styvsyskon med föräldrarna och syskonen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2376
 msgid "Include family pages"
@@ -38686,8 +38665,7 @@ msgstr "Länkprefix"
 
 #: ../gramps/plugins/webreport/webcal.py:1989
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
-"Ett prefix till länkarna som tar dig till den berättande webb-rapporten"
+msgstr "Ett prefix till länkarna som tar dig till den berättande webb-rapporten"
 
 #: ../gramps/plugins/webreport/webcal.py:2195
 #, python-format
