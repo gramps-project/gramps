@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-21 17:06+0000\n"
-"Last-Translator: Stanislav <bsv999@mail.ru>\n"
+"PO-Revision-Date: 2021-05-22 18:06+0000\n"
+"Last-Translator: Ivan Vantu5z <vantu5z@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -768,14 +768,13 @@ msgstr ""
 "Отображение&quot;."
 
 #: ../data/tips.xml:72
-#, fuzzy
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
 "event types. You can add your own event types by typing in the text field, "
 "they will be added to the available events, but not translated."
 msgstr ""
-"<b>Использование Событий</b><br/>События можно добавить с помощью редактора  "
+"<b>Использование Событий</b><br/>События можно добавить с помощью редактора "
 "&quot;Лицо &gt; Редактировать лицо &gt; События&quot;. Уже представлен "
 "большой список типов событий. Также можно добавить свои типы событий просто "
 "введя их в поле, они добавятся к списку типов, но не будут переводиться на "
@@ -3173,8 +3172,8 @@ msgstr ""
 "Семейное древо Python версии %(tree_vers)s, а эта версия Gramps поддерживает "
 "версии от %(min_vers)s до %(max_vers)s.\n"
 "\n"
-"Пожалуйста, обновитесь до необходимой версии или используйте XML формат\n"
-"для переноса данных между различными версиями Python."
+"Пожалуйста, обновитесь до необходимой версии или используйте XML формат для "
+"переноса данных между различными версиями Python."
 
 #: ../gramps/gen/db/exceptions.py:137
 #, python-format
@@ -3980,9 +3979,8 @@ msgid "Matches citations that are indicated as private"
 msgstr "Выбирает цитаты, помеченных как личные"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
-#, fuzzy
 msgid "Citation attribute:"
-msgstr "Атрибуты цитаты"
+msgstr "Атрибуты цитаты:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -6355,9 +6353,8 @@ msgstr ""
 "или, если задана вторая дата, в данном диапазоне."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
-#, fuzzy
 msgid "Repository attribute:"
-msgstr "Ссылка на хранилище"
+msgstr "Ссылка на хранилище:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 #, fuzzy
@@ -6494,9 +6491,8 @@ msgstr ""
 "или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
-#, fuzzy
 msgid "Source attribute:"
-msgstr "Атрибуты источника"
+msgstr "Атрибуты источника:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 #, fuzzy
@@ -12590,7 +12586,7 @@ msgstr "Вы уверены, что хотите обновить формат �
 msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
-msgstr "У меня есть резервная копия, моё древо можно обновить"
+msgstr "У меня есть резервная копия, древо можно обновить"
 
 #: ../gramps/gui/dbloader.py:212 ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:250
@@ -13383,9 +13379,8 @@ msgstr "Издательство"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Достоверность:"
+msgstr "Достоверность"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
 #, fuzzy
@@ -15156,9 +15151,8 @@ msgstr ""
 "источников."
 
 #: ../gramps/gui/editors/filtereditor.py:533
-#, fuzzy
 msgid "Family filter name:"
-msgstr "Семейные фильтры"
+msgstr "Семейные фильтры:"
 
 #: ../gramps/gui/editors/filtereditor.py:569
 msgid "Include selected Gramps ID"
@@ -20750,9 +20744,9 @@ msgid ""
 "that you consider using a different directory to store your generated web "
 "pages."
 msgstr ""
-"Похоже, Вы задали ту же директорию  назначения, что и для хранения данных. "
-"Это может привести к проблеме с файлами. Рекомендуем указать другую "
-"директорию для расположения сгенерированных веб-страниц."
+"Выбрана та же директория назначения, что и для хранения данных. Это может "
+"привести к проблеме с файлами. Рекомендуется указать другую директорию для "
+"расположения веб-страниц."
 
 #: ../gramps/plugins/docgen/htmldoc.py:567
 #, python-format
@@ -21182,7 +21176,7 @@ msgid ""
 "United States of America/U.S.A"
 msgstr ""
 "т.е.\n"
-"Соединённые Штаты Америки/С.Ш.А."
+"Соединённые Штаты Америки/США"
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -23268,7 +23262,6 @@ msgid ""
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
 "Обработка метаданных изображения недоступна.\n"
-"\n"
 "Инструкция по сборке этого модуля доступна на "
 "%(gramps_wiki_build_gexiv2_url)s"
 
@@ -31713,8 +31706,8 @@ msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
-"Этот отчёт показывает материнскую линию родства. Она так же называется мтДНК-"
-"линией;  все люди по этой линии имеют одинаковую митохондриальную ДНК."
+"Этот отчёт показывает материнскую линию родства, которая так же называется "
+"мтДНК-линией. Все люди по этой линии имеют одинаковую митохондриальную ДНК."
 
 #: ../gramps/plugins/quickview/lineage.py:93
 msgid "Name Mother"
