@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-22 11:38+0000\n"
+"PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -13677,7 +13677,7 @@ msgstr "אחרי"
 
 #: ../gramps/gui/editors/editdate.py:79
 msgid "About"
-msgstr "אודות"
+msgstr "בסביבות"
 
 #: ../gramps/gui/editors/editdate.py:80
 msgid "Range"
