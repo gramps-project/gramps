@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2013-10-25 11:25+0100\n"
-"Last-Translator: \n"
-"Language-Team: Breton <br@li.org>\n"
+"PO-Revision-Date: 2021-05-22 18:06+0000\n"
+"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"Language-Team: Breton <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/br/>\n"
 "Language: br\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -25745,7 +25747,7 @@ msgstr "ASCII"
 
 #: ../gramps/plugins/importer/importgedcom.glade:24
 msgid "UTF8"
-msgstr ""
+msgstr "UTF8"
 
 #: ../gramps/plugins/importer/importgedcom.glade:30
 msgid "Gramps - GEDCOM Encoding"
@@ -27103,7 +27105,7 @@ msgstr "Mentrezh bremanel"
 #: ../gramps/plugins/lib/libmetadata.py:66
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr ""
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../gramps/plugins/lib/libmetadata.py:69
 #, fuzzy, python-format
@@ -37583,7 +37585,7 @@ msgstr "Addiskou_ez an hini diwezhañ"
 
 #: ../gramps/plugins/webreport/download.py:129
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #. We have several files to download
 #. but all file names are empty
