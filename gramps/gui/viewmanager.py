@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -86,7 +88,7 @@ from gramps.gen.errors import WindowActiveError
 from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
 from .widgets import Statusbar
 from .undohistory import UndoHistory
-from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.file import media_path_full, get_avail_disk_size
 from .dbloader import DbLoader
 from .display import display_help, display_url
 from .configure import GrampsPreferences
@@ -594,11 +596,57 @@ class ViewManager(CLIManager):
 
         # backup data
         if config.get('database.backup-on-exit'):
-            self.autobackup()
+# ******************
+            if not self.autobackup():
+                if QuestionDialog2(_("Backup on quit fail"),
+                    _("Your backup disk have not place for backup file.\n"
+                      "Do you want resume quit without backup?"),
+                    _("Abort of Quit"), _("Resume quit without backup"), parent=self.uistate.window).run():
+
+# TODO Restore connections to window
+# From code above
+        # the following prevents premature closing of main window if user
+        # hits 'x' multiple times.
+#                    self.window.connect('delete-event', self.no_del_event)
+        # the following prevents reentering quit if user hits 'x' again
+#                    self.window.disconnect(self.del_event)
+        # mark interface insenstitive to prevent unexpected events
+                    self.uistate.set_sensitive(True)
+# TODO
+# For Abort of Quit: restore saved values for restore databese_changed
+                    self.prev_has_changed = self.prev_has_changed1
+                    self.dbstate.db.has_changed = self.dbstate.db.has_changed1
+                    return
+# ******************
 
         # close the database
         if self.dbstate.is_open():
-            self.dbstate.db.close(user=self.user)
+#****************
+# Need disk space:
+# - for Linux 20 MB,
+# - for sqllite and BsdDb - ? (PostgresDB?),
+# - for backup - ('last_backup_file_size' + 5%) or (8% from sqllite and BsdDb file), PostgresDB?
+            diskspace = 20
+            if(get_avail_disk_size(config.get('database.path')) < diskspace):
+                self.uistate.push_message(self.dbstate, _("Disk space < {num} MB. Quit impossible.").format(num=diskspace))
+                WarningDialog(_("Low disk space:"),
+                    _('You have less {num} MB on system disk:\n').format(num=diskspace) +
+                      config.get('database.path') + '\n' +
+                    _('Gramps need more space for close database before quit.\n') +
+                    _('Clear your disk now and repeat quit again.'), parent=self.uistate.window)
+# TODO Restore connections to window
+# From code above
+        # the following prevents premature closing of main window if user
+        # hits 'x' multiple times.
+#                    self.window.connect('delete-event', self.no_del_event)
+        # the following prevents reentering quit if user hits 'x' again
+#                    self.window.disconnect(self.del_event)
+        # mark interface insenstitive to prevent unexpected events
+                self.uistate.set_sensitive(True)
+                return
+            else:
+# ***********
+                self.dbstate.db.close(user=self.user)
 
         # have each page save anything, if they need to:
         self.__delete_pages()
@@ -611,7 +659,30 @@ class ViewManager(CLIManager):
         (horiz_position, vert_position) = self.window.get_position()
         config.set('interface.main-window-horiz-position', horiz_position)
         config.set('interface.main-window-vert-position', vert_position)
-        config.save()
+#****************
+# Need disk space for config file - 5 kB
+        diskspace = 1
+        if(get_avail_disk_size(config.get('database.path')) < diskspace):
+            self.uistate.push_message(self.dbstate, _("Disk space < {num} MB. Quit impossible.").format(num=diskspace))
+            WarningDialog(_("Low disk space:"),
+                _('You have less {num} MB on system disk:\n').format(num=diskspace) +
+                  config.get('database.path') + '\n' +
+                _('Gramps need more space for save config file before quit.\n') +
+                _('Clear your disk now and repeat quit again.'), parent=self.uistate.window)
+# TODO Restore connections to window
+# From code above
+        # the following prevents premature closing of main window if user
+        # hits 'x' multiple times.
+#            self.window.connect('delete-event', self.no_del_event)
+        # the following prevents reentering quit if user hits 'x' again
+#            self.window.disconnect(self.del_event)
+        # mark interface insenstitive to prevent unexpected events
+            self.uistate.set_sensitive(True)
+            return
+        else:
+# ***********
+            config.save()
+
         self.app.quit()
 
     def abort(self, *obj):
@@ -1203,13 +1274,19 @@ class ViewManager(CLIManager):
         elif interval == 5:
             seconds = 86400.  # (24 hours) 1440min *60
         now = time.time()
+
+# TODO
+# For Abort of Quit: save values for restore databese_changed
+        self.prev_has_changed1 = self.prev_has_changed
+        self.dbstate.db.has_changed1 = self.dbstate.db.has_changed
+
         if interval and now > self.autobackup_time + seconds + 300.:
             # we have been delayed by more than 5 minutes
             # so we have probably been awakened from sleep/hibernate
             # we should delay a bit more to let the system settle
             self.delay_timer = GLib.timeout_add_seconds(300, self.autobackup)
             self.autobackup_time = now
-            return
+            return True
         self.autobackup_time = now
         # Only backup if more commits since last time
         if(self.dbstate.db.is_open() and
@@ -1217,14 +1294,44 @@ class ViewManager(CLIManager):
             self.prev_has_changed = self.dbstate.db.has_changed
             self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
-            self.uistate.push_message(self.dbstate, _("Autobackup..."))
+            self.uistate.push_message(self.dbstate, _("Autobackup begin..."))
+# TODO
+# This 'try - exept' not work if disk full. Gramps freeze.
             try:
-                self.__backup()
+                backup_result = self.__backup()
+
             except DbWriteFailure as msg:
                 self.uistate.push_message(self.dbstate,
                                           _("Error saving backup data"))
+            if backup_result > 0:
+                WarningDialog(_("Low backup disk space"),
+                    _('You have not space on backup disk:\n') +
+                    config.get('database.backup-path') + '\n' +
+                    _('Gramps need least {num} MB for save backup file.\n').format(num=backup_result) +
+                    _('What you can do now:\n') +
+                    _('1. Clear your backup disk,\n') +
+                    _('2. Check backup disk space,\n') +
+                    _('3. Press button below.\n') +
+                    _('Gramps try create backup file again.'), parent=self.uistate.window)
+                backup_result = self.__backup()
+
             self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
+
+            if backup_result > 0:
+                self.uistate.push_message(self.dbstate, _("Autobackup fail."))
+# TODO
+# Print this to log file
+                print('{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now()) + ' ' + _("Autobackup fail."))
+                return False
+            else:
+                self.uistate.push_message(self.dbstate, _("Autobackup successfully."))
+# TODO
+# Print this to log file
+                print('{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now()) + ' ' + _("Autobackup successfully."))
+                return True
+        else:
+            return True
 
     def __backup(self):
         """
@@ -1239,7 +1346,62 @@ class ViewManager(CLIManager):
         backup_name = "%s-%s.gramps" % (self.dbstate.db.get_dbname(),
                                         timestamp)
         filename = os.path.join(backup_path, backup_name)
-        writer.write(filename)
+
+#**********
+# TODO
+# Need disk space - for sqllite and BsdDb - ? MB, for backup - ('last_backup_file_size' + 5%) or (8% from sqllite and BsdDb file)
+# Backup for PostgresDB? I don't know aboit it size. It's must checked separelly.
+
+# We search last time backup file.
+        bpath = sorted(os.listdir(backup_path), reverse=True)
+        blastfile = ""
+        for bfile in bpath:
+            if(os.path.isfile(os.path.join(backup_path, bfile)) and
+               bfile.startswith(self.dbstate.db.get_dbname()) and bfile.endswith('.gramps')):
+                blastfile = bfile
+                break
+
+        # Do we have last backup file for active database?
+        if not blastfile:
+# TODO
+# For me: bfile_size = active_database_size/100*8 (8% from active database Sqlite file).
+# In this case we not need use last_backup_file_size. It's can be bettter solve.
+# It's very important for big database (after create new and import data). We alllime use real size.
+            bfile_size = 5
+#            bfile_size = os.stat(active_database).st_size/(1024*1024)
+#            bfile_size = round(bfile_size/100*8)
+        else:
+            bfile_size = os.path.getsize(os.path.join(backup_path, blastfile))/(1024*1024)
+
+        bfile_new_size = round(bfile_size/100*105)
+        if bfile_new_size == 0:       # If last backup file present but file size less 1 MB
+            bfile_new_size = 1
+
+        diskspace = bfile_new_size
+        if(get_avail_disk_size(backup_path) < diskspace):
+            self.uistate.push_message(self.dbstate, _("Low backup disk space (<{num} kB). Backup impossible.").format(num=diskspace))
+            return bfile_new_size
+        else:
+#***********
+# TODO Problem:
+# 1. Gramps - begin writer.write(filename),
+# 2. Thunar - copy big file,
+# 3. My backup disk - full, Thunar - say me 'errror, disk full', Gramps me - 'nothing, silent, freeze'.
+# I add 'try - except':
+            try:
+                writer.write(filename)
+                return 0
+
+            except:
+                WarningDialog(_("Low backup disk space"),
+                    _('You have not space on backup disk:\n') +
+                       config.get('database.backup-path') + '\n' +
+                    _('Gramps need least {num} MB for save backup file.\n').format(num=bfile_new_size) +
+                    _('Gramps break backup procedure.'), parent=self.uistate.window)
+# TODO
+# If backup create not full backup file - this file must be deleted as corrupted:
+                os.remove(filename)
+                return bfile_new_size
 
     def reports_clicked(self, *obj):
         """
@@ -1674,7 +1836,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
 
     def __init__(self, dbstate, uistate, user):
         """
-        Make a quick XML back with or without media.
+        Make a quick XML backup with or without media.
         """
         self.dbstate = dbstate
         self.user = user
@@ -1773,7 +1935,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             filename = os.path.join(path_entry.get_text(), basefile)
             if os.path.exists(filename):
                 question = QuestionDialog2(
-                    _("Backup file already exists! Overwrite?"),
+                    _("XML Backup file already exists! Overwrite?"),
                     _("The file '%s' exists.") % filename,
                     _("Proceed and overwrite"),
                     _("Cancel the backup"),
@@ -1791,7 +1953,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             self.uistate.set_busy_cursor(True)
             self.uistate.pulse_progressbar(0)
             self.uistate.progress.show()
-            self.uistate.push_message(self.dbstate, _("Making backup..."))
+            self.uistate.push_message(self.dbstate, _("Making XML backup..."))
             if include.get_active():
                 from gramps.plugins.export.exportpkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename, self.user)
@@ -1800,14 +1962,26 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
                 from gramps.plugins.export.exportxml import XmlWriter
                 writer = XmlWriter(self.dbstate.db, self.user,
                                    strip_photos=0, compress=1)
-                writer.write(filename)
+# TODO
+# I add 'try - except'?
+                xml_backup_string = _("XML backup saved to '%s'") % filename
+                try:
+                    writer.write(filename)
+
+                except:
+                    xml_backup_string = _("XML backup aborted")
+                    WarningDialog(_("Low XML backup disk space"),
+                        _('You have not space on XML backup disk:\n') +
+                           config.get('paths.quick-backup-directory') + '\n' +
+                        _('Gramps break XML backup procedure.'), parent=self.uistate.window)
+                    os.remove(filename)
+
             self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
-            self.uistate.push_message(self.dbstate,
-                                      _("Backup saved to '%s'") % filename)
+            self.uistate.push_message(self.dbstate, xml_backup_string)
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
-            self.uistate.push_message(self.dbstate, _("Backup aborted"))
+            self.uistate.push_message(self.dbstate, _("XML backup aborted"))
         if dbackup != Gtk.ResponseType.DELETE_EVENT:
             self.close()
 
@@ -1848,3 +2022,4 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             file_entry.set_text("%s.%s" % (base, extension))
         else:
             file_entry.set_text("%s.%s" % (filename, extension))
+

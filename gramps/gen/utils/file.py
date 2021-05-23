@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -85,6 +87,27 @@ def get_new_filename(ext, folder='~/'):
                                             (folder, os.path.sep, ix, ext))):
         ix = ix + 1
     return os.path.expanduser(_NEW_NAME_PATTERN % (folder, os.path.sep, ix, ext))
+
+# TODO check this function, add 'try - exeption', add check "dbfolder are present?"
+def get_avail_disk_size(path_to_folder):
+    """
+    Check available disk space in MB
+    """
+    if win():                               # for windows:
+    #     import psutil
+    #     DISK = get disk from 'dbfolder'
+    #     freedisk = psutil.disk_usage(DISK).free/(1024*1024)
+    #     print(f"{freedisk:.4} Mb free on disk {DISK}")
+        pass
+    elif mac():                             # for mac:
+        pass
+    else:                                   # for linux:
+        fd = os.open(path_to_folder, os.O_RDONLY)
+        stats = os.fstatvfs(fd)
+        os.close(fd)
+        avail_disk = round(stats[1] * stats[4]/(1024*1024))
+
+    return avail_disk
 
 def get_empty_tempdir(dirname):
     """ Return path to TEMP_DIR/dirname, a guaranteed empty directory
