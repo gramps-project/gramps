@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
-"Last-Translator: Ivan Vantu5z <vantu5z@mail.ru>\n"
+"PO-Revision-Date: 2021-05-23 17:22+0000\n"
+"Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
 "Language: ru\n"
@@ -36971,7 +36971,7 @@ msgstr "Список лиц"
 
 #: ../gramps/plugins/view/persontreeview.py:66
 msgid "People Tree View"
-msgstr "Древо фамилий"
+msgstr "Древо людей"
 
 #: ../gramps/plugins/view/placelistview.py:51
 msgid "Place View"
