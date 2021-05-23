@@ -38,7 +38,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
 "PO-Revision-Date: 2021-05-23 17:22+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -36152,13 +36152,11 @@ msgstr[1] "{quantity} noms de lieu alternatif ont été réparés\n"
 
 # trunk
 #: ../gramps/plugins/tool/check.py:2571
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] ""
-"{quantity} évènement a été référencé, mais non trouvé\n"
-"{quantity} lieux ont été référencés, mais non trouvés\n"
-msgstr[1] ""
+msgstr[0] "{quantity} personne a été référencé, mais non trouvé\n"
+msgstr[1] "{quantity} personnes ont été référencés, mais non trouvés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -36226,13 +36224,11 @@ msgstr[1] "{quantity} supports media manquants ont été supprimés\n"
 # trunk
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2643
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] ""
-"{quantity} évènement a été référencé, mais non trouvé\n"
-"{quantity} évènements ont été référencés, mais non trouvés\n"
-msgstr[1] ""
+msgstr[0] "{quantity} évènement a été référencé, mais non trouvé\n"
+msgstr[1] "{quantity} évènements ont été référencés, mais non trouvés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
