@@ -66,9 +66,9 @@ _LOG = logging.getLogger(DBLOGNAME)
 # constants
 #
 #-------------------------------------------------------------------------
-DEFAULT_TITLE = _("Family Tree")
 NAME_FILE = "name.txt"
 META_NAME = "meta_data.db"
+DEFAULT_TITLE = _("Family Tree")
 UNAVAILABLE = _('Unavailable')
 
 #-------------------------------------------------------------------------

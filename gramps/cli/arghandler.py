@@ -432,9 +432,9 @@ class ArgHandler:
             summary_list = self.dbman.family_tree_summary(self.database_names)
             if not summary_list:
                 return
+            line_list = [_("Family Tree")]
             # We have to construct the line elements together, to avoid
             # insertion of blank spaces when print on the same line is used
-            line_list = [_("Family Tree")]
             for key in sorted(summary_list[0]):
                 if key != _("Family Tree"):
                     line_list += [key]
