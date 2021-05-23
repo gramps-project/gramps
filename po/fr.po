@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-23 13:25+0000\n"
+"PO-Revision-Date: 2021-05-23 13:29+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -75,7 +75,7 @@ msgid ""
 msgstr ""
 "Il vous permet d'enregistrer de nombreux détails sur la vie d'un individu "
 "ainsi que les relations complexes entre différentes personnes, lieux et "
-"événements."
+"évènements."
 
 #: ../data/gramps.appdata.xml.in:9
 msgid ""
@@ -331,7 +331,7 @@ msgstr ""
 "le format « entre 4/01/2000 et 20/03/2003 ». Vous pouvez également indiquer "
 "le niveau de confiance dans la date et toujours choisir entre 7 calendriers "
 "différents. Essayez le bouton à côté du champ date dans l'éditeur "
-"d'événements."
+"d'évènements."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -478,7 +478,7 @@ msgstr ""
 "<b>Les outils Gramps</b><br/>Gramps possède des outils puissants. Ils "
 "permettent d'exécuter des opérations comme la recherche d'erreurs et "
 "d'inconstance de la base de données, aussi bien que la recherche et "
-"l'analyse via la comparaison d'événements, de trouver des doublons "
+"l'analyse via la comparaison d'évènements, de trouver des doublons "
 "d'individus, d'utiliser un navigateur de descendants, etc. Ces outils sont "
 "accessibles par le menu « Outils »."
 
@@ -575,9 +575,9 @@ msgid ""
 "the Gramps Manual to learn more."
 msgstr ""
 "<b>Pas sûr(e) d'une date ?</b><br/>Si vous n'êtes pas sûr(e) d'une date ou "
-"d'un événement (naissance ou décès), Gramps vous permet d'entrer une "
-"multitude de dates basées sur une estimation ou un choix. Par exemple, "
-"« vers 1908 » est une entrée valide pour une date de naissance dans Gramps. "
+"d'un évènement (naissance ou décès), Gramps vous permet d'entrer une "
+"multitude de dates basées sur une estimation ou un choix. Par exemple, « "
+"vers 1908 » est une entrée valide pour une date de naissance dans Gramps. "
 "Voir la section Édition des dates du manuel wiki de Gramps pour une "
 "description complète des options de date."
 
@@ -631,7 +631,7 @@ msgid ""
 "buttons."
 msgstr ""
 "<b>Navigation Précédent et Suivant</b><br/>Gramps conserve une liste des "
-"objets actifs tels que les individus et événements. Vous pouvez avancer et "
+"objets actifs tels que les individus et évènements. Vous pouvez avancer et "
 "reculer dans la liste à l'aide de « Aller à &gt; Suivant » et «Aller à &gt; "
 "Précédent »."
 
@@ -806,11 +806,11 @@ msgid ""
 "event types. You can add your own event types by typing in the text field, "
 "they will be added to the available events, but not translated."
 msgstr ""
-"<b>Liste des événements</b><br/>Les événements sont ajoutés en utilisant "
+"<b>Liste des évènements</b><br/>Les évènements sont ajoutés en utilisant "
 "l'éditeur disponible dans l'« Individus &gt; Édition de l'individu &gt; "
-"Événements ». Il existe une longue liste de types d'événement. Vous pouvez "
-"ajouter vos propres types d'événements en les saisissant dans le champ "
-"textuel, ils seront ajoutés à la liste des événements disponibles, mais non "
+"Évènements ». Il existe une longue liste de types d'évènement. Vous pouvez "
+"ajouter vos propres types d'évènements en les saisissant dans le champ "
+"textuel, ils seront ajoutés à la liste des évènements disponibles, mais non "
 "traduits."
 
 #: ../data/tips.xml:74
@@ -1060,7 +1060,7 @@ msgstr ""
 "<b>Le comment et pourquoi de votre généalogie</b><br/>La généalogie ce n'est "
 "pas seulement des dates et des noms. Il s'agit aussi d'individus. Soyez "
 "descriptif. incluez pourquoi les choses se sont passées et comment les "
-"descendants ont pu être façonnés par les événements qu'ils ont traversés. "
+"descendants ont pu être façonnés par les évènements qu'ils ont traversés. "
 "Les anecdotes sont un bon moyen de perpétuer l'histoire familiale."
 
 #: ../data/tips.xml:114
@@ -3541,7 +3541,7 @@ msgstr "Nombre de citations"
 #: ../gramps/plugins/webreport/statistics.py:154
 #: ../gramps/plugins/webreport/statistics.py:204
 msgid "Number of events"
-msgstr "Nombre d'événements"
+msgstr "Nombre d'évènements"
 
 # master
 #: ../gramps/gen/db/generic.py:2421
@@ -3600,7 +3600,7 @@ msgstr ""
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  événements        mis à niveau avec %(n2)6d citations en %(n3)6d "
+"%(n1)6d  évènements        mis à niveau avec %(n2)6d citations en %(n3)6d "
 "secs\n"
 
 # master
@@ -4062,7 +4062,7 @@ msgstr "Filtres citation/source"
 #: ../gramps/gen/filters/rules/person/_iswitness.py:47
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:44
 msgid "Event filters"
-msgstr "Filtres événements"
+msgstr "Filtres évènements"
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:45
 #: ../gramps/gen/filters/rules/_hasldsbase.py:48
@@ -4530,56 +4530,56 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:44
 msgid "Every event"
-msgstr "Tous les événements"
+msgstr "Tous les évènements"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
 msgid "Matches every event in the database"
-msgstr "Correspond à tous les événements de la base"
+msgstr "Correspond à tous les évènements de la base"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
 msgid "Events changed after <date time>"
-msgstr "Événements modifiés après la <date>"
+msgstr "Évènements modifiés après la <date>"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:48
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Correspond aux événements modifiés après une date spécifiée (aaaa-mm-jj "
+"Correspond aux évènements modifiés après une date spécifiée (aaaa-mm-jj "
 "hh:mm:ss) ou sur une période si une seconde date est définie."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:42
 msgid "Events marked private"
-msgstr "Événements marqués comme privés"
+msgstr "Évènements marqués comme privés"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:43
 msgid "Matches events that are indicated as private"
-msgstr "Correspond aux événements marqués comme privés"
+msgstr "Correspond aux évènements marqués comme privés"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
 #: ../gramps/gui/editors/filtereditor.py:107
 #: ../gramps/gui/editors/filtereditor.py:552
 msgid "Event attribute:"
-msgstr "Attribut de l'événement :"
+msgstr "Attribut de l'évènement :"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 msgid "Events with the attribute <attribute>"
-msgstr "Événements avec l'<attribut>"
+msgstr "Évènements avec l'<attribut>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Correspond aux événements avec un attribut de même valeur"
+msgstr "Correspond aux évènements avec un attribut de même valeur"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
-msgstr "Événements avec la <citation>."
+msgstr "Évènements avec la <citation>."
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
 msgid "Matches events with a citation of a particular value"
-msgstr "Correspond aux événements ayant une citation d'une valeur particulière"
+msgstr "Correspond aux évènements ayant une citation d'une valeur particulière"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:47
 #: ../gramps/gen/filters/rules/event/_hastype.py:45
@@ -4587,7 +4587,7 @@ msgstr "Correspond aux événements ayant une citation d'une valeur particulièr
 #: ../gramps/gui/editors/filtereditor.py:104
 #: ../gramps/gui/editors/filtereditor.py:545
 msgid "Event type:"
-msgstr "Type d'événement :"
+msgstr "Type d'évènement :"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:47
 #: ../gramps/gen/filters/rules/family/_hasevent.py:49
@@ -4614,12 +4614,12 @@ msgstr "Description :"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:49
 msgid "Events with <data>"
-msgstr "Événement avec la <donnée>"
+msgstr "Évènement avec la <donnée>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasdata.py:50
 msgid "Matches events with data of a particular value"
-msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière"
+msgstr "Correspond aux évènements ayant un marqueur d'une valeur particulière"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:38
 #: ../gramps/gui/editors/filtereditor.py:587
@@ -4628,109 +4628,109 @@ msgstr "Jour de la semaine :"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:39
 msgid "Events occurring on a particular day of the week"
-msgstr "Événements lors d'un jour de la semaine"
+msgstr "Évènements lors d'un jour de la semaine"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:40
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Correspond aux événements lors d'un jour de la semaine"
+msgstr "Correspond aux évènements lors d'un jour de la semaine"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
-msgstr "Événements avec un <nombre> d'objets media"
+msgstr "Évènements avec un <nombre> d'objets media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Correspond aux événements ayant un nombre d'article dans la galerie"
+msgstr "Correspond aux évènements ayant un nombre d'article dans la galerie"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:44
 msgid "Event with <Id>"
-msgstr "Événement avec l'<Id>"
+msgstr "Évènement avec l'<Id>"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:45
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Correspond à l'événement avec l'identifiant Gramps spécifié"
+msgstr "Correspond à l'évènement avec l'identifiant Gramps spécifié"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:45
 msgid "Events having <count> notes"
-msgstr "Événements avec un <nombre> de notes"
+msgstr "Évènements avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasnote.py:46
 msgid "Matches events having a certain number of notes"
-msgstr "Correspond aux événements avec un nombre de notes"
+msgstr "Correspond aux évènements avec un nombre de notes"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:42
 msgid "Events having notes containing <substring>"
-msgstr "Événements dont les notes contiennent la <sous-chaîne>"
+msgstr "Évènements dont les notes contiennent la <sous-chaîne>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:43
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Correspond aux événements dont les notes contiennent une sous-chaîne"
+msgstr "Correspond aux évènements dont les notes contiennent une sous-chaîne"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:41
 msgid "Events having notes containing <text>"
-msgstr "Événements dont une note contient le <texte>"
+msgstr "Évènements dont une note contient le <texte>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Correspond aux événements dont les notes contiennent du texte avec "
+"Correspond aux évènements dont les notes contiennent du texte avec "
 "l'expression rationnelle"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:42
 msgid "Events with a reference count of <count>"
-msgstr "Événements avec un <nombre> de références"
+msgstr "Évènements avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:43
 msgid "Matches events with a certain reference count"
-msgstr "Correspond aux événements ayant un nombre de références"
+msgstr "Correspond aux évènements ayant un nombre de références"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:44
 msgid "Events with <count> sources"
-msgstr "Événements avec un <nombre> de sources"
+msgstr "Évènements avec un <nombre> de sources"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:45
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Correspond aux événements ayant un nombre de sources connectées"
+msgstr "Correspond aux évènements ayant un nombre de sources connectées"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
 msgid "Events with the <tag>"
-msgstr "Événements avec l'<étiquette>"
+msgstr "Évènements avec l'<étiquette>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
 msgid "Matches events with the particular tag"
-msgstr "Correspond aux événements avec une étiquette particulière"
+msgstr "Correspond aux évènements avec une étiquette particulière"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:46
 msgid "Events with the particular type"
-msgstr "Événement avec un type particulier"
+msgstr "Évènement avec un type particulier"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_hastype.py:47
 msgid "Matches events with the particular type "
-msgstr "Correspond à l'événement avec un type précis "
+msgstr "Correspond à l'évènement avec un type précis "
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:44
 msgid "Events matching the <filter>"
-msgstr "Événements correspondant au <filtre>"
+msgstr "Évènements correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:45
 msgid "Matches events matched by the specified filter name"
-msgstr "Correspond aux événements trouvés par le filtre spécifié"
+msgstr "Correspond aux évènements trouvés par le filtre spécifié"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:574
 msgid "Include Family events:"
-msgstr "Inclure les événements familiaux :"
+msgstr "Inclure les évènements familiaux :"
 
 #. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
@@ -4741,13 +4741,13 @@ msgstr "Nom du filtre d'individu :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:51
 msgid "Events of persons matching the <person filter>"
-msgstr "Événements des individus correspondant au <filtre individu>"
+msgstr "Évènements des individus correspondant au <filtre individu>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
-"Correspond aux événements de l'individu correspondant au filtre sur "
+"Correspond aux évènements de l'individu correspondant au filtre sur "
 "l'individu"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:49
@@ -4758,7 +4758,7 @@ msgstr "Nom du filtre de lieu :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:50
 msgid "Events of places matching the <place filter>"
-msgstr "Événements correspondant au <filtre lieu>"
+msgstr "Évènements correspondant au <filtre lieu>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
@@ -4766,41 +4766,41 @@ msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Correspond aux événements dont les lieux correspondent au filtre sur le lieu."
+"Correspond aux évènements dont les lieux correspondent au filtre sur le lieu."
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:45
 msgid "Events with at least one direct source >= <confidence level>"
 msgstr ""
-"Événements avec au moins une source directe supérieure ou égale à <niveau de "
+"Évènements avec au moins une source directe supérieure ou égale à <niveau de "
 "confiance>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:46
 msgid "Matches events with at least one direct source with confidence level(s)"
 msgstr ""
-"Correspond aux événements ayant au moins une source directe avec des niveaux "
+"Correspond aux évènements ayant au moins une source directe avec des niveaux "
 "de confiance"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:49
 msgid "Events with source matching the <source filter>"
-msgstr "Événements des sources correspondant au <filtre source>"
+msgstr "Évènements des sources correspondant au <filtre source>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
 msgid "Matches events with sources that match the specified source filter name"
 msgstr ""
-"Correspond aux événements dont les sources correspondent au filtre sur la "
+"Correspond aux évènements dont les sources correspondent au filtre sur la "
 "source"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:47
 msgid "Events with Id containing <text>"
-msgstr "Événements dont l'identifiant contient le <texte>"
+msgstr "Évènements dont l'identifiant contient le <texte>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
-"Correspond aux événements dont l'identifiant Gramps contient une expression "
+"Correspond aux évènements dont l'identifiant Gramps contient une expression "
 "rationnelle"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
@@ -4920,7 +4920,7 @@ msgstr "Correspond aux familles ayant une citation de même valeur"
 #: ../gramps/gui/editors/filtereditor.py:103
 #: ../gramps/gui/editors/filtereditor.py:546
 msgid "Family event:"
-msgstr "Événement familial :"
+msgstr "Évènement familial :"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:51
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:83
@@ -4932,12 +4932,12 @@ msgstr "Acteurs principaux"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:52
 msgid "Families with the <event>"
-msgstr "Familles avec l'<événement>"
+msgstr "Familles avec l'<évènement>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/family/_hasevent.py:53
 msgid "Matches families with an event of a particular value"
-msgstr "Correspond aux familles ayant un événement de même valeur"
+msgstr "Correspond aux familles ayant un évènement de même valeur"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:45
 msgid "Families with <count> media"
@@ -4958,11 +4958,11 @@ msgstr "Correspond aux familles avec l'identifiant Gramps spécifié"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
-msgstr "Familles avec un <nombre> d'événements mormons"
+msgstr "Familles avec un <nombre> d'évènements mormons"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:49
 msgid "Matches families with a certain number of LDS events"
-msgstr "Correspond aux familles ayant un nombre d'événements mormons"
+msgstr "Correspond aux familles ayant un nombre d'évènements mormons"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:45
 msgid "Families having <count> notes"
@@ -5606,13 +5606,13 @@ msgstr "Correspond à tous les individus de la base"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:42
 msgid "Families with incomplete events"
-msgstr "Familles avec des événements incomplets"
+msgstr "Familles avec des évènements incomplets"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:43
 msgid "Matches people with missing date or place in an event of the family"
 msgstr ""
-"Correspond aux individus ayant une date ou lieu manquant dans un événement "
+"Correspond aux individus ayant une date ou lieu manquant dans un évènement "
 "de famille"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:49
@@ -5733,7 +5733,7 @@ msgstr "Correspond aux individus ayant une donnée de décès particulière"
 #: ../gramps/gui/editors/filtereditor.py:102
 #: ../gramps/gui/editors/filtereditor.py:545
 msgid "Personal event:"
-msgstr "Événement personnel :"
+msgstr "Évènement personnel :"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:52
 msgid "Main Participants:"
@@ -5746,12 +5746,12 @@ msgstr "Rôle principal :"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:54
 msgid "People with the personal <event>"
-msgstr "Individus avec l'<événement> individuel"
+msgstr "Individus avec l'<évènement> individuel"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
 msgid "Matches people with a personal event of a particular value"
-msgstr "Correspond aux individus ayant le même événement individuel"
+msgstr "Correspond aux individus ayant le même évènement individuel"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:45
 msgid "People with the family <attribute>"
@@ -5765,12 +5765,12 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
 msgid "People with the family <event>"
-msgstr "Individus avec l'<événement> familial"
+msgstr "Individus avec l'<évènement> familial"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:53
 msgid "Matches people with a family event of a particular value"
-msgstr "Correspond aux individus ayant le même événement familial"
+msgstr "Correspond aux individus ayant le même évènement familial"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:42
 msgid "People with <count> media"
@@ -5793,12 +5793,12 @@ msgstr "Correspond aux individus ayant l'identifiant Gramps spécifié"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "Individus avec un <nombre> d'événements mormons"
+msgstr "Individus avec un <nombre> d'évènements mormons"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
-msgstr "Correspond aux individus ayant un nombre d'événements mormons"
+msgstr "Correspond aux individus ayant un nombre d'évènements mormons"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:46
 msgid "Given name:"
@@ -6326,23 +6326,23 @@ msgstr "Témoins"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_iswitness.py:46
 msgid "Matches people who are witnesses in any event"
-msgstr "Correspond aux témoins d'un événement"
+msgstr "Correspond aux témoins d'un évènement"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:51
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:49
 #: ../gramps/gui/editors/filtereditor.py:535
 msgid "Event filter name:"
-msgstr "Nom du filtre d'événement :"
+msgstr "Nom du filtre d'évènement :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr "Événements correspondant au <filtre>"
+msgstr "Évènements correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "Correspond aux individus dont les événements sont issus d'un filtrage"
+msgstr "Correspond aux individus dont les évènements sont issus d'un filtrage"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:44
@@ -6435,12 +6435,12 @@ msgstr "Correspond aux individus notés comme publics"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:42
 msgid "People with incomplete events"
-msgstr "Individus avec des événements incomplets"
+msgstr "Individus avec des évènements incomplets"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:43
 msgid "Matches people with missing date or place in an event"
-msgstr "Correspond aux individus sans date ou lieu dans un événement"
+msgstr "Correspond aux individus sans date ou lieu dans un évènement"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:44
 msgid "On date:"
@@ -6764,7 +6764,7 @@ msgstr "Correspond aux lieux qui font partie d'une hiérarchie particulière"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
-msgstr "Lieux avec des événements correspondant au <filtre événement>"
+msgstr "Lieux avec des évènements correspondant au <filtre évènement>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
@@ -6772,7 +6772,7 @@ msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
-"Correspond aux lieux dont les événements correspondent au filtre événement "
+"Correspond aux lieux dont les évènements correspondent au filtre évènement "
 "spécifié"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -7867,7 +7867,7 @@ msgstr "Calendrier"
 
 #: ../gramps/gen/lib/date.py:712
 msgid "Modifier"
-msgstr "Mode"
+msgstr "Modificateur"
 
 # trunk
 #: ../gramps/gen/lib/date.py:714
@@ -7964,7 +7964,7 @@ msgstr "texte seulement"
 #: ../gramps/plugins/tool/reorderids.glade:787
 #: ../gramps/plugins/webreport/basepage.py:776
 msgid "Event"
-msgstr "Événement "
+msgstr "Évènement"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
@@ -8012,7 +8012,7 @@ msgstr "Lieu "
 # master
 #: ../gramps/gen/lib/eventref.py:95
 msgid "Event reference"
-msgstr "Référence de l'événement"
+msgstr "Référence de l'évènement"
 
 #: ../gramps/gen/lib/eventref.py:106 ../gramps/gen/lib/family.py:171
 #: ../gramps/gen/lib/media.py:152 ../gramps/gen/lib/mediaref.py:100
@@ -8069,7 +8069,7 @@ msgstr "Déclarant"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
-msgstr "Événements de vie"
+msgstr "Évènements de vie"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
@@ -8641,7 +8641,7 @@ msgstr "Enfants "
 #: ../gramps/plugins/webreport/person.py:1756
 #: ../gramps/plugins/webreport/updates.py:112
 msgid "Events"
-msgstr "Événements"
+msgstr "Évènements"
 
 # master
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
@@ -9224,7 +9224,7 @@ msgstr "Note sur l'association"
 
 #: ../gramps/gen/lib/notetype.py:92
 msgid "LDS Note"
-msgstr "Note sur l'événement mormon"
+msgstr "Note sur l'évènement mormon"
 
 #: ../gramps/gen/lib/notetype.py:93
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:127
@@ -9233,11 +9233,11 @@ msgstr "Note sur la famille"
 
 #: ../gramps/gen/lib/notetype.py:94
 msgid "Event Note"
-msgstr "Note sur l'événement"
+msgstr "Note sur l'évènement"
 
 #: ../gramps/gen/lib/notetype.py:95
 msgid "Event Reference Note"
-msgstr "Note sur la référence de l'événement"
+msgstr "Note sur la référence de l'évènement"
 
 #: ../gramps/gen/lib/notetype.py:96
 msgid "Source Note"
@@ -9350,7 +9350,7 @@ msgstr "Index de référence de naissance"
 # master
 #: ../gramps/gen/lib/person.py:195
 msgid "Event references"
-msgstr "Références de l'événement"
+msgstr "Références de l'évènement"
 
 #: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:293
 #: ../gramps/plugins/graph/gvhourglass.py:434
@@ -9867,7 +9867,7 @@ msgstr "Fusion de la citation"
 
 #: ../gramps/gen/merge/mergeeventquery.py:59
 msgid "Merge Event Objects"
-msgstr "Fusion des objets événements"
+msgstr "Fusion des objets évènements"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:90
 msgid "A parent should be a father or mother."
@@ -11313,11 +11313,11 @@ msgstr "date de décès d'un frère ou d'une sœur"
 
 #: ../gramps/gen/utils/alive.py:209
 msgid "sibling birth-related date"
-msgstr "date d'un événement lié à la naissance d'un frère ou d'une sœur"
+msgstr "date d'un évènement lié à la naissance d'un frère ou d'une sœur"
 
 #: ../gramps/gen/utils/alive.py:220
 msgid "sibling death-related date"
-msgstr "date d'un événement lié au décès d'un frère ou d'une sœur"
+msgstr "date d'un évènement lié au décès d'un frère ou d'une sœur"
 
 #: ../gramps/gen/utils/alive.py:235 ../gramps/gen/utils/alive.py:246
 msgid "a spouse's birth-related date, "
@@ -11329,7 +11329,7 @@ msgstr "date liée au décès du conjoint, "
 
 #: ../gramps/gen/utils/alive.py:268
 msgid "event with spouse"
-msgstr "événement avec le conjoint"
+msgstr "évènement avec le conjoint"
 
 #: ../gramps/gen/utils/alive.py:295
 msgid "descendant birth date"
@@ -11341,11 +11341,11 @@ msgstr "date de décès d'un descendant"
 
 #: ../gramps/gen/utils/alive.py:320
 msgid "descendant birth-related date"
-msgstr "date d'un événement lié à la naissance d'un descendant"
+msgstr "date d'un évènement lié à la naissance d'un descendant"
 
 #: ../gramps/gen/utils/alive.py:328
 msgid "descendant death-related date"
-msgstr "date d'un événement lié au décès d'un descendant"
+msgstr "date d'un évènement lié au décès d'un descendant"
 
 #: ../gramps/gen/utils/alive.py:341
 #, python-format
@@ -11362,11 +11362,11 @@ msgstr "date de décès d'un ascendant"
 
 #: ../gramps/gen/utils/alive.py:391 ../gramps/gen/utils/alive.py:437
 msgid "ancestor birth-related date"
-msgstr "date d'un événement lié à la naissance d'un ascendant"
+msgstr "date d'un évènement lié à la naissance d'un ascendant"
 
 #: ../gramps/gen/utils/alive.py:399 ../gramps/gen/utils/alive.py:445
 msgid "ancestor death-related date"
-msgstr "date d'un événement lié au décès d'un ascendant"
+msgstr "date d'un évènement lié au décès d'un ascendant"
 
 #: ../gramps/gen/utils/alive.py:460
 #, python-format
@@ -11604,7 +11604,7 @@ msgstr "le lieu"
 
 #: ../gramps/gen/utils/grampslocale.py:902
 msgid "the event"
-msgstr "l'événement"
+msgstr "l'évènement"
 
 #: ../gramps/gen/utils/grampslocale.py:904
 msgid "the repository"
@@ -12161,7 +12161,7 @@ msgstr "Utiliser_le_presse-papier"
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
 msgid "Family Event"
-msgstr "Événement familial"
+msgstr "Évènement familial"
 
 #: ../gramps/gui/clipboard.py:451
 msgid "Family Attribute"
@@ -12179,7 +12179,7 @@ msgstr "Volume/Page : %(pag)s -- %(sourcetext)s"
 
 #: ../gramps/gui/clipboard.py:524
 msgid "Event ref"
-msgstr "Réf. événement"
+msgstr "Réf. évènement"
 
 # trunk
 #: ../gramps/gui/clipboard.py:696
@@ -12839,7 +12839,7 @@ msgid ""
 "Requires Gramps restart to apply."
 msgstr ""
 "Afficher ou masquer le texte des boutons du navigateur (individus, familles, "
-"événements...).\n"
+"évènements...).\n"
 "Nécessite de relancer Gramps."
 
 #: ../gramps/gui/configure.py:1349
@@ -13950,7 +13950,7 @@ msgstr "Aucune famille active"
 
 #: ../gramps/gui/displaystate.py:402
 msgid "No active event"
-msgstr "Aucun événement actif"
+msgstr "Aucun évènement actif"
 
 #: ../gramps/gui/displaystate.py:403
 msgid "No active place"
@@ -14335,29 +14335,29 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Add a new family event"
-msgstr "Ajouter un nouvel événement familial"
+msgstr "Ajouter un nouvel évènement familial"
 
 # enlever la référence à l'événement
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:65
 msgid "Remove the selected family event"
-msgstr "Enlever l'événement familial sélectionné"
+msgstr "Enlever l'évènement familial sélectionné"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:66
 msgid "Edit the selected family event or edit person"
-msgstr "Éditer l'événement familial ou individuel sélectionné"
+msgstr "Éditer l'évènement familial ou individuel sélectionné"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Share an existing event"
-msgstr "Partager un événement existant"
+msgstr "Partager un évènement existant"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
-msgstr "Déplacer l'événement sélectionné vers le haut"
+msgstr "Déplacer l'évènement sélectionné vers le haut"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:69
 msgid "Move the selected event downwards"
-msgstr "Déplacer l'événement sélectionné vers le bas"
+msgstr "Déplacer l'évènement sélectionné vers le bas"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:82
 #: ../gramps/plugins/gramplet/events.py:96
@@ -14377,11 +14377,11 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"Cette référence à l'événement ne peut pas être éditée pour l'instant. Soit "
-"l'événement associé est déjà en train d'être édité ou une autre référence à "
-"l'événement associée au même événement est en train d'être éditée. \n"
+"Cette référence à l'évènement ne peut pas être éditée pour l'instant. Soit "
+"l'évènement associé est déjà en train d'être édité ou une autre référence à "
+"l'évènement associée au même évènement est en train d'être éditée. \n"
 "\n"
-"Pour éditer cette référence à l'événement, vous devez fermer l'événement."
+"Pour éditer cette référence à l'évènement, vous devez fermer l'évènement."
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:281
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:347
@@ -14399,7 +14399,7 @@ msgstr "Impossible de changer d'individu"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:325
 msgid "You cannot change Person events in the Family Editor"
 msgstr ""
-"Vous ne pouvez pas modifier les événements de l'individu dans l'éditeur de "
+"Vous ne pouvez pas modifier les évènements de l'individu dans l'éditeur de "
 "famille"
 
 #: ../gramps/gui/editors/displaytabs/eventrefmodel.py:72
@@ -14602,24 +14602,24 @@ msgstr "<Inconnu>"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:56
 msgid "Add a new personal event"
-msgstr "Ajouter un événement individuel"
+msgstr "Ajouter un évènement individuel"
 
 # enlever la référence à l'événement
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Remove the selected personal event"
-msgstr "Enlever l'événement individuel sélectionné"
+msgstr "Enlever l'évènement individuel sélectionné"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Edit the selected personal event or edit family"
-msgstr "Éditer l'événement individuel ou familial sélectionné"
+msgstr "Éditer l'évènement individuel ou familial sélectionné"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Move the selected event upwards or change family order"
-msgstr "Déplacer l'événement ou la famille sélectionné vers le haut"
+msgstr "Déplacer l'évènement ou la famille sélectionné vers le haut"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:61
 msgid "Move the selected event downwards or change family order"
-msgstr "Déplacer l'événement ou la famille sélectionné vers le bas"
+msgstr "Déplacer l'évènement ou la famille sélectionné vers le bas"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:134
 msgid "Cannot change Family"
@@ -14628,7 +14628,7 @@ msgstr "Impossible de changer de famille"
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:135
 msgid "You cannot change Family events in the Person Editor"
 msgstr ""
-"Les événements familiaux ne peuvent pas être modifiés depuis l'éditeur "
+"Les évènements familiaux ne peuvent pas être modifiés depuis l'éditeur "
 "d'individu"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
@@ -15000,18 +15000,18 @@ msgstr "Corrigez la date ou passez du mode « {cur_mode} » à « {text_mode}
 #: ../gramps/gui/editors/editevent.py:64
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "Nouvel_événement"
+msgstr "Nouvel_évènement"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
 #, python-format
 msgid "Event: %s"
-msgstr "Événement : %s"
+msgstr "Évènement : %s"
 
 #: ../gramps/gui/editors/editevent.py:100
 #: ../gramps/gui/editors/editeventref.py:267
 msgid "New Event"
-msgstr "Nouvel événement"
+msgstr "Nouvel évènement"
 
 #: ../gramps/gui/editors/editevent.py:230
 #: ../gramps/plugins/view/geoclose.py:618
@@ -15024,54 +15024,54 @@ msgstr "Nouvel événement"
 #: ../gramps/plugins/view/geoperson.py:522
 #: ../gramps/plugins/view/geoperson.py:562
 msgid "Edit Event"
-msgstr "Éditer l'événement"
+msgstr "Éditer l'évènement"
 
 #: ../gramps/gui/editors/editevent.py:239
 #: ../gramps/gui/editors/editevent.py:263
 msgid "Cannot save event"
-msgstr "Impossible d'enregistrer l'événement"
+msgstr "Impossible d'enregistrer l'évènement"
 
 #: ../gramps/gui/editors/editevent.py:240
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
-"Aucune donnée n'existe pour cet événement. Veuillez entrer une donnée ou "
+"Aucune donnée n'existe pour cet évènement. Veuillez entrer une donnée ou "
 "annuler l'édition."
 
 #: ../gramps/gui/editors/editevent.py:250
 #: ../gramps/gui/editors/editreference.py:277
 msgid "Cannot save event. ID already exists."
-msgstr "Impossible d'enregistrer l'événement. L'identifiant existe déjà."
+msgstr "Impossible d'enregistrer l'évènement. L'identifiant existe déjà."
 
 #: ../gramps/gui/editors/editevent.py:264
 msgid "The event type cannot be empty"
-msgstr "Cet événement ne peut pas être vide"
+msgstr "Cet évènement ne peut pas être vide"
 
 #: ../gramps/gui/editors/editevent.py:270
 #, python-format
 msgid "Add Event (%s)"
-msgstr "Ajouter l'événement (%s)"
+msgstr "Ajouter l'évènement (%s)"
 
 #: ../gramps/gui/editors/editevent.py:275
 #, python-format
 msgid "Edit Event (%s)"
-msgstr "Éditer l'événement (%s)"
+msgstr "Éditer l'évènement (%s)"
 
 # objet sélectionné
 #: ../gramps/gui/editors/editevent.py:338
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Supprimer l'événement (%s)"
+msgstr "Supprimer l'évènement (%s)"
 
 # manuel wiki
 #: ../gramps/gui/editors/editeventref.py:57
 msgctxt "manual"
 msgid "Event_Reference_Editor_dialog"
-msgstr "Éditeur de la référence à un événement"
+msgstr "Éditeur de la référence à un évènement"
 
 #: ../gramps/gui/editors/editeventref.py:77
 #: ../gramps/gui/editors/editeventref.py:268
 msgid "Event Reference Editor"
-msgstr "Éditeur de la référence à un événement"
+msgstr "Éditeur de la référence à un évènement"
 
 #: ../gramps/gui/editors/editeventref.py:96
 #: ../gramps/gui/editors/editmediaref.py:118
@@ -15083,11 +15083,11 @@ msgstr "_Général"
 
 #: ../gramps/gui/editors/editeventref.py:275
 msgid "Modify Event"
-msgstr "Modifier l'événement"
+msgstr "Modifier l'évènement"
 
 #: ../gramps/gui/editors/editeventref.py:280
 msgid "Add Event"
-msgstr "Ajouter un événement"
+msgstr "Ajouter un évènement"
 
 # manuel wiki
 #: ../gramps/gui/editors/editfamily.py:92
@@ -16100,7 +16100,7 @@ msgstr "Filtres de familles"
 
 #: ../gramps/gui/editors/filtereditor.py:92
 msgid "Event Filters"
-msgstr "Filtres d'événements"
+msgstr "Filtres d'évènements"
 
 #: ../gramps/gui/editors/filtereditor.py:93
 msgid "Place Filters"
@@ -16185,7 +16185,7 @@ msgstr "Utiliser une expression rationnelle"
 # master
 #: ../gramps/gui/editors/filtereditor.py:575
 msgid "Also family events where person is spouse"
-msgstr "Également les événements familiaux dont l'individu est le conjoint"
+msgstr "Également les évènements familiaux dont l'individu est le conjoint"
 
 #: ../gramps/gui/editors/filtereditor.py:577
 msgid "Only include primary participants"
@@ -16963,7 +16963,7 @@ msgid ""
 msgstr ""
 "Adresse postale. \n"
 "\n"
-"Remarque : utilisez l'événement « résidence » pour les adresses "
+"Remarque : utilisez l'évènement « résidence » pour les adresses "
 "généalogiques."
 
 #: ../gramps/gui/glade/editaddress.glade:290
@@ -17045,10 +17045,10 @@ msgid ""
 "standard."
 msgstr ""
 "Le nom d'un attribut que vous souhaitez utiliser. Par exemple : taille (pour "
-"un individu), météo du jour (pour un événement)...\n"
+"un individu), météo du jour (pour un évènement)...\n"
 "Utilisez ceci pour stocker des détails d'informations collectés que vous "
 "souhaitez correctement relier à des sources. Les attributs peuvent être "
-"utilisés pour les individus, les familles, les événements et les media.\n"
+"utilisés pour les individus, les familles, les évènements et les media.\n"
 "\n"
 "Note : plusieurs attributs pré-définis font référence à des valeurs "
 "présentes dans le format GEDCOM."
@@ -17136,7 +17136,7 @@ msgstr ""
 "généalogie orale ou une possibilité par le biais, par exemple, d'une "
 "autobiographie).\n"
 "Haut = preuve secondaire, données officiellement enregistrées parfois après "
-"un événement.\n"
+"un évènement.\n"
 "Très haut = preuve directe et principale ou qui n'entraîne pas de doute."
 
 #: ../gramps/gui/glade/editcitation.glade:226
@@ -17244,7 +17244,7 @@ msgstr "Fermer la fenêtre sans modification"
 #: ../gramps/gui/glade/editevent.glade:96
 #: ../gramps/gui/glade/editeventref.glade:223
 msgid "_Event type:"
-msgstr "_Type d'événement :"
+msgstr "_Type d'évènement :"
 
 #: ../gramps/gui/glade/editevent.glade:134
 msgid "Show Date Editor"
@@ -17261,9 +17261,9 @@ msgid ""
 "Description of the event. Leave empty if you want to autogenerate this with "
 "the tool 'Extract Event Description'."
 msgstr ""
-"Description de l'événement. Laissez le champ vide si vous n'en avez pas "
+"Description de l'évènement. Laissez le champ vide si vous n'en avez pas "
 "besoin ou si vous souhaitez utiliser l'outil « Extraire les descriptions de "
-"l'événement »."
+"l'évènement »."
 
 #: ../gramps/gui/glade/editevent.glade:194
 #: ../gramps/gui/glade/editeventref.glade:270
@@ -17284,7 +17284,7 @@ msgstr "Sélecteur"
 # trunk
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr "Le type d'événement, par exemple : inhumation, baptême..."
+msgstr "Le type d'évènement, par exemple : inhumation, baptême..."
 
 # trunk
 #: ../gramps/gui/glade/editevent.glade:326
@@ -17292,14 +17292,14 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Date de l'événement. Peut être une date exacte, une période (de ... à ..., "
+"Date de l'évènement. Peut être une date exacte, une période (de ... à ..., "
 "entre ... et ...) ou une date approximative (vers ...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
 msgid "A unique ID to identify the event"
 msgstr ""
-"Un identifiant unique pour l'événement ; laisser vide pour que Gramps le "
+"Un identifiant unique pour l'évènement ; laisser vide pour que Gramps le "
 "choisisse."
 
 # trunk
@@ -17319,7 +17319,7 @@ msgid ""
 "in the event itself, for all participants in the event."
 msgstr ""
 "<b>Remarque :</b> tout changement effectué dans les informations partagées "
-"de cet événement sera répercuté dans l'événement lui-même et pour tous ses "
+"de cet évènement sera répercuté dans l'évènement lui-même et pour tous ses "
 "acteurs."
 
 #: ../gramps/gui/glade/editeventref.glade:624
@@ -17394,7 +17394,7 @@ msgid ""
 "details."
 msgstr ""
 "Le type de relation, par exemple « Mariés » ou « Non mariés ». Utilisez les "
-"événements pour plus de détails."
+"évènements pour plus de détails."
 
 #: ../gramps/gui/glade/editfamily.glade:733
 #: ../gramps/gui/glade/editmedia.glade:360
@@ -17927,9 +17927,9 @@ msgid ""
 msgstr ""
 "Description d'une association, par exemple : parrain, ami...\n"
 "\n"
-"Remarque : utilisez plutôt les événements pour les relations liées à un "
-"instant donné ou une occasion. Les événements peuvent être partagés entre "
-"les personnes, chacun ayant un rôle dans cet événement."
+"Remarque : utilisez plutôt les évènements pour les relations liées à un "
+"instant donné ou une occasion. Les évènements peuvent être partagés entre "
+"les personnes, chacun ayant un rôle dans cet évènement."
 
 #: ../gramps/gui/glade/editpersonref.glade:176
 msgid ""
@@ -18406,27 +18406,27 @@ msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
 msgstr ""
-"Sélectionnez l'événement dont les données seront\n"
-"utilisées en priorité pour l'événement fusionné."
+"Sélectionnez l'évènement dont les données seront\n"
+"utilisées en priorité pour l'évènement fusionné."
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergeevent.glade:186
 msgid "Event 1"
-msgstr "Événement 1 "
+msgstr "Évènement 1"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergeevent.glade:200
 msgid "Event 2"
-msgstr "Événement 2 "
+msgstr "Évènement 2"
 
 # trunk
 #: ../gramps/gui/glade/mergeevent.glade:512
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
 msgstr ""
-"Attributs, notes, sources et objets media des deux événements vont être "
+"Attributs, notes, sources et objets media des deux évènements vont être "
 "rassemblés."
 
 # trunk
@@ -18474,7 +18474,7 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Les événements, les données mormons, les objets media, les attributs, les "
+"Les évènements, les données mormons, les objets media, les attributs, les "
 "notes, les sources et étiquettes des deux familles vont être rassemblés."
 
 # trunk
@@ -18567,7 +18567,7 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Les événements, les objets media, les adresses, les attributs, les URL, les "
+"Les évènements, les objets media, les adresses, les attributs, les URL, les "
 "notes, les sources et étiquettes des deux individus vont être rassemblés."
 
 # trunk
@@ -19692,11 +19692,11 @@ msgstr "Fusion des citations"
 #: ../gramps/gui/merge/mergeevent.py:45
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "Fusion_des_événements"
+msgstr "Fusion_des_évènements"
 
 #: ../gramps/gui/merge/mergeevent.py:67
 msgid "Merge Events"
-msgstr "Fusion des événements"
+msgstr "Fusion des évènements"
 
 # manuel wiki
 #: ../gramps/gui/merge/mergefamily.py:46
@@ -20964,13 +20964,13 @@ msgstr "Sélectionner la source ou la citation"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
-msgstr "Sélectionner l'événement"
+msgstr "Sélectionner l'évènement"
 
 # manuel wiki
 #: ../gramps/gui/selectors/selectevent.py:79
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "Sélectionner un événement"
+msgstr "Sélectionner un évènement"
 
 # manuel wiki
 #: ../gramps/gui/selectors/selectfamily.py:76
@@ -23495,7 +23495,7 @@ msgstr "Âge au décès"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:379
 msgid "Event type"
-msgstr "Type d'événement"
+msgstr "Type d'évènement"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:393
 msgid "(Preferred) title missing"
@@ -23540,7 +23540,7 @@ msgstr "Encore en vie"
 #: ../gramps/plugins/drawreport/statisticschart.py:497
 #: ../gramps/plugins/drawreport/statisticschart.py:509
 msgid "Events missing"
-msgstr "Événements manquants"
+msgstr "Évènements manquants"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:517
 #: ../gramps/plugins/drawreport/statisticschart.py:525
@@ -24263,7 +24263,7 @@ msgstr "Volume/Page"
 #: ../gramps/plugins/gramplet/coordinates.py:83
 msgid "Right-click on a row to edit the selected event or the related place."
 msgstr ""
-"Un clic droit sur la ligne pour éditer l'événement sélectionné ou le lieu "
+"Un clic droit sur la ligne pour éditer l'évènement sélectionné ou le lieu "
 "lié."
 
 #: ../gramps/plugins/gramplet/coordinates.py:94
@@ -24282,7 +24282,7 @@ msgstr "Identifiant"
 # master
 #: ../gramps/plugins/gramplet/coordinates.py:142
 msgid "Edit the event"
-msgstr "Éditer l'événement"
+msgstr "Éditer l'évènement"
 
 # master
 #: ../gramps/plugins/gramplet/coordinates.py:147
@@ -24310,7 +24310,7 @@ msgstr "Appliquer"
 #: ../gramps/plugins/gramplet/events.py:84
 #: ../gramps/plugins/gramplet/personresidence.py:56
 msgid "Double-click on a row to edit the selected event."
-msgstr "Double-cliquez sur une ligne pour éditer l'événement sélectionné."
+msgstr "Double-cliquez sur une ligne pour éditer l'évènement sélectionné."
 
 #: ../gramps/plugins/gramplet/fanchart2waygramplet.py:78
 #: ../gramps/plugins/gramplet/fanchartdescgramplet.py:65
@@ -24431,7 +24431,7 @@ msgid ""
 "person/source/event?%(html_end)s\n"
 msgstr ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sComment ajouter une photo à une "
-"personne/source/événement ?%(html_end)s\n"
+"personne/source/évènement ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
@@ -24572,7 +24572,7 @@ msgstr "Gramplet affichant des pyramides des âges"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:75
 msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr ""
-"Gramplet affichant un calendrier et les événements pour des dates "
+"Gramplet affichant un calendrier et les évènements pour des dates "
 "spécifiques dans l'histoire"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:87
@@ -24819,24 +24819,24 @@ msgstr "Résidence de l'individu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:456
 msgid "Gramplet showing residence events for a person"
-msgstr "Gramplet affichant tous les événements résidence de l'individu"
+msgstr "Gramplet affichant tous les évènements résidence de l'individu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:469
 msgid "Person Events"
-msgstr "Événements de l'individu"
+msgstr "Évènements de l'individu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:470
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1323
 msgid "Gramplet showing the events for a person"
-msgstr "Gramplet affichant tous les événements de l'individu"
+msgstr "Gramplet affichant tous les évènements de l'individu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:483
 msgid "Family Events"
-msgstr "Événements familiaux"
+msgstr "Évènements familiaux"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:484
 msgid "Gramplet showing the events for a family"
-msgstr "Gramplet affichant tous les événements pour la famille"
+msgstr "Gramplet affichant tous les évènements pour la famille"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:497
 msgid "Person Gallery"
@@ -24865,11 +24865,11 @@ msgstr "Gramplet affichant les objets media de la famille"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:525
 msgid "Event Gallery"
-msgstr "Galerie de l'événement"
+msgstr "Galerie de l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:526
 msgid "Gramplet showing media objects for an event"
-msgstr "Gramplet affichant tous les objets media de l'événement"
+msgstr "Gramplet affichant tous les objets media de l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:539
 msgid "Place Gallery"
@@ -24907,11 +24907,11 @@ msgstr "Gramplet affichant les attributs d'un individu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:595
 msgid "Event Attributes"
-msgstr "Attributs de l'événement"
+msgstr "Attributs de l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:596
 msgid "Gramplet showing the attributes of an event"
-msgstr "Gramplet affichant les attributs d'un événement"
+msgstr "Gramplet affichant les attributs d'un évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:609
 msgid "Family Attributes"
@@ -24954,11 +24954,11 @@ msgstr "Gramplet affichant tous les notes de l'individu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:679
 msgid "Event Notes"
-msgstr "Notes de l'événement"
+msgstr "Notes de l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:680
 msgid "Gramplet showing the notes for an event"
-msgstr "Gramplet affichant toutes les notes pour l'événement"
+msgstr "Gramplet affichant toutes les notes pour l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:693
 #: ../gramps/plugins/textreport/familygroup.py:788
@@ -25024,12 +25024,12 @@ msgstr "Gramplet affichant les citations de l'individu"
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:791
 msgid "Event Citations"
-msgstr "Citations de l'événement"
+msgstr "Citations de l'évènement"
 
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet affichant les citations de l'événement"
+msgstr "Gramplet affichant les citations de l'évènement"
 
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:805
@@ -25102,11 +25102,11 @@ msgstr "Références"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:889
 msgid "Event References"
-msgstr "Références de l'événement"
+msgstr "Références de l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:890
 msgid "Gramplet showing the backlink references for an event"
-msgstr "Gramplet affichant les références de l'événement"
+msgstr "Gramplet affichant les références de l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:903
 msgid "Family References"
@@ -25186,11 +25186,11 @@ msgstr "Gramplet fournissant un filtre sur la famille"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1029
 msgid "Event Filter"
-msgstr "Filtre événement"
+msgstr "Filtre évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1030
 msgid "Gramplet providing an event filter"
-msgstr "Gramplet fournissant un filtre sur l'événement"
+msgstr "Gramplet fournissant un filtre sur l'évènement"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1043
 msgid "Source Filter"
@@ -25263,11 +25263,11 @@ msgstr "Gramplet affichant tous les notes À faire de l'individu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
 msgid "Event To Do"
-msgstr "Événement À faire"
+msgstr "Évènement À faire"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1158
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Gramplet affichant toutes les notes À faire de l'événement"
+msgstr "Gramplet affichant toutes les notes À faire de l'évènement"
 
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1171
@@ -25357,23 +25357,23 @@ msgstr "Inclus"
 # master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1322
 msgid "Geography coordinates for Person Events"
-msgstr "Coordonnées géographiques pour les événements individuels"
+msgstr "Coordonnées géographiques pour les évènements individuels"
 
 # master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1330
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1344
 msgid "Events Coordinates"
-msgstr "Coordonnées des événements"
+msgstr "Coordonnées des évènements"
 
 # master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1336
 msgid "Geography coordinates for Family Events"
-msgstr "Coordonnées géographiques pour les événements familiaux"
+msgstr "Coordonnées géographiques pour les évènements familiaux"
 
 # master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1337
 msgid "Gramplet showing the events for all the family"
-msgstr "Gramplet affichant tous les événements pour toute la famille"
+msgstr "Gramplet affichant tous les évènements pour toute la famille"
 
 #: ../gramps/plugins/gramplet/leak.py:99
 msgid "Referrer"
@@ -27556,7 +27556,7 @@ msgstr "Changement de nom"
 
 #: ../gramps/plugins/importer/importprogen.glade:1461
 msgid "Event date"
-msgstr "Date de l'événement"
+msgstr "Date de l'évènement"
 
 #: ../gramps/plugins/importer/importprogen.glade:1476
 msgid ""
@@ -27564,7 +27564,7 @@ msgid ""
 "event description."
 msgstr ""
 "Stocke la date de naissance dans\n"
-"la description de l'événement."
+"la description de l'évènement."
 
 #: ../gramps/plugins/importer/importprogen.glade:1495
 msgid ""
@@ -27572,7 +27572,7 @@ msgid ""
 "event description."
 msgstr ""
 "Stocke la date de décès dans\n"
-"la description de l'événement."
+"la description de l'évènement."
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
@@ -27588,7 +27588,7 @@ msgid ""
 "in event description."
 msgstr ""
 "Stocker le numéro REFN\n"
-"dans la description de l'événement."
+"dans la description de l'évènement."
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
@@ -27597,7 +27597,7 @@ msgid ""
 "as death cause event."
 msgstr ""
 "Utiliser l'information de décès\n"
-"comme cause de l'événement décès."
+"comme cause de l'évènement décès."
 
 #: ../gramps/plugins/importer/importprogen.glade:1598
 msgid "(-cause)"
@@ -27785,7 +27785,7 @@ msgstr "  Source %(id)s avec %(id2)s\n"
 #: ../gramps/plugins/importer/importxml.py:257
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
-msgstr "  Événement %(id)s avec %(id2)s\n"
+msgstr "  Évènement %(id)s avec %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:260
 #, python-format
@@ -27831,7 +27831,7 @@ msgstr "  Sources : %d\n"
 #: ../gramps/plugins/importer/importxml.py:285
 #, python-format
 msgid "  Events: %d\n"
-msgstr "  Événements : %d\n"
+msgstr "  Évènements : %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:286
 #, python-format
@@ -28036,7 +28036,7 @@ msgstr "Nom du témoin : %s"
 
 #: ../gramps/plugins/importer/importxml.py:1295
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Toute référence à un événement doit avoir un attribut « hlink »."
+msgstr "Toute référence à un évènement doit avoir un attribut « hlink »."
 
 #: ../gramps/plugins/importer/importxml.py:1567
 msgid "Any person reference must have a 'hlink' attribute."
@@ -28517,7 +28517,7 @@ msgstr ""
 # Substantif (GNOME fr)
 #: ../gramps/plugins/lib/libgedcom.py:7463
 msgid "Look for nameless events."
-msgstr "Recherche des événements sans nom."
+msgstr "Recherche des évènements sans nom."
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7486
@@ -32758,7 +32758,7 @@ msgstr "Mariage"
 
 #: ../gramps/plugins/lib/libprogen.py:1831
 msgid "future"
-msgstr "future"
+msgstr "futur"
 
 #. We have seen some case insensitivity in DEF files ...
 #. F13: Father
@@ -33258,26 +33258,26 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
 msgid "Sorted events of %s"
-msgstr "Événements triés pour %s"
+msgstr "Évènements triés pour %s"
 
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:110
 #: ../gramps/plugins/quickview/all_events.py:125
 msgid "Event Date"
-msgstr "Date de l'événement"
+msgstr "Date de l'évènement"
 
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:110
 #: ../gramps/plugins/quickview/all_events.py:125
 msgid "Event Place"
-msgstr "Lieu de l'événement"
+msgstr "Lieu de l'évènement"
 
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
 #: ../gramps/plugins/webreport/person.py:975
 msgid "Event Type"
-msgstr "Type d'événement"
+msgstr "Type d'évènement"
 
 # master
 #: ../gramps/plugins/quickview/all_events.py:70
@@ -33296,7 +33296,7 @@ msgid ""
 "Sorted events of family\n"
 " %(father)s - %(mother)s"
 msgstr ""
-"Événements familiaux triés\n"
+"Évènements familiaux triés\n"
 " %(father)s - %(mother)s"
 
 #: ../gramps/plugins/quickview/all_events.py:109
@@ -33306,7 +33306,7 @@ msgstr "Membre de la famille"
 
 #: ../gramps/plugins/quickview/all_events.py:123
 msgid "Personal events of the children"
-msgstr "Événements individuels des enfants"
+msgstr "Évènements individuels des enfants"
 
 #: ../gramps/plugins/quickview/all_relations.py:70
 msgid "Home person not set."
@@ -33408,7 +33408,7 @@ msgstr "les familles non présentes"
 #: ../gramps/plugins/quickview/filterbyname.py:44
 msgctxt "Filtering_on"
 msgid "Inverse Event"
-msgstr "les événements non présents"
+msgstr "les évènements non présents"
 
 #: ../gramps/plugins/quickview/filterbyname.py:45
 msgctxt "Filtering_on"
@@ -33450,7 +33450,7 @@ msgstr "toutes les familles"
 #: ../gramps/plugins/quickview/filterbyname.py:52
 msgctxt "Filtering_on"
 msgid "all events"
-msgstr "tous les événements"
+msgstr "tous les évènements"
 
 #: ../gramps/plugins/quickview/filterbyname.py:53
 msgctxt "Filtering_on"
@@ -33617,11 +33617,11 @@ msgstr "Type de nom"
 
 #: ../gramps/plugins/quickview/filterbyname.py:332
 msgid "birth event but no date"
-msgstr "événement naissance mais pas de date"
+msgstr "évènement naissance mais pas de date"
 
 #: ../gramps/plugins/quickview/filterbyname.py:335
 msgid "missing birth event"
-msgstr "événement naissance manquant"
+msgstr "évènement naissance manquant"
 
 # à vérifier dans le contexte
 #: ../gramps/plugins/quickview/filterbyname.py:365
@@ -33762,33 +33762,33 @@ msgstr "Aucune référence lien pour cette note"
 #: ../gramps/plugins/quickview/onthisday.py:77
 #, python-format
 msgid "Events of %(date)s"
-msgstr "Événements : %(date)s"
+msgstr "Évènements : %(date)s"
 
 #: ../gramps/plugins/quickview/onthisday.py:115
 msgid "Events on this exact date"
-msgstr "Événements à cette date exacte"
+msgstr "Évènements à cette date exacte"
 
 #: ../gramps/plugins/quickview/onthisday.py:118
 msgid "No events on this exact date"
-msgstr "Aucun événement pour cette date exacte"
+msgstr "Aucun évènement pour cette date exacte"
 
 #: ../gramps/plugins/quickview/onthisday.py:124
 msgid "Other events on this month/day in history"
-msgstr "Autres événements pour ce mois/jour dans l'histoire"
+msgstr "Autres évènements pour ce mois/jour dans l'histoire"
 
 #: ../gramps/plugins/quickview/onthisday.py:127
 msgid "No other events on this month/day in history"
-msgstr "Aucun autre événement pour ce mois/jour dans l'histoire"
+msgstr "Aucun autre évènement pour ce mois/jour dans l'histoire"
 
 #: ../gramps/plugins/quickview/onthisday.py:133
 #, python-format
 msgid "Other events in %(year)d"
-msgstr "Autres événements en %(year)d"
+msgstr "Autres évènements en %(year)d"
 
 #: ../gramps/plugins/quickview/onthisday.py:137
 #, python-format
 msgid "No other events in %(year)d"
-msgstr "Aucun autre événement en %(year)d"
+msgstr "Aucun autre évènement en %(year)d"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:36
 msgid "Display people and ages on a particular date"
@@ -33804,19 +33804,19 @@ msgstr "Affiche les individus avec le même attribut."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:75
 msgid "All Events"
-msgstr "Tous les événements"
+msgstr "Tous les évènements"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:76
 msgid "Display a person's events, both personal and family."
-msgstr "Affiche les événements individuels, pour l'individu et sa famille."
+msgstr "Affiche les évènements individuels, pour l'individu et sa famille."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:90
 msgid "All Family Events"
-msgstr "Tous les événements familiaux"
+msgstr "Tous les évènements familiaux"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:91
 msgid "Display the family and family members events."
-msgstr "Affiche les événements de la famille et de ses membres."
+msgstr "Affiche les évènements de la famille et de ses membres."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:110
 msgid "Relation to Home Person"
@@ -33852,7 +33852,7 @@ msgstr "Ce jour"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:185
 msgid "Display events on a particular day"
-msgstr "Affiche les événements d'un jour précis"
+msgstr "Affiche les évènements d'un jour précis"
 
 # trunk
 #: ../gramps/plugins/quickview/quickview.gpr.py:211
@@ -34323,12 +34323,12 @@ msgstr "Sera affiché après le nom, pour indiquer que la personne est décédé
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/textreport/birthdayreport.py:519
 msgid "Show event year"
-msgstr "Afficher l'année de l'événement"
+msgstr "Afficher l'année de l'évènement"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/textreport/birthdayreport.py:520
 msgid "Prints the year the event took place in the report"
-msgstr "Inclus dans le rapport, l'année à laquelle l'événement est arrivé"
+msgstr "Inclus dans le rapport, l'année à laquelle l'évènement est arrivé"
 
 # trunk
 # L'espace finale est pour précéder le « : » codé en dur.
@@ -34683,22 +34683,22 @@ msgstr "Indenter ou non les conjoints des enfants."
 #: ../gramps/plugins/textreport/detancestralreport.py:911
 #: ../gramps/plugins/textreport/detdescendantreport.py:1105
 msgid "Include events"
-msgstr "Inclure les événements"
+msgstr "Inclure les évènements"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:912
 #: ../gramps/plugins/textreport/detdescendantreport.py:1106
 msgid "Whether to include events."
-msgstr "Inclure ou non les événements."
+msgstr "Inclure ou non les évènements."
 
 # master
 #: ../gramps/plugins/textreport/detancestralreport.py:915
 msgid "Include other events"
-msgstr "Inclure les autres événements"
+msgstr "Inclure les autres évènements"
 
 # master
 #: ../gramps/plugins/textreport/detancestralreport.py:916
 msgid "Whether to include other events people participated in."
-msgstr "Inclure ou non les autres événements de ces participants."
+msgstr "Inclure ou non les autres évènements de ces participants."
 
 # master
 #: ../gramps/plugins/textreport/detancestralreport.py:921
@@ -35020,11 +35020,11 @@ msgstr "Inclure ou non les informations du mariage des parents."
 
 #: ../gramps/plugins/textreport/familygroup.py:760
 msgid "Parent Events"
-msgstr "Événements des parents"
+msgstr "Évènements des parents"
 
 #: ../gramps/plugins/textreport/familygroup.py:761
 msgid "Whether to include events for parents."
-msgstr "Inclure ou non les événements pour les parents."
+msgstr "Inclure ou non les évènements pour les parents."
 
 #: ../gramps/plugins/textreport/familygroup.py:764
 msgid "Parent Addresses"
@@ -35135,11 +35135,11 @@ msgstr "(image)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1079
 msgid "List events chronologically"
-msgstr "Lister les événements chronologiquement"
+msgstr "Lister les évènements chronologiquement"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1080
 msgid "Whether to sort events into chronological order."
-msgstr "Trier ou non les événements dans l'ordre chronologique."
+msgstr "Trier ou non les évènements dans l'ordre chronologique."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
 msgid "Use name of person as title"
@@ -35195,7 +35195,7 @@ msgstr "Inclure les recensements"
 # master
 #: ../gramps/plugins/textreport/indivcomplete.py:1152
 msgid "Whether to include Census Events."
-msgstr "Inclure ou non les événements recensement."
+msgstr "Inclure ou non les évènements recensement."
 
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1162
@@ -35205,7 +35205,7 @@ msgstr "Sections"
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1165
 msgid "Event groups"
-msgstr "Groupes d'événements"
+msgstr "Groupes d'évènements"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1166
 msgid "Check if a separate section is required."
@@ -35346,12 +35346,12 @@ msgstr "Tous les noms : %s"
 
 #: ../gramps/plugins/textreport/placereport.py:221
 msgid "Events that happened at this place"
-msgstr "Événements pour ce lieu"
+msgstr "Évènements pour ce lieu"
 
 #: ../gramps/plugins/textreport/placereport.py:225
 #: ../gramps/plugins/textreport/placereport.py:302
 msgid "Type of Event"
-msgstr "Type d'événement"
+msgstr "Type d'évènement"
 
 # trunk
 #: ../gramps/plugins/textreport/placereport.py:271
@@ -35390,7 +35390,7 @@ msgstr "Centrer sur"
 
 #: ../gramps/plugins/textreport/placereport.py:459
 msgid "If report is event or person centered"
-msgstr "Rapport centré sur l'événement ou l'individu"
+msgstr "Rapport centré sur l'évènement ou l'individu"
 
 # trunk
 #: ../gramps/plugins/textreport/recordsreport.py:173
@@ -35781,20 +35781,20 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Cet outil renommera le type d'événement pour toute la base. Aucun retour en "
+"Cet outil renommera le type d'évènement pour toute la base. Aucun retour en "
 "arrière ne sera alors possible avec la fonction Annuler."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
-msgstr "Type d'événement original :"
+msgstr "Type d'évènement original :"
 
 #: ../gramps/plugins/tool/changetypes.glade:124
 msgid "New event type:"
-msgstr "Nouveau type d'événement :"
+msgstr "Nouveau type d'évènement :"
 
 #: ../gramps/plugins/tool/changetypes.py:65
 msgid "Change Event Types"
-msgstr "Échanger des types d'événement"
+msgstr "Échanger des types d'évènement"
 
 #: ../gramps/plugins/tool/changetypes.py:118
 #: ../gramps/plugins/tool/changetypes.py:141
@@ -35804,11 +35804,11 @@ msgstr "Changer les types"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/changetypes.py:121
 msgid "Analyzing Events"
-msgstr "Analyse des événements"
+msgstr "Analyse des évènements"
 
 #: ../gramps/plugins/tool/changetypes.py:134
 msgid "No event record was modified."
-msgstr "Aucun événement n'a été modifié."
+msgstr "Aucun évènement n'a été modifié."
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -35816,8 +35816,9 @@ msgstr "Aucun événement n'a été modifié."
 #, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "{number_of} événements a été modifié."
-msgstr[1] "{number_of} événements ont été modifiés."
+msgstr[0] ""
+"{number_of} évènements a été modifié.{number_of} évènements ont été modifiés."
+msgstr[1] ""
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:119 ../gramps/plugins/tool/check.py:297
@@ -35948,7 +35949,7 @@ msgstr "Recherche de familles vides"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:910
 msgid "Looking for empty event records"
-msgstr "Recherche de problèmes dans les événements"
+msgstr "Recherche de problèmes dans les évènements"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:917
@@ -35994,7 +35995,7 @@ msgstr "Recherche de relations parentales brisées"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:1070
 msgid "Looking for event problems"
-msgstr "Recherche de problèmes pour les événements"
+msgstr "Recherche de problèmes pour les évènements"
 
 # Substantif (GNOME fr)
 #. Now we go through our backlinks and the dbs table comparing them
@@ -36170,8 +36171,10 @@ msgstr[1] "{quantity} noms de lieu alternatif ont été réparés\n"
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] "{quantity} événement a été référencé, mais non trouvé\n"
-msgstr[1] "{quantity} lieux ont été référencés, mais non trouvés\n"
+msgstr[0] ""
+"{quantity} évènement a été référencé, mais non trouvé\n"
+"{quantity} lieux ont été référencés, mais non trouvés\n"
+msgstr[1] ""
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -36242,8 +36245,10 @@ msgstr[1] "{quantity} supports media manquants ont été supprimés\n"
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] "{quantity} événement a été référencé, mais non trouvé\n"
-msgstr[1] "{quantity} événements ont été référencés, mais non trouvés\n"
+msgstr[0] ""
+"{quantity} évènement a été référencé, mais non trouvé\n"
+"{quantity} évènements ont été référencés, mais non trouvés\n"
+msgstr[1] ""
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -36349,7 +36354,7 @@ msgstr ""
 "%(empty_obj)d objets vides ont été enlevés :\n"
 "   %(person)d individus\n"
 "   %(family)d familles\n"
-"   %(event)d événements\n"
+"   %(event)d évènements\n"
 "   %(source)d sources\n"
 "   %(media)d objets media\n"
 "   %(place)d lieux\n"
@@ -36391,7 +36396,7 @@ msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
-"Ce test va créer de nombreuses personnes et événements dans votre base de "
+"Ce test va créer de nombreuses personnes et évènements dans votre base de "
 "données actuelle. Voulez-vous vraiment lancer ce test ?"
 
 # master
@@ -36488,7 +36493,7 @@ msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
-"L'utilitaire de comparaison d'événements utilise les filtres définis dans "
+"L'utilitaire de comparaison d'évènements utilise les filtres définis dans "
 "l'éditeur de filtres personnalisés."
 
 # éviter le raccourci sur la majuscule accentuée
@@ -36500,15 +36505,15 @@ msgstr "Éditeur de filtre _personnalisé"
 #: ../gramps/plugins/tool/eventcmp.py:70
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "Comparaison_des_événements_individuels"
+msgstr "Comparaison_des_évènements_individuels"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
-msgstr "Sélection du filtre des événements de comparaison"
+msgstr "Sélection du filtre des évènements de comparaison"
 
 #: ../gramps/plugins/tool/eventcmp.py:168
 msgid "Event Comparison tool"
-msgstr "Outil de comparaison d'événements"
+msgstr "Outil de comparaison d'évènements"
 
 #: ../gramps/plugins/tool/eventcmp.py:168
 msgid "Filter selection"
@@ -36517,7 +36522,7 @@ msgstr "Sélection du filtre"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/eventcmp.py:180
 msgid "Comparing events"
-msgstr "Comparaison d'événements"
+msgstr "Comparaison d'évènements"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/eventcmp.py:182
@@ -36531,7 +36536,7 @@ msgstr "Aucune correspondance n'a été trouvée"
 #: ../gramps/plugins/tool/eventcmp.py:244
 #: ../gramps/plugins/tool/eventcmp.py:278
 msgid "Event Comparison Results"
-msgstr "Résultats de comparaison d'événements"
+msgstr "Résultats de comparaison d'évènements"
 
 #: ../gramps/plugins/tool/eventcmp.py:255
 #, python-format
@@ -36547,7 +36552,7 @@ msgstr "Lieu - %(event_name)s"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/eventcmp.py:312
 msgid "Comparing Events"
-msgstr "Comparaison d'événements"
+msgstr "Comparaison d'évènements"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/eventcmp.py:313
@@ -36560,12 +36565,12 @@ msgstr "Sélectionner un nom de fichier"
 
 #: ../gramps/plugins/tool/eventnames.py:79
 msgid "Event name changes"
-msgstr "Changements du nom d'événement"
+msgstr "Changements du nom d'évènement"
 
 #: ../gramps/plugins/tool/eventnames.py:85
 #: ../gramps/plugins/tool/tools.gpr.py:131
 msgid "Extract Event Description"
-msgstr "Extraire les descriptions de l'événement"
+msgstr "Extraire les descriptions de l'évènement"
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -36573,8 +36578,10 @@ msgstr "Extraire les descriptions de l'événement"
 #, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
-msgstr[0] "{quantity} description de l'événement a été ajoutée"
-msgstr[1] "{quantity} descriptions de l'événement ont été ajoutées"
+msgstr[0] ""
+"{quantity} description de l'évènement a été ajoutée{quantity} descriptions "
+"de l'évènement ont été ajoutées"
+msgstr[1] ""
 
 #: ../gramps/plugins/tool/eventnames.py:123
 msgid "Modifications made"
@@ -36582,7 +36589,7 @@ msgstr "Modifications réalisées"
 
 #: ../gramps/plugins/tool/eventnames.py:127
 msgid "No event description has been added."
-msgstr "Aucune description de l'événement n'a été ajoutée."
+msgstr "Aucune description de l'évènement n'a été ajoutée."
 
 # trunk
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -37356,7 +37363,7 @@ msgstr "caractère invalide au lieu de « - »"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
-msgstr "Recherche des événements"
+msgstr "Recherche des évènements"
 
 #: ../gramps/plugins/tool/removeunused.glade:110
 msgid "Search for sources"
@@ -37542,22 +37549,22 @@ msgstr "Recherche et assignation des identifiants non utilisés."
 # nom de l'outil
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
-msgstr "Trier les événements"
+msgstr "Trier les évènements"
 
 # Utilisé dans l'historique d'annulation
 #: ../gramps/plugins/tool/sortevents.py:98
 msgid "Sort event changes"
-msgstr "Tri des événements"
+msgstr "Tri des évènements"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/sortevents.py:113
 msgid "Sorting personal events..."
-msgstr "Tri des événements individuels..."
+msgstr "Tri des évènements individuels..."
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/sortevents.py:135
 msgid "Sorting family events..."
-msgstr "Tri des événements familiaux..."
+msgstr "Tri des évènements familiaux..."
 
 #: ../gramps/plugins/tool/sortevents.py:166
 msgid "Tool Options"
@@ -37578,11 +37585,11 @@ msgstr "Définir l'ordre du tri"
 
 #: ../gramps/plugins/tool/sortevents.py:192
 msgid "Include family events"
-msgstr "Inclure les événements familiaux"
+msgstr "Inclure les évènements familiaux"
 
 #: ../gramps/plugins/tool/sortevents.py:193
 msgid "Sort family events of the person"
-msgstr "Trier les événements familiaux de l'individu"
+msgstr "Trier les évènements familiaux de l'individu"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:91
@@ -37746,11 +37753,11 @@ msgstr "Recherche dans toute la base pour tenter de réparer la casse des noms."
 
 #: ../gramps/plugins/tool/tools.gpr.py:61
 msgid "Rename Event Types"
-msgstr "Renommer les types d'événement"
+msgstr "Renommer les types d'évènement"
 
 #: ../gramps/plugins/tool/tools.gpr.py:62
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "Permet à tous les événements d'un certain nom d'être renommés."
+msgstr "Permet à tous les évènements d'un certain nom d'être renommés."
 
 #: ../gramps/plugins/tool/tools.gpr.py:84
 msgid "Check and Repair Database"
@@ -37764,7 +37771,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:107
 msgid "Compare Individual Events"
-msgstr "Comparaison d'événements individuels"
+msgstr "Comparaison d'évènements individuels"
 
 #: ../gramps/plugins/tool/tools.gpr.py:108
 msgid ""
@@ -37772,11 +37779,11 @@ msgid ""
 "that can be applied to the database to find similar events"
 msgstr ""
 "Aide à l'analyse des données autorisant le développement de filtres "
-"personnalisés pour rechercher des événements similaires"
+"personnalisés pour rechercher des évènements similaires"
 
 #: ../gramps/plugins/tool/tools.gpr.py:132
 msgid "Extracts event descriptions from the event data"
-msgstr "Extrait les descriptions de l'événement depuis ses données"
+msgstr "Extrait les descriptions de l'évènement depuis ses données"
 
 #: ../gramps/plugins/tool/tools.gpr.py:154
 msgid ""
@@ -37869,7 +37876,7 @@ msgstr "Réorganise les identifiants Gramps en fonction des règles par défaut.
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
 msgid "Sorts events"
-msgstr "Trier les événements"
+msgstr "Trier les évènements"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Verify the Data"
@@ -38348,30 +38355,30 @@ msgstr "Tableau de bord"
 
 #: ../gramps/plugins/view/eventview.py:97
 msgid "Add a new event"
-msgstr "Ajouter un nouvel événement"
+msgstr "Ajouter un nouvel évènement"
 
 #: ../gramps/plugins/view/eventview.py:98
 msgid "Edit the selected event"
-msgstr "Éditer l'événement sélectionné"
+msgstr "Éditer l'évènement sélectionné"
 
 # objet sélectionné
 #: ../gramps/plugins/view/eventview.py:99
 msgid "Delete the selected event"
-msgstr "Supprimer l'événement sélectionné"
+msgstr "Supprimer l'évènement sélectionné"
 
 # objet sélectionné
 #: ../gramps/plugins/view/eventview.py:100
 msgid "Merge the selected events"
-msgstr "Fusion des événements sélectionnés"
+msgstr "Fusion des évènements sélectionnés"
 
 #: ../gramps/plugins/view/eventview.py:230
 msgid "Event Filter Editor"
-msgstr "Éditeur de filtre sur l'événement"
+msgstr "Éditeur de filtre sur l'évènement"
 
 # objet sélectionné
 #: ../gramps/plugins/view/eventview.py:386
 msgid "_Delete Event"
-msgstr "_Supprimer l'événement"
+msgstr "_Supprimer l'évènement"
 
 #: ../gramps/plugins/view/eventview.py:402
 #, python-brace-format
@@ -38380,7 +38387,7 @@ msgstr "Supprimer {type} [{gid}] ?"
 
 #: ../gramps/plugins/view/eventview.py:487
 msgid "Cannot merge event objects."
-msgstr "Impossible de fusionner les événements."
+msgstr "Impossible de fusionner les évènements."
 
 #: ../gramps/plugins/view/eventview.py:488
 msgid ""
@@ -38388,9 +38395,9 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "event."
 msgstr ""
-"Exactement deux événements doivent être sélectionnés pour accomplir une "
-"fusion. Le deuxième événement peut être sélectionné en maintenant la touche "
-"Contrôle (Ctrl) lors du clic sur l'événement désiré."
+"Exactement deux évènements doivent être sélectionnés pour accomplir une "
+"fusion. Le deuxième évènement peut être sélectionné en maintenant la touche "
+"Contrôle (Ctrl) lors du clic sur l'évènement désiré."
 
 #: ../gramps/plugins/view/familyview.py:83
 msgid "Marriage Date"
@@ -38731,21 +38738,21 @@ msgstr "Les paramètres de la sélection"
 
 #: ../gramps/plugins/view/geoevents.py:161
 msgid "Events places map"
-msgstr "Carte des lieux des événements"
+msgstr "Carte des lieux des évènements"
 
 #: ../gramps/plugins/view/geoevents.py:186
 msgid "GeoEvents"
-msgstr "GéoÉvénements"
+msgstr "GéoÉvènements"
 
 #: ../gramps/plugins/view/geoevents.py:305
 msgid "incomplete or unreferenced event ?"
-msgstr "Événement incomplet ou non référencé ?"
+msgstr "Évènement incomplet ou non référencé ?"
 
 # master
 #: ../gramps/plugins/view/geoevents.py:344
 #: ../gramps/plugins/view/geoevents.py:357
 msgid "Selecting all events"
-msgstr "Sélectionnez tous les événements"
+msgstr "Sélectionnez tous les évènements"
 
 # master
 #: ../gramps/plugins/view/geoevents.py:368
@@ -38754,18 +38761,18 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Un clic droit sur la carte puis sélectionnez « Afficher tous les événements »"
-" pour obtenir tous les événements avec coordonnées. Vous pouvez utiliser "
+"Un clic droit sur la carte puis sélectionnez « Afficher tous les évènements »"
+" pour obtenir tous les évènements avec coordonnées. Vous pouvez utiliser "
 "l'historique de la carte. Vous pouvez utiliser le filtrage."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
 msgid "Bookmark this event"
-msgstr "Marquer cet événement"
+msgstr "Marquer cet évènement"
 
 #: ../gramps/plugins/view/geoevents.py:452
 msgid "Show all events"
-msgstr "Afficher tous les événements"
+msgstr "Afficher tous les évènements"
 
 #: ../gramps/plugins/view/geoevents.py:456
 #: ../gramps/plugins/view/geoplaces.py:549
@@ -38969,12 +38976,12 @@ msgstr "Une vue permettant de voir tous les lieux de la base de données."
 
 #: ../gramps/plugins/view/geography.gpr.py:194
 msgid "All places related to Events"
-msgstr "Tous les lieux liés aux événements"
+msgstr "Tous les lieux liés aux évènements"
 
 #: ../gramps/plugins/view/geography.gpr.py:195
 msgid "A view showing all the event places of the database."
 msgstr ""
-"Cette vue permet de voir tous les lieux des événements de la base de données."
+"Cette vue permet de voir tous les lieux des évènements de la base de données."
 
 #: ../gramps/plugins/view/geomoves.py:208
 msgid "Descendance of the active person."
@@ -39596,7 +39603,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:38
 msgid "The view showing all the events"
-msgstr "Cette vue affiche tous les événements"
+msgstr "Cette vue affiche tous les évènements"
 
 #: ../gramps/plugins/view/view.gpr.py:53
 msgid "The view showing all families"
@@ -39904,7 +39911,7 @@ msgstr "Aucun fichier en téléchargement"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/event.py:117
 msgid "Creating event pages"
-msgstr "Création des pages pour l'événement"
+msgstr "Création des pages pour l'évènement"
 
 # &#8217; = apostrophe
 #: ../gramps/plugins/webreport/event.py:155
@@ -39913,9 +39920,9 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
-"Cette page contient un index de tous les événements de la base de données, "
+"Cette page contient un index de tous les évènements de la base de données, "
 "classés par type et date (si présente). Cliquez sur un identifiant "
-"d'événement Gramps pour accéder à sa page."
+"d'évènement Gramps pour accéder à sa page."
 
 #: ../gramps/plugins/webreport/event.py:181
 #: ../gramps/plugins/webreport/family.py:193
@@ -39928,7 +39935,7 @@ msgstr "Lettre"
 #: ../gramps/plugins/webreport/event.py:258
 #, python-format
 msgid "Event types beginning with letter %s"
-msgstr "Types d'événement commençant par la lettre %s"
+msgstr "Types d'évènement commençant par la lettre %s"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/family.py:111
@@ -40646,11 +40653,11 @@ msgstr "Inclure ou non des pages de la famille."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid "Include event pages"
-msgstr "Inclure les pages événement"
+msgstr "Inclure les pages évènement"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2382
 msgid "Add a complete events list and relevant pages or not"
-msgstr "Ajouter ou non une liste complète des événements et pages liées"
+msgstr "Ajouter ou non une liste complète des évènements et pages liées"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
 msgid "Include places pages"
@@ -40694,7 +40701,7 @@ msgid ""
 "website addresses and personal address/ residence events."
 msgstr ""
 "Ajouter ou non les adresses qui peuvent être des adresses de messagerie, des "
-"adresses de sites web, des adresses individuelles et des événements "
+"adresses de sites web, des adresses individuelles et des évènements "
 "résidence."
 
 # Substantif (GNOME fr)
@@ -40961,7 +40968,7 @@ msgstr "Inclure ou non un calendrier pour l'année %s"
 #: ../gramps/plugins/webreport/narrativeweb.py:2826
 #: ../gramps/plugins/webreport/webcal.py:1953
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Créer les pages événement pour un jour du calendrier résumé"
+msgstr "Créer les pages évènement pour un jour du calendrier résumé"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2829
 #: ../gramps/plugins/webreport/webcal.py:1955
@@ -41047,7 +41054,7 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Cette page carte représente l'individu et ses descendants avec leurs évé"
+"Cette page carte représente l'individu et ses descendants avec leurs évè"
 "nements/lieux. Si vous passez le curseur de votre souris au-dessus du "
 "marqueur vous obtiendrez le nom du lieu. Les marqueurs et la liste de "
 "référence sont triés par date (si elle existe). Cliquez sur le nom du lieu "
@@ -41302,7 +41309,7 @@ msgid ""
 "shows all the events for that date, if there are any.\n"
 msgstr ""
 "Ce calendrier est prévu pour accéder à toutes vos données sur une page. En "
-"cliquant sur une date vous ouvrirez une page illustrant les événements pour "
+"cliquant sur une date vous ouvrirez une page illustrant les évènements pour "
 "ce jour, si il y en a.\n"
 
 #. page title
