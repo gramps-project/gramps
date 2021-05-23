@@ -38,7 +38,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
 "PO-Revision-Date: 2021-05-23 13:25+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -453,7 +453,6 @@ msgstr ""
 "sélectionner les conjoints, frères et sœurs, enfants ou parents."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -461,10 +460,11 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Qui est né quand</b><br/>La comparaison des événements individuels permet "
-"de comparer toutes les données des individus de la base. C'est utile si vous "
-"voulez une liste des dates de naissance de tous les individus de votre base. "
-"Vous pouvez utiliser un filtre personnalisé pour limiter les résultats."
+"<b>Qui est né quand ?</b><br/>Via « Outils &gt; Analyses et exploration &gt; "
+"Comparer des évènements individuels… » vous pouvez comparer toutes les "
+"données des individus de la base. Ceci est utile si vous voulez une liste "
+"des dates de naissance de tous les individus de votre base. Vous pouvez "
+"utiliser un filtre personnalisé pour limiter les résultats."
 
 #: ../data/tips.xml:26
 #, fuzzy
@@ -535,10 +535,12 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>Rapports Gramps</b><br/>Gramps permet d'éditer de nombreux rapports. Le "
-"rapport de texte est particulièrement utile si vous voulez diffuser votre "
-"arbre généalogique aux membres de votre famille sur support numérique "
-"(message électronique, CD, etc.)."
+"<b>Rapports Gramps</b><br/>Gramps offre une grande variété de rapports. Les "
+"rapports graphiques et les graphiques peuvent présenter facilement des "
+"relations complexes et les rapports textuels sont particulièrement utiles si "
+"vous voulez envoyer les résultats de votre arbre généalogique aux membres de "
+"la famille par courriel. Si vous êtes prêt(e) à créer un site Web pour votre "
+"arbre généalogique, il existe un rapport pour cela aussi."
 
 #: ../data/tips.xml:36
 #, fuzzy
@@ -17483,7 +17485,7 @@ msgid ""
 "Second level of place division, eg., in the USA a state, in Germany a "
 "Bundesland."
 msgstr ""
-"Second niveau de division du lieu, par exemple un état aux États-Unis, un "
+"Second niveau de division du lieu, par exemple un État aux États-Unis, un "
 "Land en Allemagne."
 
 #: ../gramps/gui/glade/editlocation.glade:234
