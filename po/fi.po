@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
+"PO-Revision-Date: 2021-05-23 17:22+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -6606,7 +6606,9 @@ msgstr "Lähteet, joiden arkistoviitteen <lähdesuodin> hyväksyy"
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
-msgstr "Poimii lähteet, joiden arkistoviitteen valittu arkistosuodin hyväksyy"
+msgstr ""
+"Yhdistää lähteet arkistoviitteisiin, jotka vastaavat tiettyä\n"
+"arkistosuodinta"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
@@ -16630,9 +16632,10 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Henkilöt lajitellaan oletusarvoisesti asetuksissa määritetyn muodon "
-"mukaisessa järjestyksessä. Tässä voi varmistaa henkilön tulevan lajitelluksi "
-"käyttäjän haluamalla tavalla (lisämuotoiluja voi antaa asetuksissa)."
+"Henkilöt lajitellaan asetuksissa määritetyn oletusmuodon mukaisessa "
+"järjestyksessä. \n"
+"Täällä voit varmistaa henkilön tulevan lajitelluksi käyttäjän haluamalla "
+"tavalla (lisämuotoiluja voi antaa asetuksissa)."
 
 #: ../gramps/gui/glade/editname.glade:601
 msgid ""
@@ -16680,10 +16683,11 @@ msgid ""
 "improve the report layout.\n"
 "Use monospace font to keep preformatting."
 msgstr ""
-"Kun valittuna tyhjät välit lisätiedossa säilyvät raporteissa. Käytä tätä "
-"lisäämään muotoilua esim. \n"
-"Kun ei valittuna lisätiedot siivotaan automaattisesti raporteissa, mikä "
-"vaikuttaa raportin ulkoasuun."
+"Kun tyhjät välit toiminto on valittuna lisätiedossa, ne säilyvät "
+"raporteissa. Käytä tätä lisäämään muotoilua esim. Taulukko\n"
+"Kun toiminto ei ole valittuna lisätiedot siivotaan automaattisesti "
+"raporteissa, mikä vaikuttaa raportin ulkoasuun.\n"
+"Käytä muotoilua monospace-fontilla."
 
 #: ../gramps/gui/glade/editperson.glade:165
 msgid "C_all:"
@@ -18105,8 +18109,7 @@ msgid ""
 msgstr ""
 "Nykyisen kielen (%(language)s) GTK käännökset puuttuvat.\n"
 "%(bold_start)sGramps%(bold_end)s jatkaa kuitenkin.\n"
-"GUI on todennäköisesti rikkoutunut, etenkin\n"
-"oikealta vasemmalle luettavissa kielissä!\n"
+"GUI on todennäköisesti rikkoutunut, etenkin RTL kielissä!\n"
 "\n"
 "Katso Gramps README dokumentaatiosta asennuksen edellytyksistä,\n"
 "tyypillisesti löytyy kansiosta in /usr/share/doc/Gramps.\n"
@@ -19177,8 +19180,9 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Tässä kirjassa on viitteitä tietokantaan %s, joten keskushenkilöön "
-"tallennetut viitteet eivät ole enää voimassa.\n"
+"Tässä kirjassa on viitteitä tietokantaan %s, \n"
+"\n"
+"joten keskushenkilöön tallennetut viitteet eivät ole enää voimassa.\n"
 "\n"
 "Tästä johtuen nykyisen tietokannan aktiivinen henkilö asetetaan "
 "keskushenkilön tilalle."
@@ -21010,7 +21014,8 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"Muutetaanko paperikoko puun mukaiseksi.  Huomaa:  paperikoko \n"
+"Muutetaanko paperikoko puun mukaiseksi.\n"
+"  Huomaa:  paperikoko \n"
 "ei ole enää vakiokoko.\n"
 "\n"
 "Tällä valinnalla tapahtuu seuraavaa:\n"
@@ -31861,8 +31866,10 @@ msgstr "Henkilöt joilla on sukunimi '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "{number_of} henkilöllä on sopiva nimi tai vaihtoehtoinen nimi.\n"
-msgstr[1] "{number_of} henkilöllä on sopiva nimi tai vaihtoehtoinen nimi.\n"
+msgstr[0] ""
+"On {number_of} henkilö, jolla on vastaava nimi tai vaihtoehtoinen nimi.\n"
+msgstr[1] ""
+"On {number_of} henkilöä, joilla on vastaava nimi tai vaihtoehtoinen nimi.\n"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
@@ -33888,16 +33895,16 @@ msgstr[1] "{quantity} vaihtoehtoiset paikannimet korjattu\n"
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] "{quantity} henkilöön on viittaus, mutta ei löytynyt\n"
-msgstr[1] "{quantity} henkilöön on viittaus, mutta ei löytynyt\n"
+msgstr[0] "{quantity} henkilöön viitattaus, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} henkilöön viitattiin, mutta niitä ei löytynyt\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2579
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
-msgstr[0] "{quantity} perheeseen on viittaus, mutta ei löytynyt\n"
-msgstr[1] "{quantity} perheeseen on viittaus, mutta ei löytynyt\n"
+msgstr[0] "{quantity} perheeseen viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} perheeseen viitattiin, mutta niitä ei löytynyt\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2589
@@ -33911,16 +33918,16 @@ msgstr[1] "{quantity} päivämäärää korjattu\n"
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "{quantity} arkistoon on viitattu, mutta ei löytynyt\n"
-msgstr[1] "{quantity} arkistoon on viitattu, mutta ei löytynyt\n"
+msgstr[0] "{quantity} arkistoon viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} arkistoon on viitattu, mutta niitä ei löytynyt\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2608 ../gramps/plugins/tool/check.py:2695
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] "{quantity} mediaan on viitattu, mutta ei löytynyt\n"
-msgstr[1] "{quantity} mediaan on viitattu, mutta ei löytynyt\n"
+msgstr[0] "{quantity} mediaobjektiin viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} mediaobjektiin viitattiin, mutta niitä ei löytynyt\n"
 
 #: ../gramps/plugins/tool/check.py:2619
 #, python-brace-format
@@ -33950,8 +33957,8 @@ msgstr[1] "{quantity} puuttuvaa mediaa poistettu\n"
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] "{quantity} viitattua tapahtumaa ei löytynyt\n"
-msgstr[1] "{quantity} viitattua tapahtumaa ei löytynyt\n"
+msgstr[0] "{quantity} tapahtumaan viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} tapahtumaan viitattiin, mutta niitä ei löytynyt\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2651
@@ -33974,22 +33981,22 @@ msgstr[1] "{quantity} virheellistä kuolintapahtuman nimeä korjattu\n"
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
-msgstr[0] "{quantity} paikkaan on viitattu, mutta ei löytynyt\n"
-msgstr[1] "{quantity} paikkaan on viitattu, mutta ei löytynyt\n"
+msgstr[0] "{quantity} paikkaan viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} paikkaan viitattiin, mutta niitä ei löytynyt\n"
 
 #: ../gramps/plugins/tool/check.py:2676
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] "{quantity} lainaukseen on viitattu, mutta ei löytynyt\n"
-msgstr[1] "{quantity} lainaukseen on viitattu, mutta ei löytynyt\n"
+msgstr[0] "{quantity} lainaukseen viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} lainaukseen viitattiin, mutta niitä ei löytynyt\n"
 
 #: ../gramps/plugins/tool/check.py:2686
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
-msgstr[0] "{quantity} lähteeseen on viitattu, mutta ei löytynyt\n"
-msgstr[1] "{quantity} lähteeseen on viitattu, mutta ei löytynyt\n"
+msgstr[0] "{quantity} lähteeseen viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} lähteeseen viitattiin, mutta niitä ei löytynyt\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2704
@@ -34004,8 +34011,8 @@ msgstr[1] "{quantity} lähteeseen on viitattu, mutta ei löytynyt\n"
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "{quantity} tagi kohteeseen on viitattu, mutta ei löytynyt\n"
-msgstr[1] "{quantity} tagi kohteeseen on viitattu, mutta ei löytynyt\n"
+msgstr[0] "{quantity} tagi kohteeseen viitattiin, mutta sitä ei löytynyt\n"
+msgstr[1] "{quantity} tagi kohteeseen viitattiin, mutta niitä ei löytynyt\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2734
@@ -34658,7 +34665,7 @@ msgstr "Kaikki tietokannassa ovat sukua %s:lle"
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
 msgstr[0] "Asetetaan tagi {number_of} henkilölle"
-msgstr[1] "Asetetaan tagi {number_of} henkilölle"
+msgstr[1] "Asetetaan tagit {number_of} henkilölle"
 
 #. translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
@@ -34666,7 +34673,7 @@ msgstr[1] "Asetetaan tagi {number_of} henkilölle"
 #, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] "Haetaan suhteita {number_of} henkilön välillä"
+msgstr[0] "Haetaan suhteet {number_of} henkilön välillä"
 msgstr[1] "Haetaan suhteita {number_of} henkilön välillä"
 
 #. translators: leave all/any {...} untranslated
@@ -38861,7 +38868,7 @@ msgstr "kuolema"
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
 msgstr[0] "{couple}, {years} vuosipäivä"
-msgstr[1] "{couple}, {years} vuosipäivä"
+msgstr[1] "{couple}, {years} vuosipäivät"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
