@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-24 10:05+0000\n"
+"PO-Revision-Date: 2021-05-24 11:09+0000\n"
 "Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -695,7 +695,6 @@ msgstr ""
 "devel. Все эти рассылки доступны из меню «Справка -> Списки рассылки Gramps»."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -705,13 +704,13 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help "
 "&gt; Gramps Mailing Lists\""
 msgstr ""
-"<b>Участие в проекте Gramps</b><br/>Вам бы хотелось помочь Gramps, но Вы не "
-"умеете программировать? Ничего страшного! Такому большому проекту требуется "
-"помощь от людей с самыми разными навыками. Помочь можно чем угодно -- от "
-"написания документации до тестирования версий, находящихся в стадии "
-"разработки, или помочь с веб-сайтом проекта. Для начала подпишитесь на "
-"рассылку разработчиков Gramps, gramps-devel, и представьтесь. Информация о "
-"подписке доступна в меню «Справка -> Списки рассылки Gramps»."
+"<b>Участие в проекте Gramps</b><br/>Хотите помочь Gramps, но не умеете "
+"программировать? Не проблема! Такому большому проекту как Gramps требуются "
+"люди с самыми разными навыками. Помочь можно чем угодно - от написания "
+"документации до тестирования версий, находящихся в стадии разработки, или "
+"помочь с веб-сайтом проекта. Для начала подпишитесь на рассылку "
+"разработчиков Gramps, gramps-devel, и представьтесь. Информация о подписке "
+"доступна в меню \"Справка &gt; Списки рассылки Gramps\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -971,15 +970,14 @@ msgstr ""
 "распространять, чем несколько разных отчётов, особенно в напечатанном виде."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\""
 msgstr ""
-"<b>Объявления о Gramps</b><br/>Хотите получать уведомление о выходе новых "
-"версий Gramps? Подпишитесь на список рассылки gramps-announce из меню "
-"«Справка / Списки рассылки Gramps»."
+"<b>Объявления Gramps</b><br/>Хотите получать уведомление о выходе новых "
+"версий Gramps? Подпишитесь на список рассылки Gramps-announce в меню "
+"\"Справка &gt; Списки рассылки Gramps\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -12630,9 +12628,9 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and "
 "others."
 msgstr ""
-"Тип файлов «%s» не знаком Gramps.\n"
+"Тип файлов «%s» неизвестен Gramps.\n"
 "\n"
-"Известные типы: база данных GRAMPS, GRAMPS XML, пакет GRAMPS, GEDCOM и "
+"Известные типы: база данных Gramps, Gramps XML, пакет Gramps, GEDCOM и "
 "другие."
 
 #: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
@@ -16877,8 +16875,8 @@ msgstr ""
 msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
-"Используется для вставки данных из веб страницы, например google, "
-"openstreetmap, ..."
+"Поле используется для вставки данных из веб страницы, например "
+"OpenStreetMap, Google, ... "
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -22194,7 +22192,7 @@ msgstr "Выбор пола, который будет включён в ста�
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1061
 msgid "Max. items for a pie"
-msgstr "Макс. элем. для круг. диаг."
+msgstr "Макс. элементов на круг"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1062
 msgid ""
@@ -25074,8 +25072,8 @@ msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files.)"
 msgstr ""
-"Импорт данных из пакета Gramps (архивированного семейного древа в формате "
-"XML вместе с файлами документов)."
+"Импорт данных из пакета Gramps (сжатого XML Семейного древа вместе с файлами "
+"документов)."
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
@@ -25704,7 +25702,7 @@ msgid ""
 "(Text & import Filename)."
 msgstr ""
 "Текст Ссылки на источник\n"
-"(Текст и название файла импорта)"
+"(Текст и название файла импорта)."
 
 #: ../gramps/plugins/importer/importprogen.glade:155
 #: ../gramps/plugins/importer/importprogen.glade:325
@@ -25768,7 +25766,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:841
 #: ../gramps/plugins/importer/importprogen.glade:856
 msgid "Combined default text + filename + date."
-msgstr "Комбинация по умолчанию текст + имя файла + дата"
+msgstr "Комбинация по умолчанию текст + имя файла + дата."
 
 #: ../gramps/plugins/importer/importprogen.glade:1111
 msgid ""
@@ -30954,12 +30952,12 @@ msgstr "Заменить '%(map)s' на"
 #: ../gramps/plugins/lib/maps/geography.py:420
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "Обновить просматриваемый участок карты '%(map)s'"
+msgstr "Перезагрузить все видимые куски карты '%(map)s'."
 
 #: ../gramps/plugins/lib/maps/geography.py:429
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "Очистить кэш карты '%(map)s'"
+msgstr "Очистить кэш карты '%(map)s'."
 
 #: ../gramps/plugins/lib/maps/geography.py:852
 msgid "You can't use the print functionality"
@@ -32209,7 +32207,7 @@ msgstr "Родство показано по отношению к %s"
 #: ../gramps/plugins/textreport/birthdayreport.py:333
 #, python-format
 msgid "* %(person)s, birth%(relation)s"
-msgstr "* %(person)s, рождение %(relation)s"
+msgstr "* %(person)s, род. %(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
@@ -32297,7 +32295,7 @@ msgstr "Символ смерти"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:512
 msgid "This will show after name to indicate that person is dead"
-msgstr "Это будет показано после имени как отметка, что человек умер"
+msgstr "Он будет показан после имени как отметка, что человек умер"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:519
 msgid "Show event year"
@@ -32327,19 +32325,19 @@ msgstr "Включать ли родство по отношению к глав
 
 #: ../gramps/plugins/textreport/birthdayreport.py:639
 msgid "Title text style"
-msgstr "Стиль заглавия"
+msgstr "Стиль текста заголовка"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:642
 msgid "Data text display"
-msgstr "Текстовые данные"
+msgstr "Отображение Текстовых данных"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:644
 msgid "Day text style"
-msgstr "Стиль дня месяца"
+msgstr "Стиль текста дня"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:647
 msgid "Month text style"
-msgstr "Стиль месяца"
+msgstr "Стиль текста месяца"
 
 #: ../gramps/plugins/textreport/custombooktext.py:87
 #: ../gramps/plugins/textreport/custombooktext.py:89
@@ -32399,39 +32397,39 @@ msgstr "Система нумерации"
 
 #: ../gramps/plugins/textreport/descendreport.py:528
 msgid "Simple numbering"
-msgstr "простая нумерация"
+msgstr "Простая нумерация"
 
 #: ../gramps/plugins/textreport/descendreport.py:529
 #: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "d'Aboville numbering"
-msgstr "метод д'Абовиля"
+msgstr "Нумерация д'Абовиля"
 
 #: ../gramps/plugins/textreport/descendreport.py:530
 #: ../gramps/plugins/textreport/detdescendantreport.py:1013
 msgid "Henry numbering"
-msgstr "Система Генри"
+msgstr "Нумерация Генри"
 
 #: ../gramps/plugins/textreport/descendreport.py:531
 #: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Modified Henry numbering"
-msgstr "Изменённая система Генри"
+msgstr "Изменённая нумерация Генри"
 
 #: ../gramps/plugins/textreport/descendreport.py:532
 msgid "de Villiers/Pama numbering"
-msgstr "нумерация Вилье/Пама"
+msgstr "Нумерация Вилье/Пама"
 
 #: ../gramps/plugins/textreport/descendreport.py:533
 msgid "Meurgey de Tupigny numbering"
-msgstr "нумерация Тюпинье"
+msgstr "Нумерация де Тюпинье"
 
 #: ../gramps/plugins/textreport/descendreport.py:534
 #: ../gramps/plugins/textreport/detdescendantreport.py:1018
 msgid "The numbering system to be used"
-msgstr "Какая система нумерации поколений и потомков будет использована"
+msgstr "Будет использована система нумерации поколений и потомков"
 
 #: ../gramps/plugins/textreport/descendreport.py:543
 msgid "Show marriage info"
-msgstr "Показывать информацию о браках"
+msgstr "Показывать информацию о браке"
 
 #: ../gramps/plugins/textreport/descendreport.py:545
 msgid "Whether to show marriage information in the report."
@@ -32439,7 +32437,7 @@ msgstr "Включать или нет информацию о браке в о�
 
 #: ../gramps/plugins/textreport/descendreport.py:548
 msgid "Show divorce info"
-msgstr "Показывать информацию о разводах"
+msgstr "Показывать информацию о разводе"
 
 #: ../gramps/plugins/textreport/descendreport.py:549
 msgid "Whether to show divorce information in the report."
@@ -32451,7 +32449,7 @@ msgstr "Показать дубликаты древ"
 
 #: ../gramps/plugins/textreport/descendreport.py:554
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "Показывать ли дубликаты фамильных древ в отчёте."
+msgstr "Показывать или нет дубликаты Семейных древ в отчёте."
 
 #: ../gramps/plugins/textreport/descendreport.py:598
 #, python-format
@@ -35181,7 +35179,7 @@ msgstr "Удалить неиспользуемые объекты"
 
 #: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
-msgstr "Включить упорядочивание ID"
+msgstr "Разрешить переупорядочивание ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
 msgid ""
@@ -35205,7 +35203,7 @@ msgstr " Количество"
 
 #: ../gramps/plugins/tool/reorderids.glade:1452
 msgid "Actual / Upcoming ID format."
-msgstr "Текущий / входящий формат ID"
+msgstr "Текущий / Входящий формат ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1465
 msgid "Change"
@@ -38028,9 +38026,10 @@ msgid "HTML user header"
 msgstr "Верхний колонтитул (HTML)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
 msgid "A note to be used as the page header or a php code to insert."
-msgstr "Заметка для использования в качестве верхнего колонтитула"
+msgstr ""
+"Заметка для использования в качестве верхнего колонтитула или для вставки "
+"php кода."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
@@ -38284,7 +38283,7 @@ msgstr "Включать страницу статистики"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2413
 msgid "Whether or not to add statistics page"
-msgstr "Включать или нет страницу статистики."
+msgstr "Включать или нет страницу статистики"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2422
 msgid "Place Map Options"
@@ -38413,9 +38412,8 @@ msgid "Whether to include a page with the last updates"
 msgstr "Включать ли последний вид деятельности"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2525
-#, fuzzy
 msgid "Max days for updates"
-msgstr "Макс. элем. для круг. диаг."
+msgstr "Макс. дней для обновлений"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2526
 msgid "You want to see the last updates on how many days ?"
