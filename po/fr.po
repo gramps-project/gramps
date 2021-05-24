@@ -37,8 +37,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-24 13:47+0000\n"
-"Last-Translator: romjerome <romjerome@yahoo.fr>\n"
+"PO-Revision-Date: 2021-05-24 16:19+0000\n"
+"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -140,7 +140,7 @@ msgstr "Croatie"
 
 #: ../data/holidays.xml:126
 msgid "Czech Republic"
-msgstr "République Tchèque"
+msgstr "République tchèque"
 
 #: ../data/holidays.xml:141
 msgid "England"
@@ -735,11 +735,11 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help "
 "&gt; Gramps Mailing Lists\""
 msgstr ""
-"<b>Contribuer</b><br/>Vous voulez aider Gramps mais vous ne savez pas "
+"<b>Contribuez</b><br/>Vous voulez aider Gramps mais vous ne savez pas "
 "programmer ? Ce n'est pas un problème. Pour un aussi grand projet que Gramps "
 "les besoins sont multiples. Documentation ou tests des versions en "
 "développement font parti de l'aide recherchée. Commencez par vous inscrire à "
-"la liste des développeurs de Gramps, gramps-devel. Les modalités "
+"la liste des développeurs de Gramps gramps-devel. Les modalités "
 "d'inscription sont disponibles dans « Aide &gt; Listes de diffusion de "
 "Gramps »."
 
@@ -987,17 +987,16 @@ msgstr ""
 "nouvelles fonctionnalités."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Les rapports de livre</b><br/>Rapport &gt; Livres &gt; Gestionnaire de "
-"Livres permet aux utilisateurs une multitude de rapports dans un seul "
-"document. Ce rapport unique est plus facile à partager que de nombreux "
-"rapports, surtout pour l'impression."
+"<b>Les rapports de livre</b><br/>Le rapport de livre sous « Rapport &gt; "
+"Livres &gt; Gestion des livres... » permet aux utilisateurs de rassembler "
+"une multitude de rapports dans un seul document. Ce rapport unique est plus "
+"facile à partager que de nombreux rapports, surtout pour l'impression."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -1005,7 +1004,7 @@ msgid ""
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\""
 msgstr ""
-"<b>Les annonces Gramps</b><br/>Vous voulez être alerté par la sortie des "
+"<b>Les annonces Gramps</b><br/>Vous voulez être alerté(e) par la sortie des "
 "dernières versions de Gramps ? Rejoignez-nous sur la liste gramps-annonce "
 "via « Aide &gt; Listes de diffusion de Gramps »."
 
@@ -22452,7 +22451,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
 msgid "Include Blank Pages"
-msgstr "Inclure des pages vierges"
+msgstr "Inclure les pages vierges"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1641
@@ -36143,11 +36142,11 @@ msgstr[1] "{quantity} noms de lieu alternatif ont été réparés\n"
 
 # trunk
 #: ../gramps/plugins/tool/check.py:2571
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] "{quantity} personne a été référencé, mais non trouvé\n"
-msgstr[1] "{quantity} personnes ont été référencés, mais non trouvés\n"
+msgstr[0] "{quantity} personne a été référencée, mais non trouvée\n"
+msgstr[1] "{quantity} personnes ont été référencées, mais non trouvées\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -36215,7 +36214,7 @@ msgstr[1] "{quantity} supports media manquants ont été supprimés\n"
 # trunk
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2643
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "{quantity} évènement a été référencé, mais non trouvé\n"
@@ -40411,9 +40410,8 @@ msgid "HTML user header"
 msgstr "En-tête HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
 msgid "A note to be used as the page header or a php code to insert."
-msgstr "La note utilisée pour l'en-tête de la page."
+msgstr "Une note à utiliser comme en-tête de page ou un code PHP à insérer."
 
 # espace limité dans la fenêtre, bug #3596
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
@@ -40432,12 +40430,11 @@ msgid "PHP user session"
 msgstr "Session utilisateur PHP"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2213
-#, fuzzy
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
-"Une note à utiliser pour démarrer la session php.\n"
+"Une note à utiliser pour démarrer la session PHP.\n"
 "Cette option ne sera disponible que si l'extension de fichier .php est "
 "sélectionnée."
 
@@ -40878,45 +40875,37 @@ msgstr "Donnez un titre dans la langue appropriée"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2555
-#, fuzzy
 msgid "third language"
-msgstr "Langue"
+msgstr "Troisième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
-#, fuzzy
 msgid "Site name for your third language"
 msgstr "Nom du site pour une troisième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2563
-#, fuzzy
 msgid "fourth language"
-msgstr "Langue"
+msgstr "Quatrième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
-#, fuzzy
 msgid "Site name for your fourth language"
 msgstr "Nom du site pour une quatrième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2571
-#, fuzzy
 msgid "fifth language"
-msgstr "Langue"
+msgstr "cinquième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2575
-#, fuzzy
 msgid "Site name for your fifth language"
 msgstr "Nom du site pour une cinquième langue"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:2579
-#, fuzzy
 msgid "sixth language"
-msgstr "Langue"
+msgstr "sixième langue"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2583
-#, fuzzy
 msgid "Site name for your sixth language"
 msgstr "Nom du site pour une sixième langue"
 
