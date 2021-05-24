@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-24 10:04+0000\n"
+"PO-Revision-Date: 2021-05-24 11:09+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -33965,7 +33965,7 @@ msgstr[1] "{quantity} tapahtumaan viitattiin, mutta niitä ei löytynyt\n"
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
-msgstr[0] "{quantity} virheellinen syntymätapahtuman nimi korjattu\n"
+msgstr[0] "{quantity} virheellisen syntymätapahtuman nimi korjattu\n"
 msgstr[1] "{quantity} virheellistä syntymätapahtuman nimeä korjattu\n"
 
 #. translators: leave all/any {...} untranslated
