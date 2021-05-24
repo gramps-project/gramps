@@ -63,8 +63,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-24 10:04+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2021-05-24 11:09+0000\n"
+"Last-Translator: Fresty di Lot <fresty49@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -2021,7 +2021,7 @@ msgstr "   Le opzioni valide sono:"
 #: ../gramps/plugins/textreport/descendreport.py:286
 #: ../gramps/plugins/textreport/placereport.py:195
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:465 ../gramps/cli/plug/__init__.py:555
 #: ../gramps/cli/plug/__init__.py:635
@@ -2136,7 +2136,7 @@ msgstr "Informazione privata"
 #: ../gramps/gen/config.py:319 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
 msgid "|January"
-msgstr "gennaio"
+msgstr "|Gennaio"
 
 #: ../gramps/gen/const.py:230
 msgid ""
@@ -2151,7 +2151,7 @@ msgstr ""
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
 msgid "none"
-msgstr "cognome"
+msgstr "nessuno"
 
 #: ../gramps/gen/const.py:261
 msgctxt "given-name"
@@ -36378,7 +36378,7 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:641
 msgid "Choose and bookmark the new reference person"
-msgstr "Scegliere e salvare nei segnalibri la nuova persona di riferimento"
+msgstr "Scegliere la nuova persona di riferimento e salvarla nei segnalibri"
 
 #: ../gramps/plugins/view/geoclose.py:664
 msgid ""
@@ -36451,7 +36451,7 @@ msgstr "_Famiglia di riferimento"
 #: ../gramps/plugins/view/geofamclose.py:221
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid "Have these two families been able to meet?"
-msgstr "Hanno mai avuto la possibilità di incontrarsi, queste due famiglie?"
+msgstr "Queste due famiglie hanno mai avuto la possibilità di incontrarsi?"
 
 #: ../gramps/plugins/view/geofamclose.py:252
 msgid "GeoFamClose"
@@ -37940,7 +37940,7 @@ msgstr "Numero di generazioni da includere nel grafico ascendenti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2155
 msgid "Include narrative notes just after name, gender"
-msgstr ""
+msgstr "Inserisci le note narrative subito dopo nome e sesso"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2157
 msgid ""
@@ -38364,7 +38364,7 @@ msgstr "La chiave per le API usata per Google maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2475
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2476
 msgid "Terrain"
