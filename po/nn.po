@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2018-04-08 10:09+0100\n"
-"Last-Translator: Sigmund Lorentsen <siglorent@gmail.com>\n"
-"Language-Team: NorwegianNynorsk <i18n-nn@lister.ping.uio.no>\n"
+"PO-Revision-Date: 2021-05-24 10:05+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nn/>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: Lokalize 2.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -11466,7 +11467,7 @@ msgstr "Omsett av"
 #: ../gramps/gui/aboutdialog.py:131
 #, fuzzy, python-format
 msgid "Distribution: %s"
-msgstr "Omtale: "
+msgstr "Omtale: %s"
 
 #: ../gramps/gui/aboutdialog.py:142
 #, fuzzy, python-format
@@ -11604,6 +11605,7 @@ msgid "_Close"
 msgstr "_Lukk"
 
 #: ../gramps/gui/configure.py:119
+#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11637,7 +11639,7 @@ msgstr ""
 "Dei følgjande nøkkelorda blir bytt ut med høvande namnedelar:<tt>\n"
 "  <b>Føre</b>       - førenamn (første namn)    <b>Etternamn</b>  - "
 "etternamn  (med prefiks og koplingar)\n"
-"  <b>Tittel</b>      - tittel (Dr., Fru)          b>Etterstaving</b>   - "
+"  <b>Tittel</b>      - tittel (Dr., Fru)          <b>Etterstaving</b>   - "
 "etterstaving (Jr., Sen.)\n"
 "  <b>Kalle</b>       - kallenamn              <b>Kallenamn</b>      - "
 "kallenamn\n"
@@ -11647,17 +11649,17 @@ msgstr ""
 "Etternamn:\n"
 "  <b>Rest</b>      - ikkje primære etternamn    <b>ikkje patronymikon</b>- "
 "alleetternamn, bortsett frå pa/matronymikon &amp; hovud\n"
-"  <b>Primær,  Primær[pri] eller [etter] eller [kopl]</"
+"  <b>Primær, Primær[pri] eller [etter] eller [kopl]</"
 "b>                            - fullt primært etternamn, førestaving, berre "
-"etternamn, kopling  \n"
+"etternamn, kopling\n"
 "   <b>Familetiltale</b> - familtiltalenamn        <b>råetternamn</b>  -  "
-"etternamningen førestavingar og koplingar  \n"
+"etternamningen førestavingar og koplingar\n"
 "  <b>Primær, Primær[pre] eller [sur] eller [con]</b>- fullt primært "
 "etternamn, førestaving, berre etternamn, kopling\n"
 "  <b>Patronymikon, eller [pre] eller [sur] eller [con]</b> - fullt pa/"
 "matronymikonetternamn, førestaving, berre etternamn, kopling\n"
 "</tt>\n"
-"Nøkkelord med STORE BOKSTAVAR må ha store bokstavar.  Ekstra parentesar, "
+"Nøkkelord med STORE BOKSTAVAR må ha store bokstavar. Ekstra parentesar, "
 "komma blir fjerna.  Annan tekst vert vist som han er.\n"
 "\n"
 "<b>Døme</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
@@ -11665,7 +11667,7 @@ msgstr ""
 "     <i>Edwin Jose</i>: førenamn, <i>von der</i>: førestaving, <i>Smith</i> "
 "og <i>Weston</i>: primær namn, \n"
 " <i>og</i>: [con], <i>Wilson</i> patronymikon\n"
-", <i>Dr.</i>: tittel, <i>Sr</i>: etterstaving, <i>Ed</i>: kallenamn, \n"
+", <i>Dr.</i>: tittel, <i>Sr</i>: etterstaving, <i>Ed</i>: kallenamn,\n"
 "     <i>Underhills</i>: familetiltalenamn, <i>Jose</i>: tiltalenamn.\n"
 
 #: ../gramps/gui/configure.py:148
@@ -13451,9 +13453,9 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Denne referansen kan ikkje opprettast no.  Enten blir den tilhøyrande kjelda "
-"alt redigert, eller så blir ein annan referanse med den same kjelda "
-"redigert.\n"
+"Denne referansen kan ikkje opprettast no. Enten blir den tilhøyrande kjelda "
+"alt redigert, eller så blir ein annan referanse med den same kjelda redigert."
+"\n"
 "\n"
 "For å redigera denne referansen, må du lukka kjelda."
 
@@ -13500,7 +13502,7 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"Referansen til denne hendinga kan ikkje endrast no.  Enten blir denne delte "
+"Referansen til denne hendinga kan ikkje endrast no. Enten blir denne delte "
 "hendinga endra samstundes, eller så blir ein annan referanse som er delt med "
 "den same hendinga endra.\n"
 "\n"
@@ -13562,7 +13564,7 @@ msgid ""
 "\n"
 "To edit this media reference, you need to close the media object."
 msgstr ""
-"Referansen til dette mediaobjektet kan ikkje endrast no.  Enten blir det "
+"Referansen til dette mediaobjektet kan ikkje endrast no. Enten blir det "
 "tilhøyrande mediaobjektet endra samstundes, eller så blir ein annan "
 "mediareferanse som er delt med den same objektet endra.\n"
 "\n"
@@ -14119,8 +14121,7 @@ msgstr "Kan ikkje lagra hending"
 #: ../gramps/gui/editors/editevent.py:240
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
-"Det fins ikkje data for denne hendinga.  Skriv inn data eller avbryt "
-"endringa."
+"Det fins ikkje data for denne hendinga. Skriv inn data eller avbryt endringa."
 
 #: ../gramps/gui/editors/editevent.py:250
 #: ../gramps/gui/editors/editreference.py:277
@@ -32179,11 +32180,11 @@ msgstr "%(person)s, fødsels%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
+msgstr[1] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:402
 #, fuzzy, python-format
@@ -32196,7 +32197,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:407
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -32204,16 +32205,16 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"{spouse} og\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} og\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"{spouse} and\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} og\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:442
 #, fuzzy, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "{person}, {age}{relation}"
+msgstr "✝ {person}, daud {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:444
 #, fuzzy, python-brace-format
@@ -37574,13 +37575,13 @@ msgid "Below unused media objects"
 msgstr "Nedanståande ubrukte mediaobjekt"
 
 #: ../gramps/plugins/webreport/media.py:414
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"<strong id = \"GalleryCurrent\">%(page_number)d</strong> av <strong id = "
-"\"GalleryTotal\">%(total_pages)d</strong>"
+"%(strong1_strt)s%(page_number)d%(strong_end)s av "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:427
