@@ -2617,7 +2617,7 @@ class CheckIntegrity:
                 # translators: leave all/any {...} untranslated
                 ngettext(
                     "Reference to {quantity} missing media object was kept\n",
-                    "References to {quantity} media objects were kept\n",
+                    "References to {quantity} missing media objects were kept\n",
                     bad_photos).format(quantity=bad_photos)
                 )
 
