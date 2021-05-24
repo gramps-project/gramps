@@ -64,7 +64,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
 "PO-Revision-Date: 2021-05-24 12:26+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"Last-Translator: Fresty di Lot <fresty49@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -26888,99 +26888,97 @@ msgstr "GPS"
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s nacque il %(birth_date)s in quel di %(birth_place)s."
+msgstr "%(unknown_gender_name)s è nato il %(birth_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:89
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s nacque il %(birth_date)s in quel di %(birth_place)s."
+msgstr "%(male_name)s è nato il %(birth_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:90
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(female_name)s nacque il %(birth_date)s in quel di %(birth_place)s."
+msgstr "%(female_name)s è nata il %(birth_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:93
 #, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr "Nacque il %(birth_date)s in quel di %(birth_place)s."
+msgstr "Questa persona è nata il %(birth_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:94
 #, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr "Nacque il %(birth_date)s in quel di %(birth_place)s."
+msgstr "E' nato il %(birth_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:95
 #, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr "Nacque il %(birth_date)s in quel di %(birth_place)s."
+msgstr "E' nata il %(birth_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:97
 #, python-format
 msgid "Born %(birth_date)s in %(birth_place)s."
-msgstr "Nacque il %(birth_date)s in quel di %(birth_place)s."
+msgstr "E' nato il %(birth_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:102
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s nacque %(modified_date)s in quel di %(birth_place)s."
+msgstr "%(unknown_gender_name)s è nato %(modified_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:103
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s nacque %(modified_date)s in quel di %(birth_place)s."
+msgstr "%(male_name)s è nato %(modified_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:104
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s nacque %(modified_date)s in quel di %(birth_place)s."
+msgstr "%(female_name)s è nata %(modified_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:107
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
+msgstr "Questa persona è nata %(modified_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:108
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
+msgstr "E' nato %(modified_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:109
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
+msgstr "E' nata %(modified_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
 msgid "Born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
+msgstr "E'nato %(modified_date)s a %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:116
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
-msgstr "%(unknown_gender_name)s nacque il %(birth_date)s."
+msgstr "%(unknown_gender_name)s è nato il %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:117
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s."
-msgstr "%(male_name)s nacque il %(birth_date)s."
+msgstr "%(male_name)s è nato il %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:118
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s."
-msgstr "%(female_name)s nacque il %(birth_date)s."
+msgstr "%(female_name)s è nata il %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:121
 #, python-format
 msgid "This person was born on %(birth_date)s."
-msgstr "Nacque il %(birth_date)s."
+msgstr "Questa persona è nata il %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:122
 #, python-format
 msgid "He was born on %(birth_date)s."
-msgstr "Nacque il %(birth_date)s."
+msgstr "E' nato il %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:123
 #, python-format
@@ -38515,7 +38513,7 @@ msgstr "Include gli anniversari nel calendario"
 #: ../gramps/plugins/webreport/narrativeweb.py:2840
 #: ../gramps/plugins/webreport/webcal.py:1966
 msgid "Include death dates"
-msgstr "Includere date dei decessi"
+msgstr "Includere le date dei decessi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2841
 #: ../gramps/plugins/webreport/webcal.py:1967
