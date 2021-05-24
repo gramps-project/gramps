@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-23 22:45+0100\n"
+"POT-Creation-Date: 2021-05-24 23:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10589,7 +10589,7 @@ msgstr ""
 #: ../gramps/grampsapp.py:172
 #, python-format
 msgid ""
-"Your Python version does not meet the requirements. At least python %(v1)d."
+"Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
@@ -10601,16 +10601,16 @@ msgid "Configuration error:"
 msgstr ""
 
 #: ../gramps/grampsapp.py:432
-msgid "Error reading configuration"
+msgid "Could not read configuration"
 msgstr ""
 
 #: ../gramps/grampsapp.py:436
 #, python-format
 msgid ""
-"A definition for the MIME-type %s could not be found \n"
+"A definition for the media type %s could not be found \n"
 "\n"
-" Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-"types of Gramps are properly installed."
+" Possibly the installation of Gramps was incomplete. Make sure something to "
+"handle the media types of Gramps is installed."
 msgstr ""
 
 #: ../gramps/gui/aboutdialog.py:97
@@ -14960,7 +14960,7 @@ msgstr ""
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
-"log/registry. "
+"log/registry."
 msgstr ""
 
 #: ../gramps/gui/glade/editcitation.glade:201
@@ -15310,7 +15310,7 @@ msgid ""
 "Gramps does not store the media internally, it only stores the path! Set the "
 "'Relative Path' in the Preferences to avoid retyping the common base "
 "directory where all your media is stored. The 'Media Manager' tool can help "
-"managing paths of a collection of media objects. "
+"managing paths of a collection of media objects."
 msgstr ""
 
 #: ../gramps/gui/glade/editmedia.glade:219
@@ -15455,7 +15455,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:333
-msgid "Given Name(s) "
+msgid "Given Name(s)"
 msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:384
@@ -15688,8 +15688,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-msgid ""
-"Field used to paste info from a web page like google, openstreetmap, ... "
+msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:265
@@ -19671,7 +19670,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/descendtree.py:1699
 msgid ""
 "i.e.\n"
-"United States of America/U.S.A"
+"United States of America/U.S.A."
 msgstr ""
 
 #. TODO this code is never used and so I conclude it is for future use
@@ -23771,7 +23770,7 @@ msgid "ANSEL"
 msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-msgid "ANSI (iso-8859-1)"
+msgid "ANSI (ISO-8859-1)"
 msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
@@ -35416,7 +35415,7 @@ msgid "Sort all children in birth order"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-msgid "Whether to display children in birth order or in entry order?"
+msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
@@ -35424,7 +35423,7 @@ msgid "Do we display coordinates in the places list?"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-msgid "Whether to display latitude/longitude in the places list?"
+msgid "Whether to display latitude/longitude in the places list."
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
@@ -35516,7 +35515,7 @@ msgid "HTML user header"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-msgid "A note to be used as the page header or a php code to insert."
+msgid "A note to be used as the page header or a PHP code to insert."
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
