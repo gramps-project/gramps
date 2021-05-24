@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-23 17:22+0000\n"
+"PO-Revision-Date: 2021-05-24 10:04+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -7648,7 +7648,7 @@ msgstr "Koulutus"
 
 #: ../gramps/gen/lib/eventtype.py:180
 msgid "Elected"
-msgstr "Valittu"
+msgstr "Vaali"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Emigration"
