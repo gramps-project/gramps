@@ -60,6 +60,7 @@ from gramps.gen.plug.report import utils
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.constfunc import win
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon
@@ -1683,10 +1684,19 @@ class PersonPages(BasePage):
                 # Age At Death???
                 birth_date = Date.EMPTY
                 birth_ref = self.person.get_birth_ref()
+                p_birth = ""
                 if birth_ref:
                     birth = self.r_db.get_event_from_handle(birth_ref.ref)
                     if birth:
                         birth_date = birth.get_date_object()
+                        p_birth = _pd.display_event(self.r_db, birth)
+
+                death_ref = self.person.get_death_ref()
+                p_death = ""
+                if death_ref:
+                    death = self.r_db.get_event_from_handle(death_ref.ref)
+                    if death:
+                        p_death = _pd.display_event(self.r_db, death)
 
                 death_date = _find_death_date(self.r_db, self.person)
                 if birth_date and birth_date is not Date.EMPTY:
@@ -1705,11 +1715,17 @@ class PersonPages(BasePage):
                         table += trow
                 if self.report.options['toggle']:
                     # Show birth and/or death date if we use the close button.
+                    # If we have associated places, show them.
+                    if p_birth:
+                        p_birth = " (" + p_birth + ")"
+                    if p_death:
+                        p_death = " (" + p_death + ")"
                     if birth_date and birth_date is not Date.EMPTY:
                         trow = Html("tr") + (
                             Html("td", self._("Birth date"),
                                  class_="ColumnAttribute", inline=True),
-                            Html("td", self.rlocale.get_date(birth_date),
+                            Html("td", self.rlocale.get_date(birth_date) +
+                                 p_birth,
                                  class_="ColumnValue", inline=True)
                             )
                         table += trow
@@ -1717,7 +1733,8 @@ class PersonPages(BasePage):
                         trow = Html("tr") + (
                             Html("td", self._("Death date"),
                                  class_="ColumnAttribute", inline=True),
-                            Html("td", self.rlocale.get_date(death_date),
+                            Html("td", self.rlocale.get_date(death_date) +
+                                 p_death,
                                  class_="ColumnValue", inline=True)
                             )
                         table += trow
