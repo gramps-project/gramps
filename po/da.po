@@ -45,7 +45,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-18 21:26+0000\n"
+"PO-Revision-Date: 2021-05-24 10:04+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -35857,7 +35857,7 @@ msgid ""
 "desired citation."
 msgstr ""
 "Præcis to kildehenvisninger skal vælges for at sammenflette dem. Den anden "
-"kildehenvisning kan vælges ved at holde ctrl-tasten nede og samtidig klikke "
+"kildehenvisning kan vælges ved at holde Ctrl-tasten nede og samtidig klikke "
 "på den ønskede kildehenvisning."
 
 #: ../gramps/plugins/view/citationlistview.py:420
@@ -35981,7 +35981,7 @@ msgid ""
 "event."
 msgstr ""
 "Præcis to hændelser skal vælges for at sammenflette dem. Et andet objekt kan "
-"vælges ved at holde ctrl-tasten nede og samtidig klikke på den ønskede "
+"vælges ved at holde Ctrl-tasten nede og samtidig klikke på den ønskede "
 "hændelse."
 
 #: ../gramps/plugins/view/familyview.py:83
@@ -36036,7 +36036,7 @@ msgid ""
 "desired family."
 msgstr ""
 "Præcis to familier skal vælges for at sammenflette dem. Den anden familie "
-"kan vælges ved at holde ctrl-tasten nede og samtidig klikke på det ønskede "
+"kan vælges ved at holde Ctrl-tasten nede og samtidig klikke på det ønskede "
 "familie."
 
 #: ../gramps/plugins/view/fanchart2wayview.py:280
@@ -36725,8 +36725,8 @@ msgid ""
 "desired object."
 msgstr ""
 "Præcis to medieobjekter skal vælges for at sammenflette dem. Det andet "
-"medieobjekt kan vælges ved at holde ctrl-tasten nede og samtidig klikke på "
-"det ønskede medieobjekt.."
+"medieobjekt kan vælges ved at holde Ctrl-tasten nede og samtidig klikke på "
+"det ønskede medieobjekt."
 
 #: ../gramps/plugins/view/noteview.py:95
 msgid "Delete the selected note"
@@ -36750,7 +36750,7 @@ msgid ""
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
 "Præcis to noter skal vælges for at sammenflette dem. Den anden note kan "
-"vælges ved at holde ctrl-tasten nede og samtidig klikke på den ønskede note."
+"vælges ved at holde Ctrl-tasten nede og samtidig klikke på den ønskede note."
 
 #: ../gramps/plugins/view/pedigreeview.py:81
 msgctxt "short for born"
@@ -37106,7 +37106,7 @@ msgid ""
 "the desired repository."
 msgstr ""
 "Præcis to arkiver skal vælges for at sammenflette dem. Det andet arkiv kan "
-"vælges ved at holde ctrl-tasten nede og samtidig klikke på det ønskede arkiv."
+"vælges ved at holde Ctrl-tasten nede og samtidig klikke på det ønskede arkiv."
 
 #: ../gramps/plugins/view/sourceview.py:99
 msgid "Edit the selected source"
@@ -37135,7 +37135,7 @@ msgid ""
 "source."
 msgstr ""
 "Præcis to kilder skal vælges for at sammenflette dem. Den anden kilde kan "
-"vælges ved at holde ctrl-tasten nede og samtidig klikke på den ønskede kilde."
+"vælges ved at holde Ctrl-tasten nede og samtidig klikke på den ønskede kilde."
 
 #: ../gramps/plugins/view/view.gpr.py:38
 msgid "The view showing all the events"
