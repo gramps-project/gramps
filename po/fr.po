@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-24 11:09+0000\n"
+"PO-Revision-Date: 2021-05-24 13:47+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -549,11 +549,12 @@ msgid ""
 "the People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Un nouvel arbre généalogique</b><br/>Une bonne idée pour commencer une "
-"généalogie est d'éditer tous les membres de votre famille dans une base de "
-"données (utilisez « Édition &gt; Ajouter&quot; ou cliquez sur le bouton "
-"&quot;Ajouter » dans la vue Individus). Puis allez dans la vue Relations et "
-"créez les relations entre les individus."
+"<b>Commencer un nouvel arbre généalogique</b><br/>Un bon moyen de créer un "
+"nouvel arbre généalogique est de saisir tous les membres de la famille dans "
+"la base de données à l'aide de la vue Individus (utilisez « Édition &gt; "
+"Ajouter&quot; ou cliquez sur le bouton &quot;Ajouter » dans la vue Individus)"
+". Puis allez dans la vue Relations et créez les relations entre les "
+"individus."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -605,17 +606,16 @@ msgstr ""
 "dépôts."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>Organisation des vues</b><br/>Quelques vues peuvent représenter vos "
-"données soit sous forme d'arbre hiérarchisé soit sous forme de simple liste. "
-"Chaque vue peut également être configurée comme vous le souhaitez. Regardez "
-"à la droite de la barre d'outils ou dans le menu « Affichage »."
+"<b>Organisation des vues</b><br/>Les différentes vues peuvent représenter "
+"vos données soit sous forme d'arbre hiérarchisé soit sous forme de simple "
+"liste. Chaque vue peut également être configurée comme vous le souhaitez. "
+"Regardez à la droite de la barre d'outils ou dans le menu « Affichage »."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -954,7 +954,7 @@ msgstr ""
 "informations personnelles en vous permettant de marquer les informations "
 "comme étant privées. Les données marquées comme privées peuvent être exclues "
 "des rapports et des exportations de données. Recherchez le cadenas qui "
-"permet de faire basculer les enregistrements entre privés et publics."
+"permet de faire basculer les enregistrements de publics à privés."
 
 #: ../data/tips.xml:100
 msgid ""
@@ -1992,7 +1992,7 @@ msgstr "=format"
 
 #: ../gramps/cli/plug/__init__.py:295
 msgid "Output file format."
-msgstr "Format de sortie. "
+msgstr "Format de sortie."
 
 #: ../gramps/cli/plug/__init__.py:296 ../gramps/cli/plug/__init__.py:297
 msgid "=name"
@@ -8578,7 +8578,7 @@ msgstr "annul."
 #: ../gramps/plugins/view/relview.py:1069
 #: ../gramps/plugins/webreport/person.py:1861
 msgid "Father"
-msgstr "Père "
+msgstr "Père"
 
 #: ../gramps/gen/lib/family.py:158
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
@@ -8600,7 +8600,7 @@ msgstr "Père "
 #: ../gramps/plugins/view/relview.py:1070
 #: ../gramps/plugins/webreport/person.py:1874
 msgid "Mother"
-msgstr "Mère "
+msgstr "Mère"
 
 #. Go over children and build their menu
 #: ../gramps/gen/lib/family.py:161 ../gramps/gui/widgets/fanchart.py:1957
@@ -8612,7 +8612,7 @@ msgstr "Mère "
 #: ../gramps/plugins/view/relview.py:1596
 #: ../gramps/plugins/webreport/basepage.py:457
 msgid "Children"
-msgstr "Enfants "
+msgstr "Enfants"
 
 #: ../gramps/gen/lib/family.py:165 ../gramps/gui/merge/mergeperson.py:206
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:477
@@ -8712,7 +8712,7 @@ msgstr "Union civile"
 #: ../gramps/plugins/webreport/repository.py:171
 #: ../gramps/plugins/webreport/repository.py:264
 msgid "Type"
-msgstr "Type "
+msgstr "Type"
 
 # Dotation ?
 #: ../gramps/gen/lib/ldsord.py:96
@@ -9132,7 +9132,7 @@ msgstr "Nom marital (nom de l'époux)"
 #: ../gramps/plugins/webreport/basepage.py:754
 #: ../gramps/plugins/webreport/basepage.py:2407
 msgid "Note"
-msgstr "Note "
+msgstr "Note"
 
 #: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:1023
 #: ../gramps/gui/editors/editplaceformat.py:72
@@ -9549,7 +9549,7 @@ msgstr "Numéro"
 #: ../gramps/plugins/quickview/filterbyname.py:264
 #: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
-msgstr "Dépôt "
+msgstr "Dépôt"
 
 #: ../gramps/gen/lib/reporef.py:96 ../gramps/gui/clipboard.py:505
 msgid "Repository ref"
@@ -10824,7 +10824,7 @@ msgstr "Le style utilisé pour les notes de références en fin d'ouvrage."
 
 #: ../gramps/gen/plug/report/stdoptions.py:58
 msgid "Translation"
-msgstr "Traduction "
+msgstr "Traduction"
 
 #: ../gramps/gen/plug/report/stdoptions.py:64
 msgid "The translation to be used for the report."
@@ -12307,13 +12307,13 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Les mots-clé suivants seront remplacés avec la partie du nom "
-"correspondant :\n"
+"Les mots-clé suivants seront remplacés avec la partie du nom correspondant :"
+"\n"
 "<tt>  \n"
-"  <b>Prénom</b>           - prénom(s)                 <b>Nom</b>     - nom "
-"(avec préfixe et connecteurs) \n"
-"  <b>Titre</b>             - titre (Dr., Me., Duc)    <b>Suffixe</b> - "
-"suffixe (Jr., Sr.)\n"
+"  <b>Prénom</b>           - prénom(s)                 <b>Nom</b>     - nom ("
+"avec préfixe et connecteurs) \n"
+"  <b>Titre</b>             - titre (Dr, Me, Duc)    <b>Suffixe</b> - suffixe "
+"(Jr, Sr)\n"
 "  <b>Usuel</b>             - prénom usuel             <b>Surnom</b>  - "
 "surnom\n"
 "  <b>Initiales</b>         - initiales des prénoms    <b>Courant</b> - "
@@ -12326,8 +12326,8 @@ msgstr ""
 "  <b>Patronyme</b>, <b>Patronyme[pre]</b>, <b>Patronyme[nom]</b>, "
 "<b>Patronyme[con]</b>\n"
 "      - patronyme complet, préfixe, nom seul, connecteur \n"
-"  <b>PasPatronyme</b>      - tous les noms de famille sauf le principal "
-"&amp; le pa/matronyme\n"
+"  <b>PasPatronyme</b>      - tous les noms de famille sauf le principal &amp;"
+" le pa/matronyme\n"
 "  <b>Reste</b>             - les noms de familles secondaires\n"
 "  <b>NomsDeFamilleBrut</b> - tous les noms de famille sans préfixe et "
 "connecteurs\n"
@@ -12335,14 +12335,14 @@ msgstr ""
 "</tt>\n"
 "Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. "
 "Parenthèses vides et virgules en trop \n"
-"seront automatiquement enlevées. Tout autre texte sera inséré "
-"littéralement.\n"
+"seront automatiquement enlevées. Tout autre texte sera inséré littéralement."
 "\n"
-"<b>Exemple</b> : « Dr. Edwin Jose von der Smith and Weston Wilson Sr "
-"(« Ed ») - Underhills »\n"
+"\n"
+"<b>Exemple</b> : « Dr Edwin Jose von der Smith and Weston Wilson Sr (« Ed ») "
+"- Underhills »\n"
 "     <i>Edwin Jose</i> sont les prénoms, <i>von der</i> le préfixe, "
 "<i>Smith</i> et <i>Weston</i> les noms de famille, \n"
-"     <i>and</i> le connecteur, <i>Wilson</i> le nom patronymique, <i>Dr.</i> "
+"     <i>and</i> le connecteur, <i>Wilson</i> le nom patronymique, <i>Dr</i> "
 "le titre, <i>Sr</i> le suffixe, \n"
 "     <i>Ed</i> le surnom, <i>Underhills</i> le nom-dit et <i>Jose</i> est le "
 "prénom usuel.\n"
@@ -16490,7 +16490,7 @@ msgstr "Acteurs principaux"
 #: ../gramps/plugins/view/familyview.py:82
 #: ../gramps/plugins/webreport/person.py:1433
 msgid "Relationship"
-msgstr "Relation "
+msgstr "Relation"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 msgid "any"
@@ -17143,9 +17143,7 @@ msgstr "_Identifiant :"
 # trunk
 #: ../gramps/gui/glade/editcitation.glade:240
 msgid "A unique ID to identify the citation"
-msgstr ""
-"Un identifiant unique pour identifier la citation, laissez Gramps le "
-"désigner."
+msgstr "Un identifiant unique pour la citation, laissez Gramps le générer."
 
 #: ../gramps/gui/glade/editcitation.glade:360
 #: ../gramps/gui/glade/editevent.glade:390
@@ -17359,8 +17357,7 @@ msgstr "Information sur la relation"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
-msgstr ""
-"Un identifiant unique pour identifier la famille, laissez Gramps le désigner."
+msgstr "Un identifiant unique pour la famille, laissez Gramps le générer."
 
 # éviter le raccourci sur le y ou le p
 #: ../gramps/gui/glade/editfamily.glade:698
@@ -17531,8 +17528,7 @@ msgstr "Répertoire"
 
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
-msgstr ""
-"Un identifiant unique pour identifier l'objet, laissez Gramps le désigner."
+msgstr "Un identifiant unique pour l'objet, laissez Gramps le générer."
 
 #: ../gramps/gui/glade/editmedia.glade:346
 msgid ""
@@ -17885,8 +17881,7 @@ msgstr "Ge_nre :"
 
 #: ../gramps/gui/glade/editperson.glade:633
 msgid "A unique ID for the person."
-msgstr ""
-"Un identifiant unique pour identifier l'individu, laissez Gramps le désigner."
+msgstr "Un identifiant unique pour l'individu, laissez Gramps le générer."
 
 #: ../gramps/gui/glade/editperson.glade:708
 msgid "Preferred Name"
@@ -17962,8 +17957,8 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Latitude du lieu (position par rapport à l'équateur) en notation décimale ou "
-"en degrés.\n"
+"Latitude du lieu (position relative à l'équateur) en notation décimale ou en "
+"degrés.\n"
 "Par exemple, des valeurs valides peuvent être 12.0154, 50°52′21.92″N, "
 "N50°52′21.92″ ou 50:52:21.92\n"
 "Vous pouvez définir ces valeurs via la vue Géographie en cherchant le lieu "
@@ -18105,8 +18100,8 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Latitude du lieu (position par rapport à l'équateur) en notation décimale ou "
-"en degrés.\n"
+"Latitude du lieu (position relative à l'équateur) en notation décimale ou en "
+"degrés.\n"
 "Par exemple, des valeurs valides peuvent être 12.0154, 50°52′21.92″N, "
 "N50°52′21.92″ ou 50:52:21.92\n"
 "Vous pouvez définir ces valeurs via la vue Géographie en cherchant le lieu "
@@ -18172,8 +18167,7 @@ msgstr ""
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr ""
-"Un identifiant unique pour identifier le dépôt, laissez Gramps le désigner."
+msgstr "Un identifiant unique pour le dépôt, laissez Gramps le générer."
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
@@ -18182,7 +18176,7 @@ msgstr "Le type de dépôt, par exemple : une bibliothèque, une archive..."
 
 #: ../gramps/gui/glade/editsource.glade:112
 msgid "_Author:"
-msgstr "_Auteur :"
+msgstr "_Auteurs :"
 
 #: ../gramps/gui/glade/editsource.glade:127
 msgid "Title of the source."
@@ -18194,15 +18188,15 @@ msgstr "Les auteurs de la source."
 
 #: ../gramps/gui/glade/editsource.glade:154
 msgid "_Pub. info.:"
-msgstr "_Info pub. :"
+msgstr "_Infos pub. :"
 
 #: ../gramps/gui/glade/editsource.glade:168
 msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
 msgstr ""
-"Les informations de publication, tel que un village, l'année de publication, "
-"le nom de l'organisme publiant cette source..."
+"Les informations de publication telles qu'un village, une année de "
+"publication, un nom d'auteur..."
 
 #: ../gramps/gui/glade/editsource.glade:181
 msgid ""
@@ -18210,7 +18204,7 @@ msgid ""
 "records."
 msgstr ""
 "Fournit un simple titre utilisé pour trier, classer et trouver les "
-"enregistrements de la source. "
+"enregistrements de la source."
 
 #: ../gramps/gui/glade/editsource.glade:194
 msgid "A_bbreviation:"
@@ -18218,8 +18212,7 @@ msgstr "A_bréviation :"
 
 #: ../gramps/gui/glade/editsource.glade:214
 msgid "A unique ID to identify the source"
-msgstr ""
-"Un identifiant unique pour identifier la source, laissez Gramps le désigner."
+msgstr "Un identifiant unique pour la source, laissez Gramps le générer."
 
 #: ../gramps/gui/glade/editurl.glade:96
 msgid "_Web address:"
@@ -18292,7 +18285,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergedata.glade:732
 #: ../gramps/gui/glade/mergesource.glade:186
 msgid "Source 1"
-msgstr "Source 1 "
+msgstr "Source 1"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
@@ -18300,7 +18293,7 @@ msgstr "Source 1 "
 #: ../gramps/gui/glade/mergedata.glade:747
 #: ../gramps/gui/glade/mergesource.glade:200
 msgid "Source 2"
-msgstr "Source 2 "
+msgstr "Source 2"
 
 #: ../gramps/gui/glade/mergecitation.glade:311
 #: ../gramps/gui/glade/mergecitation.glade:327
@@ -18441,13 +18434,13 @@ msgstr "Relation :"
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergefamily.glade:417
 msgid "Family 1"
-msgstr "Famille 1 "
+msgstr "Famille 1"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergefamily.glade:431
 msgid "Family 2"
-msgstr "Famille 2 "
+msgstr "Famille 2"
 
 # trunk
 #: ../gramps/gui/glade/mergefamily.glade:458
@@ -18471,13 +18464,13 @@ msgstr ""
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergemedia.glade:186
 msgid "Object 1"
-msgstr "Objet 1 "
+msgstr "Objet 1"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergemedia.glade:200
 msgid "Object 2"
-msgstr "Objet 2 "
+msgstr "Objet 2"
 
 # trunk
 #: ../gramps/gui/glade/mergemedia.glade:455
@@ -18499,13 +18492,13 @@ msgstr ""
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergenote.glade:186
 msgid "Note 1"
-msgstr "Note 1 "
+msgstr "Note 1"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergenote.glade:200
 msgid "Note 2"
-msgstr "Note 2 "
+msgstr "Note 2"
 
 # une note
 #: ../gramps/gui/glade/mergenote.glade:278
@@ -18527,14 +18520,14 @@ msgstr ""
 #: ../gramps/gui/glade/mergeperson.glade:196
 #: ../gramps/plugins/textreport/recordsreport.py:268
 msgid "Person 1"
-msgstr "Individu 1 "
+msgstr "Individu 1"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergeperson.glade:210
 #: ../gramps/plugins/textreport/recordsreport.py:266
 msgid "Person 2"
-msgstr "Individu 2 "
+msgstr "Individu 2"
 
 # trunk
 #: ../gramps/gui/glade/mergeperson.glade:255
@@ -18587,13 +18580,13 @@ msgstr ""
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergerepository.glade:186
 msgid "Repository 1"
-msgstr "Dépôt 1 "
+msgstr "Dépôt 1"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/glade/mergerepository.glade:200
 msgid "Repository 2"
-msgstr "Dépôt 2 "
+msgstr "Dépôt 2"
 
 # trunk
 #: ../gramps/gui/glade/mergerepository.glade:398
@@ -19126,7 +19119,7 @@ msgstr "_Suivant"
 # trunk
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "Installer les g_reffons sélectionnés "
+msgstr "Installer les g_reffons sélectionnés"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:1083
@@ -19525,7 +19518,7 @@ msgid ""
 "the error occurred."
 msgstr ""
 "Veuillez décrire (en anglais) de façon détaillée les circonstances qui ont "
-"provoquées l'erreur. "
+"provoquées l'erreur."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:482
 #: ../gramps/gui/logger/_errorreportassistant.py:507
@@ -19751,7 +19744,7 @@ msgstr "Fusionner les individus"
 #: ../gramps/plugins/webreport/person.py:2068
 #: ../gramps/plugins/webreport/surname.py:155
 msgid "Parents"
-msgstr "Parents "
+msgstr "Parents"
 
 #: ../gramps/gui/merge/mergeperson.py:228
 #: ../gramps/gui/merge/mergeperson.py:245
@@ -19779,7 +19772,7 @@ msgstr "Conjoints"
 #: ../gramps/plugins/textreport/familygroup.py:570
 #: ../gramps/plugins/view/relview.py:1581
 msgid "Spouse"
-msgstr "Conjoint "
+msgstr "Conjoint"
 
 #: ../gramps/gui/merge/mergeperson.py:264
 msgid "No spouses or children found"
@@ -20062,7 +20055,7 @@ msgstr "Auteurs"
 #: ../gramps/gui/plug/_windows.py:624
 #: ../gramps/gui/plug/report/_reportdialog.py:472
 msgid "Filename"
-msgstr "Fichier "
+msgstr "Nom de fichier"
 
 #: ../gramps/gui/plug/_windows.py:627
 msgid "Detailed Info"
@@ -20325,7 +20318,7 @@ msgstr "Calcul des aperçus"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:283
 msgid "_Person Filter"
-msgstr "F_iltre sur l'individu "
+msgstr "F_iltre sur l'individu"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:297
 msgid "Click to see preview after person filter"
@@ -20333,7 +20326,7 @@ msgstr "Cliquez pour voir l'aperçu après le filtrage des individus"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:302
 msgid "_Note Filter"
-msgstr "Filtre sur la _note "
+msgstr "Filtre sur la _note"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:316
 msgid "Click to see preview after note filter"
@@ -20342,7 +20335,7 @@ msgstr "Cliquez pour voir l'aperçu après le filtrage des notes"
 #. Frame 3:
 #: ../gramps/gui/plug/export/_exportoptions.py:319
 msgid "Privacy Filter"
-msgstr "Filtre privé "
+msgstr "Filtre privé"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:327
 msgid "Click to see preview after privacy filter"
@@ -20352,7 +20345,7 @@ msgstr ""
 #. Frame 4:
 #: ../gramps/gui/plug/export/_exportoptions.py:330
 msgid "Living Filter"
-msgstr "Filtre vivant "
+msgstr "Filtre vivant"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:339
 msgid "Click to see preview after living filter"
@@ -20360,7 +20353,7 @@ msgstr "Cliquez pour voir l'aperçu après le filtrage des vivants"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:343
 msgid "Reference Filter"
-msgstr "Filtre référence "
+msgstr "Filtre référence"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:351
 msgid "Click to see preview after reference filter"
@@ -20620,12 +20613,12 @@ msgstr "Options HTML"
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_graphreportdialog.py:154
 msgid "Output Format"
-msgstr "Format de sortie "
+msgstr "Format de sortie"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:194
 #: ../gramps/gui/plug/report/_graphreportdialog.py:162
 msgid "Open with default viewer"
-msgstr "Ouvrir aussitôt avec le logiciel par défaut"
+msgstr "Ouvrir avec le lecteur par défaut"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 msgid "CSS file"
@@ -20654,7 +20647,7 @@ msgstr "Configuration"
 #: ../gramps/gui/plug/report/_styleeditor.py:115
 #: ../gramps/gui/plug/report/_styleeditor.py:270
 msgid "Style"
-msgstr "Style "
+msgstr "Style"
 
 #. better to 'Show siblings of\nthe center person
 #. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -20813,7 +20806,7 @@ msgstr "Dialogue_styles_document"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
-msgstr "Nouveau style "
+msgstr "Nouveau style"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:157
 msgid "Error saving stylesheet"
@@ -21204,7 +21197,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:806
 msgid "View failed to load. Check error output."
-msgstr "Échec au chargement de la vue. Regardez la sortie d'erreur."
+msgstr "Échec au chargement de la vue. Vérifiez la sortie d'erreur."
 
 #: ../gramps/gui/viewmanager.py:949
 #: ../gramps/plugins/importer/importprogen.py:195
@@ -21691,7 +21684,7 @@ msgstr "_Copier"
 #: ../gramps/plugins/view/pedigreeview.py:1805
 #: ../gramps/plugins/view/relview.py:1084
 msgid "Siblings"
-msgstr "Frères et sœurs "
+msgstr "Frères et sœurs"
 
 #. Go over parents and build their menu
 #: ../gramps/gui/widgets/fanchart.py:2037
@@ -22287,7 +22280,7 @@ msgstr "Impression de l'arbre..."
 #: ../gramps/plugins/textreport/kinshipreport.py:358
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:204
 msgid "Center Person"
-msgstr "Centrer sur l'individu "
+msgstr "Centrer sur l'individu"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:802
 msgid "The center person for the tree"
@@ -22304,7 +22297,7 @@ msgid ""
 "Whether to only display the center person or all of his/her siblings too"
 msgstr ""
 "Afficher ou non uniquement l'individu central ou ses frères et sœurs "
-"également "
+"également"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:812
 #: ../gramps/plugins/drawreport/descendtree.py:1544
@@ -22314,7 +22307,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:840
 #: ../gramps/plugins/textreport/detdescendantreport.py:1029
 msgid "Generations"
-msgstr "Générations "
+msgstr "Générations"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:813
 #: ../gramps/plugins/drawreport/descendtree.py:1545
@@ -24276,7 +24269,7 @@ msgstr "Évaluation"
 
 #: ../gramps/plugins/gramplet/eval.py:73
 msgid "Output"
-msgstr "Sortie "
+msgstr "Sortie"
 
 # trunk
 #: ../gramps/plugins/gramplet/eval.py:74
@@ -25778,7 +25771,7 @@ msgstr "Ajouter une nouvelle note À faire"
 msgid "First select the object to which you want to attach a note"
 msgstr ""
 "Tout d'abord sélectionnez l'objet pour lequel vous souhaitez attacher une "
-"note. "
+"note."
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -25842,12 +25835,12 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps est conçu par des généalogistes pour des généalogistes, organisé dans "
-"le cadre du projet Gramps. C'est un logiciel Open Source, ce qui signifie "
-"que vous êtes libre d'en faire des copies et de les distribuer à qui vous "
-"voulez. Il est développé et maintenu par une équipe internationale de "
-"bénévoles dont le but est de rendre Gramps puissant, mais facile à utiliser."
-"\n"
+"Gramps est conçu par des généalogistes pour des généalogistes, organisés "
+"dans le cadre du projet Gramps. C'est un logiciel Open Source, ce qui "
+"signifie que vous êtes libre d'en faire des copies et de les distribuer à "
+"qui vous voulez. Il est développé et maintenu par une équipe internationale "
+"de bénévoles dont le but est de rendre Gramps puissant mais facile à "
+"utiliser.\n"
 "\n"
 
 # "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
@@ -34317,7 +34310,7 @@ msgstr "Inclus dans le rapport, l'année à laquelle l'évènement est arrivé"
 #: ../gramps/plugins/textreport/birthdayreport.py:525
 #: ../gramps/plugins/textreport/birthdayreport.py:527
 msgid "Year of report"
-msgstr "Année du rapport "
+msgstr "Année du rapport"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/textreport/birthdayreport.py:563
@@ -37386,7 +37379,7 @@ msgstr "In_verser les marques"
 #: ../gramps/plugins/tool/removeunused.glade:344
 #: ../gramps/plugins/tool/verify.glade:904
 msgid "Double-click on a row to view/edit data"
-msgstr "Double-cliquez sur une ligne pour voir/éditer les données"
+msgstr "Double-cliquez sur une ligne pour afficher/éditer les données"
 
 # supprimer pour marquer la disparition
 #: ../gramps/plugins/tool/removeunused.py:69
@@ -38862,7 +38855,7 @@ msgstr "Lieux familiaux pour %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:67
 msgid "OsmGpsMap module not loaded."
-msgstr "Module OsmGpsMap non chargé. "
+msgstr "Module OsmGpsMap non chargé."
 
 #: ../gramps/plugins/view/geography.gpr.py:68
 msgid ""
