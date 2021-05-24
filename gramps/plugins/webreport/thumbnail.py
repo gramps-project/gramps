@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -120,9 +120,9 @@ class ThumbnailPreviewPage(BasePage):
 
             msg = self._("This page displays a indexed list "
                          "of all the media objects "
-                         "in this database.  It is sorted by media title.  "
+                         "in this database. It is sorted by media title. "
                          "There is an index "
-                         "of all the media objects in this database.  "
+                         "of all the media objects in this database. "
                          "Clicking on a thumbnail "
                          "will take you to that image&#8217;s page.")
             previewpage += Html("p", msg, id="description")

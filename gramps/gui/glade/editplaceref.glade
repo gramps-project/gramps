@@ -373,7 +373,7 @@
                           <object class="ValidatableMaskedEntry" id="latlon_entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like google, openstreetmap, ... </property>
+                            <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like OpenStreetMap, Google, ...</property>
                             <property name="hexpand">True</property>
                             <property name="invisible_char">●</property>
                           </object>
@@ -394,7 +394,7 @@
                       <object class="GtkComboBox" id="place_type">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">What type of place this is. Eg 'Country', 'City', ... .</property>
+                        <property name="tooltip_text" translatable="yes">What type of place this is. Eg 'Country', 'City', ...</property>
                         <property name="hexpand">True</property>
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
