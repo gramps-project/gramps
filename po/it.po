@@ -63,8 +63,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-24 11:09+0000\n"
-"Last-Translator: Fresty di Lot <fresty49@gmail.com>\n"
+"PO-Revision-Date: 2021-05-24 12:26+0000\n"
+"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -429,8 +429,8 @@ msgid ""
 "filter you can select all people without children."
 msgstr ""
 "<b>Inversione dei filtri</b><br/>I filtri possono essere facilmente "
-"invertiti con l'opzione «inverti». Per esempio, invertendo il filtro "
-"«Persone con figli» saranno selezionate tutte le persone senza figli."
+"invertiti con l'opzione «inverti». Per esempio, invertendo il filtro «"
+"Persone con figli» saranno selezionate tutte le persone senza figli."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -920,8 +920,8 @@ msgid ""
 msgstr ""
 "<b>Pacchetti Gramps XML</b><br/>È possibile esportare l'albero genealogico "
 "come pacchetto Gramps XML. Si tratta di un file compresso contenente i dati "
-"dell'albero genealogico e tutti i file multimediali collegati al database "
-"(ad esempio le immagini). Questo file è completamente portabile ed è quindi "
+"dell'albero genealogico e tutti i file multimediali collegati al database ("
+"ad esempio le immagini). Questo file è completamente portabile ed è quindi "
 "utile per i backup o per essere condiviso con altri utenti Gramps. Questo "
 "formato ha il vantaggio, rispetto a GEDCOM, che nessuna informazione viene "
 "persa in fase di esportazione o di importazione."
@@ -1465,6 +1465,7 @@ msgstr ""
 "  -q, --quiet                            Nasconde le indicazioni di "
 "avanzamento in uscita (solo modalità non grafica)\n"
 "  -v, --version                          Mostra versioni\n"
+"\n"
 "  -S, --safe                             Avvia Gramps in 'modalità sicura'\n"
 "                                          (usa temporaneamente le "
 "impostazioni predefinite)\n"
@@ -2136,7 +2137,7 @@ msgstr "Informazione privata"
 #: ../gramps/gen/config.py:319 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
 msgid "|January"
-msgstr "|Gennaio"
+msgstr "gennaio"
 
 #: ../gramps/gen/const.py:230
 msgid ""
@@ -2151,7 +2152,7 @@ msgstr ""
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
 msgid "none"
-msgstr "nessuno"
+msgstr "cognome"
 
 #: ../gramps/gen/const.py:261
 msgctxt "given-name"
@@ -4307,8 +4308,7 @@ msgstr "Eventi che accandono in un giorno della settimana in particolare"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:40
 msgid "Matches events occurring on a particular day of the week"
-msgstr ""
-"Estrae gli eventi che accadono in un particolare giorno della settimana"
+msgstr "Estrae gli eventi che accadono in un particolare giorno della settimana"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
@@ -4456,8 +4456,7 @@ msgstr "Eventi con Id contenenti <testo>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr ""
-"Estrae gli eventi il cui ID Gramps corrisponde all'espressione regolare"
+msgstr "Estrae gli eventi il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:377
@@ -5839,8 +5838,7 @@ msgstr "Discendenti di <persona> da almeno <N> generazioni"
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
-msgstr ""
-"Estrae i discendenti da almeno N generazioni di una persona specificata"
+msgstr "Estrae i discendenti da almeno N generazioni di una persona specificata"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:47
 msgid "Parents of <filter> match"
@@ -6002,8 +6000,7 @@ msgstr "Persone con Id contenente <testo>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr ""
-"Estrae le persone il cui ID Gramps corrisponde all'espressione regolare"
+msgstr "Estrae le persone il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:46
 msgid "People with a name matching <text>"
@@ -6471,8 +6468,7 @@ msgstr "Depositi con ID contenente <testo>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr ""
-"Estrae i depositi il cui ID Gramps corrisponde all'espressione regolare"
+msgstr "Estrae i depositi il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
@@ -6605,8 +6601,7 @@ msgstr "Estrae le fonti che corrispondono al filtro indicato"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr ""
-"Fonti con riferimenti a deposito che corrispondono al <filtro depositi>"
+msgstr "Fonti con riferimenti a deposito che corrispondono al <filtro depositi>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
 msgid ""
@@ -9650,8 +9645,8 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Sceglie la famiglia del carattere. Se i caratteri internazionali non vengono "
-"mostrati, usare il carattere FreeSans, disponibile tramite: http://www."
-"nongnu.org/freefont/"
+"mostrati, usare il carattere FreeSans, disponibile tramite: http://www.nongnu"
+".org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:152
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -10480,8 +10475,8 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"Errore analizzando l'elenco di banche dati recenti dal file {fname}: "
-"{error}.\n"
+"Errore analizzando l'elenco di banche dati recenti dal file {fname}: {error}."
+"\n"
 "Questo potrebbe indicare un danno nei file.\n"
 "Se si è sicuri dell'assenza di problemi in altri file, allora lo si può "
 "eliminare e riavviare Gramps."
@@ -10620,8 +10615,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Il traduttore delle relazioni familiari non è disponibile per la lingua "
-"«%s». Al suo posto verrà usato quello per l'inglese."
+"Il traduttore delle relazioni familiari non è disponibile per la lingua «%s»"
+". Al suo posto verrà usato quello per l'inglese."
 
 #: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:205
 msgid "death date"
@@ -13039,8 +13034,8 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Questa versione non è pensata per l'uso normale; va usata a proprio "
-"rischio.\n"
+"Questa versione non è pensata per l'uso normale; va usata a proprio rischio."
+"\n"
 "\n"
 "Questa versione potrebbe:\n"
 "1) funzionare in modo differente da come ci si aspetta.\n"
@@ -13631,8 +13626,7 @@ msgstr "Impossibile modificare la famiglia"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:135
 msgid "You cannot change Family events in the Person Editor"
-msgstr ""
-"Non è possibile cambiare gli eventi familiari nell'editor delle persone"
+msgstr "Non è possibile cambiare gli eventi familiari nell'editor delle persone"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Create and add a new association"
@@ -15983,7 +15977,7 @@ msgid ""
 msgstr ""
 "La data della voce nella fonte che viene referenziata, ad es. la data in cui "
 "una casa è stata visitata durante un censimento, o la data in cui è stata "
-"inserita una voce in un registro delle nascite."
+"inserita una voce in un registro delle nascite. "
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16150,8 +16144,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Data dell'evento. Può essere una data esatta, un intervallo (da ... a, "
-"tra, ...) o una data non precisa (circa, ...)."
+"Data dell'evento. Può essere una data esatta, un intervallo (da ... a, tra, "
+"...) o una data non precisa (circa, ...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -16369,7 +16363,7 @@ msgstr ""
 "evitare di digitare nuovamente la directory di base comune dove sono "
 "memorizzati tutti gli oggetti multimediali. Lo strumento «Gestore oggetti "
 "multimediali» può aiutare a gestire i percorsi di una collezione di oggetti "
-"multimediali."
+"multimediali. "
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -17047,8 +17041,8 @@ msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
 msgstr ""
-"L'indirizzo internet, nella forma necessaria per raggiungerlo, ad es. http://"
-"gramps-project.org"
+"L'indirizzo internet, nella forma necessaria per raggiungerlo, ad es. http"
+"://gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:205
 msgid "Open the web address in the default browser."
@@ -17056,8 +17050,7 @@ msgstr "Apri l'indirizzo web nel browser predefinito."
 
 #: ../gramps/gui/glade/editurl.glade:217
 msgid "A descriptive caption of the Internet location you are storing."
-msgstr ""
-"Una didascalia descritta dell'indirizzo Internet che viene memorizzato."
+msgstr "Una didascalia descritta dell'indirizzo Internet che viene memorizzato."
 
 #: ../gramps/gui/glade/grampletpane.glade:63
 msgid "Drag to move; click to detach"
@@ -18267,10 +18260,9 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"Usare questo pulsante per copiare la segnalazione del problema negli "
-"appunti; accedere quindi al sistema web di gestione dei bug tramite il "
-"pulsante posto più in basso, incollare il resoconto e fare clic su invia "
-"resoconto"
+"Usare questo pulsante per copiare la segnalazione del problema negli appunti;"
+" accedere quindi al sistema web di gestione dei bug tramite il pulsante "
+"posto più in basso, incollare il resoconto e fare clic su invia resoconto"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:649
 #: ../gramps/gui/logger/_errorreportassistant.py:676
@@ -18772,8 +18764,7 @@ msgstr[1] "Sono stati installati {number_of} componenti aggiuntivi."
 
 #: ../gramps/gui/plug/_windows.py:1227
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
-msgstr ""
-"Se è stata installata una «vista Gramps» è necessario riavviare Gramps."
+msgstr "Se è stata installata una «vista Gramps» è necessario riavviare Gramps."
 
 #: ../gramps/gui/plug/_windows.py:1231
 msgid "No addons were installed."
@@ -20418,8 +20409,8 @@ msgid ""
 msgstr ""
 "Fare clic per rendere attiva la persona\n"
 "Fare clic con il pulsante destro per mostrare il menu modifica\n"
-"Fare clic sull'icona Modifica (da abilitare nella finestra di "
-"configurazione) per modificare"
+"Fare clic sull'icona Modifica (da abilitare nella finestra di configurazione)"
+" per modificare"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:628
 msgid "Bad Date"
@@ -21630,8 +21621,7 @@ msgstr "Iniziare con il/i genitore/i del primo selezionato"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1557
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr ""
-"Mostrerà i genitori, i fratelli e le sorelle della persona selezionata."
+msgstr "Mostrerà i genitori, i fratelli e le sorelle della persona selezionata."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1563
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
@@ -22795,8 +22785,8 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sDomande ricorrenti"
-"%(html_end)s%(bold_end)s\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sDomande "
+"ricorrenti%(html_end)s%(bold_end)s\n"
 "(è richiesta la connessione ad internet)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
@@ -22827,8 +22817,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sCome rimuovere un coniuge?"
-"%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sCome rimuovere un "
+"coniuge?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -22909,8 +22899,8 @@ msgstr ""
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
 msgstr ""
-" 11. %(web_html_start)sCome registrare la professione di qualcuno?"
-"%(html_end)s\n"
+" 11. %(web_html_start)sCome registrare la professione di qualcuno?%(html_end)"
+"s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:154
 #, python-format
@@ -22918,8 +22908,8 @@ msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
 msgstr ""
-" 12. %(gramps_FAQ_html_start)s%(faq_section)sCosa fare se si incontra un bug?"
-"%(html_end)s\n"
+" 12. %(gramps_FAQ_html_start)s%(faq_section)sCosa fare se si incontra un "
+"bug?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
@@ -22936,8 +22926,8 @@ msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. %(gramps_wiki_html_start)s%(section)sSono disponibili dei tutorial?"
-"%(html_end)s\n"
+" 14. %(gramps_wiki_html_start)s%(section)sSono disponibili dei "
+"tutorial?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -23249,8 +23239,8 @@ msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
-"Le funzionalità relative ai metadati delle immagini non saranno "
-"disponibili.\n"
+"Le funzionalità relative ai metadati delle immagini non saranno disponibili."
+"\n"
 "Per compilarle per Gramps consultare %(gramps_wiki_build_gexiv2_url)s"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:455
@@ -25047,8 +25037,7 @@ msgstr "Mostra nodi di famiglia"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:968
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Le famiglie appariranno come ellissi collegati ai genitori ed ai figli."
+msgstr "Le famiglie appariranno come ellissi collegati ai genitori ed ai figli."
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -25656,8 +25645,8 @@ msgstr ""
 "il percorso degli oggetti multimediali dalle Preferenze, oppure convertire i "
 "file importati al percorso base preesistente per gli oggetti multimediali. "
 "Si può fare questo spostando gli oggetti multimediali in una nuova "
-"posizione, usando quindi il gestore degli oggetti multimediali, opzione "
-"«Sostituisci sotto-stringa nel percorso», per impostare i percorsi corretti "
+"posizione, usando quindi il gestore degli oggetti multimediali, opzione «"
+"Sostituisci sotto-stringa nel percorso», per impostare i percorsi corretti "
 "per gli oggetti multimediali."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
@@ -26520,7 +26509,7 @@ msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
-"Errore: %(msg)s '%(gramps_id)s' (inserito come @%(xref)s@) non è nel file "
+"Errore: %(msg)s  '%(gramps_id)s' (input come @%(xref)s@) non è nel file "
 "GEDCOM in input. Creato un record con attributo caratterizzante avente "
 "valore «sconosciuto»"
 
