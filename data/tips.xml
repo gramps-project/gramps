@@ -29,7 +29,7 @@
 
 <tip number="15"><b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx Gramplet takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To view the SoundEx codes for surnames in your database, add the SoundEx Gramplet.</tip>
 
-<tip number="16"><b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;</tip>
+<tip number="16"><b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;.</tip>
 
 <tip number="17"><b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well.</tip>
 
@@ -61,7 +61,7 @@
 
 <tip number="32"><b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;.</tip>
 
-<tip number="33"><b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;</tip>
+<tip number="33"><b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;.</tip>
 
 <tip number="34"><b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stands for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people.</tip>
 
@@ -91,9 +91,9 @@
 
 <tip number="49"><b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web.</tip>
 
-<tip number="50"><b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at https://gramps-project.org/bugs/</tip>
+<tip number="50"><b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at https://gramps-project.org/bugs/.</tip>
 
-<tip number="51"><b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/</tip>
+<tip number="51"><b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/.</tip>
 
 <tip number="53"><b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public.</tip>
 
@@ -103,7 +103,7 @@
 
 <tip number="58"><b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books...&quot; allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed.</tip>
 
-<tip number="59"><b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;</tip>
+<tip number="59"><b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;.</tip>
 
 <tip number="60"><b>Record Your Sources</b><br/>Information collected about your family is only as good as the source it came from. Take the time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents.</tip>
 
@@ -113,7 +113,7 @@
 
 <tip number="63"><b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 40 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps.</tip>
 
-<tip number="64"><b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net</tip>
+<tip number="64"><b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net.</tip>
 
 <tip number="66"><b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed.</tip>
 

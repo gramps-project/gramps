@@ -170,7 +170,7 @@ class RepositoryPages(BasePage):
                     Html("th", "&nbsp;", class_="ColumnRowLabel", inline=True),
                     Html("th", self._("Type"), class_="ColumnType",
                          inline=True),
-                    Html("th", self._("Name", "Repository "),
+                    Html("th", self._("Name", "Repository"),
                          class_="ColumnName",
                          inline=True)
                     )
