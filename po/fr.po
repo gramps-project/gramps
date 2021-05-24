@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-23 20:59+0000\n"
+"PO-Revision-Date: 2021-05-24 11:09+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -7368,7 +7368,7 @@ msgstr "Rue"
 #: ../gramps/plugins/webreport/basepage.py:2900
 #: ../gramps/plugins/webreport/basepage.py:2967
 msgid "Locality"
-msgstr "Lieu-dit "
+msgstr "Lieu-dit"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
@@ -7382,7 +7382,7 @@ msgstr "Lieu-dit "
 #: ../gramps/plugins/webreport/basepage.py:2901
 #: ../gramps/plugins/webreport/basepage.py:2968
 msgid "City"
-msgstr "Ville "
+msgstr "Ville"
 
 # comté (Canada)
 #: ../gramps/gen/lib/address.py:119 ../gramps/gen/lib/location.py:97
@@ -7423,7 +7423,7 @@ msgstr "Province (Région)"
 #: ../gramps/plugins/webreport/place.py:193
 #: ../gramps/plugins/webreport/place.py:205
 msgid "Country"
-msgstr "Pays "
+msgstr "Pays"
 
 # Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
@@ -7443,7 +7443,7 @@ msgstr "Code lieu"
 #: ../gramps/plugins/lib/libgedcom.py:5921
 #: ../gramps/plugins/webreport/basepage.py:1243
 msgid "Phone"
-msgstr "Téléphone "
+msgstr "Téléphone"
 
 #: ../gramps/gen/lib/attribute.py:236 ../gramps/gen/lib/srcattribute.py:70
 #: ../gramps/gui/clipboard.py:435 ../gramps/gui/editors/editattribute.py:135
@@ -7996,7 +7996,7 @@ msgstr "Évènement"
 #: ../gramps/plugins/webreport/basepage.py:1026
 #: ../gramps/plugins/webreport/basepage.py:1063
 msgid "Place"
-msgstr "Lieu "
+msgstr "Lieu"
 
 # master
 #: ../gramps/gen/lib/eventref.py:95
@@ -8092,7 +8092,7 @@ msgstr "Évènements de vie"
 #: ../gramps/plugins/webreport/family.py:196
 #: ../gramps/plugins/webreport/updates.py:211
 msgid "Family"
-msgstr "Famille "
+msgstr "Famille"
 
 #: ../gramps/gen/lib/eventtype.py:142
 msgid "Religious"
@@ -9613,7 +9613,7 @@ msgstr "Auteur"
 # master
 #: ../gramps/gen/lib/src.py:110
 msgid "Publication info"
-msgstr "Information de publication"
+msgstr "Informations de publication"
 
 #: ../gramps/gen/lib/src.py:119
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
@@ -9824,7 +9824,7 @@ msgstr "URL"
 
 #: ../gramps/gen/lib/urltype.py:49
 msgid "E-mail"
-msgstr "Adresse électronique "
+msgstr "Adresse électronique"
 
 #: ../gramps/gen/lib/urltype.py:50
 #, fuzzy
@@ -10838,7 +10838,7 @@ msgstr "La traduction à utiliser pour le rapport."
 #: ../gramps/gen/plug/report/stdoptions.py:89 ../gramps/gui/configure.py:1194
 #: ../gramps/plugins/webreport/webcal.py:1803
 msgid "Name format"
-msgstr "Format des noms "
+msgstr "Format des noms"
 
 #: ../gramps/gen/plug/report/stdoptions.py:94
 #: ../gramps/plugins/webreport/webcal.py:1807
@@ -10907,7 +10907,7 @@ msgstr ""
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gen/plug/report/stdoptions.py:274 ../gramps/gui/configure.py:1222
 msgid "Date format"
-msgstr "Format des dates "
+msgstr "Format des dates"
 
 # master
 #: ../gramps/gen/plug/report/stdoptions.py:277
@@ -12448,21 +12448,21 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
-msgstr "Province/Comté "
+msgstr "Province/Comté"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/configure.py:623 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
-msgstr "Code lieu "
+msgstr "Code lieu"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/configure.py:628 ../gramps/gui/plug/_windows.py:623
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
-msgstr "Adresse électronique "
+msgstr "Adresse électronique"
 
 #: ../gramps/gui/configure.py:629
 msgid "Researcher"
@@ -12477,11 +12477,11 @@ msgstr "Paramètres de format des identifiants Gramps"
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../gramps/gui/configure.py:658
 msgid "Media Object"
-msgstr "Objet medium "
+msgstr "Objet medium"
 
 #: ../gramps/gui/configure.py:669
 msgid "ID Formats"
-msgstr "Formats des identifiants"
+msgstr "Format des identifiants"
 
 # trunk
 # https://gramps-project.org/bugs/view.php?id=11286
@@ -12780,23 +12780,23 @@ msgstr "Précision pour l'affichage de l'âge (nécessite de relancer Gramps)"
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1282
 msgid "Calendar on reports"
-msgstr "Calendrier des rapports "
+msgstr "Calendrier des rapports"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1295
 msgid "Surname guessing"
-msgstr "Nom de famille proposé "
+msgstr "Nom de famille proposé"
 
 # trunk
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1308
 msgid "Default family relationship"
-msgstr "Relation de famille par défaut "
+msgstr "Relation de famille par défaut"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1315
 msgid "Height multiple surname box (pixels)"
-msgstr "Hauteur du cadre des noms multiples (en pixels) "
+msgstr "Hauteur du cadre des noms multiples (en pixels)"
 
 #: ../gramps/gui/configure.py:1322
 msgid "Active person's name and ID"
@@ -12810,7 +12810,7 @@ msgstr "Relation avec la souche"
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1333
 msgid "Status bar"
-msgstr "Barre d'état "
+msgstr "Barre d'état"
 
 # master
 #: ../gramps/gui/configure.py:1340
@@ -12850,32 +12850,32 @@ msgstr "Texte par défaut selon conditions"
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1376
 msgid "Missing surname"
-msgstr "Nom de famille manquant "
+msgstr "Nom de famille manquant"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1379
 msgid "Missing given name"
-msgstr "Prénom manquant "
+msgstr "Prénom manquant"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1382
 msgid "Missing record"
-msgstr "Enregistrement manquant "
+msgstr "Enregistrement manquant"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1385
 msgid "Private surname"
-msgstr "Nom de famille privé "
+msgstr "Nom de famille privé"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1389
 msgid "Private given name"
-msgstr "Prénom privé "
+msgstr "Prénom privé"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1393
 msgid "Private record"
-msgstr "Enregistrement privé "
+msgstr "Enregistrement privé"
 
 #: ../gramps/gui/configure.py:1462
 msgid "Change is not immediate"
@@ -12898,7 +12898,7 @@ msgstr "Paramètres de dates pour les opérations de calculs"
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1494
 msgid "Markup for invalid date format"
-msgstr "Balise pour formater les dates invalides "
+msgstr "Balise pour formater les dates invalides"
 
 #: ../gramps/gui/configure.py:1498
 #, python-format
@@ -12936,27 +12936,27 @@ msgstr ""
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1514
 msgid "Date about range"
-msgstr "Nb. d'années avant et après les dates « vers » "
+msgstr "Nb. d'années avant et après les dates « vers »"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1518
 msgid "Date after range"
-msgstr "Nb. d'années après les dates « après » "
+msgstr "Nb. d'années après les dates « après »"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1522
 msgid "Date before range"
-msgstr "Nb. d'années avant les dates « avant » "
+msgstr "Nb. d'années avant les dates « avant »"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1526
 msgid "Maximum age probably alive"
-msgstr "Espérance de vie maximale "
+msgstr "Espérance de vie maximale"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1530
 msgid "Maximum sibling age difference"
-msgstr "Différence d'âge max. entre frères et sœurs "
+msgstr "Différence d'âge max. entre frères et sœurs"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1534
@@ -12966,7 +12966,7 @@ msgstr "Nb. minimal d'années entre les générations"
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1538
 msgid "Average years between generations"
-msgstr "Nb. moyen d'années entre les générations "
+msgstr "Nb. moyen d'années entre les générations"
 
 #: ../gramps/gui/configure.py:1541
 msgid "Dates"
@@ -13034,7 +13034,7 @@ msgstr ""
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1606
 msgid "Max generations for relationships"
-msgstr "Nb. max. de générations à parcourir entre 2 individus "
+msgstr "Nb. max. de générations à parcourir entre 2 individus"
 
 #: ../gramps/gui/configure.py:1612
 msgid "Base path for relative media paths"
@@ -13121,11 +13121,11 @@ msgstr "» et «"
 #. Dead code for l10n
 #: ../gramps/gui/configure.py:1701
 msgid "new"
-msgstr "nouveau"
+msgstr "Nouveaux"
 
 #: ../gramps/gui/configure.py:1701
 msgid "update"
-msgstr "mis à jour"
+msgstr "Mis à jour"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/gui/configure.py:1730
@@ -13151,7 +13151,7 @@ msgstr "Numéro de port"
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1756
 msgid "Family Tree Database path"
-msgstr "Répertoire des bases de données "
+msgstr "Répertoire des bases de données"
 
 #: ../gramps/gui/configure.py:1760
 msgid "Automatically load last Family Tree"
@@ -17144,8 +17144,8 @@ msgstr "_Identifiant :"
 #: ../gramps/gui/glade/editcitation.glade:240
 msgid "A unique ID to identify the citation"
 msgstr ""
-"Un enregistrement unique pour identifier la citation, laissez Gramps le "
-"désigner. "
+"Un identifiant unique pour identifier la citation, laissez Gramps le "
+"désigner."
 
 #: ../gramps/gui/glade/editcitation.glade:360
 #: ../gramps/gui/glade/editevent.glade:390
@@ -17360,8 +17360,7 @@ msgstr "Information sur la relation"
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
 msgstr ""
-"Un enregistrement unique pour identifier la famille, laissez Gramps le "
-"désigner. "
+"Un identifiant unique pour identifier la famille, laissez Gramps le désigner."
 
 # éviter le raccourci sur le y ou le p
 #: ../gramps/gui/glade/editfamily.glade:698
@@ -17533,8 +17532,7 @@ msgstr "Répertoire"
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
 msgstr ""
-"Un enregistrement unique pour identifier l'objet, laissez Gramps le "
-"désigner. "
+"Un identifiant unique pour identifier l'objet, laissez Gramps le désigner."
 
 #: ../gramps/gui/glade/editmedia.glade:346
 msgid ""
@@ -17888,8 +17886,7 @@ msgstr "Ge_nre :"
 #: ../gramps/gui/glade/editperson.glade:633
 msgid "A unique ID for the person."
 msgstr ""
-"Un enregistrement unique pour identifier l'individu, laissez Gramps le "
-"désigner. "
+"Un identifiant unique pour identifier l'individu, laissez Gramps le désigner."
 
 #: ../gramps/gui/glade/editperson.glade:708
 msgid "Preferred Name"
@@ -18176,8 +18173,7 @@ msgstr ""
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
 msgstr ""
-"Un enregistrement unique pour identifier le dépôt, laissez Gramps le "
-"désigner."
+"Un identifiant unique pour identifier le dépôt, laissez Gramps le désigner."
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
@@ -18205,8 +18201,8 @@ msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
 msgstr ""
-"L'information de publication, tel que un village, l'année de publication, le "
-"nom de l'organisme publiant cette source..."
+"Les informations de publication, tel que un village, l'année de publication, "
+"le nom de l'organisme publiant cette source..."
 
 #: ../gramps/gui/glade/editsource.glade:181
 msgid ""
@@ -18223,8 +18219,7 @@ msgstr "A_bréviation :"
 #: ../gramps/gui/glade/editsource.glade:214
 msgid "A unique ID to identify the source"
 msgstr ""
-"Un enregistrement unique pour identifier la source, laissez Gramps le "
-"désigner. "
+"Un identifiant unique pour identifier la source, laissez Gramps le désigner."
 
 #: ../gramps/gui/glade/editurl.glade:96
 msgid "_Web address:"
@@ -19199,7 +19194,7 @@ msgstr "Listes de diffusion de Gra_mps"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Make Backup..."
-msgstr "Faire une sauvegarde..."
+msgstr "Sauvegarder..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Manage databases"
@@ -25113,7 +25108,7 @@ msgstr "Gramplet affichant les références du lieu"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:931
 #: ../gramps/plugins/webreport/basepage.py:2550
 msgid "Source References"
-msgstr "Références des sources"
+msgstr "Références de la source"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:932
 msgid "Gramplet showing the backlink references for a source"
@@ -28305,7 +28300,7 @@ msgstr "TRLR (trailer-piste)"
 # master
 #: ../gramps/plugins/lib/libgedcom.py:3481
 msgid "(Submitter):"
-msgstr "(Auteur·trice) :"
+msgstr "(Auteur) :"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:3505
@@ -28568,9 +28563,8 @@ msgstr "NOTE Gramps ID %s"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7734
-#, fuzzy
 msgid "Submission: Submitter"
-msgstr "Soumission : auteur·trice"
+msgstr "Soumission : auteur"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:7736
@@ -34867,7 +34861,7 @@ msgstr "Notes pour %(mother_name)s et %(father_name)s :"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1017
 msgid "Record (Modified Register) numbering"
-msgstr "Numérotation Enregistrement"
+msgstr "Numérotation d'enregistrement"
 
 # master
 #: ../gramps/plugins/textreport/detdescendantreport.py:1021
@@ -35264,7 +35258,7 @@ msgstr "Rapport de vérification des liens de note"
 # master
 #: ../gramps/plugins/textreport/notelinkreport.py:77
 msgid "Note ID"
-msgstr "Id Note "
+msgstr "Identifiant de note"
 
 # trunk
 #: ../gramps/plugins/textreport/notelinkreport.py:83
@@ -35446,7 +35440,7 @@ msgstr "Sous-titre du livre."
 #: ../gramps/plugins/textreport/simplebooktitle.py:146
 #, python-format
 msgid "Copyright %(year)d %(name)s"
-msgstr "Droit d'auteur %(year)d %(name)s"
+msgstr "Droits d'auteur %(year)d %(name)s"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:148
 msgid "Footer"
@@ -35580,7 +35574,7 @@ msgstr "Adresse de messagerie"
 #: ../gramps/plugins/textreport/tagreport.py:757
 #: ../gramps/plugins/view/sourceview.py:86
 msgid "Publication Information"
-msgstr "Information de publication"
+msgstr "Informations de publication"
 
 #: ../gramps/plugins/textreport/tagreport.py:916
 msgid "The tag to use for the report"
@@ -40172,7 +40166,7 @@ msgstr "Licence"
 #: ../gramps/plugins/webreport/narrativeweb.py:2013
 #: ../gramps/plugins/webreport/webcal.py:1776
 msgid "The copyright to be used for the web files"
-msgstr "Le droit d'auteur utilisé pour les fichiers web"
+msgstr "Les droits d'auteur utilisé pour les fichiers web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2016
 #: ../gramps/plugins/webreport/webcal.py:1782
@@ -40858,9 +40852,8 @@ msgid "How many updates do you want to see max"
 msgstr "Combien de modifications souhaitez-vous voir ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
-#, fuzzy
 msgid "Translations"
-msgstr "Traduction "
+msgstr "Traduction"
 
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:2547
