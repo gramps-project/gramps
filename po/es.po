@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-21 17:06+0000\n"
+"PO-Revision-Date: 2021-05-24 13:41+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -1153,8 +1153,8 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"AVISO: El archivo de salida ya existe.\n"
-"AVISO: Resultará sobrescrito:\n"
+"ADVERTENCIA: El archivo de salida ya existe.\n"
+"ADVERTENCIA: Resultará sobrescrito:\n"
 "   %s"
 
 #: ../gramps/cli/arghandler.py:296
@@ -1571,8 +1571,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
-"AVISO: %(strerr)s (errno=%(errno)s):\n"
-"AVISO: %(name)s\n"
+"ADVERTENCIA: %(strerr)s (errno=%(errno)s):\n"
+"ADVERTENCIA: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:333
 #, python-format
@@ -1845,7 +1845,7 @@ msgstr "Desconocido"
 #: ../gramps/cli/grampscli.py:81
 #, python-format
 msgid "WARNING: %s"
-msgstr "AVISO: %s"
+msgstr "ADVERTENCIA: %s"
 
 #: ../gramps/cli/grampscli.py:88 ../gramps/cli/grampscli.py:224
 #, python-format
@@ -3571,7 +3571,7 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
-"AVISO: ¡Demasiados argumentos en el filtro '%s'!\n"
+"ADVERTENCIA: ¡Demasiados argumentos en el filtro '%s'!\n"
 "Intentando cargar con un subconjunto de argumentos."
 
 #: ../gramps/gen/filters/_filterparser.py:127
@@ -3580,7 +3580,7 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
-"AVISO: ¡Muy pocos argumentos en el filtro '%s'!\n"
+"ADVERTENCIA: ¡Muy pocos argumentos en el filtro '%s'!\n"
 "         Intentando cargar de todos modos esperando que se actualice."
 
 #: ../gramps/gen/filters/_filterparser.py:135
@@ -7168,7 +7168,7 @@ msgstr "Referencia a hijo"
 #: ../gramps/gen/lib/reporef.py:104 ../gramps/gen/lib/src.py:102
 #: ../gramps/gen/lib/tag.py:120
 msgid "Handle"
-msgstr ""
+msgstr "Identificador"
 
 #: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:72
 #: ../gramps/gui/configure.py:87
@@ -8404,7 +8404,7 @@ msgstr "Pendiente"
 
 #: ../gramps/gen/lib/media.py:145
 msgid "MIME"
-msgstr ""
+msgstr "MIME"
 
 #: ../gramps/gen/lib/media.py:149
 msgid "Checksum"
@@ -9537,8 +9537,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"AVISO: El complemento %(plugin_name)s no tiene traducción en ninguno de sus "
-"idiomas configurados, se utilizará el inglés de Estados Unidos"
+"ADVERTENCIA: El complemento %(plugin_name)s no tiene traducción en ninguno "
+"de sus idiomas configurados, se utilizará el inglés de Estados Unidos"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
 #, python-format
@@ -10837,7 +10837,7 @@ msgid ""
 "%(file)s\n"
 "because %(error)s -- recreating it\n"
 msgstr ""
-"AVISO: no se pudo analizar el archivo:\n"
+"ADVERTENCIA: no se pudo analizar el archivo:\n"
 "%(file)s\n"
 "porque %(error)s -- recreándolo\n"
 
@@ -11077,7 +11077,7 @@ msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
 msgstr ""
-"AVISO: no se pudo cargar el módulo PIL.  El recorte de imágenes en los "
+"ADVERTENCIA: no se pudo cargar el módulo PIL.  El recorte de imágenes en los "
 "archivos de reporte no quedara bien hecho."
 
 #: ../gramps/gen/utils/keyword.py:54
@@ -11380,9 +11380,8 @@ msgid "Illegitimate"
 msgstr "Ilegítimo"
 
 #: ../gramps/gen/utils/symbols.py:73
-#, fuzzy
 msgid "Baptism/Christening"
-msgstr "Bautismo Infantil"
+msgstr "Bautismo"
 
 #: ../gramps/gen/utils/symbols.py:74
 msgid "Engaged"
@@ -11453,7 +11452,7 @@ msgstr "Cruz siria oriental"
 
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Cruz griega pesada"
 
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
@@ -11461,7 +11460,7 @@ msgstr "Cruz latina"
 
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Cruz latina delineada"
 
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
@@ -11988,7 +11987,7 @@ msgstr "Colores"
 
 #: ../gramps/gui/configure.py:794
 msgid "Warnings and Error dialogs"
-msgstr "Diálogos de Avisos y Error"
+msgstr "Diálogos de Advertencia y Error"
 
 #: ../gramps/gui/configure.py:800
 msgid "Suppress warning when adding parents to a child"
@@ -12271,12 +12270,10 @@ msgid "Date about range"
 msgstr "Rango de las fechas \"hacia\""
 
 #: ../gramps/gui/configure.py:1518
-#, fuzzy
 msgid "Date after range"
 msgstr "Rango para las fechas \"después de\""
 
 #: ../gramps/gui/configure.py:1522
-#, fuzzy
 msgid "Date before range"
 msgstr "Rango para las fechas \"antes de\""
 
@@ -12460,9 +12457,8 @@ msgstr "Anfitrión"
 
 # Retrato is seen often nowadays but it is unSpanish, the traditional terms in stationnery are 'natural' and 'apaisado', never 'retrato' and 'paisaje'.
 #: ../gramps/gui/configure.py:1748
-#, fuzzy
 msgid "Port"
-msgstr "Puerto"
+msgstr "Portar"
 
 #: ../gramps/gui/configure.py:1756
 msgid "Family Tree Database path"
@@ -12683,7 +12679,7 @@ msgstr "Lo que verá"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
-msgstr "Aviso sobre el historial de deshacer"
+msgstr "Advertencia sobre el historial de deshacer"
 
 #: ../gramps/gui/dbloader.py:117
 msgid ""
@@ -12809,9 +12805,8 @@ msgid "%s_-_Manage_Family_Trees"
 msgstr ""
 
 #: ../gramps/gui/dbman.py:98
-#, fuzzy
 msgid "Family_Trees_manager_window"
-msgstr "Nombre del árbol genealógico"
+msgstr "Comenzar_un_nuevo_.C3.A1rbol_geneal.C3.B3gico"
 
 #: ../gramps/gui/dbman.py:112 ../gramps/gui/glade/dbman.glade:346
 msgid "_Archive"
@@ -12875,7 +12870,6 @@ msgid "_OK"
 msgstr "Aceptar"
 
 #: ../gramps/gui/dbman.py:125
-#, fuzzy
 msgid "Setting"
 msgstr "Configurando"
 
@@ -15979,7 +15973,7 @@ msgstr "No preguntar más veces"
 
 #: ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps Warnings"
-msgstr "Avisos de Gramps"
+msgstr "Advertencias de Gramps"
 
 #: ../gramps/gui/glade/editaddress.glade:44
 #: ../gramps/gui/glade/editchildref.glade:47
@@ -17946,9 +17940,8 @@ msgid "Table options"
 msgstr "Opciones de tabla"
 
 #: ../gramps/gui/glade/styleeditor.glade:1303
-#, fuzzy
 msgid "Padding:"
-msgstr "Es_pacio:"
+msgstr "Relleno:"
 
 #: ../gramps/gui/glade/styleeditor.glade:1328
 msgid "Left"
@@ -18694,7 +18687,7 @@ msgstr "No se encontraron cónyuges o hijos"
 #. Add column with the warning text
 #: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:568
 msgid "Warning"
-msgstr "Aviso"
+msgstr "Advertencia"
 
 #: ../gramps/gui/merge/mergeperson.py:342
 msgid ""
@@ -22550,7 +22543,7 @@ msgstr "Opciones para hoja de cálculo CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:55
 msgid "Web Family Tree"
-msgstr "Web Family Tree"
+msgstr "Árbol Genealógico Web"
 
 #: ../gramps/plugins/export/export.gpr.py:56
 msgid "_Web Family Tree"
@@ -23749,7 +23742,6 @@ msgid "Person References"
 msgstr "Referencia a Persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:876
-#, fuzzy
 msgid "Gramplet showing the backlink references for a person"
 msgstr "Gramplete que muestra las referencias a una persona"
 
@@ -23793,7 +23785,7 @@ msgstr "Referncias a Lugar"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:918
 #, fuzzy
 msgid "Gramplet showing the backlink references for a place"
-msgstr "Gramplete que muestra ls referencias a un lugar"
+msgstr "Gramplete que muestra las referencias a un lugar"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:931
 #: ../gramps/plugins/webreport/basepage.py:2550
@@ -24037,9 +24029,8 @@ msgid "Gramplet showing the events for all the family"
 msgstr "Gramplete que muestra los eventos para toda la familia"
 
 #: ../gramps/plugins/gramplet/leak.py:99
-#, fuzzy
 msgid "Referrer"
-msgstr "Referencia"
+msgstr "Referente"
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
@@ -24489,10 +24480,9 @@ msgid "Gramps online manual"
 msgstr "Manual en línea de Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
-#, fuzzy
 msgctxt "locale_suffix"
 msgid ""
-msgstr "sufijo"
+msgstr "es"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "Ask questions on gramps-users mailing list"
@@ -26685,7 +26675,7 @@ msgstr "Altura"
 
 #: ../gramps/plugins/lib/libgedcom.py:707
 msgid "Initiatory (LDS)"
-msgstr ""
+msgstr "Iniciatoria (SUD)"
 
 #: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Military ID"
@@ -26696,9 +26686,8 @@ msgid "Mission (LDS)"
 msgstr "Misión (SUD)"
 
 #: ../gramps/plugins/lib/libgedcom.py:710
-#, fuzzy
 msgid "Namesake"
-msgstr "_Nombres"
+msgstr "Homónimo"
 
 #: ../gramps/plugins/lib/libgedcom.py:711
 msgid "Ordinance"
@@ -26897,7 +26886,7 @@ msgstr "Detalle"
 #. location from PLAC title
 #: ../gramps/plugins/lib/libgedcom.py:5811
 msgid "Location already populated; ADDR ignored"
-msgstr ""
+msgstr "Ubicación ya ocupada, ADDR ignorado"
 
 # TBC: Limited length: 32 characters
 #: ../gramps/plugins/lib/libgedcom.py:6212
@@ -31258,6 +31247,9 @@ msgid ""
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
+"Use el teclado numérico para atajos :\n"
+"O usamos el + y - del teclado numérico si seleccionamos esto,\n"
+"o usamos caracteres del teclado."
 
 #: ../gramps/plugins/lib/maps/geography.py:1274
 msgid ""
@@ -35283,7 +35275,7 @@ msgstr "agrupar como"
 
 #: ../gramps/plugins/tool/removespaces.py:199
 msgid "tooltip"
-msgstr ""
+msgstr "información sobre herramienta"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
@@ -35530,9 +35522,8 @@ msgid "Generate database errors"
 msgstr "Generar errores de la base de datos"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:294
-#, fuzzy
 msgid "Generate dummy data"
-msgstr "Generado por"
+msgstr "Generar datos ficticios"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:299
 msgid "Generate long names"
@@ -35811,13 +35802,12 @@ msgstr ""
 "lugares y personas. Busca comas en campos de coordenadas de lugares."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
-#, fuzzy
 msgid "Dump Gender Statistics"
-msgstr "Reconstruye las estadísticas de sexos"
+msgstr "Arrojar estadísticas de género"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr ""
+msgstr "Arrojará las estadísticas para adivinar el género con el primer nombre."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -37653,9 +37643,8 @@ msgid "Web Calendar"
 msgstr "Calendario Web"
 
 #: ../gramps/plugins/webreport/basepage.py:1786
-#, fuzzy
 msgid "Html|Home"
-msgstr "Página web personal"
+msgstr "Html|Inicio"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -37701,9 +37690,8 @@ msgid "circa"
 msgstr "circa"
 
 #: ../gramps/plugins/webreport/basepage.py:3252
-#, fuzzy
 msgid "around"
-msgstr "Fondo"
+msgstr "cerca de"
 
 #: ../gramps/plugins/webreport/download.py:100
 msgid ""
@@ -37729,7 +37717,7 @@ msgstr "Modificado por última vez"
 
 #: ../gramps/plugins/webreport/download.py:129
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #. We have several files to download
 #. but all file names are empty
@@ -38073,9 +38061,8 @@ msgid "Whether to use http:// or https://"
 msgstr "Si se debe usar http:// o https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2072
-#, fuzzy
 msgid "Toggle sections"
-msgstr "Selección de título"
+msgstr "Alternar secciones"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2073
 msgid "Check it if you want to open/close a section"
@@ -38579,16 +38566,15 @@ msgstr "La clave API usada para Google maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2475
 msgid "Toner"
-msgstr "Tóner"
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2476
 msgid "Terrain"
-msgstr "Terreno"
+msgstr "Terrain"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2477
-#, fuzzy
 msgid "WaterColor"
-msgstr "Color"
+msgstr "Watercolor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2478
 msgid "Stamen Option"
