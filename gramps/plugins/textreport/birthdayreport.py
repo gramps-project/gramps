@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
@@ -330,7 +333,7 @@ class BirthdayReport(Report):
                         if self.showyear:
                             yeartxt = "(%s) " % year
                         if nyears == 0:
-                            text = self._('* %(person)s, birth%(relation)s') % {
+                            text = self._('* %(person)s, birth %(relation)s') % {
                                 'person'   : short_name,
                                 'relation' : comment}
                         else:

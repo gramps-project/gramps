@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
@@ -927,13 +928,13 @@ class DetDescendantReport(Report):
                 self.doc.start_paragraph('DDR-MoreDetails')
 
                 text = utils.get_address_str(addr)
+                self.doc.write_text(addr.get_schema()["title"] + ': ')
 
                 if self.fulldate:
                     date = self._get_date(addr.get_date_object())
                 else:
                     date = addr.get_date_object().get_year()
 
-                self.doc.write_text(self._('Address: '))
                 if date:
                     # translators: needed for Arabic, ignore otherwise
                     self.doc.write_text(self._('%s, ') % date)

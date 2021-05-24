@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
@@ -405,7 +406,7 @@ class DetAncestorReport(Report):
                 self.doc.start_paragraph('DAR-MoreDetails')
 
                 text = utils.get_address_str(addr)
-                self.doc.write_text(self._('Address: '))
+                self.doc.write_text(addr.get_schema()["title"] + ': ')
 
                 if self.fulldate:
                     date = self._get_date(addr.get_date_object())
