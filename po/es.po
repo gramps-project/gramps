@@ -7,12 +7,13 @@
 # Copyright (C) 2020 Juan Saavedra <jcsaaver@gmail.com>
 #
 #
+# Juan Saavedra <jcsaaver@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
-"PO-Revision-Date: 2021-05-24 13:41+0000\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
+"PO-Revision-Date: 2021-05-24 21:14+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -364,7 +365,7 @@ msgid ""
 msgstr ""
 "<b>Filtrar personas</b><br/>En la vista de personas, puede 'filtrar' "
 "personas en función de muchos criterios. Para definir un nuevo filtro, vaya "
-"a \"Editar &gt; Editor de Filtros de Persona\". Ahí puede dar nombre a su "
+"a \"Editar &gt; Editor de Filtros de personas\". Ahí puede dar nombre a su "
 "filtro y agregar y combinar reglas a partir de las muchas reglas "
 "predefinidas. Por ejemplo, puede definir un filtro que seleccione todas las "
 "personas adoptadas del árbol genealógico. O todas las personas sin fecha de "
@@ -429,7 +430,7 @@ msgid ""
 "results."
 msgstr ""
 "<b>¿Quién nació cuándo?</b><br/>Mediante \"Herramientas &gt; Análisis y "
-"exploración &gt; Comparar eventos personales...\"; se pueden comparar los "
+"Exploración &gt; Comparar eventos personales...\"; se pueden comparar los "
 "datos de personas de su base de datos. Esto es útil si, por ejemplo, desea "
 "listar las fechas de nacimiento de todas las personas de su base de datos. "
 "Puede usar un filtro para limitar los resultados."
@@ -521,9 +522,9 @@ msgstr ""
 "<b>Comenzar un nuevo árbol genealógico</b><br/>Una buena manera de comenzar "
 "un nuevo árbol genealógico es introducir los miembros de la familia en la "
 "base de datos mediante la vista de personas (utilice \"Editar &gt; Agregar..."
-"\" o haga clic en el botón Agregar una nueva persona en la vista de personas)"
-". A continuación, vaya a la vista de relaciones y cree las relaciones entre "
-"personas."
+"\" o haga clic en el botón Agregar una nueva persona en la vista de "
+"personas). A continuación, vaya a la vista de relaciones y cree las "
+"relaciones entre personas."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -554,7 +555,7 @@ msgid ""
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Entradas duplicadas</b><br/>\"Herramientas &gt; Procesos de árboles "
+"<b>Entradas duplicadas</b><br/>\"Herramientas &gt; Proceso de árboles "
 "genealógicos &gt; Buscar personas posiblemente duplicadas...\" le permite "
 "localizar (y fusionar) múltiples entradas de la misma persona introducida "
 "más de una vez en la base de datos."
@@ -583,9 +584,9 @@ msgid ""
 "toolbar or under the \"View\" menu."
 msgstr ""
 "<b>Organizar las vistas</b><br/>Muchas de las vistas pueden presentar los "
-"datos bien en forma de árbol jerárquico, bien como una simple lista. Cada "
-"vista puede también configurarse a su gusto. Mire a la derecha de la barra "
-"de herramientas o bajo el menú \"Ver\"."
+"datos bien en forma de árbol jerárquico, o como una lista simple. Cada vista "
+"puede también configurarse a su gusto. Mire a la derecha de la barra de "
+"herramientas superior o en el menú \"Ver\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -594,7 +595,7 @@ msgid ""
 "through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>Navegar atrás y alante</b><br/>Gramps mantiene una lista de los últimos "
+"<b>Navegar atrás y adelante</b><br/>Gramps mantiene una lista de los últimos "
 "objetos activos como Personas y Eventos. Puede moverse adelante y atrás por "
 "la lista utilizando \"Ir &gt; Adelante\" e \"Ir &gt; Atrás\" o los botones "
 "de flechas."
@@ -738,8 +739,8 @@ msgstr ""
 "para almacenar los nombres de personas usadas a menudo. Al pulsar un "
 "Marcador, esta persona se convertirá en la persona activa. Para agregar una "
 "persona a los marcadores, haga que sea la persona activa y vaya a "
-"\"Marcadores &gt; Agregar marcador\" o pulse Ctrl+D. Puede poner marcadores "
-"en objetos de muchos otros tipos."
+"\"Marcadores &gt; Agregar marcador\" o pulse Ctrl+D. También puede poner "
+"marcadores en la mayoría de los otros objetos."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -753,7 +754,7 @@ msgstr ""
 "<b>Fechas incorrectas</b><br/>Todo el mundo introduce de vez en cuando "
 "fechas en formatos inválidos. Estas fechas aparecen en Gramps con un fondo "
 "rojizo o un punto rojo a la derecha del campo. Puede arreglar la fecha "
-"mediante el diálogo de Selección de Fecha que puede abrirse haciendo clic "
+"mediante el diálogo de Selección de fecha que puede abrirse haciendo clic "
 "sobre el botón de fecha. El formato de la fecha se fija en \"Editar &gt; "
 "Preferencias... &gt; Mostrar\"."
 
@@ -942,7 +943,6 @@ msgstr ""
 "error en la fuente."
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
@@ -950,23 +950,22 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Reportes y herramientas adicionales</b><br/>Se pueden añadir a Gramps "
-"herramientas y reportes adicionales mediante le sistema de &quot;"
-"Extensiones&quot;. Véalos en &quot;Ayuda &gt; Reportes/Herramientas "
-"adicionales&quot;. Es la mejor manera en que los usuarios avanzados pueden "
-"experimentar y crear nueva funcionalidad."
+"herramientas y reportes adicionales mediante le sistema de \"Extensiones\". "
+"Véalos en \"Ayuda &gt; Reportes/herramientas adicionales\". Es la mejor "
+"manera en que los usuarios avanzados pueden experimentar y crear nuevas "
+"funcionalidades."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Reportes libro</b><br/>El reporte libro en &quot;Reportes &gt; Libros "
-"&gt; Reporte Libro&quot;, permite juntar varios reportes en un único "
-"documento. Este reporte combinado es más fácil de distribuir que los "
-"reportes múltiples, especialmente en forma impresa."
+"<b>Reportes de libro</b><br/>El reporte de libro en \"Reportes &gt; "
+"Libros... &gt;\", permite juntar varios reportes en un único documento. Este "
+"reporte combinado es más fácil de distribuir que los reportes múltiples, "
+"especialmente en forma impresa."
 
 #: ../data/tips.xml:106
 msgid ""
@@ -976,7 +975,7 @@ msgid ""
 msgstr ""
 "<b>Noticias de Gramps</b><br/>¿Está interesado en enterarse cuando se "
 "publica una nueva versión de Gramps? Únase a la lista de correo gramps-"
-"announce en &quot;Ayuda &gt; Listas de correo de Gramps&quot;"
+"announce en \"Ayuda &gt; Listas de correo de Gramps\""
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1049,7 +1048,6 @@ msgstr ""
 "todos los idiomas aparecen representados correctamente."
 
 #: ../data/tips.xml:120
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
@@ -1057,9 +1055,9 @@ msgid ""
 "home button is pressed."
 msgstr ""
 "<b>La persona inicial</b><br/>Puede elegir cualquier persona como Persona "
-"Inicial en Gramps. Utilice &quot;Editar &gt; Establecer persona "
-"inicial&quot;. La persona inicial es la que resulta seleccionada cuando se "
-"abre la base de datos o cuando se pulsa el botón Inicio."
+"Inicial en Gramps. Utilice \"Editar &gt; Establecer persona inicial\" La "
+"persona inicial es la que resulta seleccionada cuando se abre la base de "
+"datos o cuando se pulsa el botón \"Ir a la persona inicial\"."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1490,15 +1488,15 @@ msgstr ""
 "\n"
 "1. Para importar cuatro bases de datos (cuyos formatos pueden determinarse "
 "de sus nombres)\n"
-"y verificar si la base de datos resultante contiene errores, puede teclearse:"
-"\n"
+"y verificar si la base de datos resultante contiene errores, puede "
+"teclearse:\n"
 "gramps -i archivo1.ged -i archivo2.gpkg -i ~/bd3.gramps -i archivo4.wft -a "
 "tool -p name=check.\n"
 "\n"
 "2. Para especificar explícitamente los formatos en el ejemplo anterior, "
 "añada las opciones apropiadas -f a los nombres de archivo:\n"
-"gramps -i archivo1.ged -f gedcom -i archivo2.gpkg -f gramps-pkg -i ~/"
-"bd3.gramps -f gramps-xml -i archivo4.wft -f wft -a tool -p name=check.\n"
+"gramps -i archivo1.ged -f gedcom -i archivo2.gpkg -f gramps-pkg -i ~/bd3."
+"gramps -f gramps-xml -i archivo4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. Para guardar la base de datos resultante de todas las importaciones, use "
 "la opción -e\n"
@@ -1518,8 +1516,8 @@ msgstr ""
 "6. Para abrir una base de datos y, a partir de esos datos, generar un "
 "reporte de timeline en formato PDF\n"
 "colocando la salida en el archivo mi_timeline:\n"
-"gramps -O 'Árbol genealógico 1' -a report -p "
-"name=timeline,off=pdf,of=mi_timeline.pdf\n"
+"gramps -O 'Árbol genealógico 1' -a report -p name=timeline,off=pdf,"
+"of=mi_timeline.pdf\n"
 "\n"
 "7. Para generar un resumen de una base de datos:\n"
 "gramps -O 'Árbol genealógico 1' -a report -p name=summary\n"
@@ -1527,8 +1525,8 @@ msgstr ""
 "8. Lista de opciones de un reporte\n"
 "Use la opción name=timeline,show=all para saber de las opciones disponibles "
 "para el reporte línea de tiempo.\n"
-"Para saber detalles de una opción particular, use la cadena show=option_name "
-", p.ej. name=timeline,show=off.\n"
+"Para saber detalles de una opción particular, use la cadena "
+"show=option_name , p.ej. name=timeline,show=off.\n"
 "Para conocer los nombres de reportes disponibles, utilice la cadena "
 "name=show.\n"
 "\n"
@@ -3251,9 +3249,9 @@ msgstr ""
 "Por lo tanto, no puede cargara este Árbol Genealógico sin actualizar.\n"
 "\n"
 "Si actualiza, ya no podrá utilizar la versión anterior de Gramps, incluso si "
-"posteriormente %(wiki_manual_backup_html_start)shace una copia de "
-"seguridad%(html_end)s o %(wiki_manual_export_html_start)sexporta%(html_end)s "
-"su árbol genealógico actualizado.\n"
+"posteriormente %(wiki_manual_backup_html_start)shace una copia de seguridad"
+"%(html_end)s o %(wiki_manual_export_html_start)sexporta%(html_end)s su árbol "
+"genealógico actualizado.\n"
 "\n"
 "Se recomienda encarecidamente que haga una copia de seguridad de su Árbol "
 "Genealógico.\n"
@@ -6613,7 +6611,8 @@ msgstr "Fuentes con el atributo <atributo>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Coincide con las fuentes que tienen un atributo con un valor particular"
+msgstr ""
+"Coincide con las fuentes que tienen un atributo con un valor particular"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
@@ -9547,9 +9546,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"ERROR: El archivo de complemento %(filename)s tiene una versión \""
-"%(gramps_target_version)s\" que no es válida en Gramps \"%(gramps_version)s\""
-"."
+"ERROR: El archivo de complemento %(filename)s tiene una versión "
+"\"%(gramps_target_version)s\" que no es válida en Gramps \"%(gramps_version)s"
+"\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -9751,8 +9750,8 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Elija la familia de fuentes. Si no se muestran los caracteres "
-"internacionales, utilice la fuente FreeSans, disponible en: http://www.nongnu"
-".org/freefont/"
+"internacionales, utilice la fuente FreeSans, disponible en: http://www."
+"nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:152
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -11730,8 +11729,8 @@ msgstr ""
 "<tt>  \n"
 "  <b>Nombre</b>     - nombre de pila          <b>Apellido</b>     - "
 "apellidos (con prefijo y conectores)\n"
-"  <b>Tratamiento</b>- tratamiento (Dr., Sra.) <b>Sufijo</b>       - sufijo ("
-"Jr., Sr.)\n"
+"  <b>Tratamiento</b>- tratamiento (Dr., Sra.) <b>Sufijo</b>       - sufijo "
+"(Jr., Sr.)\n"
 "  <b>Corto</b>      - nombre corto            <b>Apodo</b>        - apodo\n"
 "  <b>Iniciales</b>  - iniciales de Nombre     <b>Habitual</b>     - apodo o "
 "primera parte de Nombre en otro caso\n"
@@ -12595,7 +12594,7 @@ msgstr ""
 "Esta pestaña le permite usar una tipografía que es capaz de mostrar todos "
 "los símbolos genealógicos\n"
 "\n"
-"Si selecciona la casilla \"usar símbolos\", Gramps usará la tipografía "
+"Si selecciona la casilla \"Usar símbolos\", Gramps usará la tipografía "
 "seleccionada si existe."
 
 #: ../gramps/gui/configure.py:1953
@@ -23033,8 +23032,8 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sPreguntas "
-"frecuentes%(html_end)s%(bold_end)s\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sPreguntas frecuentes"
+"%(html_end)s%(bold_end)s\n"
 "(necesita conexión a Internet)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
@@ -23065,8 +23064,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)s¿Cómo remuevo un "
-"cónyuge?%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)s¿Cómo remuevo un cónyuge?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -23155,8 +23154,8 @@ msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
 msgstr ""
-" 12. %(gramps_FAQ_html_start)s%(faq_section)s¿Qué hago si encuentro un "
-"bug?%(html_end)s\n"
+" 12. %(gramps_FAQ_html_start)s%(faq_section)s¿Qué hago si encuentro un bug?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
@@ -23164,8 +23163,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)s¿Hay un manual para "
-"Gramps?%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)s¿Hay un manual para Gramps?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -23173,8 +23172,8 @@ msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. %(gramps_wiki_html_start)s%(section)s¿Hay tutoriales "
-"disponibles?%(html_end)s\n"
+" 14. %(gramps_wiki_html_start)s%(section)s¿Hay tutoriales disponibles?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -23187,8 +23186,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)s¿Cómo ayudo con Gramps?%(html_end)"
-"s\n"
+" 16. %(gramps_wiki_html_start)s%(section)s¿Cómo ayudo con Gramps?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:53
 msgid "Double-click given name for details"
@@ -23743,7 +23742,7 @@ msgstr "Referencia a Persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:876
 msgid "Gramplet showing the backlink references for a person"
-msgstr "Gramplete que muestra las referencias a una persona"
+msgstr "Gramplete que muestra los retroenlaces a referencias para una persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:883
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:897
@@ -23765,27 +23764,24 @@ msgid "Event References"
 msgstr "Referencias a evento"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:890
-#, fuzzy
 msgid "Gramplet showing the backlink references for an event"
-msgstr "Gramplete que muestra las referencias a un evento"
+msgstr "Gramplete que muestra los retroenlaces a referencias para un evento"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:903
 msgid "Family References"
 msgstr "Referencias a Familia"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:904
-#, fuzzy
 msgid "Gramplet showing the backlink references for a family"
-msgstr "Gramplete que muestra las referencias a una familia"
+msgstr "Gramplete que muestra los retroenlaces a referencias para una familia"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
 msgid "Place References"
 msgstr "Referncias a Lugar"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:918
-#, fuzzy
 msgid "Gramplet showing the backlink references for a place"
-msgstr "Gramplete que muestra las referencias a un lugar"
+msgstr "Gramplete que muestra los retroenlaces a referencias para un lugar"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:931
 #: ../gramps/plugins/webreport/basepage.py:2550
@@ -23793,18 +23789,16 @@ msgid "Source References"
 msgstr "Referencias a fuentes"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:932
-#, fuzzy
 msgid "Gramplet showing the backlink references for a source"
-msgstr "Gramplete que muestra las referencias a una fuente"
+msgstr "Gramplete que muestra los retroenlaces a referencias para una fuente"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:945
 msgid "Citation References"
 msgstr "Referencias a citas"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:946
-#, fuzzy
 msgid "Gramplet showing the backlink references for a citation"
-msgstr "Gramplete que muestra las referencias a una cita"
+msgstr "Gramplete que muestra los retroenlaces a referencias para una cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:959
 #: ../gramps/plugins/quickview/quickview.gpr.py:251
@@ -23812,27 +23806,27 @@ msgid "Repository References"
 msgstr "Referencias a repositorio"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:960
-#, fuzzy
 msgid "Gramplet showing the backlink references for a repository"
-msgstr "Gramplete que muestra las referencias a un repositorio"
+msgstr ""
+"Gramplete que muestra los retroenlaces a referencias para un repositorio"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:973
 msgid "Media References"
 msgstr "Referencias a objeto audiovisual"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:974
-#, fuzzy
 msgid "Gramplet showing the backlink references for a media object"
-msgstr "Gramplete que muestra las referencias a un objeto audiovisual"
+msgstr ""
+"Gramplete que muestra los retroenlaces a referencias para un objeto "
+"audiovisual"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:987
 msgid "Note References"
 msgstr "Referencias a Nota"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:988
-#, fuzzy
 msgid "Gramplet showing the backlink references for a note"
-msgstr "Gramplete que muestra las referencias a una nota"
+msgstr "Gramplete que muestra los retroenlaces a referencias para una nota"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1001
 msgid "Person Filter"
@@ -24523,8 +24517,8 @@ msgstr ""
 "Lo primero que debe hacer es crear un nuevo árbol genealógico. Para crear un "
 "nuevo árbol genealógico (a veces llamado 'base de datos') seleccione "
 "\"Árboles genealógicos\" en el menú, escoja \"Administrar árboles "
-"genealógicos\", pulse en \"Nuevo\" y dé nombre a su árbol genealógico. Para "
-"más detalles, lea la información que puede encontrar en los enlaces "
+"genealógicos...\", pulse en \"Nuevo\" y dé nombre a su árbol genealógico. "
+"Para más detalles, lea la información que puede encontrar en los enlaces "
 "anteriores\n"
 "\n"
 
@@ -24840,7 +24834,7 @@ msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Se usan las personas de interés como punto de inico para determinar las "
+"Se usan las personas de interés como punto de inicio para determinar las "
 "\"líneas familiares\"."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:193
@@ -26242,11 +26236,15 @@ msgid ""
 "VCard is malformed missing the compulsory N property, so there is no name; "
 "skip it."
 msgstr ""
+"VCard tiene un formato incorrecto y le falta la propiedad N obligatoria, por "
+"lo que no hay nombre; saltarlo."
 
 #: ../gramps/plugins/importer/importvcard.py:371
 msgid ""
 "VCard is malformed missing the compulsory FN property, get name from N alone."
 msgstr ""
+"VCard tiene un formato incorrecto y le falta la propiedad FN obligatoria, "
+"obtenga el nombre de N solo."
 
 #: ../gramps/plugins/importer/importvcard.py:375
 msgid "VCard is malformed wrong number of name components."
@@ -29993,8 +29991,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Mantuvo una relación con %(spouse)s en %(partial_date)s en "
-"%(place)s%(endnotes)s."
+"Mantuvo una relación con %(spouse)s en %(partial_date)s en %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -33949,9 +33947,8 @@ msgstr "Revisar integridad"
 #. for bsddb the check_backlinks doesn't work in 'batch' mode because
 #. the table used for backlinks is closed.
 #: ../gramps/plugins/tool/check.py:231
-#, fuzzy
 msgid "Check Backlink Integrity"
-msgstr "Revisar integridad"
+msgstr "Revisar integridad de Retroenlace"
 
 #: ../gramps/plugins/tool/check.py:238
 #: ../gramps/plugins/tool/rebuildrefmap.py:77
@@ -34076,9 +34073,8 @@ msgstr "Buscando problemas en los eventos"
 #. Check for db backlinks that don't have a reference object at all
 #: ../gramps/plugins/tool/check.py:1242 ../gramps/plugins/tool/check.py:1271
 #: ../gramps/plugins/tool/check.py:1296
-#, fuzzy
 msgid "Looking for backlink reference problems"
-msgstr "Buscando problemas en las referencias a lugares"
+msgstr "Buscando problemas en los retroenlaces de referencia"
 
 #: ../gramps/plugins/tool/check.py:1331
 msgid "Looking for person reference problems"
@@ -34389,7 +34385,7 @@ msgstr ""
 #: ../gramps/plugins/tool/check.py:2783
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
-msgstr ""
+msgstr "Se corrigieron %d retroenlaces erróneos;\n"
 
 #: ../gramps/plugins/tool/check.py:2785
 #: ../gramps/plugins/tool/rebuildrefmap.py:88
@@ -35807,7 +35803,8 @@ msgstr "Arrojar estadísticas de género"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr "Arrojará las estadísticas para adivinar el género con el primer nombre."
+msgstr ""
+"Arrojará las estadísticas para adivinar el género con el primer nombre."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -39304,7 +39301,7 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Sin hoja de estilo"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39326,7 +39323,7 @@ msgstr "Sin hoja de estilo"
 #~ "copia de seguridad</a> de su árbol genealógico. A continuación, podrá "
 #~ "importar esa copia de seguridad en esta versión de Gramps."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39349,7 +39346,7 @@ msgstr "Sin hoja de estilo"
 #~ "www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">hacer "
 #~ "una copia de seguridad</a> de su árbol genealógico."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39401,7 +39398,7 @@ msgstr "Sin hoja de estilo"
 #~ "un árbol genealógico vacío. En vez de ello, quizá sea posible usar las "
 #~ "herramientas de recuperación de bases de datos Berkeley."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39423,7 +39420,7 @@ msgstr "Sin hoja de estilo"
 #~ "una copia de seguridad</a> de su árbol genealógico. A continuación podrá "
 #~ "importar esta copia de seguridad a esta versión Gramps."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39466,7 +39463,7 @@ msgstr "Sin hoja de estilo"
 #~ "www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">hacer "
 #~ "una copia de seguridad</a> de su árbol genealógico."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "menos de %s años"
 
@@ -39502,7 +39499,6 @@ msgstr "Sin hoja de estilo"
 #~ "por favor, desactualiza mi Árbol Genealógico"
 
 # Translating bytecode is futile: users would not understand it anyway and it would confuse developers
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39515,7 +39511,6 @@ msgstr "Sin hoja de estilo"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Reconstruir el mapa de referencias"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39529,7 +39524,7 @@ msgstr "Sin hoja de estilo"
 #~ msgid "<No Citation>"
 #~ msgstr "<Sin cita>"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(name1)s y %(name2)s"
 
@@ -39556,7 +39551,6 @@ msgstr "Sin hoja de estilo"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "¿Dónde ubica su sitio web? predefinido = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Creado para %(author)s"
 
@@ -39573,11 +39567,9 @@ msgstr "Sin hoja de estilo"
 #~ "El enlace a incluir para llevar al usuario a la página principal del "
 #~ "sitio web"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s de edad"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>boda</em>"
 
