@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-23 22:45+0100\n"
+"POT-Creation-Date: 2021-05-24 23:01+0100\n"
 "PO-Revision-Date: 2021-05-24 11:09+0000\n"
 "Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
@@ -11366,9 +11366,14 @@ msgstr ""
 "импортированном %s."
 
 #: ../gramps/grampsapp.py:172
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Your Python version does not meet the requirements. At least python "
+#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
+#| "\n"
+#| "Gramps will terminate now."
 msgid ""
-"Your Python version does not meet the requirements. At least python %(v1)d."
+"Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
@@ -11384,16 +11389,23 @@ msgid "Configuration error:"
 msgstr "Ошибка конфигурации:"
 
 #: ../gramps/grampsapp.py:432
-msgid "Error reading configuration"
+#, fuzzy
+#| msgid "Error reading configuration"
+msgid "Could not read configuration"
 msgstr "Ошибка чтения конфигурации"
 
 #: ../gramps/grampsapp.py:436
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "A definition for the MIME-type %s could not be found \n"
+#| "\n"
+#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
+#| "types of Gramps are properly installed."
 msgid ""
-"A definition for the MIME-type %s could not be found \n"
+"A definition for the media type %s could not be found \n"
 "\n"
-" Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-"types of Gramps are properly installed."
+" Possibly the installation of Gramps was incomplete. Make sure something to "
+"handle the media types of Gramps is installed."
 msgstr ""
 "Определение MIME-типа %s не найдено.\n"
 "\n"
@@ -16022,10 +16034,15 @@ msgid "Con_fidence:"
 msgstr "Достоверност_ь:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
+#, fuzzy
+#| msgid ""
+#| "The date of the entry in the source you are referencing, e.g. the date a "
+#| "house was visited during a census, or the date an entry was made in a "
+#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
-"log/registry. "
+"log/registry."
 msgstr ""
 "Дата записи в источнике на которую Вы ссылаетесь, например: дата, когда был "
 "посещён дом во время переписи или дата записи о рождении в книге учёта. "
@@ -16399,12 +16416,19 @@ msgid "Image preview"
 msgstr "Миниатюра"
 
 #: ../gramps/gui/glade/editmedia.glade:205
+#, fuzzy
+#| msgid ""
+#| "Path of the media object on your computer.\n"
+#| "Gramps does not store the media internally, it only stores the path! Set "
+#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
+#| "directory where all your media is stored. The 'Media Manager' tool can "
+#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
 "'Relative Path' in the Preferences to avoid retyping the common base "
 "directory where all your media is stored. The 'Media Manager' tool can help "
-"managing paths of a collection of media objects. "
+"managing paths of a collection of media objects."
 msgstr ""
 "Каталог документов на Вашем компьютере.\n"
 "Gramps не хранит сами документы, он только запоминает путь к ним! Установите "
@@ -16578,7 +16602,9 @@ msgstr ""
 "деятельности, привычек."
 
 #: ../gramps/gui/glade/editname.glade:333
-msgid "Given Name(s) "
+#, fuzzy
+#| msgid "Given Name(s) "
+msgid "Given Name(s)"
 msgstr "Имя "
 
 #: ../gramps/gui/glade/editname.glade:384
@@ -16865,8 +16891,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-msgid ""
-"Field used to paste info from a web page like google, openstreetmap, ... "
+#, fuzzy
+#| msgid ""
+#| "Field used to paste info from a web page like google, openstreetmap, ... "
+msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
 "Поле используется для вставки данных из веб страницы, например "
 "OpenStreetMap, Google, ... "
@@ -21159,9 +21187,13 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
+#, fuzzy
+#| msgid ""
+#| "i.e.\n"
+#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
-"United States of America/U.S.A"
+"United States of America/U.S.A."
 msgstr ""
 "т.е.\n"
 "Соединённые Штаты Америки/США"
@@ -25444,7 +25476,9 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-msgid "ANSI (iso-8859-1)"
+#, fuzzy
+#| msgid "ANSI (iso-8859-1)"
+msgid "ANSI (ISO-8859-1)"
 msgstr "ANSI (iso-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
@@ -37906,7 +37940,9 @@ msgid "Sort all children in birth order"
 msgstr "Сортировать всех детей в порядке рождения"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-msgid "Whether to display children in birth order or in entry order?"
+#, fuzzy
+#| msgid "Whether to display children in birth order or in entry order?"
+msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Показывать детей в порядке рождения или в порядке ввода их в базу данных?"
 
@@ -37915,7 +37951,9 @@ msgid "Do we display coordinates in the places list?"
 msgstr "Отображать координаты в списке мест?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-msgid "Whether to display latitude/longitude in the places list?"
+#, fuzzy
+#| msgid "Whether to display latitude/longitude in the places list?"
+msgid "Whether to display latitude/longitude in the places list."
 msgstr "Отображать широту/долготу в списке мест?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
@@ -38019,7 +38057,9 @@ msgid "HTML user header"
 msgstr "Верхний колонтитул (HTML)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-msgid "A note to be used as the page header or a php code to insert."
+#, fuzzy
+#| msgid "A note to be used as the page header or a php code to insert."
+msgid "A note to be used as the page header or a PHP code to insert."
 msgstr ""
 "Заметка для использования в качестве верхнего колонтитула или для вставки "
 "php кода."

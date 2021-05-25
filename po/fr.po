@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-23 22:45+0100\n"
+"POT-Creation-Date: 2021-05-24 23:01+0100\n"
 "PO-Revision-Date: 2021-05-24 16:19+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
@@ -12050,9 +12050,14 @@ msgstr ""
 
 # trunk
 #: ../gramps/grampsapp.py:172
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Your Python version does not meet the requirements. At least python "
+#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
+#| "\n"
+#| "Gramps will terminate now."
 msgid ""
-"Your Python version does not meet the requirements. At least python %(v1)d."
+"Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
@@ -12070,16 +12075,23 @@ msgid "Configuration error:"
 msgstr "Erreur de configuration :"
 
 #: ../gramps/grampsapp.py:432
-msgid "Error reading configuration"
+#, fuzzy
+#| msgid "Error reading configuration"
+msgid "Could not read configuration"
 msgstr "Erreur à la lecture de la configuration"
 
 #: ../gramps/grampsapp.py:436
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "A definition for the MIME-type %s could not be found \n"
+#| "\n"
+#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
+#| "types of Gramps are properly installed."
 msgid ""
-"A definition for the MIME-type %s could not be found \n"
+"A definition for the media type %s could not be found \n"
 "\n"
-" Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-"types of Gramps are properly installed."
+" Possibly the installation of Gramps was incomplete. Make sure something to "
+"handle the media types of Gramps is installed."
 msgstr ""
 "La définition du type MIME %s n'a pas été trouvée\n"
 "\n"
@@ -17085,10 +17097,15 @@ msgstr "Niveau de _confiance :"
 
 # trunk
 #: ../gramps/gui/glade/editcitation.glade:181
+#, fuzzy
+#| msgid ""
+#| "The date of the entry in the source you are referencing, e.g. the date a "
+#| "house was visited during a census, or the date an entry was made in a "
+#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
-"log/registry. "
+"log/registry."
 msgstr ""
 "La date de l'écriture de la source que vous êtes en train de référencer, par "
 "exemple, la date de visite lors d'un recensement ou la date de saisie d'une "
@@ -17487,12 +17504,19 @@ msgid "Image preview"
 msgstr "Aperçu de l'image"
 
 #: ../gramps/gui/glade/editmedia.glade:205
+#, fuzzy
+#| msgid ""
+#| "Path of the media object on your computer.\n"
+#| "Gramps does not store the media internally, it only stores the path! Set "
+#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
+#| "directory where all your media is stored. The 'Media Manager' tool can "
+#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
 "'Relative Path' in the Preferences to avoid retyping the common base "
 "directory where all your media is stored. The 'Media Manager' tool can help "
-"managing paths of a collection of media objects. "
+"managing paths of a collection of media objects."
 msgstr ""
 "Le chemin de ce medium sur votre ordinateur.\n"
 "Gramps ne stocke pas le fichier en interne, il ne stocke que le chemin ! "
@@ -17680,7 +17704,9 @@ msgstr "Un prénom descriptif à la place ou en addition du prénom officiel."
 
 # trunk
 #: ../gramps/gui/glade/editname.glade:333
-msgid "Given Name(s) "
+#, fuzzy
+#| msgid "Given Name(s) "
+msgid "Given Name(s)"
 msgstr "Prénom(s)"
 
 # trunk
@@ -17988,8 +18014,10 @@ msgstr ""
 # master
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-msgid ""
-"Field used to paste info from a web page like google, openstreetmap, ... "
+#, fuzzy
+#| msgid ""
+#| "Field used to paste info from a web page like google, openstreetmap, ... "
+msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
 "Champ utilisé pour coller une information depuis une page web, comme google, "
 "openstreetmap... "
@@ -22585,9 +22613,13 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
+#, fuzzy
+#| msgid ""
+#| "i.e.\n"
+#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
-"United States of America/U.S.A"
+"United States of America/U.S.A."
 msgstr ""
 "Par exemple\n"
 "United States of America/USA"
@@ -27081,7 +27113,9 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-msgid "ANSI (iso-8859-1)"
+#, fuzzy
+#| msgid "ANSI (iso-8859-1)"
+msgid "ANSI (ISO-8859-1)"
 msgstr "ANSI (iso-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
@@ -40292,7 +40326,9 @@ msgid "Sort all children in birth order"
 msgstr "Trier les enfants selon la date de naissance"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-msgid "Whether to display children in birth order or in entry order?"
+#, fuzzy
+#| msgid "Whether to display children in birth order or in entry order?"
+msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel ?"
 
@@ -40303,7 +40339,9 @@ msgstr "Faut-il afficher les coordonnées dans la liste des lieux ?"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-msgid "Whether to display latitude/longitude in the places list?"
+#, fuzzy
+#| msgid "Whether to display latitude/longitude in the places list?"
+msgid "Whether to display latitude/longitude in the places list."
 msgstr "Faut-il afficher latitude/longitude dans la liste des lieux ?"
 
 # https://gramps-project.org/bugs/view.php?id=11286
@@ -40408,7 +40446,9 @@ msgid "HTML user header"
 msgstr "En-tête HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-msgid "A note to be used as the page header or a php code to insert."
+#, fuzzy
+#| msgid "A note to be used as the page header or a php code to insert."
+msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "Une note à utiliser comme en-tête de page ou un code PHP à insérer."
 
 # espace limité dans la fenêtre, bug #3596
