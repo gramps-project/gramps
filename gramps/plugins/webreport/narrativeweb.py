@@ -219,21 +219,21 @@ class NavWebReport(Report):
         self.inc_updates = self.opts['updates']
         self.create_unused_media = self.opts['unused']
 
-        # Do we need to include this in a cms ?
+        # Do we need to include this in a CMS?
         self.usecms = self.options['usecms']
         self.target_uri = self.options['cmsuri']
 
-        # Do we add an extra page ?
+        # Do we add an extra page?
         # extrapage is the URI
         # extrapagename is the visible name in the navigation bar.
         self.extrapage = self.options['extrapage']
         self.extrapagename = self.options['extrapagename']
 
-        # Do we need to include web calendar ?
+        # Do we need to include web calendar?
         self.usecal = self.options['usecal']
         self.calendar = None
 
-        # Do we need to include news and updates page ?
+        # Do we need to include news and updates page?
         self.inc_updates = self.options['updates']
 
         # either include the gender graphics or not?
@@ -1230,8 +1230,8 @@ class NavWebReport(Report):
         * field 6: date of death or burial (optional)
         * field 7: place of death or burial (optional)
 
-        @param: filep  -- The gendex output file name
-        @param: person -- The person to use for gendex file
+        @param: filep  -- The GENDEX output filename
+        @param: person -- The person to use for GENDEX file
         """
         url = self.build_url_fname_html(person.handle, "ppl")
         surname = person.get_primary_name().get_surname()
@@ -1250,7 +1250,7 @@ class NavWebReport(Report):
 
     def surname_pages(self, ind_list, the_lang, the_title):
         """
-        Generates the surname related pages from list of individual
+        Generates the surname-related pages from list of individual
         people.
 
         @param: ind_list  -- The list of person to use
@@ -1574,7 +1574,7 @@ class NavWebReport(Report):
         subdirectory are inserted between 'subdir' and the filename.
         The reason is to prevent directories with too many entries.
 
-        @param: fname  -- The file name to create
+        @param: fname  -- The filename to create
         @param: subdir -- The subdirectory name to use
         @param: uplink -- if True, then "../../../" is inserted in front of the
                           result.
@@ -1585,7 +1585,7 @@ class NavWebReport(Report):
         The extension is added to the filename as well.
 
         Notice that we do NOT use os.path.join() because we're creating a URL.
-        Imagine we run gramps on Windows (heaven forbits), we don't want to
+        Imagine we run Gramps on Windows (gods forbidding), we don't want to
         see backslashes in the URL.
         """
         if not fname:
@@ -1640,7 +1640,7 @@ class NavWebReport(Report):
         """
         will create filename given
 
-        @param: fname  -- File name to be created
+        @param: fname  -- Filename to be created
         @param: subdir -- A subdir to be added to filename
         @param: ext    -- An extension to be added to filename
         """
@@ -1711,7 +1711,7 @@ class NavWebReport(Report):
         @param: string_io   -- The string IO used when we are in archive mode
         @param: date        -- The last modification date for this object
                                If we have "zero", we use the current time.
-                               This is related to bug 8950 and very useful
+                               This is related to bug #8950 and very useful
                                when we use rsync.
         """
         if self.archive:
@@ -1825,9 +1825,9 @@ class NavWebReport(Report):
                 if languages[language] == the_lang:
                     lang = language
                     break
-            return _("Narrative Web Site Report for the %s language") % lang
+            return _("Narrative Website Report for the %s language") % lang
         else:
-            return _("Narrative Web Site Report")
+            return _("Narrative Website Report")
 
 #################################################
 #
@@ -1913,7 +1913,7 @@ class NavWebOptions(MenuReportOptions):
 
     def add_menu_options(self, menu):
         """
-        Add options to the menu for the web site.
+        Add options to the menu for the website.
 
         @param: menu -- The menu for which we add options
         """
@@ -1940,9 +1940,9 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Report Options")
         addopt = partial(menu.add_option, category_name)
 
-        self.__archive = BooleanOption(_('Store web pages in .tar.gz archive'),
+        self.__archive = BooleanOption(_('Store website in .tar.gz archive'),
                                        False)
-        self.__archive.set_help(_('Whether to store the web pages in an '
+        self.__archive.set_help(_('Whether to store the website in an '
                                   'archive file'))
         addopt("archive", self.__archive)
         self.__archive.connect('value-changed', self.__archive_changed)
@@ -1959,13 +1959,13 @@ class NavWebOptions(MenuReportOptions):
 
         self.__archive_changed()
 
-        title = StringOption(_("Web site title"), _('My Family Tree'))
-        title.set_help(_("The title of the web site"))
+        title = StringOption(_("Website title"), _('My Family Tree'))
+        title.set_help(_("The title of the website"))
         addopt("title", title)
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-            _("Select filter to restrict people that appear on web site"))
+            _("Select filter to restrict people that appear on the website"))
         addopt("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -2064,7 +2064,7 @@ class NavWebOptions(MenuReportOptions):
         self.__prevnext.set_help(_("Add previous/next to the navigation bar."))
         addopt("prevnext", self.__prevnext)
 
-        self.__securesite = BooleanOption(_("This is a secure site (https)"),
+        self.__securesite = BooleanOption(_("This is a secure site (HTTPS)"),
                                           False)
         self.__securesite.set_help(_('Whether to use http:// or https://'))
         addopt("securesite", self.__securesite)
@@ -2357,10 +2357,10 @@ class NavWebOptions(MenuReportOptions):
         addopt("showparents", showparents)
 
         showallsiblings = BooleanOption(
-            _("Include half and/ or step-siblings on the individual pages"),
+            _("Include half and/or step-siblings on the individual pages"),
             False)
         showallsiblings.set_help(
-            _("Whether to include half and/ or "
+            _("Whether to include half and/or "
               "step-siblings with the parents and siblings"))
         addopt('showhalfsiblings', showallsiblings)
 
@@ -2384,17 +2384,17 @@ class NavWebOptions(MenuReportOptions):
 
         inc_places = BooleanOption(_('Include places pages'), False)
         inc_places.set_help(
-            _('Whether or not to include the places Pages.'))
+            _('Whether or not to include the places pages.'))
         addopt("inc_places", inc_places)
 
         inc_sources = BooleanOption(_('Include sources pages'), False)
         inc_sources.set_help(
-            _('Whether or not to include the sources Pages.'))
+            _('Whether or not to include the sources pages.'))
         addopt("inc_sources", inc_sources)
 
         inc_repository = BooleanOption(_('Include repository pages'), False)
         inc_repository.set_help(
-            _('Whether or not to include the Repository Pages.'))
+            _('Whether or not to include the repository pages.'))
         addopt("inc_repository", inc_repository)
 
         inc_gendex = BooleanOption(
@@ -2424,7 +2424,7 @@ class NavWebOptions(MenuReportOptions):
 
         mapopts = [
             [_("OpenStreetMap"), "OpenStreetMap"],
-            [_("StamenMap"), "StamenMap"],
+            [_("Stamen Map"), "StamenMap"],
             [_("Google"), "Google"]]
         self.__mapservice = EnumeratedListOption(_("Map Service"),
                                                  mapopts[0][1])
@@ -2464,7 +2464,7 @@ class NavWebOptions(MenuReportOptions):
             self.__googleopts.add_item(opt, trans)
         self.__googleopts.set_help(
             _("Select which option that you would like "
-              "to have for the Google Maps Family Map pages..."))
+              "to have for the Google Maps family-map pages..."))
         addopt("googleopts", self.__googleopts)
 
         self.__googlemapkey = StringOption(_("Google maps API key"), "")
@@ -2481,22 +2481,22 @@ class NavWebOptions(MenuReportOptions):
             self.__stamenopts.add_item(opt, trans)
         self.__stamenopts.set_help(
             _("Select which option that you would like "
-              "to have for the Stamenmap Map pages..."))
+              "to have for the Stamen map map-pages..."))
         addopt("stamenopts", self.__stamenopts)
 
         self.__placemap_options()
 
     def __add_others_options(self, menu):
         """
-        Options for the cms tab, web calendar inclusion, php ...
+        Options for the cms tab, web calendar inclusion, PHP ...
 
         @param: menu -- The menu for which we add options
         """
-        category_name = _("Other inclusion (CMS, Web Calendar, Php)")
+        category_name = _("Other inclusion (CMS, web calendar, PHP)")
         addopt = partial(menu.add_option, category_name)
 
         self.__usecms = BooleanOption(
-            _("Do we include these pages in a cms web ?"), False)
+            _("Do we include these pages in a CMS web?"), False)
         self.__usecms.connect('value-changed', self.__usecms_changed)
         addopt("usecms", self.__usecms)
 
@@ -2507,7 +2507,7 @@ class NavWebOptions(MenuReportOptions):
                                                    'paths.website-cms-uri'),
                                                default_dir))
         self.__cms_uri.set_help(
-            _("Where do you place your web site ? default = /NAVWEB"))
+            _("Where do you place your website? default = /NAVWEB"))
         self.__cms_uri.connect('value-changed', self.__cms_uri_changed)
         addopt("cmsuri", self.__cms_uri)
 
@@ -2524,7 +2524,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__maxdays = NumberOption(_("Max days for updates"), 1, 1, 300)
         self.__maxdays.set_help(_("You want to see the last updates on how"
-                                  " many days ?"))
+                                  " many days?"))
         addopt("maxdays", self.__maxdays)
 
         self.__maxupdates = NumberOption(_("Max number of updates per object"
@@ -2537,7 +2537,8 @@ class NavWebOptions(MenuReportOptions):
         """
         Options for selecting multiple languages. The default one is
         displayed in the display tab. If the option "use multiple
-        languages is not selected, all the fields in this menu will be grayed.
+        languages" is not selected, all the fields in this menu will be
+        grayed out.
 
         @param: menu -- The menu for which we add options
         """
@@ -2550,7 +2551,7 @@ class NavWebOptions(MenuReportOptions):
                                                                  mess, "lang2")
         self.__titl_2 = StringOption(_("Site name for your second language"),
                                      _('This site title'))
-        self.__titl_2.set_help(_('Give a title in the appropriate language'))
+        self.__titl_2.set_help(_('Enter a title in the respective language'))
         addopt("title2", self.__titl_2)
         mess = _("third language")
         self.__lang_3 = stdoptions.add_extra_localization_option(menu,
@@ -2558,7 +2559,7 @@ class NavWebOptions(MenuReportOptions):
                                                                  mess, "lang3")
         self.__titl_3 = StringOption(_("Site name for your third language"),
                                      _('This site title'))
-        self.__titl_3.set_help(_('Give a title in the appropriate language'))
+        self.__titl_3.set_help(_('Enter a title in the respective language'))
         addopt("title3", self.__titl_3)
         mess = _("fourth language")
         self.__lang_4 = stdoptions.add_extra_localization_option(menu,
@@ -2566,7 +2567,7 @@ class NavWebOptions(MenuReportOptions):
                                                                  mess, "lang4")
         self.__titl_4 = StringOption(_("Site name for your fourth language"),
                                      _('This site title'))
-        self.__titl_4.set_help(_('Give a title in the appropriate language'))
+        self.__titl_4.set_help(_('Enter a title in the respective language'))
         addopt("title4", self.__titl_4)
         mess = _("fifth language")
         self.__lang_5 = stdoptions.add_extra_localization_option(menu,
@@ -2574,7 +2575,7 @@ class NavWebOptions(MenuReportOptions):
                                                                  mess, "lang5")
         self.__titl_5 = StringOption(_("Site name for your fifth language"),
                                      _('This site title'))
-        self.__titl_5.set_help(_('Give a title in the appropriate language'))
+        self.__titl_5.set_help(_('Enter a title in the respective language'))
         addopt("title5", self.__titl_5)
         mess = _("sixth language")
         self.__lang_6 = stdoptions.add_extra_localization_option(menu,
@@ -2582,7 +2583,7 @@ class NavWebOptions(MenuReportOptions):
                                                                  mess, "lang6")
         self.__titl_6 = StringOption(_("Site name for your sixth language"),
                                      _('This site title'))
-        self.__titl_6.set_help(_('Give a title in the appropriate language'))
+        self.__titl_6.set_help(_('Enter a title in the respective language'))
         addopt("title6", self.__titl_6)
 
     def __activate_translations(self):
@@ -2625,8 +2626,8 @@ class NavWebOptions(MenuReportOptions):
 
     def __usecms_changed(self):
         """
-        We need to use cms or not
-        If we use a cms, the storage must be an archive
+        We need to use CMS or not
+        If we use a CMS, the storage must be an archive
         """
         if self.__usecms.get_value():
             self.__archive.set_value(True)
@@ -2679,7 +2680,7 @@ class NavWebOptions(MenuReportOptions):
     def __filter_changed(self):
         """
         Handle filter change. If the filter is not specific to a person,
-        disable the person option
+        disable the "Person" option
         """
         filter_value = self.__filter.get_value()
         if filter_value == 0: # "Entire Database" (as "include_single=False")
@@ -2761,7 +2762,7 @@ class NavWebOptions(MenuReportOptions):
 
     def __placemap_options(self):
         """
-        Handles the changing nature of the place map Options
+        Handles the changing nature of the "Place map" options
         """
         # get values for all Place Map Options tab...
         place_active = self.__placemappages.get_value()
