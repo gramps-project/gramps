@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-23 22:45+0100\n"
+"POT-Creation-Date: 2021-05-24 23:01+0100\n"
 "PO-Revision-Date: 2020-06-06 18:12+0100\n"
 "Last-Translator: Keiichiro Yamamoto <k.yanmar@gmail.com> Megumi Sakata "
 "<megumi.sakata.k@gmail.com>\n"
@@ -10749,9 +10749,14 @@ msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
 
 #: ../gramps/grampsapp.py:172
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "Your Python version does not meet the requirements. At least python "
+#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
+#| "\n"
+#| "Gramps will terminate now."
 msgid ""
-"Your Python version does not meet the requirements. At least python %(v1)d."
+"Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
@@ -10767,16 +10772,23 @@ msgid "Configuration error:"
 msgstr "設定エラー:"
 
 #: ../gramps/grampsapp.py:432
-msgid "Error reading configuration"
+#, fuzzy
+#| msgid "Error reading configuration"
+msgid "Could not read configuration"
 msgstr "設定読み込みエラー"
 
 #: ../gramps/grampsapp.py:436
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "A definition for the MIME-type %s could not be found \n"
+#| "\n"
+#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
+#| "types of Gramps are properly installed."
 msgid ""
-"A definition for the MIME-type %s could not be found \n"
+"A definition for the media type %s could not be found \n"
 "\n"
-" Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-"types of Gramps are properly installed."
+" Possibly the installation of Gramps was incomplete. Make sure something to "
+"handle the media types of Gramps is installed."
 msgstr ""
 "MIME-type %s の定義が見つかりませんでした。\n"
 "\n"
@@ -15281,7 +15293,7 @@ msgstr "信頼度(_F):"
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
-"log/registry. "
+"log/registry."
 msgstr ""
 
 #: ../gramps/gui/glade/editcitation.glade:201
@@ -15639,7 +15651,7 @@ msgid ""
 "Gramps does not store the media internally, it only stores the path! Set the "
 "'Relative Path' in the Preferences to avoid retyping the common base "
 "directory where all your media is stored. The 'Media Manager' tool can help "
-"managing paths of a collection of media objects. "
+"managing paths of a collection of media objects."
 msgstr ""
 
 #: ../gramps/gui/glade/editmedia.glade:219
@@ -15790,7 +15802,9 @@ msgstr ""
 "正式な与えられた名の代わりに、もしくは追加で与えられたわかりやすい名前。"
 
 #: ../gramps/gui/glade/editname.glade:333
-msgid "Given Name(s) "
+#, fuzzy
+#| msgid "Given Name(s) "
+msgid "Given Name(s)"
 msgstr "与えられた名前 "
 
 #: ../gramps/gui/glade/editname.glade:384
@@ -16032,8 +16046,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-msgid ""
-"Field used to paste info from a web page like google, openstreetmap, ... "
+msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:265
@@ -20197,9 +20210,13 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
+#, fuzzy
+#| msgid ""
+#| "i.e.\n"
+#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
-"United States of America/U.S.A"
+"United States of America/U.S.A."
 msgstr ""
 "例:\n"
 "United States of America/U.S.A"
@@ -24419,7 +24436,9 @@ msgid "ANSEL"
 msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-msgid "ANSI (iso-8859-1)"
+#, fuzzy
+#| msgid "ANSI (iso-8859-1)"
+msgid "ANSI (ISO-8859-1)"
 msgstr "ANSI (iso-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
@@ -36324,7 +36343,9 @@ msgid "Sort all children in birth order"
 msgstr "全ての子供を誕生日順にソート"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-msgid "Whether to display children in birth order or in entry order?"
+#, fuzzy
+#| msgid "Whether to display children in birth order or in entry order?"
+msgid "Whether to display children in birth order or in entry order."
 msgstr "子供を誕生日順と登録順のどちらで表示するか。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
@@ -36332,7 +36353,9 @@ msgid "Do we display coordinates in the places list?"
 msgstr "場所リストに座標を表示するgramps.mo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-msgid "Whether to display latitude/longitude in the places list?"
+#, fuzzy
+#| msgid "Whether to display latitude/longitude in the places list?"
+msgid "Whether to display latitude/longitude in the places list."
 msgstr "場所リストに緯度/経度を表示するかどうか。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
@@ -36431,7 +36454,7 @@ msgstr "HTML ユーザーヘッダ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
 #, fuzzy
-msgid "A note to be used as the page header or a php code to insert."
+msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "ページヘッダとしての使用されるノート"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
