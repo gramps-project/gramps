@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2020-06-06 18:12+0100\n"
 "Last-Translator: Keiichiro Yamamoto <k.yanmar@gmail.com> Megumi Sakata "
 "<megumi.sakata.k@gmail.com>\n"
@@ -886,16 +886,9 @@ msgstr ""
 msgid "Gramps Family Trees:"
 msgstr "Grampsの家系図:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -7759,7 +7752,7 @@ msgstr "宗教"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -12861,7 +12854,7 @@ msgid "Move the selected name downwards"
 msgstr "選択された名前を下に移動"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "グループ化"
 
@@ -37487,7 +37480,6 @@ msgstr "ネブラスカ"
 msgid "No style sheet"
 msgstr "スタイルシートなし"
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "%s 年より大きい"
 
@@ -37522,7 +37514,6 @@ msgstr "スタイルシートなし"
 #~ "バックアップを行いました。\n"
 #~ "家系図をダウングレードして下さい"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -37535,7 +37526,6 @@ msgstr "スタイルシートなし"
 #~ msgid "Rebuild reference map"
 #~ msgstr "参照マップを再構築する"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -37570,7 +37560,6 @@ msgstr "スタイルシートなし"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "あなたのウェブサイトをどこに置きますか? デフォルト= /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "%(author)s 向けに作成"
 
@@ -37585,7 +37574,6 @@ msgstr "スタイルシートなし"
 #~ "site"
 #~ msgstr "ウェブサイトのメインページへジャンプするためのリンク"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s 古い"
 

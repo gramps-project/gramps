@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-24 16:19+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/nn/>\n"
+"Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/nn/>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -439,8 +439,8 @@ msgstr ""
 "lar deg gjera operasjonar som å kontrollera databasen for feil og "
 "inkonsistens. Vidare finst her analyse- og utforskningsverktøy, som "
 "samanlikning av hendingar, finn dobbeloppførte personar, interaktiv "
-"etterkomar-utforskar med meir. Du finn alle verktøya under menyen "
-"&quot;Verktøys&quot;."
+"etterkomar-utforskar med meir. Du finn alle verktøya under menyen &quot;"
+"Verktøys&quot;."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -1169,16 +1169,9 @@ msgstr "%(full_DB_path)s med namnet \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Gramps slektstre:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -3139,10 +3132,10 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Slektstreet du prøver å lasta er i formatet til skjema-versjonen %(oldschema)"
-"s. Denne versjonen av Gramps brukar versjonen %(newschema)s. Du kan difor "
-"ikkje lasta dette slektstreet utan å oppgradera skjema-versjonen av "
-"slektstreet ditt.\n"
+"Slektstreet du prøver å lasta er i formatet til skjema-versjonen "
+"%(oldschema)s. Denne versjonen av Gramps brukar versjonen %(newschema)s. Du "
+"kan difor ikkje lasta dette slektstreet utan å oppgradera skjema-versjonen "
+"av slektstreet ditt.\n"
 "\n"
 "Dersom du oppgraderar vil du ikkje kunna nytta den forrige versjonen av "
 "Gramps sjølv om du etterpå "
@@ -3186,10 +3179,10 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Slektstreet du prøver å lasta er i formatet til skjema-versjonen %(oldschema)"
-"s. Denne versjonen av Gramps brukar versjonen %(newschema)s. Du kan difor "
-"ikkje lasta dette slektstreet utan å oppgradera skjema-versjonen av "
-"slektstreet ditt.\n"
+"Slektstreet du prøver å lasta er i formatet til skjema-versjonen "
+"%(oldschema)s. Denne versjonen av Gramps brukar versjonen %(newschema)s. Du "
+"kan difor ikkje lasta dette slektstreet utan å oppgradera skjema-versjonen "
+"av slektstreet ditt.\n"
 "\n"
 "Dersom du oppgraderer vil du ikkje kunna nytta den forrige versjonen av "
 "Gramps sjølv om du etterpå "
@@ -8315,7 +8308,7 @@ msgstr "Region"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13175,8 +13168,9 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
-"Katalogen som er angitt i innstillingane: Hovudsti for relativ sti til media:"
-" %s finst ikkje. Endra innstillingane eller ikkje bruk relativ sti ved import"
+"Katalogen som er angitt i innstillingane: Hovudsti for relativ sti til "
+"media: %s finst ikkje. Endra innstillingane eller ikkje bruk relativ sti ved "
+"import"
 
 #: ../gramps/gui/editors/addmedia.py:238
 #, python-format
@@ -13431,8 +13425,8 @@ msgid ""
 "To edit this citation, you need to close the object."
 msgstr ""
 "Denne referansen kan ikkje opprettast no. Enten blir den tilhøyrande kjelda "
-"alt redigert, eller så blir ein annan referanse med den same kjelda redigert."
-"\n"
+"alt redigert, eller så blir ein annan referanse med den same kjelda "
+"redigert.\n"
 "\n"
 "For å redigera denne referansen, må du lukka kjelda."
 
@@ -13601,7 +13595,7 @@ msgid "Move the selected name downwards"
 msgstr "Flytt det eksisterande namnet ned"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Grupper som"
 
@@ -16002,8 +15996,8 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
-"Namnet på ein eigenskap du ynskjer å bruka. Til dømes: Høgd (for ein person)"
-", Været på den dagen (for ei hending), …\n"
+"Namnet på ein eigenskap du ynskjer å bruka. Til dømes: Høgd (for ein "
+"person), Været på den dagen (for ei hending), …\n"
 "Bruk dette for å lagra informasjonsbitar du samlar og ynskjer å lenka til "
 "kjelder på ein rett måte. Eigenskapar kan brukast for personar, familiar, "
 "hendingar og media.\n"
@@ -16492,8 +16486,8 @@ msgstr ""
 "som du vil visa til.\n"
 "Du kan bruka musa på biletet for å velja ein region, eller bruka "
 "rulleknappane for å angi øvre venstre og nedre høgre hjørne av regionen som "
-"blir vist til. Punkt (0,0) er øverste venstre hjørne av biletet, og (100,100)"
-" er nederste høgre hjørne."
+"blir vist til. Punkt (0,0) er øverste venstre hjørne av biletet, og "
+"(100,100) er nederste høgre hjørne."
 
 #: ../gramps/gui/glade/editmediaref.glade:178
 msgid ""
@@ -26571,9 +26565,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"Feil: Familien '%(family)s' (inndata som @%(orig_family)s@) person %(person)"
-"s (inndata som %(orig_person)s) er ikkje med i den familien det blir refert "
-"til. Familiereferansen er fjerna frå personen"
+"Feil: Familien '%(family)s' (inndata som @%(orig_family)s@) person "
+"%(person)s (inndata som %(orig_person)s) er ikkje med i den familien det "
+"blir refert til. Familiereferansen er fjerna frå personen"
 
 #: ../gramps/plugins/lib/libgedcom.py:3357
 #, python-format
@@ -37553,8 +37547,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s av "
-"%(strong2_strt)s%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s av %(strong2_strt)s"
+"%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:427
@@ -39037,7 +39031,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ingen stilsett"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39059,7 +39052,6 @@ msgstr "Ingen stilsett"
 #~ "slektstreet ditt. Du kan deretter importera denn kopien til denne "
 #~ "versjonen av Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39082,7 +39074,6 @@ msgstr "Ingen stilsett"
 #~ "%(wiki_backup_html_start)slaga ein tryggleikskopi%(html_end)s av "
 #~ "slektstreet ditt."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39134,7 +39125,6 @@ msgstr "Ingen stilsett"
 #~ "importera XML-fila til eit tomt slektstre.  Alternativt kan det kanskje "
 #~ "vera mogeleg å bruka Berkeley-databasen sine gjenopprettingsverktøy."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39155,7 +39145,6 @@ msgstr "Ingen stilsett"
 #~ "slektstreet ditt. Dukan deretter importera denne kopien til denne "
 #~ "versjonen av Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39193,7 +39182,6 @@ msgstr "Ingen stilsett"
 #~ "%(wiki_backup_html_start)slaga ein tryggleikskopi%(html_end)s av "
 #~ "slektstreet ditt."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "meir enn %s år"
 
@@ -39228,7 +39216,6 @@ msgstr "Ingen stilsett"
 #~ "Eg har laga ein tryggleikskopi,\n"
 #~ "slektstreet mitt kan nedgraderast"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39241,7 +39228,6 @@ msgstr "Ingen stilsett"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Byggjer opp att referansekart"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39255,7 +39241,6 @@ msgstr "Ingen stilsett"
 #~ msgid "<No Citation>"
 #~ msgstr "<Ingen kjeldereferanse>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39282,7 +39267,6 @@ msgstr "Ingen stilsett"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Kvar vil du plassera nettsida di? standard = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Laga for %(author)s"
 
@@ -39298,11 +39282,9 @@ msgstr "Ingen stilsett"
 #~ msgstr ""
 #~ "Lenka som skal brukast for å leida brukaren til hovudsida for nettstaden"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s gamal"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>giftarmål</em>"
 

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
@@ -1214,16 +1214,9 @@ msgstr "%(full_DB_path)s amb nom \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Arbres Genealògics Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8454,7 +8447,7 @@ msgstr "Regió"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13711,7 +13704,7 @@ msgid "Move the selected name downwards"
 msgstr "Moure el nom seleccionat cap avall"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Agrupar com"
 
@@ -39306,7 +39299,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Sense full d'estil"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39327,7 +39319,6 @@ msgstr "Sense full d'estil"
 #~ "vostre Arbre Genealògic. Llavors ja podeu importar aquesta còpia de "
 #~ "seguretat en aquesta versió de Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39350,7 +39341,6 @@ msgstr "Sense full d'estil"
 #~ "Gramps i %(wiki_backup_html_start)sfeu una còpia de seguretat%(html_end)s "
 #~ "del vostre Arbre Genealògic."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39404,7 +39394,6 @@ msgstr "Sense full d'estil"
 #~ "possible d'utilitzar les eines de recuperació de la base de dades "
 #~ "Berkeley."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39426,7 +39415,6 @@ msgstr "Sense full d'estil"
 #~ "vostre Arbre Genealògic. Llavors ja podeu importar aquesta còpia de "
 #~ "seguretat en aquesta versió de Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39464,7 +39452,6 @@ msgstr "Sense full d'estil"
 #~ "Gramps i %(wiki_backup_html_start)sfeu una còpia de seguretat%(html_end)s "
 #~ "del vostre Arbre Genealògic."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "més de %s anys"
 
@@ -39499,7 +39486,6 @@ msgstr "Sense full d'estil"
 #~ "He fet una còpia de seguretat,\n"
 #~ "si us plau rebaixeu la versió del meu Arbre Genealògic"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39512,7 +39498,6 @@ msgstr "Sense full d'estil"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Reconstruir mapa de referències"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39526,7 +39511,6 @@ msgstr "Sense full d'estil"
 #~ msgid "<No Citation>"
 #~ msgstr "<No hi ha Cita>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39553,7 +39537,6 @@ msgstr "Sense full d'estil"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "On vols hostatjar el teu lloc web ? predeterminat = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Creat per a %(author)s"
 
@@ -39570,11 +39553,9 @@ msgstr "Sense full d'estil"
 #~ "L'enllaç que s'ha d'incloure per dirigir l'usuari a la pàgina principal "
 #~ "del lloc web"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>casament</em>"
 

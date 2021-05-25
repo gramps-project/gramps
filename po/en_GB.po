@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-18 06:36+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
@@ -890,16 +890,9 @@ msgstr ""
 msgid "Gramps Family Trees:"
 msgstr ""
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -7659,7 +7652,7 @@ msgstr ""
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -12628,7 +12621,7 @@ msgid "Move the selected name downwards"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr ""
 
@@ -26192,8 +26185,8 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s was baptised on %(baptism_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
@@ -26206,8 +26199,8 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised on %(baptism_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
@@ -26220,8 +26213,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s was baptised on %(baptism_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
@@ -26229,8 +26222,8 @@ msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"This person was baptised on %(baptism_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"This person was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:605
 #, python-format
@@ -26278,8 +26271,8 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s was baptised in %(month_year)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
@@ -26292,8 +26285,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised in %(month_year)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -26306,8 +26299,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s was baptised in %(month_year)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
@@ -26362,8 +26355,8 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s was baptised %(modified_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
@@ -26376,8 +26369,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s was baptised %(modified_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
@@ -26390,8 +26383,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s was baptised %(modified_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format

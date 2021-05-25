@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-24 10:04+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
@@ -1240,16 +1240,9 @@ msgstr "%(full_DB_path)s med navn \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Gramps Slægtsbøger:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8364,7 +8357,7 @@ msgstr "Område"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13598,7 +13591,7 @@ msgid "Move the selected name downwards"
 msgstr "Ryk det valgte navn ned"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Gruppér som"
 
@@ -39026,7 +39019,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Intet stilark"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39046,7 +39038,6 @@ msgstr "Intet stilark"
 #~ "%(wiki_backup_html_start)s tage en sikkerhedskopi%(html_end)s af din "
 #~ "slægtsbog. Denne kopi kan du så indlæse i denne version af Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39068,7 +39059,6 @@ msgstr "Intet stilark"
 #~ "%(wiki_backup_html_start)stage en sikkerhedskopi%(html_end)s af "
 #~ "slægtsbogen."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39116,7 +39106,6 @@ msgstr "Intet stilark"
 #~ "filen ind i en tom slægtsbog. Alternativt er det måske muligt at bruge "
 #~ "Berkeley-databasens reparationsværktøjer."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39136,7 +39125,6 @@ msgstr "Intet stilark"
 #~ "%(wiki_backup_html_start)stage en sikkerhedskopi%(html_end)s af din "
 #~ "slægtsbog. Denne kan så importeres til denne version af Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39173,7 +39161,6 @@ msgstr "Intet stilark"
 #~ "%(wiki_backup_html_start)stage en sikkerhedskopi%(html_end)s af "
 #~ "slægtsbogen."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "større end %s år"
 
@@ -39208,7 +39195,6 @@ msgstr "Intet stilark"
 #~ "Jeg har lavet en sikkerhedskopi\n"
 #~ "nedgrader venligst mit træ"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39221,7 +39207,6 @@ msgstr "Intet stilark"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Gendan indeks over henvisninger"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39235,7 +39220,6 @@ msgstr "Intet stilark"
 #~ msgid "<No Citation>"
 #~ msgstr "<Ingen Kildehenvisning>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39262,7 +39246,6 @@ msgstr "Intet stilark"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Hvor vil du gemme din hjemmeside? standard = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Lavet til %(author)s"
 
@@ -39279,11 +39262,9 @@ msgstr "Intet stilark"
 #~ "Henvisning der skal medtages for at lede brugeren hen til webstedets "
 #~ "forside"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s gammel"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>bryllup</em>"
 

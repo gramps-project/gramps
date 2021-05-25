@@ -62,7 +62,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-24 12:50+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
@@ -429,8 +429,8 @@ msgid ""
 "filter you can select all people without children."
 msgstr ""
 "<b>Inversione dei filtri</b><br/>I filtri possono essere facilmente "
-"invertiti con l'opzione «inverti». Per esempio, invertendo il filtro «"
-"Persone con figli» saranno selezionate tutte le persone senza figli."
+"invertiti con l'opzione «inverti». Per esempio, invertendo il filtro "
+"«Persone con figli» saranno selezionate tutte le persone senza figli."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -615,8 +615,8 @@ msgid ""
 "entered differing names for one individual. This also works for the Places, "
 "Sources and Repositories views."
 msgstr ""
-"<b>Fondere le voci</b><br/>La funzione \"Modifica &gt; Confronta e fondi...\""
-" consente di combinare delle persone elencate separatamente in una sola "
+"<b>Fondere le voci</b><br/>La funzione \"Modifica &gt; Confronta e fondi..."
+"\" consente di combinare delle persone elencate separatamente in una sola "
 "voce. Seleziona la seconda voce tenendo premuto il pulsante Control mentre "
 "si fa clic. Questo è molto utile per combinare due database con persone "
 "ripetute, o per combinare lo stesso individuo inserito per errore con nomi "
@@ -890,9 +890,9 @@ msgid ""
 msgstr ""
 "<b>Filtri</b><br/>I filtri consentono di limitare le persone visualizzate "
 "nella vista persone. In aggiunta ai vari filtri preimpostati, è possibile "
-"definire dei filtri personalizzati: l'unico limite è dato "
-"dall'immaginazione.I filtri personalizzati sono definibili da \"Modifica &gt;"
-" Editor filtri persone\"."
+"definire dei filtri personalizzati: l'unico limite è dato dall'immaginazione."
+"I filtri personalizzati sono definibili da \"Modifica &gt; Editor filtri "
+"persone\"."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -920,8 +920,8 @@ msgid ""
 msgstr ""
 "<b>Pacchetti Gramps XML</b><br/>È possibile esportare l'albero genealogico "
 "come pacchetto Gramps XML. Si tratta di un file compresso contenente i dati "
-"dell'albero genealogico e tutti i file multimediali collegati al database ("
-"ad esempio le immagini). Questo file è completamente portabile ed è quindi "
+"dell'albero genealogico e tutti i file multimediali collegati al database "
+"(ad esempio le immagini). Questo file è completamente portabile ed è quindi "
 "utile per i backup o per essere condiviso con altri utenti Gramps. Questo "
 "formato ha il vantaggio, rispetto a GEDCOM, che nessuna informazione viene "
 "persa in fase di esportazione o di importazione."
@@ -1003,10 +1003,10 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Ulteriori resoconti e strumenti</b><br/>È possibile aggiungere a Gramps "
-"ulteriori strumenti e resoconti con il sistema dei \"componenti aggiuntivi\""
-". Sono visibili tramite \"Aiuto &gt; Ulteriori resoconti/Strumenti\". Questo "
-"è il modo migliore per gli utenti avanzati per poter sperimentare e creare "
-"nuove funzionalità."
+"ulteriori strumenti e resoconti con il sistema dei \"componenti aggiuntivi"
+"\". Sono visibili tramite \"Aiuto &gt; Ulteriori resoconti/Strumenti\". "
+"Questo è il modo migliore per gli utenti avanzati per poter sperimentare e "
+"creare nuove funzionalità."
 
 #: ../data/tips.xml:104
 msgid ""
@@ -1251,16 +1251,9 @@ msgstr "%(full_DB_path)s con nome «%(f_t_name)s»"
 msgid "Gramps Family Trees:"
 msgstr "Alberi genealogici Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -1433,8 +1426,8 @@ msgstr ""
 "\n"
 "Opzioni di aiuto\n"
 "  -?, --help                             Mostra questo messaggio di aiuto\n"
-"  --usage                                Mostra informazioni concise sull'"
-"uso\n"
+"  --usage                                Mostra informazioni concise "
+"sull'uso\n"
 "\n"
 "Opzioni dell'applicazione\n"
 "  -O, --open=ALBERO_GENEALOGICO          Apri albero genealogico\n"
@@ -4307,7 +4300,8 @@ msgstr "Eventi che accandono in un giorno della settimana in particolare"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:40
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Estrae gli eventi che accadono in un particolare giorno della settimana"
+msgstr ""
+"Estrae gli eventi che accadono in un particolare giorno della settimana"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
@@ -4455,7 +4449,8 @@ msgstr "Eventi con Id contenenti <testo>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr "Estrae gli eventi il cui ID Gramps corrisponde all'espressione regolare"
+msgstr ""
+"Estrae gli eventi il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:377
@@ -5837,7 +5832,8 @@ msgstr "Discendenti di <persona> da almeno <N> generazioni"
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
-msgstr "Estrae i discendenti da almeno N generazioni di una persona specificata"
+msgstr ""
+"Estrae i discendenti da almeno N generazioni di una persona specificata"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:47
 msgid "Parents of <filter> match"
@@ -5999,7 +5995,8 @@ msgstr "Persone con Id contenente <testo>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr "Estrae le persone il cui ID Gramps corrisponde all'espressione regolare"
+msgstr ""
+"Estrae le persone il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:46
 msgid "People with a name matching <text>"
@@ -6340,8 +6337,8 @@ msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
-"Il luogo selezionato contiene coordinate scorrette. Eseguire lo strumento «"
-"Pulisci dati in ingresso»"
+"Il luogo selezionato contiene coordinate scorrette. Eseguire lo strumento "
+"«Pulisci dati in ingresso»"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -6467,7 +6464,8 @@ msgstr "Depositi con ID contenente <testo>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr "Estrae i depositi il cui ID Gramps corrisponde all'espressione regolare"
+msgstr ""
+"Estrae i depositi il cui ID Gramps corrisponde all'espressione regolare"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
@@ -6600,7 +6598,8 @@ msgstr "Estrae le fonti che corrispondono al filtro indicato"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Fonti con riferimenti a deposito che corrispondono al <filtro depositi>"
+msgstr ""
+"Fonti con riferimenti a deposito che corrispondono al <filtro depositi>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
 msgid ""
@@ -8337,7 +8336,7 @@ msgstr "Regione"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -9644,8 +9643,8 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Sceglie la famiglia del carattere. Se i caratteri internazionali non vengono "
-"mostrati, usare il carattere FreeSans, disponibile tramite: http://www.nongnu"
-".org/freefont/"
+"mostrati, usare il carattere FreeSans, disponibile tramite: http://www."
+"nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:152
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -10474,8 +10473,8 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"Errore analizzando l'elenco di banche dati recenti dal file {fname}: {error}."
-"\n"
+"Errore analizzando l'elenco di banche dati recenti dal file {fname}: "
+"{error}.\n"
 "Questo potrebbe indicare un danno nei file.\n"
 "Se si è sicuri dell'assenza di problemi in altri file, allora lo si può "
 "eliminare e riavviare Gramps."
@@ -10614,8 +10613,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Il traduttore delle relazioni familiari non è disponibile per la lingua «%s»"
-". Al suo posto verrà usato quello per l'inglese."
+"Il traduttore delle relazioni familiari non è disponibile per la lingua "
+"«%s». Al suo posto verrà usato quello per l'inglese."
 
 #: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:205
 msgid "death date"
@@ -13033,8 +13032,8 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Questa versione non è pensata per l'uso normale; va usata a proprio rischio."
-"\n"
+"Questa versione non è pensata per l'uso normale; va usata a proprio "
+"rischio.\n"
 "\n"
 "Questa versione potrebbe:\n"
 "1) funzionare in modo differente da come ci si aspetta.\n"
@@ -13507,7 +13506,7 @@ msgid "Move the selected name downwards"
 msgstr "Sposta in basso il nome selezionato"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Raggruppa come"
 
@@ -13625,7 +13624,8 @@ msgstr "Impossibile modificare la famiglia"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:135
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Non è possibile cambiare gli eventi familiari nell'editor delle persone"
+msgstr ""
+"Non è possibile cambiare gli eventi familiari nell'editor delle persone"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Create and add a new association"
@@ -15996,8 +15996,8 @@ msgstr ""
 "la prova per sé stesso.\n"
 "-Molto bassa =prova o dati stimati non affidabili.\n"
 "-Bassa =affidabilità discutibile della prova (interviste, censimento, "
-"genealogia orale, o la possibile imparzialità - ad esempio un'autobiografia)."
-"\n"
+"genealogia orale, o la possibile imparzialità - ad esempio "
+"un'autobiografia).\n"
 "-Alta =prova secondaria, dati registrati in modo ufficiale qualche tempo "
 "dopo l'evento.\n"
 "-Molto alta =prova diretta o primaria, o per evidenza della prova."
@@ -16143,8 +16143,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Data dell'evento. Può essere una data esatta, un intervallo (da ... a, tra, "
-"...) o una data non precisa (circa, ...)."
+"Data dell'evento. Può essere una data esatta, un intervallo (da ... a, "
+"tra, ...) o una data non precisa (circa, ...)."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -17040,8 +17040,8 @@ msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
 msgstr ""
-"L'indirizzo internet, nella forma necessaria per raggiungerlo, ad es. http"
-"://gramps-project.org"
+"L'indirizzo internet, nella forma necessaria per raggiungerlo, ad es. http://"
+"gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:205
 msgid "Open the web address in the default browser."
@@ -17049,7 +17049,8 @@ msgstr "Apri l'indirizzo web nel browser predefinito."
 
 #: ../gramps/gui/glade/editurl.glade:217
 msgid "A descriptive caption of the Internet location you are storing."
-msgstr "Una didascalia descritta dell'indirizzo Internet che viene memorizzato."
+msgstr ""
+"Una didascalia descritta dell'indirizzo Internet che viene memorizzato."
 
 #: ../gramps/gui/glade/grampletpane.glade:63
 msgid "Drag to move; click to detach"
@@ -18259,9 +18260,10 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"Usare questo pulsante per copiare la segnalazione del problema negli appunti;"
-" accedere quindi al sistema web di gestione dei bug tramite il pulsante "
-"posto più in basso, incollare il resoconto e fare clic su invia resoconto"
+"Usare questo pulsante per copiare la segnalazione del problema negli "
+"appunti; accedere quindi al sistema web di gestione dei bug tramite il "
+"pulsante posto più in basso, incollare il resoconto e fare clic su invia "
+"resoconto"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:649
 #: ../gramps/gui/logger/_errorreportassistant.py:676
@@ -18763,7 +18765,8 @@ msgstr[1] "Sono stati installati {number_of} componenti aggiuntivi."
 
 #: ../gramps/gui/plug/_windows.py:1227
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
-msgstr "Se è stata installata una «vista Gramps» è necessario riavviare Gramps."
+msgstr ""
+"Se è stata installata una «vista Gramps» è necessario riavviare Gramps."
 
 #: ../gramps/gui/plug/_windows.py:1231
 msgid "No addons were installed."
@@ -20408,8 +20411,8 @@ msgid ""
 msgstr ""
 "Fare clic per rendere attiva la persona\n"
 "Fare clic con il pulsante destro per mostrare il menu modifica\n"
-"Fare clic sull'icona Modifica (da abilitare nella finestra di configurazione)"
-" per modificare"
+"Fare clic sull'icona Modifica (da abilitare nella finestra di "
+"configurazione) per modificare"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:628
 msgid "Bad Date"
@@ -21620,7 +21623,8 @@ msgstr "Iniziare con il/i genitore/i del primo selezionato"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1557
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr "Mostrerà i genitori, i fratelli e le sorelle della persona selezionata."
+msgstr ""
+"Mostrerà i genitori, i fratelli e le sorelle della persona selezionata."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1563
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
@@ -22784,8 +22788,8 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sDomande "
-"ricorrenti%(html_end)s%(bold_end)s\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sDomande ricorrenti"
+"%(html_end)s%(bold_end)s\n"
 "(è richiesta la connessione ad internet)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
@@ -22816,8 +22820,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  3. %(gramps_FAQ_html_start)s%(faq_section)sCome rimuovere un "
-"coniuge?%(html_end)s\n"
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sCome rimuovere un coniuge?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -22898,8 +22902,8 @@ msgstr ""
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
 msgstr ""
-" 11. %(web_html_start)sCome registrare la professione di qualcuno?%(html_end)"
-"s\n"
+" 11. %(web_html_start)sCome registrare la professione di qualcuno?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:154
 #, python-format
@@ -22907,8 +22911,8 @@ msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
 msgstr ""
-" 12. %(gramps_FAQ_html_start)s%(faq_section)sCosa fare se si incontra un "
-"bug?%(html_end)s\n"
+" 12. %(gramps_FAQ_html_start)s%(faq_section)sCosa fare se si incontra un bug?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
@@ -22925,8 +22929,8 @@ msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. %(gramps_wiki_html_start)s%(section)sSono disponibili dei "
-"tutorial?%(html_end)s\n"
+" 14. %(gramps_wiki_html_start)s%(section)sSono disponibili dei tutorial?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -23238,8 +23242,8 @@ msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
-"Le funzionalità relative ai metadati delle immagini non saranno disponibili."
-"\n"
+"Le funzionalità relative ai metadati delle immagini non saranno "
+"disponibili.\n"
 "Per compilarle per Gramps consultare %(gramps_wiki_build_gexiv2_url)s"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:455
@@ -25036,7 +25040,8 @@ msgstr "Mostra nodi di famiglia"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:968
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Le famiglie appariranno come ellissi collegati ai genitori ed ai figli."
+msgstr ""
+"Le famiglie appariranno come ellissi collegati ai genitori ed ai figli."
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -25644,8 +25649,8 @@ msgstr ""
 "il percorso degli oggetti multimediali dalle Preferenze, oppure convertire i "
 "file importati al percorso base preesistente per gli oggetti multimediali. "
 "Si può fare questo spostando gli oggetti multimediali in una nuova "
-"posizione, usando quindi il gestore degli oggetti multimediali, opzione «"
-"Sostituisci sotto-stringa nel percorso», per impostare i percorsi corretti "
+"posizione, usando quindi il gestore degli oggetti multimediali, opzione "
+"«Sostituisci sotto-stringa nel percorso», per impostare i percorsi corretti "
 "per gli oggetti multimediali."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
@@ -27687,8 +27692,8 @@ msgstr "Morì (%(age)s)."
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s fu seppellito il %(burial_date)s in quel di "
-"%(burial_place)s%(endnotes)s."
+"%(male_name)s fu seppellito il %(burial_date)s in quel di %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:462
 #, python-format
@@ -27702,8 +27707,8 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fu seppellita il %(burial_date)s in quel di "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s fu seppellita il %(burial_date)s in quel di %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
@@ -27756,7 +27761,8 @@ msgstr "Fu seppellita il %(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:485
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s fu seppellito/a il %(burial_date)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s fu seppellito/a il %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:486
 #, python-format
@@ -27773,8 +27779,8 @@ msgstr "Seppellito/a il %(burial_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s fu seppellito nel %(month_year)s in quel di "
-"%(burial_place)s%(endnotes)s."
+"%(male_name)s fu seppellito nel %(month_year)s in quel di %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:494
 #, python-format
@@ -27787,8 +27793,8 @@ msgstr ""
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s fu seppellita nel %(month_year)s in quel di "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s fu seppellita nel %(month_year)s in quel di %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
@@ -27841,7 +27847,8 @@ msgstr "Fu seppellita nel %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:517
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s fu seppellito/a nel %(month_year)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s fu seppellito/a nel %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:518
 #, python-format
@@ -27858,8 +27865,8 @@ msgstr "Seppellito/a nel %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s fu seppellito %(modified_date)s in quel di "
-"%(burial_place)s%(endnotes)s."
+"%(male_name)s fu seppellito %(modified_date)s in quel di %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:526
 #, python-format
@@ -27872,8 +27879,8 @@ msgstr ""
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s fu seppellita %(modified_date)s in quel di "
-"%(burial_place)s%(endnotes)s."
+"%(female_name)s fu seppellita %(modified_date)s in quel di %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
@@ -27900,7 +27907,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:536
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Seppellito/a %(modified_date)s in quel di %(burial_place)s%(endnotes)s."
+msgstr ""
+"Seppellito/a %(modified_date)s in quel di %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:541
 #, python-format
@@ -27961,8 +27969,8 @@ msgstr "Fu seppellita in quel di %(burial_place)s%(endnotes)s."
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s fu seppellito/a in quel di "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s fu seppellito/a in quel di %(burial_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
@@ -28015,8 +28023,8 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fu battezzato il %(baptism_date)s in quel di "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s fu battezzato il %(baptism_date)s in quel di %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
@@ -28104,8 +28112,8 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fu battezzato nel %(month_year)s in quel di "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s fu battezzato nel %(month_year)s in quel di %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
@@ -28119,8 +28127,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fu battezzata nel %(month_year)s in quel di "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s fu battezzata nel %(month_year)s in quel di %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -28173,7 +28181,8 @@ msgstr "Fu battezzata nel %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:650
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s fu battezzato/a nel %(month_year)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s fu battezzato/a nel %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:651
 #, python-format
@@ -28191,8 +28200,8 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fu battezzato %(modified_date)s in quel di "
-"%(baptism_place)s%(endnotes)s."
+"%(male_name)s fu battezzato %(modified_date)s in quel di %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
@@ -28206,8 +28215,8 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fu battezzata %(modified_date)s in quel di "
-"%(baptism_place)s%(endnotes)s."
+"%(female_name)s fu battezzata %(modified_date)s in quel di %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
@@ -28285,7 +28294,8 @@ msgstr "Fu battezzato in quel di %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:694
 #, python-format
 msgid "%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s fu battezzata in quel di %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s fu battezzata in quel di %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:695
 #, python-format
@@ -28296,8 +28306,8 @@ msgstr "Fu battezzata in quel di %(baptism_place)s%(endnotes)s."
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s fu battezzato/a in quel di "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s fu battezzato/a in quel di %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:699
 #, python-format
@@ -28359,8 +28369,8 @@ msgid ""
 "He was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Fu battezzato il %(christening_date)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Fu battezzato il %(christening_date)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:731
 #, python-format
@@ -28377,8 +28387,8 @@ msgid ""
 "She was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Fu battezzata il %(christening_date)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Fu battezzata il %(christening_date)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:735
 #, python-format
@@ -28395,15 +28405,15 @@ msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Fu battezzato/a il %(christening_date)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Fu battezzato/a il %(christening_date)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:738
 #, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Battezzato/a il %(christening_date)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Battezzato/a il %(christening_date)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:743
 #, python-format
@@ -28456,8 +28466,8 @@ msgstr ""
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Fu battezzato nel %(month_year)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Fu battezzato nel %(month_year)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:763
 #, python-format
@@ -28473,8 +28483,8 @@ msgstr ""
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Fu battezzata nel %(month_year)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Fu battezzata nel %(month_year)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:767
 #, python-format
@@ -28491,8 +28501,8 @@ msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Fu battezzato/a nel %(month_year)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Fu battezzato/a nel %(month_year)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:770
 #, python-format
@@ -28523,7 +28533,8 @@ msgstr "Fu battezzata nel %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:783
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s fu battezzato/a nel %(month_year)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s fu battezzato/a nel %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:784
 #, python-format
@@ -28582,8 +28593,8 @@ msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Fu battezzato/a %(modified_date)s in quel di "
-"%(christening_place)s%(endnotes)s."
+"Fu battezzato/a %(modified_date)s in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:802
 #, python-format
@@ -28653,8 +28664,8 @@ msgstr "Fu battezzata in quel di %(christening_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s fu battezzato/a in quel di "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s fu battezzato/a in quel di %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:832
 #, python-format
@@ -28930,7 +28941,8 @@ msgstr "Figlia di %(mother)s."
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:974
 #, python-format
@@ -28947,7 +28959,8 @@ msgstr "Sposò %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:978
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
@@ -28962,7 +28975,8 @@ msgstr "Sposò %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:983
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:984
 #, python-format
@@ -28977,7 +28991,8 @@ msgstr "Sposò %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:988
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:989
 #, python-format
@@ -28995,8 +29010,8 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:997
 #, python-format
@@ -29019,8 +29034,8 @@ msgstr ""
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1002
 #, python-format
@@ -29039,8 +29054,8 @@ msgstr ""
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1007
 #, python-format
@@ -29058,8 +29073,8 @@ msgstr ""
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Sposò inoltre %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
@@ -29435,8 +29450,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)"
-"s in quel di %(place)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s "
+"%(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -29462,8 +29477,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)"
-"s in quel di %(place)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s "
+"%(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1144
 #, python-format
@@ -29471,8 +29486,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s nel "
-"%(partial_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
@@ -29480,8 +29495,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s il "
-"%(full_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -29489,8 +29504,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
@@ -29498,8 +29513,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s nel "
-"%(partial_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
@@ -29507,8 +29522,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s il "
-"%(full_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1151
 #, python-format
@@ -29516,8 +29531,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1154
 #, python-format
@@ -29525,8 +29540,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s nel "
-"%(partial_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1155
 #, python-format
@@ -29534,8 +29549,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s il "
-"%(full_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1156
 #, python-format
@@ -29543,8 +29558,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1159
 #, python-format
@@ -29579,8 +29594,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il "
-"%(full_date)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1169
 #, python-format
@@ -29588,8 +29603,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1172
 #, python-format
@@ -29606,8 +29621,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il "
-"%(full_date)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
@@ -29615,8 +29630,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1177
 #, python-format
@@ -29633,8 +29648,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il "
-"%(full_date)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1179
 #, python-format
@@ -29642,31 +29657,31 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
-"Inoltre relazione extramatrimoniale con %(spouse)s nel "
-"%(partial_date)s%(endnotes)s."
+"Inoltre relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1183
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
-"Inoltre relazione extramatrimoniale con %(spouse)s il "
-"%(full_date)s%(endnotes)s."
+"Inoltre relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1184
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Inoltre relazione extramatrimoniale con %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"Inoltre relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1189
 #, python-format
@@ -29674,24 +29689,24 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1190
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1191
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
-"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1192
 #: ../gramps/plugins/lib/libnarrate.py:1199
@@ -29773,8 +29788,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -29782,8 +29797,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -29791,8 +29806,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -29800,8 +29815,8 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -29809,8 +29824,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -29818,8 +29833,8 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
@@ -29827,8 +29842,8 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -29836,8 +29851,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
@@ -29845,15 +29860,15 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Relazione con %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Relazione con %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1240
 #, python-format
@@ -29954,24 +29969,24 @@ msgstr ""
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Inoltre relazione con %(spouse)s nel %(partial_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Inoltre relazione con %(spouse)s nel %(partial_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1263
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Inoltre relazione con %(spouse)s il %(full_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Inoltre relazione con %(spouse)s il %(full_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1264
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Inoltre relazione con %(spouse)s %(modified_date)s in quel di "
-"%(place)s%(endnotes)s."
+"Inoltre relazione con %(spouse)s %(modified_date)s in quel di %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1270
 #, python-format
@@ -30050,7 +30065,8 @@ msgstr ""
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
-msgstr "Ebbe inoltre una relazione con %(spouse)s il %(full_date)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1295
 #, python-format
@@ -30589,8 +30605,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Cerca di visualizzare i luoghi selezionati con un servizio di mappe ("
-"OpenstreetMap, Google Maps, ...)"
+"Cerca di visualizzare i luoghi selezionati con un servizio di mappe "
+"(OpenstreetMap, Google Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:466
 msgid "Select a Map Service"
@@ -31960,8 +31976,8 @@ msgid_plural ""
 msgstr[0] ""
 "C'è {number_of} persona con un nome (o nome alternativo) corrispondente.\n"
 msgstr[1] ""
-"Ci sono {number_of} persone con un nome (o nome alternativo) corrispondente."
-"\n"
+"Ci sono {number_of} persone con un nome (o nome alternativo) "
+"corrispondente.\n"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
@@ -33791,8 +33807,8 @@ msgstr ""
 "Il file:\n"
 "%(file_name)s\n"
 "possiede un riferimento all'interno del database, ma non è più presente.\n"
-"Il file potrebbe essere stato eliminato o spostato in una posizione diversa."
-"\n"
+"Il file potrebbe essere stato eliminato o spostato in una posizione "
+"diversa.\n"
 "È possibile scegliere se eliminare il riferimento dal database,\n"
 "tenere il riferimento al file mancante o selezionare un nuovo file."
 
@@ -33961,8 +33977,10 @@ msgstr "%(person)s è stato ripristinato nella famiglia di %(family)s\n"
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
-msgstr[0] "È stato trovato {quantity} collegamento duplicato coniuge/famiglia\n"
-msgstr[1] "Sono stati trovati {quantity} collegamenti duplicati coniuge/famiglia\n"
+msgstr[0] ""
+"È stato trovato {quantity} collegamento duplicato coniuge/famiglia\n"
+msgstr[1] ""
+"Sono stati trovati {quantity} collegamenti duplicati coniuge/famiglia\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2542
@@ -33970,7 +33988,8 @@ msgstr[1] "Sono stati trovati {quantity} collegamenti duplicati coniuge/famiglia
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] "Trovata {quantity} famiglia senza genitori o figli, è stata rimossa.\n"
+msgstr[0] ""
+"Trovata {quantity} famiglia senza genitori o figli, è stata rimossa.\n"
 msgstr[1] ""
 "Trovate {quantity} famiglie senza genitori o figli, sono state rimosse.\n"
 
@@ -34025,8 +34044,10 @@ msgstr[1] "Erano presenti riferimenti a {quantity} depositi mancanti\n"
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] "Erano presenti riferimenti a {quantity} oggetto multimediale mancante\n"
-msgstr[1] "Erano presenti riferimenti a {quantity} oggetti multimediali mancanti\n"
+msgstr[0] ""
+"Erano presenti riferimenti a {quantity} oggetto multimediale mancante\n"
+msgstr[1] ""
+"Erano presenti riferimenti a {quantity} oggetti multimediali mancanti\n"
 
 #: ../gramps/plugins/tool/check.py:2619
 #, python-brace-format
@@ -35444,7 +35465,8 @@ msgstr "Controlla e ripara database"
 #: ../gramps/plugins/tool/tools.gpr.py:85
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Verifica l'integrità del database risolvendone possibilmente i problemi"
+msgstr ""
+"Verifica l'integrità del database risolvendone possibilmente i problemi"
 
 #: ../gramps/plugins/tool/tools.gpr.py:107
 msgid "Compare Individual Events"
@@ -35897,8 +35919,8 @@ msgid ""
 "To edit this citation, you need to close the object."
 msgstr ""
 "Questa citazione non può essere modificata adesso. Qualcuno sta modificando "
-"la citazione associata o un altro oggetto associato con la stessa citazione."
-"\n"
+"la citazione associata o un altro oggetto associato con la stessa "
+"citazione.\n"
 "\n"
 "Per modificare questa citazione necessario chiudere l'oggetto."
 
@@ -37598,8 +37620,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s di "
-"%(strong2_strt)s%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s di %(strong2_strt)s"
+"%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:427
@@ -38196,7 +38218,8 @@ msgstr "Includere le pagine degli eventi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2382
 msgid "Add a complete events list and relevant pages or not"
-msgstr "Aggiungere o meno l'elenco completo degli eventi e le pagine pertinenti"
+msgstr ""
+"Aggiungere o meno l'elenco completo degli eventi e le pagine pertinenti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
 msgid "Include places pages"
@@ -38856,7 +38879,8 @@ msgstr "Anno iniziale per il/i calendario/i"
 
 #: ../gramps/plugins/webreport/webcal.py:1837
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "Inserire l'anno iniziale per il calendario, nell'intervallo 1900 - 3000"
+msgstr ""
+"Inserire l'anno iniziale per il calendario, nell'intervallo 1900 - 3000"
 
 #: ../gramps/plugins/webreport/webcal.py:1841
 msgid "End Year for the Calendar(s)"
@@ -39070,7 +39094,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nessun foglio di stile"
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "maggiore di %s anni"
 
@@ -39110,7 +39133,6 @@ msgstr "Nessun foglio di stile"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Ricostruisce la mappa dei riferimenti"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39124,7 +39146,6 @@ msgstr "Nessun foglio di stile"
 #~ msgid "<No Citation>"
 #~ msgstr "<nessuna citazione>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "«%(callname)s» (%(firstname)s)"
 
@@ -39148,7 +39169,6 @@ msgstr "Nessun foglio di stile"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Albero genealogico dei Verdi"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Creato per %(author)s"
 
@@ -39165,11 +39185,9 @@ msgstr "Nessun foglio di stile"
 #~ "Il collegamento da includere per indirizzare l'utente alla pagina "
 #~ "principale del sito web"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>matrimonio</em>"
 

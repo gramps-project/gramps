@@ -13,11 +13,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-24 10:05+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -840,8 +840,8 @@ msgid ""
 msgstr ""
 "Filtre lar deg begrense hva som blir vist i Personvisningen. I tillegg til "
 "de mange forhåndsdefinerte filterne, kan man også lage tilpassede filtre som "
-"bare kan begrenses av fantasien. Tilpassede filtre kan lages fra "
-"&quot;Redigere&gt;Lage personfilter&quot;."
+"bare kan begrenses av fantasien. Tilpassede filtre kan lages fra &quot;"
+"Redigere&gt;Lage personfilter&quot;."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -1192,16 +1192,9 @@ msgstr "%(full_DB_path)s med navn \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Gramps Slektsdatabaser:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8345,7 +8338,7 @@ msgstr "Region"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13537,8 +13530,8 @@ msgid ""
 "To edit this media reference, you need to close the media object."
 msgstr ""
 "Denne mediareferansen kan ikke endres nå. Enten blir dette delte mediet "
-"allerede endret eller en referanse til det samme mediet blir endret samtidig."
-"\n"
+"allerede endret eller en referanse til det samme mediet blir endret "
+"samtidig.\n"
 "\n"
 "For å endre denne mediareferansen må du lukke mediaobjektet først."
 
@@ -13596,7 +13589,7 @@ msgid "Move the selected name downwards"
 msgstr "Flytt det valgte navnet nedover"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Grupper som"
 
@@ -38962,7 +38955,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ingen stilsett"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38983,7 +38975,6 @@ msgstr "Ingen stilsett"
 #~ "slektsdatabase. Du kan deretter importere denne sikkerhetskopien i denne "
 #~ "versjonen av Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39006,7 +38997,6 @@ msgstr "Ingen stilsett"
 #~ "%(wiki_backup_html_start)slage en sikkerhetskopi%(html_end)s av din "
 #~ "slektsdatabase."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39058,7 +39048,6 @@ msgstr "Ingen stilsett"
 #~ "importere denne XML-fila i en tom slektsdatabase. Alternativt kan det "
 #~ "være mulig å bruke Berkeley-databasens programvare for gjenoppretting."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39080,7 +39069,6 @@ msgstr "Ingen stilsett"
 #~ "slektsdatabasen din. Du kan deretter importere denne sikkerhetskopien i "
 #~ "denne versjonen av Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39117,7 +39105,6 @@ msgstr "Ingen stilsett"
 #~ "%(wiki_backup_html_start)slage en sikkerhetskopi%(html_end)s av "
 #~ "slektsdatabasen din."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "større enn %s år"
 
@@ -39152,7 +39139,6 @@ msgstr "Ingen stilsett"
 #~ "Jeg har laget en sikkerhetskopi,\n"
 #~ "vennligst nedgradere min slektsdatabase"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39165,7 +39151,6 @@ msgstr "Ingen stilsett"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Gjenoppbygg referansekart"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39179,7 +39164,6 @@ msgstr "Ingen stilsett"
 #~ msgid "<No Citation>"
 #~ msgstr "<Ingen siteringer>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39203,7 +39187,6 @@ msgstr "Ingen stilsett"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Slektstreet til Johnson"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Laget for %(author)s"
 
@@ -39219,11 +39202,9 @@ msgstr "Ingen stilsett"
 #~ msgstr ""
 #~ "Lenken som skal tas med for å sende brukeren til hovedsiden for nettstedet"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s gammel"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>bryllup</em>"
 

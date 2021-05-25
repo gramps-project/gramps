@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
@@ -1181,16 +1181,9 @@ msgstr "%(full_DB_path)s باسم \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "أشجار عائلة غرمبز:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8287,7 +8280,7 @@ msgstr "دين"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13547,7 +13540,7 @@ msgid "Move the selected name downwards"
 msgstr "تحريك الاسم المحدّد للأسفل"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "تجميع حسب"
 
@@ -38531,7 +38524,7 @@ msgstr "نبراسكا"
 msgid "No style sheet"
 msgstr "بدون قالب"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "أقل من %s سنة"
 
@@ -38578,7 +38571,7 @@ msgstr "بدون قالب"
 #~ msgid "<No Citation>"
 #~ msgstr "<بدون استشهاد>"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(name1)s و %(name2)s"
 
@@ -38586,7 +38579,6 @@ msgstr "بدون قالب"
 #~ msgid "Title"
 #~ msgstr "عنوان"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "أنشئت لـ %(author)s"
 
@@ -38599,11 +38591,9 @@ msgstr "بدون قالب"
 #~ msgstr "أوصِل المهمّة"
 
 # FIXME
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s عمر"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s، <em>زواج</em>"
 

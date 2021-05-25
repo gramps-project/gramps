@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
@@ -734,8 +734,8 @@ msgstr ""
 "<b>Indivíduos favoritos</b><br/> O menu Favoritos é um local conveniente "
 "para armazenar os nomes de indivíduos frequentemente usados. Ao seleccionar "
 "um favorito, tornará o indivíduo activo. Para criar um favorito, torne o "
-"indivíduo activo e vá a \"Favoritos &gt; Adicionar favorito\", ou prima Ctrl+"
-"D. Também pode favorecer a maioria dos outros objectos."
+"indivíduo activo e vá a \"Favoritos &gt; Adicionar favorito\", ou prima Ctrl"
+"+D. Também pode favorecer a maioria dos outros objectos."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -900,8 +900,8 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/"
 msgstr ""
-"<b>A página web do Gramps</b><br/>A página Web do Gramps encontra-se em http"
-"://gramps-project.org/"
+"<b>A página web do Gramps</b><br/>A página Web do Gramps encontra-se em "
+"http://gramps-project.org/"
 
 #: ../data/tips.xml:98
 msgid ""
@@ -961,8 +961,8 @@ msgid ""
 "\"Help &gt; Gramps Mailing Lists\""
 msgstr ""
 "<b>Anúncios do Gramps</b><br/>Deseja saber quando for publicada uma versão "
-"nova do Gramps? Junte-se à lista de discussão gramps-announce em \"Ajuda &gt;"
-" Listas de discussão do Gramps\""
+"nova do Gramps? Junte-se à lista de discussão gramps-announce em \"Ajuda "
+"&gt; Listas de discussão do Gramps\""
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1041,10 +1041,9 @@ msgid ""
 "home button is pressed."
 msgstr ""
 "<b>O indivíduo inicial</b><br/>Qualquer um pode ser escolhido como o "
-"\"indivíduo inicial\" no Gramps. Use \"Editar &gt; Definir indivíduo "
-"inicial\" no separador Indivíduos. O indivíduo inicial é aquele que é "
-"seleccionado quando a base de dados é aberta ou quando o botão Início é "
-"clicado."
+"\"indivíduo inicial\" no Gramps. Use \"Editar &gt; Definir indivíduo inicial"
+"\" no separador Indivíduos. O indivíduo inicial é aquele que é seleccionado "
+"quando a base de dados é aberta ou quando o botão Início é clicado."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1181,16 +1180,9 @@ msgstr "%(full_DB_path)s com nome \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Árvores genealógicas do Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -1272,7 +1264,8 @@ msgstr "Nome do relatório desconhecido."
 #: ../gramps/cli/arghandler.py:639
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
-msgstr "Nome do relatório não indicado. Use um de %(donottranslate)s=reportname"
+msgstr ""
+"Nome do relatório não indicado. Use um de %(donottranslate)s=reportname"
 
 #: ../gramps/cli/arghandler.py:643 ../gramps/cli/arghandler.py:691
 #: ../gramps/cli/arghandler.py:725
@@ -1291,7 +1284,8 @@ msgstr "Nome da ferramenta desconhecido."
 #: ../gramps/cli/arghandler.py:687
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
-msgstr "Nome da ferramenta não indicado. Use um de %(donottranslate)s=toolname."
+msgstr ""
+"Nome da ferramenta não indicado. Use um de %(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:719
 msgid "Unknown book name."
@@ -1370,8 +1364,8 @@ msgstr ""
 "árvore genealógica\n"
 "  -i, --import=NOME_DO_FICHEIRO              Importar de ficheiro\n"
 "  -e, -export=NOME_DO_FICHEIRO               Exportar para ficheiro\n"
-"  -r, --remove=ÁRVORE_GENEALÓGICA_PADRÃO     Remover árvore genealógica ("
-"usar expressões regulares)\n"
+"  -r, --remove=ÁRVORE_GENEALÓGICA_PADRÃO     Remover árvore genealógica "
+"(usar expressões regulares)\n"
 "  -f, --format=FORMATO                       Especificar o formato da árvore "
 "genealógica\n"
 "  -a,--action=ACÇÂO                          Especificar acção\n"
@@ -1474,8 +1468,8 @@ msgstr ""
 "\n"
 "2. Para indicar os formatos explicitamente no exemplo acima, acrescente os "
 "nomes dos ficheiros com as opções -f apropriadas:\n"
-"gramps -i ficheiro1.ged -f gedcom -i ficheiro2.gpkg -f gramps-pkg -i ~/"
-"bd3.gramps -f gramps-xml -i ficheiro4.wft -f wft -a tool -p name=check. \n"
+"gramps -i ficheiro1.ged -f gedcom -i ficheiro2.gpkg -f gramps-pkg -i ~/bd3."
+"gramps -f gramps-xml -i ficheiro4.wft -f wft -a tool -p name=check. \n"
 "\n"
 "3. Para gravar a base de dados resultante de todas as importações, indique a "
 "opção -e\n"
@@ -1495,8 +1489,8 @@ msgstr ""
 "6. Para abrir uma base de dados e, com base nos dados, gerar um relatório de "
 "cronologia em formato PDF,\n"
 "colocando o resultado no ficheiro minha_cronologia.pdf:\n"
-"gramps -O \"Árvore genealógica 1\" -a report -p "
-"name=timeline,off=pdf,of=minha_cronologia.pdf\n"
+"gramps -O \"Árvore genealógica 1\" -a report -p name=timeline,off=pdf,"
+"of=minha_cronologia.pdf\n"
 "\n"
 "7. Para gerar um resumo da base de dados:\n"
 "gramps -O \"Árvore genealógica 1\" -a report -p name=summary\n"
@@ -2021,8 +2015,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"A ignorar \"%(notranslate1)s=%(notranslate2)s\" e a usar \""
-"%(notranslate1)s=%(notranslate3)s\"."
+"A ignorar \"%(notranslate1)s=%(notranslate2)s\" e a usar \"%(notranslate1)s="
+"%(notranslate3)s\"."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
@@ -3166,10 +3160,9 @@ msgstr ""
 "sem actualizar a versão da árvore.\n"
 "\n"
 "Se a actualizar, não poderá utilizá-la com a versão anterior do Gramps, "
-"mesmo que subsequentemente faça uma "
-"%(wiki_manual_backup_html_start)scópia%(html_end)s ou "
-"%(wiki_manual_export_html_start)sexporte%(html_end)s a sua árvore "
-"actualizada.\n"
+"mesmo que subsequentemente faça uma %(wiki_manual_backup_html_start)scópia"
+"%(html_end)s ou %(wiki_manual_export_html_start)sexporte%(html_end)s a sua "
+"árvore actualizada.\n"
 "\n"
 "A actualização é uma tarefa difícil que pode corromper irremediavelmente a "
 "sua árvore se for interrompida ou falhar.\n"
@@ -3217,16 +3210,15 @@ msgstr ""
 "Não pode carregar esta árvore sem actualizar a versão da árvore.\n"
 "\n"
 "Se a actualizar, não poderá utilizá-la com a versão anterior do Gramps, "
-"mesmo que subsequentemente faça uma "
-"%(wiki_manual_backup_html_start)scópia%(html_end)s ou "
-"%(wiki_manual_export_html_start)sexporte%(html_end)s a sua árvore "
-"actualizada.\n"
+"mesmo que subsequentemente faça uma %(wiki_manual_backup_html_start)scópia"
+"%(html_end)s ou %(wiki_manual_export_html_start)sexporte%(html_end)s a sua "
+"árvore actualizada.\n"
 "\n"
 "É vivamente aconselhada a criação de salvaguardas.\n"
 "\n"
 "Se ainda não fez uma cópia da sua árvore genealógica, deve iniciar a sua "
-"versão mais antiga do Gramps e %(wiki_backup_html_start)sfazer uma "
-"cópia%(html_end)s da sua árvore genealógica."
+"versão mais antiga do Gramps e %(wiki_backup_html_start)sfazer uma cópia"
+"%(html_end)s da sua árvore genealógica."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3938,8 +3930,8 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Encontra citações modificadas após uma data/hora especificada (aaaa-mm-dd "
-"hh:mm:ss) ou no intervalo, se uma segunda data for indicada."
+"Encontra citações modificadas após uma data/hora especificada (aaaa-mm-dd hh:"
+"mm:ss) ou no intervalo, se uma segunda data for indicada."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
@@ -4223,8 +4215,8 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Encontra eventos modificados após uma data/hora especificada (aaaa-mm-dd "
-"hh:mm:ss) ou no intervalo, se uma segunda data/hora for indicada."
+"Encontra eventos modificados após uma data/hora especificada (aaaa-mm-dd hh:"
+"mm:ss) ou no intervalo, se uma segunda data/hora for indicada."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:42
 msgid "Events marked private"
@@ -4473,8 +4465,8 @@ msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Encontra famílias modificadas após uma data/hora especificada (aaaa-mm-dd "
-"hh:mm:ss) ou no intervalo, se uma segunda data for indicada."
+"Encontra famílias modificadas após uma data/hora especificada (aaaa-mm-dd hh:"
+"mm:ss) ou no intervalo, se uma segunda data for indicada."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
@@ -4622,7 +4614,8 @@ msgstr "Famílias com notas que contêm <sub-texto>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:43
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Encontra famílias cujas notas contêm texto que corresponda ao sub-texto"
+msgstr ""
+"Encontra famílias cujas notas contêm texto que corresponda ao sub-texto"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:41
 msgid "Families having notes containing <text>"
@@ -8317,7 +8310,7 @@ msgstr "Região"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -11965,7 +11958,8 @@ msgstr "Formato dos locais (título de local automático)"
 
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specified format."
-msgstr "Activa a geração automática do título de local no formato especificado."
+msgstr ""
+"Activa a geração automática do título de local no formato especificado."
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -13554,7 +13548,7 @@ msgid "Move the selected name downwards"
 msgstr "Mover o nome seleccionado abaixo"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Agrupar como"
 
@@ -15482,8 +15476,8 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
-"Repõe os parâmetros de filtragem num estado vazio. Deve utilizar \"Procurar\""
-" para realmente actualizar a vista para as predefinições."
+"Repõe os parâmetros de filtragem num estado vazio. Deve utilizar \"Procurar"
+"\" para realmente actualizar a vista para as predefinições."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -39041,7 +39035,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Sem folha de estilos"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39061,7 +39054,6 @@ msgstr "Sem folha de estilos"
 #~ "%(wiki_backup_html_start)sfazer uma cópia%(html_end)s da sua árvore "
 #~ "genealógica. Pode depois importar essa cópia para esta versão do Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39083,7 +39075,6 @@ msgstr "Sem folha de estilos"
 #~ "%(wiki_backup_html_start)sfazer uma cópia%(html_end)s da sua árvore "
 #~ "genealógica."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39135,7 +39126,6 @@ msgstr "Sem folha de estilos"
 #~ "genealógica vazia. Alternativamente, pode ser possível usar as "
 #~ "ferramentos de recuperação de base de dados Berkeley."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39156,7 +39146,6 @@ msgstr "Sem folha de estilos"
 #~ "%(wiki_backup_html_start)sfazer uma cópia%(html_end)s da sua árvore "
 #~ "genealógica. Pode depois importar a sua árvore para esta versão do Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39193,7 +39182,6 @@ msgstr "Sem folha de estilos"
 #~ "%(wiki_backup_html_start)sfazer uma cópia%(html_end)s da sua árvore "
 #~ "genealógica."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "mais de %s anos"
 
@@ -39228,7 +39216,6 @@ msgstr "Sem folha de estilos"
 #~ "Foi feita uma segurança,\n"
 #~ "desactualizar a minha árvore"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39241,7 +39228,6 @@ msgstr "Sem folha de estilos"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Reconstruir mapa de referências"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39255,7 +39241,6 @@ msgstr "Sem folha de estilos"
 #~ msgid "<No Citation>"
 #~ msgstr "<sem citação>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39282,14 +39267,12 @@ msgstr "Sem folha de estilos"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Onde é que coloca a sua página web? predefinição= /WEBCAL"
 
-#, python-format
 #~ msgid ""
 #~ "the \"WebCal\" will be the potential-email Subject|Created for "
 #~ "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 #~ msgstr ""
 #~ "Criado para %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Criado para %(author)s"
 
@@ -39306,11 +39289,9 @@ msgstr "Sem folha de estilos"
 #~ "A ligação a incluir para levar o utilizador à página principal da página "
 #~ "web"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>casamento</em>"
 
@@ -39494,19 +39475,15 @@ msgstr "Sem folha de estilos"
 #~ "e confirme a sua escolha através do menu Editar->Definir indivíduo "
 #~ "inicial."
 
-#, python-format
 #~ msgid "Cannot find DEF file: %(dname)s"
 #~ msgstr "Impossível encontrar ficheiro DEF: %(dname)s"
 
-#, python-format
 #~ msgid "Cannot find father for I%(person)s (Father=%(id)d)"
 #~ msgstr "Impossível encontrar o pai de I%(person)s (pai=%(id)d)"
 
-#, python-format
 #~ msgid "Cannot find mother for I%(person)s (Mother=%(mother)d)"
 #~ msgstr "Impossível encontrar a mãe de I%(person)s (mãe=%(mother)d)"
 
-#, python-format
 #~ msgid "%(person)s, birth%(relation)s"
 #~ msgstr "%(person)s, nascimento%(relation)s"
 
@@ -39517,15 +39494,12 @@ msgstr "Sem folha de estilos"
 #~ msgid "Size  proportional to number of descendants"
 #~ msgstr "Tamanho proporcional ao número de descendentes"
 
-#, python-format
 #~ msgid "%(event_type)s: %(date)s in %(place)s"
 #~ msgstr "%(event_type)s: %(date)s, em %(place)s"
 
-#, python-format
 #~ msgid "%(event_type)s: %(date)s"
 #~ msgstr "%(event_type)s: %(date)s"
 
-#, python-format
 #~ msgid "%(event_type)s: %(place)s"
 #~ msgstr "%(event_type)s: %(place)s"
 

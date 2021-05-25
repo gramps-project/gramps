@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -1229,16 +1229,9 @@ msgstr ""
 msgid "Gramps Family Trees:"
 msgstr "Gramps XML родословно дърво"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8472,7 +8465,7 @@ msgstr "Религия"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13826,7 +13819,7 @@ msgid "Move the selected name downwards"
 msgstr "Преместване на избраното име надолу"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Групиране като"
 
@@ -39812,7 +39805,7 @@ msgstr "Небраска"
 msgid "No style sheet"
 msgstr "Без стил"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "по-малко от"
 
@@ -39852,7 +39845,7 @@ msgstr "Без стил"
 #~ msgid "<No Citation>"
 #~ msgstr "Цитат"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(name1)s и %(name2)s"
 
@@ -39876,7 +39869,6 @@ msgstr "Без стил"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Родословно дърво на Петрови"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Създадено за %(author)s"
 
@@ -39893,11 +39885,9 @@ msgstr "Без стил"
 #~ "Връзката, която ще се включи за да насочва потребителя към основната "
 #~ "страница на уеб сайта"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s стар"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>венчавка</em>"
 
