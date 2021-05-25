@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-18 21:26+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -485,11 +485,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\""
 msgstr ""
-"<b>Az ön beállításainak alkalmazása</b><br/>A „Szerkesztés -> Beállítások...”"
-" menüpont lehetővé teszi számos beállítás módosítását (mint például a média "
-"fájlok útvonala), valamint megengedi az ön igényei szerint finomítani a "
-"Gramps megjelenését. Minden külön nézet szintén állítható itt: „Nézet -> "
-"Nézet beállítása...”"
+"<b>Az ön beállításainak alkalmazása</b><br/>A „Szerkesztés -> "
+"Beállítások...” menüpont lehetővé teszi számos beállítás módosítását (mint "
+"például a média fájlok útvonala), valamint megengedi az ön igényei szerint "
+"finomítani a Gramps megjelenését. Minden külön nézet szintén állítható itt: "
+"„Nézet -> Nézet beállítása...”"
 
 #: ../data/tips.xml:34
 msgid ""
@@ -548,8 +548,8 @@ msgid ""
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Kettőzött bejegyzések</b><br/>Az „Eszközök &gt; Adatbázis feldolgozás &gt;"
-" Lehetséges kettőzött emberek keresése...” lehetővé teszi önnek, hogy "
+"<b>Kettőzött bejegyzések</b><br/>Az „Eszközök &gt; Adatbázis feldolgozás "
+"&gt; Lehetséges kettőzött emberek keresése...” lehetővé teszi önnek, hogy "
 "megkeresse (és egyesítse) az adatbázisban többször szereplő személy "
 "bejegyzéseit."
 
@@ -664,10 +664,10 @@ msgid ""
 msgstr ""
 "<b>A Gramps továbbfejlesztése</b><br/>A felhasználókat arra bátorítjuk, hogy "
 "kérjenek fejlesztéseket a Gramps-hoz. Fejlesztés kérése lehetséges a Gramps-"
-"felhasználók, vagy a Gramps-fejlesztők levelezési listáján, esetleg a https"
-"://gramps-project.org/bugs/ címen egy Szolgáltatás Igénylése létrehozásával. "
-"A Szolgáltatás igénylés kitöltése a leginkább javasolt, de előtte célszerű "
-"az ötlet megtárgyalása a levelező listán."
+"felhasználók, vagy a Gramps-fejlesztők levelezési listáján, esetleg a "
+"https://gramps-project.org/bugs/ címen egy Szolgáltatás Igénylése "
+"létrehozásával. A Szolgáltatás igénylés kitöltése a leginkább javasolt, de "
+"előtte célszerű az ötlet megtárgyalása a levelező listán."
 
 #: ../data/tips.xml:62
 msgid ""
@@ -681,8 +681,8 @@ msgstr ""
 "kapcsolatos kérdésére? Csatlakozzon a felhasználók gramps-user email "
 "listájához. Sok segítőkész ember van a listán, így valószínűleg gyorsan "
 "választ fog kapni. Ha a Gramps fejlesztésével kapcsolatban van kérdése, "
-"akkor csatlakozzon a gramps-devel fejlesztői email listához. A listákat a „"
-"Súgó -> Gramps levelezőlisták” alatt találja meg."
+"akkor csatlakozzon a gramps-devel fejlesztői email listához. A listákat a "
+"„Súgó -> Gramps levelezőlisták” alatt találja meg."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -1181,16 +1181,9 @@ msgstr "%(full_DB_path)s \"%(f_t_name)s\" névvel"
 msgid "Gramps Family Trees:"
 msgstr "Gramps családfa:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -1389,8 +1382,8 @@ msgstr ""
 "indítása\n"
 "  .y, --yes                              Ne kérdezzen rá a veszélyes "
 "műveletekre (csak nem grafikus módban)\n"
-"  -q, --quiet                            A haladásjelző kimenet tiltása ("
-"csak nem grafikus módban)\n"
+"  -q, --quiet                            A haladásjelző kimenet tiltása "
+"(csak nem grafikus módban)\n"
 "  -v, --version                          Verziók mutatása\n"
 "  -S, --safe                             A Gramps indítása 'Biztonsági mód'-"
 "ban\n"
@@ -1485,8 +1478,8 @@ msgstr ""
 "\n"
 "4. A fenti példa bármilyen hibaüzenetének mentéséhez (outfile és errfile "
 "nevű fájlokba) futtassuk:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
-"errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
+"2>errfile\n"
 "\n"
 "5. Három adatbázis importjához, majd az eredménnyel interaktív Gramps "
 "munkamenetet indítani így lehet:\n"
@@ -1506,8 +1499,8 @@ msgstr ""
 "opciójának megtalálásához.\n"
 "Egy meghatározott opció részleteinek megtalálásához használja a "
 "show=option_name kifejezést, pl. name=timeline,show=off.\n"
-"Az elérhető összesítő nevek megismeréséhez használja a name=show kifejezést."
-"\n"
+"Az elérhető összesítő nevek megismeréséhez használja a name=show "
+"kifejezést.\n"
 "\n"
 "9. A családfa azonnali .gramps xml fájlba konvertálása:\n"
 "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
@@ -3174,9 +3167,9 @@ msgstr ""
 "Családfát a Családfa séma frissítése nélkül nem tudja betölteni.\n"
 "\n"
 "Ha frissített, akkor nem lesz képes használni a Gramps előző változatát, még "
-"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint mentette%(html_end)"
-"s, vagy %(wiki_manual_export_html_start)sexportálta%(html_end)s a frissített "
-"Családfát.\n"
+"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint mentette"
+"%(html_end)s, vagy %(wiki_manual_export_html_start)sexportálta%(html_end)s a "
+"frissített Családfát.\n"
 "\n"
 "A frissítés egy nehéz feladat, ami hiba, vagy megszakadás esetén "
 "visszavonhatatlanul tönkreteheti Családfáját.\n"
@@ -3223,9 +3216,9 @@ msgstr ""
 "Ezt a Családfát ezért frissítés nélkül nem tudja betölteni.\n"
 "\n"
 "Ha frissít, akkor nem lesz képes használni a Gramps előző változatát, még "
-"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint mentette%(html_end)"
-"s, vagy %(wiki_manual_export_html_start)sexportálta%(html_end)s a frissített "
-"Családfát.\n"
+"akkor sem, ha a %(wiki_manual_backup_html_start)s szerint mentette"
+"%(html_end)s, vagy %(wiki_manual_export_html_start)sexportálta%(html_end)s a "
+"frissített Családfát.\n"
 "\n"
 "Ezért erősen ajánljuk a Családfáját menteni.\n"
 "\n"
@@ -8307,7 +8300,7 @@ msgstr "Régió"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -11346,8 +11339,8 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"A Ön Python verziója nem felel meg a követelménynek. Legalább "
-"%(v1)d.%(v2)d.%(v3)d verziójú Python szükséges a Gramps indításához.\n"
+"A Ön Python verziója nem felel meg a követelménynek. Legalább %(v1)d.%(v2)d."
+"%(v3)d verziójú Python szükséges a Gramps indításához.\n"
 "\n"
 "A Gramps most leáll."
 
@@ -11575,8 +11568,8 @@ msgstr ""
 "<tt>  \n"
 "  <b>Given</b>      - keresztnév             <b>Surname</b>      - "
 "vezetéknév (előtaggal és összekötőkkel)\n"
-"  <b>Title</b>      - cím (Dr., Mrs.)        <b>Suffix</b>       - utótag ("
-"Ifj., Id.)\n"
+"  <b>Title</b>      - cím (Dr., Mrs.)        <b>Suffix</b>       - utótag "
+"(Ifj., Id.)\n"
 "  <b>Call</b>       - hívó név               <b>Nickname</b>     - becenév\n"
 "  <b>Initials</b>   - keresztnév első betűi  <b>Common</b>       - becenév, "
 "egyébként első keresztnév\n"
@@ -11599,8 +11592,8 @@ msgstr ""
 "     <i>Edwin Jose</i>: keresztnév, <i>von der</i>: előtag, <i>Smith</i> és "
 "<i>Weston</i>: vezetéknév,  <i>and</i>: összekötő, <i>Wilson</i>: apai "
 "vezetéknév,\n"
-"     <i>Dr.</i>: cím, <i>Sr</i>: utótag, <i>Ed</i>: becenév, "
-"<i>Underhills</i>: családi bece/gúnynév, <i>Jose</i>: hívó név.\n"
+"     <i>Dr.</i>: cím, <i>Sr</i>: utótag, <i>Ed</i>: becenév, <i>Underhills</"
+"i>: családi bece/gúnynév, <i>Jose</i>: hívó név.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -13532,7 +13525,7 @@ msgid "Move the selected name downwards"
 msgstr "A kiválasztott név mozgatása lefelé"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Csoportosítás mint"
 
@@ -16814,8 +16807,8 @@ msgid ""
 msgstr ""
 "A hely hosszúsági foka (relatív helyzet Greenwich-hez, délkörhöz) "
 "decimálisan, vagy fokban megadva.\n"
-"Pl. helyes értékek: -124.3647, 124°52′21.92″E, E124°52′21.92″, vagy 124:52:21"
-".92\n"
+"Pl. helyes értékek: -124.3647, 124°52′21.92″E, E124°52′21.92″, vagy "
+"124:52:21.92\n"
 "Beállíthatja az értékeket a Földrajzi nézetben a helyre kereséssel, vagy a "
 "Hely nézet térkép szolgáltatásán keresztül."
 
@@ -22870,8 +22863,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sLétezik Gramps "
-"kézikönyv?%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sLétezik Gramps kézikönyv?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -22892,8 +22885,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sHogyan segíthetek a Gramps-"
-"al?%(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sHogyan segíthetek a Gramps-al?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:53
 msgid "Double-click given name for details"
@@ -25598,8 +25591,8 @@ msgstr ""
 "verziójú Gramps-ot kell használnia, ebbe kell importálnia az adatbázist. Ezt "
 "követően adatait Gramps XML (családfa) adatba kell exportálnia. Frissítsen a "
 "legújabb Gramps változatra (például erre), hozzon létre egy üres adatbázist, "
-"majd importálja a Gramps XML fájlt ebbe a verzióba. Kérem nézze meg "
-"ezt:%(gramps_wiki_migrate_two_to_three_url)s"
+"majd importálja a Gramps XML fájlt ebbe a verzióba. Kérem nézze meg ezt:"
+"%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -27955,7 +27948,8 @@ msgstr "A hölgy (lány) temetési helye %(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének helye %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s temetésének helye %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
@@ -34474,8 +34468,8 @@ msgstr ""
 "\n"
 "A Gramps médiaobjektum a médiaobjektum fájl adatainak gyűjteménye: a "
 "fájlnév, vagy annak útvonala, leírása, azonosítója, jegyzetek, forrás "
-"hivatkozások, stb. Az adatok %(bold_start)snem tartalmazzák a fájlt "
-"magát%(bold_end)s.\n"
+"hivatkozások, stb. Az adatok %(bold_start)snem tartalmazzák a fájlt magát"
+"%(bold_end)s.\n"
 "\n"
 "A fájlok a merevlemezen képet, hangot, videót, stb. tartalmaznak. A fájlokat "
 "a Gramps nem kezeli külön, és nem része a Gramps adatbázisnak. A Gramps "
@@ -35464,7 +35458,8 @@ msgstr "Használatlan objektumokat távolít el az adatbázisból"
 
 #: ../gramps/plugins/tool/tools.gpr.py:376
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr "Az alapértelmezett szabályok szerint a Gramps-azonosítókat újrarendezi."
+msgstr ""
+"Az alapértelmezett szabályok szerint a Gramps-azonosítókat újrarendezi."
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
@@ -38466,8 +38461,8 @@ msgid ""
 msgstr ""
 "Ez a térképoldal a személy és őseinek összes eseményének/helyszínének helyét "
 "mutatja. Ha az egérmutatót a jelölő fölé viszi, akkor a helyszín neve "
-"megjelenik. A jelölők és a Hivatkozási lista dátum sorrendben jelenik meg ("
-"ha van bármilyen). A Hivatkozás részben a helyszín nevére kattintva a "
+"megjelenik. A jelölők és a Hivatkozási lista dátum sorrendben jelenik meg "
+"(ha van bármilyen). A Hivatkozás részben a helyszín nevére kattintva a "
 "helyszín oldalára kerülünk."
 
 #: ../gramps/plugins/webreport/person.py:974
@@ -38979,7 +38974,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nincs stíluslap"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38999,7 +38993,6 @@ msgstr "Nincs stíluslap"
 #~ "majd Családfájáról a %(wiki_backup_html_start)skészítsen mentést"
 #~ "%(html_end)s. Ezt a mentést később importálhatja ebbe a GRAMPS változatba."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39021,7 +39014,6 @@ msgstr "Nincs stíluslap"
 #~ "%(bold_start)sújabb<%(bold_end)s változatát, és Családfájáról a "
 #~ "%(wiki_backup_html_start)skészítsen mentést%(html_end)s."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39071,7 +39063,6 @@ msgstr "Nincs stíluslap"
 #~ "üres családfába. Vagylagosan használhatja a Berkeley adatbázis "
 #~ "helyreállító eszközét is."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39092,7 +39083,6 @@ msgstr "Nincs stíluslap"
 #~ "Családfájáról %(wiki_backup_html_start)skészítsen mentést%(html_end)s. "
 #~ "Ezt követően a másolatot importáljhatja a GRAMPS mostani változatába."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39131,7 +39121,6 @@ msgstr "Nincs stíluslap"
 #~ msgid "Default person"
 #~ msgstr "Alapértelmezett személy"
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "több mint %s év"
 
@@ -39166,7 +39155,6 @@ msgstr "Nincs stíluslap"
 #~ "A Backup elkészült,\n"
 #~ "kérem, frissítse vissza a Családfámat"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39179,7 +39167,6 @@ msgstr "Nincs stíluslap"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Referencia-térkép újraépítése"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39193,7 +39180,6 @@ msgstr "Nincs stíluslap"
 #~ msgid "<No Citation>"
 #~ msgstr "<Nincs idézet>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39223,7 +39209,6 @@ msgstr "Nincs stíluslap"
 #~ msgid "Given Name"
 #~ msgstr "Utónév"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Készült %(author)s számára"
 
@@ -39238,11 +39223,9 @@ msgstr "Nincs stíluslap"
 #~ "site"
 #~ msgstr "Hivatkozás, ami a felhasználót a web-oldal fő oldalára viszi"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s éves"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>esküvő</em>"
 

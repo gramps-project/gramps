@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2019-03-13 08:30+0100\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: <sk-i18n@linux.sk>\n"
@@ -1181,16 +1181,9 @@ msgstr "%(full_DB_path)s s menom \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Stromy rodiny Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8236,7 +8229,7 @@ msgstr "Región"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13515,7 +13508,7 @@ msgid "Move the selected name downwards"
 msgstr "Presunúť označené meno nižšie"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Zoskupovať ako"
 
@@ -39005,7 +38998,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nepoužiť šablónu štýlu"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39025,7 +39017,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ "%(wiki_backup_html_start)svytvorte zálohu%(html_end)s rodinného stromu. "
 #~ "Túto zálohu je potom možné importovať do tejto verzie Grampsu."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39046,7 +39037,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ "%(bold_start)snovšiu%(bold_end)s verziu Grampsu a "
 #~ "%(wiki_backup_html_start)svytvorte zálohu%(html_end)s rodinného stromu."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39095,7 +39085,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ "importujte do prázdnej databázy. Môžete prípadne použiť nástroje na "
 #~ "opravu Berkeley databázy."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39115,7 +39104,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ "%(wiki_backup_html_start)svytvoriť zálohu%(html_end)s Vášho rodinného "
 #~ "stromu. Takúto zálohu môžete následne importovať do tejto verzie Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39153,7 +39141,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ "%(wiki_backup_html_start)svytvorte zálohu%(html_end)s Vášho rodinného "
 #~ "stromu."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "viac ako %s roky/rokov"
 
@@ -39189,7 +39176,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ "Záloha vytvorená,\n"
 #~ "prejdite na nižšiu verziu rodinného stromu"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39201,7 +39187,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Obnoviť tabuľky referencií"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39215,7 +39200,7 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ msgid "<No Citation>"
 #~ msgstr "<Žiadna citácia>"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(name1)s a %(name2)s"
 
@@ -39239,7 +39224,6 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Strom  rodiny Johnson"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Vytvorené pre %(author)s"
 
@@ -39254,11 +39238,9 @@ msgstr "Nepoužiť šablónu štýlu"
 #~ "site"
 #~ msgstr "Link pre presmerovanie používateľa na hlavnú stránku"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s staré"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>svadba</em>"
 

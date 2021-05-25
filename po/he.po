@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
@@ -285,10 +285,10 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"‎‏‏‏‏<b>עבודה עם תאריכים<br/></b>ניתן לקבוע טווח תאריכים בשימוש במבנה&lsquo;"
-"בין 4 בינואר 2000 ל -20 במרץ 2003&rsquo;. ניתן לציין גם את רמת הודאות של "
-"תאריך ואפילו לבחור בין שבעה לוחות-שנה שונים. נסו את הלחצן שלצד שדה התאריך "
-"בעורך האירועים."
+"‎‏‏‏‏<b>עבודה עם תאריכים<br/></b>ניתן לקבוע טווח תאריכים בשימוש במבנה&lsquo;בין 4 "
+"בינואר 2000 ל -20 במרץ 2003&rsquo;. ניתן לציין גם את רמת הודאות של תאריך "
+"ואפילו לבחור בין שבעה לוחות-שנה שונים. נסו את הלחצן שלצד שדה התאריך בעורך "
+"האירועים."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -421,8 +421,8 @@ msgid ""
 msgstr ""
 "<b>כלי גרמפס<br/></b>גרמפס מגיעה עם ערכת כלים עשירה המאפשרים לבצע פעולות "
 "כגון בדיקת מסד הנתונים לאיתור שגיאות ועקביות. קיימים כלי מחקר וניתוח כגון "
-"השוואת אירועים, מציאת אנשים כפולים, דפדפן צאצא הִדּוּדִי וכלים רבים אחרים. "
-"ניתן לגשת לכלים מתפריט 'כלים'."
+"השוואת אירועים, מציאת אנשים כפולים, דפדפן צאצא הִדּוּדִי וכלים רבים אחרים. ניתן "
+"לגשת לכלים מתפריט 'כלים'."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -431,8 +431,8 @@ msgid ""
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
-"<b>מחשבון קשרי-גומלין<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים ("
-"בקשרי דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון "
+"<b>מחשבון קשרי-גומלין<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים "
+"(בקשרי דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון "
 "קשר...'. מחשבון קשרי-הגומלין ידווח על מערכת היחסים המדויקת וגם על כל האבות "
 "הקדמונים המשותפים."
 
@@ -839,8 +839,8 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/"
 msgstr ""
-"<b>עמוד הבית של גרמפס<br/></b>את עמוד הבית של גרמפס ניתן למצוא בקישור http"
-"://gramps-project.org/"
+"<b>עמוד הבית של גרמפס<br/></b>את עמוד הבית של גרמפס ניתן למצוא בקישור http://"
+"gramps-project.org/"
 
 #: ../data/tips.xml:98
 msgid ""
@@ -955,8 +955,8 @@ msgid ""
 "interested in participating please email gramps-devel@lists.sf.net"
 msgstr ""
 "<b>מתרגמי גרמפס<br/></b>גרמפס תוכננה כך שניתן יהיה להוסיף תרגומים חדשים "
-"לשפות במאמץ פיתוח קטן. במידה ואתם מעוניינים להשתתף נא שלחו דוא\"ל לכתובת "
-"‏'gramps-devel@lists.sf.net'"
+"לשפות במאמץ פיתוח קטן. במידה ואתם מעוניינים להשתתף נא שלחו דוא\"ל לכתובת"
+" ‏'gramps-devel@lists.sf.net'"
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1105,16 +1105,9 @@ msgstr "%(full_DB_path)s בשם '%(f_t_name)s'"
 msgid "Gramps Family Trees:"
 msgstr "אילנות יוחסין של גרמפס:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -1306,8 +1299,8 @@ msgstr ""
 " -c, --config=[config.setting [: value]] קביעת הגדרות תצורה ואיתחול גרמפס\n"
 " -y, --yes        לא לבקש לאשר פעולות מסוכנות (מצב שאינו ממשק משתמש גראפי "
 "בלבד)\n"
-" -q, --quiet       דיכוי פלט חיווי התקדמות (מצב שאינו ממשק משתמש גראפי בלבד)"
-"\n"
+" -q, --quiet       דיכוי פלט חיווי התקדמות (מצב שאינו ממשק משתמש גראפי "
+"בלבד)\n"
 " -v, --version       הצגת גרסאות\n"
 " -S, --safe        איתחול גרמפס ב'מצב בטוח''\n"
 "           (שימוש זמני בהגדרות ברירת מחדל)\n"
@@ -1395,8 +1388,8 @@ msgstr ""
 "\n"
 "4. על מנת לשמור הודעות שגיאה מהדוגמה שלעיל בקבצים outfile ו errfile, נא "
 "להריץ:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
-"errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
+"2>errfile\n"
 "\n"
 "5. על מנת ליבוא שלושה מסדי נתונים ולהתחיל את שיח גרמפס הִדּוּדִי עם התוצאה:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
@@ -2340,7 +2333,8 @@ msgstr "and"
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality}בין {date_start} לבין {date_stop}{nonstd_calendar_and_ny}"
+msgstr ""
+"{date_quality}בין {date_start} לבין {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "before <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -3021,8 +3015,8 @@ msgid ""
 msgstr ""
 "גרסת סְכֵמָה אינה נתמכת בגרסה זו של גרמפס.\n"
 "\n"
-"אילן היוחסין הוא בגרסת סְכֵמָה %(tree_vers)s, וגרסה זו של גרמפס תומכת "
-"בגרסאות %(min_vers)s עד %(max_vers)s\n"
+"אילן היוחסין הוא בגרסת סְכֵמָה %(tree_vers)s, וגרסה זו של גרמפס תומכת בגרסאות "
+"%(min_vers)s עד %(max_vers)s\n"
 "\n"
 "נא לשדרג לגרסה המתאימה או להשתמש ב-XML להמרת נתונים בין גרסאות סְכֵמָה שונות."
 
@@ -3075,9 +3069,9 @@ msgstr ""
 "שדרוג היא משימה קשה שעלולה להשחית את אילן היוחסין ללא אפשרות תיקון, במידה "
 "והשדרוג נקטע או נכשל.\n"
 "\n"
-"במידה ועדין לא בוצע גיבוי לאילן יוחסין, נא להתחיל את "
-"%(bold_start)sold%(bold_end)s גרסת גרמפס ו%(wiki_backup_html_start)sלבצע "
-"גיבוי%(html_end)s לאילן היוחסין."
+"במידה ועדין לא בוצע גיבוי לאילן יוחסין, נא להתחיל את %(bold_start)sold"
+"%(bold_end)s גרסת גרמפס ו%(wiki_backup_html_start)sלבצע גיבוי%(html_end)s "
+"לאילן היוחסין."
 
 #: ../gramps/gen/db/exceptions.py:174
 #, python-format
@@ -8093,7 +8087,7 @@ msgstr "אזור"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -11106,8 +11100,8 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"רסת פייתון שמותקנת במערכת זו לא עומדת בדרישות. נדרשת גרסה%(v1)d.%(v2)d.%(v3)"
-"d לפחות, על מנת לאתחל את גרמפס.\n"
+"רסת פייתון שמותקנת במערכת זו לא עומדת בדרישות. נדרשת גרסה%(v1)d.%(v2)d."
+"%(v3)d לפחות, על מנת לאתחל את גרמפס.\n"
 "\n"
 "גרמפס יסגר כעת."
 
@@ -11332,8 +11326,8 @@ msgid ""
 msgstr ""
 "מילות המפתח הבאות יוחלפו בחלקי השם המתאימים:<tt>\n"
 "‏  <b>פרטי</b>   - שם פרטי     <b>משפחה</b>  - שם משפחה (עם קידומת וקישור)\n"
-"‏  <b>תואר</b>   - תואר (דר', גב.)           <b>סיומת</b>   - סיומת ("
-"ג'וניור, השלישי)\n"
+"‏  <b>תואר</b>   - תואר (דר', גב.)           <b>סיומת</b>   - סיומת (ג'וניור, "
+"השלישי)\n"
 "‏  <b>פניה</b>    - פניה                   <b>כינוי</b> - כינוי\n"
 "‏  <b>ראשי תיבות</b>- אות ראשונה של שם פרטי      <b>Common</b>   - כינוי, "
 "פניה, או אות ראשונה של שם פרטי\n"
@@ -11343,8 +11337,8 @@ msgstr ""
 "המשפחה, למעט פטרו/מטרונימי &amp; ראשי\n"
 "‏  <b>כינוי משפחה</b>- כינוי משפחה        <b>שם משפחה גלמי</b>  - שמות משפחה "
 "(ללא קידומות וקישורים)\n"
-"‏  <b>עיקרי, עיקרי[עיק] או [משפ] או [קיש]</b>- שם משפחה עיקרי מלא, קידומת, "
-"שם משפחה בלבד, קישור\n"
+"‏  <b>עיקרי, עיקרי[עיק] או [משפ] או [קיש]</b>- שם משפחה עיקרי מלא, קידומת, שם "
+"משפחה בלבד, קישור\n"
 "‏  <b>פטרונימי, או [עיק] או [משפ] או [קיש]</b> - שם משפחה פטרו/מטרונימי מלא, "
 "קידומת, שם משפחה בלבד, קישור\n"
 "‏</tt>\n"
@@ -11355,8 +11349,8 @@ msgstr ""
 "אנדרהילס\n"
 "‏     <i>אדווין חוזה</i>: פרטי, <i>וון דר</i>: קידומת, <i>Smith</i> ו "
 "<i>ווסטון</i>: ראשי, <i>ו</i>: [קישור], <i>ווילסון</i>: פטרונימי,\n"
-" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>א.ד</i>: כינוי, "
-"<i>אנדרהילס</i>: כינוי משפחה, <i>חוזה</i>: כינוי.\n"
+" ‏    <i>דר'</i>: תואר, <i>סניור</i>: סיומת, <i>א.ד</i>: כינוי, <i>אנדרהילס</"
+"i>: כינוי משפחה, <i>חוזה</i>: כינוי.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -13255,7 +13249,7 @@ msgid "Move the selected name downwards"
 msgstr "העברת השם שנבחר מטה"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "קיבוץ כ"
 
@@ -17483,8 +17477,8 @@ msgstr ""
 "ניתן להרחיב פונקציונליות זו על ידי הרחבות נוספות. הרחבות המספקות דוחות, "
 "רישומים, מצגים, גרמפלטים, ועוד. מכאן ניתן לבחור בין ההרחבות הנוספות הזמינות, "
 "הן יאוחזרו מהמרשתת, מחוץ לאתר גרמפס ויותקנו באופן מקומי במחשב. ניתן לסגור "
-"תיבת דו-שיח זו כעת ולהתקין ההרחבות מתפריט 'העדפות -> עריכה במועד מאוחר יותר' "
-"."
+"תיבת דו-שיח זו כעת ולהתקין ההרחבות מתפריט 'העדפות -> עריכה במועד מאוחר "
+"יותר' ."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -19466,8 +19460,8 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "‏במידה ולא הצלחתם להתגבר על הבעיה, ניתן לדווח על תקל ב- "
-"%(gramps_bugtracker_url)s או ליצור קשר עם יוצר המתקע (%(firstauthoremail)s)."
-"\n"
+"%(gramps_bugtracker_url)s או ליצור קשר עם יוצר המתקע "
+"(%(firstauthoremail)s).\n"
 "\n"
 "על מנת שגרמפס לא ינסה לטעון מתקע זה בעתיד, ניתן להסתירו תוך שימוש במנהל "
 "המתקעים בתפריט העזרה."
@@ -19924,7 +19918,8 @@ msgstr "שחזור לברירת מחדל?"
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
-msgstr "סרגל גרמפס ישוחזר לתצורת גרמפלטים ברירת מחדל.  פעולה זו לא ניתנת להסגה."
+msgstr ""
+"סרגל גרמפס ישוחזר לתצורת גרמפלטים ברירת מחדל.  פעולה זו לא ניתנת להסגה."
 
 #. default tooltip
 #: ../gramps/gui/widgets/grampletpane.py:816
@@ -22336,8 +22331,8 @@ msgid ""
 "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of "
 "spouses?%(html_end)s\n"
 msgstr ""
-"  1. %(gramps_FAQ_html_start)s%(faq_section)sכיצד לשנות את סדר בני/בנות "
-"הזוג?%(html_end)s\n"
+"  1. %(gramps_FAQ_html_start)s%(faq_section)sכיצד לשנות את סדר בני/בנות הזוג?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
 #, python-format
@@ -22345,8 +22340,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
-"  2. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להוסיף בן/בת זוג "
-"נוספים?%(html_end)s\n"
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להוסיף בן/בת זוג נוספים?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
@@ -22354,8 +22349,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
-"  ‏3. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להסיר בן/בת "
-"זוג?%(html_end)s\n"
+"  ‏3. %(gramps_FAQ_html_start)s%(faq_section)sכיצד להסיר בן/בת זוג?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -22367,8 +22362,8 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
-"  4. %(gramps_FAQ_html_start)s%(faq_section)sכיצד ליצר גיבוי "
-"בביטחה?%(html_end)s\n"
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sכיצד ליצר גיבוי בביטחה?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
 #, python-format
@@ -22389,8 +22384,8 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
-"  6. %(gramps_manual_html_start)s%(section)sכיצד יש להזין מידע אודות "
-"נישואין?%(html_end)s\n"
+"  6. %(gramps_manual_html_start)s%(section)sכיצד יש להזין מידע אודות נישואין?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
 #, python-format
@@ -22452,8 +22447,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sהאם קיים מדריך משתמש "
-"לגרמפס?%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)sהאם קיים מדריך משתמש לגרמפס?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -22475,8 +22470,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 16. %(gramps_wiki_html_start)s%(section)sכיצד ניתן לסייע עם "
-"גרמפס?%(html_end)s\n"
+" 16. %(gramps_wiki_html_start)s%(section)sכיצד ניתן לסייע עם גרמפס?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:53
 msgid "Double-click given name for details"
@@ -25140,8 +25135,8 @@ msgid ""
 msgstr ""
 "מסד הנתונים בגרסה זו אינו נתמך בגרסה זו של גרמפס. נא לאתחל את גרמפס בגרסה "
 "ישנה יותר במהדורה 3.0.x ולייבא את מסד הנתונים לגרסה זו. נא לייצא את מסד "
-"הנתונים לקובץ XML (אילן יוחסין). כעת, יש לשדרג את גרמפס לגרסה האחרונה ("
-"לדוגמה גרסה זו) וליצר מסד נתונים ריק ולייבא אליו את קובץ ה- XML שנוצר קודם. "
+"הנתונים לקובץ XML (אילן יוחסין). כעת, יש לשדרג את גרמפס לגרסה האחרונה "
+"(לדוגמה גרסה זו) וליצר מסד נתונים ריק ולייבא אליו את קובץ ה- XML שנוצר קודם. "
 "נא לעיין ב: %(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
@@ -25736,8 +25731,8 @@ msgstr ""
 "קובץ .gramps ליבוא, נוצר בגרסת גרמפס %(oldgramps)s, בזמן שמותקנת כעת גרסה "
 "עדכנית יותר%(newgramps)s.\n"
 "\n"
-"הקובץ לא יובא. נא להשתמש בגרסה ישנה יותר של גרמפס התומכת בגרסה %(xmlversion)"
-"s של ה-xml.\n"
+"הקובץ לא יובא. נא להשתמש בגרסה ישנה יותר של גרמפס התומכת בגרסה "
+"%(xmlversion)s של ה-xml.\n"
 "נא לעיין ב-\n"
 "‏  %(gramps_wiki_xml_url)s\n"
 "למידע נוסף."
@@ -28663,8 +28658,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(partial_date)s ב "
-"%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(partial_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1104
 #, python-format
@@ -28672,8 +28667,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(full_date)s ב "
-"%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(full_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1105
 #, python-format
@@ -28681,8 +28676,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב "
-"%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1108
 #, python-format
@@ -28690,8 +28685,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"הייתה במערכת יחסים ללא נישואין עם %(spouse)s ב- %(partial_date)s ב- "
-"%(place)s%(endnotes)s."
+"הייתה במערכת יחסים ללא נישואין עם %(spouse)s ב- %(partial_date)s ב- %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1109
 #, python-format
@@ -28699,8 +28694,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היתה במערכת יחסים ללא נישואין עם %(spouse)s ב %(full_date)s ב "
-"%(place)s%(endnotes)s."
+"היתה במערכת יחסים ללא נישואין עם %(spouse)s ב %(full_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1110
 #, python-format
@@ -28708,8 +28703,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היתה במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב "
-"%(place)s%(endnotes)s."
+"היתה במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -28773,8 +28768,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(partial_date)s ב "
-"%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(partial_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -28782,8 +28777,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(full_date)s ב "
-"%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(full_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
@@ -28791,8 +28786,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב "
-"%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -28836,8 +28831,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב "
-"%(full_date)s%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(full_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -28968,8 +28963,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"היתה במערכת יחסים ללא נישואין גם עם %(spouse)s ב "
-"%(partial_date)s%(endnotes)s."
+"היתה במערכת יחסים ללא נישואין גם עם %(spouse)s ב %(partial_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1178
 #, python-format
@@ -29134,7 +29129,8 @@ msgstr ""
 msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "היה במערכת יחסים עם %(spouse)s ב %(full_date)s ב %(place)s%(endnotes)s."
+msgstr ""
+"היה במערכת יחסים עם %(spouse)s ב %(full_date)s ב %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -33025,8 +33021,8 @@ msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
-"אובייקטים אליהם מפנה הערה זו, חסרים, הם נוצרו שוב בעקבות הרצת בדיקה ותיקון ב-"
-" %s."
+"אובייקטים אליהם מפנה הערה זו, חסרים, הם נוצרו שוב בעקבות הרצת בדיקה ותיקון "
+"ב- %s."
 
 #: ../gramps/plugins/tool/check.py:322
 msgid "Looking for invalid name format references"
@@ -38526,7 +38522,6 @@ msgstr "ללא עמוד סגנון"
 #~ "אנשים&lsquo; תפריט &rsquo;עריכה &gt; הגדרת אדם הבית&lsquo; . אדם הבית הוא "
 #~ "האדם שיוצג בעת פתיחת מסד הנתונים או בעת הקשה על לחצן הבית."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38545,7 +38540,6 @@ msgstr "ללא עמוד סגנון"
 #~ "%(wiki_backup_html_start)sלבצע גיבוי%(html_end)s של אילן יוחסין. לאחר מכן "
 #~ "ניתן יהיה ליבא גיבוי זה לגרסה החדשה של גראמפס."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38566,7 +38560,6 @@ msgstr "ללא עמוד סגנון"
 #~ "%(bold_end)s גרסת גראמפס ו%(wiki_backup_html_start)sלבצע גיבוי"
 #~ "%(html_end)s לאילן היוחסין."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38613,7 +38606,6 @@ msgstr "ללא עמוד סגנון"
 #~ "גראמפס וליבא את קובץ ה-XML לאילן יוחסין ריק. לחלופין, ייתכן שיהיה ניתן "
 #~ "להשתמש בכלי השחזור של ברקלי."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -38633,7 +38625,6 @@ msgstr "ללא עמוד סגנון"
 #~ "%(wiki_backup_html_start)sלבצע גיבוי%(html_end)s של אילן יוחסין. לאחר מכן "
 #~ "ניתן יהיה ליבא גיבוי זה לגרסה החדשה של גראמפס."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -38667,7 +38658,6 @@ msgstr "ללא עמוד סגנון"
 #~ "%(bold_end)s גרסת גראמפס ו%(wiki_backup_html_start)sלבצע גיבוי"
 #~ "%(html_end)s לאילן היוחסין."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "יותר מ %s שנים"
 
@@ -38683,7 +38673,6 @@ msgstr "ללא עמוד סגנון"
 #~ msgid "0 days"
 #~ msgstr "0 ימים"
 
-#, python-format
 #~ msgid ""
 #~ "ERROR: Plugin file %(filename)s has a version of "
 #~ "\"%(gramps_target_version)s\" which is invalid for Gramps "
@@ -38711,7 +38700,6 @@ msgstr "ללא עמוד סגנון"
 #~ "בוצע גיבוי,\n"
 #~ "נא לשנמך את אילן היוחסין"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -38723,7 +38711,6 @@ msgstr "ללא עמוד סגנון"
 #~ msgid "Rebuild reference map"
 #~ msgstr "בנית מפת הפניות מחדש"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -38735,7 +38722,6 @@ msgstr "ללא עמוד סגנון"
 #~ msgid "<No Citation>"
 #~ msgstr "<אין אזכור>"
 
-#, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 #~ "family. Reference added."
@@ -38743,7 +38729,6 @@ msgstr "ללא עמוד סגנון"
 #~ "שגיאה: משפחה '%(family)s' אב '%(father)s' אינו מפנה חזרה למשפחה. הפניה "
 #~ "נוספה."
 
-#, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 #~ "family. Reference added."
@@ -38751,7 +38736,6 @@ msgstr "ללא עמוד סגנון"
 #~ "שגיאה: משפחה '%(family)s' אם'%(mother)s' אינו מפנה חזרה למשפחה. הפניה "
 #~ "נוספה."
 
-#, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 #~ "family. Reference added."
@@ -38759,7 +38743,6 @@ msgstr "ללא עמוד סגנון"
 #~ "שגיאה: משפחה '%(family)s' צאצא '%(child)s' אינו מפנה חזרה למשפחה. הפניה "
 #~ "נוספה."
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -38800,11 +38783,9 @@ msgstr "ללא עמוד סגנון"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "היכן ממוקם אתר המרשתת? ברירת מחדל = /WEBCAL"
 
-#, python-format
 #~ msgid "Surnames %(surname)s beginning with letter %(letter)s"
 #~ msgstr "שמות משפחה %(surname)s המתחילים באות %(letter)s"
 
-#, python-format
 #~ msgid ""
 #~ "the \"WebCal\" will be the potential-email Subject|Created for "
 #~ "%(html_email_author_start)sWebCal%(html_email_author_end)s"
@@ -38812,7 +38793,6 @@ msgstr "ללא עמוד סגנון"
 #~ "'WebCa' יהיה הנושא האפשרי לדוא\"ל|נוצר עבור "
 #~ "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "נוצר עבור %(author)s"
 
@@ -38827,11 +38807,9 @@ msgstr "ללא עמוד סגנון"
 #~ "site"
 #~ msgstr "הקישור שיכלל ויפנה את המשתמש לעמוד הבית של אתר המרשתת"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "גיל %s"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>חתונה</em>"
 

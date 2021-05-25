@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2015-03-18 17:31-0600\n"
 "Last-Translator: Anthony Fok <foka@debian.org>\n"
 "Language-Team: Chinese (Hong Kong) <(nothing)>\n"
@@ -1094,16 +1094,9 @@ msgstr ""
 msgid "Gramps Family Trees:"
 msgstr "Gramps 家族樹："
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8170,7 +8163,7 @@ msgstr "地區 (Region)"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13495,7 +13488,7 @@ msgid "Move the selected name downwards"
 msgstr "下移所選名稱"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "分組為"
 
@@ -39125,7 +39118,7 @@ msgstr "無樣式表"
 #~ "XML；關閉資料庫；然後升級此版本並匯入 XML 檔案。由此，也可以使用 Berkeley "
 #~ "資料庫恢復工具。"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "少於 1"
 
@@ -39164,7 +39157,7 @@ msgstr "無樣式表"
 #~ msgid "<No Citation>"
 #~ msgstr "引用"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(name1)s 和 %(name2)s"
 
@@ -39186,7 +39179,6 @@ msgstr "無樣式表"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Johnson 家族樹"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "為 %(author)s 而建立"
 
@@ -39201,11 +39193,9 @@ msgstr "無樣式表"
 #~ "site"
 #~ msgstr "用於引導使用者到網站主頁的連線"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s歲"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>婚禮</em>"
 

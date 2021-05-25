@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-18 21:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
@@ -684,8 +684,8 @@ msgstr ""
 "Gramps? Skoðaðu þá gramps-users póstlistann. Margt hjálpsamt fólk er á "
 "þessum póstlista, þannig að líkur eru á að þú fáir svar fyrr en síðar. Ef þú "
 "ert með spurningu varðandi hönnun eða forritun Gramps, reyndu þá við gramps-"
-"devel póstlistann. Þú getur séð meira um póstlistana með því að velja \"Hjálp"
-" &gt; Póstlistar Gramps\"."
+"devel póstlistann. Þú getur séð meira um póstlistana með því að velja "
+"\"Hjálp &gt; Póstlistar Gramps\"."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -733,9 +733,8 @@ msgstr ""
 "<b>Bókamerking einstaklinga</b><br/>Bókamerkjavalmyndin er hentugur staður "
 "til að geyma nöfn einstaklinga sem oft þarf að nota. Ef þú velur bókamerki "
 "verður sá einstaklingur virkur. Til að bókamerkja einhvern þarf að gera hann "
-"virkan (velja viðkomandi) og fara síðan í \"Bókamerki &gt; Bæta við "
-"bókamerki\" eða ýta á Ctrl+D. Þú getur einnig bókamerkt flest önnur atriði í "
-"Gramps."
+"virkan (velja viðkomandi) og fara síðan í \"Bókamerki &gt; Bæta við bókamerki"
+"\" eða ýta á Ctrl+D. Þú getur einnig bókamerkt flest önnur atriði í Gramps."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -1190,16 +1189,9 @@ msgstr "%(full_DB_path)s með heitinu \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Gramps ættartölur:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8174,7 +8166,7 @@ msgstr "Hérað"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -9274,9 +9266,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"VILLA: Viðbótarskráin %(filename)s er fyrir útgáfuna \""
-"%(gramps_target_version)s\" sem gildir ekki fyrir Gramps \"%(gramps_version)"
-"s\"."
+"VILLA: Viðbótarskráin %(filename)s er fyrir útgáfuna "
+"\"%(gramps_target_version)s\" sem gildir ekki fyrir Gramps "
+"\"%(gramps_version)s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -13263,7 +13255,7 @@ msgid "Move the selected name downwards"
 msgstr "Færa valið nafn niður"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Hópa sem"
 
@@ -16009,8 +16001,8 @@ msgid ""
 "Bundesland."
 msgstr ""
 "Annað. stig staðargreiningar Í BNA væri talað um fylki (state), í Þýskalandi "
-"er það Bundesland, en hugsanlega ætti best við að nota fjórðunga/kjördæmi ("
-"Norðurland eystra, Vestfirðir, Vesturland, o.s.frv.) á Íslandi."
+"er það Bundesland, en hugsanlega ætti best við að nota fjórðunga/kjördæmi "
+"(Norðurland eystra, Vestfirðir, Vesturland, o.s.frv.) á Íslandi."
 
 #: ../gramps/gui/glade/editlocation.glade:234
 msgid "The country where the place is."
@@ -16442,8 +16434,8 @@ msgid ""
 msgstr ""
 "Lengdargráða (staðsetning núllbaug, eða Greenwich, Meridian) staðarins í "
 "tugabrotum eða gráðum. \n"
-"Til dæmis gildir jafnt að setja inn -124.3647, 124°52′21.92″E, E124°52′21.92″"
-" eða 124:52:21.92\n"
+"Til dæmis gildir jafnt að setja inn -124.3647, 124°52′21.92″E, "
+"E124°52′21.92″ eða 124:52:21.92\n"
 "Þú getur sett þessi gildi inn með Landafræði-sýninni með því að leita að "
 "staðnum, eða með kortaþjónustu í Staðir-sýninni."
 
@@ -37960,7 +37952,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ekkert stílblað"
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "meira en %s ár"
 
@@ -37998,7 +37989,6 @@ msgstr "Ekkert stílblað"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Endurbyggja tilvísanavörpun"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -38029,7 +38019,6 @@ msgstr "Ekkert stílblað"
 #~ msgstr ""
 #~ "Hvar er vefsvæðið þitt gefið út til birtingar ? sjálfgefið = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Útbúið fyrir %(author)s"
 
@@ -38045,11 +38034,9 @@ msgstr "Ekkert stílblað"
 #~ msgstr ""
 #~ "Tengill sem hafður er til að beina notandanum á aðalsíðu vefsvæðisins"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s gamall"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>wedding</em>"
 

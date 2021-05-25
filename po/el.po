@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/gramps-project/"
@@ -1256,16 +1256,9 @@ msgstr "%(full_DB_path)s με το όνομα «%(f_t_name)s»"
 msgid "Gramps Family Trees:"
 msgstr "Γενεαλογικά Δέντρα Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8642,7 +8635,7 @@ msgstr "Θρήσκευμα"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -14075,7 +14068,7 @@ msgid "Move the selected name downwards"
 msgstr "Μετακίνηση του επιλεγμένου ονόματος προς τα κάτω"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Ομαδοποίηση ως"
 
@@ -40336,7 +40329,7 @@ msgstr "Αποχρώσεις καφέ-γκρι"
 msgid "No style sheet"
 msgstr "Χωρίς χρωματικό θέμα"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -40358,7 +40351,7 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ "\"> να κάνετε ένα αντίγραφο</a> του οικογενειακού σας δέντρου. Μπορείτε "
 #~ "τότε να εισάγετε το αντίγραφο αυτό στην έκδοση αυτή του Gramps."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -40382,7 +40375,7 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ "και <a href=\"http://www.gramps-project.org/wiki/index.php?"
 #~ "title=How_to_make_a_backup\"> να κάνετε ένα αντίγραφό του</a>."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -40447,7 +40440,7 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ "ένα κενό οικογενειακό δέντρο. Εναλλακτικά, θα ήταν δυνατό να "
 #~ "χρησιμοποιήσετε τα εργαλεία ανάκτησης βάσης δεδομένων της Berkeley."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -40469,7 +40462,7 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ "\"> να κάνετε ένα αντίγραφό του</a>. Μπορείτε τότε να εισάγετε το "
 #~ "αντίγραφο αυτό στην έκδοση αυτή του Gramps."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -40511,7 +40504,7 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ "\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
 #~ "\">να κάνετε ένα αντίγραφο</a> του οικογενειακού δέντρου."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "λιγότερο από %s έτη"
 
@@ -40548,7 +40541,7 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ "Έχω κάνει αντίγραφο ασφαλείας,\n"
 #~ "παρακαλώ επαναφέρετε σε παλαιότερη έκδοση το οικογενειακό μου δέντρο"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -40561,7 +40554,6 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Ανακατασκευή των χαρτών αναφοράς"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -40575,7 +40567,7 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ msgid "<No Citation>"
 #~ msgstr "<Καμμία παραπομπή>"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(name1)s και %(name2)s"
 
@@ -40599,7 +40591,6 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Οικογενειακό δέντρο Δ. Βασιλείου"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Δημιουργήθηκε για %(author)s"
 
@@ -40615,11 +40606,9 @@ msgstr "Χωρίς χρωματικό θέμα"
 #~ msgstr ""
 #~ "Σύνδεσμος που θα οδηγεί τον χρήστη στην κεντρική σελίδα του ιστοτόπου"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s "
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>γάμος</em>"
 

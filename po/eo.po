@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2018-09-12 23:48+0200\n"
 "Last-Translator: Robin van der Vliet <info@robinvandervliet.com>\n"
 "Language-Team: Esperanto <kde-i18n-it@kde.org>\n"
@@ -1194,16 +1194,9 @@ msgstr "%(full_DB_path)s kun nomo \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Genealogiaj arboj de Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8289,7 +8282,7 @@ msgstr "Regiono"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13558,7 +13551,7 @@ msgid "Move the selected name downwards"
 msgstr "Movu malsupren la elektitan nomon"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Grupigi kiel"
 
@@ -39013,7 +39006,6 @@ msgstr "Nebrasko"
 msgid "No style sheet"
 msgstr "Neniu stilfolio"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39033,7 +39025,6 @@ msgstr "Neniu stilfolio"
 #~ "kaj %(wiki_backup_html_start)ssekurkopii%(html_end)s sian genealogian "
 #~ "arbon. Tiam oni povos importi la sekurkopion en ĉi tiun version de Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39055,7 +39046,6 @@ msgstr "Neniu stilfolio"
 #~ "%(bold_start)spli novan%(bold_end)s version de Gramps kaj "
 #~ "%(wiki_backup_html_start)ssekurkopii%(html_end)s sian genealogian arbon. "
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39106,7 +39096,6 @@ msgstr "Neniu stilfolio"
 #~ "en malplenan genealogian arbon. Alternative, eblus uzi la riparilon de la "
 #~ "datumbazo Berkeley."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39126,7 +39115,6 @@ msgstr "Neniu stilfolio"
 #~ "kaj %(wiki_backup_html_start)ssekurkopii%(html_end)s sian genealogian "
 #~ "arbon. Tiam oni povos importi la sekurkopion en ĉi tiun version de Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39162,7 +39150,6 @@ msgstr "Neniu stilfolio"
 #~ "%(bold_start)spli novan%(bold_end)s version de Gramps kaj "
 #~ "%(wiki_backup_html_start)ssekurkopii%(html_end)s sian genealogian arbon. "
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "pli granda ol %s jaroj"
 
@@ -39197,7 +39184,6 @@ msgstr "Neniu stilfolio"
 #~ "Mi sekurkopiis la datumojn,\n"
 #~ "bonvolu malaktualigi mian genealogian arbon"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39210,7 +39196,6 @@ msgstr "Neniu stilfolio"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Refaru referencmapon"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39222,7 +39207,6 @@ msgstr "Neniu stilfolio"
 #~ msgid "<No Citation>"
 #~ msgstr "<Neniu citaĵo>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39249,7 +39233,6 @@ msgstr "Neniu stilfolio"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Kie lokigi vian retejon? defaŭlta = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Kreita por %(author)s"
 
@@ -39265,11 +39248,9 @@ msgstr "Neniu stilfolio"
 #~ msgstr ""
 #~ "La ligilo inkluzivota por direkti la uzanto al la ĉefa paĝo de la retejo"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s malnova"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>geedziĝo</em>"
 

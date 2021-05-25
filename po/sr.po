@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2014-10-21 23:12+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <(nothing)>\n"
@@ -1188,16 +1188,9 @@ msgstr "„%(full_DB_path)s“ под називом „%(f_t_name)s“"
 msgid "Gramps Family Trees:"
 msgstr "Породична стабла Дедовника:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8299,7 +8292,7 @@ msgstr "Област"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13607,7 +13600,7 @@ msgid "Move the selected name downwards"
 msgstr "Преместите изабрано име на доле"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Групиши као"
 
@@ -39088,7 +39081,6 @@ msgstr "Небраска"
 msgid "No style sheet"
 msgstr "Нема стилског листа"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39109,7 +39101,6 @@ msgstr "Нема стилског листа"
 #~ "породичног стабла. Након тога можете да увезете ту резерву у ово издање "
 #~ "Дедовника."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39132,7 +39123,6 @@ msgstr "Нема стилског листа"
 #~ "%(wiki_backup_html_start)sнаправите резерву%(html_end)s вашег породичног "
 #~ "стабла."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39184,7 +39174,6 @@ msgstr "Нема стилског листа"
 #~ "ИксМЛ датотеку у празно породично стабло. Другачије, може бити могуће "
 #~ "користити алате опоравка Берклијеве базе података."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39206,7 +39195,6 @@ msgstr "Нема стилског листа"
 #~ "породичног стабла. Након тога можете да увезете ту резерву у ово издање "
 #~ "Дедовника."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39243,7 +39231,7 @@ msgstr "Нема стилског листа"
 #~ "%(wiki_backup_html_start)sнаправите резерву%(html_end)s вашег породичног "
 #~ "стабла."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "мање од %s године"
 
@@ -39272,7 +39260,6 @@ msgstr "Нема стилског листа"
 #~ "Направио сам резерву,\n"
 #~ "разградите моје породично стабло"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39285,7 +39272,6 @@ msgstr "Нема стилског листа"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Поново изгради мапу упута"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39299,7 +39285,7 @@ msgstr "Нема стилског листа"
 #~ msgid "<No Citation>"
 #~ msgstr "<Без цитата>"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(name1)s и %(name2)s"
 
@@ -39323,7 +39309,6 @@ msgstr "Нема стилског листа"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Џонсоново породично стабло"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Направљено за %(author)s"
 
@@ -39337,11 +39322,9 @@ msgstr "Нема стилског листа"
 #~ "Веза која ће бити укључена да усмери корисника на почетну страницу веб "
 #~ "сајта"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s стар/а/о"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>венчање</em>"
 

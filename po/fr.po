@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-24 16:19+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
@@ -552,9 +552,9 @@ msgstr ""
 "<b>Commencer un nouvel arbre généalogique</b><br/>Un bon moyen de créer un "
 "nouvel arbre généalogique est de saisir tous les membres de la famille dans "
 "la base de données à l'aide de la vue Individus (utilisez « Édition &gt; "
-"Ajouter&quot; ou cliquez sur le bouton &quot;Ajouter » dans la vue Individus)"
-". Puis allez dans la vue Relations et créez les relations entre les "
-"individus."
+"Ajouter&quot; ou cliquez sur le bouton &quot;Ajouter » dans la vue "
+"Individus). Puis allez dans la vue Relations et créez les relations entre "
+"les individus."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -574,8 +574,8 @@ msgid ""
 msgstr ""
 "<b>Pas sûr(e) d'une date ?</b><br/>Si vous n'êtes pas sûr(e) d'une date ou "
 "d'un évènement (naissance ou décès), Gramps vous permet d'entrer une "
-"multitude de dates basées sur une estimation ou un choix. Par exemple, « "
-"vers 1908 » est une entrée valide pour une date de naissance dans Gramps. "
+"multitude de dates basées sur une estimation ou un choix. Par exemple, "
+"« vers 1908 » est une entrée valide pour une date de naissance dans Gramps. "
 "Voir la section Édition des dates du manuel wiki de Gramps pour une "
 "description complète des options de date."
 
@@ -785,8 +785,8 @@ msgstr ""
 "dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie "
 "devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le "
 "sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le "
-"format de la date est défini dans « Édition &gt; Préférences &gt; Affichage "
-"»."
+"format de la date est défini dans « Édition &gt; Préférences &gt; "
+"Affichage »."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -932,8 +932,8 @@ msgid ""
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
 "<b>Signaler un problème dans Gramps</b><br/>Le meilleur moyen de signaler un "
-"problème dans Gramps est d'utiliser le système de suivi de bogue, https"
-"://gramps-project.org/bugs/"
+"problème dans Gramps est d'utiliser le système de suivi de bogue, https://"
+"gramps-project.org/bugs/"
 
 #: ../data/tips.xml:96
 msgid ""
@@ -1231,16 +1231,9 @@ msgstr "%(full_DB_path)s avec le nom « %(f_t_name)s »"
 msgid "Gramps Family Trees:"
 msgstr "Arbres généalogiques Gramps :"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -1451,8 +1444,8 @@ msgstr ""
 "                                         interface graphique)\n"
 "  -v, --version                          Affiche les versions des\n"
 "                                         bibliothèques\n"
-"  -S, --safe                             Lance Gramps en « Mode sans échec »"
-"\n"
+"  -S, --safe                             Lance Gramps en « Mode sans "
+"échec »\n"
 "                                         (utilise temporairement les\n"
 "                                         paramètres par défaut)\n"
 "  -D, --default=[APXFE]                  Réinitialise les paramètres à\n"
@@ -1552,8 +1545,8 @@ msgstr ""
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. Ouvrir une base de données et, basé sur ces données, générer le rapport "
-"graphique temporel au format PDF dont le fichier de sortie sera "
-"fil_du_temps.pdf :\n"
+"graphique temporel au format PDF dont le fichier de sortie sera fil_du_temps."
+"pdf :\n"
 "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=fil_du_temps."
 "pdf\n"
 "\n"
@@ -3482,8 +3475,8 @@ msgstr ""
 "Il est vivement recommandé de faire une sauvegarde de votre arbre.\n"
 "\n"
 "Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, servez-"
-"vous de votre ancienne version de Gramps pour %(wiki_backup_html_start)"
-"sfaire une sauvegarde%(html_end)s."
+"vous de votre ancienne version de Gramps pour "
+"%(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -4228,8 +4221,8 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Correspond aux citations modifiées après une date spécifiée (aaaa-mm-jj "
-"hh:mm:ss) ou sur une période si une seconde date est définie."
+"Correspond aux citations modifiées après une date spécifiée (aaaa-mm-jj hh:"
+"mm:ss) ou sur une période si une seconde date est définie."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
@@ -4531,8 +4524,8 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Correspond aux évènements modifiés après une date spécifiée (aaaa-mm-jj "
-"hh:mm:ss) ou sur une période si une seconde date est définie."
+"Correspond aux évènements modifiés après une date spécifiée (aaaa-mm-jj hh:"
+"mm:ss) ou sur une période si une seconde date est définie."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:42
 msgid "Events marked private"
@@ -4808,8 +4801,8 @@ msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Correspond aux familles modifiées après une date spécifiée (aaaa-mm-jj "
-"hh:mm:ss) ou sur une période si une seconde date est définie."
+"Correspond aux familles modifiées après une date spécifiée (aaaa-mm-jj hh:mm:"
+"ss) ou sur une période si une seconde date est définie."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
@@ -5407,8 +5400,8 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Correspond aux notes modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss)"
-" ou sur une période si une seconde date est définie."
+"Correspond aux notes modifiées après une date spécifiée (aaaa-mm-jj hh:mm:"
+"ss) ou sur une période si une seconde date est définie."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:44
 msgid "Note with <Id>"
@@ -5518,8 +5511,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Correspond aux individus modifiés après une date spécifiée (aaaa-mm-jj "
-"hh:mm:ss) ou sur une période si une seconde date est définie."
+"Correspond aux individus modifiés après une date spécifiée (aaaa-mm-jj hh:mm:"
+"ss) ou sur une période si une seconde date est définie."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -6564,7 +6557,8 @@ msgstr "Lieux avec un <nombre> de media"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:46
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Correspond aux lieux ayant un certain nombre d'articles dans la galerie"
+msgstr ""
+"Correspond aux lieux ayant un certain nombre d'articles dans la galerie"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:44
 msgid "Place with <Id>"
@@ -6850,8 +6844,8 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Correspond aux dépôts modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss)"
-" ou sur une période si une seconde date est définie."
+"Correspond aux dépôts modifiés après une date spécifiée (aaaa-mm-jj hh:mm:"
+"ss) ou sur une période si une seconde date est définie."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
 msgid "Repository attribute:"
@@ -6994,8 +6988,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Correspond aux sources modifiées après une date spécifiée (aaaa-mm-jj "
-"hh:mm:ss) ou sur une période si une seconde date est définie."
+"Correspond aux sources modifiées après une date spécifiée (aaaa-mm-jj hh:mm:"
+"ss) ou sur une période si une seconde date est définie."
 
 # master
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
@@ -8892,7 +8886,7 @@ msgstr "Région"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -10053,9 +10047,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"ERREUR : le fichier greffon %(filename)s est en version « "
-"%(gramps_target_version)s » ce qui est incompatible avec Gramps « "
-"%(gramps_version)s »."
+"ERREUR : le fichier greffon %(filename)s est en version "
+"« %(gramps_target_version)s » ce qui est incompatible avec Gramps "
+"« %(gramps_version)s »."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -11278,8 +11272,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Le calculateur de relations familiales n'est pas disponible pour la langue « "
-"%s ». Utilisation du calculateur « anglais » à la place."
+"Le calculateur de relations familiales n'est pas disponible pour la langue "
+"« %s ». Utilisation du calculateur « anglais » à la place."
 
 #: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:205
 msgid "death date"
@@ -12306,11 +12300,11 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Les mots-clé suivants seront remplacés avec la partie du nom correspondant :"
-"\n"
+"Les mots-clé suivants seront remplacés avec la partie du nom "
+"correspondant :\n"
 "<tt>  \n"
-"  <b>Prénom</b>           - prénom(s)                 <b>Nom</b>     - nom ("
-"avec préfixe et connecteurs) \n"
+"  <b>Prénom</b>           - prénom(s)                 <b>Nom</b>     - nom "
+"(avec préfixe et connecteurs) \n"
 "  <b>Titre</b>             - titre (Dr, Me, Duc)    <b>Suffixe</b> - suffixe "
 "(Jr, Sr)\n"
 "  <b>Usuel</b>             - prénom usuel             <b>Surnom</b>  - "
@@ -12325,8 +12319,8 @@ msgstr ""
 "  <b>Patronyme</b>, <b>Patronyme[pre]</b>, <b>Patronyme[nom]</b>, "
 "<b>Patronyme[con]</b>\n"
 "      - patronyme complet, préfixe, nom seul, connecteur \n"
-"  <b>PasPatronyme</b>      - tous les noms de famille sauf le principal &amp;"
-" le pa/matronyme\n"
+"  <b>PasPatronyme</b>      - tous les noms de famille sauf le principal "
+"&amp; le pa/matronyme\n"
 "  <b>Reste</b>             - les noms de familles secondaires\n"
 "  <b>NomsDeFamilleBrut</b> - tous les noms de famille sans préfixe et "
 "connecteurs\n"
@@ -12334,8 +12328,8 @@ msgstr ""
 "</tt>\n"
 "Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. "
 "Parenthèses vides et virgules en trop \n"
-"seront automatiquement enlevées. Tout autre texte sera inséré littéralement."
-"\n"
+"seront automatiquement enlevées. Tout autre texte sera inséré "
+"littéralement.\n"
 "\n"
 "<b>Exemple</b> : « Dr Edwin Jose von der Smith and Weston Wilson Sr (« Ed ») "
 "- Underhills »\n"
@@ -14489,7 +14483,7 @@ msgid "Move the selected name downwards"
 msgstr "Déplacer le nom vers le bas"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Grouper sous"
 
@@ -16534,8 +16528,8 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
-"Cela réinitialise les paramètres de filtre à l'état vide. Le bouton « "
-"Rechercher » doit être utilisé pour mettre à jour la vue à ses valeurs par "
+"Cela réinitialise les paramètres de filtre à l'état vide. Le bouton "
+"« Rechercher » doit être utilisé pour mettre à jour la vue à ses valeurs par "
 "défaut."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
@@ -20271,7 +20265,8 @@ msgstr "Erreur lors de l'exportation de votre arbre familial"
 #: ../gramps/gui/plug/export/_exportassistant.py:605
 #: ../gramps/gui/plug/export/_exportassistant.py:639
 msgid "Please wait while your data is selected and exported"
-msgstr "Veuillez patienter pendant la sélection et l'exportation de vos données"
+msgstr ""
+"Veuillez patienter pendant la sélection et l'exportation de vos données"
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/plug/export/_exportoptions.py:68
@@ -21213,7 +21208,8 @@ msgstr "Il y a eu un problème la dernière fois que Gramps a été lancé."
 
 #: ../gramps/gui/viewmanager.py:1029
 msgid "Would you like to run the Check and Repair tool?"
-msgstr "Voulez-vous lancer l'outil « Vérifier et réparer la base de données » ?"
+msgstr ""
+"Voulez-vous lancer l'outil « Vérifier et réparer la base de données » ?"
 
 #: ../gramps/gui/viewmanager.py:1220
 msgid "Autobackup..."
@@ -26591,7 +26587,8 @@ msgstr "Afficher tous les nœuds familiaux"
 #: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
-msgstr "Affiche les nœuds familiaux même s'il n'y a qu'un membre de la famille."
+msgstr ""
+"Affiche les nœuds familiaux même s'il n'y a qu'un membre de la famille."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "Include URLs"
@@ -27960,9 +27957,9 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
-"Le fichier .gramps que vous importez a été généré par la version %(oldgramps)"
-"s de Gramps alors que vous utilisez la version %(newgramps)s qui est bien "
-"plus récente.\n"
+"Le fichier .gramps que vous importez a été généré par la version "
+"%(oldgramps)s de Gramps alors que vous utilisez la version %(newgramps)s qui "
+"est bien plus récente.\n"
 "\n"
 "Ce fichier ne sera pas importé. Veuillez utiliser une ancienne version de "
 "Gramps qui prend en charge la version %(xmlversion)s du xml.\n"
@@ -27988,9 +27985,9 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-"Le fichier .gramps que vous importez a été généré par la version %(oldgramps)"
-"s de Gramps alors que vous utilisez la version %(newgramps)s qui est bien "
-"plus récente.\n"
+"Le fichier .gramps que vous importez a été généré par la version "
+"%(oldgramps)s de Gramps alors que vous utilisez la version %(newgramps)s qui "
+"est bien plus récente.\n"
 "\n"
 "Assurez vous que tout est importé correctement. En cas de problèmes, "
 "veuillez soumettre un bogue et utiliser une ancienne version de Gramps pour "
@@ -33957,7 +33954,8 @@ msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] "Il y a {number_of} individu portant ce nom ou ce nom alternatif.\n"
-msgstr[1] "Il y a {number_of} individus portant ce nom, ou ce nom alternatif.\n"
+msgstr[1] ""
+"Il y a {number_of} individus portant ce nom, ou ce nom alternatif.\n"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
@@ -36755,8 +36753,8 @@ msgstr "Chemin affecté"
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Cliquez sur Valider pour poursuivre, Annuler pour abandonner ou Précédent "
-"pour revoir vos choix."
+"Cliquez sur Valider pour poursuivre, Annuler pour abandonner ou "
+"Précédent pour revoir vos choix."
 
 #: ../gramps/plugins/tool/mediamanager.py:389
 msgid "Operation successfully finished"
@@ -38730,9 +38728,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"Un clic droit sur la carte puis sélectionnez « Afficher tous les évènements »"
-" pour obtenir tous les évènements avec coordonnées. Vous pouvez utiliser "
-"l'historique de la carte. Vous pouvez utiliser le filtrage."
+"Un clic droit sur la carte puis sélectionnez « Afficher tous les "
+"évènements » pour obtenir tous les évènements avec coordonnées. Vous pouvez "
+"utiliser l'historique de la carte. Vous pouvez utiliser le filtrage."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
@@ -41014,8 +41012,8 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Cette page carte représente l'individu et ses descendants avec leurs évè"
-"nements/lieux. Si vous passez le curseur de votre souris au-dessus du "
+"Cette page carte représente l'individu et ses descendants avec leurs "
+"évènements/lieux. Si vous passez le curseur de votre souris au-dessus du "
 "marqueur vous obtiendrez le nom du lieu. Les marqueurs et la liste de "
 "référence sont triés par date (si elle existe). Cliquez sur le nom du lieu "
 "dans la section référence pour accéder la page du lieu."
@@ -41549,7 +41547,6 @@ msgid "No style sheet"
 msgstr "Aucune feuille de style"
 
 # master
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -41571,7 +41568,6 @@ msgstr "Aucune feuille de style"
 #~ "dans la nouvelle version de Gramps."
 
 # master
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -41595,7 +41591,6 @@ msgstr "Aucune feuille de style"
 #~ "%(html_end)s de votre arbre familial."
 
 # master
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -41651,7 +41646,6 @@ msgstr "Aucune feuille de style"
 #~ "de données."
 
 # master
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -41674,7 +41668,6 @@ msgstr "Aucune feuille de style"
 #~ "dans cette version de Gramps."
 
 # master
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -41714,7 +41707,6 @@ msgstr "Aucune feuille de style"
 #~ "votre arbre familial."
 
 # trunk
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "plus de %s ans"
 
@@ -41753,7 +41745,6 @@ msgstr "Aucune feuille de style"
 #~ "J'ai fait une sauvegarde,\n"
 #~ "utilisez une version inférieure."
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -41766,7 +41757,6 @@ msgstr "Aucune feuille de style"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Reconstruire la table de référence"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -41783,7 +41773,6 @@ msgstr "Aucune feuille de style"
 #~ msgstr "<Pas de citation>"
 
 # master
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "« %(callname)s » (%(firstname)s)"
 
@@ -41828,14 +41817,12 @@ msgstr "Aucune feuille de style"
 
 # /!\ à tester ...
 # master
-#, python-format
 #~ msgid ""
 #~ "the \"WebCal\" will be the potential-email Subject|Created for "
 #~ "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 #~ msgstr ""
 #~ "Créé pour %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Créé pour %(author)s"
 
@@ -41853,11 +41840,9 @@ msgstr "Aucune feuille de style"
 #~ "site internet"
 
 # attention "ans" est ajouté par gen.lib
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>mariage</em>"
 

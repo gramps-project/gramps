@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2008-11-13 21:00+0100\n"
 "Last-Translator: Vlora Jakupi <vlorajak@hotmail.com>\n"
 "Language-Team: \n"
@@ -1154,16 +1154,9 @@ msgstr ""
 msgid "Gramps Family Trees:"
 msgstr "Pema Ime Familjare"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8461,7 +8454,7 @@ msgstr "Besimi"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13877,7 +13870,7 @@ msgid "Move the selected name downwards"
 msgstr "Zhvendos te poshtë emrin e përzgjedhur"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #, fuzzy
 msgid "Group As"
 msgstr "G_rupo si::"
@@ -40225,7 +40218,7 @@ msgstr "Nebraska "
 msgid "No style sheet"
 msgstr "Nuk ka fletë stili"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "më pak se"
 
@@ -40261,7 +40254,7 @@ msgstr "Nuk ka fletë stili"
 #~ msgid "<No Citation>"
 #~ msgstr "Citat"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "%(father)s dhe %(mother)s"
 
@@ -40277,7 +40270,7 @@ msgstr "Nuk ka fletë stili"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Pema Pamiljare"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "Created for %(author)s"
 #~ msgstr "E bija e %(father)s."
 

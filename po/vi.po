@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2018-07-13 14:34+0800\n"
 "Last-Translator: detran <trande@gmail.com>\n"
 "Language-Team: VIETNAMESE <trande@gmail.com>\n"
@@ -1188,16 +1188,9 @@ msgstr "%(full_DB_path)s với tên \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Cây gia đình Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8218,7 +8211,7 @@ msgstr "Vùng"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13474,7 +13467,7 @@ msgid "Move the selected name downwards"
 msgstr "Chuyển một tên được chọn xuống "
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Xếp nhóm là "
 
@@ -38779,7 +38772,6 @@ msgstr "Nebraska "
 msgid "No style sheet"
 msgstr "Không có style sheet "
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38799,7 +38791,6 @@ msgstr "Không có style sheet "
 #~ "%(wiki_backup_html_start)smtạo bản sao%(html_end)s cho cây gia đình. Rồi "
 #~ "khi đó bạn có thể nhập bản lưu này vào phiên bản này của Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38821,7 +38812,6 @@ msgstr "Không có style sheet "
 #~ "should start your %(bold_start)snewer%(bold_end)s version of Gramps and "
 #~ "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38871,7 +38861,6 @@ msgstr "Không có style sheet "
 #~ "Gramps này và nhập tập tin XLM vào một cây gia đình rỗng. Hay còn cách "
 #~ "khác là có thể bạn dùng công cụ phục hồi của CSDL Berkeley. "
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -38891,7 +38880,6 @@ msgstr "Không có style sheet "
 #~ "%(wiki_backup_html_start)s để tạo sao lưu%(html_end)s cho cây gia đình "
 #~ "của bạn. Rồi sau đó bạn có thể nhập bản sao lưu vào phiên bản Gramps này."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -38927,7 +38915,6 @@ msgstr "Không có style sheet "
 #~ "phiên bản cũ  %(bold_start)sold%(bold_end)s và "
 #~ "%(wiki_backup_html_start)stạo bản sao%(html_end)s cây gia đình của bạn."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "nhiều hơn %s năm"
 
@@ -38962,7 +38949,6 @@ msgstr "Không có style sheet "
 #~ "Tôi đã sao lưu,\n"
 #~ "xin hạ cấp cây gia đình của tôi"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -38975,7 +38961,6 @@ msgstr "Không có style sheet "
 #~ msgid "Rebuild reference map"
 #~ msgstr "Tạo lại biểu đồ tham chiếu "
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -38989,7 +38974,6 @@ msgstr "Không có style sheet "
 #~ msgid "<No Citation>"
 #~ msgstr "<No Citation>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39016,7 +39000,6 @@ msgstr "Không có style sheet "
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Bạn sẽ đặt web site của bạn ở đâu? mặc định là = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Tạo cho %(author)s"
 
@@ -39033,11 +39016,9 @@ msgstr "Không có style sheet "
 #~ "Liên kết sẽ đưa vào để điều hành người dùng đối với trang chính của "
 #~ "website "
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s già "
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>đám cưới</em>"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-21 17:06+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
@@ -506,8 +506,8 @@ msgid ""
 "between people."
 msgstr ""
 "<b>Stvaranje novog rodoslova</b><br/>Dobar način za stvaranje novog "
-"rodoslova je zapisivanje svih članova obitelji u bazu podataka (u izborniku „"
-"Uredi > Dodaj …” ili pritisni gumb „Dodaj” u pogledu „Osobe”). Nakon toga "
+"rodoslova je zapisivanje svih članova obitelji u bazu podataka (u izborniku "
+"„Uredi > Dodaj …” ili pritisni gumb „Dodaj” u pogledu „Osobe”). Nakon toga "
 "otiđi u pogled „Srodstva” i uredi uzajamne odnose osoba."
 
 #: ../data/tips.xml:38
@@ -599,8 +599,8 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Čitaj priručnik</b><br/>Nemoj zaboraviti čitati Grampsov priručnik, „"
-"Pomoć > Korisnički priručnik”. Programeri su se trudili da se program može "
+"<b>Čitaj priručnik</b><br/>Nemoj zaboraviti čitati Grampsov priručnik, "
+"„Pomoć > Korisnički priručnik”. Programeri su se trudili da se program može "
 "koristiti intuitivno, ali je priručnik pun informacija koje će ti pomoći još "
 "produktivniji rad."
 
@@ -1155,16 +1155,9 @@ msgstr "%(full_DB_path)s s nazivom „%(f_t_name)s”"
 msgid "Gramps Family Trees:"
 msgstr "Gramps rodoslovi:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -1343,8 +1336,8 @@ msgstr ""
 "otvaranja\n"
 "  -i, --import=DATOTEKA                  Uvoz datoteke\n"
 "  -e, --export=DATOTEKA                  Izvoz datoteke\n"
-"  -r, --remove=RODOSLOV_MODEL            Ukloni poklapajuće rodoslove ("
-"koristi regularne pojmove)\n"
+"  -r, --remove=RODOSLOV_MODEL            Ukloni poklapajuće rodoslove "
+"(koristi regularne pojmove)\n"
 "  -f, --format=FORMAT                    Odaberi format rodoslova\n"
 "  -a, --action=RADNJA                    Odaberi radnju\n"
 "  -p, --options=ZNAKOVNI_NIZ_OPCIJA       Odaberi opcije\n"
@@ -1357,8 +1350,8 @@ msgstr ""
 "  -s, --show                             Prikaži postavke konfiguracije\n"
 "  -c, --config=[config.setting[:value]]  Postavi postavke konfiguracije i "
 "pokreni Gramps\n"
-"  -y, --yes                              Ne pitaj za potvrde opasnih akcija ("
-"samo u radu bez grafičkog sučelja)\n"
+"  -y, --yes                              Ne pitaj za potvrde opasnih akcija "
+"(samo u radu bez grafičkog sučelja)\n"
 "  -q, --quiet                            Ne prikazuj napredak (samo u radu "
 "bez grafičkog sučelja)\n"
 "  -v, --version                          Prikaži verziju\n"
@@ -3183,9 +3176,9 @@ msgstr ""
 "Stoga ovaj rodoslov ne možeš učitati bez nadogradnje.\n"
 "\n"
 "Ako nadogradiš, nećeš moći koristiti prijašnju inačicu Grampsa, čak niti ako "
-"naknadno %(wiki_manual_backup_html_start)sspremiš zaštitnu kopiju%(html_end)"
-"s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj nadograđeni "
-"rodoslov.\n"
+"naknadno %(wiki_manual_backup_html_start)sspremiš zaštitnu kopiju"
+"%(html_end)s ili %(wiki_manual_export_html_start)sizvezeš%(html_end)s tvoj "
+"nadograđeni rodoslov.\n"
 "\n"
 "Svakako spremi zaštitnu kopiju tvog rodoslova.\n"
 "\n"
@@ -8259,7 +8252,7 @@ msgstr "Područje"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13487,7 +13480,7 @@ msgid "Move the selected name downwards"
 msgstr "Pomakni odabrano ime prema dolje"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Grupiraj pod"
 
@@ -27443,8 +27436,8 @@ msgstr "%(unknown_gender_name)s je umro/la u mjestu %(death_place)s."
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s je umro/la u mjestu %(death_place)s u dobi od %(age)"
-"s godina."
+"%(unknown_gender_name)s je umro/la u mjestu %(death_place)s u dobi od "
+"%(age)s godina."
 
 #: ../gramps/plugins/lib/libnarrate.py:393
 #, python-format
@@ -38828,7 +38821,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Bez stilskog predloška"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38848,7 +38840,6 @@ msgstr "Bez stilskog predloška"
 #~ "%(wiki_backup_html_start)snapraviti zaštitnu kopiju%(html_end)s tvog "
 #~ "rodoslova. Tad možeš uvesti tu zaštitnu kopiju u ovu inačicu Grampsa."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38871,7 +38862,6 @@ msgstr "Bez stilskog predloška"
 #~ "%(wiki_backup_html_start)snapraviti zaštitnu kopiju%(html_end)s tvog "
 #~ "rodoslova."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38922,7 +38912,6 @@ msgstr "Bez stilskog predloška"
 #~ "prazan rodoslov. Alternativno je možda moguće koristiti alate za popravak "
 #~ "Berkeleyeve baze podataka."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -38942,7 +38931,6 @@ msgstr "Bez stilskog predloška"
 #~ "%(wiki_backup_html_start)snapraviti zaštitnu kopiju%(html_end)s tvog "
 #~ "rodoslova. Tada možeš uvesti tu zaštitnu kopiju u ovu inačicu Grampsa."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -38980,7 +38968,6 @@ msgstr "Bez stilskog predloška"
 #~ "%(wiki_backup_html_start)snapraviti zaštitnu kopiju%(html_end)s tvog "
 #~ "rodoslova."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "više od %s godina"
 
@@ -39017,7 +39004,6 @@ msgstr "Bez stilskog predloška"
 #~ "Imam sigurnosnu kopiju\n"
 #~ "spusti inačicu mojeg rodoslova"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39030,7 +39016,6 @@ msgstr "Bez stilskog predloška"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Obnovi mapu referenca"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39044,7 +39029,6 @@ msgstr "Bez stilskog predloška"
 #~ msgid "<No Citation>"
 #~ msgstr "<Bez citata>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "„%(callname)s” (%(firstname)s)"
 
@@ -39071,7 +39055,6 @@ msgstr "Bez stilskog predloška"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Gdje smještaš tvoju web lokaciju? zadano = /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Izrađeno za %(author)s"
 
@@ -39089,11 +39072,9 @@ msgstr "Bez stilskog predloška"
 
 # Croatian translation:
 # "old" is left out on purpose
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>vjenčanje</em>"
 

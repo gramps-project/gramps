@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-18 06:36+0000\n"
 "Last-Translator: beernarrd <beernarrd@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
@@ -1181,16 +1181,9 @@ msgstr "%(full_DB_path)s z imenom \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Rodovniki Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8276,7 +8269,7 @@ msgstr "Regija"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13508,7 +13501,7 @@ msgid "Move the selected name downwards"
 msgstr "Izbrano ime pomakni niže"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Združi kot"
 
@@ -39000,7 +38993,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Brez lista slogov"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39021,7 +39013,6 @@ msgstr "Brez lista slogov"
 #~ "%(wiki_backup_html_start)snarediti varnostno kopijo%(html_end)s "
 #~ "rodovnika. Potem jo boste lahko uvozili v to različico Grampsa."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39044,7 +39035,6 @@ msgstr "Brez lista slogov"
 #~ "%(wiki_backup_html_start)sustvarite varnostno kopijo%(html_end)s svojega "
 #~ "rodovnika."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39094,7 +39084,6 @@ msgstr "Brez lista slogov"
 #~ "XML v prazen rodovnik posodobljenega Grampsa. Lahko pa tudi uporabite "
 #~ "orodja za obnovitev zbirke podatkov Berkeley."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39115,7 +39104,6 @@ msgstr "Brez lista slogov"
 #~ "%(wiki_backup_html_start)snarediti varnostno kopijo%(html_end)s "
 #~ "rodovnika. Potem jo boste lahko uvozili v to različico Grampsa."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39152,7 +39140,6 @@ msgstr "Brez lista slogov"
 #~ "%(wiki_backup_html_start)sustvarite varnostno kopijo%(html_end)s "
 #~ "rodovnika."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "več kot %s let"
 
@@ -39188,7 +39175,6 @@ msgstr "Brez lista slogov"
 #~ "Poskrbel sem za varnostno kopijo,\n"
 #~ "povrni rodovnik"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39201,7 +39187,6 @@ msgstr "Brez lista slogov"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Ponovno izgradi referenčno tabelo"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39215,7 +39200,6 @@ msgstr "Brez lista slogov"
 #~ msgid "<No Citation>"
 #~ msgstr "<Brez navedka>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "„%(callname)s“ (%(firstname)s)"
 
@@ -39242,7 +39226,6 @@ msgstr "Brez lista slogov"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Kje naj se nahaja vaša spletna stran? Privzeto je /WEBCAL"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Ustvarjeno za: %(author)s"
 
@@ -39258,11 +39241,9 @@ msgstr "Brez lista slogov"
 #~ msgstr ""
 #~ "Povezava za usmeritev uporabnikov na izhodiščno stran spletne strani"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>poroka</em>"
 

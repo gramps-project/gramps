@@ -37,7 +37,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2020-09-25 09:02+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
@@ -1210,16 +1210,9 @@ msgstr "%(full_DB_path)s s názvem \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Rodokmeny Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8278,7 +8271,7 @@ msgstr "Region"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13473,7 +13466,7 @@ msgid "Move the selected name downwards"
 msgstr "Posunout vybrané jméno níže"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Seskupit jako"
 
@@ -38701,7 +38694,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Žádná šablona"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38721,7 +38713,6 @@ msgstr "Žádná šablona"
 #~ "%(wiki_backup_html_start)sprovést zálohu%(html_end)s svého rodokmenu. Tu "
 #~ "můžete poté importovat do této verze Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38743,7 +38734,6 @@ msgstr "Žádná šablona"
 #~ "%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
 #~ "%(html_end)s svého rodokmenu."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38791,7 +38781,6 @@ msgstr "Žádná šablona"
 #~ "importujte XML soubor do prázdného rodokmenu. Eventuálně můžete zkusit "
 #~ "aktualizovat vaši databázi."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -38811,7 +38800,6 @@ msgstr "Žádná šablona"
 #~ "%(wiki_backup_html_start)sprovést zálohu%(html_end)s svého rodokmenu. Tu "
 #~ "můžete poté importovat do této verze Gramps."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -38848,7 +38836,6 @@ msgstr "Žádná šablona"
 #~ "%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
 #~ "%(html_end)ssvého rodokmenu."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "více než %s let"
 
@@ -38864,7 +38851,6 @@ msgstr "Žádná šablona"
 #~ msgid "0 days"
 #~ msgstr "0 dnů"
 
-#, python-format
 #~ msgid ""
 #~ "ERROR: Plugin file %(filename)s has a version of "
 #~ "\"%(gramps_target_version)s\" which is invalid for Gramps "
@@ -38892,7 +38878,6 @@ msgstr "Žádná šablona"
 #~ "Pořídil jsem zálohu,\n"
 #~ "degradujte prosím můj rodokmen"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -38905,7 +38890,6 @@ msgstr "Žádná šablona"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Přegenerovat mapu odkazů"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -38919,7 +38903,6 @@ msgstr "Žádná šablona"
 #~ msgid "<No Citation>"
 #~ msgstr "<No Citation>"
 
-#, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 #~ "family. Reference added."
@@ -38927,7 +38910,6 @@ msgstr "Žádná šablona"
 #~ "Chyba: otec %(father)s'  rodiny '%(family)s' neodkazuje zpět na rodinu. "
 #~ "Odkaz přidán."
 
-#, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 #~ "family. Reference added."
@@ -38935,7 +38917,6 @@ msgstr "Žádná šablona"
 #~ "Chyba: matka %(mother)s'  rodiny '%(family)s' neodkazuje zpět na rodinu. "
 #~ "Odkaz přidán."
 
-#, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 #~ "family. Reference added."
@@ -38943,7 +38924,6 @@ msgstr "Žádná šablona"
 #~ "Chyba: pootomek %(child)s'  rodiny '%(family)s' neodkazuje zpět na "
 #~ "rodinu. Odkaz přidán."
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -38985,18 +38965,15 @@ msgstr "Žádná šablona"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Kde bude výchozí umístění na webu? default = /WEBCAL"
 
-#, python-format
 #~ msgid "Surnames %(surname)s beginning with letter %(letter)s"
 #~ msgstr "Příjmení %(surname)s začínající písmenem %(letter)s"
 
-#, python-format
 #~ msgid ""
 #~ "the \"WebCal\" will be the potential-email Subject|Created for "
 #~ "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 #~ msgstr ""
 #~ "Vytvořeno pro %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Vytvořeno pro %(author)s"
 
@@ -39011,11 +38988,9 @@ msgstr "Žádná šablona"
 #~ "site"
 #~ msgstr "Bude vložen odkaz, který přesměruje uživatele na hlavní stránu webu"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s starý"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>sňatek</em>"
 

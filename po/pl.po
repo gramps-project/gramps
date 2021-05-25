@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2020-08-01 16:38+0200\n"
 "Last-Translator: Krystian Safjan <ksafjan@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -1215,16 +1215,9 @@ msgstr "%(full_DB_path)s z nazwą \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Drzewo rodzinne Gramps:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8369,7 +8362,7 @@ msgstr "Region"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13632,7 +13625,7 @@ msgid "Move the selected name downwards"
 msgstr "Przenieś zaznaczone nazwisko w dół"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Grupuj jako"
 
@@ -39247,7 +39240,7 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Bez arkusza stylów"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39268,7 +39261,7 @@ msgstr "Bez arkusza stylów"
 #~ "\">utworzyć kopię zapasową</a> swojego drzewa rodzinnego. Potem możesz "
 #~ "zaimportować te dane do tej wersji Grampsa."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39291,7 +39284,7 @@ msgstr "Bez arkusza stylów"
 #~ "gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">utworzyć "
 #~ "kopię zapasową</a> swojego drzewa rodzinnego."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39343,7 +39336,7 @@ msgstr "Bez arkusza stylów"
 #~ "plik XML do pustego drzewa rodzinnego. Możesz też spróbować skorzystać z "
 #~ "narzędzi odzyskiwania baz Berkeley."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39364,7 +39357,7 @@ msgstr "Bez arkusza stylów"
 #~ "kopię </a> swojego drzewa rodzinnego. Wtedy możesz go zaimportować z "
 #~ "powrotem do tej wersji Gramps."
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39405,7 +39398,6 @@ msgstr "Bez arkusza stylów"
 #~ "www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
 #~ "\">utworzyć kopię bezpieczeństwa</a> swojego drzewa rodzinnego."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "więcej niż %s lat"
 
@@ -39440,7 +39432,6 @@ msgstr "Bez arkusza stylów"
 #~ "Wykonałem kopię zapasową,\n"
 #~ "proszę \"downgrade\" moje drzewo rodzinne"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39453,7 +39444,6 @@ msgstr "Bez arkusza stylów"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Odbuduj mapę odwołań"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39467,7 +39457,6 @@ msgstr "Bez arkusza stylów"
 #~ msgid "<No Citation>"
 #~ msgstr "<Brak cytatu>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39494,7 +39483,6 @@ msgstr "Bez arkusza stylów"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Drzewo rodzinne Johnson'a"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Utworzone dla %(author)s"
 
@@ -39511,11 +39499,9 @@ msgstr "Bez arkusza stylów"
 #~ "Link, który będzie dołączony do kierowania użytkownika na główną stronę "
 #~ "raportu"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s stary"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>ślub</em>"
 

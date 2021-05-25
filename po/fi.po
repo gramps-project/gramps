@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-24 16:19+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
@@ -607,10 +607,10 @@ msgid ""
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta \"Ohjeet"
-" &gt; Käyttöohje\". Kehittäjät ovat työskennelleet ahkerasti tehdäkseen "
-"useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä tietoa, "
-"jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
+"<b>Lue käyttöohjetta</b><br/>Älä unohda lukea Grampsin käyttöohjetta "
+"\"Ohjeet &gt; Käyttöohje\". Kehittäjät ovat työskennelleet ahkerasti "
+"tehdäkseen useimmat toiminnot helppotajuisiksi, mutta käyttöohje on täynnä "
+"tietoa, jolla saat sukututkimukseen varaamasi ajan tuottavammaksi."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -1168,16 +1168,9 @@ msgstr "%(full_DB_path)s nimeltään \"%(f_t_name)s\""
 msgid "Gramps Family Trees:"
 msgstr "Gramps Sukupuut:"
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -3247,16 +3240,15 @@ msgstr ""
 "Sukupuu, jota yrität ladata, on %(dbtype)s tietokanta, jota ei enää tueta.\n"
 "Siksi et voi ladata tätä sukupuuta päivittämättä.\n"
 "\n"
-"Jos päivität, et voi käyttää "
-"%(wiki_manual_backup_html_start)svarmuuskopiota%(html_end)s tai "
-"%(wiki_manual_export_html_start)svientiä%(html_end)s aiemman Gramps version "
-"sukupuun päivittämiseen.\n"
+"Jos päivität, et voi käyttää %(wiki_manual_backup_html_start)svarmuuskopiota"
+"%(html_end)s tai %(wiki_manual_export_html_start)svientiä%(html_end)s "
+"aiemman Gramps version sukupuun päivittämiseen.\n"
 "\n"
 "Sinua suositellaan varmuuskopioimaan sukupuusi.\n"
 "\n"
 "Jos et ole jo tehnyt varmuuskopiota sukupuustasi, sinun tulisi käynnistää "
-"aiempi Gramps versio ja %(wiki_backup_html_start)stehdä "
-"varmuuskopio%(html_end)s sukupuustasi."
+"aiempi Gramps versio ja %(wiki_backup_html_start)stehdä varmuuskopio"
+"%(html_end)s sukupuustasi."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -8331,7 +8323,7 @@ msgstr "Seutukunta"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -9435,9 +9427,9 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"VIRHE: Laajennustiedosto %(filename)s on versioille \""
-"%(gramps_target_version)s\" mikä ei kelpaa Gramps versioille \""
-"%(gramps_version)s\"."
+"VIRHE: Laajennustiedosto %(filename)s on versioille "
+"\"%(gramps_target_version)s\" mikä ei kelpaa Gramps versioille "
+"\"%(gramps_version)s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -13561,7 +13553,7 @@ msgid "Move the selected name downwards"
 msgstr "Siirrä valittu nimi alaspäin"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "Ryhmittele"
 
@@ -38931,7 +38923,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38950,7 +38941,6 @@ msgstr "Ei tyylitiedostoa"
 #~ "ja %(wiki_backup_html_start)stehdä varmuuskopio%(html_end)s sukupuustasi. "
 #~ "Voit sitten tuoda tämän varmuuskopion tähän Gramps versioon."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38971,7 +38961,6 @@ msgstr "Ei tyylitiedostoa"
 #~ "%(bold_start)suudempi%(bold_end)s Gramps versio ja "
 #~ "%(wiki_backup_html_start)s tee varmuuskopio%(html_end)s sukupuustasi."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -39019,7 +39008,6 @@ msgstr "Ei tyylitiedostoa"
 #~ "tyhjään sukupuuhun. Vaihtoehtoisesti voit ehkä käyttää Berkeley "
 #~ "tietokannan palautustyökaluja (recovery tools)."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -39039,7 +39027,6 @@ msgstr "Ei tyylitiedostoa"
 #~ "ja %(wiki_backup_html_start)stehdä varmuuskopio%(html_end)s sukupuustasi. "
 #~ "Sitten voit tuoda tämän varmuuskopion tähän Gramps versioon."
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -39077,7 +39064,6 @@ msgstr "Ei tyylitiedostoa"
 #~ "%(bold_start)svanha%(bold_end)s Gramps versio ja "
 #~ "%(wiki_backup_html_start)stehdä varmuuskopio%(html_end)s sukupuustasi."
 
-#, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "korkeitaan %s vuotta"
 
@@ -39112,7 +39098,6 @@ msgstr "Ei tyylitiedostoa"
 #~ "Olen ottanut varmuuskopion,\n"
 #~ " alenna nyt sukupuuni versio"
 
-#, python-format
 #~ msgid ""
 #~ "An attempt is made to save a reference key which is partly bytecode, this "
 #~ "is not allowed.\n"
@@ -39124,7 +39109,6 @@ msgstr "Ei tyylitiedostoa"
 #~ msgid "Rebuild reference map"
 #~ msgstr "Rakenna uudelleen viitekartta"
 
-#, python-format
 #~ msgid ""
 #~ "A second transaction is started while there is still a transaction, \"%s"
 #~ "\", active in the database."
@@ -39138,7 +39122,6 @@ msgstr "Ei tyylitiedostoa"
 #~ msgid "<No Citation>"
 #~ msgstr "<Ei lainausta>"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "\"%(callname)s\" (%(firstname)s)"
 
@@ -39177,13 +39160,11 @@ msgstr "Ei tyylitiedostoa"
 #~ msgid "Where do you place your web site ? default = /WEBCAL"
 #~ msgstr "Minne haluat tallentaa nettisivusi? oletus = /WEBCAL"
 
-#, python-format
 #~ msgid ""
 #~ "the \"WebCal\" will be the potential-email Subject|Created for "
 #~ "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 #~ msgstr "Tuottaja %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "Tuottaja %(author)s"
 
@@ -39198,11 +39179,9 @@ msgstr "Ei tyylitiedostoa"
 #~ "site"
 #~ msgstr "Lisätäänkö linkki, joka ohjaa käyttäjän nettisivuston pääsivulle"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s vanha"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>häät</em>"
 

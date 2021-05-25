@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:47+0100\n"
+"POT-Creation-Date: 2021-05-23 22:45+0100\n"
 "PO-Revision-Date: 2021-05-07 13:24+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -1097,16 +1097,9 @@ msgstr ""
 msgid "Gramps Family Trees:"
 msgstr "Gramps 家族树："
 
-#. We have to construct the line elements together, to avoid
-#. insertion of blank spaces when print on the same line is used
-#. -------------------------------------------------------------------------
-#.
-#. constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -8222,7 +8215,7 @@ msgstr "地区 (Region)"
 #: ../gramps/gui/selectors/selectperson.py:90
 #: ../gramps/gui/selectors/selectplace.py:67
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:473
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:59
@@ -13425,7 +13418,7 @@ msgid "Move the selected name downwards"
 msgstr "下移所选名称"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
-#: ../gramps/gui/views/treemodels/peoplemodel.py:611
+#: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
 msgstr "分组为"
 
@@ -38516,7 +38509,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "无样式表"
 
-#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -38554,7 +38546,7 @@ msgstr "无样式表"
 #~ "XML；关闭数据库；然后升级此版本并导入 XML 文件。由此，也可以使用 Berkeley "
 #~ "数据库恢复工具。"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "greater than %s years"
 #~ msgstr "少于 1"
 
@@ -38599,7 +38591,6 @@ msgstr "无样式表"
 #~ msgid "<No Citation>"
 #~ msgstr "引用"
 
-#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "“%(callname)s” (%(firstname)s)"
 
@@ -38621,7 +38612,6 @@ msgstr "无样式表"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Johnson 家族树"
 
-#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "为 %(author)s 而创建"
 
@@ -38636,11 +38626,9 @@ msgstr "无样式表"
 #~ "site"
 #~ msgstr "用于引导用户到网站主页的连接"
 
-#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s岁"
 
-#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>婚礼</em>"
 
