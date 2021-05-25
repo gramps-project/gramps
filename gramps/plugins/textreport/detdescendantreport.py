@@ -928,7 +928,7 @@ class DetDescendantReport(Report):
                 self.doc.start_paragraph('DDR-MoreDetails')
 
                 text = utils.get_address_str(addr)
-                self.doc.write_text(addr.get_schema()["title"] + ': ')
+                self.doc.write_text(_('{address}: ').format(address=addr.get_schema()["title"]))
 
                 if self.fulldate:
                     date = self._get_date(addr.get_date_object())
