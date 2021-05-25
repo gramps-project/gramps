@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-24 21:14+0000\n"
+"PO-Revision-Date: 2021-05-25 02:29+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -116,7 +116,7 @@ msgstr "Croacia"
 
 #: ../data/holidays.xml:126
 msgid "Czech Republic"
-msgstr "República checa"
+msgstr "República Checa"
 
 #: ../data/holidays.xml:141
 msgid "England"
@@ -11483,19 +11483,14 @@ msgstr ""
 "Objetos referenciados por esta nota faltaban en un archivo importado el %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Su versión de Python no cumple los requisitos. Se requiere al menos python "
+"Su versión de Python no cumple los requisitos. Se requiere al menos Python "
 "%(v1)d.%(v2)d.%(v3)d para usar Gramps.\n"
 "\n"
 "Gramps se cerrará ahora."
@@ -11506,28 +11501,21 @@ msgid "Configuration error:"
 msgstr "Error de configuración:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Error leyendo la configuración"
+msgstr "No se pudo leer la configuración"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"No se encontró una definición para el tipo MIME %s\n"
+"No se encontró una definición para el tipo de objeto audiovisual %s \n"
 "\n"
-"Puede que la instalación de Gramps fuera incompleta. Asegúrese de que los "
-"tipos MIME de Gramps estén instalados correctamente."
+" Puede que la instalación de Gramps fuera incompleta. Asegúrese de tener "
+"instalado algo para manipular los tipos de objetos audiovisuales de Gramps."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -16204,11 +16192,6 @@ msgid "Con_fidence:"
 msgstr "Con_fianza:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -16216,7 +16199,7 @@ msgid ""
 msgstr ""
 "La fecha de la entrada en la fuente que se referencia, p.ej. la fecha en que "
 "se visitó la casa en un censo o la fecha en que se asentó la inscripción de "
-"nacimiento en el libro. "
+"nacimiento en el libro."
 
 # TBC
 #: ../gramps/gui/glade/editcitation.glade:201
@@ -16588,13 +16571,6 @@ msgid "Image preview"
 msgstr "Previsualización de la imagen"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16607,7 +16583,7 @@ msgstr ""
 "ruta, ije, Fije la 'Ruta relativa' en Preferencias para evitar teclear cada "
 "vez la directorio base común donde están todos sus archivos audiovisuales. "
 "La herramienta 'Administrador de audiovisuales' puede ayudarle a gestionar "
-"las rutas de un conjunto de objetos audiovisuales. "
+"las rutas de un conjunto de objetos audiovisuales."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16781,10 +16757,8 @@ msgstr ""
 "oficial."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Nombre(s) (de pila) "
+msgstr "Nombre(s) (de pila)"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -17073,13 +17047,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Campo usado para pegar información de una página web como google, "
-"openstreetmap, ... "
+"Campo usado para pegar información de una página web como Google, "
+"OpenStreetMap..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -21412,16 +21383,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "es decir\n"
-"Estados Unidos de América/EEUU"
+"Estados Unidos de América/EE.UU."
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -22537,7 +22504,7 @@ msgstr "Ordenar por"
 #: ../gramps/plugins/drawreport/timeline.py:432
 #: ../gramps/plugins/tool/sortevents.py:185
 msgid "Sorting method to use"
-msgstr "Método de ordenación a utilizar"
+msgstr "Método de ordenamiento a utilizar"
 
 #: ../gramps/plugins/drawreport/timeline.py:489
 #: ../gramps/plugins/textreport/indivcomplete.py:1228
@@ -25699,8 +25666,6 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
 msgstr "ANSI (ISO-8859-1)"
 
@@ -27208,42 +27173,42 @@ msgstr "Nació el %(birth_date)s en %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:97
 #, python-format
 msgid "Born %(birth_date)s in %(birth_place)s."
-msgstr "Nació %(birth_date)s en %(birth_place)s."
+msgstr "Nació el %(birth_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:102
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s nació %(modified_date)s en %(birth_place)s."
+msgstr "%(unknown_gender_name)s nació el %(modified_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:103
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s nació %(modified_date)s en %(birth_place)s."
+msgstr "%(male_name)s nació el %(modified_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:104
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s nació %(modified_date)s en %(birth_place)s."
+msgstr "%(female_name)s nació el %(modified_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:107
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "Nació %(modified_date)s en %(birth_place)s."
+msgstr "Nació el %(modified_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:108
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "Nació %(modified_date)s en %(birth_place)s."
+msgstr "Nació el %(modified_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:109
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Nació %(modified_date)s en %(birth_place)s."
+msgstr "Nació el %(modified_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
 msgid "Born %(modified_date)s in %(birth_place)s."
-msgstr "Nació %(modified_date)s en %(birth_place)s."
+msgstr "Nació el %(modified_date)s en %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:116
 #, python-format
@@ -27278,42 +27243,42 @@ msgstr "Nació el %(birth_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:125
 #, python-format
 msgid "Born %(birth_date)s."
-msgstr "Nació %(birth_date)s."
+msgstr "Nació el %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:130
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
-msgstr "%(unknown_gender_name)s nació %(modified_date)s."
+msgstr "%(unknown_gender_name)s nació el %(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:131
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s."
-msgstr "%(male_name)s nació %(modified_date)s."
+msgstr "%(male_name)s nació el %(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:132
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s."
-msgstr "%(female_name)s nació %(modified_date)s."
+msgstr "%(female_name)s nació el %(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:135
 #, python-format
 msgid "This person was born %(modified_date)s."
-msgstr "Nació %(modified_date)s."
+msgstr "Nació el %(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:136
 #, python-format
 msgid "He was born %(modified_date)s."
-msgstr "Nació %(modified_date)s."
+msgstr "Nació el %(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:137
 #, python-format
 msgid "She was born %(modified_date)s."
-msgstr "Nació %(modified_date)s."
+msgstr "Nació el %(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:139
 #, python-format
 msgid "Born %(modified_date)s."
-msgstr "Nació %(modified_date)s."
+msgstr "Nació el %(modified_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:144
 #, python-format
@@ -27497,7 +27462,7 @@ msgstr "Falleció el %(death_date)s en %(death_place)s a la edad de %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:250
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s."
-msgstr "Falleció %(death_date)s %(death_place)s."
+msgstr "Falleció el %(death_date)s en %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:218
 #: ../gramps/plugins/lib/libnarrate.py:251
@@ -27508,7 +27473,7 @@ msgstr "Falleció %(death_date)s en %(death_place)s (%(age)s)."
 #: ../gramps/plugins/lib/libnarrate.py:224
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s falleció %(death_date)s en %(death_place)s."
+msgstr "%(unknown_gender_name)s falleció el %(death_date)s en %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:225
 #, python-format
@@ -27516,47 +27481,45 @@ msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(unknown_gender_name)s falleció %(death_date)s en %(death_place)s a la edad "
-"de %(age)s."
+"%(unknown_gender_name)s falleció el %(death_date)s en %(death_place)s a la "
+"edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:228
 #, python-format
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s falleció %(death_date)s en %(death_place)s."
+msgstr "%(male_name)s falleció el %(death_date)s en %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:229
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(male_name)s falleció %(death_date)s en %(death_place)s a la edad de "
+"%(male_name)s falleció el%(death_date)s en %(death_place)s a la edad de "
 "%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:232
 #, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s falleció %(death_date)s en %(death_place)s."
+msgstr "%(female_name)s falleció el %(death_date)s en %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:233
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(female_name)s falleció %(death_date)s en %(death_place)s a la edad de "
+"%(female_name)s falleció el %(death_date)s en %(death_place)s a la edad de "
 "%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:237
 #, python-format
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr "Falleció %(death_date)s en %(death_place)s."
+msgstr "Falleció el %(death_date)s en %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:238
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
-"Esta persona falleció el %(death_date)s en %(death_place)s a la edad de "
-"%(age)s."
+msgstr "Falleció el %(death_date)s en %(death_place)s a la edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:241
 #, python-format
@@ -27643,73 +27606,74 @@ msgstr "Falleció el %(death_date)s a la edad de %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:316
 #, python-format
 msgid "Died %(death_date)s."
-msgstr "Falleció %(death_date)s."
+msgstr "Falleció el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:284
 #: ../gramps/plugins/lib/libnarrate.py:317
 #, python-format
 msgid "Died %(death_date)s (%(age)s)."
-msgstr "Falleció %(death_date)s (%(age)s)."
+msgstr "Falleció el %(death_date)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:290
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s."
-msgstr "%(unknown_gender_name)s falleció %(death_date)s."
+msgstr "%(unknown_gender_name)s falleció el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:291
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s falleció %(death_date)s a la edad de %(age)s."
+msgstr ""
+"%(unknown_gender_name)s falleció el %(death_date)s a la edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:294
 #, python-format
 msgid "%(male_name)s died %(death_date)s."
-msgstr "%(male_name)s falleció %(death_date)s."
+msgstr "%(male_name)s falleció el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s falleció %(death_date)s a la edad de %(age)s."
+msgstr "%(male_name)s falleció el %(death_date)s a la edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:298
 #, python-format
 msgid "%(female_name)s died %(death_date)s."
-msgstr "%(female_name)s falleció %(death_date)s."
+msgstr "%(female_name)s falleció el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:299
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s falleció %(death_date)s a la edad de %(age)s."
+msgstr "%(female_name)s falleció el %(death_date)s a la edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:303
 #, python-format
 msgid "This person died %(death_date)s."
-msgstr "Falleció %(death_date)s."
+msgstr "Falleció el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:304
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)s."
-msgstr "Falleció %(death_date)s a la edad de %(age)s."
+msgstr "Falleció el %(death_date)s a la edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:307
 #, python-format
 msgid "He died %(death_date)s."
-msgstr "Falleció %(death_date)s."
+msgstr "Falleció el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Falleció %(death_date)s a la edad de %(age)s."
+msgstr "Falleció el %(death_date)s a la edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:311
 #, python-format
 msgid "She died %(death_date)s."
-msgstr "Falleció %(death_date)s."
+msgstr "Falleció el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
-msgstr "Falleció %(death_date)s a la edad de %(age)s."
+msgstr "Falleció el %(death_date)s a la edad de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:323
 #, python-format
@@ -38131,22 +38095,18 @@ msgid "Sort all children in birth order"
 msgstr "Clasificar los hijos por orden de nacimiento"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Si se deben mostrar los hijos por orden de nacimiento o en el orden en que "
-"figuran?"
+"figuran."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "¿Mostrar coordenadas en la lista de lugares?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "¿Se debe mostrar longitud/latitud en la lista de lugares?"
+msgstr "Si se debe mostrar longitud/latitud en la lista de lugares."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -38247,11 +38207,9 @@ msgid "HTML user header"
 msgstr "HTML al inicio de la página"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr ""
-"Nota a utilizar para el encabezamiento de la página o un código php a "
+"Nota a utilizar para el encabezamiento de la página o un código PHP a "
 "insertar."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
