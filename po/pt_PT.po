@@ -6,13 +6,13 @@
 # lcc <lcc@6zap.com>, 2009-2009.
 # Frederico Muñoz <fsmunoz@gmail.com>, 2010-2011, 2013.
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2017, 2018, 2019.
-#
+# Pedro Albuquerque <pmra@gmx.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
+"PO-Revision-Date: 2021-05-25 06:19+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -4762,7 +4762,7 @@ msgstr "Encontra famílias onde a mãe tenha parte do nome especificado"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:45
 msgid "Families with child matching the <regex_name>"
-msgstr "Famílias com um filho coincidente com <expressão_regular>"
+msgstr "Famílias com um filho que cumpre a <expressão_regular>"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:46
 msgid ""
@@ -4774,7 +4774,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:45
 msgid "Families with father matching the <regex_name>"
-msgstr "Famílias com pai coincidente com <expressão_regular>"
+msgstr "Famílias com pai que cumpre a <expressão_regular>"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:46
 msgid ""
@@ -5004,15 +5004,15 @@ msgstr "Encontra todas as notas na base de dados"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:47
 msgid "Notes changed after <date time>"
-msgstr "Notas modificadas após <dara/hora>"
+msgstr "Notas modificadas após <data/hora>"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:48
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Encontra notas modificadas após uma data/hora especificada (aaaa-mm-dd hh:mm:"
-"ss) ou no intervalo, se uma segunda data for indicada."
+"Encontra notas modificadas após uma data/hora especificada (aaaa-mm-dd "
+"hh:mm:ss) ou no intervalo, se uma segunda data for indicada."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:44
 msgid "Note with <Id>"
@@ -5174,7 +5174,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:44
 msgid "Everyone"
-msgstr "Todos os indivíduos"
+msgstr "Todos"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 msgid "Matches everyone in the database"
@@ -5269,7 +5269,7 @@ msgstr "Filtros de ascendentes"
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr ""
-"Encontra indivíduos que têm um ascendente comum com um indivíduo especificada"
+"Encontra indivíduos que têm um ascendente comum com um indivíduo especificado"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:48
 msgid "People with a common ancestor with <filter> match"
@@ -5315,7 +5315,7 @@ msgstr "Encontra indivíduos com um evento pessoal com um valor específico"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:45
 msgid "People with the family <attribute>"
-msgstr "Indivíduos com o atributo familiar <atributo>"
+msgstr "Indivíduos com o <atributo> familiar"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
 msgid "Matches people with the family attribute of a particular value"
@@ -5323,7 +5323,7 @@ msgstr "Encontra indivíduos com o atributo familiar com um valor específico"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
 msgid "People with the family <event>"
-msgstr "Indivíduos com o evento familiar <evento>"
+msgstr "Indivíduos com o <evento> familiar"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:53
 msgid "Matches people with a family event of a particular value"
@@ -5345,7 +5345,7 @@ msgstr "Indivíduo com <Id>"
 #: ../gramps/gen/filters/rules/person/_hasidof.py:45
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 msgid "Matches person with a specified Gramps ID"
-msgstr "Encontra indivíduo com uma ID Gramps especificada"
+msgstr "Encontra indivíduos com uma ID Gramps especificada"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
@@ -11343,12 +11343,7 @@ msgstr ""
 "Objectos referenciados por esta nota em falta num ficheiro importado em %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
@@ -11366,28 +11361,21 @@ msgid "Configuration error:"
 msgstr "Erro de configuração:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Erro ao ler a configuração"
+msgstr "Impossível ler a configuração"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"Uma definição para o tipo MIME %s não pôde ser encontrada.\n"
+"Não se encontrou uma definição para o tipo MIME %s.\n"
 "\n"
-" Possivelmente a instalação do Gramps está incompleta. Certifique-se de que "
-"os tipos MIME para o Gramps estão instalados correctamente."
+" Possivelmente, a instalação do Gramps está incompleta. Certifique-se de que "
+"há algo instalado para gerir a multimédia do Gramps."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -16019,11 +16007,6 @@ msgid "Con_fidence:"
 msgstr "Con_fiança:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -16031,7 +16014,7 @@ msgid ""
 msgstr ""
 "A data da entrada na fonte que se referencia, por exemplo a data em que uma "
 "casa foi visitada durante um censo ou a data em que se escreveu um assento "
-"de nascimento. "
+"de nascimento."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16399,13 +16382,6 @@ msgid "Image preview"
 msgstr "Antevisão da imagem"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16414,11 +16390,10 @@ msgid ""
 "managing paths of a collection of media objects."
 msgstr ""
 "Caminho do objecto multimédia em seu computador.\n"
-"O Grampos não armazena a multimédia internamente, mas apenas o caminho. "
+"O Gramps não armazena a multimédia internamente, mas apenas o caminho. "
 "Defina o \"Caminho relativo\" nas Preferências para evitar re-inserir uma "
 "pasta base, onde toda a sua multimédia é armazenada. A ferramenta \"Gestor "
-"de multimédia\" pode ajudar na gestão de uma colecção de objectos "
-"multimédia. "
+"de multimédia\" pode ajudar na gestão de uma colecção de objectos multimédia."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16591,10 +16566,8 @@ msgstr ""
 "Um nome descritivo dado em vez de, ou em complemento do nome próprio oficial."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Nome(s) próprio(s) "
+msgstr "Nome(s) próprio(s)"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16883,13 +16856,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Campo usado para colar informação de uma página web como google, "
-"openstreetmap,... "
+"Campo usado para colar informação de uma página web como Google, "
+"OpenStreetMap,..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -21193,16 +21163,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "i.e.\n"
-"Estados Unidos da América/E.U.A"
+"Estados Unidos da América/E.U.A."
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -25465,10 +25431,8 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
-msgstr "ANSI (iso-8859-1)"
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -37884,22 +37848,18 @@ msgid "Sort all children in birth order"
 msgstr "Ordenar filhos por data de nascimento"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Se deve mostrar os filhos por data de nascimento ou ordem de entrada dos "
-"dados?"
+"dados."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "Mostramos as coordenadas na lista de locais?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Se deve mostrar a latitude/longitude na lista de locais?"
+msgstr "Se deve mostrar a latitude/longitude na lista de locais."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -38000,10 +37960,8 @@ msgid "HTML user header"
 msgstr "Cabeçalho HTML do utilizador"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Nota a usar como cabeçalho da página ou código php a inserir."
+msgstr "Nota a usar como cabeçalho da página ou código PHP a inserir."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
