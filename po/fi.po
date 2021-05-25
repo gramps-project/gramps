@@ -3,14 +3,13 @@
 # Janne Kovesjärvi <janne.kovesjarvi@gmail.com>, 2008, 200, 2013.
 # Pekka Valta <pekka.valta@kolumbus.fi>, 2014.
 # Niemelä <niememat@gmail.com>, 2017, 2018.
-# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019.
-#
+# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-24 16:19+0000\n"
+"PO-Revision-Date: 2021-05-25 19:36+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -11357,12 +11356,7 @@ msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr "Tuontitiedostossa %s ei ollut tämän lisätiedon viittaamia objekteja."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
@@ -11380,28 +11374,21 @@ msgid "Configuration error:"
 msgstr "Kokoonpanon virhe:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Virhe kokoonpanon lukemisessa"
+msgstr "Määritystä ei voitu lukea"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"MIME-tiedostotyypin %s määritystä ei löydetty\n"
+"Mediatyypin %s määritelmää ei löydy\n"
 "\n"
-"Grampsin asennus on saattanut jäädä keskeneräiseksi. Varmista, että Grampsin "
-"MIME-tiedostotyypit ovat oikein asennetut."
+" Grampsin asennus on mahdollisesti keskeneräinen. Varmista, että Grampsin "
+"mediatyyppien käsittely on oikein asennettu."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -13099,8 +13086,7 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Tämä Gramps ('master') on kehitysversio. Ei tarkoitettu normaalikäyttöön.\n"
-"Käytä omalla riskillä.\n"
+"Tämä on kehitysversio. Ei normaalikäyttöön. Käytä omalla riskillä.\n"
 "\n"
 "Tämä versio voi:\n"
 "1) toimia toisin kuin odotat.\n"
@@ -16035,18 +16021,14 @@ msgid "Con_fidence:"
 msgstr "_Luotettavuus:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
-"Viittaamasi lähteen päivä, esim. väestölaskennassa päivä jolloin laskijat "
-"kävivät talossa, tai verotusluettelon konseptin laatimispäivä. "
+"Viittaamasi lähteen merkinnän päivämäärä, esim. päivämäärä, jolloin talossa "
+"käytiin väestönlaskennan aikana, tai päivämäärä, jolloin merkintä tehtiin "
+"syntymälokiin/rekisteriin."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16410,13 +16392,6 @@ msgid "Image preview"
 msgstr "Kuvan esikatselu"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16424,10 +16399,11 @@ msgid ""
 "directory where all your media is stored. The 'Media Manager' tool can help "
 "managing paths of a collection of media objects."
 msgstr ""
-"Polku tietokoneesi mediatiedostojen hakemistoon.\n"
-"Gramps ei tallenna tietokantaasi tiedostojasi vaan pitää muistissaan vain "
-"em. polun! Käytä suhteellista polkua lyhentääksesi polun pituutta. "
-"\"Mediatyökalu\" voi helpottaa mediatiedostojen polkujen hallintaa. "
+"Tietokoneesi mediatiedoston polku.\n"
+"Gramps ei tallenna mediaa sisäisesti, vaan vain polun! Määritä Asetuksissa "
+"'Suhteellinen polku', jotta vältät kirjoittamisen yhteiseen "
+"perushakemistoon, johon kaikki mediasi on tallennettu. Medianhallinta -"
+"työkalu voi auttaa hallitsemaan mediaobjektien polkuja."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16594,10 +16570,8 @@ msgstr ""
 "Palo\"."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Etunimet "
+msgstr "Etunimet"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16878,13 +16852,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Kenttää käytetään liittämään nettisivun tieto kuten Google, "
-"OpenStreedMap, ... "
+"Kenttää käytetään liittämään nettisivun tieto kuten Google, OpenStreedMap ..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -21182,16 +21152,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
-"ts..\n"
-"Pohjois-Amerikan Yhdysvallat/U.S.A"
+"ts.\n"
+"Pohjois-Amerikan Yhdysvallat/U.S.A."
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -25439,10 +25405,8 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
-msgstr "ANSI (iso-8859-1)"
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -26273,15 +26237,14 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
-"Tuotava tiedosto oli Grampsin vanhaa versiota %(oldgramps)s, kun taas ajat "
-"uudempaa versiota %(newgramps)s.\n"
-"\n"
+"Tuotava .gramps-tiedoston on tehty Grampsin versiolla %(oldgramps)s, ja "
+"käytössäsi on uudempi versio %(newgramps)s.\n"
 "\n"
 "Tiedostoa ei tuotu. Käytä vanhempaa Gramps versiota, joka tukee xml-versiota "
 "%(xmlversion)s .\n"
 "Katso\n"
 "  %(gramps_wiki_xml_url)s\n"
-"lisätietojen saamiseksi."
+" lisätietojen saamiseksi."
 
 #: ../gramps/plugins/importer/importxml.py:1042
 msgid "The file will not be imported"
@@ -32126,7 +32089,7 @@ msgstr "Näytetyt suhteet ovat henkilöön %s"
 #: ../gramps/plugins/textreport/birthdayreport.py:333
 #, python-format
 msgid "* %(person)s, birth%(relation)s"
-msgstr "* %(person)s, birth%(relation)s"
+msgstr "* %(person)s, syntymä%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
@@ -37770,20 +37733,16 @@ msgid "Sort all children in birth order"
 msgstr "Lajittele kaikki lapset syntymäjärjestykseen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "Näytetäänkö lapset syntymä- tai syöttöjärjestyksessä?"
+msgstr "Näytetäänkö lapset syntymä- tai syöttöjärjestyksessä."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "Näytetäänkö koordinaatit paikkaluettelossa?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Näytetäänkö leveysaste/pituusaste paikkaluettelossa?"
+msgstr "Näytetäänkö leveysaste/pituusaste paikkaluettelossa."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -37884,10 +37843,8 @@ msgid "HTML user header"
 msgstr "HTML ylätunniste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Huomautus, jota käytetään sivun otsikkona tai lisättävänä php-koodina."
+msgstr "Huomautus, jota käytetään sivun otsikkona tai lisättävänä PHP-koodina."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
