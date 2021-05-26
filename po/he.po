@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2009
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
-# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019.
+# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
+"PO-Revision-Date: 2021-05-26 20:19+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -849,9 +849,9 @@ msgid ""
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
 msgstr ""
-"<b>הפרטיות בגרמפס<br/></b>גרמפס מסייעת בשמירה על המידע האישי בטוח, בכך שהיא "
-"מאפשרת לסמן מידע כפרטי. לא ניתן לכלול נתונים המסומנים כפרטי בדוחות וביצוא "
-"נתונים. סמליל המנעול בורר בין הרשומות הפרטיות לציבוריות."
+"<b>הפרטיות בגרמפס<br/></b>גרמפס מסייע בשמירה על המידע האישי בטוח, בכך שהוא "
+"מאפשר סימון מידע כפרטי. לא ניתן לכלול נתונים המסומנים כפרטי בדוחות וביצוא "
+"נתונים. סמל ה'מנעול' בורר בין רשומות פרטיות ציבוריות."
 
 #: ../data/tips.xml:100
 msgid ""
@@ -2026,8 +2026,8 @@ msgid ""
 "is a personal genealogy program."
 msgstr ""
 "גרמפס\n"
-"(גנאלוגיקל רישרץ' אנד אנאליסיס מאנאג'מנת פרוגרמינג סיסטם)\n"
-"היא תכנה גנאלוגית אישית."
+" (גנאלוגיקל רישרץ' אנד אנאליסיס מאנאג'מנת פרוגרמינג סיסטם)\n"
+"תכנה גנאלוגית אישית."
 
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
@@ -3060,18 +3060,18 @@ msgid ""
 msgstr ""
 "נעשה ניסיון לטעון אילן יוחסין בתבנית סכימה גרסת %(oldschema)s. גרסה זו של "
 "גרמפס משתמשת בגרסת סכימה %(newschema)s. לכן, לא ניתן לטעון את אילן היוחסין "
-"ללא שדרוג גרסת הסכימה שלו\n"
+"ללא שדרוג גרסת הסכימה שלו.\n"
 "\n"
 "במידה ויתבצע שדרוג, לא ניתן יהיה להשתמש בגרסה הקודמת של גרמפס, גם אם לאחר "
 "מכן יתבצע %(wiki_manual_backup_html_start)sגיבוי%(html_end)s או "
 "%(wiki_manual_export_html_start)sיצוא%(html_end)s של אילן היוחסין.\n"
 "\n"
-"שדרוג היא משימה קשה שעלולה להשחית את אילן היוחסין ללא אפשרות תיקון, במידה "
+"שדרוג כרוך במשימה קשה, שעלולה להשחית את אילן היוחסין ללא אפשרות תיקון, במידה "
 "והשדרוג נקטע או נכשל.\n"
 "\n"
-"במידה ועדין לא בוצע גיבוי לאילן יוחסין, נא להתחיל את %(bold_start)sold"
-"%(bold_end)s גרסת גרמפס ו%(wiki_backup_html_start)sלבצע גיבוי%(html_end)s "
-"לאילן היוחסין."
+"במידה ועדין לא בוצע גיבוי לאילן יוחסין, נא להתחיל את "
+"%(bold_start)sold%(bold_end)s גרסת גרמפס ו%(wiki_backup_html_start)sלבצע "
+"גיבוי%(html_end)s לאילן היוחסין."
 
 #: ../gramps/gen/db/exceptions.py:174
 #, python-format
@@ -11093,20 +11093,15 @@ msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr "אובייקטים אליהם מפנה הערה זו היו חסרים בקובץ שיובא ב %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"רסת פייתון שמותקנת במערכת זו לא עומדת בדרישות. נדרשת גרסה%(v1)d.%(v2)d."
-"%(v3)d לפחות, על מנת לאתחל את גרמפס.\n"
+"גרסת פייטון שמותקנת במערכת זו לא עומדת בדרישות. נדרשת גרסה%(v1)d.%(v2)d.%(v3)"
+"d לפחות, על מנת לאתחל את גרמפס.\n"
 "\n"
 "גרמפס יסגר כעת."
 
@@ -11116,28 +11111,21 @@ msgid "Configuration error:"
 msgstr "שגיאת תצורה:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "שגיאה בקריאת ההגדרות"
+msgstr "לא ניתן לקרוא תצורה"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"לא נמצאה הגדרה עבור סוג MIME %s\n"
+"לא ניתן למצוא הגדרה עבור סוג מדיה %s \n"
 "\n"
-"יתכן וההתקנה של גרמפס לא הייתה מלאה. נא לוודא שסוגי MIME של גרמפס מותקנים "
-"כראוי."
+"יתכן וההתקנה של גרמפס לא הושלמה. נא לוודא שרכיב לטיפול בסוגי מדיה של גרמפס "
+"מותקן."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -11147,8 +11135,9 @@ msgid ""
 "Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
-"מרבית האיורים בגרמפס מקורם\n"
-"בפרוייקט טנגו או נגזרים ממנו.\n"
+"מרבית האיורים בגרמפס,\n"
+"מקורם בפרוייקט טנגו\n"
+"או נגזרים ממנו.\n"
 "האיורים מופצים במגבלות רישיון\n"
 "'Create Commons Attribution-ShareAlike 2.5'."
 
@@ -12232,7 +12221,7 @@ msgstr "לא ניתן לאתר גופנים גנאלוגיים"
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
-msgstr "לא ניתן לבחור גופנים גנאלוגים. נא להתקין רכיב fontconfig ל פייטון 3."
+msgstr "לא ניתן לבחור גופנים גנאלוגים. נא להתקין רכיב fontconfig לפייטון 3."
 
 #: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
@@ -12637,10 +12626,10 @@ msgstr ""
 "מסד הנתונים עשוי להתאושש מכמה שגיאות באופן אוטומטי.\n"
 "\n"
 "‏%(bold_start)sפרטים:%(bold_end)s תיקון אילן יוחסין למעשה משתמש בגיבוי "
-"האחרון, אותו גרמפס אחסנה בשימוש האחרון. המשמעות היא שכל המידע שנוצר לאחר "
+"האחרון, אותו גרמפס אחסן בשימוש האחרון. המשמעות היא שכל המידע שנוצר לאחר "
 "הגיבוי האחרון יאבד! במידה והתיקון כשל, אילן היוחסין המקורי יאבד לנצח, ולכן "
-"יש צורך בגיבוי. אם התיקון כשל, או אם מידע רב מדי אבד, ניתן לתקן את אילן "
-"היוחסין המקורי באופן ידני. לפרטים, נא לעיין בעמוד המרשתת\n"
+"חשוב לגבות. אם התיקון כשל, או אם מידע רב מדי אבד, ניתן לתקן את אילן היוחסין "
+"המקורי באופן ידני. לפרטים, נא לעיין בעמוד המרשתת\n"
 "‏‎‎%(gramps_wiki_recover_url)s\n"
 "לפני בצוע תיקון, נא לנסות לפתוח את אילן היוחסין באופן רגיל. ניתן לתקן באופן "
 "אוטומטי מספר שגיאות המפעילות את לחצן התיקון. אם זה המקרה, ניתן להשבית את "
@@ -12780,7 +12769,7 @@ msgstr "סכנה: זהו קוד לא יציב!"
 #: ../gramps/gui/displaystate.py:709
 #, python-format
 msgid "This Gramps ('%s') is a development release.\n"
-msgstr "גרסת גרמפס זו ( %s) היא מהדורת פתוח.\n"
+msgstr "גרסת גרמפס ( %s) היא מהדורת פיתוח.\n"
 
 #: ../gramps/gui/displaystate.py:711
 #, python-format
@@ -15685,18 +15674,13 @@ msgid "Con_fidence:"
 msgstr "וד_אות:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
-"תאריך הרשומה במקור שאליו נעשתה ההפניה, לדוגמה תאריך הביקור במפקד אוכלוסין, "
-"או תאריך הרישום ביומן/רשומות לידה. "
+"תאריך הרשומה באובייקט המקור אליו נעשתה ההפניה, לדוגמה התאריך בו פקדו בבית "
+"מסויים ממפקד אוכלוסין , או התאריך בו עעשה הרישום ביומן/רשומות לידה."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16057,13 +16041,6 @@ msgid "Image preview"
 msgstr "תצוגה מקדימה תמונה"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16072,9 +16049,9 @@ msgid ""
 "managing paths of a collection of media objects."
 msgstr ""
 "נתיב של אובייקט המדיה במחשב.\n"
-"גרמפס לא מאחסנת את המדיה באופן פנימי, היא רק שומר את הנתיב! נא להגדיר 'נתיב "
-"יחסי' בהעדפות כדי להימנע מהקלדה מחודשת של מחיצת הבסיס המשותפת בה כל המדיה "
-"מאוחסנת. הכלי 'מנהל מדיה' יכול לסייע בניהול נתיבים אל אוסף אובייקטי המדיה. "
+"גרמפס לא מאחסן מדיה באופן פנימי, אלא רק את הנתיב! נא להגדיר 'נתיב יחסי' "
+"ב'העדפות' כדי להימנע מהקלדה מחודשת של מחיצת הבסיס המשותפת בה מאוחסנת המדיה. "
+"כלי 'מנהל מדיה'נועד לסייע בניהול נתיבים אל אוסף אובייקטי המדיה."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16234,10 +16211,8 @@ msgid ""
 msgstr "שם פרטי תיאורי במקום או בנוסף לשם הפרטי הרשמי."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "שם(ות) פרטי(ים) "
+msgstr "שמות פרטיים"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16476,10 +16451,10 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"קו רוחב (מיקום מעל קו המשווה) של המקום בערכים עשרוניים או מעלות. \n"
+"קו רוחב (מיקום מעל קו המשווה) של המקום בערכים עשרוניים או מעלות.\n"
 "לדוגמה, ערכים חוקיים יהיו 12.0154, 50 ° 52 ′ 21.92 \"N, N50 ° 52 ′ 21.92\" "
 "או 50:52:21.92\n"
-"ניתן להגדיר ערכים אלה ממצג 'גיאוגרפיה' על-ידי חיפוש מקום, או באמצעות שירות "
+"ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על-ידי חיפוש מקום, או באמצעות שירות "
 "מפה ממצג 'מקום'."
 
 #: ../gramps/gui/glade/editplace.glade:192
@@ -16492,10 +16467,10 @@ msgid ""
 "via a map service in the place view."
 msgstr ""
 "קו אורך (מיקום יחסי למרידיאן הראשי, או גריניץ' ) של המקום בסימון עשרוני או "
-"במעלות. \n"
+"במעלות.\n"
 "לדוגמה, ערכים חוקיים יהיו: 124.3647-, E124 ° 52 ′ 21.92, ‏124°52′21.92″E, או "
 "124:52:21.92\n"
-"ניתן להגדיר ערכים אלה ממצג 'גיאוגרפיה' על-ידי חיפוש מקום, או באמצעות שירות "
+"ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על-ידי חיפוש מקום, או באמצעות שירות "
 "מפה ממצג 'מקום'."
 
 #: ../gramps/gui/glade/editplace.glade:213
@@ -16509,11 +16484,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
-msgstr "שדה המשמש להדבקת מידע מעמוד מרשתת כמו גוגל, openstreetmap,... "
+msgstr ""
+"שדה שנועד להדביק עליו מידע שנגזר מעמוד מרשתת כגון גוגל, OpenStreetMap..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -16601,7 +16574,7 @@ msgstr ""
 "קו רוחב (מיקום מעל או מתחת קו המשווה) של המקום בערכים עשרוניים או מעלות. \n"
 "לדוגמה, ערכים חוקיים הם 12.0154, 50 ° 52 ′ 21.92 \"N, N50 ° 52 ′ 21.92\" או "
 "50:52:21.92\n"
-"ניתן להגדיר ערכים אלה ממצג 'גיאוגרפיה' על-ידי חיפוש מקום, או באמצעות שירות "
+"ניתן להגדיר ערכים אלה ממצג 'גאוגרפיה' על-ידי חיפוש מקום, או באמצעות שירות "
 "מפה ממצג 'מקום'."
 
 #: ../gramps/gui/glade/editplaceref.glade:475
@@ -17704,7 +17677,7 @@ msgstr ""
 "נא להתקין Gnome Introspection וגרסת pygobject 3.12 או מאוחרת יותר.\n"
 "לאחר מכן להתקין נתונים introspection של Gdk, Gtk, פאנגו ו פאנגו-קיירו \n"
 "\n"
-"גרמפס תיסגר כעת."
+"גרמפס יסגר כעת."
 
 #: ../gramps/gui/grampsgui.py:466
 #, python-format
@@ -17731,7 +17704,7 @@ msgstr ""
 "\n"
 "תמיכה בקיירו פייטון לא מותקנת. נא להתקין קיירו לגרסת הפייטון\n"
 "\n"
-"גרמפס תיסגר כעת."
+"גרמפס יסגר כעת."
 
 #: ../gramps/gui/grampsgui.py:497
 msgid "Gramps detected an incomplete GTK installation"
@@ -20588,19 +20561,19 @@ msgid ""
 "  is resized to remove any gap in either height or width"
 msgstr ""
 "האם לשנות את גודל הדף כך שיתאים\n"
-"לגודל העץ.  הערה:  לדף יהיה\n"
-"בגודל לא תקני.\n"
+"לגודל העץ.  הערה:  הדף\n"
+"לאיהיה בגודל תקני.\n"
 "\n"
-"כשאפשרות זו נבחרת, יתרחשו הפעולות הבאות:\n"
+"בבחירה באפשרות זו, יתרחשו הפעולות הבאות:\n"
 "\n"
-"עם האפשרות 'לא לשנות גודל עץ' הדף\n"
-"  ישתנה לגובה/רוחב העץ\n"
+"יחד עם האפשרות 'לא לשנות גודל עץ'\n"
+" גודל הדף ישתנה לפי 'גובה/רוחב' העץ\n"
 "\n"
-"עם 'שינוי גודל עץ להתאמה רק לרוחב העמוד'\n"
-"  גודל העמוד ישתנה לפי גובה העץ\n"
+"יחד עם האפשרות 'שינוי גודל עץ להתאמה רק לרוחב הדף'\n"
+"  גודל הדף ישתנה לפי 'גובה' העץ\n"
 "\n"
-"עם 'שינוי גודל עץ להתאמה לגודל הדף' הדף\n"
-"  ישתנה כך שכל פער בגובה או ברוחב יוסר"
+"יחד עם האפשרות 'שינוי גודל עץ להתאמה לגודל הדף' \n"
+" גודל הדף ישתנה כך שכל פער ב'גובה' או ב'רוחב' הדף יוסר"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
@@ -20735,16 +20708,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "לדוגמה\n"
-"ארצות הברית של אמריקה/ארה\"ב"
+"ארצות הברית של אמריקה/ארה\"ב."
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -20929,7 +20898,7 @@ msgid_plural ""
 " {person}, {nyears}"
 msgstr[0] ""
 "{spouse} ו-\n"
-"{person}, {nyears}"
+" {person}, {nyears}"
 msgstr[1] ""
 "{spouse} ו-\n"
 "{person}, {nyears}"
@@ -23795,9 +23764,9 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"גרמפס נוצרה על ידי הגנאלוגים של הגנאלוגים, היא חבילת תוכנה קוד פתוח, מה "
-"שאומר שניתן, באופן חופשי לשכפל ולהפיץ אותה לכל. גרמפס פותחה ומתוחזקת על ידי "
-"צוות מתנדבים עולמי שמטרתו להפוך אותה לעצמתית, אך קלה לשימוש.\n"
+"גרמפס נוצר על ידי הגנאלוגים של הגנאלוגים, חבילת תוכנה בקוד פתוח, מה שאומר "
+"שניתן, באופן חופשי לשכפל ולהפיץ את גרמפס לכל. גרמפס מפותח ומתוחזק על ידי "
+"צוות מתנדבים עולמי שמטרתו להפוך אותו לעצמתי, אך קל לשימוש.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
@@ -24942,10 +24911,8 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
-msgstr "ANSI (iso-8859-1)"
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -29962,7 +29929,7 @@ msgstr "מיזוג מקומות אלו ייצר הפניה מעגלית במדר
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:35
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "ספריה שתשמש את Cairo לחילול מסמכים."
+msgstr "ספריה שתשמש את קיירו לחילול מסמכים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:54
 msgid "Provides GEDCOM processing functionality"
@@ -30465,7 +30432,7 @@ msgid ""
 " - a red row related to a geocoding result."
 msgstr ""
 "\n"
-"- שורה אדומה קשורה לתוצאת קידוד גיאוגרפי."
+" - שורה אדומה קשורה לתוצאת קידוד גאוגרפי."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:165
 msgid "The green values in the row correspond to the current place values."
@@ -31522,7 +31489,7 @@ msgstr "* %(person)s, לידה%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
 msgstr[0] "* {year}{person}{dead}, {age}{relation}"
@@ -31559,7 +31526,7 @@ msgid "✝ {person}, death {relation}"
 msgstr "✝ {person}, פטירה {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:444
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
 msgstr[0] "✝ {year}{person}, {age}{relation}"
@@ -35677,7 +35644,7 @@ msgstr "האם היתה לשתי המשפחות הללו את התכנות לה�
 
 #: ../gramps/plugins/view/geofamclose.py:252
 msgid "GeoFamClose"
-msgstr "GeoFamClose"
+msgstr "גאו-סגירה-משפחה"
 
 #: ../gramps/plugins/view/geofamclose.py:295
 #: ../gramps/plugins/view/geofamily.py:342
@@ -35805,7 +35772,7 @@ msgstr "מצג של כל המקומות בה ביקר אדם במהלך שנות
 #: ../gramps/plugins/view/geography.gpr.py:186
 #: ../gramps/plugins/view/geography.gpr.py:203
 msgid "Geography"
-msgstr "גיאוגרפיה"
+msgstr "גאוגרפיה"
 
 #: ../gramps/plugins/view/geography.gpr.py:104
 msgid "All known places for one Family"
@@ -37109,20 +37076,16 @@ msgid "Sort all children in birth order"
 msgstr "מיון צאצאים על פי סדר לידתם"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "האם להציג את הצאצאים לפי סדר לידה או לפי סדר ההזנה שלהם?"
+msgstr "הצגת צאצאים לפי סדר לידתם או לפי סדר ההזנה."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "האם להציג קואורדינטות ברשימת המקומות?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "האם להציג קווי אורך/רוחב ברשימת המקומות?"
+msgstr "הצגת קווי אורך/רוחב ברשימת המקומות."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -37221,10 +37184,8 @@ msgid "HTML user header"
 msgstr "כותרת עמוד HTML"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "הערה שתשמש ככותרת העמוד או כקוד PHP להזנה."
+msgstr "הערה שתשמש ככותרת העמוד או כקוד PHP להכנסה."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
