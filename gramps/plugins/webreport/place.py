@@ -123,6 +123,34 @@ class PlacePages(BasePage):
             LOG.debug("    %s", str(item))
         message = _("Creating place pages")
         progress_title = self.report.pgrs_title(the_lang)
+        if self.report.options['inc_uplaces']:
+            place_count = len(self.r_db.get_place_handles())
+        else:
+            place_count = len(self.report.obj_dict[Place])
+        with self.r_user.progress(progress_title, message,
+                                  place_count + 1
+                                 ) as step:
+            if self.report.options['inc_uplaces']:
+                # add unused place
+                place_list = self.r_db.get_place_handles()
+                for place_ref in place_list:
+                    if place_ref not in self.report.obj_dict[Place]:
+                        place = self.r_db.get_place_from_handle(place_ref)
+                        if place:
+                            place_name = place.get_title()
+                            p_fname = self.report.build_url_fname(place_ref,
+                                                                  "plc",
+                                                                  False,
+                                                                  init=True)
+                            p_fname += self.ext
+                            plc_dict = (p_fname, place_name,
+                                        place.gramps_id, None)
+                            self.report.obj_dict[Place][place_ref] = plc_dict
+                            p_name = _pd.display(self.r_db, place)
+                            plc_dict = (place_ref, p_name,
+                                        place.gramps_id, None)
+                            self.report.obj_dict[PlaceName][p_name] = plc_dict
+
         with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Place]) + 1
                                  ) as step:
@@ -134,7 +162,7 @@ class PlacePages(BasePage):
                 self.placepage(self.report, the_lang, the_title, p_handle[0],
                                place_name)
             step()
-            self.placelistpage(self.report, the_lang, the_title)
+        self.placelistpage(self.report, the_lang, the_title)
 
     def placelistpage(self, report, the_lang, the_title):
         """

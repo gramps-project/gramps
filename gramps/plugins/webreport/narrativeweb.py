@@ -2387,6 +2387,11 @@ class NavWebOptions(MenuReportOptions):
             _('Whether or not to include the places Pages.'))
         addopt("inc_places", inc_places)
 
+        inc_uplaces = BooleanOption(_('Include unused places pages'), False)
+        inc_uplaces.set_help(
+            _('Whether or not to include the unused places Pages.'))
+        addopt("inc_uplaces", inc_uplaces)
+
         inc_sources = BooleanOption(_('Include sources pages'), False)
         inc_sources.set_help(
             _('Whether or not to include the sources Pages.'))
