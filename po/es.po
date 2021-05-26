@@ -9,13 +9,14 @@
 #
 # Juan Saavedra <jcsaaver@gmail.com>, 2021.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
 "PO-Revision-Date: 2021-05-26 20:19+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -11358,7 +11359,7 @@ msgstr "Heterosexualidad"
 
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr "Transgénero, hermafrodita (en etimología)"
+msgstr "Transgénero, hermafrodita (en entomología)"
 
 #: ../gramps/gen/utils/symbols.py:68
 msgid "Transgender"
