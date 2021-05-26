@@ -22,12 +22,13 @@
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 # Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020.
+# Pär Ekholm <par.ekholm@pekholm.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-23 11:30+0000\n"
+"PO-Revision-Date: 2021-05-26 20:19+0000\n"
 "Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -3474,7 +3475,7 @@ msgstr "ickepatronymikon"
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
 msgctxt "Remaining names"
 msgid "rest"
-msgstr "Restnamn"
+msgstr "restnamn"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:737
 #: ../gramps/gui/editors/editperson.py:401
@@ -7265,7 +7266,7 @@ msgstr "Nytt år börjar"
 #: ../gramps/gen/lib/date.py:1856
 msgctxt "date-quality"
 msgid "none"
-msgstr "Ingen"
+msgstr "ingen"
 
 #: ../gramps/gen/lib/date.py:1857
 msgid "calculated"
@@ -7278,7 +7279,7 @@ msgstr "uppskattad"
 #: ../gramps/gen/lib/date.py:1871
 msgctxt "date-modifier"
 msgid "none"
-msgstr "Ingen"
+msgstr "ingen"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/webreport/basepage.py:3248
 msgid "about"
@@ -11278,19 +11279,14 @@ msgstr ""
 "som %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Din Python-version möter inte kraven. Åtminstone python %(v1)d.%(v2)d.%(v3)d "
+"Din Python-version möter inte kraven. Åtminstone Python %(v1)d.%(v2)d.%(v3)d "
 "behövs för att starta Gramps.\n"
 "\n"
 "Gramps kommer att avslutas nu."
@@ -11301,28 +11297,21 @@ msgid "Configuration error:"
 msgstr "Fel på inställningsparametrar:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Fel vid läsning av inställningar"
+msgstr "Kunde inte läsa inställningarna"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"En definition för MIME-typen %s kunde inte hittas\n"
+"En definition för media-typen %s kunde inte hittas\n"
 "\n"
 " Eventuellt var inte installationen av Gramps fullständig. Säkerställ att "
-"MIME-typerna för Gramps är korrekt installerade."
+"något som hanterar media-typerna för Gramps är korrekt installerade."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -13024,7 +13013,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "manual|Select_a_media_selector"
+msgstr "Välj_en_mediaväljare"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -14874,7 +14863,7 @@ msgstr "Lägg till arkivplats"
 #: ../gramps/gui/editors/editrepository.py:60
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "manual|Dialog för ny arkivplats"
+msgstr "Dialog_för_ny_arkivplats"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -15931,11 +15920,6 @@ msgid "Con_fidence:"
 msgstr "Tillf_örlitlighet:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -15943,7 +15927,7 @@ msgid ""
 msgstr ""
 "Datumet för inmatningen i källan du refererar till, t. ex. datumet då ett "
 "hus besöktes under en folkräkning eller datumet en inmatning gjorts i en "
-"födelsebok eller liknande. "
+"födelsebok eller liknande."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16312,13 +16296,6 @@ msgid "Image preview"
 msgstr "Förhandsgranskning av bild"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16327,10 +16304,10 @@ msgid ""
 "managing paths of a collection of media objects."
 msgstr ""
 "Sökväg för mediaobjekt på din dator.\n"
-"Gramps sparar inte media internt utan bara sökvägar! Sätt 'Relativ sökväg' i "
+"Gramps sparar inte media internt utan bara sökvägar! Ange 'Relativ sökväg' i "
 "Inställningar så undviker du att skriva om den gemensamma mappen där alla "
 "dina media är lagrade. Verktyget 'Mediahanteraren' kan hjälpa dig att "
-"justera sökvägar för en samling mediaobjekt. "
+"justera sökvägar för en samling mediaobjekt."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16497,10 +16474,8 @@ msgstr ""
 "officiella förnamnet."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Förnamn "
+msgstr "Förnamn"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16785,13 +16760,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Fält som används för att klistra in information från en webbsida som google, "
-"openstreetmap, ... "
+"Fält som används för att klistra in information från en webbsida som Google, "
+"OpenStreetMap ..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -21079,16 +21051,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
-"T. ex.\n"
-"Amerikas Förenta Stater"
+"t. ex.\n"
+"Amerikas Förenta Stater/U.S.A."
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -25327,10 +25295,8 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
-msgstr "ANSI (iso-8859-1)"
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -25737,7 +25703,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1369
 msgid "Identifier"
-msgstr "identifierare"
+msgstr "Identifierare"
 
 #: ../gramps/plugins/importer/importprogen.glade:1400
 msgid "Name change"
@@ -25827,7 +25793,7 @@ msgstr "_Ok"
 #: ../gramps/plugins/importer/importprogen.py:62
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
-msgstr "manuell|Import_från_ett_annat_släktforskningsprogram"
+msgstr "Import_från_ett_annat_släktforskningsprogram"
 
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
@@ -31179,42 +31145,42 @@ msgstr "alla"
 #: ../gramps/plugins/quickview/filterbyname.py:42
 msgctxt "Filtering_on"
 msgid "Inverse Person"
-msgstr "ej utvald(a) person(er)"
+msgstr "Ej utvald(a) person(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
 msgctxt "Filtering_on"
 msgid "Inverse Family"
-msgstr "ej utvald(a) familj(er)"
+msgstr "Ej utvald(a) familj(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
 msgctxt "Filtering_on"
 msgid "Inverse Event"
-msgstr "ej utvald(a) händelse(r)"
+msgstr "Ej utvald(a) händelse(r)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:45
 msgctxt "Filtering_on"
 msgid "Inverse Place"
-msgstr "ej utvald(a) plats(er)"
+msgstr "Ej utvald(a) plats(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
 msgctxt "Filtering_on"
 msgid "Inverse Source"
-msgstr "ej utvald(a) källa/källor"
+msgstr "Ej utvald(a) källa/källor"
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr "ej utvald(a) arkivplats(er)"
+msgstr "Ej utvald(a) arkivplats(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgctxt "Filtering_on"
 msgid "Inverse Media"
-msgstr "ej utvalt/utvalda mediaobjekt"
+msgstr "Ej utvalt/utvalda mediaobjekt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgctxt "Filtering_on"
 msgid "Inverse Note"
-msgstr "ej utvald(a) notis(er)"
+msgstr "Ej utvald(a) notis(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgctxt "Filtering_on"
@@ -37614,20 +37580,16 @@ msgid "Sort all children in birth order"
 msgstr "Sortera samtliga barn i födelseordning"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "Huruvida visa barn i födelseordning eller i inmatningsordning?"
+msgstr "Huruvida visa barn i födelseordning eller i inmatningsordning."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "Ska koordinater visas i platslistan?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Huruvida visa latitud/longitud i platslistan?"
+msgstr "Huruvida visa latitud/longitud i platslistan."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -37728,8 +37690,6 @@ msgid "HTML user header"
 msgstr "HTML sidhuvud"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr ""
 "En anteckning som ska användas som sidhuvud eller som en PHP-kod att infoga."
