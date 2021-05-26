@@ -7,13 +7,15 @@
 # *** Vedr. ordstilling: ***
 # Ofte vil det lyde mere naturligt at ændre en ordstilling ved at
 # bytte om på hoved- og ledsætning, som f.eks.
+# Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017, 2018.
+# Allan Nordhøy <epost@anotheragency.no>, 2021.
 #
-#   "Før reparationen udføres, forvis dig om at databasen virkelig
-#   "ikke længere kan åbnes"
+# "Før reparationen udføres, forvis dig om at databasen virkelig
+# "ikke længere kan åbnes"
 # til
 #
-#   "forvis dig om at databasen virkelig ikke kan åbnes før du
-#   "udfører reparationen."
+# "forvis dig om at databasen virkelig ikke kan åbnes før du
+# "udfører reparationen."
 #
 # Jeg har dog i mange tilfælde valgt at bevare den oprindelige
 # ordstilling, da der ligger en opmærksomhedsskabende værdi i denne. Her
@@ -33,19 +35,18 @@
 #
 # Anvendt af Lars Kr. Lundin:
 # citation: citering (fremfor f.eks. 'kildehenvisning')
-#      citering er i 2016 blevet ændret til kildehenvisning af Kaj Mikkelsen
+# citering er i 2016 blevet ændret til kildehenvisning af Kaj Mikkelsen
 # database: database (fremfor det tidligere 'slægtsbog')
 # matches: matcher (fremfor det tidligere 'passer med')
 # locale: landestandard (i mangel af bedre)
 #
-# Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-24 10:04+0000\n"
+"PO-Revision-Date: 2021-05-26 20:19+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -3960,7 +3961,7 @@ msgstr "Ingen beskrivelse"
 #. more references to a filter than expected
 #: ../gramps/gen/filters/rules/_rule.py:94
 msgid "The filter definition contains a loop."
-msgstr "Filter definitionen indeholder en løkke"
+msgstr "Filterdefinitionen indeholder en løkke"
 
 #: ../gramps/gen/filters/rules/_rule.py:95
 msgid "One rule references another which eventually references the first."
@@ -10021,8 +10022,9 @@ msgstr "Indstillinger for node"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:144
+#, fuzzy
 msgid "Node detail"
-msgstr "Node detaljer"
+msgstr "Nodedetalje"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:147
 msgid "Detail of information to be shown in a node."
@@ -23858,7 +23860,7 @@ msgstr "Genindlæs"
 
 #: ../gramps/plugins/gramplet/leak.py:122
 msgid "Press Refresh to see initial results"
-msgstr "Tryk  på Opdater for at se det primære resultat"
+msgstr "Tryk på Opdater for at se det primære resultat"
 
 #: ../gramps/plugins/gramplet/leak.py:158
 #, python-format
@@ -24925,19 +24927,19 @@ msgid ""
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
-"Gennemtving  Sosa / Sosa-Stradonitz / Ahnentafel layout for alle aner, "
+"Gennemtving Sosa- / Sosa-Stradonitz- / Ahnentafel-layout for alle aner, "
 "således at fædre altid er til venstre og mødre altid til højre."
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "Ahnentafel number visible"
-msgstr "Ahnentafel nummer synligt"
+msgstr "Ahnentafel-nummer synligt"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
 msgstr ""
-"Vis Sosa / Sosa-Stradonitz / Ahnentafel nummer under al anden information."
+"Vis Sosa- / Sosa-Stradonitz- / Ahnentafel-nummer under al anden information."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -25886,8 +25888,8 @@ msgid ""
 "Use original Person\n"
 "Identifier as Gramps ID."
 msgstr ""
-"Benyt oprindelig Person\n"
-"Id som gramps ID"
+"Benyt oprindelig Person-\n"
+"ID som gramps-ID"
 
 #: ../gramps/plugins/importer/importprogen.glade:1349
 msgid ""

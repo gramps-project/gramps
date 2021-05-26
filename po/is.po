@@ -4,13 +4,14 @@
 # This file is distributed under the same license as the GRAMPS package.
 #
 # Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017, 2018.
+# Allan Nordhøy <epost@anotheragency.no>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-18 21:26+0000\n"
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/is/>\n"
 "Language: is\n"
@@ -637,7 +638,7 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Breyta venslum foreldris og barns</b><br/> Þú getur breytt venslum barns "
+"<b>Breyta venslum foreldris og barns</b><br/>Þú getur breytt venslum barns "
 "við foreldra sína með því að tvísmella á barnið í fjölskylduritlinum. "
 "Venslin geta verið eitt af eftirtöldu; Ættleiðing, Fæðing, Fóstur, Ekkert, "
 "Stuðningur, Stjúpbarn og Óþekkt."
