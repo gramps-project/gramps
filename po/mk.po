@@ -5,21 +5,24 @@
 # Maintainer: Vlado Pesov <vpesov@genrepsoft.com>, 2008
 # Maintainer: Bojan Seirovski <druid0101@gmail.com>, 2008
 # Translator: Aleksandar Silovski <aleksandar.silovski@gmail.com>, 2008
-# Translator: Biljana Bogdanovska <bbogdanovska11@gmail.com>, 2008 
+# Translator: Biljana Bogdanovska <bbogdanovska11@gmail.com>, 2008
 # Proof-reading: Dejan Vasilevski <getorudi@yahoo.com>, 2008
+# Jacque Fresco <aidter@use.startmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2008-11-29 14:24+0100\n"
-"Last-Translator: Dejan Vasilevski <getorudi@yahoo.com>\n"
-"Language-Team: Macedonian <FOSS-in-EDU@googlegroups.com>\n"
+"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"Language-Team: Macedonian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/mk/>\n"
 "Language: mk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0\n"
+"Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 #, fuzzy
@@ -26455,7 +26458,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
 msgid "ANSI (ISO-8859-1)"
-msgstr ""
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -26463,7 +26466,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:24
 msgid "UTF8"
-msgstr ""
+msgstr "UTF8"
 
 #: ../gramps/plugins/importer/importgedcom.glade:30
 #, fuzzy
@@ -27847,7 +27850,7 @@ msgstr "Новороденче"
 #: ../gramps/plugins/lib/libmetadata.py:66
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr ""
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../gramps/plugins/lib/libmetadata.py:69
 #, fuzzy, python-format
@@ -38370,7 +38373,7 @@ msgstr[1] "Покажи браќа и сестри"
 #: ../gramps/plugins/view/relview.py:1051
 #: ../gramps/plugins/view/relview.py:1106
 msgid " (1 brother)"
-msgstr ""
+msgstr " (1 брат)"
 
 #: ../gramps/plugins/view/relview.py:1053
 #: ../gramps/plugins/view/relview.py:1108
@@ -38870,7 +38873,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/download.py:129
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #. We have several files to download
 #. but all file names are empty

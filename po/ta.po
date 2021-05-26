@@ -2,21 +2,23 @@
 # This file is distributed under the same license as the gramps package.
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # Copyright முரளி (murali) (Logan M) <vmmlog@gmail.com>, 2012, 2014, 2017
-#
+# Jacque Fresco <aidter@use.startmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2013-04-02 11:54+0000\n"
-"Last-Translator: முரளி (murali) (Logan M) <vmmlog@gmail.com>\n"
-"Language-Team: Tamil <ta@li.org>\n"
+"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Launchpad-Export-Date: 2014-07-26 03:32+0000\n"
-"X-Generator: Launchpad (build 17131)\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -938,7 +940,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:556
 #, python-format
 msgid "  Info: %s"
-msgstr ""
+msgstr "  தகவல்: %s"
 
 #: ../gramps/cli/arghandler.py:559
 msgid "Database needs recovery, cannot open it!"
@@ -1386,7 +1388,7 @@ msgstr "தெரியாத"
 #: ../gramps/cli/grampscli.py:81
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "எச்சரிக்கை: %s"
 
 #: ../gramps/cli/grampscli.py:88 ../gramps/cli/grampscli.py:224
 #, python-format
@@ -1759,7 +1761,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:181
 #, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. first date in a span
 #. If "from <Month>" needs a special inflection in your
@@ -1858,7 +1860,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:253
 #, python-brace-format
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. first date in a span
 #. If "from <Month>" needs a special inflection in your
@@ -2042,7 +2044,7 @@ msgstr "கணிக்கப்பட்ட"
 #: ../gramps/gen/datehandler/_datedisplay.py:530
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:649
@@ -7852,7 +7854,7 @@ msgstr "வாழ்கை துனையை சேர்"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
-msgstr ""
+msgstr "<No Status>"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Born in Covenant"
@@ -8917,7 +8919,7 @@ msgstr ""
 #: ../gramps/gen/lib/surnamebase.py:196
 #, python-format
 msgid "%(first)s %(second)s"
-msgstr ""
+msgstr "%(first)s %(second)s"
 
 #: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:168
 #: ../gramps/gui/glade/styleeditor.glade:400
@@ -10450,7 +10452,7 @@ msgstr ""
 #: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
 msgid "%s, ..."
-msgstr ""
+msgstr "%s, ..."
 
 #: ../gramps/gen/utils/db.py:537
 #, python-format
@@ -12074,11 +12076,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
-msgstr ""
+msgstr "ஒவ்வொரு 15 நிமிடங்களுக்கும்"
 
 #: ../gramps/gui/configure.py:1781
 msgid "Every 30 minutes"
-msgstr ""
+msgstr "ஒவ்வொரு 30 நிமிடங்களுக்கும்"
 
 #: ../gramps/gui/configure.py:1782
 #, fuzzy
@@ -12950,7 +12952,7 @@ msgstr "ஊடகச் சுட்டு"
 #: ../gramps/gui/editors/displaytabs/backrefmodel.py:50
 #, python-format
 msgid "%(part1)s - %(part2)s"
-msgstr ""
+msgstr "%(part1)s - %(part2)s"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:69
 #: ../gramps/gui/glade/editfamily.glade:217
@@ -14170,7 +14172,7 @@ msgstr "%(father)s மற்றும் %(mother)s"
 #: ../gramps/gui/editors/editldsord.py:299
 #, python-format
 msgid "%(mother)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../gramps/gui/editors/editlink.py:49
 msgctxt "manual"
@@ -14340,7 +14342,7 @@ msgstr ""
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr ""
+msgstr "குறிப்பு: %(id)s - %(context)s"
 
 #: ../gramps/gui/editors/editnote.py:155
 #: ../gramps/plugins/webreport/basepage.py:747
@@ -15146,7 +15148,7 @@ msgstr "துடைக்கப்பட்டது"
 #: ../gramps/gui/filters/_searchbar.py:107
 #, python-format
 msgid "%s is"
-msgstr ""
+msgstr "%s is"
 
 #: ../gramps/gui/filters/_searchbar.py:109
 #, python-format
@@ -16854,12 +16856,12 @@ msgstr "தேதியை தேர்ந்தெடுத்தல்"
 #: ../gramps/gui/glade/mergedata.glade:576
 #: ../gramps/gui/glade/mergeplace.glade:179
 msgid "Place 1"
-msgstr ""
+msgstr "இடம் 1"
 
 #: ../gramps/gui/glade/mergedata.glade:593
 #: ../gramps/gui/glade/mergeplace.glade:193
 msgid "Place 2"
-msgstr ""
+msgstr "இடம் 2"
 
 #: ../gramps/gui/glade/mergeevent.glade:97
 msgid ""
@@ -17401,7 +17403,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:1221
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: ../gramps/gui/glade/styleeditor.glade:1247
 #, fuzzy
@@ -19724,7 +19726,7 @@ msgstr ""
 #: ../gramps/gui/views/pageview.py:579
 #, python-format
 msgid "%(cat)s - %(view)s"
-msgstr ""
+msgstr "%(cat)s - %(view)s"
 
 #: ../gramps/gui/views/pageview.py:599
 #, python-format
@@ -19845,7 +19847,7 @@ msgstr "பெயர்:"
 #: ../gramps/gui/views/tags.py:704
 #, python-format
 msgid "%(title)s - Gramps"
-msgstr ""
+msgstr "%(title)s - Gramps"
 
 #: ../gramps/gui/views/tags.py:704
 msgid "Pick a Color"
@@ -20905,7 +20907,7 @@ msgstr "ஒரு தரவுதளத்தை திற"
 #: ../gramps/plugins/drawreport/calendarreport.py:361
 #, python-format
 msgid "%(person)s, birth"
-msgstr ""
+msgstr "%(person)s, பிறப்பு"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:365
@@ -21794,11 +21796,11 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1104
 msgid "Charts 2"
-msgstr ""
+msgstr "விளக்கப்படங்கள் 2"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1106
 msgid "Charts 1"
-msgstr ""
+msgstr "விளக்கப்படங்கள் 1"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1108
 msgid "Include charts with indicated data."
@@ -22288,7 +22290,7 @@ msgstr "%(father)s மற்றும் %(mother)s"
 #: ../gramps/plugins/gramplet/ancestor.py:155
 #, python-format
 msgid "%(depth)s. %(name)s"
-msgstr ""
+msgstr "%(depth)s. %(name)s"
 
 #: ../gramps/plugins/gramplet/attributes.py:52
 msgid ""
@@ -22323,7 +22325,7 @@ msgstr "மூலப் பட்டி"
 
 #: ../gramps/plugins/gramplet/citations.py:167
 msgid "<No Volume/Page>"
-msgstr ""
+msgstr "<No Volume/Page>"
 
 #: ../gramps/plugins/gramplet/coordinates.py:83
 msgid "Right-click on a row to edit the selected event or the related place."
@@ -23489,12 +23491,12 @@ msgstr ""
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:226
 #, python-format
 msgid "(b. %s)"
-msgstr ""
+msgstr "(b. %s)"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:228
 #, python-format
 msgid "(d. %s)"
-msgstr ""
+msgstr "(d. %s)"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:252
 #, fuzzy
@@ -23506,7 +23508,7 @@ msgstr "இரண்டாம் தலைமுறை"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:254
 msgctxt "percent sign or text string"
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:261
 msgid "Generation 1"
@@ -23566,12 +23568,12 @@ msgstr[1] "தனிநபர்களின் எண்ணிக்கை"
 #: ../gramps/plugins/gramplet/persondetails.py:267
 #, python-format
 msgid "%(date)s - %(place)s."
-msgstr ""
+msgstr "%(date)s - %(place)s."
 
 #: ../gramps/plugins/gramplet/persondetails.py:270
 #, python-format
 msgid "%(date)s."
-msgstr ""
+msgstr "%(date)s."
 
 #. Add types:
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:71
@@ -23610,7 +23612,7 @@ msgstr "(%s) என்ற நபரை திருத்து"
 #: ../gramps/plugins/gramplet/relativegramplet.py:88
 #, python-format
 msgid "%(count)d. %(relation)s: "
-msgstr ""
+msgstr "%(count)d. %(relation)s: "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:94
 #, python-format
@@ -25098,7 +25100,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
 msgid "ANSI (ISO-8859-1)"
-msgstr ""
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -25106,7 +25108,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:24
 msgid "UTF8"
-msgstr ""
+msgstr "UTF8"
 
 #: ../gramps/plugins/importer/importgedcom.glade:30
 msgid "Gramps - GEDCOM Encoding"
@@ -26436,7 +26438,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libmetadata.py:66
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr ""
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../gramps/plugins/lib/libmetadata.py:69
 #, python-format
@@ -26905,7 +26907,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:316
 #, python-format
 msgid "Died %(death_date)s."
-msgstr ""
+msgstr "இறந்தார் %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:284
 #: ../gramps/plugins/lib/libnarrate.py:317
@@ -27113,7 +27115,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:382
 #, python-format
 msgid "Died %(month_year)s."
-msgstr ""
+msgstr "இறந்தார் %(month_year)s"
 
 #: ../gramps/plugins/lib/libnarrate.py:383
 #, python-format
@@ -27223,7 +27225,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:450
 #, python-format
 msgid "Died (%(age)s)."
-msgstr ""
+msgstr "இறந்தார் (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:461
 #, python-format
@@ -32215,7 +32217,7 @@ msgstr ""
 #, python-format
 msgctxt "acronym for unknown"
 msgid "%dU"
-msgstr ""
+msgstr "%dU"
 
 #: ../gramps/plugins/textreport/familygroup.py:618
 #, fuzzy, python-format
@@ -32629,7 +32631,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/recordsreport.py:173
 #, python-format
 msgid "%(number)s. "
-msgstr ""
+msgstr "%(number)s. "
 
 #: ../gramps/plugins/textreport/recordsreport.py:228
 #, fuzzy
@@ -33639,7 +33641,7 @@ msgstr ""
 #: ../gramps/plugins/tool/eventcmp.py:255
 #, python-format
 msgid "%(event_name)s Date"
-msgstr ""
+msgstr "%(event_name)s தேதி"
 
 #. This won't be shown in a tree
 #: ../gramps/plugins/tool/eventcmp.py:259
@@ -35641,7 +35643,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoperson.py:403
 #, python-format
 msgid "%(eventtype)s : %(name)s"
-msgstr ""
+msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:641
 msgid "Choose and bookmark the new reference person"
@@ -36284,7 +36286,7 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட வாழ்�
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
 #, python-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36326,12 +36328,12 @@ msgstr[1] ""
 #: ../gramps/plugins/view/relview.py:1051
 #: ../gramps/plugins/view/relview.py:1106
 msgid " (1 brother)"
-msgstr ""
+msgstr " (1 சகோதரர்)"
 
 #: ../gramps/plugins/view/relview.py:1053
 #: ../gramps/plugins/view/relview.py:1108
 msgid " (1 sister)"
-msgstr ""
+msgstr " (1 சகோதரி)"
 
 #: ../gramps/plugins/view/relview.py:1055
 #: ../gramps/plugins/view/relview.py:1110
@@ -36365,7 +36367,7 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:1418
 #, python-format
 msgid "%(event)s %(date)s"
-msgstr ""
+msgstr "%(event)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1477
 #, fuzzy, python-format
@@ -36795,7 +36797,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/download.py:129
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #. We have several files to download
 #. but all file names are empty
@@ -37815,7 +37817,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/surname.py:95
 #: ../gramps/plugins/webreport/surnamelist.py:193
 msgid "<absent>"
-msgstr ""
+msgstr "<absent>"
 
 #: ../gramps/plugins/webreport/person.py:292
 #, fuzzy, python-format
@@ -38085,7 +38087,7 @@ msgstr "%(father)s மற்றும் %(mother)s"
 #, python-format
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
+msgstr "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format
