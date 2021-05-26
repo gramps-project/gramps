@@ -3,13 +3,13 @@
 # Copyright (C) Gramps project
 # josip <josip@pisoj.com>, 2008-2011.
 # Milo Ivir <mivir@milotype.de>, 2018., 2019.
-#
+# Milo Ivir <mail@milotype.de>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-21 17:06+0000\n"
+"PO-Revision-Date: 2021-05-26 20:19+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -11285,20 +11285,15 @@ msgstr ""
 "Objekti s referencom na ovu zabilješku su nedostajali u datoteci, uvežene %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Vaša inačica Pythona ne zadovoljava postavljenim uvjetima. Inačica %(v1)d."
-"%(v2)d.%(v3)d je najmanja potrebna za pokretanje Grampsa.\n"
+"Tvoja verzija Pythona ne zadovoljava postavljenim uvjetima. Za pokretanje "
+"Grampsa potrebna je barem verzija %(v1)d.%(v2)d.%(v3)d.\n"
 "\n"
 "Gramps će sada prekinuti."
 
@@ -11308,18 +11303,11 @@ msgid "Configuration error:"
 msgstr "Greška u konfiguraciji:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Greška pri učitavanju konfiguracije"
+msgstr "Neuspjelo učitavanje konfiguracije"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
@@ -11328,8 +11316,8 @@ msgid ""
 msgstr ""
 "Definicija MIME-vrste %s nije pronađena \n"
 "\n"
-"Vjerojatno nije dovršena instalacija programa Gramps u cjelosti. Provjeri, "
-"jesu li su MIME-tipovi programa Gramps pravilno instalirani."
+" Vjerojatno nije dovršena instalacija programa Gramps u cijelosti. Provjeri, "
+"jesu li programi za baratanje vrstama medija za Gramps pravilno instalirani."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -15941,11 +15929,6 @@ msgid "Con_fidence:"
 msgstr "Pou_zdanost:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -15953,7 +15936,7 @@ msgid ""
 msgstr ""
 "Datum unosa u izvoru, koji referenciraš. Npr. datum, kada je posjećena kuća "
 "za vrijeme popisa stanovnika, ili datum kada je upisan podatak u knjizi "
-"rođenih. "
+"rođenih."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16316,13 +16299,6 @@ msgid "Image preview"
 msgstr "Pregled slike"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16334,7 +16310,7 @@ msgstr ""
 "Gramps ne čuva medije interno, već samo njihove staze! Postavi „Relativne "
 "staze” u postavkama, za izbjegavanje pretipkavanja osnovnog direktorija, "
 "gdje su tvoji mediji spremljeni. Alat „Upravljač medija” može pomoći pri "
-"upravljanju staza za skup medijskih objekata. "
+"upravljanju staza za skup medijskih objekata."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16497,10 +16473,8 @@ msgid ""
 msgstr "Opisno ime, dodano umjesto ili pored službenog imena."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Ime(na) "
+msgstr "Ime(na)"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16777,13 +16751,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
 "Polje korišteno za prijenos informacija s web stranice, kao npr. google, "
-"openstreetmap, ... "
+"openstreetmap, ..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -21056,10 +21027,6 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
@@ -25302,10 +25269,8 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
-msgstr "ANSI (iso-8859-1)"
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -37676,20 +37641,16 @@ msgid "Sort all children in birth order"
 msgstr "Svrstaj svu djecu po starosti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "Da li prikazati djecu po redoslijedu rođenja ili po redoslijedu unosa?"
+msgstr "Da li prikazati djecu po redoslijedu rođenja ili po redoslijedu unosa."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "Želiš li prikazati koordinate u popisu mjesta?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Da li prikazati li zemljopisne širine/dužine u popisu mjesta?"
+msgstr "Da li prikazati li zemljopisne širine/dužine u popisu mjesta."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -37790,10 +37751,8 @@ msgid "HTML user header"
 msgstr "HTML zaglavlje korisnika"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Zabilješka korištena u zaglavlju stranice ili php kod za umetanje."
+msgstr "Zabilješka korištena u zaglavlju stranice ili PHP kod za umetanje."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
