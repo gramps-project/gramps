@@ -50,6 +50,7 @@ import logging
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (PlaceType, Place, PlaceName)
+from gramps.gen.lib import (Citation, Media, Repository, Note, Tag)
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.mime import is_image_type
 from gramps.plugins.lib.libhtml import Html
@@ -354,8 +355,10 @@ class PlacePages(BasePage):
         with Html("div", class_="content", id="PlaceDetail") as placedetail:
             outerwrapper += placedetail
 
-            if self.create_media:
-                media_list = place.get_media_list()
+            media_list = place.get_media_list()
+            if self.create_media and not self.report.options['inc_uplaces']:
+                # Don't diplay thumbnail for unused places. It generates
+                # "page not found" if they are not collected in pass 1.
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
                                                              place)
                 if thumbnail is not None:
@@ -377,7 +380,9 @@ class PlacePages(BasePage):
                     self.dump_place(place, table)
 
             # place gallery
-            if self.create_media:
+            if self.create_media and not self.report.options['inc_uplaces']:
+                # Don't diplay media for unused places. It generates
+                # "page not found" if they are not collected in pass 1.
                 placegallery = self.disp_add_img_as_gallery(media_list, place)
                 if placegallery is not None:
                     placedetail += placegallery
@@ -457,9 +462,13 @@ class PlacePages(BasePage):
                     tooltip += Html("div", id="tooltip-content")
 
             # source references
-            srcrefs = self.display_ind_sources(place)
-            if srcrefs is not None:
-                placedetail += srcrefs
+            if not self.report.options['inc_uplaces']:
+                # We can't display source reference when we display
+                # unused places. These info are not in the collected objects.
+                # This is to avoid "page not found" errors.
+                srcrefs = self.display_ind_sources(place)
+                if srcrefs is not None:
+                    placedetail += srcrefs
 
             # References list
             ref_list = self.display_bkref_list(Place, place_handle)
