@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2021-05-26 15:38+0800\n"
+"PO-Revision-Date: 2021-05-28 14:02+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
 "Language: zh_CN\n"
@@ -203,7 +203,7 @@ msgstr "犹太教的新年"
 
 #: ../data/holidays.xml.in.h:26
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Rosh Ha'Shana 2"
 
 #: ../data/holidays.xml.in.h:27
 msgid "Yom Kippur"
@@ -211,31 +211,31 @@ msgstr "『犹太教』赎罪日"
 
 #: ../data/holidays.xml.in.h:28
 msgid "Sukot"
-msgstr ""
+msgstr "Sukot"
 
 #: ../data/holidays.xml.in.h:29
 msgid "2 of Sukot"
-msgstr ""
+msgstr "Sukot 第二天"
 
 #: ../data/holidays.xml.in.h:30
 msgid "3 of Sukot"
-msgstr ""
+msgstr "Sukot 第三天"
 
 #: ../data/holidays.xml.in.h:31
 msgid "4 of Sukot"
-msgstr ""
+msgstr "Sukot 第四天"
 
 #: ../data/holidays.xml.in.h:32
 msgid "5 of Sukot"
-msgstr ""
+msgstr "Sukot 第五天"
 
 #: ../data/holidays.xml.in.h:33
 msgid "6 of Sukot"
-msgstr ""
+msgstr "Sukot 第六天"
 
 #: ../data/holidays.xml.in.h:34
 msgid "7 of Sukot"
-msgstr ""
+msgstr "Sukot 第七天"
 
 #: ../data/holidays.xml.in.h:35
 msgid "Simhat Tora"
@@ -248,31 +248,31 @@ msgstr "(犹太教的)献殿节"
 
 #: ../data/holidays.xml.in.h:37
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "Hanuka 第二天"
 
 #: ../data/holidays.xml.in.h:38
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "Hanuka 第三天"
 
 #: ../data/holidays.xml.in.h:39
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "Hanuka 第四天"
 
 #: ../data/holidays.xml.in.h:40
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "Hanuka 第五天"
 
 #: ../data/holidays.xml.in.h:41
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "Hanuka 第六天"
 
 #: ../data/holidays.xml.in.h:42
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "Hanuka 第七天"
 
 #: ../data/holidays.xml.in.h:43
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "Hanuka 第八天"
 
 #: ../data/holidays.xml.in.h:44
 msgid "New Zealand"
@@ -403,9 +403,9 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
-"<b>变更激活的成员</b><br/>在视图中变更激活的成员非常容易。在关系视图中仅仅需"
-"要点击任何人。在前辈视图中双击成员或者右键点击选择他们的配偶，兄弟姐妹，子女"
-"或者父母就可以激活。"
+"<b>变更活跃人员</b><br/>在视图中变更活跃人员非常容易。在关系视图中仅仅需要点"
+"击要设为活跃的人即可。在前辈视图中双击人员或者右键点击选择他们的配偶、兄弟姐"
+"妹、子女或者父母之一即可将其设为活跃。"
 
 #: ../data/tips.xml.in.h:11
 msgid ""
@@ -1076,7 +1076,7 @@ msgstr "在您的数据库路径下的家族树列表\n"
 #: ../gramps/cli/arghandler.py:413
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "名称为 %(f_t_name)s 的 %(full_DB_path)s"
 
 #: ../gramps/cli/arghandler.py:431 ../gramps/cli/clidbman.py:188
 msgid "Gramps Family Trees:"
@@ -1193,7 +1193,7 @@ msgstr "未知工具名称。"
 #: ../gramps/cli/arghandler.py:687
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
-msgstr ""
+msgstr "工具名称未设定。请使用 %(donottranslate)s=toolname 之一。"
 
 #: ../gramps/cli/arghandler.py:719
 msgid "Unknown book name."
@@ -1202,7 +1202,7 @@ msgstr "未知书名。"
 #: ../gramps/cli/arghandler.py:721
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
-msgstr ""
+msgstr "书名为设定。请使用 %(donottranslate)s=bookname 之一。"
 
 #: ../gramps/cli/arghandler.py:730
 #, python-format
@@ -2295,7 +2295,7 @@ msgstr ""
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
-"{date_quality}介于{date_start}与{date_stop}{nonstd_calendar_and_ny}之间"
+"{date_quality} 介于 {date_start} 与 {date_stop}{nonstd_calendar_and_ny} 之间"
 
 #. If there is no special inflection for "before <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2490,51 +2490,51 @@ msgstr "十二月"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgid "alternative month names for January||"
-msgstr ""
+msgstr "1 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgid "alternative month names for February||"
-msgstr ""
+msgstr "2 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgid "alternative month names for March||"
-msgstr ""
+msgstr "3 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgid "alternative month names for April||"
-msgstr ""
+msgstr "4 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgid "alternative month names for May||"
-msgstr ""
+msgstr "5 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgid "alternative month names for June||"
-msgstr ""
+msgstr "6 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgid "alternative month names for July||"
-msgstr ""
+msgstr "7 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgid "alternative month names for August||"
-msgstr ""
+msgstr "8 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgid "alternative month names for September||"
-msgstr ""
+msgstr "9 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgid "alternative month names for October||"
-msgstr ""
+msgstr "10 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgid "alternative month names for November||"
-msgstr ""
+msgstr "11 月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgid "alternative month names for December||"
-msgstr ""
+msgstr "12 月"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
@@ -4409,11 +4409,11 @@ msgstr "匹配符合特定 Gramps ID 编号的家庭"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
-msgstr "包含<count>LDS事件的家庭"
+msgstr "含 <count> 个 LDS 事件的家庭"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:49
 msgid "Matches families with a certain number of LDS events"
-msgstr "匹配LDS事件含有特定数字的就爱听"
+msgstr "匹配含有特定数量 LDS 事件的家庭"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:45
 msgid "Families having <count> notes"
@@ -4885,9 +4885,8 @@ msgid "Notes containing <text>"
 msgstr "笔记包含字串"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:45
-#, fuzzy
 msgid "Matches notes that contain a substring or match a regular expression"
-msgstr "匹配正则表达式的含有文本的笔记"
+msgstr "匹配含有字符串或符合正则表达式的注释"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:44
 msgid "Notes containing <substring>"
@@ -5150,11 +5149,11 @@ msgstr "匹配拥有特定 Gramps ID 编号的人"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "LDS 事件为 <count> 的成员"
+msgstr "有 <count> 个 LDS 事件的人员"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
-msgstr "匹配符合特定数量的 LDS 事件的成员"
+msgstr "匹配符合特定数量 LDS 事件的成员"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:46
 msgid "Given name:"
@@ -7083,9 +7082,8 @@ msgid "Calendar"
 msgstr "日历"
 
 #: ../gramps/gen/lib/date.py:712
-#, fuzzy
 msgid "Modifier"
-msgstr "上次修订"
+msgstr ""
 
 #: ../gramps/gen/lib/date.py:714
 #, fuzzy
@@ -7115,14 +7113,12 @@ msgid "Sort value"
 msgstr "排序(_S)："
 
 #: ../gramps/gen/lib/date.py:723
-#, fuzzy
 msgid "New year begins"
-msgstr "新年开始(_W)："
+msgstr "新年开始时间"
 
 #: ../gramps/gen/lib/date.py:1856
-#, fuzzy
 msgid "date-quality|none"
-msgstr "据估计 "
+msgstr "无"
 
 #: ../gramps/gen/lib/date.py:1857
 msgid "calculated"
@@ -7133,9 +7129,8 @@ msgid "estimated"
 msgstr "推测的"
 
 #: ../gramps/gen/lib/date.py:1871
-#, fuzzy
 msgid "date-modifier|none"
-msgstr "以前 "
+msgstr "无"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libsubstkeyword.py:314
 #: ../gramps/plugins/webreport/basepage.py:2891
@@ -7163,7 +7158,7 @@ msgstr "期间"
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "textonly"
-msgstr "文本only"
+msgstr "仅文字"
 
 #. 0 this order range above
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
@@ -7248,9 +7243,8 @@ msgid "Attributes"
 msgstr "属性"
 
 #: ../gramps/gen/lib/eventroletype.py:54
-#, fuzzy
 msgid "Role|Primary"
-msgstr "主要的"
+msgstr "主要角色"
 
 #: ../gramps/gen/lib/eventroletype.py:55
 msgid "Clergy"
@@ -7805,9 +7799,8 @@ msgid "Events"
 msgstr "事件"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
-#, fuzzy
 msgid "LDS ordinances"
-msgstr "后期圣徒教仪"
+msgstr "LDS ordinances"
 
 #: ../gramps/gen/lib/familyreltype.py:47
 #: ../gramps/plugins/webreport/webcal.py:2115
@@ -7972,7 +7965,7 @@ msgstr "模糊的"
 #: ../gramps/plugins/textreport/indivcomplete.py:704
 #: ../gramps/plugins/webreport/basepage.py:435
 msgid "LDS Ordinance"
-msgstr "后期圣徒教仪"
+msgstr "LDS Ordinance"
 
 #: ../gramps/gen/lib/ldsord.py:190
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
@@ -8365,7 +8358,7 @@ msgstr "关联性笔记"
 
 #: ../gramps/gen/lib/notetype.py:92
 msgid "LDS Note"
-msgstr "LDS 笔记"
+msgstr "LDS 注释"
 
 #: ../gramps/gen/lib/notetype.py:93
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:127
@@ -11068,7 +11061,7 @@ msgstr ""
 #: ../gramps/gen/utils/unknown.py:150
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr ""
+msgstr "未知，缺少 %(time)s (%(count)d)"
 
 #: ../gramps/gen/utils/unknown.py:169
 #, python-format
@@ -11209,12 +11202,12 @@ msgstr "查看 %s 的细节"
 #: ../gramps/gui/clipboard.py:1502 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgid "the object|Make %s active"
-msgstr ""
+msgstr "将对象 %s 设为活跃"
 
 #: ../gramps/gui/clipboard.py:1524
-#, python-format
+#, fuzzy, python-format
 msgid "the object|Create Filter from %s selected..."
-msgstr ""
+msgstr "从 %s 个所选对象创建筛选器…"
 
 #: ../gramps/gui/columnorder.py:89
 #, python-format
@@ -11684,7 +11677,7 @@ msgstr "编辑"
 
 #: ../gramps/gui/configure.py:1208
 msgid "Consider single pa/matronymic as surname"
-msgstr ""
+msgstr "将从父系或母系获得的单个名字作为姓氏"
 
 #: ../gramps/gui/configure.py:1240
 msgid "Place format (auto place title)"
@@ -13113,9 +13106,8 @@ msgid "Open Containing _Folder"
 msgstr "打开所在文件夹(_F)"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:155
-#, fuzzy
 msgid "_Make Active Media"
-msgstr "设定激活 %s"
+msgstr "设为活跃媒体(_M)"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:259
 #: ../gramps/gui/editors/editperson.py:960
@@ -13148,7 +13140,7 @@ msgstr "创建并新增一个 LDS ordinance"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Remove the existing LDS ordinance"
-msgstr "移除现有的 LDS ordinance"
+msgstr "删除已有的 LDS ordinance"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Edit the selected LDS ordinance"
@@ -13992,7 +13984,7 @@ msgstr "LDS_Ordinance_Editor"
 #: ../gramps/gui/editors/editldsord.py:352
 #: ../gramps/gui/editors/editldsord.py:443
 msgid "LDS Ordinance Editor"
-msgstr "后期圣徒教会教仪编辑器"
+msgstr "LDS Ordinance 编辑器"
 
 #: ../gramps/gui/editors/editldsord.py:288
 #, python-format
@@ -14932,7 +14924,7 @@ msgstr "卷/页"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr ""
+msgstr "最低可信度的引用"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -15783,7 +15775,7 @@ msgstr "教仪："
 
 #: ../gramps/gui/glade/editldsord.glade:192
 msgid "LDS _Temple:"
-msgstr "后期圣徒圣殿(_T)："
+msgstr "LDS 模版(_T)"
 
 #: ../gramps/gui/glade/editldsord.glade:223
 msgid "_Family:"
@@ -18774,7 +18766,7 @@ msgstr "还未被设定活动人员"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:669
 msgid "You must select an active person for this report to work properly."
-msgstr "您必须选择一个激活的人，完成正确的报告."
+msgstr "您必须选择一个活跃人员，才能让报告正常完成。"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:724
 #: ../gramps/gui/plug/report/_reportdialog.py:731
@@ -18890,7 +18882,7 @@ msgstr "继续工具(_P)"
 
 #: ../gramps/gui/plug/tool.py:137 ../gramps/plugins/tool/relcalc.py:158
 msgid "You must select an active person for this tool to work properly."
-msgstr "您必须选择一个激活的人保证这个工具正常工作."
+msgstr "您必须选择一个活跃人员才能让此工具正常工作。"
 
 #: ../gramps/gui/selectors/selectcitation.py:64
 msgid "Select Source or Citation"
@@ -18987,11 +18979,11 @@ msgstr "Select_Source_selector"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
-msgstr ""
+msgstr "关"
 
 #: ../gramps/gui/spell.py:95
 msgid "On"
-msgstr ""
+msgstr "开"
 
 #: ../gramps/gui/spell.py:149
 msgid ""
@@ -19289,7 +19281,7 @@ msgstr "无法为此参考添加书签"
 
 #: ../gramps/gui/views/listview.py:439
 msgid "Active object not visible"
-msgstr "激活的目标不可见"
+msgstr "活跃目标不可见"
 
 #: ../gramps/gui/views/listview.py:449
 #: ../gramps/gui/views/navigationview.py:256
@@ -19345,7 +19337,7 @@ msgstr "栏目点击，排序..."
 
 #: ../gramps/gui/views/listview.py:1062
 msgid "Export View as Spreadsheet"
-msgstr "用电子表格导出视图"
+msgstr "将视图导出为电子表格"
 
 #: ../gramps/gui/views/listview.py:1075
 msgid "CSV"
@@ -19665,9 +19657,9 @@ msgid ""
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
-"点击激活个人\n"
+"点击将此人设为活跃\n"
 "右击显示编辑菜单\n"
-"点击编辑图标（在设置对话框）编辑"
+"点击编辑图标（在设置对话框启用）编辑"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:656
 msgid "Bad Date"
@@ -20726,7 +20718,7 @@ msgstr "日历底部文本的第二行"
 #: ../gramps/plugins/drawreport/calendarreport.py:485
 #: ../gramps/plugins/textreport/birthdayreport.py:496
 msgid "Text Area 3"
-msgstr "文本区域3"
+msgstr "文本区域 3"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:486
 msgid "Third line of text at bottom of calendar"
@@ -20852,7 +20844,7 @@ msgstr "假日文本显示"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:639
 msgid "Days of the week text"
-msgstr "周文本天数Days of t他week text"
+msgstr "用文本显示星期几"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:643
 #: ../gramps/plugins/textreport/birthdayreport.py:649
@@ -21172,7 +21164,7 @@ msgstr "背景颜色或者是白色或者是与后代关联的"
 
 #: ../gramps/plugins/drawreport/fanchart.py:713
 msgid "Orientation of radial texts"
-msgstr "文本半径辐射方向"
+msgstr "文本排列方向"
 
 #: ../gramps/plugins/drawreport/fanchart.py:715
 msgid "upright"
@@ -21443,7 +21435,7 @@ msgstr "以出生年份，包含家族成员"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1041
 msgid "People Born Before"
-msgstr "出生于 ...之前"
+msgstr "之前出生的人员"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1043
 msgid "Birth year until which to include people"
@@ -22283,7 +22275,7 @@ msgstr "后代"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:88
 msgid "Gramplet showing active person's descendants"
-msgstr "Gramplet 显示激活成员的后代"
+msgstr "显示活跃人员后代的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:104
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:111
@@ -22358,7 +22350,7 @@ msgstr "谱系"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:217
 msgid "Gramplet showing an active item Quick View"
-msgstr "Gramplet 在快速浏览中显示一个激活的项目"
+msgstr "显示活跃项目快速预览的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:232
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:238
@@ -22367,7 +22359,7 @@ msgstr "亲属"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:233
 msgid "Gramplet showing active person's relatives"
-msgstr "Gramplet显示激活成员的亲属"
+msgstr "显示活跃人员亲属的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:248
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:255
@@ -22430,9 +22422,8 @@ msgid "Welcome to Gramps!"
 msgstr "欢迎使用 Gramps！"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:332
-#, fuzzy
 msgid "What's Next"
-msgstr "下一项?"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:333
 msgid "Gramplet suggesting items to research"
@@ -22593,7 +22584,7 @@ msgstr "个人属性"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:582
 msgid "Gramplet showing the attributes of a person"
-msgstr "Gramplet 显示激活成员的属性 "
+msgstr "显示活跃人员属性的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:595
 msgid "Event Attributes"
@@ -22694,89 +22685,72 @@ msgid "Media Notes"
 msgstr "媒体笔记"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:764
-#, fuzzy
 msgid "Gramplet showing the notes for a media object"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "用于显示媒体对象注释的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:777
-#, fuzzy
 msgid "Person Citations"
-msgstr "成员详细 Gramplet"
+msgstr "人员引用"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:778
-#, fuzzy
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "用于显示人员引用的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:791
-#, fuzzy
 msgid "Event Citations"
-msgstr "引用"
+msgstr "事件引用"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
-#, fuzzy
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "用于显示事件引用的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:805
-#, fuzzy
 msgid "Family Citations"
-msgstr "家庭线图表"
+msgstr "家庭引用"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:806
-#, fuzzy
 msgid "Gramplet showing the citations for a family"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "用于显示家庭引用的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:819
-#, fuzzy
 msgid "Place Citations"
-msgstr "地点地图选项"
+msgstr "地点引用"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:820
-#, fuzzy
 msgid "Gramplet showing the citations for a place"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "用于显示地点引用的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:833
-#, fuzzy
 msgid "Media Citations"
-msgstr "引用"
+msgstr "媒体引用"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:834
-#, fuzzy
 msgid "Gramplet showing the citations for a media object"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "用于显示媒体引用的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:847
-#, fuzzy
 msgid "Person Children"
-msgstr "子女数"
+msgstr "人员的子女"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:848
-#, fuzzy
 msgid "Gramplet showing the children of a person"
-msgstr "Gramplet 显示激活成员的属性 "
+msgstr "用于显示人员子女的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:861
-#, fuzzy
 msgid "Family Children"
-msgstr "子女"
+msgstr "家庭子女"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:862
-#, fuzzy
 msgid "Gramplet showing the children of a family"
-msgstr "Gramplet 显示激活成员的属性 "
+msgstr "用于显示家庭子女的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:875
-#, fuzzy
 msgid "Person References"
-msgstr "成员参照"
+msgstr "人员参照"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:876
-#, fuzzy
 msgid "Gramplet showing the backlink references for a person"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "用于显示人员反向链接参考的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:883
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:897
@@ -22794,9 +22768,8 @@ msgid "References"
 msgstr "参照"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:889
-#, fuzzy
 msgid "Event References"
-msgstr "参考事件"
+msgstr "事件参照"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:890
 #, fuzzy
@@ -22804,9 +22777,8 @@ msgid "Gramplet showing the backlink references for an event"
 msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:903
-#, fuzzy
 msgid "Family References"
-msgstr "显示 %s 的索引"
+msgstr "家庭参照"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:904
 #, fuzzy
@@ -22814,9 +22786,8 @@ msgid "Gramplet showing the backlink references for a family"
 msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
-#, fuzzy
 msgid "Place References"
-msgstr "来源索引编辑器"
+msgstr "地点参照"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:918
 #, fuzzy
@@ -22834,9 +22805,8 @@ msgid "Gramplet showing the backlink references for a source"
 msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:945
-#, fuzzy
 msgid "Citation References"
-msgstr "链接参考"
+msgstr "引用参照"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:946
 #, fuzzy
@@ -22854,7 +22824,6 @@ msgid "Gramplet showing the backlink references for a repository"
 msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:973
-#, fuzzy
 msgid "Media References"
 msgstr "媒体参考"
 
@@ -22990,9 +22959,8 @@ msgid "Gramplet showing the To Do notes for a place"
 msgstr "显示地点的待做注释的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1199
-#, fuzzy
 msgid "Source To Do"
-msgstr "来源 ID 编号："
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1200
 #, fuzzy
@@ -23031,14 +22999,12 @@ msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1289
-#, fuzzy
 msgid "SoundEx"
-msgstr "SoundEx 代码："
+msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1282
-#, fuzzy
 msgid "Gramplet to generate SoundEx codes"
-msgstr "生成 SoundEx 编码"
+msgstr "用于生成 SoundEx 编码的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1294
 msgid "Place Enclosed By"
@@ -23056,9 +23022,8 @@ msgid "Place Encloses"
 msgstr "地点笔记"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1309
-#, fuzzy
 msgid "Gramplet showing the places that the active place encloses"
-msgstr "Gramplet为成员显示媒体对象"
+msgstr "显示当前地点所围绕地区的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
 msgid "Encloses"
@@ -23101,7 +23066,7 @@ msgstr "点击刷新查看初始结果"
 #: ../gramps/plugins/gramplet/leak.py:158
 #, python-format
 msgid "Referrers of %d"
-msgstr " %d 的索引"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/leak.py:181
 #, python-format
@@ -23154,7 +23119,7 @@ msgstr "直线类型"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:163
 msgid "Click to make active\n"
-msgstr "点击激活\n"
+msgstr "点击设为活跃\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:164
 msgid "Right-click to edit"
@@ -23217,13 +23182,13 @@ msgstr "双击查看第%d 代人员"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:272
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" 有 %(count_person)d 共 %(max_count_person)d 个体成员 (%(percent)s 完成)\n"
+" 已完成 {count_person} 个，共 {max_count_person} 个人员 ({percent})\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:279
 msgid "All generations"
@@ -23272,7 +23237,7 @@ msgstr "双击“名“了解详细信息"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:41
 msgid "Click name to make person active\n"
-msgstr "点击名字激活人员\n"
+msgstr "点击名字将此人设为活跃\n"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:42
 msgid "Right-click name to edit person"
@@ -23314,7 +23279,7 @@ msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
 msgstr ""
-"点击名称改变激活状态\n"
+"点击名称改变活跃状态\n"
 "双击名称编辑"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:48
@@ -24800,9 +24765,8 @@ msgid "Military Promotion"
 msgstr "服兵役"
 
 #: ../gramps/plugins/importer/importgeneweb.py:120
-#, fuzzy
 msgid "LDS Seal to child"
-msgstr "选择子女"
+msgstr "给子女的 LDS Seal"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
 #, fuzzy
@@ -25231,14 +25195,14 @@ msgstr ""
 #: ../gramps/plugins/tool/eventnames.py:137
 #, python-format
 msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s 在 %(family)s"
+msgstr "%(family)s 的%(event_name)s"
 
 #. feature requests 2356, 1658: avoid genitive form
 #: ../gramps/plugins/importer/importxml.py:105
 #: ../gramps/plugins/tool/eventnames.py:139
 #, python-format
 msgid "%(event_name)s of %(person)s"
-msgstr "%(event_name)s of %(person)s"
+msgstr "%(person)s 的 %(event_name)s"
 
 #: ../gramps/plugins/importer/importxml.py:154
 #: ../gramps/plugins/importer/importxml.py:159
@@ -25253,7 +25217,7 @@ msgstr "文件可能已经崩溃或者不是有效的Gramps 数据库."
 #: ../gramps/plugins/importer/importxml.py:245
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
-msgstr "  %(id)s - %(text)s with %(id2)s\n"
+msgstr "  %(id)s - 带有 %(id2)s 的 %(text)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:251
 #, python-format
@@ -25268,9 +25232,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:257
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
-msgstr ""
-"  %(id)s 带有 %(id2)s 的事件\n"
-"\n"
+msgstr "  带有 %(id2)s 的事件 %(id)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:260
 #, python-format
@@ -25300,7 +25262,7 @@ msgstr "家庭 %(id)s\n"
 #: ../gramps/plugins/importer/importxml.py:282
 #, python-format
 msgid "  People: %d\n"
-msgstr "  人: %d\n"
+msgstr "  人员: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:283
 #, python-format
@@ -25335,7 +25297,7 @@ msgstr "  文库: %d\n"
 #: ../gramps/plugins/importer/importxml.py:289
 #, python-format
 msgid "  Notes: %d\n"
-msgstr "  笔记: %d\n"
+msgstr "  注释: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:290
 #, python-format
@@ -25440,8 +25402,8 @@ msgid ""
 "while you are running an older version %(older)s. The file will not be "
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
-"您导入的gramps文件定为GRAMPS %(newer)s版本，您正在运行一个更旧的不版"
-"本%(older)s.文件将无法导入. 请升级到最新版本的GRAMPS 重试一次."
+"您正要导入的 .gramps 文件由 GRAMPS %(newer)s 版创建，而您当前运行的就老的版"
+"本 %(older)s。此文件不会被导入。请升级到最新版的 GRAMPS 然后重试。"
 
 #: ../gramps/plugins/importer/importxml.py:1031
 #, python-format
@@ -25465,7 +25427,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1042
 msgid "The file will not be imported"
-msgstr "文档无法导入"
+msgstr "文件不会被导入"
 
 #: ../gramps/plugins/importer/importxml.py:1044
 #, python-format
@@ -25540,25 +25502,25 @@ msgid "Witness comment: %s"
 msgstr "目击者评论: %s"
 
 #: ../gramps/plugins/importer/importxml.py:3235
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
-msgstr ""
+msgstr "错误：家庭 %(family)s 中的父亲 %(father)s 未指向此家庭。已添加参考。"
 
 #: ../gramps/plugins/importer/importxml.py:3251
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
-msgstr ""
+msgstr "错误：家庭 %(family)s 中的母亲 %(mother)s 未指向此家庭。已添加参考。"
 
 #: ../gramps/plugins/importer/importxml.py:3273
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
-msgstr ""
+msgstr "错误：家庭 %(family)s 中的子女 %(child)s 未指向此家庭。已添加参考。"
 
 #: ../gramps/plugins/lib/libcairodoc.py:1398
 #, python-format
@@ -25566,6 +25528,8 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
+"所选扩展名 %(ext)s 与文件真实格式不符。\n"
+"  按照扩展名 %(impliedext)s 写入 %(filename)s。"
 
 #: ../gramps/plugins/lib/libgedcom.py:698
 msgid "Common Law Marriage"
@@ -25599,7 +25563,7 @@ msgstr "身高"
 
 #: ../gramps/plugins/lib/libgedcom.py:707
 msgid "Initiatory (LDS)"
-msgstr ""
+msgstr "Initiatory (LDS)"
 
 #: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Military ID"
@@ -25607,7 +25571,7 @@ msgstr "军人身份编号"
 
 #: ../gramps/plugins/lib/libgedcom.py:709
 msgid "Mission (LDS)"
-msgstr ""
+msgstr "Mission (LDS)"
 
 #: ../gramps/plugins/lib/libgedcom.py:710
 msgid "Namesake"
@@ -25778,8 +25742,9 @@ msgstr "媒体-类型"
 
 #: ../gramps/plugins/lib/libgedcom.py:5520
 #: ../gramps/plugins/lib/libgedcom.py:6794
+#, fuzzy
 msgid "Multiple FILE in a single OBJE ignored"
-msgstr ""
+msgstr "已忽略单个 OBJE 中的多个文件"
 
 #. We have previously found a PLAC
 #: ../gramps/plugins/lib/libgedcom.py:5659
@@ -25800,7 +25765,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:6212
 #: ../gramps/plugins/lib/libgedcom.py:7100
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "警告：ADDR 被改写"
 
 #: ../gramps/plugins/lib/libgedcom.py:6377
 msgid "Citation Justification"
@@ -25808,13 +25773,13 @@ msgstr "引用理由"
 
 #: ../gramps/plugins/lib/libgedcom.py:6404
 msgid "REFN ignored"
-msgstr ""
+msgstr "已忽略 REFN"
 
 #. SOURce with the given gramps_id had no title
 #: ../gramps/plugins/lib/libgedcom.py:6503
 #, python-format
 msgid "No title - ID %s"
-msgstr ""
+msgstr "无标题 - ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6508
 #, python-format
@@ -25824,7 +25789,7 @@ msgstr "来源的 Gramps ID编号 %s"
 #: ../gramps/plugins/lib/libgedcom.py:6770
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr ""
+msgstr "OBJE (多媒体对象) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6988
 #, fuzzy, python-format
@@ -25834,7 +25799,7 @@ msgstr "重新整理 GRAMPS ID编号"
 #: ../gramps/plugins/lib/libgedcom.py:7049
 #: ../gramps/plugins/lib/libgedcom.py:8061
 msgid "Only one phone number supported"
-msgstr ""
+msgstr "仅支持一个电话号码"
 
 #: ../gramps/plugins/lib/libgedcom.py:7235
 msgid "HEAD (header)"
@@ -25885,7 +25850,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:7438
 msgid "Language of GEDCOM text"
-msgstr "GEDCOM 文本的语言"
+msgstr "GEDCOM 文本语言"
 
 #: ../gramps/plugins/lib/libgedcom.py:7460
 #, python-format
@@ -26057,253 +26022,253 @@ msgstr "GPS"
 #: ../gramps/plugins/lib/libnarrate.py:88
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s 生于 %(birth_date)s 的 %(birth_place)s。"
+msgstr "%(unknown_gender_name)s 于 %(birth_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:89
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(male_name)s 生于 %(birth_date)s 的 %(birth_place)s。"
+msgstr "%(male_name)s 于 %(birth_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:90
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(female_name)s 生于 %(birth_date)s 的 %(birth_place)s。"
+msgstr "%(female_name)s 于 %(birth_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:93
 #, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr "此人生于 %(birth_date)s 的 %(birth_place)s。"
+msgstr "此人于 %(birth_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:94
 #, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(birth_date)s 他出生于 %(birth_place)s."
+msgstr "他于 %(birth_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:95
 #, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(birth_date)s 她出生于 %(birth_place)s."
+msgstr "她于 %(birth_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:97
 #, python-format
 msgid "Born %(birth_date)s in %(birth_place)s."
-msgstr "%(birth_date)s 出生于 %(birth_place)s.."
+msgstr "于 %(birth_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:102
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s 于 %(modified_date)s 在 %(birth_place)s出生."
+msgstr "%(unknown_gender_name)s 于 %(modified_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:103
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s 于 %(modified_date)s 在 %(birth_place)s 出生."
+msgstr "%(male_name)s 于 %(modified_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:104
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s 于%(modified_date)s 在 %(birth_place)s出生."
+msgstr "%(female_name)s 于%(modified_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:107
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "此人生于 %(modified_date)s 的 %(birth_place)s."
+msgstr "此人于 %(modified_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:108
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "他生于 %(modified_date)s %(birth_place)s."
+msgstr "他于 %(modified_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:109
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "她于 %(modified_date)s 在 %(birth_place)s 出生."
+msgstr "她于 %(modified_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:111
 #, python-format
 msgid "Born %(modified_date)s in %(birth_place)s."
-msgstr "%(modified_date)s 出生于 %(birth_place)s."
+msgstr "于 %(modified_date)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:116
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
-msgstr "%(unknown_gender_name)s 生于 %(birth_date)s."
+msgstr "%(unknown_gender_name)s 于 %(birth_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:117
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s."
-msgstr "%(male_name)s 出生于 %(birth_date)s."
+msgstr "%(male_name)s 于 %(birth_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:118
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s."
-msgstr "%(female_name)s 出生于 %(birth_date)s."
+msgstr "%(female_name)s 于 %(birth_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:121
 #, python-format
 msgid "This person was born on %(birth_date)s."
-msgstr "此人生于 %(birth_date)s."
+msgstr "此人于 %(birth_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:122
 #, python-format
 msgid "He was born on %(birth_date)s."
-msgstr "他出生于 %(birth_date)s."
+msgstr "他于 %(birth_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:123
 #, python-format
 msgid "She was born on %(birth_date)s."
-msgstr "她生于%(birth_date)s."
+msgstr "她于 %(birth_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:125
 #: ../gramps/plugins/webreport/webcal.py:2092
 #, python-format
 msgid "Born %(birth_date)s."
-msgstr "出生于 %(birth_date)s."
+msgstr "于 %(birth_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:130
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
-msgstr "%(unknown_gender_name)s 出生于 %(modified_date)s."
+msgstr "%(unknown_gender_name)s 于 %(modified_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:131
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s."
-msgstr "%(male_name)s 出生于 %(modified_date)s."
+msgstr "%(male_name)s 于 %(modified_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:132
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s."
-msgstr "%(female_name)s 出生于 %(modified_date)s."
+msgstr "%(female_name)s 于 %(modified_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:135
 #, python-format
 msgid "This person was born %(modified_date)s."
-msgstr "此人出生于 %(modified_date)s."
+msgstr "此人于 %(modified_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:136
 #, python-format
 msgid "He was born %(modified_date)s."
-msgstr "他出生于 %(modified_date)s."
+msgstr "他于 %(modified_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:137
 #, python-format
 msgid "She was born %(modified_date)s."
-msgstr "她出生于 %(modified_date)s."
+msgstr "她于 %(modified_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:139
 #, python-format
 msgid "Born %(modified_date)s."
-msgstr "出生于 %(modified_date)s."
+msgstr "于 %(modified_date)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:144
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s生于 %(month_year)s 的 %(birth_place)s."
+msgstr "%(unknown_gender_name)s 于 %(month_year)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:145
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s 生于 %(month_year)s 的 %(birth_place)s."
+msgstr "%(male_name)s 于 %(month_year)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:146
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(female_name)s 生于 %(month_year)s 的 %(birth_place)s."
+msgstr "%(female_name)s 于 %(month_year)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:149
 #, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr "此人出生于 %(month_year)s , %(birth_place)s."
+msgstr "此人于 %(month_year)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:150
 #, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr "他 %(month_year)s年在 %(birth_place)s出生."
+msgstr "他于 %(month_year)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:151
 #, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr "她 %(month_year)s年在 %(birth_place)s出生."
+msgstr "她于 %(month_year)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:153
 #, python-format
 msgid "Born %(month_year)s in %(birth_place)s."
-msgstr " %(month_year)s 年生于 %(birth_place)s."
+msgstr "于 %(month_year)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:158
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr "%(unknown_gender_name)s 出生于 %(month_year)s."
+msgstr "%(unknown_gender_name)s 生于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:159
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr "%(male_name)s 生于 %(month_year)s."
+msgstr "%(male_name)s 生于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:160
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s."
-msgstr "%(female_name)s 出生于 %(month_year)s."
+msgstr "%(female_name)s 生于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:163
 #, python-format
 msgid "This person was born in %(month_year)s."
-msgstr "此人生于%(month_year)s."
+msgstr "此人生于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:164
 #, python-format
 msgid "He was born in %(month_year)s."
-msgstr "他出生于%(month_year)s."
+msgstr "他出生于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:165
 #, python-format
 msgid "She was born in %(month_year)s."
-msgstr "她出生于 %(month_year)s."
+msgstr "她出生于 %(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:167
 #, python-format
 msgid "Born %(month_year)s."
-msgstr " 出生于%(month_year)s年."
+msgstr "出生于%(month_year)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:172
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(birth_place)s."
-msgstr "%(unknown_gender_name)s 出生于 %(birth_place)s."
+msgstr "%(unknown_gender_name)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:173
 #, python-format
 msgid "%(male_name)s was born in %(birth_place)s."
-msgstr "%(male_name)s 出生于 %(birth_place)s."
+msgstr "%(male_name)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:174
 #, python-format
 msgid "%(female_name)s was born in %(birth_place)s."
-msgstr "%(female_name)s 出生于 %(birth_place)s."
+msgstr "%(female_name)s 在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:177
 #, python-format
 msgid "This person was born in %(birth_place)s."
-msgstr "此人出生于 %(birth_place)s."
+msgstr "此人在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:178
 #, python-format
 msgid "He was born in %(birth_place)s."
-msgstr "他出生于 %(birth_place)s."
+msgstr "他在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:179
 #, python-format
 msgid "She was born in %(birth_place)s."
-msgstr "她出生于 %(birth_place)s."
+msgstr "她在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:181
 #, python-format
 msgid "Born in %(birth_place)s."
-msgstr "出生于 %(birth_place)s."
+msgstr "在 %(birth_place)s 出生。"
 
 #: ../gramps/plugins/lib/libnarrate.py:191
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s 卒于 %(death_date)s，%(death_place)s."
+msgstr "%(unknown_gender_name)s 于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:192
 #, python-format
@@ -26317,7 +26282,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:195
 #, python-format
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s 卒于 %(death_date)s，%(death_place)s."
+msgstr "%(male_name)s 于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:196
 #, python-format
@@ -26330,7 +26295,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:199
 #, python-format
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s 卒于 %(death_date)s，%(death_place)s."
+msgstr "%(female_name)s 于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:200
 #, python-format
@@ -26343,7 +26308,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:204
 #, python-format
 msgid "This person died on %(death_date)s in %(death_place)s."
-msgstr "此人卒于 %(death_date)s 的 %(death_place)s."
+msgstr "此人于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:205
 #, python-format
@@ -26354,7 +26319,7 @@ msgstr "此人于 %(death_date)s 在 %(death_place)s 去世，终年 %(age)s 岁
 #: ../gramps/plugins/lib/libnarrate.py:208
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr "他卒于 %(death_date)s 的 %(death_place)s."
+msgstr "他于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:209
 #, python-format
@@ -26364,7 +26329,7 @@ msgstr "他于 %(death_date)s 在 %(death_place)s 去世，终年 %(age)s 岁。
 #: ../gramps/plugins/lib/libnarrate.py:212
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "她卒于%(death_date)s %(death_place)s."
+msgstr "她于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:213
 #, python-format
@@ -26375,7 +26340,7 @@ msgstr "她于 %(death_date)s 在 %(death_place)s 去世，终年 %(age)s 岁。
 #: ../gramps/plugins/lib/libnarrate.py:250
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s."
-msgstr "%(death_date)s 卒于 %(death_place)s."
+msgstr "于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:218
 #: ../gramps/plugins/lib/libnarrate.py:251
@@ -26386,7 +26351,7 @@ msgstr "于 %(death_date)s 在 %(death_place)s 去世，终年 (%(age)s) 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:224
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(unknown_gender_name)s 卒于 %(death_date)s in %(death_place)s."
+msgstr "%(unknown_gender_name)s 于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:225
 #, python-format
@@ -26400,7 +26365,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:228
 #, python-format
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(male_name)s 卒于 %(death_date)s in %(death_place)s."
+msgstr "%(male_name)s 于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:229
 #, python-format
@@ -26412,7 +26377,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:232
 #, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
-msgstr "%(female_name)s 卒于 %(death_date)s in %(death_place)s."
+msgstr "%(female_name)s 于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:233
 #, python-format
@@ -26424,7 +26389,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:237
 #, python-format
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr "此人卒于 %(death_date)s，%(death_place)s。"
+msgstr "此人于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:238
 #, python-format
@@ -26435,7 +26400,7 @@ msgstr "此人于 %(death_date)s 在 %(death_place)s 去世，终年 %(age)s 岁
 #: ../gramps/plugins/lib/libnarrate.py:241
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "他逝世于 %(death_date)s，%(death_place)s。"
+msgstr "他于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:242
 #, python-format
@@ -26445,7 +26410,7 @@ msgstr "他于 %(death_date)s 在 %(death_place)s 去世，终年 %(age)s 岁。
 #: ../gramps/plugins/lib/libnarrate.py:245
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "她逝世于 %(death_date)s，%(death_place)s。"
+msgstr "她于 %(death_date)s 在 %(death_place)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:246
 #, python-format
@@ -26455,7 +26420,7 @@ msgstr "她于 %(death_date)s 在 %(death_place)s 去世，终年 %(age)s 岁。
 #: ../gramps/plugins/lib/libnarrate.py:257
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s."
-msgstr "%(unknown_gender_name)s 卒于 %(death_date)s."
+msgstr "%(unknown_gender_name)s 于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:258
 #, python-format
@@ -26465,7 +26430,7 @@ msgstr "%(unknown_gender_name)s 于 %(death_date)s 去世，终年 %(age)s 岁�
 #: ../gramps/plugins/lib/libnarrate.py:261
 #, python-format
 msgid "%(male_name)s died on %(death_date)s."
-msgstr "%(male_name)s 卒于 %(death_date)s."
+msgstr "%(male_name)s 于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:262
 #, python-format
@@ -26475,7 +26440,7 @@ msgstr "%(male_name)s 于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:265
 #, python-format
 msgid "%(female_name)s died on %(death_date)s."
-msgstr "%(female_name)s 卒于 %(death_date)s."
+msgstr "%(female_name)s 于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:266
 #, python-format
@@ -26485,7 +26450,7 @@ msgstr "%(female_name)s 于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:270
 #, python-format
 msgid "This person died on %(death_date)s."
-msgstr "此人逝世于 on %(death_date)s."
+msgstr "此人于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:271
 #, python-format
@@ -26495,7 +26460,7 @@ msgstr "此人于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:274
 #, python-format
 msgid "He died on %(death_date)s."
-msgstr "他卒于 %(death_date)s."
+msgstr "他于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
@@ -26505,7 +26470,7 @@ msgstr "他于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:278
 #, python-format
 msgid "She died on %(death_date)s."
-msgstr "她卒于 %(death_date)s."
+msgstr "她于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:279
 #, python-format
@@ -26549,7 +26514,7 @@ msgstr "%(male_name)s 于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:298
 #, python-format
 msgid "%(female_name)s died %(death_date)s."
-msgstr "%(female_name)s 卒于 %(death_date)s."
+msgstr "%(female_name)s 于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:299
 #, python-format
@@ -26559,7 +26524,7 @@ msgstr "%(female_name)s 于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:303
 #, python-format
 msgid "This person died %(death_date)s."
-msgstr "此人去世于 %(death_date)s。"
+msgstr "此人于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:304
 #, python-format
@@ -26569,7 +26534,7 @@ msgstr "此人于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:307
 #, python-format
 msgid "He died %(death_date)s."
-msgstr "他卒于 %(death_date)s."
+msgstr "他于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
@@ -26579,7 +26544,7 @@ msgstr "他于 %(death_date)s 去世，终年 %(age)s 岁。"
 #: ../gramps/plugins/lib/libnarrate.py:311
 #, python-format
 msgid "She died %(death_date)s."
-msgstr "她卒于 %(death_date)s."
+msgstr "她于 %(death_date)s 去世。"
 
 #: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
@@ -26846,14 +26811,12 @@ msgstr "去世时 (%(age)s)。"
 #, python-format
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s 被安葬的时间是 %(burial_date)s，安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+msgstr "%(male_name)s 于 %(burial_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:462
 #, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "他安葬时间是 %(burial_date)s安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "他于 %(burial_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:465
 #, python-format
@@ -26861,14 +26824,12 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s 安葬时间是 %(burial_date)s安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s 于 %(burial_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"她安葬时间是 %(burial_date)s 安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "她于 %(burial_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:469
 #, python-format
@@ -26876,81 +26837,77 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s 安葬时间是 %(burial_date)s 安葬地点位"
-"于%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s 于 %(burial_date)s 安葬于%(burial_place)s"
+"%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
 msgid ""
 "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"此人安葬时间是 %(burial_date)s 安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "此人于 %(burial_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:472
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "下葬时间是 %(burial_date)s 下葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "于 %(burial_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:477
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(male_name)s 被埋葬的时间是 %(burial_date)s%(endnotes)s 。"
+msgstr "%(male_name)s 安葬于 %(burial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:478
 #, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
-msgstr "他被埋葬的时间是 %(burial_date)s%(endnotes)s ."
+msgstr "他安葬于 %(burial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:481
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(female_name)s 下葬的时间是 %(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s 安葬于 %(burial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:482
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "她下葬的时间是 %(burial_date)s%(endnotes)s."
+msgstr "她安葬于 %(burial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:485
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 下葬时间是 %(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s 安葬于 %(burial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:486
 #, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr "此人下葬时间是%(burial_date)s%(endnotes)s."
+msgstr "此人安葬于 %(burial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:488
 #, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr "下葬时间是 %(burial_date)s%(endnotes)s."
+msgstr "安葬于 %(burial_date)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:493
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s 下葬时间是 %(month_year)s 下葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+msgstr "%(male_name)s 于 %(month_year)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:494
 #, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "他下葬时间是 %(month_year)s 安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "他于 %(month_year)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:497
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s 下葬时间是 %(month_year)s 安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s 于 %(month_year)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "她下葬时间是%(month_year)s 安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "她于 %(month_year)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:501
 #, python-format
@@ -26958,85 +26915,78 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s 下葬时间是 %(month_year)s 安葬地点位于 "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s 于 %(month_year)s 安葬于 %(burial_place)s"
+"%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"此人下葬时间是%(month_year)s 安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "此人于 %(month_year)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:504
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "下葬时间是 %(month_year)s 安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "于 %(month_year)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:509
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s 下葬时间是 %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s 于 %(month_year)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:510
 #, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr "他下葬时间是 %(month_year)s%(endnotes)s."
+msgstr "他于 %(month_year)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:513
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s 下葬时间是 %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s 于 %(month_year)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:514
 #, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
-msgstr "她下葬时间是 %(month_year)s%(endnotes)s."
+msgstr "她于 %(month_year)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:517
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 下葬时间是 %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s 于 %(month_year)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:518
 #, python-format
 msgid "This person was buried in %(month_year)s%(endnotes)s."
-msgstr "此人下葬时间是 %(month_year)s%(endnotes)s."
+msgstr "此人于 %(month_year)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:520
 #, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
-msgstr "下葬时间是 %(month_year)s%(endnotes)s."
+msgstr "于 %(month_year)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:525
 #, python-format
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s 修改后下葬时间是 %(modified_date)s 被安葬地点位于 "
-"%(burial_place)s%(endnotes)s."
+"%(male_name)s 于 %(modified_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:526
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"他修改后下葬时间是 %(modified_date)s 安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+msgstr "他于 %(modified_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:529
 #, python-format
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s下葬时间是 %(modified_date)s 安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s 于 %(modified_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"她修改后下葬时间是%(modified_date)s 安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+msgstr "她于 %(modified_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:533
 #, python-format
@@ -27044,129 +26994,124 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s 修改后下葬时间是 %(modified_date)s 被安葬地点位于 "
-"%(burial_place)s%(endnotes)s."
+"%(unknown_gender_name)s 于 %(modified_date)s 安葬于 %(burial_place)s"
+"%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:534
 #, python-format
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"此人修改后下葬时间是 %(modified_date)s 被安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+msgstr "此人于 %(modified_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:536
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"被修改后下葬时间是%(modified_date)s 被安葬地点位于 %(burial_place)s"
-"%(endnotes)s."
+msgstr "于 %(modified_date)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:541
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s 修改后下葬时间是 %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s 于 %(modified_date)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr "他修改后下葬时间是 %(modified_date)s%(endnotes)s."
+msgstr "他于 %(modified_date)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:545
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s 修改后下葬时间是%(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s 于 %(modified_date)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:546
 #, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr "她修改后下葬时间是 %(modified_date)s%(endnotes)s."
+msgstr "她于 %(modified_date)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:549
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s 修改后下葬时间是 %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s 于 %(modified_date)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:550
 #, python-format
 msgid "This person was buried %(modified_date)s%(endnotes)s."
-msgstr "此人修改后下葬时间是 %(modified_date)s%(endnotes)s."
+msgstr "此人于 %(modified_date)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:552
 #, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
-msgstr "修改后下葬时间是 %(modified_date)s%(endnotes)s."
+msgstr "于 %(modified_date)s%(endnotes)s 被安葬。"
 
 #: ../gramps/plugins/lib/libnarrate.py:557
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s 被安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:558
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr "他被安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "他安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:561
 #, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s 被安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:562
 #, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
-msgstr "她被安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "她安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 被安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s 安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
-msgstr "此人被安葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "此人安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:568
 #, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
-msgstr "埋葬地点位于 %(burial_place)s%(endnotes)s."
+msgstr "安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:573
 #, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr "%(male_name)s 被埋葬%(endnotes)s."
+msgstr "%(male_name)s 被安葬%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:574
 #, python-format
 msgid "He was buried%(endnotes)s."
-msgstr "他被埋葬%(endnotes)s."
+msgstr "他被安葬%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:577
 #, python-format
 msgid "%(female_name)s was buried%(endnotes)s."
-msgstr "%(female_name)s 被埋葬%(endnotes)s."
+msgstr "%(female_name)s 被安葬%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:578
 #, python-format
 msgid "She was buried%(endnotes)s."
-msgstr "她被埋葬%(endnotes)s."
+msgstr "她被安葬%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:581
 #, python-format
 msgid "%(unknown_gender_name)s was buried%(endnotes)s."
-msgstr "%(unknown_gender_name)s 被埋葬%(endnotes)s."
+msgstr "%(unknown_gender_name)s 被安葬%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:582
 #, python-format
 msgid "This person was buried%(endnotes)s."
-msgstr "此人被埋葬%(endnotes)s."
+msgstr "此人被安葬%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:584
 #, python-format
 msgid "Buried%(endnotes)s."
-msgstr "埋葬%(endnotes)s."
+msgstr "被安葬%(endnotes)s。"
 
 #: ../gramps/plugins/lib/libnarrate.py:594
 #, python-format
@@ -29548,7 +29493,7 @@ msgstr "删除成员将会从数据库中移除."
 #: ../gramps/plugins/lib/libpersonview.py:495
 #, python-format
 msgid "Delete Person (%s)"
-msgstr "删除成员(%s)"
+msgstr "删除人员(%s)"
 
 #: ../gramps/plugins/lib/libpersonview.py:535
 msgid ""
@@ -29673,7 +29618,7 @@ msgstr "为地图服务提供基本功能."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:196
 msgid "Provides Textual Narration."
-msgstr "生成一个文本评述。"
+msgstr "提供文字叙述。"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:213
 msgid "Manages an ODF file implementing DocBackend."
@@ -30188,7 +30133,7 @@ msgstr "在 maps.google.com 上打开地图"
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
 #: ../gramps/plugins/webreport/narrativeweb.py:2048
 msgid "OpenStreetMap"
-msgstr "开放街道地图"
+msgstr "OpenStreetMap"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:72
 msgid "Open on openstreetmap.org"
@@ -30228,7 +30173,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
 msgid "Sorted events of %s"
-msgstr "排序%s的事件"
+msgstr "%s的已排序事件"
 
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:110
@@ -30296,22 +30241,22 @@ msgstr "%(person)s 是 %(active_person)s 的 %(relationship)s ."
 #: ../gramps/plugins/quickview/all_relations.py:102
 #, python-format
 msgid "%(person)s and %(active_person)s are not directly related."
-msgstr "%(person)s 和 %(active_person)s 非直接相关联."
+msgstr "%(person)s 和 %(active_person)s 无直接亲属关系。"
 
 #: ../gramps/plugins/quickview/all_relations.py:151
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr "%(person)s 和 %(active_person)s 有以下法定关系："
+msgstr "%(person)s 和 %(active_person)s 有以下姻亲关系："
 
 #: ../gramps/plugins/quickview/all_relations.py:205
 #, python-format
 msgid "Relationships of %(person)s to %(active_person)s"
-msgstr "%(person)s 与 %(active_person)s的关系"
+msgstr "%(person)s 与 %(active_person)s 的关系"
 
 #: ../gramps/plugins/quickview/all_relations.py:266
 #, python-format
 msgid "Detailed path from %(person)s to common ancestor"
-msgstr "%(person)s 连接到共同祖先的详细路径"
+msgstr "%(person)s 到共同祖先的详细路径"
 
 #: ../gramps/plugins/quickview/all_relations.py:269
 msgid "Name Common ancestor"
@@ -30350,12 +30295,12 @@ msgstr "遇到以下问题："
 #: ../gramps/plugins/quickview/attributematch.py:32
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "有 '%s' 属性的 人员"
+msgstr "有 '%s' 属性的人员"
 
 #: ../gramps/plugins/quickview/attributematch.py:46
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "有%d 人符合属性名称.\n"
+msgstr "有 %d 人符合属性名称。\n"
 
 #. else "nearby" comments are ignored
 #: ../gramps/plugins/quickview/filterbyname.py:41
@@ -30683,7 +30628,7 @@ msgstr "这个注释没有链接参照"
 #: ../gramps/plugins/quickview/onthisday.py:77
 #, python-format
 msgid "Events of %(date)s"
-msgstr "%(date)s 的事件"
+msgstr "%(date)s 发生的事件"
 
 #: ../gramps/plugins/quickview/onthisday.py:115
 msgid "Events on this exact date"
@@ -30783,12 +30728,12 @@ msgstr "消息源或引用源"
 #: ../gramps/plugins/quickview/quickview.gpr.py:217
 #, python-format
 msgid "%s References"
-msgstr "%s 索引"
+msgstr "%s 条参考"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:218
 #, python-format
 msgid "Display references for a %s"
-msgstr "显示 %s 的索引"
+msgstr "显示 %s 的参考"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:231
 msgid "Link References"
@@ -30801,7 +30746,7 @@ msgstr "为注释显示链接参照"
 #: ../gramps/plugins/quickview/quickview.gpr.py:252
 msgid ""
 "Display the repository reference for sources related to the active repository"
-msgstr "为与激活的文库相关的来源，显示文库参照信息"
+msgstr ""
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:272
 msgid "Same Surnames"
@@ -30832,12 +30777,12 @@ msgstr "显示成员的兄弟姐妹。"
 #: ../gramps/plugins/quickview/references.py:68
 #, python-format
 msgid "References for this %s"
-msgstr "这个 %s 的参照"
+msgstr "此 %s 的参照"
 
 #: ../gramps/plugins/quickview/references.py:80
 #, python-format
 msgid "No references for this %s"
-msgstr "这个 %s 没有参照"
+msgstr "此 %s 无参照"
 
 #: ../gramps/plugins/quickview/reporef.py:62
 #: ../gramps/plugins/webreport/basepage.py:2758
@@ -31077,7 +31022,7 @@ msgstr "全书"
 #: ../gramps/plugins/textreport/ancestorreport.py:197
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel（德国家谱编号系统）报告 for %s"
+msgstr "%s 的 Ahnentafel（德国家谱编号系统）报告"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:301
 #: ../gramps/plugins/textreport/detancestralreport.py:846
@@ -31231,7 +31176,7 @@ msgstr "是否包含与中心人员的关系"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:639
 msgid "Title text style"
-msgstr "标题文本风格"
+msgstr "标题文本样式"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:642
 msgid "Data text display"
@@ -31239,11 +31184,11 @@ msgstr "数据文本显示"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:644
 msgid "Day text style"
-msgstr "天文本风格"
+msgstr "日期的文本样式"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:647
 msgid "Month text style"
-msgstr "月文本形式"
+msgstr "月份的文本样式"
 
 #: ../gramps/plugins/textreport/custombooktext.py:87
 #: ../gramps/plugins/textreport/custombooktext.py:89
@@ -31251,34 +31196,34 @@ msgstr "月文本形式"
 #: ../gramps/plugins/textreport/custombooktext.py:93
 #: ../gramps/plugins/textreport/textplugins.gpr.py:81
 msgid "Custom Text"
-msgstr "订制文本"
+msgstr "自定义文本"
 
 #: ../gramps/plugins/textreport/custombooktext.py:134
 msgid "Initial Text"
-msgstr "头文字"
+msgstr "初始文字"
 
 #: ../gramps/plugins/textreport/custombooktext.py:135
 #: ../gramps/plugins/textreport/custombooktext.py:164
 msgid "Text to display at the top"
-msgstr "顶端要显示的文本"
+msgstr "顶端显示的文本"
 
 #: ../gramps/plugins/textreport/custombooktext.py:138
 msgid "Middle Text"
-msgstr "居中文本"
+msgstr "中间文本"
 
 #: ../gramps/plugins/textreport/custombooktext.py:139
 #: ../gramps/plugins/textreport/custombooktext.py:173
 msgid "Text to display in the middle"
-msgstr "居中显示的文字"
+msgstr "中间显示的文字"
 
 #: ../gramps/plugins/textreport/custombooktext.py:142
 msgid "Final Text"
-msgstr "最终文本"
+msgstr "末尾文本"
 
 #: ../gramps/plugins/textreport/custombooktext.py:143
 #: ../gramps/plugins/textreport/custombooktext.py:182
 msgid "Text to display at the bottom"
-msgstr "低部要显示的文本"
+msgstr "底部显示的文本"
 
 #: ../gramps/plugins/textreport/descendreport.py:314
 #: ../gramps/plugins/textreport/descendreport.py:322
@@ -31360,12 +31305,12 @@ msgstr "是否在报告中显示重复的家庭树。"
 #: ../gramps/plugins/textreport/descendreport.py:598
 #, python-format
 msgid "The style used for the level %d display."
-msgstr "第%d等级显示风格."
+msgstr "第 %d 级显示风格。"
 
 #: ../gramps/plugins/textreport/descendreport.py:609
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr "配偶第%d等级的显示风格."
+msgstr "配偶第 %d 级的显示风格。"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:216
@@ -31385,7 +31330,7 @@ msgstr "更多关于 %(person_name)s："
 #: ../gramps/plugins/textreport/detancestralreport.py:317
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr "%(name)s 与 [%(id_str)s]为同一个人."
+msgstr "%(name)s 与 [%(id_str)s] 是同一个人。"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:361
@@ -31421,7 +31366,8 @@ msgstr "%s, "
 #: ../gramps/plugins/textreport/detancestralreport.py:479
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr "%(primary_person)s在%(event_name)s中的%(event_role)s：%(event_text)s"
+msgstr ""
+"%(primary_person)s 在 %(event_name)s 中的 %(event_role)s：%(event_text)s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:495
@@ -31442,7 +31388,7 @@ msgstr "%(mother_name)s 和 %(father_name)s 的子女们"
 #: ../gramps/plugins/textreport/detdescendantreport.py:807
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr "更多关于 %(mother_name)s 和 %(father_name)s："
+msgstr "%(mother_name)s 和 %(father_name)s 的更多信息："
 
 #: ../gramps/plugins/textreport/detancestralreport.py:745
 #: ../gramps/plugins/textreport/detdescendantreport.py:614
@@ -31454,7 +31400,7 @@ msgstr "配偶：%s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:618
 #, python-format
 msgid "Relationship with: %s"
-msgstr "关系：%s"
+msgstr "与 %s 的关系"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:835
 msgid "Sosa-Stradonitz number"
@@ -31725,9 +31671,10 @@ msgstr "参考：%(number)s. %(name)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:765
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
-msgstr "更多注释关于 %(mother_name)s 和 %(father_name)s："
+msgstr "%(mother_name)s 和 %(father_name)s 的相关注释："
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1017
+#, fuzzy
 msgid "Record (Modified Register) numbering"
 msgstr "记录（修订注册）编号"
 
@@ -31794,7 +31741,7 @@ msgstr "%s 的线性报告完结"
 #: ../gramps/plugins/textreport/endoflinereport.py:166
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "所有%s的祖先(缺失一个父母)"
+msgstr "%s 的祖先（缺少父母的）"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:308
 #: ../gramps/plugins/textreport/placereport.py:519
@@ -31820,7 +31767,7 @@ msgstr "%dU"
 #: ../gramps/plugins/textreport/familygroup.py:618
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "家庭分组报告 - 第 %d 世"
+msgstr "家庭分组报告 - 第 %d 代"
 
 #: ../gramps/plugins/textreport/familygroup.py:620
 #: ../gramps/plugins/textreport/familygroup.py:672
@@ -32046,7 +31993,7 @@ msgstr "图像描述的样式。"
 #: ../gramps/plugins/textreport/kinshipreport.py:125
 #, python-format
 msgid "Kinship Report for %s"
-msgstr "%s 的Kinship 报告"
+msgstr "%s 的 Kinship 报告"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:363
 msgid "The maximum number of descendant generations"
@@ -32117,8 +32064,8 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
-"从上%(second_generation)d 世 到 上 %(last_generation)d世 已经记录的先辈数是 "
-"%(count)d. 占应有先辈的比例是 %(percent)s"
+"从 %(second_generation)d 代到 %(last_generation)d 代先辈人数是 %(count)d 为。"
+"占比 %(percent)s"
 
 #. Write the title line. Set in INDEX marker so that this section will be
 #. identified as a major category if this is included in a Book report.
@@ -32155,7 +32102,7 @@ msgstr "事件的类型"
 #: ../gramps/plugins/textreport/placereport.py:271
 #, python-format
 msgid "%(persons)s and %(name)s (%(id)s)"
-msgstr "%(persons)s and %(name)s (%(id)s)"
+msgstr "%(persons)s 和 %(name)s (%(id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:298
 msgid "People associated with this place"
@@ -32251,7 +32198,7 @@ msgstr "书的子标题字符串."
 #: ../gramps/plugins/textreport/simplebooktitle.py:146
 #, python-format
 msgid "Copyright %(year)d %(name)s"
-msgstr "版权 %(year)d %(name)s"
+msgstr "版权所有 %(year)d %(name)s"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:148
 msgid "Footer"
@@ -32259,11 +32206,11 @@ msgstr "脚注"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:149
 msgid "Footer string for the page."
-msgstr "页面的页脚字符串."
+msgstr "页面脚注"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:154
 msgid "Gramps ID of the media object to use as an image."
-msgstr "用作位图的媒体对象的Gramps ID编号."
+msgstr "用作图像的媒体对象 Gramps ID编号。"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:157
 msgid "Image Size"
@@ -32273,17 +32220,17 @@ msgstr "图像尺寸"
 msgid ""
 "Size of the image in cm. A value of 0 indicates that the image should be fit "
 "to the page."
-msgstr "图像尺寸 (cm). 值为0显示图像应该适合页面."
+msgstr "图像尺寸 (cm)。值为 0 时表示图像应该适合页面大小。"
 
 #: ../gramps/plugins/textreport/summary.py:90
 #: ../gramps/plugins/textreport/textplugins.gpr.py:348
 msgid "Database Summary Report"
-msgstr "数据库统计报告"
+msgstr "数据库摘要"
 
 #: ../gramps/plugins/textreport/summary.py:167
 #, python-format
 msgid "Number of individuals: %d"
-msgstr "家族成员的数量: %d"
+msgstr "人员数量: %d"
 
 #: ../gramps/plugins/textreport/summary.py:171
 #, python-format
@@ -32298,47 +32245,47 @@ msgstr "女性: %d"
 #: ../gramps/plugins/textreport/summary.py:179
 #, python-format
 msgid "Individuals with unknown gender: %d"
-msgstr "未知性别的个人: %d"
+msgstr "未知性别人员: %d"
 
 #: ../gramps/plugins/textreport/summary.py:184
 #, python-format
 msgid "Incomplete names: %d"
-msgstr "不完整名称：%d"
+msgstr "名称不完整人员：%d"
 
 #: ../gramps/plugins/textreport/summary.py:188
 #, python-format
 msgid "Individuals missing birth dates: %d"
-msgstr "缺少出生日期信息的个人: %d"
+msgstr "缺少出生日期的人员：%d"
 
 #: ../gramps/plugins/textreport/summary.py:193
-#, python-format
+#, fuzzy, python-format
 msgid "Disconnected individuals: %d"
-msgstr "断开连接的个人: %d"
+msgstr "无关联人员：%d"
 
 #: ../gramps/plugins/textreport/summary.py:198
 #, python-format
 msgid "Unique surnames: %d"
-msgstr "独有的姓:%d"
+msgstr "不同姓氏数量：%d 个"
 
 #: ../gramps/plugins/textreport/summary.py:202
 #, python-format
 msgid "Individuals with media objects: %d"
-msgstr "个人（有媒体对象）: %d"
+msgstr "有媒体对象的人员：%d"
 
 #: ../gramps/plugins/textreport/summary.py:215
 #, python-format
 msgid "Number of families: %d"
-msgstr "家庭的数量:%d"
+msgstr "家庭的数量：%d"
 
 #: ../gramps/plugins/textreport/summary.py:247
 #, python-format
 msgid "Number of unique media objects: %d"
-msgstr "独立媒体对象的数量: %d"
+msgstr "独有媒体对象的数量：%d"
 
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "媒体对象的整体尺寸： %s MB"
+msgstr "媒体对象的整个大小： %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:290
 msgid "Whether to count private data"
@@ -33451,11 +33398,11 @@ msgid ""
 "Replace:\t\t%(src_fname)s\n"
 "With:\t\t%(dest_fname)s"
 msgstr ""
-"即将采取以下措施:\n"
+"即将采取以下措施：\n"
 "\n"
-"操作:\t%(title)s\n"
-"替换:\t\t%(src_fname)s\n"
-"替换为: \t\t%(dest_fname)s"
+"操作：\t%(title)s\n"
+"替换：\t\t%(src_fname)s\n"
+"替换为：\t\t%(dest_fname)s"
 
 #: ../gramps/plugins/tool/mediamanager.py:573
 msgid "Convert paths from relative to _absolute"
@@ -33771,7 +33718,7 @@ msgstr "关系计算器"
 #: ../gramps/plugins/tool/relcalc.py:110
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
-msgstr "“%(person_name)s”的血缘关系计算器"
+msgstr "亲属关系计算：%(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:115
 #, python-format
@@ -34811,11 +34758,11 @@ msgstr "家庭过滤编辑器"
 
 #: ../gramps/plugins/view/familyview.py:279
 msgid "Make Father Active Person"
-msgstr "设定父亲为激活人员"
+msgstr "将父亲设为活跃人员"
 
 #: ../gramps/plugins/view/familyview.py:279
 msgid "Make Mother Active Person"
-msgstr "设定母亲为激活人员"
+msgstr "将母亲设为活跃人员"
 
 #: ../gramps/plugins/view/familyview.py:372
 msgid "_Delete Family"
@@ -36040,7 +35987,7 @@ msgstr " 在 %(date)s"
 #: ../gramps/plugins/webreport/basepage.py:1345
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
-msgstr "%(http_break)s以 %(subject_url)s 为主人翁而创建"
+msgstr "为 %(subject_url)s 创建了 %(http_break)s"
 
 #. Begin Navigation Menu--
 #. is the style sheet either Basic-Blue or Visually Impaired,
@@ -36716,11 +36663,11 @@ msgstr "用于网页文件的编码"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
 msgid "Include link to active person on every page"
-msgstr "每页都包含与所激活成员的链接"
+msgstr "在每页中都包含与活跃人的链接"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1962
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr "每页都包含与激活成员的链接"
+msgstr "包含与活跃人员的链接（如果他们有页面的话）"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
 msgid "Include a column for birth dates on the index pages"
