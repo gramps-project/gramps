@@ -49,8 +49,7 @@ import logging
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (PlaceType, Place, PlaceName)
-from gramps.gen.lib import (Citation, Media, Repository, Note, Tag)
+from gramps.gen.lib import (PlaceType, Place, PlaceName, Media)
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.mime import is_image_type
 from gramps.plugins.lib.libhtml import Html
@@ -499,7 +498,8 @@ class PlacePages(BasePage):
                                 imglnk = self.media_link(photo_hdle, newpath,
                                                          descr, uplink=uplnk,
                                                          usedescr=False)
-                                tracelife += str(imglnk)
+                                if photo_hdle in self.report.obj_dict[Media]:
+                                    tracelife += str(imglnk)
                                 break # We show only the first image
                     scripts = Html()
                     if self.mapservice == "Google":
