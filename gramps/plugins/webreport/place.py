@@ -355,13 +355,12 @@ class PlacePages(BasePage):
             outerwrapper += placedetail
 
             media_list = place.get_media_list()
-            if self.create_media and not self.report.options['inc_uplaces']:
-                # Don't diplay thumbnail for unused places. It generates
-                # "page not found" if they are not collected in pass 1.
+            if self.create_media:
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
                                                              place)
                 if thumbnail is not None:
-                    placedetail += thumbnail
+                    if media_list[0].ref in self.report.obj_dict[Media]:
+                        placedetail += thumbnail
 
             # add section title
             placedetail += Html("h3",
