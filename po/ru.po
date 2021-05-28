@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"PO-Revision-Date: 2021-05-27 22:01+0000\n"
 "Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -675,7 +675,6 @@ msgstr ""
 "предпочтительней, т.к. можно обсудить Вашу идею."
 
 #: ../data/tips.xml:62
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -687,7 +686,8 @@ msgstr ""
 "Gramps? Подпишитесь на список рассылки gramps-users. На него подписано много "
 "отзывчивых людей, поэтому, скорее всего, Вам быстро ответят. Если же "
 "возникли вопросы, связанные с разработкой Gramps, попробуйте рассылку gramps-"
-"devel. Все эти рассылки доступны из меню «Справка -> Списки рассылки Gramps»."
+"devel. Все эти рассылки доступны из меню \"Справка &gt; Списки рассылки "
+"Gramps\"."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -726,7 +726,6 @@ msgstr ""
 "содержащими информацию о сотнях тысяч людей."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -734,14 +733,13 @@ msgid ""
 "Person then go to \"Bookmarks &gt; Add Bookmark\" or press Ctrl+D. You can "
 "also bookmark most of the other objects."
 msgstr ""
-"<b>Закладки</b><br/>Меню «Закладки» -- удобное место для хранения имён часто "
-"используемых лиц. Выбор человека из закладок сделает его активным лицом. Для "
-"того, чтобы поместить человека в закладки, выберите меню &quot;Закладки &gt; "
-"Добавить закладку&quot; или нажмите Ctrl+D. Кроме того, помимо людей, можете "
-"помещать в закладки большинство других объектов Gramps."
+"<b>Закладки для лиц</b><br/>Меню «Закладки» -- удобное место для хранения "
+"имён часто используемых лиц. Выбор акладки сделает этого человека активным "
+"лицом. Для того, чтобы поместить человека в закладки, выберите меню "
+"\"Закладки &gt; Добавить закладку\" или нажмите Ctrl+D. Вы также можете "
+"помещать в закладки большинство других объектов."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -751,11 +749,10 @@ msgid ""
 "Preferences &gt; Display\"."
 msgstr ""
 "<b>Неверные даты</b><br/>Каждый может случайно ввести дату в неправильном "
-"формате. Неверный формат дат отображается в Gramps либо на красном фоне, "
-"либо с красной точкой в правом верхнем углу поля. Можно исправить формат "
-"используя диалог выбора даты, который может быть вызван нажатием на кнопку "
-"даты. Формат дат можно установить через &quot;Правка &gt; Настройки &gt; "
-"Отображение&quot;."
+"формате. Неверный формат дат обозначается в Gramps либо красным фоном, либо "
+"значком креста на красном фоне в правом углу поля. Вы можете исправить дату, "
+"используя редактор дат, который может быть вызван нажатием на кнопку даты. "
+"Формат дат можно установить через \"Правка &gt; Настройки &gt; Отображение\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -943,29 +940,27 @@ msgstr ""
 "источнике."
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>Дополнительные отчёты и инструменты</b><br/>В Gramps можно добавить "
-"дополнительные отчёты и инструменты. Смотрите список доступных дополнений в "
-"меню «Справка / Дополнительные отчёты/инструменты». Именно с помощью этого "
-"механизма продвинутым пользователям проще всего экспериментировать и "
-"создавать новые функции Gramps."
+"<b>Дополнительные Очёты и Инструменты</b><br/>Дополнительные отчёты и "
+"инструменты могут быть добавлены в Gramps через систему дополнений. Смотрите "
+"список доступных дополнений в меню \"Справка / Дополнительные отчёты/"
+"инструменты\". Это лучший путь для продвинутых пользователей для "
+"экспериментов и создания новой функциональности."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Отчёт-книга</b><br/>Отчёт-книга «Отчёты &gt; Книги &gt; Отчёт-книга» "
-"позволяет собрать несколько отчётов в единый документ. Такой отчёт легче "
+"<b>Отчёт Книги</b><br/>Отчёт-книга \"Отчёты &gt; Книги...\" позволяет Вам "
+"собрать несколько отчётов в единый документ. Такой отчёт легче "
 "распространять, чем несколько разных отчётов, особенно в напечатанном виде."
 
 #: ../data/tips.xml:106
@@ -1287,7 +1282,7 @@ msgid ""
 " Available names are:"
 msgstr ""
 "%s\n"
-" Доступные отчёты:"
+" Доступны следующие имена:"
 
 #: ../gramps/cli/arghandler.py:685
 msgid "Unknown tool name."
@@ -1545,7 +1540,7 @@ msgid ""
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
 "Ошибка при разборе аргументов: %s \n"
-"Наберите gramps --help чтобы увидеть доступные аргументы командной строки "
+"Наберите gramps --help, чтобы увидеть доступные аргументы командной строки, "
 "или прочитайте страницы руководства."
 
 #: ../gramps/cli/argparser.py:277
@@ -2069,8 +2064,8 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"параметр «%(optionname)s» не поддерживается. Используйте "
-"«%(donottranslate)s», чтобы увидеть все доступные параметры."
+"параметр '%(optionname)s' не поддерживается. Используйте '%(donottranslate)"
+"s', чтобы увидеть все доступные параметры."
 
 #: ../gramps/cli/plug/__init__.py:669
 msgid "Failed to write report. "
@@ -2150,7 +2145,7 @@ msgstr ""
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
 msgid "none"
-msgstr "неизвестна"
+msgstr "нет"
 
 #: ../gramps/gen/const.py:261
 msgctxt "given-name"
@@ -3216,7 +3211,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3233,23 +3228,21 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Семейное древо, которое Вы пытаетесь открыть имеет формат базы данных версии "
-"%(oldschema)s. Данная версия Gramps использует версию %(newschema)s. Поэтому "
-"невозможно открыть семейное древо без обновлении версии базы данных "
-"семейного древа.\n"
+"Семейное древо, которое Вы пытаетесь загрузить, имеет формат базы данных "
+"версии %(dbtype)s, который больше не поддерживается.\n"
+"Поэтому Вы не сможете открыть это Семейное древо без обновлении.\n"
 "\n"
-"Если произвети обновление, то Вы не сможете открыть древо используя прошлую "
-"версию Gramps, если не сделаете %(wiki_manual_backup_html_start)sрезервную "
-"копию%(html_end)s или %(wiki_manual_export_html_start)sэкспорт%(html_end)s "
-"Вашего обновлённого семейного древа.\n"
+"Если Вы обновитесь, то Вы не сможете использовать предыдущую версию Gramps, "
+"если не сделаете %(wiki_manual_backup_html_start)sрезервную копию%(html_end)"
+"s или %(wiki_manual_export_html_start)sэкспорт%(html_end)s Вашего "
+"обновлённого Семейного древа.\n"
 "\n"
-"Обновление это сложная задача. которая может привести к порче Вашего "
-"семейного древа, если оно будет прервано или окажется неудачным.\n"
+"Вы настоятельно предупреждены о наличии резервной копии Вашего Семейного "
+"древа.\n"
 "\n"
-"Если Вы ещё не сделали резервной копии Вашего семейного древа, то запустите "
-"%(bold_start)sстарую%(bold_end)s версию Gramps\n"
-"и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s древа из "
-"неё."
+"Если Вы ещё не сделали резервной копии Вашего семейного древа, то Вы можете "
+"запустить Вашу предыдущую версию Gramps и %(wiki_backup_html_start)sсоздать "
+"резервную копию%(html_end)s Вашего Семейного древа."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3982,14 +3975,12 @@ msgid "Value:"
 msgstr "Значение:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
-#, fuzzy
 msgid "Citations with the attribute <attribute>"
-msgstr "События с <атрибутом>"
+msgstr "Цитаты с атрибутом <атрибут>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
-#, fuzzy
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Выбирает документы с данным значением атрибута"
+msgstr "Выбирает цитаты с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -5211,14 +5202,12 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "Выбирает людей с указанным количеством адресов"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:43
-#, fuzzy
 msgid "People with an address containing <text>"
-msgstr "Лица с идентификаторами, содержащими <текст>"
+msgstr "Лица с адресом, содержащим <текст>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:44
-#, fuzzy
 msgid "Matches people with a personal address containing the given text"
-msgstr "Выбирает людей с указанным личным событием"
+msgstr "Выбирает людей с персональным адресом, содержащим данный текст"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:45
 msgid "People with an alternate name"
@@ -6344,14 +6333,12 @@ msgid "Repository attribute:"
 msgstr "Ссылка на хранилище:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
-#, fuzzy
 msgid "Repositories with the attribute <attribute>"
-msgstr "События с <атрибутом>"
+msgstr "Хранилища с атрибутом <атрибут>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
-#, fuzzy
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Выбирает документы с данным значением атрибута"
+msgstr "Выбирает хранилища с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
@@ -6482,14 +6469,12 @@ msgid "Source attribute:"
 msgstr "Атрибуты источника:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
-#, fuzzy
 msgid "Sources with the attribute <attribute>"
-msgstr "События с <атрибутом>"
+msgstr "Источники с атрибутом <атрибут>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
-#, fuzzy
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Выбирает документы с данным значением атрибута"
+msgstr "Выбирает источники с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
@@ -9389,7 +9374,7 @@ msgstr "Отношения"
 #: ../gramps/gui/widgets/grampletpane.py:228
 #: ../gramps/gui/widgets/grampletpane.py:987
 msgid "Gramplet"
-msgstr "Грамплет"
+msgstr "Gramplet"
 
 #: ../gramps/gen/plug/_pluginreg.py:90
 msgid "Sidebar"
@@ -9425,14 +9410,15 @@ msgstr ""
 "указаны у Вас в настройках, будет использован английский язык"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
-#, fuzzy, python-format
+#, python-format
 msgctxt "gramps_version"
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"Ошибка: Файл модуля расширения %(filename)s предназначен для версии "
-"%(gramps_target_version)s и не подходит для Gramps %(gramps_version)s."
+"ОШИБКА: Файл модуля расширения %(filename)s имеет версию \""
+"%(gramps_target_version)s\", которая не подходит для Gramps \""
+"%(gramps_version)s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -10090,9 +10076,8 @@ msgid "PDF"
 msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
-#, fuzzy
 msgid "Graph File for genealogytree"
-msgstr "Грамплет для общих заметок"
+msgstr "Графический файл для генеалогического древа"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
 msgid "LaTeX File"
@@ -10186,12 +10171,11 @@ msgstr "Перевод"
 
 #: ../gramps/gen/plug/report/stdoptions.py:64
 msgid "The translation to be used for the report."
-msgstr "Перевод, который должен быть использован для этого отчёта."
+msgstr "Перевод, который должен быть использован для отчёта."
 
 #: ../gramps/gen/plug/report/stdoptions.py:80
-#, fuzzy
 msgid "The additional translation to be used for the report."
-msgstr "Перевод, который должен быть использован для этого отчёта."
+msgstr "Дополнительный перевод, который должен быть использован для отчёта."
 
 #: ../gramps/gen/plug/report/stdoptions.py:89 ../gramps/gui/configure.py:1194
 #: ../gramps/plugins/webreport/webcal.py:1803
@@ -11364,20 +11348,15 @@ msgstr ""
 "импортированном %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Версия Python не соответствует требованиям. Для запуска Gramps необходима "
-"версия Python как минимум %(v1)d.%(v2)d.%(v3)d\n"
+"Ваша версия Python не соответствует требованиям. Для запуска Gramps "
+"необходима версия Python как минимум %(v1)d.%(v2)d.%(v3)d.\n"
 "\n"
 "Gramps сейчас завершит работу."
 
@@ -11387,28 +11366,21 @@ msgid "Configuration error:"
 msgstr "Ошибка конфигурации:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Ошибка чтения конфигурации"
+msgstr "Не удалось прочитать конфигурацию"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"Определение MIME-типа %s не найдено.\n"
+"Определение типа файла %s не найдено.\n"
 "\n"
-"Возможно, что установка Gramps не завершена. Убедитесь, что типы MIME для "
-"Gramps установлены как положено."
+"Возможно, что установка Gramps была не полной. Убедитесь, что установлено "
+"всё нужное для работы с этим типом носителей Gramps."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -13381,9 +13353,8 @@ msgid "Confidence Level"
 msgstr "Достоверность"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
-#, fuzzy
 msgid "Sorted date"
-msgstr "Вторая дата"
+msgstr "Сортированная дата"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:95
 msgid "_Source Citations"
@@ -16835,7 +16806,6 @@ msgid "Full title of this place."
 msgstr "Полное название этого места."
 
 #: ../gramps/gui/glade/editplace.glade:177
-#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
 "notation.\n"
@@ -16843,15 +16813,13 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Широта (позиция относительно экватора) данного места в виде десятичной дроби "
-"или в градусном обозначении.\n"
-"Примеры допустимых значений: 12.0154, 50°52′21.92″N, N50°52′21.92″, или "
-"50:52:21.92\n"
-"Вы можете задать эти значения, используя поиск или выбрав место на карте в "
-"«картографическом виде»."
+"Широта (позиция над экватором) места в десятичной или градусной системе.\n"
+"Например, допустимые значения: 12.0154, 50°52′21.92″N, N50°52′21.92″ или "
+"50:52:21.92.\n"
+"Вы можете задать эти значения через вид География, выполнив поиск места, или "
+"через службу карт в виде Места."
 
 #: ../gramps/gui/glade/editplace.glade:192
-#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
 "place in decimal or degree notation.\n"
@@ -16860,12 +16828,12 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Долгота (позиция относительно нулевого, или Гринвичского меридиана) данного "
-"места в виде десятичной дроби или в градусном обозначении.\n"
-"Примеры допустимых значений: -124.3647, 124°52′21.92″E, E124°52′21.92″, или "
-"124:52:21.92\n"
-"Вы можете задать эти значения, используя поиск или задав место на карте в "
-"«картографическом виде»."
+"Долгота (позиция относительно нулевого или Гринвичского меридиана) места в "
+"десятичной или градусной системе.\n"
+"Например, допустимые значения: -124.3647, 124°52′21.92″E, E124°52′21.92″ или "
+"124:52:21.92.\n"
+"Вы можете задать эти значения через вид География, выполнив поиск места, или "
+"через службу карт в виде Места."
 
 #: ../gramps/gui/glade/editplace.glade:213
 #: ../gramps/gui/glade/editplaceref.glade:351
@@ -21169,16 +21137,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "т.е.\n"
-"Соединённые Штаты Америки/США"
+"Соединённые Штаты Америки/США."
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -21741,29 +21705,24 @@ msgid "The bold style used for the text display."
 msgstr "Стиль текста при выделении жирным шрифтом."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1823
-#, fuzzy
 msgid "The style for the marriage box."
-msgstr "Стиль заголовка."
+msgstr "Стиль блока свадьбы."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1830
-#, fuzzy
 msgid "The style for the spouse box."
-msgstr "Стиль имени супруга."
+msgstr "Стиль блока супруга(и)."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1838
-#, fuzzy
 msgid "The style for the direct descendant box."
-msgstr "Стиль первой личной записи."
+msgstr "Стиль блока прямого потомка."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1844
-#, fuzzy
 msgid "The style for the note box."
-msgstr "Стиль заголовков заметок."
+msgstr "Стиль блока заметок."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1849
-#, fuzzy
 msgid "The style for the connection lines and report border."
-msgstr "Стиль заголовка разделов."
+msgstr "Стиль соединительных линий и границ отчёта."
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:37
 msgid "Ancestor Chart"
@@ -22738,14 +22697,12 @@ msgid "Double-click on a row to edit the selected source/citation."
 msgstr "Щёлкните на строке дважды для правки выбранной цитаты."
 
 #: ../gramps/plugins/gramplet/citations.py:86
-#, fuzzy
 msgid "Source/Date"
-msgstr "Текст из источника"
+msgstr "Источник/Дата"
 
 #: ../gramps/plugins/gramplet/citations.py:167
-#, fuzzy
 msgid "<No Volume/Page>"
-msgstr "Том/Страница"
+msgstr "<Нет Тома/Страницы>"
 
 #: ../gramps/plugins/gramplet/coordinates.py:83
 msgid "Right-click on a row to edit the selected event or the related place."
@@ -23799,7 +23756,7 @@ msgstr "Показывает события для всей семьи"
 
 #: ../gramps/plugins/gramplet/leak.py:99
 msgid "Referrer"
-msgstr ""
+msgstr "Ссылающийся"
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
@@ -24259,7 +24216,7 @@ msgstr "Руководство Gramps в Интернете"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
 msgctxt "locale_suffix"
 msgid ""
-msgstr ""
+msgstr " "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "Ask questions on gramps-users mailing list"
@@ -31121,6 +31078,13 @@ msgid ""
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"Если Вы хотите использовать определенного поставщика карт, Вы можете "
+"установить следующее поле в адресе поставщика.\n"
+"Например:\n"
+"http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
+"http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1288
 msgid "Personal map"
@@ -33993,9 +33957,8 @@ msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Поиск проблем связанных с дублированными Gramps ID"
 
 #: ../gramps/plugins/tool/check.py:2300
-#, fuzzy
 msgid "Checking for bad links in Notes"
-msgstr "Проверять дополнения на наличие обновлений"
+msgstr "Проверка наличия плохих ссылок в заметках"
 
 #: ../gramps/plugins/tool/check.py:2451
 msgid "No errors were found"
@@ -34003,11 +33966,11 @@ msgstr "Ошибок не найдено"
 
 #: ../gramps/plugins/tool/check.py:2452
 msgid "The database has passed internal checks"
-msgstr "База данных прошла все внутренние проверки успешно"
+msgstr "база данных прошла внутренние проверки"
 
 #: ../gramps/plugins/tool/check.py:2455
 msgid "No errors were found: the database has passed internal checks."
-msgstr "База данных прошла все внутренние проверки успешно."
+msgstr "Ошибок не обнаружено: база данных прошла внутренние проверки."
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2462
@@ -34020,7 +33983,7 @@ msgstr[2] "{quantity} нарушенных связей ребёнок/семь�
 
 #: ../gramps/plugins/tool/check.py:2470
 msgid "Non existing child"
-msgstr "Отсутствующий ребёнок"
+msgstr "Несуществующий ребёнок"
 
 #: ../gramps/plugins/tool/check.py:2481
 #, python-format
@@ -34288,9 +34251,9 @@ msgid "All reference maps have been rebuilt."
 msgstr "Все таблицы ссылок были перестроены."
 
 #: ../gramps/plugins/tool/check.py:2788
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "%d обратных ссылок было исправлено;\n"
+msgstr "%d плохих ссылок на Заметку было исправлено;\n"
 
 #: ../gramps/plugins/tool/check.py:2817
 msgid "Integrity Check Results"
@@ -34421,7 +34384,7 @@ msgstr "Инструмент сравнения событий"
 
 #: ../gramps/plugins/tool/eventcmp.py:168
 msgid "Filter selection"
-msgstr "Выбор фильтра"
+msgstr "Фильтр выбора"
 
 #: ../gramps/plugins/tool/eventcmp.py:180
 msgid "Comparing events"
@@ -35114,7 +35077,7 @@ msgstr "Их общие предки: "
 #: ../gramps/plugins/tool/removespaces.py:55
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr "Удаление_ведущих_и_последующих_пробелов"
+msgstr "Удаление_ведущих_и_концевых_пробелов"
 
 #: ../gramps/plugins/tool/removespaces.py:88
 #: ../gramps/plugins/tool/tools.gpr.py:489
@@ -35122,19 +35085,18 @@ msgid "Clean input data"
 msgstr "Очистить введённые данные"
 
 #: ../gramps/plugins/tool/removespaces.py:108
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Производит поиск лишних пробелов для мест и лиц. Поиск запятых в координатах "
-"мест.\n"
-"Двойной щелчок по строке для перехода в редактор."
+"Поиск ведущих и (или) концевых пробелов для лиц и мест. Поиск запятой или "
+"плохих символов в полях координат.\n"
+"Двойной щелчок по строке для редактирования её содержимого."
 
 #: ../gramps/plugins/tool/removespaces.py:118
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr "Поиск лишних пробелов"
+msgstr "Поиск возможных полей с ведущими или концевыми пробелами"
 
 #: ../gramps/plugins/tool/removespaces.py:135
 #: ../gramps/plugins/tool/removespaces.py:185
@@ -35164,17 +35126,15 @@ msgstr "всплывающая подсказка"
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
 msgid "leading and/or trailing spaces"
-msgstr "ведущие и/или последующие пробелы"
+msgstr "ведущие и/или концевые пробелы"
 
 #: ../gramps/plugins/tool/removespaces.py:282
 #: ../gramps/plugins/tool/removespaces.py:294
-#, fuzzy
 msgid "invalid format"
-msgstr "Неверный формат"
+msgstr "недействительный формат"
 
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
-#, fuzzy
 msgid "comma instead of dot"
 msgstr "запятая вместо точки"
 
@@ -35672,8 +35632,8 @@ msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Просматривает всю базу данных в поиске лишних пробелов для мест и лиц. Поиск "
-"запятых в координатах мест."
+"Просматривает всю базу данных в поиске ведущих или концевых пробелов для "
+"мест и лиц. Поиск запятых в полях координат для мест."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
@@ -36980,9 +36940,8 @@ msgid "Left <-> Right"
 msgstr "Влево <-> Вправо"
 
 #: ../gramps/plugins/view/pedigreeview.py:1710
-#, fuzzy
 msgid "About Pedigree View"
-msgstr "Родословная"
+msgstr "О виде Родословная"
 
 #: ../gramps/plugins/view/pedigreeview.py:1921
 #: ../gramps/plugins/view/relview.py:393
@@ -37473,9 +37432,8 @@ msgid "Visually Impaired"
 msgstr "Для людей с плохим зрением"
 
 #: ../gramps/plugins/webreport/basepage.py:1696
-#, fuzzy
 msgid "Go to top"
-msgstr "Перейти на базовое лицо"
+msgstr "Перейти наверх"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
 #: ../gramps/plugins/webreport/basepage.py:1963
@@ -37506,9 +37464,8 @@ msgstr "Контакт"
 
 #: ../gramps/plugins/webreport/basepage.py:1751
 #: ../gramps/plugins/webreport/basepage.py:1818
-#, fuzzy
 msgid "Updates"
-msgstr "Обновлено"
+msgstr "Обновления"
 
 #: ../gramps/plugins/webreport/basepage.py:1753
 #: ../gramps/plugins/webreport/basepage.py:1824
@@ -37517,9 +37474,8 @@ msgid "Web Calendar"
 msgstr "Веб-календарь"
 
 #: ../gramps/plugins/webreport/basepage.py:1786
-#, fuzzy
 msgid "Html|Home"
-msgstr "Домой"
+msgstr "Html | Главная"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -37593,16 +37549,14 @@ msgid "Last Modified"
 msgstr "Дата последнего изменения"
 
 #: ../gramps/plugins/webreport/download.py:129
-#, fuzzy
 msgid "MD5"
 msgstr "MD5"
 
 #. We have several files to download
 #. but all file names are empty
 #: ../gramps/plugins/webreport/download.py:178
-#, fuzzy
 msgid "No file to download"
-msgstr "Описание"
+msgstr "Нет файла для загрузки"
 
 #: ../gramps/plugins/webreport/event.py:117
 msgid "Creating event pages"
@@ -37651,9 +37605,9 @@ msgid "Families beginning with letter "
 msgstr "Семьи на букву "
 
 #: ../gramps/plugins/webreport/family.py:464
-#, fuzzy, python-format
+#, python-format
 msgid "Family Map for %s"
-msgstr "Семейные местоположения для %s"
+msgstr "Семейная карта для %s"
 
 #: ../gramps/plugins/webreport/home.py:79
 msgid "Home"
@@ -37782,23 +37736,21 @@ msgid "Creating statistics page..."
 msgstr "Создание страницы статистики..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1309
-#, fuzzy
 msgid "Creating updates page..."
-msgstr "Создание страницы статистики..."
+msgstr "Создание страницы обновлений..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1350
 msgid "Creating address book pages ..."
 msgstr "Создание страницы адресной книги..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Web Site Report for the %s language"
-msgstr "Повествовательный сайт"
+msgstr "Отчёт Повествовательный сайт для %s языка"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1830
-#, fuzzy
 msgid "Narrative Web Site Report"
-msgstr "Повествовательный сайт"
+msgstr "Отчёт Повествовательный сайт"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
 msgid "Store web pages in .tar.gz archive"
@@ -37871,9 +37823,8 @@ msgid "StyleSheet"
 msgstr "Стиль"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2023
-#, fuzzy
 msgid "The default stylesheet to be used for the pages"
-msgstr "Стиль отображения веб-страниц"
+msgstr "Стиль страниц по умолчанию, который будет использоваться для страниц"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2029
 msgid "Horizontal -- Default"
@@ -37939,9 +37890,8 @@ msgid "Whether to use http:// or https://"
 msgstr "Использовать http:// или https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2072
-#, fuzzy
 msgid "Toggle sections"
-msgstr "Выбор названия"
+msgstr "Переключить разделы"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2073
 msgid "Check it if you want to open/close a section"
@@ -38099,12 +38049,10 @@ msgid "HTML user header"
 msgstr "Верхний колонтитул (HTML)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr ""
 "Заметка для использования в качестве верхнего колонтитула или для вставки "
-"php кода."
+"PHP кода."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
@@ -38117,7 +38065,6 @@ msgstr "Заметка для использования в качестве н�
 #. This option will be available only if you select ".php" in the
 #. "File extension" from the "Html" tab
 #: ../gramps/plugins/webreport/narrativeweb.py:2212
-#, fuzzy
 msgid "PHP user session"
 msgstr "Сеанс пользователя PHP"
 
@@ -38172,9 +38119,8 @@ msgstr ""
 "меньший размер данных для загрузки на хостинг."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2260
-#, fuzzy
 msgid "Create the thumbnail index"
-msgstr "Размер изображения миниатюр"
+msgstr "Создать указатель миниатюр"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "This option allows you to create the thumbnail index"
@@ -38205,14 +38151,14 @@ msgid "How many downloads"
 msgstr "Сколько скачиваний"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2293
-#, fuzzy
 msgid "The number of download files to include in the download page"
-msgstr "Число поколений для включения в древо"
+msgstr ""
+"Количество файлов для загрузки, которые следует включить в страницу загрузки"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2302
-#, fuzzy, python-format
+#, python-format
 msgid "Download Filename #%c"
-msgstr "Имя файла"
+msgstr "Имя файла для загрузки #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2305
 msgid "File to be used for downloading of database"
@@ -38223,9 +38169,9 @@ msgid "Description for download"
 msgstr "Описание"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2310
-#, fuzzy, python-format
+#, python-format
 msgid "Family Tree #%c"
-msgstr "Семейное древо"
+msgstr "Семейное древо #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2311
 msgid "Give a description for this file."
@@ -38447,21 +38393,18 @@ msgid "Terrain"
 msgstr "Местность"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2477
-#, fuzzy
 msgid "WaterColor"
-msgstr "Цвет"
+msgstr "Акварель"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2478
-#, fuzzy
 msgid "Stamen Option"
-msgstr "Параметры содержимого"
+msgstr "Настройки Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
-#, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamenmap Map "
 "pages..."
-msgstr "Выберите параметр для страниц с картами Google и Семейными картами..."
+msgstr "Выберите, какую опцию Вы хотели бы иметь для страниц Карта Stamenmap..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
 msgid "Other inclusion (CMS, Web Calendar, Php)"
@@ -38480,14 +38423,12 @@ msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Где размещён веб сайт? по умолчанию = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2518
-#, fuzzy
 msgid "Include the news and updates page"
-msgstr "Включать страницу статистики"
+msgstr "Включите страницу новостей и обновлений"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
-#, fuzzy
 msgid "Whether to include a page with the last updates"
-msgstr "Включать ли последний вид деятельности"
+msgstr "Включать ли страницу с последними обновлениями"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2525
 msgid "Max days for updates"
@@ -38498,9 +38439,8 @@ msgid "You want to see the last updates on how many days ?"
 msgstr "Вы хотите видеть последние обновления за сколько дней?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2530
-#, fuzzy
 msgid "Max number of updates per object to show"
-msgstr "Максимальное количество отображаемых мест"
+msgstr "Максимальное количество обновлений каждого объекта для показа"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2532
 msgid "How many updates do you want to see max"
