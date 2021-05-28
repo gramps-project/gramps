@@ -387,12 +387,15 @@
   <country name="Russia">
     <date value="*/1/7" type="religious" name="Рождество Христово" />
     <date value="*/1/19" type="religious" name="Крещение Господне" />
-    <date value="*/2/23" type="national" name="День защитника" />
+    <date value="*/2/23" type="national" name="День Защитника Отечества" />
     <date value="*/3/8" type="national" name="Международный женский день" />
-    <date value="*/5/1" type="national" name="День труда" />
+    <date value="*/4/12" type="national" name="День Космонавтики" />
+    <date value="*/5/1" type="national" name="Праздник Весны и Труда" />
     <date value="*/5/9" type="national" name="День Победы" />
     <date value="*/6/1" type="national" name="День защиты детей" />
     <date value="*/6/12" type="national" name="День России" />
+    <date value="*/6/22" type="national" name="День памяти и скорби" />
+    <date value="*/-4/sun/jul" type="national" name="День ВМФ" />
     <date value="*/9/1" type="national" name="День знаний" />
     <date value="*/11/4" type="national" name="День народного единства" />
     <date value="*/12/31" offset="+2" type="national" name="Новый год" />
