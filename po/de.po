@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2021-05-28 11:55+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -291,7 +291,6 @@ msgid "United States of America"
 msgstr "Vereinigte Staaten von Amerika"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -299,8 +298,8 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Mit Daten arbeiten</b><br/>Ein Zeitraum von Daten kann durch die "
-"Verwendung des Formats &quot;zwischen 4.1.200 und 20.3.2003&quot; gegeben "
-"werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
+"Verwendung des Formats \"zwischen 4.1.2000 und 20.3.2003\" gegeben werden. "
+"Du kannst auch den Vertrauensgrad eines Datums angeben und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
 
@@ -861,7 +860,6 @@ msgstr ""
 "Tonaufnahmen, Tabellen, Dokumente und vieles mehr sein."
 
 #: ../data/tips.xml:84
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -871,8 +869,8 @@ msgstr ""
 "<b>Filter</b><br/>Filter erlauben dir, die Personen in der Personenansicht "
 "zu limitieren. Zu den vielen vorkonfigurierten Filtern kannst du "
 "maßgeschneiderte Filter anlegen, die nach deinen Vorstellungen gestaltet "
-"werden können. Benutzerfilter werden unter &quot;Bearbeiten &gt; "
-"Filtereditor für Personen Personen&quot; angelegt."
+"werden können. Benutzerfilter werden unter \"Bearbeiten &gt; Filtereditor "
+"für Personen Personen\" angelegt."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -10126,8 +10124,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
-"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
-"ist, ist dies die Breite, sonst ist es die Höhe."
+"Eine Dimension eines Knotens in mm. Wenn der Zeitfluss nach oben oder unten "
+"ist, ist dies die Breite, andernfalls die Höhe."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
 msgid "Level size"
@@ -17151,7 +17149,7 @@ msgid ""
 "codes. For example:  en, fr, de, nl ..."
 msgstr ""
 "Sprache, in der der Name des Ortes geschrieben ist. Gültige Werte sind "
-"zweistellige ISO-Schlüssel. Zum Beispiel: en, fr, de, nl, ..."
+"zweistellige ISO-Schlüssel. Zum Beispiel: en, fr, de, nl  ..."
 
 #: ../gramps/gui/glade/editplaceref.glade:295
 msgid ""
@@ -20403,9 +20401,9 @@ msgid "Add tag '%s'"
 msgstr "Markierung (%s) hinzufügen"
 
 #: ../gramps/gui/views/tags.py:255
-#, fuzzy, python-format
+#, python-format
 msgid "Remove tag '%s'"
-msgstr "Die Markierung '%s' entfernen?"
+msgstr "Markierung entfernen '%s'"
 
 #: ../gramps/gui/views/tags.py:313
 msgid "Adding Tags"
@@ -26655,9 +26653,9 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
-"Unterschied zwischen gewählter Erweiterung %(ext)s und dem aktuellen "
-"Format.\n"
-" Schreibe nach %(filename)s im Format %(impliedext)s!"
+"Unterschied zwischen gewählter Erweiterung %(ext)s und dem aktuellen Format."
+"\n"
+" Schreibe nach %(filename)s im Format %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:698
 msgid "Common Law Marriage"
@@ -33306,9 +33304,8 @@ msgid "Whether to sort events into chronological order."
 msgstr "Ob Ereignisse in chronologischer Reihenfolge sortiert werden."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Auf den Namen klicken, um die Person zu aktivieren.\n"
+msgstr "Name der Person als Titel verwenden"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
@@ -38138,10 +38135,8 @@ msgid "Sort all children in birth order"
 msgstr "Alle Kinder in Reihenfolge der Geburt sortieren"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "Kinder in der Reihenfolge der Geburt oder Eingabe anzeigen?"
+msgstr "Ob Kinder in der Reihenfolge der Geburt oder Eingabe anzeigt werden."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
