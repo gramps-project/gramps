@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2021
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -37,8 +37,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
+"POT-Creation-Date: 2020-08-29 01:17+0100\n"
+"PO-Revision-Date: 2021-05-28 13:46+0200\n"
+=======
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
 "PO-Revision-Date: 2020-09-25 09:02+0200\n"
+>>>>>>> 0c508835eff480fd83812acfc88bbf84c7c36c34
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -25035,7 +25040,7 @@ msgstr "datum křtu"
 
 #: ../gramps/plugins/importer/importcsv.py:191
 msgid "baptism source"
-msgstr "Pramen křtu"
+msgstr "pramen křtu"
 
 #: ../gramps/plugins/importer/importcsv.py:192
 msgid "burial place"
@@ -27445,7 +27450,7 @@ msgstr "Zemřela v %(death_place)s ve věku %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:416
 #, python-format
 msgid "Died in %(death_place)s."
-msgstr " †. %(death_place)s."
+msgstr "Zemřel(a) v %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:417
 #, python-format
@@ -31863,12 +31868,12 @@ msgstr "* %(person)s, narozen(a)%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
-msgstr[2] "{person}, {age}{relation}"
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
+msgstr[1] "* {year}{person}{dead}, {age}{relation}"
+msgstr[2] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:402
 #, python-format
@@ -31881,7 +31886,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:407
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -31889,27 +31894,27 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"{spouse} a\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} a\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"{spouse} a\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} a\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[2] ""
-"{spouse} a\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} a\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:442
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "{person}, {age}{relation}"
+msgstr "✝ {person}, death {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:444
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
-msgstr[2] "{person}, {age}{relation}"
+msgstr[0] "✝ {year}{person}, {age}{relation}"
+msgstr[1] "✝ {year}{person}, {age}{relation}"
+msgstr[2] "✝ {year}{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:475
 #: ../gramps/plugins/textreport/familygroup.py:716
@@ -32726,9 +32731,8 @@ msgid "Whether to sort events into chronological order."
 msgstr "Zda třídit události v chronologickém pořadí."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Klikněte na jméno pro aktivaci osoby\n"
+msgstr "Použít jméno osoby jako titulek"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
@@ -34733,7 +34737,7 @@ msgstr "seskupit jako"
 
 #: ../gramps/plugins/tool/removespaces.py:199
 msgid "tooltip"
-msgstr ""
+msgstr "tooltip"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
@@ -34750,12 +34754,12 @@ msgstr "neplatný formát"
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
 msgid "comma instead of dot"
-msgstr ""
+msgstr "čárka místo tečky"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "neplatný znak místo '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -36539,16 +36543,15 @@ msgstr "Směr pohybu kolečka myši"
 
 #: ../gramps/plugins/view/pedigreeview.py:1685
 msgid "Top <-> Bottom"
-msgstr "nahoru <-> dolů"
+msgstr "Nahoru <-> Dolů"
 
 #: ../gramps/plugins/view/pedigreeview.py:1692
 msgid "Left <-> Right"
-msgstr "vlevo <-> vpravo"
+msgstr "Vlevo <-> Vpravo"
 
 #: ../gramps/plugins/view/pedigreeview.py:1710
-#, fuzzy
 msgid "About Pedigree View"
-msgstr "Pohled na rodokmen"
+msgstr "O Pohledu na rodokmen"
 
 #: ../gramps/plugins/view/pedigreeview.py:1921
 #: ../gramps/plugins/view/relview.py:393
@@ -37161,10 +37164,14 @@ msgstr "MD5"
 
 #. We have several files to download
 #. but all file names are empty
+<<<<<<< HEAD
+#: ../gramps/plugins/webreport/download.py:175
+=======
 #: ../gramps/plugins/webreport/download.py:178
 #, fuzzy
+>>>>>>> 0c508835eff480fd83812acfc88bbf84c7c36c34
 msgid "No file to download"
-msgstr "Popis tohoto stažení"
+msgstr "Žádný soubor ke stažení"
 
 #: ../gramps/plugins/webreport/event.py:117
 msgid "Creating event pages"
@@ -37690,11 +37697,11 @@ msgstr "Zda zahrnout galerii mediálních objektů"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2235
 msgid "Create the images index"
-msgstr ""
+msgstr "Vytvořit rejstřík obrázků"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2237
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "Tato předvolba vám umožní vytvořit rejstřík obrázků"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2243
 msgid "Include unused images and media objects"
@@ -37724,7 +37731,7 @@ msgstr "Vytvořit index náhledů"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2262
 msgid "This option allows you to create the thumbnail index"
-msgstr ""
+msgstr "Tato předvolba vám umožní vytvořit rejstřík náhledů obrázků"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2268
 msgid "Max width of initial image"
@@ -37747,7 +37754,7 @@ msgstr "Zda zahrnout možnost stažení databáze"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "How many downloads"
-msgstr ""
+msgstr "Kolik stažení"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2293
 #, fuzzy
@@ -37993,7 +38000,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2476
 msgid "Terrain"
-msgstr ""
+msgstr "Terén"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2477
 #, fuzzy
@@ -38030,33 +38037,53 @@ msgstr "URI"
 msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Kde bude výchozí umístění na webu? default = /NAVWEB"
 
+<<<<<<< HEAD
+#: ../gramps/plugins/webreport/narrativeweb.py:2226
+msgid "Do we include the web calendar ?"
+msgstr "Bude zahrnut webový kalendář?"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:2236
+msgid "Where do you place your web site ? default = /WEBCAL"
+msgstr "Kde bude výchozí umístění na webu? default = /WEBCAL"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:2244
+=======
 #: ../gramps/plugins/webreport/narrativeweb.py:2518
 #, fuzzy
+>>>>>>> 0c508835eff480fd83812acfc88bbf84c7c36c34
 msgid "Include the news and updates page"
-msgstr "Vložit stránku statistik"
+msgstr "Zařadit stránku novinek a aktualizací"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2520
 #, fuzzy
 msgid "Whether to include a page with the last updates"
 msgstr "Zda zahrnout poslední povolání"
 
+<<<<<<< HEAD
+#: ../gramps/plugins/webreport/narrativeweb.py:2251
+=======
 #: ../gramps/plugins/webreport/narrativeweb.py:2525
 #, fuzzy
+>>>>>>> 0c508835eff480fd83812acfc88bbf84c7c36c34
 msgid "Max days for updates"
-msgstr "Max. položek pro kruhový graf"
+msgstr "Max. dnů pro mezi aktualizacemi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2526
 msgid "You want to see the last updates on how many days ?"
 msgstr ""
 
+<<<<<<< HEAD
+#: ../gramps/plugins/webreport/narrativeweb.py:2256
+=======
 #: ../gramps/plugins/webreport/narrativeweb.py:2530
 #, fuzzy
+>>>>>>> 0c508835eff480fd83812acfc88bbf84c7c36c34
 msgid "Max number of updates per object to show"
-msgstr "Maximální počet zobrazených míst"
+msgstr "Max. počet aktualizací per objekt k zobrazení"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2532
 msgid "How many updates do you want to see max"
-msgstr ""
+msgstr "Kolik nejvíce aktualizací chcete vidět"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2544
 #, fuzzy
@@ -38643,6 +38670,21 @@ msgstr "Linkovat do Vyprávěné webové sestavy"
 msgid "Whether to link data to web report or not"
 msgstr "Zda linkovat data do webové sestavy nebo ne"
 
+<<<<<<< HEAD
+#: ../gramps/plugins/webreport/webcal.py:1977
+msgid "Show data only after year"
+msgstr "Zobrazit data pouze po roce"
+
+#: ../gramps/plugins/webreport/webcal.py:1980
+msgid ""
+"Show data only after this year. Default is current year -  'maximum age "
+"probably alive' which is defined in the dates preference tab."
+msgstr ""
+"Zobrazit data pouze novější než tento rok. Výchozí je letošní rok - "
+"'Nejvyšší věk pravděpodobně žijících' je definován v záložce Předvolby data."
+
+=======
+>>>>>>> 0c508835eff480fd83812acfc88bbf84c7c36c34
 #: ../gramps/plugins/webreport/webcal.py:1988
 msgid "Link prefix"
 msgstr "Prefix linku"
