@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-25 19:36+0000\n"
+"PO-Revision-Date: 2021-05-28 11:55+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -9383,7 +9383,7 @@ msgstr "Suhteet"
 #: ../gramps/gui/widgets/grampletpane.py:228
 #: ../gramps/gui/widgets/grampletpane.py:987
 msgid "Gramplet"
-msgstr "gramplet"
+msgstr "Gramplet"
 
 #: ../gramps/gen/plug/_pluginreg.py:90
 msgid "Sidebar"
@@ -38870,7 +38870,7 @@ msgstr "Tuottaa (HTML) nettikalenterit."
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:36
 msgid "Webstuff"
-msgstr "Nettiaineisto"
+msgstr "Webstuff-sivusto"
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:37
 msgid "Provides a collection of resources for the web"
