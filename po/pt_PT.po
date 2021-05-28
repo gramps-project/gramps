@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-25 06:19+0000\n"
+"PO-Revision-Date: 2021-05-28 11:55+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -5228,7 +5228,7 @@ msgstr "Atributo pessoal:"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 msgid "People with the personal <attribute>"
-msgstr "Indivíduos com o atributo pessoal <atributo>"
+msgstr "Indivíduos com o <atributo> pessoal"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 msgid "Matches people with the personal attribute of a particular value"
@@ -5502,7 +5502,7 @@ msgstr "Encontra indivíduos com um parentesco específico"
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:44
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:44
 msgid "Family filters"
-msgstr "Filtros de familia"
+msgstr "Filtros de família"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:41
 #: ../gramps/gen/filters/rules/place/_hasdata.py:48
@@ -5529,7 +5529,7 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"Encontra indivíduos com SoundEx de dado nome. A procura é feita nos nomes "
+"Encontra indivíduos com SoundEx de um dado nome. A procura é feita nos nomes "
 "principal e alternativo, nos campos de nome próprio, apelido, diminutivo e "
 "alcunha."
 
@@ -5640,11 +5640,11 @@ msgstr "Encontra filhos de qualquer pessoa encontrada por um filtro"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
 msgid "Home Person"
-msgstr "Indivíduo predefinido"
+msgstr "Indivíduo inicial"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
 msgid "Matches the Home Person"
-msgstr "Localiza o indivíduo predefinido"
+msgstr "Localiza o indivíduo inicial"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
 msgid "Descendant family members of <person>"
@@ -5752,17 +5752,17 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Encontracendentes de indivíduos na lista de favoritos com até n gerações de "
-"distância"
+"Encontra ascendentes de indivíduos na lista de favoritos com até n gerações "
+"de distância"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the Home Person not more than <N> generations away"
-msgstr "Ascendentes do indivíduo predefinido com não mais de <n> gerações"
+msgstr "Ascendentes do indivíduo inicial com não mais de <n> gerações"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Encontracendentes do indivíduo predefinido com não mais de n gerações de "
+"Encontra ascendentes do indivíduo inicial com não mais de n gerações de "
 "distância"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -5774,7 +5774,7 @@ msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Encontra indivíduos descendentes de um indivíduo especificada com até n "
+"Encontra indivíduos descendentes de um indivíduo especificado com até n "
 "gerações de distância"
 
 #. -------------------------
@@ -5802,7 +5802,7 @@ msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Encontra indivíduos ascendentes de um indivíduo especificada com pelos menos "
+"Encontra indivíduos ascendentes de um indivíduo especificado com pelos menos "
 "n gerações de distância"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:46
@@ -5814,7 +5814,7 @@ msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Encontra indivíduos descendentes de um indivíduo especificada com pelo menos "
+"Encontra indivíduos descendentes de um indivíduo especificado com pelo menos "
 "n gerações de distância"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:47
@@ -5831,7 +5831,7 @@ msgstr "Indivíduos aparentados com <indivíduo>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "Matches people related to a specified person"
-msgstr "Encontra indivíduos aparentados com um indivíduo específica"
+msgstr "Encontra indivíduos aparentados com um indivíduo específico"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:46
 msgid "Siblings of <filter> match"
@@ -6000,8 +6000,8 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"Encontracendentes de dois indivíduos até um ascendente comum, produzindo a "
-"linha de parentesco entre esses indivíduos."
+"Encontra ascendentes de dois indivíduos até um ascendente comum, produzindo "
+"a linha de parentesco entre esses indivíduos."
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:51
 msgid "Relationship path between bookmarked persons"
@@ -6012,7 +6012,7 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Encontracendentes de indivíduos favoritos até um ascendente comum, "
+"Encontra ascendentes de indivíduos favoritos até um ascendente comum, "
 "produzindo a linha de parentesco entre esses indivíduos."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
@@ -6036,8 +6036,8 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Encontra locais modificados após uma data/hora especificada (aaaa-mm-dd hh:"
-"mm:ss) ou no intervalo, se uma segunda data/hora for indicada."
+"Encontra locais modificados após uma data/hora especificada (aaaa-mm-dd "
+"hh:mm:ss) ou no intervalo, se uma segunda data/hora for indicada."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
@@ -6099,7 +6099,7 @@ msgstr "Encontra locais com latitude ou longitude em branco"
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:56
 #: ../gramps/gen/filters/rules/place/_withinarea.py:60
 msgid "Position filters"
-msgstr "Fitros de posição"
+msgstr "Filtros de posição"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:45
 msgid "Places having <count> notes"
