@@ -999,6 +999,11 @@ class GedcomWriter(UpdateCallback):
             self._note_references(source.get_note_list(), 1)
             self._change(source.get_change_time(), 1)
 
+            for srcattr in source.get_attribute_list():
+                if str(srcattr.type) == "_APID":
+                    self._writeln(1, "_APID", srcattr.value)
+                    break
+
     def _notes(self):
         """
         Write out the list of notes, sorting by Gramps ID.
@@ -1407,6 +1412,11 @@ class GedcomWriter(UpdateCallback):
                 if str(srcattr.type) == "EVEN:ROLE":
                     self._writeln(level + 2, "ROLE", srcattr.value)
                     break
+
+        for srcattr in citation.get_attribute_list():
+            if str(srcattr.type) == "_APID":
+                self._writeln(level + 1, "_APID", srcattr.value)
+                break
 
     def _photo(self, photo, level):
         """

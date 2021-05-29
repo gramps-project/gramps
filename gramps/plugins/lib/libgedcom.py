@@ -275,6 +275,7 @@ TOKEN__PRIM = 134
 TOKEN__JUST = 135
 TOKEN__TEXT = 136
 TOKEN__DATE = 137
+TOKEN__APID = 138
 
 TOKENS = {
     "_ADPN"           : TOKEN__ADPN,
@@ -282,6 +283,7 @@ TOKENS = {
     "_AKAN"           : TOKEN__AKA,
     "_ALIA"           : TOKEN_ALIA,
     "_ANCES_ORDRE"    : TOKEN_IGNORE,
+    "_APID"           : TOKEN__APID,    # Ancestry.com database and page id
     "_CAT"            : TOKEN_IGNORE,
     "_CHUR"           : TOKEN_IGNORE,
     "_COMM"           : TOKEN__COMM,
@@ -2304,6 +2306,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_TEXT   : self.__citation_data_text,
             TOKEN__LINK  : self.__citation_link,
             TOKEN__JUST  : self.__citation__just,
+            TOKEN__APID  : self.__citation__apid,
         }
         self.func_list.append(self.citation_parse_tbl)
 
@@ -2452,6 +2455,7 @@ class GedcomParser(UpdateCallback):
             # not legal, but Ultimate Family Tree does this
             TOKEN_DATE   : self.__ignore,
             TOKEN_IGNORE : self.__ignore,
+            TOKEN__APID  : self.__source_attr,
         }
         self.func_list.append(self.source_func)
 
@@ -6376,6 +6380,17 @@ class GedcomParser(UpdateCallback):
         note.set_type(_("Citation Justification"))
         self.dbase.add_note(note, self.trans)
         state.citation.add_note(note.get_handle())
+
+    def __citation__apid(self, line, state):
+        """
+        Not legal GEDCOM - added to support Ancestry.com, converts the
+        _APID tag to an attribute. This tag identifies the location of
+        the cited page in the relevant Ancestry.com database.
+        """
+        sattr = SrcAttribute()
+        sattr.set_type("_APID")
+        sattr.set_value(line.data)
+        state.citation.add_attribute(sattr)
 
     def __citation_data_note(self, line, state):
         self.__parse_note(line, state.citation, state)
