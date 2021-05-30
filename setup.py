@@ -219,7 +219,9 @@ class test(Command):
             raise RuntimeError("No build directory. Run `python setup.py build` before trying to run tests.")
         os.environ['GRAMPS_RESOURCES'] = '.'
         all_tests = unittest.TestLoader().discover('.', pattern='*_test.py')
-        unittest.TextTestRunner(verbosity=self.verbose).run(all_tests)
+        result = unittest.TextTestRunner(verbosity=self.verbose).run(all_tests)
+        if not result.wasSuccessful():
+            raise SystemExit('ERROR: Unit test failure.')
 
 #-------------------------------------------------------------------------
 #
