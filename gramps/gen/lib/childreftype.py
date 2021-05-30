@@ -65,8 +65,8 @@ class ChildRefType(GrampsType):
 
     _DATAMAP = [
         (NONE, _("None"), "None"),
-        (BIRTH, _("Birth"), "Birth"),
-        (ADOPTED, _("Adopted"), "Adopted"),
+        (BIRTH, _("Birth", 'relationship'), "Birth"),
+        (ADOPTED, _("Adopted", 'relationship'), "Adopted"),
         (STEPCHILD, _("Stepchild"), "Stepchild"),
         (SPONSORED, _("Sponsored"), "Sponsored"),
         (FOSTER, _("Foster"), "Foster"),
