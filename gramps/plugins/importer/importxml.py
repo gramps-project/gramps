@@ -299,12 +299,12 @@ class ImportInfo:
             else:
                 txt += key2string[key] % self.data_newobject[self.key2data[key]]
         if any(self.data_unknownobject):
-            txt += _("\n The imported file was not self-contained.\n"
+            txt += _("\nThe imported file was not self-contained.\n"
                      "To correct for that, %(new)d objects were created and\n"
                      "their typifying attribute was set to 'Unknown'.\n"
                      "The breakdown per category is depicted by the\n"
                      "number in parentheses. Where possible these\n"
-                     "'Unkown' objects are referenced by note %(unknown)s.\n"
+                     "'Unknown' objects are referenced by note %(unknown)s.\n"
                      ) % {'new': sum(self.data_unknownobject), 'unknown': self.expl_note}
         if self.data_relpath:
             txt += _("\nMedia objects with relative paths have been\n"
@@ -318,7 +318,7 @@ class ImportInfo:
                 merge = True
                 break
         if merge:
-            txt += _("\n\nObjects that are candidates to be merged:\n")
+            txt += _("\nObjects that are candidates to be merged:\n")
             for key in self.keyorder:
                 datakey = self.key2data[key]
                 for handle in list(self.data_mergecandidate[datakey].keys()):
