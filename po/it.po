@@ -63,7 +63,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"PO-Revision-Date: 2021-05-31 14:27+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -1528,6 +1528,64 @@ msgid ""
 "Note: These examples are for bash shell.\n"
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
+"\n"
+"Esempio d'uso dell'interfaccia a riga di comando di Gramps\n"
+"\n"
+"1. Per importare quattro database (il cui formato può essere determinato dai "
+"rispettivi nomi)\n"
+"e successivamente verificare la presenza di errori nel database risultante, "
+"si può digitare:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
+"name=check.\n"
+"\n"
+"2. Per specificare esplicitamente i formati nell'esempio sovrastante, "
+"appendere i nomi di file cone le opportune opzioni -f:\n"
+"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
+"gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
+"\n"
+"\n"
+"3. Per registrare il database risultante da tutte le importazioni, fornire "
+"l'opzione -e\n"
+"(usare -f se il nome del file non permette a Gramps di determinarne il "
+"formato):\n"
+"gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
+"\n"
+"4. Per salvare ogni messaggio di errore dell'esempio sovrastante nei file "
+"outtfile e errfile, eseguire:\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
+"\n"
+"5. Per importare tre database e iniziare una sessione interattiva di Gramps "
+"con il risultato:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
+"\n"
+"6. Per aprire un database e, in base a quei dati, generare un resoconto "
+"temporale in formato PDF in un file my_timeline.pdf:\n"
+"gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline."
+"pdf\n"
+"\n"
+"7. Per generare un riepilogo del database:\n"
+"gramps -O 'Family Tree 1' -a report -p name=summary\n"
+"\n"
+"8. Elencare le opzioni del resoconto\n"
+"Usare name=timeline,show=all per scoprire tutte le opzioni disponibili per "
+"il resoconto temporale.\n"
+"Per scoprire i dettagli di un'opzione specifica, usare la stringa "
+"show=nome_opzione, ad es. name=timeline,show=off string.\n"
+"Per imporarre i nomi dei resoconti disponibili, usare la stringa name=show.\n"
+"\n"
+"9. Per convertire al volo un albero genealogico in un file .gramps XML:\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"\n"
+"10. Per generare un sito web in un altro locale (in tedesco):\n"
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
+"name=navwebpage,target=/../de\n"
+"\n"
+"11. Infine, per avviare un normale tipo di sessione interattiva:\n"
+"gramps\n"
+"\n"
+"Nota: questi esempi valgono per la shell bash.\n"
+"La sintassi può essere differente per altre shell e per Windows.\n"
 
 #: ../gramps/cli/argparser.py:257 ../gramps/cli/argparser.py:470
 msgid "Error parsing the arguments"
@@ -5600,11 +5658,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:45
 msgid "People with unknown gender"
-msgstr "Persone dal sesso sconosciuto"
+msgstr "Persone dal genere sconosciuto"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:47
 msgid "Matches all people with unknown gender"
-msgstr "Estrae tutte le persone con sesso sconosciuto"
+msgstr "Estrae tutte le persone con genere sconosciuto"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:43
 msgid "Adopted people"
@@ -6328,7 +6386,6 @@ msgid "Matches places within a given distance of another place"
 msgstr "Estrae i luoghi entro una certa distanza da un altro luogo"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
-#, fuzzy
 msgid "Cannot use the filter 'within area'"
 msgstr "Impossibile usare il filtro «dentro l'area»"
 
@@ -8079,9 +8136,8 @@ msgid "Events"
 msgstr "Eventi"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
-#, fuzzy
 msgid "LDS ordinances"
-msgstr "Ordinanza LDS"
+msgstr "Ordinanze LDS"
 
 #: ../gramps/gen/lib/familyreltype.py:47
 msgid "Married"
@@ -8230,9 +8286,8 @@ msgid "Do not seal/Cancel"
 msgstr "Non chiedere più"
 
 #: ../gramps/gen/lib/ldsord.py:114
-#, fuzzy
 msgid "Stillborn"
-msgstr "Nato morto"
+msgstr "Nato/a morto/a"
 
 #: ../gramps/gen/lib/ldsord.py:115
 #, fuzzy
@@ -8744,7 +8799,7 @@ msgstr "Persona"
 #: ../gramps/plugins/textreport/indivcomplete.py:934
 #: ../gramps/plugins/webreport/person.py:1677
 msgid "Gender"
-msgstr "Sesso"
+msgstr "Genere"
 
 #: ../gramps/gen/lib/person.py:188
 msgid "Alternate names"
@@ -9713,14 +9768,12 @@ msgid "How the lines between objects will be drawn."
 msgstr "Come saranno disegnate le linee tra gli oggetti."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
-#, fuzzy
 msgid "Alternate line attachment"
-msgstr "Nomi alternativi"
+msgstr "Collegamento alternativo della linea"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:194
-#, fuzzy
 msgid "Whether lines attach to nodes differently"
-msgstr "Indica se collegare o meno i dati al resoconto web"
+msgstr "Indica se le linee si collegano in modo diverso ai nodi"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
@@ -10013,6 +10066,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
+"Una dimensione di un nodo, in mm. Se il flusso temporale va verso l'alto o "
+"il basso questa è la larghezza, altrimenti è l'altezza."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
 msgid "Level size"
@@ -10023,6 +10078,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
+"Una dimensione di un nodo, in mm. Se il flusso temporale va verso l'alto o "
+"il basso questa è l'altezza, altrimenti è la larghezza."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
 msgid "Node color."
@@ -11288,9 +11345,8 @@ msgstr "Estinto"
 #. Name
 #. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
-#, fuzzy
 msgid "Nothing"
-msgstr "Nulla"
+msgstr "Nessuno"
 
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
@@ -11727,7 +11783,6 @@ msgid "ID Formats"
 msgstr "Formato ID"
 
 #: ../gramps/gui/configure.py:677
-#, fuzzy
 msgid "Colors used for boxes in the graphical views"
 msgstr "Colori usati per i riquadri nelle viste grafiche"
 
@@ -11991,7 +12046,7 @@ msgstr "Relazione familiare predefinita"
 
 #: ../gramps/gui/configure.py:1315
 msgid "Height multiple surname box (pixels)"
-msgstr "Altezza casella dei cognomi multipli (pixel)"
+msgstr "Altezza riquadro dei cognomi multipli (pixel)"
 
 #: ../gramps/gui/configure.py:1322
 msgid "Active person's name and ID"
@@ -12109,7 +12164,7 @@ msgstr "Intervallo di anni per date \"prima di\""
 
 #: ../gramps/gui/configure.py:1526
 msgid "Maximum age probably alive"
-msgstr "Stima età massima persone"
+msgstr "Età massima probabilmente in vita"
 
 #: ../gramps/gui/configure.py:1530
 msgid "Maximum sibling age difference"
@@ -12298,6 +12353,8 @@ msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
+"Non aprire la finestra per scegliere l'albero genealogico all'avvio, "
+"caricare semplicemente l'ultimo usato."
 
 #: ../gramps/gui/configure.py:1767
 msgid "Backup path"
@@ -12310,6 +12367,8 @@ msgstr "Copia di sicurezza in uscita"
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
+"Crea una copia di sicurezza dell'albero genealogico all'uscita nel percorso "
+"per la copia specificato in precedenza."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12415,12 +12474,20 @@ msgid ""
 "If you select the \"use symbols\" checkbox, Gramps will use the selected "
 "font if it exists."
 msgstr ""
+"Questa scheda dà la possibilità di usare un carattere in grado di mostrare "
+"tutti i simboli genealogici.\n"
+"\n"
+"Se viene selezionata la casella «Usa simboli», Gramps userà il carattere "
+"selezionato se esiste."
 
 #: ../gramps/gui/configure.py:1953
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
+"Questo può essere utile per aggiungere la fonetica in una nota per mostrare "
+"come pronunciare un nome o se vengono abbinate lingue diverse come greco e "
+"russo."
 
 #: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
@@ -12432,12 +12499,18 @@ msgid ""
 "before you can continue (10 minutes or more). \n"
 "If you cancel the process, nothing will be changed."
 msgstr ""
+"Attenzione, facendo clic sul pulsante «Cerca di trovare», ci potrà volere un "
+"po' prima di poter continuare (10 o più minuti).\n"
+"Se si annulla il processo non verrà cambiato nulla."
 
 #: ../gramps/gui/configure.py:1975
 msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
 msgstr ""
+"Lo strumento per la ricerca di caratteri genealogici è già stato eseguito.\n"
+"Eseguirlo nuovamente solo se sono stati aggiunti altri tipi di carattere al "
+"sistema."
 
 #: ../gramps/gui/configure.py:1980
 msgid "Try to find"
@@ -12485,7 +12558,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2155
 msgid "What you will see"
-msgstr ""
+msgstr "Quello che si vedrà"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -14676,14 +14749,14 @@ msgstr "Imposta come persona principale"
 
 #: ../gramps/gui/editors/editperson.py:808
 msgid "Problem changing the gender"
-msgstr "Problema modifica sesso"
+msgstr "Problema modifica genere"
 
 #: ../gramps/gui/editors/editperson.py:809
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"La modifica del sesso ha causato dei problemi con le informazioni sul "
+"La modifica del genere ha causato dei problemi con le informazioni sul "
 "matrimonio.\n"
 "Controllare i matrimoni della persona."
 
@@ -14717,15 +14790,15 @@ msgstr "Modifica persona (%s)"
 
 #: ../gramps/gui/editors/editperson.py:1098
 msgid "Unknown gender specified"
-msgstr "Specificato sesso sconosciuto"
+msgstr "Specificato genere sconosciuto"
 
 #: ../gramps/gui/editors/editperson.py:1100
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
-"Il sesso della persona non è stato specificato; normalmente accade per "
-"errore. Indicare il sesso."
+"Il genere della persona non è stato specificato; normalmente accade per "
+"errore. Indicare il genere."
 
 #: ../gramps/gui/editors/editperson.py:1103
 msgid "_Male"
@@ -15457,6 +15530,8 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"Questo ripristina i parametri dei filtri ad uno stato iniziale.  Il pulsante "
+"«Trova» deve essere usato per aggiornare la vista ai suoi valori predefiniti."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -17300,7 +17375,7 @@ msgstr "Persona 2"
 #: ../gramps/gui/glade/mergeperson.glade:255
 #: ../gramps/gui/glade/mergeperson.glade:271
 msgid "Gender:"
-msgstr "Sesso:"
+msgstr "Genere:"
 
 #: ../gramps/gui/glade/mergeperson.glade:409
 msgid ""
@@ -20905,7 +20980,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:819
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "Numero di generazioni di caselle vuote da mostrare"
+msgstr "Numero di generazioni di riquadri vuoti da mostrare"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:826
 #: ../gramps/plugins/drawreport/descendtree.py:1562
@@ -21067,7 +21142,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:922
 msgid "Display format for the fathers box."
-msgstr "Formato di visualizzazione per la casella del padre."
+msgstr "Formato di visualizzazione per i riquadri dei padri."
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
@@ -21085,7 +21160,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:938
 msgid "Display format for the mothers box."
-msgstr "Formato di visualizzazione per le caselle delle madri."
+msgstr "Formato di visualizzazione per i riquadri delle madri."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
 msgid ""
@@ -21110,12 +21185,12 @@ msgstr "Il formato di visualizzazione per la persona centrale"
 #: ../gramps/plugins/drawreport/ancestortree.py:948
 #: ../gramps/plugins/drawreport/descendtree.py:1681
 msgid "Include Marriage box"
-msgstr "Includere la casella del matrimonio"
+msgstr "Includere il riquadro del matrimonio"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:950
 #: ../gramps/plugins/drawreport/descendtree.py:1683
 msgid "Whether to include a separate marital box in the report"
-msgstr "Indica se includere una casella matrimoniale separata nel resoconto"
+msgstr "Indica se includere un riquadro matrimoniale separato nel resoconto"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:954
 #: ../gramps/plugins/drawreport/descendtree.py:1687
@@ -21130,7 +21205,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/descendtree.py:1689
 msgid "Display format for the marital box."
 msgstr ""
-"Formato di visualizzazione per la casella delle informazioni matrimoniali."
+"Formato di visualizzazione per il riquadro delle informazioni matrimoniali."
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:961
@@ -21197,11 +21272,11 @@ msgstr "Dove posizionare la nota."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:995
 msgid "inter-box scale factor"
-msgstr ""
+msgstr "fattore di scala inter-riquadro"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:998
 msgid "Make the inter-box spacing bigger or smaller"
-msgstr ""
+msgstr "Rende la spaziatura tra riquadri più grande o più piccola"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1001
 #: ../gramps/plugins/drawreport/descendtree.py:1725
@@ -21701,35 +21776,31 @@ msgstr "Formato di visualizzazione per un coniuge."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1720
 msgid "inter-box Y scale factor"
-msgstr ""
+msgstr "fattore di scala Y tra riquadri"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1722
 msgid "Make the inter-box Y bigger or smaller"
-msgstr ""
+msgstr "Rende il fattore di scala Y tra riquadri più grande o più piccolo"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1798
 msgid "The bold style used for the text display."
 msgstr "Lo stile grassetto usato per la visualizzazione del testo."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1823
-#, fuzzy
 msgid "The style for the marriage box."
-msgstr "Lo stile usato per i titoli."
+msgstr "Lo stile usato per i riquadri del matrimonio."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1830
-#, fuzzy
 msgid "The style for the spouse box."
-msgstr "Lo stile usato per il nome del coniuge."
+msgstr "Lo stile usato per il riquadro del coniuge."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1838
-#, fuzzy
 msgid "The style for the direct descendant box."
-msgstr "Lo stile usato per la prima voce di una persona."
+msgstr "Lo stile usato per il riquadro della discendenza diretta."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1844
-#, fuzzy
 msgid "The style for the note box."
-msgstr "Lo stile usato per l'intestazione delle note."
+msgstr "Lo stile usato per i riquadri delle note."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1849
 msgid "The style for the connection lines and report border."
@@ -21888,7 +21959,7 @@ msgstr "Stampa i testi radiali orientandoli verso l'alto o in modo circolare"
 
 #: ../gramps/plugins/drawreport/fanchart.py:719
 msgid "Draw empty boxes"
-msgstr "Disegna caselle vuote"
+msgstr "Disegna riquadri vuoti"
 
 #: ../gramps/plugins/drawreport/fanchart.py:720
 msgid "Draw the background although there is no information"
@@ -22017,7 +22088,7 @@ msgstr "Cognome (preferito) mancante"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:422
 msgid "Gender unknown"
-msgstr "Sesso sconosciuto"
+msgstr "Genere sconosciuto"
 
 #. localized year
 #. inadequate information
@@ -22162,11 +22233,11 @@ msgstr "Indica se includere le persone senza anno di nascita noto."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1052
 msgid "Genders included"
-msgstr "Sessi inclusi"
+msgstr "Generi inclusi"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1057
 msgid "Select which genders are included into statistics."
-msgstr "Seleziona quali sessi vanno inclusi nelle statistiche."
+msgstr "Seleziona quali generi vanno inclusi nelle statistiche."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1061
 msgid "Max. items for a pie"
@@ -24082,7 +24153,7 @@ msgstr "Numero di persone"
 #: ../gramps/plugins/webreport/statistics.py:128
 #: ../gramps/plugins/webreport/statistics.py:193
 msgid "Individuals with unknown gender"
-msgstr "Persone dal sesso sconosciuto"
+msgstr "Persone dal genere sconosciuto"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:156
 msgid "Incomplete names"
@@ -24723,7 +24794,7 @@ msgstr "Il colore usato per evidenziare le donne."
 #: ../gramps/plugins/graph/gvhourglass.py:430
 #: ../gramps/plugins/graph/gvrelgraph.py:953
 msgid "The color to use when the gender is unknown."
-msgstr "Il colore usato quando il sesso è sconosciuto."
+msgstr "Il colore usato quando il genere è sconosciuto."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:294
 #: ../gramps/plugins/graph/gvhourglass.py:435
@@ -25150,7 +25221,7 @@ msgstr "titolo"
 
 #: ../gramps/plugins/importer/importcsv.py:172
 msgid "gender"
-msgstr "sesso"
+msgstr "genere"
 
 #: ../gramps/plugins/importer/importcsv.py:173
 msgid "source"
@@ -25525,7 +25596,6 @@ msgid "Excommunication"
 msgstr "Scomunica"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
-#, fuzzy
 msgid "LDS Family Link"
 msgstr "Collegamento famiglia LDS"
 
@@ -26778,27 +26848,22 @@ msgid "NOTE Gramps ID %s"
 msgstr "Nota con ID Gramps %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7734
-#, fuzzy
 msgid "Submission: Submitter"
 msgstr "Contributo: contributore"
 
 #: ../gramps/plugins/lib/libgedcom.py:7736
-#, fuzzy
 msgid "Submission: Family file"
 msgstr "Contributo: file famiglia"
 
 #: ../gramps/plugins/lib/libgedcom.py:7738
-#, fuzzy
 msgid "Submission: Temple code"
 msgstr "Contributo: codice tempio"
 
 #: ../gramps/plugins/lib/libgedcom.py:7740
-#, fuzzy
 msgid "Submission: Generations of ancestors"
 msgstr "Contributo: generazioni di ascendenti"
 
 #: ../gramps/plugins/lib/libgedcom.py:7742
-#, fuzzy
 msgid "Submission: Generations of descendants"
 msgstr "Contributo: generazioni di discendenti"
 
@@ -31541,7 +31606,7 @@ msgstr "femmine"
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgctxt "Filtering_on"
 msgid "people with unknown gender"
-msgstr "persone dal sesso sconosciuto"
+msgstr "persone dal genere sconosciuto"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
@@ -31771,7 +31836,7 @@ msgstr "Nessuna relazione di nascita con il figlio"
 #: ../gramps/plugins/quickview/lineage.py:180
 #: ../gramps/plugins/tool/verify.py:1066
 msgid "Unknown gender"
-msgstr "Sesso sconosciuto"
+msgstr "Genere sconosciuto"
 
 #. display the title
 #: ../gramps/plugins/quickview/linkreferences.py:43
@@ -32632,12 +32697,12 @@ msgstr "Indica se usare la data completa e non solo l'anno."
 #: ../gramps/plugins/textreport/detancestralreport.py:886
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
 msgid "Compute death age"
-msgstr "Calcola l'età alla morte"
+msgstr "Calcola l'età al decesso"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:887
 #: ../gramps/plugins/textreport/detdescendantreport.py:1076
 msgid "Whether to compute a person's age at death."
-msgstr "Indica se calcolare l'età di una persona alla morte."
+msgstr "Indica se calcolare l'età di una persona al decesso."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:890
 msgid "Omit duplicate ancestors"
@@ -33458,7 +33523,7 @@ msgstr "Femmine: %d"
 #: ../gramps/plugins/textreport/summary.py:179
 #, python-format
 msgid "Individuals with unknown gender: %d"
-msgstr "Persone dal sesso sconosciuto: %d"
+msgstr "Persone dal genere sconosciuto: %d"
 
 #: ../gramps/plugins/textreport/summary.py:184
 #, python-format
@@ -35020,7 +35085,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:95
 msgid "Gender statistics rebuilt"
-msgstr "Estrai statistiche sui sessi"
+msgstr "Statistiche sui generi rigenerate"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:96
 msgid "Gender statistics for name gender guessing have been rebuilt."
@@ -35584,7 +35649,7 @@ msgstr "Ricostruisce le mappe dei riferimenti"
 
 #: ../gramps/plugins/tool/tools.gpr.py:309
 msgid "Rebuild Gender Statistics"
-msgstr "Ricostruisci statistiche sui sessi"
+msgstr "Ricostruisci statistiche sui generi"
 
 #: ../gramps/plugins/tool/tools.gpr.py:310
 msgid "Rebuilds gender statistics for name gender guessing..."
@@ -35645,7 +35710,7 @@ msgstr "Stampa statistiche sui generi"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr ""
+msgstr "Stamperà le statistiche per indovinare il genere dal nome."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -36459,6 +36524,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
+"Fare clic col pulsante destro sulla mappa e selezionare «Mostra tutti gli "
+"eventi» per mostrare tutti gli eventi noti con coordinate. È possibile usare "
+"la cronologia per navigare nella mappa. È possibile usare dei filtri."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
@@ -36764,6 +36832,10 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
+"Fare clic col pulsante destro sulla mappa e selezionare «Mostra tutti i "
+"luoghi» per mostrare tutti i luoghi noti con coordinate. È possibile "
+"cambiare il colore del tipo dei marcatori in base al tipo di luogo, ed usare "
+"dei filtri."
 
 #: ../gramps/plugins/view/geoplaces.py:448
 msgid ""
@@ -36771,6 +36843,10 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
+"Fare clic col pulsante destro sulla mappa e selezionare «Mostra tutti i "
+"luoghi» per mostrare tutti i luoghi noti con coordinate. È possibile usare "
+"la cronologia per navigare nella mappa. È anche possibile cambiare il colore "
+"del tipo dei marcatori in base al tipo di luogo, ed usare dei filtri."
 
 #: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
@@ -36891,10 +36967,9 @@ msgid "bap."
 msgstr "batt."
 
 #: ../gramps/plugins/view/pedigreeview.py:84
-#, fuzzy
 msgctxt "short for christened"
 msgid "chr."
-msgstr "cris."
+msgstr "batt. (cris.)"
 
 #: ../gramps/plugins/view/pedigreeview.py:85
 msgctxt "short for buried"
@@ -37863,14 +37938,15 @@ msgid "Normal Outline Style"
 msgstr "Stile contorno normale"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2049
-#, fuzzy
 msgid "Citation Referents Layout"
-msgstr "Riferimenti a citazioni"
+msgstr "Aspetto referenti a citazioni"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2053
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
+"Determina l'aspetto predefinito della sezione dei referenti a citazioni "
+"della pagina delle fonti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2057
 msgid "Include ancestor's tree"
@@ -37975,13 +38051,15 @@ msgstr "Numero di generazioni da includere nel grafico ascendenti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2155
 msgid "Include narrative notes just after name, gender"
-msgstr "Inserisci le note narrative subito dopo nome e sesso"
+msgstr "Includere le note narrative subito dopo nome e genere"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2157
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Includere le note narrative appena dopo nome, genere ed età al decesso "
+"(predefinito) o includerle appena prima degli attributi."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2168
 msgid "Page Generation"
@@ -38117,6 +38195,10 @@ msgid ""
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
+"Questa opzione permette di creare solo miniature di immagini invece delle "
+"immagini a dimensione piena nella pagina degli oggetti multimediali. Questo "
+"permetterà di avere un quantitativo più piccolo di dati da inviare "
+"all'hosting del sito web."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "Create the thumbnail index"
@@ -38322,7 +38404,7 @@ msgstr "Opzioni mappa dei luoghi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2427
 msgid "StamenMap"
-msgstr ""
+msgstr "Mappa Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2428
 msgid "Google"
@@ -38371,7 +38453,7 @@ msgstr "Collegamenti famiglia"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2459
 msgid "Drop"
-msgstr ""
+msgstr "Caduta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2460
 msgid "Markers"
@@ -38410,18 +38492,14 @@ msgid "WaterColor"
 msgstr "WaterColor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2478
-#, fuzzy
 msgid "Stamen Option"
-msgstr "Opzioni albero"
+msgstr "Opzione Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
-#, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamenmap Map "
 "pages..."
-msgstr ""
-"Selezionare quali opzioni abilitare per le pagine delle mappe familiari di "
-"Google Maps..."
+msgstr "Selezionare quale opzione abilitare per le pagine delle mappe Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2495
 msgid "Other inclusion (CMS, Web Calendar, Php)"
@@ -38453,7 +38531,7 @@ msgstr "Giorni massimi per gli aggiornamenti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2526
 msgid "You want to see the last updates on how many days ?"
-msgstr ""
+msgstr "Per quanti giorni visualizzare gli ultimi aggiornamenti?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2530
 msgid "Max number of updates per object to show"
@@ -38578,6 +38656,9 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
+"Mostra i dati solo dopo quest'anno. Il valore predefinito è l'anno corrente "
+"meno il valore di «Età massima probabilmente in vita» che è definito nella "
+"scheda delle preferenze delle date."
 
 #: ../gramps/plugins/webreport/person.py:149
 msgid "Creating individual pages"
@@ -38620,6 +38701,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"La pagina della mappa rappresenta quella persona e tutti i discendenti con i "
+"relativi eventi/luoghi. Se si posiziona il mouse sul marcatore verrà "
+"mostrato il nome del luogo. I marcatori e l'elenco dei riferimenti sono "
+"ordinati per data (se presente). Un clic sul nome di un luogo nella sezione "
+"dei riferimenti porterà alla pagina di quel luogo."
 
 #: ../gramps/plugins/webreport/person.py:974
 msgid "Place Title"
