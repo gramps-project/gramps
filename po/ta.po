@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"PO-Revision-Date: 2021-05-31 14:27+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
@@ -85,11 +85,11 @@ msgstr ""
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
-msgstr ""
+msgstr "பல்கேரியா"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr ""
+msgstr "கனடா"
 
 #: ../data/holidays.xml:84
 #, fuzzy
@@ -98,7 +98,7 @@ msgstr "சேய்"
 
 #: ../data/holidays.xml:107
 msgid "China"
-msgstr ""
+msgstr "சீனா"
 
 #: ../data/holidays.xml:110
 msgid "Croatia"
@@ -115,11 +115,11 @@ msgstr ""
 
 #: ../data/holidays.xml:171
 msgid "Finland"
-msgstr ""
+msgstr "ஃபின்லாந்து"
 
 #: ../data/holidays.xml:265
 msgid "France"
-msgstr ""
+msgstr "ஃபிரான்ஸ்"
 
 #: ../data/holidays.xml:301
 msgid "Germany"
@@ -127,7 +127,7 @@ msgstr ""
 
 #: ../data/holidays.xml:318
 msgid "Japan"
-msgstr ""
+msgstr "ஜப்பான்"
 
 #: ../data/holidays.xml:341
 msgid "Jewish Holidays"
@@ -889,7 +889,7 @@ msgstr "குடும்ப நிகழ்வு:"
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:457
 #, python-format
@@ -5786,11 +5786,11 @@ msgstr "நகரம்:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "County:"
-msgstr ""
+msgstr "மாவட்டம்:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "State:"
-msgstr ""
+msgstr "மாநிலம்:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "Country:"
@@ -5950,7 +5950,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_withinarea.py:57
 #: ../gramps/gui/editors/filtereditor.py:591
 msgid "Units:"
-msgstr ""
+msgstr "அலகுகள்:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:58
 #, fuzzy
@@ -6057,8 +6057,9 @@ msgid "Address:"
 msgstr "முகவரி:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:49
+#, fuzzy
 msgid "URL:"
-msgstr ""
+msgstr "URL ஐ"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:51
 msgid "Repositories matching parameters"
@@ -6399,7 +6400,7 @@ msgstr "உறவுமுறையைத் திருத்து"
 #: ../gramps/plugins/webreport/person.py:1434
 #: ../gramps/plugins/webreport/updates.py:148
 msgid "Notes"
-msgstr ""
+msgstr "குறிப்புகள்"
 
 #. wrap it all up and return to its callers
 #. position 0 = translatable label, position 1 = column class
@@ -6489,7 +6490,7 @@ msgstr "தேதி"
 #: ../gramps/plugins/webreport/basepage.py:2899
 #: ../gramps/plugins/webreport/basepage.py:2966
 msgid "Street"
-msgstr ""
+msgstr "தெரு"
 
 #: ../gramps/gen/lib/address.py:115 ../gramps/gen/lib/location.py:93
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:612
@@ -10240,17 +10241,17 @@ msgstr "பாலினம் தெரியவில்லை"
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr ""
+msgstr "பங்குதாரர்"
 
 #: ../gramps/gen/relationship.py:2186
 msgctxt "female,unmarried"
 msgid "partner"
-msgstr ""
+msgstr "பங்குதாரர்"
 
 #: ../gramps/gen/relationship.py:2188
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr ""
+msgstr "பங்குதாரர்"
 
 #: ../gramps/gen/relationship.py:2191
 msgctxt "male,unmarried"
@@ -10272,17 +10273,17 @@ msgstr "பாலினம் தெரியாதது,தெரியாத 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
 msgid "partner"
-msgstr ""
+msgstr "பங்குதாரர்"
 
 #: ../gramps/gen/relationship.py:2200
 msgctxt "female,civil union"
 msgid "partner"
-msgstr ""
+msgstr "பங்குதாரர்"
 
 #: ../gramps/gen/relationship.py:2202
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr ""
+msgstr "பங்குதாரர்"
 
 #: ../gramps/gen/relationship.py:2205
 #, fuzzy
@@ -10465,11 +10466,11 @@ msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:72
 msgid "Bulgarian"
-msgstr ""
+msgstr "பல்கேரியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:73
 msgid "Breton"
-msgstr ""
+msgstr "பிரெட்டன்"
 
 #. Windows has no translation for Breton
 #: ../gramps/gen/utils/grampslocale.py:74
@@ -10478,19 +10479,19 @@ msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:75
 msgid "Czech"
-msgstr ""
+msgstr "செக்"
 
 #: ../gramps/gen/utils/grampslocale.py:76
 msgid "Danish"
-msgstr ""
+msgstr "டேனிஷ்"
 
 #: ../gramps/gen/utils/grampslocale.py:77
 msgid "German"
-msgstr ""
+msgstr "ஜெர்மன்"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "Greek"
-msgstr ""
+msgstr "கிரேக்கம்"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "English (USA)"
@@ -10498,11 +10499,11 @@ msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:80
 msgid "English"
-msgstr ""
+msgstr "ஆங்கிலம்"
 
 #: ../gramps/gen/utils/grampslocale.py:81
 msgid "Esperanto"
-msgstr ""
+msgstr "எஸ்பரேன்டோ"
 
 #. Windows has no translation for Esperanto
 #: ../gramps/gen/utils/grampslocale.py:82
@@ -10512,11 +10513,11 @@ msgstr "வீச்சு"
 
 #: ../gramps/gen/utils/grampslocale.py:83
 msgid "Finnish"
-msgstr ""
+msgstr "ஃபின்னிஷ்"
 
 #: ../gramps/gen/utils/grampslocale.py:84
 msgid "French"
-msgstr ""
+msgstr "பிரெஞ்சு"
 
 #: ../gramps/gen/utils/grampslocale.py:85
 msgid "Gaelic"
@@ -10529,7 +10530,7 @@ msgstr "எப்ரியூ"
 
 #: ../gramps/gen/utils/grampslocale.py:87
 msgid "Croatian"
-msgstr ""
+msgstr "குரோஷியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:88
 msgid "Hungarian"
@@ -30619,7 +30620,7 @@ msgstr "பெற்றோர்"
 #: ../gramps/plugins/webreport/person.py:238
 #: ../gramps/plugins/webreport/surname.py:150
 msgid "Partner"
-msgstr ""
+msgstr "பங்குதாரர்"
 
 #: ../gramps/plugins/quickview/all_relations.py:313
 msgid "Partial"
