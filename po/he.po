@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"PO-Revision-Date: 2021-05-31 14:27+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -8175,7 +8175,7 @@ msgstr "קיבוץ כ"
 
 #: ../gramps/gen/lib/name.py:171
 msgid "Sort as"
-msgstr "מיון כ"
+msgstr "מיון כ-"
 
 #: ../gramps/gen/lib/name.py:173
 msgid "Display as"
@@ -21665,7 +21665,7 @@ msgstr "האדם המרכזי למסנן."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1023
 msgid "Sort chart items by"
-msgstr "מיין עצמים על ידי"
+msgstr "מיין פרטי תרשים לפי"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1028
 msgid "Select how the statistical data is sorted."
@@ -34464,7 +34464,7 @@ msgstr "סידור מזהים מחדש"
 #: ../gramps/plugins/tool/reorderids.py:552
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "מיון %s מזהים ..."
+msgstr "סידור %s מזהים מחדש ..."
 
 #: ../gramps/plugins/tool/reorderids.py:635
 #, python-format
@@ -34481,7 +34481,7 @@ msgstr "מיון אירועים"
 
 #: ../gramps/plugins/tool/sortevents.py:98
 msgid "Sort event changes"
-msgstr "מיון שינויי אירוע"
+msgstr "‮מיון שינויי אירוע"
 
 #: ../gramps/plugins/tool/sortevents.py:113
 msgid "Sorting personal events..."
@@ -37073,7 +37073,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2130
 msgid "Sort all children in birth order"
-msgstr "מיון צאצאים על פי סדר לידתם"
+msgstr "מיון צאצאים לפי סדר לידתם"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
 msgid "Whether to display children in birth order or in entry order."
