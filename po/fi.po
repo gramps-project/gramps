@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-28 11:55+0000\n"
+"PO-Revision-Date: 2021-05-31 14:27+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -138,43 +138,43 @@ msgstr "Japan"
 
 #: ../data/holidays.xml:341
 msgid "Jewish Holidays"
-msgstr "Jewish Holidays"
+msgstr "Juutalaisten juhlapäivät"
 
 #: ../data/holidays.xml:342
 msgid "Purim"
-msgstr "Purim"
+msgstr "Purim-juhla"
 
 #: ../data/holidays.xml:343
 msgid "Passover"
-msgstr "Passover"
+msgstr "Pääsiäinen"
 
 #: ../data/holidays.xml:344
 msgid "2 of Passover"
-msgstr "2 of Passover"
+msgstr "2. Pääsiäisestä"
 
 #: ../data/holidays.xml:345
 msgid "3 of Passover"
-msgstr "3 of Passover"
+msgstr "3. Pääsiäisestä"
 
 #: ../data/holidays.xml:346
 msgid "4 of Passover"
-msgstr "4 of Passover"
+msgstr "4. Pääsiäisestä"
 
 #: ../data/holidays.xml:347
 msgid "5 of Passover"
-msgstr "5 of Passover"
+msgstr "5. Pääsiäisestä"
 
 #: ../data/holidays.xml:348
 msgid "6 of Passover"
-msgstr "6 of Passover"
+msgstr "6. Pääsiäisestä"
 
 #: ../data/holidays.xml:349
 msgid "7 of Passover"
-msgstr "7 of Passover"
+msgstr "7. Pääsiäisestä"
 
 #: ../data/holidays.xml:350
 msgid "Shavuot"
-msgstr "Shavuot"
+msgstr "Shavuot-juhla"
 
 #: ../data/holidays.xml:351
 msgid "Rosh Ha'Shana"
@@ -222,7 +222,7 @@ msgstr "Simhat Tora"
 
 #: ../data/holidays.xml:362
 msgid "Hanuka"
-msgstr "Hanuka"
+msgstr "Hanukka"
 
 #: ../data/holidays.xml:363
 msgid "2 of Hanuka"
@@ -544,8 +544,8 @@ msgid ""
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Kahdentuneet tiedot</b><br/>\"Työkalut &gt; Tietokannan prosessointi &gt; "
-"Etsi mahdolliset henkilöiden kahdennukset...\" sallii sinun paikantaa (ja "
+"<b>Kahdentuneet tiedot</b><br/>\"Työkalut &gt; Sukupuun käsittely &gt; Etsi "
+"mahdolliset henkilöiden kahdennukset...\" sallii sinun paikantaa (ja "
 "sulauttaa) henkilöt, joiden tiedot on syötetty tietokantaan useamman kerran."
 
 #: ../data/tips.xml:44
