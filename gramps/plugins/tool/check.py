@@ -854,8 +854,8 @@ class CheckIntegrity:
         CHANGE_EVENT = 10
         CHANGE_SOURCE = 8
         CHANGE_CITATION = 9
-        CHANGE_PLACE = 11
-        CHANGE_MEDIA = 8
+        CHANGE_PLACE = 15
+        CHANGE_MEDIA = 10
         CHANGE_REPOS = 7
         CHANGE_NOTE = 5
 

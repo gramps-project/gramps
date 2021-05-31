@@ -612,7 +612,7 @@ class MediaPages(BasePage):
             urllist = self.display_url_list(media.get_url_list())
             if urllist is not None:
                 mediadetail += urllist
-                
+
             # get attribute list
             attrlist = media.get_attribute_list()
             if attrlist:

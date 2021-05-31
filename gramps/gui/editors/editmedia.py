@@ -216,7 +216,7 @@ class EditMedia(EditPrimary):
                                      self.obj.get_url_list())
         self._add_tab(notebook, self.web_list)
         self.track_ref_for_deletion("web_list")
-        
+
         self.attr_tab = MediaAttrEmbedList(self.dbstate,
                                       self.uistate,
                                       self.track,
