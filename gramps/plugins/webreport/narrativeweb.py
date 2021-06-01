@@ -2382,9 +2382,9 @@ class NavWebOptions(MenuReportOptions):
             _('Add a complete events list and relevant pages or not'))
         addopt("inc_events", inc_events)
 
-        inc_places = BooleanOption(_('Include places pages'), False)
+        inc_places = BooleanOption(_('Include place pages'), False)
         inc_places.set_help(
-            _('Whether or not to include the places Pages.'))
+            _('Whether or not to include the place Pages.'))
         addopt("inc_places", inc_places)
 
         inc_uplaces = BooleanOption(_('Include unused places pages'), False)
