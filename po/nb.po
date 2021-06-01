@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"PO-Revision-Date: 2021-06-01 14:59+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -16113,11 +16113,6 @@ msgid "Con_fidence:"
 msgstr "_Troverdighet:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -16125,7 +16120,7 @@ msgid ""
 msgstr ""
 "Dato for innførselen i den kilden du henviser til, f.eks. dato for "
 "folketelling eller dato for når en innførsel i en dåpsprotokoll ble "
-"registrert. "
+"registrert."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16491,13 +16486,6 @@ msgid "Image preview"
 msgstr "Forhåndsvisning av bilde"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16509,7 +16497,7 @@ msgstr ""
 "Gramps lagrer ikke mediene internt, bare filbanen! Sett 'Relativ filbane' i "
 "innstillingsbildet for å slippe å skrive inn hele filbanen for hvor mediene "
 "dine er lagret. 'Mediahåndtereren' kan hjelpe med å håndtere filbanene for "
-"en samling av mediaobjekter. "
+"en samling av mediaobjekter."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16680,10 +16668,8 @@ msgstr ""
 "offisielle fornavnet."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Fornavn "
+msgstr "Fornavn"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -25070,7 +25056,7 @@ msgstr "Grupper familier"
 #: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
-msgstr ""
+msgstr "Vis familienoder selv om utdataen kun inneholder ett familiemedlem."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "Include URLs"
@@ -26014,7 +26000,7 @@ msgstr "Hent ut hendelsesbeskrivelse"
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
-msgstr ""
+msgstr "Diverse"
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
 msgid "REFN"
@@ -30817,7 +30803,7 @@ msgstr "Sorterer personlige hendelser..."
 #: ../gramps/plugins/lib/libprogen.py:1414
 #, fuzzy
 msgid "see address on "
-msgstr "_Nettadresse:"
+msgstr "se adresse på "
 
 #: ../gramps/plugins/lib/libprogen.py:1417
 #, fuzzy
@@ -32255,11 +32241,11 @@ msgstr "%(person)s, født%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
+msgstr[1] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:402
 #, fuzzy, python-format
@@ -32272,7 +32258,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:407
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -32280,16 +32266,16 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"{spouse} og\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} og\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"{spouse} og\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} og\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:442
 #, fuzzy, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "{person}, {age}{relation}"
+msgstr "✝ {person}, død {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:444
 #, fuzzy, python-brace-format
@@ -34231,9 +34217,9 @@ msgid "All reference maps have been rebuilt."
 msgstr "Alle referansekart er gjenoppbygget."
 
 #: ../gramps/plugins/tool/check.py:2788
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "%s feilaktige notislenker ble fikset;\n"
+msgstr "%d feilaktige notislenker ble fikset;\n"
 
 #: ../gramps/plugins/tool/check.py:2817
 msgid "Integrity Check Results"
