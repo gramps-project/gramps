@@ -2390,7 +2390,7 @@ class NavWebOptions(MenuReportOptions):
             _('Whether or not to include the unused place Pages.'))
         addopt("inc_uplaces", inc_uplaces)
 
-        inc_sources = BooleanOption(_('Include sources pages'), False)
+        inc_sources = BooleanOption(_('Include source pages'), False)
         inc_sources.set_help(
             _('Whether or not to include the source pages.'))
         addopt("inc_sources", inc_sources)
