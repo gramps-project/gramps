@@ -1585,8 +1585,6 @@ class NavWebReport(Report):
         The extension is added to the filename as well.
 
         Notice that we do NOT use os.path.join() because we're creating a URL.
-        Imagine we run Gramps on Windows (gods forbidding), we don't want to
-        see backslashes in the URL.
         """
         if not fname:
             return ""
@@ -2382,14 +2380,14 @@ class NavWebOptions(MenuReportOptions):
             _('Add a complete events list and relevant pages or not'))
         addopt("inc_events", inc_events)
 
-        inc_places = BooleanOption(_('Include places pages'), False)
+        inc_places = BooleanOption(_('Include place pages'), False)
         inc_places.set_help(
-            _('Whether or not to include the places pages.'))
+            _('Whether or not to include the place pages.'))
         addopt("inc_places", inc_places)
 
-        inc_sources = BooleanOption(_('Include sources pages'), False)
+        inc_sources = BooleanOption(_('Include source pages'), False)
         inc_sources.set_help(
-            _('Whether or not to include the sources pages.'))
+            _('Whether or not to include the source pages.'))
         addopt("inc_sources", inc_sources)
 
         inc_repository = BooleanOption(_('Include repository pages'), False)
