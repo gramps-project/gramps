@@ -252,7 +252,7 @@ def get_address_str(addr):
             if addr_str == "":
                 addr_str = info
             else:
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 addr_str = _("%(str1)s, %(str2)s"
                             ) % {'str1' : addr_str, 'str2' : info}
     return addr_str

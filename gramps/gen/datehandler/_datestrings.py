@@ -72,7 +72,7 @@ class DateStrings:
         _ = locale.translation.lexgettext
 
         self.long_months = ( "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
@@ -90,7 +90,7 @@ class DateStrings:
             _("|December", "localized lexeme inflections") )
 
         self.short_months = ( "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
@@ -109,7 +109,7 @@ class DateStrings:
 
         _ = locale.translation.sgettext
         self.alt_long_months = ( "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to add proper alternatives to be recognized in your localized
             # DateParser code!
@@ -139,7 +139,7 @@ class DateStrings:
 
         self.hebrew = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
@@ -160,7 +160,7 @@ class DateStrings:
 
         self.french = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
@@ -181,7 +181,7 @@ class DateStrings:
 
         self.islamic = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
@@ -201,7 +201,7 @@ class DateStrings:
 
         self.persian = (
             "",
-            # TRANSLATORS: see
+            # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
@@ -220,13 +220,13 @@ class DateStrings:
             )
 
         self.modifiers = ("",
-                # TRANSLATORS: if the modifier is after the date
+                # Translators: if the modifier is after the date
                 # put the space ahead of the word instead of after it
                 _("before ", "date modifier"),
-                # TRANSLATORS: if the modifier is after the date
+                # Translators: if the modifier is after the date
                 # put the space ahead of the word instead of after it
                 _("after ", "date modifier"),
-                # TRANSLATORS: if the modifier is after the date
+                # Translators: if the modifier is after the date
                 # put the space ahead of the word instead of after it
                 _("about ", "date modifier"),
                 "", "", "")

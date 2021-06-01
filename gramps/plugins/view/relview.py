@@ -1040,7 +1040,7 @@ class RelationshipView(NavigationView):
             else:
                 count = 0
             if count > 1 :
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 childmsg = ngettext(" ({number_of} sibling)",
                                     " ({number_of} siblings)", count
                                    ).format(number_of=count)
@@ -1095,7 +1095,7 @@ class RelationshipView(NavigationView):
                     else:
                         count = 0
                     if count > 1 :
-                        # translators: leave all/any {...} untranslated
+                        # Translators: leave all/any {...} untranslated
                         childmsg = ngettext(" ({number_of} sibling)",
                                             " ({number_of} siblings)", count
                                            ).format(number_of=count)
@@ -1560,7 +1560,7 @@ class RelationshipView(NavigationView):
             else:
                 count = 0
             if count >= 1 :
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 childmsg = ngettext(" ({number_of} child)",
                                     " ({number_of} children)", count
                                    ).format(number_of=count)
@@ -1606,7 +1606,7 @@ class RelationshipView(NavigationView):
                 else:
                     count = 0
                 if count >= 1 :
-                    # translators: leave all/any {...} untranslated
+                    # Translators: leave all/any {...} untranslated
                     childmsg = ngettext(" ({number_of} child)",
                                         " ({number_of} children)", count
                                        ).format(number_of=count)

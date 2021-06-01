@@ -120,7 +120,7 @@ class NumberOfAncestorsReport(Report):
 
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 text = ngettext(
                     "Generation {number} has {count} individual. {percent}",
                     "Generation {number} has {count} individuals. {percent}",

@@ -513,7 +513,7 @@ def _get_styled(name, callname, placeholder=False,
         elif callname == CALLNAME_UNDERLINE_ADD:
             if n.call not in n.first_name:
                 # Add call name to first name.
-                # translators: used in French+Russian, ignore otherwise
+                # Translators: used in French+Russian, ignore otherwise
                 n.first_name = trans_text('"%(callname)s" (%(firstname)s)') % {
                                              'callname':  n.call,
                                              'firstname': n.first_name }

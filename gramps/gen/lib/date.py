@@ -423,23 +423,23 @@ class Span:
         retval = ""
         detail = 0
         if diff_tuple[0] != 0:
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} year", "{number_of} years",
                                diff_tuple[0]
                               ).format(number_of=diff_tuple[0])
             detail += 1
         if self.precision == detail:
             if diff_tuple[1] >= 6: # round up years
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 retval = ngettext("{number_of} year", "{number_of} years",
                                   diff_tuple[0] + 1
                                  ).format(number_of=diff_tuple[0] + 1)
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} month", "{number_of} months",
                                diff_tuple[1]
                               ).format(number_of=diff_tuple[1])
@@ -448,9 +448,9 @@ class Span:
             return retval
         if diff_tuple[2] != 0:
             if retval != "":
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} day", "{number_of} days",
                                diff_tuple[2]
                               ).format(number_of=diff_tuple[2])

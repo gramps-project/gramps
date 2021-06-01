@@ -268,7 +268,7 @@ class PedigreeGramplet(Gramplet):
                           tooltip=_("Double-click to see people in generation %d") % g)
                 percent = glocale.format('%.2f', float(count)/2**(g-1) * 100) + percent_sign
                 self.append_text(
-                    # translators: leave all/any {...} untranslated
+                    # Translators: leave all/any {...} untranslated
                     ngettext(" has {count_person} of {max_count_person} "
                              "individuals ({percent} complete)\n",
                              " has {count_person} of {max_count_person} "
@@ -279,7 +279,7 @@ class PedigreeGramplet(Gramplet):
         self.link(_("All generations"), 'PersonList', all,
                   tooltip=_("Double-click to see all generations"))
         self.append_text(
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             ngettext(" have {number_of} individual\n",
                      " have {number_of} individuals\n", len(all)
                     ).format(number_of=len(all)))

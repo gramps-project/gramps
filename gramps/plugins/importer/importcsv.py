@@ -370,7 +370,7 @@ class CSVParser:
             self.db.enable_signals()
             self.db.request_rebuild()
             tym = time.time() - tym
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             msg = ngettext('Import Complete: {number_of} second',
                            'Import Complete: {number_of} seconds', tym
                           ).format(number_of=tym)
