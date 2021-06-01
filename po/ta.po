@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-31 14:27+0000\n"
+"PO-Revision-Date: 2021-06-01 01:55+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
@@ -889,7 +889,7 @@ msgstr "குடும்ப நிகழ்வு:"
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "\"%s\""
-msgstr "\"%s\""
+msgstr ""
 
 #: ../gramps/cli/arghandler.py:457
 #, python-format
@@ -7855,7 +7855,7 @@ msgstr "வாழ்கை துனையை சேர்"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
-msgstr "<No Status>"
+msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Born in Covenant"
@@ -10462,7 +10462,7 @@ msgstr "%(father)s மற்றும் %(mother)s"
 
 #: ../gramps/gen/utils/grampslocale.py:71
 msgid "Arabic"
-msgstr ""
+msgstr "அராபிக்"
 
 #: ../gramps/gen/utils/grampslocale.py:72
 msgid "Bulgarian"
@@ -10475,7 +10475,7 @@ msgstr "பிரெட்டன்"
 #. Windows has no translation for Breton
 #: ../gramps/gen/utils/grampslocale.py:74
 msgid "Catalan"
-msgstr ""
+msgstr "கடலான்"
 
 #: ../gramps/gen/utils/grampslocale.py:75
 msgid "Czech"
@@ -10534,11 +10534,11 @@ msgstr "குரோஷியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:88
 msgid "Hungarian"
-msgstr ""
+msgstr "ஹங்கேரியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:89
 msgid "Icelandic"
-msgstr ""
+msgstr "ஐஸ்லான்டிக்"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 #, fuzzy
@@ -10547,15 +10547,15 @@ msgstr "ஜூலியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Japanese"
-msgstr ""
+msgstr "ஜப்பானிய"
 
 #: ../gramps/gen/utils/grampslocale.py:92
 msgid "Lithuanian"
-msgstr ""
+msgstr "லிதுவேனியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:93
 msgid "Macedonian"
-msgstr ""
+msgstr "மெசிடோனியன்"
 
 #. Windows has no translation for Macedonian
 #: ../gramps/gen/utils/grampslocale.py:94
@@ -10572,7 +10572,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:97
 msgid "Polish"
-msgstr ""
+msgstr "போலிஷ்"
 
 #: ../gramps/gen/utils/grampslocale.py:98
 msgid "Portuguese (Brazil)"
@@ -10584,7 +10584,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:100
 msgid "Romanian"
-msgstr ""
+msgstr "ரோமானியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:101
 msgid "Russian"
@@ -10622,7 +10622,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:109
 msgid "Ukrainian"
-msgstr ""
+msgstr "உக்கிரேனியன்"
 
 #: ../gramps/gen/utils/grampslocale.py:110
 #, fuzzy
