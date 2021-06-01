@@ -247,7 +247,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.write_cell(label)
         if parent_name:
-            # for example (a stepfather): John Smith, relationship: Step
+            # Translators: e.g. (a stepfather): John Smith, relationship: Step
             text = self._('%(parent-name)s, relationship: %(rel-type)s'
                          ) % {'parent-name' : parent_name,
                               'rel-type'    : self._(rel_type)}

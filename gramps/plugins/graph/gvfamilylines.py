@@ -487,7 +487,7 @@ class FamilyLinesReport(Report):
             person = self._db.get_person_from_handle(handle)
             gid = person.get_gramps_id()
             name = person.get_primary_name().get_regular_name()
-            # Translators: needed for Arabic, ignore othewise
+            # Translators: needed for Arabic, ignore otherwise
             id_n = self._("%(str1)s, %(str2)s") % {'str1':gid, 'str2':name}
             self.doc.add_comment('# -> ' + id_n)
 
