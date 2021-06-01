@@ -262,7 +262,7 @@ NO_GIVEN = "(%s)" % _("none", "given-name")
 ARABIC_COMMA = "،"
 ARABIC_SEMICOLON = "؛"
 DOCGEN_OPTIONS = 'Docgen Options'
-COLON = _(':') # translators: needed for French, ignore otherwise
+COLON = _(':') # Translators: needed for French, ignore otherwise
 
 #-------------------------------------------------------------------------
 #

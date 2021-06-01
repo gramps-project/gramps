@@ -2523,7 +2523,7 @@ class GrampsParser(UpdateCallback):
             attrs = " ".join(
                 ['{}="{}"'.format(k,escape(v, entities={'"' : "&quot;"}))
                     for k,v in xml_attrs.items()]))
-        # TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+        # Translators: leave the {date} and {xml} untranslated in the format string,
         # but you may re-order them if needed.
         LOG.warning(_("Invalid date {date} in XML {xml}, preserving XML as text"
             ).format(date=date_error.date.__dict__, xml=xml))

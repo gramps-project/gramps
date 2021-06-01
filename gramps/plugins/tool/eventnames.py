@@ -116,7 +116,7 @@ class EventNames(tool.BatchTool):
         else:
             parent_window = None
         if self.change == True:
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             message = ngettext("{quantity} event description has been added",
                                "{quantity} event descriptions have been added",
                                counter).format(quantity=counter)

@@ -199,7 +199,7 @@ class IndivCompleteReport(Report):
             column_1 = self._(self._get_type(event.get_type()))
             if role not in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
                 column_1 = column_1 + ' (' + self._(role.xml_str()) + ')'
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             # make sure it's translated, so it can be used below, in "combine"
             ignore = _('%(str1)s, %(str2)s') % {'str1' : '', 'str2' : ''}
             column_2 = self.combine('%(str1)s, %(str2)s', '%s',
@@ -207,7 +207,7 @@ class IndivCompleteReport(Report):
         else:
             # Groups with a single type (remove event type from first column)
             column_1 = date
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             # make sure it's translated, so it can be used below, in "combine"
             ignore = _('%(str1)s, %(str2)s') % {'str1' : '', 'str2' : ''}
             column_2 = self.combine('%(str1)s, %(str2)s', '%s',
@@ -919,7 +919,7 @@ class IndivCompleteReport(Report):
                     p_style = 'IDS-PersonTable' # this is tested for, also
                 else:
                     self._user.warn(_("Could not add photo to page"),
-                                    # translators: for French, else ignore
+                                    # Translators: for French, else ignore
                                     _("%(str1)s: %(str2)s"
                                      ) % {'str1' : image_filename,
                                           'str2' : _('File does not exist')})
@@ -927,7 +927,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table('person', p_style)
         self.doc.start_row()
 
-        # translators: needed for French, ignore otherwise
+        # Translators: needed for French, ignore otherwise
         ignore = self._("%s:")
         self.doc.start_cell('IDS-NormalCell')
         self.write_paragraph(self._("%s:") % self._("Name"))
@@ -959,7 +959,7 @@ class IndivCompleteReport(Report):
             else:
                 for attr in attr_list:
                     attr_type = attr.get_type().type2base()
-                    # translators: needed for French, ignore otherwise
+                    # Translators: needed for French, ignore otherwise
                     text = self._("%(str1)s: %(str2)s"
                                  ) % {'str1' : self._(attr_type),
                                       'str2' : attr.get_value()}
@@ -1020,7 +1020,7 @@ class IndivCompleteReport(Report):
         if not txt:
             return prior
         if prior:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             txt = self._('%(str1)s, %(str2)s') % {'str1':prior, 'str2':txt}
         return txt
 
@@ -1030,7 +1030,7 @@ class IndivCompleteReport(Report):
             return
         for attr in attr_list:
             attr_type = attr.get_type().type2base()
-            # translators: needed for French, ignore otherwise
+            # Translators: needed for French, ignore otherwise
             text = self._("%(str1)s: %(str2)s"
                          ) % {'str1' : self._(attr_type),
                               'str2' : attr.get_value()}

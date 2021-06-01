@@ -58,7 +58,7 @@ WIKI_HELP_PAGE = URL_MANUAL_SECT3
 WIKI_HELP_SEC = _("Merge_People", "manual")
 _GLADE_FILE = "mergeperson.glade"
 
-# translators: needed for French, ignore otherwise
+# Translators: needed for French, ignore otherwise
 KEYVAL = _("%(key)s:\t%(value)s")
 
 sex = ( _("female"), _("male"), _("unknown") )
@@ -214,7 +214,7 @@ class MergePerson(ManagedWindow):
                     self.add(tobj, normal,
                              KEYVAL % {'key': name, 'value': ev_info})
                 else:
-                    self.add(tobj, normal, # translators: needed for French
+                    self.add(tobj, normal, # Translators: needed for French
                              "%(name)s (%(role)s):\t%(info)s"
                                  % {'name': name, 'role': role,
                                     'info': ev_info})

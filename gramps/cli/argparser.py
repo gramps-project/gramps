@@ -383,7 +383,7 @@ class ArgParser:
                                 converter = get_type_converter(setting_value)
                                 new_value = converter(new_value)
                             config.set(cfg_name, new_value)
-                            # translators: indent "New" to match "Current"
+                            # Translators: indent "New" to match "Current"
                             print(_("    New Gramps config setting: "
                                     "%(name)s:%(value)s"
                                    ) % {'name'  : cfg_name,

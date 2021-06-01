@@ -361,7 +361,7 @@ class Calendar(Report):
                             text = self._('%(person)s, birth') % {
                                                 'person' : short_name }
                         else:
-                            # translators: leave all/any {...} untranslated
+                            # Translators: leave all/any {...} untranslated
                             text = ngettext('{person}, {age}',
                                             '{person}, {age}',
                                             nyears).format(person=short_name,
@@ -423,7 +423,7 @@ class Calendar(Report):
                                                         'person' : short_name,
                                                         }
                                             else:
-                                                # translators: leave all/any {...} untranslated
+                                                # Translators: leave all/any {...} untranslated
                                                 text = ngettext("{spouse} and\n {person}, {nyears}",
                                                                 "{spouse} and\n {person}, {nyears}",
                                                                 nyears).format(spouse=spouse_name, person=short_name, nyears=nyears)

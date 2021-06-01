@@ -2177,7 +2177,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                 age = ", <font size='+1' ><b>%s</b></font> <em>%s (%s)" % (
                     death_symbol, mess, age_at_death)
             else:
-                # TRANSLATORS: expands to smth like "12 years old",
+                # Translators: expands to smth like "12 years old",
                 # where "12 years" is already localized to your language
                 age = ', <em>'
                 date_y = date.get_year()
@@ -2215,7 +2215,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                         txt_str += "</em>"
                 else:
                     age = '<em>%s' % nyears
-                    # translators: leave all/any {...} untranslated
+                    # Translators: leave all/any {...} untranslated
                     ngettext = rlocale.translation.ngettext
                     txt_str = ngettext("{couple}, {years} year anniversary",
                                        "{couple}, {years} year anniversary",

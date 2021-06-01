@@ -345,7 +345,7 @@ class NameDisplay:
         global WITH_GRAMPS_CONFIG
         global PAT_AS_SURN
 
-        # translators: needed for Arabic, ignore otherwise
+        # Translators: needed for Arabic, ignore otherwise
         COMMAGLYPH = xlocale.translation.gettext(',')
 
         self.STANDARD_FORMATS = [
@@ -358,7 +358,7 @@ class NameDisplay:
             (Name.FNLN,  _("Given Surname Suffix"),
                          '%f %l %s', _ACT),
             # primary name primconnector other, given pa/matronynic suffix, primprefix
-            # translators: long string, have a look at Preferences dialog
+            # Translators: long string, have a look at Preferences dialog
             (Name.LNFNP, _("Main Surnames, Given Patronymic Suffix Prefix"),
                          '%1m %2m %o' + COMMAGLYPH + ' %f %1y %s %0m', _ACT),
             # DEPRECATED FORMATS
