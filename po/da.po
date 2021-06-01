@@ -46,7 +46,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
+"PO-Revision-Date: 2021-06-01 14:59+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
@@ -33748,7 +33748,7 @@ msgstr "Leder efter kontroltegn i noter"
 
 #: ../gramps/plugins/tool/check.py:463
 msgid "Looking for bad alternate place names"
-msgstr "Leder efter fejlagtige stednavne "
+msgstr "Leder efter fejlagtige stednavne"
 
 #: ../gramps/plugins/tool/check.py:492
 msgid "Looking for broken family links"
