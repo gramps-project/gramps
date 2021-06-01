@@ -1717,15 +1717,24 @@ class PersonPages(BasePage):
                     # Show birth and/or death date if we use the close button.
                     # If we have associated places, show them.
                     if p_birth:
-                        p_birth = " (" + p_birth + ")"
+                        p_birth = "%(bdat)s (%(pbirth)s)" % {
+                            'bdat': self.rlocale.get_date(birth_date),
+                            'pbirth': p_birth
+                            }
+                    elif birth_ref and birth:
+                        p_birth = self.rlocale.get_date(birth_date)
                     if p_death:
-                        p_death = " (" + p_death + ")"
+                        p_death = "%(ddat)s (%(pdeath)s)" % {
+                            'ddat': self.rlocale.get_date(death_date),
+                            'pdeath': p_death
+                            }
+                    elif death_ref and death:
+                        p_death = self.rlocale.get_date(death_date)
                     if birth_date and birth_date is not Date.EMPTY:
                         trow = Html("tr") + (
                             Html("td", self._("Birth date"),
                                  class_="ColumnAttribute", inline=True),
-                            Html("td", self.rlocale.get_date(birth_date) +
-                                 p_birth,
+                            Html("td", p_birth,
                                  class_="ColumnValue", inline=True)
                             )
                         table += trow
@@ -1733,8 +1742,7 @@ class PersonPages(BasePage):
                         trow = Html("tr") + (
                             Html("td", self._("Death date"),
                                  class_="ColumnAttribute", inline=True),
-                            Html("td", self.rlocale.get_date(death_date) +
-                                 p_death,
+                            Html("td", p_death,
                                  class_="ColumnValue", inline=True)
                             )
                         table += trow
