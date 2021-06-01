@@ -2,53 +2,54 @@
 # This file is distributed under the same license as the Gramps package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021.
 #
 # Common terms and translations:
-#  ancestor        předek
-#  burial          pohřeb
-#  descendant      potomek
-#  call name       domácké jméno
-#  child           potomek
-#  city            město
-#  county          kraj
-#  country         stát/země
-#  descendant      potomek
-#  district        okres
-#  event           událost
-#  location        umístění
-#  media object    objekt média(í)
-#  option          možnost, volba (dle kontextu)
-#  person          osoba
-#  preferences     předvolby
-#  remove          odstranit
-#  repository      archiv
-#  residence       bydliště
-#  select          zvolit nebo vybrat (dle kontextu)
-#  source          pramen
-#  state           stát
-#  town            městečko
-#  view            pohled (v kontextu např. Family Tree View - Pohled na rodokemn)
+# ancestor        předek
+# burial          pohřeb
+# descendant      potomek
+# call name       domácké jméno
+# child           potomek
+# city            město
+# county          kraj
+# country         stát/země
+# descendant      potomek
+# district        okres
+# event           událost
+# location        umístění
+# media object    objekt média(í)
+# option          možnost, volba (dle kontextu)
+# person          osoba
+# preferences     předvolby
+# remove          odstranit
+# repository      archiv
+# residence       bydliště
+# select          zvolit nebo vybrat (dle kontextu)
+# source          pramen
+# state           stát
+# town            městečko
+# view            pohled (v kontextu např. Family Tree View - Pohled na rodokemn)
 #
-#  Family Tree     rodokmen
-#  home person     výchozí osoba
+# Family Tree     rodokmen
+# home person     výchozí osoba
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2020-09-25 09:02+0200\n"
+"PO-Revision-Date: 2021-06-01 14:59+0000\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
-"Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.3\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -1912,7 +1913,7 @@ msgstr "Došlo k chybě: %s"
 #: ../gramps/cli/grampscli.py:324 ../gramps/cli/grampscli.py:332
 #, python-format
 msgid "  Details: %s"
-msgstr "Detaily: %s"
+msgstr "  Detaily: %s"
 
 #: ../gramps/cli/grampscli.py:329
 #, python-format
@@ -2033,7 +2034,7 @@ msgstr ", "
 #: ../gramps/cli/plug/__init__.py:635
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr " Popis platných hodnot získáte použitím '%(donottranslate)s'"
+msgstr "   Popis platných hodnot získáte použitím '%(donottranslate)s'"
 
 #: ../gramps/cli/plug/__init__.py:527
 #, python-format
@@ -2084,7 +2085,7 @@ msgstr "Nepodařilo se vytvořit sestavu. "
 #: ../gramps/cli/plug/__init__.py:818
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Nepodařilo se vytvořit sestavu '%s'. "
+msgstr "Nepodařilo se vytvořit sestavu '%s'."
 
 #: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:281
 msgid "Error detected in database"
@@ -6280,13 +6281,15 @@ msgstr "Vyhovují místa do dané vzdálenosti od jiného místa"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Nelze použít filtr 'v dané oblasti'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Vybrané místo obsahuje nesprávné souřadnice. Spusťte prosím nástroj 'čištění "
+"vstupních dat'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -9938,7 +9941,7 @@ msgstr "Úroveň detailu informací o uzlu."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Position of marriage information."
-msgstr "Umístění informací o sňatku"
+msgstr "Umístění informací o sňatku."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 msgid "Node size"
@@ -10220,9 +10223,8 @@ msgid "Include"
 msgstr "Zahrnout"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Zda zahrnout štítky."
+msgstr "Zda zahrnout štítky"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -11920,7 +11922,7 @@ msgstr "Formát místa (automatický titulek místa)"
 
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specified format."
-msgstr "Povolit automatické vytváření titulku místa dle daného formátu"
+msgstr "Povolit automatické vytváření titulku místa dle daného formátu."
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -11986,7 +11988,7 @@ msgstr "Ukázat tlačítko pro zavření v záložkách panelu grampletů"
 
 #: ../gramps/gui/configure.py:1352
 msgid "Show close button to simplify removing gramplets from bars."
-msgstr "Ukázat tlačítko pro zavření pro usnadnění odebírání grampletů z panelů"
+msgstr "Ukázat tlačítko pro zavření pro usnadnění odebírání grampletů z panelů."
 
 #: ../gramps/gui/configure.py:1371
 msgid "Default text used for conditions"
@@ -12028,7 +12030,7 @@ msgstr "Změna formátu data se neprojeví dokud nebude Gramps znovu nastartová
 
 #: ../gramps/gui/configure.py:1488
 msgid "Dates settings used for calculation operations"
-msgstr "Nastavení data pro výpočetní operace."
+msgstr "Nastavení data pro výpočetní operace"
 
 #: ../gramps/gui/configure.py:1494
 msgid "Markup for invalid date format"
@@ -12386,12 +12388,20 @@ msgid ""
 "If you select the \"use symbols\" checkbox, Gramps will use the selected "
 "font if it exists."
 msgstr ""
+"Tato záložka vám dá možnost použít písmo, které dokáže zobrazit všechny "
+"genealogické symboly\n"
+"\n"
+"Pokud zvolíte volbu \"použít symboly\", Gramps vybere zvolené písmo, pokud "
+"existuje."
 
 #: ../gramps/gui/configure.py:1953
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
+"Toto může být užitečné pokud chcete přidat fonetickou poznámku, abyste "
+"ukázali, jak vyslovit jméno nebo pokud mícháte více jazyků (např. ruština a "
+"řečtina)."
 
 #: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
@@ -12409,6 +12419,8 @@ msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
 msgstr ""
+"Nástroj pro hledání genealogických písem byl už spuštěn.\n"
+"Spusťte jej znovu pokud jste přidali písma do svého systému."
 
 #: ../gramps/gui/configure.py:1980
 msgid "Try to find"
@@ -13276,9 +13288,8 @@ msgstr "Vydavatel"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Úroveň důvěryhodnosti:"
+msgstr "Úroveň důvěryhodnosti"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
 #, fuzzy
@@ -15398,13 +15409,15 @@ msgstr "URL"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:62
 msgid "This updates the view with the current filter parameters."
-msgstr ""
+msgstr "Tímto aktualizujete pohled s aktuálními parametry filtru."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:65
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"Tímto vyprázdníte parametry filtru. Tlačítko 'Nalézt' by mělo být použito "
+"pro navrácení pohledu do výchozího stavu."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -15941,7 +15954,7 @@ msgid ""
 "log/registry."
 msgstr ""
 "Datum záznamu v prameni který odkazujete, např. datum, kdy došlo k návštěvě "
-"domu během sčítání osob nebo datum kdy byl pořízen záznam do matriky. "
+"domu během sčítání osob nebo datum kdy byl pořízen záznam do matriky."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16304,13 +16317,6 @@ msgid "Image preview"
 msgstr "Náhled obrázku"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16322,7 +16328,7 @@ msgstr ""
 "Gramps interně neukládá média, pouze cesty! Nastavte volbu 'Relativní cesta' "
 "v Předvolbách, čímž zabráníte přepsání obecného kořene cesty kde jsou "
 "ukládána všechna média. Nástroj Správce médií vám pomůže spravovat cesty ke "
-"kolekcím objektů médií. "
+"kolekcím objektů médií."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16489,7 +16495,7 @@ msgstr "Další popisné jméno dané místo oficiálního křestního jména."
 #, fuzzy
 #| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Křestní jméno(a) "
+msgstr "Křestní jméno(a)"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16777,7 +16783,7 @@ msgstr ""
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
 "Pole použité pro vložení informace z webové stránky jako google, "
-"openstreetmap, ... "
+"openstreetmap, ..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -21041,16 +21047,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "např.\n"
-"Spojené státy americké/U.S.A"
+"Spojené státy americké/U.S.A."
 
 #. TODO this code is never used and so I conclude it is for future use
 #. self.__include_images = BooleanOption(
@@ -24814,6 +24816,8 @@ msgstr "Ukázat všechny uzly rodin"
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
 msgstr ""
+"Zobrazit uzly rodin i v případě, kdy výstup obsahuje jen jednoho člena "
+"rodiny."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "Include URLs"
@@ -25535,6 +25539,8 @@ msgid ""
 "Source reference text\n"
 "(Text & import Filename)."
 msgstr ""
+"Text odkazu na zdroj\n"
+"(Text a název souboru importu)."
 
 #: ../gramps/plugins/importer/importprogen.glade:155
 #: ../gramps/plugins/importer/importprogen.glade:325
@@ -25546,6 +25552,8 @@ msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Text atributu pramene\n"
+"(Text, název souboru importu a (systémové-)datum)."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -25557,6 +25565,8 @@ msgid ""
 "Citation confidence level\n"
 "(Very low - very high)."
 msgstr ""
+"Úroveň důvěryhodnosti citace\n"
+"(Velmi nízká - velmi vysoká)."
 
 #: ../gramps/plugins/importer/importprogen.glade:308
 msgid ""
@@ -25569,6 +25579,8 @@ msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Text atributu citace\n"
+"(Text, název souboru importu a (systémové-)datum)."
 
 #: ../gramps/plugins/importer/importprogen.glade:362
 msgid "Import Text"
@@ -25596,13 +25608,15 @@ msgstr "Výchozí (systémový) datum."
 #: ../gramps/plugins/importer/importprogen.glade:841
 #: ../gramps/plugins/importer/importprogen.glade:856
 msgid "Combined default text + filename + date."
-msgstr ""
+msgstr "Kombinovaný výchozí text + název souboru + datum."
 
 #: ../gramps/plugins/importer/importprogen.glade:1111
 msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
+"Kopírovat výchozí text\n"
+"do všech textů štítků'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -25618,7 +25632,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
-msgstr " Objekty"
+msgstr "  Objekty"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -25962,7 +25976,7 @@ msgstr "  Štítky: %d\n"
 #: ../gramps/plugins/importer/importxml.py:291
 #, python-format
 msgid "  Citations: %d\n"
-msgstr " Citací: %d\n"
+msgstr "  Citací: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:293
 msgid "Number of new objects imported:\n"
@@ -27164,7 +27178,7 @@ msgstr "Zemřela %(death_date)s ve věku %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:316
 #, python-format
 msgid "Died %(death_date)s."
-msgstr " †. %(death_date)s."
+msgstr "†. %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:284
 #: ../gramps/plugins/lib/libnarrate.py:317
@@ -27445,7 +27459,7 @@ msgstr "Zemřela v %(death_place)s ve věku %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:416
 #, python-format
 msgid "Died in %(death_place)s."
-msgstr " †. %(death_place)s."
+msgstr "†. %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:417
 #, python-format
@@ -32726,9 +32740,8 @@ msgid "Whether to sort events into chronological order."
 msgstr "Zda třídit události v chronologickém pořadí."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Klikněte na jméno pro aktivaci osoby\n"
+msgstr "Klikněte na jméno pro aktivaci osoby"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
@@ -34834,7 +34847,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.glade:1424
 msgid "  Actual"
-msgstr " Současný"
+msgstr "  Současný"
 
 #: ../gramps/plugins/tool/reorderids.glade:1436
 msgid "Amount of ID in use."
@@ -37234,12 +37247,12 @@ msgstr ""
 "Tato stránka obsahuje seznam všech médií v databázi, řazený podle názvu. "
 "Kliknutím na název se otevře stránka s detailem média. Pokud je přes obrázek "
 "zobrazena informace o rozměrech, klikněte na obrázek a ten zobrazí se v plné "
-"velikosti. "
+"velikosti.  "
 
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Název"
+msgstr " Název"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -37541,20 +37554,16 @@ msgid "Sort all children in birth order"
 msgstr "Řadit potomky podle narození"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "Zda zobrazit potomky seřazené podle narození nebo pořadí záznamů?"
+msgstr "Zda zobrazit potomky seřazené podle narození nebo pořadí záznamů."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "Budou v seznamu míst zobrazeny souřadnice?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Zda zobrazit zeměpisnou šířku/délku v seznamu míst?"
+msgstr "Zda zobrazit zeměpisnou šířku/délku v seznamu míst."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -37652,9 +37661,8 @@ msgid "HTML user header"
 msgstr "Uživatelská HTML hlavička"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Záznam použitý jako hlavička stránky"
+msgstr "Záznam použitý jako hlavička stránky."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
@@ -38288,7 +38296,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Název"
+msgstr " Název"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
