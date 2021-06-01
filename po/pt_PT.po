@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-28 11:55+0000\n"
+"PO-Revision-Date: 2021-06-01 14:59+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -6426,7 +6426,7 @@ msgstr "Repositórios encontrados por <filtro>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Encontra repositórios que coincidentes com o filtro especificado"
+msgstr "Encontra repositórios que coincidem com o filtro especificado"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
 msgid "Repositories with name containing <text>"
@@ -6469,8 +6469,8 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Encontra fontes modificadas após uma data/hora especificada (aaaa-mm-dd hh:"
-"mm:ss) ou no intervalo, se uma segunda data for indicada."
+"Encontra fontes modificadas após uma data/hora especificada (aaaa-mm-dd "
+"hh:mm:ss) ou no intervalo, se uma segunda data for indicada."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Source attribute:"
@@ -6574,7 +6574,7 @@ msgstr "Fontes encontradas por <filtro>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:45
 msgid "Matches sources matched by the specified filter name"
-msgstr "Encontra fontes que coincidentes com o filtro especificado"
+msgstr "Encontra fontes que coincidem com o filtro especificado"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
@@ -6595,7 +6595,7 @@ msgstr "Fontes com título contendo <texto>"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:44
 msgid "Matches sources whose title contains a certain substring"
-msgstr "Encontra fontes cujos títulos contêm um determinado subtexto"
+msgstr "Encontra fontes cujos títulos contêm um determinado sub-texto"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
 msgid "Sources with Id containing <text>"
@@ -6887,7 +6887,7 @@ msgstr "País"
 #: ../gramps/plugins/webreport/basepage.py:2907
 #: ../gramps/plugins/webreport/basepage.py:2972
 msgid "Postal Code"
-msgstr "Código Postal"
+msgstr "Código postal"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:105
 #: ../gramps/gui/configure.py:626 ../gramps/plugins/export/exportgedcom.py:788
