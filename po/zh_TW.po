@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-24 23:01+0100\n"
+"POT-Creation-Date: 2021-06-01 14:29+0100\n"
 "PO-Revision-Date: 2015-03-18 17:31-0600\n"
 "Last-Translator: Anthony Fok <foka@debian.org>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -258,29 +258,28 @@ msgstr "紐西蘭"
 msgid "Russia"
 msgstr "俄罗斯"
 
-#: ../data/holidays.xml:400
+#: ../data/holidays.xml:403
 msgid "Serbia"
 msgstr "塞爾維亞"
 
-#: ../data/holidays.xml:415
+#: ../data/holidays.xml:418
 #, fuzzy
 msgid "Serbia (Latin)"
 msgstr "塞爾維亞語"
 
-#: ../data/holidays.xml:430
+#: ../data/holidays.xml:433
 msgid "Slovakia"
 msgstr "斯洛伐克"
 
-#. Make upper case of translated country so string search works later
-#: ../data/holidays.xml:447 ../gramps/plugins/mapservices/eniroswedenmap.py:47
+#: ../data/holidays.xml:450 ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
 msgstr "瑞典"
 
-#: ../data/holidays.xml:474
+#: ../data/holidays.xml:477
 msgid "Ukraine"
 msgstr "烏克蘭"
 
-#: ../data/holidays.xml:501
+#: ../data/holidays.xml:504
 msgid "United States of America"
 msgstr "美國"
 
@@ -1102,7 +1101,7 @@ msgstr "Gramps 家族樹："
 msgid "Family Tree"
 msgstr "家族樹"
 
-#. translators: used in French+Russian, ignore otherwise
+#. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "\"%s\""
@@ -1173,7 +1172,6 @@ msgstr "資料庫被鎖定，無法開啟"
 msgid "Ignoring invalid options string."
 msgstr ""
 
-#. name exists, but is not in the list of valid report names
 #: ../gramps/cli/arghandler.py:637
 #, fuzzy
 msgid "Unknown report name."
@@ -1395,12 +1393,11 @@ msgstr ""
 msgid "Current Gramps config setting: %(name)s:%(value)s"
 msgstr ""
 
-#. does a user want the default config value?
 #: ../gramps/cli/argparser.py:380
 msgid "DEFAULT"
 msgstr ""
 
-#. translators: indent "New" to match "Current"
+#. Translators: indent "New" to match "Current"
 #: ../gramps/cli/argparser.py:387
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
@@ -1463,9 +1460,9 @@ msgstr "被鎖定？"
 msgid "Family Tree \"%s\":"
 msgstr "家族樹 \"%s\"："
 
-#. translators: needed for French, ignore otherwise
-#. translators: for French, else ignore
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
+#. Translators: for French, else ignore
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:201 ../gramps/gen/plug/report/utils.py:159
 #: ../gramps/gui/editors/editattribute.py:135
 #: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:685
@@ -1497,7 +1494,6 @@ msgstr "開始匯入, %s"
 msgid "Import finished..."
 msgstr "匯入完成..."
 
-#. Create a new database
 #: ../gramps/cli/clidbman.py:366 ../gramps/plugins/importer/importcsv.py:362
 msgid "Importing data..."
 msgstr "匯入資料中..."
@@ -1540,24 +1536,11 @@ msgstr ""
 msgid "Never"
 msgstr "從不"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/cli/clidbman.py:551
 #, python-format
 msgid "Locked by %s"
 msgstr "被 %s 鎖定"
 
-#. allow deferred translation of attribute UI strings
-#. Pro-Gen has a text field for the date.
-#. It can be anything (it should be dd-mm-yyyy), but we have seen:
-#. yyyy
-#. mm-yyyy
-#. before yyyy
-#. dd=mm-yyyy  (typo I guess)
-#. 00-00-yyyy
-#. oo-oo-yyyy
-#. dd-mm-00 (does this mean we do not know about the year?)
-#. Function tries to parse the text and create a proper Gramps Date()
-#. object. If all else fails create a MOD_TEXTONLY Date() object.
 #: ../gramps/cli/clidbman.py:553 ../gramps/gen/lib/attrtype.py:63
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventroletype.py:52
 #: ../gramps/gen/lib/eventtype.py:162 ../gramps/gen/lib/familyreltype.py:50
@@ -1701,7 +1684,6 @@ msgid ""
 "use."
 msgstr "如果您肯定沒有人正在使用該資料庫，可以使用 --force-unlock 選項解鎖。"
 
-#. already errors encountered. Show first one on terminal and exit
 #: ../gramps/cli/grampscli.py:322
 #, python-format
 msgid "Error encountered: %s"
@@ -1795,7 +1777,7 @@ msgstr "選擇檔名"
 msgid "CSS filename to use, html format only"
 msgstr ""
 
-#. translators: needed for French, Hebrew and Arabic
+#. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:416
 #, fuzzy, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
@@ -1810,8 +1792,7 @@ msgstr "未知選項：%s"
 msgid "   Valid options are:"
 msgstr ""
 
-#. ok we have the children.  Make a title off of them
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:463 ../gramps/cli/plug/__init__.py:553
 #: ../gramps/plugins/drawreport/descendtree.py:358
 #: ../gramps/plugins/drawreport/fanchart.py:364
@@ -1868,7 +1849,6 @@ msgstr "無效的"
 msgid "   Available values are:"
 msgstr "有效條目選單"
 
-#. there was a show option given, but the option is invalid
 #: ../gramps/cli/plug/__init__.py:652
 #, python-format
 msgid ""
@@ -1929,8 +1909,7 @@ msgid "Private Record"
 msgstr "私人記錄"
 
 # yīyuè
-#. enable a simple CLI test to see if the datestrings exist
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -1981,354 +1960,343 @@ msgstr ""
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
 
-#. format 0 - must always be ISO
-#: ../gramps/gen/datehandler/_datedisplay.py:70
+#. Translators: Numeric year, month, day
+#: ../gramps/gen/datehandler/_datedisplay.py:71
 msgid "YYYY-MM-DD (ISO)"
 msgstr ""
 
-#. format # 1 - must always be locale-preferred numerical format
-#. such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
-#. This should be the format that is used under the locale by
-#. strftime() for '%x'.
-#. You may translate this as "Numerical", "System preferred", or similar.
-#: ../gramps/gen/datehandler/_datedisplay.py:77
+#. Translators: You may translate this as "Numerical",
+#. "System preferred", or similar.
+#: ../gramps/gen/datehandler/_datedisplay.py:79
 msgctxt "date format"
 msgid "Numerical"
 msgstr "數字格式"
 
-#. Full month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:80
+#. Translators: Full month name, day, year
+#: ../gramps/gen/datehandler/_datedisplay.py:82
 msgid "Month Day, Year"
 msgstr "月 日，年"
 
-#. Abbreviated month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:83
+#. Translators: Abbreviated month name, day, year
+#: ../gramps/gen/datehandler/_datedisplay.py:85
 msgid "MON DAY, YEAR"
 msgstr "月 日，年"
 
-#. Day, full month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:86
+#. Translators: Day, full month name, year
+#: ../gramps/gen/datehandler/_datedisplay.py:88
 msgid "Day Month Year"
 msgstr "日 月 年"
 
-#. Day, abbreviated month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:89
+#. Translators: Day, abbreviated month name, year
+#: ../gramps/gen/datehandler/_datedisplay.py:91
 msgid "DAY MON YEAR"
 msgstr "日 月 年 "
 
-#: ../gramps/gen/datehandler/_datedisplay.py:181
+#: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
 msgid "{long_month} {year}"
 msgstr ""
 
-#. first date in a span
-#. If "from <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "from <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:189
+#: ../gramps/gen/datehandler/_datedisplay.py:191
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. second date in a span
-#. If "to <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "to <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:197
+#: ../gramps/gen/datehandler/_datedisplay.py:199
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. first date in a range
-#. If "between <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "between <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:205
+#: ../gramps/gen/datehandler/_datedisplay.py:207
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. second date in a range
-#. If "and <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "and <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:213
+#: ../gramps/gen/datehandler/_datedisplay.py:215
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. If "before <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "before <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:220
+#: ../gramps/gen/datehandler/_datedisplay.py:222
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. If "after <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "after <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:227
+#: ../gramps/gen/datehandler/_datedisplay.py:229
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. If "about <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "about <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:234
+#: ../gramps/gen/datehandler/_datedisplay.py:236
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. If "estimated <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "estimated <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:241
+#: ../gramps/gen/datehandler/_datedisplay.py:243
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
 msgstr ""
 
-#. If "calculated <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "calculated <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:248
+#: ../gramps/gen/datehandler/_datedisplay.py:250
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:253
+#: ../gramps/gen/datehandler/_datedisplay.py:255
 #, python-brace-format
 msgid "{short_month} {year}"
 msgstr ""
 
-#. first date in a span
-#. If "from <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "from <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:261
+#: ../gramps/gen/datehandler/_datedisplay.py:263
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. second date in a span
-#. If "to <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "to <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:269
+#: ../gramps/gen/datehandler/_datedisplay.py:271
 #, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. first date in a range
-#. If "between <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "between <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:277
+#: ../gramps/gen/datehandler/_datedisplay.py:279
 #, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. second date in a range
-#. If "and <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "and <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:285
+#: ../gramps/gen/datehandler/_datedisplay.py:287
 #, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. If "before <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "before <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:292
+#: ../gramps/gen/datehandler/_datedisplay.py:294
 #, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. If "after <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "after <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:299
+#: ../gramps/gen/datehandler/_datedisplay.py:301
 #, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. If "about <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "about <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:306
+#: ../gramps/gen/datehandler/_datedisplay.py:308
 #, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. If "estimated <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "estimated <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:313
+#: ../gramps/gen/datehandler/_datedisplay.py:315
 #, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. If "calculated <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "calculated <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:320
+#: ../gramps/gen/datehandler/_datedisplay.py:322
 #, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
 msgstr ""
 
-#. If there is no special inflection for "from <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:427
+#. Translators: If there is no special inflection for
+#. "from <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:429
 msgctxt "from-date"
 msgid ""
 msgstr ""
 
-#. If there is no special inflection for "to <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:432
+#. Translators: If there is no special inflection for
+#. "to <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:434
 msgctxt "to-date"
 msgid ""
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:435
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}自{date_start} 至{date_stop}{nonstd_calendar_and_ny}"
 
-#. If there is no special inflection for "between <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:452
+#. Translators: If there is no special inflection for
+#. "between <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "between" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:454
 #, fuzzy
 msgctxt "between-date"
 msgid ""
 msgstr "在...之間"
 
-#. If there is no special inflection for "and <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:457
+#. Translators: If there is no special inflection for
+#. "and <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "and" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:459
 msgctxt "and-date"
 msgid ""
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:458
+#: ../gramps/gen/datehandler/_datedisplay.py:460
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
 "{date_quality}介於{date_start}與{date_stop}{nonstd_calendar_and_ny}之間"
 
-#. If there is no special inflection for "before <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:491
+#. Translators: If there is no special inflection for
+#. "before <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "before" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:493
 #, fuzzy
 msgctxt "before-date"
 msgid ""
 msgstr "以前"
 
-#. If there is no special inflection for "after <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:496
+#. Translators: If there is no special inflection for
+#. "after <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:498
 #, fuzzy
 msgctxt "after-date"
 msgid ""
 msgstr "之後"
 
-#. If there is no special inflection for "about <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:501
+#. Translators: If there is no special inflection for
+#. "about <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "about" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:503
 #, fuzzy
 msgctxt "about-date"
 msgid ""
 msgstr "大約"
 
-#. If there is no special inflection for "estimated <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:506
+#. Translators: If there is no special inflection for
+#. "estimated <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:508
 #, fuzzy
 msgctxt "estimated-date"
 msgid ""
 msgstr "估計的日期"
 
-#. If there is no special inflection for "calculated <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:511
+#. Translators: If there is no special inflection for
+#. "calculated <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:513
 #, fuzzy
 msgctxt "calculated-date"
 msgid ""
 msgstr "計算的"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:530
+#: ../gramps/gen/datehandler/_datedisplay.py:532
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:649
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:651
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:675
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:677
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:701
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:703
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:727
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:729
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr ""
@@ -2404,7 +2372,7 @@ msgid "|December"
 msgstr "十二月"
 
 # yīyuè
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2479,7 +2447,7 @@ msgctxt "localized lexeme inflections - short month form"
 msgid "|Dec"
 msgstr "十二月"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to add proper alternatives to be recognized in your localized
 #. DateParser code!
@@ -2543,7 +2511,6 @@ msgctxt "alternative month names for December"
 msgid "|"
 msgstr ""
 
-#. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
 msgid "Gregorian"
@@ -2579,7 +2546,7 @@ msgctxt "calendar"
 msgid "Swedish"
 msgstr "瑞典曆"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2648,7 +2615,7 @@ msgctxt "Hebrew month lexeme"
 msgid "Elul"
 msgstr ""
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2717,7 +2684,7 @@ msgctxt "French month lexeme"
 msgid "Extra"
 msgstr ""
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2781,7 +2748,7 @@ msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
 msgstr ""
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2845,21 +2812,21 @@ msgctxt "Persian month lexeme"
 msgid "Esfand"
 msgstr ""
 
-#. TRANSLATORS: if the modifier is after the date
+#. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "date modifier"
 msgid "before "
 msgstr "以前 "
 
-#. TRANSLATORS: if the modifier is after the date
+#. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "date modifier"
 msgid "after "
 msgstr "以後 "
 
-#. TRANSLATORS: if the modifier is after the date
+#. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "date modifier"
@@ -2904,7 +2871,6 @@ msgstr "星期五"
 msgid "Saturday"
 msgstr "星期六"
 
-#. Icelandic needs them
 #: ../gramps/gen/datehandler/_datestrings.py:252
 #, fuzzy
 msgid "Sun"
@@ -3175,7 +3141,7 @@ msgstr ""
 msgid "Upgrade Statistics"
 msgstr "升級統計"
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:349 ../gramps/plugins/lib/libtreebase.py:707
 msgid ","
 msgstr ","
@@ -3207,13 +3173,11 @@ msgstr "名"
 msgid "Given Surname Suffix"
 msgstr "繼承的姓"
 
-#. primary name primconnector other, given pa/matronynic suffix, primprefix
-#. translators: long string, have a look at Preferences dialog
+#. Translators: long string, have a look at Preferences dialog
 #: ../gramps/gen/display/name.py:362
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr ""
 
-#. DEPRECATED FORMATS
 #: ../gramps/gen/display/name.py:365
 msgid "Patronymic, Given"
 msgstr "取自父的，祖名"
@@ -3228,7 +3192,6 @@ msgstr "頭銜"
 msgid "given"
 msgstr "名"
 
-#. 2=double underline
 #: ../gramps/gen/display/name.py:606 ../gramps/gen/display/name.py:706
 #: ../gramps/plugins/importer/importcsv.py:162
 #: ../gramps/plugins/tool/removespaces.py:144
@@ -3336,11 +3299,6 @@ msgstr "尋找無效名稱格式"
 msgid "Error in '%s' file: cannot load."
 msgstr "'%s' 檔案錯誤：無法讀取。"
 
-#. -------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:63
 #, fuzzy
 msgid "Full"
@@ -3375,10 +3333,6 @@ msgstr "錯誤：篩選器 %s 無法正常載入。請編輯篩選器！"
 msgid "Applying ..."
 msgstr "套用篩選器..."
 
-#. #########################
-#. ###############################
-#. #########################
-#. ###############################
 #: ../gramps/gen/filters/_genericfilter.py:143
 #: ../gramps/gen/filters/_genericfilter.py:174
 #: ../gramps/gui/editors/filtereditor.py:1121
@@ -3706,7 +3660,6 @@ msgstr "雜項篩查器"
 msgid "No description"
 msgstr "沒有描述"
 
-#. more references to a filter than expected
 #: ../gramps/gen/filters/rules/_rule.py:94
 #, fuzzy
 msgid "The filter definition contains a loop."
@@ -4251,7 +4204,6 @@ msgstr "匹配特定篩選名稱的事件"
 msgid "Include Family events:"
 msgstr "包括家庭事件："
 
-#. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:531
 msgid "Person filter name:"
@@ -5615,8 +5567,6 @@ msgid ""
 "generations away"
 msgstr "匹配特定人員，其後代不超過 N 代記錄"
 
-#. -------------------------
-#. ###############################
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
 #: ../gramps/plugins/graph/gvfamilylines.py:280
@@ -6455,7 +6405,6 @@ msgstr "標為私有的來源"
 msgid "Matches sources that are indicated as private"
 msgstr "匹配顯示設為私有的來源"
 
-#. We encounter a PLAC, having previously encountered an ADDR
 #: ../gramps/gen/lib/address.py:97 ../gramps/gui/clipboard.py:298
 #: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
@@ -6573,9 +6522,6 @@ msgstr "引用"
 msgid "Notes"
 msgstr "摘錄"
 
-#. wrap it all up and return to its callers
-#. position 0 = translatable label, position 1 = column class
-#. position 2 = data
 #: ../gramps/gen/lib/address.py:111 ../gramps/gen/lib/citation.py:106
 #: ../gramps/gen/lib/date.py:706 ../gramps/gen/lib/event.py:146
 #: ../gramps/gen/lib/ldsord.py:182 ../gramps/gen/lib/media.py:163
@@ -6776,7 +6722,6 @@ msgstr "定製"
 msgid "Caste"
 msgstr "種姓，階級"
 
-#. 2 name (version)
 #: ../gramps/gen/lib/attrtype.py:66 ../gramps/gen/lib/event.py:148
 #: ../gramps/gen/lib/media.py:147 ../gramps/gen/lib/url.py:96
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
@@ -6929,7 +6874,6 @@ msgstr "資助"
 msgid "Foster"
 msgstr "撫養"
 
-#. 8
 #: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:79
 #: ../gramps/gui/clipboard.py:468 ../gramps/gui/configure.py:655
 #: ../gramps/gui/editors/editcitation.py:119
@@ -6997,7 +6941,6 @@ msgstr "頁"
 msgid "Confidence"
 msgstr "可信度"
 
-#. 7
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
 #: ../gramps/gui/clipboard.py:761 ../gramps/gui/configure.py:652
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
@@ -7021,8 +6964,6 @@ msgstr "可信度"
 msgid "Source"
 msgstr "來源"
 
-#. 2
-#. add media column
 #: ../gramps/gen/lib/citation.py:122 ../gramps/gen/lib/event.py:162
 #: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/family.py:168
 #: ../gramps/gen/lib/media.py:134 ../gramps/gen/lib/person.py:206
@@ -7106,23 +7047,21 @@ msgctxt "age"
 msgid "about"
 msgstr "大約"
 
-#. translators: leave all/any {...} untranslated
-#. round up years
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:427 ../gramps/gen/lib/date.py:434
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] "{number_of}歲"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:443
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
 msgstr[0] "{number_of}個月"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:454
 #, python-brace-format
 msgid "{number_of} day"
@@ -7218,7 +7157,6 @@ msgstr "期間"
 msgid "textonly"
 msgstr "文字only"
 
-#. 0 this order range above
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
 #: ../gramps/gui/clipboard.py:335 ../gramps/gui/configure.py:661
 #: ../gramps/gui/editors/editlink.py:92
@@ -7237,7 +7175,6 @@ msgstr "文字only"
 msgid "Event"
 msgstr "事件"
 
-#. 5
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/ldsord.py:186
 #: ../gramps/gen/lib/place.py:134 ../gramps/gui/clipboard.py:355
 #: ../gramps/gui/configure.py:649
@@ -7340,9 +7277,6 @@ msgstr "線人"
 msgid "Life Events"
 msgstr "人生大事"
 
-#. _FAMNAME = _("With %(namepartner)s (%(famid)s)")
-#. 1
-#. get the family events
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
 #: ../gramps/gen/lib/ldsord.py:188 ../gramps/gui/clipboard.py:739
 #: ../gramps/gui/configure.py:646
@@ -7589,12 +7523,6 @@ msgstr "宣告婚姻無效"
 msgid "Alternate Marriage"
 msgstr "替代婚姻"
 
-#. cm2pt = utils.cm2pt
-#. ------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. ------------------------------------------------------------------------
 #: ../gramps/gen/lib/eventtype.py:211
 #: ../gramps/plugins/drawreport/ancestortree.py:60
 #: ../gramps/plugins/drawreport/descendtree.py:57
@@ -7832,9 +7760,6 @@ msgctxt "Annulment abbreviation"
 msgid "annul."
 msgstr "婚姻無效"
 
-#. The parent may not be birth father in ths family, because it
-#. may be a step family. However, it will be odd to display the
-#. parent as anything other than "Father"
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:122
@@ -7879,7 +7804,6 @@ msgstr "父親"
 msgid "Mother"
 msgstr "母親"
 
-#. Go over children and build their menu
 #: ../gramps/gen/lib/family.py:161 ../gramps/gui/widgets/fanchart.py:1957
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:855
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:869
@@ -7926,8 +7850,6 @@ msgstr "未婚"
 msgid "Civil Union"
 msgstr "民事結合"
 
-#. Create the tree columns
-#. 0 selected?
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
 #: ../gramps/gen/lib/ldsord.py:184 ../gramps/gui/clipboard.py:907
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:62
@@ -8087,8 +8009,6 @@ msgstr "後期聖徒教儀"
 msgid "Temple"
 msgstr "聖殿"
 
-#. icon_column = Gtk.TreeViewColumn(_('Status'), render,
-#. icon_name=ICON_COL)
 #: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:394
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
@@ -8137,11 +8057,6 @@ msgstr "媒體參照"
 msgid "Region"
 msgstr "地區 (Region)"
 
-#. 1 new gramplet
-#. Priority
-#. Handle
-#. Add column with object name
-#. Name Column
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
 #: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:562
 #: ../gramps/gui/configure.py:608
@@ -8244,7 +8159,6 @@ msgstr "字尾"
 msgid "Title"
 msgstr "標題"
 
-#. show surname and first name
 #: ../gramps/gen/lib/name.py:169 ../gramps/plugins/webreport/person.py:224
 #, fuzzy
 msgid "Group as"
@@ -8274,18 +8188,16 @@ msgstr "暱稱"
 msgid "Family nick name"
 msgstr "家族暱稱："
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:461 ../gramps/gen/lib/name.py:476
 #, python-format
 msgid "%(surname)s, %(first)s %(suffix)s"
 msgstr ""
 
-#. translators: needed for Arabic, ignore otherwise
-#. translators: needed for Arabic, ignore othewise
-#. translators: needed for Arabic, ignore otherwise
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #. make sure it's translated, so it can be used below, in "combine"
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:465 ../gramps/gen/lib/name.py:480
 #: ../gramps/gen/plug/report/utils.py:256
 #: ../gramps/plugins/graph/gvfamilylines.py:491
@@ -8298,7 +8210,7 @@ msgstr ""
 msgid "%(str1)s, %(str2)s"
 msgstr "%(first)s %(second)s"
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:493
 #, fuzzy, python-format
 msgid "%(first)s %(surname)s, %(suffix)s"
@@ -8365,8 +8277,6 @@ msgstr "出生名"
 msgid "Married Name"
 msgstr "婚後名"
 
-#. ###############################
-#. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:265
 #: ../gramps/gen/plug/docgen/treedoc.py:199 ../gramps/gui/clipboard.py:375
 #: ../gramps/gui/configure.py:667 ../gramps/gui/editors/editlink.py:95
@@ -8528,13 +8438,6 @@ msgstr "媒體參照筆記"
 msgid "Child Reference Note"
 msgstr "孩子參照筆記"
 
-#. 4
-#. ------------------------------------------------------------------------
-#.
-#. References
-#.
-#. ------------------------------------------------------------------------
-#. functions for the actual quickreports
 #: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:719
 #: ../gramps/gui/configure.py:643 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:294
@@ -8785,7 +8688,6 @@ msgstr "建築物"
 msgid "Number"
 msgstr "數字"
 
-#. 6
 #: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:781
 #: ../gramps/gui/configure.py:664 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
@@ -9149,12 +9051,6 @@ msgstr "合併文庫"
 msgid "Merge Source"
 msgstr "合併來源"
 
-#. -------------------------------------------------------------------------
-#.
-#. Short hand function to return either the person's name, or an empty
-#. string if the person is None
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:523
 #: ../gramps/gui/editors/editperson.py:343
@@ -9175,11 +9071,6 @@ msgstr "未知"
 msgid "Gramplet %s caused an error"
 msgstr "Gramplet %s 引起一個錯誤"
 
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/_manager.py:62
 msgid "No description was provided"
 msgstr "未提供描述"
@@ -9255,7 +9146,6 @@ msgstr "側邊欄"
 msgid "Rule"
 msgstr "新增規則"
 
-#. add miscellaneous column
 #: ../gramps/gen/plug/_pluginreg.py:528
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/importer/importprogen.glade:1306
@@ -9312,7 +9202,6 @@ msgstr "未指出檔名"
 msgid "File %s already open, close it first."
 msgstr "檔案 %s 已開啟，請先關閉。"
 
-#. Export shouldn't bring Gramps down.
 #: ../gramps/gen/plug/docbackend/docbackend.py:147
 #: ../gramps/gen/plug/docbackend/docbackend.py:150
 #: ../gramps/gen/utils/docgen/odstab.py:340
@@ -9354,11 +9243,6 @@ msgstr "檔案 %s 已開啟，請先關閉。"
 msgid "Could not create %s"
 msgstr "無法建立 %s"
 
-#. -------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/graphdoc.py:68
 #: ../gramps/gen/plug/docgen/treedoc.py:67
 #: ../gramps/gen/plug/docgen/treedoc.py:73
@@ -9473,12 +9357,10 @@ msgstr ""
 msgid "Orthogonal"
 msgstr ""
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
 msgid "Graphviz Layout"
 msgstr "Graphviz 排版"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:143
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Font family"
@@ -9565,12 +9447,10 @@ msgstr "曾用名"
 msgid "Whether lines attach to nodes differently"
 msgstr "是否連結資料到網頁報告"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
 msgid "Graphviz Options"
 msgstr "Graphviz 選項"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:213
 msgid "Aspect ratio"
 msgstr "寬高比"
@@ -9644,7 +9524,6 @@ msgstr ""
 "子圖表可以幫助 Graphviz 把配偶放在一起，但對於不平凡的圖表將會產生更長的線和"
 "更大的圖。"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:268
 msgid "Note to add to the graph"
 msgstr "新增到影象的筆記"
@@ -9834,13 +9713,11 @@ msgstr ""
 msgid "Extra huge"
 msgstr ""
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:141
 #, fuzzy
 msgid "Node Options"
 msgstr "樹選項"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:144
 #, fuzzy
 msgid "Node detail"
@@ -9882,15 +9759,12 @@ msgstr ""
 msgid "Node color."
 msgstr "性別"
 
-#. ###############################
-#. #################
 #: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:799
 #: ../gramps/plugins/drawreport/descendtree.py:1533
 msgid "Tree Options"
 msgstr "樹選項"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:178
 #, fuzzy
 msgid "Timeflow"
@@ -9923,7 +9797,6 @@ msgstr ""
 "等級之間的最小間隔，以英寸為單位。分別對應為垂直圖表的行距，以及水平圖表的列"
 "距。"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:202
 #, fuzzy
 msgid "Note to add to the tree"
@@ -9964,16 +9837,6 @@ msgstr ""
 msgid "Valid values: "
 msgstr "值"
 
-#. ------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. ------------------------------------------------------------------------
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
 #: ../gramps/gui/plug/report/_bookdialog.py:86 ../gramps/gui/viewmanager.py:113
 msgid "Unsupported"
@@ -10100,7 +9963,6 @@ msgctxt "'living people'"
 msgid "Not included"
 msgstr ""
 
-#. for deferred translation
 #: ../gramps/gen/plug/report/stdoptions.py:203
 msgid "How to handle living people"
 msgstr "如何處理健在人員"
@@ -10128,11 +9990,6 @@ msgstr ""
 msgid "Do not include"
 msgstr "不包含健在的成員"
 
-#. --------------------
-#. ###############################
-#. What to include
-#. #########################
-#. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #: ../gramps/gen/plug/report/stdoptions.py:363
 #: ../gramps/gui/viewmanager.py:1753
@@ -10193,7 +10050,6 @@ msgstr "檔案不存在"
 msgid "Could not add photo to page"
 msgstr "無法向頁面新增照片"
 
-#. Do this in case of command line options query (show=filter)
 #: ../gramps/gen/plug/report/utils.py:288
 msgid "PERSON"
 msgstr ""
@@ -10205,7 +10061,6 @@ msgstr ""
 msgid "Entire Database"
 msgstr "整個資料庫"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:300
 #: ../gramps/gui/plug/export/_exportoptions.py:460
 #: ../gramps/plugins/textreport/descendreport.py:488
@@ -10213,7 +10068,6 @@ msgstr "整個資料庫"
 msgid "Descendants of %s"
 msgstr "%s 的後代"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:304
 #: ../gramps/gen/plug/report/utils.py:381
 #: ../gramps/gui/plug/export/_exportoptions.py:465
@@ -10221,7 +10075,6 @@ msgstr "%s 的後代"
 msgid "Descendant Families of %s"
 msgstr "%s 的後代家庭"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:308
 #: ../gramps/gui/plug/export/_exportoptions.py:470
 #, python-format
@@ -10247,13 +10100,11 @@ msgstr "未知母親"
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father)s 和 %(mother)s (%(id)s)"
 
-#. Do this in case of command line options query (show=filter)
 #: ../gramps/gen/plug/report/utils.py:368
 #, fuzzy
 msgid "FAMILY"
 msgstr "家族暱稱"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:385
 #, fuzzy, python-format
 msgid "Ancestor Families of %s"
@@ -10550,7 +10401,6 @@ msgstr "先輩相關死亡日期"
 msgid "Database error: loop in %s's ancestors"
 msgstr "資料庫錯誤: %s 被定義為 他/她自己的祖先"
 
-#. no evidence, must consider alive
 #: ../gramps/gen/utils/alive.py:507
 msgid "no evidence"
 msgstr "無證據"
@@ -10593,7 +10443,6 @@ msgstr "保加利亞語"
 msgid "Breton"
 msgstr "不列塔尼語"
 
-#. Windows has no translation for Breton
 #: ../gramps/gen/utils/grampslocale.py:74
 msgid "Catalan"
 msgstr "加泰隆尼亞語"
@@ -10626,7 +10475,6 @@ msgstr "英語"
 msgid "Esperanto"
 msgstr "世界語"
 
-#. Windows has no translation for Esperanto
 #: ../gramps/gen/utils/grampslocale.py:82
 msgid "Spanish"
 msgstr "西班牙語"
@@ -10643,7 +10491,6 @@ msgstr "法語"
 msgid "Gaelic"
 msgstr "蓋爾語"
 
-#. Windows has no translation for Gaelic
 #: ../gramps/gen/utils/grampslocale.py:86
 msgid "Hebrew"
 msgstr "希伯來語"
@@ -10676,7 +10523,6 @@ msgstr "立陶宛語"
 msgid "Macedonian"
 msgstr "馬其頓語"
 
-#. Windows has no translation for Macedonian
 #: ../gramps/gen/utils/grampslocale.py:94
 msgid "Norwegian Bokmal"
 msgstr "挪威語（書面）"
@@ -10733,7 +10579,6 @@ msgstr "瑞典語"
 msgid "Tamil"
 msgstr "坦米爾語"
 
-#. Windows has no codepage for Tamil
 #: ../gramps/gen/utils/grampslocale.py:108
 msgid "Turkish"
 msgstr "土耳其語"
@@ -10880,7 +10725,6 @@ msgstr "字尾"
 msgid "PRIMARY"
 msgstr "主要的"
 
-#. name, sort, width, modelcol
 #: ../gramps/gen/utils/keyword.py:61
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
 #, fuzzy
@@ -11079,7 +10923,6 @@ msgid ""
 "abandoning changes."
 msgstr "資料只能通過撤銷操作或者退出並摒棄變更來恢復。"
 
-#. Name                     UNICODE       SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:61
 #: ../gramps/plugins/graph/gvfamilylines.py:84
 #: ../gramps/plugins/textreport/indivcomplete.py:944
@@ -11165,9 +11008,6 @@ msgstr "收藏"
 msgid "Extinct"
 msgstr ""
 
-#. The following is used in the global preferences in the display tab.
-#. Name
-#. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
 #, fuzzy
 msgid "Nothing"
@@ -11242,7 +11082,6 @@ msgstr "男性妻子"
 msgid "Unknown, created to replace a missing note object."
 msgstr ""
 
-#. primitive static variable
 #: ../gramps/gen/utils/unknown.py:150
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
@@ -11316,7 +11155,7 @@ msgstr "Gramps 主頁"
 msgid "Contributions by"
 msgstr "貢獻者"
 
-#. TRANSLATORS: Translate this to your name in your native language
+#. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:120
 msgid "translator-credits"
 msgstr ""
@@ -11384,8 +11223,6 @@ msgstr "%(date)s  ，%(place)s"
 msgid "Clipboard"
 msgstr "剪貼簿"
 
-#. Now add more items to popup menu, if available
-#. See details (edit, etc):
 #: ../gramps/gui/clipboard.py:1493 ../gramps/gui/plug/quick/_quicktable.py:141
 #, fuzzy, python-format
 msgctxt "the object"
@@ -11421,7 +11258,6 @@ msgstr "拖放條欄改變順序"
 msgid "_Apply"
 msgstr "套用(_A)"
 
-#. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1354
 #: ../gramps/plugins/drawreport/ancestortree.py:916
 #: ../gramps/plugins/drawreport/descendtree.py:1658
@@ -11449,7 +11285,6 @@ msgstr "冰島式姓氏（父名後加 -sson 或 -sdótter）"
 msgid "Display Name Editor"
 msgstr "顯示名稱編輯器"
 
-#. self.window.connect('response', self.close)
 #: ../gramps/gui/configure.py:116 ../gramps/gui/configure.py:189
 #: ../gramps/gui/dialog.py:261 ../gramps/gui/dialog.py:307
 #: ../gramps/gui/dialog.py:333 ../gramps/gui/glade/book.glade:466
@@ -11542,8 +11377,7 @@ msgstr "名稱編輯器"
 msgid "Invalid or incomplete format definition."
 msgstr "無效的或不完整的格式定義。"
 
-#. label for the combo
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/configure.py:386 ../gramps/gui/configure.py:413
 #: ../gramps/gui/configure.py:435 ../gramps/gui/configure.py:451
 #: ../gramps/gui/configure.py:482 ../gramps/gui/configure.py:519
@@ -11727,7 +11561,6 @@ msgstr "健在男性邊框顏色"
 msgid "Border for Dead"
 msgstr "已故男性邊框顏色"
 
-#. for family
 #: ../gramps/gui/configure.py:730
 #, fuzzy
 msgid "Default background"
@@ -11768,7 +11601,6 @@ msgstr "預設人"
 msgid "Border for Divorced"
 msgstr "健在女性邊框顏色"
 
-#. for other
 #: ../gramps/gui/configure.py:742
 #, fuzzy
 msgid "Background for Home Person"
@@ -11836,8 +11668,6 @@ msgstr "本格式已經存在。"
 msgid "Example"
 msgstr "例："
 
-#. show an add button
-#. we now construct an add menu
 #: ../gramps/gui/configure.py:1054
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:147
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
@@ -12217,8 +12047,6 @@ msgstr "查詢 '%s'"
 msgid "' and '"
 msgstr "'和'"
 
-#. List of translated strings used here
-#. Dead code for l10n
 #: ../gramps/gui/configure.py:1701
 msgid "new"
 msgstr ""
@@ -13131,7 +12959,6 @@ msgstr "下移所選屬性"
 msgid "_Attributes"
 msgstr "屬性(_A)"
 
-#. Add column with object gramps_id
 #: ../gramps/gui/editors/displaytabs/backreflist.py:60
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:86
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:79
@@ -13512,11 +13339,6 @@ msgstr "姓名(_N)"
 msgid "Set as default name"
 msgstr "設為預設名稱"
 
-#. -------------------------------------------------------------------------
-#.
-#. NameModel
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
 #: ../gramps/gui/plug/_guioptions.py:1259 ../gramps/gui/viewmanager.py:1030
 #: ../gramps/gui/views/tags.py:561
@@ -13578,7 +13400,6 @@ msgstr "預覽"
 msgid "_Notes"
 msgstr "註解(_N)"
 
-#. add personal column
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
 #: ../gramps/plugins/webreport/basepage.py:1967
 #, fuzzy
@@ -14258,15 +14079,7 @@ msgstr ""
 "擁有這些父母家庭已經存在於資料庫中，如果您儲存，將會建立一個家庭拷貝.建議您取"
 "消編輯這個視窗，並選擇已經存在的家庭"
 
-#. translators: needed for French, ignore otherwise
-#. Styles Frame
-#. translators: needed for French, ignore otherwise
-#. Save Frame
-#. translators: needed for French, ignore otherwise
-#. Gramps ID
-#. don't show rest
-#. show "> Family: ..." and nothing else
-#. show "V Family: ..." and the rest
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/editors/editfamily.py:995
 #: ../gramps/gui/editors/editfamily.py:1002
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
@@ -14753,7 +14566,7 @@ msgstr "地點:%s"
 msgid "New Place"
 msgstr "新地點"
 
-#. translators: translate the "S" too (and the "or" of course)
+#. Translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:213
 #: ../gramps/gui/editors/editplaceref.py:207
 #, fuzzy
@@ -14762,7 +14575,7 @@ msgid ""
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "無效的緯度 (syntax: 18°9'"
 
-#. translators: translate the "E" too (and the "or" of course)
+#. Translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:218
 #: ../gramps/gui/editors/editplaceref.py:212
 #, fuzzy
@@ -17063,7 +16876,6 @@ msgstr "合併且編輯(_E)"
 msgid "_Merge and close"
 msgstr "合併且關閉(_M)"
 
-#. name, click?, width, toggle
 #: ../gramps/gui/glade/mergedata.glade:173
 #: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1103
 #: ../gramps/plugins/tool/changenames.py:196
@@ -18258,7 +18070,7 @@ msgctxt "manual"
 msgid "Merge_People"
 msgstr "合併成員"
 
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
 #, fuzzy, python-format
 msgid "%(key)s:\t%(value)s"
@@ -18268,7 +18080,6 @@ msgstr "%(type)s：%(value)s"
 msgid "Merge People"
 msgstr "合併成員"
 
-#. Go over parents and build their menu
 #: ../gramps/gui/merge/mergeperson.py:224
 #: ../gramps/gui/widgets/fanchart.py:1994
 #: ../gramps/plugins/quickview/all_relations.py:305
@@ -18292,7 +18103,6 @@ msgstr "家庭ID編號"
 msgid "No parents found"
 msgstr "未找到父母"
 
-#. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:238
 #: ../gramps/gui/widgets/fanchart.py:1857
 #: ../gramps/plugins/textreport/kinshipreport.py:133
@@ -18314,7 +18124,6 @@ msgstr "配偶"
 msgid "No spouses or children found"
 msgstr "未找到配偶和孩子"
 
-#. Add column with the warning text
 #: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:568
 msgid "Warning"
 msgstr "警告"
@@ -18451,12 +18260,10 @@ msgstr "插件管理器"
 msgid "Info"
 msgstr "資訊"
 
-#. id_col
 #: ../gramps/gui/plug/_windows.py:147 ../gramps/gui/plug/_windows.py:201
 msgid "Hide/Unhide"
 msgstr "隱藏/不隱藏"
 
-#. id_col
 #: ../gramps/gui/plug/_windows.py:155 ../gramps/gui/plug/_windows.py:210
 msgid "Load"
 msgstr "載入"
@@ -18483,7 +18290,6 @@ msgstr "資訊"
 msgid "Loaded Plugins"
 msgstr "載入的插件"
 
-#. self.addon_list.connect('button-press-event', self.button_press)
 #: ../gramps/gui/plug/_windows.py:235
 msgid "Addon Name"
 msgstr "插件名稱"
@@ -18504,8 +18310,6 @@ msgstr "安裝所有的插件"
 msgid "Refresh Addon List"
 msgstr "重新整理插件列表"
 
-#. Only show the "Reload" button when in debug mode
-#. (without -O on the command line)
 #: ../gramps/gui/plug/_windows.py:289
 msgid "Reload"
 msgstr "重新載入"
@@ -18614,7 +18418,7 @@ msgstr "遇到以下問題："
 msgid "Done downloading and installing addons"
 msgstr "下載和安裝插件完畢"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/_windows.py:1224
 #, fuzzy, python-brace-format
 msgid "{number_of} addon was installed."
@@ -18632,7 +18436,6 @@ msgstr ""
 msgid "No addons were installed."
 msgstr "無插件被安裝"
 
-#. set up ManagedWindow
 #: ../gramps/gui/plug/export/_exportassistant.py:119
 msgid "Export Assistant"
 msgstr "匯出支援"
@@ -18725,7 +18528,6 @@ msgstr ""
 "注：Gramps 視窗中開啟的資料庫，不是您剛儲存的檔案.編輯現在開啟的資料庫，不會"
 "改變您剛儲存的拷貝。"
 
-#. add test, what is dir
 #: ../gramps/gui/plug/export/_exportassistant.py:512
 #, python-format
 msgid "Filename: %s"
@@ -18793,7 +18595,7 @@ msgstr "選擇... "
 msgid "Unfiltered Family Tree:"
 msgstr "Smith 家族樹"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/export/_exportoptions.py:167
 #: ../gramps/gui/plug/export/_exportoptions.py:274
 #: ../gramps/gui/plug/export/_exportoptions.py:582
@@ -18835,7 +18637,6 @@ msgstr "筆記篩選(_N)"
 msgid "Click to see preview after note filter"
 msgstr "點選檢視註釋過濾器後的預覽"
 
-#. Frame 3:
 #: ../gramps/gui/plug/export/_exportoptions.py:319
 msgid "Privacy Filter"
 msgstr "隱私篩查器"
@@ -18844,7 +18645,6 @@ msgstr "隱私篩查器"
 msgid "Click to see preview after privacy filter"
 msgstr "點選檢視隱私過濾器後的預覽"
 
-#. Frame 4:
 #: ../gramps/gui/plug/export/_exportoptions.py:330
 msgid "Living Filter"
 msgstr "健在成員篩查器"
@@ -19137,24 +18937,6 @@ msgstr "設定"
 msgid "Style"
 msgstr "風格"
 
-#. better to 'Show siblings of\nthe center person
-#. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
-#. "person"), 0)
-#. Spouse_disp.add_item(0, _("No.  Do not show Spouses"))
-#. Spouse_disp.add_item(1, _("Yes, and use the Main Display Format"))
-#. Spouse_disp.add_item(2, _("Yes, and use the Secondary "
-#. "Display Format"))
-#. Spouse_disp.set_help(_("Show spouses of the center person?"))
-#. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#. #################
-#. #########################
-#. #################
-#. ###############################
-#. ---------------------
-#. ###############################
-#. Report Options
-#. #########################
-#. ###############################
 #: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 #: ../gramps/plugins/drawreport/calendarreport.py:462
@@ -19187,7 +18969,6 @@ msgstr "風格"
 msgid "Report Options"
 msgstr "報告選項"
 
-#. need any labels at top:
 #: ../gramps/gui/plug/report/_reportdialog.py:457
 msgid "Document Options"
 msgstr "文件選項"
@@ -19296,7 +19077,6 @@ msgstr "新建樣式"
 msgid "Error saving stylesheet"
 msgstr "儲存樣式表錯誤"
 
-#. How to handle missing information
 #: ../gramps/gui/plug/report/_styleeditor.py:174
 #: ../gramps/gui/plug/report/_styleeditor.py:188
 #: ../gramps/plugins/textreport/detancestralreport.py:960
@@ -19542,12 +19322,6 @@ msgstr "撤銷(_U)"
 msgid "_Redo"
 msgstr "Redo(_R)"
 
-#. self.tree.append_column(
-#. Gtk.TreeViewColumn(_('Original time'), self.renderer,
-#. text=0, foreground=2, background=3))
-#. self.tree.append_column(
-#. Gtk.TreeViewColumn(_('Action'), self.renderer,
-#. text=1, foreground=2, background=3))
 #: ../gramps/gui/undohistory.py:113
 msgid "Original time"
 msgstr "最初時間"
@@ -19618,7 +19392,6 @@ msgstr "無法開啟新引用編輯器"
 msgid "No Family Tree"
 msgstr "家族樹"
 
-#. registering plugins
 #: ../gramps/gui/viewmanager.py:561
 msgid "Registering plugins..."
 msgstr "註冊插件...."
@@ -19779,7 +19552,6 @@ msgctxt "manual"
 msgid "Bookmarks"
 msgstr "書籤"
 
-#. this is meaningless while it's modal
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
 #: ../gramps/plugins/lib/libpersonview.py:205
@@ -19943,7 +19715,6 @@ msgstr "%(cat)s - %(view)s"
 msgid "Configure %s View"
 msgstr "設定 %s 檢視"
 
-#. top widget at the top
 #: ../gramps/gui/views/pageview.py:613
 #, fuzzy, python-format
 msgid "View %(name)s: %(msg)s"
@@ -20099,7 +19870,6 @@ msgstr "重排家庭"
 msgid "_Copy"
 msgstr ""
 
-#. Go over siblings and build their menu
 #: ../gramps/gui/widgets/fanchart.py:1891
 #: ../gramps/plugins/quickview/quickview.gpr.py:319
 #: ../gramps/plugins/view/pedigreeview.py:1805
@@ -20107,7 +19877,6 @@ msgstr ""
 msgid "Siblings"
 msgstr "兄弟姐妹"
 
-#. Go over parents and build their menu
 #: ../gramps/gui/widgets/fanchart.py:2037
 #: ../gramps/plugins/view/pedigreeview.py:1932
 msgid "Related"
@@ -20182,12 +19951,10 @@ msgid ""
 "action cannot be undone."
 msgstr ""
 
-#. default tooltip
 #: ../gramps/gui/widgets/grampletpane.py:816
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "拖動屬性按鈕，移動並點選它用於設定"
 
-#. build the GUI:
 #: ../gramps/gui/widgets/grampletpane.py:1017
 msgid "Right click to add gramplets"
 msgstr "右鍵點選新增 Gramplets 圖表"
@@ -20246,7 +20013,6 @@ msgstr "在一列上雙擊，編輯選擇的事件"
 msgid "Make Active Media"
 msgstr "設定啟用 %s"
 
-#. initial tooltip when no place already selected.
 #: ../gramps/gui/widgets/placewithin.py:63
 msgid ""
 "Matches places within a given distance of the active place. You have no "
@@ -20304,7 +20070,6 @@ msgid ""
 "Ctrl-Click to follow link"
 msgstr ""
 
-#. spell checker submenu
 #: ../gramps/gui/widgets/styledtexteditor.py:450
 msgid "Spellcheck"
 msgstr "拼寫檢查"
@@ -20351,7 +20116,6 @@ msgstr "‘%s’ 對於本區域，不是有效的值"
 msgid "This field is mandatory"
 msgstr "該域屬於強制性的"
 
-#. used on AgeOnDateGramplet
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1236
 #, python-format
 msgid "'%s' is not a valid date value"
@@ -20628,13 +20392,11 @@ msgstr ""
 msgid "The color, if any, of the SVG background"
 msgstr ""
 
-#. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/ancestortree.py:115
 #, fuzzy
 msgid "Ancestor Graph"
 msgstr "%s 的祖先圖"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/ancestortree.py:133
 #, python-format
 msgid "Ancestor Graph for %s"
@@ -20847,14 +20609,6 @@ msgstr "包括空白頁面"
 msgid "Whether to include pages that are blank."
 msgstr "是否包括空白頁面."
 
-#. #################
-#. #########################
-#. #################
-#. ###############################
-#. ---------------------
-#. ###############################
-#. #########################
-#. ###############################
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/calendarreport.py:490
 #: ../gramps/plugins/drawreport/descendtree.py:1645
@@ -20893,12 +20647,6 @@ msgstr ""
 msgid "Display format for the fathers box."
 msgstr "outputbox的顯示格式."
 
-#. Will add when libsubstkeyword supports it.
-#. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
-#. missing.add_item(0, _("Does not display anything"))
-#. missing.add_item(1, _("Displays '_____'"))
-#. missing.set_help(_("What will print when information is not known"))
-#. menu.add_option(category_name, "miss_val", missing)
 #: ../gramps/plugins/drawreport/ancestortree.py:933
 #, fuzzy
 msgid ""
@@ -20961,7 +20709,6 @@ msgstr ""
 msgid "Display format for the marital box."
 msgstr "outputbox的顯示格式."
 
-#. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:961
 #: ../gramps/plugins/drawreport/descendtree.py:1694
 #: ../gramps/plugins/lib/libmetadata.py:104
@@ -20990,13 +20737,6 @@ msgstr ""
 "比如\n"
 "美利堅合眾國/美國"
 
-#. TODO this code is never used and so I conclude it is for future use
-#. self.__include_images = BooleanOption(
-#. _('Include thumbnail images of people'), False)
-#. self.__include_images.set_help(
-#. _("Whether to include thumbnails of people."))
-#. menu.add_option(category_name, "includeImages",
-#. self.__include_images)
 #: ../gramps/plugins/drawreport/ancestortree.py:977
 #: ../gramps/plugins/drawreport/descendtree.py:1702
 msgid "Include a note"
@@ -21046,7 +20786,6 @@ msgstr ""
 msgid "box shadow scale factor"
 msgstr "不要縮放報告"
 
-#. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:1003
 #: ../gramps/plugins/drawreport/descendtree.py:1727
 msgid "Make the box shadow bigger or smaller"
@@ -21126,8 +20865,6 @@ msgstr "我的日曆"
 msgid "Produced with Gramps"
 msgstr "以 Gramps 生成"
 
-#. generate the report:
-#. to see "nearby" comments
 #: ../gramps/plugins/drawreport/calendarreport.py:199
 #: ../gramps/plugins/drawreport/calendarreport.py:225
 #: ../gramps/plugins/drawreport/calendarreport.py:315
@@ -21150,7 +20887,7 @@ msgstr "讀取資料庫..."
 msgid "%(person)s, birth"
 msgstr "%(person)s, birth"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:365
 #, python-brace-format
 msgid "{person}, {age}"
@@ -21166,7 +20903,7 @@ msgstr ""
 "%(spouse)s 和\n"
 " %(person)s, 婚禮"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:427
 #, python-brace-format
 msgid ""
@@ -21237,9 +20974,6 @@ msgstr "僅包含健在人員"
 msgid "Include only living people in the calendar"
 msgstr "在日曆中僅包含健在人員"
 
-#. #########################
-#. Content options
-#. Content
 #: ../gramps/plugins/drawreport/calendarreport.py:508
 #: ../gramps/plugins/textreport/birthdayreport.py:523
 #: ../gramps/plugins/textreport/detancestralreport.py:873
@@ -21248,7 +20982,6 @@ msgstr "在日曆中僅包含健在人員"
 msgid "Content"
 msgstr "內容"
 
-#. #########################
 #: ../gramps/plugins/drawreport/calendarreport.py:512
 #: ../gramps/plugins/drawreport/calendarreport.py:514
 msgid "Year of calendar"
@@ -21265,7 +20998,6 @@ msgstr "法定假日所屬國家/地區"
 msgid "Select the country to see associated holidays"
 msgstr "選擇國家/地區以檢視相關假期"
 
-#. Default selection ????
 #: ../gramps/plugins/drawreport/calendarreport.py:531
 #: ../gramps/plugins/webreport/narrativeweb.py:2809
 #: ../gramps/plugins/webreport/webcal.py:1867
@@ -21379,13 +21111,11 @@ msgstr "底部文字, 第三行"
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
 msgstr "後代譜表為 %(person)s 和 %(father1)s, %(mother1)s"
 
-#. Should be 2 items in names list
 #: ../gramps/plugins/drawreport/descendtree.py:165
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
 msgstr "後代圖表為 %(person)s, %(father1)s 和 %(mother1)s"
 
-#. Should be 2 items in both names and names2 lists
 #: ../gramps/plugins/drawreport/descendtree.py:172
 #, python-format
 msgid ""
@@ -21397,13 +21127,11 @@ msgstr "後代圖表為 %(father1)s, %(father2)s 和 %(mother1)s, %(mother2)s"
 msgid "Descendant Chart for %(person)s"
 msgstr "%(person)s 的子孫圖表"
 
-#. Should be two items in names list
 #: ../gramps/plugins/drawreport/descendtree.py:184
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
 msgstr " %(father)s 和 %(mother)s 的後代圖表"
 
-#. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/descendtree.py:213
 #, fuzzy
 msgid "Descendant Graph"
@@ -21429,7 +21157,6 @@ msgstr "的表親圖表"
 msgid "Family %s is not in the Database"
 msgstr "成員%s不存在資料庫中"
 
-#. if self.name == "familial_descend_tree":
 #: ../gramps/plugins/drawreport/descendtree.py:1536
 #: ../gramps/plugins/drawreport/descendtree.py:1540
 msgid "Report for"
@@ -21514,12 +21241,6 @@ msgstr ""
 msgid "Display format for a descendant."
 msgstr "後代的顯示格式。"
 
-#. bug 4767
-#. diffspouse = BooleanOption(
-#. _("Use separate display format for spouses"),
-#. True)
-#. diffspouse.set_help(_("Whether spouses can have a different format."))
-#. menu.add_option(category_name, "diffspouse", diffspouse)
 #: ../gramps/plugins/drawreport/descendtree.py:1674
 msgid ""
 "Spousal\n"
@@ -21634,7 +21355,6 @@ msgstr "扇形圖"
 msgid "Produces fan charts"
 msgstr "生成扇形父輩圖"
 
-#. extract requested items from the database and count them
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:197
 #: ../gramps/plugins/drawreport/statisticschart.py:812
 #: ../gramps/plugins/drawreport/statisticschart.py:822
@@ -21656,7 +21376,6 @@ msgstr "年譜"
 msgid "Produces a timeline chart."
 msgstr "生成時間線圖表."
 
-#. choose  one line or two lines translation according to the width
 #: ../gramps/plugins/drawreport/fanchart.py:256
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
@@ -21839,7 +21558,6 @@ msgstr "事件類型"
 msgid "(Preferred) title missing"
 msgstr "（首選）頭銜缺失"
 
-#. the list of keys that represent "missing" information
 #: ../gramps/plugins/drawreport/statisticschart.py:402
 #: ../gramps/plugins/drawreport/statisticschart.py:928
 msgid "(Preferred) forename missing"
@@ -21853,8 +21571,6 @@ msgstr "（首選）姓氏缺失"
 msgid "Gender unknown"
 msgstr "未知性別"
 
-#. localized year
-#. inadequate information
 #: ../gramps/plugins/drawreport/statisticschart.py:431
 #: ../gramps/plugins/drawreport/statisticschart.py:451
 #: ../gramps/plugins/drawreport/statisticschart.py:558
@@ -22056,7 +21772,6 @@ msgctxt "sorted by"
 msgid "Name"
 msgstr "名字"
 
-#. Sort the people as requested
 #: ../gramps/plugins/drawreport/timeline.py:157
 #: ../gramps/plugins/drawreport/timeline.py:169
 #: ../gramps/plugins/drawreport/timeline.py:338
@@ -22071,7 +21786,6 @@ msgstr "整理日期..."
 msgid "Calculating timeline..."
 msgstr "計算時間線..."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/timeline.py:277
 #, python-format
 msgid "Sorted by %s"
@@ -22411,7 +22125,6 @@ msgid ""
 msgstr ""
 "資料庫無法被儲存，您沒有權限寫入檔案。請確認您有權限寫入檔案後再試一次."
 
-#. GUI setup:
 #: ../gramps/plugins/gramplet/ageondategramplet.py:52
 msgid "Enter a date, click Run"
 msgstr "輸入日期，點選運行"
@@ -22776,7 +22489,6 @@ msgstr ""
 msgid "Double-click given name for details"
 msgstr "雙擊「名字」瞭解詳細資訊"
 
-#. will be overwritten in load
 #: ../gramps/plugins/gramplet/givennamegramplet.py:55
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:50
 #: ../gramps/plugins/gramplet/recordsgramplet.py:43
@@ -23815,7 +23527,6 @@ msgstr "雙擊檢視當代中的人員"
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
 msgstr "有1名家族成員(%(percent)s complete)\n"
 
-#. Create the Generation title, set an index marker
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:267
 #: ../gramps/plugins/textreport/ancestorreport.py:218
 #: ../gramps/plugins/textreport/detancestralreport.py:228
@@ -23830,7 +23541,7 @@ msgstr "第 %d 代"
 msgid "Double-click to see people in generation %d"
 msgstr "雙擊檢視第%d 代人員"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:272
 #, fuzzy, python-brace-format
 msgid ""
@@ -23848,7 +23559,7 @@ msgstr "所有輩分"
 msgid "Double-click to see all generations"
 msgstr "雙擊檢視所有後代"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:283
 #, fuzzy, python-brace-format
 msgid " have {number_of} individual\n"
@@ -23865,7 +23576,6 @@ msgstr "%(date)s 在 %(place)s. "
 msgid "%(date)s."
 msgstr "%(date)s"
 
-#. Add types:
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:71
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:129
@@ -23940,7 +23650,6 @@ msgstr "此會話的日誌"
 msgid "Opened data base -----------\n"
 msgstr "開啟資料庫-------------\n"
 
-#. List of translated strings used here (translated in self.log ).
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Added"
 msgstr "已新增"
@@ -23971,7 +23680,6 @@ msgstr "雙擊項目檢視篩選"
 msgid "less than 1"
 msgstr "少於 1"
 
-#. -------------------------
 #: ../gramps/plugins/gramplet/statsgramplet.py:140
 #: ../gramps/plugins/graph/gvfamilylines.py:277
 #: ../gramps/plugins/textreport/summary.py:113
@@ -24208,42 +23916,28 @@ msgid ""
 "and detach the gramplet to float above Gramps."
 msgstr ""
 
-#. Minimum number of lines we want to see. Further lines with the same
-#. distance to the main person will be added on top of this.
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 #, fuzzy
 msgid "Minimum number of items to display"
 msgstr "連續兩次生育相隔的最大年數"
 
-#. How many generations of descendants to process before we go up to the
-#. next level of ancestors.
 #: ../gramps/plugins/gramplet/whatsnext.py:63
 #, fuzzy
 msgid "Descendant generations per ancestor generation"
 msgstr "<person> 的後代，最少有 <N> 代的記錄"
 
-#. After an ancestor was processed, how many extra rounds to delay until
-#. the descendants of this ancestor are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:69
 msgid "Delay before descendants of an ancestor is processed"
 msgstr ""
 
-#. Tag to use to indicate that this person has no further marriages, if
-#. the person is not tagged, warn about this at the time the marriages
-#. for the person are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
 msgstr ""
 
-#. Tag to use to indicate that there are no further children in this
-#. family, if this family is not tagged, warn about this at the time the
-#. children of this family are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
 msgstr ""
 
-#. Tag to use to specify people and families to ignore. In his way,
-#. hopeless cases can be marked separately and don't clutter up the list.
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
 msgstr ""
@@ -24368,11 +24062,6 @@ msgstr "關係曲線圖"
 msgid "Produces relationship graphs using Graphviz."
 msgstr "使用 Graphviz 生成關係曲線圖。"
 
-#. ------------------------------------------------------------------------
-#.
-#. Constant options items
-#.
-#. ------------------------------------------------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:74
 #: ../gramps/plugins/graph/gvhourglass.py:59
 #: ../gramps/plugins/graph/gvrelgraph.py:73
@@ -24411,7 +24100,6 @@ msgstr "後代<->祖先"
 msgid "Descendants - Ancestors"
 msgstr "後代 － 祖先"
 
-#. ---------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:125
 #, fuzzy
 msgid "Follow parents to determine \"family lines\""
@@ -24478,12 +24166,10 @@ msgstr "使用圓角"
 msgid "Use rounded corners e.g. to differentiate between women and men."
 msgstr "使用圓角區分男性和女性."
 
-#. --------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:185
 msgid "People of Interest"
 msgstr "有意向的成員"
 
-#. --------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:188
 msgid "People of interest"
 msgstr "有意向的成員"
@@ -24523,7 +24209,6 @@ msgstr "是否為每頁列印頁碼。"
 msgid "The maximum number of descendants to include."
 msgstr "能包含的最大祖先數量."
 
-#. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:223
 msgid "Include dates"
 msgstr "包含日期"
@@ -24594,12 +24279,10 @@ msgstr "縮圖"
 msgid "Size of the thumbnail image"
 msgstr ""
 
-#. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:269
 msgid "Family Colors"
 msgstr "家庭顏色"
 
-#. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:272
 msgid "Family colors"
 msgstr "家庭顏色"
@@ -24683,7 +24366,7 @@ msgstr "基於所有家庭資料篩選"
 msgid "Initial list of people of interest:"
 msgstr "有意向的成員"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/graph/gvfamilylines.py:982
 #, fuzzy, python-brace-format
 msgid "{number_of} child"
@@ -24754,7 +24437,6 @@ msgid ""
 "individual is unknown it will be shown with gray."
 msgstr "男性由藍色顯示，女性用紅色顯示.  如果成員性別未知，將會顯示為灰色."
 
-#. see bug report #2180
 #: ../gramps/plugins/graph/gvhourglass.py:396
 #: ../gramps/plugins/graph/gvrelgraph.py:830
 msgid "Use rounded corners"
@@ -24765,7 +24447,6 @@ msgstr "使用圓角"
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "使用圓角區分男性和女性."
 
-#. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:418
 #: ../gramps/plugins/graph/gvrelgraph.py:940
 msgid "Graph Style"
@@ -24806,7 +24487,6 @@ msgstr "生成日期"
 msgid "Determines what people are included in the graph"
 msgstr "決定在影象中包含什麼樣的人"
 
-#. see bug report #11112
 #: ../gramps/plugins/graph/gvrelgraph.py:836
 #, fuzzy
 msgid "Use hexagons"
@@ -24817,7 +24497,6 @@ msgstr "使用陰影"
 msgid "Use hexagons to differentiate those of unknown gender."
 msgstr "使用圓角區分男性和女性."
 
-#. ###############################
 #: ../gramps/plugins/graph/gvrelgraph.py:865
 #, fuzzy
 msgid "Dates and/or Places"
@@ -24911,7 +24590,6 @@ msgstr "是否包含人員的縮圖."
 msgid "Thumbnail Location"
 msgstr "縮圖位置"
 
-#. occupation = BooleanOption(_("Include occupation"), False)
 #: ../gramps/plugins/graph/gvrelgraph.py:921
 #, fuzzy
 msgid "Include occupation"
@@ -25030,10 +24708,6 @@ msgstr "首選項"
 msgid "%s could not be opened\n"
 msgstr "%s 無法開啟\n"
 
-#. # a "GEDCOM import report" happens in GedcomParser so this is not needed:
-#. # (but the imports_test.py unittest currently requires it, so here it is)
-#. # a "VCARD import report" happens in VCardParser so this is not needed:
-#. # (but the imports_test.py unittest currently requires it, so here it is)
 #: ../gramps/plugins/importer/importcsv.py:129
 #: ../gramps/plugins/importer/importgedcom.py:154
 #: ../gramps/plugins/importer/importgeneweb.py:162
@@ -25269,12 +24943,10 @@ msgstr "屬性筆記"
 msgid "attributesource"
 msgstr "屬性"
 
-#. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:229
 msgid "child"
 msgstr "子女"
 
-#. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:232
 msgid "mother"
 msgstr "母親"
@@ -25316,7 +24988,6 @@ msgstr "地點"
 msgid "place id"
 msgstr "地點"
 
-#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:242
 #: ../gramps/plugins/tool/removespaces.py:190
 #, fuzzy
@@ -25328,14 +24999,12 @@ msgstr "=名稱"
 msgid "type"
 msgstr "直線類型"
 
-#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:244
 #: ../gramps/plugins/tool/removespaces.py:194
 #, fuzzy
 msgid "latitude"
 msgstr "緯度"
 
-#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:245
 #: ../gramps/plugins/tool/removespaces.py:198
 #, fuzzy
@@ -25372,7 +25041,7 @@ msgstr "讀取資料..."
 msgid "CSV import"
 msgstr "匯入 CSV"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/importer/importcsv.py:374
 #: ../gramps/plugins/importer/importgeneweb.py:274
 #: ../gramps/plugins/importer/importvcard.py:249
@@ -25563,8 +25232,6 @@ msgstr "無法建立媒體目錄 %s"
 msgid "Media directory %s is not writable"
 msgstr "媒體目錄 %s 不可寫入"
 
-#. mediadir exists and writable -- User could have valuable stuff in
-#. it, have him remove it!
 #: ../gramps/plugins/importer/importgpkg.py:81
 #, python-format
 msgid ""
@@ -25951,20 +25618,12 @@ msgid ""
 "as text."
 msgstr ""
 
-#. feature requests 2356, 1658: avoid genitive form
-#. -------------------------------------------------------------------------
-#.
-#. Support functions
-#.
-#. -------------------------------------------------------------------------
-#. feature requests 2356, 1658: avoid genitive form
 #: ../gramps/plugins/importer/importxml.py:103
 #: ../gramps/plugins/tool/eventnames.py:137
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s 在 %(family)s"
 
-#. feature requests 2356, 1658: avoid genitive form
 #: ../gramps/plugins/importer/importxml.py:105
 #: ../gramps/plugins/tool/eventnames.py:139
 #, python-format
@@ -26113,7 +25772,6 @@ msgid ""
 "Objects that are candidates to be merged:\n"
 msgstr ""
 
-#. there is no old style XML
 #: ../gramps/plugins/importer/importxml.py:809
 #: ../gramps/plugins/importer/importxml.py:1294
 #: ../gramps/plugins/importer/importxml.py:1566
@@ -26255,7 +25913,7 @@ msgstr "未知母親"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "所有的索引地圖已經被建立."
 
-#. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+#. Translators: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2528
 #, python-brace-format
@@ -26361,7 +26019,6 @@ msgstr "教儀："
 msgid "Separation"
 msgstr "省 (Department)"
 
-#. Applies to Families
 #: ../gramps/plugins/lib/libgedcom.py:714
 #, fuzzy
 msgid "Weight"
@@ -26372,7 +26029,6 @@ msgstr "右"
 msgid "Line ignored "
 msgstr "行 %d: 空註釋被忽略."
 
-#. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
 #: ../gramps/plugins/lib/libgedcom.py:1540
 #, python-format
 msgid "Illegal character%s"
@@ -26455,9 +26111,6 @@ msgid ""
 "referenced by note %(unknown)s.\n"
 msgstr ""
 
-#. message means that the element %s was ignored, but
-#. expressed the wrong way round because the message is
-#. truncated for output
 #: ../gramps/plugins/lib/libgedcom.py:3431
 #, python-format
 msgid "ADDR element ignored '%s'"
@@ -26527,19 +26180,15 @@ msgstr "媒體類型(_M)："
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr ""
 
-#. We have previously found a PLAC
 #: ../gramps/plugins/lib/libgedcom.py:5659
 msgid "A second PLAC ignored"
 msgstr ""
 
-#. For RootsMagic etc. Place Details e.g. address, hospital, ...
 #: ../gramps/plugins/lib/libgedcom.py:5798
 #, fuzzy
 msgid "Detail"
 msgstr "詳細資訊"
 
-#. We have perviously found an ADDR, or have populated
-#. location from PLAC title
 #: ../gramps/plugins/lib/libgedcom.py:5811
 msgid "Location already populated; ADDR ignored"
 msgstr ""
@@ -26558,7 +26207,6 @@ msgstr "<b>關係資訊</b>"
 msgid "REFN ignored"
 msgstr ""
 
-#. SOURce with the given gramps_id had no title
 #: ../gramps/plugins/lib/libgedcom.py:6503
 #, python-format
 msgid "No title - ID %s"
@@ -26624,7 +26272,6 @@ msgstr ""
 msgid "Publication date of source data"
 msgstr "出版資訊"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/lib/libgedcom.py:7386
 #, python-format
 msgid "Import from %s"
@@ -26665,8 +26312,6 @@ msgstr ""
 msgid "GEDCOM version"
 msgstr "GEDCOM 版本"
 
-#. Allow Lineage-Linked etc. though it should be in
-#. uppercase  (Note: Gramps is not a validator! prc)
 #: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "GEDCOM FORM should be in uppercase"
 msgstr ""
@@ -26727,8 +26372,6 @@ msgstr "限定父母的數量"
 msgid "Submission: Ordinance process flag"
 msgstr ""
 
-#. Okay we have no clue which temple this is.
-#. We should tell the user and store it anyway.
 #: ../gramps/plugins/lib/libgedcom.py:7999
 #, fuzzy
 msgid "Invalid temple code"
@@ -26744,8 +26387,6 @@ msgstr "您的GEDCOM 檔案已經損壞，檔案使用UTF16編碼，但是丟失
 msgid "Your GEDCOM file is empty."
 msgstr "您的 GEDCOM 檔案為空。"
 
-#. First is used as default selection.
-#. As seen on the internet, ISO-xxx are listed as capital letters
 #: ../gramps/plugins/lib/libhtmlconst.py:51
 msgid "Unicode UTF-8 (recommended)"
 msgstr "Unicode UTF-8 (推薦)"
@@ -26754,8 +26395,6 @@ msgstr "Unicode UTF-8 (推薦)"
 msgid "Standard copyright"
 msgstr "標準版權"
 
-#. This must match _CC
-#. translators, long strings, have a look at Web report dialogs
 #: ../gramps/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons 創用CC「姓名標示」"
@@ -30724,13 +30363,11 @@ msgstr "無法找到 DEF 檔案: %(deffname)s"
 msgid "Import from Pro-Gen"
 msgstr "從 Pro-Gen 匯入"
 
-#. start feedback about import progress (GUI / TXT)
 #: ../gramps/plugins/lib/libprogen.py:498
 #, fuzzy
 msgid "Initializing."
 msgstr "安裝..."
 
-#. Raise a error message
 #: ../gramps/plugins/lib/libprogen.py:515
 msgid "Not a supported Pro-Gen import file language"
 msgstr ""
@@ -30749,7 +30386,6 @@ msgstr "選擇... "
 msgid "Pro-Gen Import"
 msgstr "Pro-Gen 匯入"
 
-#. Hmmm. Just use the plain text.
 #: ../gramps/plugins/lib/libprogen.py:1138
 #, fuzzy, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
@@ -30760,7 +30396,6 @@ msgstr "日期不匹配: '%(text)s' (%(msg)s)"
 msgid "Time: %s"
 msgstr "健在: %s"
 
-#. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1207
 #, fuzzy
 msgid "Importing persons."
@@ -30780,7 +30415,6 @@ msgstr "網址(_W)："
 msgid "Death cause"
 msgstr "死亡原因"
 
-#. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1586
 #, fuzzy
 msgid "Importing families."
@@ -30800,10 +30434,6 @@ msgstr "留空(_P)："
 msgid "future"
 msgstr ""
 
-#. We have seen some case insensitivity in DEF files ...
-#. F13: Father
-#. F14: Mother
-#. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1903
 #, fuzzy
 msgid "Adding children."
@@ -31148,7 +30778,6 @@ msgstr ""
 msgid "The green values in the row correspond to the current place values."
 msgstr ""
 
-#. if we found no place, we must create a default place.
 #: ../gramps/plugins/lib/maps/placeselection.py:223
 #, fuzzy
 msgid "New place with empty fields"
@@ -31171,12 +30800,10 @@ msgstr ""
 msgid "Denmark"
 msgstr "丹麥"
 
-#. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:81
 msgid " parish"
 msgstr " 堂區"
 
-#. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " state"
 msgstr " 狀態"
@@ -31261,8 +30888,6 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 
-#. display the results
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
 msgid "Sorted events of %s"
@@ -31297,7 +30922,6 @@ msgstr "事件類型"
 msgid "Not found"
 msgstr "未找到父母"
 
-#. display the results
 #: ../gramps/plugins/quickview/all_events.py:103
 #, python-format
 msgid ""
@@ -31396,7 +31020,6 @@ msgstr "有 '%s' 屬性的 人員"
 msgid "There are %d people with a matching attribute name.\n"
 msgstr "有%d 人符合屬性名稱.\n"
 
-#. else "nearby" comments are ignored
 #: ../gramps/plugins/quickview/filterbyname.py:41
 #, fuzzy
 msgctxt "Filtering_on"
@@ -31664,15 +31287,13 @@ msgstr "缺失媒體"
 msgid "Size in bytes"
 msgstr "位元組大小"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/filterbyname.py:420
 #, fuzzy, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
 msgstr[0] "篩查器發現 %d 條匹配的記錄."
 
-#. display the results
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
 msgid "Father lineage for %s"
@@ -31700,8 +31321,6 @@ msgstr "評論"
 msgid "Direct line male descendants"
 msgstr "男性直接後代"
 
-#. display the results
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/lineage.py:83
 #, python-format
 msgid "Mother lineage for %s"
@@ -31738,7 +31357,6 @@ msgstr "和孩子無生育關聯"
 msgid "Unknown gender"
 msgstr "未知性別"
 
-#. display the title
 #: ../gramps/plugins/quickview/linkreferences.py:43
 msgid "Link References for this note"
 msgstr "這個註釋的連結參照"
@@ -31765,7 +31383,6 @@ msgstr "網際網路"
 msgid "No link references for this note"
 msgstr "這個註釋沒有連結參照"
 
-#. display the title
 #: ../gramps/plugins/quickview/onthisday.py:77
 #, python-format
 msgid "Events of %(date)s"
@@ -31915,7 +31532,6 @@ msgstr "相同的名 - 獨立的"
 msgid "Display a person's siblings."
 msgstr "顯示成員的兄弟姐妹。"
 
-#. display the title
 #: ../gramps/plugins/quickview/references.py:68
 #, python-format
 msgid "References for this %s"
@@ -31967,13 +31583,12 @@ msgstr "名字不完整的人員"
 msgid "Matches people with firstname missing"
 msgstr "篩選缺失名字的人"
 
-#. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:113
 #, python-format
 msgid "People sharing the surname '%s'"
 msgstr "同為「%s」姓的成員"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135
 #: ../gramps/plugins/quickview/samesurnames.py:180
 #, fuzzy, python-brace-format
@@ -31982,14 +31597,11 @@ msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] "共發現 %d位成員 匹配此姓名或者曾用名.\n"
 
-#. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
 #, python-format
 msgid "People with the given name '%s'"
 msgstr "名為「%s」的人"
 
-#. display the title
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/siblings.py:46
 #, python-format
 msgid "Siblings of %s"
@@ -32165,7 +31777,6 @@ msgstr ""
 msgid "Entire Book"
 msgstr "生成(_G)"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/ancestorreport.py:197
 #, python-format
 msgid "Ahnentafel Report for %s"
@@ -32207,7 +31818,6 @@ msgstr "我的生日報告"
 msgid "✝"
 msgstr ""
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:221
 #, python-format
 msgid "Relationships shown are to %s"
@@ -32218,7 +31828,7 @@ msgstr "與%s 的關係顯示"
 msgid "* %(person)s, birth%(relation)s"
 msgstr "%(person)s, birth%(relation)s"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
 #, fuzzy, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
@@ -32234,7 +31844,7 @@ msgstr ""
 "%(spouse)s 和\n"
 " %(person)s, 婚禮"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:407
 #, fuzzy, python-brace-format
 msgid ""
@@ -32477,7 +32087,6 @@ msgstr "第%d等級顯示風格."
 msgid "The style used for the spouse level %d display."
 msgstr "配偶第%d等級的顯示風格."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:216
 #, python-format
 msgid "Ancestral Report for %s"
@@ -32497,14 +32106,13 @@ msgstr "更多關於 %(person_name)s："
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s 與 [%(id_str)s]為同一個人."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:361
 #: ../gramps/plugins/textreport/detdescendantreport.py:881
 #, python-format
 msgid "Notes for %s"
 msgstr "%s 的註釋"
 
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:379
 #: ../gramps/plugins/textreport/detancestralreport.py:430
 #: ../gramps/plugins/textreport/detancestralreport.py:498
@@ -32521,7 +32129,7 @@ msgstr "%(type)s: %(value)s%(endnotes)s"
 msgid "Address: "
 msgstr "地址："
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:417
 #: ../gramps/plugins/textreport/detdescendantreport.py:939
 #, python-format
@@ -32533,7 +32141,7 @@ msgstr "%s, "
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:495
 #: ../gramps/plugins/textreport/detdescendantreport.py:415
 #: ../gramps/plugins/textreport/detdescendantreport.py:518
@@ -32694,8 +32302,6 @@ msgstr "包含 照片/圖片"
 msgid "Whether to include images."
 msgstr "是否包含影象."
 
-#. #########################
-#. ###############################
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1120
 #: ../gramps/plugins/textreport/familygroup.py:782
@@ -32831,7 +32437,6 @@ msgstr "標題使用風格."
 msgid "The style used for details."
 msgstr "地點詳細資訊應用的風格."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detdescendantreport.py:342
 #, python-format
 msgid "Descendant Report for %(person_name)s"
@@ -32907,13 +32512,11 @@ msgid ""
 "descendant."
 msgstr "是否為起始人員包含與每位後代的關係路徑。"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:159
 #, python-format
 msgid "End of Line Report for %s"
 msgstr "%s 的線性報告完結"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:166
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
@@ -32972,7 +32575,6 @@ msgstr "遞迴"
 msgid "Create reports for all descendants of this family."
 msgstr "為這個家庭所有後代建立報告."
 
-#. #########################
 #: ../gramps/plugins/textreport/familygroup.py:755
 msgid "Parent Marriage"
 msgstr "父母婚姻"
@@ -33058,13 +32660,12 @@ msgstr "是否包含缺少資訊的空區域."
 msgid "The style used for the parent's name"
 msgstr "父母姓名應用的風格"
 
-#. make sure it's translated, so it can be used below, in "combine"
 #: ../gramps/plugins/textreport/indivcomplete.py:193
 #, fuzzy, python-format
 msgid "%(str1)s in %(str2)s. "
 msgstr "%(part1)s - %(part2)s"
 
-#. for example (a stepfather): John Smith, relationship: Step
+#. Translators: e.g. (a stepfather): John Smith, relationship: Step
 #: ../gramps/plugins/textreport/indivcomplete.py:251
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
@@ -33113,7 +32714,6 @@ msgid ""
 "Report'"
 msgstr ""
 
-#. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 #, fuzzy
 msgid "Include Notes"
@@ -33157,12 +32757,10 @@ msgstr "包含事件"
 msgid "Whether to include Census Events."
 msgstr "是否包含事件."
 
-#. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1162
 msgid "Sections"
 msgstr "部分"
 
-#. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1165
 msgid "Event groups"
 msgstr "事件分組"
@@ -33192,7 +32790,6 @@ msgstr "標題應用的風格."
 msgid "The style used for image descriptions."
 msgstr "頁尾應用風格."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/kinshipreport.py:125
 #, python-format
 msgid "Kinship Report for %s"
@@ -33252,7 +32849,6 @@ msgstr "相關連結"
 msgid "Failed"
 msgstr "失敗"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:104
 #, python-format
 msgid "Number of Ancestors for %s"
@@ -33264,8 +32860,6 @@ msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
 msgstr[0] "第 %(generation)d 代，已記錄 %(count)d 位成員.佔 %(percent)s"
 
-#. TC # English return something like:
-#. Total ancestors in generations 2 to 3 is 4. (66.67%)
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:167
 #, python-format
 msgid ""
@@ -33275,8 +32869,6 @@ msgstr ""
 "從上%(second_generation)d 世 到 上 %(last_generation)d世 已經記錄的先輩數是 "
 "%(count)d. 佔應有先輩的比例是 %(percent)s"
 
-#. Write the title line. Set in INDEX marker so that this section will be
-#. identified as a major category if this is included in a Book report.
 #: ../gramps/plugins/textreport/placereport.py:128
 #: ../gramps/plugins/textreport/placereport.py:142
 #: ../gramps/plugins/textreport/placereport.py:159
@@ -33529,7 +33121,6 @@ msgstr "標籤報告"
 msgid "You must first create a tag before running this report."
 msgstr "在運行報告之前，您必須先建立一個標籤。"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/tagreport.py:116
 #, python-format
 msgid "Tag Report for %s Items"
@@ -33757,7 +33348,7 @@ msgstr "分析事件"
 msgid "No event record was modified."
 msgstr "無事件記錄被更改."
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/changetypes.py:137
 #, fuzzy, python-brace-format
 msgid "{number_of} event record was modified."
@@ -33786,8 +33377,6 @@ msgstr ""
 msgid "Check Integrity"
 msgstr "檢查完整性"
 
-#. for bsddb the check_backlinks doesn't work in 'batch' mode because
-#. the table used for backlinks is closed.
 #: ../gramps/plugins/tool/check.py:231
 #, fuzzy
 msgid "Check Backlink Integrity"
@@ -33907,10 +33496,6 @@ msgstr "尋找破碎的父母關係"
 msgid "Looking for event problems"
 msgstr "尋找事件問題"
 
-#. Now we go through our backlinks and the dbs table comparing them
-#. check that each real reference has a backlink in the db table
-#. Now we go through the db table and make checks against ours
-#. Check for db backlinks that don't have a reference object at all
 #: ../gramps/plugins/tool/check.py:1242 ../gramps/plugins/tool/check.py:1271
 #: ../gramps/plugins/tool/check.py:1296
 #, fuzzy
@@ -33989,7 +33574,7 @@ msgstr "資料已經通過內部檢查"
 msgid "No errors were found: the database has passed internal checks."
 msgstr "資料已經通過內部檢查"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2462
 #, fuzzy, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
@@ -34005,7 +33590,7 @@ msgstr "現無孩子"
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s 已被從 %(family)s家庭移除 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2488
 #, fuzzy, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
@@ -34021,14 +33606,14 @@ msgstr "此人不存在"
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s 被修復到 %(family)s 家庭中 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2514
 #, fuzzy, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d 重複的配偶/家庭連結被找到 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2542
 #, fuzzy, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
@@ -34036,14 +33621,14 @@ msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
 msgstr[0] "1 家庭未包含父母和孩子的家庭被找到，已刪除。\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2554
 #, fuzzy, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2562
 #, fuzzy, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
@@ -34056,14 +33641,14 @@ msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "%(quantity)d 個地點被參照，但是無法找到 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2579
 #, fuzzy, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2589
 #, fuzzy, python-brace-format
 msgid "{quantity} date was corrected\n"
@@ -34076,7 +33661,7 @@ msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "%(quantity)d 個文庫被參照，但是無法找到 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2608 ../gramps/plugins/tool/check.py:2695
 #, fuzzy, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
@@ -34086,45 +33671,45 @@ msgstr[0] "%(quantity)d 媒體物件被參照，但是無法找到 \n"
 #: ../gramps/plugins/tool/check.py:2619
 #, fuzzy, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
-msgid_plural "References to {quantity} media objects were kept\n"
+msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] " %(quantity)d 個媒體物件的參照被保留\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2627
 #, fuzzy, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "%(quantity)d 個缺失的媒體物件被替代 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2635
 #, fuzzy, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "%(quantity)d 個缺失的媒體物件被移除 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2643
 #, fuzzy, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "%(quantity)d 個地點被參照，但是無法找到 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2651
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d 個無效的出生時間名稱被修復 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2659
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d 個無效的死亡時間名稱被修復 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2667
 #, fuzzy, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
@@ -34143,21 +33728,21 @@ msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d 個來源被參照，但是未找到 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2704
 #, fuzzy, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "%(quantity)d 個筆記物件被參照但是未找到 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2714 ../gramps/plugins/tool/check.py:2724
 #, fuzzy, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "%(quantity)d 個筆記物件被參照但是未找到 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2734
 #, fuzzy, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
@@ -34170,7 +33755,7 @@ msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "%(quantity)d 個無效的出生時間名稱被修復 \n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2754
 #, fuzzy, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
@@ -34248,57 +33833,10 @@ msgstr "運行日期測試"
 msgid "Generating dates"
 msgstr "第 %d 代"
 
-#. test invalid dates
-#. dateval = (4,7,1789,False,5,8,1876,False)
-#. for l in range(1,len(dateval)):
-#. d = Date()
-#. try:
-#. d.set(Date.QUAL_NONE,Date.MOD_NONE,
-#. Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-#. dates.append( d)
-#. except DateError, e:
-#. d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-#. dates.append( d)
-#. except:
-#. d = Date()
-#. d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-#. dates.append( d)
-#. for l in range(1,len(dateval)):
-#. d = Date()
-#. try:
-#. d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-#. dates.append( d)
-#. except DateError, e:
-#. d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-#. dates.append( d)
-#. except:
-#. d = Date()
-#. d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-#. dates.append( d)
-#. self.progress.step()
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_NONE,
-#. Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
-#. dates.append( d)
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_NONE,
-#. Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
-#. dates.append( d)
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_SPAN,
-#. Date.CAL_GREGORIAN,
-#. (4,7,1789,False,55,8,1876,False),"Text comment")
-#. dates.append( d)
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_SPAN,
-#. Date.CAL_GREGORIAN,
-#. (4,7,1789,False,5,88,1876,False),"Text comment")
-#. dates.append( d)
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
 msgid "Date Test Plugin"
 msgstr "資料測試插件"
 
-#. create pass and fail tags
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
 #, fuzzy
 msgid "Pass"
@@ -34369,7 +33907,6 @@ msgstr "事件對比結果"
 msgid "%(event_name)s Date"
 msgstr "%(event_name)s 日期"
 
-#. This won't be shown in a tree
 #: ../gramps/plugins/tool/eventcmp.py:259
 #, python-format
 msgid "%(event_name)s Place"
@@ -34396,7 +33933,7 @@ msgstr "事件名稱變更"
 msgid "Extract Event Description"
 msgstr "釋放時間描述"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/eventnames.py:120
 #, fuzzy, python-brace-format
 msgid "{quantity} event description has been added"
@@ -34506,7 +34043,6 @@ msgstr ""
 msgid "Find database loop"
 msgstr "不同的資料庫"
 
-#. start the progress indicator
 #: ../gramps/plugins/tool/findloop.py:93
 #: ../gramps/plugins/tool/notrelated.py:112
 #: ../gramps/plugins/tool/notrelated.py:257
@@ -34752,7 +34288,7 @@ msgstr "尋找地點域"
 msgid "Number of merges done"
 msgstr "成員數"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/mergecitations.py:235
 #, python-brace-format
 msgid "{number_of} citation merged"
@@ -34778,13 +34314,12 @@ msgstr "與 \"%s\" 無關聯"
 msgid "NotRelated"
 msgstr "不相關 "
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/tool/notrelated.py:173
 #, python-format
 msgid "Everyone in the database is related to %s"
 msgstr "資料庫中所有人均和 %s 相關"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../gramps/plugins/tool/notrelated.py:262
 #, fuzzy, python-brace-format
@@ -34792,7 +34327,7 @@ msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
 msgstr[0] "設定%d 成員的標籤"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
 #: ../gramps/plugins/tool/notrelated.py:305
 #, fuzzy, python-brace-format
@@ -34800,14 +34335,14 @@ msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
 msgstr[0] "獲取 %d 個人的關係"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:385
 #, fuzzy, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
 msgstr[0] "尋找 %d 個成員"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:413
 #, fuzzy, python-brace-format
 msgid "Looking up the name of {number_of} person"
@@ -35047,19 +34582,16 @@ msgstr "尋找 %d 個成員"
 msgid "handle"
 msgstr ""
 
-#. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:140
 #, fuzzy
 msgid "firstname"
 msgstr "未知其名"
 
-#. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:148
 #, fuzzy
 msgid "alternate name"
 msgstr "曾用名"
 
-#. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:152
 #, fuzzy
 msgid "group as"
@@ -35145,8 +34677,6 @@ msgstr "<b>在一列上雙擊，檢視/編輯資料</b>"
 msgid "Unused Objects"
 msgstr "未用的物件"
 
-#. Add mark column
-#. Add ignore column
 #: ../gramps/plugins/tool/removeunused.py:188
 #: ../gramps/plugins/tool/verify.py:557
 msgid "Mark"
@@ -35228,7 +34758,6 @@ msgctxt "manual"
 msgid "Reorder_Gramps_ID"
 msgstr "重新整理 Gramps ID 編號"
 
-#. self.top.set_icon(ICON)
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
 #: ../gramps/plugins/tool/reorderids.py:536
@@ -35366,40 +34895,6 @@ msgstr "生成日期"
 msgid "Generating families"
 msgstr "生成家庭線"
 
-#. Create a family, that links to father and mother, but father does not
-#. link back
-#. Create a family, that misses the link to the father
-#. Create a family, that misses the link to the mother
-#. Create a family, that links to father and mother, but mother does not
-#. link back
-#. person2 = self.db.get_person_from_handle(person2_h)
-#. person2.add_family_handle(fam_h)
-#. self.db.commit_person(person2, self.trans)
-#. Create two married people of same sex.
-#. This is NOT detected as an error by plugins/tool/Check.py
-#. Create a family, that contains an invalid handle to for the father
-#. Create a family, that contains an invalid handle to for the mother
-#. person2 = self.db.get_person_from_handle(person2_h)
-#. person2.add_family_handle(fam_h)
-#. self.db.commit_person(person2, self.trans)
-#. Creates a family where the child does not link back to the family
-#. child = self.db.get_person_from_handle(child_h)
-#. person2.add_parent_family_handle(fam_h)
-#. self.db.commit_person(child, self.trans)
-#. Creates a family where the child is not linked, but the child links
-#. to the family
-#. Creates a family where the child is one of the parents
-#. Creates a couple that refer to a family that does not exist in the
-#. database.
-#. Creates a person having a non existing birth event handle set
-#. Creates a person having a non existing death event handle set
-#. Creates a person having a non existing event handle set
-#. Creates a person with a birth event having an empty type
-#. Creates a person with a death event having an empty type
-#. Creates a person with an event having an empty type
-#. This is NOT detected as an error by plugins/tool/Check.py
-#. Creates a person with a birth event pointing to nonexisting place
-#. Creates a person with an event pointing to nonexisting place
 #: ../gramps/plugins/tool/testcasegenerator.py:470
 #: ../gramps/plugins/tool/testcasegenerator.py:506
 #: ../gramps/plugins/tool/testcasegenerator.py:555
@@ -35676,7 +35171,7 @@ msgstr "驗證資料..."
 msgid "Data Verify tool"
 msgstr "資料庫驗證工具"
 
-#. translators: needed for French+Arabic, ignore otherwise
+#. Translators: needed for French+Arabic, ignore otherwise
 #: ../gramps/plugins/tool/verify.py:318
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
@@ -36202,7 +35697,6 @@ msgstr "背景顏色"
 msgid "Add global background colored gradient"
 msgstr ""
 
-#. colors, stored as hex values
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
 #: ../gramps/plugins/view/fanchartview.py:406
@@ -36221,7 +35715,6 @@ msgstr ""
 msgid "Color for duplicates"
 msgstr "搜尋完全一樣的配偶"
 
-#. algo for the fan angle distribution
 #: ../gramps/plugins/view/fanchart2wayview.py:324
 #: ../gramps/plugins/view/fanchartdescview.py:323
 #, fuzzy
@@ -36239,7 +35732,6 @@ msgstr ""
 msgid "Size proportional to number of descendants"
 msgstr "限定父母的數量"
 
-#. show names one two line
 #: ../gramps/plugins/view/fanchart2wayview.py:335
 #: ../gramps/plugins/view/fanchartdescview.py:334
 #: ../gramps/plugins/view/fanchartview.py:418
@@ -36247,23 +35739,17 @@ msgstr "限定父母的數量"
 msgid "Show names on two lines"
 msgstr "顯示家庭節點"
 
-#. Flip names
 #: ../gramps/plugins/view/fanchart2wayview.py:339
 #: ../gramps/plugins/view/fanchartdescview.py:338
 #: ../gramps/plugins/view/fanchartview.py:422
 msgid "Flip name on the left of the fan"
 msgstr ""
 
-#. Show gramps id
 #: ../gramps/plugins/view/fanchart2wayview.py:343
 #, fuzzy
 msgid "Show the gramps id"
 msgstr "顯示最後一頁"
 
-#. options we don't show on the dialog
-#. #configdialog.add_checkbox(table,
-#. #        _('Allow radial text'),
-#. #        ??, 'interface.fanview-radialtext')
 #: ../gramps/plugins/view/fanchart2wayview.py:346
 #: ../gramps/plugins/view/fanchartdescview.py:345
 #: ../gramps/plugins/view/fanchartview.py:437
@@ -36279,7 +35765,6 @@ msgstr "排版"
 msgid "No preview available"
 msgstr "無可用的地圖資訊"
 
-#. form of the fan
 #: ../gramps/plugins/view/fanchartdescview.py:316
 #: ../gramps/plugins/view/fanchartview.py:411
 #, fuzzy
@@ -36303,8 +35788,6 @@ msgstr "半圈"
 msgid "Quadrant"
 msgstr ""
 
-#. show gramps_id
-#. Show the gramps_id
 #: ../gramps/plugins/view/fanchartdescview.py:342
 #: ../gramps/plugins/view/fanchartview.py:430
 #, fuzzy
@@ -36316,7 +35799,6 @@ msgstr "gramps ID 編號"
 msgid "Print or save the Fan Chart View"
 msgstr "扇形檢視"
 
-#. options users should not change:
 #: ../gramps/plugins/view/fanchartview.py:426
 #, fuzzy
 msgid "Show children ring"
@@ -36909,7 +36391,6 @@ msgstr "向前"
 msgid "_Next"
 msgstr "向後"
 
-#. Mouse scroll direction setting.
 #: ../gramps/plugins/view/pedigreeview.py:1681
 msgid "Mouse scroll direction"
 msgstr "滑鼠滾動方向"
@@ -37065,7 +36546,7 @@ msgstr "移除此人相對這些父母的子女關係"
 msgid "Remove person as parent in this family"
 msgstr "移除此人相對這個家庭作為父母的關係"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1044
 #: ../gramps/plugins/view/relview.py:1099
 #, python-brace-format
@@ -37142,7 +36623,7 @@ msgstr "偵測到破碎家庭"
 msgid "Please run the Check and Repair Database tool"
 msgstr "請運行檢查和修復資料庫工具"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1564
 #: ../gramps/plugins/view/relview.py:1610
 #, python-brace-format
@@ -37343,7 +36824,6 @@ msgstr "成員樹檢視"
 msgid "A view displaying citations and sources in a tree format."
 msgstr "以樹狀格式，顯示地點的檢視。"
 
-#. Add xml, doctype, meta and stylesheets
 #: ../gramps/plugins/webreport/addressbook.py:89
 #: ../gramps/plugins/webreport/addressbooklist.py:82
 #: ../gramps/plugins/webreport/basepage.py:1748
@@ -37352,7 +36832,6 @@ msgstr "以樹狀格式，顯示地點的檢視。"
 msgid "Address Book"
 msgstr "地址簿"
 
-#. Address Book Page message
 #: ../gramps/plugins/webreport/addressbooklist.py:91
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
@@ -37407,16 +36886,13 @@ msgstr "%(date)s"
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "%(http_break)s以 %(subject_url)s 為主人翁而建立"
 
-#. Begin Navigation Menu--
-#. is the style sheet either Basic-Blue or Visually Impaired,
-#. and menu layout is Drop Down?
-#. Basic Blue style sheet with navigation menus
+#. Translators: Basic Blue style sheet with navigation menus
 #: ../gramps/plugins/webreport/basepage.py:1680
 #: ../gramps/plugins/webstuff/webstuff.py:65
 msgid "Basic-Blue"
 msgstr "Basic-Blue"
 
-#. Visually Impaired style sheet with its navigation menus
+#. Translators: Visually Impaired style sheet with its navigation menus
 #: ../gramps/plugins/webreport/basepage.py:1681
 #: ../gramps/plugins/webstuff/webstuff.py:97
 msgid "Visually Impaired"
@@ -37446,7 +36922,6 @@ msgstr "縮圖"
 msgid "Download"
 msgstr "下載"
 
-#. add contact column
 #: ../gramps/plugins/webreport/basepage.py:1750
 #: ../gramps/plugins/webreport/basepage.py:1947
 #: ../gramps/plugins/webreport/basepage.py:1984
@@ -37544,8 +37019,6 @@ msgstr "上次修訂"
 msgid "MD5"
 msgstr ""
 
-#. We have several files to download
-#. but all file names are empty
 #: ../gramps/plugins/webreport/download.py:178
 #, fuzzy
 msgid "No file to download"
@@ -37582,7 +37055,6 @@ msgstr "事件類型以字母開始"
 msgid "Creating family pages..."
 msgstr "建立媒體頁面"
 
-#. Families list page message
 #: ../gramps/plugins/webreport/family.py:148
 #, fuzzy
 msgid ""
@@ -37654,7 +37126,6 @@ msgstr ""
 "<strong id = \"GalleryCurrent\">%(page_number)d</strong> 在 <strong id = "
 "\"GalleryTotal\">%(total_pages)d</strong>"
 
-#. missing media error message
 #: ../gramps/plugins/webreport/media.py:427
 msgid "The file has been moved or deleted."
 msgstr "檔案已經被移除或者刪除。"
@@ -37706,8 +37177,6 @@ msgstr ""
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "%(father1)s 和 %(mother1)s 的家庭圖表"
 
-#. Only the name of the husband is known
-#. Only the name of the wife is known
 #: ../gramps/plugins/webreport/narrativeweb.py:845
 #: ../gramps/plugins/webreport/narrativeweb.py:849
 #, fuzzy, python-format
@@ -38053,8 +37522,6 @@ msgstr "HTML 使用者頁尾"
 msgid "A note to be used as the page footer"
 msgstr "用於頁尾的筆記"
 
-#. This option will be available only if you select ".php" in the
-#. "File extension" from the "Html" tab
 #: ../gramps/plugins/webreport/narrativeweb.py:2212
 msgid "PHP user session"
 msgstr ""
@@ -38579,7 +38046,6 @@ msgstr ""
 msgid "Creating individual pages"
 msgstr "建立個人頁面"
 
-#. Individual List page message
 #: ../gramps/plugins/webreport/person.py:199
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
@@ -38606,7 +38072,6 @@ msgstr "事件類型以字母開始"
 msgid "Tracking %s"
 msgstr ""
 
-#. page description
 #: ../gramps/plugins/webreport/person.py:922
 msgid ""
 "This map page represents that person and any descendants with all of their "
@@ -38667,7 +38132,6 @@ msgstr ""
 msgid "Creating place pages"
 msgstr "建立地點頁面"
 
-#. place list page message
 #: ../gramps/plugins/webreport/place.py:161
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
@@ -38688,12 +38152,10 @@ msgstr "地名"
 msgid "Places beginning with letter %s"
 msgstr "地點中包含字母 %s"
 
-#. section title
 #: ../gramps/plugins/webreport/place.py:407
 msgid "Place Map"
 msgstr "地點地圖"
 
-#. set progress bar pass for Repositories
 #: ../gramps/plugins/webreport/repository.py:105
 msgid "Creating repository pages"
 msgstr "建立文庫頁面"
@@ -38744,7 +38206,6 @@ msgstr "開啟的資料庫"
 msgid "Narrative web content report for"
 msgstr "敘事網站報告"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/webreport/surname.py:121
 #, python-format
 msgid ""
@@ -38759,7 +38220,6 @@ msgstr ""
 msgid "Surnames by person count"
 msgstr "按照人數計算姓名"
 
-#. page message
 #: ../gramps/plugins/webreport/surnamelist.py:110
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
@@ -38802,19 +38262,11 @@ msgid ""
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
 
-#. An optional link to a home page
-#. Note. We use '/' here because it is a URL, not a OS
-#. dependent pathname need to leave home link alone,
-#. so look for it ...
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
 msgid "NarrativeWeb Home"
 msgstr "敘事網站主頁"
 
-#. _('translation')
-#. Number of directory levels up to get to self.html_dir / root
-#. Number of directory levels up to get to root
-#. generate progress pass for "Year At A Glance"
 #: ../gramps/plugins/webreport/webcal.py:336
 #: ../gramps/plugins/webreport/webcal.py:1030
 #: ../gramps/plugins/webreport/webcal.py:1115
@@ -38827,7 +38279,6 @@ msgstr "網頁日曆報告"
 msgid "Calculating Holidays for year %04d"
 msgstr "計算 %04d 年的節假日"
 
-#. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:631
 #: ../gramps/plugins/webreport/webcal.py:674
 msgid "Full year at a Glance"
@@ -38841,7 +38292,6 @@ msgstr "格式化月份……"
 msgid "Creating Year At A Glance calendar"
 msgstr "建立「一年總覽」日曆"
 
-#. page title
 #: ../gramps/plugins/webreport/webcal.py:1122
 #, python-format
 msgid "%(year)d, At A Glance"
@@ -38856,7 +38306,6 @@ msgstr ""
 "這個日曆允許您擁有通過一個頁面訪問所有資料庫的權力。點選一個日期，將會轉到顯"
 "示那個日期所有事件的頁面，如果當日有事件發生的話。\n"
 
-#. page title
 #: ../gramps/plugins/webreport/webcal.py:1191
 msgid "One Day Within A Year"
 msgstr "一年中的一天"
@@ -39082,46 +38531,41 @@ msgstr ""
 msgid "Provides a collection of resources for the web"
 msgstr "提供一個網頁的來源收集"
 
-#. id, user selectable?, translated_name, option name, fullpath,
-#. navigation target name, images, javascript
-#. "default" is used as default
-#. default style sheet in the options
-#. Basic Ash style sheet
+#. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:61
 msgid "Basic-Ash"
 msgstr "Basic-Ash"
 
-#. Basic Cypress style sheet
+#. Translators: Basic Cypress style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:69
 msgid "Basic-Cypress"
 msgstr "Basic-Cypress"
 
-#. basic Lilac style sheet
+#. Translators: Basic Lilac style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:73
 msgid "Basic-Lilac"
 msgstr "Basic-Lilac"
 
-#. basic Peach style sheet
+#. Translators: Basic Peach style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:77
 msgid "Basic-Peach"
 msgstr "Basic-Peach"
 
-#. basic Spruce style sheet
+#. Translators: Basic Spruce style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:81
 msgid "Basic-Spruce"
 msgstr "Basic-Spruce"
 
-#. Mainz style sheet with its images
+#. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
 msgid "Mainz"
 msgstr "Mainz"
 
-#. Nebraska style sheet
+#. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
 msgid "Nebraska"
 msgstr "Nebraska"
 
-#. no style sheet option
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "無樣式表"
