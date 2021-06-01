@@ -22,12 +22,13 @@
 # unrecognized -> unrecognised
 # indexes (use indexes rather than indices)
 #
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-24 23:01+0100\n"
-"PO-Revision-Date: 2021-05-18 06:36+0000\n"
+"PO-Revision-Date: 2021-06-01 14:59+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -6997,7 +6998,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:187
 msgid "Naturalization"
-msgstr ""
+msgstr "Naturalisation"
 
 #: ../gramps/gen/lib/eventtype.py:188
 msgid "Nobility Title"
@@ -16491,7 +16492,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:994
 msgid "Cen_ter"
-msgstr ""
+msgstr "Cen_tre"
 
 #: ../gramps/gui/glade/styleeditor.glade:1024
 msgid "Le_ft"
@@ -18301,7 +18302,7 @@ msgstr ""
 #: ../gramps/gui/spell.py:153
 #, python-format
 msgid "Spelling checker initialization failed: %s"
-msgstr ""
+msgstr "Spelling checker initialisation failed: %s"
 
 #: ../gramps/gui/tipofday.py:87
 msgid "Failed to display tip of the day"
@@ -28637,7 +28638,7 @@ msgstr ""
 #. start feedback about import progress (GUI / TXT)
 #: ../gramps/plugins/lib/libprogen.py:498
 msgid "Initializing."
-msgstr ""
+msgstr "Initialising."
 
 #. Raise a error message
 #: ../gramps/plugins/lib/libprogen.py:515
