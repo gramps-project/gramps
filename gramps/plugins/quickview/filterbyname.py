@@ -416,7 +416,7 @@ def run(database, document, filter_name, *args, **kwargs):
 
     else:
         raise AttributeError("invalid filter name: '%s'" % filter_name)
-    # translators: leave all/any {...} untranslated
+    # Translators: leave all/any {...} untranslated
     sdoc.paragraph(ngettext("Filter matched {number_of} record.",
                             "Filter matched {number_of} records.", matches
                            ).format(number_of=matches) )

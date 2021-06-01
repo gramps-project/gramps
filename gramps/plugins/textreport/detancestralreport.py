@@ -413,7 +413,7 @@ class DetAncestorReport(Report):
                     date = addr.get_date_object().get_year()
 
                 if date:
-                    # translators: needed for Arabic, ignore otherwise
+                    # Translators: needed for Arabic, ignore otherwise
                     self.doc.write_text(self._('%s, ') % date)
                 self.doc.write_text(text)
                 self.doc.write_text_citation(self.endnotes(addr))
@@ -426,7 +426,7 @@ class DetAncestorReport(Report):
             for attr in attrs:
                 self.doc.start_paragraph('DAR-MoreDetails')
                 attr_name = attr.get_type().type2base()
-                # translators: needed for French, ignore otherwise
+                # Translators: needed for French, ignore otherwise
                 text = self._("%(type)s: %(value)s%(endnotes)s"
                              ) % {'type'     : self._(attr_name),
                                   'value'    : attr.get_value(),
@@ -450,7 +450,7 @@ class DetAncestorReport(Report):
 
         self.doc.start_paragraph('DAR-MoreDetails')
         if date and place:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             text += self._('%(str1)s, %(str2)s'
                           ) % {'str1' : date, 'str2' : place}
         elif date:
@@ -471,7 +471,7 @@ class DetAncestorReport(Report):
         event_name = self._(self._get_type(event.get_type()))
         role = event_ref.get_role()
         if role in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
-            # translators: needed for French, ignore otherwise
+            # Translators: needed for French, ignore otherwise
             text = self._('%(str1)s: %(str2)s'
                          ) % {'str1' : event_name, 'str2' : text}
         else:
@@ -491,10 +491,10 @@ class DetAncestorReport(Report):
             attr_list.extend(event_ref.get_attribute_list())
             for attr in attr_list:
                 if text:
-                    # translators: needed for Arabic, ignore otherwise
+                    # Translators: needed for Arabic, ignore otherwise
                     text += self._("; ")
                 attr_name = attr.get_type().type2base()
-                # translators: needed for French, ignore otherwise
+                # Translators: needed for French, ignore otherwise
                 text += self._("%(type)s: %(value)s%(endnotes)s"
                               ) % {'type'     : self._(attr_name),
                                    'value'    : attr.get_value(),

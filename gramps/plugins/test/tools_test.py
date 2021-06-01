@@ -140,7 +140,7 @@ class ToolControl(unittest.TestCase):
                   "4 broken spouse/family links were fixed",
                   "1 place alternate name fixed",
                   "10 media objects were referenced, but not found",
-                  "References to 10 media objects were kept",
+                  "References to 10 missing media objects were kept",
                   "3 events were referenced, but not found",
                   "1 invalid birth event name was fixed",
                   "1 invalid death event name was fixed",

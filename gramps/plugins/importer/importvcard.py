@@ -245,7 +245,7 @@ class VCardParser:
         self.database.enable_signals()
         self.database.request_rebuild()
         tym = time.time() - tym
-        # translators: leave all/any {...} untranslated
+        # Translators: leave all/any {...} untranslated
         msg = ngettext('Import Complete: {number_of} second',
                        'Import Complete: {number_of} seconds', tym
                       ).format(number_of=tym)
@@ -511,7 +511,7 @@ class VCardParser:
             try:
                 date.set(value=(d, m, y, False))
             except DateError:
-                # TRANSLATORS: leave the {vcard_snippet} untranslated
+                # Translators: leave the {vcard_snippet} untranslated
                 # in the format string, but you may re-order it if needed.
                 self.__add_msg(_(
                     "Invalid date in BDAY {vcard_snippet}, "
@@ -520,7 +520,7 @@ class VCardParser:
                 date.set(modifier=Date.MOD_TEXTONLY, text=data)
         else:
             if date_str:
-                # TRANSLATORS: leave the {vcard_snippet} untranslated.
+                # Translators: leave the {vcard_snippet} untranslated.
                 self.__add_msg(_(
                     "Date {vcard_snippet} not in appropriate format "
                     "yyyy-mm-dd, preserving date as text."

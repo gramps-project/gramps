@@ -410,7 +410,7 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_entry
         if label:
-            lwidget = BasicLabel(_("%s: ") % label)  # translators: for French
+            lwidget = BasicLabel(_("%s: ") % label)  # Translators: for French
         entry = Gtk.Entry()
         if localized_config:
             entry.set_text(config.get(constant))

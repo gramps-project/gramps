@@ -133,10 +133,10 @@ class FamilyGroup(Report):
             if self.include_attrs:
                 for attr in event.get_attribute_list():
                     if descr:
-                        # translators: needed for Arabic, ignore otherwise
+                        # Translators: needed for Arabic, ignore otherwise
                         descr += self._("; ")
                     attr_type = self._get_type(attr.get_type())
-                    # translators: needed for French, ignore otherwise
+                    # Translators: needed for French, ignore otherwise
                     descr += self._("%(str1)s: %(str2)s"
                                    ) % {'str1' : self._(attr_type),
                                         'str2' : attr.get_value()}
@@ -302,7 +302,7 @@ class FamilyGroup(Report):
         self.doc.start_cell('FGR-ParentHead', 3)
         self.doc.start_paragraph('FGR-ParentName')
         mark = utils.get_person_mark(self.db, person)
-        # translators: needed for French, ignore otherwise
+        # Translators: needed for French, ignore otherwise
         self.doc.write_text(self._("%(str1)s: %(str2)s"
                                   ) % {'str1' : title,
                                        'str2' : name},
@@ -406,7 +406,7 @@ class FamilyGroup(Report):
             header = self._("Marriage")
             if self.gramps_ids:
                 header += " (%s)" % family.get_gramps_id()
-            # translators: needed for French, ignore otherwise
+            # Translators: needed for French, ignore otherwise
             self.doc.write_text(self._("%s:") % header)
             self.doc.end_paragraph()
             self.doc.end_cell()

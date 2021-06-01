@@ -163,7 +163,7 @@ class WriterOptionBox:
         label = Gtk.Label(label=_("Unfiltered Family Tree:"))
         full_database_row.pack_start(label, True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
-        # translators: leave all/any {...} untranslated
+        # Translators: leave all/any {...} untranslated
         button = Gtk.Button(label=ngettext("{number_of} Person",
                                            "{number_of} People", people_count
                                            ).format(number_of=people_count))
@@ -270,7 +270,7 @@ class WriterOptionBox:
         # Make a box and put the option in it:
         from gi.repository import Gtk
         from ...widgets import SimpleButton
-        # translators: leave all/any {...} untranslated
+        # Translators: leave all/any {...} untranslated
         button = Gtk.Button(label=ngettext("{number_of} Person",
                                            "{number_of} People", 0
                                            ).format(number_of=0))
@@ -578,7 +578,7 @@ class WriterOptionBox:
                 self.preview_proxy_button[proxy_name].set_sensitive(1)
                 people_count = len(dbase.get_person_handles())
                 self.preview_proxy_button[proxy_name].set_label(
-                    # translators: leave all/any {...} untranslated
+                    # Translators: leave all/any {...} untranslated
                     ngettext("{number_of} Person",
                              "{number_of} People", people_count
                             ).format(number_of=people_count) )

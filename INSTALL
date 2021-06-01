@@ -9,30 +9,30 @@ you need to remove the old version first. You can delete the old
 version by deleting the installed directories. For example, if your installation prefix is /usr/local, remove the following:
         /usr/local/share/gramps
         /usr/local/lib/pythonx.x/site-packages/gramps
+        
 If you installed with a package manager you might instead need to remove
         /usr/local/lib/pythonx.x/dist-packages/gramps
 
-replacing pythonx.x with the python version you used, e.g. python3.4.
-Also remove any gramps .egg files that are installed along with the gramps
+replacing pythonx.x with the Python version you used, e.g. python3.5.
+Also remove any gramps .egg files that are installed along with the Gramps
 directory and the file /usr/local/bin/gramps.
-
 
 If you don't know the list of all files that Gramps installed, you can
 reinstall it with the --record option, and take a look at the list this
 produces (so python setup.py install --record grampsfiles.txt
 
-Gramps is a python application, so loading happens on reading the
+Gramps is a Python application, so loading happens on reading the
 files, meaning that files of a previous version that are no longer
 present in the new version can still be loaded, making the new install
 unstable!
 
-distutils install
+Distutils install
 -----------------
 We do not check all dependencies of Gramps, see README for a list of
 all required and optional dependencies. Missing dependencies will
 result in runtime errors.
 
-To install all needed dependences you can use (in Ubuntu):
+To install all needed dependencies you can use (in Ubuntu):
    sudo apt-get build-dep gramps
 
 To build and install, whether from a tarball or git repo:
@@ -42,7 +42,7 @@ To build and install, whether from a tarball or git repo:
 You can avoid using sudo for the install step by specifying a prefix to which you have write priviledge. The default is /usr/local, which is usually owned by root. You can learn of more options with
    python3 setup.py --help
 
-One can use gramps from the command line without installing it by
+One can use Gramps from the command line without installing it by
 setting the following environment variables, but that won't provide
 things like MIME type and desktop entries.
 
@@ -52,19 +52,18 @@ things like MIME type and desktop entries.
 See below for ways to invoke Gramps.
 
 Typical install directories in linux (Ubuntu) are:
-  * /usr/local/lib/python3.4/dist-packages/gramps/  : the gramps python module
-  * /usr/local/share/mime-info    : mime info so gramps opens files automatically
-  * /usr/local/share/icons/gnome  : our icons
-  * /usr/local/share/doc/gramps   : documentation, also example .gramps and .gedcom
-  * /usr/local/bin                : the gramps executable
-  * /usr/local/share/locale/xx/LC_MESSAGES  : xx language code, translation
-  * /usr/local/share/man/man1/xx/man1       : xx language code, man file
+  * /usr/local/bin                                  : the Gramps executable
+  * /usr/local/lib/python3.5/dist-packages/gramps/  : the Gramps python module
+  * /usr/local/share/doc/gramps                     : documentation, also example .gramps and .gedcom
+  * /usr/local/share/icons/gnome                    : our icons
+  * /usr/local/share/locale/xx/LC_MESSAGES          : xx language code, translation
+  * /usr/local/share/man/xx/man1                    : xx language code, man file
   * /usr/local/share/mime
-  * /usr/local/share/mime-info
+  * /usr/local/share/mime-info                      : mime info so Gramps opens files automatically
 
 Running Gramps
 --------------
-Gramps is python only, so no compilation is needed, you can even run gramps
+Gramps is Python only, so no compilation is needed, you can even run Gramps
 from the source directory.
 
  a) You installed Gramps, then you can run it with the command
@@ -79,7 +78,7 @@ from the source directory.
    The executable 'gramps' in /usr/local/bin or /usr/bin from a) does
    this for you.
 
- b) You downloaded the Gramps source code to a directory, and want to run it.
+ c) You downloaded the Gramps source code to a directory, and want to run it.
     You can start Gramps from the source code directory with
 
      python3 Gramps.py
@@ -90,7 +89,7 @@ from the source directory.
 Custom directory installation
 -------------------------------------
 If you would like to install Gramps without being root, or in an
-alternative location on windows, supply the --root argument to setup.py
+alternative location on Windows, supply the --root argument to setup.py
 
 For example:
    python3 setup.py install --root ~/test

@@ -197,7 +197,7 @@ class BasePage:
         else:
             self.rlocale = report.set_locale(report.options['trans'])
         self._ = self.rlocale.translation.sgettext
-        self.colon = self._(':') # translators: needed for French, else ignore
+        self.colon = self._(':') # Translators: needed for French, else ignore
 
         if report.options['securesite']:
             self.secure_mode = HTTPS

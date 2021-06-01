@@ -411,7 +411,7 @@ class DetDescendantReport(Report):
             if index == 1:
                 self.doc.write_text(name + "-" + str(index) + ") ")
             else:
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 self.doc.write_text(name + "-" + str(index) + self._("; "))
             index -= 1
 
@@ -483,7 +483,7 @@ class DetDescendantReport(Report):
         self.doc.start_paragraph('DDR-MoreDetails')
         event_name = self._get_type(event.get_type())
         if date and place:
-            # translators: needed for Arabic, ignore otherwise
+            # Translators: needed for Arabic, ignore otherwise
             text += self._('%(str1)s, %(str2)s'
                           ) % {'str1' : date, 'str2' : place}
         elif date:
@@ -501,7 +501,7 @@ class DetDescendantReport(Report):
         if text:
             text += ". "
 
-        # translators: needed for French, ignore otherwise
+        # Translators: needed for French, ignore otherwise
         text = self._('%(str1)s: %(str2)s'
                      ) % {'str1' : self._(event_name),
                           'str2' : text}
@@ -514,10 +514,10 @@ class DetDescendantReport(Report):
             attr_list.extend(event_ref.get_attribute_list())
             for attr in attr_list:
                 if text:
-                    # translators: needed for Arabic, ignore otherwise
+                    # Translators: needed for Arabic, ignore otherwise
                     text += self._("; ")
                 attr_name = attr.get_type().type2base()
-                # translators: needed for French, ignore otherwise
+                # Translators: needed for French, ignore otherwise
                 text += self._("%(type)s: %(value)s%(endnotes)s"
                               ) % {'type'     : self._(attr_name),
                                    'value'    : attr.get_value(),
@@ -935,7 +935,7 @@ class DetDescendantReport(Report):
 
                 self.doc.write_text(self._('Address: '))
                 if date:
-                    # translators: needed for Arabic, ignore otherwise
+                    # Translators: needed for Arabic, ignore otherwise
                     self.doc.write_text(self._('%s, ') % date)
                 self.doc.write_text(text)
                 self.doc.write_text_citation(self.endnotes(addr))
@@ -954,7 +954,7 @@ class DetDescendantReport(Report):
             for attr in attrs:
                 self.doc.start_paragraph('DDR-MoreDetails')
                 attr_name = attr.get_type().type2base()
-                # translators: needed for French, ignore otherwise
+                # Translators: needed for French, ignore otherwise
                 text = self._("%(type)s: %(value)s%(endnotes)s"
                              ) % {'type'     : self._(attr_name),
                                   'value'    : attr.get_value(),

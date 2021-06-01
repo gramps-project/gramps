@@ -354,7 +354,7 @@ class TitleC(DescendantTitleBase):
                 for kid in family.get_child_ref_list()]
 
         #ok we have the children.  Make a title off of them
-        # translators: needed for Arabic, ignore otherwise
+        # Translators: needed for Arabic, ignore otherwise
         cousin_names = self._(', ').join(self._get_names(kids, self._nd))
 
         self.text = self._(

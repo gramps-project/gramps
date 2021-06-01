@@ -57,31 +57,31 @@ def load_on_reg(dbstate, uistate, plugin):
         # "default" is used as default
 
         # default style sheet in the options
-        # Basic Ash style sheet
+        # Translators: Basic Ash style sheet
         ["Basic-Ash", 1, _("Basic-Ash"),
          path_css('Web_Basic-Ash.css'), None, [], []],
 
-        # Basic Blue style sheet with navigation menus
+        # Translators: Basic Blue style sheet with navigation menus
         ["Basic-Blue", 1, _("Basic-Blue"),
          path_css('Web_Basic-Blue.css'), None, [], []],
 
-        # Basic Cypress style sheet
+        # Translators: Basic Cypress style sheet
         ["Basic-Cypress", 1, _("Basic-Cypress"),
          path_css('Web_Basic-Cypress.css'), None, [], []],
 
-        # basic Lilac style sheet
+        # Translators: Basic Lilac style sheet
         ["Basic-Lilac", 1, _("Basic-Lilac"),
          path_css('Web_Basic-Lilac.css'), None, [], []],
 
-        # basic Peach style sheet
+        # Translators: Basic Peach style sheet
         ["Basic-Peach", 1, _("Basic-Peach"),
          path_css('Web_Basic-Peach.css'), None, [], []],
 
-        # basic Spruce style sheet
+        # Translators: Basic Spruce style sheet
         ["Basic-Spruce", 1, _("Basic-Spruce"),
          path_css('Web_Basic-Spruce.css'), None, [], []],
 
-        # Mainz style sheet with its images
+        # Translators: Mainz style sheet with its images
         ["Mainz", 1, _("Mainz"),
          path_css('Web_Mainz.css'), None,
          [path_img("Web_Mainz_Bkgd.png"),
@@ -89,11 +89,11 @@ def load_on_reg(dbstate, uistate, plugin):
           path_img("Web_Mainz_Mid.png"),
           path_img("Web_Mainz_MidLight.png")], []],
 
-        # Nebraska style sheet
+        # Translators: Nebraska style sheet
         ["Nebraska", 1, _("Nebraska"),
          path_css('Web_Nebraska.css'), None, [], []],
 
-        # Visually Impaired style sheet with its navigation menus
+        # Translators: Visually Impaired style sheet with its navigation menus
         ["Visually Impaired", 1, _("Visually Impaired"),
          path_css('Web_Visually.css'), "narrative-menus.css", [], []],
 
