@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-24 23:01+0100\n"
+"POT-Creation-Date: 2021-06-01 14:29+0100\n"
 "PO-Revision-Date: 2017-07-26 01:50+0300\n"
 "Last-Translator: Tadas Masiulionis <tadzikaz@gmail.com>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -257,28 +257,27 @@ msgstr "Naujoji Zelandija"
 msgid "Russia"
 msgstr ""
 
-#: ../data/holidays.xml:400
+#: ../data/holidays.xml:403
 msgid "Serbia"
 msgstr "Serbija"
 
-#: ../data/holidays.xml:415
+#: ../data/holidays.xml:418
 msgid "Serbia (Latin)"
 msgstr "Serbija (Lotynų)"
 
-#: ../data/holidays.xml:430
+#: ../data/holidays.xml:433
 msgid "Slovakia"
 msgstr "Slovakija"
 
-#. Make upper case of translated country so string search works later
-#: ../data/holidays.xml:447 ../gramps/plugins/mapservices/eniroswedenmap.py:47
+#: ../data/holidays.xml:450 ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
 msgstr "Švedija"
 
-#: ../data/holidays.xml:474
+#: ../data/holidays.xml:477
 msgid "Ukraine"
 msgstr "Ukraina"
 
-#: ../data/holidays.xml:501
+#: ../data/holidays.xml:504
 msgid "United States of America"
 msgstr "Jungtinės Amerikos Valstijos"
 
@@ -1193,7 +1192,7 @@ msgstr "Gramps giminės medis:"
 msgid "Family Tree"
 msgstr "Giminės medis"
 
-#. translators: used in French+Russian, ignore otherwise
+#. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "\"%s\""
@@ -1262,7 +1261,6 @@ msgstr "Duombazė užrakinta, negalima jos atverti!"
 msgid "Ignoring invalid options string."
 msgstr "Nepaisoma netinkamos parinkties."
 
-#. name exists, but is not in the list of valid report names
 #: ../gramps/cli/arghandler.py:637
 msgid "Unknown report name."
 msgstr "Ataskaitos pavadinimas nežinomas."
@@ -1551,12 +1549,11 @@ msgstr "Gramps konfigūracijos nuostatos iš %s:"
 msgid "Current Gramps config setting: %(name)s:%(value)s"
 msgstr "Dabartiniai Gramps konfigūracijos nuostatymai: %(name)s:%(value)s"
 
-#. does a user want the default config value?
 #: ../gramps/cli/argparser.py:380
 msgid "DEFAULT"
 msgstr "NUMATYTASIS"
 
-#. translators: indent "New" to match "Current"
+#. Translators: indent "New" to match "Current"
 #: ../gramps/cli/argparser.py:387
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
@@ -1618,9 +1615,9 @@ msgstr "Užrakinta?"
 msgid "Family Tree \"%s\":"
 msgstr "Giminės medis pavadinimu „%s“:"
 
-#. translators: needed for French, ignore otherwise
-#. translators: for French, else ignore
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
+#. Translators: for French, else ignore
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/cli/clidbman.py:201 ../gramps/gen/plug/report/utils.py:159
 #: ../gramps/gui/editors/editattribute.py:135
 #: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:685
@@ -1652,7 +1649,6 @@ msgstr "Pradedamas %s įkėlimas"
 msgid "Import finished..."
 msgstr "Duomenų įkėlimas baigtas..."
 
-#. Create a new database
 #: ../gramps/cli/clidbman.py:366 ../gramps/plugins/importer/importcsv.py:362
 msgid "Importing data..."
 msgstr "Įkeliami duomenys..."
@@ -1702,24 +1698,11 @@ msgstr ""
 msgid "Never"
 msgstr "Niekada"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/cli/clidbman.py:551
 #, python-format
 msgid "Locked by %s"
 msgstr "Užrakino %s"
 
-#. allow deferred translation of attribute UI strings
-#. Pro-Gen has a text field for the date.
-#. It can be anything (it should be dd-mm-yyyy), but we have seen:
-#. yyyy
-#. mm-yyyy
-#. before yyyy
-#. dd=mm-yyyy  (typo I guess)
-#. 00-00-yyyy
-#. oo-oo-yyyy
-#. dd-mm-00 (does this mean we do not know about the year?)
-#. Function tries to parse the text and create a proper Gramps Date()
-#. object. If all else fails create a MOD_TEXTONLY Date() object.
 #: ../gramps/cli/clidbman.py:553 ../gramps/gen/lib/attrtype.py:63
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventroletype.py:52
 #: ../gramps/gen/lib/eventtype.py:162 ../gramps/gen/lib/familyreltype.py:50
@@ -1865,7 +1848,6 @@ msgstr ""
 "Naudokite --force-unlock funkciją, jeigu įsitikinę, kad duombazėyra "
 "nenaudojama."
 
-#. already errors encountered. Show first one on terminal and exit
 #: ../gramps/cli/grampscli.py:322
 #, python-format
 msgid "Error encountered: %s"
@@ -1956,7 +1938,7 @@ msgstr "=css rinkmena"
 msgid "CSS filename to use, html format only"
 msgstr "su html formatu naudotina CSS rinkmena"
 
-#. translators: needed for French, Hebrew and Arabic
+#. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:416
 #, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
@@ -1971,8 +1953,7 @@ msgstr "Nežinoma parinktis: %s"
 msgid "   Valid options are:"
 msgstr "   Tinkamos parinktys:"
 
-#. ok we have the children.  Make a title off of them
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:463 ../gramps/cli/plug/__init__.py:553
 #: ../gramps/plugins/drawreport/descendtree.py:358
 #: ../gramps/plugins/drawreport/fanchart.py:364
@@ -2031,7 +2012,6 @@ msgstr "(pagalba neprieinama)"
 msgid "   Available values are:"
 msgstr "   Galimos reikšmės:"
 
-#. there was a show option given, but the option is invalid
 #: ../gramps/cli/plug/__init__.py:652
 #, python-format
 msgid ""
@@ -2095,8 +2075,7 @@ msgstr "[Gyvena]"
 msgid "Private Record"
 msgstr "Asmeninis įrašas"
 
-#. enable a simple CLI test to see if the datestrings exist
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2145,347 +2124,336 @@ msgstr "Datos analizatorius '%s' neprieinamas, naudojama numatyta reikšmė"
 msgid "Date displayer for '%s' not available, using default"
 msgstr "Datos rodymas '%s' neįmanomas, naudojama numatyta reikšmė"
 
-#. format 0 - must always be ISO
-#: ../gramps/gen/datehandler/_datedisplay.py:70
+#. Translators: Numeric year, month, day
+#: ../gramps/gen/datehandler/_datedisplay.py:71
 msgid "YYYY-MM-DD (ISO)"
 msgstr "YYYY-MM-DD (ISO)"
 
-#. format # 1 - must always be locale-preferred numerical format
-#. such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
-#. This should be the format that is used under the locale by
-#. strftime() for '%x'.
-#. You may translate this as "Numerical", "System preferred", or similar.
-#: ../gramps/gen/datehandler/_datedisplay.py:77
+#. Translators: You may translate this as "Numerical",
+#. "System preferred", or similar.
+#: ../gramps/gen/datehandler/_datedisplay.py:79
 msgctxt "date format"
 msgid "Numerical"
 msgstr "Skaitinė"
 
-#. Full month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:80
+#. Translators: Full month name, day, year
+#: ../gramps/gen/datehandler/_datedisplay.py:82
 msgid "Month Day, Year"
 msgstr "Mėnuo Diena, Metai"
 
-#. Abbreviated month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:83
+#. Translators: Abbreviated month name, day, year
+#: ../gramps/gen/datehandler/_datedisplay.py:85
 msgid "MON DAY, YEAR"
 msgstr "MĖN. D., M"
 
-#. Day, full month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:86
+#. Translators: Day, full month name, year
+#: ../gramps/gen/datehandler/_datedisplay.py:88
 msgid "Day Month Year"
 msgstr "Diena Mėnuo Metai"
 
-#. Day, abbreviated month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:89
+#. Translators: Day, abbreviated month name, year
+#: ../gramps/gen/datehandler/_datedisplay.py:91
 msgid "DAY MON YEAR"
 msgstr "D. MĖN. M."
 
-#: ../gramps/gen/datehandler/_datedisplay.py:181
+#: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#. first date in a span
-#. If "from <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "from <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:189
+#: ../gramps/gen/datehandler/_datedisplay.py:191
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
 msgstr "from|{long_month} {year}"
 
-#. second date in a span
-#. If "to <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "to <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:197
+#: ../gramps/gen/datehandler/_datedisplay.py:199
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
 msgstr "iki|{long_month} {year}"
 
-#. first date in a range
-#. If "between <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "between <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:205
+#: ../gramps/gen/datehandler/_datedisplay.py:207
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
 msgstr "tarp|{long_month} {year}"
 
-#. second date in a range
-#. If "and <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "and <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:213
+#: ../gramps/gen/datehandler/_datedisplay.py:215
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
 msgstr "ir|{long_month} {year}"
 
-#. If "before <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "before <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:220
+#: ../gramps/gen/datehandler/_datedisplay.py:222
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
 msgstr "prieš|{long_month} {year}"
 
-#. If "after <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "after <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:227
+#: ../gramps/gen/datehandler/_datedisplay.py:229
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
 msgstr "po|{long_month} {year}"
 
-#. If "about <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "about <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:234
+#: ../gramps/gen/datehandler/_datedisplay.py:236
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
 msgstr "apie|{long_month} {year}"
 
-#. If "estimated <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "estimated <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:241
+#: ../gramps/gen/datehandler/_datedisplay.py:243
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
 msgstr "apytikris|{long_month} {year}"
 
-#. If "calculated <Month>" needs a special inflection in your
-#. language, translate this to "{long_month.f[X]} {year}"
+#. Translators: If "calculated <Month>" needs a special inflection
+#. in your language, translate to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:248
+#: ../gramps/gen/datehandler/_datedisplay.py:250
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
 msgstr "apskaičiuotas|{long_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:253
+#: ../gramps/gen/datehandler/_datedisplay.py:255
 #, python-brace-format
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
-#. first date in a span
-#. If "from <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "from <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:261
+#: ../gramps/gen/datehandler/_datedisplay.py:263
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
 msgstr "nuo|{short_month} {year}"
 
-#. second date in a span
-#. If "to <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "to <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:269
+#: ../gramps/gen/datehandler/_datedisplay.py:271
 #, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
 msgstr "iki|{short_month} {year}"
 
-#. first date in a range
-#. If "between <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "between <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:277
+#: ../gramps/gen/datehandler/_datedisplay.py:279
 #, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
 msgstr "tarp|{short_month} {year}"
 
-#. second date in a range
-#. If "and <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "and <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:285
+#: ../gramps/gen/datehandler/_datedisplay.py:287
 #, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
 msgstr "ir|{short_month} {year}"
 
-#. If "before <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "before <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:292
+#: ../gramps/gen/datehandler/_datedisplay.py:294
 #, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
 msgstr "prieš|{short_month} {year}"
 
-#. If "after <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "after <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:299
+#: ../gramps/gen/datehandler/_datedisplay.py:301
 #, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
 msgstr "po|{short_month} {year}"
 
-#. If "about <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "about <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:306
+#: ../gramps/gen/datehandler/_datedisplay.py:308
 #, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
 msgstr "apie|{short_month} {year}"
 
-#. If "estimated <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "estimated <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:313
+#: ../gramps/gen/datehandler/_datedisplay.py:315
 #, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
 msgstr "apytikris|{short_month} {year}"
 
-#. If "calculated <Month>" needs a special inflection in your
-#. language, translate this to "{short_month.f[X]} {year}"
+#. Translators: If "calculated <Month>" needs a special inflection
+#. in your language, translate to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:320
+#: ../gramps/gen/datehandler/_datedisplay.py:322
 #, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
 msgstr "apskaičiuotas|{short_month} {year}"
 
-#. If there is no special inflection for "from <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:427
+#. Translators: If there is no special inflection for
+#. "from <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:429
 msgctxt "from-date"
 msgid ""
 msgstr "nuo datos|"
 
-#. If there is no special inflection for "to <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:432
+#. Translators: If there is no special inflection for
+#. "to <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:434
 msgctxt "to-date"
 msgid ""
 msgstr "data"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:433
+#: ../gramps/gen/datehandler/_datedisplay.py:435
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}nuo {date_start} iki {date_stop}{nonstd_calendar_and_ny}"
 
-#. If there is no special inflection for "between <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:452
+#. Translators: If there is no special inflection for
+#. "between <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "between" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:454
 msgctxt "between-date"
 msgid ""
 msgstr "tarp"
 
-#. If there is no special inflection for "and <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:457
+#. Translators: If there is no special inflection for
+#. "and <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "and" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:459
 msgctxt "and-date"
 msgid ""
 msgstr "data"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:458
+#: ../gramps/gen/datehandler/_datedisplay.py:460
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}tarp {date_start} ir {date_stop}{nonstd_calendar_and_ny}"
 
-#. If there is no special inflection for "before <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:491
+#. Translators: If there is no special inflection for
+#. "before <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "before" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:493
 msgctxt "before-date"
 msgid ""
 msgstr "prieš"
 
-#. If there is no special inflection for "after <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:496
+#. Translators: If there is no special inflection for
+#. "after <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "after-date"
 msgid ""
 msgstr "data"
 
-#. If there is no special inflection for "about <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:501
+#. Translators: If there is no special inflection for
+#. "about <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "about" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:503
 msgctxt "about-date"
 msgid ""
 msgstr "data"
 
-#. If there is no special inflection for "estimated <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:506
+#. Translators: If there is no special inflection for
+#. "estimated <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:508
 msgctxt "estimated-date"
 msgid ""
 msgstr "apytikris"
 
-#. If there is no special inflection for "calculated <Month>"
-#. in your language, DON'T translate this string.  Otherwise,
-#. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:511
+#. Translators: If there is no special inflection for
+#. "calculated <Month>" in your language, DON'T translate this.
+#. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:513
 msgctxt "calculated-date"
 msgid ""
 msgstr "apskaičiuotas"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:530
+#: ../gramps/gen/datehandler/_datedisplay.py:532
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:649
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:651
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:675
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:677
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:701
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:703
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d} {long_month} {year}"
 
-#. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:727
+#. Translators: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:729
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d} {short_month} {year}"
@@ -2549,7 +2517,7 @@ msgctxt "localized lexeme inflections"
 msgid "|December"
 msgstr "gruodžio"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2613,7 +2581,7 @@ msgctxt "localized lexeme inflections - short month form"
 msgid "|Dec"
 msgstr "Grd"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to add proper alternatives to be recognized in your localized
 #. DateParser code!
@@ -2677,7 +2645,6 @@ msgctxt "alternative month names for December"
 msgid "|"
 msgstr "Gruodžio mėnesio alternatyvūs vardai"
 
-#. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
 msgid "Gregorian"
@@ -2713,7 +2680,7 @@ msgctxt "calendar"
 msgid "Swedish"
 msgstr "Švedų"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2782,7 +2749,7 @@ msgctxt "Hebrew month lexeme"
 msgid "Elul"
 msgstr "Elulis"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2851,7 +2818,7 @@ msgctxt "French month lexeme"
 msgid "Extra"
 msgstr "Papildomas"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2915,7 +2882,7 @@ msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
 msgstr "Dhu al chidžas"
 
-#. TRANSLATORS: see
+#. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
@@ -2979,21 +2946,21 @@ msgctxt "Persian month lexeme"
 msgid "Esfand"
 msgstr "Esfandas"
 
-#. TRANSLATORS: if the modifier is after the date
+#. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "date modifier"
 msgid "before "
 msgstr "prieš "
 
-#. TRANSLATORS: if the modifier is after the date
+#. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "date modifier"
 msgid "after "
 msgstr "po "
 
-#. TRANSLATORS: if the modifier is after the date
+#. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgctxt "date modifier"
@@ -3038,7 +3005,6 @@ msgstr "Penktadienis"
 msgid "Saturday"
 msgstr "Šeštadienis"
 
-#. Icelandic needs them
 #: ../gramps/gen/datehandler/_datestrings.py:252
 msgid "Sun"
 msgstr "Sk"
@@ -3345,7 +3311,7 @@ msgstr ""
 msgid "Upgrade Statistics"
 msgstr "Atnaujinimo statistika"
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:349 ../gramps/plugins/lib/libtreebase.py:707
 msgid ","
 msgstr ","
@@ -3375,13 +3341,11 @@ msgstr "Duotas vardas"
 msgid "Given Surname Suffix"
 msgstr "Duotas pavardės prievardis"
 
-#. primary name primconnector other, given pa/matronynic suffix, primprefix
-#. translators: long string, have a look at Preferences dialog
+#. Translators: long string, have a look at Preferences dialog
 #: ../gramps/gen/display/name.py:362
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr "Pagrindinės pavardės, Duotas tėvavardžio prievardis"
 
-#. DEPRECATED FORMATS
 #: ../gramps/gen/display/name.py:365
 msgid "Patronymic, Given"
 msgstr "Tėvavardis, Vardas"
@@ -3396,7 +3360,6 @@ msgstr "titulas"
 msgid "given"
 msgstr "duotas vardas"
 
-#. 2=double underline
 #: ../gramps/gen/display/name.py:606 ../gramps/gen/display/name.py:706
 #: ../gramps/plugins/importer/importcsv.py:162
 #: ../gramps/plugins/tool/removespaces.py:144
@@ -3497,11 +3460,6 @@ msgstr "KLAIDA. Taisyti vardo formatą parinkyse"
 msgid "Error in '%s' file: cannot load."
 msgstr " Klaida rinkmenoje ' %s': negalima įkelti."
 
-#. -------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:63
 #, fuzzy
 msgid "Full"
@@ -3536,10 +3494,6 @@ msgstr ""
 msgid "Applying ..."
 msgstr "Pritaikoma..."
 
-#. #########################
-#. ###############################
-#. #########################
-#. ###############################
 #: ../gramps/gen/filters/_genericfilter.py:143
 #: ../gramps/gen/filters/_genericfilter.py:174
 #: ../gramps/gui/editors/filtereditor.py:1121
@@ -3865,7 +3819,6 @@ msgstr "Įvairūs filtrai"
 msgid "No description"
 msgstr "Nėra aprašymo"
 
-#. more references to a filter than expected
 #: ../gramps/gen/filters/rules/_rule.py:94
 msgid "The filter definition contains a loop."
 msgstr ""
@@ -4373,7 +4326,6 @@ msgstr "Atitinka įvykius, kurie atitinka nurodytą filtrą"
 msgid "Include Family events:"
 msgstr "Įtraukti šeimos įvykius:"
 
-#. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:531
 msgid "Person filter name:"
@@ -5741,8 +5693,6 @@ msgstr ""
 "Tai asmenys, kurie yra pasirinkto asmens palikuonys, bet ne daugiau kaip N "
 "kartų"
 
-#. -------------------------
-#. ###############################
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
 #: ../gramps/plugins/graph/gvfamilylines.py:280
@@ -6562,7 +6512,6 @@ msgstr "Šaltiniai, pažymėti privačiais"
 msgid "Matches sources that are indicated as private"
 msgstr "Tai šaltiniai, kurie yra pažymėti privačiais"
 
-#. We encounter a PLAC, having previously encountered an ADDR
 #: ../gramps/gen/lib/address.py:97 ../gramps/gui/clipboard.py:298
 #: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
@@ -6680,9 +6629,6 @@ msgstr "Citatos"
 msgid "Notes"
 msgstr "Pastabos"
 
-#. wrap it all up and return to its callers
-#. position 0 = translatable label, position 1 = column class
-#. position 2 = data
 #: ../gramps/gen/lib/address.py:111 ../gramps/gen/lib/citation.py:106
 #: ../gramps/gen/lib/date.py:706 ../gramps/gen/lib/event.py:146
 #: ../gramps/gen/lib/ldsord.py:182 ../gramps/gen/lib/media.py:163
@@ -6883,7 +6829,6 @@ msgstr "Pasirinktas"
 msgid "Caste"
 msgstr "Luomas"
 
-#. 2 name (version)
 #: ../gramps/gen/lib/attrtype.py:66 ../gramps/gen/lib/event.py:148
 #: ../gramps/gen/lib/media.py:147 ../gramps/gen/lib/url.py:96
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
@@ -7036,7 +6981,6 @@ msgstr "Krikštatėvis"
 msgid "Foster"
 msgstr "Globoti"
 
-#. 8
 #: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:79
 #: ../gramps/gui/clipboard.py:468 ../gramps/gui/configure.py:655
 #: ../gramps/gui/editors/editcitation.py:119
@@ -7104,7 +7048,6 @@ msgstr "Puslapis"
 msgid "Confidence"
 msgstr "Patikimumas"
 
-#. 7
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
 #: ../gramps/gui/clipboard.py:761 ../gramps/gui/configure.py:652
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
@@ -7128,8 +7071,6 @@ msgstr "Patikimumas"
 msgid "Source"
 msgstr "Šaltinis"
 
-#. 2
-#. add media column
 #: ../gramps/gen/lib/citation.py:122 ../gramps/gen/lib/event.py:162
 #: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/family.py:168
 #: ../gramps/gen/lib/media.py:134 ../gramps/gen/lib/person.py:206
@@ -7212,9 +7153,7 @@ msgctxt "age"
 msgid "about"
 msgstr "apie"
 
-#. translators: leave all/any {...} untranslated
-#. round up years
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:427 ../gramps/gen/lib/date.py:434
 #, python-brace-format
 msgid "{number_of} year"
@@ -7223,7 +7162,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:443
 #, python-brace-format
 msgid "{number_of} month"
@@ -7232,7 +7171,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:454
 #, python-brace-format
 msgid "{number_of} day"
@@ -7328,7 +7267,6 @@ msgstr "tarpas"
 msgid "textonly"
 msgstr "tik tekstas"
 
-#. 0 this order range above
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
 #: ../gramps/gui/clipboard.py:335 ../gramps/gui/configure.py:661
 #: ../gramps/gui/editors/editlink.py:92
@@ -7347,7 +7285,6 @@ msgstr "tik tekstas"
 msgid "Event"
 msgstr "Įvykis"
 
-#. 5
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/ldsord.py:186
 #: ../gramps/gen/lib/place.py:134 ../gramps/gui/clipboard.py:355
 #: ../gramps/gui/configure.py:649
@@ -7448,9 +7385,6 @@ msgstr "Informacijos teikėjas"
 msgid "Life Events"
 msgstr "Gyvenimo įvykiai"
 
-#. _FAMNAME = _("With %(namepartner)s (%(famid)s)")
-#. 1
-#. get the family events
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
 #: ../gramps/gen/lib/ldsord.py:188 ../gramps/gui/clipboard.py:739
 #: ../gramps/gui/configure.py:646
@@ -7695,12 +7629,6 @@ msgstr "Panaikinimas"
 msgid "Alternate Marriage"
 msgstr "Alternatyvi Santuoka"
 
-#. cm2pt = utils.cm2pt
-#. ------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. ------------------------------------------------------------------------
 #: ../gramps/gen/lib/eventtype.py:211
 #: ../gramps/plugins/drawreport/ancestortree.py:60
 #: ../gramps/plugins/drawreport/descendtree.py:57
@@ -7938,9 +7866,6 @@ msgctxt "Annulment abbreviation"
 msgid "annul."
 msgstr "anul."
 
-#. The parent may not be birth father in ths family, because it
-#. may be a step family. However, it will be odd to display the
-#. parent as anything other than "Father"
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:122
@@ -7985,7 +7910,6 @@ msgstr "Tėvas"
 msgid "Mother"
 msgstr "Motina"
 
-#. Go over children and build their menu
 #: ../gramps/gen/lib/family.py:161 ../gramps/gui/widgets/fanchart.py:1957
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:855
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:869
@@ -8031,8 +7955,6 @@ msgstr "Nesusituokę"
 msgid "Civil Union"
 msgstr "Civilinis surašymas"
 
-#. Create the tree columns
-#. 0 selected?
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
 #: ../gramps/gen/lib/ldsord.py:184 ../gramps/gui/clipboard.py:907
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:62
@@ -8190,8 +8112,6 @@ msgstr "PDŠ (mormonų) ceremonijos"
 msgid "Temple"
 msgstr "Šventykla"
 
-#. icon_column = Gtk.TreeViewColumn(_('Status'), render,
-#. icon_name=ICON_COL)
 #: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:394
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
@@ -8240,11 +8160,6 @@ msgstr "Vaizdo/garso nuoroda"
 msgid "Region"
 msgstr "Regionas"
 
-#. 1 new gramplet
-#. Priority
-#. Handle
-#. Add column with object name
-#. Name Column
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
 #: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:562
 #: ../gramps/gui/configure.py:608
@@ -8347,7 +8262,6 @@ msgstr "Priesaga"
 msgid "Title"
 msgstr "Antraštė"
 
-#. show surname and first name
 #: ../gramps/gen/lib/name.py:169 ../gramps/plugins/webreport/person.py:224
 msgid "Group as"
 msgstr "Grupuoti kaip"
@@ -8372,18 +8286,16 @@ msgstr "Slapyvardis"
 msgid "Family nick name"
 msgstr "Šeimos slapyvardis"
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:461 ../gramps/gen/lib/name.py:476
 #, python-format
 msgid "%(surname)s, %(first)s %(suffix)s"
 msgstr "%(surname)s, %(first)s %(suffix)s"
 
-#. translators: needed for Arabic, ignore otherwise
-#. translators: needed for Arabic, ignore othewise
-#. translators: needed for Arabic, ignore otherwise
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #. make sure it's translated, so it can be used below, in "combine"
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:465 ../gramps/gen/lib/name.py:480
 #: ../gramps/gen/plug/report/utils.py:256
 #: ../gramps/plugins/graph/gvfamilylines.py:491
@@ -8396,7 +8308,7 @@ msgstr "%(surname)s, %(first)s %(suffix)s"
 msgid "%(str1)s, %(str2)s"
 msgstr "%(str1)s, %(str2)s"
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:493
 #, python-format
 msgid "%(first)s %(surname)s, %(suffix)s"
@@ -8455,8 +8367,6 @@ msgstr "Gimimo vardas"
 msgid "Married Name"
 msgstr "Pavardė po santuokos"
 
-#. ###############################
-#. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:265
 #: ../gramps/gen/plug/docgen/treedoc.py:199 ../gramps/gui/clipboard.py:375
 #: ../gramps/gui/configure.py:667 ../gramps/gui/editors/editlink.py:95
@@ -8617,13 +8527,6 @@ msgstr "Garso/vaizdo nuorodos pastaba"
 msgid "Child Reference Note"
 msgstr "Vaiko nuorodų pastaba"
 
-#. 4
-#. ------------------------------------------------------------------------
-#.
-#. References
-#.
-#. ------------------------------------------------------------------------
-#. functions for the actual quickreports
 #: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:719
 #: ../gramps/gui/configure.py:643 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:294
@@ -8868,7 +8771,6 @@ msgstr "Pastatas"
 msgid "Number"
 msgstr "Skaičius"
 
-#. 6
 #: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:781
 #: ../gramps/gui/configure.py:664 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
@@ -9230,12 +9132,6 @@ msgstr "Apjungti saugyklas"
 msgid "Merge Source"
 msgstr "Apjungti šaltinus"
 
-#. -------------------------------------------------------------------------
-#.
-#. Short hand function to return either the person's name, or an empty
-#. string if the person is None
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:523
 #: ../gramps/gui/editors/editperson.py:343
@@ -9256,11 +9152,6 @@ msgstr "nežinoma"
 msgid "Gramplet %s caused an error"
 msgstr "Klaida dėl grampleto %s"
 
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/_manager.py:62
 msgid "No description was provided"
 msgstr "Nebuvo pateikta jokio aprašymo"
@@ -9338,7 +9229,6 @@ msgstr "Šoninė juosta"
 msgid "Rule"
 msgstr "Pridėti taisyklę"
 
-#. add miscellaneous column
 #: ../gramps/gen/plug/_pluginreg.py:528
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/importer/importprogen.glade:1306
@@ -9400,7 +9290,6 @@ msgstr "Nėra rinkmenos pavadinimo"
 msgid "File %s already open, close it first."
 msgstr "Rinkmenaa %s jau yra atverta. Prieš tai uždarykite ją."
 
-#. Export shouldn't bring Gramps down.
 #: ../gramps/gen/plug/docbackend/docbackend.py:147
 #: ../gramps/gen/plug/docbackend/docbackend.py:150
 #: ../gramps/gen/utils/docgen/odstab.py:340
@@ -9442,11 +9331,6 @@ msgstr "Rinkmenaa %s jau yra atverta. Prieš tai uždarykite ją."
 msgid "Could not create %s"
 msgstr "Negalėjau sukurti %s"
 
-#. -------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/graphdoc.py:68
 #: ../gramps/gen/plug/docgen/treedoc.py:67
 #: ../gramps/gen/plug/docgen/treedoc.py:73
@@ -9555,12 +9439,10 @@ msgstr "Lenktas"
 msgid "Orthogonal"
 msgstr "Statmenas"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
 msgid "Graphviz Layout"
 msgstr "GraphViz sluoksnis"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:143
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Font family"
@@ -9649,12 +9531,10 @@ msgstr "Alternatyvūs vardai"
 msgid "Whether lines attach to nodes differently"
 msgstr "Ar įtraukti duomenis į internetinę ataskaitą ar ne"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
 msgid "Graphviz Options"
 msgstr "GraphViz parinktys"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:213
 msgid "Aspect ratio"
 msgstr "Proporcija"
@@ -9742,7 +9622,6 @@ msgstr ""
 "Pografiai gali padėti GraphViz patalpinti sutuoktinius arčiau vienas kito, "
 "bet gali sukurti ilgesnes linijas ir didesnes diagramas."
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:268
 msgid "Note to add to the graph"
 msgstr "I diagrama įdedama pastaba"
@@ -9932,13 +9811,11 @@ msgstr ""
 msgid "Extra huge"
 msgstr ""
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:141
 #, fuzzy
 msgid "Node Options"
 msgstr "Medžio nustatymai"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:144
 #, fuzzy
 msgid "Node detail"
@@ -9980,15 +9857,12 @@ msgstr ""
 msgid "Node color."
 msgstr "Lyčių spalvos"
 
-#. ###############################
-#. #################
 #: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:799
 #: ../gramps/plugins/drawreport/descendtree.py:1533
 msgid "Tree Options"
 msgstr "Medžio nustatymai"
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:178
 #, fuzzy
 msgid "Timeflow"
@@ -10022,7 +9896,6 @@ msgstr ""
 "diagramoms tai atitinka tarpas tarp eilučių, horizontalioms diagramoms - "
 "tarpui tarp stulpeliu."
 
-#. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:202
 #, fuzzy
 msgid "Note to add to the tree"
@@ -10062,16 +9935,6 @@ msgstr "Reikšmė '%(val)s' nerasta parinktyje '%(opt)s'"
 msgid "Valid values: "
 msgstr "Galimos reikšmės: "
 
-#. ------------------------------------------------------------------------
-#.
-#. Private Constants
-#.
-#. ------------------------------------------------------------------------
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
 #: ../gramps/gui/plug/report/_bookdialog.py:86 ../gramps/gui/viewmanager.py:113
 msgid "Unsupported"
@@ -10195,7 +10058,6 @@ msgctxt "'living people'"
 msgid "Not included"
 msgstr "Neįtraukta"
 
-#. for deferred translation
 #: ../gramps/gen/plug/report/stdoptions.py:203
 msgid "How to handle living people"
 msgstr "Kaip apdoroti dabar gyvenančius žmonės"
@@ -10221,11 +10083,6 @@ msgstr "Datų formatas ir kalba su pavyzdžiais"
 msgid "Do not include"
 msgstr "Neįtraukti"
 
-#. --------------------
-#. ###############################
-#. What to include
-#. #########################
-#. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #: ../gramps/gen/plug/report/stdoptions.py:363
 #: ../gramps/gui/viewmanager.py:1753
@@ -10283,7 +10140,6 @@ msgstr "Tokios rinkmenos nėra"
 msgid "Could not add photo to page"
 msgstr "Nuotraukos pridėti negalima į šį puslapį"
 
-#. Do this in case of command line options query (show=filter)
 #: ../gramps/gen/plug/report/utils.py:288
 msgid "PERSON"
 msgstr "ASMUO"
@@ -10295,7 +10151,6 @@ msgstr "ASMUO"
 msgid "Entire Database"
 msgstr "Visa duombazė"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:300
 #: ../gramps/gui/plug/export/_exportoptions.py:460
 #: ../gramps/plugins/textreport/descendreport.py:488
@@ -10303,7 +10158,6 @@ msgstr "Visa duombazė"
 msgid "Descendants of %s"
 msgstr "%s palikuonys"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:304
 #: ../gramps/gen/plug/report/utils.py:381
 #: ../gramps/gui/plug/export/_exportoptions.py:465
@@ -10311,7 +10165,6 @@ msgstr "%s palikuonys"
 msgid "Descendant Families of %s"
 msgstr "%s palikuonių šeimos"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:308
 #: ../gramps/gui/plug/export/_exportoptions.py:470
 #, python-format
@@ -10337,12 +10190,10 @@ msgstr "nežinoma motina"
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s ir %(mother_name)s (%(family_id)s)"
 
-#. Do this in case of command line options query (show=filter)
 #: ../gramps/gen/plug/report/utils.py:368
 msgid "FAMILY"
 msgstr "ŠEIMA"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:385
 #, python-format
 msgid "Ancestor Families of %s"
@@ -10645,7 +10496,6 @@ msgstr "protėvio su mirtimi susijusios datos"
 msgid "Database error: loop in %s's ancestors"
 msgstr "Duombazės klaida: ciklas %s protėviuose"
 
-#. no evidence, must consider alive
 #: ../gramps/gen/utils/alive.py:507
 msgid "no evidence"
 msgstr "nėra duomenų"
@@ -10691,7 +10541,6 @@ msgstr "Bulgarų"
 msgid "Breton"
 msgstr "Bretonų"
 
-#. Windows has no translation for Breton
 #: ../gramps/gen/utils/grampslocale.py:74
 msgid "Catalan"
 msgstr "Katalonų"
@@ -10724,7 +10573,6 @@ msgstr "Anglų"
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#. Windows has no translation for Esperanto
 #: ../gramps/gen/utils/grampslocale.py:82
 msgid "Spanish"
 msgstr "Ispanų"
@@ -10741,7 +10589,6 @@ msgstr "Prancūzų"
 msgid "Gaelic"
 msgstr "Gėlų"
 
-#. Windows has no translation for Gaelic
 #: ../gramps/gen/utils/grampslocale.py:86
 msgid "Hebrew"
 msgstr "Hebrajų"
@@ -10774,7 +10621,6 @@ msgstr "Lietuvių"
 msgid "Macedonian"
 msgstr "Makedonų"
 
-#. Windows has no translation for Macedonian
 #: ../gramps/gen/utils/grampslocale.py:94
 msgid "Norwegian Bokmal"
 msgstr "Norvegų bokmal"
@@ -10831,7 +10677,6 @@ msgstr "Švedų"
 msgid "Tamil"
 msgstr "Tamilų"
 
-#. Windows has no codepage for Tamil
 #: ../gramps/gen/utils/grampslocale.py:108
 msgid "Turkish"
 msgstr "Turkų"
@@ -10968,7 +10813,6 @@ msgstr "PRIESAGA"
 msgid "PRIMARY"
 msgstr "PAGRINDINIS"
 
-#. name, sort, width, modelcol
 #: ../gramps/gen/utils/keyword.py:61
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
 msgctxt "Name"
@@ -11156,7 +11000,6 @@ msgstr ""
 "Duomenys gali būti atstatyti tik naudojant atšaukimo operaciją, arba "
 "neužsaugant pakeitimų."
 
-#. Name                     UNICODE       SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:61
 #: ../gramps/plugins/graph/gvfamilylines.py:84
 #: ../gramps/plugins/textreport/indivcomplete.py:944
@@ -11242,9 +11085,6 @@ msgstr "Kolekcija"
 msgid "Extinct"
 msgstr ""
 
-#. The following is used in the global preferences in the display tab.
-#. Name
-#. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
 #, fuzzy
 msgid "Nothing"
@@ -11319,7 +11159,6 @@ msgstr "Vyras žmona"
 msgid "Unknown, created to replace a missing note object."
 msgstr "Nežinomas, sukurtas siekiant pakeisti trūkstamus pastabos objektus."
 
-#. primitive static variable
 #: ../gramps/gen/utils/unknown.py:150
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
@@ -11400,7 +11239,7 @@ msgstr "Gramps tinklapis"
 msgid "Contributions by"
 msgstr "Bendradarbiavimas"
 
-#. TRANSLATORS: Translate this to your name in your native language
+#. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:120
 msgid "translator-credits"
 msgstr "vertėjų sąrašas"
@@ -11458,8 +11297,6 @@ msgstr "%(frel)s %(mrel)s"
 msgid "Clipboard"
 msgstr "Iškarpinė"
 
-#. Now add more items to popup menu, if available
-#. See details (edit, etc):
 #: ../gramps/gui/clipboard.py:1493 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
 msgctxt "the object"
@@ -11495,7 +11332,6 @@ msgstr "Eiliškumui pakeisti paimkite ir neškite stulpelius"
 msgid "_Apply"
 msgstr "_Pritaikyti"
 
-#. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1354
 #: ../gramps/plugins/drawreport/ancestortree.py:916
 #: ../gramps/plugins/drawreport/descendtree.py:1658
@@ -11523,7 +11359,6 @@ msgstr "Islandiškas stilius"
 msgid "Display Name Editor"
 msgstr "Vardų redaktorius"
 
-#. self.window.connect('response', self.close)
 #: ../gramps/gui/configure.py:116 ../gramps/gui/configure.py:189
 #: ../gramps/gui/dialog.py:261 ../gramps/gui/dialog.py:307
 #: ../gramps/gui/dialog.py:333 ../gramps/gui/glade/book.glade:466
@@ -11618,8 +11453,7 @@ msgstr "Vardų redaktorius"
 msgid "Invalid or incomplete format definition."
 msgstr "Blogas arba nepilnas formato aprašymas."
 
-#. label for the combo
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/configure.py:386 ../gramps/gui/configure.py:413
 #: ../gramps/gui/configure.py:435 ../gramps/gui/configure.py:451
 #: ../gramps/gui/configure.py:482 ../gramps/gui/configure.py:519
@@ -11806,7 +11640,6 @@ msgstr "Vyro amžius, kai gyvas"
 msgid "Border for Dead"
 msgstr "Gyvo vyro amžius"
 
-#. for family
 #: ../gramps/gui/configure.py:730
 #, fuzzy
 msgid "Default background"
@@ -11847,7 +11680,6 @@ msgstr "Pagrindinis asmuo"
 msgid "Border for Divorced"
 msgstr "Moters amžius, kai gyva"
 
-#. for other
 #: ../gramps/gui/configure.py:742
 #, fuzzy
 msgid "Background for Home Person"
@@ -11916,8 +11748,6 @@ msgstr "Šis formatas jau egzistuoja."
 msgid "Example"
 msgstr "Pavyzdys"
 
-#. show an add button
-#. we now construct an add menu
 #: ../gramps/gui/configure.py:1054
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:147
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
@@ -12299,8 +12129,6 @@ msgstr "Tikrinta: %s"
 msgid "' and '"
 msgstr "' ir '"
 
-#. List of translated strings used here
-#. Dead code for l10n
 #: ../gramps/gui/configure.py:1701
 msgid "new"
 msgstr "naujas"
@@ -13203,7 +13031,6 @@ msgstr "Perkelti pažymėtą požymį žemyn"
 msgid "_Attributes"
 msgstr "_Požymiai"
 
-#. Add column with object gramps_id
 #: ../gramps/gui/editors/displaytabs/backreflist.py:60
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:86
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:79
@@ -13578,11 +13405,6 @@ msgstr "_Vardai"
 msgid "Set as default name"
 msgstr "Nustatyti kaip pagrindinį vardą"
 
-#. -------------------------------------------------------------------------
-#.
-#. NameModel
-#.
-#. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
 #: ../gramps/gui/plug/_guioptions.py:1259 ../gramps/gui/viewmanager.py:1030
 #: ../gramps/gui/views/tags.py:561
@@ -13644,7 +13466,6 @@ msgstr "Peržiūra"
 msgid "_Notes"
 msgstr "_Pastabos"
 
-#. add personal column
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
 #: ../gramps/plugins/webreport/basepage.py:1967
 msgid "Personal"
@@ -14318,15 +14139,7 @@ msgstr ""
 "sudvejintą įrašą. Rekomenduojama baigti taisymą šiame lange ir pasirinkti "
 "esamą šeimą"
 
-#. translators: needed for French, ignore otherwise
-#. Styles Frame
-#. translators: needed for French, ignore otherwise
-#. Save Frame
-#. translators: needed for French, ignore otherwise
-#. Gramps ID
-#. don't show rest
-#. show "> Family: ..." and nothing else
-#. show "V Family: ..." and the rest
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/editors/editfamily.py:995
 #: ../gramps/gui/editors/editfamily.py:1002
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
@@ -14811,7 +14624,7 @@ msgstr "Vietovė: %s"
 msgid "New Place"
 msgstr "Nauja vietovė"
 
-#. translators: translate the "S" too (and the "or" of course)
+#. Translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:213
 #: ../gramps/gui/editors/editplaceref.py:207
 #, fuzzy
@@ -14820,7 +14633,7 @@ msgid ""
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "Bloga platuma (sintaksė: 18\\u00b09'"
 
-#. translators: translate the "E" too (and the "or" of course)
+#. Translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:218
 #: ../gramps/gui/editors/editplaceref.py:212
 #, fuzzy
@@ -17189,7 +17002,6 @@ msgstr "Apjungti ir _taisyti"
 msgid "_Merge and close"
 msgstr "_Sulieti ir uždaryti"
 
-#. name, click?, width, toggle
 #: ../gramps/gui/glade/mergedata.glade:173
 #: ../gramps/gui/glade/mergedata.glade:189 ../gramps/gui/plug/_windows.py:1103
 #: ../gramps/plugins/tool/changenames.py:196
@@ -18427,7 +18239,7 @@ msgctxt "manual"
 msgid "Merge_People"
 msgstr "Apjungti_asmenis"
 
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
 #, python-format
 msgid "%(key)s:\t%(value)s"
@@ -18437,7 +18249,6 @@ msgstr "%(key)s:\t%(value)s"
 msgid "Merge People"
 msgstr "Apjungti asmenis"
 
-#. Go over parents and build their menu
 #: ../gramps/gui/merge/mergeperson.py:224
 #: ../gramps/gui/widgets/fanchart.py:1994
 #: ../gramps/plugins/quickview/all_relations.py:305
@@ -18461,7 +18272,6 @@ msgstr "Šeimos ID"
 msgid "No parents found"
 msgstr "Nerasti tėvai"
 
-#. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:238
 #: ../gramps/gui/widgets/fanchart.py:1857
 #: ../gramps/plugins/textreport/kinshipreport.py:133
@@ -18483,7 +18293,6 @@ msgstr "Sutuoktinis"
 msgid "No spouses or children found"
 msgstr "Sutuoktinių ar vaikų nerasta"
 
-#. Add column with the warning text
 #: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:568
 msgid "Warning"
 msgstr "Įspėjimas"
@@ -18623,12 +18432,10 @@ msgstr "Įskiepių tvarkymas"
 msgid "Info"
 msgstr "Informacija"
 
-#. id_col
 #: ../gramps/gui/plug/_windows.py:147 ../gramps/gui/plug/_windows.py:201
 msgid "Hide/Unhide"
 msgstr "Slėpti/Rodyti"
 
-#. id_col
 #: ../gramps/gui/plug/_windows.py:155 ../gramps/gui/plug/_windows.py:210
 msgid "Load"
 msgstr "Įkelti"
@@ -18655,7 +18462,6 @@ msgstr "Pranešimas"
 msgid "Loaded Plugins"
 msgstr "Įkelti įskiepiai"
 
-#. self.addon_list.connect('button-press-event', self.button_press)
 #: ../gramps/gui/plug/_windows.py:235
 msgid "Addon Name"
 msgstr "Papildinio pavadinimas"
@@ -18676,8 +18482,6 @@ msgstr "Įdiegti visus papildinius"
 msgid "Refresh Addon List"
 msgstr "Atnaujinti papildinių sąrašą"
 
-#. Only show the "Reload" button when in debug mode
-#. (without -O on the command line)
 #: ../gramps/gui/plug/_windows.py:289
 msgid "Reload"
 msgstr "Įkelti iš naujo"
@@ -18780,7 +18584,7 @@ msgstr "Šie priedai turi klaidų: "
 msgid "Done downloading and installing addons"
 msgstr "Papildiniai atsiųsti ir įdiegti"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/_windows.py:1224
 #, python-brace-format
 msgid "{number_of} addon was installed."
@@ -18797,7 +18601,6 @@ msgstr "Jei įdiegėte 'Gramps View', įkelkite Gramps iš naujo."
 msgid "No addons were installed."
 msgstr "Papildiniai nebuvo įdiegti."
 
-#. set up ManagedWindow
 #: ../gramps/gui/plug/export/_exportassistant.py:119
 msgid "Export Assistant"
 msgstr "Iškėlimo pagalbininkas"
@@ -18894,7 +18697,6 @@ msgstr ""
 "tik išsaugojote. Tolesnis duomenų keitimas nekeis duomenų kopijoje kurią ką "
 "tik padarėte. "
 
-#. add test, what is dir
 #: ../gramps/gui/plug/export/_exportassistant.py:512
 #, python-format
 msgid "Filename: %s"
@@ -18963,7 +18765,7 @@ msgstr "Pasirenkama..."
 msgid "Unfiltered Family Tree:"
 msgstr "Nefiltruotas giminės medis:"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/export/_exportoptions.py:167
 #: ../gramps/gui/plug/export/_exportoptions.py:274
 #: ../gramps/gui/plug/export/_exportoptions.py:582
@@ -19007,7 +18809,6 @@ msgstr "_Pastabų filtras"
 msgid "Click to see preview after note filter"
 msgstr "Norėdami peržiūrėti po pastabų filtravimo, spragtelėkite"
 
-#. Frame 3:
 #: ../gramps/gui/plug/export/_exportoptions.py:319
 msgid "Privacy Filter"
 msgstr "Privatumo filtras"
@@ -19016,7 +18817,6 @@ msgstr "Privatumo filtras"
 msgid "Click to see preview after privacy filter"
 msgstr "Norėdami peržiūrėti po privatumo filtravimo, spragtelėkite"
 
-#. Frame 4:
 #: ../gramps/gui/plug/export/_exportoptions.py:330
 msgid "Living Filter"
 msgstr "Gyvųjų filtras"
@@ -19304,24 +19104,6 @@ msgstr "Parinktys"
 msgid "Style"
 msgstr "Stilius"
 
-#. better to 'Show siblings of\nthe center person
-#. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
-#. "person"), 0)
-#. Spouse_disp.add_item(0, _("No.  Do not show Spouses"))
-#. Spouse_disp.add_item(1, _("Yes, and use the Main Display Format"))
-#. Spouse_disp.add_item(2, _("Yes, and use the Secondary "
-#. "Display Format"))
-#. Spouse_disp.set_help(_("Show spouses of the center person?"))
-#. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#. #################
-#. #########################
-#. #################
-#. ###############################
-#. ---------------------
-#. ###############################
-#. Report Options
-#. #########################
-#. ###############################
 #: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 #: ../gramps/plugins/drawreport/calendarreport.py:462
@@ -19354,7 +19136,6 @@ msgstr "Stilius"
 msgid "Report Options"
 msgstr "Ataskaitos nuostatos"
 
-#. need any labels at top:
 #: ../gramps/gui/plug/report/_reportdialog.py:457
 msgid "Document Options"
 msgstr "Dokumento nuostatos"
@@ -19465,7 +19246,6 @@ msgstr "Naujas stilius"
 msgid "Error saving stylesheet"
 msgstr "Klaida išsaugant lentelę"
 
-#. How to handle missing information
 #: ../gramps/gui/plug/report/_styleeditor.py:174
 #: ../gramps/gui/plug/report/_styleeditor.py:188
 #: ../gramps/plugins/textreport/detancestralreport.py:960
@@ -19705,12 +19485,6 @@ msgstr "Atša_ukti"
 msgid "_Redo"
 msgstr "_Grąžinti"
 
-#. self.tree.append_column(
-#. Gtk.TreeViewColumn(_('Original time'), self.renderer,
-#. text=0, foreground=2, background=3))
-#. self.tree.append_column(
-#. Gtk.TreeViewColumn(_('Action'), self.renderer,
-#. text=1, foreground=2, background=3))
 #: ../gramps/gui/undohistory.py:113
 msgid "Original time"
 msgstr "Pradinis laikas"
@@ -19787,7 +19561,6 @@ msgstr "Neįmanoma atverti citatos redaktoriaus"
 msgid "No Family Tree"
 msgstr "Nėra giminės medžio"
 
-#. registering plugins
 #: ../gramps/gui/viewmanager.py:561
 msgid "Registering plugins..."
 msgstr "Įkeliami įskiepiai..."
@@ -19970,7 +19743,6 @@ msgctxt "manual"
 msgid "Bookmarks"
 msgstr "Žymelės"
 
-#. this is meaningless while it's modal
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
 #: ../gramps/plugins/lib/libpersonview.py:205
@@ -20137,7 +19909,6 @@ msgstr "%(cat)s - %(view)s"
 msgid "Configure %s View"
 msgstr "Nustatyti %s Vaizdą"
 
-#. top widget at the top
 #: ../gramps/gui/views/pageview.py:613
 #, python-format
 msgid "View %(name)s: %(msg)s"
@@ -20292,7 +20063,6 @@ msgstr "Perrūšiuoti šeimas"
 msgid "_Copy"
 msgstr "_Kopijuoti"
 
-#. Go over siblings and build their menu
 #: ../gramps/gui/widgets/fanchart.py:1891
 #: ../gramps/plugins/quickview/quickview.gpr.py:319
 #: ../gramps/plugins/view/pedigreeview.py:1805
@@ -20300,7 +20070,6 @@ msgstr "_Kopijuoti"
 msgid "Siblings"
 msgstr "Broliai ir seserys"
 
-#. Go over parents and build their menu
 #: ../gramps/gui/widgets/fanchart.py:2037
 #: ../gramps/plugins/view/pedigreeview.py:1932
 msgid "Related"
@@ -20376,14 +20145,12 @@ msgstr ""
 "Bus atkurta numatytoji grampletų juosta su numatytaisiais grampletais. Šio "
 "veiksmo negalėsite atšaukti."
 
-#. default tooltip
 #: ../gramps/gui/widgets/grampletpane.py:816
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Perneškite Nustatymu Mygtuką, jei norite pajudinti, išsirinkite nustatymams "
 "pakeisti"
 
-#. build the GUI:
 #: ../gramps/gui/widgets/grampletpane.py:1017
 msgid "Right click to add gramplets"
 msgstr "Grampletams pridėti du kartus paspauskite pelės dešinįjį klavišą"
@@ -20442,7 +20209,6 @@ msgstr ""
 msgid "Make Active Media"
 msgstr "Padaryti aktyvų garsą/vaizdą"
 
-#. initial tooltip when no place already selected.
 #: ../gramps/gui/widgets/placewithin.py:63
 msgid ""
 "Matches places within a given distance of the active place. You have no "
@@ -20502,7 +20268,6 @@ msgid ""
 "Ctrl-Click to follow link"
 msgstr ""
 
-#. spell checker submenu
 #: ../gramps/gui/widgets/styledtexteditor.py:450
 msgid "Spellcheck"
 msgstr "Rašybos tikrinimas"
@@ -20548,7 +20313,6 @@ msgstr "'%s' yra neteisinga reikšmė nurodytam laukui"
 msgid "This field is mandatory"
 msgstr "Šis laukas yra privalomas"
 
-#. used on AgeOnDateGramplet
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1236
 #, python-format
 msgid "'%s' is not a valid date value"
@@ -20822,12 +20586,10 @@ msgstr "geltona"
 msgid "The color, if any, of the SVG background"
 msgstr "SVG fono spalva, jei tokia yra"
 
-#. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/ancestortree.py:115
 msgid "Ancestor Graph"
 msgstr "Protėvių diagrama"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/ancestortree.py:133
 #, python-format
 msgid "Ancestor Graph for %s"
@@ -21051,14 +20813,6 @@ msgstr "Įtraukti tuščius puslapius"
 msgid "Whether to include pages that are blank."
 msgstr "Ar įtraukti tuščius puslapius."
 
-#. #################
-#. #########################
-#. #################
-#. ###############################
-#. ---------------------
-#. ###############################
-#. #########################
-#. ###############################
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/calendarreport.py:490
 #: ../gramps/plugins/drawreport/descendtree.py:1645
@@ -21094,12 +20848,6 @@ msgstr ""
 msgid "Display format for the fathers box."
 msgstr "Tėvo langelio atvaizdavimo formatas."
 
-#. Will add when libsubstkeyword supports it.
-#. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
-#. missing.add_item(0, _("Does not display anything"))
-#. missing.add_item(1, _("Displays '_____'"))
-#. missing.set_help(_("What will print when information is not known"))
-#. menu.add_option(category_name, "miss_val", missing)
 #: ../gramps/plugins/drawreport/ancestortree.py:933
 msgid ""
 "Mother\n"
@@ -21156,7 +20904,6 @@ msgstr ""
 msgid "Display format for the marital box."
 msgstr "Santuokos langelio atvaizdavimo formatas."
 
-#. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:961
 #: ../gramps/plugins/drawreport/descendtree.py:1694
 #: ../gramps/plugins/lib/libmetadata.py:104
@@ -21185,13 +20932,6 @@ msgstr ""
 "pvz.\n"
 "Europos sąjunga/ES"
 
-#. TODO this code is never used and so I conclude it is for future use
-#. self.__include_images = BooleanOption(
-#. _('Include thumbnail images of people'), False)
-#. self.__include_images.set_help(
-#. _("Whether to include thumbnails of people."))
-#. menu.add_option(category_name, "includeImages",
-#. self.__include_images)
 #: ../gramps/plugins/drawreport/ancestortree.py:977
 #: ../gramps/plugins/drawreport/descendtree.py:1702
 msgid "Include a note"
@@ -21236,7 +20976,6 @@ msgstr "Padaryti vidinio langelio tarpą didesniu arba mažesniu"
 msgid "box shadow scale factor"
 msgstr "langelio šešėlio mastelio koeficientas"
 
-#. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:1003
 #: ../gramps/plugins/drawreport/descendtree.py:1727
 msgid "Make the box shadow bigger or smaller"
@@ -21316,8 +21055,6 @@ msgstr "Mano kalendorius"
 msgid "Produced with Gramps"
 msgstr "Sukurta naudojant Gramps"
 
-#. generate the report:
-#. to see "nearby" comments
 #: ../gramps/plugins/drawreport/calendarreport.py:199
 #: ../gramps/plugins/drawreport/calendarreport.py:225
 #: ../gramps/plugins/drawreport/calendarreport.py:315
@@ -21340,7 +21077,7 @@ msgstr "Skaitoma duombazė..."
 msgid "%(person)s, birth"
 msgstr "%(person)s, gimimas"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:365
 #, python-brace-format
 msgid "{person}, {age}"
@@ -21358,7 +21095,7 @@ msgstr ""
 "%(spouse)s ir \n"
 "  %(person)s vestuvės"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:427
 #, python-brace-format
 msgid ""
@@ -21435,9 +21172,6 @@ msgstr "Įtraukti tik gyvus žmonės"
 msgid "Include only living people in the calendar"
 msgstr "Į kalendorių įtraukti tik gyvenančius žmones"
 
-#. #########################
-#. Content options
-#. Content
 #: ../gramps/plugins/drawreport/calendarreport.py:508
 #: ../gramps/plugins/textreport/birthdayreport.py:523
 #: ../gramps/plugins/textreport/detancestralreport.py:873
@@ -21446,7 +21180,6 @@ msgstr "Į kalendorių įtraukti tik gyvenančius žmones"
 msgid "Content"
 msgstr "Turinys"
 
-#. #########################
 #: ../gramps/plugins/drawreport/calendarreport.py:512
 #: ../gramps/plugins/drawreport/calendarreport.py:514
 msgid "Year of calendar"
@@ -21463,7 +21196,6 @@ msgstr "Šalis šventėms"
 msgid "Select the country to see associated holidays"
 msgstr "Norėdami matyti priskirtas valstybines šventes, išsirinkite valstybę"
 
-#. Default selection ????
 #: ../gramps/plugins/drawreport/calendarreport.py:531
 #: ../gramps/plugins/webreport/narrativeweb.py:2809
 #: ../gramps/plugins/webreport/webcal.py:1867
@@ -21575,13 +21307,11 @@ msgstr "Tekstas trečioje apatinėje eilutėje"
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
 msgstr "%(person)s ir %(father1)s, %(mother1)s – palikuonių medis"
 
-#. Should be 2 items in names list
 #: ../gramps/plugins/drawreport/descendtree.py:165
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
 msgstr "%(person)s, %(father1)s ir %(mother1)s – palikuonių medis"
 
-#. Should be 2 items in both names and names2 lists
 #: ../gramps/plugins/drawreport/descendtree.py:172
 #, python-format
 msgid ""
@@ -21594,13 +21324,11 @@ msgstr ""
 msgid "Descendant Chart for %(person)s"
 msgstr "%(person)s – palikuonių medis"
 
-#. Should be two items in names list
 #: ../gramps/plugins/drawreport/descendtree.py:184
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
 msgstr "%(father)s ir %(mother)s – palikuonių medis"
 
-#. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/descendtree.py:213
 msgid "Descendant Graph"
 msgstr "Palikuonių medis"
@@ -21625,7 +21353,6 @@ msgstr "%(names)s pusbrolių diagrama"
 msgid "Family %s is not in the Database"
 msgstr "Duombazėje nėra šeimos: %s"
 
-#. if self.name == "familial_descend_tree":
 #: ../gramps/plugins/drawreport/descendtree.py:1536
 #: ../gramps/plugins/drawreport/descendtree.py:1540
 msgid "Report for"
@@ -21711,12 +21438,6 @@ msgstr ""
 msgid "Display format for a descendant."
 msgstr "Palikuonio atvaizdavimo formatas."
 
-#. bug 4767
-#. diffspouse = BooleanOption(
-#. _("Use separate display format for spouses"),
-#. True)
-#. diffspouse.set_help(_("Whether spouses can have a different format."))
-#. menu.add_option(category_name, "diffspouse", diffspouse)
 #: ../gramps/plugins/drawreport/descendtree.py:1674
 msgid ""
 "Spousal\n"
@@ -21830,7 +21551,6 @@ msgstr "Protėvių ratas"
 msgid "Produces fan charts"
 msgstr "Sukuria protėvių ratą"
 
-#. extract requested items from the database and count them
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:197
 #: ../gramps/plugins/drawreport/statisticschart.py:812
 #: ../gramps/plugins/drawreport/statisticschart.py:822
@@ -21853,7 +21573,6 @@ msgstr "Laikotarpio diagrama"
 msgid "Produces a timeline chart."
 msgstr "Sukuria laikotarpio diagramą."
 
-#. choose  one line or two lines translation according to the width
 #: ../gramps/plugins/drawreport/fanchart.py:256
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
@@ -22037,7 +21756,6 @@ msgstr "Įvykio tipas"
 msgid "(Preferred) title missing"
 msgstr "Trūksta antraštės (svarbiausios)"
 
-#. the list of keys that represent "missing" information
 #: ../gramps/plugins/drawreport/statisticschart.py:402
 #: ../gramps/plugins/drawreport/statisticschart.py:928
 msgid "(Preferred) forename missing"
@@ -22051,8 +21769,6 @@ msgstr "Trūksta pavardės  (svarbiausios)"
 msgid "Gender unknown"
 msgstr "Nežinoma lytis"
 
-#. localized year
-#. inadequate information
 #: ../gramps/plugins/drawreport/statisticschart.py:431
 #: ../gramps/plugins/drawreport/statisticschart.py:451
 #: ../gramps/plugins/drawreport/statisticschart.py:558
@@ -22255,7 +21971,6 @@ msgctxt "sorted by"
 msgid "Name"
 msgstr "Vardas"
 
-#. Sort the people as requested
 #: ../gramps/plugins/drawreport/timeline.py:157
 #: ../gramps/plugins/drawreport/timeline.py:169
 #: ../gramps/plugins/drawreport/timeline.py:338
@@ -22270,7 +21985,6 @@ msgstr "Rūšiuojamos datos..."
 msgid "Calculating timeline..."
 msgstr "Skaičiuojama laiko juosta..."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/timeline.py:277
 #, python-format
 msgid "Sorted by %s"
@@ -22617,7 +22331,6 @@ msgstr ""
 "rinkmeną. Įsitikinkite, kad turite rašymo teises į šią rinkmeną ir bandykite "
 "vėl."
 
-#. GUI setup:
 #: ../gramps/plugins/gramplet/ageondategramplet.py:52
 msgid "Enter a date, click Run"
 msgstr "Įveskite datą ir paspauskite Paleisti"
@@ -22985,7 +22698,6 @@ msgstr ""
 msgid "Double-click given name for details"
 msgstr "Dvigubu pelės paspaudimu ant vardo sužinokite detales"
 
-#. will be overwritten in load
 #: ../gramps/plugins/gramplet/givennamegramplet.py:55
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:50
 #: ../gramps/plugins/gramplet/recordsgramplet.py:43
@@ -23927,7 +23639,6 @@ msgstr ""
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
 msgstr "turi 1 iš 1 asmens ( baigta (%(percent)s)\n"
 
-#. Create the Generation title, set an index marker
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:267
 #: ../gramps/plugins/textreport/ancestorreport.py:218
 #: ../gramps/plugins/textreport/detancestralreport.py:228
@@ -23943,7 +23654,7 @@ msgid "Double-click to see people in generation %d"
 msgstr ""
 "Norėdami pamatyti %d kartos asmenis du kartus paspauskite kairį pelės klavišą"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:272
 #, python-brace-format
 msgid ""
@@ -23966,7 +23677,7 @@ msgid "Double-click to see all generations"
 msgstr ""
 "Norėdami pamatyti visas kartas du kartus paspauskite kairį pelės klavišą"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:283
 #, python-brace-format
 msgid " have {number_of} individual\n"
@@ -23985,7 +23696,6 @@ msgstr "%(date)s - %(place)s."
 msgid "%(date)s."
 msgstr "%(date)s."
 
-#. Add types:
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:71
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:129
@@ -24060,7 +23770,6 @@ msgstr "Šios sesijos žurnalas"
 msgid "Opened data base -----------\n"
 msgstr "Atidaryta duombazė--------\n"
 
-#. List of translated strings used here (translated in self.log ).
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Added"
 msgstr "Pridėta"
@@ -24091,7 +23800,6 @@ msgstr "Norėdami pamatyti rezultatus du kartus pele spragtelėkite įrašą"
 msgid "less than 1"
 msgstr "mažiau nei 1"
 
-#. -------------------------
 #: ../gramps/plugins/gramplet/statsgramplet.py:140
 #: ../gramps/plugins/graph/gvfamilylines.py:277
 #: ../gramps/plugins/textreport/summary.py:113
@@ -24334,40 +24042,26 @@ msgstr ""
 "grampletus. Skydelio rodinyje nuspaudę grampleto savybių mygtuką, grampletą "
 "paversite slankiuoju langu, kuris bus atskirtas nuo pagrindinio Gramps lango."
 
-#. Minimum number of lines we want to see. Further lines with the same
-#. distance to the main person will be added on top of this.
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
 msgstr "Mažiausias matomų elementų kiekis"
 
-#. How many generations of descendants to process before we go up to the
-#. next level of ancestors.
 #: ../gramps/plugins/gramplet/whatsnext.py:63
 msgid "Descendant generations per ancestor generation"
 msgstr "Palikuonių kartos per protėvių kartas"
 
-#. After an ancestor was processed, how many extra rounds to delay until
-#. the descendants of this ancestor are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:69
 msgid "Delay before descendants of an ancestor is processed"
 msgstr "Atliekamas vėlinimas protėvių prieš palikuonis"
 
-#. Tag to use to indicate that this person has no further marriages, if
-#. the person is not tagged, warn about this at the time the marriages
-#. for the person are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
 msgstr "Gairė rodo, kad asmuo yra užbaigtas"
 
-#. Tag to use to indicate that there are no further children in this
-#. family, if this family is not tagged, warn about this at the time the
-#. children of this family are processed.
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
 msgstr "Gairė rodo, kad šeima yra užbaigta"
 
-#. Tag to use to specify people and families to ignore. In his way,
-#. hopeless cases can be marked separately and don't clutter up the list.
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
 msgstr "Gairė rodo, kad asmuo arba šeima turėtų būti ignoruojami"
@@ -24492,11 +24186,6 @@ msgstr "Ryšių diagrama"
 msgid "Produces relationship graphs using Graphviz."
 msgstr "Naudojant Graphviz, sukuria ryšių diagramą."
 
-#. ------------------------------------------------------------------------
-#.
-#. Constant options items
-#.
-#. ------------------------------------------------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:74
 #: ../gramps/plugins/graph/gvhourglass.py:59
 #: ../gramps/plugins/graph/gvrelgraph.py:73
@@ -24535,7 +24224,6 @@ msgstr "Palikuonys <-> Protėviai"
 msgid "Descendants - Ancestors"
 msgstr "Palikuonys - Protėviai"
 
-#. ---------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:125
 msgid "Follow parents to determine \"family lines\""
 msgstr "Šeimos linijos nustatytmui sekti tėvus"
@@ -24603,12 +24291,10 @@ msgstr "Naudoti suapvalintus kampus"
 msgid "Use rounded corners e.g. to differentiate between women and men."
 msgstr "Vyrų ir moterų atskyrimui naudoti suapvalintus kampus."
 
-#. --------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:185
 msgid "People of Interest"
 msgstr "Dominantys asmenys"
 
-#. --------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:188
 msgid "People of interest"
 msgstr "Dominantys asmenys"
@@ -24645,7 +24331,6 @@ msgstr "Ar riboti palikuonių kiekį."
 msgid "The maximum number of descendants to include."
 msgstr "Kiek daugiausia įtraukti palikuonių."
 
-#. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:223
 msgid "Include dates"
 msgstr "Įtraukti datas"
@@ -24716,12 +24401,10 @@ msgstr "Miniatiūros dydis"
 msgid "Size of the thumbnail image"
 msgstr "Miniatiūros paveikslo dydis"
 
-#. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:269
 msgid "Family Colors"
 msgstr "Šeimos spalvos"
 
-#. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:272
 msgid "Family colors"
 msgstr "Šeimos spalvos"
@@ -24794,7 +24477,7 @@ msgstr "Pašalintos papildomos šeimos:"
 msgid "Initial list of people of interest:"
 msgstr "Dominančių asmenų pradinis sąrašas:"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/graph/gvfamilylines.py:982
 #, python-brace-format
 msgid "{number_of} child"
@@ -24865,7 +24548,6 @@ msgstr ""
 "Vyrai vaizduojami mėlynai, moterys - raudonai. Jei asmens lytis yra "
 "nežinoma, tai bus vaizduojama pilkai."
 
-#. see bug report #2180
 #: ../gramps/plugins/graph/gvhourglass.py:396
 #: ../gramps/plugins/graph/gvrelgraph.py:830
 msgid "Use rounded corners"
@@ -24876,7 +24558,6 @@ msgstr "Naudoti suapvalintus kampus"
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Vyrų ir moterų atskyrimui naudoti suapvalintus kampus."
 
-#. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:418
 #: ../gramps/plugins/graph/gvrelgraph.py:940
 msgid "Graph Style"
@@ -24916,7 +24597,6 @@ msgstr "Kuriama ataskaita"
 msgid "Determines what people are included in the graph"
 msgstr "Nustato kurie asmenys turi būti įtraukti į diagramą"
 
-#. see bug report #11112
 #: ../gramps/plugins/graph/gvrelgraph.py:836
 #, fuzzy
 msgid "Use hexagons"
@@ -24927,7 +24607,6 @@ msgstr "Naudoti šešėlius"
 msgid "Use hexagons to differentiate those of unknown gender."
 msgstr "Vyrų ir moterų atskyrimui naudoti suapvalintus kampus."
 
-#. ###############################
 #: ../gramps/plugins/graph/gvrelgraph.py:865
 msgid "Dates and/or Places"
 msgstr "Datos ar/ir Vietos"
@@ -25011,7 +24690,6 @@ msgstr "Ar įtraukti asmenų mažus paveikslėlius."
 msgid "Thumbnail Location"
 msgstr "Miniatiūros vieta"
 
-#. occupation = BooleanOption(_("Include occupation"), False)
 #: ../gramps/plugins/graph/gvrelgraph.py:921
 msgid "Include occupation"
 msgstr "Įtraukti užsiėmimą"
@@ -25128,10 +24806,6 @@ msgstr "Nustatymai"
 msgid "%s could not be opened\n"
 msgstr "%s negali būti atidaryta\n"
 
-#. # a "GEDCOM import report" happens in GedcomParser so this is not needed:
-#. # (but the imports_test.py unittest currently requires it, so here it is)
-#. # a "VCARD import report" happens in VCardParser so this is not needed:
-#. # (but the imports_test.py unittest currently requires it, so here it is)
 #: ../gramps/plugins/importer/importcsv.py:129
 #: ../gramps/plugins/importer/importgedcom.py:154
 #: ../gramps/plugins/importer/importgeneweb.py:162
@@ -25361,12 +25035,10 @@ msgstr "Pastaba apie požymį"
 msgid "attributesource"
 msgstr "Požymiai"
 
-#. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:229
 msgid "child"
 msgstr "vaikas"
 
-#. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:232
 msgid "mother"
 msgstr "motina"
@@ -25407,7 +25079,6 @@ msgstr "vieta"
 msgid "place id"
 msgstr "vietos id"
 
-#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:242
 #: ../gramps/plugins/tool/removespaces.py:190
 msgid "name"
@@ -25417,13 +25088,11 @@ msgstr "vardas"
 msgid "type"
 msgstr "Rūšis"
 
-#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:244
 #: ../gramps/plugins/tool/removespaces.py:194
 msgid "latitude"
 msgstr "platuma"
 
-#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:245
 #: ../gramps/plugins/tool/removespaces.py:198
 msgid "longitude"
@@ -25458,7 +25127,7 @@ msgstr "Skaitomi duomenys..."
 msgid "CSV import"
 msgstr "CSV įkėlimas"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/importer/importcsv.py:374
 #: ../gramps/plugins/importer/importgeneweb.py:274
 #: ../gramps/plugins/importer/importvcard.py:249
@@ -25636,8 +25305,6 @@ msgstr "Nepavyko sukurti garso/vaizdo aplanko %s"
 msgid "Media directory %s is not writable"
 msgstr "Garso/vaizdo direktorijoje %s nėra įrašymo teisių"
 
-#. mediadir exists and writable -- User could have valuable stuff in
-#. it, have him remove it!
 #: ../gramps/plugins/importer/importgpkg.py:81
 #, python-format
 msgid ""
@@ -26045,20 +25712,12 @@ msgstr ""
 "Data {vcard_snippet} nėra atitinkamo formato yyyy-mm-dd. Data išsaugota "
 "tekstu."
 
-#. feature requests 2356, 1658: avoid genitive form
-#. -------------------------------------------------------------------------
-#.
-#. Support functions
-#.
-#. -------------------------------------------------------------------------
-#. feature requests 2356, 1658: avoid genitive form
 #: ../gramps/plugins/importer/importxml.py:103
 #: ../gramps/plugins/tool/eventnames.py:137
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(family)s %(event_name)s"
 
-#. feature requests 2356, 1658: avoid genitive form
 #: ../gramps/plugins/importer/importxml.py:105
 #: ../gramps/plugins/tool/eventnames.py:139
 #, python-format
@@ -26217,7 +25876,6 @@ msgstr ""
 "\n"
 "Objektai, kurie ruošiami apjungimui:\n"
 
-#. there is no old style XML
 #: ../gramps/plugins/importer/importxml.py:809
 #: ../gramps/plugins/importer/importxml.py:1294
 #: ../gramps/plugins/importer/importxml.py:1566
@@ -26364,7 +26022,7 @@ msgstr "Nežinoma, kada buvo importuota"
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Bet kuri pastabos nuoroda privalo turėti \"hlink\" požymį."
 
-#. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+#. Translators: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2528
 #, python-brace-format
@@ -26469,7 +26127,6 @@ msgstr "Nutarinimas"
 msgid "Separation"
 msgstr "Atskirimas"
 
-#. Applies to Families
 #: ../gramps/plugins/lib/libgedcom.py:714
 msgid "Weight"
 msgstr "Svoris"
@@ -26478,7 +26135,6 @@ msgstr "Svoris"
 msgid "Line ignored "
 msgstr "Praleidžiama linija "
 
-#. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
 #: ../gramps/plugins/lib/libgedcom.py:1540
 #, python-format
 msgid "Illegal character%s"
@@ -26571,9 +26227,6 @@ msgstr ""
 "Kur įmanoma šie \"Nežinomi\" objektai yra\n"
 "nurodyti pasaboje %(unknown)s.\n"
 
-#. message means that the element %s was ignored, but
-#. expressed the wrong way round because the message is
-#. truncated for output
 #: ../gramps/plugins/lib/libgedcom.py:3431
 #, python-format
 msgid "ADDR element ignored '%s'"
@@ -26638,18 +26291,14 @@ msgstr "Garso/vaizdo rūšis"
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Daugialypė RINKMENA vienoje OBJE praleidžiama"
 
-#. We have previously found a PLAC
 #: ../gramps/plugins/lib/libgedcom.py:5659
 msgid "A second PLAC ignored"
 msgstr "Antras PLAC praleistas"
 
-#. For RootsMagic etc. Place Details e.g. address, hospital, ...
 #: ../gramps/plugins/lib/libgedcom.py:5798
 msgid "Detail"
 msgstr "Išsamiau"
 
-#. We have perviously found an ADDR, or have populated
-#. location from PLAC title
 #: ../gramps/plugins/lib/libgedcom.py:5811
 msgid "Location already populated; ADDR ignored"
 msgstr "Vieta jau apgyvendinta; ADDR praleidžiama"
@@ -26667,7 +26316,6 @@ msgstr "Citatos pagrindimas"
 msgid "REFN ignored"
 msgstr "Nepaisoma REFN"
 
-#. SOURce with the given gramps_id had no title
 #: ../gramps/plugins/lib/libgedcom.py:6503
 #, python-format
 msgid "No title - ID %s"
@@ -26730,7 +26378,6 @@ msgstr "Šaltinio duomenų autorinės teisės"
 msgid "Publication date of source data"
 msgstr "Šaltinio duomenų paskelbimo data"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/lib/libgedcom.py:7386
 #, python-format
 msgid "Import from %s"
@@ -26773,8 +26420,6 @@ msgstr "GEDCOM versija nepalaikoma"
 msgid "GEDCOM version"
 msgstr "GEDCOM versija"
 
-#. Allow Lineage-Linked etc. though it should be in
-#. uppercase  (Note: Gramps is not a validator! prc)
 #: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM FORMA turėtų būti didžiosiomis raidėmis."
@@ -26829,8 +26474,6 @@ msgstr "Pateikimas: palikuonių kartos"
 msgid "Submission: Ordinance process flag"
 msgstr "Pateikimas: ceremonijos eigos vėliava"
 
-#. Okay we have no clue which temple this is.
-#. We should tell the user and store it anyway.
 #: ../gramps/plugins/lib/libgedcom.py:7999
 msgid "Invalid temple code"
 msgstr "Neteisingas šventyklos kodas"
@@ -26847,8 +26490,6 @@ msgstr ""
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM rinkmena tuščia."
 
-#. First is used as default selection.
-#. As seen on the internet, ISO-xxx are listed as capital letters
 #: ../gramps/plugins/lib/libhtmlconst.py:51
 msgid "Unicode UTF-8 (recommended)"
 msgstr "Unikodas UTF-8 (rekomenduojamas)"
@@ -26857,8 +26498,6 @@ msgstr "Unikodas UTF-8 (rekomenduojamas)"
 msgid "Standard copyright"
 msgstr "Standartinės Autorinės teisės"
 
-#. This must match _CC
-#. translators, long strings, have a look at Web report dialogs
 #: ../gramps/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - By attribution - Nurodyti autorių"
@@ -30759,13 +30398,11 @@ msgstr "Nerasta DEF rinkmena: %(dname)s"
 msgid "Import from Pro-Gen"
 msgstr "Įkelti iš Pro-Gen (%s)"
 
-#. start feedback about import progress (GUI / TXT)
 #: ../gramps/plugins/lib/libprogen.py:498
 #, fuzzy
 msgid "Initializing."
 msgstr "Diegiama..."
 
-#. Raise a error message
 #: ../gramps/plugins/lib/libprogen.py:515
 msgid "Not a supported Pro-Gen import file language"
 msgstr "Nepalaikoma Pro-Gen įkelties rinkmenos kalba"
@@ -30784,7 +30421,6 @@ msgstr "Ieškoma..."
 msgid "Pro-Gen Import"
 msgstr "Pro-Gen įkėlimas"
 
-#. Hmmm. Just use the plain text.
 #: ../gramps/plugins/lib/libprogen.py:1138
 #, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
@@ -30795,7 +30431,6 @@ msgstr "Datos nesutampa: '%(text)s' (%(msg)s)"
 msgid "Time: %s"
 msgstr "Gyvas: %s"
 
-#. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1207
 #, fuzzy
 msgid "Importing persons."
@@ -30815,7 +30450,6 @@ msgstr "_Tinklapio adresas:"
 msgid "Death cause"
 msgstr "Mirties priežastis"
 
-#. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1586
 #, fuzzy
 msgid "Importing families."
@@ -30835,10 +30469,6 @@ msgstr "Apvalkalas:"
 msgid "future"
 msgstr ""
 
-#. We have seen some case insensitivity in DEF files ...
-#. F13: Father
-#. F14: Mother
-#. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1903
 #, fuzzy
 msgid "Adding children."
@@ -31180,7 +30810,6 @@ msgstr ""
 msgid "The green values in the row correspond to the current place values."
 msgstr "Žalios reikšmės eilutėje atitinka dabartinės vietovės reikšmes."
 
-#. if we found no place, we must create a default place.
 #: ../gramps/plugins/lib/maps/placeselection.py:223
 msgid "New place with empty fields"
 msgstr "Nauja vietovė su tusčiais laukais"
@@ -31202,12 +30831,10 @@ msgstr ""
 msgid "Denmark"
 msgstr "Danija"
 
-#. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:81
 msgid " parish"
 msgstr "parapija"
 
-#. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " state"
 msgstr "valstija"
@@ -31294,8 +30921,6 @@ msgstr ""
 "\n"
 "Gyvųjų atitikimai: %(alive)d, Mirusių atitikimai: %(dead)d\n"
 
-#. display the results
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
 msgid "Sorted events of %s"
@@ -31329,7 +30954,6 @@ msgstr "Įvykio tipas"
 msgid "Not found"
 msgstr "Nerasta"
 
-#. display the results
 #: ../gramps/plugins/quickview/all_events.py:103
 #, python-format
 msgid ""
@@ -31428,7 +31052,6 @@ msgstr "Asmenys su '%s' požymiu"
 msgid "There are %d people with a matching attribute name.\n"
 msgstr "Yra %d asmenys su nurodytu požymio vardu.\n"
 
-#. else "nearby" comments are ignored
 #: ../gramps/plugins/quickview/filterbyname.py:41
 msgctxt "Filtering_on"
 msgid "all"
@@ -31682,7 +31305,7 @@ msgstr "Trūksta garso/vaizdo objektų"
 msgid "Size in bytes"
 msgstr "Dydis baitais"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/filterbyname.py:420
 #, python-brace-format
 msgid "Filter matched {number_of} record."
@@ -31691,8 +31314,6 @@ msgstr[0] "Filtras atitiko {number_of} įrašą."
 msgstr[1] "Filtras atitiko {number_of} įrašus."
 msgstr[2] "Filtras atitiko {number_of} įrašų."
 
-#. display the results
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
 msgid "Father lineage for %s"
@@ -31720,8 +31341,6 @@ msgstr "Pastaba"
 msgid "Direct line male descendants"
 msgstr "Tėvo linijos palikuonys"
 
-#. display the results
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/lineage.py:83
 #, python-format
 msgid "Mother lineage for %s"
@@ -31758,7 +31377,6 @@ msgstr "Nerasta gimimo ryšio  su vaiku"
 msgid "Unknown gender"
 msgstr "Nežinoma lytis"
 
-#. display the title
 #: ../gramps/plugins/quickview/linkreferences.py:43
 msgid "Link References for this note"
 msgstr "Nuorodos į šį mazgą"
@@ -31785,7 +31403,6 @@ msgstr "Internetas"
 msgid "No link references for this note"
 msgstr "Nėra nuorodos į šį mazgą"
 
-#. display the title
 #: ../gramps/plugins/quickview/onthisday.py:77
 #, python-format
 msgid "Events of %(date)s"
@@ -31934,7 +31551,6 @@ msgstr "Kai kurie vardai - nepriklausomi"
 msgid "Display a person's siblings."
 msgstr "Rodyti asmenis brolius ir seseris."
 
-#. display the title
 #: ../gramps/plugins/quickview/references.py:68
 #, python-format
 msgid "References for this %s"
@@ -31986,13 +31602,12 @@ msgstr "Asmenys su nepilnais vardais"
 msgid "Matches people with firstname missing"
 msgstr "Tai asmenys, kuriems trūksta vardų"
 
-#. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:113
 #, python-format
 msgid "People sharing the surname '%s'"
 msgstr "Asmenys su pavarde „%s“"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135
 #: ../gramps/plugins/quickview/samesurnames.py:180
 #, python-brace-format
@@ -32006,14 +31621,11 @@ msgstr[1] ""
 msgstr[2] ""
 "Yra {number_of} asmenų su nurodytu vardu arba alternatyviuoju vardu.\n"
 
-#. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
 #, python-format
 msgid "People with the given name '%s'"
 msgstr "Asmenys su vardu '%s'"
 
-#. display the title
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/siblings.py:46
 #, python-format
 msgid "Siblings of %s"
@@ -32184,7 +31796,6 @@ msgstr "Rodyklė"
 msgid "Entire Book"
 msgstr "Visa knyga"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/ancestorreport.py:197
 #, python-format
 msgid "Ahnentafel Report for %s"
@@ -32225,7 +31836,6 @@ msgstr "Mano gimtadienių ataskaita"
 msgid "✝"
 msgstr ""
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:221
 #, python-format
 msgid "Relationships shown are to %s"
@@ -32237,7 +31847,7 @@ msgid "* %(person)s, birth%(relation)s"
 msgstr "%(person)s, gimimo%(relation)s"
 
 # python-brace-format
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
 #, fuzzy, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
@@ -32255,7 +31865,7 @@ msgstr ""
 "%(spouse)s ir \n"
 "  %(person)s vestuvės"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:407
 #, fuzzy, python-brace-format
 msgid ""
@@ -32497,7 +32107,6 @@ msgstr "Šis stilius yra naudojamas atvaizduoti %d lygį."
 msgid "The style used for the spouse level %d display."
 msgstr "Šis stilius yra naudojamas atvaizduoti  sutuoktinio %d lygį."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:216
 #, python-format
 msgid "Ancestral Report for %s"
@@ -32517,14 +32126,13 @@ msgstr "Daugiau apie %(person_name)s:"
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s yra tas pats asmuo kaip [%(id_str)s]."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:361
 #: ../gramps/plugins/textreport/detdescendantreport.py:881
 #, python-format
 msgid "Notes for %s"
 msgstr "Pastabos apie %s"
 
-#. translators: needed for French, ignore otherwise
+#. Translators: needed for French, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:379
 #: ../gramps/plugins/textreport/detancestralreport.py:430
 #: ../gramps/plugins/textreport/detancestralreport.py:498
@@ -32541,7 +32149,7 @@ msgstr "%(type)s: %(value)s%(endnotes)s"
 msgid "Address: "
 msgstr "Adresas: "
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:417
 #: ../gramps/plugins/textreport/detdescendantreport.py:939
 #, python-format
@@ -32553,7 +32161,7 @@ msgstr "%s, "
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr "%(event_role)s %(primary_person)s %(event_name)s: %(event_text)s"
 
-#. translators: needed for Arabic, ignore otherwise
+#. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:495
 #: ../gramps/plugins/textreport/detdescendantreport.py:415
 #: ../gramps/plugins/textreport/detdescendantreport.py:518
@@ -32709,8 +32317,6 @@ msgstr "Įtraukti nuotraukas iš galerijos"
 msgid "Whether to include images."
 msgstr "Ar įtraukti paveikslus."
 
-#. #########################
-#. ###############################
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1120
 #: ../gramps/plugins/textreport/familygroup.py:782
@@ -32843,7 +32449,6 @@ msgstr "Antro lygio antraščių stilius"
 msgid "The style used for details."
 msgstr "Stilius naudojamas detalėse"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detdescendantreport.py:342
 #, python-format
 msgid "Descendant Report for %(person_name)s"
@@ -32919,13 +32524,11 @@ msgid ""
 msgstr ""
 "Ar įtraukti palikuonių kelią nuo pirminio asmens iki kiekvieno palikuonio."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:159
 #, python-format
 msgid "End of Line Report for %s"
 msgstr " %s – giminystės linijos ataskaita"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:166
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
@@ -32982,7 +32585,6 @@ msgstr "Rekursinis (žemyn)"
 msgid "Create reports for all descendants of this family."
 msgstr "Sukuria ataskaitą su visais šios šeimos palikuonimis."
 
-#. #########################
 #: ../gramps/plugins/textreport/familygroup.py:755
 msgid "Parent Marriage"
 msgstr "Tėvų santuoka"
@@ -33067,13 +32669,12 @@ msgstr "Ar įtraukti įrašus kuriuose trūksta informacijos."
 msgid "The style used for the parent's name"
 msgstr "Stilius, naudojamas tėvų vardams"
 
-#. make sure it's translated, so it can be used below, in "combine"
 #: ../gramps/plugins/textreport/indivcomplete.py:193
 #, python-format
 msgid "%(str1)s in %(str2)s. "
 msgstr "%(str1)s %(str2)s. "
 
-#. for example (a stepfather): John Smith, relationship: Step
+#. Translators: e.g. (a stepfather): John Smith, relationship: Step
 #: ../gramps/plugins/textreport/indivcomplete.py:251
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
@@ -33121,7 +32722,6 @@ msgid ""
 "Report'"
 msgstr ""
 
-#. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
 msgstr "Įtraukti pastabas"
@@ -33158,12 +32758,10 @@ msgstr "Įtraukti surašymo įvykius"
 msgid "Whether to include Census Events."
 msgstr "Ar įtraukti surašymo įvykius."
 
-#. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1162
 msgid "Sections"
 msgstr "Skyrius"
 
-#. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1165
 msgid "Event groups"
 msgstr "Įvykių grupės"
@@ -33191,7 +32789,6 @@ msgstr "Stilius naudojamas vaizo patabose."
 msgid "The style used for image descriptions."
 msgstr "Stilius naudojamas vaizdo aprašymuose."
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/kinshipreport.py:125
 #, python-format
 msgid "Kinship Report for %s"
@@ -33246,7 +32843,6 @@ msgstr "Nuorodos į"
 msgid "Failed"
 msgstr "Nepavyko"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:104
 #, python-format
 msgid "Number of Ancestors for %s"
@@ -33260,8 +32856,6 @@ msgstr[0] "Karta {number} turi {count} asmenį. {percent}"
 msgstr[1] "Karta {number} turi {count} asmenis. {percent}"
 msgstr[2] "Karta {number} turi {count} asmenų. {percent}"
 
-#. TC # English return something like:
-#. Total ancestors in generations 2 to 3 is 4. (66.67%)
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:167
 #, python-format
 msgid ""
@@ -33271,8 +32865,6 @@ msgstr ""
 "Kartose nuo%(second_generation)d iki %(last_generation)d bendras palikuonių "
 "skaičius yra %(count)d. %(percent)s"
 
-#. Write the title line. Set in INDEX marker so that this section will be
-#. identified as a major category if this is included in a Book report.
 #: ../gramps/plugins/textreport/placereport.py:128
 #: ../gramps/plugins/textreport/placereport.py:142
 #: ../gramps/plugins/textreport/placereport.py:159
@@ -33518,7 +33110,6 @@ msgstr "Gairių ataskaita"
 msgid "You must first create a tag before running this report."
 msgstr "Prieš kurdami atskaitą, turite sukurti gairę"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/tagreport.py:116
 #, python-format
 msgid "Tag Report for %s Items"
@@ -33742,7 +33333,7 @@ msgstr "Analizuojami įvykiai"
 msgid "No event record was modified."
 msgstr "Nebuvo pataisytas nė vienas įrašas."
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/changetypes.py:137
 #, python-brace-format
 msgid "{number_of} event record was modified."
@@ -33777,8 +33368,6 @@ msgstr ""
 msgid "Check Integrity"
 msgstr "Tikrinti vientisumą"
 
-#. for bsddb the check_backlinks doesn't work in 'batch' mode because
-#. the table used for backlinks is closed.
 #: ../gramps/plugins/tool/check.py:231
 #, fuzzy
 msgid "Check Backlink Integrity"
@@ -33900,10 +33489,6 @@ msgstr "Ieškoma nutrauktų ryšių tarp tėvų"
 msgid "Looking for event problems"
 msgstr "Ieškoma  įvykių problemų"
 
-#. Now we go through our backlinks and the dbs table comparing them
-#. check that each real reference has a backlink in the db table
-#. Now we go through the db table and make checks against ours
-#. Check for db backlinks that don't have a reference object at all
 #: ../gramps/plugins/tool/check.py:1242 ../gramps/plugins/tool/check.py:1271
 #: ../gramps/plugins/tool/check.py:1296
 #, fuzzy
@@ -33975,7 +33560,7 @@ msgstr "Vidinis duombazės patikrinimas baigtas"
 msgid "No errors were found: the database has passed internal checks."
 msgstr "Vidinis duombazės patikrinimas baigtas. Klaidų nerasta."
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2462
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
@@ -33993,7 +33578,7 @@ msgstr "Neegzistuojantis vaikas"
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s buvo ištrintas iš %(family)s šeimos\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2488
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
@@ -34011,7 +33596,7 @@ msgstr "Neegzistuojantis asmuo"
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s buvo atstatytas į %(family)s šeimą\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2514
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
@@ -34020,7 +33605,7 @@ msgstr[0] "Rasta {quantity} sudvejinta sutuoktinio/šeimos nuoroda\n"
 msgstr[1] "Rastos {quantity} sudvejintos sutuoktinio/šeimos nuorodos\n"
 msgstr[2] "Rasta {quantity} sudvejintų sutuoktinio/šeimos nuorodų\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2542
 #, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
@@ -34030,7 +33615,7 @@ msgstr[0] "Pašalinta rasta {quantity} šeima be tėvų ar vaikų.\n"
 msgstr[1] "Pašalinta rasta {quantity} šeimos be tėvų ar vaikų.\n"
 msgstr[2] "Pašalinta rasta {quantity} šeimų be tėvų ar vaikų.\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2554
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
@@ -34039,7 +33624,7 @@ msgstr[0] "Sutaisyta {quantity} sugadintas šeimos ryšys\n"
 msgstr[1] "Sutaisyta {quantity} sugadinti šeimos ryšiai\n"
 msgstr[2] "Sutaisyta {quantity} sugadintų šeimos ryšių\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2562
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
@@ -34056,7 +33641,7 @@ msgstr[0] "{quantity} asmuo buvo nurodytas, bet nerastas\n"
 msgstr[1] "{quantity} asmenys buvo nurodyti, bet nerasti\n"
 msgstr[2] "{quantity} asmenų buvo nurodyta, bet nerasta\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2579
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
@@ -34065,7 +33650,7 @@ msgstr[0] "{quantity} šeima buvo nurodyta, bet nerastas\n"
 msgstr[1] "{quantity} šeimos buvo nurodytos, bet nerastos\n"
 msgstr[2] "{quantity} šeimų buvo nurodyta, bet nerastos\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2589
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
@@ -34082,7 +33667,7 @@ msgstr[0] "{quantity} talpykla buvo nurodyta, bet nerasta\n"
 msgstr[1] "{quantity} talpyklos buvo nurodytos, bet nerastos\n"
 msgstr[2] "{quantity} talpyklų buvo nurodyta, bet nerastos\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2608 ../gramps/plugins/tool/check.py:2695
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
@@ -34092,14 +33677,16 @@ msgstr[1] "Nukreipta į {quantity} garso/vaizdo objektus, bet jie nerasti\n"
 msgstr[2] "Nukreipta į {quantity} garso/vaizdo objektų, bet jie nerasti\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, python-brace-format
+#, fuzzy, python-brace-format
+#| msgid "Reference to {quantity} missing media object was kept\n"
+#| msgid_plural "References to {quantity} media objects were kept\n"
 msgid "Reference to {quantity} missing media object was kept\n"
-msgid_plural "References to {quantity} media objects were kept\n"
+msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "Išsaugota {quantity} nuoroda į trūkstamą garso/vaizdo objektą\n"
 msgstr[1] "Išsaugotos {quantity} nuorodos į trūkstamus garso/vaizdo objektus\n"
 msgstr[2] "Išsaugota {quantity} nuorodų į trūkstamus garso/vaizdo objektus\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2627
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
@@ -34108,7 +33695,7 @@ msgstr[0] "Pakeistas {quantity} trūkstamas garso/vaizdo objektas\n"
 msgstr[1] "Pakeisti {quantity} trūkstami garso/vaizdo objektai\n"
 msgstr[2] "Pakeista {quantity} trūkstamų garso/vaizdo objektų\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2635
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
@@ -34117,7 +33704,7 @@ msgstr[0] "Ištrintas {quantity} trūkstamas garso/vaizdo objektas\n"
 msgstr[1] "Ištrinti {quantity} trūkstami garso/vaizdo objektai\n"
 msgstr[2] "Ištrinta {quantity} trūkstamų garso/vaizdo objektų\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2643
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
@@ -34126,7 +33713,7 @@ msgstr[0] "{quantity} įvykis buvo nurodytas, bet nerastas\n"
 msgstr[1] "{quantity} įvykiai buvo nurodyti, bet nerasti\n"
 msgstr[2] "{quantity} įvykių buvo nurodyta, bet nerasta\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2651
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
@@ -34135,7 +33722,7 @@ msgstr[0] "Pataisytas {quantity} netinkamas gimimo įvykio pavadinimas\n"
 msgstr[1] "Pataisyti {quantity} netinkami gimimo įvykio pavadinimai\n"
 msgstr[2] "Pataisyta {quantity} netinkamų gimimo įvykio pavadinimų\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2659
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
@@ -34144,7 +33731,7 @@ msgstr[0] "Ištaisytas {quantity} netinkamas mirties įvykio pavadinimas\n"
 msgstr[1] "Ištaisyti {quantity} netinkami mirties įvykio pavadinimai\n"
 msgstr[2] "Ištaisyta {quantity} netinkamų mirties įvykio pavadinimų\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2667
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
@@ -34169,7 +33756,7 @@ msgstr[0] "{quantity} šaltinis nurodytas, bet nerastas\n"
 msgstr[1] "{quantity} šaltiniai nurodyti, bet nerasti\n"
 msgstr[2] "{quantity} šaltinių nurodyta, bet nerasta\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2704
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
@@ -34178,7 +33765,7 @@ msgstr[0] "Susietas {quantity} pastabos objektas, bet jis nerastas\n"
 msgstr[1] "Susieti {quantity} pastabos objektai, bet jie nerasti\n"
 msgstr[2] "Susieta {quantity} pastabos objektų, bet jie nerasti\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2714 ../gramps/plugins/tool/check.py:2724
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
@@ -34187,7 +33774,7 @@ msgstr[0] "Susietas {quantity} gairės objektas, bet jis nerastas\n"
 msgstr[1] "Susieti {quantity} gairių objektai, bet jie nerasti\n"
 msgstr[2] "Susieta {quantity} gairių objektų, bet jie nerasti\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2734
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
@@ -34204,7 +33791,7 @@ msgstr[0] "Pataisytas {quantity} netinkamas šaltinio citavimas\n"
 msgstr[1] "Pataisyti {quantity} netinkami šaltinio citavimai\n"
 msgstr[2] "Pataisyta {quantity} netinkamų šaltinio citavimų\n"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2754
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
@@ -34285,57 +33872,10 @@ msgstr "Paleistas datos testas"
 msgid "Generating dates"
 msgstr "Kuriamos datos"
 
-#. test invalid dates
-#. dateval = (4,7,1789,False,5,8,1876,False)
-#. for l in range(1,len(dateval)):
-#. d = Date()
-#. try:
-#. d.set(Date.QUAL_NONE,Date.MOD_NONE,
-#. Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-#. dates.append( d)
-#. except DateError, e:
-#. d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-#. dates.append( d)
-#. except:
-#. d = Date()
-#. d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-#. dates.append( d)
-#. for l in range(1,len(dateval)):
-#. d = Date()
-#. try:
-#. d.set(Date.QUAL_NONE,Date.MOD_SPAN,Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-#. dates.append( d)
-#. except DateError, e:
-#. d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-#. dates.append( d)
-#. except:
-#. d = Date()
-#. d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-#. dates.append( d)
-#. self.progress.step()
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_NONE,
-#. Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
-#. dates.append( d)
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_NONE,
-#. Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
-#. dates.append( d)
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_SPAN,
-#. Date.CAL_GREGORIAN,
-#. (4,7,1789,False,55,8,1876,False),"Text comment")
-#. dates.append( d)
-#. d = Date()
-#. d.set(Date.QUAL_NONE,Date.MOD_SPAN,
-#. Date.CAL_GREGORIAN,
-#. (4,7,1789,False,5,88,1876,False),"Text comment")
-#. dates.append( d)
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
 msgid "Date Test Plugin"
 msgstr "Datos testavimo įskiepis"
 
-#. create pass and fail tags
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
 msgid "Pass"
 msgstr "Pasuoti"
@@ -34405,7 +33945,6 @@ msgstr "Įvykių palyginimo rezultatai"
 msgid "%(event_name)s Date"
 msgstr "%(event_name)s – data"
 
-#. This won't be shown in a tree
 #: ../gramps/plugins/tool/eventcmp.py:259
 #, python-format
 msgid "%(event_name)s Place"
@@ -34432,7 +33971,7 @@ msgstr "Įvykio vardo pasikeitimai"
 msgid "Extract Event Description"
 msgstr "Tikslus įvykio aprašymas"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/eventnames.py:120
 #, python-brace-format
 msgid "{quantity} event description has been added"
@@ -34540,7 +34079,6 @@ msgstr "Rasti duombazės ciklą"
 msgid "Find database loop"
 msgstr "Rasti duombazės ciklą"
 
-#. start the progress indicator
 #: ../gramps/plugins/tool/findloop.py:93
 #: ../gramps/plugins/tool/notrelated.py:112
 #: ../gramps/plugins/tool/notrelated.py:257
@@ -34800,7 +34338,7 @@ msgstr "Ieškoma citavimo laukų"
 msgid "Number of merges done"
 msgstr "Atliktų apjungimų kiekis"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/mergecitations.py:235
 #, python-brace-format
 msgid "{number_of} citation merged"
@@ -34827,13 +34365,12 @@ msgstr "Nesusieti su \"%s\""
 msgid "NotRelated"
 msgstr "Nesusiję"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/tool/notrelated.py:173
 #, python-format
 msgid "Everyone in the database is related to %s"
 msgstr "Kiekvienas asmuo duombazėje susietas su %s"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../gramps/plugins/tool/notrelated.py:262
 #, python-brace-format
@@ -34843,7 +34380,7 @@ msgstr[0] "Uždedama gairė {number_of} asmeniui"
 msgstr[1] "Uždedama gairė {number_of} asmenims"
 msgstr[2] "Uždedama gairė {number_of} asmenų"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
 #: ../gramps/plugins/tool/notrelated.py:305
 #, python-brace-format
@@ -34853,7 +34390,7 @@ msgstr[0] "Nustato ryšį tarp {number_of} asmenų"
 msgstr[1] "Nustato ryšį tarp {number_of} asmenų"
 msgstr[2] "Nustato ryšį tarp {number_of} asmenų"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:385
 #, python-brace-format
 msgid "Looking for {number_of} person"
@@ -34862,7 +34399,7 @@ msgstr[0] "Ieškoma {number_of} asmens"
 msgstr[1] "Ieškomi {number_of} asmenys"
 msgstr[2] "Ieškoma {number_of} asmenų"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:413
 #, python-brace-format
 msgid "Looking up the name of {number_of} person"
@@ -35105,19 +34642,16 @@ msgstr "Ieškoma kiekvieno asmens galimų ciklų"
 msgid "handle"
 msgstr "Tvarkyti"
 
-#. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:140
 #, fuzzy
 msgid "firstname"
 msgstr "vardas nežinomas"
 
-#. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:148
 #, fuzzy
 msgid "alternate name"
 msgstr "Alternatyvūs vardai"
 
-#. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:152
 #, fuzzy
 msgid "group as"
@@ -35201,8 +34735,6 @@ msgstr "Dvigubu spustelėjimu eilutėje peržiūrėkite/taisykite duomenis"
 msgid "Unused Objects"
 msgstr "Nenaudojami objektai"
 
-#. Add mark column
-#. Add ignore column
 #: ../gramps/plugins/tool/removeunused.py:188
 #: ../gramps/plugins/tool/verify.py:557
 msgid "Mark"
@@ -35283,7 +34815,6 @@ msgctxt "manual"
 msgid "Reorder_Gramps_ID"
 msgstr "Pertvarkyti_Gramps_ID"
 
-#. self.top.set_icon(ICON)
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
 #: ../gramps/plugins/tool/reorderids.py:536
@@ -35415,40 +34946,6 @@ msgstr "Kuriamos duombazės klaidos"
 msgid "Generating families"
 msgstr "Kuriamos šeimos"
 
-#. Create a family, that links to father and mother, but father does not
-#. link back
-#. Create a family, that misses the link to the father
-#. Create a family, that misses the link to the mother
-#. Create a family, that links to father and mother, but mother does not
-#. link back
-#. person2 = self.db.get_person_from_handle(person2_h)
-#. person2.add_family_handle(fam_h)
-#. self.db.commit_person(person2, self.trans)
-#. Create two married people of same sex.
-#. This is NOT detected as an error by plugins/tool/Check.py
-#. Create a family, that contains an invalid handle to for the father
-#. Create a family, that contains an invalid handle to for the mother
-#. person2 = self.db.get_person_from_handle(person2_h)
-#. person2.add_family_handle(fam_h)
-#. self.db.commit_person(person2, self.trans)
-#. Creates a family where the child does not link back to the family
-#. child = self.db.get_person_from_handle(child_h)
-#. person2.add_parent_family_handle(fam_h)
-#. self.db.commit_person(child, self.trans)
-#. Creates a family where the child is not linked, but the child links
-#. to the family
-#. Creates a family where the child is one of the parents
-#. Creates a couple that refer to a family that does not exist in the
-#. database.
-#. Creates a person having a non existing birth event handle set
-#. Creates a person having a non existing death event handle set
-#. Creates a person having a non existing event handle set
-#. Creates a person with a birth event having an empty type
-#. Creates a person with a death event having an empty type
-#. Creates a person with an event having an empty type
-#. This is NOT detected as an error by plugins/tool/Check.py
-#. Creates a person with a birth event pointing to nonexisting place
-#. Creates a person with an event pointing to nonexisting place
 #: ../gramps/plugins/tool/testcasegenerator.py:470
 #: ../gramps/plugins/tool/testcasegenerator.py:506
 #: ../gramps/plugins/tool/testcasegenerator.py:555
@@ -35726,7 +35223,7 @@ msgstr "Patikrinti duomenis"
 msgid "Data Verify tool"
 msgstr "Duomenų tikrinimo įrankis"
 
-#. translators: needed for French+Arabic, ignore otherwise
+#. Translators: needed for French+Arabic, ignore otherwise
 #: ../gramps/plugins/tool/verify.py:318
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
@@ -36236,7 +35733,6 @@ msgstr "Fonas"
 msgid "Add global background colored gradient"
 msgstr "Pridėti bendrą fono spalvos gradientą"
 
-#. colors, stored as hex values
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
 #: ../gramps/plugins/view/fanchartview.py:406
@@ -36254,7 +35750,6 @@ msgstr "Gradiento pabaiga / antra spalva"
 msgid "Color for duplicates"
 msgstr "Dublikatų spalva"
 
-#. algo for the fan angle distribution
 #: ../gramps/plugins/view/fanchart2wayview.py:324
 #: ../gramps/plugins/view/fanchartdescview.py:323
 msgid "Fan chart distribution"
@@ -36271,30 +35766,23 @@ msgstr "Vienodas vaikų pasiskirstymas"
 msgid "Size proportional to number of descendants"
 msgstr "Dydis priklauso nuo palikuonių kiekio"
 
-#. show names one two line
 #: ../gramps/plugins/view/fanchart2wayview.py:335
 #: ../gramps/plugins/view/fanchartdescview.py:334
 #: ../gramps/plugins/view/fanchartview.py:418
 msgid "Show names on two lines"
 msgstr "Rodyti vardus dviejose eilutėse"
 
-#. Flip names
 #: ../gramps/plugins/view/fanchart2wayview.py:339
 #: ../gramps/plugins/view/fanchartdescview.py:338
 #: ../gramps/plugins/view/fanchartview.py:422
 msgid "Flip name on the left of the fan"
 msgstr "Apkeisti vardus vėduoklės kairėje pusėje"
 
-#. Show gramps id
 #: ../gramps/plugins/view/fanchart2wayview.py:343
 #, fuzzy
 msgid "Show the gramps id"
 msgstr "Rodo paskutinį puslapį"
 
-#. options we don't show on the dialog
-#. #configdialog.add_checkbox(table,
-#. #        _('Allow radial text'),
-#. #        ??, 'interface.fanview-radialtext')
 #: ../gramps/plugins/view/fanchart2wayview.py:346
 #: ../gramps/plugins/view/fanchartdescview.py:345
 #: ../gramps/plugins/view/fanchartview.py:437
@@ -36309,7 +35797,6 @@ msgstr "Išdėstymas"
 msgid "No preview available"
 msgstr "Peržiūra negalima"
 
-#. form of the fan
 #: ../gramps/plugins/view/fanchartdescview.py:316
 #: ../gramps/plugins/view/fanchartview.py:411
 msgid "Fan chart type"
@@ -36330,8 +35817,6 @@ msgstr "Pusė skritulio"
 msgid "Quadrant"
 msgstr "Ketvirtis skritulio"
 
-#. show gramps_id
-#. Show the gramps_id
 #: ../gramps/plugins/view/fanchartdescview.py:342
 #: ../gramps/plugins/view/fanchartview.py:430
 #, fuzzy
@@ -36342,7 +35827,6 @@ msgstr "Gramps id"
 msgid "Print or save the Fan Chart View"
 msgstr "Spausdinkite arba išsaugokite apskritiminės diagramos vaizdą"
 
-#. options users should not change:
 #: ../gramps/plugins/view/fanchartview.py:426
 msgid "Show children ring"
 msgstr "Rodyti vaikų žiedus"
@@ -36931,7 +36415,6 @@ msgstr "_Ankstesnis"
 msgid "_Next"
 msgstr "_Sekantis"
 
-#. Mouse scroll direction setting.
 #: ../gramps/plugins/view/pedigreeview.py:1681
 msgid "Mouse scroll direction"
 msgstr "Pelės slinkimo kryptis"
@@ -37086,7 +36569,7 @@ msgstr "Ištrinti asmenį kaip šių tėvų vaiką"
 msgid "Remove person as parent in this family"
 msgstr "Ištrinti asmenį kaip šios šeimos tėvą ar motiną"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1044
 #: ../gramps/plugins/view/relview.py:1099
 #, python-brace-format
@@ -37165,7 +36648,7 @@ msgstr "Rasti sugadinti šeimos įrašai"
 msgid "Please run the Check and Repair Database tool"
 msgstr "Paleiskite \"Tikrinti ir Taisyti duombazę\" įrankį"
 
-#. translators: leave all/any {...} untranslated
+#. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1564
 #: ../gramps/plugins/view/relview.py:1610
 #, python-brace-format
@@ -37361,7 +36844,6 @@ msgstr "Citatų medis"
 msgid "A view displaying citations and sources in a tree format."
 msgstr "Rodinys, kuriame citatos ir šaltiniai pateikiami medžio pavidale"
 
-#. Add xml, doctype, meta and stylesheets
 #: ../gramps/plugins/webreport/addressbook.py:89
 #: ../gramps/plugins/webreport/addressbooklist.py:82
 #: ../gramps/plugins/webreport/basepage.py:1748
@@ -37370,7 +36852,6 @@ msgstr "Rodinys, kuriame citatos ir šaltiniai pateikiami medžio pavidale"
 msgid "Address Book"
 msgstr "Adresų knyga"
 
-#. Address Book Page message
 #: ../gramps/plugins/webreport/addressbooklist.py:91
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
@@ -37425,16 +36906,13 @@ msgstr " %(date)s"
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "%(http_break)sSukurta %(subject_url)s"
 
-#. Begin Navigation Menu--
-#. is the style sheet either Basic-Blue or Visually Impaired,
-#. and menu layout is Drop Down?
-#. Basic Blue style sheet with navigation menus
+#. Translators: Basic Blue style sheet with navigation menus
 #: ../gramps/plugins/webreport/basepage.py:1680
 #: ../gramps/plugins/webstuff/webstuff.py:65
 msgid "Basic-Blue"
 msgstr "Pagrindinė-mėlyna"
 
-#. Visually Impaired style sheet with its navigation menus
+#. Translators: Visually Impaired style sheet with its navigation menus
 #: ../gramps/plugins/webreport/basepage.py:1681
 #: ../gramps/plugins/webstuff/webstuff.py:97
 msgid "Visually Impaired"
@@ -37464,7 +36942,6 @@ msgstr "Miniatiūros"
 msgid "Download"
 msgstr "Atsisiųsti"
 
-#. add contact column
 #: ../gramps/plugins/webreport/basepage.py:1750
 #: ../gramps/plugins/webreport/basepage.py:1947
 #: ../gramps/plugins/webreport/basepage.py:1984
@@ -37563,8 +37040,6 @@ msgstr "Paskutinis taisymas"
 msgid "MD5"
 msgstr ""
 
-#. We have several files to download
-#. but all file names are empty
 #: ../gramps/plugins/webreport/download.py:178
 #, fuzzy
 msgid "No file to download"
@@ -37601,7 +37076,6 @@ msgstr "Įvykiai, kurie prasideda raide %s"
 msgid "Creating family pages..."
 msgstr "Kuriami šeimos puslapiai"
 
-#. Families list page message
 #: ../gramps/plugins/webreport/family.py:148
 msgid ""
 "This page contains an index of all the families/ relationships in the "
@@ -37672,7 +37146,6 @@ msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 
-#. missing media error message
 #: ../gramps/plugins/webreport/media.py:427
 msgid "The file has been moved or deleted."
 msgstr "Rinkmena perkelta arba ištrinta."
@@ -37724,8 +37197,6 @@ msgstr "Kuriamas kitų objektų sąrašas..."
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "Šeimos %(husband)s ir %(spouse)s"
 
-#. Only the name of the husband is known
-#. Only the name of the wife is known
 #: ../gramps/plugins/webreport/narrativeweb.py:845
 #: ../gramps/plugins/webreport/narrativeweb.py:849
 #, python-format
@@ -38074,8 +37545,6 @@ msgstr "HTML puslapio poraštė"
 msgid "A note to be used as the page footer"
 msgstr "Pastaba, kuri naudojama puslapio poraštei"
 
-#. This option will be available only if you select ".php" in the
-#. "File extension" from the "Html" tab
 #: ../gramps/plugins/webreport/narrativeweb.py:2212
 msgid "PHP user session"
 msgstr ""
@@ -38611,7 +38080,6 @@ msgstr ""
 msgid "Creating individual pages"
 msgstr "Kuriami asmenų puslapiai"
 
-#. Individual List page message
 #: ../gramps/plugins/webreport/person.py:199
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
@@ -38638,7 +38106,6 @@ msgstr "%(surname)s – pavardės, prasidedančios raide %(letter)s"
 msgid "Tracking %s"
 msgstr "Sekimas: %s"
 
-#. page description
 #: ../gramps/plugins/webreport/person.py:922
 msgid ""
 "This map page represents that person and any descendants with all of their "
@@ -38701,7 +38168,6 @@ msgstr "Ryšys su šia šeima (išskyrus gimimo)"
 msgid "Creating place pages"
 msgstr "Kuriami vietovės puslapiai"
 
-#. place list page message
 #: ../gramps/plugins/webreport/place.py:161
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
@@ -38722,12 +38188,10 @@ msgstr "Pavadinimas"
 msgid "Places beginning with letter %s"
 msgstr "Vietovės, kurių pavadinimai prasideda raide %s"
 
-#. section title
 #: ../gramps/plugins/webreport/place.py:407
 msgid "Place Map"
 msgstr "Vietų žemėlapis"
 
-#. set progress bar pass for Repositories
 #: ../gramps/plugins/webreport/repository.py:105
 msgid "Creating repository pages"
 msgstr "Kuriu saugyklų puslapius"
@@ -38778,7 +38242,6 @@ msgstr "Duombazės apžvalga"
 msgid "Narrative web content report for"
 msgstr "Pasakojamasis Internetinio turinio ataskaita"
 
-#. feature request 2356: avoid genitive form
 #: ../gramps/plugins/webreport/surname.py:121
 #, python-format
 msgid ""
@@ -38793,7 +38256,6 @@ msgstr ""
 msgid "Surnames by person count"
 msgstr "Pavardžių pagal asmenis skaičius"
 
-#. page message
 #: ../gramps/plugins/webreport/surnamelist.py:110
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
@@ -38838,19 +38300,11 @@ msgid ""
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
 
-#. An optional link to a home page
-#. Note. We use '/' here because it is a URL, not a OS
-#. dependent pathname need to leave home link alone,
-#. so look for it ...
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
 msgid "NarrativeWeb Home"
 msgstr "Pasakojamojo tinklapio pradžia"
 
-#. _('translation')
-#. Number of directory levels up to get to self.html_dir / root
-#. Number of directory levels up to get to root
-#. generate progress pass for "Year At A Glance"
 #: ../gramps/plugins/webreport/webcal.py:336
 #: ../gramps/plugins/webreport/webcal.py:1030
 #: ../gramps/plugins/webreport/webcal.py:1115
@@ -38863,7 +38317,6 @@ msgstr "Internetinio kalendoriaus ataskaita"
 msgid "Calculating Holidays for year %04d"
 msgstr "Skaičiuojamos atostogos %04d metams"
 
-#. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:631
 #: ../gramps/plugins/webreport/webcal.py:674
 msgid "Full year at a Glance"
@@ -38877,7 +38330,6 @@ msgstr "Formatuojami mėnesiai..."
 msgid "Creating Year At A Glance calendar"
 msgstr "Kuriu Metų Peržiūros kalendorius"
 
-#. page title
 #: ../gramps/plugins/webreport/webcal.py:1122
 #, python-format
 msgid "%(year)d, At A Glance"
@@ -38893,7 +38345,6 @@ msgstr ""
 "Paspaudus ant datos nukreips į puslapį, kuris parodys visus tos dienos "
 "įvykius, jei tokių yra.\n"
 
-#. page title
 #: ../gramps/plugins/webreport/webcal.py:1191
 msgid "One Day Within A Year"
 msgstr "Viena diena per metus"
@@ -39122,46 +38573,41 @@ msgstr "Internetinės priemonės"
 msgid "Provides a collection of resources for the web"
 msgstr "Teikia išteklių kolekciją internete"
 
-#. id, user selectable?, translated_name, option name, fullpath,
-#. navigation target name, images, javascript
-#. "default" is used as default
-#. default style sheet in the options
-#. Basic Ash style sheet
+#. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:61
 msgid "Basic-Ash"
 msgstr "Pagrindinis - Uosis"
 
-#. Basic Cypress style sheet
+#. Translators: Basic Cypress style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:69
 msgid "Basic-Cypress"
 msgstr "Pagrindinis - Kiparisas"
 
-#. basic Lilac style sheet
+#. Translators: Basic Lilac style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:73
 msgid "Basic-Lilac"
 msgstr "Pagrindinis - Alyva"
 
-#. basic Peach style sheet
+#. Translators: Basic Peach style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:77
 msgid "Basic-Peach"
 msgstr "Pagrindinis - Persikas"
 
-#. basic Spruce style sheet
+#. Translators: Basic Spruce style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:81
 msgid "Basic-Spruce"
 msgstr "Pagrindinis - Eglė"
 
-#. Mainz style sheet with its images
+#. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
 msgid "Mainz"
 msgstr "Mainz"
 
-#. Nebraska style sheet
+#. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
 msgid "Nebraska"
 msgstr "Nebraska"
 
-#. no style sheet option
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Jokio stiliaus"
