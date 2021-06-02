@@ -2,24 +2,25 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # FIRST AUTHOR <trande@gmail.com>, 2012.
-#
+# Jacque Fresco <aidter@use.startmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2018-07-13 14:34+0800\n"
-"Last-Translator: detran <trande@gmail.com>\n"
-"Language-Team: VIETNAMESE <trande@gmail.com>\n"
+"PO-Revision-Date: 2021-06-02 22:58+0000\n"
+"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Poedit-KeywordsList: July 13, 2018: Gramps Version 4.2.8 based on "
 "Vietnamese Translation Feb 29, 2012. 14:02 VN time, VIETNAMESE TRANSLATION "
 "OF GRAMPS, V. 3\n"
-"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -7882,7 +7883,7 @@ msgstr "Con cái "
 #: ../gramps/plugins/webreport/person.py:1756
 #: ../gramps/plugins/webreport/updates.py:112
 msgid "Events"
-msgstr "Sự kiện "
+msgstr "Sự kiện"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
@@ -24912,7 +24913,7 @@ msgstr "ngày "
 
 #: ../gramps/plugins/importer/importcsv.py:240
 msgid "place"
-msgstr "nơi "
+msgstr "Nơi"
 
 #: ../gramps/plugins/importer/importcsv.py:241
 msgid "place id"
