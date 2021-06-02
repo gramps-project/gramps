@@ -10,21 +10,19 @@
 # Alex Roitman <shura@gramps-project.org>, 2006.
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
+# Christoph Eder <christoph.eder@phsalzburg.at>, 2020, 2021.
 #
 # changes de_AT:
-# Christoph Eder <christoph.eder@phsalzburg.at>, 2020.
 #
 # changelist:
 #
 # Januar -> Jänner (import for reports: Januar(January) is never used)
-# Kirchengemeinde -> Pfarre (catholic parish) 
+# Kirchengemeinde -> Pfarre (catholic parish)
 # Kreis -> Bezirk (third level of place division)
 # Bezirk -> Kreis (for usage of German Kreis)
-# Dorf -> Ortschaft (Ortschaft is the most common case for a division of a municipality) 
+# Dorf -> Ortschaft (Ortschaft is the most common case for a division of a municipality)
 # Amt -> Department (Amt is not used, the French Departement is better known)
 # Buchladen -> Buchhandlung
-
-
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
@@ -44263,4 +44261,3 @@ msgstr "Liefert die Hauptperson"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
-
