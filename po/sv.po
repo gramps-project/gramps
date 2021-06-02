@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-27 16:55+0000\n"
+"PO-Revision-Date: 2021-06-02 22:58+0000\n"
 "Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -33361,13 +33361,11 @@ msgstr[0] "{quantity} mediaobjekt som refererats till kunde inte hittas\n"
 msgstr[1] "{quantity} mediaobjekt som refererats till kunde inte hittas\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "Referens till {quantity} saknat mediaobjekt behölls\n"
-msgstr[1] "Referens till {quantity} saknade mediaobjekt behölls\n"
+msgstr[1] "Referenser till {quantity} saknade mediaobjekt behölls\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2627
