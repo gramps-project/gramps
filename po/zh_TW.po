@@ -8,20 +8,22 @@
 # 黃友誠 <grampscn@gmail.com>, 2009, 2010, 2011.
 # Yin Hoe TAN <astyh83@gmail.com> 2014.
 # Anthony Fok (霍東靈) <foka@debian.org>, 2015.
-#
+# Jacque Fresco <aidter@use.startmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2015-03-18 17:31-0600\n"
-"Last-Translator: Anthony Fok <foka@debian.org>\n"
-"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
+"PO-Revision-Date: 2021-06-02 22:58+0000\n"
+"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -2892,8 +2894,9 @@ msgid "Wed"
 msgstr "已婚"
 
 #: ../gramps/gen/datehandler/_datestrings.py:256
+#, fuzzy
 msgid "Thu"
-msgstr ""
+msgstr "週四"
 
 #: ../gramps/gen/datehandler/_datestrings.py:257
 #, fuzzy
