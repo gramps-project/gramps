@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-31 14:27+0000\n"
+"PO-Revision-Date: 2021-06-02 22:58+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -33504,9 +33504,7 @@ msgstr[0] "{quantity} mediaobjektiin viitattiin, mutta sitä ei löytynyt\n"
 msgstr[1] "{quantity} mediaobjektiin viitattiin, mutta niitä ei löytynyt\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "{quantity} viittaus puuttuvaan mediaan pidetty\n"
