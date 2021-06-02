@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-31 14:27+0000\n"
+"PO-Revision-Date: 2021-06-02 22:58+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -21648,7 +21648,7 @@ msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:165
 msgid "vC_alendar"
-msgstr "vC_alendar"
+msgstr "v_Calendar"
 
 #: ../gramps/plugins/export/export.gpr.py:166
 msgid "vCalendar is used in many calendaring and PIM applications."
@@ -32890,13 +32890,11 @@ msgstr[0] "{quantity} אובייקט מדיה הופנה אך לא נמצא\n"
 msgstr[1] "{quantity} אובייקטי מדיה הופנו אך לא נמצאו\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] "{quantity} הפניה לאובייקט מדיה נשמר\n"
-msgstr[1] "{quantity} הפניות לאובייקטי מדיה נשמרו\n"
+msgstr[0] "הפניה {quantity} לאובייקט מדיה חסר נשמר\n"
+msgstr[1] "{quantity} הפניות לאובייקטי מדיה חסרים נשמרו\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2627
@@ -36001,8 +35999,8 @@ msgid ""
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
 msgstr ""
-"דף זה מכיל אינדקס של כל האנשים במסד הנתונים, ממוינים לפי שמות משפחה, עם אחד "
-"מהבאים: כתובת, מגורים או קישורי מרשתת. בחירה בשם האדם&8217; תפתח את עמוד "
+"עמוד זה מכיל את מיפתח כל האנשים במסד הנתונים, ממוינים לפי שמות משפחה, עם אחד "
+"מהפרטים הבאים: כתובת, מגורים או קישורי מרשתת. בחירה בשם האדם תפתח את עמוד "
 "רשימת הכתובות האישית שלהם."
 
 #: ../gramps/plugins/webreport/addressbooklist.py:113
@@ -37196,10 +37194,9 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"עמוד מפה זה מייצג את האדם ואת כל הצאצאים לרבות כל האירועים/מקומות שלהם. "
-"מיקום העכבר מעל הסמן יציג את שם המקום. הסמנים ורשימת ההפניות ממוינים לפי סדר "
-"התאריכים (אם קיימים?). הקשה על שם&8217; מקום במקטע הפניה יפתח את עמוד המקום "
-"&8217;."
+"עמוד המפה מייצג את האדם ואת כל הצאצאים שלו, לרבות כל האירועים/המקומות. מיקום "
+"העכבר מעל הסמן יציג את שם המקום. הסמנים ורשימת ההפניות ממוינים לפי סדר "
+"התאריכים (ככל שקיימים?). הקשה על שם מקום במקטע ההפניה יפתח את עמוד המקום."
 
 #: ../gramps/plugins/webreport/person.py:974
 msgid "Place Title"
@@ -37624,7 +37621,7 @@ msgstr "פטירה"
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
 msgstr[0] "יום נישואין {couple}, {years}"
-msgstr[1] "יום נישואין {couple}, {years}"
+msgstr[1] "יומי נישואין {couple}, {years}"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
