@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-01 14:59+0000\n"
+"PO-Revision-Date: 2021-06-03 17:23+0000\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -940,8 +940,8 @@ msgid ""
 "which toggles records between private and public."
 msgstr ""
 "<b>Soukromí v Gramps</b><br/>Chcete-li udržet některé osobní informace "
-"tajné, označte je jako jako důvěrné. Údaje označené jako důvěrné lze vyřadit "
-"ze sestav a datových exportů.  Hledejte visací zámek, kterým změníte statut "
+"tajné, označte je jako důvěrné. Údaje označené jako důvěrné lze vyřadit ze "
+"sestav a datových exportů. Hledejte visací zámek, kterým změníte statut "
 "záznamu z veřejného na soukromý a naopak."
 
 #: ../data/tips.xml:100
@@ -3153,7 +3153,7 @@ msgstr ""
 "aktualizace schéma verze vašeho rodokmenu.\n"
 "\n"
 "Pokud provedete aktualizaci, nebude možné rodokmen používat s předchozí "
-"verzí Gramp, dokonce ani v v případě že že následně provedete "
+"verzí Gramp, dokonce ani v případě že následně provedete "
 "%(wiki_manual_backup_html_start)szálohu%(html_end)s nebo "
 "%(wiki_manual_export_html_start)sexport%(html_end)s aktualizovaného "
 "rodokmenu.\n"
@@ -3161,9 +3161,9 @@ msgstr ""
 "Aktualizace je náročná operace. Pokud selže nebo je přerušena, může nevratně "
 "poškodit váš rodokmen.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit %(bold_start)sstarou"
-"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
-"%(html_end)s svého rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit "
+"%(bold_start)sstarou%(bold_end)s verzi Gramps a %(wiki_backup_html_start)"
+"sprovést zálohu%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/exceptions.py:174
 #, python-format
@@ -3181,7 +3181,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3203,7 +3203,7 @@ msgstr ""
 "aktualizace schéma verze vašeho rodokmenu.\n"
 "\n"
 "Pokud provedete aktualizaci, nebude možné rodokmen používat s předchozí "
-"verzí Gramp, dokonce ani v v případě že že následně provedete "
+"verzí Gramp, dokonce ani v případě že následně provedete "
 "%(wiki_manual_backup_html_start)szálohu%(html_end)s nebo "
 "%(wiki_manual_export_html_start)sexport%(html_end)s aktualizovaného "
 "rodokmenu.\n"
@@ -3211,9 +3211,9 @@ msgstr ""
 "Aktualizace je náročná operace. Pokud selže nebo je přerušena, může nevratně "
 "poškodit váš rodokmen.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit %(bold_start)sstarou"
-"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
-"%(html_end)s svého rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit "
+"%(bold_start)sstarou%(bold_end)s verzi Gramps a %(wiki_backup_html_start)"
+"sprovést zálohu%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -9459,7 +9459,7 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Zvolte rodinu písem. Jestliže se nezobrazují mezinárodní znaky, použijte "
-"písmo FreeSans. FreeSans je dostupné z http://www.nongnu.org/freefont/"
+"písmo FreeSans. Písmo je dostupné z http://www.nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:152
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -12388,7 +12388,7 @@ msgid ""
 msgstr ""
 "Gramps nezná soubor typu \"%s\"\n"
 "\n"
-"Platné typy jsou: databáze Gramps, Gramps XML, balíček Gramps a GEDCOM a "
+"Platné typy jsou: Gramps databáze, Gramps XML, balíček Gramps a GEDCOM a "
 "další."
 
 #: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
@@ -15757,11 +15757,6 @@ msgid "Con_fidence:"
 msgstr "Důvěryhodnost:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -16306,8 +16301,6 @@ msgid ""
 msgstr "Další popisné jméno dané místo oficiálního křestního jména."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
 msgstr "Křestní jméno(a)"
 
@@ -16591,13 +16584,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Pole použité pro vložení informace z webové stránky jako google, "
-"openstreetmap, ..."
+"Pole použité pro vložení informace z webové stránky jako Google, "
+"OpenStreetMap..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
