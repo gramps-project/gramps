@@ -411,7 +411,7 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_entry
         if label:
-            lwidget = BasicLabel(_("%s: ") % label)  # Translators: for French
+            lwidget = BasicLabel(_("%s: ") % label)  # translators: for French
         entry = Gtk.Entry()
         if localized_config:
             entry.set_text(config.get(constant))
@@ -691,7 +691,7 @@ class GrampsPreferences(ConfigureDialog):
         hbox.pack_start(lwidget, False, False, 0)
         hbox.pack_start(self.color_scheme_box, False, False, 0)
 
-        restore_btn = Gtk.Button(label=_('Restore to defaults'))
+        restore_btn = Gtk.Button(_('Restore to defaults'))
         restore_btn.set_tooltip_text(
             _('Restore colors for current theme to default.'))
         restore_btn.connect('clicked', self.restore_colors)
@@ -846,19 +846,19 @@ class GrampsPreferences(ConfigureDialog):
                                 _("Common")),
             "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"),
                                 _("Nickname")),
-            "%s, %s %s (%s)" % (_("Surname"), _("Common", "Name"), _("Suffix"),
+            "%s, %s %s (%s)" % (_("Surname"), _("Name|Common"), _("Suffix"),
                                 _("Nickname")),
-            "%s, %s %s" % (_("Surname"), _("Common", "Name"), _("Suffix")),
+            "%s, %s %s" % (_("Surname"), _("Name|Common"), _("Suffix")),
             "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"),
                                 _("Call")),
-            "%s, %s (%s)" % (_("Surname"), _("Given"), _("Common", "Name")),
-            "%s, %s (%s)" % (_("Surname"), _("Common", "Name"), _("Nickname")),
+            "%s, %s (%s)" % (_("Surname"), _("Given"), _("Name|Common")),
+            "%s, %s (%s)" % (_("Surname"), _("Name|Common"), _("Nickname")),
             "%s %s" % (_("Given"), _("Surname")),
             "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
             "%s %s %s" % (_("Given"), _("NotPatronymic"), _("Patronymic")),
             "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"),
                                 _("Common")),
-            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Common", "Name")),
+            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Name|Common")),
             "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Nickname")),
             "%s %s" % (_("Given"), _("SURNAME")),
             "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
@@ -1780,9 +1780,7 @@ class GrampsPreferences(ConfigureDialog):
         formats = [_("Never"),
                    _("Every 15 minutes"),
                    _("Every 30 minutes"),
-                   _("Every hour"),
-                   _("Every 12 hours"),
-                   _("Every day")]
+                   _("Every hour")]
         list(map(obox.append_text, formats))
         active = config.get('database.autobackup')
         obox.set_active(active)
@@ -1812,8 +1810,6 @@ class GrampsPreferences(ConfigureDialog):
         for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
             if plugin.id == default:
                 active = count
-            if plugin.id == 'bsddb':
-                continue  # bsddb is deprecated, so don't allow setting
             model.append(row=[count, plugin.name, plugin.id])
             count += 1
         obox.set_model(model)
@@ -1833,10 +1829,12 @@ class GrampsPreferences(ConfigureDialog):
         Show dialog to choose media directory.
         """
         f = Gtk.FileChooserDialog(title=_("Select media directory"),
-                                  transient_for=self.window,
-                                  action=Gtk.FileChooserAction.SELECT_FOLDER)
-        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                      _('_Apply'),  Gtk.ResponseType.OK)
+                                  parent=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER,
+                                  buttons=(_('_Cancel'),
+                                           Gtk.ResponseType.CANCEL,
+                                           _('_Apply'),
+                                           Gtk.ResponseType.OK))
         mpath = media_path(self.dbstate.db)
         f.set_current_folder(os.path.dirname(mpath))
 
@@ -1881,10 +1879,12 @@ class GrampsPreferences(ConfigureDialog):
         Show dialog to choose backup directory.
         """
         f = Gtk.FileChooserDialog(title=_("Select backup directory"),
-                                  transient_for=self.window,
-                                  action=Gtk.FileChooserAction.SELECT_FOLDER)
-        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                      _('_Apply'),  Gtk.ResponseType.OK)
+                                  parent=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER,
+                                  buttons=(_('_Cancel'),
+                                           Gtk.ResponseType.CANCEL,
+                                           _('_Apply'),
+                                           Gtk.ResponseType.OK))
         backup_path = config.get('database.backup-path')
         if not backup_path:
             backup_path = config.get('database.path')
@@ -1993,26 +1993,6 @@ class GrampsPreferences(ConfigureDialog):
             pass
         font = config.get('utf8.selected-font')
         symbols = Symbols()
-<<<<<<< HEAD
-        my_characters = _("What you will see") + " :\n"
-        my_characters += ascii_letters
-        my_characters += " àäâçùéèiïîêëiÉÀÈïÏËÄœŒÅåØøìòô ...\n"
-        for k, v in sorted(X.items()):
-            lang = Pango.Language.from_string(k)
-            my_characters += v[2] + ":\t" + lang.get_sample_string() + "\n"
-
-        scrollw = Gtk.ScrolledWindow()
-        scrollw.set_size_request(600, 60)
-        text = Gtk.Label()
-        text.set_line_wrap(True)
-        self.activate_change_font()
-        text.set_halign(Gtk.Align.START)
-        text.set_markup("<span font='%s'>%s</span>" % (font, my_characters))
-        scrollw.add(text)
-        scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        self.grid.attach(scrollw, 1, 5, 4, 1)
-=======
->>>>>>> Remove Font example widget from Genealogic Symbols
 
         self.sym_buf = Gtk.TextBuffer()
         self.sym_text = Gtk.TextView.new_with_buffer(self.sym_buf)
@@ -2027,26 +2007,6 @@ class GrampsPreferences(ConfigureDialog):
             self.sym_buf.insert_with_tags(_iter, text, tag)
 
         death_symbl = config.get('utf8.death-symbol')
-<<<<<<< HEAD
-        my_characters += symbols.get_death_symbol_for_char(death_symbl)
-        text = Gtk.Label()
-        text.set_line_wrap(True)
-        text.set_halign(Gtk.Align.START)
-<<<<<<< HEAD
-        text.set_markup("<big><big><big><big><span font='%s'>%s</span>"
-                        "</big></big></big></big>" % (font, my_characters))
-=======
-        text.set_markup("<big><big><big><big>" +
-                        my_characters +
-                        "</big></big></big></big>")
-        text.set_selectable(True)
-<<<<<<< HEAD
->>>>>>> Symbols enhancement.
-        self.grid.attach(text, 1, 8, 8, 1)
-=======
-        self.grid.attach(text, 1, 9, 8, 1)
->>>>>>> Reduce the size of the symbols preference tab.
-=======
         text = ' ' + symbols.get_death_symbol_for_char(death_symbl) + ' '
         tooltip = (_("Death:") + '\n' +
                    symbols.get_death_symbol_name(death_symbl))
@@ -2055,16 +2015,7 @@ class GrampsPreferences(ConfigureDialog):
         _iter = self.sym_buf.get_end_iter()
         self.sym_buf.insert_with_tags(_iter, text, tag)
         self.sym_text.set_editable(False)
-<<<<<<< HEAD
-        self.grid.attach(self.sym_text, 1, 9, 8, 1)
->>>>>>> Symbols: add tooltips, and some minors changes.
-=======
         self.grid.attach(self.sym_text, 1, 6, 8, 1)
-<<<<<<< HEAD
->>>>>>> Expand on default font concept (thanks paul)
-        scrollw.show_all()
-=======
->>>>>>> Remove Font example widget from Genealogic Symbols
         self.sym_text.show()
         self.show_default_symbols()
 
