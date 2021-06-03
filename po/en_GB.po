@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-01 14:59+0000\n"
+"PO-Revision-Date: 2021-06-03 17:24+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
-msgstr ""
+msgstr "Gramps"
 
 #: ../data/gramps.appdata.xml.in:5 ../data/gramps.desktop.in:6
 msgid ""
@@ -7324,7 +7324,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:1756
 #: ../gramps/plugins/webreport/updates.py:112
 msgid "Events"
-msgstr ""
+msgstr "Events"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
@@ -8598,7 +8598,7 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:228
 #: ../gramps/gui/widgets/grampletpane.py:987
 msgid "Gramplet"
-msgstr ""
+msgstr "Gramplet"
 
 #: ../gramps/gen/plug/_pluginreg.py:90
 msgid "Sidebar"
@@ -23399,7 +23399,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:240
 msgid "place"
-msgstr ""
+msgstr "place"
 
 #: ../gramps/plugins/importer/importcsv.py:241
 msgid "place id"

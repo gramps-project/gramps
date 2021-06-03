@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd at gmail.com>, 2007-2020.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-18 06:36+0000\n"
-"Last-Translator: beernarrd <beernarrd@gmail.com>\n"
+"PO-Revision-Date: 2021-06-03 17:24+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
 "Language: sl\n"
@@ -2698,7 +2699,7 @@ msgstr "Kislev"
 #: ../gramps/gen/datehandler/_datestrings.py:149
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr "Hebrew month lexeme|Tevet"
+msgstr "Tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:150
 msgctxt "Hebrew month lexeme"
