@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-28 11:55+0000\n"
+"PO-Revision-Date: 2021-06-03 17:24+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -1293,7 +1293,7 @@ msgstr "Die Datenbank kann nicht geöffnet werden, sie ist gesperrt!"
 #: ../gramps/cli/arghandler.py:556
 #, python-format
 msgid "  Info: %s"
-msgstr " Info: %s"
+msgstr "  Info: %s"
 
 #: ../gramps/cli/arghandler.py:559
 msgid "Database needs recovery, cannot open it!"
@@ -1735,7 +1735,7 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
-"Willst du wirklich den Stammbaum  entfernen mit dem Namen\n"
+"Willst du wirklich den Stammbaum entfernen mit dem Namen\n"
 "\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:738
@@ -2050,7 +2050,7 @@ msgstr ", "
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
-"  Verwende '%(donottranslate)s', um eine Beschreibung und gültige Werte zu "
+"   Verwende '%(donottranslate)s', um eine Beschreibung und gültige Werte zu "
 "sehen"
 
 #: ../gramps/cli/plug/__init__.py:527
@@ -5407,7 +5407,7 @@ msgstr "Personen mit <Anzahl> HLT Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
-msgstr " Personen mit einer bestimmten Anzahl von HLT Ereignissen"
+msgstr "Liefert Personen mit einer bestimmten Anzahl von HLT Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:46
 msgid "Given name:"
@@ -8795,7 +8795,7 @@ msgstr "Adressen"
 
 #: ../gramps/gen/lib/person.py:215
 msgid "Urls"
-msgstr "Urls"
+msgstr "URLs"
 
 #: ../gramps/gen/lib/person.py:237
 msgid "Person references"
@@ -8905,7 +8905,7 @@ msgstr "Bezirk"
 
 #: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:604
 msgid "Borough"
-msgstr "Borough"
+msgstr "Bezirk"
 
 #: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:652
 msgid "Municipality"
@@ -11530,6 +11530,7 @@ msgid "_Close"
 msgstr "_Schließen"
 
 #: ../gramps/gui/configure.py:119
+#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11561,12 +11562,11 @@ msgid ""
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
 "Die folgenden Schlüsselwörter werden durch den entsprechenden Namensteil "
-"ersetzt:\n"
-"<tt>  \n"
+"ersetzt:<tt>\n"
 "  <b>Vorname</b>      - Vorname  <b>Nachname</b>      - Nachnamen (mit "
 "Präfix und Verbindungen)\n"
-"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Suffix</b>       - Suffix "
-"(Jr., Sr.)\n"
+"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Suffix</b>       - Suffix ("
+"Jr., Sr.)\n"
 "  <b>Rufname</b>       - Rufname              <b>Spitzname</b>     - "
 "Spitzname\n"
 "  <b>Initialen</b>   - erste Buchstabe der Vornamen  <b>Üblich</b>       - "
@@ -11579,19 +11579,19 @@ msgstr ""
 "alle Präfixes (von, de)  \n"
 "  <b>Rest</b>       - nicht primäre Nachnamen    <b>Kein Patronymikon</b>- "
 "alle Nachnamen außer pa/matronymic &amp; primär\n"
-"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und "
-"Verbindungen)\n"
+"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und Verbindungen)"
+"\n"
 "\n"
 "</tt>\n"
 "GROSSGESCHRIEBENE Schlüsselwörter erzwingen Großschreibung. Zusätzliche "
 "Klammern und Kommas werden entfernt. Anderer Text erscheint buchstäblich.\n"
 "\n"
-"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr (\"Ed"
-"\") - Underhills'\n"
+"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr (\"Ed\")"
+" - Underhills'\n"
 "     <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist das Präfix, "
 "<i>Smith</i> und <i>Weston</i> Nachnamen, \n"
-"     <i>und</i> eine Verbindung, <i>Wilson</i> Patronymikon Nachname, <i>Dr."
-"</i> Titel, <i>Sr</i> Suffix, <i>Ed</i> Spitzname, \n"
+"     <i>und</i> eine Verbindung, <i>Wilson</i> Patronymikon Nachname, "
+"<i>Dr.</i> Titel, <i>Sr</i> Suffix, <i>Ed</i> Spitzname, \n"
 "     <i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
 
 #: ../gramps/gui/configure.py:148
@@ -16036,14 +16036,14 @@ msgstr ""
 "Vermittelt die vom Einsender stammende quantitative "
 "Glaubwürdigkeitsbewertung einer Information, basierend auf den Belegen. Dies "
 "befreit den Datenempfänger nicht von der Notwendigkeit, die Daten für sich "
-"selbst zu bewerten. Bewertungsschlüssel: \n"
+"selbst zu bewerten.\n"
 "-Sehr niedrig = Unzuverlässige Beweismittel oder geschätzte Daten.\n"
-"-Niedrig      = Fragwürdige Zuverlässigkeit, also Belege, wo die Möglichkeit "
-"für Beeinflussungen gegeben ist, z.B. Interviews, Volkszählungen, mündliche "
+"-Niedrig = Fragwürdige Zuverlässigkeit, also Belege, wo die Möglichkeit für "
+"Beeinflussungen gegeben ist, z.B. Interviews, Volkszählungen, mündliche "
 "Genealogien, eine Autobiographie.\n"
-"-Hoch         = Sekundäre Belege, z.B. Daten, die nach dem Ereignis "
-"offiziell aufgezeichnet wurden.\n"
-"-Sehr hoch    = Direkte, primäre Belege oder logische Ableitungen."
+"-Hoch = Sekundäre Belege, z.B. Daten, die nach dem Ereignis offiziell "
+"aufgezeichnet wurden.\n"
+"-Sehr hoch = Direkte, primäre Belege oder logische Ableitungen."
 
 #: ../gramps/gui/glade/editcitation.glade:226
 #: ../gramps/gui/glade/editevent.glade:312
@@ -16827,7 +16827,7 @@ msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
 msgstr ""
-"Verwende entweder die beiden Felder unten,  um die Koordinaten (Längen- und "
+"Verwende entweder die beiden Felder unten, um die Koordinaten (Längen- und "
 "Breitengrad) einzugeben,"
 
 #: ../gramps/gui/glade/editplace.glade:120
@@ -18635,7 +18635,7 @@ msgstr "Speichern als"
 #: ../gramps/gui/plug/report/_bookdialog.py:638
 #: ../gramps/gui/plug/report/_fileentry.py:65
 msgid "_Open"
-msgstr " _Öffnen"
+msgstr "_Öffnen"
 
 #: ../gramps/gui/plug/_guioptions.py:1823
 #: ../gramps/gui/plug/report/_reportdialog.py:329
@@ -19173,7 +19173,7 @@ msgstr "Fortsetzen"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:309
 msgid "Name of the book. MANDATORY"
-msgstr "Name des Buches. Pflichtfeld!"
+msgstr "Name des Buches. PFLICHTFELD"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:331
 msgid "Manage Books"
@@ -21000,6 +21000,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
 #: ../gramps/plugins/drawreport/descendtree.py:1620
+#, fuzzy
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -21218,7 +21219,7 @@ msgstr "Eine Generation leerer Boxen für unbekannte Vorfahren erzeugen."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1040
 msgid " Generations of empty boxes for unknown ancestors"
-msgstr "Leere Boxen für unbekannte Vorfahren erzeugen."
+msgstr " Leere Boxen für unbekannte Vorfahren erzeugen."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1057
 #: ../gramps/plugins/drawreport/descendtree.py:1787
@@ -23155,7 +23156,7 @@ msgstr "Was nun?"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:349
 msgid "Person Details"
-msgstr "Persondetails"
+msgstr "Personendetails"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:350
 msgid "Gramplet showing details of a person"
@@ -23712,7 +23713,7 @@ msgstr "Ort Teil von"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1295
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Gramplet zeigt die  Orte die im aktuellen Ort enthalten sind"
+msgstr "Gramplet zeigt die Orte die im aktuellen Ort enthalten sind"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1308
 #: ../gramps/plugins/webreport/basepage.py:3037
@@ -23885,11 +23886,11 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" enthält {count_person} von {max_count_person} Personen ({percent} "
-"komplett)\n"
+" enthält {count_person} von {max_count_person} Personen ({percent} komplett)"
+"\n"
 msgstr[1] ""
-" enthält {count_person} von {max_count_person} Personen ({percent} "
-"komplett)\n"
+" enthält {count_person} von {max_count_person} Personen ({percent} komplett)"
+"\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:279
 msgid "All generations"
@@ -25713,7 +25714,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
-msgstr "Objekte"
+msgstr "  Objekte"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -30992,8 +30993,8 @@ msgid ""
 " - a green row related to a selected place."
 msgstr ""
 "\n"
-"In der folgenden Tabelle steht möglicherweise: \n"
-"  - Eine grüne Zeile, die sich auf einen ausgewählten Ort bezieht."
+"In der folgenden Tabelle steht möglicherweise:\n"
+" - Eine grüne Zeile, die sich auf einen ausgewählten Ort bezieht."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:128
 msgid ""
@@ -31982,7 +31983,7 @@ msgstr "Auswahl von Ansichten aus sich aufklappenden Listen"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:72
 msgid "Expander"
-msgstr "Expander"
+msgstr "Erweiterung"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:393
@@ -34326,7 +34327,7 @@ msgstr ""
 "\n"
 "Dieses Werkzeug erlaubt es nur, die Daten in Gramps zu modifizieren. Wenn "
 "die Dateien als solche verschoben oder umbenannt werden sollen, musst du das "
-"selber  im entsprechenden Verzeichnis vornehmen - nicht in Gramps! Danach "
+"selber im entsprechenden Verzeichnis vornehmen - nicht in Gramps! Danach "
 "kannst du die Pfade mit Hilfe dieses Werkzeugs mit den neuen Dateiorten "
 "abgleichen."
 
@@ -34916,9 +34917,7 @@ msgstr "Unbenutzte Objekte entfernen"
 
 #: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
-msgstr ""
-"Ermögliche ID-\n"
-"Neunummerierung."
+msgstr "Ermögliche ID-Neuordnung."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
 msgid ""
@@ -34930,7 +34929,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.glade:1424
 msgid "  Actual"
-msgstr " Aktuell"
+msgstr "  Aktuell"
 
 #: ../gramps/plugins/tool/reorderids.glade:1436
 msgid "Amount of ID in use."
@@ -34962,9 +34961,7 @@ msgstr "Start"
 
 #: ../gramps/plugins/tool/reorderids.glade:1488
 msgid "Reorder ID start number."
-msgstr ""
-"Neunummerierung ID\n"
-"Start Nummer."
+msgstr "Neuordnung ID Start Nummer."
 
 #: ../gramps/plugins/tool/reorderids.glade:1501
 msgid "Step"
@@ -34972,9 +34969,7 @@ msgstr "Schritt"
 
 #: ../gramps/plugins/tool/reorderids.glade:1506
 msgid "Reorder ID step width."
-msgstr ""
-"Neunummerierung ID\n"
-"Schrittweite."
+msgstr "Neuordnung ID Schrittweite."
 
 #: ../gramps/plugins/tool/reorderids.glade:1518
 msgid "Keep"
@@ -36764,28 +36759,28 @@ msgstr "Entferne Person als Elternteil dieser Familie."
 #, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] "({number_of} Geschwister)"
-msgstr[1] "({number_of} Geschwister)"
+msgstr[0] " ({number_of} Geschwister)"
+msgstr[1] " ({number_of} Geschwister)"
 
 #: ../gramps/plugins/view/relview.py:1051
 #: ../gramps/plugins/view/relview.py:1106
 msgid " (1 brother)"
-msgstr "(1 Bruder)"
+msgstr " (1 Bruder)"
 
 #: ../gramps/plugins/view/relview.py:1053
 #: ../gramps/plugins/view/relview.py:1108
 msgid " (1 sister)"
-msgstr "(1 Schwester)"
+msgstr " (1 Schwester)"
 
 #: ../gramps/plugins/view/relview.py:1055
 #: ../gramps/plugins/view/relview.py:1110
 msgid " (1 sibling)"
-msgstr "(1 Geschwister)"
+msgstr " (1 Geschwister)"
 
 #: ../gramps/plugins/view/relview.py:1057
 #: ../gramps/plugins/view/relview.py:1112
 msgid " (only child)"
-msgstr "(Einzelkind)"
+msgstr " (Einzelkind)"
 
 #: ../gramps/plugins/view/relview.py:1125
 #: ../gramps/plugins/view/relview.py:1627
@@ -36842,8 +36837,8 @@ msgstr "Bitte benutze das Werkzeug \"Datenbank prüfen und reparieren\""
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
-msgstr[0] "({number_of} Kind)"
-msgstr[1] "({number_of} Kinder)"
+msgstr[0] " ({number_of} Kind)"
+msgstr[1] " ({number_of} Kinder)"
 
 #: ../gramps/plugins/view/relview.py:1568
 #: ../gramps/plugins/view/relview.py:1614
@@ -37192,7 +37187,7 @@ msgstr "zwischen"
 
 #: ../gramps/plugins/webreport/basepage.py:3250
 msgid "circa"
-msgstr "circa"
+msgstr "zirka"
 
 #: ../gramps/plugins/webreport/basepage.py:3252
 msgid "around"
@@ -37302,7 +37297,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Name"
+msgstr " Name"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -38358,7 +38353,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Ortsname"
+msgstr " Name"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
