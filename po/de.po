@@ -11,13 +11,14 @@
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
+# R. B. <weblate@macdefender.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
 "PO-Revision-Date: 2021-06-03 17:24+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: R. B. <weblate@macdefender.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -562,16 +563,15 @@ msgstr ""
 "Datumseingabefeld und schaue in das Gramps-Handbuch, um mehr zu erfahren."
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
 "<b>Doppelte Einträge</b><br/>&quot;Werkzeuge &gt; Datenbankverarbeitung &gt; "
-"Finde doppelt vorkommende Personen...&quot;  ermöglicht dir, Einträge von "
-"der selben Person zu lokalisieren (und zu verschmelzen), die mehr als einmal "
-"in der Datenbank vorkommt."
+"Finde doppelt vorkommende Personen...&quot; ermöglicht dir, Einträge von der "
+"selben Person zu lokalisieren (und zu verschmelzen), die mehr als einmal in "
+"der Datenbank vorkommt."
 
 #: ../data/tips.xml:44
 #, fuzzy
@@ -869,7 +869,7 @@ msgstr ""
 "zu limitieren. Zu den vielen vorkonfigurierten Filtern kannst du "
 "maßgeschneiderte Filter anlegen, die nach deinen Vorstellungen gestaltet "
 "werden können. Benutzerfilter werden unter \"Bearbeiten &gt; Filtereditor "
-"für Personen Personen\" angelegt."
+"für Personen\" angelegt."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -1104,7 +1104,7 @@ msgid ""
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
 "<b>Der Gramps Quelltext</b><br/>Gramps ist in einer Computersprache, genannt "
-"Python, geschrieben, die die GTK und GNOME Bibliotheken für die grafische "
+"Python, geschrieben, die GTK und GNOME Bibliotheken für die grafische "
 "Oberfläche verwendet. Gramps wird von jedem Computersystem unterstützt, "
 "wohin diese Programme portiert sind. Es ist bekannt, dass Gramps unter "
 "Linux, BSD, Solaris, Windows und Mac OS X läuft."
@@ -2118,9 +2118,10 @@ msgid ""
 "\n"
 msgstr ""
 "Gramps hat einen Fehler in der Datenbank entdeckt. Dies kann meist durch "
-"Verwendung des Werkzeugs \"Datenbank prüfen und reparieren\" behoben "
-"werden.\n"
-"n\"Wenn der Fehler nach Einsatz dieses Werkzeugs nicht behoben wurde, so "
+"Verwendung des Werkzeugs \"Datenbank prüfen und reparieren\" behoben werden."
+"\n"
+"\n"
+"\"Wenn der Fehler nach Einsatz dieses Werkzeugs nicht behoben wurde, so "
 "schreibe bitte einen Fehlerbericht auf %(gramps_bugtracker_url)s\n"
 "\n"
 
