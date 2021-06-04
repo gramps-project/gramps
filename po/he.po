@@ -3,13 +3,14 @@
 # Copyright (C) 2009
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
 # Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-02 22:58+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -8138,17 +8139,17 @@ msgstr "%(first)s %(surname)s, %(suffix)s"
 #: ../gramps/gen/lib/nameorigintype.py:76
 msgctxt "Surname"
 msgid "Inherited"
-msgstr "שם משפחה|מורש"
+msgstr "מורש"
 
 #: ../gramps/gen/lib/nameorigintype.py:77
 msgctxt "Surname"
 msgid "Given"
-msgstr "שם משפחה|מוענק"
+msgstr "מוענק"
 
 #: ../gramps/gen/lib/nameorigintype.py:78
 msgctxt "Surname"
 msgid "Taken"
-msgstr "שם משפחה|נלקח"
+msgstr "נלקח"
 
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
 #: ../gramps/gui/configure.py:857
@@ -8162,7 +8163,7 @@ msgstr "מטרונימי"
 #: ../gramps/gen/lib/nameorigintype.py:81
 msgctxt "Surname"
 msgid "Feudal"
-msgstr "שם משפחה|פאודלי"
+msgstr "פאודלי"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgid "Pseudonym"
@@ -9491,14 +9492,16 @@ msgid "Graphviz File"
 msgstr "קובץ גראפוויז"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
+#, fuzzy
 msgctxt "paper size"
 msgid "Letter"
-msgstr "גודל נייר | Letter"
+msgstr "Letter"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:80
+#, fuzzy
 msgctxt "paper size"
 msgid "Legal"
-msgstr "גודל נייר | Legal"
+msgstr "Legal"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgid "Custom Size"
@@ -9987,7 +9990,7 @@ msgstr "עודכן"
 #: ../gramps/gen/plug/utils.py:261
 msgctxt "updates"
 msgid "New"
-msgstr "עדכונים|חדשים"
+msgstr "חדשים"
 
 #: ../gramps/gen/plug/utils.py:290 ../gramps/gen/plug/utils.py:297
 #, python-format
@@ -30313,152 +30316,152 @@ msgstr "ישנם %d אנשים בעלי שם תכונה תואם.\n"
 #: ../gramps/plugins/quickview/filterbyname.py:41
 msgctxt "Filtering_on"
 msgid "all"
-msgstr "סינון _לפי | הכל"
+msgstr "הכל"
 
 #: ../gramps/plugins/quickview/filterbyname.py:42
 msgctxt "Filtering_on"
 msgid "Inverse Person"
-msgstr "סינון _לפי | אדם הופכי"
+msgstr "אדם הופכי"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
 msgctxt "Filtering_on"
 msgid "Inverse Family"
-msgstr "סינון _לפי | משפחה הופכית"
+msgstr "משפחה הופכית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
 msgctxt "Filtering_on"
 msgid "Inverse Event"
-msgstr "סינון _לפי | אירוע הופכי"
+msgstr "אירוע הופכי"
 
 #: ../gramps/plugins/quickview/filterbyname.py:45
 msgctxt "Filtering_on"
 msgid "Inverse Place"
-msgstr "סינון _לפי | מקום הופכי"
+msgstr "מקום הופכי"
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
 msgctxt "Filtering_on"
 msgid "Inverse Source"
-msgstr "סינון _לפי | מקור הופכי"
+msgstr "מקור הופכי"
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr "סינון _לפי | מאגר הופכי"
+msgstr "מאגר הופכי"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgctxt "Filtering_on"
 msgid "Inverse Media"
-msgstr "סינון _לפי | מדיה הופכית"
+msgstr "מדיה הופכית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgctxt "Filtering_on"
 msgid "Inverse Note"
-msgstr "סינון _לפי |הערה הופכית"
+msgstr "הערה הופכית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgctxt "Filtering_on"
 msgid "all people"
-msgstr "סינון _לפי |כל האנשים"
+msgstr "כל האנשים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:51
 msgctxt "Filtering_on"
 msgid "all families"
-msgstr "סינון _לפי |כל המשפחות"
+msgstr "כל המשפחות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
 msgctxt "Filtering_on"
 msgid "all events"
-msgstr "סינון _לפי |כל האירועים"
+msgstr "כל האירועים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:53
 msgctxt "Filtering_on"
 msgid "all places"
-msgstr "סינון _לפי |כל המקומות"
+msgstr "כל המקומות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:54
 msgctxt "Filtering_on"
 msgid "all sources"
-msgstr "סינון _לפי |כל המקורות"
+msgstr "כל המקורות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:55
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "סינון _לפי |כל המאגרים"
+msgstr "כל המאגרים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgctxt "Filtering_on"
 msgid "all media"
-msgstr "סינון _לפי |כל המדיה"
+msgstr "כל המדיה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgctxt "Filtering_on"
 msgid "all notes"
-msgstr "סינון _לפי |כל ההערות"
+msgstr "כל ההערות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgctxt "Filtering_on"
 msgid "males"
-msgstr "סינון _לפי | זכרים"
+msgstr "זכרים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:59
 msgctxt "Filtering_on"
 msgid "females"
-msgstr "סינון _לפי |נקבות"
+msgstr "נקבות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgctxt "Filtering_on"
 msgid "people with unknown gender"
-msgstr "סינון _לפי | אנשים ללא מגדר"
+msgstr "אנשים ללא מגדר"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
 msgid "incomplete names"
-msgstr "סינון _לפי|שמות חלקיים"
+msgstr "שמות חלקיים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:65
 msgctxt "Filtering_on"
 msgid "people with missing birth dates"
-msgstr "סינון _לפי | אנשים ללא תאריך לידה"
+msgstr "אנשים ללא תאריך לידה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgctxt "Filtering_on"
 msgid "disconnected people"
-msgstr "סינון _לפי |אנשים מנותקים"
+msgstr "אנשים מנותקים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgctxt "Filtering_on"
 msgid "unique surnames"
-msgstr "סינון _לפי | שמות משפחה יְחִידָאִיים"
+msgstr "שמות משפחה יְחִידָאִיים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
 msgctxt "Filtering_on"
 msgid "people with media"
-msgstr "סינון _לפי | אנשים עם מדיה"
+msgstr "אנשים עם מדיה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:69
 msgctxt "Filtering_on"
 msgid "media references"
-msgstr "סינון _לפי | הפניות מדיה"
+msgstr "הפניות מדיה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:70
 msgctxt "Filtering_on"
 msgid "unique media"
-msgstr "סינון _לפי | מדיה יְחִידָאִית"
+msgstr "מדיה יְחִידָאִית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:71
 msgctxt "Filtering_on"
 msgid "missing media"
-msgstr "סינון _לפי | מדיה חסרה"
+msgstr "מדיה חסרה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:72
 msgctxt "Filtering_on"
 msgid "media by size"
-msgstr "סינון _לפי | מדיה על פי גודל"
+msgstr "מדיה על פי גודל"
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
 msgctxt "Filtering_on"
 msgid "list of people"
-msgstr "סינון _לפי | רשימת אנשים"
+msgstr "רשימת אנשים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:85
 msgid "Summary counts of current selection"
@@ -32118,7 +32121,7 @@ msgstr "מזהה: %s "
 #, python-format
 msgctxt "places"
 msgid "All Names: %s"
-msgstr "מקומות|כל השמות: %s"
+msgstr "כל השמות: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:221
 msgid "Events that happened at this place"

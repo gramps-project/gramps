@@ -7,21 +7,23 @@
 #
 # Pier Luigi Cinquantini <plcinquantini@gmail.com>, 2003, 2014, 2017, 2018.
 # Robin van der Vliet <info@robinvandervliet.com>, 2018.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2018-09-12 23:48+0200\n"
-"Last-Translator: Robin van der Vliet <info@robinvandervliet.com>\n"
-"Language-Team: Esperanto <kde-i18n-it@kde.org>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: Poedit 2.1.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -10224,7 +10226,7 @@ msgstr "Ĝisdatigita"
 #: ../gramps/gen/plug/utils.py:261
 msgctxt "updates"
 msgid "New"
-msgstr "ĝisdatigoj|Nova"
+msgstr "Nova"
 
 #: ../gramps/gen/plug/utils.py:290 ../gramps/gen/plug/utils.py:297
 #, python-format
@@ -10339,12 +10341,12 @@ msgstr "eksgeedzo"
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr "fraŭlo|edzo"
+msgstr "edzo"
 
 #: ../gramps/gen/relationship.py:2186
 msgctxt "female,unmarried"
 msgid "partner"
-msgstr "fraŭlino|edzino"
+msgstr "edzino"
 
 #: ../gramps/gen/relationship.py:2188
 msgctxt "gender unknown,unmarried"
@@ -11080,9 +11082,8 @@ msgid "Engaged"
 msgstr "Gefianĉiĝo"
 
 #: ../gramps/gen/utils/symbols.py:77
-#, fuzzy
 msgid "Unmarried partnership"
-msgstr "fraŭlo|edzo"
+msgstr "edzo"
 
 #: ../gramps/gen/utils/symbols.py:78
 #, fuzzy
@@ -13305,7 +13306,7 @@ msgstr "_Galerio"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:142
 msgctxt "verb:look at this"
 msgid "_View"
-msgstr "verbo:rigardu tion|_Vido"
+msgstr "_Vido"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/plugins/view/mediaview.py:402
@@ -23620,7 +23621,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:254
 msgctxt "percent sign or text string"
 msgid "%"
-msgstr "procenta signo aŭ teksta ceno|%"
+msgstr "%"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:261
 msgid "Generation 1"
@@ -24831,7 +24832,7 @@ msgstr "titolo"
 #: ../gramps/plugins/importer/importcsv.py:169
 msgctxt "Person or Place"
 msgid "title"
-msgstr "Persono aŭ loko|titolo"
+msgstr "titolo"
 
 #: ../gramps/plugins/importer/importcsv.py:172
 msgid "gender"
@@ -32813,7 +32814,7 @@ msgstr "Gramps-ID: %s "
 #, python-format
 msgctxt "places"
 msgid "All Names: %s"
-msgstr "lokoj|Ĉiuj nomoj: %s"
+msgstr "Ĉiuj nomoj: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:221
 msgid "Events that happened at this place"

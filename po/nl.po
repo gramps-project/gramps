@@ -7,14 +7,14 @@
 # Erik De Richter <frederik.de.richter@gmail.com>, 2006, 2007, 2008, 2009, 2010 , 2011, 2012, 2013.
 # Harmen Huizinga <harmenhuizinga@sigmo.nl>, 2013
 # Jan Sparreboom <jan@sparreboom.net>, 2020
-#
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-21 17:06+0000\n"
-"Last-Translator: Michel Vuijlsteke <michel@zog.org>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -2148,12 +2148,12 @@ msgstr ""
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
 msgid "none"
-msgstr "achternaam|geen"
+msgstr "geen"
 
 #: ../gramps/gen/const.py:261
 msgctxt "given-name"
 msgid "none"
-msgstr "voornaam|geen"
+msgstr "geen"
 
 #: ../gramps/gen/const.py:265 ../gramps/plugins/gramplet/todo.py:202
 #: ../gramps/plugins/webreport/basepage.py:200
@@ -2185,7 +2185,7 @@ msgstr "JJJJ-MM-DD (ISO)"
 #: ../gramps/gen/datehandler/_datedisplay.py:79
 msgctxt "date format"
 msgid "Numerical"
-msgstr "datumnotatie|Numeriek"
+msgstr "Numeriek"
 
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:82
@@ -2403,7 +2403,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:429
 msgctxt "from-date"
 msgid ""
-msgstr "from-date|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2411,7 +2411,7 @@ msgstr "from-date|"
 #: ../gramps/gen/datehandler/_datedisplay.py:434
 msgctxt "to-date"
 msgid ""
-msgstr "to-date|"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:435
 #, python-brace-format
@@ -2424,7 +2424,7 @@ msgstr "{date_quality}van {date_start} tot {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:454
 msgctxt "between-date"
 msgid ""
-msgstr "between-date|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2432,7 +2432,7 @@ msgstr "between-date|"
 #: ../gramps/gen/datehandler/_datedisplay.py:459
 msgctxt "and-date"
 msgid ""
-msgstr "and-date|"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:460
 #, python-brace-format
@@ -2447,7 +2447,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:493
 msgctxt "before-date"
 msgid ""
-msgstr "before-date|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2455,7 +2455,7 @@ msgstr "before-date|"
 #: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "after-date"
 msgid ""
-msgstr "after-date|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2463,7 +2463,7 @@ msgstr "after-date|"
 #: ../gramps/gen/datehandler/_datedisplay.py:503
 msgctxt "about-date"
 msgid ""
-msgstr "about-date|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2471,7 +2471,7 @@ msgstr "about-date|"
 #: ../gramps/gen/datehandler/_datedisplay.py:508
 msgctxt "estimated-date"
 msgid ""
-msgstr "estimated-date|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -37091,7 +37091,7 @@ msgstr "Ga naar de beginpersoon"
 #: ../gramps/plugins/webreport/basepage.py:1963
 msgctxt "Html"
 msgid "Home"
-msgstr "Html|Home"
+msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:1745
 #: ../gramps/plugins/webreport/basepage.py:1932
@@ -37281,7 +37281,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Media | Naam"
+msgstr " Naam"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -38348,7 +38348,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Locatienaam | Naam"
+msgstr " Naam"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
@@ -38376,7 +38376,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/repository.py:173
 msgctxt "Repository "
 msgid "Name"
-msgstr "Bibliotheek |Naam"
+msgstr "Naam"
 
 #: ../gramps/plugins/webreport/source.py:105
 msgid "Creating source pages"
@@ -38395,7 +38395,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/source.py:171
 msgctxt "Source Name"
 msgid "Name"
-msgstr "Bronnaam|Naam"
+msgstr "Naam"
 
 #: ../gramps/plugins/webreport/source.py:272
 msgid "Publication information"
@@ -38523,12 +38523,11 @@ msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s en %(person)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1567
-#, fuzzy, python-format
+#, python-format
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 msgstr ""
-"de \"WebCal\" zal de potentiële e-mail Onderwerp|Gemaakt door "
-"%(html_email_author_start)sWebCal%(html_email_author_end)s zijn"
+"Gemaakt door %(html_email_author_start)sWebCal%(html_email_author_end)s zijn"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format

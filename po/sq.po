@@ -12,13 +12,14 @@
 # Proof-reading: Arlinda Kastrati<aarlindakastrati@hotmail.com>, 2008
 # Proof-reading: Vlora Jakupi <vlorajak@hotmail.com>, 2008
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sq/>\n"
 "Language: sq\n"
@@ -1883,9 +1884,8 @@ msgid "   Available options:"
 msgstr "Libra në dispozicion"
 
 #: ../gramps/cli/plug/__init__.py:633
-#, fuzzy
 msgid "(no help available)"
-msgstr "nuk është në dispozicion|ND"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:641
 #, fuzzy
@@ -3236,7 +3236,7 @@ msgstr "Patronim, Emri i dhënë"
 #, fuzzy
 msgctxt "Person"
 msgid "title"
-msgstr "personi|Titulli"
+msgstr "Titulli"
 
 #: ../gramps/gen/display/name.py:604 ../gramps/gen/display/name.py:704
 #: ../gramps/plugins/importer/importcsv.py:165
@@ -5340,7 +5340,7 @@ msgstr "Mbiemri:"
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:48
 msgctxt "person"
 msgid "Title:"
-msgstr "personi|Titulli:"
+msgstr "Titulli:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
 msgid "Suffix:"
@@ -10581,102 +10581,102 @@ msgstr "e papërcaktuar"
 #: ../gramps/gen/relationship.py:2174
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr "gjinia e panjohur|bashkëshort"
+msgstr "bashkëshort"
 
 #: ../gramps/gen/relationship.py:2181
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "gjinia e panjohur|ish-bashkëshort"
+msgstr "ish-bashkëshort"
 
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr "i pamartuar|bashkëshorti"
+msgstr "bashkëshorti"
 
 #: ../gramps/gen/relationship.py:2186
 msgctxt "female,unmarried"
 msgid "partner"
-msgstr "e pamartuar|bashkëshorte"
+msgstr "bashkëshorte"
 
 #: ../gramps/gen/relationship.py:2188
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr "gjinia e panjohur, pamartuar|bashkëshort"
+msgstr "bashkëshort"
 
 #: ../gramps/gen/relationship.py:2191
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr "i pamartuar|ish-bashkëshorti"
+msgstr "ish-bashkëshorti"
 
 #: ../gramps/gen/relationship.py:2193
 msgctxt "female,unmarried"
 msgid "ex-partner"
-msgstr "e pamartuar|ish-bashkëshorte"
+msgstr "ish-bashkëshorte"
 
 #: ../gramps/gen/relationship.py:2195
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "gjinia e panjohur, pamartuar|bashkëshort"
+msgstr "bashkëshort"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
 msgid "partner"
-msgstr "mashkull, bashkim shoqëror|shok"
+msgstr "shok"
 
 #: ../gramps/gen/relationship.py:2200
 msgctxt "female,civil union"
 msgid "partner"
-msgstr "femër,bashkim shoqëror|shok"
+msgstr "shok"
 
 #: ../gramps/gen/relationship.py:2202
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr "gjinia e panjohur,bashkim shoqëror|shok"
+msgstr "shok"
 
 #: ../gramps/gen/relationship.py:2205
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "mashkull,bashkim shoqëror|shok i mëparshëm"
+msgstr "shok i mëparshëm"
 
 #: ../gramps/gen/relationship.py:2207
 msgctxt "female,civil union"
 msgid "former partner"
-msgstr "femër,bashkim shoqëror|shok i mëparshëm"
+msgstr "shok i mëparshëm"
 
 #: ../gramps/gen/relationship.py:2209
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "gjinia e panjohur,bashkim shoqëror|shok i mëparshëm"
+msgstr "shok i mëparshëm"
 
 #: ../gramps/gen/relationship.py:2212
 msgctxt "male,unknown relation"
 msgid "partner"
-msgstr "mashkull,lidhje e panjohur|shok"
+msgstr "shok"
 
 #: ../gramps/gen/relationship.py:2214
 msgctxt "female,unknown relation"
 msgid "partner"
-msgstr "femër,lidhje e panjohur|shok"
+msgstr "shok"
 
 #: ../gramps/gen/relationship.py:2216
 msgctxt "gender unknown,unknown relation"
 msgid "partner"
-msgstr "gjinia e panjohur,lidhje e panjohur|shok"
+msgstr "shok"
 
 #: ../gramps/gen/relationship.py:2221
 msgctxt "male,unknown relation"
 msgid "former partner"
-msgstr "mashkull,lidhje e panjohur|shok i mëparshëm"
+msgstr "shok i mëparshëm"
 
 #: ../gramps/gen/relationship.py:2223
 msgctxt "female,unknown relation"
 msgid "former partner"
-msgstr "femër,lidhje e panjohur|shok i mëparshëm"
+msgstr "shok i mëparshëm"
 
 #: ../gramps/gen/relationship.py:2225
 msgctxt "gender unknown,unknown relation"
 msgid "former partner"
-msgstr "gjinia e panjohur,lidhje e panjohur|shok i mëparshëm"
+msgstr "shok i mëparshëm"
 
 #: ../gramps/gen/relationship.py:2318
 #, python-format
@@ -11052,7 +11052,7 @@ msgstr "Personi"
 #, fuzzy
 msgctxt "Person"
 msgid "Title"
-msgstr "personi|Titulli"
+msgstr "Titulli"
 
 #: ../gramps/gen/utils/keyword.py:55
 msgid "GIVEN"
@@ -11376,7 +11376,7 @@ msgstr "Fejesa"
 #: ../gramps/gen/utils/symbols.py:77
 #, fuzzy
 msgid "Unmarried partnership"
-msgstr "i pamartuar|bashkëshorti"
+msgstr "bashkëshorti"
 
 #: ../gramps/gen/utils/symbols.py:78
 #, fuzzy
@@ -11572,7 +11572,7 @@ msgstr "Atributi familjar"
 #: ../gramps/gui/clipboard.py:483
 msgctxt "not available"
 msgid "NA"
-msgstr "nuk është në dispozicion|ND"
+msgstr "ND"
 
 #: ../gramps/gui/clipboard.py:492
 #, python-format
@@ -11932,9 +11932,8 @@ msgid "Background for Civil union"
 msgstr "Ngjyra e sfondit"
 
 #: ../gramps/gui/configure.py:736
-#, fuzzy
 msgid "Background for Unknown"
-msgstr "akronim për mashkull|M"
+msgstr ""
 
 #: ../gramps/gui/configure.py:737
 #, fuzzy
@@ -13224,7 +13223,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -14072,7 +14071,7 @@ msgstr "Redaktues i referencës së fëmijëve"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -14178,7 +14177,7 @@ msgstr "E llogaritur"
 #, fuzzy
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr "udhëzimi|Redaktim_i Datave"
+msgstr "Redaktim_i Datave"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
@@ -14193,7 +14192,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -14783,7 +14782,7 @@ msgstr "Grupo vetëm këtë emër"
 #, fuzzy
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "udhëzimi|Redaktim_i Informatave_Rreth_Ngjarjeve"
+msgstr "Redaktim_i Informatave_Rreth_Ngjarjeve"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14858,7 +14857,7 @@ msgstr "Person i ri"
 #, fuzzy
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "udhëzimi|Redaktim_i Informatave_Rreth_Ngjarjeve"
+msgstr "Redaktim_i Informatave_Rreth_Ngjarjeve"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:478
@@ -15149,7 +15148,7 @@ msgstr "Shto depo"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -15185,7 +15184,7 @@ msgstr "Hiq depo (%s)"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -15255,7 +15254,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "udhëzimi|Të Përgjithshme"
+msgstr "Të Përgjithshme"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 #, fuzzy
@@ -18545,7 +18544,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_Citations"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/merge/mergecitation.py:68
 #: ../gramps/plugins/tool/tools.gpr.py:442
@@ -18557,7 +18556,7 @@ msgstr "Citat"
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/merge/mergeevent.py:67
 #, fuzzy
@@ -18568,7 +18567,7 @@ msgstr "Ngjarjet e Prindërve"
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_Families"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/merge/mergefamily.py:68
 #, fuzzy
@@ -18592,13 +18591,13 @@ msgstr "Nuk mund të bashkojë njerëz"
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/merge/mergenote.py:44
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_Notes"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/merge/mergenote.py:94
 msgid "flowed"
@@ -18612,7 +18611,7 @@ msgstr "_Formë e dhënë"
 #: ../gramps/gui/merge/mergeperson.py:58
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "udhëzimi|Bashko_Njerëz"
+msgstr "Bashko_Njerëz"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -18683,18 +18682,18 @@ msgstr ""
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
 msgid "Merge_Places"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/merge/mergerepository.py:44
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
 msgid "Merge_Sources"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/merge/mergesource.py:67
 msgid "Merge Sources"
@@ -19667,7 +19666,7 @@ msgstr "Stilet e Dokumentit"
 #, fuzzy
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "udhëzimi|Të Përgjithshme"
+msgstr "Të Përgjithshme"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 #, fuzzy
@@ -19806,13 +19805,13 @@ msgstr "Përzgjedh ngjarje"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -19822,7 +19821,7 @@ msgstr "Përzgjedh shënim"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
@@ -19832,7 +19831,7 @@ msgstr "Përzgjedh media objekt"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
@@ -19853,7 +19852,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -19863,7 +19862,7 @@ msgstr "Përzgjedh vend"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "udhëzimi|Bashko_Vende"
+msgstr "Bashko_Vende"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -19873,7 +19872,7 @@ msgstr "Përzgjedh depo "
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -19883,7 +19882,7 @@ msgstr "Përzgjedh burimin"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Source_selector"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -20164,7 +20163,7 @@ msgstr ""
 #: ../gramps/gui/views/bookmarks.py:69
 msgctxt "manual"
 msgid "Bookmarks"
-msgstr "udhëzimi|Shënim i faqes"
+msgstr "Shënim i faqes"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
@@ -20368,7 +20367,7 @@ msgstr "Organizoni Shënimin e faqeve"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "udhëzimi|Shënim i faqes"
+msgstr "Shënim i faqes"
 
 #: ../gramps/gui/views/tags.py:250
 #, fuzzy, python-format
@@ -22171,7 +22170,7 @@ msgstr "Gratë"
 #: ../gramps/plugins/drawreport/statisticschart.py:338
 msgctxt "person"
 msgid "Title"
-msgstr "personi|Titulli"
+msgstr "Titulli"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:342
 msgid "Forename"
@@ -25560,7 +25559,7 @@ msgstr "Titulli"
 #, fuzzy
 msgctxt "Person or Place"
 msgid "title"
-msgstr "personi|Titulli"
+msgstr "Titulli"
 
 #: ../gramps/plugins/importer/importcsv.py:172
 msgid "gender"
@@ -30779,7 +30778,7 @@ msgstr "_Bashkoi..."
 #: ../gramps/plugins/view/sourceview.py:315
 msgctxt "action"
 msgid "_Edit..."
-msgstr "veprimi|_Redakto..."
+msgstr "_Redakto..."
 
 #: ../gramps/plugins/lib/libpersonview.py:246
 #: ../gramps/plugins/view/pedigreeview.py:685
@@ -31538,9 +31537,8 @@ msgstr ""
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:152
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:180
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:186
-#, fuzzy
 msgid "Eniro map not available"
-msgstr "nuk është në dispozicion|ND"
+msgstr ""
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:181
 msgid "Coordinates needed in Denmark"
@@ -33333,18 +33331,18 @@ msgstr "Stili i përdorur për nëntitullin."
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for male"
 msgid "M"
-msgstr "akronim për mashkull|M"
+msgstr "M"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 msgctxt "acronym for female"
 msgid "F"
-msgstr "akronim për femër|F"
+msgstr "F"
 
 #: ../gramps/plugins/textreport/familygroup.py:511
-#, fuzzy, python-format
+#, python-format
 msgctxt "acronym for unknown"
 msgid "%dU"
-msgstr "akronim për mashkull|M"
+msgstr ""
 
 #: ../gramps/plugins/textreport/familygroup.py:618
 #, python-format
@@ -34102,7 +34100,7 @@ msgstr "_Prano ndryshimet dhe mbylle"
 #, fuzzy
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "udhëzimi|Rregullo_Shkrimin kapital_Të_Emrave_Familjar..."
+msgstr "Rregullo_Shkrimin kapital_Të_Emrave_Familjar..."
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -35154,7 +35152,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "udhëzimi|Bashko_Burime"
+msgstr "Bashko_Burime"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -36104,7 +36102,7 @@ msgstr "_Fshij të shënuarat"
 #, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "udhëzimi|Verifiko_Të_dhënat..."
+msgstr "Verifiko_Të_dhënat..."
 
 #: ../gramps/plugins/tool/verify.py:295
 #, fuzzy
@@ -36413,9 +36411,8 @@ msgid "Merge the selected citations or selected sources"
 msgstr "Hiq burimin e përzgjedhur"
 
 #: ../gramps/plugins/view/citationtreeview.py:144
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "personi|Titulli"
+msgstr ""
 
 #: ../gramps/plugins/view/citationtreeview.py:337
 #: ../gramps/plugins/view/citationtreeview.py:400
@@ -37816,9 +37813,8 @@ msgid "The view showing all the citations"
 msgstr "Nëse duhet të përfshihet një galeri të media objekteve"
 
 #: ../gramps/plugins/view/view.gpr.py:298
-#, fuzzy
 msgid "Citation Tree"
-msgstr "personi|Titulli"
+msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:299
 msgid "A view displaying citations and sources in a tree format."

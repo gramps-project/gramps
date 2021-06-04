@@ -3,6 +3,7 @@
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
 # Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 #
 # Common terms and translations:
 # ancestor        předek
@@ -38,8 +39,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-03 17:23+0000\n"
-"Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -7686,12 +7687,12 @@ msgstr "křest"
 #: ../gramps/gen/lib/eventtype.py:219
 msgctxt "Bar Mitzvah abbreviation"
 msgid "bar."
-msgstr "Bar Mitzvah abbreviation|bar."
+msgstr "bar."
 
 #: ../gramps/gen/lib/eventtype.py:220
 msgctxt "Bat Mitzvah abbreviation"
 msgid "bat."
-msgstr "Bat Mitzvah abbreviation|bat."
+msgstr "bat."
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgctxt "Blessing abbreviation"
@@ -19576,7 +19577,7 @@ msgstr "Média:"
 #: ../gramps/plugins/webreport/statistics.py:147
 msgctxt "Megabyte"
 msgid "MB"
-msgstr "Megabyte|MB"
+msgstr "MB"
 
 #: ../gramps/gui/viewmanager.py:1756
 msgid "Exclude"
@@ -33691,7 +33692,7 @@ msgstr "Sloučit osoby"
 #: ../gramps/plugins/tool/findloop.py:58
 msgctxt "manual"
 msgid "Find_database_loop"
-msgstr "manual|Find_database_loop"
+msgstr "Find_database_loop"
 
 #: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465

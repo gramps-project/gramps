@@ -3,22 +3,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Keiichiro Yamamoto <k.yanmar@gmail.com>, 2011, 2020.
 # Megumi Sakata <megumi.sakata.k@gmail.com>, 2020.
-#
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2020-06-06 18:12+0100\n"
-"Last-Translator: Keiichiro Yamamoto <k.yanmar@gmail.com> Megumi Sakata "
-"<megumi.sakata.k@gmail.com>\n"
-"Language-Team: Japanese <k.yanmar@gmail.com> <megumi.sakata.k@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=0;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
@@ -1701,7 +1701,7 @@ msgstr ""
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
 msgid "none"
-msgstr "姓|なし"
+msgstr "なし"
 
 #: ../gramps/gen/const.py:261
 msgctxt "given-name"
@@ -1738,7 +1738,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:79
 msgctxt "date format"
 msgid "Numerical"
-msgstr "日付フォーマット|数字"
+msgstr "数字"
 
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:82
@@ -1954,19 +1954,17 @@ msgstr ""
 #. "from <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:429
-#, fuzzy
 msgctxt "from-date"
 msgid ""
-msgstr "から|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:434
-#, fuzzy
 msgctxt "to-date"
 msgid ""
-msgstr "まで|"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:435
 #, fuzzy, python-brace-format
@@ -2001,7 +1999,7 @@ msgstr "{nonstd_calendar_and_ny}{date_start}と{date_stop}の間{date_quality}"
 #: ../gramps/gen/datehandler/_datedisplay.py:493
 msgctxt "before-date"
 msgid ""
-msgstr "より前|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2009,7 +2007,7 @@ msgstr "より前|"
 #: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "after-date"
 msgid ""
-msgstr "より後|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2017,25 +2015,23 @@ msgstr "より後|"
 #: ../gramps/gen/datehandler/_datedisplay.py:503
 msgctxt "about-date"
 msgid ""
-msgstr "頃|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:508
-#, fuzzy
 msgctxt "estimated-date"
 msgid ""
-msgstr "推定された日付|"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:513
-#, fuzzy
 msgctxt "calculated-date"
 msgid ""
-msgstr "計算された日付|"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:532
 #, python-brace-format
@@ -2993,7 +2989,7 @@ msgstr "父称でない"
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
 msgctxt "Remaining names"
 msgid "rest"
-msgstr "残りの名前|残り"
+msgstr "残り"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:737
 #: ../gramps/gui/editors/editperson.py:401
@@ -6714,7 +6710,7 @@ msgstr "新年の開始"
 #: ../gramps/gen/lib/date.py:1856
 msgctxt "date-quality"
 msgid "none"
-msgstr "データ品質|無"
+msgstr "無"
 
 #: ../gramps/gen/lib/date.py:1857
 msgid "calculated"
@@ -9647,7 +9643,7 @@ msgstr "更新"
 #: ../gramps/gen/plug/utils.py:261
 msgctxt "updates"
 msgid "New"
-msgstr "更新|新規"
+msgstr "新規"
 
 #: ../gramps/gen/plug/utils.py:290 ../gramps/gen/plug/utils.py:297
 #, python-format
@@ -9748,102 +9744,102 @@ msgstr "未定義"
 #: ../gramps/gen/relationship.py:2174
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr "性別不明|配偶者"
+msgstr "配偶者"
 
 #: ../gramps/gen/relationship.py:2181
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "性別不明|前配偶者"
+msgstr "前配偶者"
 
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr "男性,独身|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2186
 msgctxt "female,unmarried"
 msgid "partner"
-msgstr "女性,独身|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2188
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr "性別不明,独身|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2191
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr "男性,独身|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2193
 msgctxt "female,unmarried"
 msgid "ex-partner"
-msgstr "女性,独身|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2195
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "性別不明,独身|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
 msgid "partner"
-msgstr "男性,シビルユニオン|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2200
 msgctxt "female,civil union"
 msgid "partner"
-msgstr "女性,シビルユニオン|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2202
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr "性別不明,シビルユニオン|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2205
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "男性,シビルユニオン|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2207
 msgctxt "female,civil union"
 msgid "former partner"
-msgstr "女性,シビルユニオン|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2209
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "性別不明,シビルユニオン|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2212
 msgctxt "male,unknown relation"
 msgid "partner"
-msgstr "男性,関係不明|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2214
 msgctxt "female,unknown relation"
 msgid "partner"
-msgstr "女性,関係不明|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2216
 msgctxt "gender unknown,unknown relation"
 msgid "partner"
-msgstr "性別不明,関係不明|パートナー"
+msgstr "パートナー"
 
 #: ../gramps/gen/relationship.py:2221
 msgctxt "male,unknown relation"
 msgid "former partner"
-msgstr "男性,関係不明|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2223
 msgctxt "female,unknown relation"
 msgid "former partner"
-msgstr "女性,関係不明|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2225
 msgctxt "gender unknown,unknown relation"
 msgid "former partner"
-msgstr "性別不明,関係不明|前パートナー"
+msgstr "前パートナー"
 
 #: ../gramps/gen/relationship.py:2318
 #, python-format
@@ -10683,7 +10679,7 @@ msgstr "家族属性"
 #: ../gramps/gui/clipboard.py:483
 msgctxt "not available"
 msgid "NA"
-msgstr "利用不可|NA"
+msgstr "NA"
 
 #: ../gramps/gui/clipboard.py:492
 #, python-format
@@ -10713,19 +10709,19 @@ msgstr "クリップボード"
 #, python-format
 msgctxt "the object"
 msgid "See %s details"
-msgstr "オブジェクト|詳細は %s を参照"
+msgstr "詳細は %s を参照"
 
 #: ../gramps/gui/clipboard.py:1502 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgctxt "the object"
 msgid "Make %s active"
-msgstr "オブジェクト|%s を有効化"
+msgstr "%s を有効化"
 
 #: ../gramps/gui/clipboard.py:1524
 #, python-format
 msgctxt "the object"
 msgid "Create Filter from %s selected..."
-msgstr "オブジェクト|選択されている %s よりフィルタを作成..."
+msgstr "選択されている %s よりフィルタを作成..."
 
 #: ../gramps/gui/columnorder.py:89
 #, python-format
@@ -16588,7 +16584,7 @@ msgstr "サイズ"
 #: ../gramps/gui/plug/report/_styleeditor.py:268
 msgctxt "point size"
 msgid "pt"
-msgstr "ポイントサイズ|pt"
+msgstr "pt"
 
 #: ../gramps/gui/glade/styleeditor.glade:432
 msgid "_Bold"
@@ -18766,7 +18762,7 @@ msgstr "メディア:"
 #: ../gramps/plugins/webreport/statistics.py:147
 msgctxt "Megabyte"
 msgid "MB"
-msgstr "メガバイト|MB"
+msgstr "MB"
 
 #: ../gramps/gui/viewmanager.py:1756
 msgid "Exclude"
@@ -21870,7 +21866,7 @@ msgstr "全ての姓をテキストクラウドとして表示するGramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
 msgctxt "gramplet"
 msgid "To Do"
-msgstr "gramplet|To Do"
+msgstr "To Do"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:291
 msgid "Gramplet for displaying a To Do list"
@@ -31115,18 +31111,18 @@ msgstr "サブタイトルに使用されるスタイル。"
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for male"
 msgid "M"
-msgstr "男性の頭文字|M"
+msgstr "M"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 msgctxt "acronym for female"
 msgid "F"
-msgstr "女性の頭文字|F"
+msgstr "F"
 
 #: ../gramps/plugins/textreport/familygroup.py:511
 #, python-format
 msgctxt "acronym for unknown"
 msgid "%dU"
-msgstr "性別不明の頭文字|%dU"
+msgstr "%dU"
 
 #: ../gramps/plugins/textreport/familygroup.py:618
 #, python-format
@@ -35338,7 +35334,7 @@ msgstr "デフォルトの人物へ戻る"
 #: ../gramps/plugins/webreport/basepage.py:1963
 msgctxt "Html"
 msgid "Home"
-msgstr "HTML|ホーム"
+msgstr "ホーム"
 
 #: ../gramps/plugins/webreport/basepage.py:1745
 #: ../gramps/plugins/webreport/basepage.py:1932
@@ -35516,7 +35512,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "メディア | 名前"
+msgstr " 名前"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -36539,7 +36535,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "場所の名前 | 名前"
+msgstr " 名前"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
@@ -36564,7 +36560,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/repository.py:173
 msgctxt "Repository "
 msgid "Name"
-msgstr "レポジトリ | 名前"
+msgstr "名前"
 
 #: ../gramps/plugins/webreport/source.py:105
 msgid "Creating source pages"
@@ -36580,7 +36576,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/source.py:171
 msgctxt "Source Name"
 msgid "Name"
-msgstr "姓 | 名前"
+msgstr "名前"
 
 #: ../gramps/plugins/webreport/source.py:272
 msgid "Publication information"
