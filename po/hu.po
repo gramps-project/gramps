@@ -8,13 +8,14 @@
 # Kolesár András <translation@kolesar.hu>, 2009.
 # Nemeséri Lajos <nemeseril@gmail.com>, 2011-2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Lajos Nemeséri <nemeseril@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
 "PO-Revision-Date: 2021-06-04 21:07+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
 "Language: hu\n"
@@ -11171,20 +11172,15 @@ msgstr ""
 "hiányoztak."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"A Ön Python verziója nem felel meg a követelménynek. Legalább %(v1)d.%(v2)d."
-"%(v3)d verziójú Python szükséges a Gramps indításához.\n"
+"A Ön Python verziója nem felel meg a követelménynek. Legalább "
+"%(v1)d.%(v2)d.%(v3)d változatú Python szükséges a Gramps indításához.\n"
 "\n"
 "A Gramps most leáll."
 
@@ -11194,28 +11190,21 @@ msgid "Configuration error:"
 msgstr "Konfigurációs hiba:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
 msgstr "Konfiguráció olvasási hiba"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"A(z) %s MIME-típus definíciója nem található\n"
+"A(z) %s média típus definíciója nem található\n"
 "\n"
 "Talán a Gramps telepítése nem volt teljes. Bizonyosodjon meg arról, hogy a "
-"Gramps MIME-típusai helyesen lettek telepítve."
+"Gramps média típusai helyesen lettek telepítve."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -15818,18 +15807,13 @@ msgid "Con_fidence:"
 msgstr "Megbíz_hatóság:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
 "Az ön által hivatkozott dátum, pl. a ház felmérési dátuma népszámláláskor, "
-"vagy egy belépési dátum bekerült a forrás születési log/nyilvántartásba. "
+"vagy egy belépési dátum bekerült a forrás születési log/nyilvántartásba."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16195,13 +16179,6 @@ msgid "Image preview"
 msgstr "Kép előnézet"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16213,7 +16190,7 @@ msgstr ""
 "A Gramps nem tárolja a média objektumokat, csak azok útvonalát! Állítsa be a "
 "'Relatív útvonal'-at a Beállítások menüben, hogy elkerülje a média "
 "alapkönyvtár útvonalának állandó beírását. A 'Média kezelő' eszköz segíthet "
-"a média objektum kollekciók útvonalainak kezelésében. "
+"a média objektum kollekciók útvonalainak kezelésében."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16377,10 +16354,8 @@ msgid ""
 msgstr "Helyben adott leíró név, vagy kiegészítés a hivatalos keresztnévhez."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Utónév(ek) "
+msgstr "Utónév(ek)"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16662,13 +16637,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Mező pl. a google, openstreetmap oldalakról származó információ "
-"beillesztéséhez ... "
+"Mező pl. a Google, OpenStreetMap oldalakról származó információ "
+"beillesztéséhez ..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -17409,7 +17381,7 @@ msgstr "_Roman (Times, serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:332
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
-msgstr "_Swiss (Arial, Helvetica, sans-serif)"
+msgstr "_Svájci (Arial, Helvetica, sans-serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:355
 msgid "Size"
@@ -20885,16 +20857,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "pl.\n"
-"Amerikai Egyesült államok/U.S.A"
+"Amerikai Egyesült államok/U.S.A."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:977
 #: ../gramps/plugins/drawreport/descendtree.py:1702
@@ -21046,8 +21014,8 @@ msgstr "%(person)s, születés"
 #, python-brace-format
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
-msgstr[0] "{person}, {age}"
-msgstr[1] "{person}, {age}"
+msgstr[0] "{person}, {age} éves"
+msgstr[1] "{person}, {age} éves"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:421
 #, python-format
@@ -25057,8 +25025,6 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
 msgstr "ANSI (ISO-8859-1)"
 
@@ -33586,9 +33552,7 @@ msgstr[0] "{quantity} médiaobjektumra hivatkoznak, de az nem található\n"
 msgstr[1] "{quantity} médiaobjektumra hivatkoznak, de azok nem találhatóak\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "{quantity} elveszett médiaobjektum hivatkozás megtartva\n"
@@ -33679,10 +33643,8 @@ msgstr[1] ""
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] ""
-"{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
-msgstr[1] ""
-"{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
+msgstr[0] "{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
+msgstr[1] "{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
 
 #: ../gramps/plugins/tool/check.py:2745
 #, python-brace-format
@@ -37300,20 +37262,16 @@ msgid "Sort all children in birth order"
 msgstr "Rendezze az összes gyermeket születési sorrendbe"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2132
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "Legyenek-e a gyermekek születési, vagy belépési sorrenbe rendezve?"
+msgstr "Legyenek-e a gyermekek születési-, vagy belépési sorrendbe rendezve."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Do we display coordinates in the places list?"
 msgstr "Mutassuk-e a koordinátákat a helylistában?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2138
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Mutassuk-e a hosszúságot/szélességet a helylistában?"
+msgstr "Mutassuk-e a hosszúságot/szélességet a helylistában."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort places references either by date or by name"
@@ -37414,11 +37372,8 @@ msgid "HTML user header"
 msgstr "HTML felhasználói fejléc"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2202
-#, fuzzy
-#| msgid "A note to be used as the page header or a php code to insert."
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr ""
-"Egy beillesztendő szöveg, ami az oldal fejlécében, vagy egy php kód lesz."
+msgstr "Az oldal fejlécében, vagy egy PHP kódként beillesztendő szöveg."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2206
 msgid "HTML user footer"
