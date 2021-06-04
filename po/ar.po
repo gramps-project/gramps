@@ -4,13 +4,14 @@
 # mbnoimi, 2013.
 # Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>, 2013.
 # Munzir Taha (منذر طه) <munzirtaha@gmail.com>, 2014.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps-5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ar/>\n"
 "Language: ar\n"
@@ -11313,7 +11314,7 @@ msgstr ": %s\n"
 #: ../gramps/gui/clipboard.py:70
 msgctxt "manual"
 msgid "Using_the_Clipboard"
-msgstr "manual|Using_the_Clipboard"
+msgstr "Using_the_Clipboard"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
@@ -12928,10 +12929,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/editors/addmedia.py:70
-#, fuzzy
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "manual|Merge_Media_Objects"
+msgstr "Select_a_media_selector"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -13720,10 +13720,9 @@ msgid "Child Reference Editor"
 msgstr "محرر مرجع الابن"
 
 #: ../gramps/gui/editors/editcitation.py:69
-#, fuzzy
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "manual|Merge_Citations"
+msgstr "New_Citation_dialog"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -13820,10 +13819,9 @@ msgstr "محسوب"
 
 # شك
 #: ../gramps/gui/editors/editdate.py:99
-#, fuzzy
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr "manual|Editing_Dates"
+msgstr "Editing_dates"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
@@ -13835,10 +13833,9 @@ msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:64
-#, fuzzy
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "manual|Merge_Events"
+msgstr "New_Event_dialog"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -14255,10 +14252,9 @@ msgid "Location Editor"
 msgstr "محرر الموقع"
 
 #: ../gramps/gui/editors/editmedia.py:68
-#, fuzzy
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr "manual|Media_Manager"
+msgstr "New_Media_dialog"
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:412
@@ -14399,10 +14395,9 @@ msgid "Group this name only"
 msgstr "تجميع حسب هذا الاسم فقط"
 
 #: ../gramps/gui/editors/editnote.py:67
-#, fuzzy
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "manual|Editing_Information_About_Events"
+msgstr "Editing_information_about_notes"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14472,10 +14467,9 @@ msgid "New Person"
 msgstr "شخص جديد"
 
 #: ../gramps/gui/editors/editperson.py:243
-#, fuzzy
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "manual|Editing_Information_About_Events"
+msgstr "Editing_information_about_people"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:478
@@ -14758,10 +14752,9 @@ msgid "Add Repository"
 msgstr "إضافة مستودع"
 
 #: ../gramps/gui/editors/editrepository.py:60
-#, fuzzy
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "manual|Merge_Repositories"
+msgstr "New_Repository_dialog"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -14792,10 +14785,9 @@ msgid "Delete Repository (%s)"
 msgstr "حذف المستودع (%s)"
 
 #: ../gramps/gui/editors/editsource.py:64
-#, fuzzy
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "manual|Merge_Sources"
+msgstr "New_Source_dialog"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -14859,10 +14851,9 @@ msgid "Add_Rule_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:85
-#, fuzzy
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "manual|General"
+msgstr "Define_Filter_dialog"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 #, fuzzy
@@ -18016,7 +18007,7 @@ msgstr "أنشئ في %4d/%02d/%02d"
 #: ../gramps/gui/merge/mergecitation.py:46
 msgctxt "manual"
 msgid "Merge_Citations"
-msgstr "manual|Merge_Citations"
+msgstr "Merge_Citations"
 
 #: ../gramps/gui/merge/mergecitation.py:68
 #: ../gramps/plugins/tool/tools.gpr.py:442
@@ -18026,7 +18017,7 @@ msgstr "دمج استشهادات"
 #: ../gramps/gui/merge/mergeevent.py:45
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "manual|Merge_Events"
+msgstr "Merge_Events"
 
 #: ../gramps/gui/merge/mergeevent.py:67
 msgid "Merge Events"
@@ -18035,7 +18026,7 @@ msgstr "دمج أحداث"
 #: ../gramps/gui/merge/mergefamily.py:46
 msgctxt "manual"
 msgid "Merge_Families"
-msgstr "manual|Merge_Families"
+msgstr "Merge_Families"
 
 #: ../gramps/gui/merge/mergefamily.py:68
 msgid "Merge Families"
@@ -18057,12 +18048,12 @@ msgstr "غير قادر على دمج الأشخاص"
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "manual|Merge_Media_Objects"
+msgstr "Merge_Media_Objects"
 
 #: ../gramps/gui/merge/mergenote.py:44
 msgctxt "manual"
 msgid "Merge_Notes"
-msgstr "manual|Merge_Notes"
+msgstr "Merge_Notes"
 
 #: ../gramps/gui/merge/mergenote.py:94
 msgid "flowed"
@@ -18075,7 +18066,7 @@ msgstr "منسّق"
 #: ../gramps/gui/merge/mergeperson.py:58
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "manual|Merge_People"
+msgstr "Merge_People"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -18146,17 +18137,17 @@ msgstr ""
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
 msgid "Merge_Places"
-msgstr "manual|Merge_Places"
+msgstr "Merge_Places"
 
 #: ../gramps/gui/merge/mergerepository.py:44
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "manual|Merge_Repositories"
+msgstr "Merge_Repositories"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
 msgid "Merge_Sources"
-msgstr "manual|Merge_Sources"
+msgstr "Merge_Sources"
 
 #: ../gramps/gui/merge/mergesource.py:67
 msgid "Merge Sources"
@@ -19058,10 +19049,9 @@ msgid "Document Styles"
 msgstr "قوالب المستند"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:108
-#, fuzzy
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "manual|General"
+msgstr "Document_Styles_dialog"
 
 # شك
 #: ../gramps/gui/plug/report/_styleeditor.py:147
@@ -19190,36 +19180,32 @@ msgid "Select Event"
 msgstr "تحديد حدث"
 
 #: ../gramps/gui/selectors/selectevent.py:79
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "manual|Merge_Events"
+msgstr "Select_Event_selector"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "manual|Merge_Families"
+msgstr "Select_Family_selector"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
 msgstr "تحديد ملاحظة"
 
 #: ../gramps/gui/selectors/selectnote.py:82
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "manual|Merge_Notes"
+msgstr "Select_Note_selector"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
 msgstr "تحديد كائن وسائط"
 
 #: ../gramps/gui/selectors/selectobject.py:108
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "manual|Merge_Media_Objects"
+msgstr "Select_Media_Object_selector"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
@@ -19237,40 +19223,36 @@ msgid "Select_Child_selector"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectperson.py:70
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "manual|Merge_Places"
+msgstr "Select_Person_selector"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
 msgstr "تحديد مكان"
 
 #: ../gramps/gui/selectors/selectplace.py:90
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "manual|Merge_Places"
+msgstr "Select_Place_selector"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
 msgstr "تحديد مستودع"
 
 #: ../gramps/gui/selectors/selectrepository.py:75
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "manual|Merge_Notes"
+msgstr "Select_Repository_selector"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
 msgstr "تحديد مصدر"
 
 #: ../gramps/gui/selectors/selectsource.py:76
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Source_selector"
-msgstr "manual|Merge_Notes"
+msgstr "Select_Source_selector"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19545,7 +19527,7 @@ msgstr "إحباط النسخ الاحتياطي"
 #: ../gramps/gui/views/bookmarks.py:69
 msgctxt "manual"
 msgid "Bookmarks"
-msgstr "manual|Bookmarks"
+msgstr "Bookmarks"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
@@ -19737,10 +19719,9 @@ msgid "Organize_Tags_Window"
 msgstr "تنظيم الوسوم"
 
 #: ../gramps/gui/views/tags.py:113
-#, fuzzy
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "manual|Tags"
+msgstr "New_Tag_dialog"
 
 #: ../gramps/gui/views/tags.py:250
 #, fuzzy, python-format
@@ -32805,10 +32786,9 @@ msgid "_Accept changes and close"
 msgstr "_قبول التعديلات ثم الإغلاق"
 
 #: ../gramps/plugins/tool/changenames.py:64
-#, fuzzy
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "manual|Fix_Capitalization_of_Family_Names..."
+msgstr "Fix_Capitalization_of_Family_Names"
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -33387,10 +33367,9 @@ msgid "Custom filter _editor"
 msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.py:70
-#, fuzzy
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "manual|Compare_Individual_Events..."
+msgstr "Compare_Individual_Events"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -33486,10 +33465,9 @@ msgid "Co_mpare"
 msgstr "م_قارنة"
 
 #: ../gramps/plugins/tool/finddupes.py:66
-#, fuzzy
 msgctxt "manual"
 msgid "Find_Possible_Duplicate_People"
-msgstr "manual|Find_Possible_Duplicate_People..."
+msgstr "Find_Possible_Duplicate_People"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
@@ -33582,7 +33560,7 @@ msgstr "بحث عن {number_of} من الأشخاص"
 #: ../gramps/plugins/tool/mediamanager.py:68
 msgctxt "manual"
 msgid "Media_Manager"
-msgstr "manual|Media_Manager"
+msgstr "Media_Manager"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:118
@@ -33760,10 +33738,9 @@ msgid "Ignore Date and Confidence"
 msgstr "تجاهل التاريخ و الثقة"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
-#, fuzzy
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "manual|Merge_Citations"
+msgstr "Merge_citations"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -33798,10 +33775,9 @@ msgid "_Tag"
 msgstr "_وسم"
 
 #: ../gramps/plugins/tool/notrelated.py:60
-#, fuzzy
 msgctxt "manual"
 msgid "Not_Related"
-msgstr "manual|Not_Related..."
+msgstr "Not_Related"
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
@@ -33884,10 +33860,9 @@ msgid "Right-click to copy from/to Researcher Preferences"
 msgstr ""
 
 #: ../gramps/plugins/tool/ownereditor.py:56
-#, fuzzy
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "manual|Edit_Database_Owner_Information..."
+msgstr "Edit_Database_Owner_Information"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -33920,7 +33895,7 @@ msgstr ""
 #: ../gramps/plugins/tool/patchnames.py:63
 msgctxt "manual"
 msgid "Extract_Information_from_Names"
-msgstr "manual|Extract_Information_from_Names"
+msgstr "Extract_Information_from_Names"
 
 #: ../gramps/plugins/tool/patchnames.py:105
 msgid "Name and title extraction tool"
@@ -34642,10 +34617,9 @@ msgid "_Hide marked"
 msgstr "إ_خفاء المؤشّرة"
 
 #: ../gramps/plugins/tool/verify.py:83
-#, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "manual|Verify_the_Data..."
+msgstr "Verify_the_Data"
 
 #: ../gramps/plugins/tool/verify.py:295
 #, fuzzy

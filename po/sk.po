@@ -4,20 +4,22 @@
 # Ondrej Krč-Jediný <hou at centrum dot sk>, 2014-2015
 #
 # LDS terms consulted with slovak-based LDS Church (www.mormoni.sk)
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2019-03-13 08:30+0100\n"
-"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
-"Language-Team: <sk-i18n@linux.sk>\n"
+"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -11234,7 +11236,7 @@ msgstr ": %s\n"
 #: ../gramps/gui/clipboard.py:70
 msgctxt "manual"
 msgid "Using_the_Clipboard"
-msgstr "manual|Using_the_Clipboard"
+msgstr "Using_the_Clipboard"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
@@ -12891,7 +12893,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "manual|Merge_Media_Objects"
+msgstr "Select_a_media_selector"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -13690,7 +13692,7 @@ msgstr "Editor odkazov na deti"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "manual|Merge_Citations"
+msgstr "New_Citation_dialog"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -13795,7 +13797,7 @@ msgstr "Vypočítaný"
 #, fuzzy
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr "manual|Editing_Dates"
+msgstr "Editing_dates"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
@@ -13810,7 +13812,7 @@ msgstr "Opravte dátum alebo prepnite z `{cur_mode}' do `{text_mode}'"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "manual|Merge_Events"
+msgstr "New_Event_dialog"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -14246,7 +14248,7 @@ msgstr "Editor lokality"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr "manual|Media_Manager"
+msgstr "New_Media_dialog"
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:412
@@ -14392,7 +14394,7 @@ msgstr "Zoskupiť len toto meno"
 #, fuzzy
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "manual|Editing_Information_About_Events"
+msgstr "Editing_information_about_notes"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14467,7 +14469,7 @@ msgstr "Nová osoba"
 #, fuzzy
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "manpage section id|Editing_information_about_people"
+msgstr "Editing_information_about_people"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:478
@@ -14746,7 +14748,7 @@ msgstr "Pridať archív"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "manual|Merge_Repositories"
+msgstr "New_Repository_dialog"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -14782,7 +14784,7 @@ msgstr "Zmazať archív (%s)"
 #, fuzzy
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "manual|Merge_Sources"
+msgstr "New_Source_dialog"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -14851,7 +14853,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "manual|General"
+msgstr "Define_Filter_dialog"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 #, fuzzy
@@ -18108,9 +18110,10 @@ msgid "Created on %(year)4d/%(month)02d/%(day)02d"
 msgstr "Vytvorené dňa %(year)4d/%(month)02d/%(day)02d"
 
 #: ../gramps/gui/merge/mergecitation.py:46
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Citations"
-msgstr "manual|Merge_Citations"
+msgstr "Merge_Citations"
 
 #: ../gramps/gui/merge/mergecitation.py:68
 #: ../gramps/plugins/tool/tools.gpr.py:442
@@ -18118,18 +18121,20 @@ msgid "Merge Citations"
 msgstr "Zlúčiť citácie"
 
 #: ../gramps/gui/merge/mergeevent.py:45
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "manual|Merge_Events"
+msgstr "Merge_Events"
 
 #: ../gramps/gui/merge/mergeevent.py:67
 msgid "Merge Events"
 msgstr "Zlúčiť udalosti"
 
 #: ../gramps/gui/merge/mergefamily.py:46
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Families"
-msgstr "manual|Merge_Families"
+msgstr "Merge_Families"
 
 #: ../gramps/gui/merge/mergefamily.py:68
 msgid "Merge Families"
@@ -18149,14 +18154,16 @@ msgid "Cannot merge people"
 msgstr "Nemôžem zlúčiť osoby"
 
 #: ../gramps/gui/merge/mergemedia.py:44
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "manual|Merge_Media_Objects"
+msgstr "Merge_Media_Objects"
 
 #: ../gramps/gui/merge/mergenote.py:44
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Notes"
-msgstr "manual|Merge_Notes"
+msgstr "Merge_Notes"
 
 #: ../gramps/gui/merge/mergenote.py:94
 msgid "flowed"
@@ -18167,9 +18174,10 @@ msgid "preformatted"
 msgstr "Formátovaný text"
 
 #: ../gramps/gui/merge/mergeperson.py:58
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "manual|Merge_People"
+msgstr "Merge_People"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -18238,19 +18246,22 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/merge/mergeplace.py:53
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Places"
-msgstr "manual|Merge_Places"
+msgstr "Merge_Places"
 
 #: ../gramps/gui/merge/mergerepository.py:44
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "manual|Merge_Repositories"
+msgstr "Merge_Repositories"
 
 #: ../gramps/gui/merge/mergesource.py:45
+#, fuzzy
 msgctxt "manual"
 msgid "Merge_Sources"
-msgstr "manual|Merge_Sources"
+msgstr "Merge_Sources"
 
 #: ../gramps/gui/merge/mergesource.py:67
 msgid "Merge Sources"
@@ -19163,7 +19174,7 @@ msgstr "Štýly dokumentov"
 #, fuzzy
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "manual|General"
+msgstr "Document_Styles_dialog"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
@@ -19296,13 +19307,13 @@ msgstr "Označiť udalosť"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "manual|Merge_Events"
+msgstr "Select_Event_selector"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "manual|Merge_Families"
+msgstr "Select_Family_selector"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -19312,7 +19323,7 @@ msgstr "Zvoliť poznámku"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "manual|Merge_Notes"
+msgstr "Select_Note_selector"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
@@ -19322,7 +19333,7 @@ msgstr "Zvoliť mediálny objekt"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "manual|Merge_Media_Objects"
+msgstr "Select_Media_Object_selector"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
@@ -19343,7 +19354,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "manual|Merge_Places"
+msgstr "Select_Person_selector"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -19353,7 +19364,7 @@ msgstr "Označiť lokalitu"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "manual|Merge_Places"
+msgstr "Select_Place_selector"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -19363,7 +19374,7 @@ msgstr "Označiť archív"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "manual|Merge_Notes"
+msgstr "Select_Repository_selector"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -19373,7 +19384,7 @@ msgstr "Označiť zdroj"
 #, fuzzy
 msgctxt "manual"
 msgid "Select_Source_selector"
-msgstr "manual|Merge_Notes"
+msgstr "Select_Source_selector"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19671,9 +19682,10 @@ msgid "Backup aborted"
 msgstr "Záloha zrušená"
 
 #: ../gramps/gui/views/bookmarks.py:69
+#, fuzzy
 msgctxt "manual"
 msgid "Bookmarks"
-msgstr "manual|Bookmarks"
+msgstr "Bookmarks"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
@@ -33138,7 +33150,7 @@ msgstr "_Akceptovať zmeny a zavrieť"
 #, fuzzy
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "manual|Fix_Capitalization_of_Family_Names..."
+msgstr "Fix_Capitalization_of_Family_Names"
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -33787,7 +33799,7 @@ msgstr "Editor používateľských filtrov"
 #, fuzzy
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "manual|Compare_Individual_Events..."
+msgstr "Compare_Individual_Events"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -33883,7 +33895,7 @@ msgstr "Porovnať"
 #, fuzzy
 msgctxt "manual"
 msgid "Find_Possible_Duplicate_People"
-msgstr "manual|Find_Possible_Duplicate_People..."
+msgstr "Find_Possible_Duplicate_People"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
@@ -33973,9 +33985,10 @@ msgid "Looking for possible loop for each person"
 msgstr "Hľadanie {number_of} osoby"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
+#, fuzzy
 msgctxt "manual"
 msgid "Media_Manager"
-msgstr "manual|Media_Manager"
+msgstr "Media_Manager"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:118
@@ -34193,7 +34206,7 @@ msgstr "Ignorovať dátum a dôveryhodnosť"
 #, fuzzy
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "manual|Merge_Citations"
+msgstr "Merge_citations"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -34233,7 +34246,7 @@ msgstr "Značka"
 #, fuzzy
 msgctxt "manual"
 msgid "Not_Related"
-msgstr "manual|Not_Related..."
+msgstr "Not_Related"
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
@@ -34328,7 +34341,7 @@ msgstr ""
 #, fuzzy
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "manual|Edit_Database_Owner_Information..."
+msgstr "Edit_Database_Owner_Information"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -34371,9 +34384,10 @@ msgstr ""
 "opakovane."
 
 #: ../gramps/plugins/tool/patchnames.py:63
+#, fuzzy
 msgctxt "manual"
 msgid "Extract_Information_from_Names"
-msgstr "manual|Extract_Information_from_Names"
+msgstr "Extract_Information_from_Names"
 
 #: ../gramps/plugins/tool/patchnames.py:105
 msgid "Name and title extraction tool"
@@ -35101,7 +35115,7 @@ msgstr "Skryť označené"
 #, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "manual|Verify_the_Data..."
+msgstr "Verify_the_Data"
 
 #: ../gramps/plugins/tool/verify.py:295
 msgid "Data Verify tool"

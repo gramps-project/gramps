@@ -3,13 +3,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # FIRST AUTHOR <trande@gmail.com>, 2012.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-02 22:58+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/vi/>\n"
 "Language: vi\n"
@@ -38006,8 +38007,7 @@ msgstr "%(spouse)s  và %(person)s"
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 msgstr ""
-"\"WebCal\" sẽ là chủ đề có thể cho Chủ đề email|Được tạo cho  "
-"%(html_email_author_start)sWebCal%(html_email_author_end)s"
+"Được tạo cho  %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format

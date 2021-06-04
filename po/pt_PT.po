@@ -7,13 +7,14 @@
 # Frederico Muñoz <fsmunoz@gmail.com>, 2010-2011, 2013.
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2017, 2018, 2019.
 # Pedro Albuquerque <pmra@gmx.com>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-01 14:59+0000\n"
-"Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -25598,7 +25599,7 @@ msgstr "Cert_o"
 #: ../gramps/plugins/importer/importprogen.py:62
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
-msgstr "manual|Importar_de_outro_programa_de_genealogia"
+msgstr "Importar_de_outro_programa_de_genealogia"
 
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format

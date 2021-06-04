@@ -7,14 +7,14 @@
 # Arpad Horvath <horvath.arpad@szgti.bmf.hu>, 2006.
 # Kolesár András <translation@kolesar.hu>, 2009.
 # Nemeséri Lajos <nemeseril@gmail.com>, 2011-2020.
-#
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-18 21:26+0000\n"
-"Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
 "Language: hu\n"
@@ -2109,12 +2109,12 @@ msgstr ""
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
 msgid "none"
-msgstr "vezetéknév|nincs"
+msgstr "nincs"
 
 #: ../gramps/gen/const.py:261
 msgctxt "given-name"
 msgid "none"
-msgstr "utónév|nincs"
+msgstr "nincs"
 
 #: ../gramps/gen/const.py:265 ../gramps/plugins/gramplet/todo.py:202
 #: ../gramps/plugins/webreport/basepage.py:200
@@ -7262,7 +7262,7 @@ msgstr "Új év kezdete"
 #: ../gramps/gen/lib/date.py:1856
 msgctxt "date-quality"
 msgid "none"
-msgstr "dátum-minőség|nincs"
+msgstr "nincs"
 
 #: ../gramps/gen/lib/date.py:1857
 msgid "calculated"
@@ -7275,7 +7275,7 @@ msgstr "becsült"
 #: ../gramps/gen/lib/date.py:1871
 msgctxt "date-modifier"
 msgid "none"
-msgstr "dátum-módosító|nincs"
+msgstr "nincs"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/webreport/basepage.py:3248
 msgid "about"
@@ -10050,27 +10050,27 @@ msgstr "Élő emberek"
 #: ../gramps/gen/plug/report/stdoptions.py:190
 msgctxt "'living people'"
 msgid "Included, and all data"
-msgstr "'living people'|Beleértve, és minden adat"
+msgstr "Beleértve, és minden adat"
 
 #: ../gramps/gen/plug/report/stdoptions.py:194
 msgctxt "'living people'"
 msgid "Full names, but data removed"
-msgstr "'living people'|Teljes nevek, de az adatok eltávolítva"
+msgstr "Teljes nevek, de az adatok eltávolítva"
 
 #: ../gramps/gen/plug/report/stdoptions.py:196
 msgctxt "'living people'"
 msgid "Given names replaced, and data removed"
-msgstr "'living people'|Vezetéknevek helyettesítve és az adatok eltávolítva"
+msgstr "Vezetéknevek helyettesítve és az adatok eltávolítva"
 
 #: ../gramps/gen/plug/report/stdoptions.py:198
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr "'living people'|Teljes nevek helyettesítve, és az adatok eltávolítva"
+msgstr "Teljes nevek helyettesítve, és az adatok eltávolítva"
 
 #: ../gramps/gen/plug/report/stdoptions.py:201
 msgctxt "'living people'"
 msgid "Not included"
-msgstr "'living people'|Nincs benne"
+msgstr "Nincs benne"
 
 #: ../gramps/gen/plug/report/stdoptions.py:203
 msgid "How to handle living people"
@@ -12912,7 +12912,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "manual|Média_választó_kijelölése"
+msgstr "Média_választó_kijelölése"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -13279,7 +13279,7 @@ msgstr "_Galéria"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:142
 msgctxt "verb:look at this"
 msgid "_View"
-msgstr "ige:lásd|_View"
+msgstr "_View"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/plugins/view/mediaview.py:402
@@ -13664,7 +13664,7 @@ msgstr "_Ugrás"
 #: ../gramps/gui/editors/editaddress.py:65
 msgctxt "manual"
 msgid "Address_Editor_dialog"
-msgstr "manual|Lakcím_szerkesztő_párbeszéd_ablak"
+msgstr "Lakcím_szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:167
@@ -13674,7 +13674,7 @@ msgstr "Lakcím szerkesztő"
 #: ../gramps/gui/editors/editattribute.py:62
 msgctxt "manual"
 msgid "Attribute_Editor_dialog"
-msgstr "manual|Jellemző_szerkesztő_párbeszéd_ablak"
+msgstr "Jellemző_szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editattribute.py:94
 #: ../gramps/gui/editors/editattribute.py:137
@@ -13697,7 +13697,7 @@ msgstr "A jellemző típus nem lehet üres"
 #: ../gramps/gui/editors/editchildref.py:66
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr "manual|Gyermek_hivatkozás_szerkesztő"
+msgstr "Gyermek_hivatkozás_szerkesztő"
 
 #: ../gramps/gui/editors/editchildref.py:99
 #: ../gramps/gui/editors/editchildref.py:190
@@ -13707,7 +13707,7 @@ msgstr "Gyermek hivatkozás szerkesztő"
 #: ../gramps/gui/editors/editcitation.py:69
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "manual|Új_Idézetek_párbeszéd_ablak"
+msgstr "Új_Idézetek_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -13812,7 +13812,7 @@ msgstr "Számított"
 #: ../gramps/gui/editors/editdate.py:99
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr "manual|Dátumok_szerkesztése"
+msgstr "Dátumok_szerkesztése"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
@@ -13827,7 +13827,7 @@ msgstr ""
 #: ../gramps/gui/editors/editevent.py:64
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "manual|Új_Esemény_párbeszéd_ablak"
+msgstr "Új_Esemény_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -13891,7 +13891,7 @@ msgstr "(%s) esemény törlése"
 #: ../gramps/gui/editors/editeventref.py:57
 msgctxt "manual"
 msgid "Event_Reference_Editor_dialog"
-msgstr "manual|Esemény_hivatkozás_szerkesztő_párbeszéd_ablak"
+msgstr "Esemény_hivatkozás_szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editeventref.py:77
 #: ../gramps/gui/editors/editeventref.py:268
@@ -13917,7 +13917,7 @@ msgstr "Esemény hozzáadása"
 #: ../gramps/gui/editors/editfamily.py:92
 msgctxt "manual"
 msgid "Family_Editor_dialog"
-msgstr "manual|Család_szerkesztő_párbeszéd_ablak"
+msgstr "Család_szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editfamily.py:113
 msgid "Create a new person and add the child to the family"
@@ -14218,7 +14218,7 @@ msgstr "Család hozzáadása"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "manual|Mormon_rend_szerkesztő"
+msgstr "Mormon_rend_szerkesztő"
 
 #: ../gramps/gui/editors/editldsord.py:158
 #: ../gramps/gui/editors/editldsord.py:315
@@ -14245,7 +14245,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 #: ../gramps/gui/editors/editlink.py:49
 msgctxt "manual"
 msgid "Link_Editor"
-msgstr "manual|Hivatkozás_szerkesztő"
+msgstr "Hivatkozás_szerkesztő"
 
 #: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:250
 msgid "Link Editor"
@@ -14262,7 +14262,7 @@ msgstr "Helyszín szerkesztő"
 #: ../gramps/gui/editors/editmedia.py:68
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr "manual|Új_Média_párbeszéd_ablak"
+msgstr "Új_Média_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:412
@@ -14327,7 +14327,7 @@ msgstr "Média objektum eltávolítása"
 #: ../gramps/gui/editors/editmediaref.py:72
 msgctxt "manual"
 msgid "Media_Reference_Editor_dialog"
-msgstr "manual|Média_hivatkozás_szerkesztő_párbeszéd_ablak"
+msgstr "Média_hivatkozás_szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editmediaref.py:96
 #: ../gramps/gui/editors/editmediaref.py:415
@@ -14349,7 +14349,7 @@ msgstr "Névszerkesztő"
 #: ../gramps/gui/editors/editname.py:162
 msgctxt "manual"
 msgid "Name_Editor"
-msgstr "manual|_Névszerkesztő"
+msgstr "_Névszerkesztő"
 
 #: ../gramps/gui/editors/editname.py:174
 #: ../gramps/gui/editors/editperson.py:319
@@ -14405,7 +14405,7 @@ msgstr "Csak ezt a nevet csoportosítsa"
 #: ../gramps/gui/editors/editnote.py:67
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "manual|Információ_szerkesztés_eseményekről"
+msgstr "Információ_szerkesztés_eseményekről"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14479,7 +14479,7 @@ msgstr "Új személy"
 #: ../gramps/gui/editors/editperson.py:243
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "manual|Információ_szerkesztés_emberekről"
+msgstr "Információ_szerkesztés_emberekről"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:478
@@ -14571,7 +14571,7 @@ msgstr "_Ismeretlen"
 #: ../gramps/gui/editors/editpersonref.py:67
 msgctxt "manual"
 msgid "Person_Reference_Editor"
-msgstr "manual|Személy_hivatkozás_szerkesztő"
+msgstr "Személy_hivatkozás_szerkesztő"
 
 #: ../gramps/gui/editors/editpersonref.py:93
 #: ../gramps/gui/editors/editpersonref.py:213
@@ -14593,7 +14593,7 @@ msgstr "Válasszon személyt, vagy szakítsa meg a szerkesztést"
 #: ../gramps/gui/editors/editplace.py:69
 msgctxt "manual"
 msgid "Place_Editor_dialog"
-msgstr "manual|Hely_Szerkesztő_párbeszéd_ablak"
+msgstr "Hely_Szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editplace.py:91
 #: ../gramps/gui/glade/editplace.glade:355 ../gramps/gui/merge/mergeplace.py:55
@@ -14679,7 +14679,7 @@ msgstr "Új"
 #: ../gramps/gui/editors/editplacename.py:49
 msgctxt "manual"
 msgid "Place_Name_Editor_dialog"
-msgstr "manual|Hely-név_szerkesztő_párbeszéd_ablak"
+msgstr "Hely-név_szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editplacename.py:101
 #: ../gramps/gui/editors/editplacename.py:134
@@ -14757,7 +14757,7 @@ msgstr "Tároló hozzáadása"
 #: ../gramps/gui/editors/editrepository.py:60
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "manual|Új_Tárolók_párbeszéd-ablak"
+msgstr "Új_Tárolók_párbeszéd-ablak"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -14792,7 +14792,7 @@ msgstr "(%s) tároló törlése"
 #: ../gramps/gui/editors/editsource.py:64
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "manual|Új_Forrás_párbeszéd_ablak"
+msgstr "Új_Forrás_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -14834,7 +14834,7 @@ msgstr "(%s) forrás törlése"
 #: ../gramps/gui/editors/edittaglist.py:48
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "manual|Címke_kiválasztó_párbeszéd_ablak"
+msgstr "Címke_kiválasztó_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:127
@@ -14844,7 +14844,7 @@ msgstr "Címke kiválasztása"
 #: ../gramps/gui/editors/editurl.py:47
 msgctxt "manual"
 msgid "Internet_Address_Editor"
-msgstr "manual|Internet_cím_szerkesztő"
+msgstr "Internet_cím_szerkesztő"
 
 #: ../gramps/gui/editors/editurl.py:68 ../gramps/gui/editors/editurl.py:103
 msgid "Internet Address Editor"
@@ -14853,17 +14853,17 @@ msgstr "Internet hozzáférés szerkesztő"
 #: ../gramps/gui/editors/filtereditor.py:84
 msgctxt "manual"
 msgid "Add_Rule_dialog"
-msgstr "manual|Szabály_hozzáadás_párbeszéd_ablak"
+msgstr "Szabály_hozzáadás_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/filtereditor.py:85
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "manual|Szűrő_meghatározás_párbeszéd_ablak"
+msgstr "Szűrő_meghatározás_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 msgctxt "manual"
 msgid "Custom_Filters"
-msgstr "manual|Egyéni_szűrők"
+msgstr "Egyéni_szűrők"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Person Filters"
@@ -18118,7 +18118,7 @@ msgstr ""
 #: ../gramps/gui/logger/_errorview.py:46
 msgctxt "manual"
 msgid "Error_Report"
-msgstr "manual|Hibajelentés"
+msgstr "Hibajelentés"
 
 #: ../gramps/gui/logger/_errorview.py:107
 msgid "Error Report"
@@ -19214,7 +19214,7 @@ msgstr "Dokumentum stílusok"
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "manual|Dokumentum_Stílus_párbeszéd ablak"
+msgstr "Dokumentum_Stílus_párbeszéd ablak"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
@@ -19244,7 +19244,7 @@ msgstr "Stílus szerkesztő"
 #: ../gramps/gui/plug/report/_styleeditor.py:242
 msgctxt "manual"
 msgid "Style_editor_dialog"
-msgstr "manual|Stílus_szerkesztő_párbeszéd ablak"
+msgstr "Stílus_szerkesztő_párbeszéd ablak"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:352
 #: ../gramps/gui/plug/report/_styleeditor.py:380
@@ -19335,7 +19335,7 @@ msgstr "Utolsó változás"
 #: ../gramps/gui/selectors/selectcitation.py:86
 msgctxt "manual"
 msgid "Select_Source_or_Citation_selector"
-msgstr "manual|Forrás_vagy_idézet_kiválasztó"
+msgstr "Forrás_vagy_idézet_kiválasztó"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
@@ -19344,12 +19344,12 @@ msgstr "Esemény kiválasztása"
 #: ../gramps/gui/selectors/selectevent.py:79
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "manual|Esemény_választó_kiválasztása"
+msgstr "Esemény_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "manual|Család_választó_kiválasztása"
+msgstr "Család_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -19358,7 +19358,7 @@ msgstr "Jegyzet kiválasztása"
 #: ../gramps/gui/selectors/selectnote.py:82
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "manual|Jegyzet_választó_kiválasztása"
+msgstr "Jegyzet_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
@@ -19367,27 +19367,27 @@ msgstr "Média objektum kiválasztása"
 #: ../gramps/gui/selectors/selectobject.py:108
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "manual|Média_objektum_választó_kiválasztása"
+msgstr "Média_objektum_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
 msgid "Select_Father_selector"
-msgstr "manual|Apa_választó_kiválasztása"
+msgstr "Apa_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectperson.py:66
 msgctxt "manual"
 msgid "Select_Mother_selector"
-msgstr "manual|Anya_választó_kiválasztása"
+msgstr "Anya_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectperson.py:68
 msgctxt "manual"
 msgid "Select_Child_selector"
-msgstr "manual|Gyermek_választó_kiválasztása"
+msgstr "Gyermek_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectperson.py:70
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "manual|Személy_választó_kiválasztása"
+msgstr "Személy_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -19396,7 +19396,7 @@ msgstr "Hely kiválasztása"
 #: ../gramps/gui/selectors/selectplace.py:90
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "manual|Hely_választó_kiválasztása"
+msgstr "Hely_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -19405,7 +19405,7 @@ msgstr "Tároló kiválasztása"
 #: ../gramps/gui/selectors/selectrepository.py:75
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "manual|Tároló_választó_kiválasztása"
+msgstr "Tároló_választó_kiválasztása"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -19414,7 +19414,7 @@ msgstr "Forrás kiválasztása"
 #: ../gramps/gui/selectors/selectsource.py:76
 msgctxt "manual"
 msgid "Select_Source_selector"
-msgstr "manual|Forrás_választó_kiválasztása"
+msgstr "Forrás_választó_kiválasztása"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19902,12 +19902,12 @@ msgstr "Címkék szervezése..."
 #: ../gramps/gui/views/tags.py:112
 msgctxt "manual"
 msgid "Organize_Tags_Window"
-msgstr "manual|Címkék_szervezése_ablak"
+msgstr "Címkék_szervezése_ablak"
 
 #: ../gramps/gui/views/tags.py:113
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "manual|Új_Címke_párbeszéd_ablak"
+msgstr "Új_Címke_párbeszéd_ablak"
 
 #: ../gramps/gui/views/tags.py:250
 #, python-format
@@ -20192,7 +20192,7 @@ msgstr "Haladás információ"
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "manual|Rokonság_Újrarendezés_párbeszéd ablak"
+msgstr "Rokonság_Újrarendezés_párbeszéd ablak"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -24772,7 +24772,7 @@ msgstr "cím"
 #: ../gramps/plugins/importer/importcsv.py:169
 msgctxt "Person or Place"
 msgid "title"
-msgstr "Person or Place|cím"
+msgstr "cím"
 
 #: ../gramps/plugins/importer/importcsv.py:172
 msgid "gender"
@@ -25560,7 +25560,7 @@ msgstr "_Rendben"
 #: ../gramps/plugins/importer/importprogen.py:62
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
-msgstr "manual|Más_származástani_programból_importálás"
+msgstr "Más_származástani_programból_importálás"
 
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
@@ -32807,7 +32807,7 @@ msgstr "Gramps Azonosító: %s "
 #, python-format
 msgctxt "places"
 msgid "All Names: %s"
-msgstr "places|Minden név: %s"
+msgstr "Minden név: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:221
 msgid "Events that happened at this place"
@@ -33181,7 +33181,7 @@ msgstr "_Változtatások elfogadása és az ablak bezárása"
 #: ../gramps/plugins/tool/changenames.py:64
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "manual|Családnevek_állandó_nagybetűsítése"
+msgstr "Családnevek_állandó_nagybetűsítése"
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -33808,7 +33808,7 @@ msgstr "_Egyéni szűrő szerkesztő"
 #: ../gramps/plugins/tool/eventcmp.py:70
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "manual|Egyének_eseményeinek_összehasonlítása"
+msgstr "Egyének_eseményeinek_összehasonlítása"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -33902,7 +33902,7 @@ msgstr "_összehasonlítás"
 #: ../gramps/plugins/tool/finddupes.py:66
 msgctxt "manual"
 msgid "Find_Possible_Duplicate_People"
-msgstr "manual|Emberek_lehetséges_kettőződésének_keresése"
+msgstr "Emberek_lehetséges_kettőződésének_keresése"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
@@ -33970,7 +33970,7 @@ msgstr "Személyek összefűzése"
 #: ../gramps/plugins/tool/findloop.py:58
 msgctxt "manual"
 msgid "Find_database_loop"
-msgstr "manual|A_datbázis_hurok keresése"
+msgstr "A_datbázis_hurok keresése"
 
 #: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465
@@ -34209,7 +34209,7 @@ msgstr "Dátum és megbízhatóság elvetése"
 #: ../gramps/plugins/tool/mergecitations.py:83
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "manual|Idézetek_összefűzése"
+msgstr "Idézetek_összefűzése"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -34248,7 +34248,7 @@ msgstr "_Címke"
 #: ../gramps/plugins/tool/notrelated.py:60
 msgctxt "manual"
 msgid "Not_Related"
-msgstr "manual|Nem_köthető_hozzá"
+msgstr "Nem_köthető_hozzá"
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
@@ -34337,7 +34337,7 @@ msgstr "Jobb klikk a Kutatói Beállításokba/-ből másoláshoz"
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "manual|Adatbázis_tulajdonos_információinak_szerkesztése"
+msgstr "Adatbázis_tulajdonos_információinak_szerkesztése"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -34700,7 +34700,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "manual|GRAPMS-azonosítók újrarendezése"
+msgstr "GRAPMS-azonosítók újrarendezése"
 
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
@@ -35107,7 +35107,7 @@ msgstr "Megjelöltek _elrejtése"
 #: ../gramps/plugins/tool/verify.py:83
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "manual|Ellenőrizd_az_adatokat"
+msgstr "Ellenőrizd_az_adatokat"
 
 #: ../gramps/plugins/tool/verify.py:295
 msgid "Data Verify tool"

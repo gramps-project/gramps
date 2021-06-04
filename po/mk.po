@@ -8,15 +8,16 @@
 # Translator: Biljana Bogdanovska <bbogdanovska11@gmail.com>, 2008
 # Proof-reading: Dejan Vasilevski <getorudi@yahoo.com>, 2008
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
-"Language-Team: Macedonian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/mk/>\n"
+"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: Macedonian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/mk/>\n"
 "Language: mk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3225,7 +3226,7 @@ msgstr "Патронимско, Дадено име"
 #, fuzzy
 msgctxt "Person"
 msgid "title"
-msgstr "лице|Наслов"
+msgstr "Наслов"
 
 #: ../gramps/gen/display/name.py:604 ../gramps/gen/display/name.py:704
 #: ../gramps/plugins/importer/importcsv.py:165
@@ -5347,7 +5348,7 @@ msgstr "Семејно име:"
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:48
 msgctxt "person"
 msgid "Title:"
-msgstr "лице|Наслов:"
+msgstr "Наслов:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
 msgid "Suffix:"
@@ -10626,112 +10627,112 @@ msgstr "_Подвлечи"
 #: ../gramps/gen/relationship.py:2174
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr "пол непознат|сопружник"
+msgstr "сопружник"
 
 #: ../gramps/gen/relationship.py:2181
 #, fuzzy
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "пол непознат|сопружник"
+msgstr "сопружник"
 
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr "немажен|сопруг"
+msgstr "сопруг"
 
 #: ../gramps/gen/relationship.py:2186
 msgctxt "female,unmarried"
 msgid "partner"
-msgstr "немажена|сопруга"
+msgstr "сопруга"
 
 #: ../gramps/gen/relationship.py:2188
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr "пол непознат, немажен|сопружник"
+msgstr "сопружник"
 
 #: ../gramps/gen/relationship.py:2191
 #, fuzzy
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr "немажен|сопруг"
+msgstr "сопруг"
 
 #: ../gramps/gen/relationship.py:2193
 #, fuzzy
 msgctxt "female,unmarried"
 msgid "ex-partner"
-msgstr "немажена|сопруга"
+msgstr "сопруга"
 
 #: ../gramps/gen/relationship.py:2195
 #, fuzzy
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "пол непознат, немажен|сопружник"
+msgstr "сопружник"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
 msgid "partner"
-msgstr "маж, граѓанска заедница|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2200
 msgctxt "female,civil union"
 msgid "partner"
-msgstr "жена, граѓанска заедница|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2202
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr "пол непознат, граѓанска заедница|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2205
 #, fuzzy
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "маж, граѓанска заедница|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2207
 #, fuzzy
 msgctxt "female,civil union"
 msgid "former partner"
-msgstr "жена, граѓанска заедница|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2209
 #, fuzzy
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "пол непознат, граѓанска заедница|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2212
 msgctxt "male,unknown relation"
 msgid "partner"
-msgstr "маж, непозната врска|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2214
 msgctxt "female,unknown relation"
 msgid "partner"
-msgstr "жена, непозната врска|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2216
 msgctxt "gender unknown,unknown relation"
 msgid "partner"
-msgstr "пол непознат, непозната врска|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2221
 #, fuzzy
 msgctxt "male,unknown relation"
 msgid "former partner"
-msgstr "маж, непозната врска|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2223
 #, fuzzy
 msgctxt "female,unknown relation"
 msgid "former partner"
-msgstr "жена, непозната врска|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2225
 #, fuzzy
 msgctxt "gender unknown,unknown relation"
 msgid "former partner"
-msgstr "пол непознат, непозната врска|партнер"
+msgstr "партнер"
 
 #: ../gramps/gen/relationship.py:2318
 #, python-format
@@ -11122,7 +11123,7 @@ msgstr "Лице"
 #, fuzzy
 msgctxt "Person"
 msgid "Title"
-msgstr "лице|Наслов"
+msgstr "Наслов"
 
 #: ../gramps/gen/utils/keyword.py:55
 msgid "GIVEN"
@@ -11446,7 +11447,7 @@ msgstr "Свршувачка"
 #: ../gramps/gen/utils/symbols.py:77
 #, fuzzy
 msgid "Unmarried partnership"
-msgstr "немажен|сопруг"
+msgstr "сопруг"
 
 #: ../gramps/gen/utils/symbols.py:78
 #, fuzzy
@@ -11998,9 +11999,8 @@ msgid "Background for Civil union"
 msgstr "Боја на заднина"
 
 #: ../gramps/gui/configure.py:736
-#, fuzzy
 msgid "Background for Unknown"
-msgstr "акроним за машко|M"
+msgstr ""
 
 #: ../gramps/gui/configure.py:737
 #, fuzzy
@@ -22376,7 +22376,7 @@ msgstr "Жени"
 #: ../gramps/plugins/drawreport/statisticschart.py:338
 msgctxt "person"
 msgid "Title"
-msgstr "лице|Наслов"
+msgstr "Наслов"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:342
 msgid "Forename"
@@ -25781,7 +25781,7 @@ msgstr "Наслов"
 #, fuzzy
 msgctxt "Person or Place"
 msgid "title"
-msgstr "лице|Наслов"
+msgstr "Наслов"
 
 #: ../gramps/plugins/importer/importcsv.py:172
 #, fuzzy
@@ -33592,18 +33592,18 @@ msgstr "Стилот употребен за поднасловот."
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for male"
 msgid "M"
-msgstr "акроним за машко|M"
+msgstr "M"
 
 #: ../gramps/plugins/textreport/familygroup.py:509
 msgctxt "acronym for female"
 msgid "F"
-msgstr "акроним за женско|Ж"
+msgstr "Ж"
 
 #: ../gramps/plugins/textreport/familygroup.py:511
-#, fuzzy, python-format
+#, python-format
 msgctxt "acronym for unknown"
 msgid "%dU"
-msgstr "акроним за машко|M"
+msgstr ""
 
 #: ../gramps/plugins/textreport/familygroup.py:618
 #, python-format
@@ -36709,9 +36709,8 @@ msgid "Merge the selected citations or selected sources"
 msgstr "Избриши го избраниот извор"
 
 #: ../gramps/plugins/view/citationtreeview.py:144
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "лице|Наслов"
+msgstr ""
 
 #: ../gramps/plugins/view/citationtreeview.py:337
 #: ../gramps/plugins/view/citationtreeview.py:400
@@ -38135,9 +38134,8 @@ msgid "The view showing all the citations"
 msgstr "Вклучи слики и медиумски објекти"
 
 #: ../gramps/plugins/view/view.gpr.py:298
-#, fuzzy
 msgid "Citation Tree"
-msgstr "лице|Наслов"
+msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:299
 msgid "A view displaying citations and sources in a tree format."

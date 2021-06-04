@@ -3,13 +3,14 @@
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # Copyright முரளி (murali) (Logan M) <vmmlog@gmail.com>, 2012, 2014, 2017
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-01 01:55+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ta/>\n"
 "Language: ta\n"
@@ -10119,7 +10120,7 @@ msgstr "மணமாகாத"
 #, fuzzy
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "பாலினம் தெரியாதது,தெரியாத உறவு|பங்குதாரர்"
+msgstr "பங்குதாரர்"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
