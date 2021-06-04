@@ -9,6 +9,7 @@
 # bytte om på hoved- og ledsætning, som f.eks.
 # Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017, 2018.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
+# Kaj Arne Mikkelsen <kmi@vgdata.dk>, 2021.
 #
 # "Før reparationen udføres, forvis dig om at databasen virkelig
 # "ikke længere kan åbnes"
@@ -46,8 +47,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-01 14:59+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2021-06-04 11:36+0000\n"
+"Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
 "Language: da\n"
@@ -93,9 +94,8 @@ msgstr ""
 "Al din forskning er ordnet, søgbart og så detaljeret som du vil have den."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Slægtsforskningsprogrammet Gramps"
+msgstr "Gramps  udviklerteam"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -319,7 +319,6 @@ msgid "United States of America"
 msgstr "Amerikas Forenede Stater"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -327,8 +326,8 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Arbejde med datoer</b><br/>Et datointerval kan angives ved at bruge "
-"formatet &quot;mellem 2010-02-01 og 2012-04-03&quot;. Du kan også indikere "
-"troværdighedsniveauet i en dato og sågar vælge mellem syv forskellige "
+"formatet \"mellem 2010-02-01 og 2012-04-03\". Du kan også indikere "
+"troværdighedsniveauet i en dato og endda vælge mellem syv forskellige "
 "kalendere. Prøv knappen ved siden af datofeltet i "
 "hændelsesredigeringdialogen."
 
@@ -9993,7 +9992,7 @@ msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
 msgid "Graph File for genealogytree"
-msgstr ""
+msgstr "Grafikfil for slægtstræet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
 msgid "LaTeX File"
@@ -12048,6 +12047,8 @@ msgid ""
 "Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
+"Den angivne etikette vil blive lagt til ved import.\n"
+"Slet for at benytte standard værdi"
 
 #: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
