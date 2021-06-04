@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-04 11:12+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 11:13+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -2813,32 +2813,32 @@ msgstr "Frimaire"
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr "French month lexeme|Nivôse"
+msgstr "Nivôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr "French month lexeme|Pluviôse"
+msgstr "Pluviôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr "French month lexeme|Ventôse"
+msgstr "Ventôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr "French month lexeme|Germinal"
+msgstr "Germinal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr "French month lexeme|Floréal"
+msgstr "Floréal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr "French month lexeme|Prairial"
+msgstr "Prairial"
 
 #: ../gramps/gen/datehandler/_datestrings.py:176
 msgctxt "French month lexeme"
