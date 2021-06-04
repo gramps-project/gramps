@@ -4,13 +4,14 @@
 # Pekka Valta <pekka.valta@kolumbus.fi>, 2014.
 # Niemelä <niememat@gmail.com>, 2017, 2018.
 # Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-02 22:58+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 11:12+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -2728,67 +2729,67 @@ msgstr "ruotsalainen"
 #: ../gramps/gen/datehandler/_datestrings.py:146
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr "Hebrew month lexeme|Tishri"
+msgstr "Tishri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr "Hebrew month lexeme|Heshvan"
+msgstr "Heshvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:148
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr "Hebrew month lexeme|Kislev"
+msgstr "Kislev"
 
 #: ../gramps/gen/datehandler/_datestrings.py:149
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr "Hebrew month lexeme|Tevet"
+msgstr "Tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:150
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr "Hebrew month lexeme|Shevat"
+msgstr "Shevat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:151
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr "Hebrew month lexeme|AdarI"
+msgstr "AdarI"
 
 #: ../gramps/gen/datehandler/_datestrings.py:152
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr "Hebrew month lexeme|AdarII"
+msgstr "AdarII"
 
 #: ../gramps/gen/datehandler/_datestrings.py:153
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr "Hebrew month lexeme|Nisan"
+msgstr "Nisan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:154
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr "Hebrew month lexeme|Iyyar"
+msgstr "Iyyar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr "Hebrew month lexeme|Sivan"
+msgstr "Sivan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr "Hebrew month lexeme|Tammuz"
+msgstr "Tammuz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:157
 msgctxt "Hebrew month lexeme"
 msgid "Av"
-msgstr "Hebrew month lexeme|Av"
+msgstr "Av"
 
 #: ../gramps/gen/datehandler/_datestrings.py:158
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr "Hebrew month lexeme|Elul"
+msgstr "Elul"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2797,17 +2798,17 @@ msgstr "Hebrew month lexeme|Elul"
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr "French month lexeme|Vendémiaire"
+msgstr "Vendémiaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr "French month lexeme|Brumaire"
+msgstr "Brumaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr "French month lexeme|Frimaire"
+msgstr "Frimaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgctxt "French month lexeme"
