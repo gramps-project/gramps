@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-03 17:24+0000\n"
-"Last-Translator: R. B. <weblate@macdefender.org>\n"
+"PO-Revision-Date: 2021-06-04 21:59+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -196,31 +196,31 @@ msgstr "Jom Kippur"
 
 #: ../data/holidays.xml:354
 msgid "Sukot"
-msgstr "Laubhüttenfest"
+msgstr "Sukkot"
 
 #: ../data/holidays.xml:355
 msgid "2 of Sukot"
-msgstr "2 vor Laubhüttenfest"
+msgstr "2 vor Sukkot"
 
 #: ../data/holidays.xml:356
 msgid "3 of Sukot"
-msgstr "3 vor Laubhüttenfest"
+msgstr "3 vor Sukkot"
 
 #: ../data/holidays.xml:357
 msgid "4 of Sukot"
-msgstr "4 vor Laubhüttenfest"
+msgstr "4 vor Sukkot"
 
 #: ../data/holidays.xml:358
 msgid "5 of Sukot"
-msgstr "5 vor Laubhüttenfest"
+msgstr "5 vor Sukkot"
 
 #: ../data/holidays.xml:359
 msgid "6 of Sukot"
-msgstr "6 vor Laubhüttenfest"
+msgstr "6 vor Sukkot"
 
 #: ../data/holidays.xml:360
 msgid "7 of Sukot"
-msgstr "7 vor Laubhüttenfest"
+msgstr "7 vor Sukkot"
 
 #: ../data/holidays.xml:361
 msgid "Simhat Tora"
@@ -402,9 +402,9 @@ msgstr ""
 "Personenansicht nur einmal gelistet. Durch das Klicken auf den Pfeil links "
 "neben einem Namen wird die Liste aufgeklappt und alle Personen mit diesem "
 "Namen werden angezeigt. Um einen Nachnamen aus einer langen Liste zu "
-"lokalisieren, wähle einen Nachnamen (keine Person) und fange an zu tippen."
-"Die Ansicht springt zu dem ersten Nachnamen, der mit deinen eingegebenen "
-"Buchstaben übereinstimmt."
+"lokalisieren, wähle einen Nachnamen (keine Person) und fange an zu "
+"tippen.Die Ansicht springt zu dem ersten Nachnamen, der mit deinen "
+"eingegebenen Buchstaben übereinstimmt."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -666,7 +666,7 @@ msgstr ""
 "<b>Eltern-Kind-Beziehung bearbeiten</b><br/>Du kannst die Beziehung eines "
 "Kindes zu seinen Eltern durch Doppelklicken des Kindes im Familieneditor "
 "bearbeiten. Beziehung kann jede Art sein von Adoptiert, Geburt, Pflege, "
-"Keine, Patenschaft, Stief und Unbekannt."
+"Keine, Patenschaft, Stiefkind und Unbekannt."
 
 #: ../data/tips.xml:58
 msgid ""
@@ -744,8 +744,8 @@ msgid ""
 msgstr ""
 "<b>Namen sind Schall und Rauch</b><br/>Der Name Gramps wurde dem "
 "ursprünglichen Entwickler Don Allingham von seinem Vater vorgeschlagen. Er "
-"bedeutet <i>Genealogical Research and Analysis Management Program System "
-"(auf Deutsch: Genealogisches Recherche und Analyse Management Programm "
+"bedeutet <i>Genealogical Research and Analysis Management Program System ("
+"auf Deutsch: Genealogisches Recherche und Analyse Management Programm "
 "System)</i> Es ist ein voll funktionales Ahnenforschungsprogramm um "
 "genealogische Daten abzulegen, zu bearbeiten und zu erforschen. Das "
 "Datenbank-Backend von Gramps ist so robust, dass einige Benutzer Stammbäume "
@@ -806,10 +806,10 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>Namen verwalten</b><br/>Es ist einfach, Personen mit verschiedenen Namen "
-"in Gramps zu verwalten. Wähle dazu im Personeneditor den Namensreiter. Du "
-"kannst Namen verschiedensten Typs hinzufügen, und den bevorzugten Namen "
-"durch Ziehen in den Bereich &quot;Bevorzugter Name&quot; einsetzen."
+"<b>Verwalten von Namen</b><br/>Es ist einfach, Personen mit mehreren Namen "
+"in Gramps zu verwalten. Wähle im Personen-Editor die Registerkarte \"Namen\""
+". Du kannst Namen verschiedener Arten hinzufügen und den bevorzugten Namen "
+"festlegen, indem du ihn in den Bereich \"Bevorzugter Name\" ziehst."
 
 #: ../data/tips.xml:76
 msgid ""
@@ -844,8 +844,8 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
-"<b>Orte verwalten</b><br/>Die Orteansicht zeigt dir eine Liste aller in der "
-"Datenbank vorkommenden Orte. Die Liste kann durch viele verschiedene "
+"<b>Orte verwalten</b><br/>Die Ansicht \"Orte\" zeigt dir eine Liste aller in "
+"der Datenbank vorkommenden Orte. Die Liste kann durch viele verschiedene "
 "Kriterien, wie Stadt, Kreis oder Land geordnet werden."
 
 #: ../data/tips.xml:82
@@ -930,8 +930,8 @@ msgid ""
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
 "<b>Fehler in Gramps melden</b><br/>Der beste Weg, einen Fehler in Gramps zu "
-"melden, ist das Gramps Bug Tracking System auf https://gramps-project.org/"
-"bugs/"
+"melden, ist die Gramps-Fehlerdatenbank unter https://gramps-project.org/bugs/"
+" zu verwenden"
 
 #: ../data/tips.xml:96
 msgid ""
@@ -10090,7 +10090,7 @@ msgstr "Wert '%(val)s' nicht gefunden für Option '%(opt)s'"
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:147
 #: ../gramps/gen/plug/report/stdoptions.py:300
 msgid "Valid values: "
-msgstr "Gültige Werte:"
+msgstr "Gültige Werte: "
 
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
 #: ../gramps/gui/plug/report/_bookdialog.py:86 ../gramps/gui/viewmanager.py:113
@@ -12427,7 +12427,7 @@ msgid ""
 msgstr ""
 "Dies kann hilfreich sein um phonetisch in einer Notiz zu verwenden um zu "
 "zeigen wie ein Name ausgesprochen wird wenn du verschiedene Sprachen mischt "
-"wie Griechisch und Russisch. "
+"wie Griechisch und Russisch."
 
 #: ../gramps/gui/configure.py:1960
 msgid "Use symbols"
@@ -12565,11 +12565,11 @@ msgstr "Login"
 
 #: ../gramps/gui/dbloader.py:332
 msgid "Username: "
-msgstr "Benutzername:"
+msgstr "Benutzername: "
 
 #: ../gramps/gui/dbloader.py:337
 msgid "Password: "
-msgstr "Kennwort:"
+msgstr "Kennwort: "
 
 #: ../gramps/gui/dbloader.py:369
 msgid "Import Family Tree"
@@ -12833,7 +12833,7 @@ msgstr "Öffne die '%s' Datenbank"
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
 msgstr ""
 "Der Versuch, die Datenbank zu konvertieren ist fehlgeschlagen. Vielleicht "
-"benötigt sie eine Aktualisierung. "
+"benötigt sie eine Aktualisierung."
 
 #: ../gramps/gui/dbman.py:808 ../gramps/gui/dbman.py:834
 #, python-format
@@ -16008,11 +16008,6 @@ msgid "Con_fidence:"
 msgstr "Verlä_sslichkeit:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -16020,7 +16015,7 @@ msgid ""
 msgstr ""
 "Datum des Eintrags in der Quelle auf den du dich beziehst, z.B. das Datum, "
 "an dem ein Haus während einer Volkszählung besucht wurde, oder das Datum, an "
-"dem ein Eintrag ins Geburtsregister erstellt wurde. "
+"dem ein Eintrag ins Geburtsregister erstellt wurde."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16590,10 +16585,8 @@ msgstr ""
 "Vornamen gegeben wurde."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Vorname(n) "
+msgstr "Vorname(n)"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -18271,8 +18264,8 @@ msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occurred."
 msgstr ""
-"Bitte gib so viele Informationen wie möglich an über das an, was du getan "
-"hast, als der Fehler auftrat. "
+"Bitte gib so viele Informationen wie möglich darüber an, was du getan hast, "
+"als der Fehler aufgetreten ist."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:482
 #: ../gramps/gui/logger/_errorreportassistant.py:507
@@ -26319,7 +26312,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:698
 msgid "Common Law Marriage"
-msgstr "Eheähnliche Gemeinschaft "
+msgstr "Eheähnliche Gemeinschaft"
 
 #: ../gramps/plugins/lib/libgedcom.py:699
 #: ../gramps/plugins/webreport/narrativeweb.py:1953
@@ -30628,7 +30621,7 @@ msgstr "Importiere Personen."
 
 #: ../gramps/plugins/lib/libprogen.py:1414
 msgid "see address on "
-msgstr "siehe Adresse auf"
+msgstr "siehe Adresse auf "
 
 #: ../gramps/plugins/lib/libprogen.py:1417
 msgid "see also address"
@@ -36983,7 +36976,7 @@ msgstr "Zeigt Vorfahren und Nachkommen in einer Fächergrafik"
 
 #: ../gramps/plugins/view/view.gpr.py:188
 msgid "Grouped People"
-msgstr "Gruppierte Personen "
+msgstr "Gruppierte Personen"
 
 #: ../gramps/plugins/view/view.gpr.py:189
 msgid "The view showing all people in the Family Tree grouped per family name"
@@ -37292,8 +37285,8 @@ msgid ""
 msgstr ""
 "Diese Seite enthält einen Index mit allen Medienobjekten in der Datenbank, "
 "die nach Titel geordnet sind. Durch Klicken auf den Titel gelangst du zur "
-"Seite des Medienobjektes. Wenn Mediengrößen über einem Bild siehst, klicke "
-"auf das Bild um es in Originalgröße zu sehen. "
+"Seite des Medienobjektes.  Wenn du über einem Bild Mediengrößenabmessungen "
+"siehst, klicke auf das Bild, um es in Originalgröße anzuzeigen.  "
 
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
