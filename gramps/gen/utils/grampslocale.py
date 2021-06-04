@@ -1038,10 +1038,12 @@ class Lexeme(str):
 
     Translation database (Russian example)::
 
-        msgid "lexeme||December"
+        msgctxt "localized lexeme inflections"
+        msgid "|December"
         msgstr "NOMINATIVE=декабрь|GENITIVE=декабря|ABLATIVE=декабрём|LOCATIVE=декабре"
 
-        msgid "lexeme||Christmas"
+        msgctxt "lexeme"
+        msgid "|Christmas"
         msgstr "NOMINATIVE=рождество|GENITIVE=рождества|ABLATIVE=рождеством"
 
         msgid "{holiday} is celebrated in {month}"
