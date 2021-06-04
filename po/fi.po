@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
 "PO-Revision-Date: 2021-06-04 11:12+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -2843,22 +2843,22 @@ msgstr "French month lexeme|Prairial"
 #: ../gramps/gen/datehandler/_datestrings.py:176
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr "French month lexeme|Messidor"
+msgstr "Messidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:177
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr "French month lexeme|Thermidor"
+msgstr "Thermidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:178
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr "French month lexeme|Fructidor"
+msgstr "Fructidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:179
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr "French month lexeme|Extra"
+msgstr "Extra"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2867,62 +2867,62 @@ msgstr "French month lexeme|Extra"
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr "Islamic month lexeme|Muharram"
+msgstr "Muharram"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr "Islamic month lexeme|Safar"
+msgstr "Safar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr "Islamic month lexeme|Rabi`al-Awwal"
+msgstr "Rabi`al-Awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr "Islamic month lexeme|Rabi`ath-Thani"
+msgstr "Rabi`ath-Thani"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr "Islamic month lexeme|Jumada l-Ula"
+msgstr "Jumada l-Ula"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr "Islamic month lexeme|Jumada t-Tania"
+msgstr "Jumada t-Tania"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr "Islamic month lexeme|Rajab"
+msgstr "Rajab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr "Islamic month lexeme|Sha`ban"
+msgstr "Sha`ban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr "Islamic month lexeme|Ramadan"
+msgstr "Ramadan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr "Islamic month lexeme|Shawwal"
+msgstr "Shawwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr "Islamic month lexeme|Dhu l-Qa`da"
+msgstr "Dhu l-Qa`da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:199
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr "Islamic month lexeme|Dhu l-Hijja"
+msgstr "Dhu l-Hijja"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2931,17 +2931,17 @@ msgstr "Islamic month lexeme|Dhu l-Hijja"
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr "Persian month lexeme|Farvardin"
+msgstr "Farvardin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr "Persian month lexeme|Ordibehesht"
+msgstr "Ordibehesht"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr "Persian month lexeme|Khordad"
+msgstr "Khordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Persian month lexeme"
@@ -2951,42 +2951,43 @@ msgstr "Persian month lexeme|Tir"
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr "Persian month lexeme|Mordad"
+msgstr "Mordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr "Persian month lexeme|Shahrivar"
+msgstr "Shahrivar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr "Persian month lexeme|Mehr"
+msgstr "Mehr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr "Persian month lexeme|Aban"
+msgstr "Aban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr "Persian month lexeme|Azar"
+msgstr "Azar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:217
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr "Persian month lexeme|Dey"
+msgstr "Dey"
 
 #: ../gramps/gen/datehandler/_datestrings.py:218
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr "Persian month lexeme|Bahman"
+msgstr "Bahman"
 
 #: ../gramps/gen/datehandler/_datestrings.py:219
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr "Persian month lexeme|Esfand"
+msgstr "Esfand"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
