@@ -42,6 +42,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog
@@ -56,21 +57,21 @@ class PopulateSources(tool.Tool, ManagedWindow):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        self.label = 'Populate sources and citations tool'
+        self.label = _('Populate sources and citations tool')
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(Gtk.Window(), Gtk.Label(), '')
         tool.Tool.__init__(self, dbstate, options_class, name)
 
         dialog = self.display()
         response = dialog.run()
-        dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
             self.on_ok_clicked()
-            OkDialog('Data generated',
-                     "The requested sources and citations were generated",
+            OkDialog(_('Data generated'),
+                     _("The requested sources and citations were generated"),
                      parent=uistate.window)
 
+        dialog.destroy()
         self.close()
 
     def display(self):
@@ -84,27 +85,28 @@ class PopulateSources(tool.Tool, ManagedWindow):
         num_citations = self.options.handler.options_dict['citations']
 
         # GUI setup:
-        dialog = Gtk.Dialog(title="Populate sources and citations tool",
+        dialog = Gtk.Dialog(title=_("Populate sources and citations tool"),
                             transient_for=self.uistate.window,
                             modal=True, destroy_with_parent=True)
         dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.REJECT,
                            _('_OK'), Gtk.ResponseType.ACCEPT)
         label = Gtk.Label(
-            label="Enter a valid number of sources and citations."
-            " This will create the requested number of sources,"
-            " and for each source, will create the requested"
-            " number of citations.")
+            label=_("Enter a valid number of sources and citations.\n"
+            "This will create the requested number of sources,\n"
+            "and for each source, will create the requested "
+            "number of citations."))
         label.set_line_wrap(True)
 
         hbox1 = Gtk.Box()
-        label_sources = Gtk.Label(label="Number of sources" + COLON)
+        label_sources = Gtk.Label(label=_("Number of sources{colon}").format(colon=COLON))
         self.sources_entry = Gtk.Entry()
         self.sources_entry.set_text("%d" % num_sources)
         hbox1.pack_start(label_sources, False, True, 0)
         hbox1.pack_start(self.sources_entry, True, True, 0)
 
         hbox2 = Gtk.Box()
-        label_citations = Gtk.Label(label="Number of citations" + COLON)
+        label_citations = Gtk.Label(label=_("Number of citations\n(for "
+                        "each source){colon}").format(colon=COLON))
         self.citations_entry = Gtk.Entry()
         self.citations_entry.set_text("%d" % num_citations)
         hbox2.pack_start(label_citations, False, True, 0)
@@ -128,39 +130,46 @@ class PopulateSources(tool.Tool, ManagedWindow):
         """
 
         num_sources_text = self.sources_entry.get_text()
-        try:
-            num_sources = int(num_sources_text)
-        except:
-            return
+#        try:
+        num_sources = int(num_sources_text)
+#        except:
+#            return
         num_citations_text = self.citations_entry.get_text()
         num_citations = int(num_citations_text)
 
         self.progress = ProgressMeter(
-            'Generating data', '', parent=self.uistate.window)
-        self.progress.set_pass('Generating data',
-                               num_sources*num_citations)
-        LOG.debug("sources %04d citations %04d" % (num_sources,
-                                                     num_citations))
+            _('Generating data'), '', parent=self.uistate.window)
+        self.progress.set_pass(ngettext(
+                        'Generating data ({quantity} citation)',
+                        'Generating data ({quantity} citations)',
+                        num_sources*num_citations).format(quantity=(
+                                                num_sources*num_citations)))
+        LOG.debug(_("sources {num_s}, citations {num_c}").format(
+                                    num_s=num_sources, num_c=num_citations))
 
         source = Source()
         citation = Citation()
 
         self.db.disable_signals()
-        with DbTxn('Populate sources and citations', self.db) as trans:
+        with DbTxn(_('Populate sources and citations'), self.db) as trans:
             for i in range(num_sources):
                 source.gramps_id = None
                 source.handle = None
-                source.title = "Source %04d" % (i + 1)
+                source.abbrev = _("Src.%04d") % (i + 1)
+                source.author = _("Author")
+                source.pubinfo = _("Publication info")
+                source.title = _("Source %04d") % (i + 1)
                 source_handle = self.db.add_source(source, trans)
 
                 for j in range(num_citations):
                     citation.gramps_id = None
                     citation.handle = None
                     citation.source_handle = source_handle
-                    citation.page = "Page %04d" % (j + 1)
+                    citation.date.set(0, 0, 0, (1, 1, 1991, False), 0)
+                    citation.page = _("Page %04d") % (j + 1)
                     self.db.add_citation(citation, trans)
                     self.progress.step()
-            LOG.debug("sources and citations added")
+            LOG.debug(_("sources and citations added"))
         self.db.enable_signals()
         self.db.request_rebuild()
         self.progress.close()
@@ -185,9 +194,9 @@ class PopulateSourcesOptions(tool.ToolOptions):
         }
         self.options_help = {
             'sources'   : ("=num",
-                           "Number of sources to generate",
-                           "Integer number"),
+                           _("Number of sources to generate"),
+                           _("Integer number")),
             'citations' : ("=num",
-                           "Number of citations to generate for each source",
-                           "Integer number")
+                           _("Number of citations to generate (for each source)"),
+                           _("Integer number"))
             }
