@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-04 21:59+0000\n"
+"PO-Revision-Date: 2021-06-05 08:56+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -335,8 +335,8 @@ msgid ""
 "they do not have birth dates."
 msgstr ""
 "<b>Kinder in der Familie ordnen</b><br/>Die Reihenfolge der Kinder in einer "
-"Familie kann durch Drag &amp; Drop (Ziehen und Fallenlassen) bestimmt "
-"werden. Diese Anordnung bleibt erhalten, auch wenn sie kein Geburtsdatum "
+"Familie kann durch Drag &amp; Drop (Ziehen und Ablegen) bestimmt werden. "
+"Diese Reihenfolge bleibt auch dann erhalten, wenn sie keine Geburtsdaten "
 "haben."
 
 #: ../data/tips.xml:12
@@ -1118,13 +1118,13 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
-"<b>Open Source Software</b><br/>Das Free/Libre und Open Source Software "
-"(FLOSS) Entwicklungsmodell erlaubt, dass Gramps von jedem Programmierer "
-"erweitert werden kann, soweit alle Quelldateien frei unter dieser Lizenz "
-"erhältlich sind. Um das Konzept zu verstehen, denke bei „frei“ an "
-"„Redefreiheit“, nicht an „Freibier“ (Zitat R. Stallmann). Für mehr "
-"Informationen zu Open Source Software schaue bei der Free Software "
-"Foundation und der Open Source Initiative nach."
+"<b>Open Source Software</b><br/>Das Entwicklungsmodell Free/Libre and Open "
+"Source Software (FLOSS) bedeutet, dass Gramps von jedem Programmierer "
+"erweitert werden kann, da der gesamte Quellcode unter seiner Lizenz frei "
+"verfügbar ist. Es geht also nicht nur um Freibier, sondern auch um die "
+"Freiheit, das Werkzeug zu studieren und zu verändern. Mehr über Open-Source-"
+"Software findest du bei der Free Software Foundation und der Open Source "
+"Initiative."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -3978,9 +3978,8 @@ msgid "Matches citations that are indicated as private"
 msgstr "Liefert Fundstellen, die als vertraulich markiert sind"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
-#, fuzzy
 msgid "Citation attribute:"
-msgstr "Fundstellenattribute"
+msgstr "Fundstellenattribute:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -6402,9 +6401,8 @@ msgstr ""
 "ein zweites Datum/Zeitpunkt angegeben ist."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
-#, fuzzy
 msgid "Repository attribute:"
-msgstr "Aufbewahrungsortref."
+msgstr "Aufbewahrungsortattribut:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
 #, fuzzy
@@ -6542,9 +6540,8 @@ msgstr ""
 "Datum/Zeitpunkt angegeben ist."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
-#, fuzzy
 msgid "Source attribute:"
-msgstr "Quellenattribute"
+msgstr "Quelleattribut:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 #, fuzzy
@@ -12332,7 +12329,7 @@ msgstr "Jede Familie"
 
 #: ../gramps/gui/configure.py:1789
 msgid "Autobackup"
-msgstr "Automatisches Backup"
+msgstr "Automatische Sicherung"
 
 #: ../gramps/gui/configure.py:1834
 msgid "Select media directory"
@@ -12703,7 +12700,7 @@ msgstr "Stammbäume"
 
 #: ../gramps/gui/dbman.py:381
 msgid "Family Tree name"
-msgstr "Stammbaumname:"
+msgstr "Stammbaumname"
 
 #: ../gramps/gui/dbman.py:401
 msgid "Database Type"
@@ -13333,9 +13330,8 @@ msgstr "Herausgeber"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Vertrauensgrad:"
+msgstr "Vertrauensgrad"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
 #, fuzzy
@@ -15115,9 +15111,8 @@ msgstr ""
 "Quelle zu finden."
 
 #: ../gramps/gui/editors/filtereditor.py:533
-#, fuzzy
 msgid "Family filter name:"
-msgstr "Familienfilter"
+msgstr "Familienfiltername:"
 
 #: ../gramps/gui/editors/filtereditor.py:569
 msgid "Include selected Gramps ID"
@@ -15410,7 +15405,7 @@ msgstr "Band/Seite"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 msgctxt "Citation: Minimum Confidence"
 msgid "Min. Conf."
-msgstr "Min. Vert.:"
+msgstr "Min. Vert."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -17474,15 +17469,15 @@ msgstr "Ränder"
 
 #: ../gramps/gui/glade/papermenu.glade:202
 msgid "_Left:"
-msgstr "_Links"
+msgstr "_Links:"
 
 #: ../gramps/gui/glade/papermenu.glade:216
 msgid "_Right:"
-msgstr "_Rechts"
+msgstr "_Rechts:"
 
 #: ../gramps/gui/glade/papermenu.glade:230
 msgid "_Top:"
-msgstr "_Oben"
+msgstr "_Oben:"
 
 #: ../gramps/gui/glade/papermenu.glade:244
 msgid "_Bottom:"
@@ -19844,7 +19839,7 @@ msgstr "Möchtest du Werkzeug \"Datenbank prüfen und reparieren\" starten?"
 
 #: ../gramps/gui/viewmanager.py:1220
 msgid "Autobackup..."
-msgstr "Automatisches Backup..."
+msgstr "Automatische Sicherung..."
 
 #: ../gramps/gui/viewmanager.py:1225
 msgid "Error saving backup data"
@@ -23695,7 +23690,7 @@ msgstr "Gramplet zeigt die 'zu erledigen' Notizen für ein Medienobjekt."
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1289
 msgid "SoundEx"
-msgstr "SoundEx:"
+msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1282
 msgid "Gramplet to generate SoundEx codes"
@@ -31761,7 +31756,7 @@ msgstr "Keine Referenzen für diese %s"
 #: ../gramps/plugins/quickview/reporef.py:62
 #: ../gramps/plugins/webreport/basepage.py:3115
 msgid "Call number"
-msgstr "Standortnummer/Signatur:"
+msgstr "Standortnummer/Signatur"
 
 #: ../gramps/plugins/quickview/reporef.py:62
 msgid "Type of media"
@@ -33020,7 +33015,7 @@ msgstr "Notiz-ID"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:83
 msgid "Link Type"
-msgstr "Verknüpfungsart:"
+msgstr "Verknüpfungsart"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:89
 msgid "Links To"
@@ -37328,7 +37323,7 @@ msgstr "Dateityp"
 
 #: ../gramps/plugins/webreport/media.py:702
 msgid "Missing media object:"
-msgstr "Fehlendes Medienobjekt"
+msgstr "Fehlendes Medienobjekt:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:312
 #, python-format
