@@ -33,8 +33,7 @@ import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
-from gramps.gen.const import URL_WIKISTRING
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale, URL_WIKISTRING
 _ = glocale.translation.gettext
 import re
 import logging
@@ -279,21 +278,21 @@ class ImportInfo:
         Construct an info message from the data in the class.
         """
         key2string = {
-            PERSON_KEY      : _('  People: %d\n'),
-            FAMILY_KEY      : _('  Families: %d\n'),
-            SOURCE_KEY      : _('  Sources: %d\n'),
-            EVENT_KEY       : _('  Events: %d\n'),
-            MEDIA_KEY       : _('  Media Objects: %d\n'),
-            PLACE_KEY       : _('  Places: %d\n'),
-            REPOSITORY_KEY  : _('  Repositories: %d\n'),
-            NOTE_KEY        : _('  Notes: %d\n'),
-            TAG_KEY         : _('  Tags: %d\n'),
-            CITATION_KEY    : _('  Citations: %d\n'),
+            PERSON_KEY      : _('\tPeople{colon}\t%d\n').format(colon=COLON),
+            FAMILY_KEY      : _('\tFamilies{colon}\t%d\n').format(colon=COLON),
+            SOURCE_KEY      : _('\tSources{colon}\t%d\n').format(colon=COLON),
+            EVENT_KEY       : _('\tEvents{colon}\t%d\n').format(colon=COLON),
+            MEDIA_KEY       : _('\tMedia Objects{colon}\t%d\n').format(colon=COLON),
+            PLACE_KEY       : _('\tPlaces{colon}\t%d\n').format(colon=COLON),
+            REPOSITORY_KEY  : _('\tRepositories{colon}\t%d\n').format(colon=COLON),
+            NOTE_KEY        : _('\tNotes{colon}\t%d\n').format(colon=COLON),
+            TAG_KEY         : _('\tTags{colon}\t%d\n').format(colon=COLON),
+            CITATION_KEY    : _('\tCitations{colon}\t%d\n').format(colon=COLON),
             }
         txt = _("Number of new objects imported:\n")
         for key in self.keyorder:
             if any(self.data_unknownobject):
-                strng = key2string[key][0:-1] + ' (%d)\n'
+                strng = key2string[key][0:-1] + '\n(%d)\n'
                 txt += strng % (self.data_newobject[self.key2data[key]],
                                 self.data_unknownobject[self.key2data[key]])
             else:
@@ -415,7 +414,7 @@ class ImportOpenFileContextManager:
 
     def open_file(self, filename):
         """
-        Open the xml file.
+        Open the XML file.
         Return a valid file handle if the file opened sucessfully.
         Return None if the file was not able to be opened.
         """
@@ -806,7 +805,7 @@ class GrampsParser(UpdateCallback):
         Equivalent of inaugurate but for old style XML.
         """
         if id_ is None:
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
+            raise GrampsImportError(_("The Gramps XML you are trying to "
                 "import is malformed."), _("Attributes that link the data "
                 "together are missing."))
         id2handle_map = [self.gid2id, self.gid2fid, self.gid2sid,
@@ -888,7 +887,7 @@ class GrampsParser(UpdateCallback):
         """
         Given an import id, adjust it so that it fits with the existing data.
 
-        :param id_: The id as it is in the Xml import file, might be None.
+        :param id_: The id as it is in the XML import file, might be None.
         :type id_: str
         :param key: Indicates kind of primary object this id is for.
         :type key: int
@@ -912,7 +911,7 @@ class GrampsParser(UpdateCallback):
 
     def parse(self, ifile, linecount=1, personcount=0):
         """
-        Parse the xml file
+        Parse the XML file
         :param ifile: must be a file handle that is already open, with position
                       at the start of the file
         """
@@ -977,7 +976,7 @@ class GrampsParser(UpdateCallback):
 
     def start_database(self, attrs):
         """
-        Get the xml version of the file.
+        Get the XML version of the file.
         """
         if 'xmlns' in attrs:
             xmlns = attrs.get('xmlns').split('/')
@@ -990,7 +989,7 @@ class GrampsParser(UpdateCallback):
                     #leave version at 1.0.0 although it could be 0.0.0 ??
                     pass
         else:
-            #1.0 or before xml, no dtd schema yet on
+            #1.0 or before XML, no dtd schema yet on
             # http://www.gramps-project.org/xml/
             self.__xml_version = (0, 0, 0)
 
@@ -1033,7 +1032,7 @@ class GrampsParser(UpdateCallback):
                     "recent version %(newgramps)s.\n\n"
                     "The file will not be imported. Please use an older version"
                     " of Gramps that supports version %(xmlversion)s of the "
-                    "xml.\nSee\n  %(gramps_wiki_xml_url)s\n for more info."
+                    "XML.\nSee\n  %(gramps_wiki_xml_url)s\n for more info."
                     ) % {'oldgramps': self.__gramps_version,
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
@@ -1047,14 +1046,14 @@ class GrampsParser(UpdateCallback):
                     "Ensure after import everything is imported correctly. In "
                     "the event of problems, please submit a bug and use an "
                     "older version of Gramps in the meantime to import this "
-                    "file, which is version %(xmlversion)s of the xml.\nSee\n  "
+                    "file, which is version %(xmlversion)s of the XML.\nSee\n  "
                     "%(gramps_wiki_xml_url)s\nfor more info."
                     ) % {'oldgramps': self.__gramps_version,
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
                         'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
                         }
-            self.user.warn(_('Old xml file'), msg)
+            self.user.warn(_('Old XML file'), msg)
 
     def start_lds_ord(self, attrs):
         self.ord = LdsOrd()
@@ -1083,7 +1082,7 @@ class GrampsParser(UpdateCallback):
 
     def start_status(self, attrs):
         try:
-            # old xml with integer statuses
+            # old XML with integer statuses
             self.ord.set_status(int(attrs['val']))
         except ValueError:
             # string
@@ -1291,7 +1290,7 @@ class GrampsParser(UpdateCallback):
         if 'hlink' in attrs:
             handle = self.inaugurate(attrs['hlink'], "event", Event)
         else: # there is no old style XML
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
+            raise GrampsImportError(_("The Gramps XML you are trying to "
                 "import is malformed."), _("Any event reference must have a "
                 "'hlink' attribute."))
         self.eventref.ref = handle
@@ -1563,7 +1562,7 @@ class GrampsParser(UpdateCallback):
         if 'hlink' in attrs:
             handle = self.inaugurate(attrs['hlink'], "person", Person)
         else: # there is no old style XML
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
+            raise GrampsImportError(_("The Gramps XML you are trying to "
                 "import is malformed."), _("Any person reference must have a "
                 "'hlink' attribute."))
         self.personref.ref = handle
@@ -1984,7 +1983,7 @@ class GrampsParser(UpdateCallback):
         if 'hlink' in attrs:
             handle = self.inaugurate(attrs['hlink'], "note", Note)
         else:
-            raise GrampsImportError(_("The Gramps Xml you are trying to "
+            raise GrampsImportError(_("The Gramps XML you are trying to "
                 "import is malformed."), _("Any note reference must have a "
                 "'hlink' attribute."))
 
@@ -2716,7 +2715,7 @@ class GrampsParser(UpdateCallback):
             self.info.add('new-object', NOTE_KEY, note)
             self.event.add_note(note.handle)
         else:
-            #first correct old xml that has no nametype set
+            #first correct old XML that has no nametype set
             if self.alt_name:
                 # alternate name or former aka tag
                 if self.name.get_type() == "":
@@ -2725,7 +2724,7 @@ class GrampsParser(UpdateCallback):
                 if self.name.get_type() == "":
                     self.name.set_type(NameType.BIRTH)
 
-            #same logic as bsddb upgrade for xml < 1.4.0 which will
+            #same logic as bsddb upgrade for XML < 1.4.0 which will
             #have a surnamepat and/or surname. From 1.4.0 surname has been
             #added to name in self.stop_surname
             if not self.surnamepat:
