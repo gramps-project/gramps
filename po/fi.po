@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"PO-Revision-Date: 2021-06-05 08:56+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -294,8 +294,8 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Päivämäärien käyttäminen</b><br/>Aikaväli voidaan antaa muodossa &quot;4 "
-"tammikuuta 2000 ja 20 maaliskuuta 2003 välillä&quot;. Voit myös antaa "
+"<b>Päivämäärien käyttäminen</b><br/>Aikaväli voidaan antaa muodossa \"4 "
+"tammikuuta 2000 ja 20 maaliskuuta 2003 välillä\". Voit myös antaa "
 "päivämäärän luotettavuudesta arvion ja valita päivämäärän useista "
 "kalentereista. Kokeile painiketta, joka on päivämääräkentän vieressä "
 "tapahtumaviite muokkaimessa."
@@ -12024,7 +12024,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1596
 msgid "Display Tip of the Day"
-msgstr "Näytä päivän vihje"
+msgstr "Näytä päivän vinkki"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Show useful information about using Gramps on startup."
@@ -17733,7 +17733,7 @@ msgstr "Avaa työkalut ikkunan"
 #: ../gramps/gui/grampsgui.py:56 ../gramps/gui/tipofday.py:67
 #: ../gramps/gui/tipofday.py:68 ../gramps/gui/tipofday.py:121
 msgid "Tip of the Day"
-msgstr "Päivän vihje"
+msgstr "Päivän vinkki"
 
 #: ../gramps/gui/grampsgui.py:56 ../gramps/gui/undohistory.py:73
 msgid "Undo History"
@@ -19451,7 +19451,7 @@ msgstr "Kielen tarkistuksen käynnistys epäonnistui: %s"
 
 #: ../gramps/gui/tipofday.py:87
 msgid "Failed to display tip of the day"
-msgstr "Päivän vihjeen näyttö epäonnistui"
+msgstr "Päivän vinkin näyttö epäonnistui"
 
 #: ../gramps/gui/tipofday.py:88
 #, python-format
@@ -19460,7 +19460,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Vihjetiedoston luku ei onnistu.\n"
+"Vinkkitiedoston luku ei onnistu.\n"
 "\n"
 "%s"
 
