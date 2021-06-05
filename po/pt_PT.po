@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2021-06-05 08:56+0000\n"
+"Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -6980,6 +6980,7 @@ msgstr "Referência de filhos"
 #: ../gramps/gen/lib/placeref.py:91 ../gramps/gen/lib/repo.py:91
 #: ../gramps/gen/lib/reporef.py:104 ../gramps/gen/lib/src.py:102
 #: ../gramps/gen/lib/tag.py:120
+#, fuzzy
 msgid "Handle"
 msgstr "Gerir"
 
@@ -7019,7 +7020,7 @@ msgstr "Nascimento"
 
 #: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/lib/eventtype.py:164
 msgid "Adopted"
-msgstr "Adotado"
+msgstr "Adoptado"
 
 #: ../gramps/gen/lib/childreftype.py:70
 msgid "Stepchild"
@@ -7306,7 +7307,7 @@ msgstr "intervalo"
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "span"
-msgstr "duração"
+msgstr "período"
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "textonly"
@@ -7509,7 +7510,7 @@ msgstr "Óbito"
 
 #: ../gramps/gen/lib/eventtype.py:167
 msgid "Adult Christening"
-msgstr "Baptismo adulto"
+msgstr "Baptismo em adulto"
 
 #: ../gramps/gen/lib/eventtype.py:168 ../gramps/gen/lib/ldsord.py:95
 msgid "Baptism"
@@ -7525,11 +7526,11 @@ msgstr "Bat Mitzvah"
 
 #: ../gramps/gen/lib/eventtype.py:171
 msgid "Blessing"
-msgstr "Benção"
+msgstr "Bênção"
 
 #: ../gramps/gen/lib/eventtype.py:172
 msgid "Burial"
-msgstr "Funeral"
+msgstr "Inumação"
 
 #: ../gramps/gen/lib/eventtype.py:173
 msgid "Cause Of Death"
@@ -7541,7 +7542,7 @@ msgstr "Censo"
 
 #: ../gramps/gen/lib/eventtype.py:175
 msgid "Christening"
-msgstr "Baptismo"
+msgstr "Baptismo civil"
 
 #: ../gramps/gen/lib/eventtype.py:176 ../gramps/gen/lib/ldsord.py:97
 msgid "Confirmation"
@@ -7699,7 +7700,7 @@ msgstr "c."
 #: ../gramps/gen/lib/eventtype.py:214
 msgctxt "Unknown abbreviation"
 msgid "unkn."
-msgstr "d."
+msgstr "desc."
 
 #: ../gramps/gen/lib/eventtype.py:215
 msgctxt "Custom abbreviation"
@@ -7709,12 +7710,12 @@ msgstr "pers."
 #: ../gramps/gen/lib/eventtype.py:216
 msgctxt "Adopted abbreviation"
 msgid "adop."
-msgstr "a."
+msgstr "adopt."
 
 #: ../gramps/gen/lib/eventtype.py:217
 msgctxt "Adult Christening abbreviation"
 msgid "a.chr."
-msgstr "b.a."
+msgstr "b.adl."
 
 #: ../gramps/gen/lib/eventtype.py:218
 msgctxt "Baptism abbreviation"
@@ -7734,12 +7735,12 @@ msgstr "bat."
 #: ../gramps/gen/lib/eventtype.py:221
 msgctxt "Blessing abbreviation"
 msgid "bles."
-msgstr "ben."
+msgstr "bên."
 
 #: ../gramps/gen/lib/eventtype.py:222
 msgctxt "Burial abbreviation"
 msgid "bur."
-msgstr "fun."
+msgstr "inum."
 
 #: ../gramps/gen/lib/eventtype.py:223
 msgctxt "Cause Of Death abbreviation"
@@ -7754,7 +7755,7 @@ msgstr "cens."
 #: ../gramps/gen/lib/eventtype.py:225
 msgctxt "Christening abbreviation"
 msgid "chr."
-msgstr "bapt."
+msgstr "b. civ."
 
 #: ../gramps/gen/lib/eventtype.py:226
 msgctxt "Confirmation abbreviation"
@@ -7774,7 +7775,7 @@ msgstr "gr."
 #: ../gramps/gen/lib/eventtype.py:229
 msgctxt "Education abbreviation"
 msgid "edu."
-msgstr "edu."
+msgstr "educ."
 
 #: ../gramps/gen/lib/eventtype.py:230
 msgctxt "Elected abbreviation"
@@ -7814,7 +7815,7 @@ msgstr "s.mil."
 #: ../gramps/gen/lib/eventtype.py:237
 msgctxt "Naturalization abbreviation"
 msgid "nat."
-msgstr "nat."
+msgstr "natur."
 
 #: ../gramps/gen/lib/eventtype.py:238
 msgctxt "Nobility Title abbreviation"
@@ -8069,11 +8070,11 @@ msgstr "Investidura"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Parents"
-msgstr "Selado aos pais"
+msgstr "Selamento aos pais"
 
 #: ../gramps/gen/lib/ldsord.py:99
 msgid "Sealed to Spouse"
-msgstr "Selado ao cônjuge"
+msgstr "Selamento ao cônjuge"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
@@ -8081,7 +8082,7 @@ msgstr "<Sem estado>"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Born in Covenant"
-msgstr "Nascido na Aliança"
+msgstr "Nasceu na Aliança"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
@@ -33587,9 +33588,7 @@ msgstr[1] ""
 "encontrados\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "A referência a {quantity} objecto multimédia em falta foi mantida\n"
