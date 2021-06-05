@@ -448,11 +448,12 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
                 hasattr(self.option_box_instance, "no_fileselect")):
                 # No file selection
                 filename = ''
-                confirm_text = _(
-                    'The data will be exported as follows:\n\n'
-                    'Format:\t%s\n\n'
-                    'Press Apply to proceed, Back to revisit '
-                    'your options, or Cancel to abort') % (format.replace("_",""), )
+                confirm_text = (
+                    _('The data will be exported as follows:\n\n'
+                    'Format:\t%s'
+                    ) % (format.replace("_",""), ) + '\n\n' +
+                    _('Press Cancel to abort, Back to revisit '
+                    'your options, or Apply to proceed'))
                 page_complete = True
             else:
                 #Allow for exotic error: file is still not correct
@@ -462,17 +463,16 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
                     name = os.path.split(filename)[1]
                     folder = os.path.split(filename)[0]
                     confirm_text = _(
-                    'The data will be saved as follows:\n\n'
-                    'Format:\t%(format)s\nName:\t%(name)s\nFolder:\t%(folder)s\n\n'
-                    'Press Apply to proceed, Go Back to revisit '
-                    'your options, or Cancel to abort') % {
-                    'format': format.replace("_",""),
-                    'name': name,
-                    'folder': folder}
+                    _('The data will be saved as follows:\n\n'
+                    'Format:\t%(format)s\nName:\t%(name)s\nFolder:\t%(folder)s'
+                    ) % {'format': format.replace("_",""),
+                    'name': name, 'folder': folder} + '\n\n' +
+                    _('Press Cancel to abort, Back to revisit '
+                    'your options, or Apply to proceed'))
                     page_complete = True
                 else :
                     confirm_text = _(
-                        'The selected file and folder to save to '
+                        'The selected file and folder to save '
                         'cannot be created or found.\n\n'
                         'Press Back to return and select a valid filename.'
                         )
