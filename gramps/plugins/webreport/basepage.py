@@ -1783,7 +1783,7 @@ class BasePage:
                     check_cs = False
                     if nav_text == currentsection:
                         check_cs = True
-                    elif nav_text == self._("Html|Home"):
+                    elif nav_text == self._("Home", "Html"):
                         if "index" in self.report.cur_fname:
                             check_cs = True
                     elif nav_text == self._("Surnames"):
