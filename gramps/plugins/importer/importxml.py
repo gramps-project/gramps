@@ -292,7 +292,7 @@ class ImportInfo:
         txt = _("Number of new objects imported:\n")
         for key in self.keyorder:
             if any(self.data_unknownobject):
-                strng = key2string[key][0:-1] + '\n(%d)\n'
+                strng = key2string[key][0:-1] + ' (%d)\n'
                 txt += strng % (self.data_newobject[self.key2data[key]],
                                 self.data_unknownobject[self.key2data[key]])
             else:
