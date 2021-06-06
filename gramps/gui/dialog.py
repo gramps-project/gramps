@@ -26,6 +26,7 @@
 import sys
 import html
 import logging
+import unicodedata
 _LOG = logging.getLogger(".dialog")
 
 #-------------------------------------------------------------------------
@@ -362,12 +363,37 @@ class InfoDialog:
 
         infoview = self.xml.get_object('infoview')
         infobuffer = Gtk.TextBuffer()
-        infobuffer.set_text(infotext)
+        infoview.set_buffer(infobuffer)
+
+        if isinstance(infotext, str):
+            infobuffer.set_text(infotext)
+        else:
+            for item in infotext:
+                enditer = infobuffer.get_end_iter()
+                if isinstance(item, str):
+                    infobuffer.insert(enditer, item + '\n')
+                elif isinstance(item, list):
+                    grid = Gtk.Grid()
+                    grid.set_margin_start(6)
+                    grid.set_margin_end(6)
+                    grid.set_column_spacing(12)
+                    if unicodedata.bidirectional(item[0][0][0]) == 'R':
+                        grid.set_direction(Gtk.TextDirection.RTL)
+                    for offset_y, row in enumerate(item):
+                        for offset_x, col in enumerate(row):
+                            cell = Gtk.Label(col)
+                            cell.set_halign(Gtk.Align.END)
+                            grid.attach(cell, offset_x, offset_y, 1, 1)
+                    grid.show_all()
+                    anchor = infobuffer.create_child_anchor(enditer)
+                    infoview.add_child_at_anchor(grid, anchor)
+                    enditer = infobuffer.get_end_iter()
+                    infobuffer.insert(enditer, '\n')
+
         if monospaced:
             startiter, enditer = infobuffer.get_bounds()
             tag = infobuffer.create_tag(family="Monospace")
             infobuffer.apply_tag(tag, startiter, enditer)
-        infoview.set_buffer(infobuffer)
 
         if parent:
             self.top.set_transient_for(parent)
