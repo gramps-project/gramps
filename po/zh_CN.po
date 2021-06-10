@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 14:29+0100\n"
-"PO-Revision-Date: 2021-05-28 14:02+0800\n"
+"POT-Creation-Date: 2021-06-05 19:16+0100\n"
+"PO-Revision-Date: 2021-06-04 11:35+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
 "Language: zh_CN\n"
@@ -112,7 +112,7 @@ msgstr "中国"
 
 #: ../data/holidays.xml:110
 msgid "Croatia"
-msgstr "克罗埃西亚"
+msgstr "克罗地亚"
 
 #: ../data/holidays.xml:126
 msgid "Czech Republic"
@@ -328,8 +328,8 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
-"<b>为子女在家庭中排序</b><br/>家庭中子女的出生顺序可以通过拖拉来调整。这个顺"
-"序调整仅限于当不知道子女的出生日期的时候。"
+"<b>家庭子女排序</b><br/>家庭中子女的出生顺序可以通过拖放来调整。即使子女没有"
+"出生日期信息，此顺序也可以保留。"
 
 #: ../data/tips.xml:12
 msgid ""
@@ -340,10 +340,10 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
-"<b>与您亲属进行对话，小心别太迟了</b><br/>您最年长亲属可能是您最重要的信息来"
-"源。他们通常知道您未记录的下的关于家庭的事情。他们可能会告诉您关于某人有价值"
-"的的事情，并引导您走一条新的搜索途径。至少，您将听到很多故事。但是不要忘记为"
-"对话录音（或者至少笔录）！"
+"<b>与您的亲属聊聊天，千万别太迟了</b><br/>最年长的亲属可能是您最重要的信息来"
+"源。他们常常知道未曾记录的家族历史，很可能会讲到关于某位家人极其宝贵的的事"
+"情，而这很有可能会为您开辟新的研究路径。对您来说，这种聊天至少也是听听家庭故"
+"事的机会。不管如何，不要忘了把聊天记录下来！"
 
 #: ../data/tips.xml:14
 #, fuzzy
@@ -482,7 +482,7 @@ msgid ""
 msgstr ""
 "<b>Gramps 报告</b><br/>Gramps 可以提供非常丰富的报告。图形报告和图像可以很容"
 "易阐述复杂血缘关系，而文字报告则非常适合作为邮件发送给您家族树中的成员。如果"
-"您准备为您的家族树创建网站，那么也同样有对应的报告模式。"
+"您准备为您的家族树创建网站，那么也同样有对应的报告类型。"
 
 #: ../data/tips.xml:36
 #, fuzzy
@@ -502,8 +502,8 @@ msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
-"<b>这是作什么用的？</b><br/>不确定按钮是作什么的?很简单, 把鼠标悬停按钮上方，"
-"提示窗口就会出现."
+"<b>这是作什么用的？</b><br/>不确定按钮是作什么的？很简单, 把鼠标悬停在按钮上"
+"方片刻，提示信息就会出现。"
 
 #: ../data/tips.xml:40
 #, fuzzy
@@ -1101,9 +1101,9 @@ msgstr "名称为 %(f_t_name)s 的 %(full_DB_path)s"
 msgid "Gramps Family Trees:"
 msgstr "Gramps 家族树："
 
-#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -3434,7 +3434,7 @@ msgstr "应用筛选器..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:168
-#: ../gramps/plugins/webreport/narrativeweb.py:1966
+#: ../gramps/plugins/webreport/narrativeweb.py:1964
 #: ../gramps/plugins/webreport/webcal.py:1754
 msgid "Filter"
 msgstr "筛查器"
@@ -5331,7 +5331,7 @@ msgstr "关系数量："
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:47
 msgid "Number of children:"
-msgstr "子女数目"
+msgstr "子女数"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "People with the <relationships>"
@@ -5880,7 +5880,7 @@ msgstr "地点类型："
 #: ../gramps/gui/glade/mergeplace.glade:545
 #: ../gramps/gui/glade/mergeplace.glade:562
 msgid "Code:"
-msgstr ""
+msgstr "编码："
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:52
 #: ../gramps/gen/filters/rules/place/_hasplace.py:58
@@ -8625,7 +8625,7 @@ msgstr "曾用名"
 #: ../gramps/plugins/importer/importcsv.py:246
 #: ../gramps/plugins/lib/libplaceview.py:89
 msgid "Code"
-msgstr ""
+msgstr "编码"
 
 #: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2960
 msgid "Alternate Locations"
@@ -9362,7 +9362,7 @@ msgstr "直角的"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
 msgid "Graphviz Layout"
-msgstr "Graphviz 排版"
+msgstr "Graphviz 布局"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:143
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -9973,7 +9973,7 @@ msgstr "日期的格式和语言，带示例"
 #: ../gramps/gen/plug/report/stdoptions.py:333
 #: ../gramps/gen/plug/report/stdoptions.py:357
 msgid "Do not include"
-msgstr "不包括"
+msgstr "不包含"
 
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #: ../gramps/gen/plug/report/stdoptions.py:363
@@ -9984,7 +9984,7 @@ msgstr "不包括"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1085
 #: ../gramps/plugins/textreport/familygroup.py:752
 #: ../gramps/plugins/textreport/indivcomplete.py:1113
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
+#: ../gramps/plugins/webreport/narrativeweb.py:2371
 msgid "Include"
 msgstr "包含"
 
@@ -10447,192 +10447,196 @@ msgid "German"
 msgstr "德语"
 
 #: ../gramps/gen/utils/grampslocale.py:78
+msgid "German (Austria)"
+msgstr ""
+
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
 msgstr "希腊语"
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "English (USA)"
 msgstr "英语（美国）"
 
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "English"
 msgstr "英语"
 
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Esperanto"
 msgstr "世界语"
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "Finnish"
 msgstr "芬兰语"
 
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "French"
 msgstr "法语"
 
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Gaelic"
 msgstr "盖尔语"
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Hebrew"
 msgstr "希伯来语"
 
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Croatian"
 msgstr "克罗地亚语"
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Hungarian"
 msgstr "匈牙利语"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Icelandic"
 msgstr "冰岛语"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Italian"
 msgstr "意大利语"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Japanese"
 msgstr "日语"
 
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Lithuanian"
 msgstr "立陶宛语"
 
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Macedonian"
 msgstr "马其顿语"
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Norwegian Bokmal"
 msgstr "挪威语（书面）"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Dutch"
 msgstr "荷兰语"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Norwegian Nynorsk"
 msgstr "挪威语（新）"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Polish"
 msgstr "波兰语"
 
-#: ../gramps/gen/utils/grampslocale.py:98
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Portuguese (Brazil)"
 msgstr "葡萄牙语（巴西）"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Portuguese (Portugal)"
 msgstr "葡萄牙语（葡萄牙）"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Romanian"
 msgstr "罗马尼亚语"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Russian"
 msgstr "俄语"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Slovak"
 msgstr "斯洛伐克语"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Slovenian"
 msgstr "斯洛文尼亚语"
 
-#: ../gramps/gen/utils/grampslocale.py:104
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Albanian"
 msgstr "阿尔巴尼亚人"
 
-#: ../gramps/gen/utils/grampslocale.py:105
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Serbian"
 msgstr "塞尔维亚语"
 
-#: ../gramps/gen/utils/grampslocale.py:106
+#: ../gramps/gen/utils/grampslocale.py:107
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: ../gramps/gen/utils/grampslocale.py:107
+#: ../gramps/gen/utils/grampslocale.py:108
 msgid "Tamil"
 msgstr "坦米尔语"
 
-#: ../gramps/gen/utils/grampslocale.py:108
+#: ../gramps/gen/utils/grampslocale.py:109
 msgid "Turkish"
 msgstr "土耳其语"
 
-#: ../gramps/gen/utils/grampslocale.py:109
+#: ../gramps/gen/utils/grampslocale.py:110
 msgid "Ukrainian"
 msgstr "乌克兰语"
 
-#: ../gramps/gen/utils/grampslocale.py:110
+#: ../gramps/gen/utils/grampslocale.py:111
 msgid "Vietnamese"
 msgstr "越南语"
 
-#: ../gramps/gen/utils/grampslocale.py:111
+#: ../gramps/gen/utils/grampslocale.py:112
 msgid "Chinese (Simplified)"
 msgstr "中文（简体）"
 
-#: ../gramps/gen/utils/grampslocale.py:112
+#: ../gramps/gen/utils/grampslocale.py:113
 msgid "Chinese (Hong Kong)"
 msgstr "中文（香港）"
 
-#: ../gramps/gen/utils/grampslocale.py:113
+#: ../gramps/gen/utils/grampslocale.py:114
 msgid "Chinese (Traditional)"
 msgstr "中文（繁体）"
 
-#: ../gramps/gen/utils/grampslocale.py:896
+#: ../gramps/gen/utils/grampslocale.py:897
 #, fuzzy
 msgid "the person"
 msgstr "成员"
 
-#: ../gramps/gen/utils/grampslocale.py:898
+#: ../gramps/gen/utils/grampslocale.py:899
 msgid "the family"
 msgstr "家庭"
 
-#: ../gramps/gen/utils/grampslocale.py:900
+#: ../gramps/gen/utils/grampslocale.py:901
 msgid "the place"
 msgstr "地点"
 
-#: ../gramps/gen/utils/grampslocale.py:902
+#: ../gramps/gen/utils/grampslocale.py:903
 msgid "the event"
 msgstr "事件"
 
-#: ../gramps/gen/utils/grampslocale.py:904
+#: ../gramps/gen/utils/grampslocale.py:905
 #, fuzzy
 msgid "the repository"
 msgstr "每个文库"
 
-#: ../gramps/gen/utils/grampslocale.py:906
+#: ../gramps/gen/utils/grampslocale.py:907
 msgid "the note"
 msgstr "注释"
 
-#: ../gramps/gen/utils/grampslocale.py:908
+#: ../gramps/gen/utils/grampslocale.py:909
 msgid "the media"
 msgstr "媒体"
 
-#: ../gramps/gen/utils/grampslocale.py:910
+#: ../gramps/gen/utils/grampslocale.py:911
 msgid "the source"
 msgstr "来源"
 
-#: ../gramps/gen/utils/grampslocale.py:912
+#: ../gramps/gen/utils/grampslocale.py:913
 msgid "the filter"
 msgstr "筛选器"
 
-#: ../gramps/gen/utils/grampslocale.py:914
+#: ../gramps/gen/utils/grampslocale.py:915
 msgid "the citation"
 msgstr "引用"
 
-#: ../gramps/gen/utils/grampslocale.py:916
+#: ../gramps/gen/utils/grampslocale.py:917
 msgid "See details"
 msgstr "查看细节"
 
@@ -11225,7 +11229,7 @@ msgstr "应用(_A)"
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1354
 #: ../gramps/plugins/drawreport/ancestortree.py:916
 #: ../gramps/plugins/drawreport/descendtree.py:1658
-#: ../gramps/plugins/webreport/narrativeweb.py:2107
+#: ../gramps/plugins/webreport/narrativeweb.py:2105
 msgid "Display"
 msgstr "显示"
 
@@ -11995,8 +11999,9 @@ msgid "Database backend"
 msgstr "数据库后端"
 
 #: ../gramps/gui/configure.py:1743
+#, fuzzy
 msgid "Host"
-msgstr ""
+msgstr "主机地址"
 
 #: ../gramps/gui/configure.py:1748
 msgid "Port"
@@ -12259,7 +12264,7 @@ msgstr "所有文件"
 
 #: ../gramps/gui/dbloader.py:301
 msgid "Automatically detected"
-msgstr "已自动删除"
+msgstr "自动检测"
 
 #: ../gramps/gui/dbloader.py:310
 msgid "Select file _type:"
@@ -15664,7 +15669,7 @@ msgstr "编号(_I)："
 
 #: ../gramps/gui/glade/editcitation.glade:240
 msgid "A unique ID to identify the citation"
-msgstr "用于识别引用的独有 ID"
+msgstr "用于识别引用的唯一 ID 编号"
 
 #: ../gramps/gui/glade/editcitation.glade:360
 #: ../gramps/gui/glade/editevent.glade:390
@@ -15791,7 +15796,7 @@ msgstr ""
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
 msgid "A unique ID to identify the event"
-msgstr "独有的ID验证事件"
+msgstr "区分事件的唯一 ID 编号"
 
 #: ../gramps/gui/glade/editeventref.glade:85
 #: ../gramps/gui/glade/editplaceref.glade:86
@@ -15859,7 +15864,7 @@ msgstr "关系信息"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
-msgstr "用于家庭的独有 ID"
+msgstr "用于家庭的唯一 ID 编号"
 
 #: ../gramps/gui/glade/editfamily.glade:698
 #: ../gramps/gui/glade/editname.glade:102
@@ -16012,7 +16017,7 @@ msgstr "文件夹"
 
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
-msgstr "独有的 ID 识别媒体对象"
+msgstr "区分媒体对象的唯一 ID 编号。"
 
 #: ../gramps/gui/glade/editmedia.glade:346
 msgid ""
@@ -16236,7 +16241,7 @@ msgstr "区分注释的一种类型"
 
 #: ../gramps/gui/glade/editnote.glade:179
 msgid "A unique ID to identify the note."
-msgstr "独有的ID辨别注释。"
+msgstr "区分注释的唯一 ID 编号。"
 
 #: ../gramps/gui/glade/editnote.glade:190
 msgid "_Preformatted"
@@ -16315,7 +16320,7 @@ msgstr "性别(_E)："
 
 #: ../gramps/gui/glade/editperson.glade:633
 msgid "A unique ID for the person."
-msgstr "成员的独有的ID"
+msgstr "人员的唯一 ID 编号。"
 
 #: ../gramps/gui/glade/editperson.glade:708
 msgid "Preferred Name"
@@ -16408,7 +16413,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
 msgid "A unique ID to identify the place"
-msgstr "独有的ID区别地点"
+msgstr "区分地点的唯一 ID 编号"
 
 #: ../gramps/gui/glade/editplace.glade:293
 #: ../gramps/gui/glade/editplaceref.glade:524
@@ -16548,7 +16553,7 @@ msgstr ""
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr "独有的ID区别文库。"
+msgstr "区分文库的唯一 ID 编号。"
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
@@ -16589,7 +16594,7 @@ msgstr "缩写(_B)："
 
 #: ../gramps/gui/glade/editsource.glade:214
 msgid "A unique ID to identify the source"
-msgstr "独有的 ID 区别来源"
+msgstr "区分来源的唯一 ID 编号"
 
 #: ../gramps/gui/glade/editurl.glade:96
 msgid "_Web address:"
@@ -18777,7 +18782,7 @@ msgstr "样式"
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:901
-#: ../gramps/plugins/webreport/narrativeweb.py:1940
+#: ../gramps/plugins/webreport/narrativeweb.py:1938
 #: ../gramps/plugins/webreport/webcal.py:1739
 msgid "Report Options"
 msgstr "报告选项"
@@ -19699,20 +19704,20 @@ msgstr "Gramplet 控件条"
 msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
-msgstr "在右侧拐角处按向下箭头可以添加、删除或恢复 gramplet。"
+msgstr "在右侧拐角处按向下箭头可以添加、删除或恢复 gramplet 控件。"
 
 #: ../gramps/gui/widgets/grampletbar.py:490
 #: ../gramps/gui/widgets/grampletpane.py:1447
 msgid "Add a gramplet"
-msgstr "添加一个 gramplet"
+msgstr "添加 gramplet"
 
 #: ../gramps/gui/widgets/grampletbar.py:500
 msgid "Remove a gramplet"
-msgstr "移除一个 gramplet"
+msgstr "移除 gramplet"
 
 #: ../gramps/gui/widgets/grampletbar.py:510
 msgid "Restore default gramplets"
-msgstr "恢复默认 gramplets"
+msgstr "恢复默认 gramplet"
 
 #: ../gramps/gui/widgets/grampletbar.py:520
 #, fuzzy
@@ -19726,7 +19731,7 @@ msgstr "Gramplets"
 
 #: ../gramps/gui/widgets/grampletbar.py:564
 msgid "Restore to defaults?"
-msgstr "恢复默认值？"
+msgstr "恢复到默认吗？"
 
 #: ../gramps/gui/widgets/grampletbar.py:565
 msgid ""
@@ -19756,7 +19761,7 @@ msgstr "栏目数"
 
 #: ../gramps/gui/widgets/grampletpane.py:1584
 msgid "Gramplet Layout"
-msgstr "Gramplet 排版"
+msgstr "Gramplet 布局"
 
 #: ../gramps/gui/widgets/grampletpane.py:1614
 msgid "Use maximum height available"
@@ -19764,7 +19769,7 @@ msgstr "使用可用的最大高度"
 
 #: ../gramps/gui/widgets/grampletpane.py:1620
 msgid "Height if not maximized"
-msgstr "窗口高度"
+msgstr "未最大化时的高度"
 
 #: ../gramps/gui/widgets/labels.py:117
 msgid ""
@@ -19778,11 +19783,11 @@ msgstr ""
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:628
 msgid "Bad Date"
-msgstr "损坏的日期"
+msgstr "无效的日期格式"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:631
 msgid "Date more than one year in the future"
-msgstr "一年以后的日期"
+msgstr "未来一年后的日期"
 
 #: ../gramps/gui/widgets/photo.py:56
 msgid ""
@@ -20082,13 +20087,13 @@ msgid "of %d"
 msgstr "%d 的"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
-#: ../gramps/plugins/webreport/narrativeweb.py:1802
+#: ../gramps/plugins/webreport/narrativeweb.py:1800
 #: ../gramps/plugins/webreport/webcal.py:274
 msgid "Possible destination error"
 msgstr "可能目标文件错误"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:1803
+#: ../gramps/plugins/webreport/narrativeweb.py:1801
 #: ../gramps/plugins/webreport/webcal.py:275
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -20727,13 +20732,13 @@ msgstr "日历底部文本的第三行"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:501
 #: ../gramps/plugins/textreport/birthdayreport.py:507
-#: ../gramps/plugins/webreport/narrativeweb.py:2845
+#: ../gramps/plugins/webreport/narrativeweb.py:2844
 #: ../gramps/plugins/webreport/webcal.py:1812
 msgid "Include only living people"
 msgstr "仅包含健在人员"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:502
-#: ../gramps/plugins/webreport/narrativeweb.py:2846
+#: ../gramps/plugins/webreport/narrativeweb.py:2845
 #: ../gramps/plugins/webreport/webcal.py:1813
 msgid "Include only living people in the calendar"
 msgstr "在日历中仅包含健在人员"
@@ -20763,55 +20768,55 @@ msgid "Select the country to see associated holidays"
 msgstr "选择国家/地区以查看相关假期"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:531
-#: ../gramps/plugins/webreport/narrativeweb.py:2809
+#: ../gramps/plugins/webreport/narrativeweb.py:2808
 #: ../gramps/plugins/webreport/webcal.py:1867
 msgid "First day of week"
 msgstr "每周第一天"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:539
-#: ../gramps/plugins/webreport/narrativeweb.py:2812
+#: ../gramps/plugins/webreport/narrativeweb.py:2811
 #: ../gramps/plugins/webreport/webcal.py:1870
 msgid "Select the first day of the week for the calendar"
 msgstr "选择日历中周的第一天"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:542
 #: ../gramps/plugins/textreport/birthdayreport.py:544
-#: ../gramps/plugins/webreport/narrativeweb.py:2816
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "Birthday surname"
 msgstr "生日姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:545
 #: ../gramps/plugins/textreport/birthdayreport.py:547
-#: ../gramps/plugins/webreport/narrativeweb.py:2817
+#: ../gramps/plugins/webreport/narrativeweb.py:2816
 #: ../gramps/plugins/webreport/webcal.py:1875
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "妻随夫姓（从列在第一位的家庭）"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:548
 #: ../gramps/plugins/textreport/birthdayreport.py:550
-#: ../gramps/plugins/webreport/narrativeweb.py:2819
+#: ../gramps/plugins/webreport/narrativeweb.py:2818
 #: ../gramps/plugins/webreport/webcal.py:1877
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "妻随夫姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:549
 #: ../gramps/plugins/textreport/birthdayreport.py:551
-#: ../gramps/plugins/webreport/narrativeweb.py:2821
+#: ../gramps/plugins/webreport/narrativeweb.py:2820
 #: ../gramps/plugins/webreport/webcal.py:1879
 msgid "Wives use their own surname"
 msgstr "妻子使用自己原姓"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:550
 #: ../gramps/plugins/textreport/birthdayreport.py:552
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
+#: ../gramps/plugins/webreport/narrativeweb.py:2821
 #: ../gramps/plugins/webreport/webcal.py:1880
 msgid "Select married women's displayed surname"
 msgstr "选择已婚妇女所显示的姓氏"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:553
 #: ../gramps/plugins/textreport/birthdayreport.py:555
-#: ../gramps/plugins/webreport/narrativeweb.py:2832
+#: ../gramps/plugins/webreport/narrativeweb.py:2831
 #: ../gramps/plugins/webreport/webcal.py:1958
 msgid "Include birthdays"
 msgstr "包括生日"
@@ -20823,7 +20828,7 @@ msgstr "是否包含生日"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:557
 #: ../gramps/plugins/textreport/birthdayreport.py:559
-#: ../gramps/plugins/webreport/narrativeweb.py:2836
+#: ../gramps/plugins/webreport/narrativeweb.py:2835
 #: ../gramps/plugins/webreport/webcal.py:1962
 msgid "Include anniversaries"
 msgstr "包含周年纪念"
@@ -21296,7 +21301,7 @@ msgstr "最后一个孩子出生时的年纪"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:371
 msgid "Number of children"
-msgstr "子女数量"
+msgstr "子女人数"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:373
 msgid "Age at marriage"
@@ -21415,7 +21420,7 @@ msgstr "决定何类成员应当包含在报告中。"
 #: ../gramps/plugins/textreport/indivcomplete.py:1074
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
-#: ../gramps/plugins/webreport/narrativeweb.py:1972
+#: ../gramps/plugins/webreport/narrativeweb.py:1970
 #: ../gramps/plugins/webreport/webcal.py:1760
 msgid "Filter Person"
 msgstr "筛选人员"
@@ -21559,7 +21564,7 @@ msgstr "决定何类人应当包含在报告中"
 #: ../gramps/plugins/drawreport/timeline.py:423
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:174
-#: ../gramps/plugins/webreport/narrativeweb.py:1973
+#: ../gramps/plugins/webreport/narrativeweb.py:1971
 #: ../gramps/plugins/webreport/webcal.py:1761
 msgid "The center person for the filter"
 msgstr "中心任务筛选器"
@@ -22425,11 +22430,11 @@ msgstr "显示待做事项列表的 Gramplet 控件"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:305
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:311
 msgid "Top Surnames"
-msgstr "百家姓"
+msgstr "前十位姓氏"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:306
 msgid "Gramplet showing most frequent surnames in this tree"
-msgstr "Gramplet 显示在本家族树中最常用的姓"
+msgstr "显示本家族树中最常见姓氏的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:318
 msgid "Welcome"
@@ -22437,7 +22442,7 @@ msgstr "欢迎"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:319
 msgid "Gramplet showing a welcome message"
-msgstr "Gramplet 显示一条欢迎信息"
+msgstr "显示欢迎信息的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:325
 msgid "Welcome to Gramps!"
@@ -22449,7 +22454,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:333
 msgid "Gramplet suggesting items to research"
-msgstr "Gramplet 建议项目搜索"
+msgstr "推荐研究条目的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:339
 msgid "What's Next?"
@@ -25231,24 +25236,26 @@ msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  %(id)s 带有 %(id2)s 的媒体对象\n"
 
 #: ../gramps/plugins/importer/importxml.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "  Place %(id)s with %(id2)s\n"
-msgstr "地点 %(id)s\n"
+msgstr "  地点 %(id)s 与 %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:266
 #, fuzzy, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
-msgstr "文库 %(id)s\n"
+msgstr ""
+"文库 %(id)s 与 %(id2)s\n"
+"\n"
 
 #: ../gramps/plugins/importer/importxml.py:269
-#, fuzzy, python-format
+#, python-format
 msgid "  Note %(id)s with %(id2)s\n"
-msgstr "  笔记  %(id)s\n"
+msgstr "  注释 %(id)s 与 %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:274
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "家庭 %(id)s\n"
+msgstr "  引用 %(id)s 与 %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:282
 #, python-format
@@ -25302,18 +25309,18 @@ msgstr "  引用: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:293
 msgid "Number of new objects imported:\n"
-msgstr "已导入的新对象的数量:\n"
+msgstr "导入的新对象数量:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
 #, python-format
 msgid ""
 "\n"
-" The imported file was not self-contained.\n"
+"The imported file was not self-contained.\n"
 "To correct for that, %(new)d objects were created and\n"
 "their typifying attribute was set to 'Unknown'.\n"
 "The breakdown per category is depicted by the\n"
 "number in parentheses. Where possible these\n"
-"'Unkown' objects are referenced by note %(unknown)s.\n"
+"'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:310
@@ -25331,8 +25338,8 @@ msgstr ""
 "或者，如果不设定，则与用户目录相关联.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
+#, fuzzy
 msgid ""
-"\n"
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
@@ -25529,7 +25536,7 @@ msgid "Common Law Marriage"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:699
-#: ../gramps/plugins/webreport/narrativeweb.py:1953
+#: ../gramps/plugins/webreport/narrativeweb.py:1951
 #: ../gramps/plugins/webreport/webcal.py:1744
 msgid "Destination"
 msgstr "目标文件夹"
@@ -30100,7 +30107,7 @@ msgid "Open on maps.google.com"
 msgstr "在 maps.google.com 上打开地图"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:2426
+#: ../gramps/plugins/webreport/narrativeweb.py:2424
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -30176,8 +30183,8 @@ msgid ""
 "Sorted events of family\n"
 " %(father)s - %(mother)s"
 msgstr ""
-"排序家庭事件 \n"
-"%(father)s - %(mother)s"
+"%(father)s - %(mother)s \n"
+"  家庭的事件"
 
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
@@ -34840,7 +34847,7 @@ msgstr "显示 gramps id"
 #: ../gramps/plugins/view/pedigreeview.py:2146
 #: ../gramps/plugins/view/relview.py:1883
 msgid "Layout"
-msgstr "排版"
+msgstr "布局"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:580
 #: ../gramps/plugins/view/fanchartdescview.py:568
@@ -35926,6 +35933,7 @@ msgid "Go to top"
 msgstr "前往默认成员"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
+#: ../gramps/plugins/webreport/basepage.py:1786
 #: ../gramps/plugins/webreport/basepage.py:1963
 msgctxt "Html"
 msgid "Home"
@@ -35940,7 +35948,7 @@ msgstr "缩略图"
 #: ../gramps/plugins/webreport/basepage.py:1747
 #: ../gramps/plugins/webreport/basepage.py:1939
 #: ../gramps/plugins/webreport/download.py:93
-#: ../gramps/plugins/webreport/narrativeweb.py:2282
+#: ../gramps/plugins/webreport/narrativeweb.py:2280
 msgid "Download"
 msgstr "下载"
 
@@ -35962,11 +35970,6 @@ msgstr "已更新"
 #: ../gramps/plugins/webreport/webplugins.gpr.py:58
 msgid "Web Calendar"
 msgstr "网页日历"
-
-#: ../gramps/plugins/webreport/basepage.py:1786
-#, fuzzy
-msgid "Html|Home"
-msgstr "首页"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -36223,584 +36226,601 @@ msgstr "创建统计页面…"
 msgid "Creating address book pages ..."
 msgstr "创建地址簿页面..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1828
+#: ../gramps/plugins/webreport/narrativeweb.py:1826
 #, fuzzy, python-format
-msgid "Narrative Web Site Report for the %s language"
+msgid "Narrative Website Report for the %s language"
 msgstr "叙事网站报告"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1830
+#: ../gramps/plugins/webreport/narrativeweb.py:1828
 #, fuzzy
-msgid "Narrative Web Site Report"
+msgid "Narrative Website Report"
 msgstr "叙事网站报告"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1943
-msgid "Store web pages in .tar.gz archive"
+#: ../gramps/plugins/webreport/narrativeweb.py:1941
+#, fuzzy
+msgid "Store website in .tar.gz archive"
 msgstr "以 .tar.gz 存档网页"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1945
-msgid "Whether to store the web pages in an archive file"
+#: ../gramps/plugins/webreport/narrativeweb.py:1943
+#, fuzzy
+msgid "Whether to store the website in an archive file"
 msgstr "是否以存档文件保存网页"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1956
+#: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
 msgid "The destination directory for the web files"
 msgstr "网页文件目标目录"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1962
+#: ../gramps/plugins/webreport/narrativeweb.py:1960
 msgid "My Family Tree"
 msgstr "我的家族树"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1962
-msgid "Web site title"
+#: ../gramps/plugins/webreport/narrativeweb.py:1960
+#, fuzzy
+msgid "Website title"
 msgstr "网站标题"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1963
-msgid "The title of the web site"
+#: ../gramps/plugins/webreport/narrativeweb.py:1961
+#, fuzzy
+msgid "The title of the website"
 msgstr "网站标题"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1968
-msgid "Select filter to restrict people that appear on web site"
+#: ../gramps/plugins/webreport/narrativeweb.py:1966
+#, fuzzy
+msgid "Select filter to restrict people that appear on the website"
 msgstr "选择筛查器限制出现在日历上的成员"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1977
+#: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
-msgstr "显示当前人员和活跃人员的关系。"
+msgstr "在每个人的页面中显示该人员与活跃人员的关系。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1980
+#: ../gramps/plugins/webreport/narrativeweb.py:1978
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
 msgstr "在每个人的页面上显示该人员与活跃人员的关系。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2000
+#: ../gramps/plugins/webreport/narrativeweb.py:1998
 msgid "Html options"
 msgstr "Html 选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2003
+#: ../gramps/plugins/webreport/narrativeweb.py:2001
 #: ../gramps/plugins/webreport/webcal.py:1767
 msgid "File extension"
 msgstr "文件扩展名"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2006
+#: ../gramps/plugins/webreport/narrativeweb.py:2004
 #: ../gramps/plugins/webreport/webcal.py:1770
 msgid "The extension to be used for the web files"
 msgstr "用于网页文件的扩展名"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2010
+#: ../gramps/plugins/webreport/narrativeweb.py:2008
 #: ../gramps/plugins/webreport/webcal.py:1773
 msgid "Copyright"
 msgstr "版权"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2013
+#: ../gramps/plugins/webreport/narrativeweb.py:2011
 #: ../gramps/plugins/webreport/webcal.py:1776
 msgid "The copyright to be used for the web files"
 msgstr "用于网页文件的版权"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2016
+#: ../gramps/plugins/webreport/narrativeweb.py:2014
 #: ../gramps/plugins/webreport/webcal.py:1782
 msgid "StyleSheet"
 msgstr "样式表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2023
+#: ../gramps/plugins/webreport/narrativeweb.py:2021
 #, fuzzy
 msgid "The default stylesheet to be used for the pages"
 msgstr "用于网页的样式表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2029
+#: ../gramps/plugins/webreport/narrativeweb.py:2027
 msgid "Horizontal -- Default"
 msgstr "水平 — 默认"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2030
+#: ../gramps/plugins/webreport/narrativeweb.py:2028
 msgid "Vertical   -- Left Side"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2031
+#: ../gramps/plugins/webreport/narrativeweb.py:2029
 msgid "Fade       -- WebKit Browsers Only"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2032
-#: ../gramps/plugins/webreport/narrativeweb.py:2046
+#: ../gramps/plugins/webreport/narrativeweb.py:2030
+#: ../gramps/plugins/webreport/narrativeweb.py:2044
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2034
+#: ../gramps/plugins/webreport/narrativeweb.py:2032
 msgid "Navigation Menu Layout"
-msgstr "巡航菜单布局"
+msgstr "导航菜单布局"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2038
+#: ../gramps/plugins/webreport/narrativeweb.py:2036
 msgid "Choose which layout for the Navigation Menus."
 msgstr "为巡航菜单选择布局"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2045
+#: ../gramps/plugins/webreport/narrativeweb.py:2043
 msgid "Normal Outline Style"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2049
+#: ../gramps/plugins/webreport/narrativeweb.py:2047
 msgid "Citation Referents Layout"
 msgstr "引文参考布局"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2053
+#: ../gramps/plugins/webreport/narrativeweb.py:2051
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2057
+#: ../gramps/plugins/webreport/narrativeweb.py:2055
 msgid "Include ancestor's tree"
 msgstr "包含祖先树"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2058
+#: ../gramps/plugins/webreport/narrativeweb.py:2056
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "是否为每个页面包含祖先图表"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2063
+#: ../gramps/plugins/webreport/narrativeweb.py:2061
 #, fuzzy
 msgid "Add previous/next"
 msgstr "添加配偶"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2064
+#: ../gramps/plugins/webreport/narrativeweb.py:2062
 msgid "Add previous/next to the navigation bar."
 msgstr ""
 
+#: ../gramps/plugins/webreport/narrativeweb.py:2065
+#, fuzzy
+msgid "This is a secure site (HTTPS)"
+msgstr "这是使用安全连接的站点（https）"
+
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
-msgid "This is a secure site (https)"
-msgstr ""
-
-#: ../gramps/plugins/webreport/narrativeweb.py:2069
 msgid "Whether to use http:// or https://"
-msgstr ""
+msgstr "使用 http:// 还是 https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2072
+#: ../gramps/plugins/webreport/narrativeweb.py:2070
 #, fuzzy
 msgid "Toggle sections"
 msgstr "标题选择"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2073
+#: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Check it if you want to open/close a section"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2081
 msgid "Extra pages"
 msgstr "额外页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2086
+#: ../gramps/plugins/webreport/narrativeweb.py:2084
 msgid "Extra page name"
 msgstr "额外页面名称"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2089
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
+#, fuzzy
 msgid "Your extra page name like it is shown in the menubar"
-msgstr ""
+msgstr "额外页面的名称，效果如同菜单栏上显示的那样"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2094
+#: ../gramps/plugins/webreport/narrativeweb.py:2092
 msgid "Your extra page path"
-msgstr ""
+msgstr "额外页面的路径"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2097
+#: ../gramps/plugins/webreport/narrativeweb.py:2095
 msgid "Your extra page path without extension"
-msgstr ""
+msgstr "额外页面的路径，不带扩展名"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2114
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Do we use multiple translations?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2116
+#: ../gramps/plugins/webreport/narrativeweb.py:2114
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2130
+#: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "Sort all children in birth order"
 msgstr "以出生顺序排列子女"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2130
 #, fuzzy
 msgid "Whether to display children in birth order or in entry order."
 msgstr "是否以出生日期或者输入日期排列显示子女的顺序？"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2136
+#: ../gramps/plugins/webreport/narrativeweb.py:2134
 msgid "Do we display coordinates in the places list?"
-msgstr ""
+msgstr "是否在地点列表中显示坐标？"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2138
+#: ../gramps/plugins/webreport/narrativeweb.py:2136
 #, fuzzy
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "是否包含地点页面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2142
+#: ../gramps/plugins/webreport/narrativeweb.py:2140
 msgid "Sort places references either by date or by name"
-msgstr ""
+msgstr "按照日期或名称对地点参考进行排序"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2144
+#: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort the places references by date or by name. Not set means by date."
-msgstr ""
+msgstr "按照日期或名称对地点参考进行排序。不选择则使用日期排序。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2148
+#: ../gramps/plugins/webreport/narrativeweb.py:2146
 msgid "Graph generations"
-msgstr "图形后代"
+msgstr "辈分图"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2149
+#: ../gramps/plugins/webreport/narrativeweb.py:2147
 msgid "The number of generations to include in the ancestor graph"
-msgstr "祖先图表中辈分的数量"
+msgstr "祖先图中包括的辈数"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:2153
+msgid "Include narrative notes just after name, gender"
+msgstr "在姓名、性别后包括叙述注释"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2155
-msgid "Include narrative notes just after name, gender"
-msgstr ""
-
-#: ../gramps/plugins/webreport/narrativeweb.py:2157
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2168
+#: ../gramps/plugins/webreport/narrativeweb.py:2166
 msgid "Page Generation"
 msgstr "辈分页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2171
+#: ../gramps/plugins/webreport/narrativeweb.py:2169
 msgid "Home page note"
 msgstr "主页注释"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2172
+#: ../gramps/plugins/webreport/narrativeweb.py:2170
 msgid "A note to be used on the home page"
 msgstr "主页中使用的注释"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2173
 msgid "Home page image"
 msgstr "主页图像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2176
+#: ../gramps/plugins/webreport/narrativeweb.py:2174
 msgid "An image to be used on the home page"
 msgstr "主页中使用的一个图像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2179
+#: ../gramps/plugins/webreport/narrativeweb.py:2177
 msgid "Introduction note"
 msgstr "介绍注释"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2180
+#: ../gramps/plugins/webreport/narrativeweb.py:2178
 msgid "A note to be used as the introduction"
 msgstr "用于介绍的笔记"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2183
+#: ../gramps/plugins/webreport/narrativeweb.py:2181
 msgid "Introduction image"
 msgstr "介绍图片"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2184
+#: ../gramps/plugins/webreport/narrativeweb.py:2182
 msgid "An image to be used as the introduction"
 msgstr "用于介绍的一个图像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2187
+#: ../gramps/plugins/webreport/narrativeweb.py:2185
 msgid "Publisher contact note"
 msgstr "出版者联系笔记"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2188
+#: ../gramps/plugins/webreport/narrativeweb.py:2186
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2194
+#: ../gramps/plugins/webreport/narrativeweb.py:2192
 msgid "Publisher contact image"
 msgstr "出版者联系图像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2195
+#: ../gramps/plugins/webreport/narrativeweb.py:2193
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2199
 msgid "HTML user header"
 msgstr "HTML 用户页眉"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
+#: ../gramps/plugins/webreport/narrativeweb.py:2200
 #, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "用于页眉的笔记"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2206
+#: ../gramps/plugins/webreport/narrativeweb.py:2204
 msgid "HTML user footer"
 msgstr "HTML 用户页脚"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2207
+#: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "A note to be used as the page footer"
 msgstr "用于页脚的笔记"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2212
+#: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "PHP user session"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2213
+#: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2224
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Images Generation"
 msgstr "图像生成"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2227
+#: ../gramps/plugins/webreport/narrativeweb.py:2225
 msgid "Include images and media objects"
 msgstr "包含图像和媒体对象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2229
+#: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Whether to include a gallery of media objects"
-msgstr "是否 包含媒体对象的图库"
+msgstr "是否包含媒体对象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2235
+#: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2237
+#: ../gramps/plugins/webreport/narrativeweb.py:2235
 msgid "This option allows you to create the images index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2243
+#: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Include unused images and media objects"
 msgstr "包含未使用的图像和媒体对象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "是否包含未使用或未引用的媒体对象"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2249
+#: ../gramps/plugins/webreport/narrativeweb.py:2247
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "创建并使用缩略图大小的图像"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2251
+#: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
+"该选项可让您在媒体页面上创建缩略图大小的图像，而非完整大小的图像。这样可让上"
+"传到主机上的文件变得更小。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2260
+#: ../gramps/plugins/webreport/narrativeweb.py:2258
 #, fuzzy
 msgid "Create the thumbnail index"
 msgstr "缩略图大小"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2262
+#: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "This option allows you to create the thumbnail index"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2268
+#: ../gramps/plugins/webreport/narrativeweb.py:2266
 msgid "Max width of initial image"
-msgstr "初始图像的最大宽度"
+msgstr "图像的最大宽度"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2270
+#: ../gramps/plugins/webreport/narrativeweb.py:2268
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
 msgstr "此项允许您设置在媒体页面上显示的图像的最大宽度。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2283
 msgid "Include download page"
 msgstr "包含下载页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2287
+#: ../gramps/plugins/webreport/narrativeweb.py:2285
 msgid "Whether to include a database download option"
 msgstr "是否包含数据库下载选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2291
+#: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "How many downloads"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2293
+#: ../gramps/plugins/webreport/narrativeweb.py:2291
 #, fuzzy
 msgid "The number of download files to include in the download page"
 msgstr "包含在树中后代的数量"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2302
+#: ../gramps/plugins/webreport/narrativeweb.py:2300
 #, fuzzy, python-format
 msgid "Download Filename #%c"
 msgstr "下载文件名"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2305
+#: ../gramps/plugins/webreport/narrativeweb.py:2303
 msgid "File to be used for downloading of database"
 msgstr "用于下载数据库的文件"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2309
+#: ../gramps/plugins/webreport/narrativeweb.py:2307
 msgid "Description for download"
 msgstr "下载描述"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2310
+#: ../gramps/plugins/webreport/narrativeweb.py:2308
 #, fuzzy, python-format
 msgid "Family Tree #%c"
 msgstr "家族树"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2311
+#: ../gramps/plugins/webreport/narrativeweb.py:2309
 msgid "Give a description for this file."
 msgstr "提供这个文件的描述。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2323
+#: ../gramps/plugins/webreport/narrativeweb.py:2321
 #: ../gramps/plugins/webreport/webcal.py:1944
 msgid "Advanced Options"
 msgstr "高级选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2326
+#: ../gramps/plugins/webreport/narrativeweb.py:2324
 #: ../gramps/plugins/webreport/webcal.py:1946
 msgid "Character set encoding"
 msgstr "字符编码"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2330
+#: ../gramps/plugins/webreport/narrativeweb.py:2328
 #: ../gramps/plugins/webreport/webcal.py:1950
 msgid "The encoding to be used for the web files"
 msgstr "用于网页文件的编码"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2334
+#: ../gramps/plugins/webreport/narrativeweb.py:2332
 msgid "Include link to active person on every page"
 msgstr "在每页中都包含与活跃人的链接"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2336
+#: ../gramps/plugins/webreport/narrativeweb.py:2334
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "包含与活跃人员的链接（如果他们有页面的话）"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2338
 msgid "Include a column for birth dates on the index pages"
 msgstr "在索引页面中包含一个出生日期栏"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2341
+#: ../gramps/plugins/webreport/narrativeweb.py:2339
 msgid "Whether to include a birth column"
 msgstr "是否包含一个出生栏"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2345
+#: ../gramps/plugins/webreport/narrativeweb.py:2343
 msgid "Include a column for death dates on the index pages"
 msgstr "在索引页面包含去世日期栏"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2346
+#: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid "Whether to include a death column"
 msgstr "是否包含去世列"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2349
+#: ../gramps/plugins/webreport/narrativeweb.py:2347
 msgid "Include a column for partners on the index pages"
 msgstr "在索引页面包含一个伴侣栏"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2351
+#: ../gramps/plugins/webreport/narrativeweb.py:2349
 msgid "Whether to include a partners column"
 msgstr "是否包含一个伴侣栏"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2354
+#: ../gramps/plugins/webreport/narrativeweb.py:2352
 msgid "Include a column for parents on the index pages"
 msgstr "在索引页面包含一个父母栏"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2356
+#: ../gramps/plugins/webreport/narrativeweb.py:2354
 msgid "Whether to include a parents column"
 msgstr "是否包含一个父母栏目"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2360
-msgid "Include half and/ or step-siblings on the individual pages"
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
+#, fuzzy
+msgid "Include half and/or step-siblings on the individual pages"
 msgstr "包含半/继表亲 在单独页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2363
+#: ../gramps/plugins/webreport/narrativeweb.py:2361
+#, fuzzy
 msgid ""
-"Whether to include half and/ or step-siblings with the parents and siblings"
+"Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "是否包含半/继表亲，与父母和表亲兄弟一起"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2376
+#: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "Include family pages"
 msgstr "包括家庭页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2377
+#: ../gramps/plugins/webreport/narrativeweb.py:2375
 msgid "Whether or not to include family pages."
 msgstr "是否包括家庭页面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2380
+#: ../gramps/plugins/webreport/narrativeweb.py:2378
 msgid "Include event pages"
 msgstr "包含事件页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2382
+#: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid "Add a complete events list and relevant pages or not"
 msgstr "添加一个完整的事件列表和相关的页面或者没有"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2385
-msgid "Include places pages"
+#: ../gramps/plugins/webreport/narrativeweb.py:2383
+#, fuzzy
+msgid "Include place pages"
 msgstr "包含地点页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2387
-msgid "Whether or not to include the places Pages."
+#: ../gramps/plugins/webreport/narrativeweb.py:2385
+#, fuzzy
+msgid "Whether or not to include the place pages."
 msgstr "是否包含地点页面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2390
-msgid "Include sources pages"
+#: ../gramps/plugins/webreport/narrativeweb.py:2388
+#, fuzzy
+msgid "Include source pages"
 msgstr "包含来源页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2392
-msgid "Whether or not to include the sources Pages."
+#: ../gramps/plugins/webreport/narrativeweb.py:2390
+#, fuzzy
+msgid "Whether or not to include the source pages."
 msgstr "是否包含来源页面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2395
+#: ../gramps/plugins/webreport/narrativeweb.py:2393
 msgid "Include repository pages"
 msgstr "包含文库页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2397
-msgid "Whether or not to include the Repository Pages."
+#: ../gramps/plugins/webreport/narrativeweb.py:2395
+#, fuzzy
+msgid "Whether or not to include the repository pages."
 msgstr "是否包含文库页面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2401
+#: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "包含 GENDEX 文件（/gendex.txt）"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2402
+#: ../gramps/plugins/webreport/narrativeweb.py:2400
 msgid "Whether to include a GENDEX file or not"
 msgstr "是否包含一个 GENDEX 文件"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2405
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Include address book pages"
 msgstr "包含地址簿页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2406
+#: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
 "是否添加地址薄页，内容可包含电子邮件和网站地址 ，以及个人住址或居住地等。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2412
+#: ../gramps/plugins/webreport/narrativeweb.py:2410
 msgid "Include the statistics page"
 msgstr "包含统计页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2413
+#: ../gramps/plugins/webreport/narrativeweb.py:2411
 msgid "Whether or not to add statistics page"
 msgstr "是否添加统计页面。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2422
+#: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "Place Map Options"
 msgstr "地点地图选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2427
-msgid "StamenMap"
-msgstr ""
+#: ../gramps/plugins/webreport/narrativeweb.py:2425
+#, fuzzy
+msgid "Stamen Map"
+msgstr "内容选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2428
+#: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
 msgstr "Google 谷歌"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2429
+#: ../gramps/plugins/webreport/narrativeweb.py:2427
 msgid "Map Service"
 msgstr "地图服务"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2433
+#: ../gramps/plugins/webreport/narrativeweb.py:2431
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr ""
+msgstr "选择用于创建地点地图页面的地图服务。"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2439
+#: ../gramps/plugins/webreport/narrativeweb.py:2437
 msgid "Include Place map on Place Pages"
 msgstr "在地址页面中包含地址地图"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2441
+#: ../gramps/plugins/webreport/narrativeweb.py:2439
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr "是否在地点页面中包含一张地点地图。经度/纬度有效"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2446
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "包含家庭地图页面，其中包括地图上显示的所有地点"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2450
+#: ../gramps/plugins/webreport/narrativeweb.py:2448
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -36808,221 +36828,226 @@ msgstr ""
 "是否添加一个单独的页面，显示此页面上所有的地点？这将允许您查看您的家庭如何在"
 "国家内进行旅行的。 "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2458
+#: ../gramps/plugins/webreport/narrativeweb.py:2456
 msgid "Family Links"
 msgstr "家庭链接"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2459
+#: ../gramps/plugins/webreport/narrativeweb.py:2457
 msgid "Drop"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2460
+#: ../gramps/plugins/webreport/narrativeweb.py:2458
 msgid "Markers"
 msgstr "记号"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2461
+#: ../gramps/plugins/webreport/narrativeweb.py:2459
 msgid "Google/ FamilyMap Option"
 msgstr "Google 地图或家庭地图选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2466
+#: ../gramps/plugins/webreport/narrativeweb.py:2464
+#, fuzzy
 msgid ""
-"Select which option that you would like to have for the Google Maps Family "
-"Map pages..."
-msgstr ""
+"Select which option that you would like to have for the Google Maps family-"
+"map pages..."
+msgstr "选择您要为谷歌地图家庭地图页面添加的选项…"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2470
+#: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "Google maps API key"
 msgstr "谷歌地图 API 密钥"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2469
 msgid "The API key used for the Google maps"
 msgstr "用于谷歌地图的 API 密钥"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2475
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Toner"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2476
+#: ../gramps/plugins/webreport/narrativeweb.py:2474
 msgid "Terrain"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2477
+#: ../gramps/plugins/webreport/narrativeweb.py:2475
 #, fuzzy
 msgid "WaterColor"
 msgstr "标记颜色"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2478
+#: ../gramps/plugins/webreport/narrativeweb.py:2476
 #, fuzzy
 msgid "Stamen Option"
 msgstr "内容选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2483
+#: ../gramps/plugins/webreport/narrativeweb.py:2481
+#, fuzzy
 msgid ""
-"Select which option that you would like to have for the Stamenmap Map "
+"Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr ""
+msgstr "选择您要为谷歌地图家庭地图页面添加的选项…"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2495
-msgid "Other inclusion (CMS, Web Calendar, Php)"
-msgstr ""
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
+#, fuzzy
+msgid "Other inclusion (CMS, web calendar, PHP)"
+msgstr "要包括网络日历吗？"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2499
-msgid "Do we include these pages in a cms web ?"
-msgstr ""
+#: ../gramps/plugins/webreport/narrativeweb.py:2497
+#, fuzzy
+msgid "Do we include these pages in a CMS web?"
+msgstr "要在 CMS 网页中添加这些页面吗？"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2504
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2510
-msgid "Where do you place your web site ? default = /NAVWEB"
-msgstr ""
+#: ../gramps/plugins/webreport/narrativeweb.py:2508
+#, fuzzy
+msgid "Where do you place your website? default = /NAVWEB"
+msgstr "您存放网站内容的目录是哪里？默认为 /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2516
 #, fuzzy
 msgid "Include the news and updates page"
 msgstr "包含统计页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2520
+#: ../gramps/plugins/webreport/narrativeweb.py:2518
 #, fuzzy
 msgid "Whether to include a page with the last updates"
 msgstr "是否包含上一个职业"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2525
+#: ../gramps/plugins/webreport/narrativeweb.py:2523
 #, fuzzy
 msgid "Max days for updates"
 msgstr "饼图中最多项目"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2526
-msgid "You want to see the last updates on how many days ?"
+#: ../gramps/plugins/webreport/narrativeweb.py:2524
+msgid "You want to see the last updates on how many days?"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2530
+#: ../gramps/plugins/webreport/narrativeweb.py:2528
 #, fuzzy
 msgid "Max number of updates per object to show"
 msgstr "要显示地点的最大数量"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2532
+#: ../gramps/plugins/webreport/narrativeweb.py:2530
 msgid "How many updates do you want to see max"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2544
+#: ../gramps/plugins/webreport/narrativeweb.py:2543
 #, fuzzy
 msgid "Translations"
 msgstr "翻译"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2546
 #, fuzzy
 msgid "second language"
 msgstr "第二日期"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2551
+#: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Site name for your second language"
 msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:2551
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2575
+#: ../gramps/plugins/webreport/narrativeweb.py:2583
+#, fuzzy
+msgid "This site title"
+msgstr "网站标题"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
-msgid "This site title"
-msgstr "网站标题"
-
-#: ../gramps/plugins/webreport/narrativeweb.py:2553
-#: ../gramps/plugins/webreport/narrativeweb.py:2561
-#: ../gramps/plugins/webreport/narrativeweb.py:2569
-#: ../gramps/plugins/webreport/narrativeweb.py:2577
-#: ../gramps/plugins/webreport/narrativeweb.py:2585
-msgid "Give a title in the appropriate language"
+msgid "Enter a title in the respective language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2555
+#: ../gramps/plugins/webreport/narrativeweb.py:2554
 #, fuzzy
 msgid "third language"
 msgstr "语言"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Site name for your third language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2563
+#: ../gramps/plugins/webreport/narrativeweb.py:2562
 #, fuzzy
 msgid "fourth language"
 msgstr "语言"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Site name for your fourth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2571
+#: ../gramps/plugins/webreport/narrativeweb.py:2570
 #, fuzzy
 msgid "fifth language"
 msgstr "语言"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2575
+#: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Site name for your fifth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2579
+#: ../gramps/plugins/webreport/narrativeweb.py:2578
 #, fuzzy
 msgid "sixth language"
 msgstr "语言"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2583
+#: ../gramps/plugins/webreport/narrativeweb.py:2582
 msgid "Site name for your sixth language"
 msgstr ""
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2796
+#: ../gramps/plugins/webreport/narrativeweb.py:2795
 #, fuzzy
 msgid "Calendar Options"
 msgstr "纸张选项"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2803
+#: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Do we include the web calendar ?"
 msgstr "要包括网络日历吗？"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2804
+#: ../gramps/plugins/webreport/narrativeweb.py:2803
 #, fuzzy, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "是否 包含媒体对象的图库"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2826
+#: ../gramps/plugins/webreport/narrativeweb.py:2825
 #: ../gramps/plugins/webreport/webcal.py:1953
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "在 Year At A Glance 日历中创建一个天的日历页"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2829
+#: ../gramps/plugins/webreport/narrativeweb.py:2828
 #: ../gramps/plugins/webreport/webcal.py:1955
 msgid "Whether to create one day pages or not"
 msgstr "是否创建单日页面"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2832
 #: ../gramps/plugins/webreport/webcal.py:1959
 msgid "Include birthdays in the calendar"
 msgstr "在日历中包含生日"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2837
+#: ../gramps/plugins/webreport/narrativeweb.py:2836
 #: ../gramps/plugins/webreport/webcal.py:1963
 msgid "Include anniversaries in the calendar"
 msgstr "在日历中包含周年纪念日"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2840
+#: ../gramps/plugins/webreport/narrativeweb.py:2839
 #: ../gramps/plugins/webreport/webcal.py:1966
 msgid "Include death dates"
 msgstr "包含去世日期"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2841
+#: ../gramps/plugins/webreport/narrativeweb.py:2840
 #: ../gramps/plugins/webreport/webcal.py:1967
 msgid "Include death anniversaries in the calendar"
 msgstr "在日历中包含去世周年纪念日"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2850
+#: ../gramps/plugins/webreport/narrativeweb.py:2849
 #: ../gramps/plugins/webreport/webcal.py:1977
 msgid "Show data only after year"
 msgstr "只在年份后显示数据"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2853
+#: ../gramps/plugins/webreport/narrativeweb.py:2852
 #: ../gramps/plugins/webreport/webcal.py:1980
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
@@ -37562,9 +37587,9 @@ msgstr "无样式表"
 #~ "seven different calendars. Try the button next to the date field in the "
 #~ "Events Editor."
 #~ msgstr ""
-#~ "<b>如何录入日期</b><br/>您可以通过使用格式 &quot; 1月 4, 2000 和 3月 20, "
-#~ "2003&quot; 表达一段日期。您也可以注明日期的可信程度，甚至选择七种不同的历"
-#~ "制。尝试点击“事件编辑器”中日期区域旁的按钮。"
+#~ "<b>如何录入日期</b><br/>您可以通过使用格式 &quot; 2000 年 1 月 4 日到 "
+#~ "2003 年 3 月 20 日&quot; 来表达一段时间。您也可以注明日期的可信程度，甚至"
+#~ "选择七种不同的历制。尝试点击“事件编辑器”中日期字段旁的按钮。"
 
 #~ msgid ""
 #~ "<b>Filtering People</b><br/>In the People View, you can 'filter' "
@@ -37591,9 +37616,8 @@ msgstr "无样式表"
 #~ "filter to narrow the results."
 #~ msgstr ""
 #~ "<b>谁生在什么时候？</b><br/>在 &quot;工具 &gt; 分析和探索 &gt; 对比个人事"
-#~ "件...&quot; 您可以对您数据库中的个体数据进行比较。这很有用，也就是说，如果"
-#~ "您希望您数据库中每个人的出生日期，您可以使用定制的筛查器过滤并缩小结果范"
-#~ "围。"
+#~ "件...&quot; 中，您可以对您数据库中的个体数据进行比较。这很有用，比如说，如"
+#~ "果您希望列出数据库中每个人的出生日期。您可以使用自定义筛选器来筛选结果。"
 
 #~ msgid ""
 #~ "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These "
@@ -37603,9 +37627,9 @@ msgstr "无样式表"
 #~ "browser, and many others. All tools can be accessed through the &quot;"
 #~ "Tools&quot; menu."
 #~ msgstr ""
-#~ "<b>Gramps 工具</b><br/>Gramps 拥有丰富的工具。这些允许您执行类似数据库纠错"
-#~ "和一致性检查，也有搜索和分析工具用于事件比较，寻找重复的人，交互式后代浏"
-#~ "览，以及其他。所有的工具可以从菜单 &quot;工具&quot; 进入。"
+#~ "<b>Gramps 工具</b><br/>Gramps 自带了丰富的工具。这些工具可让您进行如数据库"
+#~ "纠错和一致性检查等操作。另外也有搜索和分析类的工具，比如事件比较，寻找重复"
+#~ "人员，交互式后代浏览等等。所有的工具都可以从 &quot;工具&quot; 菜单找到。"
 
 #~ msgid ""
 #~ "<b>Calculating Relationships</b><br/>To check if two people in the "
@@ -37613,9 +37637,9 @@ msgstr "无样式表"
 #~ "Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact "
 #~ "relationship as well as all common ancestors are reported."
 #~ msgstr ""
-#~ "<b>关系分析</b><br/>确认数据库中的两个人之间是否有血缘关系（血缘，非结婚"
-#~ "的）本工具，位于&quot;工具&gt;实用功能&gt; 关系分析器...&quot;。同时也会得"
-#~ "出精确的共同的祖先。"
+#~ "<b>关系计算</b><br/>通过 &quot;工具&gt;实用功能&gt; 关系计算器…&quot; 工"
+#~ "具，可判断数据库中的两个人之间是否有亲戚关系（血亲，而非姻亲）。结果会显示"
+#~ "二人的关系以及共同祖先。"
 
 #~ msgid ""
 #~ "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
@@ -37624,9 +37648,9 @@ msgstr "无样式表"
 #~ "to your needs. Each separate view can also be configured under &quot;View "
 #~ "&gt; Configure View...&quot;"
 #~ msgstr ""
-#~ "<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; 允许您修改若干设"
-#~ "置，比如您媒体文件的路径，并允许您根据您的需要，调整很多方面 Gramps 的显"
-#~ "示。每种分别的视图可以在 &quot;查看 &gt; 配置视图...&quot; 中配置"
+#~ "<b>设置您的首选项</b><br/>&quot;编辑 &gt; 首选项...&quot; 可让您修改若干设"
+#~ "置，比如媒体文件路径，同时也可以根据您的需求来调整 Gramps 的诸多呈现效果。"
+#~ "每种视图都可以在 &quot;查看 &gt; 配置视图...&quot; 中进行设定。"
 
 #~ msgid ""
 #~ "<b>Starting a New Family Tree</b><br/>A good way to start a new family "
@@ -37646,10 +37670,9 @@ msgstr "无样式表"
 #~ "valid entry for a birth date in Gramps. Click the Date button next to the "
 #~ "date field and see the Gramps Manual to learn more."
 #~ msgstr ""
-#~ "<b>不能确认日期?</b><br/>如果您不能确认一个事件发生的日期（比如出生和死亡"
-#~ "日期），Gramps 允许您基于猜测或推测填写一个范围的日期。例如：&quot;大约 "
-#~ "1908&quot; 在 Gramps 属于有效的出生日期输入。参考 Gramps 手册了解关于日期"
-#~ "输入选项的完整说明。"
+#~ "<b>日期不确定?</b><br/>如果您不确认一个事件发生的日期，Gramps 允许您基于猜"
+#~ "测或推测填写一个日期范围。例如：&quot;大约 1908&quot; 这在 Gramps 中属于有"
+#~ "效的出生日期。点击日期字段旁的日期按钮或参考 Gramps 手册来了解更多。"
 
 #~ msgid ""
 #~ "<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; "
@@ -37821,6 +37844,7 @@ msgstr "无样式表"
 #~ "Gramps 侦测到在 Berkeley 数据库中有一个问题。可以从“家族树管理器”中修复。"
 #~ "选择“数据库”并点击“修复”按钮"
 
+#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -37839,6 +37863,7 @@ msgstr "无样式表"
 #~ "并%(wiki_backup_html_start)s备份%(html_end)s您的家族树。然后将备份导入到本"
 #~ "版本的 Gramps。"
 
+#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -37856,6 +37881,7 @@ msgstr "无样式表"
 #~ "如果您还没有备份您的家庭树，您可以先启动%(bold_start)s较新版%(bold_end)s的"
 #~ "Gramps，然后%(wiki_backup_html_start)s备份%(html_end)s您的家庭树。"
 
+#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
 #~ "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -37899,6 +37925,7 @@ msgstr "无样式表"
 #~ "XML；关闭数据库；然后升级此版本并导入 XML 文件。由此，也可以使用 Berkeley "
 #~ "数据库恢复工具。"
 
+#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load was created with Python version "
 #~ "%(db_python_version)s. This version of Gramps uses Python version "
@@ -37916,6 +37943,7 @@ msgstr "无样式表"
 #~ "后%(wiki_backup_html_start)s备份%(html_end)s您的家庭树。然后将备份导入本版"
 #~ "本的 Gramps。"
 
+#, python-format
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
 #~ "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -37949,7 +37977,7 @@ msgstr "无样式表"
 #~ "的%(bold_end)s Gramps 然后%(wiki_backup_html_start)s备份%(html_end)s您的家"
 #~ "族树。"
 
-#, fuzzy
+#, fuzzy, python-format
 #~ msgid "greater than %s years"
 #~ msgstr "少于 1"
 
@@ -37965,6 +37993,7 @@ msgstr "无样式表"
 #~ msgid "0 days"
 #~ msgstr "0 天"
 
+#, python-format
 #~ msgid ""
 #~ "ERROR: Plugin file %(filename)s has a version of "
 #~ "\"%(gramps_target_version)s\" which is invalid for Gramps "
@@ -37982,6 +38011,7 @@ msgstr "无样式表"
 #~ msgid "ex-wife"
 #~ msgstr "前妻"
 
+#, python-format
 #~ msgid ""
 #~ "Your Python version does not meet the requirements. At least python "
 #~ "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
@@ -37996,6 +38026,7 @@ msgstr "无样式表"
 #~ msgid "Error reading configuration"
 #~ msgstr "读取设置出错"
 
+#, python-format
 #~ msgid ""
 #~ "A definition for the MIME-type %s could not be found \n"
 #~ "\n"
@@ -38059,26 +38090,27 @@ msgstr "无样式表"
 #~ msgid "ANSI (iso-8859-1)"
 #~ msgstr "ANSI (iso-8859-1)"
 
-#, fuzzy
+#, fuzzy, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 #~ "family. Reference added."
 #~ msgstr ""
 #~ "错误：家庭 %(family)s 中的父亲 %(father)s 未指向此家庭。已添加参考。"
 
-#, fuzzy
+#, fuzzy, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 #~ "family. Reference added."
 #~ msgstr ""
 #~ "错误：家庭 %(family)s 中的母亲 %(mother)s 未指向此家庭。已添加参考。"
 
-#, fuzzy
+#, fuzzy, python-format
 #~ msgid ""
 #~ "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 #~ "family. Reference added."
 #~ msgstr "错误：家庭 %(family)s 中的子女 %(child)s 未指向此家庭。已添加参考。"
 
+#, python-format
 #~ msgid "\"%(callname)s\" (%(firstname)s)"
 #~ msgstr "“%(callname)s” (%(firstname)s)"
 
@@ -38100,16 +38132,19 @@ msgstr "无样式表"
 #~ msgid "Whether to display children in birth order or in entry order?"
 #~ msgstr "是否以出生日期或者输入日期排列显示子女的顺序？"
 
+#~ msgid "Whether to display latitude/longitude in the places list?"
+#~ msgstr "是否在地点列表中显示经纬度？"
+
 #~ msgid "A note to be used as the page header"
 #~ msgstr "用于页眉的笔记"
 
 #~ msgid "Max height of initial image"
-#~ msgstr "原始图像的最大高度"
+#~ msgstr "图像的最大高度"
 
 #~ msgid ""
 #~ "This allows you to set the maximum height of the image shown on the media "
 #~ "page. Set to 0 for no limit."
-#~ msgstr "这里将允许您设定图像在媒体页面上的最大高度。设定为0代表没有限制。"
+#~ msgstr "这里将允许您设定图像在媒体页面上的最大高度。0 表示没有限制。"
 
 #~ msgid "Download Filename"
 #~ msgstr "下载文件名"
@@ -38120,9 +38155,14 @@ msgstr "无样式表"
 #~ msgid "Johnson Family Tree"
 #~ msgstr "Johnson 家族树"
 
+#~ msgid "Where do you place your web site ? default = /WEBCAL"
+#~ msgstr "您存放网站内容的目录是哪里？默认为 /WEBCAL"
+
+#, python-format
 #~ msgid "Surnames %(surname)s beginning with letter %(letter)s"
 #~ msgstr "以字母 %(letter)s 开头的姓氏 %(surname)s"
 
+#, python-format
 #~ msgid "Created for %(author)s"
 #~ msgstr "为 %(author)s 而创建"
 
@@ -38137,11 +38177,17 @@ msgstr "无样式表"
 #~ "site"
 #~ msgstr "用于引导用户到网站主页的连接"
 
+#, python-format
 #~ msgid "%s old"
 #~ msgstr "%s岁"
 
+#, python-format
 #~ msgid "%(couple)s, <em>wedding</em>"
 #~ msgstr "%(couple)s, <em>婚礼</em>"
+
+#, fuzzy
+#~ msgid "Html|Home"
+#~ msgstr "首页"
 
 #~ msgid "Given Name"
 #~ msgstr "名"
