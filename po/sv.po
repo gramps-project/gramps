@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-04 15:35+0000\n"
+"PO-Revision-Date: 2021-06-07 12:32+0000\n"
 "Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -2371,7 +2371,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:454
 msgctxt "between-date"
 msgid ""
-msgstr "between"
+msgstr "-"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2379,7 +2379,7 @@ msgstr "between"
 #: ../gramps/gen/datehandler/_datedisplay.py:459
 msgctxt "and-date"
 msgid ""
-msgstr "and"
+msgstr "-"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:460
 #, python-brace-format
@@ -2394,7 +2394,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:493
 msgctxt "before-date"
 msgid ""
-msgstr "before"
+msgstr "-"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2402,7 +2402,7 @@ msgstr "before"
 #: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "after-date"
 msgid ""
-msgstr "after"
+msgstr "-"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2418,7 +2418,7 @@ msgstr "about"
 #: ../gramps/gen/datehandler/_datedisplay.py:508
 msgctxt "estimated-date"
 msgid ""
-msgstr "estimated"
+msgstr "-"
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2426,7 +2426,7 @@ msgstr "estimated"
 #: ../gramps/gen/datehandler/_datedisplay.py:513
 msgctxt "calculated-date"
 msgid ""
-msgstr "calculated"
+msgstr "-"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:532
 #, python-brace-format
@@ -10517,7 +10517,7 @@ msgstr "Tyska"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Tyska (Österrike)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -25674,15 +25674,7 @@ msgid "Number of new objects imported:\n"
 msgstr "Antal nya importerade objekt:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| " The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unkown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25693,7 +25685,7 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Den importerade filen var inte fullständig.\n"
+"Den importerade filen var inte fullständig.\n"
 "För att rätta till detta skapades %(new)d objekt och\n"
 "deras typattribut sattes till 'Okänd'.\n"
 "Uppdelningen per kategori är avbildad genom\n"
@@ -25715,16 +25707,10 @@ msgstr ""
 "eller om ej given, relativ till användarmappen.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Objekt, vilka är kandidater till sammanslagning:\n"
 
@@ -36872,28 +36858,21 @@ msgid "Creating address book pages ..."
 msgstr "Skapar adressbokssidor ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
-#| msgid "Narrative Web Site Report for the %s language"
+#, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Rapport som webbplats för språket %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
-#| msgid "Narrative Web Site Report"
 msgid "Narrative Website Report"
 msgstr "Rapport som webbplats"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
-#, fuzzy
-#| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
-msgstr "Lagra webbsidor i tar.gz-arkiv"
+msgstr "Lagra webbsida i tar.gz-arkiv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
-#, fuzzy
-#| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
-msgstr "Huruvida lagra webbsidor i en arkivfil"
+msgstr "Huruvida lagra webbsidan i en arkivfil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
@@ -36905,22 +36884,16 @@ msgid "My Family Tree"
 msgstr "Mitt släktträd"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
 msgstr "Webbplatstitel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "Webbsidans titel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
-msgstr "Välj ett filter som begränsar vilka personer som visas på en webbsida"
+msgstr "Välj ett filter som begränsar vilka personer som visas på webbsidan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
@@ -37021,10 +36994,8 @@ msgid "Add previous/next to the navigation bar."
 msgstr "Lägg till bakåt/framåt till navigationsfältet."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2065
-#, fuzzy
-#| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
-msgstr "Detta är en säker sida (https)"
+msgstr "Detta är en säker sida (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Whether to use http:// or https://"
@@ -37368,20 +37339,13 @@ msgid "Whether to include a parents column"
 msgstr "Huruvida ta med en föräldrakolumn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Ta med halv- och/eller styvsyskon på de individuella sidorna"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2361
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
-msgstr ""
-"Huruvida ta med halv- och/eller styvsyskon med föräldrarna och syskonen"
+msgstr "Huruvida ta med halv- och/eller styvsyskon med föräldrarna och syskonen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "Include family pages"
@@ -37401,26 +37365,18 @@ msgstr ""
 "Lägga till en fullständig lista med händelser och relevanta sidor eller inte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
-#, fuzzy
-#| msgid "Include places pages"
 msgid "Include place pages"
 msgstr "Ta med platssidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
-#, fuzzy
-#| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the place pages."
-msgstr "Huruvida ta med platssidor eller inte."
+msgstr "Huruvida ta med platssidorna eller inte."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2388
-#, fuzzy
-#| msgid "Include sources pages"
 msgid "Include source pages"
 msgstr "Ta med källsidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2390
-#, fuzzy
-#| msgid "Whether or not to include the sources Pages."
 msgid "Whether or not to include the source pages."
 msgstr "Huruvida ta med källsidorna eller inte."
 
@@ -37429,10 +37385,8 @@ msgid "Include repository pages"
 msgstr "Ta med arkivplatssidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
-msgstr "Huruvida ta med arkivplatssidor eller inte."
+msgstr "Huruvida ta med arkivplatssidorna eller inte."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "Include GENDEX file (/gendex.txt)"
@@ -37467,10 +37421,8 @@ msgid "Place Map Options"
 msgstr "Platskartealternativ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
-#, fuzzy
-#| msgid "StamenMap"
 msgid "Stamen Map"
-msgstr "StamenMap"
+msgstr "Stamen Map"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
@@ -37525,10 +37477,6 @@ msgid "Google/ FamilyMap Option"
 msgstr "Google/ Familjekartval"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2464
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Google Maps "
-#| "Family Map pages..."
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
@@ -37559,36 +37507,26 @@ msgid "Stamen Option"
 msgstr "Stamen-alternativ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2481
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Stamenmap Map "
-#| "pages..."
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr "Välj vilket val du vill ha för Stamenmap familjekartsidor..."
+msgstr "Välj vilket val du vill ha för Stamen-map familjekartsidor..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2493
-#, fuzzy
-#| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
-msgstr "Annat som ingår (CMS, webbkalender, Php)"
+msgstr "Annat som ingår (CMS, webbkalender, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
-msgstr "Ska dessa sidor tas med i CMS-webbsidor ?"
+msgstr "Ska dessa sidor tas med i CMS-webbsidor?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2508
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
-msgstr "Var vill du spara din webbsida ? standard = /NAVWEB"
+msgstr "Var vill du spara din webbsida? standard = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2516
 msgid "Include the news and updates page"
@@ -37603,10 +37541,8 @@ msgid "Max days for updates"
 msgstr "Max antal dagar för uppdateringar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
-#, fuzzy
-#| msgid "You want to see the last updates on how many days ?"
 msgid "You want to see the last updates on how many days?"
-msgstr "För hur många dagar vill du se de sista uppdateringarna ?"
+msgstr "För hur många dagar vill du se de sista uppdateringarna?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid "Max number of updates per object to show"
@@ -37641,8 +37577,6 @@ msgstr "Denna webbplatstitel"
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
-#| msgid "Give a title in the appropriate language"
 msgid "Enter a title in the respective language"
 msgstr "Ge en titel på rätt språk"
 
