@@ -48,7 +48,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.sgettext
 from ..utils import open_file_with_default_application
-from gramps.gen.const import THUMBSCALE
+from gramps.gen.const import THUMBSCALE, REMOTE_MIME
 from gramps.gen.mime import get_description, get_type
 from gramps.gen.utils.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gramps.gen.utils.file import media_path_full, find_file, create_checksum
@@ -142,6 +142,11 @@ class EditMediaRef(EditReference):
         self.select.connect("clicked", self.select_file)
 
     def determine_mime(self):
+        if self.file_path.get_text().startswith(("https://", "http://")):
+            self.source.set_mime_type(REMOTE_MIME)
+            self.mimetext.set_text("External Web page")
+            return
+
         descr = get_description(self.source.get_mime_type())
         if descr:
             self.mimetext.set_text(descr)
@@ -167,7 +172,7 @@ class EditMediaRef(EditReference):
         the path.
         """
         mtype = self.source.get_mime_type()
-        if mtype:
+        if mtype and mtype != REMOTE_MIME:
             fullpath = media_path_full(self.db, self.source.get_path())
             pb = get_thumbnail_image(fullpath, mtype)
             self.pixmap.set_from_pixbuf(pb)

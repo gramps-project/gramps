@@ -61,7 +61,7 @@ from .displaytabs import (
 from .addmedia import AddMedia
 from ..dialog import ErrorDialog
 from ..glade import Glade
-from gramps.gen.const import URL_MANUAL_SECT2
+from gramps.gen.const import URL_MANUAL_SECT2, REMOTE_MIME
 
 # -------------------------------------------------------------------------
 #
@@ -182,6 +182,11 @@ class EditMedia(EditPrimary):
         self.draw_preview()
 
     def determine_mime(self):
+        if self.file_path.get_text().startswith(("https://", "http://")):
+            self.obj.set_mime_type(REMOTE_MIME)
+            self.mimetext.set_text("External Web page")
+            return
+
         descr = get_description(self.obj.get_mime_type())
         if descr:
             self.mimetext.set_text(descr)
@@ -345,7 +350,7 @@ class EditMedia(EditPrimary):
 
         path = self.file_path.get_text()
         full_path = media_path_full(self.db, path)
-        if os.path.isfile(full_path):
+        if os.path.isfile(full_path) or path.startswith(("http://", "https://")):
             self.determine_mime()
         else:
             msg1 = _("There is no media matching the current path value!")

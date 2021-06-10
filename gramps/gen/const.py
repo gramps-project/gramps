@@ -288,6 +288,7 @@ THUMBSCALE = 96.0
 THUMBSCALE_LARGE = 180.0
 SIZE_NORMAL = 0
 SIZE_LARGE = 1
+REMOTE_MIME = "application/http"
 XMLFILE = "data.gramps"
 NO_SURNAME = "(%s)" % _("none", "surname")
 NO_GIVEN = "(%s)" % _("none", "given-name")

@@ -37,7 +37,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gen.constfunc import is_quartz, mac
 from gramps.gen.config import config
-from .utils import open_file_with_default_application as run_file
 
 # list of manuals on wiki, map locale code to wiki extension, add language codes
 # completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and
