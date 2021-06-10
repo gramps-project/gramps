@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 14:29+0100\n"
+"POT-Creation-Date: 2021-06-05 19:16+0100\n"
 "PO-Revision-Date: 2021-06-04 21:07+0000\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -1181,9 +1181,9 @@ msgstr "%(full_DB_path)s \"%(f_t_name)s\" névvel"
 msgid "Gramps Family Trees:"
 msgstr "Gramps családfa:"
 
-#: ../gramps/cli/arghandler.py:435 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
-#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:71
+#: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
@@ -3541,7 +3541,7 @@ msgstr "Alkalmazás ..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:168
-#: ../gramps/plugins/webreport/narrativeweb.py:1966
+#: ../gramps/plugins/webreport/narrativeweb.py:1964
 #: ../gramps/plugins/webreport/webcal.py:1754
 msgid "Filter"
 msgstr "Szűrő"
@@ -10107,7 +10107,7 @@ msgstr "Ne legyen benne"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1085
 #: ../gramps/plugins/textreport/familygroup.py:752
 #: ../gramps/plugins/textreport/indivcomplete.py:1113
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
+#: ../gramps/plugins/webreport/narrativeweb.py:2371
 msgid "Include"
 msgstr "Beleértve"
 
@@ -10571,190 +10571,194 @@ msgid "German"
 msgstr "Német"
 
 #: ../gramps/gen/utils/grampslocale.py:78
+msgid "German (Austria)"
+msgstr ""
+
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
 msgstr "Görög"
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "English (USA)"
 msgstr "Angol (USA)"
 
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "English"
 msgstr "Angol"
 
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Esperanto"
 msgstr "Eszperantó"
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "Spanish"
 msgstr "Spanyol"
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "Finnish"
 msgstr "Finn"
 
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "French"
 msgstr "Francia"
 
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Gaelic"
 msgstr "Kelta"
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Hebrew"
 msgstr "Héber"
 
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Croatian"
 msgstr "Horvát"
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Hungarian"
 msgstr "Magyar"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Icelandic"
 msgstr "Izlandi"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Italian"
 msgstr "Olasz"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Japanese"
 msgstr "Japán"
 
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Lithuanian"
 msgstr "Litván"
 
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Macedonian"
 msgstr "Macedón"
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Norwegian Bokmal"
 msgstr "Bokmal norvég"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Dutch"
 msgstr "Holland"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Norwegian Nynorsk"
 msgstr "Nynorsk norvég"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Polish"
 msgstr "Lengyel"
 
-#: ../gramps/gen/utils/grampslocale.py:98
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Portuguese (Brazil)"
 msgstr "Portugál (Brazília)"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Portuguese (Portugal)"
 msgstr "Portugál (Portugália)"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Romanian"
 msgstr "Román"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Russian"
 msgstr "Orosz"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Slovak"
 msgstr "Szlovák"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Slovenian"
 msgstr "Szlovén"
 
-#: ../gramps/gen/utils/grampslocale.py:104
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Albanian"
 msgstr "Albán"
 
-#: ../gramps/gen/utils/grampslocale.py:105
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Serbian"
 msgstr "Szerb"
 
-#: ../gramps/gen/utils/grampslocale.py:106
+#: ../gramps/gen/utils/grampslocale.py:107
 msgid "Swedish"
 msgstr "Svéd"
 
-#: ../gramps/gen/utils/grampslocale.py:107
+#: ../gramps/gen/utils/grampslocale.py:108
 msgid "Tamil"
 msgstr "Tamil"
 
-#: ../gramps/gen/utils/grampslocale.py:108
+#: ../gramps/gen/utils/grampslocale.py:109
 msgid "Turkish"
 msgstr "Török"
 
-#: ../gramps/gen/utils/grampslocale.py:109
+#: ../gramps/gen/utils/grampslocale.py:110
 msgid "Ukrainian"
 msgstr "Ukrán"
 
-#: ../gramps/gen/utils/grampslocale.py:110
+#: ../gramps/gen/utils/grampslocale.py:111
 msgid "Vietnamese"
 msgstr "Vietnami"
 
-#: ../gramps/gen/utils/grampslocale.py:111
+#: ../gramps/gen/utils/grampslocale.py:112
 msgid "Chinese (Simplified)"
 msgstr "Kínai (egyszerűsített)"
 
-#: ../gramps/gen/utils/grampslocale.py:112
+#: ../gramps/gen/utils/grampslocale.py:113
 msgid "Chinese (Hong Kong)"
 msgstr "Kínai (Hong Kong)"
 
-#: ../gramps/gen/utils/grampslocale.py:113
+#: ../gramps/gen/utils/grampslocale.py:114
 msgid "Chinese (Traditional)"
 msgstr "Kínai (egyszerűsített)"
 
-#: ../gramps/gen/utils/grampslocale.py:896
+#: ../gramps/gen/utils/grampslocale.py:897
 msgid "the person"
 msgstr "a személy"
 
-#: ../gramps/gen/utils/grampslocale.py:898
+#: ../gramps/gen/utils/grampslocale.py:899
 msgid "the family"
 msgstr "a család"
 
-#: ../gramps/gen/utils/grampslocale.py:900
+#: ../gramps/gen/utils/grampslocale.py:901
 msgid "the place"
 msgstr "a hely"
 
-#: ../gramps/gen/utils/grampslocale.py:902
+#: ../gramps/gen/utils/grampslocale.py:903
 msgid "the event"
 msgstr "az esemény"
 
-#: ../gramps/gen/utils/grampslocale.py:904
+#: ../gramps/gen/utils/grampslocale.py:905
 msgid "the repository"
 msgstr "a tároló"
 
-#: ../gramps/gen/utils/grampslocale.py:906
+#: ../gramps/gen/utils/grampslocale.py:907
 msgid "the note"
 msgstr "a feljegyzés"
 
-#: ../gramps/gen/utils/grampslocale.py:908
+#: ../gramps/gen/utils/grampslocale.py:909
 msgid "the media"
 msgstr "a média"
 
-#: ../gramps/gen/utils/grampslocale.py:910
+#: ../gramps/gen/utils/grampslocale.py:911
 msgid "the source"
 msgstr "a forrás"
 
-#: ../gramps/gen/utils/grampslocale.py:912
+#: ../gramps/gen/utils/grampslocale.py:913
 msgid "the filter"
 msgstr "a szűrő"
 
-#: ../gramps/gen/utils/grampslocale.py:914
+#: ../gramps/gen/utils/grampslocale.py:915
 msgid "the citation"
 msgstr "az idézet"
 
-#: ../gramps/gen/utils/grampslocale.py:916
+#: ../gramps/gen/utils/grampslocale.py:917
 msgid "See details"
 msgstr "Részletek"
 
@@ -11179,8 +11183,8 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"A Ön Python verziója nem felel meg a követelménynek. Legalább "
-"%(v1)d.%(v2)d.%(v3)d változatú Python szükséges a Gramps indításához.\n"
+"A Ön Python verziója nem felel meg a követelménynek. Legalább %(v1)d.%(v2)d."
+"%(v3)d változatú Python szükséges a Gramps indításához.\n"
 "\n"
 "A Gramps most leáll."
 
@@ -11324,7 +11328,7 @@ msgstr "_Alkalmaz"
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1354
 #: ../gramps/plugins/drawreport/ancestortree.py:916
 #: ../gramps/plugins/drawreport/descendtree.py:1658
-#: ../gramps/plugins/webreport/narrativeweb.py:2107
+#: ../gramps/plugins/webreport/narrativeweb.py:2105
 msgid "Display"
 msgstr "Megjelenítés"
 
@@ -19084,7 +19088,7 @@ msgstr "Stílus"
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:901
-#: ../gramps/plugins/webreport/narrativeweb.py:1940
+#: ../gramps/plugins/webreport/narrativeweb.py:1938
 #: ../gramps/plugins/webreport/webcal.py:1739
 msgid "Report Options"
 msgstr "Összesítő lehetőségek"
@@ -20436,13 +20440,13 @@ msgid "of %d"
 msgstr "%d-hez"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
-#: ../gramps/plugins/webreport/narrativeweb.py:1802
+#: ../gramps/plugins/webreport/narrativeweb.py:1800
 #: ../gramps/plugins/webreport/webcal.py:274
 msgid "Possible destination error"
 msgstr "Lehetséges irány hiba"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:1803
+#: ../gramps/plugins/webreport/narrativeweb.py:1801
 #: ../gramps/plugins/webreport/webcal.py:275
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -21089,13 +21093,13 @@ msgstr "A naptár alján levő szöveg harmadik sora"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:501
 #: ../gramps/plugins/textreport/birthdayreport.py:507
-#: ../gramps/plugins/webreport/narrativeweb.py:2845
+#: ../gramps/plugins/webreport/narrativeweb.py:2844
 #: ../gramps/plugins/webreport/webcal.py:1812
 msgid "Include only living people"
 msgstr "Csak élő emberek"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:502
-#: ../gramps/plugins/webreport/narrativeweb.py:2846
+#: ../gramps/plugins/webreport/narrativeweb.py:2845
 #: ../gramps/plugins/webreport/webcal.py:1813
 msgid "Include only living people in the calendar"
 msgstr "Csak élő emberek a naptárban"
@@ -21125,55 +21129,55 @@ msgid "Select the country to see associated holidays"
 msgstr "Ország választása a hozzá társított szabadságok megnézéséhez"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:531
-#: ../gramps/plugins/webreport/narrativeweb.py:2809
+#: ../gramps/plugins/webreport/narrativeweb.py:2808
 #: ../gramps/plugins/webreport/webcal.py:1867
 msgid "First day of week"
 msgstr "A hét első napja"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:539
-#: ../gramps/plugins/webreport/narrativeweb.py:2812
+#: ../gramps/plugins/webreport/narrativeweb.py:2811
 #: ../gramps/plugins/webreport/webcal.py:1870
 msgid "Select the first day of the week for the calendar"
 msgstr "A naptári hét első napjának választása"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:542
 #: ../gramps/plugins/textreport/birthdayreport.py:544
-#: ../gramps/plugins/webreport/narrativeweb.py:2816
+#: ../gramps/plugins/webreport/narrativeweb.py:2815
 #: ../gramps/plugins/webreport/webcal.py:1874
 msgid "Birthday surname"
 msgstr "Születésnapi vezetéknév"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:545
 #: ../gramps/plugins/textreport/birthdayreport.py:547
-#: ../gramps/plugins/webreport/narrativeweb.py:2817
+#: ../gramps/plugins/webreport/narrativeweb.py:2816
 #: ../gramps/plugins/webreport/webcal.py:1875
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "A férj vezetéknevét használó feleségek (az első felsorolt családnál)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:548
 #: ../gramps/plugins/textreport/birthdayreport.py:550
-#: ../gramps/plugins/webreport/narrativeweb.py:2819
+#: ../gramps/plugins/webreport/narrativeweb.py:2818
 #: ../gramps/plugins/webreport/webcal.py:1877
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "A férj vezetéknevét használó feleségek (az utolsó felsorolt családnál)"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:549
 #: ../gramps/plugins/textreport/birthdayreport.py:551
-#: ../gramps/plugins/webreport/narrativeweb.py:2821
+#: ../gramps/plugins/webreport/narrativeweb.py:2820
 #: ../gramps/plugins/webreport/webcal.py:1879
 msgid "Wives use their own surname"
 msgstr "Saját vezetéknevet használó feleségek"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:550
 #: ../gramps/plugins/textreport/birthdayreport.py:552
-#: ../gramps/plugins/webreport/narrativeweb.py:2822
+#: ../gramps/plugins/webreport/narrativeweb.py:2821
 #: ../gramps/plugins/webreport/webcal.py:1880
 msgid "Select married women's displayed surname"
 msgstr "A megjelenített vezetéknevű házas nők választása"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:553
 #: ../gramps/plugins/textreport/birthdayreport.py:555
-#: ../gramps/plugins/webreport/narrativeweb.py:2832
+#: ../gramps/plugins/webreport/narrativeweb.py:2831
 #: ../gramps/plugins/webreport/webcal.py:1958
 msgid "Include birthdays"
 msgstr "Születésnapok is"
@@ -21185,7 +21189,7 @@ msgstr "Legyenek-e benne születésnapok is"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:557
 #: ../gramps/plugins/textreport/birthdayreport.py:559
-#: ../gramps/plugins/webreport/narrativeweb.py:2836
+#: ../gramps/plugins/webreport/narrativeweb.py:2835
 #: ../gramps/plugins/webreport/webcal.py:1962
 msgid "Include anniversaries"
 msgstr "Évfordulók is"
@@ -21776,7 +21780,7 @@ msgstr "Meghatározza, milyen emberek kerülnek az összegzőbe."
 #: ../gramps/plugins/textreport/indivcomplete.py:1074
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:173
-#: ../gramps/plugins/webreport/narrativeweb.py:1972
+#: ../gramps/plugins/webreport/narrativeweb.py:1970
 #: ../gramps/plugins/webreport/webcal.py:1760
 msgid "Filter Person"
 msgstr "Személyszűrő"
@@ -21920,7 +21924,7 @@ msgstr "Meghatározza, mely emberek legyenek az összesítőben"
 #: ../gramps/plugins/drawreport/timeline.py:423
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:174
-#: ../gramps/plugins/webreport/narrativeweb.py:1973
+#: ../gramps/plugins/webreport/narrativeweb.py:1971
 #: ../gramps/plugins/webreport/webcal.py:1761
 msgid "The center person for the filter"
 msgstr "A szűrő központi személye"
@@ -25736,15 +25740,23 @@ msgid "Number of new objects imported:\n"
 msgstr "Az újonnan importált objektumok száma:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| " The imported file was not self-contained.\n"
+#| "To correct for that, %(new)d objects were created and\n"
+#| "their typifying attribute was set to 'Unknown'.\n"
+#| "The breakdown per category is depicted by the\n"
+#| "number in parentheses. Where possible these\n"
+#| "'Unkown' objects are referenced by note %(unknown)s.\n"
 msgid ""
 "\n"
-" The imported file was not self-contained.\n"
+"The imported file was not self-contained.\n"
 "To correct for that, %(new)d objects were created and\n"
 "their typifying attribute was set to 'Unknown'.\n"
 "The breakdown per category is depicted by the\n"
 "number in parentheses. Where possible these\n"
-"'Unkown' objects are referenced by note %(unknown)s.\n"
+"'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
 " Az importált fájl nem volt zárt.\n"
@@ -25769,8 +25781,12 @@ msgstr ""
 "ilyen, akkor a felhasználó könyvtárához viszonyítva relatívak.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "\n"
+#| "Objects that are candidates to be merged:\n"
 msgid ""
-"\n"
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
@@ -25981,7 +25997,7 @@ msgid "Common Law Marriage"
 msgstr "Élettársi viszony"
 
 #: ../gramps/plugins/lib/libgedcom.py:699
-#: ../gramps/plugins/webreport/narrativeweb.py:1953
+#: ../gramps/plugins/webreport/narrativeweb.py:1951
 #: ../gramps/plugins/webreport/webcal.py:1744
 msgid "Destination"
 msgstr "Célhely"
@@ -30787,7 +30803,7 @@ msgid "Open on maps.google.com"
 msgstr "A maps.google.com-on nyissa meg"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:2426
+#: ../gramps/plugins/webreport/narrativeweb.py:2424
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -33643,8 +33659,10 @@ msgstr[1] ""
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] "{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
-msgstr[1] "{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
+msgstr[0] ""
+"{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
+msgstr[1] ""
+"{quantity} érvénytelen névformátum-hivatkozás került eltávolításra\n"
 
 #: ../gramps/plugins/tool/check.py:2745
 #, python-brace-format
@@ -36770,6 +36788,7 @@ msgid "Go to top"
 msgstr "Ugrás felülre"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
+#: ../gramps/plugins/webreport/basepage.py:1786
 #: ../gramps/plugins/webreport/basepage.py:1963
 msgctxt "Html"
 msgid "Home"
@@ -36784,7 +36803,7 @@ msgstr "Bélyegképek"
 #: ../gramps/plugins/webreport/basepage.py:1747
 #: ../gramps/plugins/webreport/basepage.py:1939
 #: ../gramps/plugins/webreport/download.py:93
-#: ../gramps/plugins/webreport/narrativeweb.py:2282
+#: ../gramps/plugins/webreport/narrativeweb.py:2280
 msgid "Download"
 msgstr "Letöltés"
 
@@ -36805,10 +36824,6 @@ msgstr "Frissítések"
 #: ../gramps/plugins/webreport/webplugins.gpr.py:58
 msgid "Web Calendar"
 msgstr "Web-naptár"
-
-#: ../gramps/plugins/webreport/basepage.py:1786
-msgid "Html|Home"
-msgstr "Kezdőlap"
 
 #: ../gramps/plugins/webreport/basepage.py:1883
 #: ../gramps/plugins/webreport/media.py:413
@@ -37068,49 +37083,62 @@ msgstr "Frissítési oldal létrehozása..."
 msgid "Creating address book pages ..."
 msgstr "Címlista oldalak létrehozása ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, python-format
-msgid "Narrative Web Site Report for the %s language"
+#: ../gramps/plugins/webreport/narrativeweb.py:1826
+#, fuzzy, python-format
+#| msgid "Narrative Web Site Report for the %s language"
+msgid "Narrative Website Report for the %s language"
 msgstr "Leíró web-oldal összesítő %s nyelvhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1830
-msgid "Narrative Web Site Report"
+#: ../gramps/plugins/webreport/narrativeweb.py:1828
+#, fuzzy
+#| msgid "Narrative Web Site Report"
+msgid "Narrative Website Report"
 msgstr "Leíró web-oldal jelentés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1943
-msgid "Store web pages in .tar.gz archive"
+#: ../gramps/plugins/webreport/narrativeweb.py:1941
+#, fuzzy
+#| msgid "Store web pages in .tar.gz archive"
+msgid "Store website in .tar.gz archive"
 msgstr "A honlapot .tar.gz archívumban tárolja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1945
-msgid "Whether to store the web pages in an archive file"
+#: ../gramps/plugins/webreport/narrativeweb.py:1943
+#, fuzzy
+#| msgid "Whether to store the web pages in an archive file"
+msgid "Whether to store the website in an archive file"
 msgstr "Legyen-e a web-oldal archívum fájlban tárolva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1956
+#: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
 msgid "The destination directory for the web files"
 msgstr "A web-fájlok cél könyvtára"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1962
+#: ../gramps/plugins/webreport/narrativeweb.py:1960
 msgid "My Family Tree"
 msgstr "Családfám"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1962
-msgid "Web site title"
+#: ../gramps/plugins/webreport/narrativeweb.py:1960
+#, fuzzy
+#| msgid "Web site title"
+msgid "Website title"
 msgstr "A web-oldal neve"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1963
-msgid "The title of the web site"
+#: ../gramps/plugins/webreport/narrativeweb.py:1961
+#, fuzzy
+#| msgid "The title of the web site"
+msgid "The title of the website"
 msgstr "A web-oldal megnevezése"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1968
-msgid "Select filter to restrict people that appear on web site"
+#: ../gramps/plugins/webreport/narrativeweb.py:1966
+#, fuzzy
+#| msgid "Select filter to restrict people that appear on web site"
+msgid "Select filter to restrict people that appear on the website"
 msgstr "Válasszon szűrőt a weboldalon megjelenő személyekhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1977
+#: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
 msgstr "Kapcsolat mutatása a kiválasztott és a kiinduló személy között"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1980
+#: ../gramps/plugins/webreport/narrativeweb.py:1978
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
@@ -37118,136 +37146,138 @@ msgstr ""
 "Minden személy oldalon a kapcsolat mutatása a kiválasztott és a kiinduló "
 "személy között."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2000
+#: ../gramps/plugins/webreport/narrativeweb.py:1998
 msgid "Html options"
 msgstr "Html beállítások"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2003
+#: ../gramps/plugins/webreport/narrativeweb.py:2001
 #: ../gramps/plugins/webreport/webcal.py:1767
 msgid "File extension"
 msgstr "Fájlkiterjesztés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2006
+#: ../gramps/plugins/webreport/narrativeweb.py:2004
 #: ../gramps/plugins/webreport/webcal.py:1770
 msgid "The extension to be used for the web files"
 msgstr "A web-fájlokhoz használandó kiterjesztés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2010
+#: ../gramps/plugins/webreport/narrativeweb.py:2008
 #: ../gramps/plugins/webreport/webcal.py:1773
 msgid "Copyright"
 msgstr "Szerzői jog"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2013
+#: ../gramps/plugins/webreport/narrativeweb.py:2011
 #: ../gramps/plugins/webreport/webcal.py:1776
 msgid "The copyright to be used for the web files"
 msgstr "A web-fájlokra vonatkozó szerzői jog"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2016
+#: ../gramps/plugins/webreport/narrativeweb.py:2014
 #: ../gramps/plugins/webreport/webcal.py:1782
 msgid "StyleSheet"
 msgstr "Stíluslap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2023
+#: ../gramps/plugins/webreport/narrativeweb.py:2021
 msgid "The default stylesheet to be used for the pages"
 msgstr "Az oldalakhoz használandó stíluslap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2029
+#: ../gramps/plugins/webreport/narrativeweb.py:2027
 msgid "Horizontal -- Default"
 msgstr "Vízszintes -- alapértelmezett"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2030
+#: ../gramps/plugins/webreport/narrativeweb.py:2028
 msgid "Vertical   -- Left Side"
 msgstr "Függőleges -- bal oldal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2031
+#: ../gramps/plugins/webreport/narrativeweb.py:2029
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Homályosít      -- csak WebKit böngészők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2032
-#: ../gramps/plugins/webreport/narrativeweb.py:2046
+#: ../gramps/plugins/webreport/narrativeweb.py:2030
+#: ../gramps/plugins/webreport/narrativeweb.py:2044
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Legördülő  -- csak WebKit böngészők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2034
+#: ../gramps/plugins/webreport/narrativeweb.py:2032
 msgid "Navigation Menu Layout"
 msgstr "Navigációs menü elrendezés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2038
+#: ../gramps/plugins/webreport/narrativeweb.py:2036
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Válassza ki a Navigációs menü elrendezését."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2045
+#: ../gramps/plugins/webreport/narrativeweb.py:2043
 msgid "Normal Outline Style"
 msgstr "Normál kontúr stílus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2049
+#: ../gramps/plugins/webreport/narrativeweb.py:2047
 msgid "Citation Referents Layout"
 msgstr "Idézet hivatkozások elrendezés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2053
+#: ../gramps/plugins/webreport/narrativeweb.py:2051
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 "Meghatározza a Forrás oldal idézet hivatkozások részének alapértelmezett "
 "elrendezését"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2057
+#: ../gramps/plugins/webreport/narrativeweb.py:2055
 msgid "Include ancestor's tree"
 msgstr "Az ős-fával"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2058
+#: ../gramps/plugins/webreport/narrativeweb.py:2056
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Legyen-e minden személy oldalán az ős-grafikon is"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2063
+#: ../gramps/plugins/webreport/narrativeweb.py:2061
 msgid "Add previous/next"
 msgstr "Előző/következő hozzáadása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2064
+#: ../gramps/plugins/webreport/narrativeweb.py:2062
 msgid "Add previous/next to the navigation bar."
 msgstr "Előző/következő hozzáadása a navigációs sávhoz."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2067
-msgid "This is a secure site (https)"
+#: ../gramps/plugins/webreport/narrativeweb.py:2065
+#, fuzzy
+#| msgid "This is a secure site (https)"
+msgid "This is a secure site (HTTPS)"
 msgstr "Ez egy biztonságos oldal (https)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2069
+#: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Whether to use http:// or https://"
 msgstr "http://- vagy https://-t használjon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2072
+#: ../gramps/plugins/webreport/narrativeweb.py:2070
 msgid "Toggle sections"
 msgstr "Jelző szakaszok"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2073
+#: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Check it if you want to open/close a section"
 msgstr "Ellenőrizze, ha kinyitni/bezárni akarja a szakaszt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2083
+#: ../gramps/plugins/webreport/narrativeweb.py:2081
 msgid "Extra pages"
 msgstr "Többlet lap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2086
+#: ../gramps/plugins/webreport/narrativeweb.py:2084
 msgid "Extra page name"
 msgstr "Többlet lap neve"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2089
+#: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid "Your extra page name like it is shown in the menubar"
 msgstr "A többlet lap neve, ahogyan a menüsávban látható"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2094
+#: ../gramps/plugins/webreport/narrativeweb.py:2092
 msgid "Your extra page path"
 msgstr "Többlet lapjának útvonala"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2097
+#: ../gramps/plugins/webreport/narrativeweb.py:2095
 msgid "Your extra page path without extension"
 msgstr "Többlet lapjának útvonala kiterjesztés nélkül"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2114
+#: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Do we use multiple translations?"
 msgstr "Több fordítást használjunk?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2116
+#: ../gramps/plugins/webreport/narrativeweb.py:2114
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
@@ -37257,45 +37287,45 @@ msgstr ""
 "Lásd a fordítás címkét új nyelvek hozzáadásához a következő mezőben mutatott "
 "alapértelmezetthez."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2130
+#: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "Sort all children in birth order"
 msgstr "Rendezze az összes gyermeket születési sorrendbe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2132
+#: ../gramps/plugins/webreport/narrativeweb.py:2130
 msgid "Whether to display children in birth order or in entry order."
 msgstr "Legyenek-e a gyermekek születési-, vagy belépési sorrendbe rendezve."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2136
+#: ../gramps/plugins/webreport/narrativeweb.py:2134
 msgid "Do we display coordinates in the places list?"
 msgstr "Mutassuk-e a koordinátákat a helylistában?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2138
+#: ../gramps/plugins/webreport/narrativeweb.py:2136
 msgid "Whether to display latitude/longitude in the places list."
 msgstr "Mutassuk-e a hosszúságot/szélességet a helylistában."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2142
+#: ../gramps/plugins/webreport/narrativeweb.py:2140
 msgid "Sort places references either by date or by name"
 msgstr "Helyek hivatkozásainak dátum és név szerinti rendezése"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2144
+#: ../gramps/plugins/webreport/narrativeweb.py:2142
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
 "Helyek hivatkozásainak rendezése dátum, vagy név szerint. Ha nincs beállítás "
 "az dátum szerinti rendezést jelent."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2148
+#: ../gramps/plugins/webreport/narrativeweb.py:2146
 msgid "Graph generations"
 msgstr "Generációk grafikonja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2149
+#: ../gramps/plugins/webreport/narrativeweb.py:2147
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Az ős grafikonba kerülő generációk száma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2155
+#: ../gramps/plugins/webreport/narrativeweb.py:2153
 msgid "Include narrative notes just after name, gender"
 msgstr "A történet jegyzetei közvetlenül a név, nem után legyenek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2157
+#: ../gramps/plugins/webreport/narrativeweb.py:2155
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
@@ -37303,47 +37333,47 @@ msgstr ""
 "A történet jegyzetei közvetlenül az elhalálozás (alaphelyzet) név, nem és "
 "kor után; vagy közvetlenül a tulajdonságok előtt legyenek."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2168
+#: ../gramps/plugins/webreport/narrativeweb.py:2166
 msgid "Page Generation"
 msgstr "Generáció oldal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2171
+#: ../gramps/plugins/webreport/narrativeweb.py:2169
 msgid "Home page note"
 msgstr "Kezdő oldal szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2172
+#: ../gramps/plugins/webreport/narrativeweb.py:2170
 msgid "A note to be used on the home page"
 msgstr "A kezdőlapon megjelenő szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2175
+#: ../gramps/plugins/webreport/narrativeweb.py:2173
 msgid "Home page image"
 msgstr "Kezdőlap kép"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2176
+#: ../gramps/plugins/webreport/narrativeweb.py:2174
 msgid "An image to be used on the home page"
 msgstr "Egy kép, ami a kezdőlapon lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2179
+#: ../gramps/plugins/webreport/narrativeweb.py:2177
 msgid "Introduction note"
 msgstr "Bevezető szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2180
+#: ../gramps/plugins/webreport/narrativeweb.py:2178
 msgid "A note to be used as the introduction"
 msgstr "Egy szöveg, ami a bevezetésben lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2183
+#: ../gramps/plugins/webreport/narrativeweb.py:2181
 msgid "Introduction image"
 msgstr "Bevezető kép"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2184
+#: ../gramps/plugins/webreport/narrativeweb.py:2182
 msgid "An image to be used as the introduction"
 msgstr "Egy kép, ami a bevezetésben lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2187
+#: ../gramps/plugins/webreport/narrativeweb.py:2185
 msgid "Publisher contact note"
 msgstr "A kiadó kapcsolat információja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2188
+#: ../gramps/plugins/webreport/narrativeweb.py:2186
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -37353,11 +37383,11 @@ msgstr ""
 "Ha nincs kiadói információ, akkor\n"
 "nem lesz kapcsolati oldal létrehozva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2194
+#: ../gramps/plugins/webreport/narrativeweb.py:2192
 msgid "Publisher contact image"
 msgstr "A kiadó kapcsolati képe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2195
+#: ../gramps/plugins/webreport/narrativeweb.py:2193
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -37367,27 +37397,27 @@ msgstr ""
 "Ha nincs kiadói információ, akkor\n"
 "nem lesz kapcsolati oldal létrehozva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2201
+#: ../gramps/plugins/webreport/narrativeweb.py:2199
 msgid "HTML user header"
 msgstr "HTML felhasználói fejléc"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2202
+#: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid "A note to be used as the page header or a PHP code to insert."
 msgstr "Az oldal fejlécében, vagy egy PHP kódként beillesztendő szöveg."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2206
+#: ../gramps/plugins/webreport/narrativeweb.py:2204
 msgid "HTML user footer"
 msgstr "HTML felhasználói lábléc"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2207
+#: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "A note to be used as the page footer"
 msgstr "Egy szöveg, ami az oldal láblécében lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2212
+#: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "PHP user session"
 msgstr "PHP felhasználó munkamenet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2213
+#: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
@@ -37395,39 +37425,39 @@ msgstr ""
 "Egy megjegyzés a php munkamenet indításához.\n"
 "Ez csak .php fájlkiterjesztés kiválasztásakor lesz használható."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2224
+#: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Images Generation"
 msgstr "Képek generálása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2227
+#: ../gramps/plugins/webreport/narrativeweb.py:2225
 msgid "Include images and media objects"
 msgstr "Képekkel és médiaobjektumokkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2229
+#: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Whether to include a gallery of media objects"
 msgstr "Legyen-e benne a médiaobjektumok galériája"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2235
+#: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Create the images index"
 msgstr "Kép indexek létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2237
+#: ../gramps/plugins/webreport/narrativeweb.py:2235
 msgid "This option allows you to create the images index"
 msgstr "Ez lehetővé teszi kép indexek létrehozását"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2243
+#: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Include unused images and media objects"
 msgstr "A nem használt képekkel és médiaobjektumokkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Legyenek-e benne nem használt, vagy nem-hivatkozott médiaobjektumok"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2249
+#: ../gramps/plugins/webreport/narrativeweb.py:2247
 msgid "Create and only use thumbnail- sized images"
 msgstr "Csak bélyegkép méretű képek létrehozása és használata"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2251
+#: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -37437,19 +37467,19 @@ msgstr ""
 "hanem bélyegkép méretű képek létrehozását. Ez a web-kiszolgáló oldalra "
 "sokkal kisebb feltöltési méretet tesz lehetővé."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2260
+#: ../gramps/plugins/webreport/narrativeweb.py:2258
 msgid "Create the thumbnail index"
 msgstr "Bélyegkép index létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2262
+#: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "This option allows you to create the thumbnail index"
 msgstr "Lehetővé teszi bélyegkép indexek létrehozását"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2268
+#: ../gramps/plugins/webreport/narrativeweb.py:2266
 msgid "Max width of initial image"
 msgstr "A kezdőkép maximális szélessége"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2270
+#: ../gramps/plugins/webreport/narrativeweb.py:2268
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
@@ -37457,162 +37487,178 @@ msgstr ""
 "Lehetővé teszi a kép maximális mutatott szélességének beállítását a média "
 "oldalon."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2285
+#: ../gramps/plugins/webreport/narrativeweb.py:2283
 msgid "Include download page"
 msgstr "Letöltés lappal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2287
+#: ../gramps/plugins/webreport/narrativeweb.py:2285
 msgid "Whether to include a database download option"
 msgstr "Legyen-e letöltés opcióhoz adatbázis benne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2291
+#: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "How many downloads"
 msgstr "Hány letöltés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2293
+#: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid "The number of download files to include in the download page"
 msgstr "A letöltési oldalon letölthető fájlok száma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2302
+#: ../gramps/plugins/webreport/narrativeweb.py:2300
 #, python-format
 msgid "Download Filename #%c"
 msgstr "#%c nevű fájl letöltése"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2305
+#: ../gramps/plugins/webreport/narrativeweb.py:2303
 msgid "File to be used for downloading of database"
 msgstr "Az adatbázis letöltéséhez használandó fájl"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2309
+#: ../gramps/plugins/webreport/narrativeweb.py:2307
 msgid "Description for download"
 msgstr "A letöltés leírása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2310
+#: ../gramps/plugins/webreport/narrativeweb.py:2308
 #, python-format
 msgid "Family Tree #%c"
 msgstr "#%c Családfa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2311
+#: ../gramps/plugins/webreport/narrativeweb.py:2309
 msgid "Give a description for this file."
 msgstr "Adja meg a fájl leírását."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2323
+#: ../gramps/plugins/webreport/narrativeweb.py:2321
 #: ../gramps/plugins/webreport/webcal.py:1944
 msgid "Advanced Options"
 msgstr "Haladó opciók"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2326
+#: ../gramps/plugins/webreport/narrativeweb.py:2324
 #: ../gramps/plugins/webreport/webcal.py:1946
 msgid "Character set encoding"
 msgstr "Karakterkészlet kódolás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2330
+#: ../gramps/plugins/webreport/narrativeweb.py:2328
 #: ../gramps/plugins/webreport/webcal.py:1950
 msgid "The encoding to be used for the web files"
 msgstr "A web-oldal karakterkódja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2334
+#: ../gramps/plugins/webreport/narrativeweb.py:2332
 msgid "Include link to active person on every page"
 msgstr "Aktív személy hivatkozással minden oldalon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2336
+#: ../gramps/plugins/webreport/narrativeweb.py:2334
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Együtt egy hivatkozással aktív személyhez (ha van web-oldala)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2340
+#: ../gramps/plugins/webreport/narrativeweb.py:2338
 msgid "Include a column for birth dates on the index pages"
 msgstr "Legyen oszlop a születési dátumokhoz az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2341
+#: ../gramps/plugins/webreport/narrativeweb.py:2339
 msgid "Whether to include a birth column"
 msgstr "Legyen-e születési oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2345
+#: ../gramps/plugins/webreport/narrativeweb.py:2343
 msgid "Include a column for death dates on the index pages"
 msgstr "Legyen oszlop a halálozási dátumokhoz az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2346
+#: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid "Whether to include a death column"
 msgstr "Legyen-e halálozási oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2349
+#: ../gramps/plugins/webreport/narrativeweb.py:2347
 msgid "Include a column for partners on the index pages"
 msgstr "Legyen oszlop a társaknak az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2351
+#: ../gramps/plugins/webreport/narrativeweb.py:2349
 msgid "Whether to include a partners column"
 msgstr "Legyen-e társak oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2354
+#: ../gramps/plugins/webreport/narrativeweb.py:2352
 msgid "Include a column for parents on the index pages"
 msgstr "Legyen oszlop a szülőknek az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2356
+#: ../gramps/plugins/webreport/narrativeweb.py:2354
 msgid "Whether to include a parents column"
 msgstr "Legyen-e szülők oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2360
-msgid "Include half and/ or step-siblings on the individual pages"
+#: ../gramps/plugins/webreport/narrativeweb.py:2358
+#, fuzzy
+#| msgid "Include half and/ or step-siblings on the individual pages"
+msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Legyen fél- és/vagy mostohatestvér az egyes oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2363
+#: ../gramps/plugins/webreport/narrativeweb.py:2361
+#, fuzzy
+#| msgid ""
+#| "Whether to include half and/ or step-siblings with the parents and "
+#| "siblings"
 msgid ""
-"Whether to include half and/ or step-siblings with the parents and siblings"
+"Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
 "Benne legyenek-e a fél- és/vagy mostohatestvérek a szülőkkel és testvérekkel"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2376
+#: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "Include family pages"
 msgstr "Családi oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2377
+#: ../gramps/plugins/webreport/narrativeweb.py:2375
 msgid "Whether or not to include family pages."
 msgstr "Legyenek-e benne családi oldalak is."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2380
+#: ../gramps/plugins/webreport/narrativeweb.py:2378
 msgid "Include event pages"
 msgstr "Esemény oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2382
+#: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Adjon-e hozzá eseménylistát és fontos oldalakat, vagy sem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2385
-msgid "Include places pages"
+#: ../gramps/plugins/webreport/narrativeweb.py:2383
+#, fuzzy
+#| msgid "Include places pages"
+msgid "Include place pages"
 msgstr "Hely oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2387
-msgid "Whether or not to include the places Pages."
+#: ../gramps/plugins/webreport/narrativeweb.py:2385
+#, fuzzy
+#| msgid "Whether or not to include the places Pages."
+msgid "Whether or not to include the place pages."
 msgstr "Legyenek-e benne Hely oldalak, vagy sem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2390
-msgid "Include sources pages"
+#: ../gramps/plugins/webreport/narrativeweb.py:2388
+#, fuzzy
+#| msgid "Include sources pages"
+msgid "Include source pages"
 msgstr "Forrás oldalakkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2392
-msgid "Whether or not to include the sources Pages."
+#: ../gramps/plugins/webreport/narrativeweb.py:2390
+#, fuzzy
+#| msgid "Whether or not to include the sources Pages."
+msgid "Whether or not to include the source pages."
 msgstr "Legyenek-e benne Forrás oldalak, vagy sem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2395
+#: ../gramps/plugins/webreport/narrativeweb.py:2393
 msgid "Include repository pages"
 msgstr "Tároló oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2397
-msgid "Whether or not to include the Repository Pages."
+#: ../gramps/plugins/webreport/narrativeweb.py:2395
+#, fuzzy
+#| msgid "Whether or not to include the Repository Pages."
+msgid "Whether or not to include the repository pages."
 msgstr "Legyenek-e benne Tároló oldalak, vagy sem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2401
+#: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "GENDEX-fájllal (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2402
+#: ../gramps/plugins/webreport/narrativeweb.py:2400
 msgid "Whether to include a GENDEX file or not"
 msgstr "Legyen-e benne GENDEX-fájl, vagy sem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2405
+#: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Include address book pages"
 msgstr "Címlista oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2406
+#: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -37620,39 +37666,41 @@ msgstr ""
 "Legyenek-e hozzáadva olyan Címlista oldalak (vagy sem), melyek e-mail-, web-"
 "oldal- és személyes lak-/lakóhely címeket tartalmaznak."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2412
+#: ../gramps/plugins/webreport/narrativeweb.py:2410
 msgid "Include the statistics page"
 msgstr "Statisztikai oldallal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2413
+#: ../gramps/plugins/webreport/narrativeweb.py:2411
 msgid "Whether or not to add statistics page"
 msgstr "Legyen, vagy ne legyen statisztikai oldal hozzáadás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2422
+#: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "Place Map Options"
 msgstr "Helytérkép opciók"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2427
-msgid "StamenMap"
+#: ../gramps/plugins/webreport/narrativeweb.py:2425
+#, fuzzy
+#| msgid "StamenMap"
+msgid "Stamen Map"
 msgstr "StamenMap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2428
+#: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2429
+#: ../gramps/plugins/webreport/narrativeweb.py:2427
 msgid "Map Service"
 msgstr "Térképszolgáltatás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2433
+#: ../gramps/plugins/webreport/narrativeweb.py:2431
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "A Helytérkép oldalak létrehozásához válasszon egy térképszolgáltatást."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2439
+#: ../gramps/plugins/webreport/narrativeweb.py:2437
 msgid "Include Place map on Place Pages"
 msgstr "Helytérképpel a Helyek oldalon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2441
+#: ../gramps/plugins/webreport/narrativeweb.py:2439
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -37660,11 +37708,11 @@ msgstr ""
 "Legyen-e helytérkép a Helyek oldalon, ahol a szélességi/hosszúsági fokok "
 "elérhetőek."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2446
+#: ../gramps/plugins/webreport/narrativeweb.py:2444
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Családtérkép oldalakkal az összes hely jelölésével a térképen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2450
+#: ../gramps/plugins/webreport/narrativeweb.py:2448
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -37672,209 +37720,227 @@ msgstr ""
 "Legyen-e egyéni oldalhoz térkép hozzáadva, ami jelöli az összes helyet az "
 "oldalon. Ez lehetővé teszi a család országon belüli utazásainak bemutatását."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2458
+#: ../gramps/plugins/webreport/narrativeweb.py:2456
 msgid "Family Links"
 msgstr "Család hivatkozások"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2459
+#: ../gramps/plugins/webreport/narrativeweb.py:2457
 msgid "Drop"
 msgstr "Eldobás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2460
+#: ../gramps/plugins/webreport/narrativeweb.py:2458
 msgid "Markers"
 msgstr "Jelzők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2461
+#: ../gramps/plugins/webreport/narrativeweb.py:2459
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ CsaládTérkép opció"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2466
+#: ../gramps/plugins/webreport/narrativeweb.py:2464
+#, fuzzy
+#| msgid ""
+#| "Select which option that you would like to have for the Google Maps "
+#| "Family Map pages..."
 msgid ""
-"Select which option that you would like to have for the Google Maps Family "
-"Map pages..."
+"Select which option that you would like to have for the Google Maps family-"
+"map pages..."
 msgstr ""
 "Válassza ki, milyen opciókkal szeretné a Google Térképeken a Családtérkép "
 "oldalakat megjeleníteni..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2470
+#: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "Google maps API key"
 msgstr "Google térkép API kulcs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2471
+#: ../gramps/plugins/webreport/narrativeweb.py:2469
 msgid "The API key used for the Google maps"
 msgstr "A Google térképhez használt API kulcs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2475
+#: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Toner"
 msgstr "Toner"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2476
+#: ../gramps/plugins/webreport/narrativeweb.py:2474
 msgid "Terrain"
 msgstr "Terrain"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2477
+#: ../gramps/plugins/webreport/narrativeweb.py:2475
 msgid "WaterColor"
 msgstr "WaterColor/Vízfesték"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2478
+#: ../gramps/plugins/webreport/narrativeweb.py:2476
 msgid "Stamen Option"
 msgstr "Stamen opciók"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2483
+#: ../gramps/plugins/webreport/narrativeweb.py:2481
+#, fuzzy
+#| msgid ""
+#| "Select which option that you would like to have for the Stamenmap Map "
+#| "pages..."
 msgid ""
-"Select which option that you would like to have for the Stamenmap Map "
+"Select which option that you would like to have for the Stamen map map-"
 "pages..."
 msgstr "Válassza ki, milyen opciókat szeretne a Stamenmap Térkép lapokhoz…"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2495
-msgid "Other inclusion (CMS, Web Calendar, Php)"
+#: ../gramps/plugins/webreport/narrativeweb.py:2493
+#, fuzzy
+#| msgid "Other inclusion (CMS, Web Calendar, Php)"
+msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Egyéb számításba veendő (CMS, Web-naptár, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2499
-msgid "Do we include these pages in a cms web ?"
+#: ../gramps/plugins/webreport/narrativeweb.py:2497
+#, fuzzy
+#| msgid "Do we include these pages in a cms web ?"
+msgid "Do we include these pages in a CMS web?"
 msgstr "Betegyük ezeket a lapokat a cms web-be ?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2504
+#: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2510
-msgid "Where do you place your web site ? default = /NAVWEB"
+#: ../gramps/plugins/webreport/narrativeweb.py:2508
+#, fuzzy
+#| msgid "Where do you place your web site ? default = /NAVWEB"
+msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Hol van az Ön web helye ? Alapértelmezett = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2518
+#: ../gramps/plugins/webreport/narrativeweb.py:2516
 msgid "Include the news and updates page"
 msgstr "A hírek és frissítési oldallal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2520
+#: ../gramps/plugins/webreport/narrativeweb.py:2518
 msgid "Whether to include a page with the last updates"
 msgstr "Legyen-e benne a legutóbbi frissítések oldala"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2525
+#: ../gramps/plugins/webreport/narrativeweb.py:2523
 msgid "Max days for updates"
 msgstr "Max. napok száma frissítésekhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2526
-msgid "You want to see the last updates on how many days ?"
+#: ../gramps/plugins/webreport/narrativeweb.py:2524
+#, fuzzy
+#| msgid "You want to see the last updates on how many days ?"
+msgid "You want to see the last updates on how many days?"
 msgstr "Hány napi legutóbbi frissítést kíván látni?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2530
+#: ../gramps/plugins/webreport/narrativeweb.py:2528
 msgid "Max number of updates per object to show"
 msgstr "Objektumonként mutatott frissítések max. száma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2532
+#: ../gramps/plugins/webreport/narrativeweb.py:2530
 msgid "How many updates do you want to see max"
 msgstr "Max. hány napi frissítést akar látni"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2544
+#: ../gramps/plugins/webreport/narrativeweb.py:2543
 msgid "Translations"
 msgstr "Fordítások"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2547
+#: ../gramps/plugins/webreport/narrativeweb.py:2546
 msgid "second language"
 msgstr "második nyelv"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2551
+#: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Site name for your second language"
 msgstr "Webhely neve a második nyelvhez"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:2551
+#: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2575
+#: ../gramps/plugins/webreport/narrativeweb.py:2583
+msgid "This site title"
+msgstr "A web-oldal címe"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-msgid "This site title"
-msgstr "A web-oldal címe"
-
-#: ../gramps/plugins/webreport/narrativeweb.py:2553
-#: ../gramps/plugins/webreport/narrativeweb.py:2561
-#: ../gramps/plugins/webreport/narrativeweb.py:2569
-#: ../gramps/plugins/webreport/narrativeweb.py:2577
-#: ../gramps/plugins/webreport/narrativeweb.py:2585
-msgid "Give a title in the appropriate language"
+#, fuzzy
+#| msgid "Give a title in the appropriate language"
+msgid "Enter a title in the respective language"
 msgstr "A cím megadása a megfelelő nyelven"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2555
+#: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "third language"
 msgstr "harmadik nyelv"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2559
+#: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Site name for your third language"
 msgstr "A webhely neve a harmadik nyelvhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2563
+#: ../gramps/plugins/webreport/narrativeweb.py:2562
 msgid "fourth language"
 msgstr "negyedik nyelv"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2567
+#: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Site name for your fourth language"
 msgstr "A webhely neve a negyedik nyelvhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2571
+#: ../gramps/plugins/webreport/narrativeweb.py:2570
 msgid "fifth language"
 msgstr "ötödik nyelv"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2575
+#: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Site name for your fifth language"
 msgstr "A webhely neve az ötödik nyelvhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2579
+#: ../gramps/plugins/webreport/narrativeweb.py:2578
 msgid "sixth language"
 msgstr "hatodik nyelv"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2583
+#: ../gramps/plugins/webreport/narrativeweb.py:2582
 msgid "Site name for your sixth language"
 msgstr "A webhely neve a hatodik nyelvhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2796
+#: ../gramps/plugins/webreport/narrativeweb.py:2795
 msgid "Calendar Options"
 msgstr "Naptár tulajdonságok"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2803
+#: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Do we include the web calendar ?"
 msgstr "Betegyük a web-naptárt ?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2804
+#: ../gramps/plugins/webreport/narrativeweb.py:2803
 #, python-format
 msgid "Whether to include a calendar for year %s"
 msgstr "Legyen-e benne naptár a(z) %s évhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2826
+#: ../gramps/plugins/webreport/narrativeweb.py:2825
 #: ../gramps/plugins/webreport/webcal.py:1953
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Egy év - egy pillantás naptárhoz egynapos eseményoldal létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2829
+#: ../gramps/plugins/webreport/narrativeweb.py:2828
 #: ../gramps/plugins/webreport/webcal.py:1955
 msgid "Whether to create one day pages or not"
 msgstr "Legyen-e egynapos oldal létrehozva, vagy sem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2833
+#: ../gramps/plugins/webreport/narrativeweb.py:2832
 #: ../gramps/plugins/webreport/webcal.py:1959
 msgid "Include birthdays in the calendar"
 msgstr "Születésnapok a naptárban is"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2837
+#: ../gramps/plugins/webreport/narrativeweb.py:2836
 #: ../gramps/plugins/webreport/webcal.py:1963
 msgid "Include anniversaries in the calendar"
 msgstr "Évfordulók a naptárban is"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2840
+#: ../gramps/plugins/webreport/narrativeweb.py:2839
 #: ../gramps/plugins/webreport/webcal.py:1966
 msgid "Include death dates"
 msgstr "Halálozás dátumokkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2841
+#: ../gramps/plugins/webreport/narrativeweb.py:2840
 #: ../gramps/plugins/webreport/webcal.py:1967
 msgid "Include death anniversaries in the calendar"
 msgstr "Halálozási évfordulók a naptárban is"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2850
+#: ../gramps/plugins/webreport/narrativeweb.py:2849
 #: ../gramps/plugins/webreport/webcal.py:1977
 msgid "Show data only after year"
 msgstr "Adat mutatása az év után"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2853
+#: ../gramps/plugins/webreport/narrativeweb.py:2852
 #: ../gramps/plugins/webreport/webcal.py:1980
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
@@ -38414,6 +38480,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Nincs stíluslap"
+
+#~ msgid "Html|Home"
+#~ msgstr "Kezdőlap"
 
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Bsddb version "
