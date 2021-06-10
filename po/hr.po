@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-02 22:58+0000\n"
+"PO-Revision-Date: 2021-06-10 17:50+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -9688,7 +9688,7 @@ msgstr "Prilagođena veličina"
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
 msgid "Medium"
-msgstr "Osrednje"
+msgstr "Srednje"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Short"
@@ -10525,7 +10525,7 @@ msgstr "Njemački"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Njemački (Austrija)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -16231,8 +16231,7 @@ msgstr "Dijeljene informacije"
 #: ../gramps/gui/glade/editperson.glade:316
 msgid ""
 "An identification of what type of Name this is, eg. Birth Name, Married Name."
-msgstr ""
-"Identifikacija vrste imena, npr. rođeno ime, ime nakon sklapanja braka."
+msgstr "Identifikacija vrste imena, npr. rođeno ime, ime nakon sklapanja braka."
 
 #: ../gramps/gui/glade/editname.glade:192
 #: ../gramps/gui/glade/editperson.glade:134
@@ -17817,7 +17816,7 @@ msgid ""
 "See the Gramps README documentation for installation prerequisites,\n"
 "typically located in /usr/share/doc/gramps.\n"
 msgstr ""
-"GTK prijevodi za aktualni jezik (%(language)s) nedostaju.\n"
+"GTK prijevodi za trenutačni (%(language)s) jezik nedostaju.\n"
 "%(bold_start)sGramps%(bold_end)s će ipak nastaviti s radom.\n"
 "Grafičko korisničko sučelje će vrlo vjerojatno biti pokvareno, posebice za\n"
 "jezike koji koriste smjer pisanja s desna na lijevo.\n"
@@ -24740,7 +24739,7 @@ msgstr "Opis zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:213
 msgid "occupationdescr"
-msgstr "occupationdescr"
+msgstr "opis zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "Occupation date"
@@ -24748,7 +24747,7 @@ msgstr "Datum zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "occupationdate"
-msgstr "occupationdate"
+msgstr "datum zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "Occupation place"
@@ -24756,7 +24755,7 @@ msgstr "Mjesto zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "occupationplace"
-msgstr "occupationplace"
+msgstr "mjesto zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "Occupation place id"
@@ -24764,7 +24763,7 @@ msgstr "ID mjesta zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "occupationplace_id"
-msgstr "occupationplace_id"
+msgstr "ID mjesta zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "Occupation source"
@@ -24772,7 +24771,7 @@ msgstr "Izvor zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "occupationsource"
-msgstr "occupationsource"
+msgstr "izvor zanimanja"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residence date"
@@ -24780,7 +24779,7 @@ msgstr "datum prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residencedate"
-msgstr "residencedate"
+msgstr "datum prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "residence place"
@@ -24788,7 +24787,7 @@ msgstr "mjesto prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:220
 msgid "residenceplace"
-msgstr "residenceplace"
+msgstr "mjesto prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "residence place id"
@@ -24796,7 +24795,7 @@ msgstr "ID mjesta prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "residenceplace_id"
-msgstr "residenceplace_id"
+msgstr "ID mjesta prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "residence source"
@@ -24804,7 +24803,7 @@ msgstr "izvor prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "residencesource"
-msgstr "residencesource"
+msgstr "izvor prebivališta"
 
 #: ../gramps/plugins/importer/importcsv.py:224
 msgid "attribute type"
@@ -24812,7 +24811,7 @@ msgstr "vrsta svojstva"
 
 #: ../gramps/plugins/importer/importcsv.py:224
 msgid "attributetype"
-msgstr "attributetype"
+msgstr "vrsta svojstva"
 
 #: ../gramps/plugins/importer/importcsv.py:225
 msgid "attribute value"
@@ -24820,7 +24819,7 @@ msgstr "vrijednost svojstva"
 
 #: ../gramps/plugins/importer/importcsv.py:225
 msgid "attributevalue"
-msgstr "attributevalue"
+msgstr "vrijednost svojstva"
 
 #: ../gramps/plugins/importer/importcsv.py:226
 msgid "attribute source"
@@ -24828,7 +24827,7 @@ msgstr "izvor svojstva"
 
 #: ../gramps/plugins/importer/importcsv.py:226
 msgid "attributesource"
-msgstr "attributesource"
+msgstr "izvor svojstva"
 
 #: ../gramps/plugins/importer/importcsv.py:229
 msgid "child"
@@ -25648,15 +25647,7 @@ msgid "Number of new objects imported:\n"
 msgstr "Broj uvezenih novih objekata:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| " The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unkown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25667,7 +25658,7 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Uvežena datoteka nije bila cjelokupna.\n"
+"Uvežena datoteka nije bila cjelokupna.\n"
 "U sklopu ispravljanja, %(new)d objekata je stvoreno, a\n"
 "njihova tipizirana svojstva su postavljena na „Nepoznato”.\n"
 "Raspodjela na kategorije je prikazana brojem u zagradama.\n"
@@ -25689,16 +25680,10 @@ msgstr ""
 "određen, su relativne prema korisničkom direktoriju.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Objekti, koji su kandidati za spajanje:\n"
 
@@ -25850,7 +25835,7 @@ msgstr "Svaka referenca zabilješke mora imati „hlink” svojstvo."
 #: ../gramps/plugins/importer/importxml.py:2528
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr "Neispravan datum {date} u XML {xml}, XML je očuvan kao tekst"
+msgstr "Neispravan datum {date} u XML-u {xml}, XML se čuva kao tekst"
 
 #: ../gramps/plugins/importer/importxml.py:2580
 #, python-format
@@ -36931,26 +36916,19 @@ msgid "Creating address book pages ..."
 msgstr "Izrada stranica adresara ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
-#| msgid "Narrative Web Site Report for the %s language"
+#, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Narativna web-stranica za %s jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
-#| msgid "Narrative Web Site Report"
 msgid "Narrative Website Report"
 msgstr "Narativna web-stranica"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
-#, fuzzy
-#| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
 msgstr "Spremi web-stranice u .tar.gz arhiv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
-#, fuzzy
-#| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
 msgstr "Da li spremiti web-stranice u arhivsku datoteku"
 
@@ -36964,24 +36942,17 @@ msgid "My Family Tree"
 msgstr "Moj rodoslov"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
-msgstr "Naslov web stranice"
+msgstr "Naslov web-stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
-msgstr "Naslov za web stranicu"
+msgstr "Naslov web-stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr ""
-"Odaberi filtar za ograničavanje osoba, koje će biti prikazane na web "
-"stranicama"
+"Odaberi filtar za ograničavanje osoba koje se prikazuju na web-stranicama"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
@@ -37082,10 +37053,8 @@ msgid "Add previous/next to the navigation bar."
 msgstr "Dodaj sljedeći/prethodni u traku za navigaciju."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2065
-#, fuzzy
-#| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
-msgstr "Ovo je sigurna stranica (https)"
+msgstr "Ovo je sigurna stranica (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Whether to use http:// or https://"
@@ -37426,69 +37395,53 @@ msgid "Whether to include a parents column"
 msgstr "Da li uključiti stupac s roditeljima"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Uključi polubraću na stranicama osobe"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2361
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
-msgstr "Da li uključiti polubraću s roditeljima i braću/sestre"
+msgstr "Da li uključiti polubraću s roditeljima i braćom/sestrama"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "Include family pages"
-msgstr "Uključi obiteljske stranice"
+msgstr "Uključi stranice obitelji"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2375
 msgid "Whether or not to include family pages."
-msgstr "Da li uključiti obiteljske stranice."
+msgstr "Da li uključiti stranice obitelji."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2378
 msgid "Include event pages"
-msgstr "Uključi stranice s događajima"
+msgstr "Uključi stranice događaja"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Da li uključiti stranice s potpunim popisom događaja"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
-#, fuzzy
-#| msgid "Include places pages"
 msgid "Include place pages"
-msgstr "Uključi stranice s mjestima"
+msgstr "Uključi stranice mjesta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
-#, fuzzy
-#| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the place pages."
-msgstr "Da li uključiti stranice s mjestima."
+msgstr "Da li uključiti stranice mjesta."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2388
-#, fuzzy
-#| msgid "Include sources pages"
 msgid "Include source pages"
-msgstr "Uključi stranice s izvorima"
+msgstr "Uključi stranice izvora"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2390
-#, fuzzy
-#| msgid "Whether or not to include the sources Pages."
 msgid "Whether or not to include the source pages."
-msgstr "Da li uključiti stranice s izvorima."
+msgstr "Da li uključiti stranice izvora."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
 msgid "Include repository pages"
-msgstr "Uključi stranice sa spremištima"
+msgstr "Uključi stranice spremišta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
-msgstr "Da li uključiti stranice sa spremištima."
+msgstr "Da li uključiti stranice spremišta."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "Include GENDEX file (/gendex.txt)"
@@ -37500,7 +37453,7 @@ msgstr "Da li uključiti GENDEX datoteku"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Include address book pages"
-msgstr "Uključi stranice s adresarom"
+msgstr "Uključi stranice adresara"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2404
 msgid ""
@@ -37508,25 +37461,23 @@ msgid ""
 "website addresses and personal address/ residence events."
 msgstr ""
 "Da li dodati stranice adresara, koje mogu sadržavati adrese e-pošte i web "
-"stranica, te osobne adrese boravišta ili prebivališta."
+"stranica te osobne adrese boravišta ili prebivališta."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2410
 msgid "Include the statistics page"
-msgstr "Uključi statističke stranice"
+msgstr "Uključi stranicu statistike"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2411
 msgid "Whether or not to add statistics page"
-msgstr "Da li dodati statističke stranice"
+msgstr "Da li dodati stranicu statistike"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "Place Map Options"
 msgstr "Opcije za kartu mjesta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
-#, fuzzy
-#| msgid "StamenMap"
 msgid "Stamen Map"
-msgstr "StamenMap"
+msgstr "Stamen karta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
@@ -37582,10 +37533,6 @@ msgid "Google/ FamilyMap Option"
 msgstr "Opcije za Google/obiteljsku kartu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2464
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Google Maps "
-#| "Family Map pages..."
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
@@ -37618,10 +37565,6 @@ msgid "Stamen Option"
 msgstr "Stamen opcija"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2481
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Stamenmap Map "
-#| "pages..."
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
@@ -37630,26 +37573,20 @@ msgstr ""
 "kartama …"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2493
-#, fuzzy
-#| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
-msgstr "Ostala uključenja (CMS, Web Kalendar, Php)"
+msgstr "Ostala uključenja (CMS, web kalendar, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
-msgstr "Želiš li uključiti ove stranice u cms web?"
+msgstr "Želiš li uključiti ove stranice u CMS web?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2508
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
-msgstr "Gdje smještaš tvoju web lokaciju? zadano = /NAVWEB"
+msgstr "Gdje smještaš svoju web stranicu? standardno = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2516
 msgid "Include the news and updates page"
@@ -37664,8 +37601,6 @@ msgid "Max days for updates"
 msgstr "Najveći broj dana za aktualiziranja"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
-#, fuzzy
-#| msgid "You want to see the last updates on how many days ?"
 msgid "You want to see the last updates on how many days?"
 msgstr "Koliko dana unatrag želiš vidjeti zadnja aktualiziranja?"
 
@@ -37702,10 +37637,8 @@ msgstr "Naslov ove web stranice"
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
-#| msgid "Give a title in the appropriate language"
 msgid "Enter a title in the respective language"
-msgstr "Zadaj naslov na odgovarajućem jeziku"
+msgstr "Upiši naslov na odgovarajućem jeziku"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "third language"
