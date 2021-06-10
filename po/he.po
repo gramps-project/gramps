@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2021-06-10 17:50+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -9492,13 +9492,11 @@ msgid "Graphviz File"
 msgstr "קובץ גראפוויז"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
-#, fuzzy
 msgctxt "paper size"
 msgid "Letter"
 msgstr "Letter"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:80
-#, fuzzy
 msgctxt "paper size"
 msgid "Legal"
 msgstr "Legal"
@@ -10340,7 +10338,7 @@ msgstr "גרמנית"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "גרמנית (אוסטריה)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -17302,7 +17300,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
-msgstr "_נא לבחור הכל"
+msgstr "_בחירת הכל"
 
 #: ../gramps/gui/glade/updateaddons.glade:120
 msgid "Select _None"
@@ -25283,15 +25281,7 @@ msgid "Number of new objects imported:\n"
 msgstr "מספר עצמים חדשים שיובאו:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| " The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unkown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25302,12 +25292,12 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-"הקובץ המיובא לא היה שלם.\n"
-"כדי לתקן זאת, נוצרו %(new)d עצמים ו-\n"
-"התכונה המאפיינת שלהם הוגדרה כ'לא ידוע'.\n"
-"התפלגות לכל קטגוריה מתוארת על ידי\n"
+"הקובץ שיובא לא היה שלם.\n"
+"כדי לתקן זאת, נוצרו %(new)d עצמים\n"
+"והתכונה המאפיינת שלהם הוגדרה כ'לא ידוע'.\n"
+"התפלגות לסוגי-אב מתוארת על ידי\n"
 "המספר בסוגריים. בכל מקום שמתאפשר,\n"
-"עצמים 'לא ידועים' אלו מפנים להערה%(unknown)s.\n"
+"עצמים 'לא ידועים' אלו מפנים להערה %(unknown)s.\n"
 
 #: ../gramps/plugins/importer/importxml.py:310
 msgid ""
@@ -25324,16 +25314,10 @@ msgstr ""
 "או, אם לא הוגדרה מחיצת מדיה, יחסיים למחיצת המשתמש.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "עצמים מועמדים למיזוג:\n"
 
@@ -31018,7 +31002,7 @@ msgstr "נא להקיש לבחירת מצג"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:33
 msgid "Category Sidebar"
-msgstr "סרגל צד קטגוריות"
+msgstr "סרגל צד סוגי-אב"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "A sidebar to allow the selection of view categories"
@@ -31026,7 +31010,7 @@ msgstr "סרגל צד שמאפשר בחירת קטגוריות תצוגה"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:42
 msgid "Category"
-msgstr "קטגוריה"
+msgstr "סוג-אב"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Drop-down Sidebar"
@@ -32659,7 +32643,7 @@ msgstr "איתור קישורים משפחה שבורים"
 
 #: ../gramps/plugins/tool/check.py:702
 msgid "Looking for unused objects"
-msgstr "איתור עצמים שלא בשימוש"
+msgstr "איתור עצמים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/check.py:780
 msgid "Select file"
@@ -33896,7 +33880,7 @@ msgstr "חיפוש הערות"
 #: ../gramps/plugins/tool/removeunused.glade:287
 #: ../gramps/plugins/tool/verify.glade:929
 msgid "_Mark all"
-msgstr "_נא לבחור הכל"
+msgstr "_החירת הכל"
 
 #: ../gramps/plugins/tool/removeunused.glade:303
 #: ../gramps/plugins/tool/verify.glade:945
@@ -33906,7 +33890,7 @@ msgstr "_ביטול בחירת הכל"
 #: ../gramps/plugins/tool/removeunused.glade:319
 #: ../gramps/plugins/tool/verify.glade:961
 msgid "In_vert marks"
-msgstr "ה_פוך סמנים"
+msgstr "הי_פוך בחירה"
 
 #: ../gramps/plugins/tool/removeunused.glade:344
 #: ../gramps/plugins/tool/verify.glade:904
@@ -33915,7 +33899,7 @@ msgstr "נא להקיש כפולה על השורה לתצוגת/עריכת נת�
 
 #: ../gramps/plugins/tool/removeunused.py:69
 msgid "Unused Objects"
-msgstr "אובייקטים שלא בשימוש"
+msgstr "אובייקטים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/removeunused.py:188
 #: ../gramps/plugins/tool/verify.py:557
@@ -33924,7 +33908,7 @@ msgstr "סמן"
 
 #: ../gramps/plugins/tool/removeunused.py:303
 msgid "Remove unused objects"
-msgstr "הסרת אובייקטים שלא בשימוש"
+msgstr "הסרת אובייקטים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
@@ -34021,7 +34005,7 @@ msgstr "האם להחליף את %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:694
 msgid "Finding and assigning unused IDs."
-msgstr "איתור והקצאת מז‎הים שלא בשימוש."
+msgstr "איתור והקצאת מז‎הים שאינם בשימוש."
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
@@ -34192,7 +34176,7 @@ msgstr "בדיקת מסד הנתונים לבעיות שְׁלֵמוּת, תיק
 
 #: ../gramps/plugins/tool/tools.gpr.py:107
 msgid "Compare Individual Events"
-msgstr "השווה אירועי אנשים"
+msgstr "השוואת אירועי אנשים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:108
 msgid ""
@@ -34272,11 +34256,11 @@ msgstr "חישוב קשרי-גומלין בין שני אנשים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:353
 msgid "Remove Unused Objects"
-msgstr "הסרת אובייקטים שלא בשימוש"
+msgstr "הסרת אובייקטים שאינם בשימוש"
 
 #: ../gramps/plugins/tool/tools.gpr.py:354
 msgid "Removes unused objects from the database"
-msgstr "הסרת אובייקטים שלא בשימוש ממסד הנתונים"
+msgstr "הסרת אובייקטים שאינם בשימוש ממסד הנתונים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:376
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -36279,7 +36263,7 @@ msgstr "דוח אתר מרשתת"
 
 #: ../gramps/plugins/webreport/media.py:290
 msgid "Below unused media objects"
-msgstr "בתחתית אובייקטי מדיה שלא בשימוש"
+msgstr "אובייקטי מדיה שאינם בשימוש, מטה"
 
 #: ../gramps/plugins/webreport/media.py:414
 #, python-format
@@ -36372,28 +36356,21 @@ msgid "Creating address book pages ..."
 msgstr "יוצר עמודי ספר כתובות..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
-#| msgid "Narrative Web Site Report for the %s language"
+#, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "דוח אתר מרשתת מילולי לשפה ה- %s"
+msgstr "דוח אתר מרשתת מילולי לשפה ה %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
-#| msgid "Narrative Web Site Report"
 msgid "Narrative Website Report"
 msgstr "דוח אתר מרשתת מילולי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
-#, fuzzy
-#| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
-msgstr "אחסון עמודי מרשתת בקובץ .tar.gz"
+msgstr "אחסון אתר מרשתת בקובץ .tar.gz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
-#, fuzzy
-#| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
-msgstr "האם לאחסן את עמודי המרשתת בקובץ ארכיב"
+msgstr "האם לאחסן את אתר המרשתת בקובץ ארכיב"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
@@ -36405,22 +36382,16 @@ msgid "My Family Tree"
 msgstr "אילן יוחסין שלי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
-msgstr "כותרת עמוד מרשתת"
+msgstr "כותרת אתר מרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
-msgstr "כותרת עמוד המרשתת"
+msgstr "כותרת אתר המרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
-msgstr "נא לבחור מסנן על מנת להגביל את האנשים שיופיעו באתר"
+msgstr "נא לבחור מסנן על מנת להגביל את האנשים שיופיעו באתר המרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
@@ -36520,10 +36491,8 @@ msgid "Add previous/next to the navigation bar."
 msgstr "הוספת הקודם/הבא לסרגל הניווט."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2065
-#, fuzzy
-#| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
-msgstr "זהו אתר מאובטח (https)"
+msgstr "זהו אתר מאובטח (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Whether to use http:// or https://"
@@ -36729,7 +36698,7 @@ msgstr "אפשר יצירת מפתח תמונות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Include unused images and media objects"
-msgstr "הכללת תמונות ואובייקטי מדיה שלא בשימוש"
+msgstr "הכללת תמונות ואובייקטי מדיה שאינם בשימוש"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Whether to include unused or unreferenced media objects"
@@ -36860,16 +36829,10 @@ msgid "Whether to include a parents column"
 msgstr "האם לכלול עמודת הורים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
-msgstr "הכללת חצאי אחים ו/או אחים חורגים בעמוד האישי"
+msgstr "הכללת אחים למחצה ו/או אחים חורגים בעמוד האישי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2361
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "האם לכלול אחים למחצה ו/או אחים חורגים עם ההורים והצאצאים"
@@ -36891,36 +36854,26 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "הוספת רשימת אירועים מלאה ודפים רלבנטיים או לא"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
-#, fuzzy
-#| msgid "Include places pages"
 msgid "Include place pages"
-msgstr "הכללת עמודי מקומות"
+msgstr "הכללת עמודי מקום"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
-#, fuzzy
-#| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the place pages."
-msgstr "האם לכלול עמודי מקומות."
+msgstr "האם לכלול עמודי מקום."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2388
-#, fuzzy
-#| msgid "Include sources pages"
 msgid "Include source pages"
-msgstr "הכללת עמודי מקורות"
+msgstr "הכללת עמודי מקור"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2390
-#, fuzzy
-#| msgid "Whether or not to include the sources Pages."
 msgid "Whether or not to include the source pages."
-msgstr "האם לכלול עמודי מקורות."
+msgstr "האם לכלול עמודי מקור."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
 msgid "Include repository pages"
 msgstr "הכללת עמודי מאגר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
 msgstr "האם לכלול עמודי מאגר."
 
@@ -36957,10 +36910,8 @@ msgid "Place Map Options"
 msgstr "אפשרויות מפת מקומות"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
-#, fuzzy
-#| msgid "StamenMap"
 msgid "Stamen Map"
-msgstr "סטאמן-מאפ"
+msgstr "סטאמן_מאפ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
@@ -37013,10 +36964,6 @@ msgid "Google/ FamilyMap Option"
 msgstr "גוגל/ אפשרויות FamilyMap"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2464
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Google Maps "
-#| "Family Map pages..."
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
@@ -37047,34 +36994,24 @@ msgid "Stamen Option"
 msgstr "אפשרויות סטאמן"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2481
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Stamenmap Map "
-#| "pages..."
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr "נא לבחור אפשרות לעמודי מפת סטאמן ..."
+msgstr "נא לבחור באפשרות לעמודי מפת סטאמן_מאפ ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2493
-#, fuzzy
-#| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
-msgstr "הכללות אחרות (CMS, Web Calendar, Php)"
+msgstr "הכללות אחרות (CMS, web calendar, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
-msgstr "האם לכלול עמידים אלו ברשת cms ?"
+msgstr "האם לכלול עמודים אלו ברשת CMS?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2508
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "היכן ממוקם אתר המרשתת? ברירת מחדל =/NAVWEB"
 
@@ -37091,8 +37028,6 @@ msgid "Max days for updates"
 msgstr "מספר ימים מרבי לעדכון"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
-#, fuzzy
-#| msgid "You want to see the last updates on how many days ?"
 msgid "You want to see the last updates on how many days?"
 msgstr "לכמה ימים להציג עדכונים אחרונים?"
 
@@ -37129,10 +37064,8 @@ msgstr "כותרת אתר זה"
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
-#| msgid "Give a title in the appropriate language"
 msgid "Enter a title in the respective language"
-msgstr "מתן כותרת בשפה המתאימה"
+msgstr "הזנת כותרת בשפה המתאימה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "third language"
