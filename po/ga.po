@@ -2,13 +2,14 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Dale Athanasias <dalegrind@hotmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-07 12:32+0000\n"
+"Last-Translator: Dale Athanasias <dalegrind@hotmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ga/>\n"
 "Language: ga\n"
@@ -25,7 +26,7 @@ msgstr ""
 #: ../data/gramps.appdata.xml.in:5 ../data/gramps.desktop.in:6
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Bainistigh faisnéis ghinealais, déan taighde agus anailís ghinealais"
 
 #: ../data/gramps.appdata.xml.in:7
 msgid ""
