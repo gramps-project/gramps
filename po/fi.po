@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-05 08:56+0000\n"
+"PO-Revision-Date: 2021-06-10 17:50+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -811,7 +811,7 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
-"<b>Medianäkymä</b><br/>Medianäkymä näyttää listan kaikista sukupuuhun "
+"<b>Medianäkymä</b><br/>Medianäkymä näyttää luettelon kaikista sukupuuhun "
 "liitetyistä mediatiedostoista. Tiedostot voivat olla kuvia, videoita, ääniä, "
 "taulukoita, dokumentteja jne."
 
@@ -10317,7 +10317,7 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"Virhe koottaessa listaa viimeksi käytetyistä DBs tiedostoista {fname}: "
+"Virhe koottaessa luetteloa viimeksi käytetyistä DBs tiedostoista {fname}: "
 "{error}.\n"
 "Tämä saattaa olla merkki vaurioista tiedostoissa.\n"
 "Jos olet varma, että muissa tiedostoissa ei ole mitään ongelmaa, poista se, "
@@ -10598,7 +10598,7 @@ msgstr "saksa"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Saksa (Itävalta)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -20134,8 +20134,7 @@ msgstr ""
 
 #: ../gramps/gui/widgets/grampletpane.py:816
 msgid "Drag Properties Button to move and click it for setup"
-msgstr ""
-"Vedä Ominaisuudet painiketta siirtääksesi ja napsauta sitä asetuksia varten"
+msgstr "Napsauta laajennuskirjaston valintapainiketta asetusten valintaa varten"
 
 #: ../gramps/gui/widgets/grampletpane.py:1017
 msgid "Right click to add gramplets"
@@ -25788,15 +25787,7 @@ msgid "Number of new objects imported:\n"
 msgstr "Tuotujen uusien kohteiden määrä:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| " The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unkown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25807,7 +25798,7 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Tuotu tiedosto ei sisältänyt kaikkea tarpeellista.\n"
+"Tuotu tiedosto ei sisältänyt kaikkea tarpeellista.\n"
 "Sen korjaamiseksi luotiin %(new)d kohteet ja niiden ominaisuudeksi \n"
 "asetettiin \"Tuntematon\"'.\n"
 "Kategorioiden alajako ilmaistaan suluissa olevalla numerolla\n"
@@ -25829,16 +25820,10 @@ msgstr ""
 "suhteellisiksi kotihakemistoosi.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Sulauttamiseen soveltuvat kohteet:\n"
 
@@ -31631,11 +31616,11 @@ msgstr "Kategoria"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Drop-down Sidebar"
-msgstr "Sivupalkki joka on pudotuslista"
+msgstr "Sivupalkki pudotusvalikoilla"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:49
 msgid "Selection of categories and views from drop-down lists"
-msgstr "Kategorioiden ja näkyminen valinta pudotuslistoista"
+msgstr "Kategorioiden ja näkyminen valinta pudotusvalikoista"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:57
 msgid "Drop-Down"
@@ -31647,7 +31632,7 @@ msgstr "Laajentuva sivupalkki"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:64
 msgid "Selection of views from lists with expanders"
-msgstr "Näkyminen valinta listoista laajentajista"
+msgstr "Näkymien valinta laajennetuista pudotusvalikoista"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:72
 msgid "Expander"
@@ -37023,26 +37008,19 @@ msgid "Creating address book pages ..."
 msgstr "Luodaan osoitekirjasivuja..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
-#| msgid "Narrative Web Site Report for the %s language"
+#, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Kertova-nettisivusto raportti kielelle %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
-#| msgid "Narrative Web Site Report"
 msgid "Narrative Website Report"
 msgstr "Kertova-nettisivusto raportti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
-#, fuzzy
-#| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
 msgstr "Talleta nettisivut .tar.gz arkistoon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
-#, fuzzy
-#| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
 msgstr "Talletetaanko nettisivut .tar.gz arkistoon"
 
@@ -37056,22 +37034,17 @@ msgid "My Family Tree"
 msgstr "Sukupuuni"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
 msgstr "Nettisivuston otsikko"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "Nettisivuston otsikko"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
-msgstr "Valitse suodin rajoittamaan henkilöitä jotka näkyvät nettisivustossa"
+msgstr ""
+"Valitse suodin, jos haluat rajoittaa verkkosivustolla esiintyviä ihmisiä"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
@@ -37175,10 +37148,8 @@ msgid "Add previous/next to the navigation bar."
 msgstr "Lisää edellinen/seuraava navigointipalkkiin."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2065
-#, fuzzy
-#| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
-msgstr "Tämä on suojattu sivusto (https)"
+msgstr "Tämä on suojattu sivusto (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Whether to use http:// or https://"
@@ -37519,16 +37490,10 @@ msgid "Whether to include a parents column"
 msgstr "Lisätäänkö vanhempien sarake"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Lisää hakemistosivuille sarake sisaruspuolille"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2361
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
@@ -37552,26 +37517,18 @@ msgid "Add a complete events list and relevant pages or not"
 msgstr "Lisätäänkö täydellinen tapahtumalista ja ao. sivut vai ei"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
-#, fuzzy
-#| msgid "Include places pages"
 msgid "Include place pages"
 msgstr "Lisää paikkasivut"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
-#, fuzzy
-#| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the place pages."
 msgstr "Lisätäänkö paikkasivut."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2388
-#, fuzzy
-#| msgid "Include sources pages"
 msgid "Include source pages"
 msgstr "Lisää lähdesivut"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2390
-#, fuzzy
-#| msgid "Whether or not to include the sources Pages."
 msgid "Whether or not to include the source pages."
 msgstr "Lisätäänkö lähdesivut."
 
@@ -37580,8 +37537,6 @@ msgid "Include repository pages"
 msgstr "Lisää arkistosivut"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
 msgstr "Lisätäänkö arkistosivut."
 
@@ -37619,10 +37574,8 @@ msgstr "Paikkakarttojen valinnat"
 
 # 10
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
-#, fuzzy
-#| msgid "StamenMap"
 msgid "Stamen Map"
-msgstr "StamenMap"
+msgstr "Stamen Map"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
@@ -37679,14 +37632,10 @@ msgid "Google/ FamilyMap Option"
 msgstr "Google/Perhekartan valinnat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2464
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Google Maps "
-#| "Family Map pages..."
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
-msgstr "Valitse miten haluat Google Mapin näyttävän perhekarttasi..."
+msgstr "Valitse haluamasi vaihtoehto Google Mapsin perhekarttasivuille ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "Google maps API key"
@@ -37718,34 +37667,24 @@ msgstr "Stamen valinnat"
 
 # 10
 #: ../gramps/plugins/webreport/narrativeweb.py:2481
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Stamenmap Map "
-#| "pages..."
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr "Valitse haluamasi vaihtoehto Stamenmap-karttasivuille ..."
+msgstr "Valitse haluamasi vaihtoehto Stamen map karttasivuille ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2493
-#, fuzzy
-#| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
-msgstr "Muut mukaan otettavat (CMS, Web Calendar, Php)"
+msgstr "Muut mukaan otettavat (CMS, verkkokalenteri, Php)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
-msgstr "Lisätäänkö nämä sivut cms nettiin ?"
+msgstr "Lisätäänkö nämä sivut CMS nettiin ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "URI"
 msgstr "URI-tunnus"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2508
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Minne haluat tallentaa nettisivusi? oletus = /NAVWEB"
 
@@ -37762,8 +37701,6 @@ msgid "Max days for updates"
 msgstr "Päivityspäiviä enintään"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
-#, fuzzy
-#| msgid "You want to see the last updates on how many days ?"
 msgid "You want to see the last updates on how many days?"
 msgstr "Kuinka monelta päivältä haluat nähdä viimeiset päivitykset ?"
 
@@ -37800,8 +37737,6 @@ msgstr "Sivuston otsikko"
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
-#| msgid "Give a title in the appropriate language"
 msgid "Enter a title in the respective language"
 msgstr "Anna otsikko oletuskielellä"
 
