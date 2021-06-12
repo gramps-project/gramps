@@ -53,6 +53,8 @@ class StyledTextTagType(GrampsType):
     HIGHLIGHT = 6
     SUPERSCRIPT = 7
     LINK = 8
+    STRIKETHROUGH = 9
+    SUBSCRIPT = 10
 
     _CUSTOM = NONE_TYPE
     _DEFAULT = NONE_TYPE
@@ -67,6 +69,8 @@ class StyledTextTagType(GrampsType):
         (HIGHLIGHT, _("Highlight"), "highlight"),
         (SUPERSCRIPT, _("Superscript"), "superscript"),
         (LINK, _("Link"), "link"),
+        (STRIKETHROUGH, _("Strikethrough"), "strikethrough"),
+        (SUBSCRIPT, _("Subscript"), "subscript"),
     ]
 
     STYLE_TYPE = {
@@ -79,6 +83,8 @@ class StyledTextTagType(GrampsType):
         FONTSIZE: int,
         SUPERSCRIPT: bool,
         LINK: str,
+        STRIKETHROUGH: bool,
+        SUBSCRIPT: bool,
     }
 
     STYLE_DEFAULT = {
@@ -91,6 +97,8 @@ class StyledTextTagType(GrampsType):
         FONTSIZE: 10,
         SUPERSCRIPT: False,
         LINK: '',
+        STRIKETHROUGH: False,
+        SUBSCRIPT: False,
     }
 
     def __init__(self, value=None):

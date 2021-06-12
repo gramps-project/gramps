@@ -114,6 +114,36 @@ FORMAT_TOOLBAR = (
       </packing>
     </child>
     <child>
+      <object class="GtkToggleToolButton">
+        <property name="icon-name">format-text-strikethrough</property>
+        <property name="action-name">ste.STRIKETHROUGH</property>
+        <property name="tooltip_text" translatable="yes">Strikethrough</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleToolButton" id="superscript">
+        <property name="icon-name">format-text-superscript</property>
+        <property name="action-name">ste.SUPERSCRIPT</property>
+        <property name="tooltip_text" translatable="yes">Superscript</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleToolButton" id="subscript">
+        <property name="icon-name">format-text-subscript</property>
+        <property name="action-name">ste.SUBSCRIPT</property>
+        <property name="tooltip_text" translatable="yes">Subscript</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
       <object class="GtkToolItem">
         <property name="tooltip_text" translatable="yes">Font family</property>
         <child>
@@ -534,11 +564,23 @@ class StyledTextEditor(Gtk.TextView):
         builder = Gtk.Builder()
         builder.set_translation_domain(glocale.get_localedomain())
         builder.add_from_string(FORMAT_TOOLBAR)
+
+        # fallback icons
+        icon_theme = Gtk.IconTheme().get_default()
+        icon_theme.connect('changed', self.__set_fallback_icons, builder)
+        self.__set_fallback_icons(icon_theme, builder)
+
         # define the actions...
         _actions = [
             ('ITALIC', self._on_toggle_action_activate, '<PRIMARY>i', False),
             ('BOLD', self._on_toggle_action_activate, '<PRIMARY>b', False),
             ('UNDERLINE', self._on_toggle_action_activate, '<PRIMARY>u',
+             False),
+            ('STRIKETHROUGH', self._on_toggle_action_activate, '<PRIMARY>s',
+             False),
+            ('SUPERSCRIPT', self._on_toggle_action_activate, '<PRIMARY>p',
+             False),
+            ('SUBSCRIPT', self._on_toggle_action_activate, '<PRIMARY>c',
              False),
             ('FONTCOLOR', self._on_action_activate),
             ('HIGHLIGHT', self._on_action_activate),
@@ -593,6 +635,20 @@ class StyledTextEditor(Gtk.TextView):
 
         return toolbar, self.action_group
 
+    def __set_fallback_icons(self, icon_theme, builder):
+        """
+        Set fallbacks for icons that are not available in the current theme.
+        """
+        fallbacks = (("superscript", "format-text-superscript", "go-up"),
+                     ("subscript", "format-text-subscript", "go-down"))
+        for obj_name, primary, fallback in fallbacks:
+            tool_button = builder.get_object(obj_name)
+            icon = tool_button.get_child().get_child()
+            name = primary
+            if not icon_theme.has_icon(primary):
+                name = fallback
+            icon.set_from_icon_name(name, Gtk.IconSize.LARGE_TOOLBAR)
+
     def set_transient_parent(self, parent=None):
         self.transient_parent = parent
 
@@ -641,7 +697,8 @@ class StyledTextEditor(Gtk.TextView):
         """
         Toggle a style.
 
-        Toggle styles are e.g. 'bold', 'italic', 'underline'.
+        Toggle styles are e.g. 'bold', 'italic', 'underline', 'strikethrough',
+                               'superscript' and 'subscript'.
         """
         action.set_state(value)
         if self._internal_style_change:
@@ -649,6 +706,15 @@ class StyledTextEditor(Gtk.TextView):
 
         style = action.get_name()
         value = value.get_boolean()
+
+        if value and style in ('SUPERSCRIPT', 'SUBSCRIPT'):
+            if style == 'SUPERSCRIPT':
+                toggle_off = 'SUBSCRIPT'
+            else:
+                toggle_off = 'SUPERSCRIPT'
+            action = self.uimanager.get_action(self.action_group, toggle_off)
+            action.change_state(Variant.new_boolean(False))
+
         _LOG.debug("applying style '%s' with value '%s'" % (style, str(value)))
         self.textbuffer.apply_style(getattr(StyledTextTagType, style), value)
 
@@ -771,7 +837,8 @@ class StyledTextEditor(Gtk.TextView):
         if not self.uimanager:
             return  # never initialized a toolbar, not editable
         types = [StyledTextTagType.ITALIC, StyledTextTagType.BOLD,
-                 StyledTextTagType.UNDERLINE]
+                 StyledTextTagType.UNDERLINE, StyledTextTagType.STRIKETHROUGH,
+                 StyledTextTagType.SUPERSCRIPT, StyledTextTagType.SUBSCRIPT]
         self._internal_style_change = True
         for style, style_value in changed_styles.items():
             if style in types:

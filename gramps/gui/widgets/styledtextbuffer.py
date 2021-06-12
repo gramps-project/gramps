@@ -47,6 +47,8 @@ from .undoablebuffer import UndoableBuffer
 WEIGHT_BOLD = Pango.Weight.BOLD
 STYLE_ITALIC = Pango.Style.ITALIC
 UNDERLINE_SINGLE = Pango.Underline.SINGLE
+RISE_SUPERSUB = 5000
+SCALE_SMALL = 1 / 1.2
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +70,10 @@ ALLOWED_STYLES = (
     StyledTextTagType.HIGHLIGHT,
     StyledTextTagType.FONTFACE,
     StyledTextTagType.FONTSIZE,
+    StyledTextTagType.SUPERSCRIPT,
     StyledTextTagType.LINK,
+    StyledTextTagType.STRIKETHROUGH,
+    StyledTextTagType.SUBSCRIPT,
 )
 
 STYLE_TO_PROPERTY = {
@@ -79,7 +84,10 @@ STYLE_TO_PROPERTY = {
     StyledTextTagType.HIGHLIGHT: 'background',
     StyledTextTagType.FONTFACE: 'family',
     StyledTextTagType.FONTSIZE: 'size-points',
+    StyledTextTagType.SUPERSCRIPT: 'rise',
     StyledTextTagType.LINK: 'link',
+    StyledTextTagType.STRIKETHROUGH: 'strikethrough', # permanent tag
+    StyledTextTagType.SUBSCRIPT: 'rise',
 }
 
 (MATCH_START,
@@ -271,6 +279,12 @@ class StyledTextBuffer(UndoableBuffer):
         self.create_tag(str(StyledTextTagType.ITALIC), style=STYLE_ITALIC)
         self.create_tag(str(StyledTextTagType.UNDERLINE),
                         underline=UNDERLINE_SINGLE)
+        self.create_tag(str(StyledTextTagType.STRIKETHROUGH),
+                        strikethrough=True)
+        self.create_tag(str(StyledTextTagType.SUPERSCRIPT),
+                        rise=RISE_SUPERSUB, scale=SCALE_SMALL)
+        self.create_tag(str(StyledTextTagType.SUBSCRIPT),
+                        rise=-RISE_SUPERSUB, scale=SCALE_SMALL)
 
         # internal format state attributes
         ## 1. are used to format inserted characters (self.after_insert_text)
