@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-10 14:45+0000\n"
+"PO-Revision-Date: 2021-06-14 13:37+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -11847,7 +11847,7 @@ msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
 msgstr ""
-"Mostrar ou ocultar texto nos botões do navegador (Indiv´iduos, Famílias, "
+"Mostrar ou ocultar texto nos botões do navegador (Indivíduos, Famílias, "
 "Eventos...).\n"
 "Requer reinício do Gramps."
 
@@ -11890,7 +11890,7 @@ msgstr "Registo privado"
 
 #: ../gramps/gui/configure.py:1462
 msgid "Change is not immediate"
-msgstr "Mudança não é imediata"
+msgstr "A mudança não é imediata"
 
 #: ../gramps/gui/configure.py:1463
 msgid ""
@@ -12001,7 +12001,7 @@ msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell não carregado. A correcção ortográfica não estará disponível.\n"
+"O GtkSpell não carregado. A correcção ortográfica não estará disponível.\n"
 "Para o instalar para o Gramps veja %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1596
