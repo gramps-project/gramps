@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2021-06-04 11:35+0800\n"
+"PO-Revision-Date: 2021-06-17 16:22+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
 "Language: zh_CN\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -4786,11 +4786,11 @@ msgstr "匹配至少有一个直接的来源包含隐私等级的家庭"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:42
 msgid "Media objects marked private"
-msgstr "媒体对象标识为私有的"
+msgstr "标记为私有的媒体对象"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:43
 msgid "Matches Media objects that are indicated as private"
-msgstr "匹配媒体对象，显示为私有的"
+msgstr "匹配标记为私有的媒体对象"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:47
 #, fuzzy
@@ -4799,7 +4799,7 @@ msgstr "媒体对象标签为 <tag>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Matches media objects whose Gramps ID matches the regular expression"
-msgstr "匹配 Gramps ID 编号匹配正则表达式的媒体对象"
+msgstr "匹配 Gramps ID 编号符合正则表达式条件的媒体对象"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:44
 msgid "Every note"
@@ -5312,7 +5312,7 @@ msgstr "家庭筛查器"
 #: ../gramps/gui/glade/mergeplace.glade:442
 #: ../gramps/plugins/gramplet/soundgen.py:65
 msgid "Name:"
-msgstr "姓名："
+msgstr "名称："
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:42
 #, fuzzy
@@ -6140,7 +6140,7 @@ msgstr "匹配文库，含特定参考统计"
 #: ../gramps/gui/glade/mergerepository.glade:228
 #: ../gramps/gui/merge/mergerepository.py:46
 msgid "repo|Name:"
-msgstr "姓名："
+msgstr "名称："
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
 msgid "Address:"
@@ -9375,8 +9375,7 @@ msgstr "页面方向"
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
-msgstr ""
-"图像页面输出的顺序被输出。这个选项仅仅适用于水平或者垂直页面大于 1 的时候。"
+msgstr "图形页面输出的顺序。此选项仅适用于水平或者垂直页面数量大于 1 的时候。"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:187
 msgid "Connecting lines"
@@ -11138,7 +11137,7 @@ msgstr ""
 "　　十分感谢！\n"
 "YH Tan, 2014\n"
 "霍东灵 Anthony Fok <foka@debian.org>, 2015\n"
-"Shixiong Tian <tiansworld@fedoraproject.org>, 2020"
+"Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021"
 
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
@@ -11152,7 +11151,7 @@ msgstr "操作系统：%s"
 
 #: ../gramps/gui/clipboard.py:70
 msgid "manual|Using_the_Clipboard"
-msgstr "使用剪贴板"
+msgstr "Using_the_Clipboard"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
@@ -12505,7 +12504,7 @@ msgstr "移除数据库 '%(database)s' 的第 '%(revision)s' 修订版本"
 #: ../gramps/gui/dbman.py:707
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
-msgstr "移除这个版本可以防止未来您再将它解压缩出来."
+msgstr "删除此版本可防止您以后再次不小心提取。"
 
 #: ../gramps/gui/dbman.py:709
 msgid "Remove version"
@@ -13063,10 +13062,10 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"现在这个时间索引无法被编辑.相关的事件可能正在被编辑或者另一事件索引正在编辑相"
-"同的时间.\n"
+"当前无法编辑此事件参照。相关事件可能正被编辑或者与同一事件关联的另一事件索引"
+"正在被编辑。\n"
 "\n"
-"如果编辑事件索引，您需要关闭事件."
+"要编辑此事件索引，您需要关闭该事件。"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:281
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:347
@@ -13569,8 +13568,8 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"您正尝试使用现有存在的 Gramps ID 编号  %(id)s . 这个号码已经被 "
-"'%(prim_object)s' 占用. 请输入不同的ID号或者留作空白获取下一个可用的ID号. "
+"您尝试使用已有 Gramps ID 编号 %(id)s。此编号已经被 '%(prim_object)s' 使用。请"
+"输入不同的 ID 编号或者留空自动获取下一个可用的 ID 编号。"
 
 #: ../gramps/gui/editors/editcitation.py:333
 #, python-format
@@ -13921,8 +13920,8 @@ msgid ""
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
-"拥有这些父母家庭已经存在于数据库中，如果您保存，将会创建一个家庭拷贝.建议您取"
-"消编辑这个窗口，并选择已经存在的家庭"
+"这对父母组成的家庭已经存在于数据库中。如果您保存，将会创建一个重复的家庭。建"
+"议您取消编辑，然后选择那个已有的家庭。"
 
 #: ../gramps/gui/editors/editfamily.py:1004
 #, python-format
@@ -13953,11 +13952,11 @@ msgstr "无法保存家庭"
 
 #: ../gramps/gui/editors/editfamily.py:1134
 msgid "No data exists for this family. Please enter data or cancel the edit."
-msgstr "这个家庭没有数据存在，请输入数据并取消编辑."
+msgstr "此家庭没有数据，请输入数据或取消编辑。"
 
 #: ../gramps/gui/editors/editfamily.py:1142
 msgid "Cannot save family. ID already exists."
-msgstr "无法保存家庭，ID编号已经存在."
+msgstr "无法保存家庭，ID 编号已经存在。"
 
 #: ../gramps/gui/editors/editfamily.py:1143
 #: ../gramps/gui/editors/editnote.py:328
@@ -13968,8 +13967,8 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"您正尝试使用 Gramps ID 编号为 %(id)s 的数据. 这个值已经被使用.请输入不同的ID"
-"或者留作空白来获取下一个有效的ID值. "
+"您尝试使用 Gramps ID 编号 %(id)s。 这个编号已经被使用。请输入不同的 ID 编号，"
+"或者留空自动获取下一个可用的 ID 号。"
 
 #: ../gramps/gui/editors/editfamily.py:1158
 msgid "Add Family"
@@ -15215,8 +15214,8 @@ msgid ""
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
-"如果检查这个按钮，所有缺失的媒体资料将会根据现有选项自动对应。 那么对于显示的"
-"缺失媒体文档将不会有额外的对话框。"
+"如果选择此项，所有缺失媒体文件都将按照当前选项进行处理。不会因遇到任何缺失媒"
+"体文件而再弹出对话框。"
 
 #: ../gramps/gui/glade/dialog.glade:422
 msgid "Cancel the rest of the operations"
@@ -15466,7 +15465,7 @@ msgstr "命名子女："
 
 #: ../gramps/gui/glade/editchildref.glade:230
 msgid "Open person editor of this child"
-msgstr "为这个孩子打开成员编辑器"
+msgstr "为此子女打开成员编辑器"
 
 #: ../gramps/gui/glade/editchildref.glade:240
 #: ../gramps/gui/glade/editfamily.glade:279
@@ -15664,8 +15663,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"事件的日期。这个可以是准确日期，一个范围（从...到什么，... 之间），或者一个不"
-"准确的日期（大约，...) "
+"事件的日期。可以是准确日期，范围（从...到...之间），或者不准确的日期（大"
+"约…)。"
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -16247,7 +16246,7 @@ msgstr "经度(_L)："
 #: ../gramps/gui/glade/editplace.glade:149
 #: ../gramps/gui/glade/editplaceref.glade:446
 msgid "Full title of this place."
-msgstr "这个地点的全名。"
+msgstr "此地点的完整标题。"
 
 #: ../gramps/gui/glade/editplace.glade:177
 #: ../gramps/gui/glade/editplaceref.glade:460
@@ -16310,7 +16309,7 @@ msgstr "该地点的类型。比如“国家”，“城市”，……"
 #: ../gramps/gui/glade/editplace.glade:441
 #: ../gramps/gui/glade/editplaceref.glade:599
 msgid "The name of this place."
-msgstr "这个地点的名称。"
+msgstr "此地点的名称。"
 
 #: ../gramps/gui/glade/editplace.glade:456
 #: ../gramps/gui/glade/editplaceref.glade:618
@@ -16374,12 +16373,14 @@ msgstr "媒体类型(_M)："
 
 # FIXME
 #: ../gramps/gui/glade/editreporef.glade:142
+#, fuzzy
 msgid "Call n_umber:"
 msgstr "Call 号码(_U)："
 
 #: ../gramps/gui/glade/editreporef.glade:156
+#, fuzzy
 msgid "On what type of media this source is available in the repository."
-msgstr "文库中这个来源何种媒体类型是有效的"
+msgstr "此来源位于文库中的哪种类型媒体之上。"
 
 #: ../gramps/gui/glade/editreporef.glade:209
 msgid "Id number of the source in the repository."
@@ -16390,7 +16391,7 @@ msgstr "在文库中的来源的ID号码"
 #: ../gramps/gui/glade/rule.glade:656
 #: ../gramps/plugins/tool/ownereditor.glade:150
 msgid "_Name:"
-msgstr "名字(_N)："
+msgstr "名称(_N)："
 
 #: ../gramps/gui/glade/editreporef.glade:293
 #: ../gramps/gui/glade/editrepository.glade:126
@@ -16409,7 +16410,7 @@ msgstr ""
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr "区分文库的唯一 ID 编号。"
+msgstr "识别文库的唯一 ID 编号。"
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
@@ -17666,8 +17667,7 @@ msgstr ""
 msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
-msgstr ""
-"使用这个按钮启动一个网页浏览器，并在 Gramps 错误追踪系统提交一个错误报告。"
+msgstr "点击此按钮启动网页浏览器，然后在 Gramps 错误追踪系统提交错误报告。"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:610
 msgid ""
@@ -18871,14 +18871,14 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"继续这个工具将会擦除本次对话的撤销历史。而且，您将不能恢复用这个工具作的更"
-"改，或者之前的修改.\n"
+"继续使用此工具将会擦除本次会话的撤销历史。并且您将无法恢复用该工具所作的更"
+"改，或之前所做的任何变更。\n"
 "\n"
-"如果您想运行这个工具后再撤销,请停止操作并备份您的数据库."
+"如果您想运行此工具后进行恢复操作，请先在此停止，并备份您的数据库。"
 
 #: ../gramps/gui/plug/tool.py:116
 msgid "_Proceed with the tool"
-msgstr "继续工具(_P)"
+msgstr "继续使用此工具(_P)"
 
 #: ../gramps/gui/plug/tool.py:137 ../gramps/plugins/tool/relcalc.py:158
 msgid "You must select an active person for this tool to work properly."
@@ -19059,7 +19059,7 @@ msgstr "取消中..."
 
 #: ../gramps/gui/utils.py:310
 msgid "Please do not force closing this important dialog."
-msgstr "请不要强制关闭这个重要的对话框。"
+msgstr "此对话框很重要，请不要强行关闭。"
 
 #: ../gramps/gui/utils.py:374
 msgid "The external program failed to launch or experienced an error"
@@ -22281,7 +22281,7 @@ msgstr "显示活跃人员后代的 Gramplet 控件"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:111
 #: ../gramps/plugins/webreport/person.py:1189
 msgid "Ancestors"
-msgstr "祖先"
+msgstr "长辈"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:105
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:200
@@ -22968,9 +22968,8 @@ msgid "Gramplet showing the To Do notes for a source"
 msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1213
-#, fuzzy
 msgid "Citation To Do"
-msgstr "引用"
+msgstr "引用待做事项"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1214
 #, fuzzy
@@ -22978,9 +22977,8 @@ msgid "Gramplet showing the To Do notes for a citation"
 msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1227
-#, fuzzy
 msgid "Repository To Do"
-msgstr "文库笔记"
+msgstr "文库待做事项"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1228
 #, fuzzy
@@ -22988,9 +22986,8 @@ msgid "Gramplet showing the To Do notes for a repository"
 msgstr "Gramplet为成员显示媒体对象"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1241
-#, fuzzy
 msgid "Media To Do"
-msgstr "媒体笔记"
+msgstr "媒体待做事项"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1242
 #, fuzzy
@@ -24668,8 +24665,8 @@ msgid ""
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
-"这个 GEDCOM 文件声称使用 ANSEL 编码。不过，有时候，这并非实际的编码。如果发现"
-"导入的数据包含非正常字符，请撤销导入，并且选择不同的编码方式覆盖字符集。"
+"此 GEDCOM 文件声明使用 ANSEL 编码。有时候，这并非实际的编码。如果发现导入的数"
+"据包含非正常字符，请撤销导入，并从下方选择不同的编码方式覆盖字符集。"
 
 #: ../gramps/plugins/importer/importgedcom.glade:125
 msgid "Encoding: "
@@ -30603,7 +30600,7 @@ msgstr "未知性别"
 #. display the title
 #: ../gramps/plugins/quickview/linkreferences.py:43
 msgid "Link References for this note"
-msgstr "这个注释的链接参照"
+msgstr "此注释的链接参考"
 
 #: ../gramps/plugins/quickview/linkreferences.py:45
 msgid "Link check"
@@ -30625,7 +30622,7 @@ msgstr "互联网"
 
 #: ../gramps/plugins/quickview/linkreferences.py:67
 msgid "No link references for this note"
-msgstr "这个注释没有链接参照"
+msgstr "此注释没有链接参考"
 
 #. display the title
 #: ../gramps/plugins/quickview/onthisday.py:77
@@ -30635,11 +30632,12 @@ msgstr "%(date)s 发生的事件"
 
 #: ../gramps/plugins/quickview/onthisday.py:115
 msgid "Events on this exact date"
-msgstr "这个特定日期的事件"
+msgstr "此日期的事件"
 
 #: ../gramps/plugins/quickview/onthisday.py:118
+#, fuzzy
 msgid "No events on this exact date"
-msgstr "这个特定日期无事件发生"
+msgstr "此日期无事件"
 
 #: ../gramps/plugins/quickview/onthisday.py:124
 msgid "Other events on this month/day in history"
@@ -31792,7 +31790,7 @@ msgstr "递归（向下）"
 
 #: ../gramps/plugins/textreport/familygroup.py:726
 msgid "Create reports for all descendants of this family."
-msgstr "为这个家庭所有后代创建报告."
+msgstr "为此家庭的所有后代创建报告。"
 
 #. #########################
 #: ../gramps/plugins/textreport/familygroup.py:755
@@ -32283,7 +32281,7 @@ msgstr "家庭的数量：%d"
 #: ../gramps/plugins/textreport/summary.py:247
 #, fuzzy, python-format
 msgid "Number of unique media objects: %d"
-msgstr "独有媒体对象的数量：%d"
+msgstr "唯一媒体对象的数量：%d"
 
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
@@ -32509,8 +32507,8 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"这个工具将会重命名一种类型的所有事件到其他类型。一旦完成，将不能使用通常的撤"
-"销功能恢复."
+"此工具将会把一种类型的所有事件重命名为其他类型。一旦完成，将无法使用通常的撤"
+"销功能取消操作。"
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
@@ -32836,10 +32834,10 @@ msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "已更正 {quantity} 个日期\n"
 
 #: ../gramps/plugins/tool/check.py:2562
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "%(quantity)d 个文库被参照，但是无法找到 \n"
+msgstr[0] "{quantity} 个文库被参照，但是无法找到 \n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2572 ../gramps/plugins/tool/check.py:2659
@@ -33444,6 +33442,7 @@ msgid "Check directories for images not included in database"
 msgstr "检查未被包括在数据库中的图像目录"
 
 #: ../gramps/plugins/tool/mediamanager.py:646
+#, fuzzy
 msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
@@ -35489,7 +35488,7 @@ msgstr "火葬"
 
 #: ../gramps/plugins/view/pedigreeview.py:1206
 msgid "Jump to child..."
-msgstr "跳转到孩子..."
+msgstr "跳转到子女…"
 
 #: ../gramps/plugins/view/pedigreeview.py:1220
 msgid "Jump to father"
@@ -35509,7 +35508,7 @@ msgstr "上一步(_V)"
 
 #: ../gramps/plugins/view/pedigreeview.py:1647
 msgid "_Next"
-msgstr "向后(_N)"
+msgstr "下一步(_N)"
 
 #. Mouse scroll direction setting.
 #: ../gramps/plugins/view/pedigreeview.py:1676
@@ -35551,7 +35550,7 @@ msgstr "树类型"
 
 #: ../gramps/plugins/view/pedigreeview.py:2113
 msgid "Standard"
-msgstr "标准的"
+msgstr "标准"
 
 #: ../gramps/plugins/view/pedigreeview.py:2114
 msgid "Compact"
@@ -35559,7 +35558,7 @@ msgstr "紧凑"
 
 #: ../gramps/plugins/view/pedigreeview.py:2115
 msgid "Expanded"
-msgstr "扩展的"
+msgstr "扩展"
 
 #: ../gramps/plugins/view/pedigreeview.py:2118
 msgid "Tree direction"
@@ -35579,7 +35578,7 @@ msgstr "成员树视图"
 
 #: ../gramps/plugins/view/placelistview.py:51
 msgid "Place View"
-msgstr "地点视图 "
+msgstr "地点视图"
 
 #: ../gramps/plugins/view/placetreeview.py:55
 msgid "Place Tree View"
@@ -35607,11 +35606,11 @@ msgstr "添加伴侣..."
 
 #: ../gramps/plugins/view/relview.py:393 ../gramps/plugins/view/relview.py:479
 msgid "_Reorder"
-msgstr "记录(_R)"
+msgstr "重新排序(_R)"
 
 #: ../gramps/plugins/view/relview.py:479 ../gramps/plugins/view/relview.py:980
 msgid "Add a new family with person as parent"
-msgstr "新增一个家庭，并设定所选人员为夫妻关系"
+msgstr "新建一个家庭并将此人员作为父母"
 
 #: ../gramps/plugins/view/relview.py:479 ../gramps/plugins/view/relview.py:974
 msgid "Add a new set of parents"
@@ -35619,11 +35618,11 @@ msgstr "新增一对父母"
 
 #: ../gramps/plugins/view/relview.py:479 ../gramps/plugins/view/relview.py:975
 msgid "Add person as child to an existing family"
-msgstr "以子女身份加入一个现有的家庭"
+msgstr "将人员作为子女加入现有家庭"
 
 #: ../gramps/plugins/view/relview.py:479
 msgid "Change order of parents and families"
-msgstr "修订父母和家庭的顺序"
+msgstr "修改父母和家庭的顺序"
 
 #: ../gramps/plugins/view/relview.py:479
 msgid "Edit the active person"
@@ -35650,7 +35649,7 @@ msgstr "编辑父母"
 
 #: ../gramps/plugins/view/relview.py:977
 msgid "Reorder parents"
-msgstr "记录父母"
+msgstr "重排父母顺序"
 
 #: ../gramps/plugins/view/relview.py:978
 msgid "Remove person as child of these parents"
@@ -35658,7 +35657,7 @@ msgstr "移除此人相对这些父母的子女关系"
 
 #: ../gramps/plugins/view/relview.py:984
 msgid "Remove person as parent in this family"
-msgstr "移除此人相对这个家庭作为父母的关系"
+msgstr "移除此人在该家庭中作为父母的关系"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1044
@@ -36646,7 +36645,7 @@ msgstr "Smith 家族树"
 #: ../gramps/plugins/webreport/narrativeweb.py:1928
 #: ../gramps/plugins/webreport/narrativeweb.py:1940
 msgid "Give a description for this file."
-msgstr "提供这个文件的描述。"
+msgstr "为此文件添加描述。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1939
 msgid "Johnson Family Tree"
@@ -36887,8 +36886,8 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"本页包含数据库中所有家族成员的索引，按照名字排列. 选择成员，依照按照名字会将"
-"您指向他的个人页面."
+"本页包含了数据库中所有人员的索引，索引按照姓氏排列。点击人员的名字后将转到该"
+"人员的个人页面。"
 
 #: ../gramps/plugins/webreport/person.py:251
 #: ../gramps/plugins/webreport/surname.py:94
@@ -37142,8 +37141,8 @@ msgid ""
 "compressed into one page. Clicking on a date will take you to a page that "
 "shows all the events for that date, if there are any.\n"
 msgstr ""
-"这个日历允许您拥有通过一个页面访问所有数据库的权力。点击一个日期，将会转到显"
-"示那个日期所有事件的页面，如果当日有事件发生的话。\n"
+"此日历可让您在一页内查看您的全部数据。点击一个日期，将会转到显示那个日期所有"
+"事件的页面（如果有事件的话）。\n"
 
 #. page title
 #: ../gramps/plugins/webreport/webcal.py:1138
