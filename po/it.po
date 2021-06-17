@@ -63,7 +63,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-02 22:58+0000\n"
+"PO-Revision-Date: 2021-06-13 22:33+0000\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
@@ -25881,15 +25881,7 @@ msgid "Number of new objects imported:\n"
 msgstr "Numero di nuovi oggetti importati:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| " The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unkown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25900,7 +25892,7 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Il file importato non era autocontenuto.\n"
+"Il file importato non era autocontenuto.\n"
 "Per correggere questo problema, %(new)d oggetti sono stati creati\n"
 "ed il relativo attributo caratterizzante impostato a «Sconosciuto».\n"
 "La suddivisione per categoria è rappresentata dai numeri\n"
@@ -25922,16 +25914,10 @@ msgstr ""
 "o, se non impostata, relativi alla directory dell'utente.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Oggetti candidati per la fusione:\n"
 
@@ -26305,9 +26291,8 @@ msgid "TRLR (trailer)"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:3481
-#, fuzzy
 msgid "(Submitter):"
-msgstr "(contributore):"
+msgstr "(Contributore):"
 
 #: ../gramps/plugins/lib/libgedcom.py:3505
 #: ../gramps/plugins/lib/libgedcom.py:7319
@@ -26453,7 +26438,6 @@ msgid "Import from %s"
 msgstr "Importa da %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7425
-#, fuzzy
 msgid "Submission record identifier"
 msgstr "Identificatore del contributo"
 
@@ -37339,28 +37323,21 @@ msgid "Creating address book pages ..."
 msgstr "Generazione pagine della rubrica ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
-#| msgid "Narrative Web Site Report for the %s language"
+#, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Resoconto sito web narrativo in %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
-#| msgid "Narrative Web Site Report"
 msgid "Narrative Website Report"
 msgstr "Resoconto sito web narrativo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
-#, fuzzy
-#| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
-msgstr "Memorizzare le pagine web in un archivio .tar.gz"
+msgstr "Memorizzare il sito web in un archivio .tar.gz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
-#, fuzzy
-#| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
-msgstr "Indica se memorizzare le pagine web in un file di archivio"
+msgstr "Indica se memorizzare il sito web in un file di archivio"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
@@ -37372,20 +37349,14 @@ msgid "My Family Tree"
 msgstr "Il mio albero genealogico"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
 msgstr "Titolo del sito web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "Il titolo del sito web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr ""
 "Seleziona il filtro per restringere le persone che compaiono sul sito web"
@@ -37493,10 +37464,8 @@ msgid "Add previous/next to the navigation bar."
 msgstr "Aggiungi precedente/successivo alla barra di navigazione."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2065
-#, fuzzy
-#| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
-msgstr "Questo è un sito sicuro (https)"
+msgstr "Questo è un sito sicuro (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Whether to use http:// or https://"
@@ -37844,21 +37813,15 @@ msgid "Whether to include a parents column"
 msgstr "Indica se includere una colonna per i genitori"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr ""
-"Includere i fratelli unilaterali o i fratellastri nelle pagine personali"
+"Includere i fratelli unilaterali e i fratellastri nelle pagine personali"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2361
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
-"Indica se includere fratelli unilaterali o fratellastri con genitori e "
+"Indica se includere fratelli unilaterali e fratellastri con genitori e "
 "fratelli"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2374
@@ -37879,26 +37842,18 @@ msgstr ""
 "Aggiungere o meno l'elenco completo degli eventi e le pagine pertinenti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
-#, fuzzy
-#| msgid "Include places pages"
 msgid "Include place pages"
 msgstr "Includere le pagine dei luoghi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
-#, fuzzy
-#| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the place pages."
 msgstr "Indica se includere o meno le pagine dei luoghi."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2388
-#, fuzzy
-#| msgid "Include sources pages"
 msgid "Include source pages"
 msgstr "Includere le pagine delle fonti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2390
-#, fuzzy
-#| msgid "Whether or not to include the sources Pages."
 msgid "Whether or not to include the source pages."
 msgstr "Indica se includere o meno le pagine delle fonti."
 
@@ -37907,8 +37862,6 @@ msgid "Include repository pages"
 msgstr "Includere le pagine dei depositi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
 msgstr "Indica se includere o meno le pagine dei depositi."
 
@@ -37946,8 +37899,6 @@ msgid "Place Map Options"
 msgstr "Opzioni mappa dei luoghi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
-#, fuzzy
-#| msgid "StamenMap"
 msgid "Stamen Map"
 msgstr "Mappa Stamen"
 
@@ -38009,10 +37960,6 @@ msgid "Google/ FamilyMap Option"
 msgstr "Opzione Google/mappa familiare"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2464
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Google Maps "
-#| "Family Map pages..."
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
@@ -38045,25 +37992,16 @@ msgid "Stamen Option"
 msgstr "Opzione Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2481
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Stamenmap Map "
-#| "pages..."
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
-msgstr ""
-"Selezionare quale opzione abilitare per le pagine delle mappe Stamen..."
+msgstr "Selezionare quale opzione abilitare per le pagine delle mappe Stamen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2493
-#, fuzzy
-#| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
-msgstr "Altre inclusioni (CMS, calendario web, php)"
+msgstr "Altre inclusioni (CMS, calendario web, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
 msgstr "Includere queste pagine in un CMS web?"
 
@@ -38072,8 +38010,6 @@ msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2508
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "Dove posizionare il sito web? Valore predefinito = /NAVWEB"
 
@@ -38090,8 +38026,6 @@ msgid "Max days for updates"
 msgstr "Giorni massimi per gli aggiornamenti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
-#, fuzzy
-#| msgid "You want to see the last updates on how many days ?"
 msgid "You want to see the last updates on how many days?"
 msgstr "Per quanti giorni visualizzare gli ultimi aggiornamenti?"
 
@@ -38128,10 +38062,8 @@ msgstr "Titolo di questo sito"
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
-#, fuzzy
-#| msgid "Give a title in the appropriate language"
 msgid "Enter a title in the respective language"
-msgstr "Fornire un titolo nella lingua appropriata"
+msgstr "Inserire un titolo nella rispettiva lingua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
 msgid "third language"
