@@ -5,13 +5,14 @@
 # Niemelä <niememat@gmail.com>, 2017, 2018.
 # Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# PeterJPower <pekka.valta@kolumbus.fi>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-10 17:50+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2021-06-12 05:35+0000\n"
+"Last-Translator: PeterJPower <pekka.valta@kolumbus.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -255,7 +256,7 @@ msgstr "8. Hanuka"
 
 #: ../data/holidays.xml:371
 msgid "New Zealand"
-msgstr "New Zealand"
+msgstr "Uusi -Seelanti"
 
 # 20200823
 #: ../data/holidays.xml:387
@@ -285,7 +286,7 @@ msgstr "Ukraine"
 
 #: ../data/holidays.xml:504
 msgid "United States of America"
-msgstr "United States of America"
+msgstr "Yhdysvallat"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -7664,7 +7665,7 @@ msgstr "Avioliittosopimus"
 
 #: ../gramps/gen/lib/eventtype.py:202
 msgid "Marriage Banns"
-msgstr "Kuulutukset"
+msgstr "Kuulutukset 2"
 
 #: ../gramps/gen/lib/eventtype.py:203
 msgid "Engagement"
