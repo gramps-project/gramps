@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-10 17:50+0000\n"
+"PO-Revision-Date: 2021-06-14 20:39+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -357,7 +357,6 @@ msgstr ""
 "Geschichten hören. Vergiss selber nicht, die Gespräche aufzuzeichnen!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -369,15 +368,15 @@ msgid ""
 "not visible, select View &gt; Filter."
 msgstr ""
 "<b>Personen filtern</b><br/>In der Personenansicht kannst du Personen nach "
-"vielen Kriterien &quot;filtern&quot;. Um einen neuen Filter zu definieren, "
-"gehe zu &quot;Bearbeiten &gt; Filtereditor für Personen&quot;. Dort kannst "
-"du deinem Filter einen Namen geben und Regeln unter Verwendung von "
-"vorgegebenen Regeln hinzufügen und kombinieren. Zum Beispiel kannst du einen "
-"Filter erstellen, um alle adoptierten Personen im Stammbaum zu finden. "
-"Personen ohne angegebenes Geburtsdatum können ebenso gefiltert werden. Um "
-"das Ergebnis zu erhalten, speichere ihn und wähle ihn unten in der "
-"Filterseitenleiste und klicke auf &quot;Anwenden&quot;. Wenn die "
-"Filterseitenleiste nicht sichtbar ist, wähle Ansicht &gt; Filterseitenleiste."
+"vielen Kriterien \"filtern\". Um einen neuen Filter zu definieren, gehe zu "
+"\"Bearbeiten &gt; Filtereditor für Personen\". Dort kannst du deinem Filter "
+"einen Namen geben und Regeln unter Verwendung vieler vorgegebener Regeln "
+"hinzufügen und kombinieren. Zum Beispiel kannst du einen Filter erstellen, "
+"um alle adoptierten Personen im Stammbaum zu finden. Personen ohne "
+"angegebenes Geburtsdatum können ebenso gefiltert werden. Um das Ergebnis zu "
+"erhalten, speichere ihn und wähle ihn unten in der Filterseitenleiste dann "
+"klicke auf Suchen. Wenn die Filterseitenleiste nicht sichtbar ist, wähle "
+"Ansicht &gt; Seitenleiste."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -386,9 +385,9 @@ msgid ""
 "filter you can select all people without children."
 msgstr ""
 "<b>Filter invertieren</b><br/>Filter können einfach durch das Benutzen der "
-"Option &quot;Invertieren&quot; umgekehrt werden. Zum Beispiel: Wenn du &quot;"
-"Personen mit Kindern&quot; invertierst, kannst du alle Personen ohne Kinder "
-"anzeigen lassen."
+"Option \"Invertieren\" umgekehrt werden. Zum Beispiel: Wenn du \"Personen "
+"mit Kindern\" invertierst, kannst du alle Personen ohne Kinder anzeigen "
+"lassen."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -428,7 +427,6 @@ msgstr ""
 "klicke rechts, um einen Partner, Geschwister, Kind oder Elternteil zu wählen."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -436,11 +434,12 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Wer wurde wann geboren?</b><br/>Unter &quot;Werkzeuge &gt; Analyse und "
-"Untersuchung &gt; Einzelne Ereignisse vergleichen...&quot; kannst du die "
-"Daten von Personen in deiner Datenbank vergleichen. Das ist nützlich, z.B. "
-"wenn du vorhast, die Geburtsdaten von jedem aus deiner Datenbank aufzulisten."
-"Zum Eingrenzen der Ergebnisse kannst du einen Benutzerfilter verwenden."
+"<b>Wer wurde wann geboren?</b><br/>Unter \"Werkzeuge &gt; Analyse und "
+"Untersuchung &gt; Einzelne Ereignisse vergleichen...\" kannst du die Daten "
+"von Personen in deiner Datenbank vergleichen. Das ist nützlich, z.B. wenn du "
+"vorhast, die Geburtsdaten von jedem aus deiner Datenbank aufzulisten. Zum "
+"Eingrenzen der Ergebnisse kannst du einen benutzerdefinierten Filter "
+"verwenden."
 
 #: ../data/tips.xml:26
 #, fuzzy
@@ -964,13 +963,13 @@ msgid ""
 "confirm the accurate transcription of what appears to be an error in a "
 "source."
 msgstr ""
-"<b>Praxis für gute Datensätze</b><br/>Sei genau beim Aufschreiben von "
-"genealogischen Informationen. Stelle nicht bereits eine Hypothese auf, "
-"während du erste Informationen hast; schreibe genau auf, wie du es siehst. "
-"Verwende eingeklammerte Kommentare, um Anfügungen, Löschungen und Kommentare "
-"anzugeben. Bei einer sehr genauen Niederschrift empfiehlt es sich, erkannte "
-"Quellenfehler mit dem lateinischen &quot;[sic!]&quot; als bewusst zitierte "
-"Fehler zu markieren."
+"<b>Gute Aufzeichnungen führen</b><br/>Sei genau, wenn du genealogische "
+"Informationen aufzeichnest. Mach keine Annahmen, während du "
+"Primärinformationen aufzeichnest; schreibe es genau so, wie du es siehst. "
+"Verwende Kommentare in Klammern, um deine Ergänzungen, Streichungen oder "
+"Kommentare anzugeben. Die Verwendung des lateinischen \"sic\" wird "
+"empfohlen, um die genaue Transkription eines scheinbar fehlerhaften "
+"Quelltextes zu bestätigen."
 
 #: ../data/tips.xml:102
 #, fuzzy
@@ -1413,36 +1412,36 @@ msgstr ""
 "Verwendungsnachricht\n"
 "\n"
 "Anwendungsoptionen\n"
-" -O, --open=STAMMBAUM                 Stammbaum öffnen\n"
+"  -O, --open=STAMMBAUM                 Stammbaum öffnen\n"
 "  -U, --username=BENUTZERNAME                Datenbank Benutzername\n"
 "  -P, --password=KENNWORT                Datenbank Kennwort\n"
-" -C, --create=Stammbaum                 Stammbaum wird beim Öffnen erstellt "
+"  -C, --create=Stammbaum                 Stammbaum wird beim Öffnen erstellt "
 "wenn neu\n"
-" -i, --import=DATEINAME                 Importiert eine Datei\n"
-" -e, --export=DATEINAME                 Exportiert eine Datei\n"
-" -r, --remove=STAMMBAUMMUSTER       Entfernt passende Stammbäume (verwende "
+"  -i, --import=DATEINAME                 Importiert eine Datei\n"
+"  -e, --export=DATEINAME                 Exportiert eine Datei\n"
+"  -r, --remove=STAMMBAUMMUSTER       Entfernt passende Stammbäume (verwende "
 "Reguläre Ausdrücke)\n"
-" -f, --format=FORMAT                    Format festlegen\n"
-" -a, --action=AKTION                    Aktion festlegen\n"
-" -p, --options=OPTIONENZEICHENKETTE           Optionen festlegen\n"
-" -d, --debug=LOGGER_NAME                Fehleranalyse: Aufzeichnung "
+"  -f, --format=FORMAT                    Format festlegen\n"
+"  -a, --action=AKTION                    Aktion festlegen\n"
+"  -p, --options=OPTIONENZEICHENKETTE           Optionen festlegen\n"
+"  -d, --debug=LOGGER_NAME                Fehleranalyse: Aufzeichnung "
 "einschalten\n"
-" -l [STAMMBAUMMUSTER...]                 Liste die Stammbäume\n"
-" -L [STAMMBAUMMUSTER..]                 Listet die Stammbäume im Detail\n"
-" -t [STAMMBAUMMUSTER..]                  Listet die Stammbäume, mit "
+"  -l [STAMMBAUMMUSTER...]                 Liste die Stammbäume\n"
+"  -L [STAMMBAUMMUSTER..]                 Listet die Stammbäume im Detail\n"
+"  -t [STAMMBAUMMUSTER..]                  Listet die Stammbäume, mit "
 "Tabulator getrennt\n"
-" -u, --force-unlock                     Erzwingt die Entsperrung des "
+"  -u, --force-unlock                     Erzwingt die Entsperrung des "
 "Stammbaums\n"
-" -s, --show                             Zeigt die "
+"  -s, --show                             Zeigt die "
 "Konfigurationseinstellung(en)\n"
-" -c ,--config=[config.setting[:Wert]]   Setzt die "
+"  -c ,--config=[config.setting[:Wert]]   Setzt die "
 "Konfigurationseinstellung(en) und startet Gramps\n"
-" -y, --yes                               Bei gefährlichen Aktion nicht "
+"  -y, --yes                               Bei gefährlichen Aktion nicht "
 "nachfragen (nur nicht-GUI Modus)\n"
-" -q, --quiet                            Blendet die Fortschrittsanzeige aus "
+"  -q, --quiet                            Blendet die Fortschrittsanzeige aus "
 "(nur nicht-GUI Modus 'Graphical User Interface')\n"
 "  -v,--version                          Zeigt die Versionen\n"
-" -S, --safe                             Startet Gramps im 'Sicheren Modus'\n"
+"  -S, --safe                             Startet Gramps im 'Sicheren Modus'\n"
 "                                          (temporäre Verwendung der Standard "
 "Werte)\n"
 "  -D, --default=[APXFE]                Setzt Werte auf Standard zurück;\n"
@@ -1516,8 +1515,7 @@ msgstr ""
 "\n"
 "1. Zum Import von vier Datenbanken (deren Format aus deren Namen erkennbar "
 "ist)\n"
-" und Fehlerprüfung der resultierenden Datenbank kann man folgendes "
-"eingeben:\n"
+"und Fehlerprüfung der resultierenden Datenbank kann man folgendes eingeben:\n"
 "gramps -i Datei1.ged -i Datei2.gpkg -i ~/db3.gramps -i Datei4.wft -a check\n"
 "\n"
 "2. Um das Format im obigen Beispiel explizit anzugeben, erweitere die "
@@ -1543,8 +1541,8 @@ msgstr ""
 "6. Eine Datenbank öffnen und anhand ihrer Daten einen Zeitlinienbericht als "
 "PDF-Dokument\n"
 "der meine_zeitlinie.pdf Datei:\n"
-"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,"
-"of=meine_zeitlinie.pdf\n"
+"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,of=meine_zeitlinie"
+".pdf\n"
 "\n"
 "7. Um eine Zusammenfassung der Datenbank zu erstellen, verwende:\n"
 "gramps -O 'Stammbaum 1' -a report -p name=summary\n"
@@ -1552,12 +1550,12 @@ msgstr ""
 "8. Berichtsoptionen listen\n"
 "Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht "
 "zu erhalten.\n"
-"Um Details zu einer bestimmten Option zu erhalten, verwende "
-"show=Optionsname , z.B.. name=timeline,show=off string.\n"
+"Um Details zu einer bestimmten Option zu erhalten, verwende show=Optionsname "
+", z.B.. name=timeline,show=off string.\n"
 "Um die verfügbaren Berichtsnamen zu sehen, verwende name=show string.\n"
 "\n"
-"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, "
-"verwende:\n"
+"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, verwende:"
+"\n"
 "gramps -O 'Stammbaum 1' -e Ausgabe.gramps -f gramps-xml\n"
 "\n"
 "10. Um einen Webauftritt in einer anderen Sprache zu erstellen (in deutsch), "
@@ -1757,8 +1755,8 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Fehler: Falscher Datenbankpfad im Bearbeiten Menü -> Einstellungen.\n"
-"Öffne die Einstellungen und gib den korrekten Datenbankpfad ein.\n"
+"FEHLER: Falscher Datenbankpfad im Bearbeiten Menü -> Einstellungen.\n"
+"Öffne die Einstellungen und stelle den korrekten Datenbankpfad ein.\n"
 "\n"
 "Details: Das Datenbankverzeichnis konnte nicht erstellt werden:\n"
 "    %s\n"
@@ -1866,19 +1864,18 @@ msgstr "FEHLER: %s"
 #: ../gramps/cli/grampscli.py:102 ../gramps/cli/user.py:200
 #: ../gramps/gui/dialog.py:295
 msgid "Low level database corruption detected"
-msgstr "Ein interner Datenbankfehler wurde entdeckt"
+msgstr "Datenbankbeschädigung auf niedriger Ebene erkannt"
 
 #: ../gramps/cli/grampscli.py:104 ../gramps/cli/user.py:201
 #: ../gramps/gui/dialog.py:296
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
 "Gramps hat ein Problem in der zugrunde liegenden Datenbank festgestellt. "
-"Dies kann mit der Stammbaumverwaltung repariert werden. Wähle die Datenbank "
-"und klicke auf die Reparatur-Schaltfläche"
+"Dies kann manchmal über die Stammbaumverwaltung repariert werden. Wähle die "
+"Datenbank aus und klicke auf die Schaltfläche Reparieren"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:161
 msgid "Read only database"
@@ -2116,12 +2113,12 @@ msgid ""
 "bug report at %(gramps_bugtracker_url)s\n"
 "\n"
 msgstr ""
-"Gramps hat einen Fehler in der Datenbank entdeckt. Dies kann meist durch "
-"Verwendung des Werkzeugs \"Datenbank prüfen und reparieren\" behoben "
-"werden.\n"
+"Gramps hat einen Fehler in der Datenbank entdeckt. Dieser kann meist durch "
+"Verwendung des Werkzeugs \"Datenbank prüfen und reparieren\" behoben werden."
 "\n"
-"\"Wenn der Fehler nach Einsatz dieses Werkzeugs nicht behoben wurde, so "
-"schreibe bitte einen Fehlerbericht auf %(gramps_bugtracker_url)s\n"
+"\n"
+"Wenn das Problem nach dem Ausführen dieses Werkzeugs weiterhin besteht, "
+"reichen Sie bitte einen Fehlerbericht unter %(gramps_bugtracker_url)s ein.\n"
 "\n"
 
 #: ../gramps/gen/config.py:246
@@ -3517,7 +3514,7 @@ msgstr "Kein Patronymikon"
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
 msgctxt "Remaining names"
 msgid "rest"
-msgstr ""
+msgstr "Andere"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:737
 #: ../gramps/gui/editors/editperson.py:401
@@ -3570,7 +3567,7 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
-"Warnung: Zu wenige Parameter im Filter '%s'!\n"
+"WARNUNG: Zu wenige Parameter im Filter '%s'!\n"
 "         Versuche trotzdem ihn zu laden - vielleicht geht er doch."
 
 #: ../gramps/gen/filters/_filterparser.py:135
@@ -3990,9 +3987,8 @@ msgid "Value:"
 msgstr "Wert:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
-#, fuzzy
 msgid "Citations with the attribute <attribute>"
-msgstr "Ereignisse mit dem Attribut <Attribut>"
+msgstr "Fundstellen mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 msgid "Matches citations with the attribute of a particular value"
@@ -5240,14 +5236,14 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "Liefert Personen mit einer bestimmtem Anzahl persönlicher Adressen"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:43
-#, fuzzy
 msgid "People with an address containing <text>"
-msgstr "Personen, deren ID den <Text> enthält"
+msgstr "Personen mit einer Adresse, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:44
-#, fuzzy
 msgid "Matches people with a personal address containing the given text"
-msgstr "Liefert Person mit einem bestimmten persönlichen Ereignis"
+msgstr ""
+"Liefert Personen mit einer persönlichen Adresse, die den angegebenen Text "
+"enthält"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:45
 msgid "People with an alternate name"
@@ -6399,14 +6395,12 @@ msgid "Repository attribute:"
 msgstr "Aufbewahrungsortattribut:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
-#, fuzzy
 msgid "Repositories with the attribute <attribute>"
-msgstr "Ereignisse mit dem Attribut <Attribut>"
+msgstr "Aufbewahrungsorte mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
-#, fuzzy
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Liefert Medienobjekte mit dem Attribut mit einem bestimmten Wert"
+msgstr "Liefert Aufbewahrungsorte mit dem Attribut mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
@@ -6538,14 +6532,12 @@ msgid "Source attribute:"
 msgstr "Quelleattribut:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
-#, fuzzy
 msgid "Sources with the attribute <attribute>"
-msgstr "Ereignisse mit dem Attribut <Attribut>"
+msgstr "Quellen mit dem Attribut <Attribut>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
-#, fuzzy
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Liefert Medienobjekte mit dem Attribut mit einem bestimmten Wert"
+msgstr "Liefert Quellen mit dem Attribut mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
@@ -8183,11 +8175,11 @@ msgstr "Begabung"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Parents"
-msgstr ""
+msgstr "Versiegelung zu Eltern (HLT)"
 
 #: ../gramps/gen/lib/ldsord.py:99
 msgid "Sealed to Spouse"
-msgstr ""
+msgstr "Versiegelung zu Ehepartner (HLT)"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
@@ -8195,7 +8187,7 @@ msgstr "<Kein Status>"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Born in Covenant"
-msgstr ""
+msgstr "Geboren im Bündnis (HLT)"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
@@ -10065,9 +10057,8 @@ msgid "PDF"
 msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
-#, fuzzy
 msgid "Graph File for genealogytree"
-msgstr "Gramplet für allgemeine Notizen"
+msgstr "Diagrammdatei für LaTex genealogytree"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
 msgid "LaTeX File"
@@ -10156,9 +10147,8 @@ msgid "The translation to be used for the report."
 msgstr "Die Übersetzung, die für den Bericht verwendet wird."
 
 #: ../gramps/gen/plug/report/stdoptions.py:80
-#, fuzzy
 msgid "The additional translation to be used for the report."
-msgstr "Die Übersetzung, die für den Bericht verwendet wird."
+msgstr "Die zusätzliche Übersetzung, die für den Bericht verwendet werden soll."
 
 #: ../gramps/gen/plug/report/stdoptions.py:89 ../gramps/gui/configure.py:1194
 #: ../gramps/plugins/webreport/webcal.py:1803
@@ -10246,9 +10236,8 @@ msgid "Include"
 msgstr "Einbeziehen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Ob Markierungen aufgenommen werden."
+msgstr "Ob Markierungen aufgenommen werden"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -10708,7 +10697,7 @@ msgstr "Deutsch"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Deutsch (Österreich)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -15472,6 +15461,9 @@ msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"Hiermit werden die Filtereinstellungen auf leer zurückgesetzt. Die "
+"Schaltfläche \"Suchen\" sollte verwendet werden um die Ansicht zu "
+"aktualisieren."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -30917,6 +30909,13 @@ msgid ""
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"Um einen bestimmten Kartendienst zu verwenden, kann die URL des Dienstes in "
+"das folgende Feld eingetragen werden.\n"
+"z.B.:\n"
+"http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
+"http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1288
 #, fuzzy
@@ -32913,6 +32912,7 @@ msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
 msgstr ""
+"Ob der Titel der Name der Person sein soll oder \"Alle Daten einer Person\""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
@@ -34828,7 +34828,7 @@ msgstr "Gruppieren als"
 
 #: ../gramps/plugins/tool/removespaces.py:199
 msgid "tooltip"
-msgstr ""
+msgstr "Kurzinfo"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
@@ -34846,12 +34846,12 @@ msgstr "Ungültiges Format"
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
 msgid "comma instead of dot"
-msgstr ""
+msgstr "Komma anstelle von Punkt"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "Ungültiges Zeichen anstelle von '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -37570,7 +37570,7 @@ msgstr "Auswahl des Titels"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Überprüfe, ob ein Abschnitt geöffnet oder geschlossen werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2081
 msgid "Extra pages"
@@ -37594,7 +37594,7 @@ msgstr "Pfad zu deiner Extraseite ohne Erweiterung"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Verwenden wir mehrere Übersetzungen?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2114
 msgid ""
@@ -37602,6 +37602,9 @@ msgid ""
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Ob das erzählende Web in mehreren Sprachen angezeigt werden soll.\n"
+"Siehe die Registerkarte \"Übersetzung\", um neue Sprachen zu der im nächsten "
+"Feld definierten Standardsprache hinzuzufügen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "Sort all children in birth order"
@@ -37734,13 +37737,16 @@ msgstr "Eine Notiz, die als Fußzeile benutzt wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "PHP user session"
-msgstr ""
+msgstr "PHP-Benutzersitzung"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"Ein Hinweis zum Starten der PHP-Sitzung.\n"
+"Diese Option ist nur verfügbar, wenn die Dateierweiterung .php ausgewählt "
+"ist."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Images Generation"
@@ -37756,11 +37762,11 @@ msgstr "Ob eine Galerie mit Medienobjekten aufgenommen wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Create the images index"
-msgstr ""
+msgstr "Erstelle den Bilderindex"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2235
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "Mit dieser Option kannst du den Bilderindex erstellen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Include unused images and media objects"
@@ -37792,7 +37798,7 @@ msgstr "Größe der Miniaturbilder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "This option allows you to create the thumbnail index"
-msgstr ""
+msgstr "Mit dieser Option kannst du den Miniaturansichtsindex erstellen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2266
 msgid "Max width of initial image"
@@ -37816,7 +37822,7 @@ msgstr "Ob in die Datenbank eine download Option aufgenommen wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "How many downloads"
-msgstr ""
+msgstr "Wie viele Downloads"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
 #, fuzzy
@@ -38079,11 +38085,11 @@ msgstr "Der API-Schlüssel, der für Google Maps verwendet wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2474
 msgid "Terrain"
-msgstr ""
+msgstr "Terrain"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2475
 #, fuzzy
@@ -38143,7 +38149,7 @@ msgstr "Max. Stücke für ein Tortendiagramm"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
 msgid "You want to see the last updates on how many days?"
-msgstr ""
+msgstr "Wie viele Tage soll die Anzeige der letzten Änderungen zurückgehen?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 #, fuzzy
@@ -38152,7 +38158,7 @@ msgstr "Maximale Anzahl der angezeigten Orte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2530
 msgid "How many updates do you want to see max"
-msgstr ""
+msgstr "Wie viele Änderungen sollen maximal angezeigt werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2543
 #, fuzzy
@@ -38166,7 +38172,7 @@ msgstr "Zweites Datum"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Sitename für deine zweite Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
@@ -38183,7 +38189,7 @@ msgstr "Webseitentitel"
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
 msgid "Enter a title in the respective language"
-msgstr ""
+msgstr "Gib einen Titel in der jeweiligen Sprache ein"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
 #, fuzzy
@@ -38192,7 +38198,7 @@ msgstr "Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Sitename für deine dritte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
 #, fuzzy
@@ -38201,7 +38207,7 @@ msgstr "Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Sitename für deine vierte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
 #, fuzzy
@@ -38210,7 +38216,7 @@ msgstr "Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Sitename für deine fünfte Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
 #, fuzzy
@@ -38219,7 +38225,7 @@ msgstr "Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2582
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Sitename für deine sechste Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2795
 #, fuzzy
@@ -38504,6 +38510,8 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
+"Diese Seite enthält die zuletzt aktualisierten Objekte in der Datenbank in "
+"den letzten %(days)d Tagen und für maximal %(nb)d Objekte pro Objektart."
 
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
