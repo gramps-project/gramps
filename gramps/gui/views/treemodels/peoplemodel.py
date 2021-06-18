@@ -84,6 +84,7 @@ COLUMN_TAGS = 18
 COLUMN_PRIV = 19
 
 invalid_date_format = config.get('preferences.invalid-date-format')
+no_surname = config.get("preferences.no-surname-text")
 
 #-------------------------------------------------------------------------
 #
@@ -614,7 +615,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         return [_('Group As'), _('Name')]
 
     def column_header(self, node):
-        return node.name
+        return node.name if node.name else no_surname
 
     def add_row(self, handle, data):
         """
