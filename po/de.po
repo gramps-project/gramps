@@ -12,13 +12,14 @@
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # R. B. <weblate@macdefender.org>, 2021.
+# RiseT <tareiss1971@yahoo.de>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-14 20:39+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2021-06-19 18:58+0000\n"
+"Last-Translator: RiseT <tareiss1971@yahoo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -593,17 +594,16 @@ msgstr ""
 "Aufbewahrungsorteansicht."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>Die Ansichten organisieren</b><br/>Viele Ansichten können deine Daten in "
-"einer hierarchischen Baumstruktur oder als einfache Liste darstellen. Jede "
-"Ansicht kann auch an deine Wünsche angepasst werden. Schaue rechts in der "
-"oberen Werkzeugleiste unter dem &quot;Ansicht&quot;enmenü."
+"<b>Organisieren der Ansichten</b><br/>Viele der Ansichten können deine Daten "
+"als hierarchische Baumstruktur oder als einfache Liste darstellen. Jede "
+"Ansicht kann auch an deine Wünsche angepasst werden. Schau auf der rechten "
+"Seite der oberen Werkzeugleiste oder unter dem Menü \"Ansicht\"."
 
 #: ../data/tips.xml:48
 #, fuzzy
