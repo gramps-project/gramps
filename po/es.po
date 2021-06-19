@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-14 14:53+0000\n"
+"PO-Revision-Date: 2021-06-19 18:58+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -15772,7 +15772,6 @@ msgstr "Cerrar si_n guardar"
 #: ../gramps/gui/views/listview.py:1069
 #: ../gramps/gui/widgets/grampletpane.py:590
 #: ../gramps/plugins/tool/eventcmp.py:399
-#, fuzzy
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -17601,9 +17600,8 @@ msgid "Selected Rule"
 msgstr "Regla seleccionada"
 
 #: ../gramps/gui/glade/styleeditor.glade:174
-#, fuzzy
 msgid "Style sheet n_ame:"
-msgstr "_Nombre del estilo:"
+msgstr "_Nombre de la hoja de estilo:"
 
 #: ../gramps/gui/glade/styleeditor.glade:193
 msgid "Style name"
@@ -24532,7 +24530,7 @@ msgstr "Número máximo de ascendientes a incluir."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:205
 msgid "Limit the number of descendants"
-msgstr "Limitar el número de desscendientes"
+msgstr "Limitar el número de descendientes"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:208
 msgid "Whether to limit the number of descendants."
@@ -33827,9 +33825,7 @@ msgstr[1] ""
 "{quantity} objetos audiovisuales están referenciados, pero no existen\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
 msgstr[0] "Se mantuvo la referencia a {quantity} objeto audiovisual perdido\n"
@@ -37369,14 +37365,11 @@ msgid "Creating address book pages ..."
 msgstr "Creando las páginas de libreta de direcciones ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
-#| msgid "Narrative Web Site Report for the %s language"
+#, python-format
 msgid "Narrative Website Report for the %s language"
 msgstr "Reporte de sitio web narrativo para el %s idioma"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
-#| msgid "Narrative Web Site Report"
 msgid "Narrative Website Report"
 msgstr "Reporte de sitio web narrativo"
 
@@ -37398,20 +37391,14 @@ msgid "My Family Tree"
 msgstr "Mi Árbol Genealógico"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
 msgstr "Título del sitio web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
 msgstr "Título del sitio web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr ""
 "Seleccionar filtro para restringir las personas que aparecen en el sitio web"
@@ -38056,8 +38043,6 @@ msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Otras inclusiones (CMS, web calendar, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
 msgstr "¿Incluimos estas páginas en una web CMS?"
 
@@ -38066,8 +38051,6 @@ msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2508
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
 msgstr "¿Dónde ubica su sitio web? predefinido = /NAVWEB"
 
@@ -38084,8 +38067,6 @@ msgid "Max days for updates"
 msgstr "Máximo de días para actualizar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
-#, fuzzy
-#| msgid "You want to see the last updates on how many days ?"
 msgid "You want to see the last updates on how many days?"
 msgstr "¿Cada cuántos días quiere ver las últimas actualizaciones?"
 
