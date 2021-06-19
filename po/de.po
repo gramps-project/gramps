@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
 "PO-Revision-Date: 2021-06-19 18:58+0000\n"
-"Last-Translator: RiseT <tareiss1971@yahoo.de>\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -443,7 +443,6 @@ msgstr ""
 "verwenden."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -451,26 +450,25 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Gramps Werkzeuge</b><br/> Gramps enthält eine Menge von nützlichen "
-"Werkzeugen. Diese erlauben dir, Operationen wie die Überprüfung der "
-"Datenbank auf Fehler und Inkonsistenz einfach durchzuführen. Zum Beispiel "
-"Forschungs- und Analysewerkzeuge, Vergleich von Ereignissen, das Finden von "
-"doppelten Personen, eine interaktive Übersicht der Nachkommen und vieles "
-"mehr. Alle Werkzeuge kannst du im Menü unter &quot;Werkzeuge&quot; finden."
+"<b>Gramps-Werkzeuge</b><br/>Gramps wird mit einer Vielzahl von Werkzeugen "
+"geliefert. Diese ermöglichen dir Operationen wie die Überprüfung der "
+"Datenbank auf Fehler und Konsistenz. Es gibt Recherche- und Analysewerkzeuge "
+"wie den Ereignisvergleich, das Auffinden doppelter Personen, einen "
+"interaktiven Nachkommenbrowser und viele andere. Alle Werkzeuge sind über "
+"das Menü \"Werkzeuge\" zugänglich."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
-"<b>Berechnung von Verwandtschaften</b><br/>Um zu prüfen, ob zwei Personen in "
-"der Datenbank verwandt sind (Blutsverwandtschaft, nicht durch Heirat), "
-"verwende das Werkzeug:&quot;Werkzeuge &gt; Werkzeuge &gt; "
-"Verwandtschaftsrechner...&quot;. Die genaue Verwandtschaft, wie auch alle "
-"gemeinsamen Vorfahren werden gezeigt."
+"<b>Beziehungen berechnen</b><br/>Um zu überprüfen, ob zwei Personen in der "
+"Datenbank verwandt sind (durch Blut, nicht durch Heirat), versuche das "
+"Werkzeug unter \"Werkzeuge&gt; Dienstprogramme &gt; Verwandtschaftsrechner..."
+"\". Die genaue Verwandtschaft sowie alle gemeinsamen Vorfahren werden "
+"angegeben."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -492,7 +490,6 @@ msgstr ""
 "in deiner Datenbank zu bekommen, füge das SoundEx Gramplet hinzu."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -500,12 +497,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\""
 msgstr ""
-"<b>Einstellen deiner Präferenzen</b><br/>&quot;Bearbeiten&gt; "
-"Einstellungen...&quot; ermöglicht dir das Ändern einer Anzahl von "
-"Einstellungen, wie z.B. den Pfad zu deinen Mediendateien, und das Abstimmen "
-"vieler Aspekte der Gramps-Darstellung an deine Bedürfnisse. Jede einzelne "
-"Ansicht kann ferner konfiguriert werden unter &quot;Ansicht &gt; Ansicht "
-"konfigurieren...&quot;"
+"<b>Einstellen deiner Präferenzen</b><br/>\"Bearbeiten&gt; Einstellungen...\" "
+"ermöglicht dir das Ändern einer Anzahl von Einstellungen, wie z.B. den Pfad "
+"zu deinen Mediendateien, und das Abstimmen vieler Aspekte der Gramps-"
+"Darstellung an deine Bedürfnisse. Jede einzelne Ansicht kann ferner "
+"konfiguriert werden unter \"Ansicht &gt; Ansicht konfigurieren...\""
 
 #: ../data/tips.xml:34
 msgid ""
@@ -523,7 +519,6 @@ msgstr ""
 "deinen Stammbaum erstellen willst, gibt es auch hierfür einen Bericht."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -533,8 +528,8 @@ msgid ""
 msgstr ""
 "<b>Einen neuen Stammbaum anlegen</b><br/>Ein guter Weg einen neuen Stammbaum "
 "anzufangen ist, alle Mitglieder der Familie in die Datenbank unter "
-"Verwendung der Personenansicht einzugeben (verwende &quot;Bearbeiten &gt; "
-"Hinzufügen&quot; oder klicke auf die Hinzufügen-Schaltfläche in der "
+"Verwendung der Personenansicht einzugeben (verwende \"Bearbeiten &gt; "
+"Hinzufügen\" oder klicke auf die Hinzufügen-Schaltfläche in der "
 "Personenansicht). Dann gehe in die Beziehungenansicht und lege Beziehungen "
 "zwischen Personen an."
 
@@ -548,7 +543,6 @@ msgstr ""
 "Werkzeugtipp erscheint."
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -559,9 +553,9 @@ msgstr ""
 "<b>Bist du dir bei einem Datum unsicher?</b><br/>Wenn du dir bei einem "
 "vorkommenden Datum unsicher bist, erlaubt dir Gramps mit einem weiten "
 "Zeitraum zu arbeiten, der auf einer Vermutung oder Abschätzung beruht. "
-"Beispielsweise ist &quot;etwa 1908&quot; ein erlaubter Eintrag für ein "
-"Geburtsdatum in Gramps. Klicke die Datumsschaltfläche neben dem "
-"Datumseingabefeld und schaue in das Gramps-Handbuch, um mehr zu erfahren."
+"Beispielsweise ist \"um 1908\" ein erlaubter Eintrag für ein Geburtsdatum in "
+"Gramps. Klicke die Datumsschaltfläche neben dem Datumseingabefeld und schaue "
+"in das Gramps-Handbuch, um mehr zu erfahren."
 
 #: ../data/tips.xml:42
 msgid ""
@@ -575,7 +569,6 @@ msgstr ""
 "der Datenbank vorkommt."
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge...\" "
 "allows you to combine separately listed people into one. Select the second "
@@ -584,14 +577,13 @@ msgid ""
 "entered differing names for one individual. This also works for the Places, "
 "Sources and Repositories views."
 msgstr ""
-"<b>Einträge zusammenfassen</b><br/>Die Funktion &quot;Bearbeiten &gt; "
-"Vergleichen und zusammenfassen...&quot; erlaubt es, separat gelistete "
-"Personen zu einer zu vereinigen. Wähle den zweiten Eintrag durch Gedrückt "
-"halten der Steuerungstaste (Strg), während du klickst. Dies ist sehr "
-"nützlich, wenn man zwei Stammbäume mit sich überlappenden Personen oder "
-"irrtümlicherweise sich unterscheidende Namen angelegt hat, und zu einer "
-"Person vereinigen will. Dies funktioniert auch in der Orte-, Quellen- und "
-"Aufbewahrungsorteansicht."
+"<b>Einträge zusammenfassen</b><br/>Die Funktion \"Bearbeiten &gt; "
+"Vergleichen und zusammenfassen...\" erlaubt es, separat gelistete Personen "
+"zu einer zu vereinigen. Wähle den zweiten Eintrag durch Gedrückt halten der "
+"Steuerungstaste (Strg), während du klickst. Dies ist sehr nützlich, wenn man "
+"zwei Stammbäume mit sich überlappenden Personen oder irrtümlicherweise sich "
+"unterscheidende Namen angelegt hat, und zu einer Person vereinigen will. "
+"Dies funktioniert auch in der Orte-, Quellen- und Aufbewahrungsorteansicht."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -606,7 +598,6 @@ msgstr ""
 "Seite der oberen Werkzeugleiste oder unter dem Menü \"Ansicht\"."
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -614,9 +605,9 @@ msgid ""
 "buttons."
 msgstr ""
 "<b>Vor und zurück navigieren</b><br/>Gramps verwaltet eine Liste von vorher "
-"aktiven Objekten, wie Personen und Ereignisse. Durch Verwendung von &quot;"
-"Gehe zu &gt;Vor&quot;und &quot;Gehe zu &gt; Zurück&quot; oder der "
-"Pfeilschaltflächen kannst du in dieser Liste vor- und zurückspringen."
+"aktiven Objekten, wie Personen und Ereignisse. Durch Verwendung von \"Gehe "
+"zu &gt;Vor\" und \"Gehe zu &gt; Zurück\" oder der Pfeilschaltflächen kannst "
+"du in dieser Liste vor- und zurückspringen."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -630,7 +621,6 @@ msgstr ""
 "angezeigt."
 
 #: ../data/tips.xml:52
-#, fuzzy
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
 "&gt; User Manual\". The developers have worked hard to make most operations "
@@ -638,10 +628,10 @@ msgid ""
 "spent on genealogy more productive."
 msgstr ""
 "<b>Lies das Handbuch</b><br/>Vergiss nicht, das Gramps-Handbuch zu lesen, "
-"das du unter &quot;Hilfe &gt; Benutzerhandbuch&quot; findest. Die Entwickler "
-"haben hart daran gearbeitet, bereits die Bedienung intuitiv zu gestalten, "
-"aber das Handbuch ist voll mit weiteren Informationen, die dir helfen, deine "
-"Zeit in der Ahnenforschung noch produktiver zu machen."
+"das du unter \"Hilfe &gt; Benutzerhandbuch\" findest. Die Entwickler haben "
+"hart daran gearbeitet, bereits die Bedienung intuitiv zu gestalten, aber das "
+"Handbuch ist voll mit weiteren Informationen, die dir helfen, deine Zeit in "
+"der Ahnenforschung noch produktiver zu machen."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -698,7 +688,6 @@ msgstr ""
 "deine Ideen auf den E-Mail-Listen zu diskutieren."
 
 #: ../data/tips.xml:62
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -710,8 +699,7 @@ msgstr ""
 "Gramps? Probiere die gramps-users Liste aus. Viele Menschen sind auf der "
 "Liste. Du bekommst normalerweise schnell eine Antwort. Hast du Fragen an die "
 "Entwicklung von Gramps, probiere die gramps-devel Liste. Du kannst die "
-"Listen durch die Auswahl von &quot;Hilfe &gt; Gramps Mailinglisten&quot; "
-"sehen."
+"Listen durch die Auswahl von \"Hilfe &gt; Gramps Mailinglisten\" sehen."
 
 #: ../data/tips.xml:64
 #, fuzzy
@@ -3140,13 +3128,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different schema versions."
 msgstr ""
-"Die Schema-Version wird nicht von dieser Gramps-Version unterstützt.\n"
+"Die Schemaversion wird von dieser Version von Gramps nicht unterstützt.\n"
 "\n"
-"Dieser Stammbaum ist Schema-Version %(tree_vers)s und diese Gramps-Version "
-"unterstützt Versionen %(min_vers)s bis %(max_vers)s\n"
+"Dieser Stammbaum ist Schemaversion %(tree_vers)s und diese Version von "
+"Gramps unterstützt Versionen %(min_vers)s bis %(max_vers)s\n"
 "\n"
-"Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
-"zwischen verschiedenen Schema-Versionen zu portieren."
+"Bitte aktualisiere auf die entsprechende Version oder verwende XML zum "
+"Portieren von Daten zwischen verschiedenen Schemaversionen."
 
 #: ../gramps/gen/db/exceptions.py:114
 #, python-format
@@ -3221,7 +3209,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3238,23 +3226,21 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Der Stammbaum, den du versuchst zu laden, befindet sich im Schema Version "
-"%(oldschema)s Format. Diese Gramps Version verwendet Python Version "
-"%(newschema)s. Daher kannst du diesen Stammbaum nicht laden, ohne vorher die "
-"Schemaversion des Stammbaumes zu aktualisieren.\n"
+"Der Stammbaum, den du zu laden versuchst, befindet sich in der Datenbank "
+"%(dbtype)s, die nicht mehr unterstützt wird.\n"
+"Daher kannst du diesen Stammbaum nicht laden, ohne zu aktualisieren.\n"
 "\n"
-"Wenn du aktualisierst, kannst du anschließend die vorhergehende Version von "
-"Gramps nicht mehr verwenden, auch wenn du hinterher deinen aktualisierten "
-"Stammbaum%(wiki_manual_backup_html_start)ssicherst%(html_end)s oder "
-"%(wiki_manual_export_html_start)sexportierst%(html_end)s .\n"
+"Wenn du eine Aktualisierung durchführst, kannst du die vorherige Version von "
+"Gramps nicht mehr verwenden, selbst wenn du anschließend eine "
+"%(wiki_manual_backup_html_start)sSicherung%(html_end)s oder einen "
+"%(wiki_manual_export_html_start)sExport%(html_end)s deines aktualisierten "
+"Stammbaums durchführst.\n"
 "\n"
-"Aktualisieren ist ein schwieriger Vorgang, der deinen Stammbaum irreparabel "
-"beschädigen kann, wenn er unterbrochen wird oder fehlschlägt.\n"
+"Es wird dringend empfohlen, eine Sicherung deines Stammbaums zu erstellen.\n"
 "\n"
-"Wenn du nicht bereits eine Sicherung deines Stammbaum erstellt hast, "
-"solltest du deine %(bold_start)salte%(bold_end)s Version von Gramps starten "
-"und %(wiki_backup_html_start)seine Sicherung%(html_end)s von deinem "
-"Stammbaum erstellen."
+"Wenn du noch keine Sicherung deines Stammbaums erstellt hast, solltest du "
+"deine vorherige Version von Gramps starten und eine "
+"%(wiki_backup_html_start)sSicherung%(html_end)s deines Stammbaums erstellen."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -4342,7 +4328,7 @@ msgstr "Ereignisse mit <Anzahl> Medien"
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Matches events with a certain number of items in the gallery"
 msgstr ""
-"Liefert Ereignissen mit einer bestimmten Anzahl von Objekten in der Galerie"
+"Liefert Ereignissen mit einer bestimmten Anzahl von Elementen in der Galerie"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:44
 msgid "Event with <Id>"
@@ -4362,17 +4348,17 @@ msgstr "Liefert Ereignissen mit einer bestimmten Anzahl von Notizen"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:42
 msgid "Events having notes containing <substring>"
-msgstr "Liefert Ereignisse, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Ereignisse mit Notizen die <Teilzeichenfolge> enthalten"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:43
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
-"Liefert Ereignisse, deren Notizen einen Text mit gegebener Zeichenfolge "
+"Liefert Ereignisse, deren Notizen einen Text mit gegebener Teilzeichenfolge "
 "enthalten"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:41
 msgid "Events having notes containing <text>"
-msgstr "Ereignisse, deren Notizen den <Text> enthalten"
+msgstr "Ereignisse mit Notizen, die <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -4416,7 +4402,7 @@ msgstr "Liefert Ereignisse der gegebenen Art "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:44
 msgid "Events matching the <filter>"
-msgstr "Ereignisse entsprechend <Filter>"
+msgstr "Ereignisse, die dem <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:45
 msgid "Matches events matched by the specified filter name"
@@ -4439,12 +4425,13 @@ msgstr "Ereignisse von Personen, die dem <Personenfilter> entsprechen"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
-"Liefert Ereignisse von Personen, die dem gegeben Personenfilter entsprechen"
+"Liefert Ereignisse von Personen, die dem gegeben Personenfiltername "
+"entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:49
 #: ../gramps/gui/editors/filtereditor.py:541
 msgid "Place filter name:"
-msgstr "Ortefiltername:"
+msgstr "Ortsfiltername:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:50
 msgid "Events of places matching the <place filter>"
@@ -4455,8 +4442,8 @@ msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Liefert Ereignisse die an Orten stattfanden, die einem bestimmten Ortsfilter "
-"entsprechen"
+"Liefert Ereignisse die an Orten stattfanden, die dem angegebenen "
+"Ortsfilternamen entsprechen"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:45
 msgid "Events with at least one direct source >= <confidence level>"
@@ -11515,7 +11502,6 @@ msgid "_Close"
 msgstr "_Schließen"
 
 #: ../gramps/gui/configure.py:119
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11550,34 +11536,34 @@ msgstr ""
 "ersetzt:<tt>\n"
 "  <b>Vorname</b>      - Vorname  <b>Nachname</b>      - Nachnamen (mit "
 "Präfix und Verbindungen)\n"
-"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Suffix</b>       - Suffix "
-"(Jr., Sr.)\n"
+"  <b>Titel</b>      - Titel (Dr., Mrs.)       <b>Suffix</b>       - Suffix ("
+"Jr., Sr.)\n"
 "  <b>Rufname</b>       - Rufname              <b>Spitzname</b>     - "
 "Spitzname\n"
 "  <b>Initialen</b>   - erste Buchstabe der Vornamen  <b>Üblich</b>       - "
 "Spitzname sonst erster Vorname\n"
+"Nachnamen:\n"
+"  <b>Rest</b>       - nicht primäre Nachnamen    <b>Kein Patronymikon</b>- "
+"alle Nachnamen außer pa/matronymic &amp; primär\n"
+"  <b>Familienspitzname</b> - Familienspitzname        <b>Präfix</b>       - "
+"alle Präfixes (von, de)  \n"
 "  <b>Primär, Primär[Prä] oder [Nach] oder [Verb]</b>- voller primärer "
 "Nachname, Präfix, nur Nachname, Verbindung   \n"
 "  <b>Patronymikon oder [Prä] oder [Nach] oder [Verb]</b> - voller Pa/"
 "Matronymikon Nachname, Präfix, nur Nachname, Verbindung \n"
-"  <b>Familienspitzname</b> - Familienspitzname        <b>Präfix</b>       - "
-"alle Präfixes (von, de)  \n"
-"  <b>Rest</b>       - nicht primäre Nachnamen    <b>Kein Patronymikon</b>- "
-"alle Nachnamen außer pa/matronymic &amp; primär\n"
-"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und "
-"Verbindungen)\n"
+"  <b>unbearbeitete Nachnamen</b>- Nachnamen (keine Präfixe und Verbindungen)"
 "\n"
 "</tt>\n"
 "GROSSGESCHRIEBENE Schlüsselwörter erzwingen Großschreibung. Zusätzliche "
 "Klammern und Kommas werden entfernt. Anderer Text erscheint buchstäblich.\n"
 "\n"
-"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr (\"Ed"
-"\") - Underhills'\n"
-"     <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist das Präfix, "
-"<i>Smith</i> und <i>Weston</i> Nachnamen, \n"
-"     <i>und</i> eine Verbindung, <i>Wilson</i> Patronymikon Nachname, <i>Dr."
-"</i> Titel, <i>Sr</i> Suffix, <i>Ed</i> Spitzname, \n"
-"     <i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
+"<b>Beispiele</b>: 'Dr. Edwin Jose von der Smith und Weston Wilson Sr (\"Ed\")"
+" - Underhills'\n"
+"      <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist das Präfix, "
+"<i>Smith</i> und <i>Weston</i> Nachnamen, <i>und</i> eine Verbindung, "
+"<i>Wilson</i> Patronymikon Nachname,\n"
+"      <i>Dr.</i> Titel, <i>Sr</i> Suffix, <i>Ed</i> Spitzname, "
+"<i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -19516,7 +19502,7 @@ msgstr "Versionsverwaltung"
 
 #: ../gramps/gui/plug/tool.py:60
 msgid "Utilities"
-msgstr "Werkzeuge"
+msgstr "Dienstprogramme"
 
 #: ../gramps/gui/plug/tool.py:110
 msgid ""
@@ -20979,7 +20965,6 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
 #: ../gramps/plugins/drawreport/descendtree.py:1620
-#, fuzzy
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -20996,19 +20981,20 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"Legt fest, ob die Seite angepasst wird, um der Größe des \n"
-"Baums zu entsprechen.  \n"
-"Beachte: Die Seite hat dann keine Standardgröße.\n"
+"Ob die Seite an die Größe des Baums angepasst \n"
+"werden soll. Hinweis: Die Seite hat eine nicht \n"
+"standardmäßige Größe.\n"
 "\n"
-"Wenn diese Option gewählt wird, passiert folgendes:\n"
+"Wenn diese Option ausgewählt ist, geschieht Folgendes:\n"
 "\n"
-"'Baum nicht skalieren' passt die Seite auf die Höhe/Breite des Baums an.\n"
+"Mit der Option 'Baum nicht skalieren' wird die Seite\n"
+" auf die Höhe/Breite des Baumes angepasst\n"
 "\n"
-"'Baum nur auf Seitenbreite skalieren' passt die Höhe der Seite an die Höhe "
-"des Baums an.\n"
+"Mit 'Baum nur an Seitenbreite anpassen' wird die Höhe\n"
+" der Seite auf die Höhe des Baumes angepasst\n"
 "\n"
-"'Baum auf Seitengröße skalieren' passt die Seite so an,\n"
-" dass jeder Abstand/Zwischenraum in der Höhe und Breite entfernt wird."
+"Mit 'Baum auf Seitengröße skalieren' wird die Seitengröße\n"
+" angepasst, um Lücken in Höhe oder Breite zu entfernen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
@@ -26094,16 +26080,10 @@ msgstr ""
 "relativ zum Benutzerverzeichnis festlegen kannst.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Objekte, die Kandidaten für das Zusammenfassen sind:\n"
 
@@ -33551,12 +33531,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"Dein Stammbaum enthält cross table duplicate handles.\n"
-" Dies ist schlecht und kann repariert werden durch erstellen\n"
-"einer Sicherung von deinem Stammbaum und importieren dieser\n"
-"Sicherung in einen leeren Stammbaum. Der Rest des Test wurde\n"
-"abgebrochen, das überprüfen und reparieren Werkzeug sollte auf\n"
-"dem neuen Stammbaum erneut ausgeführt werden."
+"Dein Stammbaum enthält Kreuztabellenduplikate.\n"
+" Dies ist schlecht und kann repariert werden durch erstellen einer Sicherung "
+"von deinem\n"
+" Stammbaum und importieren dieser Sicherung in einen leeren Stammbaum.\n"
+" Der Rest des Test wurde abgebrochen, das überprüfen und reparieren\n"
+" Werkzeug sollte auf dem neuen Stammbaum erneut ausgeführt werden."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
