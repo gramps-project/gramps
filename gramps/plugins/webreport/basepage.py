@@ -2549,7 +2549,7 @@ class BasePage:
         with Html("div", class_="subsection", id="sourcerefs") as section:
             section += Html("h4", self._("Source References"), inline=True)
 
-            ordered = Html("ol")
+            ordered = Html("ol", id="srcr")
 
             cindex = 0
             citationlist = bibli.get_citation_list()
@@ -2572,7 +2572,7 @@ class BasePage:
                 else:
                     list_html = Html("li", "None")
 
-                ordered1 = Html("ol")
+                ordered1 = Html("ol", id="citr")
                 citation_ref_list = citation.get_ref_list()
                 for key, sref in citation_ref_list:
                     cit_ref_li = Html("li", id="sref%d%s" % (cindex, key))
