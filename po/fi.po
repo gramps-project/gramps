@@ -7166,7 +7166,7 @@ msgstr "tuntematon"
 #: ../gramps/gen/lib/date.py:281
 #, python-format
 msgid "greater than %s years"
-msgstr "korkeitaan %s vuotta"
+msgstr "enintään %s vuotta"
 
 #: ../gramps/gen/lib/date.py:286 ../gramps/gen/lib/date.py:314
 #: ../gramps/gen/lib/date.py:316 ../gramps/gen/lib/date.py:322
