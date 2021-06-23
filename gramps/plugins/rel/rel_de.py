@@ -5,6 +5,7 @@
 # Copyright (C) 2003-2005  Donald N. Allingham
 # Copyright (C) 2008       Stefan Siegel
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2021       Mirko Leonhaeuser
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -156,7 +157,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if removed < len(_removed):
             return _removed[removed]
         else:
-            return '(%s)' % self._make_roman(removed-2)
+            return '(%s) Urgroß' % self._make_roman(removed-1)
 
     def _degree_text(self, degree, removed):
         if removed == 0:
