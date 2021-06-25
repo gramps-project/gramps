@@ -56,6 +56,7 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -884,12 +885,17 @@ class ViewManager(CLIManager):
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        self.uimanager.update_menu()
+        # bug 12048 this avoids crash if part of toolbar in view is not shown
+        # because of a small screen when changing views.  Part of the Gtk code
+        # was deleting a toolbar object too soon; and another part of Gtk still
+        # had a reference.
+        def page_changer(self):
+            self.uimanager.update_menu()
+            self.active_page.change_page()
+            return False
 
-        while Gtk.events_pending():
-            Gtk.main_iteration()
-
-        self.active_page.change_page()
+        GLib.idle_add(page_changer, self,
+                      priority=GLib.PRIORITY_DEFAULT_IDLE - 10)
 
     def __delete_pages(self):
         """
