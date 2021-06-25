@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 00:00+0200\n"
-"PO-Revision-Date: 2021-05-14 21:17+0200\n"
+"PO-Revision-Date: 2021-06-25 11:37+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -23097,7 +23097,7 @@ msgstr "Gramplet schlägt zu erforschende Punkte vor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:339
 msgid "What's Next?"
-msgstr "Was nun?"
+msgstr "Was als nächstes?"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:349
 msgid "Person Details"
