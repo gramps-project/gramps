@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-10 17:50+0000\n"
+"PO-Revision-Date: 2021-07-02 13:33+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
@@ -395,8 +395,8 @@ msgid ""
 msgstr ""
 "<b>שינוי האדם הפעיל<br/></b>קל מאוד לשנות את האדם הפעיל במצג. הקשה כפולה "
 "במצג 'קשרי-גומלין' על אדם כל שהוא. במצג 'אבות קדמונים' הקשה כפולה על האדם או "
-"הקשת עכבר ימנית על מנת לבחור את אחד מבני המשפחה, בני זוגם, אחים, צאצאים או "
-"הורים."
+"הקשת עכבר ימנית על מנת לבחור את אחד מבני המשפחה, בני זוגם, אַחָאִים, צאצאים "
+"או הורים."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -589,7 +589,7 @@ msgid ""
 msgstr ""
 "<b>הוספת צאצאים<br/></b>ניתן להוסיף צאצאים בשני דרכים. מציאת אחד ההורים "
 "בתצוגת משפחה ולפתוח את המשפחה לעריכה ואז בחירה ביצירת אדם חדש או הוספת אדם "
-"קיים. כמו כן ניתן להוסיף צאצאים (או אחים) מתוך עורך המשפחה."
+"קיים. כמו כן ניתן להוסיף צאצאים (או אַחָאִים) מתוך עורך המשפחה."
 
 #: ../data/tips.xml:56
 msgid ""
@@ -5595,11 +5595,11 @@ msgstr "שליפת אנשים הקשורים לאדם מסוים"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:46
 msgid "Siblings of <filter> match"
-msgstr "שליפת אחים של <מסנן>"
+msgstr "שליפת אַחָאִים של <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
 msgid "Matches siblings of anybody matched by a filter"
-msgstr "שליפת אחים של מישהם התואמים למסנן"
+msgstr "שליפת אַחָאִים של כל מי שתואמים למסנן"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:47
 msgid "Spouses of <filter> match"
@@ -9494,7 +9494,7 @@ msgstr "קובץ גראפוויז"
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 msgctxt "paper size"
 msgid "Letter"
-msgstr "Letter"
+msgstr "מכתב"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:80
 msgctxt "paper size"
@@ -10207,19 +10207,19 @@ msgstr "תאריך לידה"
 
 #: ../gramps/gen/utils/alive.py:183
 msgid "sibling birth date"
-msgstr "תאריך לידה של האח"
+msgstr "תאריך לידת האַחָאִי"
 
 #: ../gramps/gen/utils/alive.py:195
 msgid "sibling death date"
-msgstr "תאריך פטירה של האח"
+msgstr "תאריך פטירת האַחָאִי"
 
 #: ../gramps/gen/utils/alive.py:209
 msgid "sibling birth-related date"
-msgstr "תאריך קשור ללידת אח"
+msgstr "תאריך קשור ללידת אַחָאִים"
 
 #: ../gramps/gen/utils/alive.py:220
 msgid "sibling death-related date"
-msgstr "תאריך קשור לפטירת אח"
+msgstr "תאריך קשור לפטירת האַחָאִי"
 
 #: ../gramps/gen/utils/alive.py:235 ../gramps/gen/utils/alive.py:246
 msgid "a spouse's birth-related date, "
@@ -11698,7 +11698,7 @@ msgstr "גיל מרבי של אנשים שעדיין בחיים"
 
 #: ../gramps/gui/configure.py:1530
 msgid "Maximum sibling age difference"
-msgstr "הפרש גילאים מרבי בין אחים"
+msgstr "הפרש גילאים מרבי בין אַחָאִים"
 
 #: ../gramps/gui/configure.py:1534
 msgid "Minimum years between generations"
@@ -19623,7 +19623,7 @@ msgstr "_העתקה"
 #: ../gramps/plugins/view/pedigreeview.py:1805
 #: ../gramps/plugins/view/relview.py:1084
 msgid "Siblings"
-msgstr "אחים"
+msgstr "אַחָאִים"
 
 #: ../gramps/gui/widgets/fanchart.py:2037
 #: ../gramps/plugins/view/pedigreeview.py:1932
@@ -20189,12 +20189,12 @@ msgstr "האדם המרכזי לעץ"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:806
 msgid "Include siblings of the center person"
-msgstr "הכללת צאצאים של האדם המרכזי"
+msgstr "הכללת אַחָאִים של האדם המרכזי"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:808
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
-msgstr "האם להציג את האדם המרכזי בלבד, או גם את אחיו"
+msgstr "האם להציג את האדם המרכזי בלבד, או גם את אַחָאִיו"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:812
 #: ../gramps/plugins/drawreport/descendtree.py:1544
@@ -30807,7 +30807,7 @@ msgstr "שם פרטי זהה - עצמאי"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:320
 msgid "Display a person's siblings."
-msgstr "הצגת אחים של אדם."
+msgstr "הצגת אַחָאִי אדם."
 
 #: ../gramps/plugins/quickview/references.py:68
 #, python-format
@@ -30883,11 +30883,11 @@ msgstr "אנשים בעלי שם בפרטי '%s'"
 #: ../gramps/plugins/quickview/siblings.py:46
 #, python-format
 msgid "Siblings of %s"
-msgstr "אחים של %s"
+msgstr "אַחָאִים של %s"
 
 #: ../gramps/plugins/quickview/siblings.py:48
 msgid "Sibling"
-msgstr "אחים"
+msgstr "אַחָאִי"
 
 #: ../gramps/plugins/quickview/siblings.py:62
 msgid "self"
@@ -35724,8 +35724,8 @@ msgstr "הסרת אדם כהורה במשפחה זו"
 #, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] " ({number_of} אח"
-msgstr[1] " ({number_of} אחים"
+msgstr[0] " אַחָאִי ({number_of}"
+msgstr[1] " ({number_of} אַחָאִים"
 
 #: ../gramps/plugins/view/relview.py:1051
 #: ../gramps/plugins/view/relview.py:1106
@@ -35740,7 +35740,7 @@ msgstr " (אחות אחת)"
 #: ../gramps/plugins/view/relview.py:1055
 #: ../gramps/plugins/view/relview.py:1110
 msgid " (1 sibling)"
-msgstr " (אח(ות) אחד(ת))"
+msgstr " (אַחָאִי 1)"
 
 #: ../gramps/plugins/view/relview.py:1057
 #: ../gramps/plugins/view/relview.py:1112
@@ -35828,7 +35828,7 @@ msgstr "הצגת פרטים"
 
 #: ../gramps/plugins/view/relview.py:1897
 msgid "Show Siblings"
-msgstr "הצגת אחים"
+msgstr "הצגת אַחָאִים"
 
 #: ../gramps/plugins/view/repoview.py:88
 msgid "Home URL"
@@ -36830,12 +36830,12 @@ msgstr "האם לכלול עמודת הורים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
 msgid "Include half and/or step-siblings on the individual pages"
-msgstr "הכללת אחים למחצה ו/או אחים חורגים בעמוד האישי"
+msgstr "הכללת אַחָאִים למחצה ו/או אַחָאִים חורגים בעמוד האישי"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2361
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
-msgstr "האם לכלול אחים למחצה ו/או אחים חורגים עם ההורים והצאצאים"
+msgstr "האם לכלול אַחָאִים למחצה ו/או אַחָאִים חורגים עם ההורים והצאצאים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "Include family pages"
@@ -37228,7 +37228,7 @@ msgstr "אם חורגת"
 
 #: ../gramps/plugins/webreport/person.py:1902
 msgid "Not siblings"
-msgstr "לא אחים"
+msgstr "לא אַחָאִים"
 
 #: ../gramps/plugins/webreport/person.py:2044
 msgid "Relation to the center person"
