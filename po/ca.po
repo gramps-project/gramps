@@ -9,13 +9,14 @@
 #
 # Joan Creus <joan.creus at gmail dot com>, 2008, 2009, 2010, 2011, 2012, 2013, 2019, 2020.
 # Arnau <arnaullv at gmail dot com>, 2017.
+# jcreusand <joan.creusandreu@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-23 08:26+0000\n"
+"Last-Translator: jcreusand <joan.creusandreu@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -60,9 +61,8 @@ msgstr ""
 "precisa com us cal."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Sistema Genealògic Gramps"
+msgstr "Equip de Desenvolupament de Gramps"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -187,7 +187,7 @@ msgstr "Roix ha-Xanà 2"
 
 #: ../data/holidays.xml:353
 msgid "Yom Kippur"
-msgstr "Yom Kippur"
+msgstr "Iom Kippur"
 
 #: ../data/holidays.xml:354
 msgid "Sukot"
@@ -286,7 +286,6 @@ msgid "United States of America"
 msgstr "Estats Units d'Amèrica"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -294,9 +293,9 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Treballar amb Dates</b><br/>Es pot donar un rang de dates fent servir el "
-"format &quot;entre 4 de gener de 2000 i 20 de març de 2003&quot;. També pot "
-"indicar el nivell de confiança en una data i fins i tot triar entre set "
-"calendaris diferents. Provi el botó del costat del camp de data a l'Editor "
+"format \"entre 4 de gener de 2000 i 20 de març de 2003\". També pot indicar "
+"el nivell de confiança en una data i fins i tot triar entre set calendaris "
+"diferents. Provi el botó del costat del camp de data a l'Editor "
 "d'Esdeveniments."
 
 #: ../data/tips.xml:6
@@ -351,7 +350,6 @@ msgstr ""
 "s'oblidi de gravar les converses!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -364,8 +362,8 @@ msgid ""
 msgstr ""
 "<b>Filtrar Persones</b><br/>A la Vista de Persones, es poden 'filtrar' "
 "individus segons criteris molt variats. Per definir un filtre nou, vagi a "
-"&quot;Edita &gt; Editor de Filtres de Persones&quot;. Allà pot posar nom al "
-"seu filtre i afegir i combinar regles fent servir la multitud de regles "
+"\"Edita &gt; Editor de Filtres de Persones\". Allà pot posar nom al seu "
+"filtre i afegir i combinar regles fent servir la multitud de regles "
 "predeterminades. Per exemple, es pot definir un filtre per localitzar totes "
 "les persones adoptades de l'arbre genealògic. També es poden filtrar les "
 "persones sense data de naixement coneguda. Per obtenir els resultats, desi "
@@ -420,7 +418,6 @@ msgstr ""
 "qualsevol dels seus cònjuges, germans, fills o pares."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -428,14 +425,13 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Qui Va Néixer Quan?</b><br/>A &quot;Eines &gt;Anàlisi i Exploració &gt; "
-"Comparar Esdeveniments Individuals...&quot; pot comparar dades dels "
-"individus de la base de dades. Això és útil, per exemple, si es volen "
-"llistar les dates de naixement de tothom de la base de dades. Pot utilitzar "
-"un filtre personalitzat per reduir el nombre de resultats."
+"<b>Qui Va Néixer Quan?</b><br/>A \"Eines &gt;Anàlisi i Exploració &gt; "
+"Comparar Esdeveniments Individuals...\" podeu comparar dades dels individus "
+"de la base de dades. Això és útil, per exemple, si es volen llistar les "
+"dates de naixement de tothom de la base de dades. Podeu utilitzar un filtre "
+"personalitzat per reduir el nombre de resultats."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -448,10 +444,9 @@ msgstr ""
 "consistència de la base de dades. Hi ha eines de recerca i anàlisi com ara "
 "la comparació d'esdeveniments, localització de persones duplicades, "
 "navegador de descendents interactiu, i molts d'altres. Totes les eines es "
-"poden trobar sota el menú d'&quot;Eines&quot;."
+"poden trobar sota el menú d'\"Eines\"."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
@@ -460,8 +455,8 @@ msgid ""
 msgstr ""
 "<b>Càlcul de Parentesc</b><br/>Per comprovar si dues persones de la base de "
 "dades estan emparentades (per sang, no casament) provi l'eina que hi ha a "
-"&quot;Eines &gt; Utilitats &gt; Calculadora de Parentesc...&quot;. S'informa "
-"del parentesc precís així com dels avantpassats en comú."
+"\"Eines &gt; Utilitats &gt; Calculadora de Parentesc...\". S'informa del "
+"parentesc precís així com dels avantpassats en comú."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -483,7 +478,6 @@ msgstr ""
 "SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -491,11 +485,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\""
 msgstr ""
-"<b>Fixar les Preferències</b><br/>&quot;Edita &gt; Preferències...&quot; li "
-"permet de modificar una colla de paràmetres, com ara el camí als fitxers "
+"<b>Fixar les Preferències</b><br/>\"Edita &gt; Preferències...\" li permet "
+"de modificar una colla de paràmetres, com ara el camí als fitxers "
 "audiovisuals, i li permet d'adaptar molts aspectes de la presentació de "
 "Gramps a les seves necessitats. Cada vista es pot configurar també per "
-"separat a &quot;Vista &gt; Configurar Vista...&quot;"
+"separat a \"Vista &gt; Configurar Vista...\""
 
 #: ../data/tips.xml:34
 msgid ""
@@ -513,7 +507,6 @@ msgstr ""
 "informe per això."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -523,9 +516,9 @@ msgid ""
 msgstr ""
 "<b>Començar un Nou Arbre de Família</b><br/>: Una bona manera de començar un "
 "nou arbre de família és introduir tots els membres de la família a la base "
-"de dades fent servir la Vista de Persones (amb &quot;Edita &gt; Afegir..."
-"&quot; o clicar el botó Afegir Persona Nova de la Vista de Persones). "
-"Després, vagi a la Vista de Relació per crear les relacions entre persones."
+"de dades fent servir la Vista de Persones (amb \"Edita &gt; Afegir...\" o "
+"clicar el botó Afegir Persona Nova de la Vista de Persones). Després, vagi a "
+"la Vista de Relació per crear les relacions entre persones."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -536,7 +529,6 @@ msgstr ""
 "ratolí al damunt d'un botó i apareixerà un petit text d'ajuda."
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -546,25 +538,23 @@ msgid ""
 msgstr ""
 "<b>No està segur d'una data?</b><br/>Si no està segur de la data en què va "
 "ocórrer un esdeveniment, Gramps li permet d'introduir una colla de formats "
-"de data basats en una suposició o estimació. Per exemple, &quot;al voltant "
-"de 1908&quot; és una entrada vàlida per una data de naixement a Gramps. "
-"Cliqui el botó del costat del camp de data i vegi el manual de Gramps per "
+"de data basats en una suposició o estimació. Per exemple, \"al voltant de "
+"1908\" és una entrada vàlida per una data de naixement a Gramps. Cliqui el "
+"botó de Data del costat del camp de data i vegi el manual de Gramps per "
 "aprendre'n més."
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Entrades Duplicades</b><br/>&quot;Eines &gt; Procés de Base de Dades &gt; "
-"Trobar Persones Possiblement Duplicades...&quot; permet de localitzar (i "
+"<b>Entrades Duplicades</b><br/>\"Eines &gt; Procés de Base de Dades &gt; "
+"Trobar Persones Possiblement Duplicades...\" permet de localitzar (i "
 "combinar) entrades de la mateixa persona que s'hagin introduït més d'un cop "
 "a la base de dades."
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge...\" "
 "allows you to combine separately listed people into one. Select the second "
@@ -573,16 +563,14 @@ msgid ""
 "entered differing names for one individual. This also works for the Places, "
 "Sources and Repositories views."
 msgstr ""
-"<b>Combinar Entrades</b><br/>La funció &quot;Edita &gt; Comparar i "
-"Combinar...&quot; li permet de combinar persones llistades per separat en "
-"una de sola. Seleccioni la segona entrada mantenint premuda la tecla de "
-"Control mentre clica. Això és molt útil per combinar dues bases de dades que "
-"tinguin gent en comú, o combinar noms diferents introduïts erròniament per "
-"un sol individu. Això també funciona per les vistes de Llocs, Fonts i "
-"Repositoris."
+"<b>Combinar Entrades</b><br/>La funció \"Edita &gt; Comparar i Combinar...\" "
+"li permet de combinar persones llistades per separat en una de sola. "
+"Seleccioni la segona entrada mantenint premuda la tecla de Control mentre "
+"clica. Això és molt útil per combinar dues bases de dades que tinguin gent "
+"en comú, o combinar noms diferents introduïts erròniament per un sol "
+"individu. Això també funciona per les vistes de Llocs, Fonts i Repositoris."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
@@ -592,10 +580,9 @@ msgstr ""
 "<b>Organitzar les Vistes</b><br/>Moltes de les vistes poden presentar les "
 "dades o bé com un arbre jeràrquic o com una simple llista. Cada vista pot "
 "també configurar-se de la manera que li agradi. Doni un cop d'ull a la dreta "
-"de la barra d'eines superior o al menú &quot;Vista&quot;."
+"de la barra d'eines superior o al menú \"Vista\"."
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -604,8 +591,8 @@ msgid ""
 msgstr ""
 "<b>Navegar Endavant i Enrere</b><br/>Gramps manté una llista dels objectes "
 "actius prèviament, com ara Persones, Esdeveniments. Pot moure's endavant i "
-"enrere per aquesta llista fent servir &quot;Anar &gt; Endavant&quot; i &quot;"
-"Anar &gt; Enrere&quot; o els botons de fletxa."
+"enrere per aquesta llista fent servir \"Anar &gt; Endavant\" i \"Anar &gt; "
+"Enrere\" o els botons de fletxa."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -618,18 +605,16 @@ msgstr ""
 "n'hi ha una per alguna funció, es mostra a la banda dreta del menú."
 
 #: ../data/tips.xml:52
-#, fuzzy
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
 "&gt; User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Llegeixi el Manual<b><br/>No s'oblidi de llegir el manual de Gramps, "
-"&quot;Ajuda &gt; Manual d'Usuari&quot;. Els desenvolupadors han treballat "
-"molt per fer que la majoria de les operacions siguin intuïtives, però el "
-"manual és ple d'informació que farà més productiu el temps que dediqui a la "
-"genealogia."
+"<b>Llegeixi el Manual</b><br/>No s'oblidi de llegir el manual de Gramps, "
+"\"Ajuda &gt; Manual d'Usuari\". Els desenvolupadors han treballat molt per "
+"fer que la majoria de les operacions siguin intuïtives, però el manual és "
+"ple d'informació que farà més productiu el temps que dediqui a la genealogia."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -685,7 +670,6 @@ msgstr ""
 "llistes de correu."
 
 #: ../data/tips.xml:62
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -697,11 +681,10 @@ msgstr ""
 "una resposta? Doni un cop d'ull a la llista gramps-users (en anglès). Hi ha "
 "molta gent amb ganes d'ajudar, i per tant és probable obtenir respostes "
 "ràpidament. Si té consultes sobre el desenvolupament de Gramps, provi gramps-"
-"devel (també en anglès). Pot veure les llistes fent &quot;Ajuda &gt; Llistes "
-"de Correu de Gramps&quot;."
+"devel (també en anglès). Pot veure les llistes fent \"Ajuda &gt; Llistes de "
+"Correu de Gramps\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -717,7 +700,7 @@ msgstr ""
 "documentació a provar versions de desenvolupament o ajudar amb el lloc web. "
 "Comenci subscrivint-se a la llista de distribució dels desenvolupadors de "
 "Gramps, gramps-devel, i presentant-se. Es pot trobar informació sobre "
-"subscripcions a &quot;Ajuda &gt; Llistes de Correu de Gramps&quot;"
+"subscripcions a \"Ajuda &gt; Llistes de Correu de Gramps\""
 
 #: ../data/tips.xml:66
 msgid ""
@@ -738,7 +721,6 @@ msgstr ""
 "de milers de persones."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -750,12 +732,11 @@ msgstr ""
 "és un lloc pràctic per guardar els noms de persones que es facin servir "
 "sovint. Seleccionar un punt d'interès farà que aquesta persona sigui "
 "l'Activa. Per crear un punt d'interès per alguna persona, cal fer-la la "
-"Persona Activa, i llavors anar a &quot;Punts d'Interès &gt; Afegir punt "
-"d'interès&quot; o prémer Ctrl+D. També es poden posar com a punts d'interès "
-"la majoria dels altre objectes."
+"Persona Activa, i llavors anar a \"Punts d'Interès &gt; Afegir punt d'"
+"interès\" o prémer Ctrl+D. També es poden posar com a punts d'interès la "
+"majoria dels altre objectes."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -768,11 +749,10 @@ msgstr ""
 "un format no vàlid. Els formats de data incorrectes sortiran a Gramps amb un "
 "fons vermellós o un punt vermell a la vora dreta del camp. Pot arreglar la "
 "data utilitzant el diàleg de Selecció de Data, que es pot obrir clicant al "
-"botó de data. El format de la data es fixa a &quot;Edita &gt; Preferències "
-"&gt; Mostrar&quot;."
+"botó de data. El format de la data es fixa a \"Edita &gt; Preferències &gt; "
+"Mostrar\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
@@ -780,10 +760,10 @@ msgid ""
 "they will be added to the available events, but not translated."
 msgstr ""
 "<b>Llistar Esdeveniments</b><br/>Els esdeveniments s'afegeixen amb l'editor "
-"que s'obre fent &quot;Persona &gt; Editar Persona &gt; Esdeveniments&quot;. "
-"Hi ha una llarga llista de tipus d'esdeveniments predefinits. Pot afegir-hi "
-"els seus propis tipus d'esdeveniment escrivint al camp de text, s'afegiran "
-"als esdeveniments disponibles, però no es traduiran."
+"que s'obre fent \"Persona &gt; Editar Persona &gt; Esdeveniments\". Hi ha "
+"una llarga llista de tipus d'esdeveniments predefinits. Pot afegir-hi els "
+"seus propis tipus d'esdeveniment escrivint al camp de text, s'afegiran als "
+"esdeveniments disponibles, però no es traduiran."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -792,7 +772,7 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
-"<b>Gestió de Noms<b><br/>És fàcil de gestionar persones amb noms diversos a "
+"<b>Gestió de Noms</b><br/>És fàcil de gestionar persones amb noms diversos a "
 "Gramps. A l'Editor de Persones seleccioni la pestanya de Noms. S'hi poden "
 "afegir noms de diferents tipus i establir quin és el preferit arrossegant-lo "
 "a la secció de Nom Preferit."
@@ -843,7 +823,6 @@ msgstr ""
 "gràfiques, vídeos, talls de so, fulls de càlcul, documents, i més."
 
 #: ../data/tips.xml:84
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -853,8 +832,7 @@ msgstr ""
 "<b>Filtres</b><br/>Els filtres permeten de limitar les persones que es veuen "
 "a la Vista de Persones. A més dels molts filtres proporcionats, es poden "
 "crear Filtres a Mida, limitats només per la pròpia imaginació. Els filtres a "
-"mida es poden crear des de &quot;Edita &gt; Editor de Filtres de "
-"Persones&quot;."
+"mida es poden crear des de \"Edita &gt; Editor de Filtres de Persones\"."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -956,7 +934,6 @@ msgstr ""
 "una font."
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
@@ -964,33 +941,31 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Informes i Eines Addicionals</b><br/>Es poden afegir informes i eines "
-"addicionals a Gramps amb el sistema de &quot;Complements&quot;. Vegi-ho a "
-"&quot;Ajuda &gt; Informes Addicionals/Eines&quot;. Aquesta és la millor "
-"manera perquè els usuaris avançats experimentin i creïn noves funcionalitats."
+"addicionals a Gramps amb el sistema de \"Complements\". Vegi-ho a \"Ajuda "
+"&gt; Informes Addicionals/Eines\". Aquesta és la millor manera perquè els "
+"usuaris avançats experimentin i creïn noves funcionalitats."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Informes de Llibre</b><br/>L'informe de Llibre, a &quot;Informes &gt; "
-"Llibres &gt; Informe de Llibre...&quot;, li permet de recopilar un "
-"reguitzell d'informes en un sol document. Aquest informe únic és més fàcil "
-"de distribuir que informes múltiples, especialment quan s'imprimeix."
+"<b>Informes de Llibre</b><br/>L'informe de Llibre, a \"Informes &gt; Llibres "
+"&gt; Informe de Llibre...\", li permet de recopilar un reguitzell d'informes "
+"en un sol document. Aquest informe únic és més fàcil de distribuir que "
+"informes múltiples, especialment quan s'imprimeix."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\""
 msgstr ""
 "<b>Anuncis de Gramps</b><br/>Li interessa rebre una notificació quan surti "
-"una versió de Gramps? Apunti's a la llista de correu Gramps-announce a &quot;"
-"Ajuda &gt; Llistes de Correu de Gramps&quot;"
+"una versió de Gramps? Apunti's a la llista de correu Gramps-announce a "
+"\"Ajuda &gt; Llistes de Correu de Gramps\""
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1026,8 +1001,8 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>El 'Com i el Per què' de la Seva Genealogia</b>La genealogia no tracta "
-"només de dates i noms. Tracta sobretot de persones. Sigui descriptiu. "
+"<b>El 'Com i el Per què' de la Seva Genealogia</b><br/> La genealogia no "
+"tracta només de dates i noms. Tracta sobretot de persones. Sigui descriptiu. "
 "Inclogui el per què les coses van anar així, i com els descendents van ser "
 "influïts pels esdeveniments pels quals van haver de viure. Les narracions "
 "són fonamentals per donar vida a la història de la seva família."
@@ -1064,7 +1039,6 @@ msgstr ""
 "totes les llengües."
 
 #: ../data/tips.xml:120
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
@@ -1072,9 +1046,9 @@ msgid ""
 "home button is pressed."
 msgstr ""
 "<b>La Persona Base</b><br/>Es pot triar qualsevol com a Persona Base dins de "
-"Gramps. Faci &quot;Edita &gt; Fixar Persona Base&quot; a la Vista de "
-"Persones. La persona base és la persona que se selecciona quan s'obre la "
-"base de dades o quan es prem el botó de 'la casa'."
+"Gramps. Faci \"Edita &gt; Fixar Persona Base\" a la Vista de Persones. La "
+"persona base és la persona que se selecciona quan s'obre la base de dades o "
+"quan es prem el botó de 'la casa'."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1849,15 +1823,14 @@ msgstr "Detectada corrupció de la base de dades a nivell baix"
 
 #: ../gramps/cli/grampscli.py:104 ../gramps/cli/user.py:201
 #: ../gramps/gui/dialog.py:296
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps ha detectat un problema a la base de dades Berkeley de nivell "
-"inferior. Això es pot reparar des del Gestor d'Arbres Genealògics. "
-"Seleccioni la base de dades i cliqui el botó Reparar"
+"Gramps ha detectat un problema a la base de dades de nivell inferior. Això "
+"de vegades es pot reparar des del Gestor d'Arbres Genealògics. Seleccioni la "
+"base de dades i cliqui el botó Reparar"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:161
 msgid "Read only database"
@@ -2002,7 +1975,7 @@ msgstr "Opció desconeguda: %s"
 
 #: ../gramps/cli/plug/__init__.py:462 ../gramps/cli/plug/__init__.py:552
 msgid "   Valid options are:"
-msgstr "  Les opcions vàlides són:"
+msgstr "   Les opcions vàlides són:"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:463 ../gramps/cli/plug/__init__.py:553
@@ -2028,7 +2001,7 @@ msgstr ", "
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
-"  Utilitzeu '%(donottranslate)s' per veure'n la descripció i els valors "
+"   Utilitzeu '%(donottranslate)s' per veure'n la descripció i els valors "
 "acceptables"
 
 #: ../gramps/cli/plug/__init__.py:527
@@ -3123,6 +3096,7 @@ msgid ""
 msgstr ""
 "La versió de l'esquema de base de dades no està suportada per aquesta versió "
 "de Gramps.\n"
+"\n"
 "Aquest Arbre Genealògic té la versió d'esquema %(tree_vers)s, i aquesta "
 "versió de Gramps suporta les versions entre %(min_vers)s i %(max_vers)s\n"
 "\n"
@@ -3141,8 +3115,9 @@ msgid ""
 "between different Python versions."
 msgstr ""
 "La versió de Python no està suportada per aquesta versió de Gramps.\n"
+"\n"
 "Aquest Arbre Genealògic té la versió de Python %(tree_vers)s, i aquesta "
-"versió de Gramps suporta les versions entre %(min_vers)s a la %(max_vers)s\n"
+"versió de Gramps suporta les versions entre la %(min_vers)s i %(max_vers)s\n"
 "\n"
 "Si us plau actualitzi a la versió corresponent, o faci servir XML per portar "
 "les dades entre versions de Python diferents."
@@ -3201,7 +3176,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3218,23 +3193,21 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"L'Arbre Genealògic que esteu provant de carregar està en el format de la "
-"versió d'esquema %(oldschema)s. Aquesta versió de Gramps utilitza la versió "
-"d'esquema %(newschema)s. Per tant, no podeu carregar aquest Arbre Genealògic "
-"sense actualitzar la versió d'esquema de l'Arbre Genealògic.\n"
+"L'Arbre Genealògic que esteu provant de carregar està en una base de dades "
+"%(dbtype)s , que ja no està suportada.\n"
+"Per tant, no podeu carregar aquest Arbre Genealògic sense actualitzar-lo.\n"
 "\n"
-"Si actualitzeu, llavors no podreu utilitzar la versió anterior de Gramps, "
+"Si l'actualitzeu, llavors no podreu utilitzar la versió anterior de Gramps, "
 "encara que després %(wiki_manual_backup_html_start)sfeu una còpia de "
-"seguretat%(html_end)s o %(wiki_manual_export_html_start)sexporteu"
-"%(html_end)s l'Arbre Genealògic actualitzat.\n"
+"seguretat%(html_end)s o %(wiki_manual_export_html_start)sexporteu%(html_end)"
+"s l'Arbre Genealògic actualitzat.\n"
 "\n"
-"L'actualització és una tasca difícil que podria corrompre de manera "
-"definitiva el vostre Arbre Genealògic si s'interromp o falla.\n"
+"Us recomanem fortament que feu una còpia de seguretat del vostre Arbre "
+"Genealògic.\n"
 "\n"
 "Si encara no heu fet una còpia de seguretat del vostre Arbre Genealògic, el "
-"millor és que engegueu la versió %(bold_start)santiga%(bold_end)s de Gramps "
-"i %(wiki_backup_html_start)sfeu una còpia de seguretat%(html_end)s del "
-"vostre Arbre Genealògic."
+"millor és que engegueu la versió antiga de Gramps i %(wiki_backup_html_start)"
+"sfeu una còpia de seguretat%(html_end)s del vostre Arbre Genealògic."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3948,9 +3921,8 @@ msgid "Matches citations that are indicated as private"
 msgstr "Concorda amb cites que s'indiquen com a privades"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
-#, fuzzy
 msgid "Citation attribute:"
-msgstr "Atributs de Cita"
+msgstr "Atribut de Cita:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -3965,16 +3937,13 @@ msgid "Value:"
 msgstr "Valor:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
-#, fuzzy
 msgid "Citations with the attribute <attribute>"
-msgstr "Objectes amb l'atribut <atribut>"
+msgstr "Cites amb l'atribut <atribut>"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
-#, fuzzy
 msgid "Matches citations with the attribute of a particular value"
 msgstr ""
-"Concorda amb els objectes audiovisuals que tenen l'atribut donat amb un "
-"valor en particular"
+"Concorda amb les cites que tenen l'atribut donat amb un valor en particular"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -5246,15 +5215,14 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "Concorda amb persones que tinguin un cert nombre d'adreces personals"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:43
-#, fuzzy
 msgid "People with an address containing <text>"
-msgstr "Persones amb Id que contingui <text>"
+msgstr "Persones amb una adreça que contingui <text>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:44
-#, fuzzy
 msgid "Matches people with a personal address containing the given text"
 msgstr ""
-"Concorda amb persones que tinguin un esdeveniment personal d'un valor concret"
+"Concorda amb persones que tinguin una adreça personal que contingui el text "
+"donat"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:45
 msgid "People with an alternate name"
@@ -6413,21 +6381,18 @@ msgstr ""
 "data-hora."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
-#, fuzzy
 msgid "Repository attribute:"
-msgstr "Referència de repositori"
+msgstr "Atribut de repositori:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
-#, fuzzy
 msgid "Repositories with the attribute <attribute>"
-msgstr "Objectes amb l'atribut <atribut>"
+msgstr "Repositoris amb l'atribut <atribut>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
-#, fuzzy
 msgid "Matches repositories with the attribute of a particular value"
 msgstr ""
-"Concorda amb els objectes audiovisuals que tenen l'atribut donat amb un "
-"valor en particular"
+"Concorda amb els repositoris que tenen l'atribut donat amb un valor en "
+"particular"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
@@ -6555,21 +6520,17 @@ msgstr ""
 "hora."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
-#, fuzzy
 msgid "Source attribute:"
-msgstr "Atributs de la Font"
+msgstr "Atribut de la Font:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
-#, fuzzy
 msgid "Sources with the attribute <attribute>"
-msgstr "Objectes amb l'atribut <atribut>"
+msgstr "Fonts amb l'atribut <atribut>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
-#, fuzzy
 msgid "Matches sources with the attribute of a particular value"
 msgstr ""
-"Concorda amb els objectes audiovisuals que tenen l'atribut donat amb un "
-"valor en particular"
+"Concorda amb les fonts que tenen l'atribut donat amb un valor en particular"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
@@ -7654,11 +7615,11 @@ msgstr "Bateig"
 
 #: ../gramps/gen/lib/eventtype.py:169
 msgid "Bar Mitzvah"
-msgstr "Bar Mitzvah"
+msgstr "Bar Mitsvà"
 
 #: ../gramps/gen/lib/eventtype.py:170
 msgid "Bat Mitzvah"
-msgstr "Bat Mitzvah"
+msgstr "Bat Mitsvà"
 
 #: ../gramps/gen/lib/eventtype.py:171
 msgid "Blessing"
@@ -7995,7 +7956,7 @@ msgstr "res."
 #: ../gramps/gen/lib/eventtype.py:246
 msgctxt "Retirement abbreviation"
 msgid "ret."
-msgstr "ret."
+msgstr "jub."
 
 #: ../gramps/gen/lib/eventtype.py:247
 msgctxt "Will abbreviation"
@@ -8330,7 +8291,7 @@ msgstr "MIME"
 
 #: ../gramps/gen/lib/media.py:149
 msgid "Checksum"
-msgstr "Checksum"
+msgstr "Suma de verificació"
 
 #: ../gramps/gen/lib/mediaref.py:86 ../gramps/gui/clipboard.py:656
 msgid "Media ref"
@@ -9433,15 +9394,15 @@ msgstr ""
 "que teniu configurades, s'utilitzarà l'anglès americà"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
-#, fuzzy, python-format
+#, python-format
 msgctxt "gramps_version"
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"ERROR: El fitxer de connector %(filename)s té una versió de "
-"\"%(gramps_target_version)s\" que no és vàlida per a Gramps "
-"\"%(gramps_version)s\"."
+"ERROR: El fitxer de connector %(filename)s té una versió de \""
+"%(gramps_target_version)s\" que no és vàlida per a Gramps \"%(gramps_version)"
+"s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -9634,9 +9595,9 @@ msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
-"Tria la família de lletra. Si els caràcters internacionals no apareixen, "
-"faci servir el tipus FreeSans. FreeSans es pot obtenir a: http://www.nongnu."
-"org/freefont/"
+"Trieu la família de tipus de lletra. Si els caràcters internacionals no "
+"apareixen, feu servir el tipus FreeSans. FreeSans es pot obtenir a: "
+"http://www.nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:152
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -10084,7 +10045,7 @@ msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
 msgid "Graph File for genealogytree"
-msgstr ""
+msgstr "Fitxer gràfic per a genealogytree"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
 msgid "LaTeX File"
@@ -10173,9 +10134,8 @@ msgid "The translation to be used for the report."
 msgstr "La traducció que s'ha de fer servir per a l'informe."
 
 #: ../gramps/gen/plug/report/stdoptions.py:80
-#, fuzzy
 msgid "The additional translation to be used for the report."
-msgstr "La traducció que s'ha de fer servir per a l'informe."
+msgstr "La traducció addicional que s'ha de fer servir per a l'informe."
 
 #: ../gramps/gen/plug/report/stdoptions.py:89 ../gramps/gui/configure.py:1194
 #: ../gramps/plugins/webreport/webcal.py:1803
@@ -10263,9 +10223,8 @@ msgid "Include"
 msgstr "Incloure"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Si s'han d'incloure les etiquetes."
+msgstr "Si s'han d'incloure les etiquetes"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -10684,7 +10643,7 @@ msgid ""
 msgstr ""
 "ALERTA: no s'ha pogut analitzar el fitxer:\n"
 "%(file)s\n"
-"perquè es generen  %(error)s\n"
+"perquè es generen %(error)s -- es torna a crear\n"
 
 #: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
@@ -10726,7 +10685,7 @@ msgstr "Alemany"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Alemany (Àustria)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -11330,22 +11289,17 @@ msgstr ""
 "el %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"La versió de Python no compleix els requeriments. Cal almenys la versió de "
-"python %(v1)d.%(v2)d.%(v3)d per executar Gramps.\n"
+"La vostra versió de Python no compleix els requeriments. Cal almenys la "
+"versió de Python %(v1)d.%(v2)d.%(v3)d per executar Gramps.\n"
 "\n"
-"Gramps s'aturarà."
+"Gramps s'aturarà ara mateix."
 
 #: ../gramps/grampsapp.py:428 ../gramps/grampsapp.py:435
 #: ../gramps/grampsapp.py:488
@@ -11353,28 +11307,21 @@ msgid "Configuration error:"
 msgstr "Error de configuració:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Error llegint configuració"
+msgstr "No s'ha pogut llegir la configuració"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"No s'ha pogut trobar la definició per al tipus-MIME %s \n"
+"No s'ha pogut trobar la definició per al tipus de medi %s \n"
 "\n"
-"Possiblement la instal·lació de Gramps és incompleta. Asseguri's que els "
-"tipus-MIME de Gramps estan instal·lats correctament."
+"Possiblement la instal·lació de Gramps fou incompleta. Asseguri's que "
+"s'instal·la alguna cosa per gestionar els tipus de medi de Gramps."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -11571,26 +11518,25 @@ msgid ""
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
 "Les següents paraules claus se substitueixen amb les parts del nom "
-"apropiades:\n"
-"<tt> \n"
-" <b>Nom de pila</b>       - nom de pila (primer) <b>Cognom</b>      - "
+"apropiades:<tt>\n"
+"  <b>Nom de pila</b>       - nom de pila (primer) <b>Cognom</b>      - "
 "cognoms (amb prefix i connectors)\n"
-" <b>Títol</b>        - títol (Dr., Sra.)       <b>Sufix</b>          - sufix "
-"(Jr., Sr.)\n"
-" <b>Habitual</b>         - nom habitual          <b>Sobrenom</b>  - "
+"  <b>Títol</b>        - títol (Dr., Sra.)       <b>Sufix</b>   - sufix (Jr., "
+"Sr.)\n"
+"  <b>Habitual</b>         - nom habitual          <b>Sobrenom</b>  - "
 "sobrenom\n"
-" <b>Inicials</b>    - primeres lletres del nom de pila <b>Comú</b>  - "
+"  <b>Inicials</b>    - primeres lletres del nom de pila <b>Comú</b>  - "
 "sobrenom o, si no n'hi ha, primer Nom de pila\n"
-" <b>Prefix</b>  - tots els prefixos (von, de)\n"
+"  <b>Prefix</b>  - tots els prefixos (von, de)\n"
 "Cognoms:\n"
-" <b>Resta</b>   - cognoms no primaris      <b<Nopatronímic</b>- tots els "
+"  <b>Resta</b>   - cognoms no primaris      <b>Nopatronímic</b>- tots els "
 "cognoms, excepte pa/matronímic &amp; primari\n"
-" <b>Mot de la família</b> - mot de la família   <b>Cognomsjustos</b>  - "
+"  <b>Mot de la família</b> - mot de la família   <b>Cognomsjustos</b>  - "
 "cognoms (sense prefixos ni connectors)\n"
-" <b>Primari, Primari[pre] o [cog] o [con]</b>- cognom primari complet, "
-"prefix, només cognom, connector \n"
-" <b>Patronímic, o [pre] o [cog] o [con]</b>. cognom pa/matronímic sencer, "
-"prefix, només cognom, connector \n"
+"  <b>Primari, Primari[pre] o [cog] o [con]</b>- cognom primari complet, "
+"prefix, només cognom, connector\n"
+"  <b>Patronímic, o [pre] o [cog] o [con]</b>. cognom pa/matronímic sencer, "
+"prefix, només cognom, connector\n"
 "</tt>\n"
 "Si la paraula clau està en MAJÚSCULA, força que s'escrigui en majúscula. Els "
 "parèntesis i comes addicionals es treuen. La resta del text apareix "
@@ -11598,11 +11544,10 @@ msgstr ""
 "\n"
 "<b>Exemple</b>:'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
 "Underhills'\n"
-"  <i>Edwin Jose</i> és el nom de pila, <i>von der</i> és el prefix, "
-"<i>Smith</i> i <i>Weston</i> cognoms, \n"
-"  <i>and</i> un connector, <i>Wilson</i> cognom patronímic, <i>Dr.</i> "
-"títol, <i>Sr</i> sufix, <i>Ed</i> sobrenom, \n"
-"  <i>Underhills</i> mot de la família, <i>Jose</i> nom habitual.\n"
+"    <i>Edwin Jose</i>: nom de pila, <i>von der</i>: Prefix, <i>Smith</i> i "
+"<i>Weston</i> primari, <i>and</i>: [conn], <i>Wilson</i>: Patronímic,\n"
+"    <i>Dr.</i>: Títol, <i>Sr</i>: Sufix, <i>Ed</i>: Sobrenom, "
+"<i>Underhills</i>: mot de la família, <i>Jose</i>: nom habitual.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -12153,6 +12098,8 @@ msgid ""
 "Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
+"L'etiqueta especificada s'afegirà en el moment de la importació.\n"
+"Esborreu-la per utilitzar el valor predeterminat."
 
 #: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
@@ -12335,14 +12282,12 @@ msgid "Every hour"
 msgstr "Cada hora"
 
 #: ../gramps/gui/configure.py:1783
-#, fuzzy
 msgid "Every 12 hours"
-msgstr "Cada hora"
+msgstr "Cada 12 hores"
 
 #: ../gramps/gui/configure.py:1784
-#, fuzzy
 msgid "Every day"
-msgstr "Cada família"
+msgstr "Cada dia"
 
 #: ../gramps/gui/configure.py:1789
 msgid "Autobackup"
@@ -13342,14 +13287,12 @@ msgstr "Editor"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Nivell de confiança:"
+msgstr "Nivell de confiança"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
-#, fuzzy
 msgid "Sorted date"
-msgstr "Segona data"
+msgstr "Data ordenada"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:95
 msgid "_Source Citations"
@@ -15116,9 +15059,8 @@ msgstr ""
 "font."
 
 #: ../gramps/gui/editors/filtereditor.py:533
-#, fuzzy
 msgid "Family filter name:"
-msgstr "Filtres de família"
+msgstr "Nom de filtre de família:"
 
 #: ../gramps/gui/editors/filtereditor.py:569
 msgid "Include selected Gramps ID"
@@ -15469,13 +15411,15 @@ msgstr "URL"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:62
 msgid "This updates the view with the current filter parameters."
-msgstr ""
+msgstr "Això posa al dia la vista amb els paràmetres de filtre actuals."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:65
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"Això reinicia els paràmetres de filtre a l'estat buit. Cal utilitzar el botó "
+"'Busca' per posar al dia la vista als seus valors predeterminats."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -16007,11 +15951,6 @@ msgid "Con_fidence:"
 msgstr "Con_fiança:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -16019,7 +15958,7 @@ msgid ""
 msgstr ""
 "La data de l'entrada en la font que esteu referenciant, per exemple, la data "
 "que es va visitar una casa durant un cens, o la data que es va omplir un "
-"registre de naixement. "
+"registre de naixement."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16387,13 +16326,6 @@ msgid "Image preview"
 msgstr "Visualització prèvia d'imatge"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16406,7 +16338,7 @@ msgstr ""
 "camí! Ompliu el 'Camí Relatiu' a les Preferències per estalviar-vos de "
 "tornar a escriure el directori base on emmagatzemeu tots els medis "
 "audiovisuals. L'eina 'Gestor de Medis' pot ajudar a gestionar els camins "
-"d'una col·lecció d'objectes audiovisuals. "
+"d'una col·lecció d'objectes audiovisuals."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16579,10 +16511,8 @@ msgstr ""
 "Un nom descriptiu que es dóna en comptes de, o a més del nom de pila oficial."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Nom(s) de pila "
+msgstr "Nom(s) de pila"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16827,7 +16757,6 @@ msgid "Full title of this place."
 msgstr "Títol complet d'aquest lloc."
 
 #: ../gramps/gui/glade/editplace.glade:177
-#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
 "notation.\n"
@@ -16835,15 +16764,14 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Latitud (posició sobre l'Equador) del lloc en notació decimal o "
-"sexagesimal. \n"
+"Latitud (posició sobre l'Equador) del lloc en notació decimal o sexagesimal."
+"\n"
 "P.ex, poden ser valors vàlids 12.0154, 50°52′21.92″N, N50°52′21.92″ o "
 "50:52:21.92\n"
 "Pot omplir aquests valors mitjançant la Vista de Geografia buscant el lloc, "
 "o mitjançant un servei de mapes a la Vista de Lloc."
 
 #: ../gramps/gui/glade/editplace.glade:192
-#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
 "place in decimal or degree notation.\n"
@@ -16853,7 +16781,7 @@ msgid ""
 "via a map service in the place view."
 msgstr ""
 "Longitud (posició relativa al Meridià zero, o de Greenwich) del lloc en "
-"notació decimal o sexagesimal. \n"
+"notació decimal o sexagesimal.\n"
 "P.ex., poden ser valors vàlids: -124.3647, 124°52′21.92″E, E124°52′21.92″ o "
 "124:52:21.92\n"
 "Pot omplir aquests valors mitjançant la Vista de Geografia buscant el lloc, "
@@ -16870,13 +16798,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Camp utilitzat per enganxar informació des d'una pàgina web com ara google, "
-"openstreetmap, ... "
+"Camp utilitzat per enganxar informació des d'una pàgina web com ara Google, "
+"OpenStreetMap, ..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -20141,14 +20066,14 @@ msgid "New_Tag_dialog"
 msgstr "Diàleg_Nova_Etiqueta"
 
 #: ../gramps/gui/views/tags.py:250
-#, fuzzy, python-format
+#, python-format
 msgid "Add tag '%s'"
-msgstr "Afegeix Etiqueta (%s)"
+msgstr "Afegeix Etiqueta '%s'"
 
 #: ../gramps/gui/views/tags.py:255
-#, fuzzy, python-format
+#, python-format
 msgid "Remove tag '%s'"
-msgstr "Esborra l'etiqueta '%s'?"
+msgstr "Esborra l'etiqueta '%s'"
 
 #: ../gramps/gui/views/tags.py:313
 msgid "Adding Tags"
@@ -20327,14 +20252,12 @@ msgid "Restore default gramplets"
 msgstr "Recupera els gramplets predeterminats"
 
 #: ../gramps/gui/widgets/grampletbar.py:520
-#, fuzzy
 msgid "Gramplet Bar Help"
-msgstr "Barra de Gramplets"
+msgstr "Ajuda de la barra de Gramplets"
 
 #: ../gramps/gui/widgets/grampletbar.py:525
-#, fuzzy
 msgid "About Gramplets"
-msgstr "Gramplet"
+msgstr "Sobre els Gramplets"
 
 #: ../gramps/gui/widgets/grampletbar.py:564
 msgid "Restore to defaults?"
@@ -20995,15 +20918,14 @@ msgstr ""
 "Amb aquesta opció seleccionada, passarà el següent:\n"
 "\n"
 "Amb l'opció 'No escalar l'arbre' la pàgina canvia\n"
-" de mida fins l'alçada/amplada de l'arbre\n"
+"  de mida fins l'alçada/amplada de l'arbre\n"
 "\n"
 "Amb 'Escalar l'arbre només fins a l'amplada de la pàgina'\n"
-" l'alçada de la pàgina canvia de mida fins l'alçada de\n"
-" l'arbre\n"
+"  l'alçada de la pàgina canvia de mida fins l'alçada de l'arbre\n"
 "\n"
 "Amb 'Escalar l'arbre perquè càpiga a la pàgina' la pàgina\n"
-" canvia de mida per treure qualsevol buit tant en alçada\n"
-" com en amplada"
+"  canvia de mida per treure qualsevol buit tant en alçada\n"
+"  com en amplada"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
@@ -21123,16 +21045,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "és a dir:\n"
-"Estats Units d'Amèrica/E.U.A"
+"Estats Units d'Amèrica/E.U.A."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:977
 #: ../gramps/plugins/drawreport/descendtree.py:1702
@@ -21668,29 +21586,24 @@ msgid "The bold style used for the text display."
 msgstr "L'estil de negreta que es fa servir per mostrar el text."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1823
-#, fuzzy
 msgid "The style for the marriage box."
-msgstr "L'estil que es fa servir per al títol."
+msgstr "L'estil que es fa servir per a la casella de casament."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1830
-#, fuzzy
 msgid "The style for the spouse box."
-msgstr "L'estil utilitzat per al nom del cònjuge."
+msgstr "L'estil utilitzat per a la casella del cònjuge."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1838
-#, fuzzy
 msgid "The style for the direct descendant box."
-msgstr "L'estil utilitzat per les capçaleres de secció."
+msgstr "L'estil utilitzat per a la casella de descendent directe."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1844
-#, fuzzy
 msgid "The style for the note box."
-msgstr "L'estil utilitzat a la nota de capçalera."
+msgstr "L'estil per a la casella de nota."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1849
-#, fuzzy
 msgid "The style for the connection lines and report border."
-msgstr "L'estil utilitzat per les capçaleres de secció."
+msgstr "L'estil utilitzat per a les línies de connexió i la vora de l'informe."
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:37
 msgid "Ancestor Chart"
@@ -22667,14 +22580,12 @@ msgid "Double-click on a row to edit the selected source/citation."
 msgstr "Feu doble-clic en una fila per editar la font/cita seleccionada."
 
 #: ../gramps/plugins/gramplet/citations.py:86
-#, fuzzy
 msgid "Source/Date"
-msgstr "Text de font"
+msgstr "Font/Data"
 
 #: ../gramps/plugins/gramplet/citations.py:167
-#, fuzzy
 msgid "<No Volume/Page>"
-msgstr "Volum/Pàgina"
+msgstr "<Sense Volum/Pàgina>"
 
 #: ../gramps/plugins/gramplet/coordinates.py:83
 msgid "Right-click on a row to edit the selected event or the related place."
@@ -22799,7 +22710,6 @@ msgid ""
 msgstr ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sCal actualitzar Gramps cada "
 "vegada que surt una nova versió?%(html_end)s\n"
-"\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:103
 msgid "Data Entry"
@@ -22822,7 +22732,6 @@ msgid ""
 msgstr ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sQuina diferència hi ha entre "
 "una residència i una adreça?%(html_end)s\n"
-"\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:120
 msgid "Media Files"
@@ -22885,9 +22794,8 @@ msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. %(gramps_wiki_html_start)s%(section)sHi ha tutorials disponibles?"
-"%(html_end)s\n"
-"\n"
+" 14. %(gramps_wiki_html_start)s%(section)sHi ha tutorials "
+"disponibles?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -23879,7 +23787,7 @@ msgid_plural ""
 msgstr[0] ""
 " té {count_person} de {max_count_person} individus ({percent} complet)\n"
 msgstr[1] ""
-" té {count_person} de {max_count_person} individus ({percent} complet)\n"
+" té {count_person} de {max_count_person} individus ({percent} complets)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:279
 msgid "All generations"
@@ -24164,6 +24072,7 @@ msgstr ""
 "Gramps és un paquet de programari dissenyat per la recerca genealògica. "
 "Encara que és semblant a d'altres programes genealògics, Gramps ofereix "
 "algunes funcionalitats úniques i potents.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
 msgid "Links"
@@ -24184,7 +24093,7 @@ msgstr "Manual en línia de Gramps"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
 msgctxt "locale_suffix"
 msgid ""
-msgstr ""
+msgstr "ca"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "Ask questions on gramps-users mailing list"
@@ -24204,10 +24113,11 @@ msgid ""
 "\n"
 msgstr ""
 "El Gramps el creen genealogistes per a genealogistes, organitzats en el "
-"Projecte Gramps. Gramps és un paquet de programari de Codi Obert,  i això "
+"Projecte Gramps. Gramps és un paquet de programari de Codi Obert, i això "
 "significa que sou lliures de fer-ne còpies i de distribuir-lo a tothom que "
 "vulgueu. El desenvolupa i el manté un equip mundial de voluntaris l'objectiu "
 "dels quals és fer que Gramps sigui potent, però fàcil d'utilitzar.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
 msgid "Getting Started"
@@ -25010,9 +24920,8 @@ msgid "Import data from vCard files"
 msgstr "Importa dades de fitxers vCard"
 
 #: ../gramps/plugins/importer/importcsv.py:125
-#, fuzzy
 msgid "Bad references"
-msgstr "Preferències"
+msgstr "Referències incorrectes"
 
 #: ../gramps/plugins/importer/importcsv.py:127
 #: ../gramps/plugins/importer/importgedcom.py:129
@@ -25333,19 +25242,16 @@ msgstr[0] "Importació Finalitzada: {number_of} segon"
 msgstr[1] "Importació Finalitzada: {number_of} segons"
 
 #: ../gramps/plugins/importer/importcsv.py:395
-#, fuzzy
 msgid "The following IDs were referenced but not found:\n"
-msgstr "S'han trobat els següents problemes:"
+msgstr "Els següents IDs són referenciats però no s'han trobat:\n"
 
 #: ../gramps/plugins/importer/importgedcom.glade:15
 msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
-msgstr "ANSI (iso-8859-1)"
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -25606,8 +25512,8 @@ msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
-"Text de l'atribució de la font (Text, Nom de fitxer d'importació & Data (de "
-"Sistema))."
+"Text de l'atribució de la font\n"
+"(Text, Nom de fitxer d'importació & Data (de Sistema))."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -25689,10 +25595,12 @@ msgid ""
 "Copy Default Date\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copiar la Data Predeterminada\n"
+"a tots els Textos d'Etiquetes sensibles'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
-msgstr " Objectes"
+msgstr "  Objectes"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -26055,15 +25963,7 @@ msgid "Number of new objects imported:\n"
 msgstr "Nombre d'objectes nous importats:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| " The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unkown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -26074,7 +25974,7 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" El fitxer importat no era autocontingut.\n"
+"El fitxer importat no era autocontingut.\n"
 "Per corregir-ho, s'han creat %(new)d objectes i\n"
 "el seu atribut tipificador s'ha posat a 'Desconegut'.\n"
 "La distribució per categoria es veu al nombre entre\n"
@@ -26093,20 +25993,13 @@ msgstr ""
 "S'han importat objectes de medis amb camins\n"
 "relatius. Aquests camins es consideren relatius\n"
 "al directori de medis que es pot seleccionar a les\n"
-"preferències o, si no es diu res, relatius al\n"
-"directori d'usuari.\n"
+"preferències o, si no es diu res, relatius al directori d'usuari.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Objectes que són candidats a ser combinats:\n"
 
@@ -26274,33 +26167,33 @@ msgid "Witness comment: %s"
 msgstr "Comentari del testimoni: %s"
 
 #: ../gramps/plugins/importer/importxml.py:3233
-#, fuzzy, python-format
+#, python-format
 msgctxt "father"
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Error: el pare '%(father)s'  de la família '%(family)s' no té la referència "
+"Error: el pare '%(father)s' de la família '%(family)s' no té la referència "
 "cap a la família. S'ha afegit la referència."
 
 #: ../gramps/plugins/importer/importxml.py:3249
-#, fuzzy, python-format
+#, python-format
 msgctxt "mother"
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Error: la mare '%(mother)s'  de la família '%(family)s' no té la referència "
+"Error: la mare '%(mother)s' de la família '%(family)s' no té la referència "
 "cap a la família. S'ha afegit la referència."
 
 #: ../gramps/plugins/importer/importxml.py:3271
-#, fuzzy, python-format
+#, python-format
 msgctxt "child"
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Error: el fill '%(child)s'  de la família '%(family)s' no té la referència "
+"Error: el fill '%(child)s' de la família '%(family)s' no té la referència "
 "cap a la família. S'ha afegit la referència."
 
 #: ../gramps/plugins/lib/libcairodoc.py:1398
@@ -26435,7 +26328,7 @@ msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
-"Error: %(msg)s  '%(gramps_id)s' (introduït com a @%(xref)s@) no és al GEDCOM "
+"Error: %(msg)s '%(gramps_id)s' (introduït com a @%(xref)s@) no és al GEDCOM "
 "d'entrada. S'ha creat un registre amb atribut tipificador 'Desconegut'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3279
@@ -27659,8 +27552,7 @@ msgstr "Va ser enterrada el %(burial_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:485
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s  va ser enterrat el %(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s va ser enterrat el %(burial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:486
 #, python-format
@@ -30918,11 +30810,17 @@ msgid ""
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"Si voleu fer servir algun proveïdor de mapes determinat, podeu posar al "
+"següent camp l'URL del proveïdor.\n"
+"P. ex.:\n"
+"http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
+"http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1288
-#, fuzzy
 msgid "Personal map"
-msgstr "Personal"
+msgstr "Mapa personal"
 
 #: ../gramps/plugins/lib/maps/geography.py:1294
 msgid "The map"
@@ -32249,7 +32147,7 @@ msgstr "Numeració modificada Henry"
 
 #: ../gramps/plugins/textreport/descendreport.py:532
 msgid "de Villiers/Pama numbering"
-msgstr "Numeració de de Villiers/Pama"
+msgstr "Numeració de Villiers/Pama"
 
 #: ../gramps/plugins/textreport/descendreport.py:533
 msgid "Meurgey de Tupigny numbering"
@@ -32903,15 +32801,16 @@ msgid "Whether to sort events into chronological order."
 msgstr "Si s'han d'ordenar els esdeveniments en ordre cronològic."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Clica el nom per fer la persona activa\n"
+msgstr "Utilitzar el nom de la persona com a títol"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
 msgstr ""
+"Si el títol hauria de ser el nom de la persona, o 'Informe Individual "
+"Complet'"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
@@ -33161,7 +33060,6 @@ msgid "The style used for the footer."
 msgstr "L'estil que es fa servir per al peu de pàgina."
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:136
-#, fuzzy
 msgctxt "book"
 msgid "Title of the Book"
 msgstr "Títol del Llibre"
@@ -33444,8 +33342,7 @@ msgid ""
 msgstr ""
 "A sota hi ha una llista dels noms de família\n"
 "que Gramps pot convertir a les majúscules\n"
-"correctes. Seleccioni els noms que vol que\n"
-"Gramps converteixi. "
+"correctes. Seleccioni els noms que vol que Gramps converteixi. "
 
 #: ../gramps/plugins/tool/changenames.glade:107
 msgid "_Accept changes and close"
@@ -33737,9 +33634,8 @@ msgid "Looking for Duplicated Gramps ID problems"
 msgstr "S'està buscant problemes d'ID duplicades de Gramps"
 
 #: ../gramps/plugins/tool/check.py:2300
-#, fuzzy
 msgid "Checking for bad links in Notes"
-msgstr "Comprova actualitzacions de complements"
+msgstr "Comprovant enllaços dolents a les Notes"
 
 #: ../gramps/plugins/tool/check.py:2451
 msgid "No errors were found"
@@ -33865,14 +33761,14 @@ msgstr[1] ""
 "{quantity} objectes audiovisuals estaven referenciats, però no s'han trobat\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, fuzzy, python-brace-format
-#| msgid "Reference to {quantity} missing media object was kept\n"
-#| msgid_plural "References to {quantity} media objects were kept\n"
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] "S'ha conservat la referència a {quantity} objecte audiovisual\n"
+msgstr[0] ""
+"S'ha conservat la referència a {quantity} objecte audiovisual que no hi és\n"
 msgstr[1] ""
-"S'han conservat les referències a {quantity} objectes audiovisuals\n"
+"S'han conservat les referències a {quantity} objectes audiovisuals que no hi "
+"són\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2627
@@ -33972,9 +33868,7 @@ msgstr[1] "S'han esborrat {quantity} referències de format de nom no vàlides\n
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "S'ha arreglat {quantity} cita de font no vàlida\n"
-msgstr[1] ""
-"S'han arreglat {quantity} cites de font no vàlides\n"
-"\n"
+msgstr[1] "S'han arreglat {quantity} cites de font no vàlides\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2754
@@ -34019,9 +33913,9 @@ msgid "All reference maps have been rebuilt."
 msgstr "S'han reconstruït tots els mapes de referències."
 
 #: ../gramps/plugins/tool/check.py:2788
-#, fuzzy, python-format
+#, python-format
 msgid "%d bad Note Links were fixed;\n"
-msgstr "S'han arreglat %d enllaços de retrocès dolents;\n"
+msgstr "S'han arreglat %d enllaços de Nota dolents;\n"
 
 #: ../gramps/plugins/tool/check.py:2817
 msgid "Integrity Check Results"
@@ -34804,14 +34698,13 @@ msgid "Clean input data"
 msgstr "Netejar dades d'entrada"
 
 #: ../gramps/plugins/tool/removespaces.py:108
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
 "Cercar espais al principi i/o al final per a persones i llocs. Cercar comes "
-"en camps de coordenades.\n"
+"o senyals incorrectes en camps de coordenades.\n"
 "Feu doble clic en una fila per editar-ne el contingut."
 
 #: ../gramps/plugins/tool/removespaces.py:118
@@ -34837,29 +34730,28 @@ msgstr "agrupar com a"
 
 #: ../gramps/plugins/tool/removespaces.py:199
 msgid "tooltip"
-msgstr ""
+msgstr "suggeriment"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
 msgid "leading and/or trailing spaces"
-msgstr ""
+msgstr "espais al principi o al final"
 
 #: ../gramps/plugins/tool/removespaces.py:282
 #: ../gramps/plugins/tool/removespaces.py:294
-#, fuzzy
 msgid "invalid format"
-msgstr "Format no vàlid"
+msgstr "format no vàlid"
 
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
 msgid "comma instead of dot"
-msgstr ""
+msgstr "coma en comptes de punt"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "caràcter no vàlid en comptes de '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -34958,7 +34850,9 @@ msgstr "Canvia"
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
-msgstr "Habilita la reordenació d'ID's amb la seqüència Comença / Pas."
+msgstr ""
+"Habilita la reordenació d'ID's\n"
+"amb la seqüència Inici / Pas."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -36412,7 +36306,7 @@ msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
-"Les latitud/longitud  mínimes per seleccionar un moviment llarg.\n"
+"Les latitud/longitud mínimes per seleccionar un moviment llarg.\n"
 "El valor és en desenes de grau."
 
 #: ../gramps/plugins/view/geoperson.py:627
@@ -36623,7 +36517,7 @@ msgstr "Esquerra <-> Dreta"
 
 #: ../gramps/plugins/view/pedigreeview.py:1710
 msgid "About Pedigree View"
-msgstr ""
+msgstr "Sobre la Vista de Pedigrí"
 
 #: ../gramps/plugins/view/pedigreeview.py:1921
 #: ../gramps/plugins/view/relview.py:393
@@ -37114,9 +37008,8 @@ msgid "Visually Impaired"
 msgstr "Amb Problemes de Visió"
 
 #: ../gramps/plugins/webreport/basepage.py:1696
-#, fuzzy
 msgid "Go to top"
-msgstr "Anar a la persona predeterminada"
+msgstr "Anar al capdamunt"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
 #: ../gramps/plugins/webreport/basepage.py:1786
@@ -37147,9 +37040,8 @@ msgstr "Contacte"
 
 #: ../gramps/plugins/webreport/basepage.py:1751
 #: ../gramps/plugins/webreport/basepage.py:1818
-#, fuzzy
 msgid "Updates"
-msgstr "Actualitzat"
+msgstr "Actualitzacions"
 
 #: ../gramps/plugins/webreport/basepage.py:1753
 #: ../gramps/plugins/webreport/basepage.py:1824
@@ -37231,9 +37123,8 @@ msgid "MD5"
 msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:178
-#, fuzzy
 msgid "No file to download"
-msgstr "Descripció per baixada"
+msgstr "No hi ha cap fitxer per baixar"
 
 #: ../gramps/plugins/webreport/event.py:117
 msgid "Creating event pages"
@@ -37281,9 +37172,9 @@ msgid "Families beginning with letter "
 msgstr "Famílies que comencin amb la lletra "
 
 #: ../gramps/plugins/webreport/family.py:464
-#, fuzzy, python-format
+#, python-format
 msgid "Family Map for %s"
-msgstr "Llocs de família per a %s"
+msgstr "Mapa de família per a %s"
 
 #: ../gramps/plugins/webreport/home.py:79
 msgid "Home"
@@ -37308,7 +37199,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Nom de Medi Audiovisual"
+msgstr " Nom"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -37409,35 +37300,29 @@ msgid "Creating statistics page..."
 msgstr "S'està creant la pàgina d'estadístiques..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1309
-#, fuzzy
 msgid "Creating updates page..."
-msgstr "S'està creant la pàgina d'estadístiques..."
+msgstr "Creant la pàgina d'actualitzacions..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1350
 msgid "Creating address book pages ..."
 msgstr "S'estan creant les pàgines d'agenda ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Informe de Web Explicat"
+msgstr "Informe de Web Explicat en %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
 msgid "Narrative Website Report"
 msgstr "Informe de Web Explicat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
-#, fuzzy
-#| msgid "Store web pages in .tar.gz archive"
 msgid "Store website in .tar.gz archive"
-msgstr "Desar les pàgines web en un arxiu .tar.gz"
+msgstr "Desar el lloc web en un arxiu .tar.gz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
-#, fuzzy
-#| msgid "Whether to store the web pages in an archive file"
 msgid "Whether to store the website in an archive file"
-msgstr "Si s'han de desar les pàgines web en un fitxer comprimit"
+msgstr "Si s'ha de desar el lloc web en un fitxer d'arxiu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
@@ -37449,22 +37334,17 @@ msgid "My Family Tree"
 msgstr "El Meu Arbre Genealògic"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
-msgstr "Títol de web"
+msgstr "Títol de lloc web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
-#, fuzzy
-#| msgid "The title of the web site"
 msgid "The title of the website"
-msgstr "El títol del web"
+msgstr "El títol del lloc web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
-msgstr "Selecciona el filtre per restringir les persones que apareixen al web"
+msgstr ""
+"Selecciona el filtre per restringir les persones que apareixen al lloc web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
@@ -37508,13 +37388,12 @@ msgid "StyleSheet"
 msgstr "Full d'Estil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2021
-#, fuzzy
 msgid "The default stylesheet to be used for the pages"
-msgstr "El full d'estil utilitzat per les pàgines web"
+msgstr "El full d'estil predeterminat utilitzat per a les pàgines web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2027
 msgid "Horizontal -- Default"
-msgstr "Horitzontal  -- Predeterminat"
+msgstr "Horitzontal -- Predeterminat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2028
 msgid "Vertical   -- Left Side"
@@ -37569,23 +37448,20 @@ msgid "Add previous/next to the navigation bar."
 msgstr "Afegir previ/següent a la barra de navegació."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2065
-#, fuzzy
-#| msgid "This is a secure site (https)"
 msgid "This is a secure site (HTTPS)"
-msgstr "Aquest es un lloc segur (https)"
+msgstr "Aquest es un lloc segur (HTTPS)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
 msgid "Whether to use http:// or https://"
 msgstr "Si utilitzar http:// o https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2070
-#, fuzzy
 msgid "Toggle sections"
-msgstr "Selecció de títol"
+msgstr "Commutar seccions"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Marqueu-lo si voleu obrir/tancar una secció"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2081
 msgid "Extra pages"
@@ -37609,7 +37485,7 @@ msgstr "El camí de la vostra pàgina addicional sense extensió"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Utilitzem múltiples traduccions?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2114
 msgid ""
@@ -37617,28 +37493,27 @@ msgid ""
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Si s'ha de mostrar el web explicat en múltiples llengües.\n"
+"Vegeu la pestanya de traducció per afegir noves llengües a la predeterminada "
+"que es defineix al camp següent."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "Sort all children in birth order"
 msgstr "Ordenar tots els fills per ordre de naixement"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2130
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Si s'han de mostrar els fills per ordre de naixement o per ordre "
-"d'introducció?"
+"d'introducció."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2134
 msgid "Do we display coordinates in the places list?"
 msgstr "Mostrem les coordenades a la llista de llocs?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Si s'ha de mostrar la latitud/longitud a la llista de llocs"
+msgstr "Si s'ha de mostrar la latitud/longitud a la llista de llocs."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2140
 msgid "Sort places references either by date or by name"
@@ -37739,9 +37614,9 @@ msgid "HTML user header"
 msgstr "Capçalera HTML d'usuari"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Una nota per utilitzar com a capçalera de pàgina"
+msgstr ""
+"Una nota per utilitzar com a capçalera de pàgina o codi PHP per a inserir."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2204
 msgid "HTML user footer"
@@ -37753,13 +37628,16 @@ msgstr "Una nota per utilitzar com a peu de pàgina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "PHP user session"
-msgstr ""
+msgstr "Sessió d'usuari PHP"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"Una nota a utilitzar per iniciar la sessió PHP.\n"
+"Aquesta opció només serà disponible si se selecciona l'extensió de fitxer ."
+"php."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Images Generation"
@@ -37775,11 +37653,11 @@ msgstr "Si s'ha d'incloure una galeria d'objectes de medis audiovisuals"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Create the images index"
-msgstr ""
+msgstr "Crear l'índex d'imatges"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2235
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "Aquesta opció us permet de crear l'índex d'imatges"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Include unused images and media objects"
@@ -37805,13 +37683,12 @@ msgstr ""
 "permetrà de tenir una mida de càrrega total molt més petita al vostre web."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2258
-#, fuzzy
 msgid "Create the thumbnail index"
-msgstr "Mida de les imatges miniatura"
+msgstr "Crear l'índex d'imatges miniatura"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "This option allows you to create the thumbnail index"
-msgstr ""
+msgstr "Aquesta opció us permet crear l'índex de pàgines miniatura"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2266
 msgid "Max width of initial image"
@@ -37835,17 +37712,16 @@ msgstr "Si s'ha d'incloure una opció per baixar-se la base de dades"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "How many downloads"
-msgstr ""
+msgstr "Quantes baixades"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
-#, fuzzy
 msgid "The number of download files to include in the download page"
-msgstr "El nombre de generacions a incloure dins l'arbre"
+msgstr "El nombre de fitxers per baixar que s'inclouran a la pàgina de baixades"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2300
-#, fuzzy, python-format
+#, python-format
 msgid "Download Filename #%c"
-msgstr "Nom de fitxer de baixada"
+msgstr "Fitxer de baixada #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2303
 msgid "File to be used for downloading of database"
@@ -37856,9 +37732,9 @@ msgid "Description for download"
 msgstr "Descripció per baixada"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2308
-#, fuzzy, python-format
+#, python-format
 msgid "Family Tree #%c"
-msgstr "Arbre genealògic"
+msgstr "Arbre genealògic #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2309
 msgid "Give a description for this file."
@@ -37920,16 +37796,10 @@ msgid "Whether to include a parents column"
 msgstr "Si s'ha d'incloure una columna de pares"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2358
-#, fuzzy
-#| msgid "Include half and/ or step-siblings on the individual pages"
 msgid "Include half and/or step-siblings on the individual pages"
 msgstr "Incloure germanastres a les pàgines individuals"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2361
-#, fuzzy
-#| msgid ""
-#| "Whether to include half and/ or step-siblings with the parents and "
-#| "siblings"
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr "Si s'han d'incloure els germanastres amb els pares i els germans"
@@ -37952,38 +37822,28 @@ msgstr ""
 "Afegeix una llista completa d'esdeveniments i les pàgines rellevants o no"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
-#, fuzzy
-#| msgid "Include places pages"
 msgid "Include place pages"
-msgstr "Incloure pàgines de llocs"
+msgstr "Incloure pàgines de lloc"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
-#, fuzzy
-#| msgid "Whether or not to include the places Pages."
 msgid "Whether or not to include the place pages."
-msgstr "Si s'han d'incloure les Pàgines de llocs o no."
+msgstr "Si s'han d'incloure les pàgines de lloc o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2388
-#, fuzzy
-#| msgid "Include sources pages"
 msgid "Include source pages"
-msgstr "Incloure pàgines de fonts"
+msgstr "Incloure pàgines de font"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2390
-#, fuzzy
-#| msgid "Whether or not to include the sources Pages."
 msgid "Whether or not to include the source pages."
-msgstr "Si s'han d'incloure les Pàgines de fonts o no."
+msgstr "Si s'han d'incloure les pàgines de font o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
 msgid "Include repository pages"
 msgstr "Incloure pàgines de repositori"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the Repository Pages."
 msgid "Whether or not to include the repository pages."
-msgstr "Si s'han d'incloure les Pàgines de Repositori o no."
+msgstr "Si s'han d'incloure les pàgines de repositori o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "Include GENDEX file (/gendex.txt)"
@@ -38018,9 +37878,8 @@ msgid "Place Map Options"
 msgstr "Opcions de Mapa de Llocs"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
-#, fuzzy
 msgid "Stamen Map"
-msgstr "Opcions de Contingut"
+msgstr "Mapa Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
@@ -38076,15 +37935,11 @@ msgid "Google/ FamilyMap Option"
 msgstr "Opció per Mapa de Família amb Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2464
-#, fuzzy
-#| msgid ""
-#| "Select which option that you would like to have for the Google Maps "
-#| "Family Map pages..."
 msgid ""
 "Select which option that you would like to have for the Google Maps family-"
 "map pages..."
 msgstr ""
-"Seleccioneu quina opció voldríeu per les pàgines de Mapa de Família amb "
+"Seleccioneu quina opció voldríeu per les pàgines de mapa de família amb "
 "Google Maps..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2468
@@ -38097,103 +37952,87 @@ msgstr "La clau API utilitzada per al Google maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Toner"
-msgstr ""
+msgstr "Tòner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2474
 msgid "Terrain"
-msgstr ""
+msgstr "Terreny"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2475
-#, fuzzy
 msgid "WaterColor"
-msgstr "Color"
+msgstr "WaterColor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2476
-#, fuzzy
 msgid "Stamen Option"
-msgstr "Opcions de Contingut"
+msgstr "Opció Stamen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2481
-#, fuzzy
 msgid ""
 "Select which option that you would like to have for the Stamen map map-"
 "pages..."
 msgstr ""
-"Seleccioneu quina opció voldríeu per les pàgines de Mapa de Família amb "
-"Google Maps..."
+"Seleccioneu quina opció voldríeu per les pàgines de mapa Stamen amb Google "
+"Maps..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2493
-#, fuzzy
-#| msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgid "Other inclusion (CMS, web calendar, PHP)"
-msgstr "Altres inclusions (CMS, Calendari Web, Php)"
+msgstr "Altres inclusions (CMS, calendari web, PHP)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
-#| msgid "Do we include these pages in a cms web ?"
 msgid "Do we include these pages in a CMS web?"
-msgstr "Voleu incloure aquestes pàgines a la web cms?"
+msgstr "Voleu incloure aquestes pàgines a la web CMS?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2502
 msgid "URI"
 msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2508
-#, fuzzy
-#| msgid "Where do you place your web site ? default = /NAVWEB"
 msgid "Where do you place your website? default = /NAVWEB"
-msgstr "On vols hostatjar el teu lloc web ? predeterminat = /NAVWEB"
+msgstr "On vols hostatjar el teu lloc web? predeterminat = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2516
-#, fuzzy
 msgid "Include the news and updates page"
-msgstr "Incloure la pàgina d'estadístiques"
+msgstr "Incloure la pàgina de notícies i actualitzacions"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2518
-#, fuzzy
 msgid "Whether to include a page with the last updates"
-msgstr "Si s'ha d'incloure la darrera feina"
+msgstr "Si s'ha d'incloure una pàgina amb les darreres actualitzacions"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2523
-#, fuzzy
 msgid "Max days for updates"
-msgstr "Màx. elements per pastís"
+msgstr "Màx. dies per actualitzacions"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
 msgid "You want to see the last updates on how many days?"
-msgstr ""
+msgstr "De quants dies voleu veure les últimes actualitzacions?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
-#, fuzzy
 msgid "Max number of updates per object to show"
-msgstr "El nombre màxim de llocs a mostrar"
+msgstr "El nombre màxim d'actualitzacions a mostrar per objecte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2530
 msgid "How many updates do you want to see max"
-msgstr ""
+msgstr "Quantes actualitzacions voleu veure com a màxim"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2543
-#, fuzzy
 msgid "Translations"
-msgstr "Traducció"
+msgstr "Traduccions"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2546
-#, fuzzy
 msgid "second language"
-msgstr "Segona data"
+msgstr "segona llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Nom del web per a la segona llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
 #: ../gramps/plugins/webreport/narrativeweb.py:2575
 #: ../gramps/plugins/webreport/narrativeweb.py:2583
-#, fuzzy
 msgid "This site title"
-msgstr "Títol de web"
+msgstr "El títol d'aquest lloc web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
@@ -38201,57 +38040,52 @@ msgstr "Títol de web"
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
 msgid "Enter a title in the respective language"
-msgstr ""
+msgstr "Introduïu un títol en la llengua respectiva"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
-#, fuzzy
 msgid "third language"
-msgstr "Idioma"
+msgstr "tercera llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Nom del web per a la tercera llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
-#, fuzzy
 msgid "fourth language"
-msgstr "Idioma"
+msgstr "quarta llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Nom del web per a la quarta llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
-#, fuzzy
 msgid "fifth language"
-msgstr "Idioma"
+msgstr "cinquena llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Nom del web per a la cinquena llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
-#, fuzzy
 msgid "sixth language"
-msgstr "Idioma"
+msgstr "sisena llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2582
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Nom del web per a la sisena llengua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2795
-#, fuzzy
 msgid "Calendar Options"
-msgstr "Opcions de Paper"
+msgstr "Opcions de Calendari"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
 msgid "Do we include the web calendar ?"
 msgstr "Voleu incloure el calendari web ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2803
-#, fuzzy, python-format
+#, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Si s'ha d'incloure una galeria d'objectes de medis audiovisuals"
+msgstr "Si s'ha d'incloure un calendari per l'any %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2825
 #: ../gramps/plugins/webreport/webcal.py:1953
@@ -38320,7 +38154,7 @@ msgid "<absent>"
 msgstr "<absent>"
 
 #: ../gramps/plugins/webreport/person.py:292
-#, fuzzy, python-format
+#, python-format
 msgctxt "letter"
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Cognoms %(surname)s que comencin amb la lletra %(letter)s"
@@ -38514,9 +38348,8 @@ msgstr ""
 "en miniatura, s'anirà a la pàgina d'aquesta imatge."
 
 #: ../gramps/plugins/webreport/updates.py:78
-#, fuzzy
 msgid "New and updated objects"
-msgstr "Complements nous i actualitzats"
+msgstr "Els objectes nous i els actualitzats"
 
 #: ../gramps/plugins/webreport/updates.py:88
 #, python-format
@@ -38525,6 +38358,9 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
+"Aquesta pàgina conté els últims objectes actualitzats a la base de dades en "
+"els últims %(days)d dies i per un màxim de %(nb)d objectes per tipus "
+"d'objecte."
 
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
@@ -38581,10 +38417,10 @@ msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s i %(person)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1567
-#, fuzzy, python-format
+#, python-format
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr "Creat per %(html_email_author_start)sWebCal%(html_email_author_end)s"
+msgstr "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format
@@ -38823,7 +38659,7 @@ msgstr "Bàsic-Picea"
 #. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
 msgid "Mainz"
-msgstr "Mainz"
+msgstr "Magúncia"
 
 #. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
