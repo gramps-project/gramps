@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-07 21:14+0000\n"
+"PO-Revision-Date: 2021-07-02 13:33+0000\n"
 "Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -21342,9 +21342,7 @@ msgstr "Главная семья для отчёта"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1548
 msgid "Level of Spouses"
-msgstr ""
-"Дальность через\n"
-"супружеские отношения"
+msgstr "Уровень Супругов"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
@@ -21416,8 +21414,7 @@ msgid ""
 "Spousal\n"
 "Display Format"
 msgstr ""
-"Формат\n"
-"отображения\n"
+"Формат отображения\n"
 "супругов"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1678
@@ -21549,7 +21546,9 @@ msgstr "Веерная карта %(generations)d поколений для %(pe
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
-msgstr "Веерная карта %(generations)d поколений для %(person)s"
+msgstr ""
+"Веерная карта %(generations)d поколений для\n"
+"%(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:694
 #: ../gramps/plugins/textreport/ancestorreport.py:296
@@ -37509,9 +37508,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
 msgid "Publisher contact image"
-msgstr ""
-"Изображение для страницы\n"
-"с информацией об издателе"
+msgstr "Изображение контакта издателя"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2193
 msgid ""
