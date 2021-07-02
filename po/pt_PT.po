@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-14 13:37+0000\n"
+"PO-Revision-Date: 2021-06-22 07:00+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -12078,7 +12078,7 @@ msgstr "Não perguntar sobre as extensões anteriormente notificadas"
 
 #: ../gramps/gui/configure.py:1668
 msgid "Check for updated addons now"
-msgstr "Procurar actualizações"
+msgstr "Procurar actualizações agora"
 
 #: ../gramps/gui/configure.py:1680
 msgid "Checking Addons Failed"
@@ -12113,7 +12113,7 @@ msgstr "actualização"
 
 #: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
-msgstr "Definições da árvore genealógica e gestão das seguranças"
+msgstr "Definições da árvore genealógica e gestão das salvaguardas"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
@@ -12145,15 +12145,15 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1767
 msgid "Backup path"
-msgstr "Caminho da cópia de segurança"
+msgstr "Caminho das salvaguardas"
 
 #: ../gramps/gui/configure.py:1772
 msgid "Backup on exit"
-msgstr "Cópia de segurança ao sair"
+msgstr "Salvaguarda ao sair"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr "Fazer segurança da sua árvore ao sair na pasta especificada acima."
+msgstr "Fazer uma salvaguarda da árvore ao sair, na pasta especificada acima."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12177,11 +12177,11 @@ msgstr "Cada dia"
 
 #: ../gramps/gui/configure.py:1789
 msgid "Autobackup"
-msgstr "Cópia de segurança automática"
+msgstr "Salvaguarda automática"
 
 #: ../gramps/gui/configure.py:1834
 msgid "Select media directory"
-msgstr "Seleccionar pasta multimédia"
+msgstr "Seleccionar a pasta multimédia"
 
 #: ../gramps/gui/configure.py:1837 ../gramps/gui/configure.py:1860
 #: ../gramps/gui/configure.py:1885 ../gramps/gui/dbloader.py:345
@@ -12245,11 +12245,11 @@ msgstr "_Cancelar"
 
 #: ../gramps/gui/configure.py:1857
 msgid "Select database directory"
-msgstr "Seleccionar pasta da base de dados"
+msgstr "Seleccionar a pasta da base de dados"
 
 #: ../gramps/gui/configure.py:1882 ../gramps/gui/viewmanager.py:1820
 msgid "Select backup directory"
-msgstr "Seleccionar pasta da cópia de segurança"
+msgstr "Seleccionar a pasta da salvaguarda"
 
 #: ../gramps/gui/configure.py:1947
 msgid ""
@@ -12362,7 +12362,7 @@ msgstr ""
 "feitas antes disso.\n"
 "\n"
 "Se acha que poderá querer reverter a importação, por favor pare agora e faça "
-"uma cópia de segurança da sua base de dados."
+"uma salvaguarda da sua base de dados."
 
 #: ../gramps/gui/dbloader.py:122
 msgid "_Proceed with import"
@@ -12381,7 +12381,7 @@ msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
 msgstr ""
-"Foi feita uma segurança,\n"
+"Foi feita uma salvaguarda,\n"
 "actualizar a minha árvore"
 
 #: ../gramps/gui/dbloader.py:212 ../gramps/gui/glade/dialog.glade:701
@@ -12431,9 +12431,9 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and "
 "others."
 msgstr ""
-"O tipo de ficheiro \"%s\" é desconhecido do GRAMPS.\n"
+"O tipo de ficheiro \"%s\" é desconhecido do Gramps.\n"
 "\n"
-"Tipos válidos são: base de dados GRAMPS, GRAMPS XML, pacote GRAMPS, GEDCOM e "
+"Tipos válidos são: base de dados Gramps, Gramps XML, pacote Gramps, Gedcom e "
 "outros."
 
 #: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
@@ -12566,8 +12566,8 @@ msgid ""
 "database you may safely break the lock. However, if someone else is editing "
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
-"O GRAMPS acredita que alguém está activamente a editar esta base de dados. "
-"Não pode editar esta base de dados enquando estiver bloqueada. Caso ninguém "
+"O Gramps acredita que alguém está activamente a editar esta base de dados. "
+"Não pode editar esta base de dados enquanto estiver bloqueada. Caso ninguém "
 "a esteja a editar, pode quebrar o bloqueio com segurança. Contudo, se outro "
 "indivíduo a estiver a editar e quebrar o bloqueio, a base de dados pode "
 "ficar corrompida."
@@ -12702,7 +12702,7 @@ msgstr "Uma tentativa de importar para a base de dados falhou."
 
 #: ../gramps/gui/dbman.py:892
 msgid "Repair Family Tree?"
-msgstr "Reparar árvore genealógica?"
+msgstr "Reparar a árvore genealógica?"
 
 #: ../gramps/gui/dbman.py:893
 #, python-format
@@ -12731,10 +12731,10 @@ msgid ""
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
 "Se clicou em %(bold_start)sProsseguir%(bold_end)s, o Gramps tentará "
-"recuperar a sua árvore genealógica a partir da última cópia de segurança "
-"feita com sucesso. Esta operação pode gerar efeitos indesejados e, por isto, "
-"deve fazer primeiro uma %(bold_start)scópia de segurança%(bold_end)s da sua "
-"árvore genealógica.\n"
+"recuperar a sua árvore genealógica a partir da última salvaguarda feita com "
+"sucesso. Esta operação pode gerar efeitos indesejados e, por isto, deve "
+"fazer primeiro uma %(bold_start)ssalvaguarda%(bold_end)s da sua árvore "
+"genealógica.\n"
 "A árvore genealógica seleccionada está armazenada em %(dirname)s.\n"
 "\n"
 "Antes de fazer a reparação verifique se a árvore genealógica não pode de "
@@ -12742,11 +12742,11 @@ msgstr ""
 "automaticamente.\n"
 "\n"
 "%(bold_start)sDetalhes%(bold_end)s: a reparação de uma árvore genealógica "
-"utiliza a sua última cópia de segurança armazenada pelo Gramps na última "
+"utiliza a sua última salvaguarda armazenada pelo Gramps na última "
 "utilização. Se trabalhou por diversas horas/dias sem fechar o Gramps, todas "
 "as alterações efectuadas neste período serão perdidas! Se a reparação "
 "falhar, a árvore genealógica original será perdida permanentemente, logo "
-"necessita de uma segurança. Se isto ocorrer ou se muita informação for "
+"necessita de uma salvaguarda. Se isto ocorrer ou se muita informação for "
 "perdida, pode corrigir a árvore genealógica manualmente. Para mais detalhes, "
 "verifique em:\n"
 "%(gramps_wiki_recover_url)s\n"
@@ -12757,7 +12757,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
-msgstr "Prosseguir, fiz uma cópia de segurança"
+msgstr "Prosseguir, fiz uma salvaguarda"
 
 #: ../gramps/gui/dbman.py:925
 msgid "Stop"
@@ -12765,11 +12765,11 @@ msgstr "Parar"
 
 #: ../gramps/gui/dbman.py:944
 msgid "Rebuilding database from backup files"
-msgstr "A reconstruir a base de dados da cópia de segurança"
+msgstr "A reconstruir a base de dados a partir da salvaguarda"
 
 #: ../gramps/gui/dbman.py:949
 msgid "Error restoring backup data"
-msgstr "Erro ao restaurar a cópia de segurança"
+msgstr "Erro ao restaurar a salvaguarda"
 
 #: ../gramps/gui/dbman.py:988
 msgid "Could not create Family Tree"
@@ -12908,19 +12908,19 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Esta versão não foi feita para utilização regular. Use por sua conta e "
-"risco\n"
+"Esta versão não foi feita para utilização regular. Use por sua conta e risco."
+"\n"
 "\n"
 "Esta versão pode:\n"
-"1) Funcionar de forma diferente do que espera.\n"
-"2) Não funcionar de todo.\n"
-"3) Sofrer encerramentos forçados periódicos.\n"
-"4) Corromper os seus dados.\n"
-"5) Gravar os dados num formato incompatível com a versão oficial.\n"
+"1) funcionar de forma diferente do que espera;\n"
+"2) não funcionar de todo;\n"
+"3) sofrer encerramentos forçados periódicos;\n"
+"4) corromper os seus dados;\n"
+"5) gravar os dados num formato incompatível com a versão oficial.\n"
 "\n"
-"Faça uma %(bold_start)sCÓPIA DE SEGURANÇA%(bold_end)s das suas bases de "
-"dados existentes antes de as abrir com esta versão e assegure-se de exportar "
-"os seus dados em formato XML com alguma regularidade."
+"Faça uma %(bold_start)sSALVAGUARDA%(bold_end)s das suas bases de dados "
+"existentes antes de as abrir com esta versão e assegure-se de exportar os "
+"seus dados em formato XML com alguma regularidade."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -12968,12 +12968,12 @@ msgid ""
 "Gramps is not able to display the image file. This may be caused by a "
 "corrupt file."
 msgstr ""
-"O Gramps não é capaz de mostrar o ficheiro de imagem. Isto pode ser causado "
-"por um ficheiro corrompido."
+"O Gramps não pode mostrar o ficheiro de imagem. O ficheiro pode estar "
+"corrompido."
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:61
 msgid "Create and add a new address"
-msgstr "Criar e adiconar um novo endereço"
+msgstr "Criar e adicionar um novo endereço"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:62
 msgid "Remove the existing address"
@@ -13138,11 +13138,11 @@ msgstr "Mover abaixo"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:76
 msgid "Move Left"
-msgstr "À esquerda"
+msgstr "Mover à esquerda"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:77
 msgid "Move right"
-msgstr "À direita"
+msgstr "Mover à direita"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:69
 msgid "Create and add a new citation and new source"
@@ -13297,7 +13297,7 @@ msgstr "_Ver"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/plugins/view/mediaview.py:402
 msgid "Open Containing _Folder"
-msgstr "Abrir _pasta"
+msgstr "Abrir _pasta-mãe"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:155
 msgid "_Make Active Media"
@@ -13330,7 +13330,7 @@ msgstr "Arrastar objecto multimédia"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:51
 msgid "Create and add a new LDS ordinance"
-msgstr "Criar e adiconar uma nova ordenança SUD"
+msgstr "Criar e adicionar uma nova ordenança SUD"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Remove the existing LDS ordinance"
@@ -13358,7 +13358,7 @@ msgstr "_Locais alternativos"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:63
 msgid "Create and add a new name"
-msgstr "Criar e adiconar um novo nome"
+msgstr "Criar e adicionar um novo nome"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:64
 msgid "Remove the existing name"
@@ -13383,7 +13383,7 @@ msgstr "Agrupar como"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:79
 msgid "Notes Preview"
-msgstr "Antevisão da nota"
+msgstr "Antevisão das notas"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:90
 msgid "_Names"
@@ -13391,7 +13391,7 @@ msgstr "_Nomes"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:125
 msgid "Set as default name"
-msgstr "Definir como nome padrão"
+msgstr "Pré-definir como nome"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
 #: ../gramps/gui/plug/_guioptions.py:1259 ../gramps/gui/viewmanager.py:1030
@@ -13417,7 +13417,7 @@ msgstr "Nomes alternativos"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:66
 msgid "Create and add a new note"
-msgstr "Criar e adiconar uma nova nota"
+msgstr "Criar e adicionar uma nova nota"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:67
 msgid "Remove the existing note"
@@ -13473,7 +13473,7 @@ msgstr "Remover o evento pessoal seleccionado"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Edit the selected personal event or edit family"
-msgstr "Editar o evento pessoal seleccionadao ou editar família"
+msgstr "Editar o evento pessoal seleccionado ou editar família"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Move the selected event upwards or change family order"
@@ -13489,11 +13489,11 @@ msgstr "Impossível alterar a família"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:135
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Impossível alterar eventos familiares no editor de indivíduo"
+msgstr "Impossível alterar eventos familiares no editor de indivíduos"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Create and add a new association"
-msgstr "Criar e adiconar uma nova associação"
+msgstr "Criar e adicionar uma nova associação"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:57
 msgid "Remove the existing association"
@@ -13522,7 +13522,7 @@ msgstr "Padrinho"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:53
 msgid "Create and add a new place name"
-msgstr "Criar e adiconar um novo nome de local"
+msgstr "Criar e adicionar um novo nome de local"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:54
 msgid "Remove the existing place name"
@@ -13605,7 +13605,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:67
 msgid "Create and add a new surname"
-msgstr "Criar e adiconar um novo apelido"
+msgstr "Criar e adicionar um novo apelido"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:68
 msgid "Remove the selected surname"
@@ -13638,7 +13638,7 @@ msgstr "Apelidos de família"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:54
 msgid "Create and add a new web address"
-msgstr "Criar e adiconar um novo endereço web"
+msgstr "Criar e adicionar um novo endereço web"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:55
 msgid "Remove the existing web address"
@@ -13764,7 +13764,7 @@ msgid ""
 msgstr ""
 "Tentou utilizar uma ID Gramps já existente com o valor %(id)s. Este valor já "
 "está a ser utilizado por \"%(prim_object)s\". Por favor, insira outra ID ou "
-"deixe em branco para obter o próximo ID disponível."
+"deixe em branco para obter a próxima ID disponível."
 
 #: ../gramps/gui/editors/editcitation.py:333
 #, python-format
@@ -13783,7 +13783,7 @@ msgstr "Eliminar citação (%s)"
 
 #: ../gramps/gui/editors/editdate.py:76 ../gramps/gui/editors/editdate.py:85
 msgid "Regular"
-msgstr "Regular"
+msgstr "Normal"
 
 #: ../gramps/gui/editors/editdate.py:77
 msgid "Before"
@@ -13791,7 +13791,7 @@ msgstr "Antes de"
 
 #: ../gramps/gui/editors/editdate.py:78
 msgid "After"
-msgstr "Depois de"
+msgstr "Após"
 
 #: ../gramps/gui/editors/editdate.py:79
 msgid "About"
@@ -13873,7 +13873,7 @@ msgstr ""
 #: ../gramps/gui/editors/editevent.py:250
 #: ../gramps/gui/editors/editreference.py:277
 msgid "Cannot save event. ID already exists."
-msgstr "Impossível gravar evento. ID já existe."
+msgstr "Impossível gravar o evento. A ID já existe."
 
 #: ../gramps/gui/editors/editevent.py:264
 msgid "The event type cannot be empty"
@@ -13951,7 +13951,7 @@ msgstr "Mover o filho abaixo na lista de filhos"
 
 #: ../gramps/gui/editors/editfamily.py:123
 msgid "#"
-msgstr "#"
+msgstr "Nº"
 
 #: ../gramps/gui/editors/editfamily.py:127
 msgid "Paternal"
@@ -14125,7 +14125,7 @@ msgid ""
 "editing of this window, and select the existing family"
 msgstr ""
 "Já existe uma família com estes pais na base de dados Se gravar, será criada "
-"uma família duplicada. É recomendado que cancele a edição nesta Janela e "
+"uma família duplicada. É recomendado que cancele a edição nesta janela e "
 "seleccione a família já existente"
 
 #. Translators: needed for French, ignore otherwise
@@ -14202,7 +14202,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:1142
 msgid "Cannot save family. ID already exists."
-msgstr "Impossível gravar família. A ID já existe."
+msgstr "Impossível gravar a família. A ID já existe."
 
 #: ../gramps/gui/editors/editfamily.py:1143
 #: ../gramps/gui/editors/editnote.py:328
@@ -14215,7 +14215,7 @@ msgid ""
 msgstr ""
 "Tentou utilizar uma ID Gramps já existente, com o valor %(id)s. Este valor "
 "já está a ser utilizado. Por favor, insira uma ID diferente ou deixe em "
-"branco para obter próximo ID disponível."
+"branco para obter a próxima ID disponível."
 
 #: ../gramps/gui/editors/editfamily.py:1158
 msgid "Add Family"
@@ -14287,7 +14287,7 @@ msgstr "Editar objecto multimédia"
 
 #: ../gramps/gui/editors/editmedia.py:288
 msgid "Cannot save media object"
-msgstr "Impossível gravar objecto multimédia"
+msgstr "Impossível gravar o objecto multimédia"
 
 #: ../gramps/gui/editors/editmedia.py:289
 msgid ""
@@ -14368,7 +14368,7 @@ msgstr "Novo nome"
 
 #: ../gramps/gui/editors/editname.py:380
 msgid "Break global name grouping?"
-msgstr "Quebrar agrupamento global de nomes?"
+msgstr "Desfazer agrupamento global de nomes?"
 
 #: ../gramps/gui/editors/editname.py:381
 #, python-format
@@ -14376,8 +14376,8 @@ msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
 msgstr ""
-"Todos os indivíduos com apelido %(surname)s deixarão de estar agrupadas com "
-"o nome de %(group_name)s."
+"Todos os indivíduos com apelido %(surname)s deixarão de estar agrupados sob "
+"o grupo %(group_name)s."
 
 #: ../gramps/gui/editors/editname.py:385
 msgid "Continue"
