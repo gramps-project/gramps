@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-19 18:58+0000\n"
+"PO-Revision-Date: 2021-07-02 13:32+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -2479,25 +2479,25 @@ msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:651
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:677
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:703
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:729
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:421
 msgid "today"
@@ -8463,7 +8463,7 @@ msgstr "Apodo familiar"
 #: ../gramps/gen/lib/name.py:461 ../gramps/gen/lib/name.py:476
 #, python-format
 msgid "%(surname)s, %(first)s %(suffix)s"
-msgstr ""
+msgstr "%(surname)s, %(first)s %(suffix)s"
 
 #. Translators: needed for Arabic, ignore otherwise
 #. Translators: needed for Arabic, ignore otherwise
@@ -8485,7 +8485,7 @@ msgstr "%(str1)s, %(str2)s"
 #: ../gramps/gen/lib/name.py:493
 #, python-format
 msgid "%(first)s %(surname)s, %(suffix)s"
-msgstr ""
+msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:76
 msgctxt "Surname"
@@ -10725,7 +10725,7 @@ msgstr "Alemán"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Alemán (Austria)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -14336,7 +14336,7 @@ msgstr ""
 #: ../gramps/plugins/view/relview.py:1578
 #, python-format
 msgid "%s:"
-msgstr ""
+msgstr "%s:"
 
 #: ../gramps/gui/editors/editfamily.py:1004
 #, python-format
@@ -18437,7 +18437,7 @@ msgstr "Fusionar_personas"
 #: ../gramps/gui/merge/mergeperson.py:62
 #, python-format
 msgid "%(key)s:\t%(value)s"
-msgstr ""
+msgstr "%(key)s:\t%(value)s"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
@@ -35375,7 +35375,7 @@ msgstr "Herramienta de verificación de datos"
 #: ../gramps/plugins/tool/verify.py:318
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
-msgstr ""
+msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
 #: ../gramps/plugins/tool/verify.py:502
 msgid "Data Verification Results"
