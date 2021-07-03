@@ -224,6 +224,16 @@ class DBAPI(DbGeneric):
         if self.transaction == None:
             self.dbapi.rollback()
 
+    def _collation(self, locale):
+        """
+        Get the adjusted collation if there is one, falling back on
+        the locale.collation.
+        """
+        collation = self.dbapi.check_collation(locale)
+        if collation == None:
+            return locale.collation
+        return collation
+
     def transaction_begin(self, transaction):
         """
         Transactions are handled automatically by the db layer.
@@ -366,7 +376,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute('SELECT handle FROM person '
                                'ORDER BY surname '
-                               'COLLATE "%s"' % self.dbapi.check_collation(locale))
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM person")
         rows = self.dbapi.fetchall()
@@ -397,7 +407,7 @@ class DBAPI(DbGeneric):
                    'THEN mother.given_name ' +
                    'ELSE father.given_name ' +
                    'END) ' +
-                   'COLLATE "%s"' % self.dbapi.check_collation(locale))
+                   'COLLATE "%s"' % self._collation(locale))
             self.dbapi.execute(sql)
         else:
             self.dbapi.execute("SELECT handle FROM family")
@@ -426,7 +436,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute('SELECT handle FROM citation '
                                'ORDER BY page '
-                               'COLLATE "%s"' % self.dbapi.check_collation(locale))
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM citation")
         rows = self.dbapi.fetchall()
@@ -445,7 +455,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute('SELECT handle FROM source '
                                'ORDER BY title '
-                               'COLLATE "%s"' % self.dbapi.check_collation(locale))
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle from source")
         rows = self.dbapi.fetchall()
@@ -464,7 +474,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute('SELECT handle FROM place '
                                'ORDER BY title '
-                               'COLLATE "%s"' % self.dbapi.check_collation(locale))
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM place")
         rows = self.dbapi.fetchall()
@@ -492,7 +502,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute('SELECT handle FROM media '
                                'ORDER BY desc '
-                               'COLLATE "%s"' % self.dbapi.check_collation(locale))
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM media")
         rows = self.dbapi.fetchall()
@@ -520,7 +530,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute('SELECT handle FROM tag '
                                'ORDER BY name '
-                               'COLLATE "%s"' % self.dbapi.check_collation(locale))
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM tag")
         rows = self.dbapi.fetchall()
