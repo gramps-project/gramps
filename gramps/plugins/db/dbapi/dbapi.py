@@ -231,7 +231,7 @@ class DBAPI(DbGeneric):
         """
         collation = self.dbapi.check_collation(locale)
         if collation == None:
-            return locale.collation
+            return locale.get_collation()
         return collation
 
     def transaction_begin(self, transaction):
