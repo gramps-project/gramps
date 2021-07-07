@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-02 13:32+0000\n"
+"PO-Revision-Date: 2021-07-07 19:34+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -5843,8 +5843,8 @@ msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Liefert Personen, die Nachkommen einer festgelegten Person sind, aber "
-"wenigstens <N> Generationen entfernt sind."
+"Liefert Personen, die Nachkommen einer bestimmten Person sind, die "
+"mindestens N Generationen entfernt sind"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:47
 msgid "Parents of <filter> match"
@@ -5879,8 +5879,8 @@ msgstr "Ist ein (Ehe-)Partner eines <Filter>Treffers"
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:48
 msgid "Matches people married to anybody matching a filter"
 msgstr ""
-"Liefert Personen, die verheiratet sind mit jenen, die im Filter enthalten "
-"sind."
+"Liefert Personen, die mit jemandem verheiratet sind, der einem Filter "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:45
 msgid "Witnesses"
@@ -5888,7 +5888,7 @@ msgstr "Zeugen"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:46
 msgid "Matches people who are witnesses in any event"
-msgstr "Liefert Personen, die bei einem Ereignis Zeuge sind."
+msgstr "Liefert Personen, die bei einem Ereignis Zeuge sind"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:51
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:49
@@ -5903,8 +5903,8 @@ msgstr "Personen mit Ereignissen entsprechend dem <Ereignisfilter>"
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
-"Liefert Personen mit Ereignissen, die auf den angegeben Ereignisfilter "
-"passen."
+"Liefert Personen, die Ereignisse haben, die einem bestimmten Ereignisfilter "
+"entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:44
 msgid "People matching the <filter>"
@@ -5941,7 +5941,7 @@ msgstr "Personen mit mehreren Ehen"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:43
 msgid "Matches people who have more than one spouse"
-msgstr "Liefert Personen, die mehr als einen (Ehe-)Partner haben."
+msgstr "Liefert Personen, die mehr als einen Ehepartner haben"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:42
 msgid "People with no marriage records"
@@ -5949,7 +5949,7 @@ msgstr "Personen ohne Ehen"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:43
 msgid "Matches people who have no spouse"
-msgstr "Liefert Personen, die keinen (Ehe-)Partner haben."
+msgstr "Liefert Personen, die keinen Ehepartner haben"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:42
 msgid "People without a known birth date"
@@ -5957,7 +5957,7 @@ msgstr "Personen ohne bekanntes Geburtsdatum"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:43
 msgid "Matches people without a known birthdate"
-msgstr "Liefert Personen ohne bekanntes Geburtsdatum."
+msgstr "Liefert Personen ohne bekanntes Geburtsdatum"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:42
 msgid "People without a known death date"
@@ -5973,7 +5973,7 @@ msgstr "Als vertraulich markierte Personen"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:43
 msgid "Matches people that are indicated as private"
-msgstr "Liefert Personen, die als vertraulich markiert sind."
+msgstr "Liefert Personen, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:43
 msgid "People not marked private"
@@ -5981,7 +5981,7 @@ msgstr "Nicht als vertraulich markierte Personen"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:44
 msgid "Matches people that are not indicated as private"
-msgstr "Liefert Personen, die nicht als vertraulich markiert sind."
+msgstr "Liefert Personen, die nicht als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:42
 msgid "People with incomplete events"
@@ -5989,7 +5989,7 @@ msgstr "Personen mit unvollständigen Ereignissen"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:43
 msgid "Matches people with missing date or place in an event"
-msgstr "Liefert Personen mit fehlendem Ereignisdatum oder Ereignisort."
+msgstr "Liefert Personen mit fehlendem Datum oder Ort in einem Ereignis"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:44
 msgid "On date:"
@@ -6001,7 +6001,7 @@ msgstr "Personen, die wahrscheinlich leben"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:46
 msgid "Matches people without indications of death that are not too old"
-msgstr "Liefert Personen ohne Todeseintrag, die nicht zu alt sind."
+msgstr "Liefert Personen ohne Anzeichen ihres Todes, die nicht zu alt sind"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:46
 msgid "People with Id containing <text>"
@@ -6037,7 +6037,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:51
 msgid "Relationship path between bookmarked persons"
-msgstr "Verwandtschaftspfad zwischen Personen aus dem Lesezeichen."
+msgstr "Beziehungspfad zwischen mit Lesezeichen versehenen Personen"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:53
 msgid ""
@@ -6079,7 +6079,7 @@ msgstr "Orte mit der <Fundstelle>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
-msgstr "Liefert Orte mit einer Fundstelle mit dem vorgegebenen Wert."
+msgstr "Liefert Orte mit einer Fundstelle mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:49
 #: ../gramps/gui/editors/filtereditor.py:113
@@ -6103,7 +6103,7 @@ msgstr "Orte mit gegebenen Parametern"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:53
 #: ../gramps/gen/filters/rules/place/_hasplace.py:59
 msgid "Matches places with particular parameters"
-msgstr "Liefert Orte mit den vorgegebenen Parametern."
+msgstr "Liefert Orten mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:45
 msgid "Places with <count> media"
@@ -6119,7 +6119,7 @@ msgstr "Ort mit <ID>"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:45
 msgid "Matches a place with a specified Gramps ID"
-msgstr "Liefert Orte mit einer bestimmten Gramps-ID."
+msgstr "Liefert einem Ort mit einer angegebenen Gramps-ID"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:48
 msgid "Places with no latitude or longitude given"
@@ -6127,7 +6127,7 @@ msgstr "Orte ohne angegeben Längen- oder Breitengrad"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:49
 msgid "Matches places with empty latitude or longitude"
-msgstr "Liefert Orte mit leerem Längen- oder Breitengrad."
+msgstr "Liefert Orte mit leerem Breiten- oder Längengrad"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:50
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:56
@@ -6201,7 +6201,7 @@ msgstr "Orte mit gegebener Anzahl Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:43
 msgid "Matches places with a certain reference count"
-msgstr "Liefert Orte mit vorgegebener Anzahl Referenzen."
+msgstr "Liefert Orte mit einer bestimmten Referenzanzahl"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:45
 msgid "Place with <count> sources"
@@ -6218,7 +6218,7 @@ msgstr "Orte mit der <Quelle>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Matches places who have a particular source"
-msgstr "Liefert Orte, die eine bestimmte Quelle haben."
+msgstr "Liefert Orte, die eine bestimmte Quelle haben"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:49
 msgid "Places with the <tag>"
@@ -6226,7 +6226,7 @@ msgstr "Orte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
-msgstr "Liefert Orte mit der vorgegebenen Markierung."
+msgstr "Liefert Orte mit der vorgegebenen Markierung"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:49
 msgid "Places matching a title"
@@ -6291,8 +6291,8 @@ msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
-"Liefert Orte, wo Ereignisse stattfanden, die auf den angegeben "
-"Ereignisfilter passen."
+"Liefert Orte, an denen Ereignisse stattgefunden haben, die dem angegebenen "
+"Ereignisfilternamen entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:44
 msgid "Places matching the <filter>"
@@ -6316,7 +6316,7 @@ msgstr "Als vertraulich markierte Orte"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:43
 msgid "Matches places that are indicated as private"
-msgstr "Liefert Orte, die als vertraulich markiert sind."
+msgstr "Liefert Orte, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
 msgid "Places with Id containing <text>"
@@ -6359,7 +6359,7 @@ msgstr "Jeder Aufbewahrungsort"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:45
 msgid "Matches every repository in the database"
-msgstr "Liefert jeden Aufbewahrungsort in der Datenbank."
+msgstr "Liefert jeden Aufbewahrungsort in der Datenbank"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 msgid "Repositories changed after <date time>"
@@ -6392,7 +6392,7 @@ msgstr "Aufbewahrungsort mit <ID>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:45
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Liefert Aufbewahrungsorte mit einer vorgegebenen Gramps-ID."
+msgstr "Liefert einen Aufbewahrungsort mit einer angegebenen Gramps-ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
@@ -6421,7 +6421,7 @@ msgstr "Aufbewahrungsorte mit einer Anzahl Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Matches repositories with a certain reference count"
-msgstr "Liefert Aufbewahrungsorte mit gegebener Anzahl von Referenzen."
+msgstr "Liefert Aufbewahrungsorte mit einer bestimmten Anzahl von Referenzen"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:46
 #: ../gramps/gui/glade/mergerepository.glade:212
@@ -6441,11 +6441,11 @@ msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:51
 msgid "Repositories matching parameters"
-msgstr "Aufbewahrungsorte entsprechend den Parametern."
+msgstr "Aufbewahrungsorte mit passenden Parametern"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:52
 msgid "Matches Repositories with particular parameters"
-msgstr "Liefert Aufbewahrungsorte mit vorgegebenen Parametern."
+msgstr "Liefert Aufbewahrungsorte mit bestimmten Parametern"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:49
 msgid "Repositories with the <tag>"
@@ -6488,7 +6488,7 @@ msgstr "Als vertraulich markierte Aufbewahrungsorte"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:43
 msgid "Matches repositories that are indicated as private"
-msgstr "Liefert Aufbewahrungsorte, die als vertraulich markiert sind."
+msgstr "Liefert Aufbewahrungsorte, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:44
 msgid "Every source"
@@ -6496,7 +6496,7 @@ msgstr "Jede Quelle"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:45
 msgid "Matches every source in the database"
-msgstr "Liefert jede Quelle in der Datenbank."
+msgstr "Liefert jede Quelle in der Datenbank"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:47
 msgid "Sources changed after <date time>"
@@ -6538,7 +6538,7 @@ msgstr "Quelle mit <ID>"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:45
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Liefert Quellen mit einer vorgegebenen Gramps-ID."
+msgstr "Liefert eine Quelle mit einer angegebenen Gramps-ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:45
 msgid "Sources having <count> notes"
@@ -6574,7 +6574,7 @@ msgstr "Quellen mit einer Anzahl von Referenzen von <Anzahl>"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:43
 msgid "Matches sources with a certain reference count"
-msgstr "Liefert Quellen mit einer bestimmten Anzahl von Referenzen."
+msgstr "Liefert Quellen mit einer bestimmten Referenzanzahl"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:47
 msgid "Sources with <count> Repository references"
@@ -6583,7 +6583,7 @@ msgstr "Quellen mit <Zahl> Aufbewahrungsorte Referenzen"
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
 msgid "Matches sources with a certain number of repository references"
 msgstr ""
-"Liefert Quellen mit einer bestimmten Anzahl von Aufbewahrungsortereferenzen."
+"Liefert Quellen mit einer bestimmten Anzahl von Aufbewahrungsortereferenzen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
 msgid "Sources with repository reference containing <text> in \"Call Number\""
@@ -6653,7 +6653,7 @@ msgstr "Als vertraulich markierte Quellen"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:43
 msgid "Matches sources that are indicated as private"
-msgstr "Liefert Quellen, die als vertraulich markiert sind."
+msgstr "Liefert Quellen, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/lib/address.py:97 ../gramps/gui/clipboard.py:298
 #: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
@@ -9376,8 +9376,7 @@ msgstr "Sonstiges"
 #: ../gramps/gen/plug/_pluginreg.py:1209
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr ""
-"FEHLER: Das Lesen der Zusatzmodulregistrierung %(filename)s ist gescheitert."
+msgstr "FEHLER: Lesen der Zusatzmodulregistrierung fehlgeschlagen %(filename)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1187
 #, python-format
@@ -9385,8 +9384,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"WARNUNG: Das Zusatzmodul %(plugin_name)s besitzt keine Übersetzung für deine "
-"konfigurierten Sprachen, es verwendet stattdessen Englisch."
+"WARNUNG: Zusatzmodul %(plugin_name)s hat keine Übersetzung für eine der "
+"konfigurierten Sprachen und verwendet stattdessen US-Englisch"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
 #, python-format
@@ -9411,8 +9410,8 @@ msgstr ""
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
-"FEHLER: Die Pythondatei %(filename)s in der Registrierungsdatei %(regfile)s "
-"existiert nicht."
+"FEHLER: Python-Datei %(filename)s in Registerdatei %(regfile)s existiert "
+"nicht"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:129
 msgid "Close file first"
@@ -9765,7 +9764,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:268
 msgid "Note to add to the graph"
-msgstr "Notizen zur Grafik hinzufügen."
+msgstr "Notizen zur Grafik hinzufügen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:270
 msgid "This text will be added to the graph."
@@ -10142,7 +10141,7 @@ msgstr "Namensformat"
 #: ../gramps/gen/plug/report/stdoptions.py:94
 #: ../gramps/plugins/webreport/webcal.py:1807
 msgid "Select the format to display names"
-msgstr "Wähle das Format zum Anzeigen von Namen."
+msgstr "Wähle das Format für die Anzeige von Namen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:122
 msgid "Include data marked private"
@@ -10150,7 +10149,7 @@ msgstr "Mit als vertraulich markierten Datensätzen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:123
 msgid "Whether to include private data"
-msgstr "Legt fest, ob vertrauliche Daten aufgenommen werden."
+msgstr "Ob vertrauliche Daten einbezogen werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:188
 msgid "Living People"
@@ -10187,7 +10186,7 @@ msgstr "Wie lebende Personen behandelt werden"
 
 #: ../gramps/gen/plug/report/stdoptions.py:206
 msgid "Years from death to consider living"
-msgstr "Definiere 'lebende Person' über die Anzahl der Jahre seit Todesjahr."
+msgstr "Jahre nach dem Tod, um als lebend zu betrachten"
 
 #: ../gramps/gen/plug/report/stdoptions.py:209
 msgid "Whether to restrict data on recently-dead people"
@@ -10259,7 +10258,7 @@ msgstr "Datei existiert nicht"
 #: ../gramps/plugins/webreport/basepage.py:2320
 #: ../gramps/plugins/webreport/basepage.py:2328
 msgid "Could not add photo to page"
-msgstr "Das Foto kann zur Seite nicht hinzugefügt werden."
+msgstr "Foto konnte nicht zur Seite hinzugefügt werden"
 
 #: ../gramps/gen/plug/report/utils.py:288
 msgid "PERSON"
@@ -10342,7 +10341,7 @@ msgstr "Fehler beim Lesen von \"%s\""
 #: ../gramps/gen/plug/utils.py:319
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "FEHLER: unbekannter Dateiart: '%s'."
+msgstr "FEHLER: unbekannter Dateityp: '%s'"
 
 #: ../gramps/gen/plug/utils.py:325
 #, python-format
@@ -10414,9 +10413,9 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Der Stammbaum reicht weiter zurück, als die maximal %d durchsuchten "
+"Der Stammbaum reicht weiter zurück als die maximal %d durchsuchten "
 "Generationen.\n"
-"Es ist möglich, das Verwandtschaftsverhältnisse fehlen."
+"Es ist möglich, dass Beziehungen übersehen wurden"
 
 #: ../gramps/gen/relationship.py:1406
 msgid "Relationship loop detected:"
@@ -11387,7 +11386,7 @@ msgstr "Band/Seite: %(pag)s -- %(sourcetext)s"
 
 #: ../gramps/gui/clipboard.py:524
 msgid "Event ref"
-msgstr "Ereignisref."
+msgstr "Ereignisref"
 
 #: ../gramps/gui/clipboard.py:696
 msgid "Child ref"
@@ -11429,7 +11428,7 @@ msgstr "Baumansicht: erste Spalte \"%s\" kann nicht geändert werden"
 
 #: ../gramps/gui/columnorder.py:95
 msgid "Drag and drop the columns to change the order"
-msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position."
+msgstr "Ziehe die Spalten und lege sie ab, um die Reihenfolge zu ändern"
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1838
 #: ../gramps/gui/configure.py:1861 ../gramps/gui/configure.py:1886
@@ -11637,8 +11636,8 @@ msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree"
 msgstr ""
-"Gib Informationen über dich ein, so dass dich Personen kontaktieren können, "
-"wenn du deinen Stammbaum weitergibst."
+"Gib Informationen über dich selbst ein, damit andere Personen dich "
+"kontaktieren können, wenn du deinen Stammbaum verteilst"
 
 #: ../gramps/gui/configure.py:617
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
@@ -37016,9 +37015,8 @@ msgid "Visually Impaired"
 msgstr "Sehbehindert"
 
 #: ../gramps/plugins/webreport/basepage.py:1696
-#, fuzzy
 msgid "Go to top"
-msgstr "Springe zur Hauptperson"
+msgstr "Nach oben gehen"
 
 #: ../gramps/plugins/webreport/basepage.py:1731
 #: ../gramps/plugins/webreport/basepage.py:1786
@@ -37309,9 +37307,8 @@ msgid "Creating statistics page..."
 msgstr "Erstelle Statistikseite.."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1309
-#, fuzzy
 msgid "Creating updates page..."
-msgstr "Erstelle Statistikseite.."
+msgstr "Aktualisierungsseite erstellen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1350
 msgid "Creating address book pages ..."
@@ -37323,9 +37320,8 @@ msgid "Narrative Website Report for the %s language"
 msgstr "Erzählende Website Bericht für die %s Sprache"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
-#, fuzzy
 msgid "Narrative Website Report"
-msgstr "Erzählende Website"
+msgstr "Erzählende Website Bericht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
 msgid "Store website in .tar.gz archive"
@@ -37353,11 +37349,10 @@ msgid "The title of the website"
 msgstr "Der Titel der Website"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1966
-#, fuzzy
-#| msgid "Select filter to restrict people that appear on web site"
 msgid "Select filter to restrict people that appear on the website"
 msgstr ""
-"Filter wählen, um Personen zu begrenzen, die auf der Website erscheinen."
+"Wähle einen Filter, um die Personen einzuschränken, die auf der Website "
+"erscheinen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1975
 msgid "Show the relationship between the current person and the active person"
@@ -37469,7 +37464,6 @@ msgid "Whether to use http:// or https://"
 msgstr "Ob http:// oder https:// verwendet wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2070
-#, fuzzy
 msgid "Toggle sections"
 msgstr "Abschnitte umschalten"
 
@@ -37524,10 +37518,8 @@ msgid "Do we display coordinates in the places list?"
 msgstr "Koordinaten in der Orteliste anzeigen?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr "Ob Längen/Breitengrade in der Orteliste anzeigt werden."
+msgstr "Ob Breitengrad/Längengrad in der Ortsliste angezeigt werden sollen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2140
 msgid "Sort places references either by date or by name"
@@ -37628,9 +37620,10 @@ msgid "HTML user header"
 msgstr "HTML Kopfzeile"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Eine Notiz, die als Kopfzeile benutzt wird."
+msgstr ""
+"Eine Notiz, die als Seitenkopf verwendet werden soll, oder ein PHP-Code zum "
+"Einfügen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2204
 msgid "HTML user footer"
