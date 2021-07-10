@@ -27,11 +27,9 @@ This module is used to share variables, enums and functions between all modules
 
 """
 
-from unicodedata import normalize
 from collections import defaultdict
 from hashlib import md5
 import re
-import locale # Used only with pyICU
 import logging
 from xml.sax.saxutils import escape
 
@@ -44,6 +42,30 @@ from gramps.gen.plug import BasePluginManager
 from gramps.plugins.lib.libgedcom import make_gedcom_date, DATE_QUALITY
 from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libhtml import Html
+
+HAVE_ICU = False
+HAVE_ALPHABETICINDEX = False #separate check as this is only in ICU 4.6+
+try:
+    from icu import Locale
+    HAVE_ICU = True
+    try:
+        from icu import AlphabeticIndex as icuAlphabeticIndex
+        HAVE_ALPHABETICINDEX = True
+    except ImportError:
+        from gramps.plugins.webreport.alphabeticindex \
+            import AlphabeticIndex as localAlphabeticIndex
+except ImportError:
+    try:
+        from PyICU import Locale
+        HAVE_ICU = True
+        try:
+            from PyICU import AlphabeticIndex as icuAlphabeticIndex
+            HAVE_ALPHABETICINDEX = True
+        except ImportError:
+            from gramps.plugins.webreport.alphabeticindex \
+                import AlphabeticIndex as localAlphabeticIndex
+    except ImportError:
+        pass
 
 LOG = logging.getLogger(".NarrativeWeb")
 
@@ -418,28 +440,57 @@ def do_we_have_holidays(lang):
             return idx
     return None
 
+def get_surname_from_person(dbase, person):
+    """
+    get the person's surname
+    get the primary name
+    if group as get the group_as surname
+    else get the primary surname of the primary name
+         and correct for [global] group_as name
+    correct for surnames that are space or None
+    """
+    primary_name = person.get_primary_name()
+
+    if primary_name.group_as:
+        surname = primary_name.group_as
+    else:
+        group_map = _nd.primary_surname(primary_name)
+        surname = dbase.get_name_group_mapping(group_map)
+
+    # Treat people who have no name with those whose name is just
+    # 'whitespace'
+    if surname is None or surname.isspace():
+        surname = ''
+    return surname
+
 def sort_people(dbase, handle_list, rlocale=glocale):
     """
     will sort the database people by surname
+    @param: dbase           -- The instance of the database
+    @param: handle_list     -- The list of handles of people to sort
+    @param: rlocale         -- The locale related to the language used for the
+                               sort
+    @result:                -- A list sorted by surname, each element of which
+                               consists of a tuple of (surname, list of handles)
+                               where the list of handles is sorted by
+                               primary surname, first name, suffix.
+                               Surname uses group_as, but primary surname
+                               does not.
+    get the primary name
+    if group as get the group_as surname
+    else get the primary surname of the primary name
+         and correct for [global] group_as name
+    correct for surnames that are space or None
+    for each surname sort handles by the surname, first name and suffix
+    construct a list of surnames and list of handles
     """
     sname_sub = defaultdict(list)
     sortnames = {}
 
     for person_handle in handle_list:
         person = dbase.get_person_from_handle(person_handle)
-        primary_name = person.get_primary_name()
-
-        if primary_name.group_as:
-            surname = primary_name.group_as
-        else:
-            group_map = _nd.primary_surname(primary_name)
-            surname = dbase.get_name_group_mapping(group_map)
-
-        # Treat people who have no name with those whose name is just
-        # 'whitespace'
-        if surname is None or surname.isspace():
-            surname = ''
-        sortnames[person_handle] = _nd.sort_string(primary_name)
+        surname = get_surname_from_person(dbase, person)
+        sortnames[person_handle] = _nd.sort_string(person.get_primary_name())
         sname_sub[surname].append(person_handle)
 
     sorted_lists = []
@@ -536,242 +587,37 @@ def __get_place_keyname(dbase, handle):
 
     return utils.place_name(dbase, handle)
 
-# See : http://www.gramps-project.org/bugs/view.php?id = 4423
-
-# Contraction data taken from CLDR 22.1. Only the default variant is considered.
-# The languages included below are, by no means, all the langauges that have
-# contractions - just a sample of langauges that have been supported
-
-# At the time of writing (Feb 2013), the following langauges have greater that
-# 50% coverage of translation of Gramps: bg Bulgarian, ca Catalan, cs Czech, da
-# Danish, de German, el Greek, en_GB, es Spanish, fi Finish, fr French, he
-# Hebrew, hr Croation, hu Hungarian, it Italian, ja Japanese, lt Lithuanian, nb
-# Noregian Bokmål, nn Norwegian Nynorsk, nl Dutch, pl Polish, pt_BR Portuguese
-# (Brazil), pt_P Portugeuse (Portugal), ru Russian, sk Slovak, sl Slovenian, sv
-# Swedish, vi Vietnamese, zh_CN Chinese.
-
-# Key is the language (or language and country), Value is a list of
-# contractions. Each contraction consists of a tuple. First element of the
-# tuple is the list of characters, second element is the string to use as the
-# index entry.
-
-# The DUCET contractions (e.g. LATIN CAPIAL LETTER L, MIDDLE DOT) are ignored,
-# as are the supresscontractions in some locales.
-
-CONTRACTIONS_DICT = {
-    # bg Bulgarian validSubLocales="bg_BG" no contractions
-    # ca Catalan validSubLocales="ca_AD ca_ES"
-    "ca" : [(("l·", "L·"), "L")],
-    # Czech, validSubLocales="cs_CZ" Czech_Czech Republic
-    "cs" : [(("ch", "cH", "Ch", "CH"), "CH")],
-    # Danish validSubLocales="da_DK" Danish_Denmark
-    "da" : [(("aa", "Aa", "AA"), "Å")],
-    # de German validSubLocales="de_AT de_BE de_CH de_DE de_LI de_LU" no
-    # contractions in standard collation.
-    # el Greek validSubLocales="el_CY el_GR" no contractions.
-    # es Spanish validSubLocales="es_419 es_AR es_BO es_CL es_CO es_CR es_CU
-    # es_DO es_EA es_EC es_ES es_GQ es_GT es_HN es_IC es_MX es_NI es_PA es_PE
-    # es_PH es_PR es_PY es_SV es_US es_UY es_VE" no contractions in standard
-    # collation.
-    # fi Finish validSubLocales="fi_FI" no contractions in default (phonebook)
-    # collation.
-    # fr French no collation data.
-    # he Hebrew validSubLocales="he_IL" no contractions
-    # hr Croation validSubLocales="hr_BA hr_HR"
-    "hr" : [(("dž", "Dž"), "dž"),
-            (("lj", "Lj", 'LJ'), "Ǉ"),
-            (("Nj", "NJ", "nj"), "Ǌ")],
-    # Hungarian hu_HU for two and three character contractions.
-    "hu" : [(("cs", "Cs", "CS"), "CS"),
-            (("dzs", "Dzs", "DZS"), "DZS"), # order is important
-            (("dz", "Dz", "DZ"), "DZ"),
-            (("gy", "Gy", "GY"), "GY"),
-            (("ly", "Ly", "LY"), "LY"),
-            (("ny", "Ny", "NY"), "NY"),
-            (("sz", "Sz", "SZ"), "SZ"),
-            (("ty", "Ty", "TY"), "TY"),
-            (("zs", "Zs", "ZS"), "ZS")
-           ],
-    # it Italian no collation data.
-    # ja Japanese unable to process the data as it is too complex.
-    # lt Lithuanian no contractions.
-    # Norwegian Bokmål
-    "nb" : [(("aa", "Aa", "AA"), "Å")],
-    # nn Norwegian Nynorsk validSubLocales="nn_NO"
-    "nn" : [(("aa", "Aa", "AA"), "Å")],
-    # nl Dutch no collation data.
-    # pl Polish validSubLocales="pl_PL" no contractions
-    # pt Portuguese no collation data.
-    # ru Russian validSubLocales="ru_BY ru_KG ru_KZ ru_MD ru_RU ru_UA" no
-    # contractions
-    # Slovak,  validSubLocales="sk_SK" Slovak_Slovakia
-    # having DZ in Slovak as a contraction was rejected in
-    # http://unicode.org/cldr/trac/ticket/2968
-    "sk" : [(("ch", "cH", "Ch", "CH"), "Ch")],
-    # sl Slovenian validSubLocales="sl_SI" no contractions
-    # sv Swedish validSubLocales="sv_AX sv_FI sv_SE" default collation is
-    # "reformed" no contractions.
-    # vi Vietnamese validSubLocales="vi_VN" no contractions.
-    # zh Chinese validSubLocales="zh_Hans zh_Hans_CN zh_Hans_SG" no contractions
-    # in Latin characters the others are too complex.
-    }
-
-    # The comment below from the glibc locale sv_SE in
-    # localedata/locales/sv_SE :
-    #
-    # % The letter w is normally not present in the Swedish alphabet. It
-    # % exists in some names in Swedish and foreign words, but is accounted
-    # % for as a variant of 'v'.  Words and names with 'w' are in Swedish
-    # % ordered alphabetically among the words and names with 'v'. If two
-    # % words or names are only to be distinguished by 'v' or % 'w', 'v' is
-    # % placed before 'w'.
-    #
-    # See : http://www.gramps-project.org/bugs/view.php?id = 2933
-    #
-
-# HOWEVER: the characters V and W in Swedish are not considered as a special
-# case for several reasons. (1) The default collation for Swedish (called the
-# 'reformed' collation type) regards the difference between 'v' and 'w' as a
-# primary difference. (2) 'v' and 'w' in the 'standard' (non-default) collation
-# type are not a contraction, just a case where the difference is secondary
-# rather than primary. (3) There are plenty of other languages where a
-# difference that is primary in other languages is secondary, and those are not
-# specially handled.
-
-def first_letter(string, rlocale=glocale):
-    """
-    Receives a string and returns the first letter
-    """
-    dummy_rlocale = rlocale
-    if string is None or len(string) < 1:
-        return ' '
-
-    norm_unicode = normalize('NFKC', str(string))
-    contractions = CONTRACTIONS_DICT.get(COLLATE_LANG)
-    if contractions is None:
-        contractions = CONTRACTIONS_DICT.get(COLLATE_LANG.split("_")[0])
-
-    if contractions is not None:
-        for contraction in contractions:
-            count = len(contraction[0][0])
-            if (len(norm_unicode) >= count and
-                    norm_unicode[:count] in contraction[0]):
-                return contraction[1]
-
-    # no special case
-    return norm_unicode[0].upper()
-
-
-try:
-    import PyICU # pylint : disable=wrong-import-position
-    PRIM_COLL = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
-    PRIM_COLL.setStrength(PRIM_COLL.PRIMARY)
-
-    def primary_difference(prev_key, new_key, rlocale=glocale):
+if HAVE_ALPHABETICINDEX:
+    class AlphabeticIndex(icuAlphabeticIndex):
         """
-        Try to use the PyICU collation.
-        If we generate a report for another language, make sure we use the good
-        collation sequence
+        Call the ICU AlphabeticIndex, passing the ICU Locale
         """
-        collation = PRIM_COLL
-        if rlocale.lang != locale.getlocale(locale.LC_COLLATE)[0]:
-            encoding = rlocale.encoding if rlocale.encoding else "UTF-8"
-            collate_lang = PyICU.Locale(rlocale.collation+"."+encoding)
-            collation = PyICU.Collator.createInstance(collate_lang)
-        return collation.compare(prev_key, new_key) != 0
+        def __init__(self, rlocale):
+            self.iculocale = Locale(rlocale.collation)
+            super().__init__(self.iculocale)
 
-except:
-    def primary_difference(prev_key, new_key, rlocale=glocale):
-        """
-        The PyICU collation is not available.
+            # set the maximum number of buckets, the undocumented default is 99
+            # Latin + Greek + Cyrillic + Hebrew + Arabic + Tamil + Hiragana +
+            # CJK Unified is about 206 different buckets
+            self.maxLabelCount = 500 # pylint: disable=invalid-name
 
-        Returns true if there is a primary difference between the two parameters
-        See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
-        letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
-        true then the letters should be grouped together
+            # Add bucket labels for scripts other than the one for the output
+            # which is being generated
+            self.iculocale.addLikelySubtags()
+            default_script = self.iculocale.getDisplayScript()
+            used_scripts = [default_script]
 
-        The test characters here must not be any that are used in contractions.
-        """
+            for lang_code in glocale.get_language_dict().values():
+                loc = Locale(lang_code)
+                loc.addLikelySubtags()
+                script = loc.getDisplayScript()
+                if script not in used_scripts:
+                    used_scripts.append(script)
+                    super().addLabels(loc)
+else:
+    AlphabeticIndex = localAlphabeticIndex
 
-        return rlocale.sort_key(prev_key + "e") >= \
-                   rlocale.sort_key(new_key + "f") or \
-                   rlocale.sort_key(new_key + "e") >= \
-                   rlocale.sort_key(prev_key + "f")
-
-def get_first_letters(dbase, handle_list, key, rlocale=glocale):
-    """
-    get the first letters of the handle_list
-
-    @param: handle_list -- One of a handle list for either person or
-                           place handles or an evt types list
-    @param: key         -- Either a person, place, or event type
-    @param: rlocale     -- The locale to use
-
-    The first letter (or letters if there is a contraction) are extracted from
-    all the objects in the handle list. There may be duplicates, and there may
-    be letters where there is only a secondary or tertiary difference, not a
-    primary difference. The list is sorted in collation order. For each group
-    with secondary or tertiary differences, the first in collation sequence is
-    retained. For example, assume the default collation sequence (DUCET) and
-    names Ånström and Apple. These will sort in the order shown. Å and A have a
-    secondary difference. If the first letter from these names was chosen then
-    the inex entry would be Å. This is not desirable. Instead, the initial
-    letters are extracted (Å and A). These are sorted, which gives A and Å. Then
-    the first of these is used for the index entry.
-    """
-    index_list = []
-
-    for handle in handle_list:
-        if key == _KEYPERSON:
-            keyname = __get_person_keyname(dbase, handle)
-
-        elif key == _KEYPLACE:
-            keyname = __get_place_keyname(dbase, handle)
-
-        else:
-            if rlocale != glocale:
-                keyname = rlocale.translation.sgettext(handle)
-            else:
-                keyname = handle
-        ltr = first_letter(keyname)
-
-        index_list.append(ltr)
-
-    # Now remove letters where there is not a primary difference
-    index_list.sort(key=rlocale.sort_key)
-    first = True
-    prev_index = None
-    for nkey in index_list[:]:   #iterate over a slice copy of the list
-        if first or primary_difference(prev_index, nkey, rlocale):
-            first = False
-            prev_index = nkey
-        else:
-            index_list.remove(nkey)
-
-    # return menu set letters for alphabet_navigation
-    return index_list
-
-def get_index_letter(letter, index_list, rlocale=glocale):
-    """
-    This finds the letter in the index_list that has no primary difference from
-    the letter provided. See the discussion in get_first_letters above.
-    Continuing the example, if letter is Å and index_list is A, then this would
-    return A.
-
-    @param: letter     -- The letter to find in the index_list
-    @param: index_list -- The list of all first letters in use
-    @param: rlocale    -- The locale to use
-    """
-    for index in index_list:
-        if not primary_difference(letter, index, rlocale):
-            return index
-
-    LOG.warning("Initial letter '%s' not found in alphabetic navigation list",
-                letter)
-    LOG.debug("filtered sorted index list %s", index_list)
-    return letter
-
-def alphabet_navigation(index_list, rlocale=glocale):
+def alphabet_navigation(sorted_alpha_index, rlocale=glocale):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
@@ -779,14 +625,6 @@ def alphabet_navigation(index_list, rlocale=glocale):
     @param: index_list -- a dictionary of either letters or words
     @param: rlocale    -- The locale to use
     """
-    sorted_set = defaultdict(int)
-
-    for menu_item in index_list:
-        sorted_set[menu_item] += 1
-
-    # remove the number of each occurance of each letter
-    sorted_alpha_index = sorted(sorted_set, key=rlocale.sort_key)
-
     # if no letters, return None to its callers
     if not sorted_alpha_index:
         return None
@@ -799,6 +637,8 @@ def alphabet_navigation(index_list, rlocale=glocale):
     with Html("div", id="alphanav") as alphabetnavigation:
 
         index = 0
+        output = []
+        dup_index = 0
         for dummy_row in range(num_of_rows):
             unordered = Html("ul")
 
@@ -811,8 +651,16 @@ def alphabet_navigation(index_list, rlocale=glocale):
                 # braille writers
                 title_txt = "Alphabet Menu: %s" % menu_item
                 title_str = rlocale.translation.sgettext(title_txt)
+                # deal with multiple ellipsis which are generated for overflow,
+                # underflow and inflow labels
+                link = menu_item
+                if menu_item in output:
+                    link = "%s (%i)" % (menu_item, dup_index)
+                    dup_index += 1
+                output.append(menu_item)
+
                 hyper = Html("a", menu_item, title=title_str,
-                             href="#%s" % menu_item)
+                             href="#%s" % link)
                 unordered.extend(Html("li", hyper, inline=True))
 
                 index += 1

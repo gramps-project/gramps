@@ -58,11 +58,10 @@ from gramps.plugins.lib.libhtml import Html
 # specific narrative web import
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.plugins.webreport.common import (get_first_letters, _ALPHAEVENT,
-                                             _EVENTMAP, alphabet_navigation,
+from gramps.plugins.webreport.common import (_EVENTMAP,
+                                             alphabet_navigation,
                                              FULLCLEAR, sort_event_types,
-                                             primary_difference,
-                                             get_index_letter)
+                                             AlphabeticIndex)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
@@ -128,6 +127,107 @@ class EventPages(BasePage):
         self.eventlistpage(self.report, the_lang, the_title, event_types,
                            event_handle_list)
 
+
+    def __output_event(self, ldatec, event_type, tbody, bucket_letter,
+                       bucket_link, first_letter, _event_displayed, first_type,
+                       event_handle):
+        """
+        Generate and output the data for a single event
+
+        @param: ldatec          -- Last change date and time (updated)
+        @param: event_type      -- The event type name processed for XML etc
+        @param: tbody           -- The current HTML body into which the data is
+                                   assembled
+        @param: bucket_letter   -- The AlphabeticIndex bucket for this event
+        @param: bucket_link     -- ????
+        @param: first_letter    -- Whether this is the first event for this
+                                   letter
+        @param: event_displayed -- List of events already displayed
+        @param: first_type      -- Whether this is the first event of this type
+        @param: event_handle    -- Handle of the event to be output
+
+        :returns: Returns a tuple of updated ldatec, first_letter, first_type,
+                    _event_displayed
+        :rtype: tuple
+
+        """
+        event = self.r_db.get_event_from_handle(event_handle)
+        _type = event.get_type()
+        gid = event.get_gramps_id()
+        if event.get_change_time() > ldatec:
+            ldatec = event.get_change_time()
+        # check to see if we have listed this gramps_id yet?
+        if gid not in _event_displayed:
+            if int(_type) in _EVENTMAP:
+                handle_list = set(self.r_db.find_backlink_handles(
+                        event_handle,
+                        include_classes=['Family', 'Person']))
+            else:
+                handle_list = set(
+                    self.r_db.find_backlink_handles(
+                        event_handle,
+                        include_classes=['Person']))
+            if handle_list:
+                trow = Html("tr")
+                tbody += trow
+                # set up hyperlinked letter for alphabet_navigation
+                tcell = Html("td", class_="ColumnLetter", inline=True)
+                trow += tcell
+                if first_letter:
+                    first_letter = False
+                    first_type = False
+                    # Update the ColumnLetter cell and
+                    # create a populated ColumnType
+                    t_a = 'class = "BeginLetter BeginType"'
+                    trow.attr = t_a
+                    letter = bucket_letter
+                    ttle = self._("Event types beginning "
+                        "with letter %s") % letter
+                    tcell += Html("a", letter, name=letter, id_=bucket_link,
+                                  title=ttle)
+                    tcell = Html("td", class_="ColumnType",
+                                 title=self._(event_type),
+                                 inline=True)
+                    tcell += self._(event_type)
+                elif first_type:
+                    first_type = False
+                    # Update the ColumnLetter cell and
+                    # create a populated ColumnType cell
+                    trow.attr = 'class = "BeginType"'
+                    tcell = Html("td", class_="ColumnType",
+                                 title=self._(event_type), inline=True)
+                    tcell += self._(event_type)
+                else:
+                    tcell = Html("td", class_="ColumnType",
+                                 title="&nbsp;", inline=True)
+                    tcell += "&nbsp;" # create a non-populated ColumnType
+                # Add the ColumnType cell
+                trow += tcell
+                # event date
+                tcell = Html("td", class_="ColumnDate", inline=True)
+                trow += tcell
+                date = Date.EMPTY
+                if event:
+                    date = event.get_date_object()
+                    if date and date is not Date.EMPTY:
+                        tcell += self.rlocale.get_date(date)
+                else:
+                    tcell += "&nbsp;"
+                # Gramps ID
+                trow += Html("td", class_="ColumnGRAMPSID") \
+                        + (self.event_grampsid_link(event_handle, gid, None))
+                # Person(s) column
+                tcell = Html("td", class_="ColumnPerson")
+                trow += tcell
+                # classname can either be a person or a family
+                first_person = True
+                # get person(s) for ColumnPerson
+                sorted_list = sorted(handle_list)
+                self.complete_people(tcell, first_person, sorted_list,
+                                     uplink=False)
+        _event_displayed.append(gid)
+        return (ldatec, first_letter, first_type, _event_displayed)
+
     def eventlistpage(self, report, the_lang, the_title,
                       event_types, event_handle_list):
         """
@@ -142,7 +242,6 @@ class EventPages(BasePage):
         """
         BasePage.__init__(self, report, the_lang, the_title)
         ldatec = 0
-        prev_letter = " "
 
         output_file, sio = self.report.create_file("events")
         result = self.write_header(self._("Events"))
@@ -159,8 +258,21 @@ class EventPages(BasePage):
             eventlist += Html("p", msg, id="description")
 
             # get alphabet navigation...
-            index_list = get_first_letters(self.r_db, event_types,
-                                           _ALPHAEVENT)
+            # Assemble all the event types
+            index = AlphabeticIndex(self.rlocale)
+            for (event_type, data_list) in sort_event_types(self.r_db,
+                                                event_types,
+                                                event_handle_list,
+                                                self.rlocale):
+                index.addRecord(event_type, data_list)
+
+            # Extract the buckets from the index
+            index_list = []
+            index.resetBucketIterator()
+            while index.nextBucket():
+                if index.bucketRecordCount != 0:
+                    index_list.append(index.bucketLabel)
+            # Output the navigation
             alpha_nav = alphabet_navigation(index_list, self.rlocale)
             if alpha_nav:
                 eventlist += alpha_nav
@@ -191,123 +303,37 @@ class EventPages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                # separate events by their type and then thier event handles
-                savevtyp = " "
-                for (evt_type,
-                     data_list) in sort_event_types(self.r_db,
-                                                    event_types,
-                                                    event_handle_list,
-                                                    self.rlocale):
-                    first = True
-                    _event_displayed = []
-
-                    # sort datalist by date of event and by event handle...
-                    data_list = sorted(data_list, key=itemgetter(0, 1))
-                    first_event = True
-
-                    for (dummy_sort_value, event_handle) in data_list:
-                        event = self.r_db.get_event_from_handle(event_handle)
-                        _type = event.get_type()
-                        gid = event.get_gramps_id()
-                        if event.get_change_time() > ldatec:
-                            ldatec = event.get_change_time()
-
-                        # check to see if we have listed this gramps_id yet?
-                        if gid not in _event_displayed:
-
-                            # family event
-                            if int(_type) in _EVENTMAP:
-                                handle_list = set(
-                                    self.r_db.find_backlink_handles(
-                                        event_handle,
-                                        include_classes=['Family', 'Person']))
-                            else:
-                                handle_list = set(
-                                    self.r_db.find_backlink_handles(
-                                        event_handle,
-                                        include_classes=['Person']))
-                            if handle_list:
-
-                                trow = Html("tr")
-                                tbody += trow
-
-                                # set up hyperlinked letter for
-                                # alphabet_navigation
-                                tcell = Html("td", class_="ColumnLetter",
-                                             inline=True)
-                                trow += tcell
-
-                                if evt_type and not evt_type.isspace():
-                                    letter = get_index_letter(
-                                        self._(str(evt_type)[0].capitalize()),
-                                        index_list, self.rlocale)
-                                    if letter != savevtyp:
-                                        savevtyp = letter
-                                    else:
-                                        letter = "&nbsp;"
-                                else:
-                                    letter = "&nbsp;"
-
-                                if first or primary_difference(letter,
-                                                               prev_letter,
-                                                               self.rlocale):
-                                    first = False
-                                    prev_letter = letter
-                                    t_a = 'class = "BeginLetter BeginType"'
-                                    trow.attr = t_a
-                                    ttle = self._("Event types beginning "
-                                                  "with letter %s") % letter
-                                    tcell += Html("a", letter, name=letter,
-                                                  id_=letter, title=ttle,
-                                                  inline=True)
-                                else:
-                                    tcell += "&nbsp;"
-
-                                # display Event type if first in the list
-                                tcell = Html("td", class_="ColumnType",
-                                             title=self._(evt_type),
-                                             inline=True)
-                                trow += tcell
-                                if first_event:
-                                    tcell += self._(evt_type)
-                                    if trow.attr == "":
-                                        trow.attr = 'class = "BeginType"'
-                                else:
-                                    tcell += "&nbsp;"
-
-                                # event date
-                                tcell = Html("td", class_="ColumnDate",
-                                             inline=True)
-                                trow += tcell
-                                date = Date.EMPTY
-                                if event:
-                                    date = event.get_date_object()
-                                    if date and date is not Date.EMPTY:
-                                        tcell += self.rlocale.get_date(date)
-                                else:
-                                    tcell += "&nbsp;"
-
-                                # Gramps ID
-                                trow += Html("td", class_="ColumnGRAMPSID") + (
-                                    self.event_grampsid_link(event_handle,
-                                                             gid, None)
-                                    )
-
-                                # Person(s) column
-                                tcell = Html("td", class_="ColumnPerson")
-                                trow += tcell
-
-                                # classname can either be a person or a family
-                                first_person = True
-
-                                # get person(s) for ColumnPerson
-                                sorted_list = sorted(handle_list)
-                                self.complete_people(tcell, first_person,
-                                                     sorted_list,
-                                                     uplink=False)
-
-                        _event_displayed.append(gid)
-                        first_event = False
+                # for each bucket, output the events in that bucket
+                index.resetBucketIterator()
+                output = []
+                dup_index = 0
+                while index.nextBucket():
+                    if index.bucketRecordCount != 0:
+                        bucket_letter = index.bucketLabel
+                        bucket_link = bucket_letter
+                        if bucket_letter in output:
+                            bucket_link = "%s (%i)" % (bucket_letter, dup_index)
+                            dup_index += 1
+                        output.append(bucket_letter)
+                        first_letter = True
+                        while index.nextRecord():
+                            _event_displayed = []
+                            first_type = True
+                            event_type = index.recordName
+                            data_list = index.recordData
+                            # sort datalist by date of event and by event
+                            # handle...
+                            data_list = sorted(data_list, key=itemgetter(0, 1))
+                            for (dummy_sort_value, event_handle) in data_list:
+                                (ldatec, first_letter, first_type,
+                                _event_displayed) \
+                                = self.__output_event(ldatec, event_type,
+                                                           tbody, bucket_letter,
+                                                           bucket_link,
+                                                           first_letter,
+                                                           _event_displayed,
+                                                           first_type,
+                                                           event_handle)
 
         # add clearline for proper styling
         # add footer section

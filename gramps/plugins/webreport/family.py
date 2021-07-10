@@ -41,7 +41,7 @@ Classe:
 #------------------------------------------------
 # python modules
 #------------------------------------------------
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from decimal import getcontext
 import logging
 
@@ -58,11 +58,11 @@ from gramps.plugins.lib.libhtml import Html
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 from gramps.gen.display.name import displayer as _nd
-from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
-                                             alphabet_navigation, sort_people,
-                                             primary_difference, first_letter,
+from gramps.plugins.webreport.common import (alphabet_navigation,
                                              html_escape,
-                                             FULLCLEAR, get_index_letter)
+                                             FULLCLEAR,
+                                             AlphabeticIndex,
+                                             get_surname_from_person)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
@@ -122,6 +122,97 @@ class FamilyPages(BasePage):
             self.familylistpage(self.report, the_lang, the_title,
                                 self.report.obj_dict[Family].keys())
 
+
+    def __output_family(self, ldatec, family_handle, person_handle,
+                        tbody, letter, bucket_link, first_person, first_family):
+        """
+        Generate and output the data for a single family
+
+        @param: ldatec          -- Last change date and time (updated)
+        @param: family_handle   -- The family_handle to be output
+        @param: person_handle   -- The person_handle to be output
+        @param: tbody           -- The current HTML body into which the data is
+                                   assembled
+        @param: letter          -- The AlphabeticIndex bucket for this event
+        @param: first_person    -- Whether this is the first person for this
+                                   letter
+        @param: first_family    -- Whether this is the first family of this
+                                   person
+
+        @returns: Returns a tuple of updated (ldatec, first_person,
+                                              first_family)
+        @rtype: tuple
+        """
+        family = self.r_db.get_family_from_handle(family_handle)
+        if family.get_change_time() > ldatec:
+            ldatec = family.get_change_time()
+
+        trow = Html("tr")
+        tbody += trow
+        tcell = Html("td", class_="ColumnRowLabel")
+        trow += tcell
+        if first_person:
+            first_person = False
+            first_family = False
+            # Update the ColumnRowLabel cell
+            trow.attr = 'class="BeginLetter BeginFamily"'
+            ttle = self._("Families beginning with "
+                "letter ")
+            tcell += Html("a", letter, name=letter, title=ttle + letter,
+                          id_=bucket_link)
+            #  and create the populated ColumnPartner for the person
+            tcell = Html("td", class_="ColumnPartner")
+            tcell += self.new_person_link(person_handle, uplink=self.uplink)
+            trow += tcell
+        elif first_family:
+            first_family = False
+            # Update the ColumnRowLabel cell
+            trow.attr = 'class ="BeginFamily"'
+            #  and create the populated ColumnPartner for the person
+            tcell = Html("td", class_="ColumnPartner")
+            tcell += self.new_person_link(person_handle, uplink=self.uplink)
+            trow += tcell
+        else:
+            # Create the blank ColumnPartner row for the person
+            tcell = Html("td", class_="ColumnPartner")
+            tcell += '&nbsp;'
+            trow += tcell
+
+        tcell = Html("td", class_="ColumnPartner")
+        trow += tcell
+        tcell += self.family_link(family.get_handle(),
+                                  self.report.get_family_name(family),
+                                  family.get_gramps_id(), self.uplink)
+        # family events; such as marriage and divorce
+        # events
+        fam_evt_ref_list = family.get_event_ref_list()
+        tcell1 = Html("td", class_="ColumnDate", inline=True)
+        tcell2 = Html("td", class_="ColumnDate", inline=True)
+        trow += tcell1, tcell2
+        if fam_evt_ref_list:
+            fam_evt_srt_ref_list = sorted(fam_evt_ref_list,
+                                          key=self.sort_on_grampsid)
+            for evt_ref in fam_evt_srt_ref_list:
+                evt = self.r_db.get_event_from_handle(evt_ref.ref)
+                if evt:
+                    evt_type = evt.get_type()
+                    if evt_type in [EventType.MARRIAGE, EventType.DIVORCE]:
+                        cell = self.rlocale.get_date(evt.get_date_object())
+                        if evt_type == EventType.MARRIAGE:
+                            tcell1 += cell
+                        else:
+                            tcell1 += '&nbsp;'
+                        if evt_type == EventType.DIVORCE:
+                            tcell2 += cell
+                        else:
+                            tcell2 += '&nbsp;'
+
+        else:
+            tcell1 += '&nbsp;'
+            tcell2 += '&nbsp;'
+        first_family = False
+        return (ldatec, first_person, first_family)
+
     def familylistpage(self, report, the_lang, the_title, fam_list):
         """
         Create a family index
@@ -138,7 +229,6 @@ class FamilyPages(BasePage):
         result = self.write_header(self._("Families"))
         familieslistpage, dummy_head, dummy_body, outerwrapper = result
         ldatec = 0
-        prev_letter = " "
 
         # begin Family Division
         with Html("div", class_="content", id="Relationships") as relationlist:
@@ -154,7 +244,7 @@ class FamilyPages(BasePage):
             relationlist += Html("p", msg, id="description")
 
             # go through all the families, and construct a dictionary of all the
-            # people and the families thay are involved in. Note that the people
+            # people and the families they are involved in. Note that the people
             # in the list may be involved in OTHER families, that are not listed
             # because they are not in the original family list.
             pers_fam_dict = defaultdict(list)
@@ -170,9 +260,22 @@ class FamilyPages(BasePage):
                     if spouse_handle:
                         pers_fam_dict[spouse_handle].append(family)
 
+            # Assemble all the people, we no longer care about their families
+            index = AlphabeticIndex(self.rlocale)
+            for (person_handle, dummy_family) in pers_fam_dict.items():
+                person = self.r_db.get_person_from_handle(person_handle)
+                surname = get_surname_from_person(self.r_db, person)
+                index.addRecord(surname, person_handle)
+
+            # Extract the buckets from the index
+            index_list = []
+            index.resetBucketIterator()
+            while index.nextBucket():
+                if index.bucketRecordCount != 0:
+                    index_list.append(index.bucketLabel)
+
+            # Output the navigation
             # add alphabet navigation
-            index_list = get_first_letters(self.r_db, pers_fam_dict.keys(),
-                                           _KEYPERSON, rlocale=self.rlocale)
             alpha_nav = alphabet_navigation(index_list, self.rlocale)
             if alpha_nav:
                 relationlist += alpha_nav
@@ -187,7 +290,7 @@ class FamilyPages(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-               # set up page columns
+                # set up page columns
                 trow.extend(
                     Html("th", trans, class_=colclass, inline=True)
                     for trans, colclass in [(self._("Letter"),
@@ -201,108 +304,56 @@ class FamilyPages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                # begin displaying index list
-                ppl_handle_list = sort_people(self.r_db, pers_fam_dict.keys(),
-                                              self.rlocale)
-                first = True
-                for (surname, handle_list) in ppl_handle_list:
-
-                    if surname and not surname.isspace():
-                        letter = get_index_letter(first_letter(surname),
-                                                  index_list,
-                                                  self.rlocale)
-                    else:
-                        letter = '&nbsp;'
-
-                    # get person from sorted database list
-                    for person_handle in sorted(
-                            handle_list, key=self.sort_on_name_and_grampsid):
-                        person = self.r_db.get_person_from_handle(person_handle)
-                        if person:
-                            family_list = person.get_family_handle_list()
-                            first_family = True
-                            for family_handle in family_list:
-                                get_family = self.r_db.get_family_from_handle
-                                family = get_family(family_handle)
-                                trow = Html("tr")
-                                tbody += trow
-
-                                tcell = Html("td", class_="ColumnRowLabel")
-                                trow += tcell
-
-                                if first or primary_difference(letter,
-                                                               prev_letter,
-                                                               self.rlocale):
-                                    first = False
-                                    prev_letter = letter
-                                    trow.attr = 'class="BeginLetter"'
-                                    ttle = self._("Families beginning with "
-                                                  "letter ")
-                                    tcell += Html("a", letter, name=letter,
-                                                  title=ttle + letter,
-                                                  inline=True)
-                                else:
-                                    tcell += '&nbsp;'
-
-                                tcell = Html("td", class_="ColumnPartner")
-                                trow += tcell
-
-                                if first_family:
-                                    trow.attr = 'class ="BeginFamily"'
-
-                                    tcell += self.new_person_link(
-                                        person_handle, uplink=self.uplink)
-
-                                    first_family = False
-                                else:
-                                    tcell += '&nbsp;'
-
-                                tcell = Html("td", class_="ColumnPartner")
-                                trow += tcell
-
-                                tcell += self.family_link(
-                                    family.get_handle(),
-                                    self.report.get_family_name(family),
-                                    family.get_gramps_id(), self.uplink)
-
-                                # family events; such as marriage and divorce
-                                # events
-                                fam_evt_ref_list = family.get_event_ref_list()
-                                tcell1 = Html("td", class_="ColumnDate",
-                                              inline=True)
-                                tcell2 = Html("td", class_="ColumnDate",
-                                              inline=True)
-                                trow += (tcell1, tcell2)
-
-                                if fam_evt_ref_list:
-                                    fam_evt_srt_ref_list = sorted(
-                                        fam_evt_ref_list,
-                                        key=self.sort_on_grampsid)
-                                    for evt_ref in fam_evt_srt_ref_list:
-                                        evt = self.r_db.get_event_from_handle(
-                                            evt_ref.ref)
-                                        if evt:
-                                            evt_type = evt.get_type()
-                                            if evt_type in [EventType.MARRIAGE,
-                                                            EventType.DIVORCE]:
-
-                                                cell = self.rlocale.get_date(
-                                                    evt.get_date_object())
-                                                if (evt_type ==
-                                                        EventType.MARRIAGE):
-                                                    tcell1 += cell
-                                                else:
-                                                    tcell1 += '&nbsp;'
-
-                                                if (evt_type ==
-                                                        EventType.DIVORCE):
-                                                    tcell2 += cell
-                                                else:
-                                                    tcell2 += '&nbsp;'
-                                else:
-                                    tcell1 += '&nbsp;'
-                                    tcell2 += '&nbsp;'
-                                first_family = False
+                # for each bucket, output the people and their families in that
+                # bucket
+                index.resetBucketIterator()
+                output = []
+                dup_index = 0
+                while index.nextBucket():
+                    if index.bucketRecordCount != 0:
+                        bucket_letter = index.bucketLabel
+                        bucket_link = bucket_letter
+                        if bucket_letter in output:
+                            bucket_link = "%s (%i)" % (bucket_letter, dup_index)
+                            dup_index += 1
+                        output.append(bucket_letter)
+                        # Assemble a dict of all the people in this bucket.
+                        surname_ppl_handle_dict = OrderedDict()
+                        while index.nextRecord():
+                            # The records are returned sorted by recordName,
+                            # which is surname. we need to retain that order but
+                            # in addition sort by the rest of the name
+                            person_surname = index.recordName
+                            person_handle = index.recordData
+                            if person_surname in surname_ppl_handle_dict.keys():
+                                surname_ppl_handle_dict[person_surname]\
+                                    .append(person_handle)
+                            else:
+                                surname_ppl_handle_dict[person_surname] = \
+                                            [person_handle]
+                        first_person = True
+                        for (surname, handle_list) in \
+                                    surname_ppl_handle_dict.items():
+                            # get person from sorted database list
+                            for person_handle in sorted(
+                                    handle_list,
+                                    key=self.sort_on_name_and_grampsid):
+                                person = self.r_db.get_person_from_handle\
+                                                    (person_handle)
+                                if person:
+                                    family_list = person.\
+                                                    get_family_handle_list()
+                                    first_family = True
+                                    for family_handle in family_list:
+                                        (ldatec, first_person, first_family) \
+                                        = self.__output_family(ldatec,
+                                                               family_handle,
+                                                               person_handle,
+                                                               tbody,
+                                                               bucket_letter,
+                                                               bucket_link,
+                                                               first_person,
+                                                               first_family)
 
         # add clearline for proper styling
         # add footer section
