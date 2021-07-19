@@ -246,6 +246,14 @@ class GeoClose(GeoGraphyView):
         self.add_item = None
         self.newmenu = None
         self.config_meeting_slider = None
+        self.dbstate.connect('database-changed', self.reset_change_db)
+
+    def reset_change_db(self, dummy_dbase):
+        """
+        Used to reset the family reference
+        """
+        self.refperson = None
+
 
     def get_title(self):
         """

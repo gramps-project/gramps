@@ -289,9 +289,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         if self.active:
             self.bookmarks.redraw()
         self.build_tree()
-        if self.osm:
-            self.osm.grab_focus()
-            self.set_crosshair(config.get("geography.show_cross"))
 
     def can_configure(self):
         """
