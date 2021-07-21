@@ -33,13 +33,14 @@
 # Christophe <khrys63@gmail.com>, 2018.
 # Gil da Costa <gdacosta@sommier-colas.fr>, 2019.
 # Jean-Marc <m.balthazar@posteo.net>, 2021.
+# msansm1 <ronanbarbot@dizalch.fr>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
 "PO-Revision-Date: 2021-07-21 12:33+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"Last-Translator: msansm1 <ronanbarbot@dizalch.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -9723,9 +9724,8 @@ msgid "E-mail"
 msgstr "Adresse électronique"
 
 #: ../gramps/gen/lib/urltype.py:50
-#, fuzzy
 msgid "Web Home"
-msgstr "Site web"
+msgstr "Accueil site web"
 
 #: ../gramps/gen/lib/urltype.py:51
 msgid "Web Search"
@@ -11269,7 +11269,7 @@ msgstr "Allemand"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Allemand (Autriche)"
 
 # trunk
 #: ../gramps/gen/utils/grampslocale.py:79
@@ -11925,22 +11925,17 @@ msgid "Could not read configuration"
 msgstr "Erreur à la lecture de la configuration"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"La définition du type MIME %s n'a pas été trouvée\n"
+"La définition du type média %s n'a pas été trouvée\n"
 "\n"
-" L'installation de Gramps semble incomplète. Vérifiez que les types MIME de "
-"Gramps sont correctement installés."
+" L'installation de Gramps semble incomplète. Vérifiez qu'un outil de gestion "
+"des types de média de Gramps est installé."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -14120,9 +14115,8 @@ msgstr "Niveau de confiance :"
 
 # trunk
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
-#, fuzzy
 msgid "Sorted date"
-msgstr "Deuxième date"
+msgstr "Date triée"
 
 # trunk
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:95
@@ -16915,11 +16909,6 @@ msgstr "Niveau de _confiance :"
 
 # trunk
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
@@ -16927,7 +16916,7 @@ msgid ""
 msgstr ""
 "La date de l'écriture de la source que vous êtes en train de référencer, par "
 "exemple, la date de visite lors d'un recensement ou la date de saisie d'une "
-"naissance dans un registre. "
+"naissance dans un registre."
 
 # trunk
 #: ../gramps/gui/glade/editcitation.glade:201
@@ -17341,7 +17330,7 @@ msgstr ""
 "Définissez le « chemin relatif » dans les Préférences pour éviter de saisir "
 "à chaque fois le répertoire de base dans lequel vos fichiers sont stockés. "
 "L'outil « Gestionnaire de media » peut vous aider à gérer les chemins de "
-"votre collection d'objets media. "
+"votre collection d'objets media."
 
 # objet sélectionné
 #: ../gramps/gui/glade/editmedia.glade:219
@@ -17525,7 +17514,7 @@ msgstr "Un prénom descriptif à la place ou en addition du prénom officiel."
 #, fuzzy
 #| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Prénom(s)"
+msgstr "Nom(s) de naissance"
 
 # trunk
 #: ../gramps/gui/glade/editname.glade:384
@@ -17832,13 +17821,10 @@ msgstr ""
 # master
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"Champ utilisé pour coller une information depuis une page web, comme google, "
-"openstreetmap... "
+"Champ utilisé pour coller une information depuis une page web, comme Google, "
+"OpenStreetMap..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -22365,16 +22351,12 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
 msgstr ""
 "Par exemple\n"
-"United States of America/USA"
+"United States of America/USA."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:977
 #: ../gramps/plugins/drawreport/descendtree.py:1702
@@ -23968,14 +23950,12 @@ msgstr ""
 "Double-cliquez sur une ligne pour éditer la source/citation sélectionnée."
 
 #: ../gramps/plugins/gramplet/citations.py:86
-#, fuzzy
 msgid "Source/Date"
-msgstr "Texte source"
+msgstr "Source/Date"
 
 #: ../gramps/plugins/gramplet/citations.py:167
-#, fuzzy
 msgid "<No Volume/Page>"
-msgstr "Volume/Page"
+msgstr "<No Volume/Page>"
 
 # master
 #: ../gramps/plugins/gramplet/coordinates.py:83
@@ -26787,10 +26767,8 @@ msgid "ANSEL"
 msgstr "ANSEL"
 
 #: ../gramps/plugins/importer/importgedcom.glade:18
-#, fuzzy
-#| msgid "ANSI (iso-8859-1)"
 msgid "ANSI (ISO-8859-1)"
-msgstr "ANSI (iso-8859-1)"
+msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
@@ -27540,15 +27518,7 @@ msgstr "Nombre de nouveaux objets importés :\n"
 
 # trunk
 #: ../gramps/plugins/importer/importxml.py:302
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| " The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unkown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -27559,7 +27529,7 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Le fichier importé n'est pas auto-suffisant.\n"
+"Le fichier importé n'est pas auto-suffisant.\n"
 "Pour corriger cela, %(new)d objets ont été créés et\n"
 "le type d'attribut a été défini comme « Inconnu ».\n"
 "Le nombre d'ajouts est noté dans les parenthèses.\n"
@@ -27580,16 +27550,10 @@ msgstr ""
 "préférences, ou, si absent, le répertoire utilisateur.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Candidats à la fusion :\n"
 
@@ -32744,6 +32708,18 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
+"Vous devez vérifier et changer le cache des tuiles\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"dans le fichier gramps.ini :\n"
+"%s\n"
+"\n"
+"Avant de modifier le fichier gramps.ini, vous devez fermer gramps\n"
+"\n"
+"Les erreurs suivantes seront normales"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:183
 #: ../gramps/plugins/lib/maps/osmgps.py:248
