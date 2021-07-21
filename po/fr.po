@@ -3,25 +3,25 @@
 # Copyright (C) 2001-2017 Free Software Foundation, Inc.
 #
 # Quelques variables pour la cohérence:
-#  ancestor : ascendant
-#  descendant : descendant
-#  person, individual, people : individu(s)
-#  remove (context) : enlever une référence ou supprimer de la base
-#  home : souche
-#  active person : individu actif
-#  media : media (pas de 's' ou accent) : un medium
-#  les médias : journaux, tv
-#  call name : prénom usuel
-#  unknown (context) : inconnu ou non-connu (individu)
-#  log : journal
-#  addon : greffon
-#  regular expressions : expressions rationnelles
-#  Gramps ID = Identifiant Gramps
-#  Please... = Veuillez...
+# ancestor : ascendant
+# descendant : descendant
+# person, individual, people : individu(s)
+# remove (context) : enlever une référence ou supprimer de la base
+# home : souche
+# active person : individu actif
+# media : media (pas de 's' ou accent) : un medium
+# les médias : journaux, tv
+# call name : prénom usuel
+# unknown (context) : inconnu ou non-connu (individu)
+# log : journal
+# addon : greffon
+# regular expressions : expressions rationnelles
+# Gramps ID = Identifiant Gramps
+# Please... = Veuillez...
 #
 # Traits d'union:
-#  non-substantif
-#  non adjectif
+# non-substantif
+# non adjectif
 #
 #
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
@@ -32,12 +32,13 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 # Christophe <khrys63@gmail.com>, 2018.
 # Gil da Costa <gdacosta@sommier-colas.fr>, 2019.
+# Jean-Marc <m.balthazar@posteo.net>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-05-24 16:19+0000\n"
+"PO-Revision-Date: 2021-07-21 12:33+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
@@ -46,7 +47,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -35678,9 +35679,8 @@ msgstr "Recherche de doublons d'identifiants Gramps"
 
 # master
 #: ../gramps/plugins/tool/check.py:2300
-#, fuzzy
 msgid "Checking for bad links in Notes"
-msgstr "Vérification des mises à jour"
+msgstr "Vérification des liens non valides dans les notes"
 
 #: ../gramps/plugins/tool/check.py:2451
 msgid "No errors were found"
