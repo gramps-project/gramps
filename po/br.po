@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2007.
-#
+# msansm1 <ronanbarbot@dizalch.fr>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-05-22 18:06+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-07-21 12:33+0000\n"
+"Last-Translator: msansm1 <ronanbarbot@dizalch.fr>\n"
 "Language-Team: Breton <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/br/>\n"
 "Language: br\n"
@@ -17,16 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
-msgstr ""
+msgstr "Gramps"
 
 #: ../data/gramps.appdata.xml.in:5 ../data/gramps.desktop.in:6
+#, fuzzy
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
+"Mererezh ar stlenn kerentiezh, seveniñ imbourc'h kerentiezh ha dielfennadur"
 
 #: ../data/gramps.appdata.xml.in:7
 msgid ""
@@ -48,8 +50,9 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.appdata.xml.in:12
+#, fuzzy
 msgid "Gramps Development Team"
-msgstr ""
+msgstr "Laz diorroer stlenneg Gramps"
 
 #: ../data/gramps.desktop.in:4
 #, fuzzy
@@ -58,12 +61,11 @@ msgstr "Reizhiad skoazellañ"
 
 #: ../data/gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Kerentiezh ;Istor Kerentiad ;Imbourc'h ;Gwezenn-gerentiezh ;GEDCOM ;"
 
 #: ../data/gramps.xml.in:6
-#, fuzzy
 msgid "Gramps database"
-msgstr "Digori un diaz roedennoù"
+msgstr "Diaz roadennoù GRAMPS"
 
 #: ../data/gramps.xml.in:10 ../gramps/plugins/export/export.gpr.py:76
 #: ../gramps/plugins/importer/import.gpr.py:54
@@ -72,12 +74,11 @@ msgstr "GEDCOM"
 
 #: ../data/gramps.xml.in:20
 msgid "Gramps package"
-msgstr ""
+msgstr "Gronnad GRAMPS"
 
 #: ../data/gramps.xml.in:24
-#, fuzzy
 msgid "Gramps XML database"
-msgstr "Diaz roedennoù GRAMPS XML"
+msgstr "Diaz roadennoù GRAMPS XML"
 
 #: ../data/gramps.xml.in:32
 #, fuzzy
@@ -85,53 +86,48 @@ msgid "GeneWeb source file"
 msgstr "Sanell darzh er restr :"
 
 #: ../data/holidays.xml:3
-#, fuzzy
 msgid "Bulgaria"
-msgstr "Juluan"
+msgstr "Bulgaria"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
 msgid "Chile"
-msgstr "Bugel"
+msgstr "Chile"
 
 #: ../data/holidays.xml:107
-#, fuzzy
 msgid "China"
-msgstr "Bugale"
+msgstr "Sina"
 
 #: ../data/holidays.xml:110
 msgid "Croatia"
-msgstr ""
+msgstr "Kroatia"
 
 #: ../data/holidays.xml:126
-#, fuzzy
 msgid "Czech Republic"
-msgstr "Republikan (Bro C'hall)"
+msgstr "Republik Tchek"
 
 #: ../data/holidays.xml:141
 msgid "England"
-msgstr ""
+msgstr "Bro-Saoz"
 
 #: ../data/holidays.xml:171
 msgid "Finland"
-msgstr ""
+msgstr "Finland"
 
 #: ../data/holidays.xml:265
 msgid "France"
-msgstr ""
+msgstr "Bro-C'hall"
 
 #: ../data/holidays.xml:301
-#, fuzzy
 msgid "Germany"
-msgstr "Gregorian"
+msgstr "Alamagn"
 
 #: ../data/holidays.xml:318
 msgid "Japan"
-msgstr ""
+msgstr "Japan"
 
 #: ../data/holidays.xml:341
 msgid "Jewish Holidays"
@@ -251,39 +247,36 @@ msgid "8 of Hanuka"
 msgstr ""
 
 #: ../data/holidays.xml:371
-#, fuzzy
 msgid "New Zealand"
-msgstr "Doareenn nevez"
+msgstr "Zeland-Nevez"
 
 #: ../data/holidays.xml:387
 msgid "Russia"
-msgstr ""
+msgstr "Rusia"
 
 #: ../data/holidays.xml:403
-#, fuzzy
 msgid "Serbia"
-msgstr "Persian"
+msgstr "Serbia"
 
 #: ../data/holidays.xml:418
-#, fuzzy
 msgid "Serbia (Latin)"
-msgstr "Persian"
+msgstr "Serbia (latin)"
 
 #: ../data/holidays.xml:433
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovakia"
 
 #: ../data/holidays.xml:450 ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
-msgstr ""
+msgstr "Sveden"
 
 #: ../data/holidays.xml:477
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukraina"
 
 #: ../data/holidays.xml:504
 msgid "United States of America"
-msgstr ""
+msgstr "Stadoù-Unanet Amerika"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -38539,16 +38532,15 @@ msgid "%s since death"
 msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:2196
-#, fuzzy
 msgid "death"
-msgstr "Deiz marv"
+msgstr "marv"
 
 #: ../gramps/plugins/webreport/webcal.py:2220
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{couple}, {years} bloavezh eured"
+msgstr[1] "{couple}, {years} bloavezhioù eured"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
