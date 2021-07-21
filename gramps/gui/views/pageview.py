@@ -203,7 +203,10 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         """
         Called when the position property of the pane is changed.
         """
-        self._config.set(setting, widget.get_position())
+        old = self._config.get(setting)
+        new = widget.get_position()
+        if abs(old - new) > 10:
+            self._config.set(setting, new)
 
     def __sidebar_toggled(self, action, value):
         """
