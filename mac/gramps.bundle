@@ -96,6 +96,10 @@
     ${prefix}/lib/libgeocode-glib.dylib
   </binary>
 
+  <binary>
+    ${prefix}/lib/gio/modules/libgiognutls.so
+  </binary>
+
   <gir>
     ${prefix}/share/gir-1.0/*.gir
   </gir>
