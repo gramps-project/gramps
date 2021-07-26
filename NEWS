@@ -1,3 +1,69 @@
+2021-07-26
+Version 5.1.4
+* Update translations: cs, de, es, fi, fr, hu, nl, pt_BR, ru, sv, zh_CN.
+* Update copyright date.
+* Fix probably alive if death without date.
+* Place editor, copy and paste of lat and long text no longer
+  auto-populating latitude and longitude fields.
+* Fix for crash when changing views if part of toolbar is not shown because
+  of a small screen when changing views.
+* Fix bottombar always showing after restart, even when not wanted.
+* Always use filtered collation names.  Store the Sqlite3 collations in the
+  __collations array to short-circuit re-creation.
+* Fix issue with German relation calculator fixed issue when more than 24
+  generations between the two people.
+* Add file logging for macOS. When Gramps is launched from macOS's
+  LaunchServices it doesn't have a sys.stderr attached so the default stream
+  logger goes to /dev/null. Use a FileHandler in tht case, writing the log
+  to $TMPDIR/gramps-pid.log. This will help particularly in analyzing
+  crashes where python shuts down as there's no crash report in that case.
+* Fix libplaceview to avoid exception when mapservice is no longer present.
+* Fix References Gramplet for inadequate updates when other objects change.
+* Fix geofamily crash if a family has no father.
+* Home Person setting does not convey in a merge.
+* Fix CSV export of view to only put single CR character.
+* Add Media filter rule 'HasMedia' to list of media rules for editor.
+* Need to set locale.textdomain under linux. _build_popup_ui() ignores
+  translated strings without locale.textdomain set.
+* Change category of 'MatchesEventFilter'.
+* Fix issue where separator between top and bottom bar of View creeps up.
+* Fix Locations Gramplet (Enclosed by) to properly display certain nested
+  places when the smallest place has undated enclosure and larger places are
+  dated.
+* Fix Family Tree Manager drop error on Windows.
+* Fix exportvcalendar error is "is not" with a literal (Python 3.8 issue)
+* Handle not found when copying source from the citation tree.
+* Fix call to 'file' function, which doesn't exist in Python3.
+* Fix write_lock_file exception when USERNAME is missing.
+* Fix EditPlace so Tab key doesn't get stuck on Private icon.
+* Fix Tag report for places that have a hierarchy.
+* Fix exception when cancelling out of a db upgrade in GUI.
+* Icon file changes:
+  * Install 128x128 and 256x256 application icons.
+  * Install MIME type icons into the hicolor theme.
+  * Remove gnome-mime- prefix from icon filenames.
+  * Install application icons into correct directories.
+* Fix error in Birthday and Anniversary report. Fixes an error triggered
+  when the first person_handle in the list has a death event, but no birth
+  event and does not have family relationships.  These conditions lead to
+  the local variable short_name not being declared before it comes time to
+  process death events.
+* Fix graphdoc to properly escape characters in ids for Graphviz.
+* Replace inspect.stack() with inspect.currentframe().
+  Works around https://bugs.python.org/issue12920 which causes every
+  call to inspect.trace() to fail because __main__ is always the
+  starting point.
+* Fix crash sorting on columns in Selectors with TreeModels.
+* Fix progress bar freeze due to changes in Gtk.
+* Fix svgdrawdoc for text containing XML invalid characters.
+* Mac:
+  * Update PyICU to 2.7.2 in macOS build.
+  * Update dependencies. Includes moving berkeleydb and pybsddb over from
+    gtk-osx.
+  * Further changes for bundling with Python 3.8.
+  * Set __file__ if gramps_launcher.py is run as __main__.
+  * Add geocode-glib to build.
+
 2020-08-11
 Version 5.1.3
 * Update ca, de, fi, fr, ja, pl, ru, sl, sv, uk, zh_CN translation
@@ -94,7 +160,7 @@ Version 5.1.2
 * [Tree doc Tex] fix typo on custom size
 * Fix duplicated "døde døde" Norwegion Translation for libnarrate
 * Fix up Event Editors Place display for bidi text with Gramps ID
-* Fix issues with RTL languages and LAT/LONG 
+* Fix issues with RTL languages and LAT/LONG
   * Fix display of GPS coordinates in Places view for RTL languages
   * Fix place editor lat/long entry for RTL languages
 * Fix GEDCOM export to avoid translated GrampsType strings

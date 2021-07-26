@@ -1,160 +1,187 @@
-2020-08-11  prculley <paulr2787@gmail.com>
+2021-07-09  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
-	po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po, po/fr.po,
-	po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po, po/it.po,
-	po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po, po/nn.po,
-	po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po, po/sk.po,
-	po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po, po/ta.po,
-	po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po, po/zh_TW.po: 
-	Remove duplicates in Translations
+    * po/zh_CN.po: Update and fix Simplified Chinese translation
 
-2020-08-10  prculley <paulr2787@gmail.com>
+2021-07-16  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
-	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
-	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
-	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
-	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
-	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
-	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
-	po/zh_TW.po: Clean up translations for Default/Home Person
+    * po/de.po: fixed small German translation error for item also fixed
+    in Weblate GUI for master
 
-2020-08-10  Leonhaeuser <mirko@leonhaeuser.de>
+2021-06-28  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/de.po: Update German translation
+    * po/zh_CN.po: Update Simplified Chinese translation
 
-2020-08-10  Paul Culley <paulr2787@gmail.com>
+2021-07-05  pehlm <par.ekholm@pekholm.org>
 
-	* po/pl.po: Fix Charts/Pedigreeview tooltip Polish translation
-	(#1092) Fixes #11852
+    * po/sv.po: One update Swedish translation
 
-2020-08-10  Krystian Safjan <ksafjan@gmail.com>
+2021-06-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/pl.po: Fix and add objects to Polish translation of Gramps
-	(#1088)
+    * po/de.po: Fixed different German translations for "What's next"
+    also fixed in master (Weblate)
 
-2020-07-23  Leonhaeuser <mirko@leonhaeuser.de>
+2021-06-22  Matti Niemelä <matti.u.niemela@gmail.com>
 
-	* po/de.po: German translation fixed typo
+    * po/fi.po: Fix translation in Finnish
 
-2020-07-17  niememat <niememat@gmail.com>
+2021-06-17  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/fi.po: Update finnish translation
+    * po/zh_CN.po: Correct and improve Simplified Chinese translation.
+    Correct some terribly wrong and low quality translation, even machine
+    translation.  Improve some existing translation for better user experience
+    as a software, use more written language.
 
-2020-06-07  Tian Shixiong <tiansworld@fedoraproject.org>
+2021-05-31  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/zh_CN.po: Update Simplified Chinese translation for gramps51
-	branch
+    * po/zh_CN.po: Improve and correct Simplified Chinese translation
 
-2020-01-11  giansalvo <pioggia3+github@gmail.com>
+2021-05-27  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
-	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
-	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
-	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
-	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
-	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
-	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
-	po/zh_TW.po: Fix bug 0011078: 'Default person' instead of 'Home
-	person' - modified button hints - modified filter rules names and descriptions - modified .pot and .po files - substituted 'home person' with 'Home Person'
+    * po/zh_CN.po: Improve and correct the Simplified Chinese
+    translation
 
-2020-07-07  Leonhaeuser <mirko@leonhaeuser.de>
+2021-05-21  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/de.po: Germen fixed translation error of Media:
+    * po/zh_CN.po: Update and improve Simplified Chinese translation
 
-2020-07-04  Leonhaeuser <mirko@leonhaeuser.de>
+2021-05-17  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/de.po: Fix typo
+    * po/zh_CN.po: Update Simplified Chinese translation
 
-2020-07-01  Leonhaeuser <mirko@leonhaeuser.de>
+2020-09-26  Jan Sparreboom <jan@sparreboom.net>
 
-	* po/de.po: update German translation
+    * po/nl.po: Update Dutch translation
 
-2020-04-23  SNoiraud <serge.noiraud@laposte.net>
+2021-05-07  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
-	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
-	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
-	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
-	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
-	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
-	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
-	po/zh_TW.po: Fix typo in gui/configure.py and translation files Fixes #11665
+    * po/zh_CN.po: Correct and Update Simplified Chinese translation
 
-2020-06-22  pehlm <par.ekholm@pekholm.org>
+2020-10-13  Tian Shixiong <tiansworld@fedoraproject.org>
 
-	* po/sv.po: A little adjustment to Swedish translation
+    * po/zh_CN.po: Update Simplified Chinese translation
 
-2020-06-21  pehlm <par.ekholm@pekholm.org>
+2021-05-14  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/sv.po: Updates to Swedish translation
+    * po/de.po: Corrected some German translation errors found during
+    handbook revision
 
-2020-06-20  Megumi Sakata <megumi.sakata.k@gmail.com>
+2021-04-28  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ja.po: Update Japanese translation
+    * po/de.po: corrected German translation of "confidence"
 
-2020-04-28  vantu5z <vantu5z@mail.ru>
+2021-04-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ru.po: update Russian translation
+    * po/de.po: German corrected translation of 'attribute'
 
-2020-04-24  niememat <niememat@gmail.com>
+2021-04-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/fi.po: Fix translation in Finnish
+    * po/de.po: Fixed translation error of "display name editor" into
+    German
 
-2020-04-18  Joan Creus <joan.creusandreu@gmail.com>
+2021-04-24  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ca.po: Updating Catalan translation
+    * po/de.po: some translation fixes for German
 
-2020-04-18  Joan Creus <joan.creusandreu@gmail.com>
+2021-04-24  pehlm <par.ekholm@pekholm.org>
 
-	* po/ca.po: Updating Catalan translation
+    * po/sv.po: Changed immigration too, Swedish
 
-2020-04-08  Leonhaeuser <mirko@leonhaeuser.de>
+2021-04-24  pehlm <par.ekholm@pekholm.org>
 
-	* po/de.po: update Germn translation
+    * po/sv.po: Correction of Swedish translation
 
-2020-03-26  vantu5z <vantu5z@mail.ru>
+2021-04-22  Helder Geovane Gomes de Lima <he7d3r@gmail.com>
 
-	* po/ru.po: update Russian translation
+    * po/pt_BR.po: Update Portuguese translation (pt_BR) (#1199)
+    This pull request is an updated version of the patch I've provided
+    at <https://gramps-project.org/bugs/view.php?id=10547> in 2018, now
+    based on branch 5.1
 
-2020-03-25  Translator5 <Translator5@users.noreply.github.com>
+2021-04-19  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ru.po: [Language: Russian] Maintenance/gramps51 (#1027) * some Russian translations updates
+    * po/de.po: Corrected translation of markup in German translation
 
-2020-03-03  Joan Creus <joan.creusandreu@gmail.com>
+2021-04-17  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ca.po: Updating Catalan translation
+    * po/de.po: Fixed translation of tags in German translation
 
-2020-02-29  Joan Creus <joan.creusandreu@gmail.com>
+2021-04-14  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ca.po: Updating Catalan translation
+    * po/de.po: German translation for type unified
 
-2020-02-25  Bernard Banko <beernarrd@gmail.com>
+2021-04-13  romjerome <romjerome@yahoo.fr>
 
-	* po/sl.po: V&O changed to PZV to avoid ampersand
+    * po/fr.po: 11656: typo, spelling correction contribution by Philippe
 
-2020-02-07  pehlm <par.ekholm@pekholm.org>
+2021-04-13  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/sv.po: Minor update to Swedish translation
+    * po/de.po: Fixed German translation of number for places
 
-2020-01-31  vantu5z <vantu5z@mail.ru>
+2021-03-21  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ru.po: update Russian translation
+    * po/de.po: Some small fixes in German translation
 
-2020-01-26  Bernard Banko <beernarrd@gmail.com>
+2021-03-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/sl.po: Slovenian translation update
+    * po/de.po: Update German translation for csv import/export
 
-2020-01-23  prculley <paulr2787@gmail.com>
+2021-03-01  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ru.po: Fix typo in Russian translation
+    * po/de.po: small fix in German translation
 
-2020-01-21  syst�me <romjerome@users.noreply.github.com>
+2021-02-12  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/fr.po: typos in french translation #11534 #10534
+    * po/de.po: additional small German translation fixes
 
-2020-01-21  Fedik <getthesite@gmail.com>
+2021-02-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* Ukrainian translation update
+    * po/de.po: Small fixes German translation
 
+2021-02-06  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+    * po/de.po: fix wrong translation of source text in German
+    translation
+
+2021-02-06  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+    * po/de.po: fixed small error in German translation
+
+2021-01-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+    * po/de.po: small fixes German translation
+
+2020-10-15  vantu5z <vantu5z@mail.ru>
+
+    * po/ru.po: Update Russian translation
+
+2020-09-25  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+    * po/cs.po: Update Czech translation - typo fixes
+
+2020-09-06  Tian Shixiong <tiansworld@fedoraproject.org>
+
+    * po/zh_CN.po: Update Simplified Chinese translation
+
+2020-08-16  Jan Sparreboom <jan@sparreboom.net>
+
+    * po/nl.po: Update Dutch translation
+
+2020-04-21  Lajos Nemeséri <nemeseril@gmail.com>
+
+    * po/hu.po: Revised and updated hu translation
+
+2020-09-13  Juan Saavedra <jcsaaver@gmail.com>
+
+    * po/es.po: Update Spanish translation
+
+2020-08-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+    * po/de.po: German translation two small corrections
+
+2020-08-21  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+    * po/cs.po: Update Czech translation
+
+2020-08-12  pehlm <par.ekholm@pekholm.org>
+
+    * Update Swedish translation
