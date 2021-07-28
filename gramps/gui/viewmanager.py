@@ -291,12 +291,13 @@ class ViewManager(CLIManager):
 
         self.hpane.add2(self.notebook)
         toolbar = self.uimanager.get_widget('ToolBar')
+        toolbar.show_all()
         self.statusbar = Statusbar()
         self.statusbar.show()
         vbox.pack_end(self.statusbar, False, True, 0)
         vbox.pack_start(toolbar, False, True, 0)
         vbox.pack_end(self.hpane, True, True, 0)
-        vbox.show_all()
+        vbox.show()
 
         self.uistate = DisplayState(self.window, self.statusbar,
                                     self.uimanager, self)
