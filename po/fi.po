@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-23 08:26+0000\n"
+"PO-Revision-Date: 2021-07-29 07:33+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -36424,7 +36424,7 @@ msgstr "Suhdetyyppi: %s"
 #: ../gramps/plugins/view/relview.py:1521
 #, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s %(date)s %(place)s"
+msgstr "%(event_type)s %(date)s - %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1525
 #, python-format
