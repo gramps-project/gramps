@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-02 13:33+0000\n"
+"PO-Revision-Date: 2021-07-31 19:51+0000\n"
 "Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -591,10 +591,10 @@ msgid ""
 "through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>Переход Назад и Вперёд<b><br/>Gramps запоминает предыдущие активные "
-"объекты, такие как Люди и События. Вы можете переходить вперёд или назад по "
-"списку, используя \"Переход &gt; Вперёд\" и \"Переход &gt; Назад\" или "
-"кнопки со стрелками."
+"<b>Переход Назад и Вперёд<b><br/>Gramps отслеживает список предыдущих "
+"активных объектов, таких как Люди и События. Вы можете переходить вперёд или "
+"назад по списку, используя \"Переход &gt; Вперёд\" и \"Переход &gt; Назад\" "
+"или кнопки со стрелками."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -1962,7 +1962,7 @@ msgstr "=имя файла css"
 
 #: ../gramps/cli/plug/__init__.py:308
 msgid "CSS filename to use, html format only"
-msgstr "Имя файла CSS, только для формата HTML"
+msgstr "Имя файла CSS, только в формате HTML"
 
 #. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:416
@@ -4465,7 +4465,7 @@ msgstr "Семьи с ребёнком с <именем>"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:46
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Выбирает семьи, в которых ребёнок имеет указанное имя"
+msgstr "Выбирает семьи, в которых ребёнок имеет указанное (частично) имя"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:42
 msgid "Families marked private"
@@ -4497,7 +4497,7 @@ msgstr "Семьи с отцом с <именем>"
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:46
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:46
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Выбирает семьи, в которых отец имеет указанное имя"
+msgstr "Выбирает семьи, в которых отец имеет указанное (частично) имя"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:44
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:44
@@ -4724,7 +4724,7 @@ msgstr "Семьи с матерью с <именем>"
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:46
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:46
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr "Выбирает семьи, в которых мать имеет указанное имя"
+msgstr "Выбирает семьи, в которых мать имеет указанное (частично) имя"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:45
 msgid "Families with child matching the <regex_name>"
@@ -4776,7 +4776,7 @@ msgstr "Семьи с ребёнком с указанным <именем>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Выбирает семьи, в которых ребёнку имеет указанное (частичное) имя"
+msgstr "Выбирает семьи, в которых ребёнок имеет указанное (частично) имя"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
@@ -5556,7 +5556,7 @@ msgstr "Лица с неполными именами"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:45
 msgid "Matches people with firstname or lastname missing"
-msgstr "Выбирает лиц у которых не задано имя или фамилия"
+msgstr "Выбирает лиц, у которых не задано имя или фамилия"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:45
 msgid "Ancestors of <person>"
@@ -8414,7 +8414,7 @@ msgstr "Имя по рождению"
 
 #: ../gramps/gen/lib/nametype.py:50
 msgid "Married Name"
-msgstr "Имя по браку"
+msgstr "Имя в браке"
 
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:265
 #: ../gramps/gen/plug/docgen/treedoc.py:199 ../gramps/gui/clipboard.py:375
@@ -9322,7 +9322,7 @@ msgstr ""
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
-"ОШИБКА: Файл python %(filename)s из файла регистрации %(regfile)s не "
+"ОШИБКА: Файл python %(filename)s в файле регистрации %(regfile)s не "
 "существует"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:129
@@ -12439,7 +12439,7 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and "
 "others."
 msgstr ""
-"Тип файлов \"%s\" неизвестен Gramps.\n"
+"Тип файла \"%s\" неизвестен Gramps.\n"
 "\n"
 "Известные типы: база данных Gramps, Gramps XML, пакет Gramps, GEDCOM и "
 "другие."
@@ -12451,7 +12451,7 @@ msgstr "Не удалось открыть файл"
 
 #: ../gramps/gui/dbloader.py:460
 msgid "The selected file is a directory, not a file.\n"
-msgstr "Выбранное имя является каталогом, а не файлом.\n"
+msgstr "Выбранный файл является каталогом, а не файлом.\n"
 
 #: ../gramps/gui/dbloader.py:467
 msgid "You do not have read access to the selected file."
@@ -16379,7 +16379,7 @@ msgid ""
 "A descriptive name given in place of or in addition to the official given "
 "name."
 msgstr ""
-"Имя которое иногда дается человеку (помимо настоящей фамилии и имени) и как "
+"Имя которое иногда даётся человеку (помимо настоящей фамилии и имени) и как "
 "правило указывает на какую-нибудь черту его характера, внешности, "
 "деятельности, привычек."
 
