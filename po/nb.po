@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-02 13:33+0000\n"
+"PO-Revision-Date: 2021-07-30 08:33+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
@@ -12690,7 +12690,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Et forsøk på å omdøpe en versjon feilet feilet med følgende melding:\n"
+"Et forsøk på å endre navn på en versjon mislyktes med følgende melding:\n"
 "\n"
 "%s"
 
@@ -33153,7 +33153,7 @@ msgstr "Lager en rapport over bursdager og jubileer"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:82
 msgid "Add custom text to the book report"
-msgstr "Legg til fritekst til til bokrapporten"
+msgstr "Legg til fritekst i bokrapporten"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:103
 msgid "Descendant Report"
@@ -36819,8 +36819,8 @@ msgid ""
 "Address Book page."
 msgstr ""
 "Denne siden inneholder en oversikt over alle personene i databasen sortert "
-"etter etternavn, med en av de følgende: Addresse, Bosted eller URL. Ved å "
-"klikke på personens navn vil du komme til en egen side i adresseboken for "
+"etter etternavn, med en av følgende: Addresse, bosted, eller nettadresser. "
+"Ved å klikke på personens navn vil du komme til en egen side i adresseboken "
 "for denne personen."
 
 #: ../gramps/plugins/webreport/addressbooklist.py:113
