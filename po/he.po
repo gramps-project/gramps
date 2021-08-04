@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-27 12:49+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2021-07-29 07:33+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -637,10 +637,10 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>רשימות דיוור גרמפס<br/></b> רוצים תשובות לשאלות אודות גרמפס? בדוקו את "
+"<b>רשימות דיוור גרמפס<br/></b> רוצים תשובות לשאלות על גרמפס? אפשר לבדוק את "
 "רשימת הדואר האלקטרוני של משתמשי גרמפס. אנשים רבים שרוצים לעזור נמצאים "
-"ברשימה, כך שסביר להניח שתקבלו תשובות במהירות. אם יש לכם שאלות הקשורות לפתוח "
-"מערכת גרמפס, נסו את רשימת gramps-devel. את הרשימות ניתן למצוא בתפריט 'עזרה "
+"ברשימה, כך שסביר להניח שתשובות יתקבלו במהירות. לשאלות הקשורות לפתוח מערכת "
+"גרמפס, כדי לנסות את רשימת gramps-devel. את הרשימות ניתן למצוא בתפריט 'עזרה "
 "&gt; רשימות דיוור של גרמפס'."
 
 #: ../data/tips.xml:64
@@ -657,7 +657,7 @@ msgstr ""
 "אין בעיה, למיזם גדול כמו גרמפס דורשים אנשים עם מגוון רחב של כישורים. תרומה "
 "יכולה להיות כל דבר מכתיבת תיעוד דרך בדיקת גרסאות פיתוח ועזרה עם אתר המרשתת. "
 "ניתן להתחיל לתרום על־ידי הרשמה לרשימת התפוצה של מפתחי גרמפס, gramps-devel, "
-"ולהציג את עצמכם. ניתן למצוא מידע אודות מנוי לצוותי הסיוע מתפריט '‎עזרה &gt; "
+"ולהציג את עצמכם. ניתן למצוא מידע על מנוי לצוותי הסיוע מתפריט '‎עזרה &gt; "
 "רשימות דיוור גרמפס'"
 
 #: ../data/tips.xml:66
@@ -732,10 +732,10 @@ msgid ""
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>מצג אָבוֹת קַדמוֹנִים<br/></b>מצג אָבוֹת קַדמוֹנִים מציג תרשים אילן מסורתי. להצגת "
-"מידע נוסף אודות אדם, יש להחזיק את סמן העכבר מעל שמו, או להקיש על המקש הימני "
-"בעכבר להצגת בני משפחה אחרים והגדרות. לבחינת האפשרויות השונות, נא לעבור על "
-"ההגדרות."
+"<b>מצג אָבוֹת קַדמוֹנִים<br/></b>מצג אָבוֹת קַדמוֹנִים מציג תרשים אילן "
+"מסורתי. להצגת מידע נוסף על אדם, יש להחזיק את סמן העכבר מעל שמו, או להקיש על "
+"המקש הימני בעכבר להצגת בני משפחה אחרים והגדרות. לבחינת האפשרויות השונות, נא "
+"לעבור על ההגדרות."
 
 #: ../data/tips.xml:78
 msgid ""
@@ -934,10 +934,10 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>ה'כיצד ומדוע' של הגנאלוגיה<br/></b>גנאלוגיה אינה רק אודות תאריכים ושמות. "
-"זה אודות אנשים. לכן חשוב לעשות שימוש בשפה תיאורית לרבות מדוע דברים קרו, "
-"וכיצד השפיעו האירועים שחלפו על עיצוב חיי הצאצאים. סִפֵּר טוב תורם בהפיכת "
-"ההיסטוריה המשפחתית לחיה ומוחשית."
+"<b>ה'כיצד ומדוע' של הגנאלוגיה<br/></b>גנאלוגיה אינה רק על תאריכים ושמות. זה "
+"על אנשים. לכן חשוב לעשות שימוש בשפה תיאורית לרבות מדוע דברים קרו, וכיצד "
+"השפיעו האירועים שחלפו על עיצוב חיי הצאצאים. סִפֵּר טוב תורם בהפיכת ההיסטוריה "
+"המשפחתית לחיה ומוחשית."
 
 #: ../data/tips.xml:114
 msgid ""
@@ -1002,7 +1002,7 @@ msgstr ""
 "<b>תוכנת קוד פתוח<br/></b>מודל הפיתוח החינמי/חופשי ובקוד פתוח (FLOSS) "
 "שפירושם, שכל מתכנת יכול להרחיב את גרמפס שכן קוד המקור זמין בחינם וברישיון. "
 "לכן לא מדובר רק על 'בירה' בחינם, אלא גם בחופש ללמוד ולשנות את הכלי. למידע "
-"נוסף אודות תכנת קוד פתוח חפשו במרשתת על קרן התכנה החופשית ויוזמת הקוד הפתוח."
+"נוסף על תכנת קוד פתוח חפשו במרשתת על קרן התכנה החופשית ויוזמת הקוד הפתוח."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1013,7 +1013,7 @@ msgid ""
 msgstr ""
 "<b>רישיון השימוש בגרמפס<br/></b>גרמפס חופשי לשימוש ומותר לחלוק אותו עם "
 "אחרים. התכנה מופצת בהפצה חופשיות במגבלות הרישיון הציבורי הכללי של גנו, נא "
-"לעיין ב־http://www.gnu.org/licenses/licenses.html#GPL לקריאה אודות הזכויות "
+"לעיין ב־http://www.gnu.org/licenses/licenses.html#GPL לקריאה על הזכויות "
 "וההגבלות של רישיון זה."
 
 #: ../data/tips.xml:128
@@ -1406,7 +1406,7 @@ msgstr ""
 "8. רשימת אפשרויות דוחות\n"
 "נא להשתמש ב־name=timeline,show=all כדי להציג את כל האפשרויות הזמינות לדוח "
 "ציר הזמן.\n"
-"כדי לברר פרטים אודות אפשרות מסוימת, נא להשתמש ב־show=option_name , e.g. "
+"כדי לברר פרטים על אפשרות מסוימת, נא להשתמש ב־show=option_name , e.g. "
 "name=timeline,show=off string.\n"
 "למידע על שמות דוחות זמינים, נא להשתמש name=show string.\n"
 "\n"
@@ -11002,7 +11002,7 @@ msgstr "אבי מרקוביץ - avi.markovitz@gmail.com"
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
 msgid "Distribution: %s"
-msgstr "התפלגות: %s"
+msgstr "הפצה: %s"
 
 #: ../gramps/gui/aboutdialog.py:142
 #, python-format
@@ -11279,8 +11279,7 @@ msgstr "מידע על החוקר"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree"
-msgstr ""
-"הזנת מידע אודות עצמך כדי שאנשים יוכלו ליצור עמך קשר שכאילן היוחסין יופץ"
+msgstr "הזנת מידע על עצמך כדי שאנשים יוכלו ליצור עמך קשר שכאילן היוחסין יופץ"
 
 #: ../gramps/gui/configure.py:617
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
@@ -13571,7 +13570,7 @@ msgstr "לא ניתן לשמור אירוע"
 
 #: ../gramps/gui/editors/editevent.py:240
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr "אין מידע אודות אירוע זה. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על אירוע זה. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editevent.py:250
 #: ../gramps/gui/editors/editreference.py:277
@@ -13896,7 +13895,7 @@ msgstr "לא ניתן לשמור משפחה"
 
 #: ../gramps/gui/editors/editfamily.py:1134
 msgid "No data exists for this family. Please enter data or cancel the edit."
-msgstr "אין מידע אודות משפחה זו. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על משפחה זו. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editfamily.py:1142
 msgid "Cannot save family. ID already exists."
@@ -13989,7 +13988,7 @@ msgstr "לא ניתן לשמור אובייקט מדיה"
 #: ../gramps/gui/editors/editmedia.py:289
 msgid ""
 "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "אין מידע אודות אובייקט מדיה זה. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על אובייקט מדיה זה. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editmedia.py:299
 #: ../gramps/gui/editors/editreference.py:280
@@ -14104,7 +14103,7 @@ msgstr "קיבוץ שם זה בלבד"
 #: ../gramps/gui/editors/editnote.py:67
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "עריכת_מידע_ אודות_הערות"
+msgstr "עריכת_מידע_ על_הערות"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14144,7 +14143,7 @@ msgstr "לא ניתן לשמור הערה"
 
 #: ../gramps/gui/editors/editnote.py:319
 msgid "No data exists for this note. Please enter data or cancel the edit."
-msgstr "אין מידע אודות הערה זו. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על הערה זו. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editnote.py:327
 msgid "Cannot save note. ID already exists."
@@ -14176,7 +14175,7 @@ msgstr "אדם חדש"
 #: ../gramps/gui/editors/editperson.py:243
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "עריכת_מידע_ אודות_אנשים"
+msgstr "עריכת_מידע_ על_אנשים"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:478
@@ -14219,7 +14218,7 @@ msgstr "לא ניתן לשמור אדם"
 
 #: ../gramps/gui/editors/editperson.py:821
 msgid "No data exists for this person. Please enter data or cancel the edit."
-msgstr "אין מידע אודות אדם זה. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על אדם זה. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editperson.py:845
 msgid "Cannot save person. ID already exists."
@@ -14463,7 +14462,7 @@ msgstr "לא ניתן לשמור מאגר"
 #: ../gramps/gui/editors/editrepository.py:178
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
-msgstr "אין מידע אודות מאגר זה. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על מאגר זה. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editrepository.py:199
 #, python-format
@@ -14499,7 +14498,7 @@ msgstr "לא ניתן לשמור מקור"
 
 #: ../gramps/gui/editors/editsource.py:199
 msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr "אין מידע אודות מקור זה. נא להזין מידע או לבטל עריכה."
+msgstr "אין מידע על מקור זה. נא להזין מידע או לבטל עריכה."
 
 #: ../gramps/gui/editors/editsource.py:209
 msgid "Cannot save source. ID already exists."
@@ -16187,7 +16186,7 @@ msgstr "חלק משמו של אדם כולל המשפחה אילה הוא משת
 
 #: ../gramps/gui/glade/editperson.glade:511
 msgid "Go to Name Editor to add more information about this name"
-msgstr "מעבר לעורך השמות להוספת מידע אודות שם זה"
+msgstr "מעבר לעורך השמות להוספת מידע על שם זה"
 
 #: ../gramps/gui/glade/editperson.glade:536
 msgid "O_rigin:"
@@ -17594,10 +17593,10 @@ msgstr ""
 "זהו סייען דיווח התקלים. תפקידו לסייע בדווח תקלים, באופן מפורט ככל הניתן, "
 "לצוות הפתוח של גרמפס.\n"
 "\n"
-"הסייען ישאל מספר שאלות ויאסוף מידע אודות השגיאה שהתרחשה וסביבת העבודה. עם "
-"סיום פעולת הסייען אפשר יהיה להגיש דוח תקלים במערכת מעקב התקלים של גרמפס. "
-"הסייען ימקם את דוח התקלים על גבי לוח־הגזירים כך שיתאפשר להדביק אותו לטופס "
-"באתר המרשתת של מעקב אחר התקלים ולסקור מה מהמידע שהופק ויכלל בדוח."
+"הסייען ישאל מספר שאלות ויאסוף מידע על השגיאה שהתרחשה וסביבת העבודה. עם סיום "
+"פעולת הסייען אפשר יהיה להגיש דוח תקלים במערכת מעקב התקלים של גרמפס. הסייען "
+"ימקם את דוח התקלים על גבי לוח־הגזירים כך שיתאפשר להדביק אותו לטופס באתר "
+"המרשתת של מעקב אחר התקלים ולסקור מה מהמידע שהופק ויכלל בדוח."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:283
 msgid ""
@@ -17617,7 +17616,7 @@ msgid ""
 "error in the following pages of the assistant."
 msgstr ""
 "זהו מידע שגיאה מפורט של גרמפס, לא לדאוג אם זה נראה לא מובן. בהמשך, תהיה "
-"הזדמנות להוסיף פרטים נוספים אודות השגיאה בעמודים הבאים של הסייען."
+"הזדמנות להוסיף פרטים נוספים על השגיאה בעמודים הבאים של הסייען."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:363
 msgid ""
@@ -19686,7 +19685,7 @@ msgstr "עזרת סרגל גרמפלט"
 
 #: ../gramps/gui/widgets/grampletbar.py:525
 msgid "About Gramplets"
-msgstr "אודות גרמפלטים"
+msgstr "על גרמפלטים"
 
 #: ../gramps/gui/widgets/grampletbar.py:564
 msgid "Restore to defaults?"
@@ -22106,8 +22105,8 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
-"  6. %(gramps_manual_html_start)s%(section)sכיצד יש להזין מידע אודות נישואין?"
-"%(html_end)s\n"
+"  6. %(gramps_manual_html_start)s%(section)sכיצד יש להזין מידע על "
+"נישואין?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
 #, python-format
@@ -25362,7 +25361,7 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
-"הקובץ .gramps המיובא אינו מכיל מידע אודות גרסת גרמפס שאיתו הופק.\n"
+"הקובץ .gramps המיובא אינו מכיל מידע על גרסת גרמפס שאיתו הופק.\n"
 "\n"
 "הקובץ לא יובא."
 
@@ -29572,7 +29571,7 @@ msgstr "מתן פונקציונליות נפוצה ליבוא/יצוא XML של 
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:107
 msgid "Provides holiday information for different countries."
-msgstr "אספקת מידע אודות חגים במדינות שונות."
+msgstr "אספקת מידע על חגים במדינות שונות."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:125
 msgid "Manages a HTML file implementing DocBackend."
@@ -31344,7 +31343,7 @@ msgstr "דוח אָבוֹת קַדמוֹנִים עבור %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:949
 #, python-format
 msgid "More about %(person_name)s:"
-msgstr "עוד אודות %(person_name)s:"
+msgstr "עוד על %(person_name)s:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:317
 #, python-format
@@ -31405,7 +31404,7 @@ msgstr "צאצא של %(mother_name)s ו־%(father_name)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:807
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr "עוד אודות %(mother_name)s ו־%(father_name)s:"
+msgstr "עוד על %(mother_name)s ו־%(father_name)s:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:745
 #: ../gramps/plugins/textreport/detdescendantreport.py:614
@@ -32397,7 +32396,7 @@ msgstr "יצירת דוח מלולי של סוף הקו"
 msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
-msgstr "הפקת דוח קבוצת משפחה המציג מידע אודות זוגות הורים וצאצאיהם."
+msgstr "הפקת דוח קבוצת משפחה המציג מידע על זוגות הורים וצאצאיהם."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:215
 msgid "Produces a complete report on the selected people"
@@ -33319,8 +33318,8 @@ msgstr ""
 "הכלי מאפשר בצוע פעולות אצווה על אובייקטי מדיה המאוחסנים בגרמפס. חייבת להתבצע "
 "הבחנה חשובה בין אובייקט מדיה של גרמפס לבין הקובץ שלו.\n"
 "\n"
-"אובייקט המדיה 'בגרמפס' הוא אוסף של נתונים אודות קובץ אובייקט המדיה: שם הקובץ "
-"ו/או הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
+"אובייקט המדיה 'בגרמפס' הוא אוסף של נתונים על קובץ אובייקט המדיה: שם הקובץ ו/"
+"או הנתיב שלו, התיאור שלו, המזהה שלו, ההערות, ההפניות למקור וכדומה. נתונים "
 "אלה%(bold_start)sdo לא כוללים את הקובץ עצמו%(bold_end)s.\n"
 "\n"
 "הקבצים המכילים תמונה, קול, וידאו וכו ', מאוחסנים בנפרד בכונן הקשיח. קבצים "
@@ -34194,7 +34193,7 @@ msgstr "איתור אנשים שאינם קשורים בדרך כל שהי לא�
 
 #: ../gramps/plugins/tool/tools.gpr.py:221
 msgid "Edit Database Owner Information"
-msgstr "עריכת מידע אודות בעלי מסד הנתונים"
+msgstr "עריכת מידע על בעלי מסד הנתונים"
 
 #: ../gramps/plugins/tool/tools.gpr.py:222
 msgid "Allow editing database owner information."
@@ -34890,7 +34889,7 @@ msgstr "צבעים לכפילויות"
 #: ../gramps/plugins/view/fanchart2wayview.py:324
 #: ../gramps/plugins/view/fanchartdescview.py:323
 msgid "Fan chart distribution"
-msgstr "התפלגות תרשים מניפה"
+msgstr "התפלגות תרשים־מניפה"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:327
 #: ../gramps/plugins/view/fanchartdescview.py:326
@@ -35564,7 +35563,7 @@ msgstr "שמאל <-> ימין"
 
 #: ../gramps/plugins/view/pedigreeview.py:1710
 msgid "About Pedigree View"
-msgstr "אודות מצג שושלת יוחסין"
+msgstr "על מצג שושלת יוחסין"
 
 #: ../gramps/plugins/view/pedigreeview.py:1921
 #: ../gramps/plugins/view/relview.py:393
@@ -36615,7 +36614,7 @@ msgid ""
 "no contact page will be created"
 msgstr ""
 "הערה שתשמש כפרטי הקשר של המפרסם.\n"
-"אם אין מידע אודות המפרסם,\n"
+"אם אין מידע על המפרסם,\n"
 "לא ייווצר עמוד יצירת קשר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
@@ -36629,7 +36628,7 @@ msgid ""
 "no contact page will be created"
 msgstr ""
 "תמונה שתשמש בפרטי קשר המפרסם.\n"
-"אם לא קיים מידע אודות מפרסם,\n"
+"אם לא קיים מידע על מפרסם,\n"
 "לא ייווצר דף יצירת קשר"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2199
