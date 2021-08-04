@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-18 22:35+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2021-08-02 07:54+0000\n"
+"Last-Translator: RiseT <tareiss1971@yahoo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -1282,7 +1282,7 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:562
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Datenbank Backend ist nicht verfügbar, kann sie nicht öffnen!"
+msgstr "Datenbank-Backend nicht verfügbar. Öffnen nicht möglich!"
 
 #: ../gramps/cli/arghandler.py:613 ../gramps/cli/arghandler.py:662
 #: ../gramps/cli/arghandler.py:709
@@ -1596,7 +1596,7 @@ msgstr "Gramps Konfigurationseinstellungen von %s:"
 #: ../gramps/cli/argparser.py:373
 #, python-format
 msgid "Current Gramps config setting: %(name)s:%(value)s"
-msgstr "Aktuelle Gramps Konfigurationseinstellungen: %(name)s:%(value)s"
+msgstr "Aktuelle Gramps-Konfigurationseinstellung: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:380
 msgid "DEFAULT"
@@ -1606,7 +1606,7 @@ msgstr "STANDARD"
 #: ../gramps/cli/argparser.py:387
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
-msgstr "    Neue Gramps Konfigurationseinstellungen: %(name)s:%(value)s"
+msgstr "    Neue Gramps-Konfigurationseinstellung: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:395
 #, python-format
@@ -3385,7 +3385,7 @@ msgstr ","
 
 #: ../gramps/gen/display/name.py:352
 msgid "Default format (defined by Gramps preferences)"
-msgstr "Standardformat (definiert durch Gramps Einstellungen)"
+msgstr "Standardformat (definiert durch Gramps-Einstellungen)"
 
 #: ../gramps/gen/display/name.py:354
 msgid "Surname, Given Suffix"
@@ -5997,7 +5997,7 @@ msgstr "Am Datum:"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:45
 msgid "People probably alive"
-msgstr "Personen, die wahrscheinlich leben"
+msgstr "Wahrscheinlich lebende Personen"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:46
 msgid "Matches people without indications of death that are not too old"
@@ -11660,7 +11660,7 @@ msgstr "Informationen zum Forscher"
 
 #: ../gramps/gui/configure.py:638
 msgid "Gramps ID format settings"
-msgstr "Gramps ID Formateinstellungen"
+msgstr "Gramps-ID-Formateinstellungen"
 
 #: ../gramps/gui/configure.py:658
 msgid "Media Object"
@@ -11716,7 +11716,7 @@ msgstr "Andere Farben"
 
 #: ../gramps/gui/configure.py:707
 msgid "Background for Alive"
-msgstr "Hintergrundfarbe für Lebend"
+msgstr "Hintergrundfarbe für „Lebend“"
 
 #: ../gramps/gui/configure.py:708
 msgid "Background for Dead"
@@ -11724,7 +11724,7 @@ msgstr "Hintergrundfarbe für Verstorben"
 
 #: ../gramps/gui/configure.py:709
 msgid "Border for Alive"
-msgstr "Rand für Lebend"
+msgstr "Rahmen für „Lebend“"
 
 #: ../gramps/gui/configure.py:710
 msgid "Border for Dead"
@@ -11793,7 +11793,9 @@ msgstr "Warnung vor fehlendem Forscher beim Export nach GEDCOM unterdrücken"
 
 #: ../gramps/gui/configure.py:813
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Zeige Zusatzmodulstatusdialog bei Zusatzmodulladefehler"
+msgstr ""
+"Statusdialog für Zusatzmodule anzeigen bei Fehlern beim Laden von "
+"Zusatzmodulen"
 
 #: ../gramps/gui/configure.py:816
 msgid "Warnings"
@@ -11920,7 +11922,7 @@ msgstr "Kalender für Berichte"
 
 #: ../gramps/gui/configure.py:1295
 msgid "Surname guessing"
-msgstr "Nachnamen-Schätzung"
+msgstr "Nachnamenschätzung"
 
 #: ../gramps/gui/configure.py:1308
 msgid "Default family relationship"
@@ -11945,7 +11947,9 @@ msgstr "Statusleiste"
 
 #: ../gramps/gui/configure.py:1340
 msgid "Show text label beside Navigator buttons (requires restart)"
-msgstr "Zeige Text neben Navigationsschaltflächen (benötigt Neustart)"
+msgstr ""
+"Beschriftung seitlich der Navigationsschaltflächen anzeigen (Neustart "
+"erforderlich)"
 
 #: ../gramps/gui/configure.py:1343
 msgid ""
@@ -11958,7 +11962,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1349
 msgid "Show close button in gramplet bar tabs"
-msgstr "Zeige die Schaltfläche 'Schließen' in den Gramplet-Reitern."
+msgstr "Schaltfläche „Schließen“ in Gramplet-Leistenreitern anzeigen"
 
 #: ../gramps/gui/configure.py:1352
 msgid "Show close button to simplify removing gramplets from bars."
@@ -12008,7 +12012,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1488
 msgid "Dates settings used for calculation operations"
-msgstr "Datumseinstellungen die für Berechnungen verwendet werden"
+msgstr "Für Berechnungen verwendete Datumseinstellungen"
 
 #: ../gramps/gui/configure.py:1494
 msgid "Markup for invalid date format"
@@ -12059,7 +12063,7 @@ msgstr "Datum vor Spanne"
 
 #: ../gramps/gui/configure.py:1526
 msgid "Maximum age probably alive"
-msgstr "Maximales Alter von 'wahrscheinlich am leben'"
+msgstr "Höchstalter wahrscheinlich lebend"
 
 #: ../gramps/gui/configure.py:1530
 msgid "Maximum sibling age difference"
@@ -12079,15 +12083,15 @@ msgstr "Daten"
 
 #: ../gramps/gui/configure.py:1549
 msgid "General Gramps settings"
-msgstr "Allgemeine Gramps Einstellungen"
+msgstr "Allgemeine Gramps-Einstellungen"
 
 #: ../gramps/gui/configure.py:1554
 msgid "Add default source on GEDCOM import"
-msgstr "Füge Standardquelle beim GEDCOM Import hinzu"
+msgstr "Beim GEDCOM-Import Standardquelle hinzufügen"
 
 #: ../gramps/gui/configure.py:1573
 msgid "Add tag on import"
-msgstr "Markierung beim Import hinzufügen"
+msgstr "Beim Importieren Markierung hinzufügen"
 
 #: ../gramps/gui/configure.py:1576
 msgid ""
@@ -12224,7 +12228,7 @@ msgstr "Stammbaum-Datenbank Einstellungen und Sicherung Verwaltung"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
-msgstr "Datenbank Backend"
+msgstr "Datenbank-Backend"
 
 #: ../gramps/gui/configure.py:1743
 msgid "Host"
@@ -13069,7 +13073,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:238
 #, python-format
 msgid "Cannot display %s"
-msgstr "Kann %s nicht anzeigen"
+msgstr "%s kann nicht angezeigt werden"
 
 #: ../gramps/gui/editors/addmedia.py:239
 msgid ""
@@ -16443,7 +16447,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
-msgstr "Doppelklick, um das Bild in einem externen Programm anzuzeigen"
+msgstr "Bild doppelklicken, um es in einem externen Betrachter anzuzeigen"
 
 #: ../gramps/gui/glade/editmediaref.glade:533
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
@@ -19239,7 +19243,7 @@ msgstr "Ausgabeformat"
 #: ../gramps/gui/plug/report/_docreportdialog.py:194
 #: ../gramps/gui/plug/report/_graphreportdialog.py:162
 msgid "Open with default viewer"
-msgstr "Im voreingestellten Programm anzeigen."
+msgstr "Mit Standardbetrachter öffnen"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 msgid "CSS file"
@@ -19625,7 +19629,7 @@ msgstr "Die Einrichtung der Rechtschreibprüfung ist fehlgeschlagen: %s"
 
 #: ../gramps/gui/tipofday.py:87
 msgid "Failed to display tip of the day"
-msgstr "Den Tipp des Tages anzuzeigen ist fehlgeschlagen."
+msgstr "Der Tipp des Tages konnte nicht angezeigt werden"
 
 #: ../gramps/gui/tipofday.py:88
 #, python-format
@@ -20332,7 +20336,7 @@ msgstr "Gramplet-Layout"
 
 #: ../gramps/gui/widgets/grampletpane.py:1614
 msgid "Use maximum height available"
-msgstr "Verwende maximale verfügbare Höhe"
+msgstr "Maximal verfügbare Höhe verwenden"
 
 #: ../gramps/gui/widgets/grampletpane.py:1620
 msgid "Height if not maximized"
@@ -20361,9 +20365,7 @@ msgstr "Datum liegt mehr als ein Jahr in der Zukunft"
 msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
-msgstr ""
-"Doppelklicke auf das Bild, damit es in der Standard-"
-"Bildbetrachtungsanwendung angezeigt wird."
+msgstr "Bild doppelklicken zur Anzeige im Standardprogramm für Bilder."
 
 #: ../gramps/gui/widgets/photo.py:87
 msgid "Make Active Media"
@@ -20491,7 +20493,7 @@ msgstr "_BSDDB Datenbank"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:28
 msgid "Berkeley Software Distribution Database Backend"
-msgstr "Berkeley Software Distribution Datenbank Backend"
+msgstr "Datenbank-Backend der Berkeley Software Distribution"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:26
 msgid "SQLite"
@@ -20833,8 +20835,8 @@ msgid ""
 "Display unknown\n"
 "generations"
 msgstr ""
-"Zeige unbekannte\n"
-"Generationen"
+"Unbekannte\n"
+"Generationen anzeigen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:819
 msgid "The number of generations of empty boxes that will be displayed"
@@ -21601,7 +21603,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1678
 msgid "Display format for a spouse."
-msgstr "Anzeigeformat für eine(n) Partner(in)."
+msgstr "Anzeigeformat für einen Partner."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1720
 msgid "inter-box Y scale factor"
@@ -21935,7 +21937,7 @@ msgstr "Bereits tot"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:489
 msgid "Still alive"
-msgstr "Noch am Leben"
+msgstr "Noch lebend"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:497
 #: ../gramps/plugins/drawreport/statisticschart.py:509
@@ -22595,7 +22597,7 @@ msgstr "Schlüssel"
 
 #: ../gramps/plugins/gramplet/calendargramplet.py:48
 msgid "Double-click a day for details"
-msgstr "Details zeigen: auf einen Tag doppelt klicken."
+msgstr "Für Details auf Tag doppelklicken"
 
 #: ../gramps/plugins/gramplet/children.py:89
 #: ../gramps/plugins/gramplet/children.py:188
@@ -23777,7 +23779,7 @@ msgstr "Generation 1"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:262
 msgid "Double-click to see people in generation"
-msgstr "Zeige Personen in der Generation: Doppelklick"
+msgstr "Zum Anzeigen aller Personen der Generation doppelklicken"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:264
 #, python-format
@@ -23796,7 +23798,7 @@ msgstr "Generation %d"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:268
 #, python-format
 msgid "Double-click to see people in generation %d"
-msgstr "Zeige Personen in der Generation%d: Doppelklick"
+msgstr "Zum Anzeigen aller Personen der Generation %d doppelklicken"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:272
@@ -23818,7 +23820,7 @@ msgstr "Alle Generationen"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:280
 msgid "Double-click to see all generations"
-msgstr "Zeige alle Generationen: Doppelklick"
+msgstr "Zum Anzeigen aller Generationen doppelklicken"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:283
@@ -23855,7 +23857,7 @@ msgstr "Schnellansichten"
 #: ../gramps/plugins/gramplet/recordsgramplet.py:42
 #: ../gramps/plugins/gramplet/whatsnext.py:44
 msgid "Double-click name for details"
-msgstr "Zeige Details für Namen: Doppelklick"
+msgstr "Für Details Namen doppelklicken"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:41
 msgid "Click name to make person active\n"
@@ -24467,7 +24469,7 @@ msgstr "Ob die Anzahl der Ahnen begrenzt wird."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:201
 msgid "The maximum number of ancestors to include."
-msgstr "Maximale Anzahl der enthaltenen Vorfahren."
+msgstr "Höchstzahl zu berücksichtigender Vorfahren."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:205
 msgid "Limit the number of descendants"
@@ -24479,7 +24481,7 @@ msgstr "Ob die Anzahl der Nachkommen begrenzt wird."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:214
 msgid "The maximum number of descendants to include."
-msgstr "Maximale Anzahl der enthaltenen Nachkommen."
+msgstr "Höchstzahl zu berücksichtigender Nachkommen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:223
 msgid "Include dates"
@@ -30382,8 +30384,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Versuche, ausgewählte Orte mit einem Kartenservice zu zeigen (OpenstreetMap, "
-"Google Maps, ...)."
+"Ausgewählte Orte vorzugsweise mit einem Kartenservice (OpenStreetMap, Google "
+"Maps, …) anzeigen"
 
 #: ../gramps/plugins/lib/libplaceview.py:466
 msgid "Select a Map Service"
@@ -30810,7 +30812,7 @@ msgstr "Zoom der beim Zentrieren verwendet wird"
 
 #: ../gramps/plugins/lib/maps/geography.py:1262
 msgid "The maximum number of places to show"
-msgstr "Maximale Anzahl der angezeigten Orte"
+msgstr "Höchstzahl anzuzeigender Orte"
 
 #: ../gramps/plugins/lib/maps/geography.py:1266
 msgid ""
@@ -31023,7 +31025,7 @@ msgstr "Personen und ihr Alter am %s"
 #: ../gramps/plugins/quickview/ageondate.py:67
 #, python-format
 msgid "Alive: %s"
-msgstr "Lebt: %s"
+msgstr "Lebend: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:73
 #: ../gramps/plugins/quickview/ageondate.py:76
@@ -31038,7 +31040,7 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 "\n"
-"Treffer lebt: %(alive)d, Treffer verstorben: %(dead)d\n"
+"Treffer lebend: %(alive)d, Treffer verstorben: %(dead)d\n"
 
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
@@ -31565,7 +31567,7 @@ msgstr "Attribut Übereinstimmung"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:56
 msgid "Display people with same attribute."
-msgstr "Zeige Personen mit demselben Attribut."
+msgstr "Personen mit demselben Attribut anzeigen."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:75
 msgid "All Events"
@@ -31617,7 +31619,7 @@ msgstr "An diesem Tag"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:185
 msgid "Display events on a particular day"
-msgstr "Zeige Ereignisse an einem bestimmten Tag"
+msgstr "Ereignisse eines bestimmten Tages anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:211
 #: ../gramps/plugins/quickview/references.py:91
@@ -31640,7 +31642,7 @@ msgstr "Verknüpfung Referenzen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:232
 msgid "Display link references for a note"
-msgstr "Zeige Verknüpfungsreferenzen für eine Notiz"
+msgstr "Verknüpfungsreferenzen für eine Notiz anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:252
 msgid ""
@@ -31655,7 +31657,7 @@ msgstr "Derselbe Nachname"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:273
 msgid "Display people with the same surname as a person."
-msgstr "Zeige Personen mit demselben Nachnamen wie eine Person."
+msgstr "Personen mit demselben Nachnamen wie eine Person anzeigen."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:286
 msgid "Same Given Names"
@@ -31664,7 +31666,7 @@ msgstr "Derselbe Vornamen"
 #: ../gramps/plugins/quickview/quickview.gpr.py:287
 #: ../gramps/plugins/quickview/quickview.gpr.py:301
 msgid "Display people with the same given name as a person."
-msgstr "Zeige Personen mit demselben Vornamen wie eine Person."
+msgstr "Personen mit demselben Vornamen wie eine Person anzeigen."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:300
 msgid "Same Given Names - stand-alone"
@@ -32910,11 +32912,11 @@ msgstr "Verwandtschaftsliste für %s"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:363
 msgid "The maximum number of descendant generations"
-msgstr "Maximale Anzahl der Nachkommengenerationen"
+msgstr "Höchstzahl der Nachkommengenerationen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:367
 msgid "The maximum number of ancestor generations"
-msgstr "Maximale Anzahl der Vorfahrengenerationen"
+msgstr "Höchstzahl der Vorfahrengenerationen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:371
 msgid "Whether to include spouses"
@@ -35237,7 +35239,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
-msgstr "Maximales _Alter"
+msgstr "Höchst_alter"
 
 #: ../gramps/plugins/tool/verify.glade:230
 msgid "Mi_nimum age to marry"
@@ -35249,17 +35251,17 @@ msgstr "Ma_ximales Alter bei Hochzeit"
 
 #: ../gramps/plugins/tool/verify.glade:284
 msgid "Maximum number of _spouses for a person"
-msgstr "Maximale Anzahl von (Ehe-)Partnern pro Per_son"
+msgstr "Höchstzahl von (Ehe-)Partnern einer Per_son"
 
 #: ../gramps/plugins/tool/verify.glade:323
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
 msgstr ""
-"Maximale Anzahl aufeinander folgender Jahre der Witwenschaft, vor der "
-"nächsten Hochzeit"
+"Höchstzahl aufeinanderfolgender Jahre der _Witwenschaft vor der nächsten "
+"Hochzeit"
 
 #: ../gramps/plugins/tool/verify.glade:338
 msgid "Maximum age for an _unmarried person"
-msgstr "Ma_ximales Alter für eine unverheiratete Person"
+msgstr "Höchstalter für eine _unverheiratete Person"
 
 #: ../gramps/plugins/tool/verify.glade:361
 msgid "_Estimate missing or inexact dates"
@@ -35280,7 +35282,7 @@ msgstr "Ma_ximales Alter bei der Geburt eines Kindes"
 #: ../gramps/plugins/tool/verify.glade:470
 #: ../gramps/plugins/tool/verify.glade:590
 msgid "Maximum number of chil_dren"
-msgstr "Maximale Anza_hl an Kindern"
+msgstr "Höchstzahl an Kin_dern"
 
 #: ../gramps/plugins/tool/verify.glade:552
 msgid "Mi_nimum age to father a child"
@@ -35300,7 +35302,7 @@ msgstr "Maximaler Altersa_bstand zwischen zwei Kindern"
 
 #: ../gramps/plugins/tool/verify.glade:734
 msgid "Maximum _span of years for all children"
-msgstr "Maximaler Zeitra_um für die Geburt aller Kinder"
+msgstr "Maximale Jahres_spanne für die Geburt aller Kinder"
 
 #: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:670
 msgid "_Hide marked"
@@ -36275,7 +36277,7 @@ msgstr "Ein Lesezeichen für diese Person erstellen"
 
 #: ../gramps/plugins/view/geomoves.py:729
 msgid "The maximum number of generations.\n"
-msgstr "Maximale Anzahl der Generationen.\n"
+msgstr "Höchstzahl der Generationen.\n"
 
 #: ../gramps/plugins/view/geomoves.py:736
 msgid "Time in milliseconds between drawing two generations.\n"
@@ -36367,7 +36369,7 @@ msgstr "Der Ortename in der Statusleiste ist deaktiviert."
 #: ../gramps/plugins/view/geoplaces.py:468
 #, python-format
 msgid "The maximum number of places is reached (%d)."
-msgstr "Maximale Anzahl der Orte (%d) ist erreicht."
+msgstr "Die Höchstzahl von Orten (%d) ist erreicht."
 
 #: ../gramps/plugins/view/geoplaces.py:471
 msgid "Some information are missing."
@@ -36420,7 +36422,7 @@ msgstr "Filtereditor für Medienobjekte"
 
 #: ../gramps/plugins/view/mediaview.py:386
 msgid "View in the default viewer"
-msgstr "Im voreingestellten Programm anzeigen"
+msgstr "Im Standardbetrachter anzeigen"
 
 #: ../gramps/plugins/view/mediaview.py:490
 msgid "Cannot merge media objects."
@@ -36644,7 +36646,7 @@ msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
-msgstr "Lebt"
+msgstr "Lebend"
 
 #: ../gramps/plugins/view/relview.py:852 ../gramps/plugins/view/relview.py:879
 #, python-format
@@ -36765,7 +36767,7 @@ msgstr "Verwende Schattierung"
 
 #: ../gramps/plugins/view/relview.py:1875
 msgid "Display edit buttons"
-msgstr "Bearbeiten Schaltflächen anzeigen"
+msgstr "Bearbeitungsschaltflächen anzeigen"
 
 #: ../gramps/plugins/view/relview.py:1877
 msgid "View links as website links"
@@ -37361,8 +37363,8 @@ msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
 msgstr ""
-"Für jede Personenseite, zeige die Beziehung zwischen dieser Person und der "
-"aktiven Person."
+"Für jede Personenseite die Beziehung zwischen dieser und der aktiven Person "
+"anzeigen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1998
 msgid "Html options"
@@ -37704,8 +37706,8 @@ msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page."
 msgstr ""
-"Dies erlaubt dir, die maximale Breite des Bildes zu bestimmen, das auf der "
-"Medienseite gezeigt wird."
+"Dies erlaubt dir, die Höchstbreite des auf der Medienseite angezeigten "
+"Bildes festzulegen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2283
 msgid "Include download page"
@@ -38136,9 +38138,9 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
-"Zeige Daten nur nach dem Jahr. Standard ist aktuelles Jahr - 'maximales "
-"alter wahrscheinlich am leben' was in dem Daten-Einstellungen Reiter "
-"eingestellt ist."
+"Daten nur nach diesem Jahr anzeigen. Standard ist aktuelles Jahr - „"
+"Höchstalter wahrscheinlich lebend“, das in den Einstellungen im Reiter "
+"„Daten“ festgelegt ist."
 
 #: ../gramps/plugins/webreport/person.py:149
 msgid "Creating individual pages"
