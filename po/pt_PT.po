@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-22 07:00+0000\n"
+"PO-Revision-Date: 2021-07-27 12:50+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -6980,9 +6980,8 @@ msgstr "Referência de filhos"
 #: ../gramps/gen/lib/placeref.py:91 ../gramps/gen/lib/repo.py:91
 #: ../gramps/gen/lib/reporef.py:104 ../gramps/gen/lib/src.py:102
 #: ../gramps/gen/lib/tag.py:120
-#, fuzzy
 msgid "Handle"
-msgstr "Gerir"
+msgstr "Puxador"
 
 #: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:72
 #: ../gramps/gui/configure.py:87
