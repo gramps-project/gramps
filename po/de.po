@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-08-02 07:55+0000\n"
-"Last-Translator: RiseT <tareiss1971@yahoo.de>\n"
+"PO-Revision-Date: 2021-08-04 13:35+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -9609,7 +9609,7 @@ msgstr "Ausrichtung der Grafik"
 #: ../gramps/gen/plug/docgen/graphdoc.py:159
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr ""
-"Legt fest, ob der Graph von oben nach unten, oder von links nach rechts geht."
+"Ob das Diagramm von oben nach unten oder von links nach rechts verläuft."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:163
 msgid "Number of Horizontal Pages"
@@ -9778,7 +9778,7 @@ msgstr "Position der Notiz"
 #: ../gramps/gen/plug/docgen/graphdoc.py:276
 #: ../gramps/gen/plug/docgen/treedoc.py:209
 msgid "Whether note will appear on top or bottom of the page."
-msgstr "Legt fest, ob die Notiz oben oder unten auf der Seite erscheint."
+msgstr "Ob die Notiz oben oder unten auf der Seite erscheinen soll."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:280
 #: ../gramps/gen/plug/docgen/treedoc.py:213
@@ -16398,12 +16398,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
-"Wenn das Medium ein Bild ist, wähle den Bereich des Bildes, auf den du dich "
-"beziehen willst.\n"
-"Du kannst die Maus verwenden, um einen Ausschnitt zu wählen oder die "
-"Drehschaltfläche verwenden, um die linke obere und rechte untere Ecke des "
-"gewünschten Bereiches zu setzen. Punkt (0,0) ist die linke obere und "
-"(100,100) die rechte untere Ecke."
+"Wenn es sich bei dem Medium um ein Bild handelt, wähle den Teil des Bildes "
+"aus, den du referenzieren möchtest.\n"
+"Du kannst die Maus auf dem Bild verwenden, um einen Bereich auszuwählen, "
+"oder diese Drehknöpfe verwenden, um die obere linke und untere rechte Ecke "
+"des referenzierten Bereichs festzulegen. Der Punkt (0,0) ist die obere linke "
+"Ecke des Bildes und (100,100) die untere rechte Ecke."
 
 #: ../gramps/gui/glade/editmediaref.glade:178
 msgid ""
@@ -16412,10 +16412,10 @@ msgid ""
 "corner of the region you want, dragging the mouse to the bottom right corner "
 "of the region, and then releasing the mouse button."
 msgstr ""
-"Referenzierter Bereich des Bildobjekt.\n"
-"Wähle einen Bereich durch Klicken und Halten der Maus in der oberen linken "
-"Ecke des Bereichs, den du wünschst, ziehe die Maus in die untere rechte Ecke "
-"und dann lass die Mausschaltfläche los."
+"Referenzierter Bereich des Bildmedienobjekts.\n"
+"Wähle einen Bereich aus, indem du auf die linke obere Ecke des gewünschten "
+"Bereichs klickst und die Maustaste gedrückt hältst, die Maus bis zur rechten "
+"unteren Ecke des Bereichs ziehst und dann die Maustaste loslässt."
 
 #: ../gramps/gui/glade/editmediaref.glade:208
 msgid "_Corner 1:  X"
@@ -17469,7 +17469,7 @@ msgstr "Eltern nach oben verschieben"
 
 #: ../gramps/gui/glade/reorder.glade:147 ../gramps/gui/glade/reorder.glade:290
 msgid "Arrow bottom"
-msgstr "Pfeil Unten"
+msgstr "Pfeil unten"
 
 #: ../gramps/gui/glade/reorder.glade:154
 msgid "Move parent down"
@@ -21292,7 +21292,7 @@ msgstr "Textbereich 1"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:478
 msgid "First line of text at bottom of calendar"
-msgstr "Erste Textzeile am Fuß des Kalenders."
+msgstr "Erste Textzeile am unteren Rand des Kalenders"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:481
 #: ../gramps/plugins/textreport/birthdayreport.py:492
@@ -21301,7 +21301,7 @@ msgstr "Textbereich 2"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:482
 msgid "Second line of text at bottom of calendar"
-msgstr "Zweite Textzeile am Fuß des Kalenders."
+msgstr "Zweite Textzeile am unteren Rand des Kalenders"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:485
 #: ../gramps/plugins/textreport/birthdayreport.py:496
@@ -21310,7 +21310,7 @@ msgstr "Textbereich 3"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:486
 msgid "Third line of text at bottom of calendar"
-msgstr "Dritte Textzeile am Fuß des Kalenders."
+msgstr "Dritte Textzeile am unteren Rand des Kalenders"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:501
 #: ../gramps/plugins/textreport/birthdayreport.py:507
@@ -32032,15 +32032,15 @@ msgstr "Titel des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:489
 msgid "First line of text at bottom of report"
-msgstr "Erste Textzeile am Fuß des Berichts."
+msgstr "Erste Textzeile am Ende des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:493
 msgid "Second line of text at bottom of report"
-msgstr "Zweite Textzeile am Fuß des Berichts."
+msgstr "Zweite Textzeile am Ende des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:497
 msgid "Third line of text at bottom of report"
-msgstr "Dritte Textzeile am Fuß des Berichts."
+msgstr "Dritte Textzeile am Ende des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:508
 msgid "Include only living people in the report"
@@ -32130,7 +32130,7 @@ msgstr "Schlusstext"
 #: ../gramps/plugins/textreport/custombooktext.py:143
 #: ../gramps/plugins/textreport/custombooktext.py:182
 msgid "Text to display at the bottom"
-msgstr "Text, der unten angezeigt werden soll."
+msgstr "Text, der unten angezeigt werden soll"
 
 #: ../gramps/plugins/textreport/descendreport.py:314
 #: ../gramps/plugins/textreport/descendreport.py:322
