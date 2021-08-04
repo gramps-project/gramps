@@ -4,13 +4,14 @@
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
 # Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-25 11:33+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2021-07-27 12:49+0000\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -9623,7 +9624,7 @@ msgstr "פרטי המידע שיוצג במוצת."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Position of marriage information."
-msgstr "מיקום מידע אודות נישואין."
+msgstr "מידע על מיקום הנישואין."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 msgid "Node size"
@@ -9853,7 +9854,7 @@ msgstr "שנים מהפטירה להיחשב בחיים"
 
 #: ../gramps/gen/plug/report/stdoptions.py:209
 msgid "Whether to restrict data on recently-dead people"
-msgstr "האם להגביל מידע אודות אנשים שנפטרו לאחרונה"
+msgstr "האם להגביל מידע על אנשים שנפטרו לאחרונה"
 
 #: ../gramps/gen/plug/report/stdoptions.py:274 ../gramps/gui/configure.py:1222
 msgid "Date format"
@@ -11272,7 +11273,7 @@ msgstr "_עזרה"
 
 #: ../gramps/gui/configure.py:597
 msgid "Researcher information"
-msgstr "מידע אודות החוקר"
+msgstr "מידע על החוקר"
 
 #: ../gramps/gui/configure.py:602
 msgid ""
@@ -11815,7 +11816,7 @@ msgstr "היכן לבדוק"
 
 #: ../gramps/gui/configure.py:1663
 msgid "Do not ask about previously notified addons"
-msgstr "לא לשאול אודות תוספים שדווחו בעבר"
+msgstr "לא לשאול על תוספים שדווחו בעבר"
 
 #: ../gramps/gui/configure.py:1668
 msgid "Check for updated addons now"
@@ -17373,7 +17374,7 @@ msgstr "_נטישת שינויים וסגירת חלון"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_About"
-msgstr "_אודות"
+msgstr "על _אודות"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
