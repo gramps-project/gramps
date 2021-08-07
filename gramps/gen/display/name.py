@@ -1007,8 +1007,16 @@ class NameDisplay:
         """
         if pn[_GROUP]:
             return pn[_GROUP]
-        return db.get_name_group_mapping(_raw_primary_surname_only(
+        name = pn[_GROUP]
+        if name == "":
+            # if we have no prinary surname, perhaps we have a
+            # patronymic/matronynic name ?
+            name = db.get_name_group_mapping(_raw_patro_surname_only(
+                                                    pn[_ORIGINPATRO]))
+        if not name:
+            name = db.get_name_group_mapping(_raw_primary_surname_only(
                                                     pn[_SURNAME_LIST]))
+        return name
 
     def _make_fn(self, format_str, d, args):
         """
