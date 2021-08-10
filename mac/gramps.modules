@@ -179,6 +179,17 @@ https://files.pythonhosted.org/packages/
     </after>
   </distutils>
 
+  <distutils id='pyfontconfig'>
+    <branch repo='pymodules' version="0.5.1"
+            module="e6/01/a28b0160f82ca5e946e315251c797f07c74e5c5a53f2a9e706eebc680191/Python-fontconfig-0.5.1.tar.gz"
+            hash="sha256:b7cfe366242f83b8cd7175b7d4dd95d19f42d619c58a51914f72b1e741739994">
+      <patch file="python-fontconfig-curexc.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="python3"/>
+      <dep package="fontconfig"/>
+    </dependencies>
+  </distutils>
 
   <metamodule id="meta-gramps-modules">
     <dependencies>
