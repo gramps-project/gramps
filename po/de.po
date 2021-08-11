@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 22:22+0200\n"
-"PO-Revision-Date: 2021-07-16 22:24+0200\n"
+"POT-Creation-Date: 2021-08-11 22:31+0200\n"
+"PO-Revision-Date: 2021-08-11 22:35+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -4716,11 +4716,11 @@ msgstr "Liefert den Familien aus der Lesezeichenliste"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:45
 msgid "Descendant families of <family>"
-msgstr "Nachkommenfamilie von <Familie>"
+msgstr "Nachkommenfamilien von <Familie>"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:47
 msgid "Matches descendant families of the specified family"
-msgstr "Liefert Familien, die Nachkommen der angegebenen Familie sind"
+msgstr "Liefert Nachkommenfamilien der angegebenen Familie"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:44
 msgid "Families matching the <filter>"
@@ -4894,7 +4894,7 @@ msgstr "Art:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1621
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1627
 msgid "Path:"
 msgstr "Pfad:"
 
@@ -10048,7 +10048,7 @@ msgstr "Gültige Werte:"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:86 ../gramps/gui/viewmanager.py:112
+#: ../gramps/gui/plug/report/_bookdialog.py:86 ../gramps/gui/viewmanager.py:113
 msgid "Unsupported"
 msgstr "Nicht unterstützt"
 
@@ -10256,7 +10256,7 @@ msgstr "Ob (und wo) Gramps-IDs enthalten sind"
 #. #########################
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:328
-#: ../gramps/gui/viewmanager.py:1680
+#: ../gramps/gui/viewmanager.py:1686
 #: ../gramps/plugins/graph/gvfamilylines.py:219
 #: ../gramps/plugins/graph/gvrelgraph.py:862
 #: ../gramps/plugins/textreport/detancestralreport.py:900
@@ -10319,7 +10319,7 @@ msgstr "Nachkommen von %s"
 #: ../gramps/gui/plug/export/_exportoptions.py:460
 #, python-format
 msgid "Descendant Families of %s"
-msgstr "Nachkommen von %s und deren Partner"
+msgstr "Nachkommenfamilien von %s"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:309
@@ -10575,86 +10575,86 @@ msgstr ""
 "Für diese Sprache '%s' ist keine Übersetzung der Familienbeziehungen "
 "verfügbar.Verwende stattdessen Englisch."
 
-#: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:202
+#: ../gramps/gen/utils/alive.py:147 ../gramps/plugins/importer/importcsv.py:202
 msgid "death date"
 msgstr "Sterbedatum"
 
-#: ../gramps/gen/utils/alive.py:150 ../gramps/plugins/importer/importcsv.py:178
+#: ../gramps/gen/utils/alive.py:152 ../gramps/plugins/importer/importcsv.py:178
 msgid "birth date"
 msgstr "Geburtsdatum"
 
-#: ../gramps/gen/utils/alive.py:183
+#: ../gramps/gen/utils/alive.py:185
 msgid "sibling birth date"
 msgstr "Geschwister Geburtsdatum"
 
-#: ../gramps/gen/utils/alive.py:195
+#: ../gramps/gen/utils/alive.py:197
 msgid "sibling death date"
 msgstr "Geschwister Todesdatum"
 
-#: ../gramps/gen/utils/alive.py:209
+#: ../gramps/gen/utils/alive.py:211
 msgid "sibling birth-related date"
 msgstr "Geschwister geburtsbezogenes Datum"
 
-#: ../gramps/gen/utils/alive.py:220
+#: ../gramps/gen/utils/alive.py:222
 msgid "sibling death-related date"
 msgstr "Geschwister todesbezogenes Datum"
 
-#: ../gramps/gen/utils/alive.py:235 ../gramps/gen/utils/alive.py:246
+#: ../gramps/gen/utils/alive.py:237 ../gramps/gen/utils/alive.py:248
 msgid "a spouse's birth-related date, "
 msgstr "Partner(in) geburtsbezogenes Datum, "
 
-#: ../gramps/gen/utils/alive.py:239 ../gramps/gen/utils/alive.py:250
+#: ../gramps/gen/utils/alive.py:241 ../gramps/gen/utils/alive.py:252
 msgid "a spouse's death-related date, "
 msgstr "Partner(in) todesbezogenes Datum, "
 
-#: ../gramps/gen/utils/alive.py:268
+#: ../gramps/gen/utils/alive.py:270
 msgid "event with spouse"
 msgstr "Ereignisse mit Partner(in)"
 
-#: ../gramps/gen/utils/alive.py:295
+#: ../gramps/gen/utils/alive.py:297
 msgid "descendant birth date"
 msgstr "Nachfahre Geburtsdatum"
 
-#: ../gramps/gen/utils/alive.py:304
+#: ../gramps/gen/utils/alive.py:306
 msgid "descendant death date"
 msgstr "Nachfahre Todesdatum"
 
-#: ../gramps/gen/utils/alive.py:320
+#: ../gramps/gen/utils/alive.py:322
 msgid "descendant birth-related date"
 msgstr "Nachfahre geburtsbezogenes Datum"
 
-#: ../gramps/gen/utils/alive.py:328
+#: ../gramps/gen/utils/alive.py:330
 msgid "descendant death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
-#: ../gramps/gen/utils/alive.py:341
+#: ../gramps/gen/utils/alive.py:343
 #, python-format
 msgid "Database error: loop in %s's descendants"
 msgstr "Datenbankfehler: Schleife in %s's Nachkommen"
 
-#: ../gramps/gen/utils/alive.py:370 ../gramps/gen/utils/alive.py:416
+#: ../gramps/gen/utils/alive.py:372 ../gramps/gen/utils/alive.py:418
 msgid "ancestor birth date"
 msgstr "Vorfahre Geburtsdatum"
 
-#: ../gramps/gen/utils/alive.py:380 ../gramps/gen/utils/alive.py:426
+#: ../gramps/gen/utils/alive.py:382 ../gramps/gen/utils/alive.py:428
 msgid "ancestor death date"
 msgstr "Vorfahre Sterbedatum"
 
-#: ../gramps/gen/utils/alive.py:391 ../gramps/gen/utils/alive.py:437
+#: ../gramps/gen/utils/alive.py:393 ../gramps/gen/utils/alive.py:439
 msgid "ancestor birth-related date"
 msgstr "Nachfahre geburtsbezogenes Datum"
 
-#: ../gramps/gen/utils/alive.py:399 ../gramps/gen/utils/alive.py:445
+#: ../gramps/gen/utils/alive.py:401 ../gramps/gen/utils/alive.py:447
 msgid "ancestor death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
-#: ../gramps/gen/utils/alive.py:460
+#: ../gramps/gen/utils/alive.py:462
 #, python-format
 msgid "Database error: loop in %s's ancestors"
 msgstr "Datenbankfehler: Schleife in %s's Vorfahren"
 
 #. no evidence, must consider alive
-#: ../gramps/gen/utils/alive.py:507
+#: ../gramps/gen/utils/alive.py:509
 msgid "no evidence"
 msgstr "kein Beleg"
 
@@ -11464,7 +11464,7 @@ msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position."
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1835
 #: ../gramps/gui/configure.py:1859 ../gramps/gui/configure.py:1885
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1752
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1758
 #: ../gramps/plugins/lib/maps/geography.py:997
 #: ../gramps/plugins/lib/maps/geography.py:1294
 msgid "_Apply"
@@ -11512,7 +11512,7 @@ msgstr "Anzeigename-Editor"
 #: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:693
 #: ../gramps/gui/plug/_windows.py:749
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:1615 ../gramps/gui/views/bookmarks.py:298
+#: ../gramps/gui/viewmanager.py:1621 ../gramps/gui/views/bookmarks.py:298
 #: ../gramps/gui/views/tags.py:466 ../gramps/gui/widgets/grampletbar.py:637
 #: ../gramps/gui/widgets/grampletpane.py:240
 #: ../gramps/plugins/lib/maps/placeselection.py:120
@@ -12375,7 +12375,7 @@ msgstr "Wähle ein Medienverzeichnis"
 #: ../gramps/gui/plug/_guioptions.py:1744 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1750 ../gramps/gui/views/listview.py:1065
+#: ../gramps/gui/viewmanager.py:1756 ../gramps/gui/views/listview.py:1065
 #: ../gramps/gui/views/navigationview.py:348 ../gramps/gui/views/tags.py:682
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
@@ -12391,7 +12391,7 @@ msgstr "_Abbrechen"
 msgid "Select database directory"
 msgstr "Wähle ein Datenbankverzeichnis."
 
-#: ../gramps/gui/configure.py:1880 ../gramps/gui/viewmanager.py:1747
+#: ../gramps/gui/configure.py:1880 ../gramps/gui/viewmanager.py:1753
 msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
@@ -12536,7 +12536,7 @@ msgstr ""
 #: ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:250
 #: ../gramps/gui/plug/report/_bookdialog.py:751
-#: ../gramps/gui/viewmanager.py:624
+#: ../gramps/gui/viewmanager.py:625
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -12690,7 +12690,7 @@ msgstr "Datumsinformation"
 #: ../gramps/gui/glade/styleeditor.glade:1754
 #: ../gramps/gui/plug/_guioptions.py:80
 #: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
-#: ../gramps/gui/viewmanager.py:1617 ../gramps/gui/views/tags.py:683
+#: ../gramps/gui/viewmanager.py:1623 ../gramps/gui/views/tags.py:683
 #: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -13509,14 +13509,14 @@ msgstr "Als Standardnamen setzen"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
-#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1028
+#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/viewmanager.py:1034
 #: ../gramps/gui/views/tags.py:532
 #: ../gramps/plugins/quickview/all_relations.py:306
 msgid "Yes"
 msgstr "Ja"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
-#: ../gramps/gui/plug/_guioptions.py:1257 ../gramps/gui/viewmanager.py:1028
+#: ../gramps/gui/plug/_guioptions.py:1257 ../gramps/gui/viewmanager.py:1034
 #: ../gramps/gui/views/tags.py:533
 #: ../gramps/plugins/quickview/all_relations.py:310
 msgid "No"
@@ -13872,7 +13872,7 @@ msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 #: ../gramps/gui/editors/editevent.py:251
 #: ../gramps/gui/editors/editmedia.py:300
 #: ../gramps/gui/editors/editperson.py:845
-#: ../gramps/gui/editors/editplace.py:326
+#: ../gramps/gui/editors/editplace.py:331
 #: ../gramps/gui/editors/editreference.py:288
 #: ../gramps/gui/editors/editrepository.py:189
 #: ../gramps/gui/editors/editsource.py:210
@@ -14687,8 +14687,8 @@ msgid "New Place"
 msgstr "Neuer Ort"
 
 #. translators: translate the "S" too (and the "or" of course)
-#: ../gramps/gui/editors/editplace.py:209
-#: ../gramps/gui/editors/editplaceref.py:202
+#: ../gramps/gui/editors/editplace.py:214
+#: ../gramps/gui/editors/editplaceref.py:207
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
@@ -14697,8 +14697,8 @@ msgstr ""
 "(Syntax: 18\\u00b09'48.21\"S, -18.2412 oder -18:9:48.21)"
 
 #. translators: translate the "E" too (and the "or" of course)
-#: ../gramps/gui/editors/editplace.py:214
-#: ../gramps/gui/editors/editplaceref.py:207
+#: ../gramps/gui/editors/editplace.py:219
+#: ../gramps/gui/editors/editplaceref.py:212
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
@@ -14706,38 +14706,38 @@ msgstr ""
 "Ungültiger Längengrad\n"
 "(Syntax: 18\\u00b09'48.21\"E, -18.2412 oder -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:225
+#: ../gramps/gui/editors/editplace.py:230
 #: ../gramps/plugins/lib/maps/geography.py:891
 #: ../gramps/plugins/view/geoplaces.py:496
 #: ../gramps/plugins/view/geoplaces.py:522
 msgid "Edit Place"
 msgstr "Ort bearbeiten"
 
-#: ../gramps/gui/editors/editplace.py:315
-#: ../gramps/gui/editors/editplaceref.py:310
+#: ../gramps/gui/editors/editplace.py:320
+#: ../gramps/gui/editors/editplaceref.py:315
 msgid "Cannot save place. Name not entered."
 msgstr "Kann Ort nicht speichern. Name nicht eingegeben."
 
-#: ../gramps/gui/editors/editplace.py:316
-#: ../gramps/gui/editors/editplaceref.py:311
+#: ../gramps/gui/editors/editplace.py:321
+#: ../gramps/gui/editors/editplaceref.py:316
 msgid "You must enter a name before saving."
 msgstr "Du musst einen Namen eingeben bevor du speicherst."
 
-#: ../gramps/gui/editors/editplace.py:325
+#: ../gramps/gui/editors/editplace.py:330
 msgid "Cannot save place. ID already exists."
 msgstr "Der Ort kann nicht gespeichert werden. ID besteht bereits."
 
-#: ../gramps/gui/editors/editplace.py:337
+#: ../gramps/gui/editors/editplace.py:342
 #, python-format
 msgid "Add Place (%s)"
 msgstr "Ort (%s) hinzufügen"
 
-#: ../gramps/gui/editors/editplace.py:342
+#: ../gramps/gui/editors/editplace.py:347
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Ort (%s) bearbeiten"
 
-#: ../gramps/gui/editors/editplace.py:370
+#: ../gramps/gui/editors/editplace.py:375
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Ort (%s) löschen"
@@ -14776,11 +14776,11 @@ msgstr "Der Ortsname darf nicht leer sein"
 msgid "Place Reference Editor"
 msgstr "Ortsreferenzeditor"
 
-#: ../gramps/gui/editors/editplaceref.py:317
+#: ../gramps/gui/editors/editplaceref.py:322
 msgid "Modify Place"
 msgstr "Ort ändern"
 
-#: ../gramps/gui/editors/editplaceref.py:322
+#: ../gramps/gui/editors/editplaceref.py:327
 msgid "Add Place"
 msgstr "Ort hinzufügen"
 
@@ -19560,11 +19560,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1078
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:1084
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1098
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:1104
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
@@ -19647,24 +19647,24 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Der neue Fundstelleneditor kann nicht geöffnet werden."
 
-#: ../gramps/gui/viewmanager.py:331 ../gramps/gui/viewmanager.py:1055
+#: ../gramps/gui/viewmanager.py:332 ../gramps/gui/viewmanager.py:1061
 msgid "No Family Tree"
 msgstr "Kein Stammbaum"
 
 #. registering plugins
-#: ../gramps/gui/viewmanager.py:557
+#: ../gramps/gui/viewmanager.py:558
 msgid "Registering plugins..."
 msgstr "Zusatzmodule registrieren..."
 
-#: ../gramps/gui/viewmanager.py:565
+#: ../gramps/gui/viewmanager.py:566
 msgid "Ready"
 msgstr "Bereit"
 
-#: ../gramps/gui/viewmanager.py:620
+#: ../gramps/gui/viewmanager.py:621
 msgid "Abort changes?"
 msgstr "Änderungen verwerfen?"
 
-#: ../gramps/gui/viewmanager.py:621
+#: ../gramps/gui/viewmanager.py:622
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -19672,15 +19672,15 @@ msgstr ""
 "Änderungen verwerfen bringt die Datenbank in den Stand vor Beginn dieser "
 "Bearbeitungssitzung zurück."
 
-#: ../gramps/gui/viewmanager.py:623
+#: ../gramps/gui/viewmanager.py:624
 msgid "Abort changes"
 msgstr "Änderungen verwerfen"
 
-#: ../gramps/gui/viewmanager.py:634
+#: ../gramps/gui/viewmanager.py:635
 msgid "Cannot abandon session's changes"
 msgstr "Die Sitzungsänderungen können nicht zurückgenommen werden."
 
-#: ../gramps/gui/viewmanager.py:635
+#: ../gramps/gui/viewmanager.py:636
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -19688,40 +19688,40 @@ msgstr ""
 "Die Änderungen können nicht vollständig zurück genommen werden, da die "
 "Anzahl der Änderungen das Limit der Sitzung überschritten hat."
 
-#: ../gramps/gui/viewmanager.py:802
+#: ../gramps/gui/viewmanager.py:803
 msgid "View failed to load. Check error output."
 msgstr "Ansicht konnte nicht geladen werden. Fehlerbericht kontrollieren."
 
-#: ../gramps/gui/viewmanager.py:946
+#: ../gramps/gui/viewmanager.py:952
 #: ../gramps/plugins/importer/importprogen.py:195
 msgid "Import Statistics"
 msgstr "Importstatistiken"
 
-#: ../gramps/gui/viewmanager.py:1022
+#: ../gramps/gui/viewmanager.py:1028
 msgid "Read Only"
 msgstr "Nur lesen"
 
-#: ../gramps/gui/viewmanager.py:1026
+#: ../gramps/gui/viewmanager.py:1032
 msgid "Gramps had a problem the last time it was run."
 msgstr "Gramps hatte ein Problem als es das letzte mal gelaufen ist."
 
-#: ../gramps/gui/viewmanager.py:1027
+#: ../gramps/gui/viewmanager.py:1033
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "Möchtest du Werkzeug \"Datenbank prüfen und reparieren\" starten?"
 
-#: ../gramps/gui/viewmanager.py:1147
+#: ../gramps/gui/viewmanager.py:1153
 msgid "Autobackup..."
 msgstr "Automatisches Backup..."
 
-#: ../gramps/gui/viewmanager.py:1152
+#: ../gramps/gui/viewmanager.py:1158
 msgid "Error saving backup data"
 msgstr "Fehler beim Speichern der Sicherungsdaten."
 
-#: ../gramps/gui/viewmanager.py:1439
+#: ../gramps/gui/viewmanager.py:1445
 msgid "Failed Loading View"
 msgstr "Laden der Ansicht fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1440
+#: ../gramps/gui/viewmanager.py:1446
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19746,11 +19746,11 @@ msgstr ""
 "Wenn du nicht willst, das Gramps weiter versucht diese Ansicht zu laden, "
 "kannst du sie in der Zusatzmodulverwaltung über das Hilfemenü verstecken."
 
-#: ../gramps/gui/viewmanager.py:1532
+#: ../gramps/gui/viewmanager.py:1538
 msgid "Failed Loading Plugin"
 msgstr "Laden des Zusatzmodul fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1533
+#: ../gramps/gui/viewmanager.py:1539
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19776,55 +19776,55 @@ msgstr ""
 "laden, kannst du es in der Zusatzmodulverwaltung über das Hilfemenü "
 "verstecken."
 
-#: ../gramps/gui/viewmanager.py:1613
+#: ../gramps/gui/viewmanager.py:1619
 msgid "Gramps XML Backup"
 msgstr "Gramps XML Sicherung"
 
-#: ../gramps/gui/viewmanager.py:1642
+#: ../gramps/gui/viewmanager.py:1648
 msgid "File:"
 msgstr "Datei:"
 
-#: ../gramps/gui/viewmanager.py:1674
+#: ../gramps/gui/viewmanager.py:1680
 msgid "Media:"
 msgstr "Medien:"
 
-#: ../gramps/gui/viewmanager.py:1681
+#: ../gramps/gui/viewmanager.py:1687
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
 #: ../gramps/plugins/webreport/statistics.py:145
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1683
+#: ../gramps/gui/viewmanager.py:1689
 msgid "Exclude"
 msgstr "Ausschließen"
 
-#: ../gramps/gui/viewmanager.py:1703
+#: ../gramps/gui/viewmanager.py:1709
 msgid "Backup file already exists! Overwrite?"
 msgstr "Sicherungsdatei existiert bereits! Überschreiben?"
 
-#: ../gramps/gui/viewmanager.py:1704
+#: ../gramps/gui/viewmanager.py:1710
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Die Datei '%s' existiert."
 
-#: ../gramps/gui/viewmanager.py:1705
+#: ../gramps/gui/viewmanager.py:1711
 msgid "Proceed and overwrite"
 msgstr "Fortsetzen und überschreiben"
 
-#: ../gramps/gui/viewmanager.py:1706
+#: ../gramps/gui/viewmanager.py:1712
 msgid "Cancel the backup"
 msgstr "Sicherung abbrechen"
 
-#: ../gramps/gui/viewmanager.py:1721
+#: ../gramps/gui/viewmanager.py:1727
 msgid "Making backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../gramps/gui/viewmanager.py:1734
+#: ../gramps/gui/viewmanager.py:1740
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sicherung gespeichert in '%s'"
 
-#: ../gramps/gui/viewmanager.py:1737
+#: ../gramps/gui/viewmanager.py:1743
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
