@@ -1,0 +1,22 @@
+Description: Fix probably alive test
+ The probably alive funtion was fixed just prior to the Gramps 5.1.4
+ release. It appears the relevant unit test was not updated to match.
+ The relevant commit:
+ https://github.com/gramps-project/gramps/commit/a685b96f700dcfc6b953413cb3adc8be61d87438
+Author: Ross Gammon <rossgammon@debian.org>
+Forwarded: no
+Applied-Upstream: no
+Last-Update: 2021-08-09
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/gramps/gen/filters/rules/test/person_rules_test.py
++++ b/gramps/gen/filters/rules/test/person_rules_test.py
+@@ -347,7 +347,7 @@
+         """
+         rule = ProbablyAlive(['1900'])
+         res = self.filter_with_rule(rule)
+-        self.assertEqual(len(res), 766)
++        self.assertEqual(len(res), 733)
+ 
+     def test_RegExpName(self):
+         """
