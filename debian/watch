@@ -1,8 +1,6 @@
-version=3
-
+version=4
 opts=\
-dversionmangle=s/(\~|\+)(debian|dfsg|ds|deb)(\.\d+)?$//,\
-filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/$1\.tar\.gz/,\
+filenamemangle=s/.+\/v?(\d\S+)\.tar\.gz/gramps-project-$1\.tar\.gz/,\
 repacksuffix=~dfsg \
 https://github.com/gramps-project/gramps/tags \
-.*/archive/v?([\d\.]+).tar.gz
+.*/v?(\d\S+)\.tar\.gz
