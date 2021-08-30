@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-11 22:31+0200\n"
-"PO-Revision-Date: 2021-08-11 22:35+0200\n"
+"PO-Revision-Date: 2021-08-30 18:04+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -10240,7 +10240,7 @@ msgstr "Nicht aufnehmen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:324
 msgid "Share an existing line"
-msgstr "An einem existierenden Linie teilnehmen"
+msgstr "Eine bestehende Linie teilen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:325
 msgid "On a line of its own"
