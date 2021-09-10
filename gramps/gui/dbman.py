@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Brian G. Matherly
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2021-      Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1386,8 +1387,6 @@ class NoviceSelection(ManagedWindow, DbLoader):
                         break
             self.dbmanager.firsttime.set_sensitive(False)
             os.unlink(file_to_load)
-
-        ManagedWindow.close(self, obj)
 
     def load_database_selection(self, *arg):
         """
