@@ -137,11 +137,6 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       <place hlink="_ed548be51c757169db87d47eb17"/>
       <description>My birth date</description>
     </event>
-    <event handle="_ed548c75b6e4ead70b407e929e2" change="1630921184" id="E00001">
-      <type>Death</type>
-      <place hlink="_ed548be51c757169db87d47eb17"/>
-      <description>My death date</description>
-    </event>
     <event handle="_ed548d06d5015bf1a3f45d8156f" change="1630921244" id="E00002">
       <type>Birth</type>
       <place hlink="_ed548be51c757169db87d47eb17"/>
@@ -163,22 +158,22 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       <place hlink="_ed548be51c757169db87d47eb17"/>
     </event>
   </events>
-  <people>
+  <people home="_ed548ab269d640ea256206b4610">
     <person handle="_ed548ab269d640ea256206b4610" change="1630921381" id="I00000">
-      <gender>U</gender>
+      <gender>M</gender>
       <name type="Birth Name">
         <first>{me}</first>
-        <surname></surname>
+        <surname>{surnm1}</surname>
       </name>
       <eventref hlink="_ed548c041fa32c988d5d657b24b" role="Primary"/>
-      <eventref hlink="_ed548c75b6e4ead70b407e929e2" role="Primary"/>
       <childof hlink="_ed548cb8f4cc81352fdb41f3c1"/>
+      <parentin hlink="_ed6298947b8626d450000470e81"/>
     </person>
     <person handle="_ed548cbf0d6f280dc7e4ac78f" change="1630921381" id="I00001">
       <gender>M</gender>
       <name type="Birth Name">
         <first>{partner1}</first>
-        <surname></surname>
+        <surname>{surnm1}</surname>
       </name>
       <eventref hlink="_ed548d06d5015bf1a3f45d8156f" role="Primary"/>
       <eventref hlink="_ed548d262ac57c779d40741f72b" role="Primary"/>
@@ -188,11 +183,35 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       <gender>F</gender>
       <name type="Birth Name">
         <first>{partner2}</first>
-        <surname></surname>
+        <surname>{surnm2}</surname>
       </name>
       <eventref hlink="_ed548dd823a29ee79af6c958406" role="Primary"/>
       <eventref hlink="_ed548e0361f1ae2cbc05454d012" role="Primary"/>
       <parentin hlink="_ed548cb8f4cc81352fdb41f3c1"/>
+    </person>
+    <person handle="_ed62975ecee19fddb286c8e9992" change="1631298158" id="I00000">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>{brother}</first>
+        <surname>{surnm1}</surname>
+      </name>
+      <childof hlink="_ed548cb8f4cc81352fdb41f3c1"/>
+    </person>
+    <person handle="_ed62989f9c834fa58b835dd7016" change="1631298372" id="I00001">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>{wife}</first>
+        <surname>{surnm3}</surname>
+      </name>
+      <parentin hlink="_ed6298947b8626d450000470e81"/>
+    </person>
+    <person handle="_ed62990eb586b17023026d1b58c" change="1631298372" id="I00002">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>{child1}</first>
+        <surname>{surnm1}</surname>
+      </name>
+      <childof hlink="_ed6298947b8626d450000470e81"/>
     </person>
   </people>
   <families>
@@ -202,6 +221,13 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       <mother hlink="_ed548d3e42d4102be30eb9ed5f8"/>
       <eventref hlink="_ed548e400156e491fe92ae01bed" role="Family"/>
       <childref hlink="_ed548ab269d640ea256206b4610"/>
+      <childref hlink="_ed62975ecee19fddb286c8e9992"/>
+    </family>
+    <family handle="_ed6298947b8626d450000470e81" change="1631298372" id="F00000">
+      <rel type="Married"/>
+      <father hlink="_ed548ab269d640ea256206b4610"/>
+      <mother hlink="_ed62989f9c834fa58b835dd7016"/>
+      <childref hlink="_ed62990eb586b17023026d1b58c"/>
     </family>
   </families>
   <places>
@@ -1327,6 +1353,12 @@ class NoviceSelection(ManagedWindow, DbLoader):
                     me=_("Me"),
                     partner1=_("Father/partner1"),
                     partner2=_("Mother/partner2"),
+                    surnm1=_("Surname"),
+                    surnm2=_("Mother/partner2 Surname"),
+                    surnm3=_("Wife Surname"),
+                    child1=_("Child"),
+                    brother=_("Brother"),
+                    wife=_("Wife"),
                     place1=_("Country"),
                     place2=_("County"),
                     place3=_("Place"),
