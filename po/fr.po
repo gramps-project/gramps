@@ -39,8 +39,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-21 12:33+0000\n"
-"Last-Translator: msansm1 <ronanbarbot@dizalch.fr>\n"
+"PO-Revision-Date: 2021-08-11 17:32+0000\n"
+"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -48,7 +48,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -35406,9 +35406,8 @@ msgstr "Aucun évènement n'a été modifié."
 #, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] ""
-"{number_of} évènements a été modifié.{number_of} évènements ont été modifiés."
-msgstr[1] ""
+msgstr[0] "{number_of} évènement a été modifié."
+msgstr[1] "{number_of} évènements ont été modifiés."
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:119 ../gramps/plugins/tool/check.py:297
@@ -36111,10 +36110,8 @@ msgstr "Extraire les descriptions de l'évènement"
 #, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
-msgstr[0] ""
-"{quantity} description de l'évènement a été ajoutée{quantity} descriptions "
-"de l'évènement ont été ajoutées"
-msgstr[1] ""
+msgstr[0] "{quantity} description de l'évènement a été ajoutée"
+msgstr[1] "{quantity} descriptions de l'évènement ont été ajoutées"
 
 #: ../gramps/plugins/tool/eventnames.py:123
 msgid "Modifications made"
@@ -39797,11 +39794,9 @@ msgid "Sort all children in birth order"
 msgstr "Trier les enfants selon la date de naissance"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2130
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr ""
-"Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel ?"
+"Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel."
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/plugins/webreport/narrativeweb.py:2134
