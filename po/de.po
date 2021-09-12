@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-08-04 13:35+0000\n"
+"PO-Revision-Date: 2021-09-02 16:32+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -4732,7 +4732,7 @@ msgstr "Liefert die Familien aus der Lesezeichenliste"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:45
 msgid "Descendant families of <family>"
-msgstr "Nachkommenfamilie von <Familie>"
+msgstr "Nachkommenfamilien von<Familie>"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:47
 msgid "Matches descendant families of the specified family"
@@ -6507,9 +6507,9 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Quellendatensätze, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
-"MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, wenn ein zweites "
-"Datum/Zeitpunkt angegeben ist."
+"Liefert Quellendatensätze, die nach einem bestimmten Datum (jjjj-mm-tt "
+"hh:mm:ss) oder im Bereich geändert wurden, wenn ein zweites Datum angegeben "
+"wird."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Source attribute:"
@@ -8920,7 +8920,7 @@ msgstr "Aufbewahrungsort"
 
 #: ../gramps/gen/lib/reporef.py:96 ../gramps/gui/clipboard.py:505
 msgid "Repository ref"
-msgstr "Aufbewahrungsortref."
+msgstr "Aufbewahrungsortref"
 
 #: ../gramps/gen/lib/reporef.py:107
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
@@ -9662,11 +9662,11 @@ msgstr "Wie die Linien zwischen Objekten gezeichnet werden."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
 msgid "Alternate line attachment"
-msgstr "Alternative Linien hinzufügen"
+msgstr "Alternative Linienbefestigung"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:194
 msgid "Whether lines attach to nodes differently"
-msgstr "Ob unterschiedliche Linien an Notizen angehängt werden"
+msgstr "Ob Linien unterschiedliche an Knoten angehängt werden"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
 msgid "Graphviz Options"
@@ -9758,9 +9758,9 @@ msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Unterdiagramme können Graphviz helfen, Partner näher zusammen zu "
-"positionieren, können aber bei komplexeren Diagrammen zu längeren Linien und "
-"größeren Diagrammen führen."
+"Untergraphen können Graphviz helfen, Ehepartner zusammen zu positionieren, "
+"aber bei nicht-trivialen Graphen führen sie zu längeren Linien und größeren "
+"Graphen."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:268
 msgid "Note to add to the graph"
@@ -9999,7 +9999,7 @@ msgstr "Zeitablauf"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:181
 msgid "Direction that the graph will grow over time."
-msgstr "Richtung, in die der Graf mit der Zeit wächst."
+msgstr "Richtung, in der das Diagramm mit der Zeit wächst."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:184
 msgid "Edge style"
@@ -10203,7 +10203,7 @@ msgstr "Das Format und die Sprache von Daten mit Beispielen"
 #: ../gramps/gen/plug/report/stdoptions.py:333
 #: ../gramps/gen/plug/report/stdoptions.py:357
 msgid "Do not include"
-msgstr "Nicht aufnehmen"
+msgstr "Nicht einschließen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #: ../gramps/gen/plug/report/stdoptions.py:363
@@ -10224,7 +10224,7 @@ msgstr "Ob Markierungen aufgenommen werden"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
-msgstr "An einem existierenden Linie teilnehmen"
+msgstr "Eine bestehende Linie teilen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:360
 msgid "On a line of its own"
@@ -10283,7 +10283,7 @@ msgstr "Nachkommen von %s"
 #: ../gramps/gui/plug/export/_exportoptions.py:465
 #, python-format
 msgid "Descendant Families of %s"
-msgstr "Nachkommen von %s und deren Partner"
+msgstr "Nachkommenfamilien von %s"
 
 #: ../gramps/gen/plug/report/utils.py:308
 #: ../gramps/gui/plug/export/_exportoptions.py:470
@@ -12355,7 +12355,7 @@ msgstr "_Abbrechen"
 
 #: ../gramps/gui/configure.py:1857
 msgid "Select database directory"
-msgstr "Wähle ein Datenbankverzeichnis."
+msgstr "Datenbankverzeichnis auswählen"
 
 #: ../gramps/gui/configure.py:1882 ../gramps/gui/viewmanager.py:1820
 msgid "Select backup directory"
@@ -12369,11 +12369,11 @@ msgid ""
 "If you select the \"use symbols\" checkbox, Gramps will use the selected "
 "font if it exists."
 msgstr ""
-"Dieser Reiter gibt dir die Möglichkeit einen Zeichensatz zu verwenden, der "
-"alle genealogischen Symbole anzeigen kann\n"
+"Diese Registerkarte gibt dir die Möglichkeit, eine Schriftart zu verwenden, "
+"die alle genealogischen Symbole darstellen kann\n"
 "\n"
-"Wenn du \"Symbole verwenden\" Kästchen aktivierst, verwendet Gramps die "
-"gewählte Schriftart, wenn sie existiert."
+"Wenn du das Kontrollkästchen \"Symbole verwenden\" aktivierst, verwendet "
+"Gramps die ausgewählte Schriftart, sofern sie vorhanden ist."
 
 #: ../gramps/gui/configure.py:1953
 msgid ""
@@ -12550,7 +12550,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
 #: ../gramps/plugins/webreport/download.py:173
 msgid "Cannot open file"
-msgstr "Die Datei kann nicht geöffnet werden."
+msgstr "Datei kann nicht geöffnet werden"
 
 #: ../gramps/gui/dbloader.py:460
 msgid "The selected file is a directory, not a file.\n"
@@ -12563,12 +12563,12 @@ msgstr "Du hast keinen Lesezugriff auf die ausgewählte Datei."
 
 #: ../gramps/gui/dbloader.py:477
 msgid "Cannot create file"
-msgstr "Die Datei kann nicht erstellt werden."
+msgstr "Datei kann nicht erstellt werden"
 
 #: ../gramps/gui/dbloader.py:501
 #, python-format
 msgid "Could not import file: %s"
-msgstr "Die Datei kann nicht importiert werden: %s."
+msgstr "Datei konnte nicht importiert werden: %s"
 
 #: ../gramps/gui/dbloader.py:502
 msgid ""
@@ -12708,7 +12708,7 @@ msgstr "Kann diesen Stammbaum nicht umbenennen."
 
 #: ../gramps/gui/dbman.py:627
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Stammbaum besteht bereits, wähle einen einmaligen Namen."
+msgstr "Stammbaum existiert bereits, wähle einen eindeutigen Namen."
 
 #: ../gramps/gui/dbman.py:674
 msgid "Extracting archive..."
@@ -12745,11 +12745,11 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:709
 msgid "Remove version"
-msgstr "Die Version wird entfernt."
+msgstr "Version entfernen"
 
 #: ../gramps/gui/dbman.py:764
 msgid "Deletion failed"
-msgstr "Die Löschung ist fehlgeschlagen."
+msgstr "Löschung fehlgeschlagen"
 
 #: ../gramps/gui/dbman.py:765
 #, python-format
@@ -12880,15 +12880,15 @@ msgstr "Datenbank aus Sicherungsdateien wiederherstellen"
 
 #: ../gramps/gui/dbman.py:949
 msgid "Error restoring backup data"
-msgstr "Fehler beim wiederherstellen der Sicherungsdaten."
+msgstr "Fehler beim Wiederherstellen von Sicherungsdaten"
 
 #: ../gramps/gui/dbman.py:988
 msgid "Could not create Family Tree"
-msgstr "Der Stammbaum konnte nicht erstellt werden."
+msgstr "Stammbaum konnte nicht erstellt werden"
 
 #: ../gramps/gui/dbman.py:1109
 msgid "Retrieve failed"
-msgstr "Die Abfrage ist fehlgeschlagen."
+msgstr "Abrufen fehlgeschlagen"
 
 #: ../gramps/gui/dbman.py:1110
 #, python-format
@@ -12947,8 +12947,8 @@ msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
 msgstr ""
-"Bitte versuche nicht, diesen wichtigen Dialog zu umgehen.\n"
-"Wähle stattdessen eine der verfügbaren Optionen."
+"Bitte erzwinge nicht das Schließen dieses wichtigen Dialogs.\n"
+"Wähle stattdessen eine der verfügbaren Optionen"
 
 #: ../gramps/gui/displaystate.py:282
 msgid "Cannot load database"
@@ -13020,19 +13020,20 @@ msgid ""
 "with this version, and make sure to export your data to XML every now and "
 "then."
 msgstr ""
-"Diese Version ist nicht für die tägliche Arbeit gedacht. Verwendung auf "
-"eigenes Risiko.\n"
+"Diese Version ist nicht für den normalen Gebrauch bestimmt. Die Verwendung "
+"erfolgt auf eigene Gefahr.\n"
 "\n"
 "Diese Version kann:\n"
-"1) Anders arbeiten als erwartet.\n"
-"2) Generell nicht funktionieren.\n"
-"3) Oft abstürzen.\n"
+"1) anders funktionieren, als du erwartst.\n"
+"2) Kann überhaupt nicht ausgeführt werden.\n"
+"3) Häufig abstürzen.\n"
 "4) Deine Daten beschädigen.\n"
-"5) Daten in einem Format speichern, das mit der offiziellen Version nicht "
+"5) Daten in einem Format speichern, das nicht mit der offiziellen Version "
 "kompatibel ist.\n"
 "\n"
-"%(bold_start)sSICHERE%(bold_end)s deine bestehenden Daten bevor du sie mit "
-"dieser Version öffnest, und exportiere deine Daten öfter im XML-Format."
+"%(bold_start)sSICHERE%(bold_end)s deine bestehenden Datenbanken, bevor du "
+"sie mit dieser Version öffnest, und stelle sicher, dass du deine Daten hin "
+"und wieder in XML exportierst."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -13049,7 +13050,7 @@ msgstr "Wähle ein Medienobjekt"
 
 #: ../gramps/gui/editors/addmedia.py:158
 msgid "Import failed"
-msgstr "Der Import ist fehlgeschlagen."
+msgstr "Import fehlgeschlagen"
 
 #: ../gramps/gui/editors/addmedia.py:159
 msgid "The filename supplied could not be found."
@@ -13340,7 +13341,7 @@ msgstr "Bearbeite das gewählte Familienereignis oder die Person"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Share an existing event"
-msgstr "An einem existierenden Ereignis teilnehmen"
+msgstr "Ein bestehendes Ereignis teilen"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:68
 msgid "Move the selected event upwards"
@@ -13385,11 +13386,11 @@ msgstr "Kann diese Referenz nicht bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:324
 msgid "Cannot change Person"
-msgstr "Diese Person kann nicht geändert werden."
+msgstr "Kann Person nicht ändern"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:325
 msgid "You cannot change Person events in the Family Editor"
-msgstr "Du kannst persönliche Ereignisse nicht im Familieneditor ändern."
+msgstr "Du kannst Personenereignisse im Familieneditor nicht ändern"
 
 #: ../gramps/gui/editors/displaytabs/eventrefmodel.py:72
 #: ../gramps/gui/editors/displaytabs/namemodel.py:66
@@ -13593,22 +13594,22 @@ msgstr "Bearbeite das gewählte persönliche Ereignis oder die Familie"
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Move the selected event upwards or change family order"
 msgstr ""
-"Verschiebe das gewählte Ereignis nach oben oder ändere die "
-"Familienreihenfolge."
+"Verschiebe das ausgewählte Ereignis nach oben oder ändere die Reihenfolge "
+"der Familie"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:61
 msgid "Move the selected event downwards or change family order"
 msgstr ""
-"Verschiebe das gewählte Ereignis nach unten oder ändere die "
-"Familienreihenfolge."
+"Das ausgewählte Ereignis nach unten verschieben oder die Reihenfolge der "
+"Familie ändern"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:134
 msgid "Cannot change Family"
-msgstr "Die Familie kann nicht geändert werden."
+msgstr "Familie kann nicht geändert werden"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:135
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Du kannst Familienereignisse nicht im Personeneditor ändern."
+msgstr "Du kannst Familienereignisse nicht im Personeneditor ändern"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Create and add a new association"
@@ -13986,7 +13987,7 @@ msgstr "Ereignis bearbeiten"
 #: ../gramps/gui/editors/editevent.py:239
 #: ../gramps/gui/editors/editevent.py:263
 msgid "Cannot save event"
-msgstr "Das Ereignis kann nicht gespeichert werden."
+msgstr "Ereignis kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editevent.py:240
 msgid "No data exists for this event. Please enter data or cancel the edit."
@@ -14319,7 +14320,7 @@ msgstr "%s wird als Mutter und Kind dieser Familie geführt."
 
 #: ../gramps/gui/editors/editfamily.py:1133
 msgid "Cannot save family"
-msgstr "Die Familie kann nicht gespeichert werden."
+msgstr "Familie kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editfamily.py:1134
 msgid "No data exists for this family. Please enter data or cancel the edit."
@@ -14414,7 +14415,7 @@ msgstr "Medienobjekt bearbeiten"
 
 #: ../gramps/gui/editors/editmedia.py:288
 msgid "Cannot save media object"
-msgstr "Das Medienobjekt kann nicht gespeichert werden."
+msgstr "Medienobjekt kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editmedia.py:289
 msgid ""
@@ -14439,7 +14440,7 @@ msgid ""
 "exist! Please enter a different path"
 msgstr ""
 "Du hast versucht, den Pfad mit dem Wert '%(path)s' zu verwenden. Dieser Pfad "
-"existiert nicht! Gib bitte einen anderen Pfad ein."
+"existiert nicht! Bitte gib einen anderen Pfad ein"
 
 #: ../gramps/gui/editors/editmedia.py:326
 #: ../gramps/gui/editors/editmediaref.py:532
@@ -14575,7 +14576,7 @@ msgstr "Notiz bearbeiten"
 
 #: ../gramps/gui/editors/editnote.py:318
 msgid "Cannot save note"
-msgstr "Die Notiz kann nicht gespeichert werden."
+msgstr "Notiz kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editnote.py:319
 msgid "No data exists for this note. Please enter data or cancel the edit."
@@ -14652,7 +14653,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:820
 msgid "Cannot save person"
-msgstr "Die Person kann nicht gespeichert werden."
+msgstr "Person kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editperson.py:821
 msgid "No data exists for this person. Please enter data or cancel the edit."
@@ -14851,7 +14852,9 @@ msgstr "Änderungen speichern?"
 
 #: ../gramps/gui/editors/editprimary.py:245
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Wenn du ohne zu speichern schließt, gehen deine Änderungen verloren."
+msgstr ""
+"Wenn du das Fenster schließt, ohne zu speichern, gehen die vorgenommenen "
+"Änderungen verloren"
 
 #: ../gramps/gui/editors/editreference.py:283
 #: ../gramps/gui/editors/editrepository.py:188
@@ -14900,7 +14903,7 @@ msgstr "Aufbewahrungsort bearbeiten"
 
 #: ../gramps/gui/editors/editrepository.py:177
 msgid "Cannot save repository"
-msgstr "Der Aufbewahrungsort konnte nicht gespeichert werden."
+msgstr "Aufbewahrungsort kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editrepository.py:178
 msgid ""
@@ -14939,7 +14942,7 @@ msgstr "Quelle bearbeiten"
 
 #: ../gramps/gui/editors/editsource.py:198
 msgid "Cannot save source"
-msgstr "Die Quelle kann nicht gespeichert werden."
+msgstr "Quelle kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editsource.py:199
 msgid "No data exists for this source. Please enter data or cancel the edit."
@@ -15200,8 +15203,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/objectentries.py:293
 msgid "No place given, click button to select one"
-msgstr ""
-"Der Ort wurde nicht angegeben. Zum Auswählen klicke auf die Schaltfläche."
+msgstr "Kein Ort angegeben, klicke auf die Schaltfläche, um einen auszuwählen"
 
 #: ../gramps/gui/editors/objectentries.py:294
 msgid "Edit place"
@@ -15209,7 +15211,7 @@ msgstr "Ort bearbeiten"
 
 #: ../gramps/gui/editors/objectentries.py:295
 msgid "Select an existing place"
-msgstr "Einen existierenden Ort auswählen"
+msgstr "Einen bestehenden Ort auswählen"
 
 #: ../gramps/gui/editors/objectentries.py:296
 #: ../gramps/plugins/lib/libplaceview.py:103
@@ -15235,7 +15237,7 @@ msgstr "Quelle bearbeiten"
 
 #: ../gramps/gui/editors/objectentries.py:345
 msgid "Select an existing source"
-msgstr "Wähle eine existierende Quelle aus."
+msgstr "Wähle eine vorhandene Quelle"
 
 #: ../gramps/gui/editors/objectentries.py:346
 #: ../gramps/plugins/view/citationlistview.py:125
@@ -15252,7 +15254,7 @@ msgstr "Quelle entfernen"
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 "Um ein Medienobjekt auszuwählen, verwende ziehen und ablegen oder die "
-"Schaltflächen."
+"Schaltflächen"
 
 #: ../gramps/gui/editors/objectentries.py:389
 #: ../gramps/gui/plug/_guioptions.py:1117
@@ -15285,13 +15287,12 @@ msgstr ""
 #: ../gramps/gui/editors/objectentries.py:436
 #: ../gramps/gui/plug/_guioptions.py:1015
 msgid "No note given, click button to select one"
-msgstr ""
-"Die Notiz wurde nicht angegeben. Zum Auswählen klicke auf die Schaltfläche."
+msgstr "Keine Notiz angegeben, klicke auf die Schaltfläche, um eine auszuwählen"
 
 #: ../gramps/gui/editors/objectentries.py:438
 #: ../gramps/gui/plug/_guioptions.py:990
 msgid "Select an existing note"
-msgstr "Wähle eine existierende Notiz aus."
+msgstr "Wähle eine vorhandene Notiz"
 
 #: ../gramps/gui/editors/objectentries.py:439
 #: ../gramps/plugins/view/noteview.py:93
@@ -16694,8 +16695,8 @@ msgstr ""
 msgid ""
 "Part of a person's name indicating the family to which the person belongs"
 msgstr ""
-"Teil des Namens einer Person, der die Familie zeigt, zu der die Person "
-"gehört."
+"Teil des Namens einer Person, der auf die Familie hinweist, zu der die "
+"Person gehört"
 
 #: ../gramps/gui/glade/editperson.glade:511
 msgid "Go to Name Editor to add more information about this name"
@@ -16856,7 +16857,7 @@ msgstr "Der Name dieses Ortes."
 #: ../gramps/gui/glade/editplace.glade:456
 #: ../gramps/gui/glade/editplaceref.glade:618
 msgid "Invoke place name editor."
-msgstr "Ortsnameeditor aufrufen"
+msgstr "Aufruf des Ortsnamen-Editors."
 
 #: ../gramps/gui/glade/editplaceformat.glade:124
 msgid "Levels:"
@@ -17011,7 +17012,7 @@ msgid ""
 "publisher, ..."
 msgstr ""
 "Veröffentlichungsinformationen wie Stadt und Jahr der Veröffentlichung, Name "
-"des Herausgebers,..."
+"des Herausgebers, ..."
 
 #: ../gramps/gui/glade/editsource.glade:181
 msgid ""
@@ -17059,7 +17060,7 @@ msgstr "Ein beschreibender Titel für die zu speichernde Internetadresse."
 
 #: ../gramps/gui/glade/grampletpane.glade:63
 msgid "Drag to move; click to detach"
-msgstr "Ziehen zum Verschieben, klicken zum Lösen."
+msgstr "Ziehen zum Verschieben; Klicken zum Lösen"
 
 #: ../gramps/gui/glade/grampletpane.glade:71
 msgid "Config"
@@ -17075,7 +17076,7 @@ msgstr "Klicken zum Ein-/Ausklappen"
 
 #: ../gramps/gui/glade/grampletpane.glade:129
 msgid "Click to delete gramplet from view"
-msgstr "Klicken, um das Gramplet aus der Ansicht zu löschen."
+msgstr "Klicke, um Gramplet aus der Ansicht zu löschen"
 
 #: ../gramps/gui/glade/grampletpane.glade:144
 msgid "Delete"
@@ -17086,8 +17087,8 @@ msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Wähle die Fundstelle, die die Hauptdaten für\n"
-"die zusammengefasste Fundstelle enthält"
+"Wählen die Fundstelle aus, die die Primärdaten \n"
+"für die zusammengeführte Fundstelle liefert."
 
 #: ../gramps/gui/glade/mergecitation.glade:186
 #: ../gramps/gui/glade/mergedata.glade:732
@@ -18099,7 +18100,7 @@ msgstr ""
 
 #: ../gramps/gui/grampsgui.py:613
 msgid "Error parsing arguments"
-msgstr "Fehler beim analysieren der Argumente."
+msgstr "Fehler beim Analysieren von Argumenten"
 
 #: ../gramps/gui/grampsgui.py:632
 msgid "Gramps terminated because of no DISPLAY"
@@ -18269,9 +18270,9 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"Benutze diese Schaltfläche, um den Fehlerbericht in die Zwischenablage zu "
-"kopieren. Gehe dann zur bug tracking Webseite, indem du die Schaltfläche "
-"unten benutzt. Kopiere den Bericht und klicke Bericht senden."
+"Verwende diese Schaltfläche, um den Fehlerbericht in die Zwischenablage zu "
+"kopieren. Gehe dann zur Fehlerverfolgungs-Website, indem du die Schaltfläche "
+"unten verwendest, füge den Bericht ein und klicke auf Bericht senden"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:649
 #: ../gramps/gui/logger/_errorreportassistant.py:676
@@ -18375,7 +18376,7 @@ msgstr "und"
 #: ../gramps/gui/merge/mergeperson.py:351
 #: ../gramps/plugins/lib/libpersonview.py:559
 msgid "Cannot merge people"
-msgstr "Die Personen können nicht zusammengefasst werden."
+msgstr "Personen können nicht zusammengeführt werden"
 
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
@@ -18942,7 +18943,7 @@ msgstr[1] "{number_of} Personen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:170
 msgid "Click to see preview of unfiltered data"
-msgstr "Klicken zeigt dir die Vorschau der ungefilterten Daten."
+msgstr "Klicke hier, um eine Vorschau der ungefilterten Daten zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:182
 msgid "_Do not include records marked private"
@@ -18963,7 +18964,7 @@ msgstr "_Personenfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:297
 msgid "Click to see preview after person filter"
-msgstr "Klicken zeigt dir die Vorschau nach dem Personenfilter."
+msgstr "Klicke hier, um eine Vorschau nach dem Personenfilter zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:302
 msgid "_Note Filter"
@@ -18971,7 +18972,7 @@ msgstr "_Notizfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:316
 msgid "Click to see preview after note filter"
-msgstr "Klicken zeigt dir die Vorschau nach dem Notizfilter."
+msgstr "Klicke hier, um eine Vorschau nach dem Notizfilter zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:319
 msgid "Privacy Filter"
@@ -18979,7 +18980,7 @@ msgstr "Vertraulichkeitsfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:327
 msgid "Click to see preview after privacy filter"
-msgstr "Klicken zeigt dir die Vorschau nach dem Vertraulichkeitsfilter."
+msgstr "Klicke hier, um eine Vorschau nach dem Vertraulichkeitsfilter zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:330
 msgid "Living Filter"
@@ -18987,7 +18988,7 @@ msgstr "Lebendfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:339
 msgid "Click to see preview after living filter"
-msgstr "Klicken zeigt dir die Vorschau nach dem Lebendfilter."
+msgstr "Klicke hier, um eine Vorschau nach dem Lebendfilter zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:343
 msgid "Reference Filter"
@@ -18995,7 +18996,7 @@ msgstr "Referenzfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:351
 msgid "Click to see preview after reference filter"
-msgstr "Klicken zeigt dir die Vorschau nach dem Referenzfilter."
+msgstr "Klicke hier, um eine Vorschau nach dem Referenzfilter zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:401
 msgid "Hide order"
@@ -19027,7 +19028,7 @@ msgstr "Kann einen Systemfilter nicht bearbeiten"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:684
 msgid "Please select a different filter to edit"
-msgstr "Bitte einen anderen Filter zum bearbeiten wählen."
+msgstr "Bitte wähle einen anderen Filter zum Bearbeiten"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:714
 #: ../gramps/gui/plug/export/_exportoptions.py:738
@@ -19048,7 +19049,7 @@ msgstr "Ersetze den kompletten Namen von lebenden Personen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:741
 msgid "Do not include living people"
-msgstr "Lebende Personen nicht aufnehmen"
+msgstr "Lebende Personen nicht einbeziehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:750
 msgid "Include all selected records"
@@ -19057,8 +19058,8 @@ msgstr "Alle gewählten Datensätze aufnehmen"
 #: ../gramps/gui/plug/export/_exportoptions.py:751
 msgid "Do not include records not linked to a selected person"
 msgstr ""
-"Datensätze nicht aufnehmen, die mit der gewählten Person nicht verknüpft "
-"sind."
+"Datensätze, die nicht mit einer ausgewählten Person verknüpft sind, nicht "
+"berücksichtigen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:772
 msgid "Use Compression"
@@ -19620,7 +19621,7 @@ msgid ""
 "checking"
 msgstr ""
 "Du hast keine Wörterbücher installiert. Entweder installiere eines oder "
-"deaktiviere die Rechtschreibprüfung."
+"deaktiviere die Rechtschreibprüfung"
 
 #: ../gramps/gui/spell.py:153
 #, python-format
@@ -19689,7 +19690,8 @@ msgstr "Bitte versuche nicht, diesen wichtigen Dialog zu umgehen."
 #: ../gramps/gui/utils.py:374
 msgid "The external program failed to launch or experienced an error"
 msgstr ""
-"Das externe Programm konnte nicht gestartet werden oder erlitt einen Fehler."
+"Das externe Programm konnte nicht gestartet werden oder es ist ein Fehler "
+"aufgetreten"
 
 #: ../gramps/gui/utils.py:384
 msgid "Error from external program"
@@ -19711,17 +19713,18 @@ msgid ""
 "To edit the citation, close the source editor and open an editor for the "
 "citation alone"
 msgstr ""
-"Kann im Moment keinen neuen Fundstelleneditor öffnen. Entweder wird die "
-"Fundstelle oder die dazugehörige Quelle bereits bearbeitet und das Öffnen "
-"eines Fundstelleneditors (der es auch ermöglicht, die Quelle zu bearbeiten), "
-"erzeugt Unklarheit durch das Öffnen von zwei Editoren für dieselbe Quelle.\n"
+"Zur Zeit kann kein neuer Fundstelleneditor geöffnet werden. Entweder wird "
+"die Fundstelle bereits bearbeitet, oder die zugehörige Quelle wird bereits "
+"bearbeitet, und das Öffnen eines Fundstelleneditors (der auch die "
+"Bearbeitung der Quelle ermöglicht) würde zu Unklarheiten führen, da zwei "
+"Editoren für dieselbe Quelle geöffnet werden.\n"
 "\n"
-"Um die Fundstelle zu bearbeiten, schließe den Quelleneditor und öffne nur "
-"den Fundstelleneditor."
+"Um die Fundstelle zu bearbeiten, schließe den Quelleneditor und öffne einen "
+"Editor nur für die Fundstelle"
 
 #: ../gramps/gui/utils.py:641
 msgid "Cannot open new citation editor"
-msgstr "Der neue Fundstelleneditor kann nicht geöffnet werden."
+msgstr "Neuer Fundstelleneditor kann nicht geöffnet werden"
 
 #: ../gramps/gui/viewmanager.py:335 ../gramps/gui/viewmanager.py:1057
 msgid "No Family Tree"
@@ -19753,7 +19756,7 @@ msgstr "Änderungen verwerfen"
 
 #: ../gramps/gui/viewmanager.py:638
 msgid "Cannot abandon session's changes"
-msgstr "Die Sitzungsänderungen können nicht zurückgenommen werden."
+msgstr "Änderungen der Sitzung können nicht abgebrochen werden"
 
 #: ../gramps/gui/viewmanager.py:639
 msgid ""
@@ -19790,7 +19793,7 @@ msgstr "Automatische Sicherung..."
 
 #: ../gramps/gui/viewmanager.py:1225
 msgid "Error saving backup data"
-msgstr "Fehler beim Speichern der Sicherungsdaten."
+msgstr "Fehler beim Speichern von Sicherungsdaten"
 
 #: ../gramps/gui/viewmanager.py:1512
 msgid "Failed Loading View"
@@ -20132,7 +20135,7 @@ msgstr "Markierungen organisieren"
 
 #: ../gramps/gui/views/tags.py:416
 msgid "Change Tag Priority"
-msgstr "Ändere die Priorität der Markierung."
+msgstr "Markierung-Priorität ändern"
 
 #: ../gramps/gui/views/tags.py:558
 #, python-format
@@ -20311,12 +20314,12 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:816
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
-"Ziehe die Eigenschaftenschaltfläche, um sie zu verschieben. Zum Einrichten "
-"klicke darauf."
+"Ziehe die Schaltfläche Eigenschaften, um sie zu verschieben, und klicke zum "
+"Einrichten darauf"
 
 #: ../gramps/gui/widgets/grampletpane.py:1017
 msgid "Right click to add gramplets"
-msgstr "Rechtsklick zum Hinzufügen von Gramplets."
+msgstr "Rechtsklick zum Hinzufügen von Gramples"
 
 #: ../gramps/gui/widgets/grampletpane.py:1060
 msgid "Untitled Gramplet"
@@ -20349,9 +20352,9 @@ msgid ""
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
 "Klicken, um diese Person zu aktivieren,\n"
-"Rechtsklick zum Anzeigen des Bearbeiten-Menüs\n"
-"Zum Bearbeiten die Bearbeitungsschaltfläche klicken (Im Einstellungsdialog "
-"aktivieren)."
+"Klicke mit der rechten Maustaste, um das Bearbeitungsmenü anzuzeigen\n"
+"Klicke auf das Symbol \"Bearbeiten\" (im Konfigurationsdialog aktivieren), "
+"um zu bearbeiten"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:628
 msgid "Bad Date"
@@ -20661,7 +20664,7 @@ msgstr "von %d"
 #: ../gramps/plugins/webreport/narrativeweb.py:1800
 #: ../gramps/plugins/webreport/webcal.py:274
 msgid "Possible destination error"
-msgstr "Möglicher Fehler im Ziel."
+msgstr "Möglicher Zielfehler"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
 #: ../gramps/plugins/webreport/narrativeweb.py:1801
@@ -20680,7 +20683,7 @@ msgstr ""
 #: ../gramps/plugins/docgen/htmldoc.py:567
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "Konnte die jpeg-Version des Bildes %(name)s nicht erstellen."
+msgstr "Konnte keine jpeg-Version des Bildes %(name)s erstellen"
 
 #: ../gramps/plugins/docgen/latexdoc.py:1240
 msgid "PIL (Python Imaging Library) not loaded."
@@ -20692,9 +20695,9 @@ msgid ""
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
-"Die Erstellung von jpg-Bildern aus Nicht-jpg-Bilden in LaTeX-Dokumenten wird "
-"nicht zur Verfügung stehen. Verwende deine Paketverwaltung, um python-"
-"imaging oder python-pillow oder python3-pillow zu installieren."
+"Die Erzeugung von jpg-Bildern aus nicht-jpg-Bildern in LaTeX-Dokumenten wird "
+"nicht möglich sein. Verwende deinen Paketmanager, um python-imaging oder "
+"python-pillow oder python3-pillow zu installieren"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1182
 #, python-format
@@ -20753,7 +20756,7 @@ msgstr "Ahnendiagramm"
 #: ../gramps/plugins/drawreport/ancestortree.py:133
 #, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Ahnendiagramm für %s"
+msgstr "Vorfahrendiagramm für %s"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:364
 #: ../gramps/plugins/drawreport/calendarreport.py:114
@@ -20777,7 +20780,7 @@ msgstr "Person %s ist nicht in der Datenbank"
 #: ../gramps/plugins/drawreport/ancestortree.py:700
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:53
 msgid "Ancestor Tree"
-msgstr "Ahnenbaum"
+msgstr "Ahnentafel"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:614
 msgid "Making the Tree..."
@@ -20840,7 +20843,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:819
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "Die Anzahl der Generationen mit leeren Boxen, die angezeigt werden."
+msgstr "Die Anzahl der Generationen von leeren Kästchen, die angezeigt werden"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:826
 #: ../gramps/plugins/drawreport/descendtree.py:1562
@@ -20852,8 +20855,8 @@ msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
 msgstr ""
-"Legt fest, ob zusätzliche Leerzeichen, die für unbekannte Personen "
-"vorgesehen sind, entfernt werden oder nicht."
+"Ob zusätzliche Leerzeichen entfernt werden sollen, die für unbekannte "
+"Personen reserviert sind"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:845
 #: ../gramps/plugins/drawreport/descendtree.py:1581
@@ -20864,7 +20867,7 @@ msgstr "Berichttitel"
 #: ../gramps/plugins/drawreport/descendtree.py:1582
 #: ../gramps/plugins/drawreport/descendtree.py:1755
 msgid "Do not include a title"
-msgstr "Ohne Titel"
+msgstr "Keinen Titel einfügen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:847
 msgid "Include Report Title"
@@ -20926,9 +20929,10 @@ msgid ""
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
-"Ändere die Papiergröße, damit sie zur Baumgröße passt.\n"
+"Größe der Seite an Baumgröße anpassen\n"
 "\n"
-"Beachte: Dies überschreibt die Optionen im Reiter 'Papieroptionen'."
+"Hinweis: Hat Vorrang vor den Optionen auf der \"Papieroptionen\" "
+"Registerkarte"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
 #: ../gramps/plugins/drawreport/descendtree.py:1620
@@ -21143,11 +21147,11 @@ msgstr "Keine leeren Boxen für unbekannte Vorfahren erzeugen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1035
 msgid "One Generation of empty boxes for unknown ancestors"
-msgstr "Eine Generation leerer Boxen für unbekannte Vorfahren erzeugen."
+msgstr "Eine Generation von leeren Boxen für unbekannte Vorfahren"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1040
 msgid " Generations of empty boxes for unknown ancestors"
-msgstr " Leere Boxen für unbekannte Vorfahren erzeugen."
+msgstr " Generationen von leeren Boxen für unbekannte Vorfahren"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1057
 #: ../gramps/plugins/drawreport/descendtree.py:1787
@@ -21270,7 +21274,8 @@ msgstr[1] ""
 #: ../gramps/plugins/webreport/webcal.py:1756
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
-"Benutze den Filter, um Personen auszuschließen, die im Kalender erscheinen."
+"Filter auswählen, um Personen einzuschränken, die im Kalender angezeigt "
+"werden"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:473
 #: ../gramps/plugins/drawreport/fanchart.py:690
@@ -21347,7 +21352,7 @@ msgstr "Land für Feiertage"
 #: ../gramps/plugins/drawreport/calendarreport.py:528
 #: ../gramps/plugins/textreport/birthdayreport.py:541
 msgid "Select the country to see associated holidays"
-msgstr "Wähle ein Land aus, um die dazugehörigen Feiertage zu sehen."
+msgstr "Wähle das Land aus, um die zugehörigen Feiertage anzuzeigen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:531
 #: ../gramps/plugins/webreport/narrativeweb.py:2808
@@ -21359,7 +21364,7 @@ msgstr "Erster Tag der Woche"
 #: ../gramps/plugins/webreport/narrativeweb.py:2811
 #: ../gramps/plugins/webreport/webcal.py:1870
 msgid "Select the first day of the week for the calendar"
-msgstr "Wähle den ersten Tag der Kalenderwoche."
+msgstr "Wähle den ersten Tag der Woche für den Kalender"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:542
 #: ../gramps/plugins/textreport/birthdayreport.py:544
@@ -21396,7 +21401,7 @@ msgstr "Frauen benutzen ihren Mädchennamen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2821
 #: ../gramps/plugins/webreport/webcal.py:1880
 msgid "Select married women's displayed surname"
-msgstr "Wähle den anzuzeigenden Nachnamen für verheiratete Frauen."
+msgstr "Wähle den anzuzeigenden Nachnamen für verheiratete Frauen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:553
 #: ../gramps/plugins/textreport/birthdayreport.py:555
@@ -21531,7 +21536,7 @@ msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1554
 msgid "Start with the parent(s) of the selected first"
-msgstr "Starte mit den Eltern des zuerst gewählten"
+msgstr "Beginne mit dem/den Elternteil(en) des ausgewählten ersten"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1557
 msgid "Will show the parents, brother and sisters of the selected person."
@@ -21540,8 +21545,8 @@ msgstr "Zeigt die Eltern, Brüder und Schwestern der gewählten Person."
 #: ../gramps/plugins/drawreport/descendtree.py:1563
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
-"Ob Personen, wo immer möglich nach oben verschoben werden, um einen "
-"schmaleren Baum zu erhalten."
+"Ob die Personen nach Möglichkeit nach oben versetzt werden sollen, so dass "
+"ein kleinerer Baum entsteht"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1567
 msgid "Bold direct descendants"
@@ -21626,9 +21631,8 @@ msgid "The style for the spouse box."
 msgstr "Der Stil für die Ehepartner-Box."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1838
-#, fuzzy
 msgid "The style for the direct descendant box."
-msgstr "Der Stil, der für den ersten persönlichen Eintrag verwendet wird."
+msgstr "Der Stil für die direkte Nachkommenschaft Box."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1844
 msgid "The style for the note box."
@@ -21640,15 +21644,15 @@ msgstr "Der Stil für die Verbindungslinien und den Berichtsrahmen."
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:37
 msgid "Ancestor Chart"
-msgstr "Ahnenschaubild"
+msgstr "Ahnentafel"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:38
 msgid "Produces a graphical ancestral chart"
-msgstr "Erstellt eine grafische Ahnentafel"
+msgstr "Erzeugt eine grafische Ahnentafel"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:54
 msgid "Produces a graphical ancestral tree"
-msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur"
+msgstr "Erzeugt eine grafische Ahnentafel in Baumstruktur"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
 msgid "Produces a graphical calendar"
@@ -21660,7 +21664,7 @@ msgstr "Nachkommenschaubild"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:98
 msgid "Produces a graphical descendant chart"
-msgstr "Erstellt ein grafisches Nachkommenschaubild."
+msgstr "Erzeugt ein grafisches Nachfahrendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:113
 msgid "Descendant Tree"
@@ -21668,7 +21672,7 @@ msgstr "Nachkommenbaum"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:114
 msgid "Produces a graphical descendant tree"
-msgstr "Erstellt einen grafischen Nachkommenbaum."
+msgstr "Erzeugt einen grafischen Nachkommenbaum"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:135
 msgid "Family Descendant Chart"
@@ -21676,7 +21680,7 @@ msgstr "Familiennachkommenschaubild"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:136
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Erstellt ein grafisches Nachkommenschaubild um eine Familie herum."
+msgstr "Erzeugt ein grafisches Nachkommendiagramm um eine Familie"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:152
 msgid "Family Descendant Tree"
@@ -21684,7 +21688,7 @@ msgstr "Familiennachkommenbaum"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:153
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Erstellt einen grafischen Nachkommenbaum um eine Familie herum."
+msgstr "Erzeugt einen grafischen Nachkommenbaum um eine Familie"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:175
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:121
@@ -21709,17 +21713,17 @@ msgstr "Statistikdiagramme"
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:198
 msgid "Produces statistical bar and pie charts of the people in the database"
 msgstr ""
-"Erstellt Statistikbalken und Tortendiagramme für die Personen in der "
-"Datenbank."
+"Erzeugt statistische Balken- und Tortendiagramme der Personen in der "
+"Datenbank"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:221
 #: ../gramps/plugins/drawreport/timeline.py:275
 msgid "Timeline Chart"
-msgstr "Zeitliniengrafik"
+msgstr "Zeitachsendiagramm"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:222
 msgid "Produces a timeline chart."
-msgstr "Erzeugt eine Zeitliniengrafik."
+msgstr "Erzeugt ein Zeitachsendiagramm."
 
 #: ../gramps/plugins/drawreport/fanchart.py:256
 #, python-format
@@ -21785,7 +21789,7 @@ msgstr "ringsum"
 
 #: ../gramps/plugins/drawreport/fanchart.py:717
 msgid "Print radial texts upright or roundabout"
-msgstr "Drucke strahlenförmigen Text aufrecht oder ringsum."
+msgstr "Radialtexte hochkant oder umlaufend drucken"
 
 #: ../gramps/plugins/drawreport/fanchart.py:719
 msgid "Draw empty boxes"
@@ -21808,8 +21812,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/fanchart.py:782
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr ""
-"Der Stil, der für die Textanzeige von Generation \"%d\" verwendet wird."
+msgstr "Der für die Textanzeige der Generation \"%d\" verwendete Stil"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:311
 msgid "Item count"
@@ -22048,7 +22051,7 @@ msgstr "Personen geboren vor"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1043
 msgid "Birth year until which to include people"
-msgstr "Geburtsjahr, bis zu dem Personen enthalten sind."
+msgstr "Geburtsjahr, bis zu dem die Personen einbezogen werden sollen"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1046
 msgid "Include people without known birth years"
@@ -22223,9 +22226,8 @@ msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
-"GEDCOM wird verwendet, um Daten zwischen Ahnenforschungsprogrammen zu "
-"transferieren. Die meisten Genealogieprogramme können GEDCOM-Dateien "
-"importieren."
+"GEDCOM wird verwendet, um Daten zwischen Genealogieprogrammen zu übertragen. "
+"Die meisten Genealogieprogramme akzeptieren eine GEDCOM-Datei als Eingabe."
 
 #: ../gramps/plugins/export/export.gpr.py:87
 msgid "GEDCOM export options"
@@ -22242,7 +22244,7 @@ msgstr "_GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:100
 msgid "GeneWeb is a web based genealogy program."
-msgstr "GeneWeb ist ein webbasiertes Ahnenforschungsprogramm."
+msgstr "GeneWeb ist ein webbasiertes Genealogieprogramm."
 
 #: ../gramps/plugins/export/export.gpr.py:108
 msgid "GeneWeb export options"
@@ -22488,10 +22490,11 @@ msgid ""
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
-"Gib ein gültiges Datum (wie JJJJ-MM-TT) im Eingabefeld unten ein und klicke "
-"Start. Dies berechnet das Alter für jeden in deinem Stammbaum an diesem "
-"Datum. Du kannst dann die Altersspalte sortieren und die Zeile doppelt "
-"klicken, um sie anzuzeigen oder zu bearbeiten."
+"Gib ein gültiges Datum (z. B. JJJJ-MM-TT) in das Feld unten ein und klicke "
+"auf Ausführen. Dadurch wird das Alter für alle Personen in deinem "
+"Familienstammbaum an diesem Datum berechnet. Du kannst dann nach der "
+"Altersspalte sortieren und auf die Zeile doppelklicken, um sie anzuzeigen "
+"oder zu bearbeiten."
 
 #: ../gramps/plugins/gramplet/agestats.py:53
 #: ../gramps/plugins/gramplet/agestats.py:63
@@ -24195,7 +24198,7 @@ msgstr "Minimale Anzahl der darzustellenden Objekte"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:63
 msgid "Descendant generations per ancestor generation"
-msgstr "Nachkommengenerationen je Ahnengeneration"
+msgstr "Nachkommengenerationen pro Vorfahrengeneration"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:69
 msgid "Delay before descendants of an ancestor is processed"
@@ -24312,11 +24315,11 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:36
 msgid "Family Lines Graph"
-msgstr "Familienliniengrafik"
+msgstr "Familienliniendiagramm"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:37
 msgid "Produces family line graphs using Graphviz."
-msgstr "Generiert Familienliniendiagramme mit Graphviz."
+msgstr "Erzeugt Familienliniendiagramme mit Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:59
 msgid "Hourglass Graph"
@@ -24375,24 +24378,24 @@ msgstr "Nachkommen - Vorfahren"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:125
 msgid "Follow parents to determine \"family lines\""
-msgstr "Folge den Eltern, um \"Familienlinien\" fest zu stellen."
+msgstr "Eltern folgen, um \"Familienlinien\" zu bestimmen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:127
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
 msgstr ""
-"Eltern und deren Vorfahren werden in Betracht gezogen, wenn \"Familienlinien"
-"\" bestimmt werden."
+"Die Eltern und ihre Vorfahren werden bei der Bestimmung der \"Familienlinien"
+"\" berücksichtigt."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:131
 msgid "Follow children to determine \"family lines\""
-msgstr "Den Kindern folgen, um \"Familienlinien\" fest zu stellen."
+msgstr "Den Kindern folgen, um \"Familienlinien\" zu bestimmen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:133
 msgid "Children will be considered when determining \"family lines\"."
 msgstr ""
-"Kinder werden in Betracht gezogen, wenn \"Familienlinien\" bestimmt werden."
+"Die Kinder werden bei der Bestimmung der \"Familienlinien\" berücksichtigt."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:137
 msgid "Try to remove extra people and families"
@@ -24404,19 +24407,19 @@ msgid ""
 "removed when determining \"family lines\"."
 msgstr ""
 "Personen und Familien, die nicht direkt mit den Personen von Interesse "
-"verwandt sind, werden entfernt, wenn \"Familienlinien\" bestimmt werden."
+"verwandt sind, werden bei der Ermittlung der \"Familienlinien\" entfernt."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:145
 #: ../gramps/plugins/graph/gvhourglass.py:382
 #: ../gramps/plugins/graph/gvrelgraph.py:815
 msgid "Arrowhead direction"
-msgstr "Pfeilrichtungen"
+msgstr "Richtung der Pfeilspitze"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:148
 #: ../gramps/plugins/graph/gvhourglass.py:385
 #: ../gramps/plugins/graph/gvrelgraph.py:818
 msgid "Choose the direction that the arrows point."
-msgstr "Richtung der Pfeile auswählen."
+msgstr "Wählen die Richtung, in die die Pfeile zeigen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:151
 #: ../gramps/plugins/graph/gvhourglass.py:388
@@ -24456,16 +24459,16 @@ msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Personen von Interesse werden als Startpunkt zum Bestimmen von "
-"\"Familienlinien\" benutzt."
+"Die Personen von Interesse werden als Ausgangspunkt für die Bestimmung der "
+"\"Familienlinien\" verwendet."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:193
 msgid "Limit the number of ancestors"
-msgstr "Anzahl der Ahnen begrenzen"
+msgstr "Anzahl der Vorfahren begrenzen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:195
 msgid "Whether to limit the number of ancestors."
-msgstr "Ob die Anzahl der Ahnen begrenzt wird."
+msgstr "Ob die Anzahl der Vorfahren begrenzt werden soll."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:201
 msgid "The maximum number of ancestors to include."
@@ -24500,8 +24503,8 @@ msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
-"Druckt nur die Jahre, weder Monate, Tage, noch Schätzungen oder Intervalle "
-"werden gezeigt."
+"Druckt nur das Jahr des Datums, es werden weder Monat oder Tag noch eine "
+"Annäherung an das Datum oder ein Intervall angezeigt."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:236
 msgid "Whether to include placenames for people and families."
@@ -24565,7 +24568,7 @@ msgstr "Familienfarben"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:273
 msgid "Colors to use for various family lines."
-msgstr "Farben, die für verschiedene Familienlinien verwendet werden."
+msgstr "Farben, die für verschiedene Familienlinien zu verwenden sind."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:281
 #: ../gramps/plugins/graph/gvhourglass.py:422
@@ -24740,8 +24743,8 @@ msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
 msgstr ""
-"Zeige Sosa / Sosa-Stradonitz / Ahnentafelnummer unter allen anderen "
-"Informationen."
+"Sosa / Sosa-Stradonitz / Ahnentafelnummer unter allen anderen Informationen "
+"anzeigen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -24882,12 +24885,12 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:962
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "Nicht-leibliche Verwandtschaft durch gestrichelte Linie andeuten."
+msgstr "Angeben von Nichtgeburtsbeziehungen mit gepunkteten Linien"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:963
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
-"Nicht-leibliche Verwandtschaft erscheint im Graph als gestrichelte Linie."
+"Nicht-Geburtsbeziehungen werden als gepunktete Linien im Diagramm angezeigt."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:967
 msgid "Show family nodes"
@@ -25867,8 +25870,8 @@ msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
 msgstr ""
-"Datum {vcard_snippet} nicht im richtigen Format JJJJ-MM-TT, Datum wird als "
-"Text gespeichert."
+"Datum {vcard_snippet} nicht im geeigneten Format jjjj-mm-tt, Datum als Text "
+"beibehalten."
 
 #: ../gramps/plugins/importer/importxml.py:103
 #: ../gramps/plugins/tool/eventnames.py:137
@@ -27262,8 +27265,8 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s starb %(month_year)s in %(death_place)s im Alter von "
-"%(age)s."
+"%(unknown_gender_name)s starb im %(month_year)s in %(death_place)s im Alter "
+"von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:327
 #, python-format
@@ -27276,7 +27279,8 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s starb %(month_year)s in %(death_place)s im Alter von %(age)s."
+"%(male_name)s starb im %(month_year)s in %(death_place)s im Alter von "
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:331
 #, python-format
@@ -27289,7 +27293,8 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s starb %(month_year)s in %(death_place)s im Alter von %(age)s."
+"%(female_name)s starb im %(month_year)s in %(death_place)s im Alter von "
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:336
 #, python-format
@@ -27301,7 +27306,7 @@ msgstr "Diese Person starb %(month_year)s in %(death_place)s."
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Die Person starb %(month_year)s in %(death_place)s im Alter von %(age)s."
+"Diese Person starb im %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:340
 #, python-format
@@ -27311,7 +27316,7 @@ msgstr "Er starb %(month_year)s in %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:341
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Er starb %(month_year)s in %(death_place)s im Alter von %(age)s."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:344
 #, python-format
@@ -27321,7 +27326,7 @@ msgstr "Sie starb %(month_year)s in %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:345
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Sie starb %(month_year)s in %(death_place)s im Alter von %(age)s."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:349
 #, python-format
@@ -27341,7 +27346,7 @@ msgstr "%(unknown_gender_name)s starb %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:357
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s starb %(month_year)s im Alter von %(age)s."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:360
 #, python-format
@@ -27351,7 +27356,7 @@ msgstr "%(male_name)s starb %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:361
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(male_name)s starb %(month_year)s im Alter von %(age)s."
+msgstr "%(male_name)s starb im %(month_year)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:364
 #, python-format
@@ -27361,7 +27366,7 @@ msgstr "%(female_name)s starb %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:365
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(female_name)s starb %(month_year)s im Alter von %(age)s."
+msgstr "%(female_name)s starb im %(month_year)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:369
 #, python-format
@@ -27371,7 +27376,7 @@ msgstr "Die Person starb %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:370
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr "Die Person starb %(month_year)s im Alter von %(age)s."
+msgstr "Die Person starb im %(month_year)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:373
 #, python-format
@@ -27381,7 +27386,7 @@ msgstr "Er starb %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:374
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr "Er starb %(month_year)s im Alter von %(age)s."
+msgstr "Er starb im %(month_year)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:377
 #, python-format
@@ -27391,7 +27396,7 @@ msgstr "Sie starb %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:378
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr "Sie starb %(month_year)s im Alter von %(age)s."
+msgstr "Sie starb im %(month_year)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:382
 #, python-format
@@ -31438,15 +31443,15 @@ msgstr[1] "Filter passt auf {number_of} Datensätze."
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
 msgid "Father lineage for %s"
-msgstr "Väterliche Abstammungslinie von %s"
+msgstr "Abstammung väterlicherseits für %s"
 
 #: ../gramps/plugins/quickview/lineage.py:54
 msgid ""
 "This report shows the father lineage, also called patronymic lineage or Y-"
 "line. People in this lineage all share the same Y-chromosome."
 msgstr ""
-"Dieser Bericht zeigt die väterliche Abstammungslinie, auch genannt "
-"Patronymikon Linie oder Y-Linie. Personen in dieser Abstammungslinie haben "
+"Dieser Bericht zeigt die väterliche Abstammungslinie, auch patronymische "
+"Abstammungslinie oder Y-Linie genannt. Die Personen in dieser Linie haben "
 "alle das gleiche Y-Chromosom."
 
 #: ../gramps/plugins/quickview/lineage.py:61
@@ -31461,21 +31466,21 @@ msgstr "Bemerkung"
 
 #: ../gramps/plugins/quickview/lineage.py:69
 msgid "Direct line male descendants"
-msgstr "Direkte Linie männliche Nachkommen"
+msgstr "Männliche Nachkommen in direkter Linie"
 
 #: ../gramps/plugins/quickview/lineage.py:83
 #, python-format
 msgid "Mother lineage for %s"
-msgstr "Mütterliche Abstammungslinie von %s"
+msgstr "Abstammung mütterlicherseits für %s"
 
 #: ../gramps/plugins/quickview/lineage.py:85
 msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
-"Dieser Bericht zeigt die mütterliche Abstammungslinie, auch genannt "
-"Matronymikon Linie oder M-Linie. Personen in dieser Abstammungslinie haben "
-"alle die gleiche Mitrochondrische DNA."
+"Dieser Bericht zeigt die mütterliche Linie, auch matronymische Linie "
+"genannt, die mtDNA-Linie. Die Menschen in dieser Linie haben alle die "
+"gleiche mitochondriale DNA (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:93
 msgid "Name Mother"
@@ -31483,7 +31488,7 @@ msgstr "Name Mutter"
 
 #: ../gramps/plugins/quickview/lineage.py:101
 msgid "Direct line female descendants"
-msgstr "Direkte Linie weiblicher Nachkommen"
+msgstr "Weibliche Nachkommen in direkter Linie"
 
 #: ../gramps/plugins/quickview/lineage.py:125
 #: ../gramps/plugins/quickview/lineage.py:221
@@ -31559,7 +31564,7 @@ msgstr "Keine anderen Ereignisse in %(year)d"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:36
 msgid "Display people and ages on a particular date"
-msgstr "Zeigt Personen und deren Alter an einem bestimmten Datum"
+msgstr "Personen und Alter an einem bestimmten Datum anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:55
 msgid "Attribute Match"
@@ -31599,7 +31604,7 @@ msgstr "Gefilterte Daten anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:150
 msgid "Father lineage"
-msgstr "Väterliche Abstammungslinie"
+msgstr "Abstammung väterlicherseits"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:151
 msgid "Display father lineage"
@@ -31924,7 +31929,7 @@ msgstr "Gesamte Buch"
 #: ../gramps/plugins/textreport/ancestorreport.py:197
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel für %s"
+msgstr "Ahnentafel Bericht für %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:301
 #: ../gramps/plugins/textreport/detancestralreport.py:846
@@ -32341,12 +32346,14 @@ msgstr "Ob vollständige Sätze oder knappe Sprache benutzt wird."
 #: ../gramps/plugins/textreport/detancestralreport.py:881
 #: ../gramps/plugins/textreport/detdescendantreport.py:1070
 msgid "Use full dates instead of only the year"
-msgstr "Zeige vollständiges Datum, anstatt nur das Jahr zu verwenden."
+msgstr "Vollständige Datumsangaben statt nur der Jahreszahl verwenden"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:883
 #: ../gramps/plugins/textreport/detdescendantreport.py:1072
 msgid "Whether to use full dates instead of just year."
-msgstr "Ob ein vollständiges Datum anstelle der Jahreszahl benutzt wird."
+msgstr ""
+"Ob vollständige Datumsangaben anstelle von nur Jahreszahlen verwendet werden "
+"sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:886
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
@@ -33246,11 +33253,11 @@ msgstr "Die Markierung zur Verwendung für den Bericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:37
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel-Bericht"
+msgstr "Ahnentafel Bericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:38
 msgid "Produces a textual ancestral report"
-msgstr "Erstellt eine schriftlich Ahnentafel"
+msgstr "Erzeugt einen Ahnenbericht in Textform"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:60
 msgid "Produces a report of birthdays and anniversaries"
@@ -33270,11 +33277,11 @@ msgstr "Generiert eine Liste der Nachkommen der aktiven Person"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:125
 msgid "Detailed Ancestral Report"
-msgstr "Ausführlicher Ahnenbericht"
+msgstr "Detaillierter Ahnenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:126
 msgid "Produces a detailed ancestral report"
-msgstr "Erstellt eine ausführliche Ahnenübersicht"
+msgstr "Erstellt einen detaillierten Ahnenbericht"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:147
 msgid "Detailed Descendant Report"
@@ -34714,15 +34721,14 @@ msgid "Clean input data"
 msgstr "Eingabedaten bereinigen"
 
 #: ../gramps/plugins/tool/removespaces.py:108
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Führende und/oder nachfolgende Leerzeichen bei Personen und Orten suchen. "
-"Nach Kommas in Koordinatenfeldern suchen.\n"
-"Klicke doppelt auf eine Zeile, um deren Inhalt zu bearbeiten."
+"Suche nach führenden und/oder nachgestellten Leerzeichen für Personen und "
+"Orte. Suche nach Komma oder falschem Vorzeichen in Koordinatenfeldern.\n"
+"Doppelklicke auf eine Zeile, um deren Inhalt zu bearbeiten."
 
 #: ../gramps/plugins/tool/removespaces.py:118
 msgid "Looking for possible fields with leading or trailing spaces"
@@ -35256,8 +35262,8 @@ msgstr "Höchstzahl von (Ehe-)Partnern einer Per_son"
 #: ../gramps/plugins/tool/verify.glade:323
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
 msgstr ""
-"Höchstzahl aufeinanderfolgender Jahre der _Witwenschaft vor der nächsten "
-"Hochzeit"
+"Höchstzahl der aufeinander folgenden Jahre der _Witwenschaft vor der "
+"nächsten Heirat"
 
 #: ../gramps/plugins/tool/verify.glade:338
 msgid "Maximum age for an _unmarried person"
@@ -35298,11 +35304,11 @@ msgstr "Maximaler Altersabstan_d in einer Partnerschaft"
 
 #: ../gramps/plugins/tool/verify.glade:719
 msgid "Maximum number of years _between children"
-msgstr "Maximaler Altersa_bstand zwischen zwei Kindern"
+msgstr "Maximale Anzahl von Jahren _zwischen den Kindern"
 
 #: ../gramps/plugins/tool/verify.glade:734
 msgid "Maximum _span of years for all children"
-msgstr "Maximale Jahres_spanne für die Geburt aller Kinder"
+msgstr "Maximale _Spanne von Jahren für alle Kinder"
 
 #: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:670
 msgid "_Hide marked"
@@ -36519,7 +36525,7 @@ msgstr "_Nächste"
 
 #: ../gramps/plugins/view/pedigreeview.py:1681
 msgid "Mouse scroll direction"
-msgstr "Mausrollradrichtung"
+msgstr "Bildlaufrichtung der Maus"
 
 #: ../gramps/plugins/view/pedigreeview.py:1685
 msgid "Top <-> Bottom"
@@ -36572,7 +36578,7 @@ msgstr "Erweitert"
 
 #: ../gramps/plugins/view/pedigreeview.py:2135
 msgid "Tree direction"
-msgstr "Baumausrichtung"
+msgstr "Baumrichtung"
 
 #: ../gramps/plugins/view/pedigreeview.py:2142
 msgid "Tree size"
@@ -37441,11 +37447,11 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2055
 msgid "Include ancestor's tree"
-msgstr "Mit Ahnentafel"
+msgstr "Stammbaum der Vorfahren einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2056
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr "Ob jede Personenseite eine Ahnentafel enthält"
+msgstr "Ob auf jeder einzelnen Seite ein Ahnendiagramm enthalten sein soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2061
 msgid "Add previous/next"
@@ -37537,7 +37543,9 @@ msgstr "Generationengrafik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2147
 msgid "The number of generations to include in the ancestor graph"
-msgstr "Anzahl der in der Ahnengrafik berücksichtigten Generationen"
+msgstr ""
+"Die Anzahl der Generationen, die in das Ahnendiagramm aufgenommen werden "
+"sollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2153
 msgid "Include narrative notes just after name, gender"
