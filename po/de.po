@@ -14,13 +14,14 @@
 # R. B. <weblate@macdefender.org>, 2021.
 # RiseT <tareiss1971@yahoo.de>, 2021.
 # David Straub <straub@protonmail.com>, 2021.
+# nautilusx <translate@disroot.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-02 16:32+0000\n"
-"Last-Translator: David Straub <straub@protonmail.com>\n"
+"PO-Revision-Date: 2021-09-09 15:32+0000\n"
+"Last-Translator: nautilusx <translate@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -8193,15 +8194,15 @@ msgstr "Kind"
 
 #: ../gramps/gen/lib/ldsord.py:107
 msgid "Cleared"
-msgstr ""
+msgstr "Gelöscht"
 
 #: ../gramps/gen/lib/ldsord.py:108
 msgid "Completed"
-msgstr ""
+msgstr "Abgeschlossen"
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Do not seal"
-msgstr ""
+msgstr "Nicht versiegeln"
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Infant"
@@ -8217,7 +8218,7 @@ msgstr "Qualifiziert"
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Do not seal/Cancel"
-msgstr ""
+msgstr "Nicht versiegeln/Abbrechen"
 
 #: ../gramps/gen/lib/ldsord.py:114
 msgid "Stillborn"
