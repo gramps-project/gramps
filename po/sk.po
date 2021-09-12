@@ -5,13 +5,14 @@
 #
 # LDS terms consulted with slovak-based LDS Church (www.mormoni.sk)
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Milan <mobrcian@hotmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-04 21:08+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2021-09-12 21:18+0000\n"
+"Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -57,9 +58,8 @@ msgstr ""
 "potrebujete."
 
 #: ../data/gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Genealogický systém Gramps"
+msgstr "Vývojový tím Gramps"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -283,15 +283,14 @@ msgid "United States of America"
 msgstr "Spojené štáty americké"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-"<b>Práca s dátumami</b><br/>Rozsah dátumov je možné zadať ako &quot;medzi "
-"dátumami 4. január 2000 a 20 Marec 2003&quot;. Tiež je možné vyznačiť stupeň "
+"<b>Práca s dátumami</b><br/>Rozsah dátumov je možné zadať ako \"medzi "
+"dátumami 4. január 2000 a 20 Marec 2003\";. Tiež je možné vyznačiť stupeň "
 "dôveryhodnosti pre dátum a vybrať si z viacerých kalendárov. V editore "
 "udalostí na to slúži tlačidlo vedľa políčka s dátumom."
 
@@ -346,7 +345,6 @@ msgstr ""
 "Nezabudnite si rozhovory zaznamenávať!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -358,13 +356,13 @@ msgid ""
 "not visible, select View &gt; Filter."
 msgstr ""
 "<b>Filtrovanie osôb</b><br/>V pohľade Osoby môžete 'filtrovať' jednotlivcov "
-"na základe mnohých kritérií. Pre zadefinovanie nového filtra použite &quot;"
-"Editovať &gt; Editor filtrov osoby&quot;. Tam môžete svoj filter pomenovať a "
-"pridávať a kombinovať pravidlá pomocou mnohých prednastavených  pravidiel. "
-"Je možné filtrovať aj osoby, ktoré nemajú uvedený dátum narodenia. K "
-"výsledku sa dostanete uložením filtra a jeho zvolením v dolnej časti bočného "
-"panela filtra. Potom kliknite na Použiť. Ak bočný panel filtra nie je "
-"viditeľný, zobrazíte ho voľbou Zobrazenie &gt; Filter."
+"na základe mnohých kritérií. Pre zadefinovanie nového filtra použite \";"
+"Editovať &gt; Editor filtrov osoby\";. Tam môžete svoj filter pomenovať a "
+"pridávať a kombinovať pravidlá pomocou mnohých prednastavených pravidiel. Je "
+"možné filtrovať aj osoby, ktoré nemajú uvedený dátum narodenia. K výsledku "
+"sa dostanete uložením filtra a jeho zvolením v dolnej časti bočného panela "
+"filtra. Potom kliknite na Použiť. Ak bočný panel filtra nie je viditeľný, "
+"zobrazíte ho voľbou Zobrazenie &gt; Filter."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -412,7 +410,6 @@ msgstr ""
 "súrodencov, detí alebo rodičov."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -420,14 +417,13 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
-"<b>Kto sa kedy narodil?</b><br/>V rámci &quot;Nástroje &gt; Analýza a "
-"skúmanie &gt; Porovnať individuálne udalosti...&quot; môžete porovnať údaje "
-"osôb vo Vašej databáze. Je to užitočné, napríklad ak chcete zoznam dátumov "
-"narodenia každého vo Vašej databáze. Na vymedzenie výsledkov môžete použiť "
-"vlastný filter."
+"<b>Kto sa kedy narodil?</b><br/>V rámci \"Nástroje &gt; Analýza a skúmanie "
+"&gt; Porovnať individuálne udalosti...\"; môžete porovnať údaje osôb vo "
+"Vašej databáze. Je to užitočné, napríklad ak chcete zoznam dátumov narodenia "
+"každého vo Vašej databáze. Na vymedzenie výsledkov môžete použiť vlastný "
+"filter."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -435,14 +431,13 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Nástroje Grampsu</b><br/>Gramps je vybavený bohatým výberom nástrojov. "
-"Tie Vám dovolia vykonávať operácie ako sú kontrola chýb a konzistencie "
-"databázy. Má tiež nástroje na skúmanie a analýzu, napr. porovnávanie "
-"udalostí, vyhľadávanie duplicitných osôb, interaktívny vyhľadávač potomkov, "
-"a mnoho iných. Všetky nástroje sú dostupné cez menu &quot;Nástroje&quot;."
+"<b>Nástroje Gramps</b><br/>Gramps je vybavený bohatým výberom nástrojov. Tie "
+"Vám dovolia vykonávať operácie ako sú kontrola chýb a konzistencie databázy. "
+"Má tiež nástroje na skúmanie a analýzu, napr. porovnávanie udalostí, "
+"vyhľadávanie duplicitných osôb, interaktívny vyhľadávač potomkov, a mnoho "
+"iných. Všetky nástroje sú dostupné cez menu \"Nástroje\"."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
@@ -450,9 +445,9 @@ msgid ""
 "as all common ancestors are reported."
 msgstr ""
 "<b>Určovanie vzťahov</b><br/>Na určenie, či sú dve osoby vo vzájomnom vzťahu "
-"(pokrvnom, nie manželskom) vyskúšajte nástroj &quot;Nástroje &gt; Utility "
-"&gt; Kalkulátor vzťahov...&quot;. Zobrazia sa presné definície vzťahov ako "
-"aj spoloční predkovia."
+"(pokrvnom, nie manželskom) vyskúšajte nástroj \"Nástroje &gt; Utility &gt; "
+"Kalkulátor vzťahov...\";. Zobrazia sa presné definície vzťahov ako aj "
+"spoloční predkovia."
 
 #: ../data/tips.xml:30
 #, fuzzy
@@ -471,11 +466,10 @@ msgstr ""
 "ekvivalentnú pre podobne znejúce mená. U priezvisk je znalosť kódu SoundEx "
 "veľmi užitočná na skúmanie dát zo sčítaní ľudu (mikrofiší) v knižniciach či "
 "iných výskumných inštitúciách. Ku kódom priezvisk SoundEx sa vo Vašej "
-"databáze dostanete cez &quot;Nástroje &gt; Utility &gt; Generovať kódy "
-"SoundEx...&quot;."
+"databáze dostanete cez \"Nástroje &gt; Utility &gt; Generovať kódy SoundEx.."
+"\"."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -483,10 +477,10 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\""
 msgstr ""
-"<b>Nastavenie preferencií</b><br/>&quot;Editovať &gt; Preferencie...&quot; "
-"umožňuje zadať rôzne nastavenia ako napr. cesty k médiám, ako aj nastavenie "
-"prvkov Grampsu pre dané zobrazenie. Každý z pohľadov sa dá nastaviť aj tu: "
-"&quot;Pohľad &gt; Nastavenie zobrazenia...&quot;"
+"<b>Nastavenie preferencií</b><br/>\"Editovať &gt; Preferencie...\" umožňuje "
+"zadať rôzne nastavenia ako napr. cesty k médiám, ako aj nastavenie prvkov "
+"Grampsu pre dané zobrazenie. Každý z pohľadov sa dá nastaviť aj tu: \"Pohľad "
+"&gt; Nastavenie zobrazenia...\""
 
 #: ../data/tips.xml:34
 msgid ""
@@ -503,7 +497,6 @@ msgstr ""
 "stránku Vašej rodiny, existuje príslušná zostava aj pre tento účel."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -511,11 +504,11 @@ msgid ""
 "the People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Začíname nový rodinný strom</b><br/>Dobrým spôsobom ako začať nový  "
+"<b>Začíname nový rodinný strom</b><br/>Dobrým spôsobom ako začať nový "
 "rodinný strom je zapísať do databázy všetkých členov rodiny v zobrazení "
-"Osoby (použitím &quot;Editovať &gt; Pridať...&quot;, alebo kliknutím na "
-"tlačidlo Pridať novú osobu v zobrazení Osoby). Potom prejdite do zobrazenia "
-"Rodina a vytvorte vzťahy medzi osobami."
+"Osoby (použitím \"Editovať &gt; Pridať...\", alebo kliknutím na tlačidlo "
+"Pridať novú osobu v zobrazení Osoby). Potom prejdite do zobrazenia Rodina a "
+"vytvorte vzťahy medzi osobami."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -526,7 +519,6 @@ msgstr ""
 "Podržte nad ním kurzor myši a objaví sa pomocný tip."
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -536,23 +528,21 @@ msgid ""
 msgstr ""
 "<b>Nie ste si istí dátumom?</b><br/>Ak si nie ste istý dátumom, kedy udalosť "
 "nastala, Gramps Vám umožňuje zadať dátum vo viacerých formátoch, ktoré sú "
-"založené na odhade. Napr. &quot;okolo 1908&quot; je v Gramps platný zápis "
-"pre dátum narodenia. Kliknite na tlačidlo Dátum hneď vedľa políčka pre "
-"dátum  a zobrazte príručku Grampsu, kde sa dozviete viac."
+"založené na odhade. Napr. \"okolo 1908\" je v Gramps platný zápis pre dátum "
+"narodenia. Kliknite na tlačidlo Dátum hneď vedľa políčka pre dátum a "
+"zobrazte príručku Gramps, kde sa dozviete viac."
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
-"<b>Duplicitné záznamy</b><br/>&quot;Nástroje &gt; Spracovanie databázy &gt; "
-"Nájsť prípadné duplikátne osoby...&quot; umožňuje nájsť (a zlúčiť) záznamy o "
-"tej istej osobe, ktoré boli uložené v databáze opakovane."
+"<b>Duplicitné záznamy</b><br/>\"Nástroje &gt; Spracovanie databázy &gt; "
+"Nájsť prípadné duplicitné osoby...\" umožňuje nájsť (a zlúčiť) záznamy o tej "
+"istej osobe, ktoré boli uložené v databáze opakovane."
 
 #: ../data/tips.xml:44
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge...\" "
 "allows you to combine separately listed people into one. Select the second "
@@ -561,15 +551,14 @@ msgid ""
 "entered differing names for one individual. This also works for the Places, "
 "Sources and Repositories views."
 msgstr ""
-"<b>Zlučovanie záznamov</b><br/>Funkcia &quot;Editovať &gt; Porovnať a "
-"zlúčiť...&quot; umožňuje spojiť záznamy o tej istej osobe, ktoré boli vedené "
-"oddelene. Zvoľte druhý záznam podržaním klávesy Ctrl pri kliknutí. Je to "
-"veľmi užitočné pri kombinovaní dvoch databáz, z ktorých každá obsahuje "
-"záznam o osobe, alebo ak treba spojiť omylom zadané odlišné mená do jednej "
-"osoby. Funkciu je tiež možné využiť v pohľadoch Lokality, Zdroje a Archívy."
+"<b>Zlučovanie záznamov</b><br/>Funkcia \"Editovať &gt; Porovnať a zlúčiť...\""
+" umožňuje spojiť záznamy o tej istej osobe, ktoré boli vedené oddelene. "
+"Zvoľte druhý záznam podržaním klávesy Ctrl pri kliknutí. Je to veľmi "
+"užitočné pri kombinovaní dvoch databáz, z ktorých každá obsahuje záznam o "
+"osobe, alebo ak treba spojiť omylom zadané odlišné mená do jednej osoby. "
+"Funkciu je tiež možné využiť v pohľadoch Lokality, Zdroje a Archívy."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
@@ -579,10 +568,9 @@ msgstr ""
 "<b>Usporiadanie pohľadov</b><br/>Mnohé pohľady môžu Vaše dáta prezentovať "
 "ako hierarchický strom, prípadne ako jednoduchý zoznam. Každý pohľad môže "
 "byť nastavený tak ako Vám to vyhovuje. Viď pravú časť vrchnej nástrojovej "
-"lišty alebo menu &quot;Zobrazenie&quot;."
+"lišty alebo menu \"Zobrazenie\"."
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -591,8 +579,8 @@ msgid ""
 msgstr ""
 "<b>Navigácia späť a dopredu</b><br/>Gramps si udržuje zoznam "
 "predchádzajúcich aktívnych objektov ako sú osoby alebo udalosti. Týmto "
-"zoznamom je možné prechádzať príkazmi &quot;Ísť &gt; Vpred&quot; a &quot;Ísť "
-"&gt; Naspäť&quot;, alebo použitím tlačidiel so šípkami."
+"zoznamom je možné prechádzať príkazmi \"Ísť &gt; Vpred\" a \"Ísť &gt; "
+"Naspäť\" alebo použitím tlačidiel so šípkami."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -605,18 +593,16 @@ msgstr ""
 "funkciu dostupné, zobrazia sa v pravej časti menu."
 
 #: ../data/tips.xml:52
-#, fuzzy
 msgid ""
 "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, \"Help "
 "&gt; User Manual\". The developers have worked hard to make most operations "
 "intuitive but the manual is full of information that will make your time "
 "spent on genealogy more productive."
 msgstr ""
-"<b>Prečítajte si manuál</b><br/>Nezabudnite si prečítať manuál Grampsu, "
-"&quot;Pomoc &gt; Používateľská príručka&quot;. Vývojári sa vynasnažili aby "
-"väčšina operácií bola intuitívna, ale príručka obsahuje mnohé informácie, "
-"ktoré pomôžu, aby ste čas strávený genealógiou využili omnoho "
-"produktívnejšie."
+"<b>Prečítajte si manuál</b><br/>Nezabudnite si prečítať manuál Gramps, "
+"\"Pomoc &gt; Používateľská príručka\". Vývojári sa snažili aby väčšina "
+"operácií bola intuitívna, ale príručka obsahuje mnohé informácie, ktoré "
+"pomôžu, aby ste čas strávený pri genealógii využili omnoho produktívnejšie."
 
 #: ../data/tips.xml:54
 msgid ""
@@ -671,7 +657,6 @@ msgstr ""
 "konferenciách."
 
 #: ../data/tips.xml:62
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -679,15 +664,13 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>E-mail konferencie Grampsu</b><br/>Hľadáte odpoveď na Vaše otázky "
-"týkajúce sa Grampsu? Prelistujte si gramps-users e-mail konferenciu. "
-"Konferencií sa zúčastňuje mnoho nápomocných ľudí a odpoveď dostanete "
-"pravdepodobne rýchlo. Ak sa Vaše otázky týkajú vývoja Grampsu, skúste "
-"konferenciu gramps-devel. Konferencie môžete nájsť na &quot;Pomoc &gt; "
-"Gramps konferencie&quot;."
+"<b>E-mail konferencie Gramps</b><br/>Hľadáte odpoveď na Vaše otázky týkajúce "
+"sa Gramps? Pozrite si gramps-users e-mail konferenciu. Konferencií sa "
+"zúčastňuje mnoho nápomocných ľudí a odpoveď dostanete pravdepodobne rýchlo. "
+"Ak sa Vaše otázky týkajú vývoja Gramps, skúste konferenciu gramps-devel. "
+"Konferencie môžete nájsť na \"Pomoc &gt; Gramps konferencie\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -697,13 +680,13 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help "
 "&gt; Gramps Mailing Lists\""
 msgstr ""
-"<b>Prispievanie do Grampsu</b><br/>Chcete pomôcť Grampsu, ale nie ste "
+"<b>Prispievanie do Gramps</b><br/>Chcete pomôcť Gramps, ale nie ste "
 "programátor? Žiaden problém! Projekt takého rozsahu akým je Gramps potrebuje "
 "ľudí všetkých zameraní. Váš prínos môže byť rôzneho druhu, od písania "
 "dokumentácie, k testovaniu vývojových verzií až po pomoc s webovou stránkou. "
 "Začnite tým, že sa prihlásite do konferencie pre vývojárov, gramps-devel, a "
-"predstavíte sa. Pokyny k prihláseniu nájdete na &quot;Pomoc &gt; Gramps "
-"konferencie&quot;"
+"predstavíte sa. Pokyny k prihláseniu nájdete na \"Pomoc &gt; Gramps "
+"konferencie\""
 
 #: ../data/tips.xml:66
 msgid ""
@@ -722,7 +705,6 @@ msgstr ""
 "genealógie stoviek tisíc osôb."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -733,11 +715,10 @@ msgstr ""
 "<b>Označovanie osôb záložkou</b><br/>Vhodným miestom na ukladanie mien často "
 "používaných osôb je menu Záložky. Zvolenie záložky spôsobí, že sa táto osoba "
 "stane aktívnou osobou. Záložku vytvoríte tak, že označíte osobu za aktívnu, "
-"potom zvolíte &quot;Záložky &gt; Pridať záložku&quot; alebo stlačíte Ctrl+D. "
-"Označiť záložkou môžte tiež väčšinu ostatných objektov."
+"potom zvolíte \"Záložky &gt; Pridať záložku\" alebo stlačíte Ctrl+D. Označiť "
+"záložkou môžete tiež väčšinu ostatných objektov."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -749,22 +730,21 @@ msgstr ""
 "<b>Nesprávne dátumy</b><br/>Niekedy sa stane, že dátum je zadaný v "
 "nesprávnom formáte. Nesprávny formát dátumu je v rámci Gramps indikovaný "
 "červeným pozadím. Dátum môžete opraviť použitím okna Výber dátumu, ktoré "
-"otvoríte kliknutím na tlačidlo s dátumom. Formát dátumu nastavíte v &quot;"
-"Editovať &gt; Preferencie &gt; Zobraziť&quot;."
+"otvoríte kliknutím na tlačidlo s dátumom. Formát dátumu nastavíte v "
+"\"Editovať &gt; Preferencie &gt; Zobraziť\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
 "event types. You can add your own event types by typing in the text field, "
 "they will be added to the available events, but not translated."
 msgstr ""
-"<b>Prehľad udalostí</b><br/>Je možné ich pridať prostredníctovom editora cez "
-"&quot;Osoba &gt; Editovať Osobu &gt; Udalosti&quot;. Tam sa nachádza dlhý "
-"zoznamu preddefinovaných typov udalostí. Môžete pridať vlastné typy udalostí "
-"ich zapísaním do textového poľa. Budú pridané medzi dostupný typy, nebudú "
-"však preložené."
+"<b>Prehľad udalostí</b><br/>Je možné ich pridať prostredníctvom editora cez "
+"\"Osoba &gt; Editovať Osobu &gt; Udalosti\". Tam sa nachádza dlhý zoznam "
+"prednastavených typov udalostí. Môžete pridať vlastné typy udalostí ich "
+"zadaním do textového poľa. Budú pridané medzi dostupné udalosti, nebudú však "
+"preložené."
 
 #: ../data/tips.xml:74
 #, fuzzy
@@ -824,7 +804,6 @@ msgstr ""
 "klipy, dokumenty a ďalšie."
 
 #: ../data/tips.xml:84
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -834,8 +813,7 @@ msgstr ""
 "<b>Filters</b><br/>Filtre Vám umožnia obmedziť počet osôb zobrazených v "
 "pohľade Osoby. Okrem mnohých prednastavených filtrov je možné vytvárať "
 "vlastné filtre, pri tvorbe ktorých ste obmedzení len vlastnou fantáziou. "
-"Vlastné filtre sa dajú vytvoriť cez &quot;Editovať &gt; Editor filtrov "
-"osoby&quot;."
+"Vlastné filtre sa dajú vytvoriť cez \"Editovať &gt; Editor filtrov osoby\"."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -933,41 +911,38 @@ msgstr ""
 "toho, čo sa inak zdá byť ako chyba zdroja."
 
 #: ../data/tips.xml:102
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>Ďalšie zostavy a nástroje</b><br/>Do Grampsu je možné pridať doplnkové "
-"zostavy a nástroje. Nájdete ich pod &quot;Pomoc &gt; Ďalšie zostavy/"
-"nástroje&quot;. To je najlepšia cesta pre pokročilých používateľov na "
-"experimentovanie a vytváranie novej funkcionality."
+"<b>Ďalšie zostavy a nástroje</b><br/>Do Gramps je možné pridať doplnkové "
+"zostavy a nástroje. Nájdete ich pod \"Pomoc &gt; Ďalšie zostavy/nástroje\". "
+"To je najlepšia cesta pre pokročilých používateľov na experimentovanie a "
+"vytváranie novej funkcionality."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Knižné zostavy</b><br/>Knižná zostava pod &quot;Zostavy &gt; Knihy &gt; "
-"Knižná zostava...&quot; umožňuje používateľovi zahrnúť viacero zostáv do "
-"jedného dokumentu. Takáto zostava je vhodnejšia na distribúciu, hlavne v "
-"tlačenej forme."
+"<b>Knižné zostavy</b><br/>Knižná zostava pod \"Zostavy &gt; Knihy &gt; "
+"Knižná zostava...\" umožňuje používateľovi zahrnúť viacero zostáv do jedného "
+"dokumentu. Takáto zostava je vhodnejšia na distribúciu, hlavne v tlačenej "
+"forme."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\""
 msgstr ""
 "<b>Oznámenia Gramps</b><br/>Chcete byť informovaní o každej novej verzii "
-"Grampsu? Prihláste sa do Gramps-announce konferencie na &quot;Pomoc &gt; "
-"Gramps konferencie&quot;"
+"Gramps? Prihláste sa do Gramps-announce konferencie na \"Pomoc &gt; Gramps "
+"konferencie\""
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1008,14 +983,13 @@ msgstr ""
 "históriu Vašej rodiny."
 
 #: ../data/tips.xml:114
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 40 languages. If Gramps supports your language and it is not being "
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>Nehovoríte po anglicky?</b><br/>Gramps bol preložený do viac ako 20 "
+"<b>Nehovoríte po anglicky?</b><br/>Gramps bol preložený do viac ako 40 "
 "jazykov. Ak Váš jazyk je medzi nimi ale nezobrazuje sa, nastavte si správne "
 "východzí jazyk na Vašom počítači a reštartujte Gramps."
 
@@ -1038,17 +1012,16 @@ msgstr ""
 "plnú podporu pre Unicode. Znaky vo všetkých jazykoch sú zobrazované správne."
 
 #: ../data/tips.xml:120
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
 "person is the person who is selected when the database is opened or when the "
 "home button is pressed."
 msgstr ""
-"<b>Východzia osoba</b><br/>V Grampse je možné ako Východziu osobu zvoliť "
-"kohokoľvek. Zvoľte &quot;Editovať &gt; Nastaviť východziu osobu&quot; v "
-"pohľade Osoby. Východzia osoba je tá, ktorá je zvolená pri otvorení databázy "
-"alebo zvolená tlačidlom Domov."
+"<b>Východzia osoba</b><br/>V Gramps je možné ako Východziu osobu zvoliť "
+"kohokoľvek. Zvoľte \"Editovať &gt; Nastaviť východziu osobu\" v pohľade "
+"Osoby. Východzia osoba je tá, ktorá je zvolená pri otvorení databázy alebo "
+"zvolená tlačidlom Domov."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1250,9 +1223,8 @@ msgid "Database needs recovery, cannot open it!"
 msgstr "Databáza sa nedá otvoriť, potrebuje opravu!"
 
 #: ../gramps/cli/arghandler.py:562
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Otvorenie databázy zlyhalo, je uzamknutá!"
+msgstr "Backend databázy je nedostupný, nemožno ho otvoriť!"
 
 #: ../gramps/cli/arghandler.py:613 ../gramps/cli/arghandler.py:662
 #: ../gramps/cli/arghandler.py:709
@@ -1473,6 +1445,9 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"POZOR: %(strerr)s (errno=%(errno)s):\n"
+"\n"
+"POZOR: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:333
 #, python-format
@@ -1599,24 +1574,25 @@ msgid "Importing data..."
 msgstr "Prebieha import dát..."
 
 #: ../gramps/cli/clidbman.py:425
-#, fuzzy
 msgid "Remove family tree warning"
 msgstr "Vymazať rodinný strom"
 
 #: ../gramps/cli/clidbman.py:426
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
-msgstr "Ste si istý že chcete vykonať upgrade rodinného stromu?"
+msgstr ""
+"Ste si istí, že chcete odstrániť rodinný strom s názvom\n"
+"\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:738
 msgid "Could not delete Family Tree"
-msgstr "Rodina sa sa nedá vymazať"
+msgstr "Rodinný strom sa nedá vymazať"
 
 #: ../gramps/cli/clidbman.py:450
 msgid "Could not rename Family Tree"
-msgstr "Nebolo možné zmeniť meno rodiny"
+msgstr "Rodinný strom nebolo možné premenovať"
 
 #: ../gramps/cli/clidbman.py:483
 #, python-format
@@ -2057,7 +2033,7 @@ msgstr "krstné meno"
 #: ../gramps/plugins/webreport/person.py:896
 #: ../gramps/plugins/webreport/person.py:898
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:88
 #, python-format
@@ -2105,7 +2081,7 @@ msgstr "DEŇ MES ROK"
 #: ../gramps/gen/datehandler/_datedisplay.py:183
 #, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "from <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2165,7 +2141,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2333,7 +2309,7 @@ msgstr "a"
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}medzi {date_start} a {date_stop}{nonstd_calendar_and_ny}"
 
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
@@ -2349,7 +2325,7 @@ msgstr "pred"
 #: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr "po"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2365,7 +2341,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:508
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr "približne"
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2373,7 +2349,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:513
 msgctxt "calculated-date"
 msgid ""
-msgstr ""
+msgstr "vypočítaný"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:532
 #, python-brace-format
@@ -2973,7 +2949,7 @@ msgstr "červená"
 
 #: ../gramps/gen/datehandler/_datestrings.py:256
 msgid "Thu"
-msgstr ""
+msgstr "Št"
 
 #: ../gramps/gen/datehandler/_datestrings.py:257
 #, fuzzy
@@ -3091,7 +3067,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/exceptions.py:191
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3114,16 +3090,17 @@ msgstr ""
 "načítať.\n"
 "\n"
 "V prípade aktualizácie nebude možné používať predchádzajúcu verziu Gramps, "
-"ani v prípade že následne %(wiki_manual_backup_html_start)szálohujete"
-"%(html_end)s alebo %(wiki_manual_export_html_start)sexportujete%(html_end)s "
-"Váš aktualizovaný rodinný strom.\n"
+"ani v prípade že následne "
+"%(wiki_manual_backup_html_start)szálohujete%(html_end)s alebo "
+"%(wiki_manual_export_html_start)sexportujete%(html_end)s Váš aktualizovaný "
+"rodinný strom.\n"
 "\n"
 "Aktualizácia je náročná operácia, ktorá môže nezvratne poškodiť Váš rodinný "
 "strom pokiaľ je prerušená alebo zlyhá.\n"
 "\n"
 "Ak ste ešte nevytvorili zálohu Vášho rodinného stromu, spustite "
-"%(bold_start)sstarú%(bold_end)s verziu Gramps a "
-"%(wiki_backup_html_start)svytvorte zálohu%(html_end)s Vášho rodinného stromu."
+"%(bold_start)sstarú%(bold_end)s verziu Gramps a %(wiki_backup_html_start)"
+"svytvorte zálohu%(html_end)s Vášho rodinného stromu."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3309,7 +3286,7 @@ msgstr "Priezvisko, Otcovské meno prípona predpona"
 
 #: ../gramps/gen/display/name.py:365
 msgid "Patronymic, Given"
-msgstr "Otcovské meno, meno"
+msgstr "Otcovské meno, krstné meno"
 
 #: ../gramps/gen/display/name.py:602 ../gramps/gen/display/name.py:702
 msgctxt "Person"
@@ -3573,8 +3550,8 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Akceptovaný je dátum-čas len vo formáte ISO rrrr-mm-dd hh:mm:ss, pričom "
-"časový údaj je nepovinný.  %s nestačí."
+"Dátum a čas je akceptovaný len vo formáte ISO rrrr-mm-dd hh:mm:ss, pričom "
+"časový údaj je nepovinný. %s nestačí."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:49
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:48
@@ -3782,11 +3759,11 @@ msgstr "Bez názvu"
 
 #: ../gramps/gen/filters/rules/_rule.py:94
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "Definícia filtra obsahuje slučku."
 
 #: ../gramps/gen/filters/rules/_rule.py:95
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Jedno pravidlo odkazuje na iné, ktoré možno odkazuje na prvé."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -6159,7 +6136,7 @@ msgstr "Lokality ktorých Gramps ID vyhovujú regulárnemu výrazu"
 #: ../gramps/gen/filters/rules/place/_withinarea.py:57
 #: ../gramps/gui/editors/filtereditor.py:591
 msgid "Units:"
-msgstr ""
+msgstr "Jednotky:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:58
 #, fuzzy
@@ -6173,13 +6150,15 @@ msgstr "Vyhovujú lokality s citáciou určitej hodnoty"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Nie je možné použiť filter 'v rámci oblasti'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Vybrané miesto obsahuje nesprávne súradnice. Spustite nástroj 'čistenie "
+"vstupných údajov'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -8114,7 +8093,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/media.py:149
 msgid "Checksum"
-msgstr ""
+msgstr "Kontrolný súčet"
 
 #: ../gramps/gen/lib/mediaref.py:86 ../gramps/gui/clipboard.py:656
 msgid "Media ref"
@@ -9020,7 +8999,7 @@ msgstr "Farba"
 
 #: ../gramps/gen/lib/tag.py:128
 msgid "Priority"
-msgstr ""
+msgstr "Priorita"
 
 #: ../gramps/gen/lib/url.py:88 ../gramps/gui/clipboard.py:418
 msgid "Url"
@@ -9419,7 +9398,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:100
 msgid "Orthogonal"
-msgstr ""
+msgstr "Ortogonálny"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
 #, fuzzy
@@ -9505,7 +9484,7 @@ msgstr "Generujú sa rodiny"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
 msgid "How the lines between objects will be drawn."
-msgstr ""
+msgstr "Ako budú nakreslené čiary medzi objektmi."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
 #, fuzzy
@@ -9692,11 +9671,11 @@ msgstr "Stredný"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Short"
-msgstr ""
+msgstr "Skrátený"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Above"
-msgstr ""
+msgstr "Nad"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
 #, fuzzy
@@ -9716,11 +9695,11 @@ msgstr "Preferencie"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:76
 msgid "Down (↓)"
-msgstr ""
+msgstr "Dole (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Up (↑)"
-msgstr ""
+msgstr "Hore (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 #, fuzzy
@@ -9729,11 +9708,11 @@ msgstr "Vpravo"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Left (←)"
-msgstr ""
+msgstr "Vľavo (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Perpendicular"
-msgstr ""
+msgstr "Kolmé"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:82
 #, fuzzy
@@ -9742,15 +9721,15 @@ msgstr "nedefinované"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
 msgid "Swing"
-msgstr ""
+msgstr "Visiaca"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
 msgid "Mesh"
-msgstr ""
+msgstr "Sieť"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Tiny"
-msgstr ""
+msgstr "Drobný"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 #, fuzzy
@@ -9764,7 +9743,7 @@ msgstr "Pozn. pod čiarou"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:92
 msgid "Small"
-msgstr ""
+msgstr "Malý"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:214
@@ -9776,7 +9755,7 @@ msgstr "Normálny"
 #: ../gramps/gen/plug/docgen/treedoc.py:94
 #: ../gramps/plugins/graph/gvfamilylines.py:264
 msgid "Large"
-msgstr ""
+msgstr "Veľký"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:95
 #, fuzzy
@@ -9790,11 +9769,11 @@ msgstr "Extrahovať údaje o mieste"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
 msgid "Huge"
-msgstr ""
+msgstr "Obrovský"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Extra huge"
-msgstr ""
+msgstr "Extra obrovský"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:141
 #, fuzzy
@@ -9808,7 +9787,7 @@ msgstr "Ukázať podrobnosti"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:147
 msgid "Detail of information to be shown in a node."
-msgstr ""
+msgstr "Detail informácie, ktorá sa má zobraziť v uzle."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 #, fuzzy
@@ -9825,6 +9804,10 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
+"Jeden z rozmerov uzla v mm.\n"
+"Ak je časový tok hore alebo dole, potom je\n"
+"to šírka, v opačnom prípade je to\n"
+"výška."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
 #, fuzzy
@@ -9836,6 +9819,9 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
+"Jeden z rozmerov uzla v mm.\n"
+"Ak je časový tok hore alebo dole, potom je to výška, v opačnom prípade je to "
+"šírka."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
 #, fuzzy
@@ -9855,7 +9841,7 @@ msgstr "Čas"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:181
 msgid "Direction that the graph will grow over time."
-msgstr ""
+msgstr "Smer, akým bude graf v priebehu času rásť."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:184
 #, fuzzy
@@ -9864,11 +9850,11 @@ msgstr "Štýl stromu"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:187
 msgid "Style of the edges between nodes."
-msgstr ""
+msgstr "Štýl okrajov medzi uzlami."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:190
 msgid "Level distance"
-msgstr ""
+msgstr "Vzdialenosť úrovní"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:191
 #, fuzzy
@@ -9897,7 +9883,7 @@ msgstr "Veľkosť textu poznámky, v bodoch."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:694
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
 #, fuzzy
@@ -10021,27 +10007,27 @@ msgstr "Žijúce osoby"
 #: ../gramps/gen/plug/report/stdoptions.py:190
 msgctxt "'living people'"
 msgid "Included, and all data"
-msgstr ""
+msgstr "Zahrnuté, a všetky údaje"
 
 #: ../gramps/gen/plug/report/stdoptions.py:194
 msgctxt "'living people'"
 msgid "Full names, but data removed"
-msgstr ""
+msgstr "Celé mená, ale údaje odstránené"
 
 #: ../gramps/gen/plug/report/stdoptions.py:196
 msgctxt "'living people'"
 msgid "Given names replaced, and data removed"
-msgstr ""
+msgstr "Krstné mená nahradené a údaje odstránené"
 
 #: ../gramps/gen/plug/report/stdoptions.py:198
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr ""
+msgstr "Kompletné mená nahradené a údaje odstránené"
 
 #: ../gramps/gen/plug/report/stdoptions.py:201
 msgctxt "'living people'"
 msgid "Not included"
-msgstr ""
+msgstr "Nezahrnuté"
 
 #: ../gramps/gen/plug/report/stdoptions.py:203
 msgid "How to handle living people"
@@ -10062,7 +10048,7 @@ msgstr "Formát dát"
 
 #: ../gramps/gen/plug/report/stdoptions.py:277
 msgid "The format and language for dates, with examples"
-msgstr ""
+msgstr "Formát a jazyk pre dátum, s príkladmi"
 
 #: ../gramps/gen/plug/report/stdoptions.py:333
 #: ../gramps/gen/plug/report/stdoptions.py:357
@@ -10249,12 +10235,12 @@ msgstr "Registrovaný/-á '%s'"
 #: ../gramps/gen/recentfiles.py:204
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr ""
+msgstr "Nie je možné uložiť zoznam posledného DB súboru {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:265
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr ""
+msgstr "Nie je možné otvoriť zoznam najnovšieho DB súboru {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:269
 #, python-brace-format
@@ -11233,9 +11219,9 @@ msgid "Distribution: %s"
 msgstr "Popis: "
 
 #: ../gramps/gui/aboutdialog.py:142
-#, fuzzy, python-format
+#, python-format
 msgid "OS: %s"
-msgstr ": %s\n"
+msgstr "OS: %s"
 
 #: ../gramps/gui/clipboard.py:70
 msgctxt "manual"
@@ -11395,12 +11381,37 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Popis častí mena a spôsob ako s nimi Gramps pracuje: viď manuál ktorejkoľvek "
-"verzie\n"
+"Nasledujúce kľúčové slová sú nahradené príslušnými hodnotami: <tt>\n"
+"  <b>Krstné</b> - krstné meno (meno) <b>Priezvisko</b> - priezviská (s "
+"predponami a spojkami)\n"
+"  <b>Titul</b> - titul (Dr., Mrs.) <b>Prípona</b> - prípona (Jr., Sr.)\n"
+"  <b>Domáce</b> - domáce meno <b>Prezývka</b> - prezývka\n"
+"  <b>Iniciály</b>- prvé písmená mena <b>Spoločné</b> - prezývka, domáce "
+"alebo prvé z mien\n"
+"  <b>Prefix</b> - všetky prefixy (von, de)\n"
+"Priezviská:\n"
+"  <b>Ostatné</b> - neprirodzené priezviská <b>Notpatronymic</b>- všetky "
+"priezviská okrem pa/matronymic &amp; primárne\n"
+"  <b>Familynick</b>- rodinné priezviská <b>Rawsurnames</b> - priezviská (bez "
+"predpôn a spojok)\n"
+"  <b>Primárne, primárne[pre] alebo [sur] alebo [con]</b>- úplné primárne "
+"priezvisko, prefix, len priezvisko, spojka\n"
+"  <b>Otcovské, alebo otcovské [pred] alebo [príp] alebo [con]</b> - úplné pa/"
+"matronymické priezvisko, prefix, len priezvisko, spojka\n"
+"</tt>\n"
+"Kľúčové slovo UPPERCASE vynucuje písanie veľkých písmen. Odstránia sa extra "
+"zátvorky, čiarky. Ostatný text sa zobrazuje doslovne.\n"
+"\n"
+"<b>Príklad</b>: Edwin Jose von der Smith a Weston Wilson Sr (\"Ed\") - "
+"Underhills\n"
+"     <i>Edwin Jose</i>: <i>von der</i>: Smith</i> a <i>Weston</i>: "
+"X1215X]a</i>: [con], <i>Wilson</i>: \n"
+"     <i>Dr.</i>: <i>Sr</i>: <i>Ed</i>: Nickname, <i>Underhills</i>: "
+"Familynick, <i>Jose</i>:\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
-msgstr "Editor mien"
+msgstr " Editor mien"
 
 #: ../gramps/gui/configure.py:242 ../gramps/gui/configure.py:248
 #: ../gramps/gui/configure.py:1007
@@ -11420,9 +11431,9 @@ msgstr "Neplatná alebo neúplná definícia formátu."
 #: ../gramps/gui/configure.py:1736 ../gramps/gui/configure.py:1789
 #: ../gramps/gui/views/navigationview.py:344
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
-#, fuzzy, python-format
+#, python-format
 msgid "%s: "
-msgstr "   %s: %s"
+msgstr "%s: "
 
 #: ../gramps/gui/configure.py:575 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:55
@@ -11542,9 +11553,8 @@ msgid "Color scheme"
 msgstr "Farby"
 
 #: ../gramps/gui/configure.py:693
-#, fuzzy
 msgid "Restore to defaults"
-msgstr "Obnoviť na predvolené?"
+msgstr "Obnoviť predvolené nastavenia"
 
 #: ../gramps/gui/configure.py:695
 msgid "Restore colors for current theme to default."
@@ -11827,11 +11837,13 @@ msgid "Show text label beside Navigator buttons (requires restart)"
 msgstr "Zobraziť popis pri tlačidlach navigátora (prejaví sa po reštarte)"
 
 #: ../gramps/gui/configure.py:1343
-#, fuzzy
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
 "Requires Gramps restart to apply."
-msgstr "Zobraziť popis pri tlačidlach navigátora (prejaví sa po reštarte)"
+msgstr ""
+"Zobraziť alebo skryť názov vedľa tlačidiel navigátora (Osoby, Rodiny, "
+"Udalosti...).\n"
+"Zmena sa prejaví po reštarte Gramps."
 
 #: ../gramps/gui/configure.py:1349
 msgid "Show close button in gramplet bar tabs"
@@ -12406,9 +12418,9 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and "
 "others."
 msgstr ""
-"Gramps nepozná súbor typu \"%s\".\n"
+"Gramps nepozná súbor typu \"%s\"\n"
 "\n"
-"Platné typy sú: databáza Gramps, Gramps XML, balík Gramps a GEDCOM a ďalšie."
+"Platné typy sú: databáza Gramps, Gramps XML, balík Gramps, GEDCOM a ďalšie."
 
 #: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
 #: ../gramps/plugins/webreport/download.py:173
@@ -12644,17 +12656,13 @@ msgid "Opening the '%s' database"
 msgstr "Otvoriť existujúcu databázu"
 
 #: ../gramps/gui/dbman.py:797
-#, fuzzy
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
-msgstr ""
-"Pokus o archivovanie dát zlyhal s touto správou:\n"
-"\n"
-"%s"
+msgstr "Pokus o konverziu databázy zlyhal. Možno ju treba aktualizovať."
 
 #: ../gramps/gui/dbman.py:808 ../gramps/gui/dbman.py:834
-#, fuzzy, python-format
+#, python-format
 msgid "Converting the '%s' database"
-msgstr "Prelomiť zámok na databázu '%s'?"
+msgstr "Konverzia databázy '%s'"
 
 #: ../gramps/gui/dbman.py:809
 msgid "An attempt to export the database failed."
@@ -12706,8 +12714,8 @@ msgid ""
 msgstr ""
 "Ak kliknete na %(bold_start)sPokračovať%(bold_end)s, Gramps sa pokúsi "
 "opraviť Váš rodokmeň z poslednej platnej zálohy. Niekedy to môže spôsobiť "
-"neočakávané výsledky, a preto odporúčame najprv %(bold_start)szálohovať"
-"%(bold_end)s rodokmeň.\n"
+"neočakávané výsledky, a preto odporúčame najprv "
+"%(bold_start)szálohovať%(bold_end)s rodokmeň.\n"
 "Vami zvolený rodokmeň je uložený v %(dirname)s.\n"
 "\n"
 "Pred tým ako sa rozhodnete pre opravu, preverte ešte raz že sa rodokmeň "
@@ -12716,8 +12724,8 @@ msgstr ""
 "\n"
 "%(bold_start)sPodrobnosti:%(bold_end)s Oprava rodokmeňa využíva uloženú "
 "zálohu, ktorú Gramps vytvoril pri poslednom použití. Ak ste pracovali "
-"nepretržite bez ukončenia Grampsu počas niekoľkých hodín, všetky informácie "
-"budú stratené! Ak oprava zlyhá, pôvodný rodokmeň sa úpne stratí. Preto je "
+"nepretržite bez ukončenia Gramps počas niekoľkých hodín, všetky informácie "
+"budú stratené! Ak oprava zlyhá, pôvodný rodokmeň sa úplne stratí. Preto je "
 "nutné pravidelne zálohovať. Pri zlyhaní opravy alebo ak sa stratí viacero "
 "údajov, opravte rodokmeň ručne podľa inštrukcií na web stránkach\n"
 "%(gramps_wiki_recover_url)s\n"
@@ -13573,9 +13581,8 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Odkaz na tento archív nie nie možné teraz editovať. Buď sa práve edituje, "
-"alebo je upravovaný iný odkaz, ktorý je pripojený na ten istý archív, ktorý "
-"sa práve edituje.\n"
+"Odkaz na tento archív nie je možné teraz editovať. Buď sa práve edituje, "
+"alebo je upravovaný iný odkaz, ktorý je pripojený na tento rovnaký archív,.\n"
 "\n"
 "Pred editovaním odkazu uzavrite archív."
 
@@ -14608,20 +14615,22 @@ msgstr "Nová lokalita"
 #. Translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:213
 #: ../gramps/gui/editors/editplaceref.py:207
-#, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "Zem. šírka neplatná (syntax: 18\\u00b09'"
+msgstr ""
+"Neplatná zemepisná šírka\n"
+"(syntax: 18\\u00b09'48.21 \"S, -18.2412 alebo -18:9:48.21)"
 
 #. Translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:218
 #: ../gramps/gui/editors/editplaceref.py:212
-#, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "Zem. dĺžka neplatná(syntax: 18\\u00b09'"
+msgstr ""
+"Neplatná zemepisná šírka\n"
+"(syntax: 18\\u00b09'48.21 \"S, -18.2412 alebo -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:229
 #: ../gramps/plugins/lib/maps/geography.py:892
@@ -16482,10 +16491,11 @@ msgid ""
 "Use monospace font to keep preformatting."
 msgstr ""
 "Ak označené ako aktívne, prázdne miesto v poznámke ostane v zostave "
-"zachované. Dá sa použiť pre formátovanie s využitím medzier, napr. v "
-"tabuľke.\n"
+"zachované. Dá sa použiť pre formátovanie s využitím medzier, napr. v tabuľke."
+"\n"
 "Ak nie je označené, poznámky zo zostáv sa vyčistia automaticky, čím sa "
-"rozloženie zostavy sprehľadní."
+"rozloženie zostavy sprehľadní.\n"
+"Na predformátovanie použíte monospace písmo."
 
 #: ../gramps/gui/glade/editperson.glade:165
 msgid "C_all:"
@@ -16903,7 +16913,9 @@ msgstr "Zmazať"
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
-msgstr "Zvoliť citáciu ktorá poskytne primárne dáta pre citáciu po zlúčení."
+msgstr ""
+"Zvoliť citáciu, ktorá poskytne\n"
+"primárne dáta pre citáciu po zlúčení."
 
 #: ../gramps/gui/glade/mergecitation.glade:186
 #: ../gramps/gui/glade/mergedata.glade:732
@@ -16995,7 +17007,9 @@ msgstr "Lokalita 2"
 msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
-msgstr "Zvoliť udalosť ktorá poskytne primárne dáta pre udalosť po zlúčení."
+msgstr ""
+"Zvoliť udalosť, ktorá poskytne primárne\n"
+"dáta pre udalosť po zlúčení."
 
 #: ../gramps/gui/glade/mergeevent.glade:186
 msgid "Event 1"
@@ -17016,7 +17030,9 @@ msgstr ""
 msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
-msgstr "Zvoliť rodinu ktorá poskytne primárne dáta pre rodinu po zlúčení."
+msgstr ""
+"Zvoliť rodinu, ktorá poskytne\n"
+"primárne dáta pre rodinu po zlúčení."
 
 #: ../gramps/gui/glade/mergefamily.glade:187
 #: ../gramps/gui/glade/mergefamily.glade:203
@@ -17053,7 +17069,9 @@ msgstr ""
 msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
-msgstr "Zvoliť zdroj ktorý poskytne primárne dáta pre zdroj po zlúčení."
+msgstr ""
+"Zvoliť objekt, ktorý poskytne\n"
+"primárne dáta pre objekt po zlúčení."
 
 #: ../gramps/gui/glade/mergemedia.glade:186
 msgid "Object 1"
@@ -17071,7 +17089,9 @@ msgstr "Spoja sa atibúty, zdroje, pounámky a značky oboch objektov."
 msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
-msgstr "Zvoliť poznámu ktorá poskytne primárne dáta pre poznámku po zlúčení."
+msgstr ""
+"Zvoliť poznámku, ktorá poskytne\n"
+"primárne dáta pre poznámku po zlúčení."
 
 #: ../gramps/gui/glade/mergenote.glade:186
 msgid "Note 1"
@@ -17090,7 +17110,9 @@ msgstr "Formátovať:"
 msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
-msgstr "Zvoliť osobu ktorá poskytne primárne dáta pre osobu po zlúčení."
+msgstr ""
+"Zvoliť osobu, ktorá poskytne\n"
+"primárne dáta pre osobu po zlúčení."
 
 #: ../gramps/gui/glade/mergeperson.glade:196
 #: ../gramps/plugins/textreport/recordsreport.py:268
@@ -17123,7 +17145,9 @@ msgstr "Súvisiace informácie"
 msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
-msgstr "Zvoliť lokalitu ktorá poskytne primárne dáta pre lokalitu po zlúčení."
+msgstr ""
+"Zvoliť lokalitu, ktorá poskytne\n"
+"primárne dáta pre lokalitu po zlúčení."
 
 #: ../gramps/gui/glade/mergeplace.glade:619
 msgid ""
@@ -17157,7 +17181,9 @@ msgstr "Spoja sa adresy, url a poznámky oboch zdrojov."
 msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
-msgstr "Zvoliť zdroj ktorý poskytne primárne dáta pre zdroj po zlúčení."
+msgstr ""
+"Zvoliť zdroj, ktorý poskytne\n"
+"primárne dáta pre zdroj po zlúčení."
 
 #: ../gramps/gui/glade/mergesource.glade:512
 msgid ""
@@ -17819,8 +17845,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Verzia pygobject ktorú používate nevyhovuje. Pre štart Grampsu v GUI je "
-"potrebný minimálne python  %(major)d.%(feature)d.%(minor)d\n"
+"Verzia pygobject, ktorú používate nevyhovuje požiadavkám.\n"
+"Pre štart Gramps v GUI je potrebný minimálne pygoobject "
+"%(major)d.%(feature)d.%(minor)d.\n"
 "\n"
 "Gramps sa teraz ukončí."
 
@@ -17840,17 +17867,18 @@ msgstr ""
 "Gramps sa teraz ukončí."
 
 #: ../gramps/gui/grampsgui.py:466
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Gtk version does not meet the requirements.\n"
 "At least %(major)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Verzia pygobject ktorú používate nevyhovuje. Pre štart Grampsu v GUI je "
-"potrebný minimálne python  %(major)d.%(feature)d.%(minor)d\n"
+"Vaša verzia Gtk nespĺňa požiadavky.\n"
+"Na spustenie programu Gramps s grafickým rozhraním je potrebná verzia aspoň "
+"%(major)d.%(minor)d.\n"
 "\n"
-"Gramps sa teraz ukončí."
+"Program Gramps sa teraz ukončí."
 
 #: ../gramps/gui/grampsgui.py:477
 msgid ""
@@ -17907,11 +17935,13 @@ msgid ""
 "by changing the last-view parameter.\n"
 msgstr ""
 "\n"
-"Gramps sa neotvoril. Pošlite prosím hlásenie o chybe.\n"
-"Mohlo sa to stať kvôli chybe v Pohľade (programu od tretej strany).\n"
-"Skúste najprv zmeniť Pohľad, až potom otvorte Rodinný strom. Manuálne je "
-"možné tiež zmeniť nastavenie pohľadu v súbore gramps.ini úpravou posledne "
-"použitého parametra.\n"
+"Gramps sa nepodarilo spustiť. Oznámte prosím túto chybu.\n"
+"Môže to byť spôsobené chybou v Pohľade (tretej strany) pri spustení.\n"
+"Ak chcete použiť iný pohľad, nenačítajte rodinný strom, zmeňte pohľad a "
+"potom nahrajte rodinný strom.\n"
+"Zmenou parametra last-view v súbore gramps.ini môžete ručne nastaviť "
+"východzí\n"
+"pohľad zobrazený pri spustení Gramps.\n"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:97
 msgid "Error Report Assistant"
@@ -19562,9 +19592,8 @@ msgid "Gramps had a problem the last time it was run."
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1029
-#, fuzzy
 msgid "Would you like to run the Check and Repair tool?"
-msgstr "Použite nástroj Skontrolovať a opraviť databázu"
+msgstr "Chcete spustiť nástroj Kontrolovať a Opraviť?"
 
 #: ../gramps/gui/viewmanager.py:1220
 msgid "Autobackup..."
@@ -19890,9 +19919,9 @@ msgid "Add tag '%s'"
 msgstr "Pridať značku (%s)"
 
 #: ../gramps/gui/views/tags.py:255
-#, fuzzy, python-format
+#, python-format
 msgid "Remove tag '%s'"
-msgstr "Odstrániť značku '%s'?"
+msgstr "Odstrániť štítok '%s'"
 
 #: ../gramps/gui/views/tags.py:313
 msgid "Adding Tags"
@@ -20130,9 +20159,9 @@ msgid ""
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
-"Kliknutím označíte osobu ako aktívnu\n"
-"Kliknutie pravým tlačidlom otvorí menu pre editovanieKliknutie na ikonu "
-"otvorí editovanie"
+"Kliknutím označíte túto osobu ako aktívnu\n"
+"Kliknutím pravým tlačidlom myši zobrazíte editačné menu\n"
+"Kliknutím na ikonu Editovať (povolíte v konfiguračnom dialógu) upravujte"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:628
 msgid "Bad Date"
@@ -20732,13 +20761,13 @@ msgstr ""
 "Voľba pre úpravu veľkosti stromu aby zodpovedal veľkosti strany\n"
 "Pozn.: strana môže mať nešťandardný rozmer\n"
 "\n"
-"Pri voľbe Neprispôsobiť veľkosť stromu bude rozmer strany upravený podľa\n"
-" veľkosti stromu\n"
+"Pri voľbe 'Neprispôsobiť veľkosť stromu' bude rozmer strany upravený podľa\n"
+"veľkosti stromu\n"
 "\n"
-"Pri voľbe Prispôsobiť veľkosť stromu na šírku strany sa  výška strany zmení "
+"Pri voľbe 'Prispôsobiť veľkosť stromu' na šírku strany sa výška strany zmení "
 "podľa výšky stromu\n"
 "\n"
-"Pri voľbe Prispôsobiť veľkosť stromu stránke sa rozmery stromu prispôsobia "
+"Pri voľbe 'Prispôsobiť veľkosť stromu stránke' sa rozmery stromu prispôsobia "
 "rozmerom stránky a to na výšku i na šírku"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
@@ -20932,7 +20961,8 @@ msgstr "Jedna generácia s prázdnymi kolonkami pre neznámych predkov"
 #: ../gramps/plugins/drawreport/ancestortree.py:1040
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr ""
-"Počet generácií ktorý sa zobrazí s prázdnymi kolonkami pre neznámych predkov"
+" Počet generácií, ktoré sa zobrazia s prázdnymi kolónkami pre neznámych "
+"predkov"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1057
 #: ../gramps/plugins/drawreport/descendtree.py:1787
@@ -21024,7 +21054,7 @@ msgstr "%(person)s, narodenie"
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
 msgstr[0] "{person}, {age}"
-msgstr[1] "{person}, {age}"
+msgstr[1] "{{person}, {age}"
 msgstr[2] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:421
@@ -21049,7 +21079,7 @@ msgstr[0] ""
 "{spouse} a\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} a\n"
+"{{spouse} a\n"
 " {person}, {nyears}"
 msgstr[2] ""
 "{spouse} a\n"
@@ -21389,7 +21419,9 @@ msgstr "Formát zobrazenia pre výstup potomka."
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Formát zobrazenia"
+msgstr ""
+"Manželia\n"
+"Formát zobrazenia"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1678
 msgid "Display format for a spouse."
@@ -21523,7 +21555,9 @@ msgstr "Vejárový graf %(generations)d generácií pre: %(person)s"
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
-msgstr "Vejárový graf %(generations)d generácií pre: %(person)s"
+msgstr ""
+"Vejárový graf %(generations)d generácií pre\n"
+"%(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:694
 #: ../gramps/plugins/textreport/ancestorreport.py:296
@@ -22059,11 +22093,11 @@ msgstr "Nastavenia pre export balička Gramps"
 
 #: ../gramps/plugins/export/export.gpr.py:141
 msgid "Gramps XML (family tree)"
-msgstr " Gramps XML (rodinný strom)"
+msgstr "Gramps XML (rodinný strom)"
 
 #: ../gramps/plugins/export/export.gpr.py:142
 msgid "Gramps _XML (family tree)"
-msgstr " Gramps_XML (rodinný strom)"
+msgstr "Gramps_XML (rodinný strom)"
 
 #: ../gramps/plugins/export/export.gpr.py:143
 msgid ""
@@ -22850,7 +22884,7 @@ msgstr "Gramplet s uvítacou správou"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:325
 msgid "Welcome to Gramps!"
-msgstr "Uvítací Gramplet"
+msgstr "Vitajte v Gramps!"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:332
 msgid "What's Next"
@@ -25052,7 +25086,7 @@ msgstr "dátum"
 
 #: ../gramps/plugins/importer/importcsv.py:240
 msgid "place"
-msgstr "lokalita"
+msgstr "miesto"
 
 #: ../gramps/plugins/importer/importcsv.py:241
 #, fuzzy
@@ -25369,11 +25403,12 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
-#, fuzzy
 msgid ""
 "Source reference\n"
 "(out of Settings)"
-msgstr "Odkaz na zdroj"
+msgstr ""
+"Odkaz na zdroj\n"
+"(mimo Nastavenia)"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
 msgid ""
@@ -25466,9 +25501,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
-#, fuzzy
 msgid "  Objects"
-msgstr "Predmet"
+msgstr "  Objekty"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -25532,18 +25566,20 @@ msgid "Event date"
 msgstr "Dátum udalosti"
 
 #: ../gramps/plugins/importer/importprogen.glade:1476
-#, fuzzy
 msgid ""
 "Store birth date in\n"
 "event description."
-msgstr "Extrahovať popisy udalosti"
+msgstr ""
+"Uložiť dátum narodenia\n"
+"do popisu udalosti."
 
 #: ../gramps/plugins/importer/importprogen.glade:1495
-#, fuzzy
 msgid ""
 "Store death date in\n"
 "event description."
-msgstr "Extrahovať popisy udalosti"
+msgstr ""
+"Uložiť dátum úmrtia\n"
+"do popisu udalosti."
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
@@ -25626,9 +25662,9 @@ msgid "Import Pro-Gen"
 msgstr "Import z Pro-Gen"
 
 #: ../gramps/plugins/importer/importvcard.py:228
-#, fuzzy, python-format
+#, python-format
 msgid "Line %(line)5d: %(prob)s\n"
-msgstr "chyba formátu:  riadok %(line)d: %(zero)s"
+msgstr "Riadok %(line)5d: %(prob)s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:243
 msgid "vCard import"
@@ -25640,9 +25676,9 @@ msgid "VCARD import report: No errors detected"
 msgstr "Správa o importe GEDCOM: Nezistili sa žiadne chyby"
 
 #: ../gramps/plugins/importer/importvcard.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "VCARD import report: %s errors detected\n"
-msgstr "Správa o importe GEDCOM: %s zistených chýb"
+msgstr "Správa o importe VCARD: %s zistené chyby\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -25676,10 +25712,9 @@ msgid "VCard is malformed wrong number of name components."
 msgstr ""
 
 #: ../gramps/plugins/importer/importvcard.py:517
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Invalid date in BDAY {vcard_snippet}, preserving date as text."
-msgstr ""
-"Neplatný dátum {date} v BDAY {vcard_snippet}, dátum zachovaný ako text."
+msgstr "Neplatný dátum v BDAY {vcard_snippet}, dátum bude zachovaný ako text."
 
 #: ../gramps/plugins/importer/importvcard.py:525
 #, python-brace-format
@@ -25726,7 +25761,7 @@ msgstr "  Rodina %(id)s s %(id2)s\n"
 #: ../gramps/plugins/importer/importxml.py:254
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
-msgstr "Zdroj %(id)s s %(id2)s\n"
+msgstr "  Zdroj %(id)s s %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:257
 #, python-format
@@ -25854,18 +25889,12 @@ msgstr ""
 "používateľskému adresáru.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
 "\n"
-"\n"
-"Objekty určené na zlučovanie:\n"
+"Objekty, ktoré sú kandidátmi na zlúčenie:\n"
 
 #: ../gramps/plugins/importer/importxml.py:809
 #: ../gramps/plugins/importer/importxml.py:1294
@@ -26018,7 +26047,7 @@ msgstr "Každý odkaz na poznámku musí mať atribút 'hlink'."
 #: ../gramps/plugins/importer/importxml.py:2528
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr "Neplatný dátum {date} v XML {xml}, XML zachované ako text"
+msgstr "Neplatný dátum {date} v XML {xml}, XML bude zachovaný ako text"
 
 #: ../gramps/plugins/importer/importxml.py:2580
 #, python-format
@@ -26026,7 +26055,7 @@ msgid "Witness comment: %s"
 msgstr "Komentár svedka: %s"
 
 #: ../gramps/plugins/importer/importxml.py:3233
-#, fuzzy, python-format
+#, python-format
 msgctxt "father"
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
@@ -26225,7 +26254,6 @@ msgstr ""
 "Importovaný súbor neobsahoval všetky dáta.\n"
 "Kvôli oprave boli vytvorené objekty v počte %(new)d a\n"
 "ich popisný atribút typu bol nastavený ako 'Neznámy'.\n"
-"Ich počet v danej kategórii označuje číslo v zátvorke.\n"
 "Tam, kde je to možné sú tieto \n"
 "'Neznáme' objekty označené ako %(unknown)s.\n"
 
@@ -28079,7 +28107,7 @@ msgstr "Táto osoba bola pokrstená dňa %(christening_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:754
 #, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr " Bol pokrstený dňa %(christening_date)s%(endnotes)s."
+msgstr "Pokrstený(á) dňa %(christening_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:759
 #, python-format
@@ -30716,11 +30744,11 @@ msgstr "Dánsko"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:81
 msgid " parish"
-msgstr "farnosť"
+msgstr " farnosť"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " state"
-msgstr "štát"
+msgstr " štát"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:150
 msgid "Latitude not within '54.55' to '69.05'\n"
@@ -31730,12 +31758,16 @@ msgstr "%(person)s, narodenie%(relation)s"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
-msgstr[2] "{person}, {age}{relation}"
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
+msgstr[1] ""
+"* {year}{person}{dead}, {age}\n"
+"{relation}"
+msgstr[2] ""
+"* {year}{person}{dead}, {age}\n"
+"{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:402
 #, fuzzy, python-format
@@ -31748,7 +31780,7 @@ msgstr ""
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:407
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -31756,27 +31788,21 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"{spouse} a\n"
-" {person}, {nyears}"
 msgstr[1] ""
-"{spouse} a\n"
-" {person}, {nyears}"
 msgstr[2] ""
-"{spouse} a\n"
-" {person}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:442
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "{person}, {age}{relation}"
+msgstr "✝ {person}, death {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:444
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
-msgstr[2] "{person}, {age}{relation}"
+msgstr[0] "✝ {year}{person}, {age}{relation}"
+msgstr[1] "{✝ {year}{person}, {age}{relation}"
+msgstr[2] "✝ {year}{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:475
 #: ../gramps/plugins/textreport/familygroup.py:716
@@ -32608,9 +32634,8 @@ msgid "Whether to sort events into chronological order."
 msgstr "Či zoradiť udalosti chronologicky."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Kliknutím na meno sa osoba zmení na aktívnu\n"
+msgstr "Použite meno osoby ako názov"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
@@ -33265,9 +33290,9 @@ msgid ""
 msgstr ""
 "Váš rodokmeň obsahuje duplicitné odkazy naprieč tabuľkami.\n"
 " To je zlé a dá sa to opraviť vytvorením zálohy rodinného\n"
-"stromu a importovaním jeho dát do novo vytvoreného rodinného\n"
-"stromu. Zvyšok kontroly bude preskočený a nástroj Kontrolovať\n"
-" a Opraviť bude potrebné spustiť znovu na novom rodinnom strome."
+"stromu a importovaním jeho dát do prázdneho rodinného\n"
+"stromu. Zvyšok kontroly bude preskočený a nástroj Kontrolovať a\n"
+"Opraviť bude potrebné spustiť znovu na novom rodinnom strome."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
@@ -33514,13 +33539,13 @@ msgstr[2] "Zistilo sa {quantity} duplicitných spojení manžel/rodina\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2542
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] "Zistená jedna rodina bez detí či rodičov, vymazaná..\n"
-msgstr[1] "Zistená jedna rodina bez detí či rodičov, vymazaná..\n"
-msgstr[2] "Zistená jedna rodina bez detí či rodičov, vymazaná..\n"
+msgstr[0] "Zistená {quantity} rodina bez rodičov alebo detí, vymazaná.\n"
+msgstr[1] "Zistené {quantity} rodiny bez rodičov alebo detí, vymazané.\n"
+msgstr[2] "Zistené {quantity} rodiny bez detí či rodičov, vymazané.\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2554
@@ -34533,14 +34558,14 @@ msgid "Clean input data"
 msgstr ""
 
 #: ../gramps/plugins/tool/removespaces.py:108
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Prehľadáva celú databázu a hľadá jednotlivé citácie, ktoré by prípadne mali "
-"rovnaký oddiel/stranu, dátum a dôveryhodnosť."
+"Vyhľadanie záznamov osôb a miest začínajúcich a/alebo končiacich medzerou. "
+"Vyhľadanie čiarok alebo zlých znakov v poliach súradníc.\n"
+"Dvojitým kliknutím na riadok upravíte jeho obsah."
 
 #: ../gramps/plugins/tool/removespaces.py:118
 #, fuzzy
@@ -34743,9 +34768,9 @@ msgid "Reorder %s IDs ..."
 msgstr "Zoraďujú sa ID Grampsu..."
 
 #: ../gramps/plugins/tool/reorderids.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to replace %s?"
-msgstr "Nezahŕňať žiadne dátumy alebo lokality"
+msgstr "Chcete nahradiť %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:694
 #, fuzzy
@@ -36676,7 +36701,7 @@ msgstr "Pohľad so všetkými vzťahmi zvolenej osoby"
 
 #: ../gramps/plugins/view/view.gpr.py:128
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "Zobrazenie rodokmeň predkov zvolenej osoby"
+msgstr "Zobrazenie rodokmeňa predkov zvolenej osoby"
 
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/view/view.gpr.py:144
@@ -36794,9 +36819,9 @@ msgid "Last change was the %(date)s"
 msgstr "Lokality zmenené po <dátum čas>"
 
 #: ../gramps/plugins/webreport/basepage.py:1436
-#, fuzzy, python-format
+#, python-format
 msgid " on %(date)s"
-msgstr "%(date)s"
+msgstr " %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1461
 #: ../gramps/plugins/webreport/basepage.py:1466
@@ -37010,7 +37035,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Názov média"
+msgstr " Názov média"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -37700,8 +37725,8 @@ msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"Či pridať stránky adresára, ktoré môžu zahŕňať e-mail, web adresy, adresy/ "
-"udalosti bydliska alebo nie."
+"Či pridať stránky adresára, ktorý môže obsahovať e-mail, web adresy, adresy "
+"osôb/udalosti bydliska alebo nie."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2410
 #, fuzzy
@@ -37827,9 +37852,8 @@ msgid "Other inclusion (CMS, web calendar, PHP)"
 msgstr "Titulok kalendára"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2497
-#, fuzzy
 msgid "Do we include these pages in a CMS web?"
-msgstr "Titulok kalendára"
+msgstr "Zahŕňať tieto stránky do webu CMS?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2502
 #, fuzzy
@@ -37941,9 +37965,8 @@ msgid "Calendar Options"
 msgstr "Nastavenie papiera"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2802
-#, fuzzy
 msgid "Do we include the web calendar ?"
-msgstr "Titulok kalendára"
+msgstr "Zahrnúť webový kalendár ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2803
 #, fuzzy, python-format
@@ -38099,7 +38122,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Meno lokality"
+msgstr " Názov lokality"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
@@ -38458,7 +38481,6 @@ msgid "%s since death"
 msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:2196
-#, fuzzy
 msgid "death"
 msgstr "Úmrtie"
 
