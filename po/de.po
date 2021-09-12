@@ -13,13 +13,14 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # R. B. <weblate@macdefender.org>, 2021.
 # RiseT <tareiss1971@yahoo.de>, 2021.
+# David Straub <straub@protonmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
 "PO-Revision-Date: 2021-09-02 16:32+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: David Straub <straub@protonmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -8595,27 +8596,27 @@ msgstr "Link"
 
 #: ../gramps/gen/lib/notetype.py:87
 msgid "Person Note"
-msgstr "Person Notiz"
+msgstr "Personennotiz"
 
 #: ../gramps/gen/lib/notetype.py:88
 msgid "Name Note"
-msgstr "Namen Notiz"
+msgstr "Namensnotiz"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Attribute Note"
-msgstr "Attribut Notiz"
+msgstr "Attributsnotiz"
 
 #: ../gramps/gen/lib/notetype.py:90
 msgid "Address Note"
-msgstr "Adresse Notiz"
+msgstr "Adressennotiz"
 
 #: ../gramps/gen/lib/notetype.py:91
 msgid "Association Note"
-msgstr "Verknüpfung Notiz"
+msgstr "Verknüpfungsnotiz"
 
 #: ../gramps/gen/lib/notetype.py:92
 msgid "LDS Note"
-msgstr "HLT Notiz"
+msgstr "HLT-Notiz"
 
 #: ../gramps/gen/lib/notetype.py:93
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:127
@@ -8624,7 +8625,7 @@ msgstr "Familiennotiz"
 
 #: ../gramps/gen/lib/notetype.py:94
 msgid "Event Note"
-msgstr "Ereignis Notiz"
+msgstr "Ereignisnotiz"
 
 #: ../gramps/gen/lib/notetype.py:95
 msgid "Event Reference Note"
@@ -8632,7 +8633,7 @@ msgstr "Ereignis-Referenz Notiz"
 
 #: ../gramps/gen/lib/notetype.py:96
 msgid "Source Note"
-msgstr "Quelle Notiz"
+msgstr "Quellennotiz"
 
 #: ../gramps/gen/lib/notetype.py:97
 msgid "Source Reference Note"
@@ -8640,11 +8641,11 @@ msgstr "Quellen-Referenz Notiz"
 
 #: ../gramps/gen/lib/notetype.py:98
 msgid "Place Note"
-msgstr "Ort Notiz"
+msgstr "Ortsnotiz"
 
 #: ../gramps/gen/lib/notetype.py:99
 msgid "Repository Note"
-msgstr "Aufbewahrungsort Notiz"
+msgstr "Aufbewahrungsorts-Notiz"
 
 #: ../gramps/gen/lib/notetype.py:100
 msgid "Repository Reference Note"
