@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-11 12:04+0000\n"
+"PO-Revision-Date: 2021-09-14 23:17+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -3239,7 +3239,7 @@ msgstr "Počet míst"
 #: ../gramps/plugins/webreport/statistics.py:169
 #: ../gramps/plugins/webreport/statistics.py:216
 msgid "Number of repositories"
-msgstr "Počet zdrojů"
+msgstr "Počet archívů"
 
 #: ../gramps/gen/db/generic.py:2424
 msgid "Number of notes"
@@ -11561,7 +11561,7 @@ msgstr "Pozadí pro svobodné"
 
 #: ../gramps/gui/configure.py:734
 msgid "Background for Civil union"
-msgstr "Barva pozadí pro Lidové milice"
+msgstr "Pozadí pro civilní svazek"
 
 #: ../gramps/gui/configure.py:736
 msgid "Background for Unknown"
@@ -18897,7 +18897,7 @@ msgstr "Ukládáte knihu s názvem, který již existuje."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:938
 msgid "Generate Book"
-msgstr "Vytořit knihu"
+msgstr "Vytvořit knihu"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:985
 msgid "Gramps Book"
