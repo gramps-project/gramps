@@ -190,7 +190,7 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       <eventref hlink="_ed548e0361f1ae2cbc05454d012" role="Primary"/>
       <parentin hlink="_ed548cb8f4cc81352fdb41f3c1"/>
     </person>
-    <person handle="_ed62975ecee19fddb286c8e9992" change="1631298158" id="I00000">
+    <person handle="_ed62975ecee19fddb286c8e9992" change="1631298158" id="I00003">
       <gender>M</gender>
       <name type="Birth Name">
         <first>{brother}</first>
@@ -198,7 +198,7 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       </name>
       <childof hlink="_ed548cb8f4cc81352fdb41f3c1"/>
     </person>
-    <person handle="_ed62989f9c834fa58b835dd7016" change="1631298372" id="I00001">
+    <person handle="_ed62989f9c834fa58b835dd7016" change="1631298372" id="I00004">
       <gender>F</gender>
       <name type="Birth Name">
         <first>{wife}</first>
@@ -206,7 +206,7 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       </name>
       <parentin hlink="_ed6298947b8626d450000470e81"/>
     </person>
-    <person handle="_ed62990eb586b17023026d1b58c" change="1631298372" id="I00002">
+    <person handle="_ed62990eb586b17023026d1b58c" change="1631298372" id="I00005">
       <gender>M</gender>
       <name type="Birth Name">
         <first>{child1}</first>
@@ -224,7 +224,7 @@ FIRST_TIME_DEFAULT_FILE = """<?xml version="1.0" encoding="UTF-8"?>
       <childref hlink="_ed548ab269d640ea256206b4610"/>
       <childref hlink="_ed62975ecee19fddb286c8e9992"/>
     </family>
-    <family handle="_ed6298947b8626d450000470e81" change="1631298372" id="F00000">
+    <family handle="_ed6298947b8626d450000470e81" change="1631298372" id="F00001">
       <rel type="Married"/>
       <father hlink="_ed548ab269d640ea256206b4610"/>
       <mother hlink="_ed62989f9c834fa58b835dd7016"/>
@@ -1370,9 +1370,9 @@ class NoviceSelection(ManagedWindow, DbLoader):
             dbid = config.get('database.backend')
             if self.nbb == 0:
                 self.dbmanager._create_new_db(dbid=dbid, title=name,
-                                              edit_entry=True)
+                                              edit_entry=False)
             db = open_database(name)
-            if  db:
+            if db:
                 pmgr = GuiPluginManager.get_instance()
                 filen, extension = os.path.splitext(file_to_load)
                 extension = extension[1:] # remove the leading dot
@@ -1396,6 +1396,7 @@ class NoviceSelection(ManagedWindow, DbLoader):
         filtering.add_pattern("*.ged")
         filtering.add_pattern("*.GED")
         filtering.add_pattern("*.gramps")
+        filtering.add_pattern("*.gpkg")
         fcd = Gtk.FileChooserDialog(transient_for=self.uistate.window)
         fcd.set_title(_("Select your database gedcom/gramps file"))
         fcd.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
