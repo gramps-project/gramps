@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-18 12:14+0000\n"
+"PO-Revision-Date: 2021-09-18 19:53+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -7711,7 +7711,7 @@ msgstr "vzdělání"
 #: ../gramps/gen/lib/eventtype.py:230
 msgctxt "Elected abbreviation"
 msgid "elec."
-msgstr "zvolen"
+msgstr "zvol."
 
 #: ../gramps/gen/lib/eventtype.py:231
 msgctxt "Emigration abbreviation"
@@ -7736,12 +7736,12 @@ msgstr "prom."
 #: ../gramps/gen/lib/eventtype.py:235
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr "zdr. info"
+msgstr "zdr. inf."
 
 #: ../gramps/gen/lib/eventtype.py:236
 msgctxt "Military Service abbreviation"
 msgid "milser."
-msgstr "voj. služba"
+msgstr "voj. sl."
 
 #: ../gramps/gen/lib/eventtype.py:237
 msgctxt "Naturalization abbreviation"
@@ -7756,7 +7756,7 @@ msgstr "šlecht. titul"
 #: ../gramps/gen/lib/eventtype.py:239
 msgctxt "Number of Marriages abbreviation"
 msgid "n.o.mar."
-msgstr "poč. sňatků"
+msgstr "poč. manž."
 
 #: ../gramps/gen/lib/eventtype.py:240
 msgctxt "Occupation abbreviation"
@@ -7776,7 +7776,7 @@ msgstr "závěť"
 #: ../gramps/gen/lib/eventtype.py:243
 msgctxt "Property abbreviation"
 msgid "prop."
-msgstr "majetek"
+msgstr "maj."
 
 #: ../gramps/gen/lib/eventtype.py:244
 msgctxt "Religion abbreviation"
@@ -7796,22 +7796,22 @@ msgstr "penze"
 #: ../gramps/gen/lib/eventtype.py:247
 msgctxt "Will abbreviation"
 msgid "will."
-msgstr "vůle"
+msgstr "vůle."
 
 #: ../gramps/gen/lib/eventtype.py:248
 msgctxt "Marriage Settlement abbreviation"
 msgid "m.set."
-msgstr "manž. smlouva"
+msgstr "manž.sml."
 
 #: ../gramps/gen/lib/eventtype.py:249
 msgctxt "Marriage License abbreviation"
 msgid "m.lic."
-msgstr "svolení k sňatku"
+msgstr "manž.pov."
 
 #: ../gramps/gen/lib/eventtype.py:250
 msgctxt "Marriage Contract abbreviation"
 msgid "m.con."
-msgstr "manž. smlouva"
+msgstr "manž.sml."
 
 #: ../gramps/gen/lib/eventtype.py:251
 msgctxt "Marriage Banns abbreviation"
@@ -7821,7 +7821,7 @@ msgstr "ohl."
 #: ../gramps/gen/lib/eventtype.py:252
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr "alt. sňatek"
+msgstr "alt.manž."
 
 #: ../gramps/gen/lib/eventtype.py:253
 msgctxt "Engagement abbreviation"
@@ -15122,7 +15122,7 @@ msgstr "Ročník/Stránka"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 msgctxt "Citation: Minimum Confidence"
 msgid "Min. Conf."
-msgstr "Min. důvěrnost"
+msgstr "Min. důvěryh."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -25798,7 +25798,7 @@ msgstr "Každý odkaz na poznámku musí mít 'hlink' atribut.."
 #: ../gramps/plugins/importer/importxml.py:2528
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr "Neplatné datum {date} v XML {xml}, XML bude zachováno jako text"
+msgstr "Neplatné datum {date} v XML {xml}, zachovává XML jako text"
 
 #: ../gramps/plugins/importer/importxml.py:2580
 #, python-format
@@ -25822,7 +25822,7 @@ msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Chyba: matka %(mother)s' rodiny '%(family)s' neodkazuje zpět na rodinu. "
+"Chyba: matka '%(mother)s' rodiny '%(family)s' neodkazuje zpět na rodinu. "
 "Odkaz přidán."
 
 #: ../gramps/plugins/importer/importxml.py:3271
@@ -25880,7 +25880,7 @@ msgstr "Zasvěcující (SPD)"
 
 #: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Military ID"
-msgstr "Vojenský průkaz"
+msgstr "Vojenský ID"
 
 #: ../gramps/plugins/lib/libgedcom.py:709
 msgid "Mission (LDS)"
@@ -30064,7 +30064,7 @@ msgstr "Importují se rodiny."
 
 #: ../gramps/plugins/lib/libprogen.py:1691
 msgid "Civil union"
-msgstr "Lidové milice"
+msgstr "Občanský svazek"
 
 #: ../gramps/plugins/lib/libprogen.py:1796
 msgid "Wedding"
@@ -36851,7 +36851,7 @@ msgstr "Zobrazit vztah mezi aktivní a výchozí osobou"
 msgid ""
 "For each person page, show the relationship between this person and the "
 "active person."
-msgstr "Na každé stránce osoby zobrazit vztah touto a aktivní osobou."
+msgstr "Na každé stránce osoby zobrazit vztah mezi touto a aktivní osobou."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1998
 msgid "Html options"
@@ -37153,7 +37153,7 @@ msgstr "Zahrnout nepoužité obrázky a mediální objekty"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2242
 msgid "Whether to include unused or unreferenced media objects"
-msgstr "Zda zahrnout nepoužité a neodkazované mediální objekty a objekty"
+msgstr "Zda zahrnout nepoužité anebo neodkazované mediální objekty"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2247
 msgid "Create and only use thumbnail- sized images"
