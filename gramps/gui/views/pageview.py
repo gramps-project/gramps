@@ -165,7 +165,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.widget.show_all()
         self.widget.set_name('view')
         self.vpane.pack1(self.widget, resize=True, shrink=False)
-        self.vpane.pack2(self.bottombar, resize=False, shrink=True)
+        self.vpane.pack2(self.bottombar, resize=False, shrink=False)
         self.vpane.show()
         self._config.register('vpane.slider-position', -1)
         self.vpane.set_position(self._config.get('vpane.slider-position'))
