@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-18 19:57+0000\n"
+"PO-Revision-Date: 2021-09-19 16:28+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -7648,7 +7648,7 @@ msgstr "bar."
 #: ../gramps/gen/lib/eventtype.py:220
 msgctxt "Bat Mitzvah abbreviation"
 msgid "bat."
-msgstr "bas."
+msgstr "bat.m."
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgctxt "Blessing abbreviation"
@@ -10251,7 +10251,7 @@ msgstr "manžel/-ka"
 #: ../gramps/gen/relationship.py:2181
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "bývalý partner/-ka"
+msgstr "bývalý/-á manžel/-ka"
 
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
@@ -10271,17 +10271,17 @@ msgstr "druh/družka"
 #: ../gramps/gen/relationship.py:2191
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr "druh"
+msgstr "bývalý druh"
 
 #: ../gramps/gen/relationship.py:2193
 msgctxt "female,unmarried"
 msgid "ex-partner"
-msgstr "družka"
+msgstr "bývalá družka"
 
 #: ../gramps/gen/relationship.py:2195
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "druh/družka"
+msgstr "bývalý/-á druh/družka"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
@@ -10301,17 +10301,17 @@ msgstr "manžel/-ka"
 #: ../gramps/gen/relationship.py:2205
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "manžel"
+msgstr "bývalý manžel"
 
 #: ../gramps/gen/relationship.py:2207
 msgctxt "female,civil union"
 msgid "former partner"
-msgstr "manželka"
+msgstr "bývalá manželka"
 
 #: ../gramps/gen/relationship.py:2209
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "manžel/-ka"
+msgstr "bývalý/-á manžel/-ka"
 
 #: ../gramps/gen/relationship.py:2212
 msgctxt "male,unknown relation"
@@ -10331,17 +10331,17 @@ msgstr "partner/-ka"
 #: ../gramps/gen/relationship.py:2221
 msgctxt "male,unknown relation"
 msgid "former partner"
-msgstr "partner"
+msgstr "bývalý partner"
 
 #: ../gramps/gen/relationship.py:2223
 msgctxt "female,unknown relation"
 msgid "former partner"
-msgstr "partnerka"
+msgstr "bývalá partnerka"
 
 #: ../gramps/gen/relationship.py:2225
 msgctxt "gender unknown,unknown relation"
 msgid "former partner"
-msgstr "partner/-ka"
+msgstr "bývalý/-á partner/-ka"
 
 #: ../gramps/gen/relationship.py:2318
 #, python-format
@@ -10349,8 +10349,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Pre jazyk '%s' termíny označujúce vzťahy neboli preložené. Použije sa "
-"namiesto toho angličtina."
+"Pre jazyk '%s' termíny označujúce rodinné vzťahy neboli preložené. Použije "
+"sa namiesto toho angličtina."
 
 #: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:205
 msgid "death date"
@@ -11325,32 +11325,33 @@ msgid ""
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
 "Nasledujúce kľúčové slová sú nahradené príslušnými časťami mena:<tt>\n"
-"  <b>Krstné</b> - krstné meno (orvé meno) <b>Priezvisko</b> - priezviská (s "
-"predponami a spojkami)\n"
-"  <b>Titul</b> - titul (Dr., Mrs.) <b>Prípona</b> - prípona (Jr., Sr.)\n"
-"  <b>Domáce</b> - domáce meno <b>Prezývka</b> - prezývka\n"
-"  <b>Iniciály</b>- prvé písmená mena <b>Spoločné</b> - prezývka, domáce "
-"alebo prvé z mien\n"
-"  <b>Predpona</b> - všetky predpony (von, de)\n"
+"  <b>Krstné</b>    - krstné meno (prvé meno)     <b>Priezvisko</b>  - "
+"priezviská (s predponami a spojkami)\n"
+"  <b>Titul</b>   - titul (Dr., Mrs.)     <b>Prípona</b>   - prípona (Jr., "
+"Sr.)\n"
+"  <b>Domáce</b>    - domáce meno       <b>Prezývka</b> - prezývka\n"
+"  <b>Iniciály</b>- prvé písmená krstného mena      <b>Spoločné</b>   - "
+"prezývka, domáce alebo prvé z mien\n"
+"  <b>Predpona</b>  - všetky predpony (von, de)\n"
 "Priezviská:\n"
-"  <b>Ostatné</b> - neprimárne priezviská <b>Neotcovské</b>- všetky "
+"  <b>Ostatné</b>      - neprimárne priezviská    <b>Neotcovské</b>- všetky "
 "priezviská okrem otca/matky &amp; primárne\n"
-"  <b>Prezývka rodiny</b>- prezývka rodiny <b>Holé priezviská</b> - "
+"  <b>Rodinná prezývka</b>- prezývka rodiny     <b>Holé priezviská</b>  - "
 "priezviská (bez predpôn a spojok)\n"
-"  <b>Primárne, primárne[pre] alebo [sur] alebo [con]</b>- úplné primárne "
-"priezvisko, prefix, len priezvisko, spojka\n"
-"  <b>Otcovské, alebo otcovské [pred] alebo [príp] alebo [con]</b> - úplné pa/"
-"matronymické priezvisko, prefix, len priezvisko, spojka\n"
+"  <b>Primárne, primárne[pred] alebo [priezv] alebo [spojka]</b>- úplné "
+"primárne priezvisko, predpona, len priezvisko, spojka\n"
+"  <b>Otcovské, alebo [pred] alebo [priezv] alebo [spojka]</b> - úplné "
+"priezvisko po otcovi/matke, predpona, len priezvisko, spojka\n"
 "</tt>\n"
 "Kľúčové slovo UPPERCASE vynucuje písanie veľkých písmen. Odstránia sa extra "
 "zátvorky, čiarky. Ostatný text sa zobrazuje doslovne.\n"
 "\n"
-"<b>Príklad</b>: Edwin Jose von der Smith a Weston Wilson Sr (\"Ed\") - "
+"<b>Príklad</b>: Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
 "Underhills\n"
-"     <i>Edwin Jose</i>: <i>von der</i>: Smith</i> a <i>Weston</i>: "
-"X1215X]a</i>: [con], <i>Wilson</i>: \n"
-"     <i>Dr.</i>: <i>Sr</i>: <i>Ed</i>: Nickname, <i>Underhills</i>: "
-"Familynick, <i>Jose</i>:\n"
+"     <i>Edwin Jose</i>: Krstné, <i>von der</i>: Predpona, <i>Smith</i> and "
+"<i>Weston</i>: Primárne, </i>and</i>: [spojka], <i>Wilson</i>: Otcovské,\n"
+"     <i>Dr.</i>: Titul, <i>Sr</i>: Prípona, <i>Ed</i>: Prezývka, "
+"<i>Underhills</i>: Rodinná prezývka, <i>Jose</i>: Bežné meno.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -21870,7 +21871,7 @@ msgstr "GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:99
 msgid "_GeneWeb"
-msgstr "_GeneWeb"
+msgstr "GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:100
 msgid "GeneWeb is a web based genealogy program."
