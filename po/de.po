@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-14 23:17+0000\n"
+"PO-Revision-Date: 2021-09-20 16:38+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -5650,8 +5650,8 @@ msgstr "Ist ein Vorfahre eines <Filter>Treffers"
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:49
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr ""
-"Liefert Personen, die Vorfahren von jemandem sind, der/die im Filter "
-"enthalten ist/sind"
+"Liefert Personen, die Vorfahren von Personen sind, die durch einen Filter "
+"gefunden wurden"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:45
 msgid "Bookmarked people"
@@ -5667,7 +5667,7 @@ msgstr "Kinder von einen <Filter>Treffer"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:49
 msgid "Matches children of anybody matched by a filter"
-msgstr "Liefert Kinder von den Personen, die im Filter enthalten sind"
+msgstr "Liefert Kinder von Personen, auf die ein Filter passt"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
 msgid "Home Person"
@@ -5707,8 +5707,8 @@ msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
 msgstr ""
-"Liefert Personen, die Nachkommen oder Partner von jemandem sind, der dem "
-"Filter entspricht"
+"Liefert Personen, die Nachkommen oder der Ehepartner von Personen sind, die "
+"von einem Filter gefunden wurden"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:46
 msgid "Descendants of <person>"
@@ -5725,7 +5725,8 @@ msgstr "Ist ein Nachkomme eines <Filter>Treffers"
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:49
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr ""
-"Liefert Personen, die Nachkommen von jemandem sind, der dem Filter entspricht"
+"Liefert Personen, die Nachkommen von Personen sind, die durch einen Filter "
+"gefunden wurden"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:47
 msgid "Duplicated ancestors of <person>"
@@ -5854,7 +5855,7 @@ msgstr "Eltern eines <Filter>Treffers"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:49
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Liefert die Eltern von den im Filter enthalten Personen"
+msgstr "Liefert Eltern von allen, die von einem Filter gefunden wurden"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:45
 msgid "People related to <Person>"
@@ -5870,9 +5871,7 @@ msgstr "Geschwister eines <Filter>Treffers"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
 msgid "Matches siblings of anybody matched by a filter"
-msgstr ""
-"Liefert Personen, die Geschwister von jemanden sind, der in dem Filter "
-"enthalten ist"
+msgstr "Liefert Geschwister von allen, die von einem Filter gefunden wurden"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:47
 msgid "Spouses of <filter> match"
@@ -5900,7 +5899,7 @@ msgstr "Ereignisfiltername:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr "Personen mit Ereignissen entsprechend dem <Ereignisfilter>"
+msgstr "Personen mit Ereignissen, die dem <Ereignisfilter> entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
@@ -19010,11 +19009,11 @@ msgstr "Filtere vertrauliche Daten"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:606
 msgid "Filtering living persons"
-msgstr "Filtere lebende Personen"
+msgstr "Filtern von lebenden Personen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:623
 msgid "Applying selected person filter"
-msgstr "Gewählten Personenfilter anwenden"
+msgstr "Anwenden des ausgewählten Personenfilters"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:633
 msgid "Applying selected note filter"
@@ -22015,13 +22014,13 @@ msgstr "Legt fest, welche Personen im Bericht enthalten sind."
 #: ../gramps/plugins/webreport/narrativeweb.py:1970
 #: ../gramps/plugins/webreport/webcal.py:1760
 msgid "Filter Person"
-msgstr "Personenfilter"
+msgstr "Person filtern"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1019
 #: ../gramps/plugins/textreport/birthdayreport.py:480
 #: ../gramps/plugins/textreport/indivcomplete.py:1075
 msgid "The center person for the filter."
-msgstr "Die Hauptperson für den Filter."
+msgstr "Die zentrale Person für den Filter."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1023
 msgid "Sort chart items by"
@@ -22164,7 +22163,7 @@ msgstr "Legt fest, welche Personen in den Bericht aufgenommen werden"
 #: ../gramps/plugins/webreport/narrativeweb.py:1971
 #: ../gramps/plugins/webreport/webcal.py:1761
 msgid "The center person for the filter"
-msgstr "Die Hauptperson für den Filter"
+msgstr "Die zentrale Person für den Filter"
 
 #: ../gramps/plugins/drawreport/timeline.py:427
 #: ../gramps/plugins/tool/sortevents.py:180
@@ -23484,7 +23483,7 @@ msgstr "Personenfilter"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1002
 msgid "Gramplet providing a person filter"
-msgstr "Gramplet bietet einen Personenfilter"
+msgstr "Gramplet stellt einen Personenfilter zur Verfügung"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1015
 msgid "Family Filter"
@@ -30234,7 +30233,7 @@ msgstr "_Bearbeiten..."
 #: ../gramps/plugins/view/pedigreeview.py:685
 #: ../gramps/plugins/view/relview.py:393
 msgid "Person Filter Editor"
-msgstr "Filtereditor für Personen"
+msgstr "Personenfilter-Editor"
 
 #: ../gramps/plugins/lib/libpersonview.py:246
 #: ../gramps/plugins/lib/libpersonview.py:355
@@ -31284,12 +31283,12 @@ msgstr "Personen mit unbekanntem Geschlecht"
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgctxt "Filtering_on"
 msgid "incomplete names"
-msgstr "Personen mit unvollständigen Namen"
+msgstr "unvollständige Namen"
 
 #: ../gramps/plugins/quickview/filterbyname.py:65
 msgctxt "Filtering_on"
 msgid "people with missing birth dates"
-msgstr "Personen ohne Geburtsdatum"
+msgstr "Personen mit fehlenden Geburtsdaten"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgctxt "Filtering_on"
