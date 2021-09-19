@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-18 19:53+0000\n"
+"PO-Revision-Date: 2021-09-19 14:22+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -489,13 +489,13 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
-"<b>SoundEx může pomoci s rodinným výzkumem</b>SoundEx řeší dlouhotrvající "
-"problém v genealogii; jak si poradit s variantami zápisu jmen. Nástroj "
-"SoundEx vezme příjmení a vytvoří zjednodušenou formu, která je pro podobně "
-"znějící jména stejná. Znalost SoundEx kódu je velmi užitečná při zkoumání "
-"dat o sčítání lidu (mikrofiší) v knihovnách nebo jiných institucích. Chcete-"
-"li vidět SoundEx kódy pro příjmení ve vaší databázi přidejte SoundEx "
-"Gramplet."
+"<b>SoundEx může pomoci s rodinným výzkumem</b><br/>SoundEx řeší "
+"dlouhotrvající problém v genealogii; jak si poradit s variantami zápisu "
+"jmen. Nástroj SoundEx vezme příjmení a vytvoří zjednodušenou formu, která je "
+"pro podobně znějící jména stejná. Znalost SoundEx kódu je velmi užitečná při "
+"zkoumání dat o sčítání lidu (mikrofiší) v knihovnách nebo jiných "
+"institucích. Chcete-li vidět SoundEx kódy pro příjmení ve vaší databázi "
+"přidejte SoundEx Gramplet."
 
 #: ../data/tips.xml:32
 msgid ""
@@ -755,8 +755,8 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit &gt; "
 "Preferences &gt; Display\"."
 msgstr ""
-"<b>Nesprávné datum</b> Každý občas zadá datum v neplatném formátu. Data v "
-"neplatném formátu jsou zvýrazněna červeným pozadím, nebo červenou tečkou v "
+"<b>Nesprávné datum</b><br/> Každý občas zadá datum v neplatném formátu. Data "
+"v neplatném formátu jsou zvýrazněna červeným pozadím, nebo červenou tečkou v "
 "pravé části pole. Datum můžete opravit prostřednictvím dialogu výběru data. "
 "Ten se objeví po stisknutí tlačítka datum. Formát data lze nastavit v "
 "\"Úpravy &gt; Předvolby &gt; Zobrazení\"."
@@ -1471,8 +1471,8 @@ msgstr ""
 "gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. Zapsání výsledné databáze vytvořené ze všech importů zajistí parametr -e\n"
-"(použijte -f pokud nelze uhodnout formát z názvu souboru):gramps -i "
-"file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
+"(použijte -f pokud nelze uhodnout formát z názvu souboru):\n"
+"gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. Uložení možných chybových hlášení předchozího příkladu do souborů outfile "
 "a errfile:\n"
@@ -3181,9 +3181,8 @@ msgstr ""
 "\n"
 "Důrazně doporučujeme, abyste si rodokmen zálohovali. \n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit "
-"%(bold_start)sstarou%(bold_end)s verzi Gramps a %(wiki_backup_html_start)"
-"sprovést zálohu%(html_end)s svého rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit předchozí verzi Gramps a "
+"%(wiki_backup_html_start)sprovést zálohu%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -7641,7 +7640,7 @@ msgstr "obv."
 #: ../gramps/gen/lib/eventtype.py:216
 msgctxt "Adopted abbreviation"
 msgid "adop."
-msgstr "adop."
+msgstr "adopt."
 
 #: ../gramps/gen/lib/eventtype.py:217
 msgctxt "Adult Christening abbreviation"
@@ -7661,7 +7660,7 @@ msgstr "bar."
 #: ../gramps/gen/lib/eventtype.py:220
 msgctxt "Bat Mitzvah abbreviation"
 msgid "bat."
-msgstr "bat."
+msgstr "bat.m."
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgctxt "Blessing abbreviation"
@@ -10258,12 +10257,12 @@ msgstr "není definováno"
 #: ../gramps/gen/relationship.py:2174
 msgctxt "gender unknown"
 msgid "spouse"
-msgstr "partner"
+msgstr "manžel/-ka"
 
 #: ../gramps/gen/relationship.py:2181
 msgctxt "gender unknown"
 msgid "ex-spouse"
-msgstr "bývalý partner"
+msgstr "bývalý/-á manžel/-ka"
 
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
@@ -10278,52 +10277,52 @@ msgstr "družka"
 #: ../gramps/gen/relationship.py:2188
 msgctxt "gender unknown,unmarried"
 msgid "partner"
-msgstr "druh(družka)"
+msgstr "druh/družka"
 
 #: ../gramps/gen/relationship.py:2191
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr "bývalý manžel"
+msgstr "bývalý druh"
 
 #: ../gramps/gen/relationship.py:2193
 msgctxt "female,unmarried"
 msgid "ex-partner"
-msgstr "bývalý manželka"
+msgstr "bývalá družka"
 
 #: ../gramps/gen/relationship.py:2195
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "druh(družka)"
+msgstr "bývalý/-á druh/družka"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
 msgid "partner"
-msgstr "partner"
+msgstr "manžel"
 
 #: ../gramps/gen/relationship.py:2200
 msgctxt "female,civil union"
 msgid "partner"
-msgstr "partnerka"
+msgstr "manželka"
 
 #: ../gramps/gen/relationship.py:2202
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr "partner(ka)"
+msgstr "manžel/-ka"
 
 #: ../gramps/gen/relationship.py:2205
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "partner"
+msgstr "bývalý manžel"
 
 #: ../gramps/gen/relationship.py:2207
 msgctxt "female,civil union"
 msgid "former partner"
-msgstr "partnerka"
+msgstr "bývalá manželka"
 
 #: ../gramps/gen/relationship.py:2209
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "partner(ka)"
+msgstr "bývalý/-á manžel/-ka"
 
 #: ../gramps/gen/relationship.py:2212
 msgctxt "male,unknown relation"
@@ -10338,22 +10337,22 @@ msgstr "partnerka"
 #: ../gramps/gen/relationship.py:2216
 msgctxt "gender unknown,unknown relation"
 msgid "partner"
-msgstr "partner(ka)"
+msgstr "partner/-ka"
 
 #: ../gramps/gen/relationship.py:2221
 msgctxt "male,unknown relation"
 msgid "former partner"
-msgstr "partner"
+msgstr "bývalý partner"
 
 #: ../gramps/gen/relationship.py:2223
 msgctxt "female,unknown relation"
 msgid "former partner"
-msgstr "partnerka"
+msgstr "bývalá partnerka"
 
 #: ../gramps/gen/relationship.py:2225
 msgctxt "gender unknown,unknown relation"
 msgid "former partner"
-msgstr "partner(ka)"
+msgstr "bývalý/-á partner/-ka"
 
 #: ../gramps/gen/relationship.py:2318
 #, python-format
@@ -11334,38 +11333,37 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Následující klíčová slova budou nahrazena příslušnými hodnotami:\n"
-"<tt>  \n"
-"  <b>křestní</b>    -  křestní jméno (jméno)  <b>Příjmení</b>     -  "
-"příjmení (s předponami a spojkami)\n"
-"  <b>titul</b>      - titul (Dr., ing.)       <b>přípona</b>      - přípona "
-"(ml., st.)\n"
-"  <b>běžné</b>      - běžné jméno             <b>přezdívka</b>     - "
+"Následující klíčová slova budou nahrazena příslušnými částmi jména:<tt>  \n"
+"  <b>Křestní</b>    - křestní jméno (jméno)  <b>Příjmení</b>     - příjmení ("
+"s předponami a spojkami)\n"
+"  <b>Titul</b>      - titul (Dr., Mrs.)       <b>Přípona</b>      - přípona ("
+"Jr., Sr.)\n"
+"  <b>Běžné</b>      - běžné jméno             <b>Přezdívka</b>     - "
 "přezdívka\n"
-"  <b>iniciály</b>   - první písmena jména  <b>obvyklé</b>       - přezdívka,"
-"běžné nebo křestní jméno\n"
-"  <b>předpona</b> - všechny předpony (von, de)\n"
-" Příjmení:   <b>zbytek</b>     - další (ne primární) příjmení\n"
-"    <b>holépříjmení</b>  - celé příjmení vyjma příjmení po otci/matce &amp; "
-"primární\n"
-"  <b>rodinnápřezdívka</b>   - přezdívka rodiny  <b> holépříjmení</b> - "
+"  <b>Iniciály</b>   - první písmena křestního jména  <b>Obvyklé</b>       - "
+"přezdívka,běžné nebo první křestní jméno\n"
+"  <b>Předpona</b> - všechny předpony (von, de)\n"
+" Příjmení:\n"
+"   <b>Ostatní</b>     - další (ne primární) příjmení\n"
+"    <b>Neotcovské příjmení</b> - celé příjmení vyjma příjmení po otci/matce "
+"&amp; primární\n"
+"  <b>Rodinná přezdívka</b>   - přezdívka rodiny  <b> Holé příjmení</b> - "
 "příjmení (bez předpon a spojek)\n"
-"  <b>primární, primární[předp], [příjm] nebo [spojka]</b>       - celé "
+"  <b>Primární, primární[předp] nebo [příjm] nebo [spojka]</b>       - celé "
 "primární (hlavní) příjmení, předpona, jen příjmení, spojka\n"
-"  <b>otcovské, otcovské[předp], [příjm] nebo [spojka]</b>       - celé  "
+"  <b>Otcovské, nebo [předp] nebo [příjm] nebo [spojka]</b>       - celé "
 "příjmení po otci/matce, předpona, jen příjmení, spojka \n"
 "</tt>\n"
 "Klíčové slovo psané VELKÝMI PÍSMENY vynucuje velká písmena jmen. Kulaté "
 "závorky, čárky a uvozovky navíc jsou odstraněny. Ostatní text se zobrazí "
 "doslovně.\n"
 "\n"
-"<b>Příklad</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
-"- Underhills'\n"
-"     <i>Edwin Jose</i> je křestní jméno, <i>von der</i> je předpona, "
-"<i>Smith</i> a <i>Weston</i> příjmení, \n"
-"     <i>Wilson</i> příjmení po otci, <i>Dr.</i> titul, <i>Sr</i> přípona, "
-"<i>Ed</i> přezdívka, \n"
-"     <i>Underhills</i> přezdívka rodiny, <i>Jose</i> běžné jméno.\n"
+"<b>Příklad</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") -"
+" Underhills'\n"
+"     <i>Edwin Jose</i>: Křestní jméno, <i>von der</i>: Předpona, <i>Smith</"
+"i> and <i>Weston</i>: Příjmení, <i>and</i>: [spojka], <i>Wilson</i>: "
+"Příjmení po otci, <i>Dr.</i>: Titul, <i>Sr</i>: Přípona, <i>Ed</i>: "
+"Přezdívka, <i>Underhills</i>: Rodinná přezdívka, <i>Jose</i>: Běžné jméno.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -12642,9 +12640,10 @@ msgstr ""
 "obnovit váš rodokmen z poslední platné zálohy. Je několik situací, kdy dojít "
 "k neočekávané situaci, proto nejprve %(bold_start)szálohujte%(bold_end)s "
 "rodokmen.\n"
-"Vámi zvolený rodokmen je uložen v %(dirname)s.\\nPřed opravou se ujistěte, "
-"že rodokmen skutečně nelze otevřít. Z některých chyb je databázový backend "
-"schopen se zotavit sám.\n"
+"Vámi zvolený rodokmen je uložen v %(dirname)s.\n"
+"\n"
+"Před opravou se ujistěte, že rodokmen skutečně nelze otevřít. Z některých "
+"chyb je databázový backend schopen se zotavit sám.\n"
 "\n"
 "%(bold_start)sPodrobnosti:%(bold_end)s Oprava rodokmenu použije poslední "
 "zálohu, kterou Gramps uložil při posledním použití. Pokud jste pracovali "
@@ -12656,8 +12655,8 @@ msgstr ""
 "%(gramps_wiki_recover_url)s\n"
 "Před započetím opravy se pokuste otevřít rodokmen normálně. Mnoho chyb "
 "aktivujících tlačítko oprav může být opraveno automaticky. Pokud je to tento "
-"případ, můžete tlačítko oprav deaktivovat odstraněním souboru "
-"%(recover_file)s ve složce s rodokmenem."
+"případ, můžete tlačítko oprav deaktivovat odstraněním souboru %(recover_file)"
+"s ve složce s rodokmenem."
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
@@ -16714,7 +16713,7 @@ msgstr "Autoři pramenu."
 
 #: ../gramps/gui/glade/editsource.glade:154
 msgid "_Pub. info.:"
-msgstr "_Pub. info.:"
+msgstr "Pub. info.:"
 
 #: ../gramps/gui/glade/editsource.glade:168
 msgid ""
@@ -17278,11 +17277,11 @@ msgstr "Druh písma"
 
 #: ../gramps/gui/glade/styleeditor.glade:315
 msgid "_Roman (Times, serif)"
-msgstr "_Roman (Times, serif)"
+msgstr "Roman (Times, serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:332
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
-msgstr "_Swiss (Arial, Helvetica, sans-serif)"
+msgstr "Swiss (Arial, Helvetica, sans-serif)"
 
 #: ../gramps/gui/glade/styleeditor.glade:355
 msgid "Size"
@@ -17818,8 +17817,9 @@ msgstr ""
 "startu.\n"
 "Použijte jiný pohled, nenahrávejte rodokmen, změňte pohled, poté nahrajte "
 "svůj rodokmen.\n"
-"Změnou parametru last-view v souboru gramps.ini můžete ručně nastavit "
-"výchozí pohled spouštěný při startu Gramps.\n"
+"Můžete také ručně nastavit výchozí pohled spouštěný při startu v souboru "
+"gramps.ini\n"
+"změnou parametru last-view.\n"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:97
 msgid "Error Report Assistant"
@@ -18768,7 +18768,7 @@ msgstr "Zobrazit data mimo filtr"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:92
 msgid "Generate_Book_dialog"
-msgstr "Generate_Book_dialog"
+msgstr "Generování knihy"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:172
 msgid "Available Books"
@@ -20617,15 +20617,14 @@ msgstr ""
 "\n"
 "Nastavením této volby dojde k:\n"
 "\n"
-"Volbou 'Nepřizpůsobovat strom'  bude velikost stránky\n"
-" přizpůsobena  výšce/šířce stromu\n"
+"Volbou 'Nepřizpůsobovat strom' bude velikost stránky\n"
+" přizpůsobena výšce/šířce stromu\n"
 "\n"
 "Volbou 'Přizpůsobit strom pouze šířce stránky'\n"
-" bude výška strany přizpůsobena  výšce stromu\n"
+" bude výška strany přizpůsobena výšce stromu\n"
 "\n"
 "Volbou 'Přizpůsobit strom velikosti stránky'\n"
-" bude přizpůsobena stránka odstraněním\n"
-" vertikálních i horizontálních mezer"
+" bude přizpůsobena stránka odstraněním vertikálních i horizontálních mezer"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
@@ -21856,7 +21855,7 @@ msgstr "Webový rodokmen"
 
 #: ../gramps/plugins/export/export.gpr.py:56
 msgid "_Web Family Tree"
-msgstr "_Web Family Tree"
+msgstr "Web Family Tree"
 
 #: ../gramps/plugins/export/export.gpr.py:57
 msgid "Web Family Tree format"
@@ -21890,7 +21889,7 @@ msgstr "GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:99
 msgid "_GeneWeb"
-msgstr "_GeneWeb"
+msgstr "GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:100
 msgid "GeneWeb is a web based genealogy program."
@@ -21944,7 +21943,7 @@ msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:165
 msgid "vC_alendar"
-msgstr "vC_alendar"
+msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:166
 msgid "vCalendar is used in many calendaring and PIM applications."
@@ -23547,7 +23546,9 @@ msgstr "   %d.b Otec: "
 msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
-msgstr "Kliknutím na jméno změnit aktivní, dvojklikem upravit jméno"
+msgstr ""
+"Kliknutím na jméno změnit aktivní\n"
+"Dvojklikem na jméno upravit"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:48
 msgid "Log for this Session"
@@ -25619,11 +25620,11 @@ msgid ""
 msgstr ""
 "\n"
 "Importovaný soubor neobsahoval všechna data.\n"
-"%(new)d objektů bylo vytvořeno jako náprava.\n"
-"Jejich typizační atribut byl nastaven na hodnotu 'Neznámý'.\n"
-"Jejich počet v každé kategorii je indikován číslem v závorce.\n"
-"Kde je to možné, jsou tyto 'Neznámé' objekty odkazovány poznámkou "
-"%(unknown)s.\n"
+"%(new)d objektů bylo vytvořeno jako náprava a\n"
+"jejich typizační atribut byl nastaven na hodnotu 'Neznámý'.\n"
+"Jejich počet v každé kategorii je indikován\n"
+"číslem v závorce. Kde je to možné, jsou tyto\n"
+"'Neznámé' objekty odkazovány poznámkou %(unknown)s.\n"
 
 #: ../gramps/plugins/importer/importxml.py:310
 msgid ""
@@ -25724,8 +25725,9 @@ msgstr ""
 "\n"
 "Soubor proto nemůže být importován. Použijte prosím starší verzi Gramps "
 "která podporuje xml verze %(xmlversion)s.\n"
-"Pro více informací přejděte na stránku\n"
-"  %(gramps_wiki_xml_url)s."
+"Přejděte na stránku\n"
+"  %(gramps_wiki_xml_url)s\n"
+" pro více informací."
 
 #: ../gramps/plugins/importer/importxml.py:1042
 msgid "The file will not be imported"
@@ -25994,8 +25996,7 @@ msgstr ""
 "\n"
 "Importovaný soubor neobsahoval všechna data.\n"
 "Jako oprava bylo vytvořeno %(new)d objektů\n"
-"a jejich typizační atribut byl nastaven na hodnotu\n"
-"'Neznámý'.\n"
+"a jejich typizační atribut byl nastaven na hodnotu 'Neznámý'.\n"
 "Kde je to možné, jsou tyto 'Neznámé' objekty odkazovány\n"
 "poznámkou %(unknown)s.\n"
 
@@ -30491,7 +30492,7 @@ msgstr ""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:33
 msgid "EniroMaps"
-msgstr "EniroMaps"
+msgstr "Mapy Eniro"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:34
 msgid "Opens on kartor.eniro.se"
@@ -31401,7 +31402,7 @@ msgstr "Výběr pohledů ze seznamů s expandery"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:72
 msgid "Expander"
-msgstr "Expander"
+msgstr "Rozpínač"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:393
@@ -33421,7 +33422,7 @@ msgid ""
 "   %(repo)d repository objects\n"
 "   %(note)d note objects\n"
 msgstr ""
-"Odstraněno %(empty_obj)d prázdných objektů:\n"
+"%(empty_obj)d prázdných objektů odstraněno:\n"
 "   %(person)d objektů osob\n"
 "   %(family)d objektů rodin\n"
 "   %(event)d objektů událostí\n"
@@ -35567,7 +35568,7 @@ msgstr "Mohly se tyto rodiny potkat?"
 
 #: ../gramps/plugins/view/geofamclose.py:252
 msgid "GeoFamClose"
-msgstr "GeoFamClose"
+msgstr "Zavřít GeoFam"
 
 #: ../gramps/plugins/view/geofamclose.py:295
 #: ../gramps/plugins/view/geofamily.py:342
@@ -35758,7 +35759,7 @@ msgstr "Potomci aktivní osoby."
 
 #: ../gramps/plugins/view/geomoves.py:239
 msgid "GeoMoves"
-msgstr "GeoMoves"
+msgstr "Posun Geo"
 
 #: ../gramps/plugins/view/geomoves.py:557
 #, python-format
@@ -37894,9 +37895,7 @@ msgstr "%(spouse)s a %(person)s"
 #, python-format
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
-"%(html_email_author_start)s\n"
-"WebCal%(html_email_author_end)s"
+msgstr "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format
@@ -38137,7 +38136,7 @@ msgstr "Basic-Spruce"
 #. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
 msgid "Mainz"
-msgstr "Mainz"
+msgstr "Styl Mainz"
 
 #. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
