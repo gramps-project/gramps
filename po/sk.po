@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-19 16:28+0000\n"
+"PO-Revision-Date: 2021-09-21 13:53+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -528,7 +528,7 @@ msgstr ""
 "nastala, Gramps Vám umožňuje zadať dátum vo viacerých formátoch, ktoré sú "
 "založené na odhade. Napr. \"okolo 1908\" je v Gramps platný zápis pre dátum "
 "narodenia. Kliknite na tlačidlo Dátum hneď vedľa políčka pre dátum a "
-"zobrazte príručku Gramps, kde sa dozviete viac."
+"zobrazte manuál Gramps, kde sa dozviete viac."
 
 #: ../data/tips.xml:42
 msgid ""
@@ -1092,7 +1092,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:255
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "Chyba: Nenájdený súbor pre import %s."
+msgstr "Chyba: Importovaný súbor %s. nebol nájdený."
 
 #: ../gramps/cli/arghandler.py:273
 #, python-format
@@ -1116,7 +1116,7 @@ msgstr "Má sa prepísať?"
 
 #: ../gramps/cli/arghandler.py:297 ../gramps/cli/clidbman.py:429
 msgid "no"
-msgstr "žiadny"
+msgstr "nie"
 
 #: ../gramps/cli/arghandler.py:297 ../gramps/cli/arghandler.py:298
 #: ../gramps/cli/clidbman.py:429
@@ -1140,16 +1140,16 @@ msgstr "Chyba: nemožno otvoriť '%s'"
 
 #: ../gramps/cli/arghandler.py:405
 msgid "List of known Family Trees in your database path\n"
-msgstr "Zoznam známych rodinných stromov vo Vašej databáze'\n"
+msgstr "Zoznam známych rodinných stromov vo Vašej databáze\n"
 
 #: ../gramps/cli/arghandler.py:413
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr "%(full_DB_path)s s menom \"%(f_t_name)s\""
+msgstr "%(full_DB_path)s s názvom \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:431 ../gramps/cli/clidbman.py:188
 msgid "Gramps Family Trees:"
-msgstr "Stromy rodiny Gramps:"
+msgstr "Rodinné stromy Gramps:"
 
 #: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
@@ -1157,7 +1157,7 @@ msgstr "Stromy rodiny Gramps:"
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
-msgstr "Strom rodiny"
+msgstr "Rodinný strom"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
@@ -1207,7 +1207,7 @@ msgstr "Úspešne otvorené!"
 
 #: ../gramps/cli/arghandler.py:555
 msgid "Database is locked, cannot open it!"
-msgstr "Otvorenie databázy zlyhalo, je uzamknutá!"
+msgstr "Databáza je zamknutá, nedá sa otvoriť!"
 
 #: ../gramps/cli/arghandler.py:556
 #, python-format
@@ -1249,7 +1249,7 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:685
 msgid "Unknown tool name."
-msgstr "Neznámy nástroj."
+msgstr "Neznámy názov nástroja."
 
 #: ../gramps/cli/arghandler.py:687
 #, python-format
@@ -1518,7 +1518,7 @@ msgstr "nastaviť ladenie"
 #: ../gramps/cli/argparser.py:355
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr "konfig. nastavenie Gramps z %s:"
+msgstr "Konfig. nastavenie Gramps z %s:"
 
 #: ../gramps/cli/argparser.py:373
 #, python-format
@@ -1663,8 +1663,8 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"CHYBA: Nesprávna cesta k databáse v Edit Menu->Preferencie.\n"
-"Otvorte preferencie a nastavte správnu cestu.\n"
+"CHYBA: Nesprávna cesta k databáse v menu Upraviť->Preferencie.\n"
+"Otvorte preferencie a nastavte správnu cestu k databáze.\n"
 "\n"
 "Detaily: Nepodarilo sa vytvoriť adresár pre databázu:\n"
 "    %s\n"
@@ -1678,7 +1678,7 @@ msgstr "Nikdy"
 #: ../gramps/cli/clidbman.py:551
 #, python-format
 msgid "Locked by %s"
-msgstr "Uzamknutý prvkom %s"
+msgstr "Uzamknul %s"
 
 #: ../gramps/cli/clidbman.py:553 ../gramps/gen/lib/attrtype.py:63
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventroletype.py:52
@@ -1806,11 +1806,11 @@ msgstr "Nedá sa otvoriť súbor: %s"
 
 #: ../gramps/cli/grampscli.py:237
 msgid "Could not load a recent Family Tree."
-msgstr "Nepodarilo sa načítanie posledne používaného stromu rodiny."
+msgstr "Nepodarilo sa načítať posledný rodinný strom."
 
 #: ../gramps/cli/grampscli.py:238
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "Strom rodiny bol zmazaný a už neexistuje."
+msgstr "Rodinný strom bol zmazaný a už neexistuje."
 
 #: ../gramps/cli/grampscli.py:243
 msgid "The database is locked."
@@ -1821,7 +1821,7 @@ msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
-"Použite voľbu --force-unlok ak ste si istí že sa databáza práve nepoužíva."
+"Použite voľbu --force-unlock, ak ste si istí, že sa databáza práve nepoužíva."
 
 #: ../gramps/cli/grampscli.py:322
 #, python-format
@@ -1882,7 +1882,7 @@ msgstr "=číslo/počet"
 
 #: ../gramps/cli/plug/__init__.py:298
 msgid "Paper orientation number."
-msgstr "Orientačné číslo."
+msgstr "Orientačné číslo papiera."
 
 #: ../gramps/cli/plug/__init__.py:300
 msgid "Left paper margin"
@@ -1907,7 +1907,7 @@ msgstr "Spodný okraj papiera"
 
 #: ../gramps/cli/plug/__init__.py:307
 msgid "=css filename"
-msgstr "=css názov"
+msgstr "=názov súboru CSS"
 
 #: ../gramps/cli/plug/__init__.py:308
 msgid "CSS filename to use, html format only"
@@ -2002,7 +2002,7 @@ msgstr "Vytvorenie zostavy zlyhalo. "
 #: ../gramps/cli/plug/__init__.py:818
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Vytvorenie zostavy %s' zlyhalo."
+msgstr "Vytvorenie zostavy '%s' zlyhalo."
 
 #: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:281
 msgid "Error detected in database"
@@ -2031,15 +2031,15 @@ msgstr "Importované %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:257
 msgid "Missing Given Name"
-msgstr "Krstné meno chýba"
+msgstr "Chýba krstné meno"
 
 #: ../gramps/gen/config.py:258
 msgid "Missing Record"
-msgstr "Chýbajúci záznam"
+msgstr "Chýba záznam"
 
 #: ../gramps/gen/config.py:259
 msgid "Missing Surname"
-msgstr "Priezvisko chýba"
+msgstr "Chýba priezvisko"
 
 #: ../gramps/gen/config.py:266 ../gramps/gen/config.py:268
 msgid "[Living]"
@@ -7917,7 +7917,7 @@ msgstr "Slobodný/á"
 
 #: ../gramps/gen/lib/familyreltype.py:49
 msgid "Civil Union"
-msgstr "Civilný zväzok"
+msgstr "Registrované partnerstvo"
 
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
 #: ../gramps/gen/lib/ldsord.py:184 ../gramps/gui/clipboard.py:907
@@ -10286,32 +10286,32 @@ msgstr "bývalý/-á druh/družka"
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
 msgid "partner"
-msgstr "manžel"
+msgstr "partner"
 
 #: ../gramps/gen/relationship.py:2200
 msgctxt "female,civil union"
 msgid "partner"
-msgstr "manželka"
+msgstr "partnerka"
 
 #: ../gramps/gen/relationship.py:2202
 msgctxt "gender unknown,civil union"
 msgid "partner"
-msgstr "manžel/-ka"
+msgstr "partner/partnerka"
 
 #: ../gramps/gen/relationship.py:2205
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "bývalý manžel"
+msgstr "bývalý partner"
 
 #: ../gramps/gen/relationship.py:2207
 msgctxt "female,civil union"
 msgid "former partner"
-msgstr "bývalá manželka"
+msgstr "bývalá partnerka"
 
 #: ../gramps/gen/relationship.py:2209
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "bývalý/-á manžel/-ka"
+msgstr "bývalý/-á partner/partnerka"
 
 #: ../gramps/gen/relationship.py:2212
 msgctxt "male,unknown relation"
@@ -10920,7 +10920,7 @@ msgstr "Nezákonný či nie bežný vzťah medzi mužom a ženou"
 
 #: ../gramps/gen/utils/string.py:69
 msgid "An established relationship between members of the same sex"
-msgstr "Uznané partnerstvo medzi osobami rovnakého pohlavia"
+msgstr "Uznaný vzťah medzi osobami rovnakého pohlavia"
 
 #: ../gramps/gen/utils/string.py:71
 msgid "Unknown relationship between a man and woman"
@@ -11170,7 +11170,7 @@ msgstr "OS: %s"
 #: ../gramps/gui/clipboard.py:70
 msgctxt "manual"
 msgid "Using_the_Clipboard"
-msgstr "Using_the_Clipboard"
+msgstr "Používanie schránky"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
@@ -11547,7 +11547,7 @@ msgstr "Pozadie pre slobodné osoby"
 
 #: ../gramps/gui/configure.py:734
 msgid "Background for Civil union"
-msgstr "Pozadie pre civilný zväzok"
+msgstr "Pozadie pre registrované partnerstvo"
 
 #: ../gramps/gui/configure.py:736
 msgid "Background for Unknown"
@@ -12813,7 +12813,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "Select_a_media_selector"
+msgstr "Voľba média"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -13559,7 +13559,7 @@ msgstr "Preskočiť na"
 #: ../gramps/gui/editors/editaddress.py:65
 msgctxt "manual"
 msgid "Address_Editor_dialog"
-msgstr "Address_Editor_dialog"
+msgstr "Editor adries"
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:167
@@ -13569,7 +13569,7 @@ msgstr "Editovanie adries"
 #: ../gramps/gui/editors/editattribute.py:62
 msgctxt "manual"
 msgid "Attribute_Editor_dialog"
-msgstr "Attribute_Editor_dialog"
+msgstr "Editor atribútov"
 
 #: ../gramps/gui/editors/editattribute.py:94
 #: ../gramps/gui/editors/editattribute.py:137
@@ -13592,7 +13592,7 @@ msgstr "Typ atribútu nemôže ostať prázdny"
 #: ../gramps/gui/editors/editchildref.py:66
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr "Child_Reference_Editor"
+msgstr "Editor odkazov na deti"
 
 #: ../gramps/gui/editors/editchildref.py:99
 #: ../gramps/gui/editors/editchildref.py:190
@@ -13602,7 +13602,7 @@ msgstr "Editor odkazov na deti"
 #: ../gramps/gui/editors/editcitation.py:69
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "New_Citation_dialog"
+msgstr "Nová citácia"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -13706,11 +13706,11 @@ msgstr "Vypočítaný"
 #: ../gramps/gui/editors/editdate.py:99
 msgctxt "manual"
 msgid "Editing_dates"
-msgstr "Editing_dates"
+msgstr "Editovanie údajov"
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
-msgstr "Výber dátumu"
+msgstr "Výber údaja"
 
 #: ../gramps/gui/editors/editdate.py:269
 #, python-brace-format
@@ -13720,7 +13720,7 @@ msgstr "Opravte dátum alebo prepnite z `{cur_mode}' do `{text_mode}'"
 #: ../gramps/gui/editors/editevent.py:64
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "New_Event_dialog"
+msgstr "Nová udalosť"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -13784,7 +13784,7 @@ msgstr "Vymazať udalosť (%s)"
 #: ../gramps/gui/editors/editeventref.py:57
 msgctxt "manual"
 msgid "Event_Reference_Editor_dialog"
-msgstr "Event_Reference_Editor_dialog"
+msgstr "Editor odkazov na udalosti"
 
 #: ../gramps/gui/editors/editeventref.py:77
 #: ../gramps/gui/editors/editeventref.py:268
@@ -13810,7 +13810,7 @@ msgstr "Priradiť udalosť"
 #: ../gramps/gui/editors/editfamily.py:92
 msgctxt "manual"
 msgid "Family_Editor_dialog"
-msgstr "Family_Editor_dialog"
+msgstr "Editor rodiny"
 
 #: ../gramps/gui/editors/editfamily.py:113
 msgid "Create a new person and add the child to the family"
@@ -14108,7 +14108,7 @@ msgstr "Priradiť rodinu"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "Editovanie obradov LDS"
+msgstr "Editor obradov LDS"
 
 #: ../gramps/gui/editors/editldsord.py:158
 #: ../gramps/gui/editors/editldsord.py:315
@@ -14135,7 +14135,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 #: ../gramps/gui/editors/editlink.py:49
 msgctxt "manual"
 msgid "Link_Editor"
-msgstr "Link_Editor"
+msgstr "Editor prepojení"
 
 #: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:250
 msgid "Link Editor"
@@ -14152,7 +14152,7 @@ msgstr "Editor lokality"
 #: ../gramps/gui/editors/editmedia.py:68
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr "New_Media_dialog"
+msgstr "Nové médium"
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:412
@@ -14217,7 +14217,7 @@ msgstr "Odstrániť mediálny objekt"
 #: ../gramps/gui/editors/editmediaref.py:72
 msgctxt "manual"
 msgid "Media_Reference_Editor_dialog"
-msgstr "Media_Reference_Editor_dialog"
+msgstr "Editor odkazov médií"
 
 #: ../gramps/gui/editors/editmediaref.py:96
 #: ../gramps/gui/editors/editmediaref.py:415
@@ -14239,7 +14239,7 @@ msgstr "Editor mien"
 #: ../gramps/gui/editors/editname.py:162
 msgctxt "manual"
 msgid "Name_Editor"
-msgstr "Name_Editor"
+msgstr "Editor mien"
 
 #: ../gramps/gui/editors/editname.py:174
 #: ../gramps/gui/editors/editperson.py:319
@@ -14295,7 +14295,7 @@ msgstr "Zoskupiť len toto meno"
 #: ../gramps/gui/editors/editnote.py:67
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "Editing_information_about_notes"
+msgstr "Editovanie informácie o poznámkach"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14369,7 +14369,7 @@ msgstr "Nová osoba"
 #: ../gramps/gui/editors/editperson.py:243
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "Editing_information_about_people"
+msgstr "Editovanie informácie o osobách"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:478
@@ -14459,7 +14459,7 @@ msgstr "Neznáme"
 #: ../gramps/gui/editors/editpersonref.py:67
 msgctxt "manual"
 msgid "Person_Reference_Editor"
-msgstr "Person_Reference_Editor"
+msgstr "Editor odkazov na osoby"
 
 #: ../gramps/gui/editors/editpersonref.py:93
 #: ../gramps/gui/editors/editpersonref.py:213
@@ -14481,7 +14481,7 @@ msgstr "Musíte označiť osobu, alebo zrušiť editovanie"
 #: ../gramps/gui/editors/editplace.py:69
 msgctxt "manual"
 msgid "Place_Editor_dialog"
-msgstr "Place_Editor_dialog"
+msgstr "Editor lokalít"
 
 #: ../gramps/gui/editors/editplace.py:91
 #: ../gramps/gui/glade/editplace.glade:355 ../gramps/gui/merge/mergeplace.py:55
@@ -14567,7 +14567,7 @@ msgstr "Nový"
 #: ../gramps/gui/editors/editplacename.py:49
 msgctxt "manual"
 msgid "Place_Name_Editor_dialog"
-msgstr "Place_Name_Editor_dialog"
+msgstr "Editor názvu miesta"
 
 #: ../gramps/gui/editors/editplacename.py:101
 #: ../gramps/gui/editors/editplacename.py:134
@@ -14645,7 +14645,7 @@ msgstr "Pridať archív"
 #: ../gramps/gui/editors/editrepository.py:60
 msgctxt "manual"
 msgid "New_Repository_dialog"
-msgstr "New_Repository_dialog"
+msgstr "Nový archív"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -14680,7 +14680,7 @@ msgstr "Zmazať archív (%s)"
 #: ../gramps/gui/editors/editsource.py:64
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "New_Source_dialog"
+msgstr "Nový zdroj"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -14722,7 +14722,7 @@ msgstr "Odstrániť zdroj (%s)"
 #: ../gramps/gui/editors/edittaglist.py:48
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "Tag_selection_dialog"
+msgstr "Výber značiek"
 
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:127
@@ -14732,7 +14732,7 @@ msgstr "Výber značiek"
 #: ../gramps/gui/editors/editurl.py:47
 msgctxt "manual"
 msgid "Internet_Address_Editor"
-msgstr "Internet_Address_Editor"
+msgstr "Editor internetových adries"
 
 #: ../gramps/gui/editors/editurl.py:68 ../gramps/gui/editors/editurl.py:103
 msgid "Internet Address Editor"
@@ -14741,17 +14741,17 @@ msgstr "Editor internetových adries"
 #: ../gramps/gui/editors/filtereditor.py:84
 msgctxt "manual"
 msgid "Add_Rule_dialog"
-msgstr "Add_Rule_dialog"
+msgstr "Pridanie pravidla"
 
 #: ../gramps/gui/editors/filtereditor.py:85
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "Define_Filter_dialog"
+msgstr "Definícia filtrov"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 msgctxt "manual"
 msgid "Custom_Filters"
-msgstr "Custom_Filters"
+msgstr "Vlastné filtre"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Person Filters"
@@ -17675,7 +17675,7 @@ msgstr "Nástroje"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_User Manual"
-msgstr "Požívateľská príručka"
+msgstr "Používateľský manuál"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_View"
@@ -17961,7 +17961,7 @@ msgstr ""
 #: ../gramps/gui/logger/_errorview.py:46
 msgctxt "manual"
 msgid "Error_Report"
-msgstr "Error_Report"
+msgstr "Správa o chybe"
 
 #: ../gramps/gui/logger/_errorview.py:107
 msgid "Error Report"
@@ -18000,7 +18000,7 @@ msgstr "Vytvorené dňa %(year)4d/%(month)02d/%(day)02d"
 #: ../gramps/gui/merge/mergecitation.py:46
 msgctxt "manual"
 msgid "Merge_Citations"
-msgstr "Merge_Citations"
+msgstr "Zlučovanie citácií"
 
 #: ../gramps/gui/merge/mergecitation.py:68
 #: ../gramps/plugins/tool/tools.gpr.py:442
@@ -18010,7 +18010,7 @@ msgstr "Zlúčiť citácie"
 #: ../gramps/gui/merge/mergeevent.py:45
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "Merge_Events"
+msgstr "Zlučovanie udalostí"
 
 #: ../gramps/gui/merge/mergeevent.py:67
 msgid "Merge Events"
@@ -18019,7 +18019,7 @@ msgstr "Zlúčiť udalosti"
 #: ../gramps/gui/merge/mergefamily.py:46
 msgctxt "manual"
 msgid "Merge_Families"
-msgstr "Merge_Families"
+msgstr "Zlučovanie rodín"
 
 #: ../gramps/gui/merge/mergefamily.py:68
 msgid "Merge Families"
@@ -18041,12 +18041,12 @@ msgstr "Nemôžem zlúčiť osoby"
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "Merge_Media_Objects"
+msgstr "Zlučovanie mediálnych objektov"
 
 #: ../gramps/gui/merge/mergenote.py:44
 msgctxt "manual"
 msgid "Merge_Notes"
-msgstr "Merge_Notes"
+msgstr "Zlučovanie poznámok"
 
 #: ../gramps/gui/merge/mergenote.py:94
 msgid "flowed"
@@ -18059,7 +18059,7 @@ msgstr "Formátovaný text"
 #: ../gramps/gui/merge/mergeperson.py:58
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "Merge_People"
+msgstr "Zlučovanie osôb"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -18134,17 +18134,17 @@ msgstr ""
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
 msgid "Merge_Places"
-msgstr "Merge_Places"
+msgstr "Zlučovanie lokalít"
 
 #: ../gramps/gui/merge/mergerepository.py:44
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Merge_Repositories"
+msgstr "Zlučovanie archívov"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
 msgid "Merge_Sources"
-msgstr "Merge_Sources"
+msgstr "Zlučovanie zdrojov"
 
 #: ../gramps/gui/merge/mergesource.py:67
 msgid "Merge Sources"
@@ -19052,7 +19052,7 @@ msgstr "Štýly dokumentov"
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "Document_Styles_dialog"
+msgstr "Štýly dokumentu"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
@@ -19082,7 +19082,7 @@ msgstr "Editor štýlov"
 #: ../gramps/gui/plug/report/_styleeditor.py:242
 msgctxt "manual"
 msgid "Style_editor_dialog"
-msgstr "Style_editor_dialog"
+msgstr "Editor štýlov"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:352
 #: ../gramps/gui/plug/report/_styleeditor.py:380
@@ -19172,7 +19172,7 @@ msgstr "Posledná zmena"
 #: ../gramps/gui/selectors/selectcitation.py:86
 msgctxt "manual"
 msgid "Select_Source_or_Citation_selector"
-msgstr "Select_Source_or_Citation_selector"
+msgstr "Výber zdroja alebo citácie"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
@@ -19181,12 +19181,12 @@ msgstr "Označiť udalosť"
 #: ../gramps/gui/selectors/selectevent.py:79
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "Select_Event_selector"
+msgstr "Výber udalosti"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "Select_Family_selector"
+msgstr "Výber rodiny"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -19195,7 +19195,7 @@ msgstr "Zvoliť poznámku"
 #: ../gramps/gui/selectors/selectnote.py:82
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "Select_Note_selector"
+msgstr "Výber poznámky"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
@@ -19204,27 +19204,27 @@ msgstr "Zvoliť mediálny objekt"
 #: ../gramps/gui/selectors/selectobject.py:108
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "Select_Media_Object_selector"
+msgstr "Výber mediálneho objektu"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
 msgid "Select_Father_selector"
-msgstr "Select_Father_selector"
+msgstr "Výber otca"
 
 #: ../gramps/gui/selectors/selectperson.py:66
 msgctxt "manual"
 msgid "Select_Mother_selector"
-msgstr "Select_Mother_selector"
+msgstr "Výber matky"
 
 #: ../gramps/gui/selectors/selectperson.py:68
 msgctxt "manual"
 msgid "Select_Child_selector"
-msgstr "Select_Child_selector"
+msgstr "Výber dieťaťa"
 
 #: ../gramps/gui/selectors/selectperson.py:70
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "Select_Person_selector"
+msgstr "Výber osoby"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -19233,7 +19233,7 @@ msgstr "Označiť lokalitu"
 #: ../gramps/gui/selectors/selectplace.py:90
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "Select_Place_selector"
+msgstr "Výber lokality"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -19242,7 +19242,7 @@ msgstr "Označiť archív"
 #: ../gramps/gui/selectors/selectrepository.py:75
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "Select_Repository_selector"
+msgstr "Výber archívu"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -19251,7 +19251,7 @@ msgstr "Označiť zdroj"
 #: ../gramps/gui/selectors/selectsource.py:76
 msgctxt "manual"
 msgid "Select_Source_selector"
-msgstr "Select_Source_selector"
+msgstr "Výber zdroja"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19549,7 +19549,7 @@ msgstr "Záloha zrušená"
 #: ../gramps/gui/views/bookmarks.py:69
 msgctxt "manual"
 msgid "Bookmarks"
-msgstr "Bookmarks"
+msgstr "Záložky"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
@@ -19735,12 +19735,12 @@ msgstr "Upraviť značky..."
 #: ../gramps/gui/views/tags.py:112
 msgctxt "manual"
 msgid "Organize_Tags_Window"
-msgstr "Organize_Tags_Window"
+msgstr "Usporiadanie značiek"
 
 #: ../gramps/gui/views/tags.py:113
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "New_Tag_dialog"
+msgstr "Nová značka"
 
 #: ../gramps/gui/views/tags.py:250
 #, python-format
@@ -19883,7 +19883,7 @@ msgstr "Viaže sa ku"
 
 #: ../gramps/gui/widgets/fanchart.py:2085
 msgid "Add partner to person"
-msgstr "Priradiť partnera osoby"
+msgstr "Pridať partnera k osobe"
 
 #: ../gramps/gui/widgets/fanchart.py:2092
 msgid "Add a person"
@@ -20022,7 +20022,7 @@ msgstr "Informácia o priebehu"
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "Reorder_Relationships_dialog"
+msgstr "Zmena poradia vzťahov"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -22442,8 +22442,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
-" 13. %(gramps_wiki_html_start)s%(section)sExistuje príručka pre Gramps?"
-"%(html_end)s\n"
+" 13. %(gramps_wiki_html_start)s%(section)s tu je manuál pre "
+"Gramps?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -23738,7 +23738,7 @@ msgstr "Začať s genealógiou a Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:110
 msgid "Gramps online manual"
-msgstr "Online príručka Gramps"
+msgstr "Online manuál Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
 msgctxt "locale_suffix"
@@ -25380,7 +25380,7 @@ msgstr "Áno"
 #: ../gramps/plugins/importer/importprogen.py:62
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
-msgstr "Import_from_another_genealogy_program"
+msgstr "Import z iného genealogického programu"
 
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
@@ -30072,7 +30072,7 @@ msgstr "Import rodín."
 
 #: ../gramps/plugins/lib/libprogen.py:1691
 msgid "Civil union"
-msgstr "Civilný zväzok"
+msgstr "Registrované partnerstvo"
 
 #: ../gramps/plugins/lib/libprogen.py:1796
 msgid "Wedding"
@@ -32880,7 +32880,7 @@ msgstr "_Akceptovať zmeny a zavrieť"
 #: ../gramps/plugins/tool/changenames.py:64
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "Fix_Capitalization_of_Family_Names"
+msgstr "Oprava veľkých písmen rodinných mien"
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -33523,7 +33523,7 @@ msgstr "Editor používateľských filtrov"
 #: ../gramps/plugins/tool/eventcmp.py:70
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "Compare_Individual_Events"
+msgstr "Porovnanie individuálnych udalostí"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -33618,7 +33618,7 @@ msgstr "Porovnať"
 #: ../gramps/plugins/tool/finddupes.py:66
 msgctxt "manual"
 msgid "Find_Possible_Duplicate_People"
-msgstr "Find_Possible_Duplicate_People"
+msgstr "Vyhľadanie možných duplicitných osôb"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
@@ -33686,7 +33686,7 @@ msgstr "Zlúčiť osoby"
 #: ../gramps/plugins/tool/findloop.py:58
 msgctxt "manual"
 msgid "Find_database_loop"
-msgstr "Find_database_loop"
+msgstr "Vyhľadanie databázovej slučky"
 
 #: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465
@@ -33707,7 +33707,7 @@ msgstr "Hľadanie možnej slučky pre každú osobu"
 #: ../gramps/plugins/tool/mediamanager.py:68
 msgctxt "manual"
 msgid "Media_Manager"
-msgstr "Media_Manager"
+msgstr "Správca médií"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:118
@@ -33923,7 +33923,7 @@ msgstr "Ignorovať dátum a dôveryhodnosť"
 #: ../gramps/plugins/tool/mergecitations.py:83
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "Merge_citations"
+msgstr "Zlučovanie citácií"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -33962,7 +33962,7 @@ msgstr "Značka"
 #: ../gramps/plugins/tool/notrelated.py:60
 msgctxt "manual"
 msgid "Not_Related"
-msgstr "Not_Related"
+msgstr "Vyhľadanie osôb bez vzťahu"
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
@@ -34056,7 +34056,7 @@ msgstr "Pravým kliknutím kopírujte z/do Nastavení výskumníka"
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "Edit_Database_Owner_Information"
+msgstr "Editácia informácie o majiteľovi databázy"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -34101,7 +34101,7 @@ msgstr ""
 #: ../gramps/plugins/tool/patchnames.py:63
 msgctxt "manual"
 msgid "Extract_Information_from_Names"
-msgstr "Extract_Information_from_Names"
+msgstr "Získanie informácie z mien"
 
 #: ../gramps/plugins/tool/patchnames.py:105
 msgid "Name and title extraction tool"
@@ -34223,7 +34223,7 @@ msgstr "Ich spoločnými predkami sú: "
 #: ../gramps/plugins/tool/removespaces.py:55
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr "Remove_leading_and_trailing_spaces"
+msgstr "Odstránenie úvodných a koncových medzier"
 
 #: ../gramps/plugins/tool/removespaces.py:88
 #: ../gramps/plugins/tool/tools.gpr.py:489
@@ -34418,7 +34418,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Reorder_Gramps_ID"
+msgstr "Zoradenie ID Gramps"
 
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
@@ -34821,7 +34821,7 @@ msgstr "Skryť označené"
 #: ../gramps/plugins/tool/verify.py:83
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "Verify_the_Data"
+msgstr "Overovanie údajov"
 
 #: ../gramps/plugins/tool/verify.py:295
 msgid "Data Verify tool"
