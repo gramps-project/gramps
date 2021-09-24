@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-21 13:53+0000\n"
+"PO-Revision-Date: 2021-09-24 13:44+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -38,7 +38,7 @@ msgid ""
 "feature-complete for professional genealogists."
 msgstr ""
 "Gramps je genealogický program, ktorý je intuitívny pre hobby používateľov, "
-"ale s dostatočnou fukncionalitou pre profesionálnych genealógov."
+"ale s dostatočnou funkcionalitou pre profesionálnych genealógov."
 
 #: ../data/gramps.appdata.xml.in:8
 msgid ""
@@ -13564,7 +13564,7 @@ msgstr "Editor adries"
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:167
 msgid "Address Editor"
-msgstr "Editovanie adries"
+msgstr "Editor adries"
 
 #: ../gramps/gui/editors/editattribute.py:62
 msgctxt "manual"
@@ -14517,8 +14517,8 @@ msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
-"Neplatná zemepisná šírka\n"
-"(syntax: 18\\u00b09'48.21 \"S, -18.2412 alebo -18:9:48.21)"
+"Neplatná zemepisná dĺžka\n"
+"(syntax: 18\\u00b09'48.21 \"E, -18.2412 alebo -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:229
 #: ../gramps/plugins/lib/maps/geography.py:892
@@ -16611,9 +16611,9 @@ msgid ""
 msgstr ""
 "Zemepisná šírka (poloha vzhľadom k rovníku) v decimálnom formáte alebo v "
 "stupňoch.\n"
-"Platné hodnoty sú napr. 12.0154, 50°52′21.92″N, N50°52′21.92″ alebo "
-"50:52:21.92\n"
-"Hodnoty zadáta v pohľade Zemepis po vyhľadaní miesta alebo zo služby mapy v "
+"Platné hodnoty sú napr. 12.0154, 50°52′21.92″N, N50°52′21.92″ alebo 50:52:21."
+"92\n"
+"Hodnoty zadáte v pohľade Zemepis po vyhľadaní miesta alebo zo služby mapy v "
 "pohľade lokality."
 
 #: ../gramps/gui/glade/editplaceref.glade:475
@@ -16629,7 +16629,7 @@ msgstr ""
 "formáte alebo v stupňoch.\n"
 "Platné hodnoty sú napr. -124.3647, 124°52′21.92″E, E124°52′21.92″ alebo "
 "124:52:21.92\n"
-"Hodnoty zadáta v pohľade Zemepis po vyhľadaní miesta alebo zo služby mapy v "
+"Hodnoty zadáte v pohľade Zemepis po vyhľadaní miesta alebo zo služby mapy v "
 "pohľade lokality."
 
 #: ../gramps/gui/glade/editreporef.glade:127
