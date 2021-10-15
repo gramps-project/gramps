@@ -18,40 +18,41 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from html import escape
 import logging
-log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Event, EventType
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
-from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from .flatbasemodel import FlatBaseModel
 
-#-------------------------------------------------------------------------
+LOG = logging.getLogger(".event")
+
+# -------------------------------------------------------------------------
 #
 # Positions in raw data structure
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 COLUMN_HANDLE = 0
 COLUMN_ID = 1
 COLUMN_TYPE = 2
@@ -64,15 +65,18 @@ COLUMN_PRIV = 12
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # EventModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class EventModel(FlatBaseModel):
 
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
 
@@ -99,7 +103,7 @@ class EventModel(FlatBaseModel):
             self.sort_change,
             self.column_participant,
             self.column_tag_color
-           ]
+            ]
         FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
                                skip=skip, sort_map=sort_map)
 
@@ -123,19 +127,19 @@ class EventModel(FlatBaseModel):
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
-    def column_description(self,data):
+    def column_description(self, data):
         return data[COLUMN_DESCRIPTION]
 
-    def column_participant(self,data):
+    def column_participant(self, data):
         handle = data[0]
         cached, value = self.get_cached_value(handle, "PARTICIPANT")
         if not cached:
             value = get_participant_from_event(self.db, data[COLUMN_HANDLE],
-                                               all_=True) # all participants
+                                               all_=True)  # all participants
             self.set_cached_value(handle, "PARTICIPANT", value)
         return value
 
-    def column_place(self,data):
+    def column_place(self, data):
         if data[COLUMN_PLACE]:
             cached, value = self.get_cached_value(data[0], "PLACE")
             if not cached:
@@ -147,13 +151,13 @@ class EventModel(FlatBaseModel):
         else:
             return ''
 
-    def column_type(self,data):
+    def column_type(self, data):
         return str(EventType(data[COLUMN_TYPE]))
 
-    def column_id(self,data):
+    def column_id(self, data):
         return data[COLUMN_ID]
 
-    def column_date(self,data):
+    def column_date(self, data):
         if data[COLUMN_DATE]:
             event = Event()
             event.unserialize(data)
@@ -166,7 +170,7 @@ class EventModel(FlatBaseModel):
                 return retval
         return ''
 
-    def sort_date(self,data):
+    def sort_date(self, data):
         if data[COLUMN_DATE]:
             event = Event()
             event.unserialize(data)
@@ -185,10 +189,10 @@ class EventModel(FlatBaseModel):
             # There is a problem returning None here.
             return ''
 
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[COLUMN_CHANGE]
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[COLUMN_CHANGE])
 
     def get_tag_name(self, tag_handle):

@@ -24,50 +24,53 @@
 """
 Place Model.
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger(".gui.views.treemodels.placemodel")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# internationalization
+#
+# -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceType
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
-#-------------------------------------------------------------------------
-#
-# internationalization
-#
-#-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+_LOG = logging.getLogger(".gui.views.treemodels.placemodel")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # PlaceBaseModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class PlaceBaseModel:
 
     def __init__(self, db):
+        self.db = db
         self.gen_cursor = db.get_place_cursor
         self.map = db.get_raw_place_data
         self.fmap = [
@@ -158,7 +161,7 @@ class PlaceBaseModel:
             return ''
         value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else ''
         if not value:
-             return _("Error in format")
+            return _("Error in format")
         return value
 
     def sort_latitude(self, data):
@@ -249,17 +252,26 @@ class PlaceBaseModel:
         # Invalidates all paths
         self.lru_path.clear()
 
-#-------------------------------------------------------------------------
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "place"
+
+# -------------------------------------------------------------------------
 #
 # PlaceListModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class PlaceListModel(PlaceBaseModel, FlatBaseModel):
     """
     Flat place model.  (Original code in PlaceBaseModel).
     """
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
 
         PlaceBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
@@ -272,17 +284,27 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         PlaceBaseModel.destroy(self)
         FlatBaseModel.destroy(self)
 
-#-------------------------------------------------------------------------
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "place"
+
+# -------------------------------------------------------------------------
 #
 # PlaceTreeModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     """
     Hierarchical place model.
     """
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
+        self.number_items = None
 
         PlaceBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, uistate, scol=scol, order=order,
@@ -319,7 +341,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         data        The object data.
         """
         sort_key = self.sort_func(data)
-        if len(data[5]) > 0:
+        if data[5]:
             parent = data[5][0][0]
         else:
             parent = None

@@ -23,50 +23,52 @@
 CitationTreeModel classes for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
-LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
-#
-# internationalization
-#
-#-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# internationalization
+#
+# -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from gramps.gen.utils.db import get_source_referents
+# -------------------------------------------------------------------------
 from .treebasemodel import TreeBaseModel
 from .citationbasemodel import CitationBaseModel
 
-#-------------------------------------------------------------------------
+_ = glocale.translation.gettext
+LOG = logging.getLogger(".citation")
+
+# -------------------------------------------------------------------------
 #
 # CitationModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class CitationTreeModel(CitationBaseModel, TreeBaseModel):
     """
     Hierarchical citation model.
     """
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
         self.db = db
         self.number_items = self.db.get_number_of_sources
         self.map = self.db.get_raw_source_data
@@ -99,6 +101,11 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_pinfo,
             self.source_src_tag_color
             ]
+        self.gen_cursor2 = None
+        self.map2 = None
+        self.fmap2 = None
+        self.smap2 = None
+        self.number_items2 = None
 
         TreeBaseModel.__init__(self, self.db, uistate, scol=scol, order=order,
                                search=search, skip=skip, sort_map=sort_map,

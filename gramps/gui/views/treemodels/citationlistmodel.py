@@ -23,41 +23,44 @@
 CitationListModel class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
-LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .flatbasemodel import FlatBaseModel
 from .citationbasemodel import CitationBaseModel
 
-#-------------------------------------------------------------------------
+LOG = logging.getLogger(".citation")
+
+# -------------------------------------------------------------------------
 #
 # CitationListModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class CitationListModel(CitationBaseModel, FlatBaseModel):
     """
     Flat citation model.  (Original code in CitationBaseModel).
     """
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
         self.map = db.get_raw_citation_data
         self.gen_cursor = db.get_citation_cursor
         self.fmap = [

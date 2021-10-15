@@ -18,39 +18,43 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
-from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from .flatbasemodel import FlatBaseModel
 
-#-------------------------------------------------------------------------
+LOG = logging.getLogger(".")
+
+# -------------------------------------------------------------------------
 #
 # SourceModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class SourceModel(FlatBaseModel):
 
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
@@ -98,19 +102,19 @@ class SourceModel(FlatBaseModel):
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
-    def column_title(self,data):
+    def column_title(self, data):
         return data[2].replace('\n', ' ')
 
-    def column_author(self,data):
+    def column_author(self, data):
         return data[3]
 
-    def column_abbrev(self,data):
+    def column_abbrev(self, data):
         return data[7]
 
-    def column_id(self,data):
+    def column_id(self, data):
         return data[1]
 
-    def column_pubinfo(self,data):
+    def column_pubinfo(self, data):
         return data[4]
 
     def column_private(self, data):
@@ -120,10 +124,10 @@ class SourceModel(FlatBaseModel):
             # There is a problem returning None here.
             return ''
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[8])
 
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[8]
 
     def get_tag_name(self, tag_handle):

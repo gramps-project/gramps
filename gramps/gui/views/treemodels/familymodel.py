@@ -19,45 +19,48 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time, get_date_valid
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.lib import EventRoleType, FamilyRelType
-from .flatbasemodel import FlatBaseModel
+from gramps.gen.lib import FamilyRelType
 from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from .flatbasemodel import FlatBaseModel
 
+LOG = logging.getLogger(".family")
 invalid_date_format = config.get('preferences.invalid-date-format')
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # FamilyModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class FamilyModel(FlatBaseModel):
 
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
         self.fmap = [

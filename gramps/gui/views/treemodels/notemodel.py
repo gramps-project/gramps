@@ -19,42 +19,46 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger(".gui.notemodel")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GNOME/GTK modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from .flatbasemodel import FlatBaseModel
 from gramps.gen.lib import (Note, NoteType, StyledText)
+from .flatbasemodel import FlatBaseModel
 
-#-------------------------------------------------------------------------
+_LOG = logging.getLogger(".gui.notemodel")
+
+# -------------------------------------------------------------------------
 #
 # NoteModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class NoteModel(FlatBaseModel):
     """
     """
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
         """Setup initial values for instance variables."""
+        skip = skip if skip else set()
         self.gen_cursor = db.get_note_cursor
         self.map = db.get_raw_note_data
         self.fmap = [
@@ -128,7 +132,7 @@ class NoteModel(FlatBaseModel):
     def sort_change(self, data):
         return "%012x" % data[Note.POS_CHANGE]
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[Note.POS_CHANGE])
 
     def get_tag_name(self, tag_handle):

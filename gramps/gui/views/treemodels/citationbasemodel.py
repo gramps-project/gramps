@@ -23,33 +23,33 @@
 CitationBaseModel classes for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from html import escape
 import logging
-log = logging.getLogger(".")
-LOG = logging.getLogger(".citation")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+LOG = logging.getLogger(".citation")
+_ = glocale.translation.gettext
+
+# -------------------------------------------------------------------------
 #
 # COLUMN constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # These are the column numbers in the serialize/unserialize interfaces in
 # the Citation object
 COLUMN_HANDLE = 0
@@ -75,14 +75,16 @@ COLUMN2_PRIV = 12
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # CitationModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class CitationBaseModel:
 
-# Fields access when 'data' is a Citation
+    # Fields access when 'data' is a Citation
 
     def citation_date(self, data):
         if data[COLUMN_DATE]:

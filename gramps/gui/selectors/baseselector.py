@@ -19,32 +19,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Pango
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gramps.gen.config import config
 from ..managedwindow import ManagedWindow
 from ..filters import SearchBar
 from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
-from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # SelectEvent
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class BaseSelector(ManagedWindow):
     """Base class for the selectors, showing a dialog from which to select
         one of the primary objects
@@ -55,14 +56,15 @@ class BaseSelector(ManagedWindow):
     MARKUP = 1
     IMAGE = 2
 
-    def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
-                 show_search_bar = True, default=None):
+    def __init__(self, dbstate, uistate, track=None, filterx=None, skip=None,
+                 show_search_bar=True, default=None):
         """Set up the dialog with the dbstate and uistate, track of parent
             windows for ManagedWindow, initial filter for the model, skip with
             set of handles to skip in the view, and search_bar to show the
             SearchBar at the top or not.
         """
-        self.filter = (2, filter, False)
+        self.filter = (2, filterx, False)
+        track = track if track else []
 
         # Set window title, some selectors may set self.title in their __init__
         if not hasattr(self, 'title'):
@@ -72,7 +74,7 @@ class BaseSelector(ManagedWindow):
 
         self.renderer = Gtk.CellRendererText()
         self.track_ref_for_deletion("renderer")
-        self.renderer.set_property('ellipsize',Pango.EllipsizeMode.END)
+        self.renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
 
         self.db = dbstate.db
         self.tree = None
@@ -97,22 +99,23 @@ class BaseSelector(ManagedWindow):
         self.searchbox = InteractiveSearchBox(self.tree)
         self.tree.connect('key-press-event', self.searchbox.treeview_keypress)
 
-        #add the search bar
-        self.search_bar = SearchBar(dbstate, uistate, self.build_tree, apply_clear=self.apply_clear)
+        # add the search bar
+        self.search_bar = SearchBar(dbstate, uistate, self.build_tree,
+                                    apply_clear=self.apply_clear)
         filter_box = self.search_bar.build()
         self.setup_filter()
         vbox.pack_start(filter_box, False, False, 0)
         vbox.reorder_child(filter_box, 1)
 
-        self.set_window(window,title_label,self.title)
+        self.set_window(window, title_label, self.title)
 
-        #set up sorting
+        # set up sorting
         self.sort_col = 0
         self.setupcols = True
         self.columns = []
         self.sortorder = Gtk.SortType.ASCENDING
 
-        self.skip_list=skip
+        self.skip_list = skip if skip else set()
         self.selection = self.tree.get_selection()
         self.track_ref_for_deletion("selection")
 
@@ -120,9 +123,9 @@ class BaseSelector(ManagedWindow):
         self._set_size()
 
         self.show()
-        #show or hide search bar?
+        # show or hide search bar?
         self.set_show_search_bar(show_search_bar)
-        #Hide showall if no filter is specified
+        # Hide showall if no filter is specified
         if self.filter[1] is not None:
             self.showall.connect('toggled', self.show_toggle)
             self.showall.show()
@@ -152,7 +155,7 @@ class BaseSelector(ManagedWindow):
                         parent_path_list = parent_path.get_indices()
                         for i in range(len(parent_path_list)):
                             expand_path = Gtk.TreePath(
-                                    tuple([x for x in parent_path_list[:i+1]]))
+                                tuple([x for x in parent_path_list[:i+1]]))
                             self.tree.expand_row(expand_path, False)
 
             # Select active object
@@ -163,24 +166,27 @@ class BaseSelector(ManagedWindow):
         else:
             self.selection.unselect_all()
 
-    def add_columns(self,tree):
+    def add_columns(self, tree):
         tree.set_fixed_height_mode(True)
         titles = self.get_column_titles()
-        for ix in range(len(titles)):
-            item = titles[ix]
+        for idx in range(len(titles)):
+            item = titles[idx]
             if item[2] == BaseSelector.NONE:
                 continue
             elif item[2] == BaseSelector.TEXT:
-                column = Gtk.TreeViewColumn(item[0],self.renderer,text=item[3])
+                column = Gtk.TreeViewColumn(item[0],
+                                            self.renderer,
+                                            text=item[3])
             elif item[2] == BaseSelector.MARKUP:
-                column = Gtk.TreeViewColumn(item[0],self.renderer,markup=item[3])
+                column = Gtk.TreeViewColumn(item[0],
+                                            self.renderer,
+                                            markup=item[3])
             column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
             column.set_fixed_width(item[1])
             column.set_resizable(True)
-            #connect click
-            column.connect('clicked', self.column_clicked, ix)
+            # connect click
+            column.connect('clicked', self.column_clicked, idx)
             column.set_clickable(True)
-            ##column.set_sort_column_id(ix) # model has its own sort implemented
             self.columns.append(column)
             tree.append_column(column)
 
@@ -246,18 +252,19 @@ class BaseSelector(ManagedWindow):
         """make the search bar at the top shown
         """
         self.show_search_bar = value
-        if not self.search_bar :
+        if not self.search_bar:
             return
-        if self.show_search_bar :
+        if self.show_search_bar:
             self.search_bar.show()
-        else :
+        else:
             self.search_bar.hide()
 
     def column_order(self):
         """
         returns a tuple indicating the column order of the model
         """
-        return [(1, row[3], row[1], row[0]) for row in self.get_column_titles()]
+        return [(1, row[3], row[1], row[0])
+                for row in self.get_column_titles()]
 
     def exact_search(self):
         """
@@ -270,9 +277,7 @@ class BaseSelector(ManagedWindow):
         Builds the default filters and add them to the filter bar.
         """
         cols = [(pair[3], pair[1], pair[0] in self.exact_search())
-                    for pair in self.column_order()
-                        if pair[0]
-                ]
+                for pair in self.column_order() if pair[0]]
         self.search_bar.setup_filter(cols)
 
     def build_tree(self):
@@ -288,11 +293,11 @@ class BaseSelector(ManagedWindow):
         else:
             sel = None
 
-        #set up cols the first time
-        if self.setupcols :
+        # set up cols the first time
+        if self.setupcols:
             self.add_columns(self.tree)
 
-        #reset the model with correct sorting
+        # reset the model with correct sorting
         self.clear_model()
         self.model = self.get_model_class()(
             self.db, self.uistate, self.sort_col, self.sortorder,
@@ -302,10 +307,10 @@ class BaseSelector(ManagedWindow):
         self.tree.set_model(self.model)
         self.restore_column_size()
 
-        #sorting arrow in column header (not on start, only on click)
-        if not self.setupcols :
+        # sorting arrow in column header (not on start, only on click)
+        if not self.setupcols:
             for i in range(len(self.columns)):
-                enable_sort_flag = (i==self.sort_col)
+                enable_sort_flag = (i == self.sort_col)
                 self.columns[i].set_sort_indicator(enable_sort_flag)
             self.columns[self.sort_col].set_sort_order(self.sortorder)
 
@@ -323,7 +328,7 @@ class BaseSelector(ManagedWindow):
             self.sort_col = data
         else:
             if (self.columns[data].get_sort_order() == Gtk.SortType.DESCENDING
-                or not self.columns[data].get_sort_indicator()):
+                    or not self.columns[data].get_sort_indicator()):
                 self.sortorder = Gtk.SortType.ASCENDING
             else:
                 self.sortorder = Gtk.SortType.DESCENDING
@@ -376,15 +381,15 @@ class BaseSelector(ManagedWindow):
         """
         Save the columns width
         """
-        nb = 1
+        nbc = 1
         columns = self.tree.get_columns()
-        nbc = len(columns) - 1
+        nbcol = len(columns) - 1
         newsize = []
         for column in columns:
-            if nb <= nbc:
+            if nbc <= nbcol:
                 # Don't save the last column
                 newsize.append(column.get_width())
-            nb += 1
+            nbc += 1
         name = self.tree.get_model().get_selector_name()
         config_item = "selector.%s.size" % name
         config.set(config_item, newsize)
@@ -398,7 +403,7 @@ class BaseSelector(ManagedWindow):
         config_item = "selector.%s.size" % name
         size = config.get(config_item)
         columns = self.tree.get_columns()
-        nb = 0
+        nbc = 0
         for width in size:
-            columns[nb].set_fixed_width(width)
-            nb += 1
+            columns[nbc].set_fixed_width(width)
+            nbc += 1

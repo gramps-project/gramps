@@ -25,51 +25,51 @@
 TreeModel for the Gramps Person tree.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Standard python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from html import escape
 
-#-------------------------------------------------------------------------
-#
-# GTK modules
-#
-#-------------------------------------------------------------------------
-from gi.repository import Gtk
-from gi.repository import GObject
-
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger(".")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# GTK modules
+#
+# -------------------------------------------------------------------------
+from gi.repository import Gtk
+
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from gramps.gen.lib import (Name, EventRef, EventType, EventRoleType,
+from gramps.gen.lib import (EventRef, EventType, EventRoleType,
                             FamilyRelType, ChildRefType, NoteType)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
+from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 from .basemodel import BaseModel
-from gramps.gen.config import config
 
-#-------------------------------------------------------------------------
+_LOG = logging.getLogger(".people")
+_ = glocale.translation.gettext
+
+# -------------------------------------------------------------------------
 #
 # COLUMN constants; positions in raw data structure
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 COLUMN_ID = 1
 COLUMN_GENDER = 2
 COLUMN_NAME = 3
@@ -85,16 +85,18 @@ COLUMN_PRIV = 19
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # PeopleBaseModel
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 class PeopleBaseModel(BaseModel):
     """
     Basic Model interface to handle the PersonViews
     """
-    _GENDER = [ _('female'), _('male'), _('unknown') ]
+    _GENDER = [_('female'), _('male'), _('unknown')]
 
     def __init__(self, db):
         """
@@ -213,7 +215,7 @@ class PeopleBaseModel(BaseModel):
     def column_id(self, data):
         return data[COLUMN_ID]
 
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self, data):
@@ -243,9 +245,9 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data[COLUMN_EVENT][index]
-                b = EventRef()
-                b.unserialize(local)
-                birth = self.db.get_event_from_handle(b.ref)
+                brf = EventRef()
+                brf.unserialize(local)
+                birth = self.db.get_event_from_handle(brf.ref)
                 if sort_mode:
                     retval = "%09d" % birth.get_date_object().get_sort_value()
                 else:
@@ -260,14 +262,14 @@ class PeopleBaseModel(BaseModel):
                 return ''
 
         for event_ref in data[COLUMN_EVENT]:
-            er = EventRef()
-            er.unserialize(event_ref)
-            event = self.db.get_event_from_handle(er.ref)
+            erf = EventRef()
+            erf.unserialize(event_ref)
+            event = self.db.get_event_from_handle(erf.ref)
             etype = event.get_type()
             date_str = get_date(event)
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
-                and er.get_role() == EventRoleType.PRIMARY
-                and date_str != ""):
+                    and erf.get_role() == EventRoleType.PRIMARY
+                    and date_str != ""):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
@@ -317,16 +319,16 @@ class PeopleBaseModel(BaseModel):
                 return ''
 
         for event_ref in data[COLUMN_EVENT]:
-            er = EventRef()
-            er.unserialize(event_ref)
-            event = self.db.get_event_from_handle(er.ref)
+            erf = EventRef()
+            erf.unserialize(event_ref)
+            event = self.db.get_event_from_handle(erf.ref)
             etype = event.get_type()
             date_str = get_date(event)
             if (etype in [EventType.BURIAL,
                           EventType.CREMATION,
                           EventType.CAUSE_DEATH]
-                and er.get_role() == EventRoleType.PRIMARY
-                and date_str):
+                    and erf.get_role() == EventRoleType.PRIMARY
+                    and date_str):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
@@ -347,11 +349,12 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    br = EventRef()
-                    br.unserialize(local)
-                    event = self.db.get_event_from_handle(br.ref)
+                    brf = EventRef()
+                    brf.unserialize(local)
+                    event = self.db.get_event_from_handle(brf.ref)
                     if event:
-                        place_title = place_displayer.display_event(self.db, event)
+                        place_title = place_displayer.display_event(self.db,
+                                                                    event)
                         if place_title:
                             value = escape(place_title)
                             self.set_cached_value(handle, "BIRTH_PLACE", value)
@@ -362,17 +365,17 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = EventRef()
-                er.unserialize(event_ref)
-                event = self.db.get_event_from_handle(er.ref)
+                erf = EventRef()
+                erf.unserialize(event_ref)
+                event = self.db.get_event_from_handle(erf.ref)
                 etype = event.get_type()
                 if (etype in [EventType.BAPTISM, EventType.CHRISTEN] and
-                    er.get_role() == EventRoleType.PRIMARY):
-                        place_title = place_displayer.display_event(self.db, event)
-                        if place_title:
-                            value = "<i>%s</i>" % escape(place_title)
-                            self.set_cached_value(handle, "BIRTH_PLACE", value)
-                            return value
+                        erf.get_role() == EventRoleType.PRIMARY):
+                    place_title = place_displayer.display_event(self.db, event)
+                    if place_title:
+                        value = "<i>%s</i>" % escape(place_title)
+                        self.set_cached_value(handle, "BIRTH_PLACE", value)
+                        return value
             value = ""
             self.set_cached_value(handle, "BIRTH_PLACE", value)
             return value
@@ -387,11 +390,12 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    dr = EventRef()
-                    dr.unserialize(local)
-                    event = self.db.get_event_from_handle(dr.ref)
+                    drf = EventRef()
+                    drf.unserialize(local)
+                    event = self.db.get_event_from_handle(drf.ref)
                     if event:
-                        place_title = place_displayer.display_event(self.db, event)
+                        place_title = place_displayer.display_event(self.db,
+                                                                    event)
                         if place_title:
                             value = escape(place_title)
                             self.set_cached_value(handle, "DEATH_PLACE", value)
@@ -402,19 +406,19 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = EventRef()
-                er.unserialize(event_ref)
-                event = self.db.get_event_from_handle(er.ref)
+                erf = EventRef()
+                erf.unserialize(event_ref)
+                event = self.db.get_event_from_handle(erf.ref)
                 etype = event.get_type()
                 if (etype in [EventType.BURIAL, EventType.CREMATION,
                               EventType.CAUSE_DEATH]
-                    and er.get_role() == EventRoleType.PRIMARY):
+                        and erf.get_role() == EventRoleType.PRIMARY):
 
-                        place_title = place_displayer.display_event(self.db, event)
-                        if place_title:
-                            value = "<i>%s</i>" % escape(place_title)
-                            self.set_cached_value(handle, "DEATH_PLACE", value)
-                            return value
+                    place_title = place_displayer.display_event(self.db, event)
+                    if place_title:
+                        value = "<i>%s</i>" % escape(place_title)
+                        self.set_cached_value(handle, "DEATH_PLACE", value)
+                        return value
             value = ""
             self.set_cached_value(handle, "DEATH_PLACE", value)
             return value
@@ -446,7 +450,7 @@ class PeopleBaseModel(BaseModel):
             family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 if (child_ref.get_father_relation() == ChildRefType.BIRTH and
-                    child_ref.get_mother_relation() == ChildRefType.BIRTH):
+                        child_ref.get_mother_relation() == ChildRefType.BIRTH):
                     children += 1
         return children
 
@@ -567,12 +571,20 @@ class PeopleBaseModel(BaseModel):
             self.set_cached_value(handle, "TAGS", value)
         return value
 
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "person"
+
+
 class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """
     Listed people model.
     """
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
         PeopleBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, uistate, search=search, skip=skip,
                                scol=scol, order=order, sort_map=sort_map)
@@ -584,12 +596,21 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
         PeopleBaseModel.destroy(self)
         FlatBaseModel.destroy(self)
 
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "person"
+
+
 class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
     """
     Hierarchical people model.
     """
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
-                 search=None, skip=set(), sort_map=None):
+                 search=None, skip=None, sort_map=None):
+        skip = skip if skip else set()
+        self.number_items = None
         PeopleBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, uistate, search=search, skip=skip,
                                scol=scol, order=order, sort_map=sort_map)
@@ -629,9 +650,9 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         group_name = ngn(self.db, name_data)
         sort_key = self.sort_func(data)
 
-        #if group_name not in self.group_list:
-            #self.group_list.append(group_name)
-            #self.add_node(None, group_name, group_name, None)
+        # if group_name not in self.group_list:
+        #     self.group_list.append(group_name)
+        #     self.add_node(None, group_name, group_name, None)
 
         # add as node: parent, child, sortkey, handle; parent and child are
         # nodes in the treebasemodel, and will be used as iters
