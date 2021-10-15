@@ -212,3 +212,9 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         Gramps handle.
         """
         return node.name
+
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "citation"

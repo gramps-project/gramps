@@ -636,3 +636,9 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         # add as node: parent, child, sortkey, handle; parent and child are
         # nodes in the treebasemodel, and will be used as iters
         self.add_node(group_name, handle, sort_key, handle)
+
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "person"

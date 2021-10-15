@@ -334,3 +334,9 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     def column_header(self, data):
         # should not get here!
         return '????'
+
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "place"

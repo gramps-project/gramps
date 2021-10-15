@@ -38,6 +38,7 @@ from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -299,6 +300,7 @@ class BaseSelector(ManagedWindow):
             search=filter_info)
 
         self.tree.set_model(self.model)
+        self.restore_column_size()
 
         #sorting arrow in column header (not on start, only on click)
         if not self.setupcols :
@@ -338,6 +340,7 @@ class BaseSelector(ManagedWindow):
             sort_map=self.column_order(), skip=self.skip_list,
             search=filter_info)
         self.tree.set_model(self.model)
+        self.restore_column_size()
         self.tree.grab_focus()
 
     def clear_model(self):
@@ -361,9 +364,41 @@ class BaseSelector(ManagedWindow):
         self.search_bar.destroy()
 
     def close(self, *obj):
+        self.save_column_info()
         ManagedWindow.close(self)
         self._cleanup_on_exit()
 
     def define_help_button(self, button, webpage='', section=''):
         """ Setup to deal with help button """
         button.connect('clicked', lambda x: display_help(webpage, section))
+
+    def save_column_info(self):
+        """
+        Save the columns width
+        """
+        nb = 1
+        columns = self.tree.get_columns()
+        nbc = len(columns) - 1
+        newsize = []
+        for column in columns:
+            if nb <= nbc:
+                # Don't save the last column
+                newsize.append(column.get_width())
+            nb += 1
+        name = self.tree.get_model().get_selector_name()
+        config_item = "selector.%s.size" % name
+        config.set(config_item, newsize)
+        return
+
+    def restore_column_size(self):
+        """
+        restore the columns width
+        """
+        name = self.tree.get_model().get_selector_name()
+        config_item = "selector.%s.size" % name
+        size = config.get(config_item)
+        columns = self.tree.get_columns()
+        nb = 0
+        for width in size:
+            columns[nb].set_fixed_width(width)
+            nb += 1

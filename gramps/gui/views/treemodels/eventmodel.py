@@ -227,3 +227,9 @@ class EventModel(FlatBaseModel):
         tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
+
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "event"

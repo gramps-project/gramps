@@ -116,3 +116,9 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
+
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "citation"

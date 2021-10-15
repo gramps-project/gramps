@@ -347,3 +347,9 @@ class CitationBaseModel:
             value = self.db.get_tag_from_handle(tag_handle).get_name()
             self.set_cached_value(tag_handle, "TAG_NAME", value)
         return value
+
+    def get_selector_name(self):
+        """
+        Return the selector name
+        """
+        return "citation"

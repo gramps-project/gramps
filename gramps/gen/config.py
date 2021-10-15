@@ -315,6 +315,16 @@ register('utf8.available-fonts', [])
 register('utf8.selected-font', "")
 register('utf8.death-symbol', 13)
 
+register('selector.citation.size', [])
+register('selector.event.size', [])
+register('selector.family.size', [])
+register('selector.media.size', [])
+register('selector.note.size', [])
+register('selector.person.size', [])
+register('selector.place.size', [])
+register('selector.repo.size', [])
+register('selector.source.size', [])
+
 if __debug__: # enable a simple CLI test to see if the datestrings exist
     register('test.january', _("|January", "localized lexeme inflections"))
 
