@@ -391,7 +391,7 @@ class BaseSelector(ManagedWindow):
                 newsize.append(column.get_width())
             nbc += 1
         name = self.tree.get_model().get_selector_name()
-        config_item = "selector.%s.size" % name
+        config_item = "spacing.selector.%s" % name
         config.set(config_item, newsize)
         return
 
@@ -400,7 +400,7 @@ class BaseSelector(ManagedWindow):
         restore the columns width
         """
         name = self.tree.get_model().get_selector_name()
-        config_item = "selector.%s.size" % name
+        config_item = "spacing.selector.%s" % name
         size = config.get(config_item)
         columns = self.tree.get_columns()
         nbc = 0
