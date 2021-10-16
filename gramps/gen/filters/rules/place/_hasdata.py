@@ -45,7 +45,7 @@ class HasData(Rule):
     Rule that checks for a place with a particular value
     """
 
-    labels = [ _('Name:'),
+    labels = [ _('Name:', 'place'),
                     _('Place type:'),
                     _('Code:'),
                     ]
