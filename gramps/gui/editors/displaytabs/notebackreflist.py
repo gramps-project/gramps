@@ -35,3 +35,9 @@ class NoteBackRefList(BackRefList):
 
     def get_icon_name(self):
         return 'gramps-notes'
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "backref"

@@ -45,3 +45,9 @@ class WebModel(Gtk.ListStore):
         for obj in obj_list:
             self.append(row=[str(obj.type), obj.path, obj.desc,
                     obj.get_privacy(), obj])
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "web"

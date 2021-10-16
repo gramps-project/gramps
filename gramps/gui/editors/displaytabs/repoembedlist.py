@@ -214,3 +214,9 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             if handle in ref_handles:
                 self.rebuild()
                 break
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "repo"

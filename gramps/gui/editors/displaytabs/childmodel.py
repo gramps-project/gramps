@@ -131,3 +131,9 @@ class ChildModel(Gtk.ListStore):
             if event:
                 return place_displayer.display_event(self.db, event)
         return ""
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "child"

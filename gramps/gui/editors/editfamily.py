@@ -366,6 +366,13 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         else:
             return name
 
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "child"
+
+
 class FastMaleFilter:
 
     def __init__(self, db):

@@ -417,3 +417,9 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.tree.expand_all()
         if prebuildpath is not None:
             self.selection.select_path(prebuildpath)
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "event"

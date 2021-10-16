@@ -149,3 +149,9 @@ class NameModel(Gtk.TreeStore):
             return text
         else:
             return ''
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "name"

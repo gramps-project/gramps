@@ -51,6 +51,7 @@ from ..dialog import SaveDialog
 from gramps.gen.lib import PrimaryObject
 from ..dbguielement import DbGUIElement
 from ..uimanager import ActionGroup
+# from .displaytabs import CitationEmbedList
 
 
 class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
@@ -135,6 +136,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
                           self._switch_page_on_dnd,
                           notebook,
                           page_no)
+            self.restore_column_size(child)
             child.set_parent_notebook(notebook)
 
         notebook.connect('key-press-event', self.key_pressed, notebook)
@@ -185,6 +187,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     def _do_close(self, *obj):
         self._cleanup_db_connects()
+        self.save_column_info(*obj)
         self.dbstate.disconnect(self.dbstate_connect_key)
         self._cleanup_connects()
         self._cleanup_on_exit()
@@ -373,3 +376,50 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
                 return (True, idval)
         else:
             return (False, 0)
+
+    def save_column_info(self, *obj):
+        """
+        Save the columns width
+        """
+        for tab in self.__tabs[0].get_parent():  # all tabs in the notebook
+            children = tab.get_children()
+            for child in children:
+                if len(children) < 2:
+                    continue
+                tree = children[1].get_children()[0]
+                columns = tree.get_columns()
+                if isinstance(columns, int):
+                    continue
+                nbcol = len(columns) - 1
+                nbc = 1
+                newsize = []
+                for column in columns:
+                    if nbc <= nbcol:
+                        # Don't save the last column
+                        newsize.append(column.get_width())
+                    nbc += 1
+                name = tab.get_model_name()
+                config_item = "spacing.embeddedlist.%s" % name
+                config.set(config_item, newsize)
+        return
+
+    def restore_column_size(self, child):
+        """
+        restore the columns width
+        """
+        children = child.get_children()
+        for child in children:
+            if len(children) < 2:
+                continue
+            tree = children[1].get_children()[0]
+            columns = tree.get_columns()
+            if isinstance(columns, int):
+                continue
+            name = tree.get_model().get_model_name()
+            config_item = "spacing.embeddedlist.%s" % name
+            size = config.get(config_item)
+            nb = 0
+            for width in size:
+                columns[nb].set_fixed_width(width)
+                nb += 1
+

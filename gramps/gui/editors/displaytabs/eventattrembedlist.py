@@ -41,3 +41,9 @@ class EventAttrEmbedList(AttrEmbedList):
 
     def get_user_values(self):
         return self.dbstate.db.get_event_attribute_types()
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "eventattr"

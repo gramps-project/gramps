@@ -49,3 +49,9 @@ class AttrModel(Gtk.ListStore):
                 attr.get_privacy(),
                 attr,
                 ])
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "attr"

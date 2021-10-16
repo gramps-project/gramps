@@ -199,3 +199,9 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
                          place, placeref, self.add_callback)
         except WindowActiveError:
             pass
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "place"

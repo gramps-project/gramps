@@ -108,3 +108,9 @@ class LdsEmbedList(EmbeddedList):
 
     def edit_callback(self, name):
         self.rebuild()
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "lds"

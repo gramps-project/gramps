@@ -67,3 +67,9 @@ class CitationRefModel(Gtk.ListStore):
             return "%09d" % date.get_sort_value()
         else:
             return ""
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "citation"

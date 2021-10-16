@@ -63,3 +63,9 @@ class AddressModel(Gtk.ListStore):
                 obj.get_privacy(),
                 obj,
                 ])
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "addr"

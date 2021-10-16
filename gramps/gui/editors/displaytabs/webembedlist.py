@@ -124,3 +124,9 @@ class WebEmbedList(EmbeddedList):
         url = self.get_selected()
         if url.get_path():
             display_url(url.get_path())
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "web"

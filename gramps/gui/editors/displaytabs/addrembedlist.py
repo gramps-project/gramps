@@ -145,3 +145,9 @@ class AddrEmbedList(EmbeddedList):
         Called to update the screen when the address changes
         """
         self.rebuild()
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "addr"

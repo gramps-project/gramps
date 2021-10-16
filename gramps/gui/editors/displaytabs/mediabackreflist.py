@@ -34,3 +34,9 @@ class MediaBackRefList(BackRefList):
 
     def get_icon_name(self):
         return 'gramps-media'
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "backref"

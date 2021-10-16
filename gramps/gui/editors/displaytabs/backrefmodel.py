@@ -160,3 +160,9 @@ class BackRefModel(Gtk.ListStore):
             if miter is not None:
                 self.remove(miter)
                 del self.hndl_iter[hndl]
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "backref"

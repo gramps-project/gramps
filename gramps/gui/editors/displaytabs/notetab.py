@@ -208,3 +208,9 @@ class NoteTab(EmbeddedList, DbGUIElement):
             if handle in self.data:
                 self.rebuild()
                 break
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "note"

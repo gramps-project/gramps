@@ -50,3 +50,9 @@ class PlaceRefModel(Gtk.ListStore):
                              str(place.get_type()),
                              displayer.display(obj.date),
                              obj, ])
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "place"

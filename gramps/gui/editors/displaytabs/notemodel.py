@@ -46,3 +46,9 @@ class NoteModel(Gtk.ListStore):
                 note.get_privacy(),
                 handle,
                 ])
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "note"

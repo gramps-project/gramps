@@ -122,3 +122,9 @@ class AttrEmbedList(EmbeddedList):
     def edit_callback(self, name):
         self.changed = True
         self.rebuild()
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "attr"

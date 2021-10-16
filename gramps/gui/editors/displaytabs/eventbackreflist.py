@@ -34,3 +34,9 @@ class EventBackRefList(BackRefList):
 
     def get_icon_name(self):
         return 'gramps-event'
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "backref"

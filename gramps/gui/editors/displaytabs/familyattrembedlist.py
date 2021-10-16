@@ -41,3 +41,9 @@ class FamilyAttrEmbedList(AttrEmbedList):
 
     def get_user_values(self):
         return self.dbstate.db.get_family_attribute_types()
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "familyattr"

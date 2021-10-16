@@ -51,3 +51,9 @@ class RepoRefModel(Gtk.ListStore):
                 str(repo.get_type()),
                 ref.get_privacy(),
                 ref, ])
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "repo"

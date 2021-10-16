@@ -48,3 +48,9 @@ class PlaceNameModel(Gtk.ListStore):
                              obj.get_language(),
                              obj,
                              ])
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "placename"

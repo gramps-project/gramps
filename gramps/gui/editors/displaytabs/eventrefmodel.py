@@ -194,3 +194,9 @@ class EventRefModel(Gtk.TreeStore):
             return "%09d" % int(date - self.start_date)
         else:
             return ""
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "event"

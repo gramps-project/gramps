@@ -50,3 +50,9 @@ class PersonRefModel(Gtk.ListStore):
             else:
                 data = ['unknown','unknown', obj.rel, obj.get_privacy(), obj]
             self.append(row=data)
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "person"

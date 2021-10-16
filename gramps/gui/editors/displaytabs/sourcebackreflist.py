@@ -35,3 +35,9 @@ class SourceBackRefList(BackRefList):
 
     def get_icon_name(self):
         return 'gramps-source'
+
+    def get_model_name(self):
+        """
+        Return the selector name
+        """
+        return "backref"
