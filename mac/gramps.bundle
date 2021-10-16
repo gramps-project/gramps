@@ -12,6 +12,7 @@
   </meta>
 
   <plist>${project}/Info.plist</plist>
+  <entitlements>${project}/release.entitlements.plist</entitlements>
   <!-- Build gramps-launcher with:
           gcc -L$PREFIX/lib `python-config -\-cflags -\-ldflags -\-embed` \
               -o $PREFIX/bin/gramps-launcher \
