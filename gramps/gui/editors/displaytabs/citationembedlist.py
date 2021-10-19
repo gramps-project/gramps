@@ -125,7 +125,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Return the column order of the columns in the display tab.
         """
-        return ((1, 0), (1, 1), (1, 5), (1, 2), (1, 3), (1, 6), (1, 4), (1, 7))
+        return ((1, 7), (1, 0), (1, 1), (1, 5), (1, 2), (1, 3), (1, 6), (1, 4))
 
     def add_button_clicked(self, obj):
         """
