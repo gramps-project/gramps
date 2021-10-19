@@ -72,4 +72,4 @@ class FamilyLdsEmbedList(LdsEmbedList):
         """
         Return the selector name
         """
-        return "familylds"
+        return "lds"
