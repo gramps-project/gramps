@@ -392,7 +392,9 @@ class BaseSelector(ManagedWindow):
             nbc += 1
         name = self.tree.get_model().get_selector_name()
         config_item = "spacing.selector.%s" % name
-        config.set(config_item, newsize)
+        if 0 not in newsize:
+            # Don't save the value if one column size in null.
+            config.set(config_item, newsize)
         return
 
     def restore_column_size(self):

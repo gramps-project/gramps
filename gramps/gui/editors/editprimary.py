@@ -400,7 +400,9 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
                     nbc += 1
                 name = tab.get_model_name()
                 config_item = "spacing.embeddedlist.%s" % name
-                config.set(config_item, newsize)
+                if 0 not in newsize:
+                    # Don't save the value if one column size in null.
+                    config.set(config_item, newsize)
         return
 
     def restore_column_size(self, child):
