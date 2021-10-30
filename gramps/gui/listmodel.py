@@ -219,7 +219,8 @@ class ListModel:
                 column.set_sort_column_id(name[1])
 
             column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
-            column.set_fixed_width(name[2])
+            # removed since we have a PersistentTreeView
+            # column.set_fixed_width(name[2])
 
             cnum += 1
             self.cids.append(name[1])

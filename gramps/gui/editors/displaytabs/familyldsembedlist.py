@@ -68,3 +68,6 @@ class FamilyLdsEmbedList(LdsEmbedList):
         lds = LdsOrd()
         lds.set_type(LdsOrd.SEAL_TO_SPOUSE)
         return lds
+
+    def get_config_name(self):
+        return __name__

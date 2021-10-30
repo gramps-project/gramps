@@ -53,6 +53,7 @@ from ..display import display_help
 from ..listmodel import ListModel
 from ..managedwindow import ManagedWindow
 from ..uimanager import ActionGroup
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -98,6 +99,7 @@ class Bookmarks(metaclass=ABCMeta):
             self.connect_signals()
         self.dbstate.connect('database-changed', self.db_changed)
         self.dbstate.connect("no-database", self.undisplay)
+        self.name = None
 
     def db_changed(self, data):
         """
@@ -236,7 +238,14 @@ class Bookmarks(metaclass=ABCMeta):
         selected row is attached to the name list. This is either 0 if the
         list is not empty, or -1 if it is.
         """
-        BookmarksDialog(self)
+        self.bkm_dialog = BookmarksDialog(self)
+        self.bkm_dialog.namelist.set_config_name(self.name)
+
+    def set_config_name(self, name):
+        """
+        Set the config name used to have persistent column size.
+        """
+        self.name = name
 
 class BookmarksDialog(ManagedWindow):
     """
@@ -249,7 +258,7 @@ class BookmarksDialog(ManagedWindow):
         self.bookmarks = bm_class.bookmarks
         self.dbstate = bm_class.dbstate
         self.make_label = bm_class.make_label
-        uistate = bm_class.uistate
+        self.uistate = bm_class.uistate
 
         self.namemodel = None
         self.top = None
@@ -257,13 +266,17 @@ class BookmarksDialog(ManagedWindow):
         self.response = None
         self.namelist = None
 
-        ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
+        ManagedWindow.__init__(self, self.uistate, [], self.__class__, modal=True)
         # the self.top.run() below makes Gtk make it modal, so any change to
         # the previous line's "modal" would require that line to be changed
 
         self.draw_window()
         self.set_window(self.top, None, _("Organize Bookmarks"))
-        self.setup_configs('interface.bookmarksdialog', 400, 350)
+        # Remove the "bkm_" prefix to the config class name and add it to the
+        # bookmarksdialog config name.
+        # This allow to have different widget size depending on the class.
+        config_name = 'interface.bookmarksdialog-' + bm_class.name[4:]
+        self.setup_configs(config_name, 400, 350)
         self.show()
         self.edit()
 
@@ -279,7 +292,7 @@ class BookmarksDialog(ManagedWindow):
         self.top.vbox.pack_start(box, 1, 1, 5)
 
         name_titles = [(_('Name'), -1, 200), (_('ID'), -1, 50), ('', -1, 0)]
-        self.namelist = Gtk.TreeView()
+        self.namelist = PersistentTreeView(self.uistate, self.bm_class.name)
         self.namemodel = ListModel(self.namelist, name_titles)
 
         slist = Gtk.ScrolledWindow()
@@ -301,6 +314,7 @@ class BookmarksDialog(ManagedWindow):
         bbox.add(down)
         bbox.add(delete)
         box.pack_start(bbox, 0, 0, 5)
+        self.namelist.restore_column_size()
 
     def edit(self):
         """
@@ -377,6 +391,7 @@ class ListBookmarks(Bookmarks):
     def __init__(self, dbstate, uistate, change_active):
         self.change_active = change_active
         Bookmarks.__init__(self, dbstate, uistate)
+        self.set_config_name(self.get_config_name())
 
     def callback(self, handle):
         return make_callback(handle, self.do_callback)
@@ -400,6 +415,9 @@ class PersonBookmarks(ListBookmarks):
     def get_bookmarks(self):
         return self.dbstate.db.get_bookmarks()
 
+    def get_config_name(self):
+        return __name__
+
 class FamilyBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
@@ -414,6 +432,9 @@ class FamilyBookmarks(ListBookmarks):
 
     def get_bookmarks(self):
         return self.dbstate.db.get_family_bookmarks()
+
+    def get_config_name(self):
+        return __name__
 
 class EventBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
@@ -430,6 +451,9 @@ class EventBookmarks(ListBookmarks):
     def get_bookmarks(self):
         return self.dbstate.db.get_event_bookmarks()
 
+    def get_config_name(self):
+        return __name__
+
 class SourceBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
@@ -444,6 +468,9 @@ class SourceBookmarks(ListBookmarks):
 
     def get_bookmarks(self):
         return self.dbstate.db.get_source_bookmarks()
+
+    def get_config_name(self):
+        return __name__
 
 class CitationBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
@@ -486,6 +513,9 @@ class CitationBookmarks(ListBookmarks):
     def get_bookmarks(self):
         return self.dbstate.db.get_citation_bookmarks()
 
+    def get_config_name(self):
+        return __name__
+
 class MediaBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
@@ -500,6 +530,9 @@ class MediaBookmarks(ListBookmarks):
 
     def get_bookmarks(self):
         return self.dbstate.db.get_media_bookmarks()
+
+    def get_config_name(self):
+        return __name__
 
 class RepoBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
@@ -516,6 +549,9 @@ class RepoBookmarks(ListBookmarks):
     def get_bookmarks(self):
         return self.dbstate.db.get_repo_bookmarks()
 
+    def get_config_name(self):
+        return __name__
+
 class PlaceBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
@@ -531,6 +567,9 @@ class PlaceBookmarks(ListBookmarks):
     def get_bookmarks(self):
         return self.dbstate.db.get_place_bookmarks()
 
+    def get_config_name(self):
+        return __name__
+
 class NoteBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
@@ -545,6 +584,9 @@ class NoteBookmarks(ListBookmarks):
 
     def get_bookmarks(self):
         return self.dbstate.db.get_note_bookmarks()
+
+    def get_config_name(self):
+        return __name__
 
 def make_callback(handle, function):
     """

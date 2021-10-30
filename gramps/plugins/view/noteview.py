@@ -390,3 +390,6 @@ class NoteView(ListView):
         """
         return (("Note Filter",),
                 ("Note Backlinks",))
+
+    def get_config_name(self):
+        return __name__

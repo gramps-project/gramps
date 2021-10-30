@@ -98,3 +98,6 @@ class LocationEmbedList(EmbeddedList):
 
     def edit_callback(self, name):
         self.rebuild()
+
+    def get_config_name(self):
+        return __name__

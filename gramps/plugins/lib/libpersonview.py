@@ -538,3 +538,9 @@ class BasePersonView(ListView):
                  "Person Notes",
                  "Person Attributes",
                  "Person Backlinks"))
+
+    def get_config_name(self):
+        """
+        return the config name for this view
+        """
+        assert False, "Must be defined in the subclass"

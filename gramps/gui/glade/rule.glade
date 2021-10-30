@@ -91,7 +91,7 @@
                     <property name="can_focus">False</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkTreeView" id="filters">
+                      <object class="PersistentTreeView" id="filters">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <child internal-child="selection">
@@ -581,7 +581,7 @@
                     <property name="margin_left">6</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkTreeView" id="rule_list">
+                      <object class="PersistentTreeView" id="rule_list">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="hexpand">True</property>
@@ -855,7 +855,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkTreeView" id="ruletree">
+                              <object class="PersistentTreeView" id="ruletree">
                                 <property name="width_request">250</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>

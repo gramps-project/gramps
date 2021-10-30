@@ -407,3 +407,6 @@ class RepositoryView(ListView):
                 ("Repository Details",
                  "Repository Notes",
                  "Repository Backlinks"))
+
+    def get_config_name(self):
+        return __name__

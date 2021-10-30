@@ -33,3 +33,6 @@ class StyledTextEditor(Gtk.TextView):
 
 class UndoableBuffer(Gtk.TextBuffer):
     __gtype_name__ = 'UndoableBuffer'
+
+class PersistentTreeView(Gtk.TreeView):
+    __gtype_name__ = 'PersistentTreeView'

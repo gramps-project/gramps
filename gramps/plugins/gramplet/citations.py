@@ -38,6 +38,8 @@ from gramps.gen.datehandler._dateutils import get_date
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+
 _ = glocale.translation.gettext
 
 class Citations(Gramplet, DbGUIElement):
@@ -55,6 +57,10 @@ class Citations(Gramplet, DbGUIElement):
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
         self.gui.WIDGET.show()
+        self.gui.WIDGET.restore_column_size()
+
+    def on_save(self):
+        self.gui.WIDGET.save_column_info()
 
     def _connect_db_signals(self):
         """
@@ -81,7 +87,7 @@ class Citations(Gramplet, DbGUIElement):
         """
         tip = _('Double-click on a row to edit the selected source/citation.')
         self.set_tooltip(tip)
-        top = Gtk.TreeView()
+        top = PersistentTreeView(self.uistate, __name__)
         titles = [('', NOSORT, 50,),
                   (_('Source/Date'), 1, 350),
                   (_('Volume/Page'), 2, 150),

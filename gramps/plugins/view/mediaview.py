@@ -538,3 +538,6 @@ class MediaView(ListView):
                  "Media Attributes",
                  "Metadata Viewer",
                  "Media Backlinks"))
+
+    def get_config_name(self):
+        return __name__

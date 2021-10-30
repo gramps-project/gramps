@@ -50,3 +50,6 @@ class PlaceListView(PlaceBaseView):
         PlaceBaseView.__init__(self, pdata, dbstate, uistate,
                                _('Place View'), PlaceListModel,
                                nav_group=0)
+
+    def get_config_name(self):
+        return __name__

@@ -39,7 +39,10 @@ from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
+
 _ = glocale.translation.gettext
+
 
 class Children(Gramplet):
     """
@@ -51,6 +54,10 @@ class Children(Gramplet):
         self.gui.get_container_widget().add(self.gui.WIDGET)
         self.gui.WIDGET.show()
         self.uistate.connect('nameformat-changed', self.update)
+        self.gui.WIDGET.restore_column_size()
+
+    def on_save(self):
+        self.gui.WIDGET.save_column_info()
 
     def get_date_place(self, event):
         """
@@ -88,7 +95,7 @@ class PersonChildren(Children):
         """
         tip = _('Double-click on a row to edit the selected child.')
         self.set_tooltip(tip)
-        top = Gtk.TreeView()
+        top = PersistentTreeView(self.uistate, __name__)
         titles = [('', NOSORT, 50,),
                   (_('Child'), 1, 250),
                   (_('Birth Date'), 3, 100),
@@ -187,7 +194,7 @@ class FamilyChildren(Children):
         """
         tip = _('Double-click on a row to edit the selected child.')
         self.set_tooltip(tip)
-        top = Gtk.TreeView()
+        top = PersistentTreeView(self.uistate, __name__)
         titles = [('', NOSORT, 50,),
                   (_('Child'), 1, 250),
                   (_('Birth Date'), 3, 100),

@@ -124,3 +124,6 @@ class PersonTreeView(BasePersonView):
             EditPerson(self.dbstate, self.uistate, [], person)
         except WindowActiveError:
             pass
+
+    def get_config_name(self):
+        return __name__

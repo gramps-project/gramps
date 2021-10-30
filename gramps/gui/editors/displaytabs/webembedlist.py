@@ -124,3 +124,6 @@ class WebEmbedList(EmbeddedList):
         url = self.get_selected()
         if url.get_path():
             display_url(url.get_path())
+
+    def get_config_name(self):
+        return __name__

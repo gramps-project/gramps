@@ -190,3 +190,6 @@ class PersonEventEmbedList(EventEmbedList):
         path = (index + 2,)
         self.tree.get_selection().select_path(path)
         GLib.idle_add(self.tree.scroll_to_cell, path)
+
+    def get_config_name(self):
+        return __name__

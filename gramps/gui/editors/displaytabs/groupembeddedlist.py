@@ -400,3 +400,6 @@ class GroupEmbeddedList(EmbeddedList):
                 self._move_down(pos, ref[1])
         elif ref and ref[1] is None:
             self._move_down_group(ref[0])
+
+    def get_config_name(self):
+        assert False, "Must be defined in the subclass"

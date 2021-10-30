@@ -410,3 +410,6 @@ class SurnameTab(EmbeddedList):
                     self.curr_celle.editing_done()
                     return
         return True
+
+    def get_config_name(self):
+        return __name__

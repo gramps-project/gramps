@@ -116,3 +116,6 @@ class PlaceNameEmbedList(EmbeddedList):
         Called to update the screen when the place name changes.
         """
         self.rebuild()
+
+    def get_config_name(self):
+        return __name__

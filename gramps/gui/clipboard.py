@@ -59,6 +59,7 @@ from .ddtargets import DdTargets
 from .makefilter import make_filter
 from .utils import is_right_click, no_match_primary_mask
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 _ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
@@ -1412,6 +1413,7 @@ class ClipboardWindow(ManagedWindow):
         self.db.connect('database-changed',
                         lambda x: ClipboardWindow.otree.clear())
 
+        mtv.restore_column_size()
         self.show()
 
     def build_menu_names(self, obj):
@@ -1453,7 +1455,7 @@ class ClipboardWindow(ManagedWindow):
 # MultiTreeView class
 #
 #-------------------------------------------------------------------------
-class MultiTreeView(Gtk.TreeView):
+class MultiTreeView(PersistentTreeView):
     '''
     TreeView that captures mouse events to make drag and drop work properly
     '''
@@ -1461,7 +1463,7 @@ class MultiTreeView(Gtk.TreeView):
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = title if title else _("Clipboard")
-        Gtk.TreeView.__init__(self)
+        PersistentTreeView.__init__(self, self.uistate, "clipboard")
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
         self.connect('drag-end', self.on_drag_end)

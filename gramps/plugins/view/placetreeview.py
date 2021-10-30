@@ -153,3 +153,6 @@ class PlaceTreeView(PlaceBaseView):
                 old_handle = self.model.get_handle_from_iter(parent_iter)
             children = self.model.get_node_from_iter(iter_).children
         return new_handle != old_handle or children
+
+    def get_config_name(self):
+        return __name__

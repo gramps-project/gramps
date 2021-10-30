@@ -199,3 +199,6 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
                          place, placeref, self.add_callback)
         except WindowActiveError:
             pass
+
+    def get_config_name(self):
+        return __name__

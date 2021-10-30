@@ -83,5 +83,8 @@ class SelectCitation(BaseSelector):
         else:
             return self.db.get_citation_from_handle(handle)
 
+    def get_config_name(self):
+        return __name__
+
     WIKI_HELP_PAGE = URL_MANUAL_SECT2
     WIKI_HELP_SEC = _('Select_Source_or_Citation_selector', 'manual')

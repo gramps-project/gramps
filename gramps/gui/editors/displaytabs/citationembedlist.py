@@ -283,3 +283,6 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                   parent=self.uistate.window)
             else:
                 raise ValueError("selection must be either source or citation")
+
+    def get_config_name(self):
+        return __name__

@@ -367,6 +367,9 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         else:
             return name
 
+    def get_config_name(self):
+        return __name__
+
 class FastMaleFilter:
 
     def __init__(self, db):
@@ -1274,6 +1277,9 @@ class EditFamily(EditPrimary):
                         name.set_surname_list([surnames[-1]])
                         return name
         return name
+
+    def get_config_name(self):
+        return __name__
 
 def button_activated(event, mouse_button):
     if (event.type == Gdk.EventType.BUTTON_PRESS and

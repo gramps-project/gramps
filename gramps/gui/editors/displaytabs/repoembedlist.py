@@ -214,3 +214,6 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             if handle in ref_handles:
                 self.rebuild()
                 break
+
+    def get_config_name(self):
+        return __name__

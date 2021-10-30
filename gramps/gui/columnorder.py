@@ -63,7 +63,8 @@ class ColumnOrder(Gtk.Box):
     Column ordering selection widget
     """
 
-    def __init__(self, config, column_names, widths, on_apply, tree=False):
+    def __init__(self, config, column_names, widths, on_apply, tree=False,
+                 resizable=None):
         """
         Create the Column Ordering widget based on config
 
@@ -80,6 +81,7 @@ class ColumnOrder(Gtk.Box):
         self.colnames = column_names
         self.config = config
         self.on_apply = on_apply
+        self.resizable = resizable
 
         self.pack_start(Gtk.Label(label=' '), False, False, 0)
 
@@ -137,7 +139,23 @@ class ColumnOrder(Gtk.Box):
 
         #obtain the columns from config file
         self.oldorder = self.config.get('columns.rank')
-        self.oldsize = self.config.get('columns.size')
+        oldsize = self.config.get('columns.size')
+        # try to use the current columns size.
+        if resizable:
+            self.oldsize = []
+            newsize = self.resizable.get_columns_size()
+            nbc = 0
+            for size in oldsize:
+                if nbc < len(newsize):
+                    if newsize[nbc] == 0:
+                        self.oldsize.append(size)
+                    else:
+                        self.oldsize.append(newsize[nbc])
+                else:
+                    self.oldsize.append(size)
+                nbc += 1
+        else:
+            self.oldsize = oldsize
         self.oldvis = self.config.get('columns.visible')
         colord = []
         index = 0
@@ -185,6 +203,7 @@ class ColumnOrder(Gtk.Box):
             self.config.set('columns.visible', newvis)
             self.config.save()
             self.on_apply()
+        self.resizable.save_column_info()
 
 def toggled(cell, path, model):
     """

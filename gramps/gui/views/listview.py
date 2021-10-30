@@ -75,6 +75,7 @@ from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
 from ..utils import is_right_click
 from ..widgets.interactivesearchbox import InteractiveSearchBox
+from ..widgets.persistenttreeview import PersistentTreeView
 
 #----------------------------------------------------------------
 #
@@ -156,7 +157,7 @@ class ListView(NavigationView):
                                     self.search_build_tree)
         filter_box = self.search_bar.build()
 
-        self.list = Gtk.TreeView()
+        self.list = PersistentTreeView(self.uistate, self.get_config_name())
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
         self.list.set_fixed_height_mode(True)
@@ -196,6 +197,7 @@ class ListView(NavigationView):
         self.selection.connect('changed', self.row_changed)
 
         self.setup_filter()
+        self.list.restore_column_size()
         return self.vbox
 
     def define_actions(self):
@@ -227,8 +229,9 @@ class ListView(NavigationView):
         build the columns
         """
         # Preserve the column widths if rebuilding the view.
-        if self.columns and preserve_col:
-            self.save_column_info()
+        # removed since we have a PersistentTreeView
+        #if self.columns and preserve_col:
+        #    self.list.save_column_info(self.list)
         list(map(self.list.remove_column, self.columns))
 
         self.columns = []
@@ -263,11 +266,13 @@ class ListView(NavigationView):
             column.set_resizable(True)
             column.set_clickable(True)
             column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
-            column.set_fixed_width(pair[2])
+            # removed since we have a PersistentTreeView
+            # column.set_fixed_width(pair[2])
 
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
+        return self.vbox
 
     def icon(self, column, renderer, model, iter_, col_num):
         '''
@@ -336,6 +341,7 @@ class ListView(NavigationView):
 
             cput1 = perf_counter()
             self.build_columns(preserve_col)
+            self.list.restore_column_size()
             cput2 = perf_counter()
             self.list.set_model(self.model)
             cput3 = perf_counter()
@@ -1115,12 +1121,21 @@ class ListView(NavigationView):
         """
         Save the column widths when the view is shutdown.
         """
+        self.list.save_column_info()
+        # The following is used when we change the columns order.
         self.save_column_info()
         PageView.on_delete(self)
+
+    def get_config_name(self):
+        """
+        Set the associated config name string for the treeview
+        """
+        assert False, "Must be defined in the subclass"
 
     def save_column_info(self):
         """
         Save the column widths, order, and view settings
+        This is used only when we change the columns order
         """
         widths = self.get_column_widths()
         order = self._config.get('columns.rank')
@@ -1343,7 +1358,8 @@ class ListView(NavigationView):
             return _('Columns'), ColumnOrder(self._config, column_names,
                                             self.get_column_widths(),
                                             self.set_column_order,
-                                            tree=not flat)
+                                            tree=not flat,
+                                            resizable=self.list)
         def csvdialect(configdialog):
             return _('CSV Dialect'), CsvDialect()
         return [columnpage, csvdialect]

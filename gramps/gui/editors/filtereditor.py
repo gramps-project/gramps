@@ -74,6 +74,7 @@ from gramps.gen.utils.string import conf_strings
 from ..widgets import DateEntry
 from gramps.gen.datehandler import displayer
 from gramps.gen.config import config
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 
 #-------------------------------------------------------------------------
 #
@@ -456,9 +457,14 @@ class EditRule(ManagedWindow):
         self.window.hide()
         self.valuebox = self.get_widget('valuebox')
         self.rname_filter = self.get_widget('ruletreefilter')
-        self.rname = self.get_widget('ruletree')
         self.rule_name = self.get_widget('rulename')
         self.description = self.get_widget('description')
+
+        objectlist = self.get_widget('ruletree')
+        self.rname = PersistentTreeView(uistate, "filt_edit")
+        scrolledwindow = self.get_widget('box2')
+        scrolledwindow.remove(objectlist)
+        scrolledwindow.add(self.rname)
 
         self.notebook = Gtk.Notebook()
         self.notebook.set_show_tabs(0)
@@ -697,6 +703,7 @@ class EditRule(ManagedWindow):
         config.register('interface.edit-rule-pane', 205)
         panepos = config.get('interface.edit-rule-pane')
         self.get_widget('hpaned1').set_position(panepos)
+        self.rname.restore_column_size()
         self.show()
 
     def select_iter(self, data):
@@ -831,8 +838,14 @@ class EditFilter(ManagedWindow):
             _('Define filter'))
         self.setup_configs('interface.edit-filter', 500, 420)
 
+        objectlist = self.get_widget('rule_list')
+        self.rule_list = PersistentTreeView(uistate, "filt_rule")
+        scrolledwindow = self.get_widget('scrolledwindow1')
+        scrolledwindow.remove(objectlist)
+        scrolledwindow.add(self.rule_list)
+
         self.rlist = ListModel(
-            self.get_widget('rule_list'),
+            self.rule_list,
             [(_('Name'),-1,150),(_('Values'),-1,150)],
             self.select_row,
             self.on_edit_clicked)
@@ -867,6 +880,7 @@ class EditFilter(ManagedWindow):
         self.draw_rules()
 
         self._set_size()
+        self.rule_list.restore_column_size()
         self.show()
 
     def on_help_clicked(self, obj):
@@ -1089,7 +1103,6 @@ class FilterEditor(ManagedWindow):
         self.namespace = namespace
 
         self.define_glade('filter_list', RULE_GLADE)
-        self.filter_list = self.get_widget('filters')
         self.edit = self.get_widget('filter_list_edit')
         self.clone = self.get_widget('filter_list_clone')
         self.delete = self.get_widget('filter_list_delete')
@@ -1099,6 +1112,12 @@ class FilterEditor(ManagedWindow):
         self.clone.set_sensitive(False)
         self.delete.set_sensitive(False)
         self.test.set_sensitive(False)
+
+        objectlist = self.get_widget('filters')
+        self.filter_list = PersistentTreeView(self.uistate, "filt_list")
+        scrolledwindow = self.get_widget('scrolledwindow2')
+        scrolledwindow.remove(objectlist)
+        scrolledwindow.add(self.filter_list)
 
         self.set_window(self.get_widget('filter_list'),
                         self.get_widget('filter_list_title'),
@@ -1123,6 +1142,7 @@ class FilterEditor(ManagedWindow):
                             self.edit_filter)
         self.draw_filters()
         self._set_size()
+        self.filter_list.restore_column_size()
         self.show()
 
     def build_menu_names(self, obj):

@@ -159,3 +159,6 @@ class SrcAttrEmbedList(EmbeddedList):
     def edit_callback(self, name):
         self.changed = True
         self.rebuild()
+
+    def get_config_name(self):
+        return __name__

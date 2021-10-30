@@ -221,3 +221,6 @@ class NameEmbedList(GroupEmbeddedList):
         self.tree.expand_all()
         if prebuildpath is not None:
             self.selection.select_path(prebuildpath)
+
+    def get_config_name(self):
+        return __name__

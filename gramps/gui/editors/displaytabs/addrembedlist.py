@@ -148,3 +148,6 @@ class AddrEmbedList(EmbeddedList):
         Called to update the screen when the address changes
         """
         self.rebuild()
+
+    def get_config_name(self):
+        return __name__

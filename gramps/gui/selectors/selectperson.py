@@ -122,3 +122,6 @@ class SelectPerson(BaseSelector):
                     self.tree.expand_row(paths[0], 0)
                 return True
         return False
+
+    def get_config_name(self):
+        return __name__

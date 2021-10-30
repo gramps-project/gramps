@@ -743,3 +743,6 @@ class CitationTreeView(LibSourceView, ListView):
                 ("Citation Gallery",
                  "Citation Notes",
                  "Citation Backlinks"))
+
+    def get_config_name(self):
+        return __name__

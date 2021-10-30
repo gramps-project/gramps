@@ -445,3 +445,6 @@ class EventView(ListView):
                  "Event Notes",
                  "Event Attributes",
                  "Event Backlinks"))
+
+    def get_config_name(self):
+        return __name__

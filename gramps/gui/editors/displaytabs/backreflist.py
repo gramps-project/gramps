@@ -143,3 +143,6 @@ class BackRefList(EmbeddedList):
     def edit_button_clicked(self, obj):
         (reftype, ref) = self.find_node()
         edit_object(self.dbstate, self.uistate, reftype, ref)
+
+    def get_config_name(self):
+        return __name__

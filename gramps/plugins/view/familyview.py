@@ -124,6 +124,9 @@ class FamilyView(ListView):
 
         self.additional_uis.append(self.additional_ui)
 
+    def get_config_name(self):
+        return __name__
+
     def navigation_type(self):
         return 'Family'
 

@@ -104,5 +104,8 @@ class SelectObject(BaseSelector):
         self.preview.set_from_pixbuf(pix)
         gc.collect()
 
+    def get_config_name(self):
+        return __name__
+
     WIKI_HELP_PAGE = URL_MANUAL_SECT1
     WIKI_HELP_SEC = _('Select_Media_Object_selector', 'manual')

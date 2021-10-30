@@ -384,3 +384,6 @@ class SourceView(LibSourceView, ListView):
                 ("Source Gallery",
                  "Source Notes",
                  "Source Backlinks"))
+
+    def get_config_name(self):
+        return __name__

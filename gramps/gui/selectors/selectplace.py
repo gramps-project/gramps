@@ -86,5 +86,8 @@ class SelectPlace(BaseSelector):
                 ]
         self.search_bar.setup_filter(cols)
 
+    def get_config_name(self):
+        return __name__
+
     WIKI_HELP_PAGE = URL_MANUAL_SECT2
     WIKI_HELP_SEC = _('Select_Place_selector', 'manual')

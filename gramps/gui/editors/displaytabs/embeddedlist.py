@@ -43,6 +43,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from ...widgets.cellrenderertextedit import CellRendererTextEdit
+from ...widgets.persistenttreeview import PersistentTreeView
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ...utils import is_right_click
@@ -388,7 +389,8 @@ class EmbeddedList(ButtonTab):
         # create the tree, turn on rule hinting and connect the
         # button press to the double click function.
 
-        self.tree = Gtk.TreeView()
+        _name = self.get_config_name()
+        self.tree = PersistentTreeView(self.uistate, _name)
         self.tree.set_reorderable(True)
         self.tree.connect('button_press_event', self.double_click)
         self.tree.connect('key_press_event', self.key_pressed)
@@ -533,6 +535,12 @@ class EmbeddedList(ButtonTab):
             self.columns.append(column)
             self.tree.append_column(column)
         self.track_ref_for_deletion("columns")
+        self.tree.restore_column_size()
+
+    def get_config_name(self):
+        """ used to associate the selector config name to the PersistentTreeView
+        """
+        assert False, "Must be defined in the subclass"
 
     def icon_func(self, column, renderer, model, iter_, col_num):
         '''

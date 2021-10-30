@@ -42,7 +42,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# PlaceTreeView
+# PersonListView
 #
 #-------------------------------------------------------------------------
 class PersonListView(BasePersonView):
@@ -53,3 +53,6 @@ class PersonListView(BasePersonView):
         BasePersonView.__init__(self, pdata, dbstate, uistate,
                                _('Person View'), PersonListModel,
                                nav_group=nav_group)
+
+    def get_config_name(self):
+        return __name__

@@ -69,6 +69,7 @@ from .listmodel import ListModel
 from gramps.gen.constfunc import win
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
@@ -170,7 +171,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.viewmanager = viewmanager
 
         for attr in ['connect_btn', 'cancel_btn', 'new_btn', 'remove_btn',
-                     'info_btn', 'dblist', 'rename_btn', 'convert_btn',
+                     'info_btn', 'rename_btn', 'convert_btn',
                      'repair_btn', 'rcs_btn', 'msg', 'close_btn']:
             setattr(self, attr, self.glade.get_object(attr))
 
@@ -179,6 +180,11 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.lock_file = None
         self.data_to_delete = None
 
+        objectlist = self.glade.get_object('dblist')
+        self.dblist = PersistentTreeView(uistate, "dbman")
+        scrolledwindow = self.glade.get_object('scrolledwindow88')
+        scrolledwindow.remove(objectlist)
+        scrolledwindow.add(self.dblist)
         self.selection = self.dblist.get_selection()
 
         # For already loaded database:
@@ -410,6 +416,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         column = Gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
         column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
+        self.dblist.restore_column_size()
 
     def __populate(self):
         """

@@ -208,3 +208,6 @@ class NoteTab(EmbeddedList, DbGUIElement):
             if handle in self.data:
                 self.rebuild()
                 break
+
+    def get_config_name(self):
+        return __name__

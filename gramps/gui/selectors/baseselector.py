@@ -38,6 +38,7 @@ from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.widgets.persistenttreeview import PersistentTreeView
 
 #-------------------------------------------------------------------------
 #
@@ -83,7 +84,12 @@ class BaseSelector(ManagedWindow):
         self.showall = self.glade.get_object('showall')
         title_label = self.glade.get_object('title')
         vbox = self.glade.get_object('select_person_vbox')
-        self.tree = self.glade.get_object('plist')
+        objectlist = self.glade.get_object('plist')
+        _name = self.get_config_name()
+        self.tree = PersistentTreeView(self.uistate, _name)
+        scrolledwindow = self.glade.get_object('scrolledwindow33')
+        scrolledwindow.remove(objectlist)
+        scrolledwindow.add(self.tree)
         self.tree.set_headers_visible(True)
         self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
@@ -298,6 +304,7 @@ class BaseSelector(ManagedWindow):
             search=filter_info)
 
         self.tree.set_model(self.model)
+        self.tree.restore_column_size()
 
         #sorting arrow in column header (not on start, only on click)
         if not self.setupcols :
@@ -313,6 +320,9 @@ class BaseSelector(ManagedWindow):
         self.setupcols = False
         if sel:
             self.goto_handle(sel)
+
+    def get_config_name(self):
+        assert False, "Must be defined in the subclass"
 
     def column_clicked(self, obj, data):
         if self.sort_col != data:
@@ -336,6 +346,7 @@ class BaseSelector(ManagedWindow):
             sort_map=self.column_order(), skip=self.skip_list,
             search=filter_info)
         self.tree.set_model(self.model)
+        self.tree.restore_column_size()
         self.tree.grab_focus()
 
     def clear_model(self):
