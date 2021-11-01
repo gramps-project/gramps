@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-11 22:31+0200\n"
-"PO-Revision-Date: 2021-10-25 21:52+0200\n"
+"PO-Revision-Date: 2021-11-01 21:54+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -37826,7 +37826,7 @@ msgstr "Erweiterte Optionen"
 #: ../gramps/plugins/webreport/narrativeweb.py:1952
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Character set encoding"
-msgstr "Codierung der Zeichensetzung"
+msgstr "Zeichensatzcodierung"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1956
 #: ../gramps/plugins/webreport/webcal.py:1875
