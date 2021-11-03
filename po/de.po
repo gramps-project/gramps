@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-11 22:31+0200\n"
-"PO-Revision-Date: 2021-11-01 21:54+0100\n"
+"PO-Revision-Date: 2021-11-03 19:40+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -37506,12 +37506,12 @@ msgstr "Das Copyright, das für die Webdateien verwendet wird."
 #: ../gramps/plugins/webreport/narrativeweb.py:1690
 #: ../gramps/plugins/webreport/webcal.py:1700
 msgid "StyleSheet"
-msgstr "Layoutvorlage"
+msgstr "Formatvorlage"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1696
 #: ../gramps/plugins/webreport/webcal.py:1703
 msgid "The stylesheet to be used for the web pages"
-msgstr "Die Layoutvorlage, für die Webseiten verwendet wird."
+msgstr "Die Formatvorlage, die für die Webseiten verwendet wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1701
 msgid "Horizontal -- Default"
@@ -38651,7 +38651,7 @@ msgstr "Nebraska"
 #. no style sheet option
 #: ../gramps/plugins/webstuff/webstuff.py:143
 msgid "No style sheet"
-msgstr "Kein Stylesheet"
+msgstr "Keine Formatvorlage"
 
 #~ msgid ""
 #~ "This allows you to set the maximum width of the image shown on the media "
