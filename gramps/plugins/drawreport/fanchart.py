@@ -168,6 +168,7 @@ class FanChart(Report):
         radial       - Print radial texts roundabout or as upright as possible.
         draw_empty   - draw background when there is no information
         same_style   - use the same style for all generation
+        flip_text    - flip names that are on the bottom half of the fan
         incl_private - Whether to include private data
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
@@ -190,6 +191,7 @@ class FanChart(Report):
         pid = menu.get_option_by_name('pid').get_value()
         self.draw_empty = menu.get_option_by_name('draw_empty').get_value()
         self.same_style = menu.get_option_by_name('same_style').get_value()
+        self.flip_text = menu.get_option_by_name('flip_text').get_value()
         self.center_person = self.database.get_person_from_gramps_id(pid)
         if self.center_person is None:
             raise ReportError(_("Person %s is not in the Database") % pid)
@@ -634,7 +636,16 @@ class FanChart(Report):
                     _yc = _y_
                 person = self.database.get_person_from_handle(self.map[index])
                 mark = utils.get_person_mark(self.database, person)
-                self.doc.rotate_text(graphic_style, self.text[index],
+
+                if (self.flip_text == True
+                    and generation >= 2
+                    and (start_angle >= 360
+                         or (start_angle >= 90
+                             and start_angle < 180))):
+                    self.doc.rotate_text(graphic_style, self.text[index],
+                                         _xc, _yc, text_angle + 180, mark)
+                else:
+                    self.doc.rotate_text(graphic_style, self.text[index],
                                      _xc, _yc, text_angle, mark)
             text_angle += delta
 
@@ -750,6 +761,12 @@ class FanChartOptions(MenuReportOptions):
         same_style.set_help(_("You can customize font and color "
                               "for each generation in the style editor"))
         menu.add_option(category_name, "same_style", same_style)
+
+        flip_text = BooleanOption(_("Flip names that are on the "
+                                    "bottom half of the fan"), True)
+        flip_text.set_help(_("Flip names for generations 2, 3 and 4 "
+                              "i.e. those found in circles"))
+        menu.add_option(category_name, "flip_text", flip_text)
 
         category_name = _("Report Options (2)")
 
