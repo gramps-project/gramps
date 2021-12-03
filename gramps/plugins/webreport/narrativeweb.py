@@ -611,6 +611,11 @@ class NavWebReport(Report):
         @param: bkref_class   -- The class associated to this handle (person)
         @param: bkref_handle  -- The handle associated to this person
         """
+        if self.obj_dict[Person][person_handle]:
+            # This person is already in the list of selected people.
+            # This can be achieved with associated people.
+            return
+
         person = self._db.get_person_from_handle(person_handle)
         if person:
             person_name = self.get_person_name(person)
