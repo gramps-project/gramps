@@ -75,6 +75,7 @@ class Backlinks(Gramplet):
         Display the back references for an object.
         """
         self.evts = False
+        sdcolumn = None
         for classname, handle in \
                 self.dbstate.db.find_backlink_handles(active_handle):
             name = navigation_label(self.dbstate.db, classname, handle)[0]
@@ -97,7 +98,8 @@ class Backlinks(Gramplet):
             sdcolumn.set_visible(False)
         else:
             self.date_column.set_visible(False)
-            sdcolumn.set_visible(False)
+            if sdcolumn:
+                sdcolumn.set_visible(False)
         self.set_has_data(self.model.count > 0)
 
     def get_has_data(self, active_handle):

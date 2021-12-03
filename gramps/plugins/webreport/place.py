@@ -49,7 +49,7 @@ import logging
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (PlaceType, Place, PlaceName)
+from gramps.gen.lib import (PlaceType, Place, PlaceName, Media)
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.mime import is_image_type
 from gramps.plugins.lib.libhtml import Html
@@ -123,6 +123,34 @@ class PlacePages(BasePage):
             LOG.debug("    %s", str(item))
         message = _("Creating place pages")
         progress_title = self.report.pgrs_title(the_lang)
+        if self.report.options['inc_uplaces']:
+            place_count = len(self.r_db.get_place_handles())
+        else:
+            place_count = len(self.report.obj_dict[Place])
+        with self.r_user.progress(progress_title, message,
+                                  place_count + 1
+                                 ) as step:
+            if self.report.options['inc_uplaces']:
+                # add unused place
+                place_list = self.r_db.get_place_handles()
+                for place_ref in place_list:
+                    if place_ref not in self.report.obj_dict[Place]:
+                        place = self.r_db.get_place_from_handle(place_ref)
+                        if place:
+                            place_name = place.get_title()
+                            p_fname = self.report.build_url_fname(place_ref,
+                                                                  "plc",
+                                                                  False,
+                                                                  init=True)
+                            p_fname += self.ext
+                            plc_dict = (p_fname, place_name,
+                                        place.gramps_id, None)
+                            self.report.obj_dict[Place][place_ref] = plc_dict
+                            p_name = _pd.display(self.r_db, place)
+                            plc_dict = (place_ref, p_name,
+                                        place.gramps_id, None)
+                            self.report.obj_dict[PlaceName][p_name] = plc_dict
+
         with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Place]) + 1
                                  ) as step:
@@ -134,7 +162,7 @@ class PlacePages(BasePage):
                 self.placepage(self.report, the_lang, the_title, p_handle[0],
                                place_name)
             step()
-            self.placelistpage(self.report, the_lang, the_title)
+        self.placelistpage(self.report, the_lang, the_title)
 
     def placelistpage(self, report, the_lang, the_title):
         """
@@ -326,12 +354,13 @@ class PlacePages(BasePage):
         with Html("div", class_="content", id="PlaceDetail") as placedetail:
             outerwrapper += placedetail
 
+            media_list = place.get_media_list()
             if self.create_media:
-                media_list = place.get_media_list()
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
                                                              place)
                 if thumbnail is not None:
-                    placedetail += thumbnail
+                    if media_list[0].ref in self.report.obj_dict[Media]:
+                        placedetail += thumbnail
 
             # add section title
             placedetail += Html("h3",
@@ -349,7 +378,9 @@ class PlacePages(BasePage):
                     self.dump_place(place, table)
 
             # place gallery
-            if self.create_media:
+            if self.create_media and not self.report.options['inc_uplaces']:
+                # Don't diplay media for unused places. It generates
+                # "page not found" if they are not collected in pass 1.
                 placegallery = self.disp_add_img_as_gallery(media_list, place)
                 if placegallery is not None:
                     placedetail += placegallery
@@ -429,9 +460,13 @@ class PlacePages(BasePage):
                     tooltip += Html("div", id="tooltip-content")
 
             # source references
-            srcrefs = self.display_ind_sources(place)
-            if srcrefs is not None:
-                placedetail += srcrefs
+            if not self.report.options['inc_uplaces']:
+                # We can't display source reference when we display
+                # unused places. These info are not in the collected objects.
+                # This is to avoid "page not found" errors.
+                srcrefs = self.display_ind_sources(place)
+                if srcrefs is not None:
+                    placedetail += srcrefs
 
             # References list
             ref_list = self.display_bkref_list(Place, place_handle)
@@ -462,7 +497,8 @@ class PlacePages(BasePage):
                                 imglnk = self.media_link(photo_hdle, newpath,
                                                          descr, uplink=uplnk,
                                                          usedescr=False)
-                                tracelife += str(imglnk)
+                                if photo_hdle in self.report.obj_dict[Media]:
+                                    tracelife += str(imglnk)
                                 break # We show only the first image
                     scripts = Html()
                     if self.mapservice == "Google":
