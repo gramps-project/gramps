@@ -375,6 +375,7 @@ gramps/gen/utils/image.py
 gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
+gramps/gen/utils/requirements.py
 gramps/gen/utils/string.py
 gramps/gen/utils/symbols.py
 gramps/gen/utils/unknown.py

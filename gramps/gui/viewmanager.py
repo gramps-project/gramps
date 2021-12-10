@@ -79,7 +79,7 @@ from gramps.gen.relationship import get_relationship_calculator
 from .displaystate import DisplayState, RecentDocsMenu
 from gramps.gen.const import (USER_DATA, ICON, URL_BUGTRACKER, URL_HOMEPAGE,
                               URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING,
-                              WIKI_EXTRAPLUGINS, URL_BUGHOME)
+                              WIKI_EXTRAPLUGINS, URL_BUGHOME, DATA_DIR)
 from gramps.gen.constfunc import is_quartz
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
@@ -267,6 +267,8 @@ class ViewManager(CLIManager):
         self.window.set_default_size(width, height)
         self.window.move(horiz_position, vert_position)
 
+        self.load_css()
+
         self.provider = Gtk.CssProvider()
         self.change_font(font)
 
@@ -382,6 +384,7 @@ class ViewManager(CLIManager):
             ('ExtraPlugins', extra_plugins_activate),
             #('about', self.display_about_box),
             ('PluginStatus', self.__plugin_status),
+            ('AddonManager', self.__addon_manager),
             ('FAQ', faq_activate),
             ('KeyBindings', key_bindings),
             ('UserManual', manual_activate, 'F1'),
@@ -679,6 +682,13 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             return
 
+    def load_css(self):
+        provider = Gtk.CssProvider()
+        provider.load_from_path(os.path.join(DATA_DIR, 'gramps.css'))
+        Gtk.StyleContext.add_provider_for_screen(
+                         self.window.get_screen(), provider,
+                         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
     def reset_font(self):
         """
         Reset to the default application font.
@@ -719,6 +729,15 @@ class ViewManager(CLIManager):
         """
         try:
             PluginWindows.PluginStatus(self.dbstate, self.uistate, [])
+        except WindowActiveError:
+            pass
+
+    def __addon_manager(self, obj=None, data=None):
+        """
+        Display the addon manager dialog
+        """
+        try:
+            PluginWindows.AddonManager(self.dbstate, self.uistate, [])
         except WindowActiveError:
             pass
 

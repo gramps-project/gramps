@@ -104,6 +104,14 @@ class BasePluginManager:
         self.__loaded_plugins = {}
         self.__scanned_dirs = []
 
+    def reg_plugin_dir(self, direct, dbstate=None, uistate=None,
+                       load_on_reg=False, rescan=False):
+        """
+        Register plugins in a given directory.
+        """
+        self.__scanned_dirs.remove(direct)
+        self.reg_plugins(direct, dbstate, uistate, load_on_reg, rescan)
+
     def reg_plugins(self, direct, dbstate=None, uistate=None,
                     load_on_reg=False, rescan=False):
         """
@@ -128,8 +136,7 @@ class BasePluginManager:
         #             " been_here=%s, pahte exists:%s", direct, load_on_reg,
         #             direct in self.__scanned_dirs, os.path.isdir(direct))
 
-        if os.path.isdir(direct) and direct not in self.__scanned_dirs:
-            self.__scanned_dirs.append(direct)
+        if os.path.isdir(direct):
             for (dirpath, dirnames, filenames) in os.walk(direct,
                                                           topdown=True):
                 for dirname in dirnames[:]:
@@ -138,7 +145,9 @@ class BasePluginManager:
                                                               "__pycache__"]:
                         dirnames.remove(dirname)
                 # LOG.warning("Plugin dir scanned: %s", dirpath)
-                self.__pgr.scan_dir(dirpath, filenames, uistate=uistate)
+                if dirpath not in self.__scanned_dirs:
+                    self.__pgr.scan_dir(dirpath, filenames, uistate=uistate)
+                    self.__scanned_dirs.append(dirpath)
 
         if load_on_reg:
             # Run plugins that request to be loaded on startup and

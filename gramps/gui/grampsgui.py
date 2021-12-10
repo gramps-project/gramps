@@ -173,6 +173,12 @@ UIDEFAULT = (
           <attribute name="action">win.Clipboard</attribute>
           <attribute name="label" translatable="yes">Clip_board</attribute>
         </item>
+        <item>
+          <attribute name="action">win.AddonManager</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''_Addon Manager...</attribute>
+        </item>
+
       </section>
       <section>
         <placeholder groups='OSX' id='osxpref'>

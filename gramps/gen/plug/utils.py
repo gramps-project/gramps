@@ -31,6 +31,7 @@ import sys
 import os
 import datetime
 from io import StringIO, BytesIO
+import json
 
 #-------------------------------------------------------------------------
 #
@@ -192,8 +193,7 @@ def urlopen_maybe_no_check_cert(URL):
         fp = urlopen(URL, timeout=timeout)
     return fp
 
-def available_updates():
-    whattypes = config.get('behavior.check-for-addon-update-types')
+def get_addons(project, url):
 
     LOG.debug("Checking for updated addons...")
     langs = glocale.get_language_list()
@@ -201,15 +201,13 @@ def available_updates():
     # now we have a list of languages to try:
     fp = None
     for lang in langs:
-        URL = ("%s/listings/addons-%s.txt" %
-               (config.get("behavior.addons-url"), lang))
+        URL = ("%s/listings/addons-%s.json" % (url, lang))
         LOG.debug("   trying: %s" % URL)
         try:
             fp = urlopen_maybe_no_check_cert(URL)
         except:
             try:
-                URL = ("%s/listings/addons-%s.txt" %
-                       (config.get("behavior.addons-url"), lang[:2]))
+                URL = ("%s/listings/addons-%s.json" % (url, lang[:2]))
                 fp = urlopen_maybe_no_check_cert(URL)
             except Exception as err: # some error
                 LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
@@ -218,59 +216,72 @@ def available_updates():
         if fp and (fp.getcode() == 200 or fp.file):
             break
 
-    pmgr = BasePluginManager.get_instance()
-    addon_update_list = []
+    addon_list = []
     if fp and (fp.getcode() == 200 or fp.file):
-        lines = list(fp.readlines())
-        count = 0
-        for line in lines:
-            line = line.decode('utf-8')
-            try:
-                plugin_dict = safe_eval(line)
-                if type(plugin_dict) != type({}):
-                    raise TypeError("Line with addon metadata is not "
-                                    "a dictionary")
-            except:
-                LOG.warning("Skipped a line in the addon listing: " +
-                         str(line))
-                continue
+        addon_list = json.load(fp)
+        for plugin_dict in addon_list:
+            if 'a' not in plugin_dict:
+                plugin_dict['a'] = 0
+            if 's' not in plugin_dict:
+                plugin_dict['s'] = 0
+            if 'h' not in plugin_dict:
+                plugin_dict['h'] = ''
+            plugin_dict['_p'] = project
+            plugin_dict['_u'] = url
             id = plugin_dict["i"]
+            pmgr = BasePluginManager.get_instance()
             plugin = pmgr.get_plugin(id)
             if plugin:
-                LOG.debug("Comparing %s > %s" %
-                          (version_str_to_tup(plugin_dict["v"], 3),
-                           version_str_to_tup(plugin.version, 3)))
-                if (version_str_to_tup(plugin_dict["v"], 3) >
-                    version_str_to_tup(plugin.version, 3)):
-                    LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
-                    if "update" in whattypes:
-                        if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
-                             plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
-                            addon_update_list.append((_("Updated"),
-                                                      "%s/download/%s" %
-                                                      (config.get("behavior.addons-url"),
-                                                       plugin_dict["z"]),
-                                                      plugin_dict))
-                else:
-                    LOG.debug("   '%s' is ok" % plugin_dict["n"])
-            else:
-                LOG.debug("   '%s' is not installed" % plugin_dict["n"])
-                if "new" in whattypes:
-                    if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
-                         plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
-                        addon_update_list.append((_("New", "updates"),
-                                                  "%s/download/%s" %
-                                                  (config.get("behavior.addons-url"),
-                                                   plugin_dict["z"]),
-                                                  plugin_dict))
-        config.set("behavior.last-check-for-addon-updates",
-                   datetime.date.today().strftime("%Y/%m/%d"))
-        count += 1
-        if fp:
-            fp.close()
+                plugin_dict['_v'] = plugin.version
     else:
         LOG.debug("Checking Addons Failed")
     LOG.debug("Done checking!")
+
+    return addon_list
+
+def get_all_addons():
+    projects = config.get('behavior.addons-projects')
+    all_addons = []
+    for project, url, enabled in projects:
+        if enabled:
+            addons_list = get_addons(project, url)
+            all_addons.extend(addons_list)
+    return all_addons
+
+def available_updates():
+
+    whattypes = config.get('behavior.check-for-addon-update-types')
+    addon_update_list = []
+    for plugin_dict in get_all_addons():
+        if '_v' in plugin_dict:
+            LOG.debug("Comparing %s > %s" %
+                      (version_str_to_tup(plugin_dict["v"], 3),
+                       version_str_to_tup(plugin_dict["_v"], 3)))
+            if (version_str_to_tup(plugin_dict["v"], 3) >
+                version_str_to_tup(plugin_dict["_v"], 3)):
+                LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
+                if "update" in whattypes:
+                    if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
+                         plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
+                        addon_update_list.append((_("Updated"),
+                                                  "%s/download/%s" %
+                                                  (plugin_dict["_u"],
+                                                   plugin_dict["z"]),
+                                                  plugin_dict))
+            else:
+                LOG.debug("   '%s' is ok" % plugin_dict["n"])
+        else:
+            LOG.debug("   '%s' is not installed" % plugin_dict["n"])
+            if "new" in whattypes:
+                if (not config.get('behavior.do-not-show-previously-seen-addon-updates') or
+                     plugin_dict["i"] not in config.get('behavior.previously-seen-addon-updates')):
+                    addon_update_list.append((_("New", "updates"),
+                                              "%s/download/%s" %
+                                              (plugin_dict["_u"],
+                                               plugin_dict["z"]),
+                                              plugin_dict))
+    config.set("behavior.last-check-for-addon-updates",
+               datetime.date.today().strftime("%Y/%m/%d"))
 
     return addon_update_list
 

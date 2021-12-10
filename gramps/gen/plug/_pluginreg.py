@@ -40,6 +40,7 @@ import traceback
 #
 #-------------------------------------------------------------------------
 from ...version import VERSION as GRAMPSVERSION, VERSION_TUPLE
+from ..utils.requirements import Requirements
 from ..const import IMAGE_DIR
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -1271,6 +1272,7 @@ class PluginRegister:
             self.stable_only = False
         self.__plugindata = []
         self.__id_to_pdata = {}
+        self.__req = Requirements()
 
     def add_plugindata(self, plugindata):
         """ This is used to add an entry to the registration list.  The way it
@@ -1323,10 +1325,11 @@ class PluginRegister:
                 exec (compile(stream, filename, 'exec'),
                       make_environment(_=local_gettext), {'uistate': uistate})
                 for pdata in self.__plugindata[lenpd:]:
-                    # should not be duplicate IDs in different plugins
-                    assert pdata.id not in self.__id_to_pdata
-                    # if pdata.id in self.__id_to_pdata:
-                    #     print("Error: %s is duplicated!" % pdata.id)
+                    if pdata.id in self.__id_to_pdata:
+                        # reloading
+                        old = self.__id_to_pdata[pdata.id]
+                        self.__plugindata.remove(old)
+                        lenpd -= 1
                     self.__id_to_pdata[pdata.id] = pdata
             except ValueError as msg:
                 print(_('ERROR: Failed reading plugin registration %(filename)s') % \
@@ -1356,6 +1359,9 @@ class PluginRegister:
                              'gramps_version': GRAMPSVERSION,
                              'gramps_target_version': plugin.gramps_target_version,}
                             ))
+                    rmlist.append(ind)
+                    continue
+                if not self.__req.check_plugin(plugin):
                     rmlist.append(ind)
                     continue
                 if not plugin.status == STABLE and self.stable_only:

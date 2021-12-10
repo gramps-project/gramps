@@ -563,7 +563,6 @@ class GrampsPreferences(ConfigureDialog):
         page_funcs = (
             self.add_data_panel,
             self.add_general_panel,
-            self.add_addons_panel,
             self.add_famtree_panel,
             self.add_import_panel,
             self.add_limits_panel,
@@ -1543,28 +1542,11 @@ class GrampsPreferences(ConfigureDialog):
         self.pformat.set_model(model)
         self.pformat.set_active(0)
 
-    def check_for_type_changed(self, obj):
-        active = obj.get_active()
-        if active == 0:  # update
-            config.set('behavior.check-for-addon-update-types', ["update"])
-        elif active == 1:  # update
-            config.set('behavior.check-for-addon-update-types', ["new"])
-        elif active == 2:  # update
-            config.set('behavior.check-for-addon-update-types',
-                       ["update", "new"])
-
     def toggle_tag_on_import(self, obj):
         """
         Update Entry sensitive for tag on import.
         """
         self.tag_format_entry.set_sensitive(obj.get_active())
-
-    def check_for_updates_changed(self, obj):
-        """
-        Save "Check for addon updates" option.
-        """
-        active = obj.get_active()
-        config.set('behavior.check-for-addon-updates', active)
 
     def date_format_changed(self, obj):
         """
@@ -1728,11 +1710,11 @@ class GrampsPreferences(ConfigureDialog):
            extra_callback=self.cb_toolbar_changed)
 
         row += 1
-        # Show Plugins Icon:
+        # Show Addons Icon:
         self.add_checkbox(
-           grid, _("Show Plugins icon on toolbar"),
-           row, 'interface.toolbar-plugin', start=1, stop=3,
-           tooltip=_("Show or hide the Plugins icon on the toolbar."),
+           grid, _("Show Addons icon on toolbar"),
+           row, 'interface.toolbar-addons', start=1, stop=3,
+           tooltip=_("Show or hide the Addons icon on the toolbar."),
            extra_callback=self.cb_toolbar_changed)
 
         row += 1
@@ -1793,101 +1775,6 @@ class GrampsPreferences(ConfigureDialog):
         label.set_margin_top(10)
 
         return _('General'), grid
-
-    def add_addons_panel(self, configdialog):
-        """
-        Config tab with 'Addons' install settings.
-        """
-        grid = self.create_grid()
-
-        row = 1
-        label = self.add_text(
-            grid, _('Configuration settings to have Gramps check for'
-                    ' new or updated third party Addons and Plugins.'
-                    ' The Plugin Manager has the complete list of installed'
-                    ' Addons and Plugins and their activation status.\n'), row,
-            line_wrap=True, start=0, stop=9)
-        label.set_margin_top(10)
-
-        row += 1
-        # Check for addon updates:
-        obox = Gtk.ComboBoxText()
-        formats = [_("Never"),
-                   _("Once a month"),
-                   _("Once a week"),
-                   _("Once a day"),
-                   _("Always"), ]
-        list(map(obox.append_text, formats))
-        active = config.get('behavior.check-for-addon-updates')
-        obox.set_active(active)
-        obox.connect('changed', self.check_for_updates_changed)
-        lwidget = BasicLabel(_("%s: ") % _('Check for addon updates'))
-        grid.attach(lwidget, 2, row, 1, 1)
-        grid.attach(obox, 3, row, 1, 1)
-
-        row += 1
-        self.whattype_box = Gtk.ComboBoxText()
-        formats = [_("Updated addons only"),
-                   _("New addons only"),
-                   _("New and updated addons")]
-        list(map(self.whattype_box.append_text, formats))
-        whattype = config.get('behavior.check-for-addon-update-types')
-        if "new" in whattype and "update" in whattype:
-            self.whattype_box.set_active(2)
-        elif "new" in whattype:
-            self.whattype_box.set_active(1)
-        elif "update" in whattype:
-            self.whattype_box.set_active(0)
-        self.whattype_box.connect('changed', self.check_for_type_changed)
-        lwidget = BasicLabel(_("%s: ") % _('What to check'))
-        grid.attach(lwidget, 2, row, 1, 1)
-        grid.attach(self.whattype_box, 3, row, 1, 1)
-
-        row += 1
-        self.add_entry(grid, _('Where to check'), row,
-                       'behavior.addons-url', col_attach=2)
-
-        row += 1
-        self.add_checkbox(
-            grid, _('Do not ask about previously notified addons'),
-            row, 'behavior.do-not-show-previously-seen-addon-updates',
-            start=2, stop=9)
-
-        row += 1
-        button = Gtk.Button(label=_("Check for updated addons now"))
-        button.connect("clicked", self.check_for_updates)
-        button.set_hexpand(False)
-        button.set_halign(Gtk.Align.CENTER)
-        grid.attach(button, 1, row, 3, 1)
-
-        return _('Addons'), grid
-
-    def check_for_updates(self, button):
-        try:
-            addon_update_list = available_updates()
-        except:
-            OkDialog(_("Checking Addons Failed"),
-                     _("The addon repository appears to be unavailable. "
-                       "Please try again later."),
-                     parent=self.window)
-            return
-
-        if len(addon_update_list) > 0:
-            rescan = PluginWindows.UpdateAddons(self.uistate, self.track,
-                                                addon_update_list).rescan
-            self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate,
-                                                    rescan=rescan)
-        else:
-            check_types = config.get('behavior.check-for-addon-update-types')
-            OkDialog(
-                _("There are no available addons of this type"),
-                _("Checked for '%s'") %
-                _("' and '").join([_(t) for t in check_types]),
-                parent=self.window)
-
-        # List of translated strings used here
-        # Dead code for l10n
-        _('new'), _('update')
 
     def database_backend_changed(self, obj):
         """

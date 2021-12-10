@@ -34,7 +34,7 @@ from ._pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
             CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,
             CATEGORY_QR_CITATION, CATEGORY_QR_SOURCE_OR_CITATION,
-            START, END, make_environment,
+            START, END, make_environment, AUDIENCETEXT, STATUSTEXT,
             )
 from ._import import ImportPlugin
 from ._export import ExportPlugin

@@ -28,6 +28,10 @@
 #-------------------------------------------------------------------------
 import traceback
 import os
+from html import escape
+import threading
+import sys
+import subprocess
 
 #-------------------------------------------------------------------------
 #
@@ -44,6 +48,7 @@ LOG = logging.getLogger(".gui.plug")
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GLib
 from gi.repository import Pango
 from gi.repository import GObject
 
@@ -57,7 +62,8 @@ _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from ..managedwindow import ManagedWindow
 from gramps.gen.errors import UnavailableError, WindowActiveError
-from gramps.gen.plug import PluginRegister, PTYPE_STR, load_addon_file
+from gramps.gen.plug import (PluginRegister, PTYPE_STR, load_addon_file,
+                             AUDIENCETEXT, STATUSTEXT)
 from ..utils import open_file_with_default_application
 from ..pluginmanager import GuiPluginManager
 from . import tool
@@ -66,10 +72,16 @@ from ..dialog import InfoDialog, OkDialog
 from ..editors import EditPerson
 from ..glade import Glade
 from ..listmodel import ListModel, NOSORT, TOGGLE
-from gramps.gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA
+from gramps.gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA, COLON
 from gramps.gen.config import config
 from ..widgets.progressdialog import (LongOpStatus, ProgressMonitor,
                                       GtkProgressDialog)
+
+from gramps.gen.plug.utils import get_all_addons, available_updates
+from ..display import display_help, display_url
+from gramps.gui.widgets import BasicLabel, SimpleButton
+from gramps.gen.utils.requirements import Requirements
+from gramps.gen.const import USER_PLUGINS
 
 def display_message(message):
     """
@@ -79,6 +91,713 @@ def display_message(message):
 
 RELOAD = 777    # A custom Gtk response_type for the Reload button
 
+#-------------------------------------------------------------------------
+#
+# GetAddons
+#
+#-------------------------------------------------------------------------
+class GetAddons(threading.Thread):
+    """
+    A class for retrieving a list of addons as a background task.
+    """
+    def __init__(self, callback):
+        threading.Thread.__init__(self)
+        self.callback = callback
+        self.addon_list = []
+        self.__pmgr = GuiPluginManager.get_instance()
+
+    def emit_signal(self):
+        self.callback(self.addon_list)
+
+    def run(self):
+        self.addon_list = self.__get_addon_list()
+        GLib.idle_add(self.emit_signal)
+
+    def __get_addon_list(self):
+       return get_all_addons()
+
+#-------------------------------------------------------------------------
+#
+# ProjectRow
+#
+#-------------------------------------------------------------------------
+class ProjectRow(Gtk.ListBoxRow):
+    """
+    A class to display an external addons repository.
+    """
+    def __init__(self, manager, project):
+        Gtk.ListBoxRow.__init__(self)
+        self.manager = manager
+        self.project = project
+
+        hbox = Gtk.Box()
+        hbox.set_spacing(12)
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.set_spacing(6)
+
+        self.check = Gtk.CheckButton()
+
+        hbox.pack_start(self.check, False, False, 0)
+        hbox.pack_start(vbox, True, True, 0)
+
+        self.name = Gtk.Label()
+        self.name.set_use_markup(True)
+        self.name.set_halign(Gtk.Align.START)
+        self.url = Gtk.Label()
+        self.url.set_halign(Gtk.Align.START)
+        vbox.pack_start(self.name, False, False, 0)
+        vbox.pack_start(self.url, False, False, 0)
+
+        self.add(hbox)
+        self.show_all()
+
+        self.update()
+        self.check.connect('toggled', self.__check_toggled)
+
+    def __check_toggled(self, check):
+        self.project[2] = check.get_active()
+        projects = [row.project for row in self.manager.project_list]
+        config.set('behavior.addons-projects', projects)
+        self.manager.refresh()
+
+    def update(self):
+        """
+        Update the row when the project data has been updated.
+        """
+        text = self.project[0]
+        self.name.set_markup('<span weight="bold">%s</span>' % text)
+        self.url.set_text(self.project[1])
+        self.check.set_active(self.project[2])
+
+#-------------------------------------------------------------------------
+#
+# AddonManager
+#
+#-------------------------------------------------------------------------
+class AddonRow(Gtk.ListBoxRow):
+    """
+    A class representing an addon in the Addon Manager.
+    """
+    def __init__(self, manager, addon, req, window):
+        Gtk.ListBoxRow.__init__(self)
+        self.manager = manager
+        self.addon = addon
+        self.req = req
+        self.window = window
+
+        context = self.get_style_context()
+        context.add_class('addon-row')
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.set_spacing(6)
+
+        text = escape(addon['n'])
+        title = Gtk.Label()
+        title.set_text('<span size="larger" weight="bold">%s</span>' % text)
+        title.set_use_markup(True)
+        title.set_halign(Gtk.Align.CENTER)
+        vbox.pack_start(title, False, False, 0)
+
+        hbox = Gtk.Box()
+        hbox.set_spacing(6)
+        lozenge = self.__create_lozenge(_('Project'), addon['_p'])
+        hbox.pack_start(lozenge, False, False, 0)
+        lozenge = self.__create_lozenge(_('Type'), addon['t'])
+        hbox.pack_start(lozenge, False, False, 0)
+        lozenge = self.__create_lozenge(_('Audience'), AUDIENCETEXT[addon['a']])
+        hbox.pack_start(lozenge, False, False, 0)
+        lozenge = self.__create_lozenge(_('Status'), STATUSTEXT[addon['s']])
+        hbox.pack_start(lozenge, False, False, 0)
+        lozenge = self.__create_lozenge(_('Version'), addon['v'])
+        hbox.pack_start(lozenge, False, False, 0)
+        if '_v' in addon:
+            lozenge = self.__create_lozenge(_('Installed version'), addon['_v'])
+            hbox.pack_end(lozenge, False, False, 0)
+
+        vbox.pack_start(hbox, False, False, 0)
+
+        text = addon['d']
+        descr = Gtk.Label()
+        descr.set_text(text)
+        descr.set_halign(Gtk.Align.START)
+        descr.set_hexpand(False)
+        descr.set_line_wrap(True)
+        descr.set_line_wrap_mode(Pango.WrapMode.WORD)
+        vbox.pack_start(descr, False, False, 0)
+
+        bb = Gtk.Box()
+        bb.set_spacing(6)
+
+        if '_v' not in addon and req.check_addon(addon, install=True):
+            b1 = Gtk.Button(label=_("Install"))
+            b1.set_label(_("Install"))
+            b1.connect('clicked', self.__on_install_clicked, addon)
+            bb.pack_end(b1, False, False, 0)
+
+        if addon['h']:
+            b2 = Gtk.Button(label=_("Wiki"))
+            b2.connect('clicked', self.__on_wiki_clicked, addon['h'])
+            bb.pack_start(b2, False, False, 0)
+
+        if not req.check_addon(addon):
+            b3 = Gtk.Button(label=_("Requires"))
+            b3.connect('clicked', self.__on_requires_clicked, addon)
+            bb.pack_start(b3, False, False, 0)
+
+        if '_v' in addon and addon['_v'] != addon['v']:
+            b4 = Gtk.Button(label=_("Upgrade"))
+            b4.connect('clicked', self.__on_upgrade_clicked, addon)
+            bb.pack_end(b4, False, False, 0)
+
+        vbox.pack_start(bb, False, False, 0)
+
+        self.add(vbox)
+        self.show_all()
+
+    def __on_install_clicked(self, button, addon):
+        """
+        Install the addon and possibly some required python modules.
+        """
+        # Install required modules
+        for package in self.req.install(addon):
+            try:
+                subprocess.check_output(
+                    [sys.executable, '-m', 'pip', 'install', package],
+                    stderr=subprocess.STDOUT)
+            except subprocess.CalledProcessError as err:
+                button.set_sensitive(False)
+                InfoDialog(_('Module installation failed'),
+                           err.output.decode("utf-8"),
+                           parent=self.window)
+                return
+
+        # Install addon
+        path = addon['_u'] + '/download/' + addon['z']
+        load_addon_file(path)
+        self.manager.install_addon(addon['i'])
+        self.manager.refresh()
+
+    def __on_wiki_clicked(self, button, url):
+        """
+        Display the wiki page for the addon.
+        """
+        if url.startswith(('http://', 'https://')):
+            display_url(url)
+        else:
+            display_help(url)
+
+    def __on_requires_clicked(self, button, addon):
+        """
+        Display the requirements for the addon.
+        """
+        InfoDialog(_('Requirements'), self.req.info(addon), parent=self.window)
+
+    def __on_upgrade_clicked(self, button, addon):
+        """
+        Upgrade the addon.
+        """
+        path = addon['_u'] + '/download/' + addon['z']
+        load_addon_file(path)
+        self.manager.upgrade_addon(addon['i'])
+        self.manager.refresh()
+
+    def __create_lozenge(self, description, text):
+        """
+        Create a lozenge shaped label to display addon information.
+        """
+        label = Gtk.Label()
+        label.set_tooltip_text(description)
+        context = label.get_style_context()
+        context.add_class('lozenge')
+        label.set_text(text)
+        label.set_margin_start(6)
+        return label
+
+#-------------------------------------------------------------------------
+#
+# AddonManager
+#
+#-------------------------------------------------------------------------
+class AddonManager(ManagedWindow):
+    """
+    A class to allow the user to easily select addons to install.
+    """
+    def __init__(self, dbstate, uistate, track):
+        self.dbstate = dbstate
+        self.title = _("Addon Manager")
+        ManagedWindow.__init__(self, uistate, [], self)
+
+        self.__pmgr = GuiPluginManager.get_instance()
+        self.__preg = PluginRegister.get_instance()
+        dialog = Gtk.Dialog(title="", transient_for=uistate.window,
+                            destroy_with_parent=True)
+        dialog.add_button(_('Refresh'), RELOAD)
+        dialog.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dialog, None, self.title)
+
+        self.req = Requirements()
+
+        self.setup_configs('interface.addonmanager', 750, 400)
+        self.window.connect('response', self.__on_dialog_button)
+
+        book = Gtk.Notebook()
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.set_spacing(6)
+        vbox.set_margin_start(6)
+        vbox.set_margin_end(6)
+        vbox.set_margin_top(6)
+        vbox.set_margin_bottom(6)
+
+        self.search = Gtk.Entry()
+        self.search.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY,
+                                            'system-search')
+        self.search.connect("changed", self.__combo_changed)
+        vbox.pack_start(self.search, False, False, 0)
+
+        hbox = Gtk.Box()
+        hbox.set_spacing(6)
+        self.lb = Gtk.ListBox()
+        self.lb.set_activate_on_single_click(False)
+
+        label = Gtk.Label(label=_('Filters') + COLON)
+        label.set_margin_end(12)
+        hbox.pack_start(label, False, False, 0)
+
+        self.projects = config.get('behavior.addons-projects')
+        self.project_combo = Gtk.ComboBoxText()
+        self.project_combo.set_entry_text_column(0)
+        self.project_combo.connect("changed", self.__combo_changed)
+        self.project_combo.append_text(_('All'))
+        for project in self.projects:
+            self.project_combo.append_text(project[0])
+        self.project_combo.set_active(0)
+        hbox.pack_start(self.project_combo, False, False, 0)
+
+        self.type_combo = Gtk.ComboBoxText()
+        self.type_combo.set_entry_text_column(0)
+        self.type_combo.connect("changed", self.__combo_changed)
+        self.type_combo.append_text(_('All'))
+        for typestr in PTYPE_STR.values():
+            self.type_combo.append_text(typestr)
+        self.type_combo.set_active(0)
+        hbox.pack_start(self.type_combo, False, False, 0)
+
+        audience_store = Gtk.ListStore(int, str)
+        audience_store.append([-1, _('All')])
+        for key, value in AUDIENCETEXT.items():
+            audience_store.append([key, value])
+        self.audience_combo = Gtk.ComboBox()
+        self.audience_combo.set_model(audience_store)
+        self.audience_combo.set_entry_text_column(1)
+        self.audience_combo.connect("changed", self.__combo_changed)
+        self.audience_combo.set_active(1)
+        renderer_text = Gtk.CellRendererText()
+        self.audience_combo.pack_start(renderer_text, True)
+        self.audience_combo.add_attribute(renderer_text, "text", 1)
+        hbox.pack_start(self.audience_combo, False, False, 0)
+
+        status_store = Gtk.ListStore(int, str)
+        status_store.append([-1, _('All')])
+        for key, value in STATUSTEXT.items():
+            status_store.append([key, value])
+        self.status_combo = Gtk.ComboBox()
+        self.status_combo.set_model(status_store)
+        self.status_combo.set_entry_text_column(1)
+        self.status_combo.connect("changed", self.__combo_changed)
+        self.status_combo.set_active(4)
+        renderer_text = Gtk.CellRendererText()
+        self.status_combo.pack_start(renderer_text, True)
+        self.status_combo.add_attribute(renderer_text, "text", 1)
+        hbox.pack_start(self.status_combo, False, False, 0)
+
+        clear = Gtk.Button.new_from_icon_name('edit-clear', Gtk.IconSize.BUTTON)
+        clear.connect("clicked", self.__clear_filters)
+        hbox.pack_start(clear, False, False, 0)
+
+        vbox.pack_start(hbox, False, False, 0)
+
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        sw.add(self.lb)
+        vbox.pack_start(sw, True, True, 0)
+
+        book.append_page(vbox, Gtk.Label(_("Addons")))
+
+        grid = self.create_settings_panel()
+        book.append_page(grid, Gtk.Label(_("Settings")))
+
+        grid = self.create_projects_panel()
+        book.append_page(grid, Gtk.Label(_("Projects")))
+
+        for project in self.projects:
+            self.project_list.add(ProjectRow(self, project))
+
+        self.window.get_content_area().pack_start(book, True, True, 0)
+
+        self.lb.set_sort_func(self.__sort_func)
+        self.lb.set_filter_func(self.__filter_func)
+
+        self.show()
+
+        self.refresh()
+
+    def refresh(self):
+        """
+        Refresh the addons list.
+        """
+        for child in self.lb.get_children():
+            self.lb.remove(child)
+        self.__placeholder(_('Loading...'))
+
+        thread = GetAddons(self.load_addons)
+        thread.start()
+
+    def upgrade_addon(self, addon_id):
+        """
+        Upgrade the given addon.
+        """
+        pdata = self.__preg.get_plugin(addon_id)
+        self.__pmgr.reg_plugin_dir(pdata.directory, self.dbstate, self.uistate,
+                                   load_on_reg=True)
+        pdata = self.__preg.get_plugin(addon_id)
+        self.__pmgr.load_plugin(pdata)
+
+    def install_addon(self, addon_id):
+        """
+        Install the given addon.
+        """
+        self.__pmgr.reg_plugins(USER_PLUGINS, self.dbstate, self.uistate,
+                                load_on_reg=True)
+        pdata = self.__preg.get_plugin(addon_id)
+        self.__pmgr.load_plugin(pdata)
+
+    def build_menu_names(self, obj):
+        return (self.title, self.title)
+
+    def __placeholder(self, text):
+        """
+        A placeholder label if no addons are listed.
+        """
+        label = Gtk.Label('<span size="larger" weight="bold">%s</span>' % text)
+        label.set_use_markup(True)
+        label.show()
+        self.lb.set_placeholder(label)
+
+    def load_addons(self, addon_list):
+        """
+        Populate the list box.
+        """
+        for addon in addon_list:
+            self.lb.add(AddonRow(self, addon, self.req, self.window))
+        self.__placeholder(_('No matching addons found.'))
+
+    def __clear_filters(self, combo):
+        """
+        Reset the filters back to their defaults.
+        """
+        self.search.set_text('')
+        self.type_combo.set_active(0)
+        self.project_combo.set_active(0)
+        self.audience_combo.set_active(1)
+        self.status_combo.set_active(4)
+
+    def __combo_changed(self, combo):
+        """
+        Called when a filter is changed.
+        """
+        self.lb.invalidate_filter()
+
+    def __sort_func(self, row1, row2):
+        """
+        Sort the addons by name.
+        """
+        value1 = row1.addon['n']
+        value2 = row2.addon['n']
+        if value1 > value2:
+            return 1
+        elif value1 < value2:
+            return -1
+        else:
+            return 0
+
+    def __filter_func(self, row):
+        """
+        Filter the addons list according to the user selection.
+        """
+        search_text = self.search.get_text()
+        type_text = self.type_combo.get_active_text()
+        project_text = self.project_combo.get_active_text()
+        audience_iter = self.audience_combo.get_active_iter()
+        status_iter = self.status_combo.get_active_iter()
+        if type_text != _('All'):
+            if row.addon['t'] != type_text:
+                return False
+        if project_text != _('All'):
+            if row.addon['_p'] != project_text:
+                return False
+        model = self.audience_combo.get_model()
+        value = model.get_value(audience_iter, 0)
+        if value != -1 and row.addon['a'] != value:
+            return False
+        model = self.status_combo.get_model()
+        value = model.get_value(status_iter, 0)
+        if value != -1 and row.addon['s'] != value:
+            return False
+        if search_text and search_text not in row.addon['d']:
+                return False
+        return True
+
+    def __on_dialog_button(self, dialog, response_id):
+        """
+        Handle a main dialog button click.
+        """
+        if response_id == Gtk.ResponseType.CLOSE:
+            self.close(dialog)
+        elif response_id == RELOAD:
+            self.refresh()
+
+    def create_projects_panel(self):
+        """
+        Configuration tab with addons projects.
+        """
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.set_spacing(6)
+        vbox.set_margin_start(6)
+        vbox.set_margin_end(6)
+        vbox.set_margin_top(6)
+        vbox.set_margin_bottom(6)
+
+        self.project_list = Gtk.ListBox()
+        self.project_list.set_activate_on_single_click(False)
+        self.project_list.connect('row-activated', self.__edit_project)
+        self.project_list.set_margin_start(6)
+
+        sw = Gtk.ScrolledWindow()
+        sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        sw.add(self.project_list)
+        vbox.pack_start(sw, True, True, 0)
+
+        hbox = Gtk.Box()
+        add_btn = SimpleButton('list-add', self.__add_project)
+        del_btn = SimpleButton('list-remove', self.__remove_project)
+        hbox.pack_start(add_btn, False, False, 0)
+        hbox.pack_start(del_btn, False, False, 0)
+        vbox.pack_start(hbox, False, False, 0)
+
+        return vbox
+
+    def create_settings_panel(self):
+        """
+        Configuration tab with addons settings.
+        """
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.set_spacing(6)
+        vbox.set_margin_start(6)
+        vbox.set_margin_end(6)
+        vbox.set_margin_top(6)
+        vbox.set_margin_bottom(6)
+
+        heading1 = Gtk.Label()
+        text = _('General')
+        heading1.set_text('<span weight="bold">%s</span>' % text)
+        heading1.set_use_markup(True)
+        heading1.set_halign(Gtk.Align.START)
+        vbox.pack_start(heading1, False, False, 0)
+
+        grid = Gtk.Grid()
+        grid.set_row_spacing(6)
+        grid.set_margin_start(6)
+        grid.set_margin_bottom(12)
+        vbox.pack_start(grid, False, False, 0)
+
+        row = 1
+        install = Gtk.CheckButton()
+        install.set_label(_('Allow Gramps to install required python modules'))
+        install.connect("toggled", self.install_changed)
+        grid.attach(install, 1, row, 1, 1)
+
+        heading2 = Gtk.Label()
+        text = _('Updates')
+        heading2.set_text('<span weight="bold">%s</span>' % text)
+        heading2.set_use_markup(True)
+        heading2.set_halign(Gtk.Align.START)
+        vbox.pack_start(heading2, False, False, 0)
+
+        grid = Gtk.Grid()
+        grid.set_row_spacing(6)
+        grid.set_margin_start(6)
+        vbox.pack_start(grid, False, False, 0)
+
+        # Check for addon updates:
+        row = 1
+        obox = Gtk.ComboBoxText()
+        formats = [_("Never"),
+                   _("Once a month"),
+                   _("Once a week"),
+                   _("Once a day"),
+                   _("Always"), ]
+        list(map(obox.append_text, formats))
+        active = config.get('behavior.check-for-addon-updates')
+        obox.set_active(active)
+        obox.connect('changed', self.check_for_updates_changed)
+        lwidget = BasicLabel(_("%s: ") % _('Check for addon updates'))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 1, 1)
+
+        row += 1
+        self.whattype_box = Gtk.ComboBoxText()
+        formats = [_("Updated addons only"),
+                   _("New addons only"),
+                   _("New and updated addons")]
+        list(map(self.whattype_box.append_text, formats))
+        whattype = config.get('behavior.check-for-addon-update-types')
+        if "new" in whattype and "update" in whattype:
+            self.whattype_box.set_active(2)
+        elif "new" in whattype:
+            self.whattype_box.set_active(1)
+        elif "update" in whattype:
+            self.whattype_box.set_active(0)
+        self.whattype_box.connect('changed', self.check_for_type_changed)
+        lwidget = BasicLabel(_("%s: ") % _('What to check'))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(self.whattype_box, 2, row, 1, 1)
+
+        row += 1
+        previous = Gtk.CheckButton()
+        previous.set_label(_('Do not ask about previously notified addons'))
+        previous.connect("toggled", self.previous_changed)
+        grid.attach(previous, 1, row, 1, 1)
+
+        row += 1
+        button = Gtk.Button(label=_("Check for updated addons now"))
+        button.connect("clicked", self.check_for_updates)
+        button.set_hexpand(False)
+        button.set_halign(Gtk.Align.CENTER)
+        grid.attach(button, 1, row, 2, 1)
+
+        return vbox
+
+    def edit_project(self, row):
+        '''
+        Add or edit a project
+        '''
+        if row.project[0] == '':
+            title = _('New Project')
+        else:
+            title = _('Edit Project')
+        dialog = Gtk.Dialog(title=title,
+                            transient_for=self.window)
+        dialog.set_border_width(12)
+        dialog.vbox.set_spacing(10)
+        hbox = Gtk.Box()
+        label = Gtk.Label(label=_("%s: ") % _('Project name'))
+        hbox.pack_start(label, True, True, 0)
+        name = Gtk.Entry()
+        name.set_text(row.project[0])
+        name.set_activates_default(True)
+        hbox.pack_start(name, False, True, 0)
+        dialog.vbox.pack_start(hbox, False, True, 0)
+        hbox = Gtk.Box()
+        label = Gtk.Label(label=_("%s: ") % _('Url'))
+        hbox.pack_start(label, True, True, 0)
+        url = Gtk.Entry()
+        url.set_text(row.project[1])
+        hbox.pack_start(url, False, True, 0)
+        dialog.vbox.pack_start(hbox, False, True, 0)
+
+        dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                           _('_OK'), Gtk.ResponseType.OK)
+        dialog.set_default_response(Gtk.ResponseType.OK)
+        dialog.vbox.show_all()
+
+        if dialog.run() == Gtk.ResponseType.OK:
+            if row.project[0] == '':
+                self.project_list.add(row)
+            row.project[0] = name.get_text()
+            row.project[1] = url.get_text()
+            row.update()
+            projects = [row.project for row in self.project_list]
+            config.set('behavior.addons-projects', projects)
+            self.refresh()
+        dialog.destroy()
+
+    def __add_project(self, button):
+        '''
+        Add a project
+        '''
+        self.edit_project(ProjectRow(self, ['', '', False]))
+
+    def __remove_project(self, button):
+        '''
+        Remove a project
+        '''
+        row = self.project_list.get_selected_row()
+        if row:
+            self.project_list.remove(row)
+            projects = [p for p in config.get('behavior.addons-projects')
+                        if p[0] != row.project[0]]
+            config.set('behavior.addons-projects', projects)
+            self.refresh()
+
+    def __edit_project(self, listbox, row):
+        '''
+        Edit a project
+        '''
+        self.edit_project(row)
+
+    def check_for_updates(self, button):
+        try:
+            addon_update_list = available_updates()
+        except:
+            OkDialog(_("Checking Addons Failed"),
+                     _("The addon repository appears to be unavailable. "
+                       "Please try again later."),
+                     parent=self.window)
+            return
+
+        if len(addon_update_list) > 0:
+            rescan = UpdateAddons(self.uistate, self.track,
+                                  addon_update_list).rescan
+            self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate,
+                                                    rescan=rescan)
+        else:
+            check_types = config.get('behavior.check-for-addon-update-types')
+            OkDialog(
+                _("There are no available addons of this type"),
+                _("Checked for '%s'") %
+                _("' and '").join([_(t) for t in check_types]),
+                parent=self.window)
+
+        # List of translated strings used here
+        # Dead code for l10n
+        _('new'), _('update')
+
+    def check_for_type_changed(self, obj):
+        active = obj.get_active()
+        if active == 0:  # update
+            config.set('behavior.check-for-addon-update-types', ["update"])
+        elif active == 1:  # update
+            config.set('behavior.check-for-addon-update-types', ["new"])
+        elif active == 2:  # update
+            config.set('behavior.check-for-addon-update-types',
+                       ["update", "new"])
+
+    def check_for_updates_changed(self, obj):
+        """
+        Save "Check for addon updates" option.
+        """
+        active = obj.get_active()
+        config.set('behavior.check-for-addon-updates', active)
+
+    def previous_changed(self, obj):
+        active = obj.get_active()
+        config.set('behavior.do-not-show-previously-seen-addon-updates', active)
+
+    def install_changed(self, obj):
+        active = obj.get_active()
+        config.set('behavior.addons-allow-install', active)
 
 #-------------------------------------------------------------------------
 #
