@@ -15,13 +15,14 @@
 # RiseT <tareiss1971@yahoo.de>, 2021.
 # David Straub <straub@protonmail.com>, 2021.
 # nautilusx <translate@disroot.org>, 2021.
+# Andreas Abraham <andreas.abraham@gmx.de>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-20 16:38+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2021-10-14 19:50+0000\n"
+"Last-Translator: Andreas Abraham <andreas.abraham@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -4460,7 +4461,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:47
 msgid "Events with Id containing <text>"
-msgstr "Ereignisse, deren ID den <Text> enthält"
+msgstr "Ereignisse mit Id die <text> enthalten"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -4477,7 +4478,7 @@ msgstr "Liefert jede Familie in der Datenbank"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:47
 msgid "Families changed after <date time>"
-msgstr "Familien geändert nach <Datum Zeit>"
+msgstr "Familien, geändert nach <Datum Zeit>"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:48
 msgid ""
@@ -12807,7 +12808,7 @@ msgstr "Konvertiere Daten..."
 #: ../gramps/gui/dbman.py:818 ../gramps/gui/dbman.py:821
 #, python-format
 msgid "(Converted #%d)"
-msgstr "(Converted #%d)"
+msgstr "(#%d umgewandelt)"
 
 #: ../gramps/gui/dbman.py:835
 msgid "An attempt to import into the database failed."
