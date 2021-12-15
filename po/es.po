@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-02 13:32+0000\n"
+"PO-Revision-Date: 2021-10-15 17:16+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -42,8 +42,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps es un programa de genealogía que es a la vez para aficionados y "
-"completo en funcionalidades para genealogistas profesionales."
+"Gramps es un programa de genealogía que es a la vez intuitivo para "
+"aficionados y completo en funcionalidades para genealogistas profesionales."
 
 #: ../data/gramps.appdata.xml.in:8
 msgid ""
@@ -52,7 +52,7 @@ msgid ""
 "places and events."
 msgstr ""
 "Le da la habilidad para registrar los muchos detalles de la vida de un "
-"individuo, así como las complejas relaciones entre varias personas, lugares "
+"individuo, así como las relaciones complejas entre varias personas, lugares "
 "y eventos."
 
 #: ../data/gramps.appdata.xml.in:9
@@ -60,7 +60,7 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"Toda su investigación se mantiene organizada, buscable y tan presisa como "
+"Toda su investigación se mantiene organizada, buscable y tan precisa como "
 "necesita que sea."
 
 #: ../data/gramps.appdata.xml.in:12
@@ -77,7 +77,7 @@ msgstr "Genealogía;Historia Familiar;Investigación;Árbol Familiar;GEDCOM;"
 
 #: ../data/gramps.xml.in:6
 msgid "Gramps database"
-msgstr "Base de datos Gramps"
+msgstr "Base de datos de Gramps"
 
 #: ../data/gramps.xml.in:10 ../gramps/plugins/export/export.gpr.py:76
 #: ../gramps/plugins/importer/import.gpr.py:54
@@ -90,11 +90,11 @@ msgstr "Paquete Gramps"
 
 #: ../data/gramps.xml.in:24
 msgid "Gramps XML database"
-msgstr "Base de datos XML Gramps"
+msgstr "Base de datos XML de Gramps"
 
 #: ../data/gramps.xml.in:32
 msgid "GeneWeb source file"
-msgstr "Archivos GeneWeb"
+msgstr "Archivo fuente GeneWeb"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -309,10 +309,10 @@ msgid ""
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
 "<b>Editar objetos</b><br/>En la mayoría de los casos, al hacer doble clic en "
-"un nombre, fuente, lugar u objeto, aparecerá una ventana en la que editar el "
-"objeto. El resultado puede ser diferente dependiendo del contexto. Por "
-"ejemplo, al pulsar dos veces en uno de los padres o los hijos al visualizar "
-"una familia obtendrá el editor de relaciones."
+"un nombre, fuente, lugar u objeto audiovisual, aparecerá una ventana en la "
+"que editar el objeto. Notar que el resultado puede depender del contexto. "
+"Por ejemplo, en la vista de Familias, al pulsar en uno de los padres o los "
+"hijos obtendrá el editor de relaciones."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -322,10 +322,10 @@ msgid ""
 "documents and other digital sources."
 msgstr ""
 "<b>Agregar imágenes</b><br/>Se puede agregar una imagen a cualquier galería "
-"o a la vista de objetos, arrastrando y soltando la imagen desde un "
-"administrador de archivos o un navegador web. En realidad, se puede agregar "
-"cualquier archivo de esta manera, lo que es útil para documentos escaneados "
-"y otras fuentes digitales."
+"o a la vista de objetos audiovisuales, arrastrando y soltando la imagen "
+"desde un administrador de archivos o un navegador web. En realidad, se puede "
+"agregar cualquier archivo de esta manera, lo que es útil para documentos "
+"escaneados y otras fuentes digitales."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -333,7 +333,7 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
-"<b>Ordernar hijos en una familia</b><br/>El orden de naciminto de los hijos "
+"<b>Ordernar hijos en una familia</b><br/>El orden de nacimiento de los hijos "
 "de una familia puede fijarse arrastrando y soltando. Este orden se conserva "
 "aunque no tengan fecha de nacimiento."
 
@@ -348,7 +348,7 @@ msgid ""
 msgstr ""
 "<b>Hable con sus parientes antes de que sea demasiado tarde</b><br/>Sus "
 "parientes de mayor edad pueden ser sus fuentes de información más "
-"importantes. Suelen saber cosas acerca de la familia que no han sido puestas "
+"importantes. Suelen saber cosas acerca de su familia que no han sido puestas "
 "por escrito. Podrían contarle detalles de la gente que quizá lleven algún "
 "día a una nueva vía de investigación. Como mínimo, obtendrá anécdotas "
 "interesantes. ¡No olvide grabar las conversaciones!"
