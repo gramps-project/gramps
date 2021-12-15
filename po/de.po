@@ -3463,7 +3463,7 @@ msgstr "primär"
 
 #: ../gramps/gen/display/name.py:623 ../gramps/gen/display/name.py:719
 msgid "primary[pre]"
-msgstr "primär[pri]"
+msgstr "primär[Vor]"
 
 #: ../gramps/gen/display/name.py:626 ../gramps/gen/display/name.py:721
 msgid "primary[sur]"
@@ -9969,8 +9969,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
-"Eine Dimension eines Knotens in mm. Wenn der Zeitfluss nach oben oder unten "
-"ist, ist dies die Breite, andernfalls die Höhe."
+"Eine Dimension eines Knotens in mm. Geht der Zeitfluss nach oben oder unten, "
+"ist dies die Breite, andernfalls die Höhe."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
 msgid "Level size"
@@ -9981,8 +9981,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
-"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
-"ist, ist dies die Höhe, sonst ist es die Breite."
+"Eine Dimension eines Knotens in mm. Geht der Zeitablauf hoch oder runter, "
+"ist dies die Höhe, sonst ist es die Breite."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
 msgid "Node color."
@@ -16507,8 +16507,8 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"Teil des Vornamens, der der normalerweise verwendete Name ist. Wenn der "
-"Hintergrund rot ist, ist der Rufname nicht Teil des Vornamens und wird in "
+"Teil des Vornamens, der  normalerweise der verwendete Name ist. Ist der "
+"Hintergrund rot, ist der Rufname nicht Teil des Vornamens und wird in "
 "einigen Berichten nicht unterstrichen gedruckt."
 
 #: ../gramps/gui/glade/editname.glade:291
@@ -17089,7 +17089,7 @@ msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Wählen die Fundstelle aus, die die Primärdaten \n"
+"Wählen die Fundstelle aus, welche die Primärdaten \n"
 "für die zusammengeführte Fundstelle liefert."
 
 #: ../gramps/gui/glade/mergecitation.glade:186
@@ -17207,7 +17207,7 @@ msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
 msgstr ""
-"Wähle die Familie, die die Hauptdaten\n"
+"Wähle die Familie, welche die Hauptdaten\n"
 "für die zusammengefasste Familie enthält."
 
 #: ../gramps/gui/glade/mergefamily.glade:187
@@ -17268,7 +17268,7 @@ msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
 msgstr ""
-"Wähle die Notiz, die die Hauptdaten\n"
+"Wähle die Notiz, welche die Hauptdaten\n"
 "für die zusammengefasste Notiz enthält."
 
 #: ../gramps/gui/glade/mergenote.glade:186
@@ -17289,7 +17289,7 @@ msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
 msgstr ""
-"Wähle die Person, die die Hauptdaten\n"
+"Wähle die Person, welche die Hauptdaten\n"
 "für die zusammengefasste Person enthält."
 
 #: ../gramps/gui/glade/mergeperson.glade:196
@@ -17360,7 +17360,7 @@ msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
 msgstr ""
-"Wähle die Quelle, die die Hauptdaten\n"
+"Wähle die Quelle, welche die Hauptdaten\n"
 "für die zusammengefasste Quelle enthält."
 
 #: ../gramps/gui/glade/mergesource.glade:512
@@ -18854,7 +18854,7 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"Die Kopie von deinen Daten wurde erfolgreich gespeichert. Du kannst nun auf "
+"Die Kopie  deiner Daten wurde erfolgreich gespeichert. Du kannst nun auf "
 "Schließen klicken, um fortzufahren.\n"
 "\n"
 "Anmerkung: Die Datenbank, die gerade in deinem Gramps-Fenster geöffnet ist, "
@@ -22092,7 +22092,7 @@ msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
 msgstr ""
-"Ob die Anzahl der Personen, die die Informationen nicht haben, "
+"Ob die Anzahl der Personen, welche die Informationen nicht haben, "
 "eingeschlossen werden soll."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1102
@@ -24208,11 +24208,11 @@ msgstr "Verzögerung, bevor Nachkommen von einem Vorfahren verarbeitet wird."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "Markierung zum Anzeigen, dass eine Person vollständig ist."
+msgstr "Markieren um anzuzeigen, dass eine Person vollständig ist."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
-msgstr "Markierung zum Anzeigen, dass eine Familie vollständig ist."
+msgstr "Markierung zum Anzeigen, dass eine Familie vollständig ist"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
