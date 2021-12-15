@@ -351,7 +351,7 @@ msgstr ""
 "<b>Говорите с родственниками, пока не слишком поздно</b><br/>Ваши старейшие "
 "родственники могут быть Вашим самым важным источником информации. Они обычно "
 "знают про семью то, что нигде не записано. Они могут рассказать Вам очень "
-"важное людях, что однажды может открыть новое направление исследований. По "
+"важное о людях, что однажды может открыть новое направление исследований. По "
 "крайней мере, Вы услышите несколько отличных историй. Не забывайте "
 "записывать разговоры!"
 
@@ -3911,7 +3911,7 @@ msgstr "Цитаты, помеченные как личные"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:44
 msgid "Matches citations that are indicated as private"
-msgstr "Выбирает цитаты, помеченных как личные"
+msgstr "Выбирает цитаты, помеченные как личные"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 msgid "Citation attribute:"
@@ -8367,17 +8367,17 @@ msgstr "%(first)s %(surname)s, %(suffix)s"
 #: ../gramps/gen/lib/nameorigintype.py:76
 msgctxt "Surname"
 msgid "Inherited"
-msgstr "Унаследование, по завещанию"
+msgstr "Фамилия унаследованная"
 
 #: ../gramps/gen/lib/nameorigintype.py:77
 msgctxt "Surname"
 msgid "Given"
-msgstr "Фамилия, по рождению"
+msgstr "Фамилия при рождении"
 
 #: ../gramps/gen/lib/nameorigintype.py:78
 msgctxt "Surname"
 msgid "Taken"
-msgstr "Фамилия, по принятию"
+msgstr "Фамилия принятая"
 
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
 #: ../gramps/gui/configure.py:857
@@ -8391,7 +8391,7 @@ msgstr "Матроним"
 #: ../gramps/gen/lib/nameorigintype.py:81
 msgctxt "Surname"
 msgid "Feudal"
-msgstr "Акколада, по посвящению"
+msgstr "Фамилия по посвящению"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgid "Pseudonym"
@@ -8411,7 +8411,7 @@ msgstr "Он(а) же"
 
 #: ../gramps/gen/lib/nametype.py:49
 msgid "Birth Name"
-msgstr "Имя по рождению"
+msgstr "Имя при рождении"
 
 #: ../gramps/gen/lib/nametype.py:50
 msgid "Married Name"
