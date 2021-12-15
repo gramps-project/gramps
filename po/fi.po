@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-07-29 07:33+0000\n"
+"PO-Revision-Date: 2021-12-15 13:13+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -6515,7 +6515,8 @@ msgstr "Poimii lähteet, joilla on tietty määrä arkistoviitteitä"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "Lähteet, joiden arkistoviite sisältää <tekstin> \"hakuavaimessa\""
+msgstr ""
+"Lähteet, joiden arkistoviite sisältää <tekstin> \"Arkiston viitenumero\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
@@ -6523,7 +6524,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "Poimii lähteet, joiden arkistoviite\n"
-"sisältää osamerkkijonon \"hakuavaimessa\""
+"sisältää osamerkkijonon \"Arkiston viitenumero\""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
@@ -8849,7 +8850,7 @@ msgstr "Arkiston viite"
 #: ../gramps/gen/lib/reporef.py:107
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Call Number"
-msgstr "Hakuavain"
+msgstr "Arkiston viitenumero"
 
 #: ../gramps/gen/lib/repotype.py:54
 msgid "Library"
@@ -9586,7 +9587,7 @@ msgstr "Vaihtoehtoinen viivojen liittäminen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:194
 msgid "Whether lines attach to nodes differently"
-msgstr "Liitetäänkö solut viivoilla toisin"
+msgstr "Kiinnitetäänkö linjat solmuihin eri tavalla"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
 msgid "Graphviz Options"
@@ -9612,17 +9613,17 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
-"Vaikuttaa kaavion elementtien välistykseen ja skaalaukseen.\n"
+"Vaikuttaa kaavion solmujen välistykseen ja skaalaukseen.\n"
 "Kaavion ollessa tulostusaluetta pienempi:\n"
-"  Tiivistys ei muuta elementtien välistystä. \n"
-"  Täyttö kasvattaa välistystä sekä korkeus- että leveyssuunnassa jotta "
-"kaavio sopii tulostusalueelle.\n"
+"  Tiivistys ei muuta solmujen välistystä. \n"
+"  Täyttö kasvattaa solmuja sekä korkeus- että leveyssuunnassa jotta kaavio "
+"sopii tulostusalueelle.\n"
 "  Laajennus kasvattaa välistystä tasaisesti jotta sivujen suhde säilyy.\n"
 "Kaavion ollessa tulostusaluetta suurempi:\n"
 "  Tiivistys tiivistää kaaviota symmetrian kustannuksella, jotta tuloksena "
 "tiivis pakkaus.\n"
-"  Täyttö supistaa kaaviota sopimaan tulostusalueelle, elementtien välistystä "
-"kasvatetaan sitä ennen.\n"
+"  Täyttö kutistaa kuvaajaa tulostusalueelle sopivaksi, kun solmuväliä on "
+"ensin kasvatettu.\n"
 "  Laajennus supistaa kaaviota tasaisesti, jotta kaavio sopii "
 "tulostusalueeseen."
 
@@ -9642,7 +9643,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:241
 msgid "Node spacing"
-msgstr "Kaavion elementtien välistys"
+msgstr "Solmuvälit"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:242
 msgid ""
@@ -9864,15 +9865,15 @@ msgstr "Valtavampi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:141
 msgid "Node Options"
-msgstr "Liitos valinnat"
+msgstr "Solmun valinnat"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:144
 msgid "Node detail"
-msgstr "Liitoksen yksityiskohdat"
+msgstr "Solmun yksityiskohta"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:147
 msgid "Detail of information to be shown in a node."
-msgstr "Yksityiskohtaiset tiedot liitokselle."
+msgstr "Solmussa näytettävät tiedot."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Position of marriage information."
@@ -9880,15 +9881,15 @@ msgstr "Avioliittotietojen sijainti."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 msgid "Node size"
-msgstr "Liitoksen koko"
+msgstr "Solmun koko"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:157
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
-"Liitoksen ulottuvuus, mm. Jos ajanvirtaus on ylös tai alas niin tämä on "
-"leveys, muuten se on korkeus."
+"Solmun koko, mm. Jos aikavirta on ylös tai alas, tämä on leveys, muussa "
+"tapauksessa korkeus."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
 msgid "Level size"
@@ -9899,12 +9900,12 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
-"Liitoksen ulottuvuus, mm. Jos ajanvirtaus on ylös tai alas niin tämä on "
-"korkeus, muuten se on leveys."
+"Solmun koko, mm. Jos ajanvirtaus on ylös tai alas niin tämä on korkeus, "
+"muuten se on leveys."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
 msgid "Node color."
-msgstr "Liitoksen väri."
+msgstr "Solmun väri."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:799
@@ -9926,7 +9927,7 @@ msgstr "Reunan tyyli"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:187
 msgid "Style of the edges between nodes."
-msgstr "Tyyli reunan ja liitoksen välillä."
+msgstr "Solmujen välisten reunojen tyyli."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:190
 msgid "Level distance"
@@ -11621,7 +11622,7 @@ msgstr "Värit määrittämättömille henkilöille"
 
 #: ../gramps/gui/configure.py:704
 msgid "Colors for Family nodes"
-msgstr "Värit perhesoluille"
+msgstr "Perhesolmujen värit"
 
 #: ../gramps/gui/configure.py:705
 msgid "Other colors"
@@ -14287,7 +14288,7 @@ msgstr "Uusi_mediatiedosto_ikkuna"
 #: ../gramps/gui/editors/editmediaref.py:412
 #, python-format
 msgid "Media: %s"
-msgstr "Mediatiedosto: %s"
+msgstr "Media: %s"
 
 #: ../gramps/gui/editors/editmedia.py:101
 #: ../gramps/gui/editors/editmediaref.py:414
@@ -19686,7 +19687,7 @@ msgstr "Tiedosto:"
 
 #: ../gramps/gui/viewmanager.py:1747
 msgid "Media:"
-msgstr "Mediat:"
+msgstr "Media:"
 
 #: ../gramps/gui/viewmanager.py:1754
 #: ../gramps/plugins/gramplet/statsgramplet.py:196
@@ -24126,7 +24127,7 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:36
 msgid "Family Lines Graph"
-msgstr "Perhelinja-kaavio"
+msgstr "Perhelinjakaavio"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:37
 msgid "Produces family line graphs using Graphviz."
@@ -24613,12 +24614,12 @@ msgstr "Lisätäänkö aikamäärät ja/tai paikat"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:885
 msgid "Show all family nodes"
-msgstr "Näytä kaikki perhesolut"
+msgstr "Näytä kaikki perheen solmut"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
-msgstr "Näytä perhesolut, vaikka tuotos sisältää vain yhden perheenjäsenen."
+msgstr "Näytä perhesolmut, vaikka tulos sisältää vain yhden perheen jäsenen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "Include URLs"
@@ -24630,8 +24631,9 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Lisää URL jokaiseen kaavion kohtaan, jotta PDF- ja HTML-kuvakarttatiedostot "
-"voivat sisältää aktiivisia linkkejä luotuun Kertova-nettisivustoon."
+"Lisää URL-osoite jokaiseen kaavion solmuun, jotta voidaan luoda PDF- ja "
+"kuvakarttatiedostoja, jotka sisältävät aktiivisia linkkejä Kertova-"
+"nettisivusto raportin luomiin tiedostoihin."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:899
 #: ../gramps/plugins/textreport/birthdayreport.py:568
@@ -24690,7 +24692,7 @@ msgstr "Ei-biologiset suhteet esitetään kaaviossa katkoviivoilla."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:967
 msgid "Show family nodes"
-msgstr "Näytä perheyksiköt"
+msgstr "Näytä perhesolmut"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:968
 msgid "Families will show up as ellipses, linked to parents and children."
@@ -24713,7 +24715,7 @@ msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files.)"
 msgstr ""
-"Tuo datan Gramps paketista (sisältää tietokannan XML muodossa ja kaikki "
+"Tuo tiedot Gramps paketista (sisältää tietokannan XML muodossa ja kaikki "
 "siihen liittyvät mediatiedostot.)"
 
 #: ../gramps/plugins/importer/import.gpr.py:110
@@ -30541,8 +30543,9 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Tilanpuutteen vuoksi voit tyhjentää yllä olevassa polussa olevat kohteet.\n"
-"Varovaisuutta! Ilman nettiyhteyttä et saa karttoja."
+"Jos tiedostojärjestelmässäsi ei ole enää tilaa. Voit poistaa kaikki edellä "
+"mainittuun polkuun sijoitetut laatat.\n"
+"Ole varovainen! Jos sinulla ei ole internetiä, et saa karttoja."
 
 #: ../gramps/plugins/lib/maps/geography.py:1259
 msgid "Zoom used when centering"
@@ -31423,7 +31426,7 @@ msgstr "Ei viitteitä kohteena %s"
 #: ../gramps/plugins/quickview/reporef.py:62
 #: ../gramps/plugins/webreport/basepage.py:3115
 msgid "Call number"
-msgstr "Hakuavain"
+msgstr "Arkiston viitenumero"
 
 #: ../gramps/plugins/quickview/reporef.py:62
 msgid "Type of media"
@@ -33093,8 +33096,8 @@ msgid ""
 "Gramps can convert to correct capitalization. \n"
 "Select the names you wish Gramps to convert. "
 msgstr ""
-"Alla on lista kaikista sukunimistä, joille \n"
-"Gramps voi muuttaa ison Alkukirjaimen.\n"
+"Alla on lista sukunimistä, joihin \n"
+"Gramps voi muuttaa oikean kirjaimen.\n"
 "Valitse nimet, jotka haluat Grampsin muuttavan. "
 
 #: ../gramps/plugins/tool/changenames.glade:107
@@ -33110,7 +33113,7 @@ msgstr "Korjaa_sukunimien_isot_alkukirjaimet"
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
 msgid "Capitalization changes"
-msgstr "Ison alkukirjaimen muutokset"
+msgstr "Isojen kirjainten muutokset"
 
 #: ../gramps/plugins/tool/changenames.py:86
 msgid "Checking Family Names"
@@ -33128,7 +33131,7 @@ msgstr "Muutoksia ei tehty"
 
 #: ../gramps/plugins/tool/changenames.py:145
 msgid "No capitalization changes were detected."
-msgstr "Alkukirjaimien muutoksia ei havaittu."
+msgstr "Isojen kirjainten muutoksia ei havaittu."
 
 #: ../gramps/plugins/tool/changenames.py:199
 msgid "Original Name"
@@ -35327,13 +35330,13 @@ msgstr "Lisää lähde..."
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse all Nodes"
-msgstr "Supista kaikki kohdat"
+msgstr "Kutista kaikki solmut"
 
 #: ../gramps/plugins/view/citationtreeview.py:475
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand all Nodes"
-msgstr "Laajenna kaikki kohdat"
+msgstr "Laajenna kaikki solmut"
 
 #: ../gramps/plugins/view/citationtreeview.py:651
 msgid ""
