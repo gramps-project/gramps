@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-02 16:51+0000\n"
+"PO-Revision-Date: 2021-12-18 08:51+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -15178,7 +15178,7 @@ msgstr "Vzťah"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 msgid "any"
-msgstr "akýkoľvek"
+msgstr "akékoľvek"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:357
@@ -36173,7 +36173,7 @@ msgstr "Pohľad Miesto"
 
 #: ../gramps/plugins/view/placetreeview.py:55
 msgid "Place Tree View"
-msgstr "Pohľad Strom miesta"
+msgstr "Pohľad Strom miest"
 
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse this Entire Group"
@@ -36497,7 +36497,7 @@ msgstr "Pohľad zobrazujúci všetky miesta z rodinného stromu"
 
 #: ../gramps/plugins/view/view.gpr.py:236
 msgid "Place Tree"
-msgstr "Strom miesta"
+msgstr "Strom miest"
 
 #: ../gramps/plugins/view/view.gpr.py:237
 msgid "A view displaying places in a tree format."
@@ -36517,7 +36517,7 @@ msgstr "Pohľad zobrazujúci všetky citácie"
 
 #: ../gramps/plugins/view/view.gpr.py:298
 msgid "Citation Tree"
-msgstr "Strom citácie"
+msgstr "Citačný strom"
 
 #: ../gramps/plugins/view/view.gpr.py:299
 msgid "A view displaying citations and sources in a tree format."
