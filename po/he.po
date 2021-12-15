@@ -12332,7 +12332,7 @@ msgstr "פורס ארכיב..."
 
 #: ../gramps/gui/dbman.py:679
 msgid "Importing archive..."
-msgstr "מתבצע ייבוא מהארכיון..."
+msgstr "ייבוא ארכיון..."
 
 #: ../gramps/gui/dbman.py:695
 #, python-format
