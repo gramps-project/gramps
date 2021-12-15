@@ -6179,7 +6179,7 @@ msgstr "Straße:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:50
 msgid "Locality:"
-msgstr "Lokalität:"
+msgstr "Ortschaft:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:51
 msgid "City:"
@@ -6879,7 +6879,7 @@ msgstr "Straße"
 #: ../gramps/plugins/webreport/basepage.py:2900
 #: ../gramps/plugins/webreport/basepage.py:2967
 msgid "Locality"
-msgstr "Lokalität"
+msgstr "Ortschaft"
 
 #: ../gramps/gen/lib/address.py:117 ../gramps/gen/lib/location.py:95
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:615
@@ -15886,7 +15886,7 @@ msgstr "Datum, an dem die Adresse gültig ist."
 #: ../gramps/gui/glade/editlocation.glade:314
 #: ../gramps/plugins/tool/ownereditor.glade:358
 msgid "_Locality:"
-msgstr "_Lokalität:"
+msgstr "_Ortschaft:"
 
 #: ../gramps/gui/glade/editaddress.glade:374
 msgid "The locality of the address"
@@ -21434,7 +21434,7 @@ msgstr "Ob Geburtstage aufgenommen werden"
 #: ../gramps/plugins/webreport/narrativeweb.py:2835
 #: ../gramps/plugins/webreport/webcal.py:1962
 msgid "Include anniversaries"
-msgstr "Jubiläen mit einbeziehen"
+msgstr "Jahrestage aufnehmen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:558
 #: ../gramps/plugins/textreport/birthdayreport.py:560
@@ -38139,7 +38139,7 @@ msgstr "Kalender mit Geburtstagen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2836
 #: ../gramps/plugins/webreport/webcal.py:1963
 msgid "Include anniversaries in the calendar"
-msgstr "Kalender mit Jubiläen"
+msgstr "Jahrestage in Kalender aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2839
 #: ../gramps/plugins/webreport/webcal.py:1966
