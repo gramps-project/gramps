@@ -2,34 +2,40 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Andika Triwidada <andika@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-10-26 04:12+0000\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
-msgstr ""
+msgstr "Gramps"
 
 #: ../data/gramps.appdata.xml.in:5 ../data/gramps.desktop.in:6
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
+"Mengelola informasi silsilah, melakukan penelitian dan analisis silsilah"
 
 #: ../data/gramps.appdata.xml.in:7
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Gramps adalah program silsilah yang intuitif untuk pehobi dan berfitur "
+"lengkap untuk genealogis profesional."
 
 #: ../data/gramps.appdata.xml.in:8
 msgid ""
@@ -37,101 +43,106 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"Ini memberi Anda kemampuan untuk merekam banyak detail kehidupan seseorang "
+"serta hubungan kompleks antara berbagai orang, tempat, dan peristiwa."
 
 #: ../data/gramps.appdata.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"Semua penelitian Anda tetap terorganisir, dapat dicari, dan setepat yang "
+"Anda perlukan."
 
 #: ../data/gramps.appdata.xml.in:12
 msgid "Gramps Development Team"
-msgstr ""
+msgstr "Tim Pengembangan Gramps"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
-msgstr ""
+msgstr "Sistem Silsilah"
 
 #: ../data/gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr ""
+"Silsilah;Genealogi;Sejarah Keluarga;Penelitian;Riset;Pohon Keluarga;GEDCOM;"
 
 #: ../data/gramps.xml.in:6
 msgid "Gramps database"
-msgstr ""
+msgstr "Basis data Gramps"
 
 #: ../data/gramps.xml.in:10 ../gramps/plugins/export/export.gpr.py:76
 #: ../gramps/plugins/importer/import.gpr.py:54
 msgid "GEDCOM"
-msgstr ""
+msgstr "GEDCOM"
 
 #: ../data/gramps.xml.in:20
 msgid "Gramps package"
-msgstr ""
+msgstr "Paket Gramps"
 
 #: ../data/gramps.xml.in:24
 msgid "Gramps XML database"
-msgstr ""
+msgstr "Basis data XML Gramps"
 
 #: ../data/gramps.xml.in:32
 msgid "GeneWeb source file"
-msgstr ""
+msgstr "Berkas sumber GeneWeb"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgaria"
 
 #: ../data/holidays.xml:52
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 #: ../data/holidays.xml:84
 msgid "Chile"
-msgstr ""
+msgstr "Chili"
 
 #: ../data/holidays.xml:107
 msgid "China"
-msgstr ""
+msgstr "Cina"
 
 #: ../data/holidays.xml:110
 msgid "Croatia"
-msgstr ""
+msgstr "Kroasia"
 
 #: ../data/holidays.xml:126
 msgid "Czech Republic"
-msgstr ""
+msgstr "Republik Ceko"
 
 #: ../data/holidays.xml:141
 msgid "England"
-msgstr ""
+msgstr "Inggris"
 
 #: ../data/holidays.xml:171
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 #: ../data/holidays.xml:265
 msgid "France"
-msgstr ""
+msgstr "Perancis"
 
 #: ../data/holidays.xml:301
 msgid "Germany"
-msgstr ""
+msgstr "Jerman"
 
 #: ../data/holidays.xml:318
 msgid "Japan"
-msgstr ""
+msgstr "Jepang"
 
 #: ../data/holidays.xml:341
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Hari Libur Yahudi"
 
 #: ../data/holidays.xml:342
 msgid "Purim"
-msgstr ""
+msgstr "Purim"
 
 #: ../data/holidays.xml:343
 msgid "Passover"
-msgstr ""
+msgstr "Passover"
 
 #: ../data/holidays.xml:344
 msgid "2 of Passover"
@@ -159,23 +170,23 @@ msgstr ""
 
 #: ../data/holidays.xml:350
 msgid "Shavuot"
-msgstr ""
+msgstr "Shavuot"
 
 #: ../data/holidays.xml:351
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Rosh Ha'Shana"
 
 #: ../data/holidays.xml:352
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Rosh Ha'Shana 2"
 
 #: ../data/holidays.xml:353
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Yom Kippur"
 
 #: ../data/holidays.xml:354
 msgid "Sukot"
-msgstr ""
+msgstr "Sukot"
 
 #: ../data/holidays.xml:355
 msgid "2 of Sukot"
@@ -203,11 +214,11 @@ msgstr ""
 
 #: ../data/holidays.xml:361
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Simhat Tora"
 
 #: ../data/holidays.xml:362
 msgid "Hanuka"
-msgstr ""
+msgstr "Hannukah"
 
 #: ../data/holidays.xml:363
 msgid "2 of Hanuka"
@@ -239,35 +250,35 @@ msgstr ""
 
 #: ../data/holidays.xml:371
 msgid "New Zealand"
-msgstr ""
+msgstr "Selandia Baru"
 
 #: ../data/holidays.xml:387
 msgid "Russia"
-msgstr ""
+msgstr "Rusia"
 
 #: ../data/holidays.xml:403
 msgid "Serbia"
-msgstr ""
+msgstr "Serbia"
 
 #: ../data/holidays.xml:418
 msgid "Serbia (Latin)"
-msgstr ""
+msgstr "Serbia (Latin)"
 
 #: ../data/holidays.xml:433
 msgid "Slovakia"
-msgstr ""
+msgstr "Slowakia"
 
 #: ../data/holidays.xml:450 ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
-msgstr ""
+msgstr "Swedia"
 
 #: ../data/holidays.xml:477
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukraina"
 
 #: ../data/holidays.xml:504
 msgid "United States of America"
-msgstr ""
+msgstr "Amerika Serikat"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -276,6 +287,11 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
+"<b>Bekerja dengan Tanggal</b><br/>Rentang tanggal dapat diberikan dengan "
+"menggunakan format \"antara 4 Januari 2000 dan 20 Maret 2003\". Anda juga "
+"dapat menunjukkan tingkat kepercayaan pada tanggal dan bahkan memilih di "
+"antara tujuh kalender yang berbeda. Coba tombol di sebelah bidang tanggal di "
+"Editor Peristiwa."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -284,6 +300,11 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
+"<b>Mengedit Obyek</b><br/>Dalam kebanyakan kasus, mengklik ganda pada nama, "
+"sumber, tempat, atau entri media akan membuka jendela untuk memungkinkan "
+"Anda mengedit obyek. Perhatikan bahwa hasilnya dapat bergantung pada "
+"konteks. Misalnya, di Tampilan Keluarga, mengklik orang tua atau anak akan "
+"memunculkan Editor Hubungan."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -292,6 +313,10 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
+"<b>Menambahkan Gambar</b><br/>Gambar dapat ditambahkan ke galeri mana pun "
+"atau Tampilan Media dengan menyeret dan melepaskannya dari pengelola berkas "
+"atau peramban web. Sebenarnya Anda bisa menambahkan semua jenis berkas "
+"seperti ini, berguna untuk pindaian dokumen dan sumber digital lainnya."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -299,6 +324,9 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
+"<b>Mengurutkan Anak dalam Keluarga</b><br/>Urutan kelahiran anak dalam "
+"keluarga dapat diatur dengan cara seret dan jatuhkan. Urutan ini "
+"dipertahankan bahkan ketika mereka tidak memiliki tanggal lahir."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -309,6 +337,12 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
+"<b>Bicaralah dengan Kerabat Sebelum Terlambat</b><br/>Kerabat tertua Anda "
+"dapat menjadi sumber informasi terpenting Anda. Mereka biasanya tahu hal-hal "
+"tentang keluarga yang belum tertulis. Mereka mungkin memberi tahu Anda harta "
+"karun tentang orang-orang yang suatu hari nanti dapat mengarah ke jalan "
+"penelitian baru. Paling tidak, Anda akan mendengar beberapa cerita hebat. "
+"Jangan lupa untuk merekam percakapan!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -321,6 +355,16 @@ msgid ""
 "the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is "
 "not visible, select View &gt; Filter."
 msgstr ""
+"<b>Memfilter Orang</b><br/>Di Tampilan Orang, Anda dapat 'menyaring' "
+"individu berdasarkan banyak kriteria. Untuk menentukan filter baru, buka "
+"\"Edit &gt; Editor Filter Orang\". Di sana Anda dapat memberi nama filter "
+"Anda dan menambahkan serta menggabungkan aturan menggunakan banyak aturan "
+"yang telah ditetapkan sebelumnya. Misalnya, Anda dapat menentukan filter "
+"untuk menemukan semua orang yang diadopsi di pohon keluarga. Orang yang "
+"tidak disebutkan tanggal lahirnya juga dapat disaring. Agar memperoleh "
+"hasil, simpan filter Anda dan pilih di bagian bawah Bilah Sisi Filter, lalu "
+"klik Terapkan. Jika Bilah Sisi Filter tidak terlihat, pilih Tampilan &gt; "
+"Filter."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -328,6 +372,9 @@ msgid ""
 "'invert' option. For instance, by inverting the 'People with children' "
 "filter you can select all people without children."
 msgstr ""
+"<b>Penyaringan Terbalik</b><br/>Filter dapat dengan mudah dibalik dengan "
+"menggunakan opsi 'balik'. Misalnya, dengan membalik filter 'Orang dengan "
+"anak-anak', Anda dapat memilih semua orang tanpa anak."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -338,12 +385,20 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
+"<b> Menemukan Orang</b><br/> Secara default, setiap nama keluarga dalam "
+"Tampilan Orang hanya terdaftar satu kali. Dengan mengklik panah di sebelah "
+"kiri nama, daftar akan diperluas untuk menampilkan semua individu dengan "
+"nama belakang itu. Untuk menemukan Nama Keluarga apa pun dari daftar "
+"panjang, pilih Nama Keluarga (bukan orang) dan mulai mengetik. Tampilan akan "
+"melompat ke Nama Keluarga pertama yang cocok dengan huruf yang Anda masukkan."
 
 #: ../data/tips.xml:20
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
+"<b>Tampilan Keluarga</b><br/>Tampilan Keluarga digunakan untuk menampilkan "
+"unit keluarga biasa sebagai dua orang tua dan anak-anak mereka."
 
 #: ../data/tips.xml:22
 msgid ""
@@ -352,6 +407,10 @@ msgid ""
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
+"<b>Mengubah Orang Aktif</b><br/>Mengubah Orang Aktif dalam tampilan itu "
+"mudah. Dalam tampilan Hubungan, cukup klik siapa saja. Di Tampilan Leluhur, "
+"klik dua kali pada orang tersebut atau klik kanan untuk memilih pasangan, "
+"saudara, anak, atau orang tua mereka."
 
 #: ../data/tips.xml:24
 msgid ""
@@ -361,6 +420,11 @@ msgid ""
 "of everyone in your database. You can use a custom filter to narrow the "
 "results."
 msgstr ""
+"<b>Siapa yang Lahir Kapan?</b><br/>Di bawah \"Alat &gt; Analisis dan "
+"eksplorasi &gt; Bandingkan Peristiwa Individu...\" Anda dapat membandingkan "
+"data individu dalam database Anda. Ini berguna, katakanlah, jika Anda ingin "
+"membuat daftar tanggal lahir semua orang di database Anda. Anda dapat "
+"menggunakan filter khusus untuk mempersempit hasil."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -370,6 +434,12 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
+"<b>Perkakas Gramps</b><br/> Gramps hadir dengan seperangkat alat yang kaya. "
+"Ini memungkinkan Anda untuk melakukan operasi seperti memeriksa basis data "
+"untuk kesalahan dan konsistensi. Ada alat penelitian dan analisis seperti "
+"perbandingan kejadian, menemukan orang duplikat, peramban keturunan "
+"interaktif, dan banyak lainnya. Semua alat dapat diakses melalui menu \"Alat"
+"\"."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -378,6 +448,10 @@ msgid ""
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
+"<b> Menghitung Hubungan</b><br/>Untuk memeriksa apakah dua orang dalam basis "
+"data terkait (hubungan darah, bukan pernikahan) cobalah alat di bawah \"Alat "
+"&gt; Utilitas &gt; Kalkulator Hubungan ...\". Hubungan yang tepat serta "
+"semua nenek moyang yang sama dilaporkan."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -398,6 +472,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\""
 msgstr ""
+"<b>Mengatur Preferensi Anda</b><br/>\"Sunting &gt; Preferensi...\" "
+"memungkinkan Anda mengubah sejumlah pengaturan, seperti path ke berkas media "
+"Anda, dan memungkinkan Anda menyesuaikan banyak aspek presentasi Gramps "
+"untuk kebutuhan Anda. Setiap tampilan terpisah juga dapat dikonfigurasi di "
+"bawah \"Tampilan &gt; Konfigurasi Tampilan...\""
 
 #: ../data/tips.xml:34
 msgid ""
@@ -407,6 +486,11 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
+"<b>Laporan Gramps</b><br/>Gramps menawarkan berbagai macam laporan. Laporan "
+"Grafis dan Graf dapat menyajikan hubungan yang kompleks dengan mudah dan "
+"Laporan Teks sangat berguna jika Anda ingin mengirim hasil silsilah keluarga "
+"Anda ke anggota keluarga melalui surel. Jika Anda siap membuat situs web "
+"untuk silsilah keluarga Anda, maka ada laporan untuk itu juga."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -416,12 +500,19 @@ msgid ""
 "the People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
+"<b>Memulai Pohon Keluarga Baru</b><br/>Cara yang baik untuk memulai pohon "
+"keluarga baru adalah dengan memasukkan semua anggota keluarga ke dalam basis "
+"data menggunakan Tampilan Orang (gunakan \"Sunting &gt; Tambahkan... \" atau "
+"klik tombol Tambahkan orang baru dari Tampilan Orang). Lalu masuk ke "
+"Tampilan Hubungan dan buat hubungan antar orang."
 
 #: ../data/tips.xml:38
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
+"<b>Untuk Apa Itu?</b><br/>Tidak yakin apa fungsi tombol? Cukup tahan tetikus "
+"di atas tombol dan tooltip akan muncul."
 
 #: ../data/tips.xml:40
 msgid ""
@@ -431,6 +522,12 @@ msgid ""
 "birth date in Gramps. Click the Date button next to the date field and see "
 "the Gramps Manual to learn more."
 msgstr ""
+"<b>Tidak Yakin dengan suatu Tanggal?</b><br/>Jika Anda tidak yakin tentang "
+"tanggal terjadinya suatu peristiwa, Gramps memungkinkan Anda memasukkan "
+"berbagai format tanggal berdasarkan tebakan atau perkiraan. Misalnya, "
+"\"sekitar 1908\" adalah entri yang valid untuk tanggal lahir di Gramps. Klik "
+"tombol Tanggal di sebelah ruas tanggal dan lihat Manual Gramps untuk "
+"mempelajari lebih lanjut."
 
 #: ../data/tips.xml:42
 msgid ""
@@ -438,6 +535,10 @@ msgid ""
 "Possible Duplicate People...\" allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
+"<b>Entri Duplikat</b><br/>\"Alat &gt; Pemrosesan Basis Data &gt; Temukan "
+"Orang Duplikat yang Mungkin...\" memungkinkan Anda untuk menemukan (dan "
+"menggabungkan) entri dari orang yang sama yang dimasukkan lebih dari sekali "
+"ke dalam basis data."
 
 #: ../data/tips.xml:44
 msgid ""
@@ -448,6 +549,13 @@ msgid ""
 "entered differing names for one individual. This also works for the Places, "
 "Sources and Repositories views."
 msgstr ""
+"<b>Menggabung Entri</b><br/>Fungsi \"Sunting &gt; Bandingkan dan Gabungkan..."
+"\" memungkinkan Anda untuk menggabungkan orang-orang yang terdaftar secara "
+"terpisah menjadi satu. Pilih entri kedua dengan menahan tombol Control saat "
+"Anda mengklik. Ini sangat berguna untuk menggabungkan dua basis data dengan "
+"orang yang tumpang tindih, atau menggabungkan nama yang berbeda yang "
+"dimasukkan secara salah untuk satu individu. Ini juga berfungsi untuk "
+"tampilan Tempat, Sumber, dan Repositori."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -543,6 +651,13 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
+"<b>Jadi Apa Arti Sebuah Nama?</b><br/>Nama Gramps disarankan kepada "
+"pengembang aslinya, Don Allingham, oleh ayahnya. Itu singkatan dari "
+"<i>Genealogical Research and Analysis Management Program System (Sistem "
+"Program Manajemen Penelitian dan Analisis Genealogis)</i>. Ini adalah "
+"program silsilah berfitur lengkap yang memungkinkan Anda menyimpan, "
+"mengedit, dan meneliti data silsilah. Back end basis data Gramps sangat kuat "
+"sehingga beberapa pengguna mengelola silsilah yang berisi ratusan ribu orang."
 
 #: ../data/tips.xml:68
 msgid ""
@@ -562,6 +677,12 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit &gt; "
 "Preferences &gt; Display\"."
 msgstr ""
+"<b>Tanggal Salah</b><br/>Setiap orang terkadang memasukkan tanggal dengan "
+"format yang tidak valid. Format tanggal yang salah akan muncul di Gramps "
+"dengan latar belakang kemerahan atau titik merah di tepi kanan ruas. Anda "
+"dapat memperbaiki tanggal menggunakan dialog Pemilihan Tanggal yang dapat "
+"dibuka dengan mengklik tombol tanggal. Format tanggal diatur di bawah "
+"\"Sunting &gt; Preferensi &gt; Tampilan\"."
 
 #: ../data/tips.xml:72
 msgid ""
@@ -570,6 +691,11 @@ msgid ""
 "event types. You can add your own event types by typing in the text field, "
 "they will be added to the available events, but not translated."
 msgstr ""
+"<b>Mencantumkan Acara</b><br/>Acara ditambahkan menggunakan penyunting yang "
+"dibuka dengan \"Orang &gt; Sunting Orang &gt; Acara\". Ada daftar panjang "
+"jenis acara yang sudah tertata. Anda dapat menambahkan jenis acara Anda "
+"sendiri dengan mengetik di ruas teks, mereka akan ditambahkan ke acara yang "
+"tersedia, tetapi tidak diterjemahkan."
 
 #: ../data/tips.xml:74
 msgid ""
@@ -578,6 +704,10 @@ msgid ""
 "different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
+"<b>Mengelola Nama</b><br/>Mengelola orang dengan beberapa nama di Gramps "
+"sangatlah mudah. Di Penyunting Orang pilih tab Nama. Anda dapat menambahkan "
+"nama dari jenis yang berbeda dan mengatur nama pilihan dengan menyeretnya ke "
+"bagian Nama Pilihan."
 
 #: ../data/tips.xml:76
 msgid ""
@@ -854,7 +984,7 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:405
 msgid "List of known Family Trees in your database path\n"
-msgstr ""
+msgstr "Daftar Pohon Keluarga yang dikenal di path basis data Anda\n"
 
 #: ../gramps/cli/arghandler.py:413
 #, python-format
@@ -863,7 +993,7 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:431 ../gramps/cli/clidbman.py:188
 msgid "Gramps Family Trees:"
-msgstr ""
+msgstr "Pohon Keluarga Gramps:"
 
 #: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
@@ -871,32 +1001,32 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
-msgstr ""
+msgstr "Pohon Keluarga"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "\"%s\""
 
 #: ../gramps/cli/arghandler.py:457
 #, python-format
 msgid "Performing action: %s."
-msgstr ""
+msgstr "Melakukan tindakan: %s."
 
 #: ../gramps/cli/arghandler.py:461 ../gramps/gen/plug/report/stdoptions.py:302
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "Menggunakan string opsi: %s"
 
 #: ../gramps/cli/arghandler.py:467
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Mengekspor: berkas %(filename)s, format %(format)s."
 
 #: ../gramps/cli/arghandler.py:478
 msgid "Cleaning up."
-msgstr ""
+msgstr "Membersihkan."
 
 #: ../gramps/cli/arghandler.py:514
 msgid "Created empty Family Tree successfully"
@@ -904,51 +1034,53 @@ msgstr ""
 
 #: ../gramps/cli/arghandler.py:517 ../gramps/cli/arghandler.py:543
 msgid "Error opening the file."
-msgstr ""
+msgstr "Galat saat membuka berkas."
 
 #: ../gramps/cli/arghandler.py:518 ../gramps/cli/arghandler.py:544
 msgid "Exiting..."
-msgstr ""
+msgstr "Keluar..."
 
 #: ../gramps/cli/arghandler.py:522
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Mengimpor: berkas %(filename)s, format %(format)s."
 
 #: ../gramps/cli/arghandler.py:541
 msgid "Opened successfully!"
-msgstr ""
+msgstr "Berhasil dibuka!"
 
 #: ../gramps/cli/arghandler.py:555
 msgid "Database is locked, cannot open it!"
-msgstr ""
+msgstr "Basis data terkunci, tidak dapat membukanya!"
 
 #: ../gramps/cli/arghandler.py:556
 #, python-format
 msgid "  Info: %s"
-msgstr ""
+msgstr "  Info: %s"
 
 #: ../gramps/cli/arghandler.py:559
 msgid "Database needs recovery, cannot open it!"
-msgstr ""
+msgstr "Basis data perlu pemulihan, tidak dapat membukanya!"
 
 #: ../gramps/cli/arghandler.py:562
 msgid "Database backend unavailable, cannot open it!"
-msgstr ""
+msgstr "Backend basis data tidak tersedia, tidak dapat membukanya!"
 
 #: ../gramps/cli/arghandler.py:613 ../gramps/cli/arghandler.py:662
 #: ../gramps/cli/arghandler.py:709
 msgid "Ignoring invalid options string."
-msgstr ""
+msgstr "Mengabaikan string opsi yang tidak valid."
 
 #: ../gramps/cli/arghandler.py:637
 msgid "Unknown report name."
-msgstr ""
+msgstr "Nama laporan tidak diketahui."
 
 #: ../gramps/cli/arghandler.py:639
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
+"Nama laporan tidak diberikan. Silakan gunakan salah satu dari "
+"%(donottranslate)s=reportname"
 
 #: ../gramps/cli/arghandler.py:643 ../gramps/cli/arghandler.py:691
 #: ../gramps/cli/arghandler.py:725
@@ -957,29 +1089,35 @@ msgid ""
 "%s\n"
 " Available names are:"
 msgstr ""
+"%s\n"
+" Nama yang tersedia adalah:"
 
 #: ../gramps/cli/arghandler.py:685
 msgid "Unknown tool name."
-msgstr ""
+msgstr "Nama alat tidak diketahui."
 
 #: ../gramps/cli/arghandler.py:687
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
+"Nama alat tidak diberikan. Silakan gunakan salah satu dari "
+"%(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:719
 msgid "Unknown book name."
-msgstr ""
+msgstr "Nama buku tidak diketahui."
 
 #: ../gramps/cli/arghandler.py:721
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
+"Nama buku tidak diberikan. Harap gunakan salah satu dari "
+"%(donottranslate)s=bookname."
 
 #: ../gramps/cli/arghandler.py:730
 #, python-format
 msgid "Unknown action: %s."
-msgstr ""
+msgstr "Tindakan tidak diketahui: %s."
 
 #: ../gramps/cli/argparser.py:56
 msgid ""
@@ -1089,7 +1227,7 @@ msgstr ""
 
 #: ../gramps/cli/argparser.py:257 ../gramps/cli/argparser.py:470
 msgid "Error parsing the arguments"
-msgstr ""
+msgstr "Galat saat mengurai argumen"
 
 #: ../gramps/cli/argparser.py:259
 #, python-format
@@ -1097,11 +1235,13 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
+"Kesalahan saat mengurai argumen: %s\n"
+"Ketik gramps --help untuk ikhtisar perintah, atau baca halaman manual."
 
 #: ../gramps/cli/argparser.py:277
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "Mencoba membuka: %s ..."
 
 #: ../gramps/cli/argparser.py:321
 #, python-format
@@ -1109,25 +1249,27 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"PERINGATAN: %(strerr)s (errno=%(errno)s):\n"
+"PERINGATAN: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:333
 #, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr ""
+msgstr "Aksi tak dikenal: %s. Mengabaikan."
 
 #: ../gramps/cli/argparser.py:343
 msgid "setup debugging"
-msgstr ""
+msgstr "penyiapan debug"
 
 #: ../gramps/cli/argparser.py:355
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr ""
+msgstr "Pengaturan konfigurasi Gramps dari %s:"
 
 #: ../gramps/cli/argparser.py:373
 #, python-format
 msgid "Current Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "Pengaturan konfigurasi Gramps saat ini: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:380
 msgid "DEFAULT"
@@ -1137,12 +1279,12 @@ msgstr ""
 #: ../gramps/cli/argparser.py:387
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
-msgstr ""
+msgstr "    Pengaturan konfigurasi Gramps baru: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:395
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr ""
+msgstr "Gramps: tidak ada pengaturan konfigurasi seperti itu: '%s'"
 
 #: ../gramps/cli/argparser.py:471
 #, python-format
@@ -7296,7 +7438,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:1756
 #: ../gramps/plugins/webreport/updates.py:112
 msgid "Events"
-msgstr ""
+msgstr "Peristiwa"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
@@ -35856,37 +35998,39 @@ msgstr ""
 #: ../gramps/plugins/webreport/webcal.py:2195
 #, python-format
 msgid "%s since death"
-msgstr ""
+msgstr "%s sejak wafat"
 
 #: ../gramps/plugins/webreport/webcal.py:2196
 msgid "death"
-msgstr ""
+msgstr "wafat"
 
 #: ../gramps/plugins/webreport/webcal.py:2220
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] ""
+msgstr[0] "peringatan {couple}, selama {years}"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
-msgstr ""
+msgstr "Situs web yang dinarasi"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:35
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr ""
+"Menghasilkan halaman situs (HTML) untuk individu, atau atur sebagai orang "
+"banyak"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:59
 msgid "Produces web (HTML) calendars."
-msgstr ""
+msgstr "Menghasilkan situs (HTML) kalender."
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:36
 msgid "Webstuff"
-msgstr ""
+msgstr "Kelengkapan situs"
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:37
 msgid "Provides a collection of resources for the web"
-msgstr ""
+msgstr "Menyediakan koleksi sumber daya untuk situs"
 
 #. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:61
@@ -35921,7 +36065,7 @@ msgstr ""
 #. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
 msgid "Nebraska"
-msgstr ""
+msgstr "Nebraska"
 
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
