@@ -142,7 +142,7 @@ msgstr "Purim"
 
 #: ../data/holidays.xml:343
 msgid "Passover"
-msgstr "Passover"
+msgstr "Paskah"
 
 #: ../data/holidays.xml:344
 msgid "2 of Passover"
@@ -36034,33 +36034,39 @@ msgstr "Menyediakan koleksi sumber daya untuk situs"
 
 #. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:61
+#, fuzzy
 msgid "Basic-Ash"
-msgstr ""
+msgstr "Basic-Ash"
 
 #. Translators: Basic Cypress style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:69
+#, fuzzy
 msgid "Basic-Cypress"
-msgstr ""
+msgstr "Basic-Cypress"
 
 #. Translators: Basic Lilac style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:73
+#, fuzzy
 msgid "Basic-Lilac"
-msgstr ""
+msgstr "Basic-Lilac"
 
 #. Translators: Basic Peach style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:77
+#, fuzzy
 msgid "Basic-Peach"
-msgstr ""
+msgstr "Basic-Peach"
 
 #. Translators: Basic Spruce style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:81
+#, fuzzy
 msgid "Basic-Spruce"
-msgstr ""
+msgstr "Basic-Spruce"
 
 #. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
+#, fuzzy
 msgid "Mainz"
-msgstr ""
+msgstr "Mainz"
 
 #. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
@@ -36068,5 +36074,6 @@ msgid "Nebraska"
 msgstr "Nebraska"
 
 #: ../gramps/plugins/webstuff/webstuff.py:144
+#, fuzzy
 msgid "No style sheet"
-msgstr ""
+msgstr "No style sheet"
