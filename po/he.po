@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-08-04 13:35+0000\n"
+"PO-Revision-Date: 2021-11-14 06:05+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
@@ -12635,7 +12635,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "נא לבחור_בורר_מדיה"
+msgstr "נא_לבחור_בורר_מדיה"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -13420,7 +13420,7 @@ msgstr "עורך הפנית צאצאים"
 #: ../gramps/gui/editors/editcitation.py:69
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "דו־שיח_מובאה חדשה"
+msgstr "דו־שיח_מובאה_חדשה"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -14103,7 +14103,7 @@ msgstr "קיבוץ שם זה בלבד"
 #: ../gramps/gui/editors/editnote.py:67
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "עריכת_מידע_ על_הערות"
+msgstr "עריכת_מידע_הערות"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14175,7 +14175,7 @@ msgstr "אדם חדש"
 #: ../gramps/gui/editors/editperson.py:243
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "עריכת_מידע_ על_אנשים"
+msgstr "עריכת_מידע_על_אנשים"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:478
@@ -14522,7 +14522,7 @@ msgstr "מחיקת מקור (%s)"
 #: ../gramps/gui/editors/edittaglist.py:48
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "דו־שיח נא לבחור תג"
+msgstr "דו־שיח_נא_לבחור_תג"
 
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:127
@@ -18928,7 +18928,7 @@ msgstr "שינוי אחרון"
 #: ../gramps/gui/selectors/selectcitation.py:86
 msgctxt "manual"
 msgid "Select_Source_or_Citation_selector"
-msgstr "נא לבחור_בורר_מקור_או_מובאה"
+msgstr "נא_לבחור_בורר_מקור_או_מובאה"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
@@ -18937,12 +18937,12 @@ msgstr "נא לבחור אירוע"
 #: ../gramps/gui/selectors/selectevent.py:79
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "נא לבחור_בורר_אירוע"
+msgstr "נא_לבחור_בורר_אירוע"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "נא לבחור_בורר_משפחה"
+msgstr "נא_לבחור_בורר_משפחה"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -18951,7 +18951,7 @@ msgstr "נא לבחור הערה"
 #: ../gramps/gui/selectors/selectnote.py:82
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "נא לבחור_בורר_הערות"
+msgstr "נא_לבחור_בורר_הערות"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
@@ -18960,27 +18960,27 @@ msgstr "נא לבחור אובייקט מדיה"
 #: ../gramps/gui/selectors/selectobject.py:108
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "נא לבחור_בורר_אובייקט_מדיה"
+msgstr "נא_לבחור_בורר_אובייקט_מדיה"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
 msgid "Select_Father_selector"
-msgstr "נא לבחור_בורר_אב"
+msgstr "נא_לבחור_בורר_אב"
 
 #: ../gramps/gui/selectors/selectperson.py:66
 msgctxt "manual"
 msgid "Select_Mother_selector"
-msgstr "נא לבחור_בורר_אם"
+msgstr "נא_לבחור_בורר_אם"
 
 #: ../gramps/gui/selectors/selectperson.py:68
 msgctxt "manual"
 msgid "Select_Child_selector"
-msgstr "נא לבחור_בורר_צאצא"
+msgstr "נא_לבחור_בורר_צאצא"
 
 #: ../gramps/gui/selectors/selectperson.py:70
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "נא לבחור_בורר_אדם"
+msgstr "נא_לבחור_בורר_אדם"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -18989,7 +18989,7 @@ msgstr "נא לבחור מקום"
 #: ../gramps/gui/selectors/selectplace.py:90
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "נא לבחור_בורר_מקור"
+msgstr "נא_לבחור_בורר_מקור"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -18998,7 +18998,7 @@ msgstr "נא לבחור מאגר"
 #: ../gramps/gui/selectors/selectrepository.py:75
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "נא לבחור_בורר_מאגר"
+msgstr "נא_לבחור_בורר_מאגר"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -19007,7 +19007,7 @@ msgstr "נא לבחור מקור"
 #: ../gramps/gui/selectors/selectsource.py:76
 msgctxt "manual"
 msgid "Select_Source_selector"
-msgstr "נא לבחור_בורר_מקור"
+msgstr "נא_לבחור_בורר_מקור"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19771,7 +19771,7 @@ msgstr "מצב התקדמות"
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "דו־שיח_סדור מחדש_קשרי־גומלין"
+msgstr "דו־שיח_סדור_קשרי־גומלין_מחדש"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -33089,7 +33089,7 @@ msgstr "עורך מסנן מותאם _אישית"
 #: ../gramps/plugins/tool/eventcmp.py:70
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "השוואת אירועי פרט"
+msgstr "השוואת_אירועי_פרט"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -33251,7 +33251,7 @@ msgstr "מיזוג אנשים"
 #: ../gramps/plugins/tool/findloop.py:58
 msgctxt "manual"
 msgid "Find_database_loop"
-msgstr "איתור_לולאות_במסד הנתונים"
+msgstr "איתור_לולאות_במסד־הנתונים"
 
 #: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465
@@ -33605,7 +33605,7 @@ msgstr "נא להקיש ימנית להעתקה מ/אל העדפות חוקר"
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "עריכת_מידע_בעלי_מסד הנתונים"
+msgstr "עריכת_מידע_בעלי_מסד־הנתונים"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
