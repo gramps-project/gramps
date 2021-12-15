@@ -3,13 +3,14 @@
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd at gmail.com>, 2007-2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# beernarrd <beernarrd@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-03 17:24+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2021-10-27 21:38+0000\n"
+"Last-Translator: beernarrd <beernarrd@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
 "Language: sl\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -9905,7 +9906,7 @@ msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
 msgid "Graph File for genealogytree"
-msgstr ""
+msgstr "Datoteka za graf genealogytree"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
 msgid "LaTeX File"
@@ -10546,7 +10547,7 @@ msgstr "nemščina"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Nemščina (Avstrija)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -25028,7 +25029,7 @@ msgstr[3] "Uvoz končan v {number_of} sekundah"
 #: ../gramps/plugins/importer/importcsv.py:395
 #, fuzzy
 msgid "The following IDs were referenced but not found:\n"
-msgstr "Najdene so bile naslednje težave:"
+msgstr "Najdene so bile naslednje težave:\n"
 
 #: ../gramps/plugins/importer/importgedcom.glade:15
 msgid "ANSEL"
@@ -32570,9 +32571,8 @@ msgid "Whether to sort events into chronological order."
 msgstr "Ali naj bodo dogodki razvrščeni v kronološkem vrstnem redu."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
-#, fuzzy
 msgid "Use name of person as title"
-msgstr "Kliknite, da postane oseba aktivna\n"
+msgstr "Kliknite, da postane oseba aktivna"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
