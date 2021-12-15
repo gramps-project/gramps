@@ -58,13 +58,14 @@
 # Marco Molteni <molter@gufi.org>, 2001-2002;.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
 # Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021.
+# Gianluca Boiano <morf3089@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-13 22:33+0000\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2021-12-09 06:50+0000\n"
+"Last-Translator: Gianluca Boiano <morf3089@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -72,7 +73,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -2256,7 +2257,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2266,7 +2267,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2276,7 +2277,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2286,7 +2287,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2296,7 +2297,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2306,7 +2307,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2316,7 +2317,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2326,7 +2327,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2336,7 +2337,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:255
 #, python-brace-format
@@ -2351,7 +2352,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2361,7 +2362,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2371,7 +2372,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2381,7 +2382,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2391,7 +2392,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2401,7 +2402,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2411,7 +2412,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2421,7 +2422,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2431,7 +2432,7 @@ msgstr ""
 #, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
@@ -2525,25 +2526,25 @@ msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:651
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:677
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:703
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:729
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:421
 msgid "today"
