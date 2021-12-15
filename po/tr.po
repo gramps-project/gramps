@@ -10512,11 +10512,11 @@ msgstr "Bretonca"
 
 #: ../gramps/gen/utils/grampslocale.py:74
 msgid "Catalan"
-msgstr "Katalonca"
+msgstr "Katalanca"
 
 #: ../gramps/gen/utils/grampslocale.py:75
 msgid "Czech"
-msgstr "Çekce"
+msgstr "Çekçe"
 
 #: ../gramps/gen/utils/grampslocale.py:76
 msgid "Danish"
@@ -10564,7 +10564,7 @@ msgstr "İskoçça"
 
 #: ../gramps/gen/utils/grampslocale.py:87
 msgid "Hebrew"
-msgstr "Yahudice"
+msgstr "İbranice"
 
 #: ../gramps/gen/utils/grampslocale.py:88
 msgid "Croatian"
@@ -10576,7 +10576,7 @@ msgstr "Macarca"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Icelandic"
-msgstr "Inis sitili"
+msgstr "İzlandaca"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Italian"
@@ -10592,7 +10592,7 @@ msgstr "Litvanyaca"
 
 #: ../gramps/gen/utils/grampslocale.py:94
 msgid "Macedonian"
-msgstr "Mekedonca"
+msgstr "Makedonca"
 
 #: ../gramps/gen/utils/grampslocale.py:95
 msgid "Norwegian Bokmal"
@@ -10600,7 +10600,7 @@ msgstr "Bokmal Norveççe"
 
 #: ../gramps/gen/utils/grampslocale.py:96
 msgid "Dutch"
-msgstr "Flemenkçe"
+msgstr "Felemenkçe"
 
 #: ../gramps/gen/utils/grampslocale.py:97
 msgid "Norwegian Nynorsk"
@@ -10612,7 +10612,7 @@ msgstr "Lehçe"
 
 #: ../gramps/gen/utils/grampslocale.py:99
 msgid "Portuguese (Brazil)"
-msgstr "Potekizce (Brezilya)"
+msgstr "Portekizce (Brezilya)"
 
 #: ../gramps/gen/utils/grampslocale.py:100
 msgid "Portuguese (Portugal)"
