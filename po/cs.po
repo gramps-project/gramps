@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-23 05:35+0000\n"
+"PO-Revision-Date: 2021-11-25 16:25+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -2147,7 +2147,7 @@ msgstr "Numerický"
 #. Translators: Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:82
 msgid "Month Day, Year"
-msgstr "Měsíc den, rok"
+msgstr "Měsíc Den, Rok"
 
 #. Translators: Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:85
@@ -2656,37 +2656,37 @@ msgstr "prosinec"
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
 msgid "Gregorian"
-msgstr "gregoriánský"
+msgstr "Gregoriánský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:610
 msgctxt "calendar"
 msgid "Julian"
-msgstr "juliánský"
+msgstr "Juliánský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:611
 msgctxt "calendar"
 msgid "Hebrew"
-msgstr "hebrejský"
+msgstr "Hebrejský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgctxt "calendar"
 msgid "French Republican"
-msgstr "francouzský republikánský"
+msgstr "Francouzský republikánský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
 msgctxt "calendar"
 msgid "Persian"
-msgstr "perský"
+msgstr "Perský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:614
 msgctxt "calendar"
 msgid "Islamic"
-msgstr "islámský"
+msgstr "Islámský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:615
 msgctxt "calendar"
 msgid "Swedish"
-msgstr "švédský"
+msgstr "Švédský"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -3417,23 +3417,23 @@ msgstr "primární[spojka]"
 
 #: ../gramps/gen/display/name.py:631 ../gramps/gen/display/name.py:725
 msgid "patronymic"
-msgstr "po otci"
+msgstr "otcovské"
 
 #: ../gramps/gen/display/name.py:633 ../gramps/gen/display/name.py:727
 msgid "patronymic[pre]"
-msgstr "po otci[předp]"
+msgstr "otcovské[předp]"
 
 #: ../gramps/gen/display/name.py:635 ../gramps/gen/display/name.py:729
 msgid "patronymic[sur]"
-msgstr "po otci[příjm]"
+msgstr "otcovské[příjm]"
 
 #: ../gramps/gen/display/name.py:637 ../gramps/gen/display/name.py:731
 msgid "patronymic[con]"
-msgstr "po otci[spojka]"
+msgstr "otcovské[spojka]"
 
 #: ../gramps/gen/display/name.py:639 ../gramps/gen/display/name.py:733
 msgid "notpatronymic"
-msgstr "ne po otci"
+msgstr "neotcovské"
 
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
 msgctxt "Remaining names"
@@ -4740,9 +4740,7 @@ msgstr "Vyhovují rodiny s matkou jména odpovídajícího uvedenému reg. výra
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:45
 msgid "Families with any child matching the <name>"
-msgstr ""
-"Families with any child matching the <name>Rodiny s dítětem nesoucím jméno "
-"<name>"
+msgstr "Rodiny s dítětem nesoucím jméno <name>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
@@ -4958,7 +4956,7 @@ msgstr "Vyhovuje poznámka se zadaným Gramps ID"
 #: ../gramps/gui/editors/filtereditor.py:110
 #: ../gramps/gui/editors/filtereditor.py:558
 msgid "Note type:"
-msgstr "Typ události:"
+msgstr "Typ poznámky:"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:49
 msgid "Notes matching parameters"
@@ -5034,7 +5032,7 @@ msgstr "Vyhovují poznámky s Gramps ID odpovídajícím uvedenému reg. výrazu
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:47
 msgid "Persons changed after <date time>"
-msgstr "Osoby měněné před <date time>"
+msgstr "Osoby měněné po <date time>"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:48
 msgid ""
@@ -5320,7 +5318,7 @@ msgstr "Spojka"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:55
 msgid "Patronymic:"
-msgstr "Jméno po otci:"
+msgstr "Patronymické:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:56
 msgid "Family Nick Name:"
@@ -5794,7 +5792,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:43
 msgid "People missing parents"
-msgstr "Osoby bez rodičů"
+msgstr "Osoby s chybějícími rodiči"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:44
 msgid ""
@@ -5810,7 +5808,7 @@ msgstr "Osoby s více sňatky"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:43
 msgid "Matches people who have more than one spouse"
-msgstr "Vyhovují lidé s více než jedním partnerem"
+msgstr "Vyhovují osoby s více než jedním manželem"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:42
 msgid "People with no marriage records"
@@ -6130,7 +6128,7 @@ msgid ""
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
 msgstr ""
-"Vyhovují místa se zeměpisnou délkou a šířkou uvnitř čtverce dané výšky a "
+"Vyhovují místa se zeměpisnou délkou a šířkou uvnitř obdélníku dané výšky a "
 "šířky (ve stupních) se středem na daných souřadnicích."
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
@@ -7917,7 +7915,7 @@ msgstr "Události"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
-msgstr "Vysvěcení"
+msgstr "Obřady SPD"
 
 #: ../gramps/gen/lib/familyreltype.py:47
 msgid "Married"
@@ -8077,7 +8075,7 @@ msgstr "Neschváleno"
 #: ../gramps/plugins/textreport/indivcomplete.py:706
 #: ../gramps/plugins/webreport/basepage.py:512
 msgid "LDS Ordinance"
-msgstr "Vysvěcení"
+msgstr "Obřad SPD"
 
 #: ../gramps/gen/lib/ldsord.py:190
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
@@ -8308,11 +8306,11 @@ msgstr "Získané"
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
 #: ../gramps/gui/configure.py:857
 msgid "Patronymic"
-msgstr "Jméno po otci"
+msgstr "Patronymické"
 
 #: ../gramps/gen/lib/nameorigintype.py:80
 msgid "Matronymic"
-msgstr "Jméno po matce"
+msgstr "Matronymické"
 
 #: ../gramps/gen/lib/nameorigintype.py:81
 msgctxt "Surname"
@@ -8337,11 +8335,11 @@ msgstr "Také znám(a) jako"
 
 #: ../gramps/gen/lib/nametype.py:49
 msgid "Birth Name"
-msgstr "Jméno za svobodna"
+msgstr "Rodné jméno"
 
 #: ../gramps/gen/lib/nametype.py:50
 msgid "Married Name"
-msgstr "Jméno v manželství"
+msgstr "Manželské jméno"
 
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:265
 #: ../gramps/gen/plug/docgen/treedoc.py:199 ../gramps/gui/clipboard.py:375
@@ -8409,7 +8407,7 @@ msgstr "Badatel"
 
 #: ../gramps/gen/lib/notetype.py:77
 msgid "Transcript"
-msgstr "Rukopis"
+msgstr "Přepis"
 
 #: ../gramps/gen/lib/notetype.py:78
 msgid "Source text"
@@ -9120,7 +9118,7 @@ msgstr "Sloučit pramen"
 #: ../gramps/plugins/view/relview.py:791
 #: ../gramps/plugins/webreport/person.py:455
 msgid "unknown"
-msgstr "neznámý"
+msgstr "neznámé"
 
 #: ../gramps/gen/plug/_gramplet.py:347
 #, python-format
@@ -9984,12 +9982,12 @@ msgstr "Žijící osoby"
 #: ../gramps/gen/plug/report/stdoptions.py:190
 msgctxt "'living people'"
 msgid "Included, and all data"
-msgstr "Zahrnuta všechna data"
+msgstr "Zahrnuté, a všechna data"
 
 #: ../gramps/gen/plug/report/stdoptions.py:194
 msgctxt "'living people'"
 msgid "Full names, but data removed"
-msgstr "Plná jména nahrazena, data odstraněna"
+msgstr "Úplná jména, ale data odstraněna"
 
 #: ../gramps/gen/plug/report/stdoptions.py:196
 msgctxt "'living people'"
@@ -10705,7 +10703,7 @@ msgstr ""
 #: ../gramps/gen/utils/keyword.py:54
 msgctxt "Person"
 msgid "TITLE"
-msgstr "Titul"
+msgstr "TITUL"
 
 #: ../gramps/gen/utils/keyword.py:54 ../gramps/plugins/export/exportcsv.py:356
 #: ../gramps/plugins/tool/patchnames.py:446
@@ -10794,31 +10792,31 @@ msgstr "Primární[spojka]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "PATRONYMIC"
-msgstr "PO OTCI"
+msgstr "PATRONYMICKÉ"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "PATRONYMIC[PRE]"
-msgstr "PO OTCI[PŘEDP]"
+msgstr "PATRONYMICKÉ[PŘEDP]"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "Patronymic[pre]"
-msgstr "Po otci[předp]"
+msgstr "Patronymické[předp]"
 
 #: ../gramps/gen/utils/keyword.py:67
 msgid "PATRONYMIC[SUR]"
-msgstr "PO OTCI[PŘÍJM]"
+msgstr "PATRONYMICKÉ[PŘÍJM]"
 
 #: ../gramps/gen/utils/keyword.py:67
 msgid "Patronymic[sur]"
-msgstr "Po otci[příjm]"
+msgstr "Patronymické[příjm]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "PATRONYMIC[CON]"
-msgstr "PO OTCI[SPOJKA]"
+msgstr "PATRONYMICKÁ[SPOJKA]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "Patronymic[con]"
-msgstr "Po otci[spojka]"
+msgstr "Patronymická[spojka]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "RAWSURNAMES"
@@ -10830,11 +10828,11 @@ msgstr "holápříjmení"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "NOTPATRONYMIC"
-msgstr "NE PO OTCI"
+msgstr "NEPATRONYMICKÉ"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "Notpatronymic"
-msgstr "Ne po otci"
+msgstr "Nepatronymické"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "PREFIX"
@@ -10846,11 +10844,11 @@ msgstr "PŘEZDÍVKA"
 
 #: ../gramps/gen/utils/keyword.py:73
 msgid "FAMILYNICK"
-msgstr "RODINNÁPŘEZDÍVKA"
+msgstr "RODINNÁ PŘEZDÍVKA"
 
 #: ../gramps/gen/utils/keyword.py:73
 msgid "Familynick"
-msgstr "Rodinnápřezdívka"
+msgstr "Rodinná přezdívka"
 
 #: ../gramps/gen/utils/place.py:49
 #, python-format
@@ -11358,8 +11356,8 @@ msgstr ""
 "závorky, čárky a uvozovky navíc jsou odstraněny. Ostatní text se zobrazí "
 "doslovně.\n"
 "\n"
-"<b>Příklad</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") -"
-" Underhills'\n"
+"<b>Příklad</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"Underhills\n"
 "     <i>Edwin Jose</i>: Křestní jméno, <i>von der</i>: Předpona, <i>Smith</"
 "i> and <i>Weston</i>: Příjmení, <i>and</i>: [spojka], <i>Wilson</i>: "
 "Příjmení po otci, <i>Dr.</i>: Titul, <i>Sr</i>: Přípona, <i>Ed</i>: "
@@ -11625,7 +11623,7 @@ msgstr "Volání"
 
 #: ../gramps/gui/configure.py:857
 msgid "NotPatronymic"
-msgstr "Ne po otci"
+msgstr "Nepatronymické"
 
 #: ../gramps/gui/configure.py:935
 msgid "Enter to save, Esc to cancel editing"
@@ -11701,7 +11699,7 @@ msgstr "Upravit"
 
 #: ../gramps/gui/configure.py:1208
 msgid "Consider single pa/matronymic as surname"
-msgstr "Zvážit samotné příjmení po otci/matce"
+msgstr "Považovat jediné jméno po otci/matce za příjmení"
 
 #: ../gramps/gui/configure.py:1240
 msgid "Place format (auto place title)"
@@ -11717,11 +11715,11 @@ msgstr "Roky"
 
 #: ../gramps/gui/configure.py:1255
 msgid "Years, Months"
-msgstr "Roky, měsíce"
+msgstr "Roky, Měsíce"
 
 #: ../gramps/gui/configure.py:1256
 msgid "Years, Months, Days"
-msgstr "Roky, měsíce, dny"
+msgstr "Roky, Měsíce, Dny"
 
 #: ../gramps/gui/configure.py:1269
 msgid "Age display precision (requires restart)"
@@ -11938,7 +11936,7 @@ msgstr "Zapamatovat poslední zobrazený pohled a zobrazit jej příště."
 
 #: ../gramps/gui/configure.py:1606
 msgid "Max generations for relationships"
-msgstr "Nejvyšší počet generací pro zjišťování vztahů"
+msgstr "Nejvyšší počet generací pro vztahy mezi osobami"
 
 #: ../gramps/gui/configure.py:1612
 msgid "Base path for relative media paths"
@@ -14163,7 +14161,7 @@ msgstr "Internetová adresa"
 
 #: ../gramps/gui/editors/editlocation.py:48
 msgid "Location Editor"
-msgstr "Editot míst"
+msgstr "Editor pozice"
 
 #: ../gramps/gui/editors/editmedia.py:68
 msgctxt "manual"
@@ -14471,7 +14469,7 @@ msgstr "Ž_ena"
 
 #: ../gramps/gui/editors/editperson.py:1105
 msgid "_Unknown"
-msgstr "_Neznámý"
+msgstr "_Neznámé"
 
 #: ../gramps/gui/editors/editpersonref.py:67
 msgctxt "manual"
@@ -14547,7 +14545,7 @@ msgstr "Upravit místo"
 #: ../gramps/gui/editors/editplace.py:319
 #: ../gramps/gui/editors/editplaceref.py:315
 msgid "Cannot save place. Name not entered."
-msgstr "Nelze uložit umístění. Chybí název."
+msgstr "Místo nelze uložit. Chybí název."
 
 #: ../gramps/gui/editors/editplace.py:320
 #: ../gramps/gui/editors/editplaceref.py:316
@@ -15331,7 +15329,7 @@ msgstr ""
 "··<b>%p</b>·-·Předpona···········<b>%P</b>·-·PŘEDPONA\n"
 "··<b>%s</b>·-·Přípona···········<b>%S</b>·-·PŘÍPONA\n"
 "··<b>%c</b>·-·Běžné jméno········<b>%C</b>·-·BĚŽNÉ JMÉNO\n"
-"··<b>%y</b>·-·Jméno po otci·······<b>%Y</b>·-·OTCOVSKÉ</tt>"
+"··<b>%y</b>·-·Otcovské·······<b>%Y</b>·-·OTCOVSKÉ</tt>"
 
 #: ../gramps/gui/glade/configure.glade:155
 msgid "Format definition details"
@@ -16431,7 +16429,7 @@ msgstr "Pů_vod:"
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
-msgstr "Původ rodinného jména této rodiny, např. 'Zděděné' nebo 'Po otci'."
+msgstr "Původ rodinného jména této rodiny, např. 'Zděděné' nebo 'Otcovské'."
 
 #: ../gramps/gui/glade/editperson.glade:585
 msgid "G_ender:"
@@ -18793,7 +18791,7 @@ msgstr "Název knihy. POVINNÉ"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:331
 msgid "Manage Books"
-msgstr "Spravova knihy"
+msgstr "Spravovat knihy"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:372
 msgid "New Book"
@@ -19085,7 +19083,7 @@ msgstr "Nový styl"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:157
 msgid "Error saving stylesheet"
-msgstr "Chyba při ukládání stylopisu"
+msgstr "Chyba při ukládání šablony stylu"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:174
 #: ../gramps/gui/plug/report/_styleeditor.py:188
@@ -20132,7 +20130,7 @@ msgstr "Vybrat barvu písma"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:703
 msgid "Select background color"
-msgstr "Vyberat barvu pozadí"
+msgstr "Vybrat barvu pozadí"
 
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1144
 #, python-format
@@ -21830,7 +21828,7 @@ msgstr "Použít metodu třídění"
 #: ../gramps/plugins/textreport/recordsreport.py:327
 #: ../gramps/plugins/textreport/tagreport.py:965
 msgid "The style used for the section headers."
-msgstr "Styl použitý pro hlavičky sekcí."
+msgstr "Styl používaný pro hlavičky sekcí."
 
 #: ../gramps/plugins/export/export.gpr.py:34
 #: ../gramps/plugins/importer/import.gpr.py:36
@@ -21943,15 +21941,15 @@ msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:165
 msgid "vC_alendar"
-msgstr "vCalendar"
+msgstr "vK_alendář"
 
 #: ../gramps/plugins/export/export.gpr.py:166
 msgid "vCalendar is used in many calendaring and PIM applications."
-msgstr "vCalendar je používán v mnoha kalendářových a PIM aplikacích."
+msgstr "vKalendář je používán v mnoha kalendářových a PIM aplikacích."
 
 #: ../gramps/plugins/export/export.gpr.py:174
 msgid "vCalendar export options"
-msgstr "Možnosti exportu vCalendar"
+msgstr "Možnosti exportu vKalendář"
 
 #: ../gramps/plugins/export/export.gpr.py:185
 #: ../gramps/plugins/importer/import.gpr.py:167
@@ -23534,7 +23532,7 @@ msgstr "Rodiče:"
 #: ../gramps/plugins/gramplet/relativegramplet.py:125
 #, python-format
 msgid "   %d.a Mother: "
-msgstr "   %d.Matka: "
+msgstr "   %d.a Matka: "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:132
 #: ../gramps/plugins/gramplet/relativegramplet.py:136
@@ -25878,7 +25876,7 @@ msgstr "Výška"
 
 #: ../gramps/plugins/lib/libgedcom.py:707
 msgid "Initiatory (LDS)"
-msgstr "Zasvěcující (SPD)"
+msgstr "Iniciace (SPD)"
 
 #: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Military ID"
@@ -25911,7 +25909,7 @@ msgstr "Řádek ignorován "
 #: ../gramps/plugins/lib/libgedcom.py:1540
 #, python-format
 msgid "Illegal character%s"
-msgstr "Neplatný znak%s"
+msgstr "Nepovolený znak%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -25979,8 +25977,8 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"Chyba: rodina '%(family)s' (vložena jako @%(orig_family)s@) osoba %(person)s "
-"(vložena jako %(orig_person)s) není členem odkazované rodiny. Odkaz na "
+"Chyba: osoba %(person)s (vložena jako %(orig_person)s) rodiny '%(family)s' ("
+"vložena jako @%(orig_family)s@) není členem odkazované rodiny. Odkaz na "
 "rodinu byl osobě odejmut"
 
 #: ../gramps/plugins/lib/libgedcom.py:3357
@@ -26062,7 +26060,7 @@ msgstr "Typ média"
 #: ../gramps/plugins/lib/libgedcom.py:5520
 #: ../gramps/plugins/lib/libgedcom.py:6794
 msgid "Multiple FILE in a single OBJE ignored"
-msgstr "Více FILE a jeden OBJE ignorovány"
+msgstr "Více FILE v jednom OBJE ignorovány"
 
 #: ../gramps/plugins/lib/libgedcom.py:5659
 msgid "A second PLAC ignored"
@@ -26302,7 +26300,7 @@ msgstr "Žádné oznámení o copyrightu"
 #: ../gramps/plugins/lib/libmetadata.py:62
 #: ../gramps/plugins/lib/libmetadata.py:98
 msgid "Invalid format"
-msgstr "Neplatn7 formát"
+msgstr "Neplatný formát"
 
 #: ../gramps/plugins/lib/libmetadata.py:66
 #, python-format
@@ -27128,7 +27126,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Byla pohřben %(burial_date)s v %(burial_place)s%(endnotes)s."
+msgstr "Byla pohřbena %(burial_date)s v %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:469
 #, python-format
@@ -29542,7 +29540,7 @@ msgstr "Odstranit zvolenou osobu"
 
 #: ../gramps/plugins/lib/libpersonview.py:127
 msgid "Merge the selected persons"
-msgstr "Odstranit zvolené osoby"
+msgstr "Sloučit zvolené osoby"
 
 #: ../gramps/plugins/lib/libpersonview.py:186
 #: ../gramps/plugins/lib/libplaceview.py:269
@@ -29860,7 +29858,7 @@ msgstr "Odstranit zvolené místo"
 
 #: ../gramps/plugins/lib/libplaceview.py:106
 msgid "Merge the selected places"
-msgstr "Odstranit zvolená místa"
+msgstr "Sloučit zvolená místa"
 
 #: ../gramps/plugins/lib/libplaceview.py:229
 msgid "No map service is available."
@@ -30653,7 +30651,7 @@ msgstr "Partner"
 
 #: ../gramps/plugins/quickview/all_relations.py:313
 msgid "Partial"
-msgstr "Otcovský"
+msgstr "Částečný"
 
 #: ../gramps/plugins/quickview/all_relations.py:333
 msgid "Remarks with inlaw family"
@@ -30844,7 +30842,7 @@ msgstr "Počet/Celkem"
 #: ../gramps/plugins/quickview/filterbyname.py:89
 #: ../gramps/plugins/tool/reorderids.glade:1401
 msgid "Object"
-msgstr "Předmět"
+msgstr "Objekt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:116
@@ -31069,7 +31067,7 @@ msgstr "Shoda atributu"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:56
 msgid "Display people with same attribute."
-msgstr "Zobrazit osoby se stejným atributem."
+msgstr "Zobrazí osoby se stejným atributem."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:75
 msgid "All Events"
@@ -31240,7 +31238,7 @@ msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] "Existuje {number_of} osoba tohoto nebo alternativního jména.\n"
-msgstr[1] "Existuje {number_of} osoby tohoto nebo alternativního jména.\n"
+msgstr[1] "Existují {number_of} osoby tohoto nebo alternativního jména.\n"
 msgstr[2] "Existuje {number_of} osob tohoto nebo alternativního jména.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:158
@@ -31508,7 +31506,7 @@ msgstr[2] ""
 #: ../gramps/plugins/textreport/birthdayreport.py:442
 #, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "✝ {person}, death {relation}"
+msgstr "✝ {person}, úmrtí {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:444
 #, python-brace-format
@@ -31534,15 +31532,15 @@ msgstr "Titulek sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:489
 msgid "First line of text at bottom of report"
-msgstr "První řádka textu v dolní části sestavy"
+msgstr "První řádek textu v dolní části sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:493
 msgid "Second line of text at bottom of report"
-msgstr "Druhá řádka textu v dolní části sestavy"
+msgstr "Druhý řádek textu v dolní části sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:497
 msgid "Third line of text at bottom of report"
-msgstr "Třetí řádka textu v dolní části sestavy"
+msgstr "Třetí řádek textu v dolní části sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:508
 msgid "Include only living people in the report"
@@ -31950,7 +31948,7 @@ msgstr "Zda zahrnout poznámky."
 #: ../gramps/plugins/textreport/detancestralreport.py:937
 #: ../gramps/plugins/textreport/detdescendantreport.py:1126
 msgid "Include sources"
-msgstr "Zahrnout archivy"
+msgstr "Zahrnout prameny"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:938
 #: ../gramps/plugins/textreport/detdescendantreport.py:1127
@@ -31971,7 +31969,7 @@ msgid ""
 "Include sources is selected."
 msgstr ""
 "Zda zahrnout poznámky pramenů v sekci poznámek pod čarou. Funguje pouze "
-"pokud je zvoleno Zahrnout archivy."
+"pokud je zvoleno Zahrnout prameny."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:947
 #: ../gramps/plugins/textreport/detdescendantreport.py:1136
@@ -32152,7 +32150,7 @@ msgstr "Všichni předci osoby %s, kterým chybí rodič"
 #: ../gramps/plugins/textreport/simplebooktitle.py:181
 #: ../gramps/plugins/textreport/tagreport.py:955
 msgid "The style used for the subtitle."
-msgstr "Styl požitý pro podtitul."
+msgstr "Styl použitý pro podtitul."
 
 #: ../gramps/plugins/textreport/familygroup.py:507
 msgctxt "acronym for male"
@@ -32187,7 +32185,7 @@ msgstr "Ústřední rodina"
 
 #: ../gramps/plugins/textreport/familygroup.py:721
 msgid "The center family for the filter"
-msgstr "Výchozí osoba filtru"
+msgstr "Ústřední rodina filtru"
 
 #: ../gramps/plugins/textreport/familygroup.py:725
 msgid "Recursive (down)"
@@ -32325,7 +32323,7 @@ msgstr "Zda třídit události v chronologickém pořadí."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1088
 msgid "Use name of person as title"
-msgstr "Klikněte na jméno pro aktivaci osoby"
+msgstr "Použijte jméno osoby jako název"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
 msgid ""
@@ -32344,7 +32342,7 @@ msgstr "Zda zahrnout poznámky osob a rodin."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1120
 msgid "Include Source Information"
-msgstr "Zahrnout archivní informace"
+msgstr "Zahrnout informaci o pramenu"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1121
 msgid "Whether to cite sources."
@@ -32368,7 +32366,7 @@ msgstr "Zahrnout události sčítání lidu"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1152
 msgid "Whether to include Census Events."
-msgstr "Zda Zahrnout události sčítání lidu."
+msgstr "Zda zahrnout události sčítání lidu."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1162
 msgid "Sections"
@@ -32501,7 +32499,7 @@ msgstr "Všechny názvy: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:221
 msgid "Events that happened at this place"
-msgstr "Události, které se stay na tomto místě"
+msgstr "Události, které se staly na tomto místě"
 
 #: ../gramps/plugins/textreport/placereport.py:225
 #: ../gramps/plugins/textreport/placereport.py:302
@@ -32569,7 +32567,9 @@ msgstr "Nahradit křestní jména běžným jménem"
 
 #: ../gramps/plugins/textreport/recordsreport.py:236
 msgid "Underline call name in first names / add call name to first name"
-msgstr "Podtrhnout běžné jméno v křestním / přidat běžné jméno ke jménu"
+msgstr ""
+"Podtrhnout běžné jméno v křestních jménech / přidat běžné jméno ke křestnímu "
+"jménu"
 
 #: ../gramps/plugins/textreport/recordsreport.py:240
 msgid "Footer text"
@@ -32893,7 +32893,7 @@ msgstr "Nebyly provedeny změny"
 
 #: ../gramps/plugins/tool/changenames.py:145
 msgid "No capitalization changes were detected."
-msgstr "Žádné změny velikosti prvních písmen nezjištěny."
+msgstr "Žádné změny velkých písmen nezjištěny."
 
 #: ../gramps/plugins/tool/changenames.py:199
 msgid "Original Name"
@@ -33044,7 +33044,7 @@ msgid ""
 "keep the reference to the missing file, or select a new file."
 msgstr ""
 "Soubor:\n"
-" %(file_name)s \n"
+"%(file_name)s \n"
 "je odkazován v databázi, ale již neexistuje.\n"
 "Soubor mohl být smazán nebo přesunut na jiné místo.\n"
 "Můžete buď odstranit odkaz na soubor z databáze,\n"
@@ -33818,7 +33818,7 @@ msgid ""
 "from one directory to another"
 msgstr ""
 "Tento nástroj umožňuje nahradit specifikovaný podřetězec v cestě k objektu "
-"média jiným. To může být užitečné v případě kdy potřebujete přesunou média "
+"média jiným. To může být užitečné v případě kdy potřebujete přesunout média "
 "do jiného adresáře"
 
 #: ../gramps/plugins/tool/mediamanager.py:495
@@ -34052,7 +34052,7 @@ msgstr "Kliknutím pravým tlačítkem myši kopírujte z/do Nastavení badatele
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "Úprava data o majiteli databáze"
+msgstr "Úprava dat o majiteli databáze"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -34097,7 +34097,7 @@ msgstr ""
 #: ../gramps/plugins/tool/patchnames.py:63
 msgctxt "manual"
 msgid "Extract_Information_from_Names"
-msgstr "Získání údaje z jmen"
+msgstr "Získání informace z jmen"
 
 #: ../gramps/plugins/tool/patchnames.py:105
 msgid "Name and title extraction tool"
@@ -34415,7 +34415,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Seřazení Gramps ID"
+msgstr "Změna pořadí Gramps ID"
 
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
@@ -34424,18 +34424,18 @@ msgstr "Seřazení Gramps ID"
 #: ../gramps/plugins/tool/reorderids.py:631
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
-msgstr "Přeskupit Gramps ID"
+msgstr "Změnit pořadí Gramps ID"
 
 #: ../gramps/plugins/tool/reorderids.py:547
 #: ../gramps/plugins/tool/reorderids.py:552
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "Přeskupit %s ID ..."
+msgstr "Změnit pořadí %s ID ..."
 
 #: ../gramps/plugins/tool/reorderids.py:635
 #, python-format
 msgid "Do you want to replace %s?"
-msgstr "Nechcete změnit %s?"
+msgstr "Chcete nahradit %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:694
 msgid "Finding and assigning unused IDs."
@@ -34814,7 +34814,6 @@ msgid "_Hide marked"
 msgstr "_Skrýt označené"
 
 #: ../gramps/plugins/tool/verify.py:83
-#, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
 msgstr "Verify_the_Data"
@@ -35170,7 +35169,7 @@ msgstr "Odstranit vybranou událost"
 
 #: ../gramps/plugins/view/eventview.py:100
 msgid "Merge the selected events"
-msgstr "Odstranit zvolené události"
+msgstr "Sloučit zvolené události"
 
 #: ../gramps/plugins/view/eventview.py:230
 msgid "Event Filter Editor"
@@ -36293,7 +36292,7 @@ msgstr "Odstranit zvolený archiv"
 
 #: ../gramps/plugins/view/repoview.py:115
 msgid "Merge the selected repositories"
-msgstr "Odstranit zvolené archivy"
+msgstr "Sloučit zvolené archivy"
 
 #: ../gramps/plugins/view/repoview.py:201
 msgid "Repository Filter Editor"
@@ -36323,7 +36322,7 @@ msgstr "Odstranit zvolený pramen"
 
 #: ../gramps/plugins/view/sourceview.py:101
 msgid "Merge the selected sources"
-msgstr "Odstranit zvolené prameny"
+msgstr "Sloučit zvolené prameny"
 
 #: ../gramps/plugins/view/sourceview.py:187
 msgid "Source Filter Editor"
@@ -36404,7 +36403,7 @@ msgstr "Pohled ukazující všechny osoby v rodokmenu v plochém seznamu"
 
 #: ../gramps/plugins/view/view.gpr.py:222
 msgid "The view showing all the places of the Family Tree"
-msgstr "Pohled ukazující všechny všechna místa v rodokmenu"
+msgstr "Pohled ukazující všechna místa v rodokmenu"
 
 #: ../gramps/plugins/view/view.gpr.py:236
 msgid "Place Tree"
@@ -36455,7 +36454,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/addressbooklist.py:113
 msgid "Full Name"
-msgstr "Běžné jméno"
+msgstr "Úplné jméno"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:116
 #: ../gramps/plugins/webreport/basepage.py:2439
@@ -36500,7 +36499,7 @@ msgstr "%(http_break)sVytvořeno pro %(subject_url)s"
 #: ../gramps/plugins/webreport/basepage.py:1680
 #: ../gramps/plugins/webstuff/webstuff.py:65
 msgid "Basic-Blue"
-msgstr "Basic-Blue"
+msgstr "Základní-Modř"
 
 #. Translators: Visually Impaired style sheet with its navigation menus
 #: ../gramps/plugins/webreport/basepage.py:1681
@@ -36882,11 +36881,11 @@ msgstr "Autorská práva použitá pro webové stránky"
 #: ../gramps/plugins/webreport/narrativeweb.py:2014
 #: ../gramps/plugins/webreport/webcal.py:1782
 msgid "StyleSheet"
-msgstr "Katalog stylů"
+msgstr "Šablona stylu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2021
 msgid "The default stylesheet to be used for the pages"
-msgstr "Katalog stylů, který bude použit pro webové stránky"
+msgstr "Výchozí šablona stylu, která bude používána pro webové stránky"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2027
 msgid "Horizontal -- Default"
@@ -37918,7 +37917,7 @@ msgstr "Název kalendáře"
 
 #: ../gramps/plugins/webreport/webcal.py:1785
 msgid "The stylesheet to be used for the web pages"
-msgstr "Katalog stylů, který bude použit pro webové stránky"
+msgstr "Šablona stylu, která bude používána pro webové stránky"
 
 #: ../gramps/plugins/webreport/webcal.py:1823
 msgid "Content Options"
@@ -38112,32 +38111,32 @@ msgstr "Poskytuje kolekci zdrojů pro web"
 #. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:61
 msgid "Basic-Ash"
-msgstr "Basic-Ash"
+msgstr "Základní-Jasan"
 
 #. Translators: Basic Cypress style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:69
 msgid "Basic-Cypress"
-msgstr "Basic-Cypress"
+msgstr "Základní-Cypřiš"
 
 #. Translators: Basic Lilac style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:73
 msgid "Basic-Lilac"
-msgstr "Basic-Lilac"
+msgstr "Základní-Šeřík"
 
 #. Translators: Basic Peach style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:77
 msgid "Basic-Peach"
-msgstr "Basic-Peach"
+msgstr "Základní-Broskev"
 
 #. Translators: Basic Spruce style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:81
 msgid "Basic-Spruce"
-msgstr "Basic-Spruce"
+msgstr "Základní-Smrk"
 
 #. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
 msgid "Mainz"
-msgstr "Styl Mainz"
+msgstr "Mainz"
 
 #. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
@@ -38146,7 +38145,7 @@ msgstr "Nebraska"
 
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
-msgstr "Žádná šablona"
+msgstr "Žádná šablona stylu"
 
 #, fuzzy
 #~ msgid "Html|Home"
