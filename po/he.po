@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-14 14:27+0000\n"
+"PO-Revision-Date: 2021-12-18 08:51+0000\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.10\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
@@ -1572,7 +1572,7 @@ msgstr "הייבוא הסתיים..."
 
 #: ../gramps/cli/clidbman.py:366 ../gramps/plugins/importer/importcsv.py:362
 msgid "Importing data..."
-msgstr "ייבוא נתונים..."
+msgstr "הנתונים מיובאים..."
 
 #: ../gramps/cli/clidbman.py:425
 msgid "Remove family tree warning"
