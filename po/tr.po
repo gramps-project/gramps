@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-11-14 06:05+0000\n"
+"PO-Revision-Date: 2021-12-18 08:51+0000\n"
 "Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9.1-dev\n"
+"X-Generator: Weblate 4.10\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -6044,27 +6044,27 @@ msgstr "Yerleşim filtreleri"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:45
 msgid "Places having <count> notes"
-msgstr ""
+msgstr "<count> notu olan yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:46
 msgid "Matches places having a certain number of notes"
-msgstr ""
+msgstr "Belirli sayıda nota sahip yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:42
 msgid "Places having notes containing <substring>"
-msgstr ""
+msgstr "<substring> içeren notların bulunduğu yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:43
 msgid "Matches places whose notes contain text matching a substring"
-msgstr ""
+msgstr "Notları bir alt dizeyle eşleşen metin içeren yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:41
 msgid "Places having notes containing <text>"
-msgstr ""
+msgstr "<text> içeren notların bulunduğu yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Notları normal bir ifadeyle eşleşen metin içeren yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:49
 msgid "Street:"
@@ -6072,7 +6072,7 @@ msgstr "Sokak:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:50
 msgid "Locality:"
-msgstr ""
+msgstr "Yerellik:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:51
 msgid "City:"
@@ -6080,7 +6080,7 @@ msgstr "Şehir:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "County:"
-msgstr "Ülke:"
+msgstr "İlçe:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "State:"
@@ -6096,48 +6096,47 @@ msgstr "ZIP/Posta Kodu:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:56
 msgid "Church Parish:"
-msgstr "Kilise Papazı:"
+msgstr "Kilise Cemaati:"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:42
 msgid "Places with a reference count of <count>"
-msgstr ""
+msgstr "Referans sayısı <count> olan yerler"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:43
 msgid "Matches places with a certain reference count"
-msgstr ""
+msgstr "Belirli bir referans sayısına sahip yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:45
 msgid "Place with <count> sources"
-msgstr ""
+msgstr "<count> kaynağı ile yer"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:46
 msgid "Matches places with a certain number of sources connected to it"
-msgstr ""
+msgstr "Belirli sayıda kaynağa bağlı olan yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:46
 msgid "Places with the <source>"
-msgstr ""
+msgstr "<source> olan yerler"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Matches places who have a particular source"
-msgstr ""
+msgstr "Belirli bir kaynağa sahip olan yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:49
 msgid "Places with the <tag>"
-msgstr "<etiket>'e sahip yerler"
+msgstr "<tag> olan yerler"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
-msgstr "Belirli etikete sahip yerlerle eşleştirir"
+msgstr "Belirli bir etiketle yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:49
 msgid "Places matching a title"
-msgstr ""
+msgstr "Bir başlıkla eşleşen yerler"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:50
-#, fuzzy
 msgid "Matches places with a particular title"
-msgstr "Belirli etikete sahip yerlerle eşleştirir"
+msgstr "Belirli bir başlığa sahip yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/editplaceref.glade:259
@@ -6157,15 +6156,15 @@ msgstr "Boylam:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:50
 msgid "Rectangle height:"
-msgstr ""
+msgstr "Dikdörtgen yüksekliği:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:50
 msgid "Rectangle width:"
-msgstr ""
+msgstr "Dikdörtgen genişliği:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 msgid "Places in neighborhood of given position"
-msgstr ""
+msgstr "Verilen konumun bulunduğu mahalledeki yerler"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:52
 msgid ""
@@ -6173,148 +6172,152 @@ msgid ""
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
 msgstr ""
+"Verilen yükseklik ve genişlikte (derece cinsinden) bir dikdörtgenin içine "
+"yerleştirilmiş enlem veya boylamlı yerleri ve verilen enlem ve boylamı orta "
+"nokta ile eşleştirir."
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
 msgid "Places enclosed by another place"
-msgstr ""
+msgstr "Başka bir yerin çevrelediği yerler"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:50
-#, fuzzy
 msgid "Matches a place enclosed by a particular place"
-msgstr "Belirli etikete sahip yerlerle eşleştirir"
+msgstr "Belirli bir yerin çevrelediği bir yerle eşleşir"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
-msgstr ""
+msgstr "<event filter> ile eşleşen etkinliklerin yerleri"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
+"Belirtilen etkinlik filtresi adıyla eşleşen olayların gerçekleştiği yerleri "
+"eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:44
 msgid "Places matching the <filter>"
-msgstr ""
+msgstr "<filter> ile eşleşen yerler"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:45
 msgid "Matches places matched by the specified filter name"
-msgstr ""
+msgstr "Belirtilen filtre adıyla eşleşen yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
 msgid "Place with a direct source >= <confidence level>"
-msgstr ""
+msgstr "Doğrudan bir kaynağa sahip yer >= <confidence level>"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Matches places with at least one direct source with confidence level(s)"
 msgstr ""
+"En az bir doğrudan kaynağa sahip yerleri güven düzey(ler)iyle eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:42
 msgid "Places marked private"
-msgstr ""
+msgstr "Özel olarak işaretlenen yerler"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:43
 msgid "Matches places that are indicated as private"
-msgstr ""
+msgstr "Özel olarak belirtilen yerlerle eşleşir"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
 msgid "Places with Id containing <text>"
-msgstr ""
+msgstr "<text> içeren Kimliği olan yerler"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr ""
+msgstr "Gramps Kimliği normal ifadeyle eşleşen yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:57
 #: ../gramps/gui/editors/filtereditor.py:591
 msgid "Units:"
-msgstr ""
+msgstr "Birimler:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:58
-#, fuzzy
 msgid "Places within an area"
-msgstr "<etiket>'e sahip yerler"
+msgstr "Bir alan içindeki yerler"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:59
-#, fuzzy
 msgid "Matches places within a given distance of another place"
-msgstr "Galeride belli sayıda öğesi bulunan yerlerle eşleştirir"
+msgstr "Başka bir yerin belirli bir mesafesindeki yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "'Alan içinde' filtresini kullanamıyor"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Seçtiğiniz yer hatalı koordinatlar içeriyor. Lütfen 'giriş verilerini "
+"temizle' aracını çalıştırın"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
-msgstr ""
+msgstr "Her depo"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:45
 msgid "Matches every repository in the database"
-msgstr ""
+msgstr "Veri tabanındaki her depoyla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 msgid "Repositories changed after <date time>"
-msgstr ""
+msgstr "Depolar <date time> sonra değişti"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
+"Belirtilen bir tarih/saatten (yyyy-aa-gg ss:dd:ss) sonra veya ikinci bir "
+"tarih/saat verilmişse aralıkta değişen depo kayıtlarıyla eşleşir."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
-#, fuzzy
 msgid "Repository attribute:"
-msgstr "Depo Notu"
+msgstr "Depo özniteliği:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
-#, fuzzy
 msgid "Repositories with the attribute <attribute>"
-msgstr "<nitelik>'e sahip olaylar"
+msgstr "<attribute> özniteliğine sahip depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
-#, fuzzy
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Belirli bir değeri olan olay niteliğine sahip olaylarla eşleştirir"
+msgstr "Depoları belirli bir değerin özniteliği ile eşleştirir"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
-msgstr ""
+msgstr "<Id> ile depo"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:45
 msgid "Matches a repository with a specified Gramps ID"
-msgstr ""
+msgstr "Belirtilen Gramps kimliğine sahip bir depoyla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
-msgstr ""
+msgstr "<substring> içeren notların bulunduğu depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr ""
+msgstr "Notları bir alt dizeyle eşleşen metin içeren depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
 msgid "Repositories having notes containing <text>"
-msgstr ""
+msgstr "<text> içeren notlara sahip depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Notları normal bir ifadeyle eşleşen metin içeren depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:42
 msgid "Repositories with a reference count of <count>"
-msgstr ""
+msgstr "<count> referans sayısına sahip depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Matches repositories with a certain reference count"
-msgstr ""
+msgstr "Belirli bir referans sayısına sahip depoları eşleştirir"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:46
 #: ../gramps/gui/glade/mergerepository.glade:212
@@ -6322,188 +6325,192 @@ msgstr ""
 #: ../gramps/gui/merge/mergerepository.py:46
 msgctxt "repo"
 msgid "Name:"
-msgstr "Adı:"
+msgstr "Ad:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
 msgid "Address:"
 msgstr "Adres:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:49
+#, fuzzy
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:51
 msgid "Repositories matching parameters"
-msgstr ""
+msgstr "Parametrelerle eşleşen depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:52
 msgid "Matches Repositories with particular parameters"
-msgstr ""
+msgstr "Depoları belirli parametrelerle eşleştirir"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:49
 msgid "Repositories with the <tag>"
-msgstr "<etiket>'e sahip depolar"
+msgstr "<tag> ile depolar"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 msgid "Matches repositories with the particular tag"
-msgstr "Belirli etikete sahip depolarla eşleştirir"
+msgstr "Depoları belirli bir etiketle eşleştirir"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:44
 msgid "Repositories matching the <filter>"
-msgstr ""
+msgstr "<filter> ile eşleşen depolar"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Matches repositories matched by the specified filter name"
-msgstr ""
+msgstr "Belirtilen filtre adıyla eşleşen depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
 msgid "Repositories with name containing <text>"
-msgstr ""
+msgstr "<text> içeren ada sahip depolar"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:44
 msgid "Matches repositories whose name contains a certain substring"
-msgstr ""
+msgstr "Adı belirli bir alt dize içeren depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
 msgid "Repositories with Id containing <text>"
-msgstr ""
+msgstr "<text> içeren kimliğe sahip depolar"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr ""
+msgstr "Gramps Kimliği normal ifadeyle eşleşen depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
-msgstr "Özel işaretlenmiş depolar"
+msgstr "Özel olarak işaretlenmiş depolar"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:43
 msgid "Matches repositories that are indicated as private"
-msgstr ""
+msgstr "Özel olarak belirtilen depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:44
 msgid "Every source"
-msgstr "Tüm kaynaklar"
+msgstr "Her kaynak"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:45
 msgid "Matches every source in the database"
-msgstr ""
+msgstr "Veri tabanındaki her kaynakla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:47
 msgid "Sources changed after <date time>"
-msgstr ""
+msgstr "Kaynaklar <date time> sonra değiştirildi"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:48
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
+"Belirtilen bir tarih-saatten (yyyy-aa-gg ss:dd:ss) sonra veya ikinci bir "
+"tarih-saat verilmişse aralıkta değiştirilen kaynak kayıtlarla eşleşir."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
-#, fuzzy
 msgid "Source attribute:"
-msgstr "Ebeveyn Nitelikleri"
+msgstr "Kaynak özniteliği:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
-#, fuzzy
 msgid "Sources with the attribute <attribute>"
-msgstr "<nitelik>'e sahip olaylar"
+msgstr "<attribute> özniteliğine sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
-#, fuzzy
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Belirli bir değeri olan olay niteliğine sahip olaylarla eşleştirir"
+msgstr "Kaynakları belirli bir değerin özniteliğiyle eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
-msgstr ""
+msgstr "<count> medya içeren kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:46
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Galeride belli sayıda öğesi bulunan kaynaklarla eşleştirir"
+msgstr "Galerideki belirli sayıda öğeye sahip kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:44
 msgid "Source with <Id>"
-msgstr ""
+msgstr "<Id> ile kaynak"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:45
 msgid "Matches a source with a specified Gramps ID"
-msgstr ""
+msgstr "Belirtilen Gramps kimliğine sahip bir kaynakla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:45
 msgid "Sources having <count> notes"
-msgstr "<sayı> tane notu olan kaynaklar"
+msgstr "<count> notu olan kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:46
 msgid "Matches sources having a certain number of notes"
-msgstr ""
+msgstr "Belirli sayıda nota sahip kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:42
 msgid "Sources having notes containing <substring>"
-msgstr ""
+msgstr "<substring> içeren notlara sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:43
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr ""
+msgstr "Notları bir alt dizeyle eşleşen metin içeren kaynaklarla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:41
 msgid "Sources having notes containing <text>"
-msgstr ""
+msgstr "<text> içeren notlara sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:42
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Notları normal bir ifadeyle eşleşen metin içeren kaynaklarla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:42
 msgid "Sources with a reference count of <count>"
-msgstr ""
+msgstr "<count> referans sayısına sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:43
 msgid "Matches sources with a certain reference count"
-msgstr ""
+msgstr "Belirli bir referans sayısına sahip kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:47
 msgid "Sources with <count> Repository references"
-msgstr ""
+msgstr "<count> Depo referansları olan kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
 msgid "Matches sources with a certain number of repository references"
-msgstr "Kaynakları belli sayıda depo referanslarıyla eşleştirir"
+msgstr "Kaynakları belirli sayıda depo referansıyla eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr ""
+msgstr "\"Çağrı Numarası\" nda <text> içeren depo referansına sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
+"\"Çağrı Numarası\"nda bir alt dize içeren bir\n"
+"depo referansıyla kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
-msgstr "<etiket>'e sahip kaynaklar"
+msgstr "<tag> ile kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 msgid "Matches sources with the particular tag"
-msgstr "Belirli etikete sahip kaynaklarla eşleştirir"
+msgstr "Kaynakları belirli etiketle eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:44
 msgid "Sources matching the <filter>"
-msgstr ""
+msgstr "<filter> ile eşleşen kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:45
 msgid "Matches sources matched by the specified filter name"
-msgstr ""
+msgstr "Belirtilen filtre adıyla eşleşen kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr ""
+msgstr "<repository filter> ile eşleşen depo referansına sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
+"Kaynakları, belirli bir havuz filtresiyle eşleşen bir depo\n"
+"referansıyla eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
