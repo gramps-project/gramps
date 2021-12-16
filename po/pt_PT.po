@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-15 13:13+0000\n"
+"PO-Revision-Date: 2021-12-18 08:51+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -734,8 +734,8 @@ msgstr ""
 "<b>Indivíduos favoritos</b><br/> O menu Favoritos é um local conveniente "
 "para armazenar os nomes de indivíduos frequentemente usados. Ao seleccionar "
 "um favorito, tornará o indivíduo activo. Para criar um favorito, torne o "
-"indivíduo activo e vá a \"Favoritos &gt; Adicionar favorito\", ou prima Ctrl"
-"+D. Também pode favorecer a maioria dos outros objectos."
+"indivíduo activo e vá a \"Favoritos &gt; Adicionar favorito\", ou prima Ctrl+"
+"D. Também pode marcar a maioria dos outros objectos."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -34644,7 +34644,7 @@ msgid ""
 "with Start / Step sequence."
 msgstr ""
 "Activar ordem por Id\n"
-"com sequência Iniciar/Parar."
+"com sequência Iniciar/Passo."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -34701,7 +34701,7 @@ msgstr "Deseja substituir %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:694
 msgid "Finding and assigning unused IDs."
-msgstr "A procurar e associar Ids não usados."
+msgstr "A procurar e associar Ids não usadas."
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
@@ -34745,7 +34745,7 @@ msgstr "Ordenar eventos familiares do indivíduo"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:91
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr "Gera_testes_para_indivíduos_e_famílias"
+msgstr "Gerar_testes_para_indivíduos_e_famílias"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:274
 #: ../gramps/plugins/tool/testcasegenerator.py:280
@@ -34758,7 +34758,7 @@ msgid ""
 "Correction needs database reload"
 msgstr ""
 "Gerar erros de base de dados de baixo nível\n"
-"A correcção reque recarga da base de dados"
+"A correcção requer recarga da base de dados"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
 msgid "Generate database errors"
@@ -34842,7 +34842,7 @@ msgstr "A gerar famílias"
 #: ../gramps/plugins/tool/testcasegenerator.py:1685
 #, python-format
 msgid "Testcase generator step %d"
-msgstr "Gerador de testes passo %d"
+msgstr "Gerador de testes, passo %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:38
 msgid "Fix Capitalization of Family Names"
@@ -34852,8 +34852,7 @@ msgstr "Corrigir maiúsculas dos nomes de família"
 msgid ""
 "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
-"Verifica a base de dados inteira e tenta corrigir incorreções de maiúsculas "
-"nos nomes."
+"Verifica a base de dados inteira e tenta ajustar as maiúsculas nos nomes."
 
 #: ../gramps/plugins/tool/tools.gpr.py:61
 msgid "Rename Event Types"
@@ -34873,8 +34872,8 @@ msgstr "Verificar/Corrigir base de dados"
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
-"Procura problemas de integridade na base de dados e corrige os problemas que "
-"for possível"
+"Procura problemas de integridade na base de dados e corrige o que for "
+"possível"
 
 #: ../gramps/plugins/tool/tools.gpr.py:107
 msgid "Compare Individual Events"
@@ -34957,7 +34956,7 @@ msgstr "Reconstruir estatísticas de sexos"
 
 #: ../gramps/plugins/tool/tools.gpr.py:310
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr "Reconstrói as estatísticas de sexos para palpite do sexo dos nomes..."
+msgstr "Reconstrói as estatísticas de sexos para palpite de sexo por nome..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:332
 msgid "Calculates the relationship between two people"
@@ -35005,7 +35004,7 @@ msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Procura na base de dados inteira por espaços iniciais ou finais em locais ou "
+"Procura na base de dados inteira por espaços iniciais ou finais em locais e "
 "indivíduos. Procura vírgulas em campos de coordenadas dos locais."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
@@ -35155,7 +35154,7 @@ msgstr "Muitos filhos"
 
 #: ../gramps/plugins/tool/verify.py:1175
 msgid "Same sex marriage"
-msgstr "Casamento do mesmo sexo"
+msgstr "Casamento homosexual"
 
 #: ../gramps/plugins/tool/verify.py:1188
 msgid "Female husband"
@@ -35524,16 +35523,16 @@ msgid ""
 "desired family."
 msgstr ""
 "Devem ser seleccionados exactamente dois locais para se realizar uma união. "
-"O segundo local pode ser seleccionado mantendo premido Ctrl, e clicando no "
+"O segundo local pode ser seleccionado mantendo premido Ctrl e clicando no "
 "local desejado."
 
 #: ../gramps/plugins/view/fanchart2wayview.py:280
 msgid "Max ancestor generations"
-msgstr "Máx. gerações ascendentes"
+msgstr "Máximo de gerações ascendentes"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:283
 msgid "Max descendant generations"
-msgstr "Máx. gerações descendentes"
+msgstr "Máximo de gerações descendentes"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:286
 #: ../gramps/plugins/view/fanchartdescview.py:283
@@ -35581,13 +35580,13 @@ msgstr "Branco"
 #: ../gramps/plugins/view/fanchartdescview.py:295
 #: ../gramps/plugins/view/fanchartview.py:392
 msgid "Color scheme classic report"
-msgstr "Esquema de cores do relatório clássico"
+msgstr "Esquema de cores clássico do relatório"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:298
 #: ../gramps/plugins/view/fanchartdescview.py:296
 #: ../gramps/plugins/view/fanchartview.py:393
 msgid "Color scheme classic view"
-msgstr "Esquema de cores da vista clássica"
+msgstr "Esquema de cores clássico da vista"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:306
 #: ../gramps/plugins/view/fanchartdescview.py:304
@@ -35697,7 +35696,7 @@ msgstr "Mostrar anel de filhos"
 # FSM: rever
 #: ../gramps/plugins/view/geoclose.py:111
 msgid "Select the person which is the reference for life ways"
-msgstr "Seleccione o indivíduo de referência para o percurso geográfico"
+msgstr "Seleccione o indivíduo de referência para o percurso vital"
 
 # FSM: rever
 #: ../gramps/plugins/view/geoclose.py:111
@@ -35764,7 +35763,7 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:641
 msgid "Choose and bookmark the new reference person"
-msgstr "Escolha e favoreça o novo indivíduo de referência"
+msgstr "Escolha e marque o novo indivíduo de referência"
 
 #: ../gramps/plugins/view/geoclose.py:664
 msgid ""
@@ -35785,7 +35784,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoclose.py:675
 #: ../gramps/plugins/view/geofamclose.py:864
 msgid "The selection parameters"
-msgstr "Os parâmetros de selecção"
+msgstr "Os parâmetros da selecção"
 
 #: ../gramps/plugins/view/geoevents.py:161
 msgid "Events places map"
@@ -35817,7 +35816,7 @@ msgstr ""
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
 msgid "Bookmark this event"
-msgstr "Favorecer este evento"
+msgstr "Marcar este evento"
 
 #: ../gramps/plugins/view/geoevents.py:452
 msgid "Show all events"
@@ -35856,7 +35855,7 @@ msgstr "%(gramps_id)s : %(father)s e %(mother)s"
 #: ../gramps/plugins/view/geofamclose.py:343
 #, python-format
 msgid "Family reference : %s"
-msgstr "Referência da famíla : %s"
+msgstr "Referência da família : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:346
 #: ../gramps/plugins/view/geofamclose.py:349
@@ -35902,7 +35901,7 @@ msgstr "Indivíduo: %(id)s %(name)s não tem família."
 
 #: ../gramps/plugins/view/geofamclose.py:830
 msgid "Choose and bookmark the new reference family"
-msgstr "Escolha e favoreça a nova família de referência"
+msgstr "Escolha e marque a nova família de referência"
 
 #: ../gramps/plugins/view/geofamclose.py:853
 msgid ""
@@ -36006,7 +36005,7 @@ msgid ""
 "have these two people been able to meet?"
 msgstr ""
 "Separador que mostra os locais visitados por todos os membros de uma família "
-"durante as suas vidas: conseguiram estas duas indivíduos encontrar-se?"
+"durante as suas vidas: conseguiram estes dois indivíduos encontrar-se?"
 
 #: ../gramps/plugins/view/geography.gpr.py:161
 msgid ""
@@ -36047,7 +36046,7 @@ msgstr "Toda a descendência de %s"
 
 #: ../gramps/plugins/view/geomoves.py:697
 msgid "Bookmark this person"
-msgstr "Favorecer este indivíduo"
+msgstr "Marcar este indivíduo"
 
 #: ../gramps/plugins/view/geomoves.py:729
 msgid "The maximum number of generations.\n"
