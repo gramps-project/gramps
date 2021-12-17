@@ -47,6 +47,7 @@ LOG = logging.getLogger(".ImportCSV")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import CSV_DELIMITERS
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
@@ -269,8 +270,22 @@ class CSVParser:
 
     def read_csv(self, filehandle):
         "Read the data from the file and return it as a list."
+        my_dialect = config.get('csv.dialect')
+        delimiter = config.get('csv.delimiter')
+        for item in range(len(CSV_DELIMITERS)):
+            if item == delimiter:
+                if len(CSV_DELIMITERS[item]) == 1:
+                    my_delimiter = CSV_DELIMITERS[item]
+                else:
+                    my_delimiter = "\t"
         try:
-            data = [[r.strip() for r in row] for row in csv.reader(filehandle)]
+            if my_dialect == _("custom"):
+                data = [[r.strip() for r in row]
+                        for row in csv.reader(filehandle,
+                                              delimiter=my_delimiter)]
+            else:
+                data = [[r.strip() for r in row]
+                        for row in csv.reader(filehandle, dialect=my_dialect)]
         except csv.Error as err:
             self.user.notify_error(_('format error: line %(line)d: %(zero)s') % {
                         'line' : csv.reader.line_num, 'zero' : err } )
