@@ -58,6 +58,7 @@ from .pageview import PageView
 from .navigationview import NavigationView
 from ..uimanager import ActionGroup
 from ..columnorder import ColumnOrder
+from ..csvdialect import CsvDialect
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError, FilterError, HandleError
 from ..filters import SearchBar
@@ -1271,4 +1272,6 @@ class ListView(NavigationView):
                                             self.get_column_widths(),
                                             self.set_column_order,
                                             tree=not flat)
-        return [columnpage]
+        def csvdialect(configdialog):
+            return _('CSV Dialect'), CsvDialect()
+        return [columnpage, csvdialect]

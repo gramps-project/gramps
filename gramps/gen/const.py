@@ -376,3 +376,5 @@ EXPANDED = 2
 
 TYPE_BOX_NORMAL = 0
 TYPE_BOX_FAMILY = 1
+
+CSV_DELIMITERS = [',', ':', ';', '|', '\\t']
