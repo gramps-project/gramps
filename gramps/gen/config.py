@@ -158,6 +158,9 @@ register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
 register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps52")
 
+register('csv.dialect', 'excel')
+register('csv.delimiter', ',')
+
 register('database.backend', 'sqlite')
 register('database.compress-backup', True)
 register('database.backup-path', USER_HOME)

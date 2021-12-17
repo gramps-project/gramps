@@ -383,6 +383,7 @@ gramps/gui/autocomp.py
 gramps/gui/clipboard.py
 gramps/gui/columnorder.py
 gramps/gui/configure.py
+gramps/gui/csvdialect.py
 gramps/gui/dbloader.py
 gramps/gui/dbman.py
 gramps/gui/dialog.py

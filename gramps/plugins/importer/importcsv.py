@@ -269,8 +269,16 @@ class CSVParser:
 
     def read_csv(self, filehandle):
         "Read the data from the file and return it as a list."
+        my_dialect = config.get('csv.dialect')
+        my_delimiter = config.get('csv.delimiter')
         try:
-            data = [[r.strip() for r in row] for row in csv.reader(filehandle)]
+            if my_dialect == _("Custom"):
+                data = [[r.strip() for r in row]
+                        for row in csv.reader(filehandle,
+                                              delimiter=my_delimiter)]
+            else:
+                data = [[r.strip() for r in row]
+                        for row in csv.reader(filehandle, dialect=my_dialect)]
         except csv.Error as err:
             self.user.notify_error(_('format error: line %(line)d: %(zero)s') % {
                         'line' : csv.reader.line_num, 'zero' : err } )
