@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-18 08:51+0000\n"
+"PO-Revision-Date: 2021-12-19 07:34+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -731,11 +731,11 @@ msgid ""
 "Person then go to \"Bookmarks &gt; Add Bookmark\" or press Ctrl+D. You can "
 "also bookmark most of the other objects."
 msgstr ""
-"<b>Indivíduos favoritos</b><br/> O menu Favoritos é um local conveniente "
+"<b>Indivíduos marcados</b><br/> O menu Marcadores é um local conveniente "
 "para armazenar os nomes de indivíduos frequentemente usados. Ao seleccionar "
-"um favorito, tornará o indivíduo activo. Para criar um favorito, torne o "
-"indivíduo activo e vá a \"Favoritos &gt; Adicionar favorito\", ou prima Ctrl+"
-"D. Também pode marcar a maioria dos outros objectos."
+"um marcador, tornará o indivíduo activo. Para criar um marcador, torne o "
+"indivíduo activo e vá a \"Marcadores &gt; Adicionar marcador\", ou prima "
+"Ctrl+D. Também pode marcar a maioria dos outros objectos."
 
 #: ../data/tips.xml:70
 msgid ""
@@ -4656,11 +4656,11 @@ msgstr "Encontra famílias ascendentes da família especificada"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:44
 msgid "Bookmarked families"
-msgstr "Famílias favoritas"
+msgstr "Famílias marcadas"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:46
 msgid "Matches the families on the bookmark list"
-msgstr "Encontra famílias na lista de favoritos"
+msgstr "Encontra famílias na lista de marcadores"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:45
 msgid "Descendant families of <family>"
@@ -5577,11 +5577,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:45
 msgid "Bookmarked people"
-msgstr "Indivíduos favoritos"
+msgstr "Indivíduos marcados"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:47
 msgid "Matches the people on the bookmark list"
-msgstr "Encontra indivíduos na lista de favoritos"
+msgstr "Encontra indivíduos na lista de marcadores"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:47
 msgid "Children of <filter> match"
@@ -5698,14 +5698,14 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:52
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "Ascendentes de indivíduos favoritos até <n> gerações"
+msgstr "Ascendentes de indivíduos marcados até <n> gerações"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:55
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Encontra ascendentes de indivíduos na lista de favoritos com até n gerações "
+"Encontra ascendentes de indivíduos na lista de marcadores com até n gerações "
 "de distância"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
@@ -5956,14 +5956,14 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:51
 msgid "Relationship path between bookmarked persons"
-msgstr "Linha de parentesco entre indivíduos favoritos"
+msgstr "Linha de parentesco entre indivíduos marcados"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:53
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Encontra ascendentes de indivíduos favoritos até um ascendente comum, "
+"Encontra ascendentes de indivíduos marcados até um ascendente comum, "
 "produzindo a linha de parentesco entre esses indivíduos."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
@@ -17752,7 +17752,7 @@ msgstr "_Acerca"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
-msgstr "_Favoritos"
+msgstr "_Marcadores"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Configure..."
@@ -19839,7 +19839,7 @@ msgstr "%s foi marcado"
 #: ../gramps/plugins/lib/maps/geography.py:228
 #: ../gramps/plugins/view/familyview.py:348
 msgid "A bookmark could not be set because no one was selected."
-msgstr "Não se pôde definir um favorito porque ninguém estava seleccionado."
+msgstr "Não se definiu um marcador porque ninguém estava seleccionado."
 
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
@@ -29862,7 +29862,7 @@ msgstr "Exportar vista..."
 #: ../gramps/plugins/view/repoview.py:155
 #: ../gramps/plugins/view/sourceview.py:141
 msgid "_Add Bookmark"
-msgstr "_Adicionar favorito"
+msgstr "_Adicionar marcador"
 
 #: ../gramps/plugins/lib/libpersonview.py:206
 #: ../gramps/plugins/lib/libpersonview.py:260
@@ -36162,7 +36162,7 @@ msgstr "Neste caso, pode demorar até ver todos os marcadores."
 #: ../gramps/plugins/view/geoplaces.py:507
 #: ../gramps/plugins/view/geoplaces.py:530
 msgid "Bookmark this place"
-msgstr "Favorecer este local"
+msgstr "Marcar este local"
 
 #: ../gramps/plugins/view/geoplaces.py:545
 msgid "Show all places"
@@ -36182,7 +36182,7 @@ msgstr "Editar o objecto multimédia seleccionado"
 
 #: ../gramps/plugins/view/mediaview.py:114
 msgid "Delete the selected media object"
-msgstr "Eliminar o objecto de multimédia seleccionado"
+msgstr "Eliminar o objecto multimédia seleccionado"
 
 #: ../gramps/plugins/view/mediaview.py:115
 msgid "Merge the selected media objects"
@@ -36206,7 +36206,7 @@ msgid ""
 "object can be selected by holding down the control key while clicking on the "
 "desired object."
 msgstr ""
-"Devem ser seleccionadas exactamente dois objectos multimédia para realizar "
+"Devem ser seleccionados exactamente dois objectos multimédia para realizar "
 "uma união. O segundo objecto multimédia pode ser seleccionado mantendo "
 "premido Ctrl e clicando no objecto desejado."
 
@@ -36279,7 +36279,7 @@ msgstr "Ir para mãe"
 
 #: ../gramps/plugins/view/pedigreeview.py:1607
 msgid "A person was found to be his/her own ancestor."
-msgstr "Um indivíduo foi detectado como sendo seu próprio ascendente."
+msgstr "Foi detectado um indivíduo como seu próprio ascendente."
 
 #: ../gramps/plugins/view/pedigreeview.py:1651
 msgid "Pre_vious"
@@ -36392,7 +36392,7 @@ msgstr "_Reordenar"
 
 #: ../gramps/plugins/view/relview.py:479 ../gramps/plugins/view/relview.py:980
 msgid "Add a new family with person as parent"
-msgstr "Adiconar nova família com indivíduo como progenitor"
+msgstr "Adicionar nova família com indivíduo como progenitor"
 
 #: ../gramps/plugins/view/relview.py:479 ../gramps/plugins/view/relview.py:974
 msgid "Add a new set of parents"
@@ -36439,7 +36439,7 @@ msgstr "Remover indivíduo como filho destes pais"
 
 #: ../gramps/plugins/view/relview.py:984
 msgid "Remove person as parent in this family"
-msgstr "Remover indivíduo como pai ou mãe nesta família"
+msgstr "Remover indivíduo como progenitor nesta família"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1044
@@ -36543,7 +36543,7 @@ msgstr "Mostrar botões de edição"
 
 #: ../gramps/plugins/view/relview.py:1877
 msgid "View links as website links"
-msgstr "Mostrar ligações como ligações da web"
+msgstr "Mostrar ligações como hiper-ligações"
 
 #: ../gramps/plugins/view/relview.py:1894
 msgid "Show Details"
@@ -36589,7 +36589,7 @@ msgid ""
 msgstr ""
 "Devem ser seleccionados exactamente dois repositórios para realizar uma "
 "união. O segundo repositório pode ser seleccionado mantendo premido Ctrl e "
-"clicanco sobre o repositório desejado."
+"clicando sobre o repositório desejado."
 
 #: ../gramps/plugins/view/sourceview.py:99
 msgid "Edit the selected source"
@@ -36643,7 +36643,7 @@ msgstr "Separador que mostra todas as notas"
 
 #: ../gramps/plugins/view/view.gpr.py:113
 msgid "The view showing all relationships of the selected person"
-msgstr "Separador que mostra todas os parentescos do indivíduo seleccionado"
+msgstr "Separador que mostra todos os parentescos do indivíduo seleccionado"
 
 #: ../gramps/plugins/view/view.gpr.py:128
 msgid "The view showing an ancestor pedigree of the selected person"
@@ -36666,7 +36666,7 @@ msgstr "Mostrar descendentes num diagrama em leque"
 
 #: ../gramps/plugins/view/view.gpr.py:175
 msgid "Showing ascendants and descendants through a fanchart"
-msgstr "Mostrar descendentes num diagrama em leque"
+msgstr "Mostrar ascendentes e descendentes num diagrama em leque"
 
 #: ../gramps/plugins/view/view.gpr.py:188
 msgid "Grouped People"
@@ -36732,9 +36732,9 @@ msgid ""
 "Address Book page."
 msgstr ""
 "Esta página contém um índice de todos os indivíduos na base de dados, "
-"ordenados pelos seus apelidos, juntamente com uma das seguintes informações: "
-"endereço, residência ou ligações Web. Ao clicar no nome do indivíduo, será "
-"levado à página do livro de endereços daquelo indivíduo."
+"ordenados por apelido, juntamente com uma das seguintes: endereço, "
+"residência ou hiper-ligações. Seleccionar o nome do indivíduo, leva à página "
+"do livro de endereços respectivo."
 
 #: ../gramps/plugins/webreport/addressbooklist.py:113
 msgid "Full Name"
@@ -36743,7 +36743,7 @@ msgstr "Nome completo"
 #: ../gramps/plugins/webreport/addressbooklist.py:116
 #: ../gramps/plugins/webreport/basepage.py:2439
 msgid "Web Links"
-msgstr "Ligações web"
+msgstr "Hiper-ligações"
 
 #: ../gramps/plugins/webreport/basepage.py:446
 msgid "Narrative"
@@ -36755,7 +36755,7 @@ msgstr "Narrativa"
 #: ../gramps/plugins/webreport/place.py:192
 #: ../gramps/plugins/webreport/place.py:204
 msgid "State/ Province"
-msgstr "Distrito"
+msgstr "Distrito/Província"
 
 #: ../gramps/plugins/webreport/basepage.py:1423
 #, python-format
@@ -36782,7 +36782,7 @@ msgstr "%(http_break)sCriado para %(subject_url)s"
 #: ../gramps/plugins/webreport/basepage.py:1680
 #: ../gramps/plugins/webstuff/webstuff.py:65
 msgid "Basic-Blue"
-msgstr "Básico-Azul"
+msgstr "Básico - Azul"
 
 #. Translators: Visually Impaired style sheet with its navigation menus
 #: ../gramps/plugins/webreport/basepage.py:1681
@@ -36947,8 +36947,8 @@ msgid ""
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
 "Esta página contém um índice de todos as famílias/parentescos na base de "
-"dados, ordenadas por nome de família/apelido. Ao clicar no nome de um "
-"indivíduo, será levado à sua página de família/parentesco."
+"dados, ordenadas por nome de família/apelido. Clicar no nome de um "
+"indivíduo, leva à sua página de família/parentesco."
 
 #: ../gramps/plugins/webreport/family.py:239
 msgid "Families beginning with letter "
@@ -36990,7 +36990,7 @@ msgstr "Tipo MIME"
 
 #: ../gramps/plugins/webreport/media.py:253
 msgid "Creating list of media pages"
-msgstr "A criar lista de páginas multimédia"
+msgstr "A criar lista de páginas de multimédia"
 
 #: ../gramps/plugins/webreport/media.py:254
 msgid "Narrated Web Site Report"
@@ -37006,8 +37006,8 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_strt)s%(page_number)d%(strong_end)s de %(strong2_strt)s"
-"%(total_pages)d%(strong_end)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s de "
+"%(strong2_strt)s%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/media.py:427
 msgid "The file has been moved or deleted."
@@ -37058,7 +37058,7 @@ msgstr "A construir a lista de outros objectos..."
 #: ../gramps/plugins/webreport/narrativeweb.py:839
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
-msgstr "Famíla de %(husband)s e %(spouse)s"
+msgstr "Família de %(husband)s e %(spouse)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:845
 #: ../gramps/plugins/webreport/narrativeweb.py:849
@@ -37110,7 +37110,7 @@ msgstr "Se deve armazenar as páginas web num arquivo .tar.gz"
 #: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
 msgid "The destination directory for the web files"
-msgstr "A pasta destino para os ficheiros web"
+msgstr "A pasta de destino para os ficheiros web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
 msgid "My Family Tree"
