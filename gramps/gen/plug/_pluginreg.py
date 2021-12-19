@@ -52,11 +52,26 @@ LOG = logging.getLogger('._manager')
 #
 #-------------------------------------------------------------------------
 
-#a plugin is stable or unstable
-STABLE = 0
-UNSTABLE = 1
-STATUS = [STABLE, UNSTABLE]
-STATUSTEXT = {STABLE: _('Stable'), UNSTABLE: _('Unstable')}
+# Development status
+UNSTABLE = 0
+EXPERIMENTAL = 1
+BETA = 2
+STABLE = 3
+STATUS = [UNSTABLE, EXPERIMENTAL, BETA, STABLE]
+STATUSTEXT = {UNSTABLE: _('Unstable'),
+              EXPERIMENTAL: _('Experimental'),
+              BETA: _('Beta'),
+              STABLE: _('Stable')}
+
+# Intended audience
+EVERYONE = 0
+DEVELOPER = 1
+EXPERT = 2
+AUDIENCE = [EVERYONE, DEVELOPER, EXPERT]
+AUDIENCETEXT = {EVERYONE: _('Everyone'),
+                DEVELOPER: _('Developer'),
+                EXPERT: _('Expert')}
+
 #possible plugin types
 REPORT = 0
 QUICKREPORT = 1 # deprecated
@@ -208,8 +223,10 @@ class PluginData:
     .. attribute:: version
        The version of the plugin
     .. attribute:: status
-       The status of the plugin, STABLE or UNSTABLE
-       UNSTABLE is only visible in development code, not in release
+       The development status of the plugin, UNSTABLE, EXPERIMENTAL, BETA or
+       STABLE. UNSTABLE is only visible in development code, not in release
+    .. attribute:: audience
+       The intended audience of the plugin, EVERYONE, DEVELOPER or EXPERT.
     .. attribute:: fname
        The python file where the plugin implementation can be found
     .. attribute:: fpath
@@ -221,6 +238,10 @@ class PluginData:
        List of authors of the plugin, default=[]
     .. attribute:: authors_email
        List of emails of the authors of the plugin, default=[]
+    .. attribute:: maintainers
+       List of maintainers of the plugin, default=[]
+    .. attribute:: maintainers_email
+       List of emails of the maintainers of the plugin, default=[]
     .. attribute:: supported
        Bool value indicating if the plugin is still supported, default=True
     .. attribute:: load_on_reg
@@ -240,6 +261,18 @@ class PluginData:
     .. attribute: icondir
        The directory to use for the icons. If icondir is not set or None, it
        reverts to the plugindirectory itself.
+    .. attribute:: help_url
+       The URL where documentation for the plugin can be found
+    .. attribute:: requires_mod
+       A list of required modules that should be importable using the python
+       `import` statement.
+    .. attribute:: requires_gi
+       A list of (module, version) tuples that specify required modules that
+       are reuired to be loaded via the GObject introspection system.
+       eg: [('GExiv2', '0.10')]
+    .. attribute:: requires_exe
+       A list of executables required by the plugin. These are searched for in
+       the paths specified in the PATH environment variable.
 
     Attributes for RELCALC plugins:
 
@@ -334,8 +367,6 @@ class PluginData:
        Title to use for the gramplet, default = _('Gramplet')
     .. attribute:: navtypes
        Navigation types that the gramplet is appropriate for, default = []
-    .. attribute:: help_url
-       The URL where documentation for the URL can be found
 
     Attributes for VIEW plugins
 
@@ -392,17 +423,24 @@ class PluginData:
         self._gramps_target_version = None
         self._description = None
         self._status = UNSTABLE
+        self._audience = EVERYONE
         self._fname = None
         self._fpath = None
         self._ptype = None
         self._authors = []
         self._authors_email = []
+        self._maintainers = []
+        self._maintainers_email = []
         self._supported = True
         self._load_on_reg = False
         self._icons = []
         self._icondir = None
         self._depends_on = []
+        self._requires_mod = []
+        self._requires_gi = []
+        self._requires_exe = []
         self._include_in_listing = True
+        self._help_url = None
         #derived var
         self.mod_name = None
         #RELCALC attr
@@ -442,7 +480,6 @@ class PluginData:
         self._gramplet_title = _('Gramplet')
         self._navtypes = []
         self._orientation = None
-        self._help_url = None
         #VIEW attr
         self._viewclass = None
         self._stock_icon = None
@@ -510,6 +547,14 @@ class PluginData:
     def _get_status(self):
         return self._status
 
+    def _set_audience(self, audience):
+        if audience not in AUDIENCE:
+            raise ValueError('plugin audience cannot be %s' % str(audience))
+        self._audience = audience
+
+    def _get_audience(self):
+        return self._audience
+
     def _set_fname(self, fname):
         self._fname = fname
 
@@ -558,6 +603,22 @@ class PluginData:
     def _get_authors_email(self):
         return self._authors_email
 
+    def _set_maintainers(self, maintainers):
+        if not maintainers or not isinstance(maintainers, list):
+            return
+        self._maintainers = maintainers
+
+    def _get_maintainers(self):
+        return self._maintainers
+
+    def _set_maintainers_email(self, maintainers_email):
+        if not maintainers_email or not isinstance(maintainers_email, list):
+            return
+        self._maintainers_email = maintainers_email
+
+    def _get_maintainers_email(self):
+        return self._maintainers_email
+
     def _set_supported(self, supported):
         if not isinstance(supported, bool):
             raise ValueError('Plugin must have supported=True or False')
@@ -596,6 +657,30 @@ class PluginData:
             raise ValueError('Plugin must have depends_on as a list')
         self._depends_on = depends
 
+    def _get_requires_mod(self):
+        return self._requires_mod
+
+    def _set_requires_mod(self, requires):
+        if not isinstance(requires, list):
+            raise ValueError('Plugin must have requires_mod as a list')
+        self._requires_mod = requires
+
+    def _get_requires_gi(self):
+        return self._requires_gi
+
+    def _set_requires_gi(self, requires):
+        if not isinstance(requires, list):
+            raise ValueError('Plugin must have requires_gi as a list')
+        self._requires_gi = requires
+
+    def _get_requires_exe(self):
+        return self._requires_exe
+
+    def _set_requires_exe(self, requires):
+        if not isinstance(requires, list):
+            raise ValueError('Plugin must have requires_exe as a list')
+        self._requires_exe = requires
+
     def _get_include_in_listing(self):
         return self._include_in_listing
 
@@ -603,6 +688,12 @@ class PluginData:
         if not isinstance(include, bool):
             raise ValueError('Plugin must have include_in_listing as a bool')
         self._include_in_listing = include
+
+    def _set_help_url(self, help_url):
+        self._help_url = help_url
+
+    def _get_help_url(self):
+        return self._help_url
 
     id = property(_get_id, _set_id)
     name = property(_get_name, _set_name)
@@ -612,17 +703,24 @@ class PluginData:
     gramps_target_version = property(_get_gramps_target_version,
                                      _set_gramps_target_version)
     status = property(_get_status, _set_status)
+    audience = property(_get_audience, _set_audience)
     fname = property(_get_fname, _set_fname)
     fpath = property(_get_fpath, _set_fpath)
     ptype = property(_get_ptype, _set_ptype)
     authors = property(_get_authors, _set_authors)
     authors_email = property(_get_authors_email, _set_authors_email)
+    maintainers = property(_get_maintainers, _set_maintainers)
+    maintainers_email = property(_get_maintainers_email, _set_maintainers_email)
     supported = property(_get_supported, _set_supported)
     load_on_reg = property(_get_load_on_reg, _set_load_on_reg)
     icons = property(_get_icons, _set_icons)
     icondir = property(_get_icondir, _set_icondir)
     depends_on = property(_get_depends_on, _set_depends_on)
+    requires_mod = property(_get_requires_mod, _set_requires_mod)
+    requires_gi = property(_get_requires_gi, _set_requires_gi)
+    requires_exe = property(_get_requires_exe, _set_requires_exe)
     include_in_listing = property(_get_include_in_listing, _set_include_in_listing)
+    help_url = property(_get_help_url, _set_help_url)
 
     def statustext(self):
         return STATUSTEXT[self.status]
@@ -885,14 +983,6 @@ class PluginData:
     def _get_gramplet_title(self):
         return self._gramplet_title
 
-    def _set_help_url(self, help_url):
-        if not self._ptype == GRAMPLET:
-            raise ValueError('help_url may only be set for GRAMPLET plugins')
-        self._help_url = help_url
-
-    def _get_help_url(self):
-        return self._help_url
-
     def _set_navtypes(self, navtypes):
         if not self._ptype == GRAMPLET:
             raise ValueError('navtypes may only be set for GRAMPLET plugins')
@@ -917,7 +1007,6 @@ class PluginData:
     gramplet_title = property(_get_gramplet_title, _set_gramplet_title)
     navtypes = property(_get_navtypes, _set_navtypes)
     orientation = property(_get_orientation, _set_orientation)
-    help_url = property(_get_help_url, _set_help_url)
 
     def _set_viewclass(self, viewclass):
         if not self._ptype == VIEW:
@@ -1078,8 +1167,13 @@ def make_environment(**kwargs):
     env = {
         'newplugin': newplugin,
         'register': register,
-        'STABLE': STABLE,
         'UNSTABLE': UNSTABLE,
+        'EXPERIMENTAL': EXPERIMENTAL,
+        'BETA': BETA,
+        'STABLE': STABLE,
+        'EVERYONE': EVERYONE,
+        'DEVELOPER': DEVELOPER,
+        'EXPERT': EXPERT,
         'REPORT': REPORT,
         'QUICKREPORT': QUICKREPORT,
         'TOOL': TOOL,
