@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-19 13:04+0000\n"
-"Last-Translator: Brtc <boratici@gmail.com>\n"
+"PO-Revision-Date: 2021-12-19 13:05+0000\n"
+"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -6465,12 +6465,12 @@ msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Kaynakları, belirli bir havuz filtresiyle eşleşen bir depo\n"
+"Kaynakları, belirli bir depo filtresiyle eşleşen bir depo\n"
 "referansıyla eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
-msgstr "<text> başlığını içeren kaynaklar"
+msgstr "<text> içeren başlığa sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:44
 msgid "Matches sources whose title contains a certain substring"
@@ -6478,7 +6478,7 @@ msgstr "Başlığı belirli bir alt dize içeren kaynaklarla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
 msgid "Sources with Id containing <text>"
-msgstr "<text> ID'sini içerek kaynaklar"
+msgstr "<text> içeren kimliğe sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -6486,11 +6486,11 @@ msgstr "Gramps Kimliği normal ifadeyle eşleşen kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:42
 msgid "Sources marked private"
-msgstr "Kaynakları özel olarak işaretle"
+msgstr "Özel olarak işaretlenmiş kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:43
 msgid "Matches sources that are indicated as private"
-msgstr "Özel olarak belirtilen kaynaklarla eşleştir"
+msgstr "Özel olarak belirtilen kaynaklarla eşleşir"
 
 #: ../gramps/gen/lib/address.py:97 ../gramps/gui/clipboard.py:298
 #: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
@@ -6561,7 +6561,7 @@ msgstr "Adres"
 #: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
-msgstr "Ozel"
+msgstr "Özel"
 
 #: ../gramps/gen/lib/address.py:103 ../gramps/gen/lib/attribute.py:242
 #: ../gramps/gen/lib/childref.py:113 ../gramps/gen/lib/event.py:155
@@ -6706,7 +6706,7 @@ msgstr "Sokak"
 #: ../gramps/plugins/webreport/basepage.py:2900
 #: ../gramps/plugins/webreport/basepage.py:2967
 msgid "Locality"
-msgstr "Yerellik"
+msgstr "Yer"
 
 #: ../gramps/gen/lib/address.py:117 ../gramps/gen/lib/location.py:95
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:615
@@ -6730,7 +6730,7 @@ msgstr "Şehir"
 #: ../gramps/plugins/webreport/basepage.py:2904
 #: ../gramps/plugins/webreport/basepage.py:2970
 msgid "County"
-msgstr "Ülke"
+msgstr "İlçe"
 
 #: ../gramps/gen/lib/address.py:121 ../gramps/gen/lib/location.py:99
 #: ../gramps/gen/lib/placetype.py:66
@@ -6739,7 +6739,7 @@ msgstr "Ülke"
 #: ../gramps/plugins/lib/maps/placeselection.py:150
 #: ../gramps/plugins/view/geoplaces.py:625
 msgid "State"
-msgstr "Bolge"
+msgstr "Eyalet"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:101
 #: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:620
@@ -6755,7 +6755,7 @@ msgstr "Bolge"
 #: ../gramps/plugins/webreport/place.py:193
 #: ../gramps/plugins/webreport/place.py:205
 msgid "Country"
-msgstr "Ulke"
+msgstr "Ülke"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1241
@@ -6777,7 +6777,7 @@ msgstr "Telefon"
 #: ../gramps/gen/lib/attribute.py:236 ../gramps/gen/lib/srcattribute.py:70
 #: ../gramps/gui/clipboard.py:435 ../gramps/gui/editors/editattribute.py:135
 msgid "Attribute"
-msgstr "Sembol"
+msgstr "Öznitelik"
 
 #: ../gramps/gen/lib/attribute.py:251 ../gramps/gen/lib/srcattribute.py:77
 #: ../gramps/gen/lib/styledtexttag.py:106 ../gramps/gui/clipboard.py:913
@@ -6790,7 +6790,7 @@ msgstr "Sembol"
 #: ../gramps/plugins/webreport/basepage.py:1130
 #: ../gramps/plugins/webreport/basepage.py:1380
 msgid "Value"
-msgstr "Ses"
+msgstr "Değer"
 
 #: ../gramps/gen/lib/attrtype.py:64 ../gramps/gen/lib/childreftype.py:74
 #: ../gramps/gen/lib/eventroletype.py:53 ../gramps/gen/lib/eventtype.py:163
@@ -6807,7 +6807,7 @@ msgstr "Özel"
 
 #: ../gramps/gen/lib/attrtype.py:65
 msgid "Caste"
-msgstr ""
+msgstr "Kast"
 
 #: ../gramps/gen/lib/attrtype.py:66 ../gramps/gen/lib/event.py:148
 #: ../gramps/gen/lib/media.py:147 ../gramps/gen/lib/url.py:96
@@ -6831,7 +6831,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:3179
 #: ../gramps/plugins/webreport/download.py:127
 msgid "Description"
-msgstr "Tanım"
+msgstr "Açıklama"
 
 #: ../gramps/gen/lib/attrtype.py:67
 msgid "Identification Number"
@@ -6854,7 +6854,7 @@ msgstr "Sosyal Güvenlik Numarası"
 #: ../gramps/gui/configure.py:854 ../gramps/gui/configure.py:861
 #: ../gramps/plugins/tool/patchnames.py:435
 msgid "Nickname"
-msgstr "Rumuz"
+msgstr "Takma ad"
 
 #: ../gramps/gen/lib/attrtype.py:72
 msgid "Cause"
@@ -6862,7 +6862,7 @@ msgstr "Sebep"
 
 #: ../gramps/gen/lib/attrtype.py:73
 msgid "Agency"
-msgstr ""
+msgstr "Ajans"
 
 #: ../gramps/gen/lib/attrtype.py:74
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:88
@@ -6909,7 +6909,7 @@ msgstr "Çocuk Referansı"
 #: ../gramps/gen/lib/reporef.py:104 ../gramps/gen/lib/src.py:102
 #: ../gramps/gen/lib/tag.py:120
 msgid "Handle"
-msgstr ""
+msgstr "İşleyici"
 
 #: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:72
 #: ../gramps/gui/configure.py:87
@@ -6926,7 +6926,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:83
 #: ../gramps/plugins/tool/check.py:2530
 msgid "None"
-msgstr "Hicbiri"
+msgstr "Hiçbiri"
 
 #: ../gramps/gen/lib/childreftype.py:68 ../gramps/gen/lib/eventtype.py:165
 #: ../gramps/gen/utils/symbols.py:72 ../gramps/gui/merge/mergeperson.py:189
@@ -6951,11 +6951,11 @@ msgstr "Evlatlık"
 
 #: ../gramps/gen/lib/childreftype.py:70
 msgid "Stepchild"
-msgstr "Üvey Çocuk"
+msgstr "Üvey çocuk"
 
 #: ../gramps/gen/lib/childreftype.py:71
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponsorlu"
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Foster"
@@ -7011,7 +7011,7 @@ msgstr "Alıntı"
 #: ../gramps/plugins/webreport/repository.py:256
 #: ../gramps/plugins/webreport/source.py:268
 msgid "Gramps ID"
-msgstr "Gramps ID"
+msgstr "Gramps Kimliği"
 
 #: ../gramps/gen/lib/citation.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
@@ -7026,7 +7026,7 @@ msgstr "Sayfa"
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/webreport/basepage.py:2588
 msgid "Confidence"
-msgstr ""
+msgstr "Güven"
 
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
 #: ../gramps/gui/clipboard.py:761 ../gramps/gui/configure.py:652
@@ -7078,12 +7078,12 @@ msgstr "Kaynak"
 #: ../gramps/plugins/webreport/media.py:389
 #: ../gramps/plugins/webreport/updates.py:142
 msgid "Media"
-msgstr "Ortam"
+msgstr "Medya"
 
 #: ../gramps/gen/lib/citation.py:125 ../gramps/gen/lib/src.py:124
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:637
 msgid "Source Attributes"
-msgstr "Kaynak Nitelikler"
+msgstr "Kaynak Öznitelikleri"
 
 #: ../gramps/gen/lib/citation.py:127 ../gramps/gen/lib/event.py:167
 #: ../gramps/gen/lib/family.py:184 ../gramps/gen/lib/media.py:161
@@ -7138,21 +7138,21 @@ msgstr "civarında"
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] ""
+msgstr[0] "{number_of} yıl"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:443
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] ""
+msgstr[0] "{number_of} ay"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:454
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
-msgstr[0] ""
+msgstr[0] "{number_of} gün"
 
 #: ../gramps/gen/lib/date.py:710
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:75
@@ -7163,7 +7163,7 @@ msgstr "Takvim"
 
 #: ../gramps/gen/lib/date.py:712
 msgid "Modifier"
-msgstr "Düzenlemek"
+msgstr "Değiştirici"
 
 #: ../gramps/gen/lib/date.py:714
 msgid "Quality"
@@ -7184,7 +7184,7 @@ msgstr "Değerler"
 #: ../gramps/plugins/textreport/custombooktext.py:132
 #: ../gramps/plugins/textreport/tagreport.py:511
 msgid "Text"
-msgstr "Yazi"
+msgstr "Metin"
 
 #: ../gramps/gen/lib/date.py:721
 msgid "Sort value"
@@ -7197,24 +7197,24 @@ msgstr "Yeni yıl başlangıcı"
 #: ../gramps/gen/lib/date.py:1856
 msgctxt "date-quality"
 msgid "none"
-msgstr "yok"
+msgstr "hiçbiri"
 
 #: ../gramps/gen/lib/date.py:1857
 msgid "calculated"
-msgstr "hesaplanan"
+msgstr "hesaplanmış"
 
 #: ../gramps/gen/lib/date.py:1857
 msgid "estimated"
-msgstr "beklenen"
+msgstr "tahmini"
 
 #: ../gramps/gen/lib/date.py:1871
 msgctxt "date-modifier"
 msgid "none"
-msgstr "yok"
+msgstr "hiçbiri"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/webreport/basepage.py:3248
 msgid "about"
-msgstr "hakkinda"
+msgstr "yaklaşık"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1841
 #: ../gramps/plugins/webreport/basepage.py:3244
@@ -7227,15 +7227,15 @@ msgstr "önce"
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "range"
-msgstr "aralık"
+msgstr "arasında"
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "span"
-msgstr "aralık"
+msgstr "arası"
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "textonly"
-msgstr "sadece yazı"
+msgstr "sadece metin"
 
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
 #: ../gramps/gui/clipboard.py:335 ../gramps/gui/configure.py:661
@@ -7253,7 +7253,7 @@ msgstr "sadece yazı"
 #: ../gramps/plugins/tool/reorderids.glade:787
 #: ../gramps/plugins/webreport/basepage.py:776
 msgid "Event"
-msgstr "Olay"
+msgstr "Etkinlik"
 
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/ldsord.py:186
 #: ../gramps/gen/lib/place.py:134 ../gramps/gui/clipboard.py:355
@@ -7293,11 +7293,11 @@ msgstr "Olay"
 #: ../gramps/plugins/webreport/basepage.py:1026
 #: ../gramps/plugins/webreport/basepage.py:1063
 msgid "Place"
-msgstr "Yeri"
+msgstr "Yer"
 
 #: ../gramps/gen/lib/eventref.py:95
 msgid "Event reference"
-msgstr "Olay referansı"
+msgstr "Etkinlik referansı"
 
 #: ../gramps/gen/lib/eventref.py:106 ../gramps/gen/lib/family.py:171
 #: ../gramps/gen/lib/media.py:152 ../gramps/gen/lib/mediaref.py:100
@@ -7315,7 +7315,7 @@ msgstr "Olay referansı"
 #: ../gramps/plugins/webreport/basepage.py:1358
 #: ../gramps/plugins/webreport/basepage.py:1363
 msgid "Attributes"
-msgstr "Nitelikler"
+msgstr "Öznitelikler"
 
 #: ../gramps/gen/lib/eventroletype.py:54
 msgctxt "Role"
@@ -7324,15 +7324,15 @@ msgstr "Birincil"
 
 #: ../gramps/gen/lib/eventroletype.py:55
 msgid "Clergy"
-msgstr ""
+msgstr "Din adamları"
 
 #: ../gramps/gen/lib/eventroletype.py:56
 msgid "Celebrant"
-msgstr ""
+msgstr "Din adamı"
 
 #: ../gramps/gen/lib/eventroletype.py:57
 msgid "Aide"
-msgstr ""
+msgstr "Yardımcı"
 
 #: ../gramps/gen/lib/eventroletype.py:58
 msgid "Bride"
@@ -7353,7 +7353,7 @@ msgstr "Bilgi veren"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
-msgstr "Yaşam Olayları"
+msgstr "Yaşam Etkinlikleri"
 
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
 #: ../gramps/gen/lib/ldsord.py:188 ../gramps/gui/clipboard.py:739
