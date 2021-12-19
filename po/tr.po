@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-19 01:44+0000\n"
+"PO-Revision-Date: 2021-12-19 13:04+0000\n"
 "Last-Translator: Brtc <boratici@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -7394,7 +7394,7 @@ msgstr "Mesleki"
 
 #: ../gramps/gen/lib/eventtype.py:147
 msgid "Academic"
-msgstr ""
+msgstr "Akademik"
 
 #: ../gramps/gen/lib/eventtype.py:149
 msgid "Travel"
@@ -7458,7 +7458,7 @@ msgstr "Defin"
 
 #: ../gramps/gen/lib/eventtype.py:173
 msgid "Cause Of Death"
-msgstr ""
+msgstr "Ölüm Nedeni"
 
 #: ../gramps/gen/lib/eventtype.py:174
 msgid "Census"
@@ -7486,7 +7486,7 @@ msgstr "Eğitim"
 
 #: ../gramps/gen/lib/eventtype.py:180
 msgid "Elected"
-msgstr ""
+msgstr "Seçilmiş"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Emigration"
@@ -7518,7 +7518,7 @@ msgstr "Vatandaşlığa Kabul"
 
 #: ../gramps/gen/lib/eventtype.py:188
 msgid "Nobility Title"
-msgstr ""
+msgstr "Asalet Unvanı"
 
 #: ../gramps/gen/lib/eventtype.py:189
 #: ../gramps/plugins/lib/libpersonview.py:107
@@ -14814,6 +14814,13 @@ msgid ""
 "A caret will match the start of a line. A dollar sign will match the end of "
 "a line."
 msgstr ""
+"Dize alanlarının içeriğini normal ifadeler olarak yorumlayın.\n"
+"Ondalık nokta herhangi bir karakterle eşleşir. Bir soru işareti, önceki "
+"karakter veya grubun sıfır veya bir tekrarı ile eşleşir. Yıldız işareti, "
+"sıfır veya daha fazla oluşumla eşleşir. Bir artı işareti, bir veya daha "
+"fazla olayla eşleşir. İfadeleri gruplamak için parantez kullanın. Dikey bir "
+"çubuk kullanarak alternatifleri belirtin. Bir şapka, bir satırın "
+"başlangıcıyla eşleşir. Bir satırın sonu dolar işaretiyle eşleşecektir."
 
 #: ../gramps/gui/editors/filtereditor.py:637
 msgid "Rule Name"
@@ -15982,6 +15989,11 @@ msgid ""
 "directory where all your media is stored. The 'Media Manager' tool can help "
 "managing paths of a collection of media objects."
 msgstr ""
+"Bilgisayarınızdaki ortam nesnesinin yolu.\n"
+"Gramps ortamı dahili olarak saklamaz, sadece yolu saklar! Tüm ortamınızın "
+"depolandığı ortak temel dizini yeniden yazmaktan kaçınmak için Tercihler'de "
+"'Göreceli Yol'u ayarlayın. 'Ortam Yöneticisi' aracı, bir ortam nesneleri "
+"koleksiyonunun yollarının yönetilmesine yardımcı olabilir."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16021,6 +16033,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
+"Ortam bir görüntüyse, görüntünün referans vermek istediğiniz belirli "
+"bölümünü seçin.\n"
+"Bir bölge seçmek için resimdeki fareyi kullanabilir veya referans alınan "
+"bölgenin sol üst ve sağ alt köşelerini ayarlamak için bu döndürme "
+"düğmelerini kullanabilirsiniz. (0,0) noktası resmin sol üst köşesi ve "
+"(100,100) sağ alt köşedir."
 
 #: ../gramps/gui/glade/editmediaref.glade:178
 msgid ""
@@ -16043,6 +16061,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner.\n"
 msgstr ""
+"Ortam bir görüntüyse, görüntünün referans vermek istediğiniz belirli "
+"bölümünü seçin.\n"
+"Bir bölge seçmek için resimdeki fareyi kullanabilir veya referans alınan "
+"bölgenin sol üst ve sağ alt köşelerini ayarlamak için bu döndürme "
+"düğmelerini kullanabilirsiniz. (0,0) noktası resmin sol üst köşesi ve "
+"(100,100) sağ alt köşedir.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:459
 msgid ""
@@ -16237,6 +16261,11 @@ msgid ""
 "Ramón y Cajal can be stored as Ramón, which is inherited from the father, "
 "the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
+"Birden Fazla Soyadı Kullan\n"
+"Soyadının farklı bölümlerden oluştuğunu belirtin. Her soyadının kendi öneki "
+"ve bir sonraki soyadı için olası bir bağlayıcısı vardır. Örneğin, Ramón y "
+"Cajal soyadı, babadan miras alınan Ramón, y bağlayıcısı ve anneden miras "
+"alınan Cajal olarak saklanabilir."
 
 #: ../gramps/gui/glade/editperson.glade:399
 msgid "Set person as private data"
@@ -16348,6 +16377,12 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
+"Ondalık veya derece gösteriminde yerin boylamı (Asal veya Greenwich, "
+"Meridian'a göre konum).\n"
+"Örneğin, geçerli değerler -124.3647, 124°52′21.92″E, E124°52′21.92″ veya "
+"124:52:21.92\n"
+"Bu değerleri, yeri arayarak Coğrafya Görünümü aracılığıyla veya yer "
+"görünümünde bir harita hizmeti aracılığıyla ayarlayabilirsiniz."
 
 #: ../gramps/gui/glade/editplace.glade:213
 #: ../gramps/gui/glade/editplaceref.glade:351
@@ -16452,6 +16487,12 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
+"Ondalık veya derece gösteriminde yerin boylamı (Asal veya Greenwich, "
+"Meridian'a göre konum). \n"
+"Örneğin, geçerli değerler -124.3647, 124°52′21.92″E, E124°52′21.92″ veya "
+"124:52:21.92\n"
+"Bu değerleri, yeri arayarak Coğrafya Görünümü aracılığıyla veya yer "
+"görünümünde bir harita hizmeti aracılığıyla ayarlayabilirsiniz."
 
 #: ../gramps/gui/glade/editreporef.glade:127
 msgid "_Media Type:"
@@ -17316,6 +17357,13 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
+"Gramps, gerekli tüm özellikleri sağlayan bir çekirdek eklenti seti ile "
+"birlikte gelir. Ancak, bu işlevi ek Eklentilerle genişletebilirsiniz. Bu "
+"eklentiler raporlar, listeler, görünümler, grampletler ve daha fazlasını "
+"sağlar. Burada mevcut ekstra eklentiler arasından seçim yapabilirsiniz, "
+"bunlar Gramps web sitesinden internetten alınacak ve bilgisayarınıza yerel "
+"olarak yüklenecektir. Bu iletişim kutusunu şimdi kapatırsanız, eklentileri "
+"daha sonra Düzenle -> Tercihler altındaki menüden yükleyebilirsiniz."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18276,6 +18324,12 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
+"Verilerinizin kopyası başarıyla kaydedildi. Devam etmek için şimdi Kapat "
+"düğmesine basabilirsiniz.\n"
+"\n"
+"Not: Gramps pencerenizde şu anda açık olan veritabanı, az önce kaydettiğiniz "
+"dosya DEĞİLDİR. Halihazırda açık olan veritabanının ileride düzenlenmesi, az "
+"önce yaptığınız kopyayı değiştirmeyecektir. "
 
 #: ../gramps/gui/plug/export/_exportassistant.py:512
 #, python-format
@@ -18881,6 +18935,12 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
+"Bu araçla devam etmek, bu oturumun geri alma geçmişini silecektir. "
+"Özellikle, bu araç tarafından yapılan değişiklikleri veya ondan önce yapılan "
+"değişiklikleri geri alamazsınız.\n"
+"\n"
+"Bu aracı çalıştırmayı geri almak isteyebileceğinizi düşünüyorsanız, lütfen "
+"burada durun ve veritabanınızı yedekleyin."
 
 #: ../gramps/gui/plug/tool.py:116
 msgid "_Proceed with the tool"
@@ -19094,6 +19154,13 @@ msgid ""
 "To edit the citation, close the source editor and open an editor for the "
 "citation alone"
 msgstr ""
+"Şu anda yeni alıntı düzenleyici açılamıyor. Ya alıntı zaten düzenleniyor ya "
+"da ilgili kaynak zaten düzenleniyor ve bir alıntı düzenleyiciyi açmak ("
+"kaynağın düzenlenmesine de izin verir), aynı kaynak üzerinde iki düzenleyici "
+"açarak belirsizlik yaratacaktır. \n"
+"\n"
+"Alıntıyı düzenlemek için kaynak düzenleyiciyi kapatın ve yalnızca alıntı "
+"için bir düzenleyici açın"
 
 #: ../gramps/gui/utils.py:641
 msgid "Cannot open new citation editor"
@@ -19183,6 +19250,16 @@ msgid ""
 "If you do not want Gramps to try and load this view again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
+"%(name)s görünümü yüklenmedi ve bir hata bildirdi.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Hatayı kendiniz düzeltemezseniz, %(gramps_bugtracker_url)s adresine bir hata "
+"gönderebilir veya görünümün yazarıyla (%(firstauthoremail)s) iletişime "
+"geçebilirsiniz.\n"
+"\n"
+"Gramps'ın bu görünümü tekrar denemesini ve yüklemesini istemiyorsanız, "
+"Yardım menüsündeki Eklenti Yöneticisi'ni kullanarak gizleyebilirsiniz."
 
 #: ../gramps/gui/viewmanager.py:1605
 msgid "Failed Loading Plugin"
@@ -19202,6 +19279,16 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
+"%(name)s eklentisi yüklenmedi ve bir hata bildirdi.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Hatayı kendiniz düzeltemezseniz, %(gramps_bugtracker_url)s adresinden bir "
+"hata gönderebilir veya eklenti yazarıyla (%(firstauthoremail)s) iletişime "
+"geçebilirsiniz.\n"
+"\n"
+"Gramps'ın bu eklentiyi tekrar denemesini ve yüklemesini istemiyorsanız "
+"Yardım menüsündeki Eklenti Yöneticisini kullanarak gizleyebilirsiniz."
 
 #: ../gramps/gui/viewmanager.py:1686
 msgid "Gramps XML Backup"
@@ -20278,6 +20365,20 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
+"Ağacın boyutuna sığdırmak için sayfanın yeniden boyutlandırılıp \n"
+"boyutlandırılmayacağı.  Not:  Sayfa standart olmayan bir boyuta \n"
+"sahip olacaktır.\n"
+"\n"
+"Bu seçenek seçildiğinde aşağıdakiler gerçekleşir:\n"
+"\n"
+"'Ağacı ölçekleme' seçeneği ile sayfa ağacın en/boyuna göre yeniden\n"
+"  boyutlandırılır\n"
+"\n"
+"'Ağacı yalnızca sayfa genişliğine sığacak şekilde ölçekle' seçeneği ile\n"
+"  sayfanın yüksekliği ağacın yüksekliğine göre yeniden boyutlandırılır\n"
+"\n"
+"'Ağacı sayfanın boyutuna sığdırmak için ölçeklendir' seçeneği ile sayfa,\n"
+"en veya boy boşluklarını kaldırmak için yeniden boyutlandırılır"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
@@ -23374,6 +23475,12 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
+"Gramps, Gramps Projesi'nde düzenlenen soybilimciler için soybilimciler "
+"tarafından yaratılmıştır. Gramps, bir Açık Kaynak Yazılım paketidir, yani "
+"kopyalayıp istediğiniz herkese dağıtmakta özgürsünüz. Hedefi Gramps'ı güçlü, "
+"ancak kullanımı kolay hale getirmek olan dünya çapında bir gönüllü ekibi "
+"tarafından geliştirildi ve sürdürüldü.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
 msgid "Getting Started"
@@ -23387,6 +23494,12 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
+"Yapmanız gereken ilk şey, yeni bir Aile Ağacı oluşturmaktır. Yeni bir Aile "
+"Ağacı (bazen 'veritabanı' olarak adlandırılır) oluşturmak için menüden \"Aile"
+" Ağaçları\"nı seçin, \"Aile Ağaçlarını Yönet\"i seçin, \"Yeni\"ye basın ve "
+"Aile Ağacınıza bir ad verin. Daha fazla ayrıntı için lütfen yukarıdaki "
+"bağlantılardaki bilgileri okuyun\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
@@ -24512,7 +24625,7 @@ msgstr "ANSI (ISO-8859-1)"
 
 #: ../gramps/plugins/importer/importgedcom.glade:21
 msgid "ASCII"
-msgstr ""
+msgstr "ASCII"
 
 #: ../gramps/plugins/importer/importgedcom.glade:24
 msgid "UTF8"
@@ -24552,50 +24665,43 @@ msgid "Error reading GEDCOM file"
 msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:80
-#, fuzzy
 msgid "Accomplishment"
-msgstr "Hizalama"
+msgstr "Başarı"
 
 #: ../gramps/plugins/importer/importgeneweb.py:81
-#, fuzzy
 msgid "Acquisition"
-msgstr "İlişki"
+msgstr "Kazanma"
 
 #: ../gramps/plugins/importer/importgeneweb.py:82
-#, fuzzy
 msgid "Adhesion"
-msgstr "Sürüm"
+msgstr "Adhesion"
 
 #: ../gramps/plugins/importer/importgeneweb.py:83
 #: ../gramps/plugins/importer/importgeneweb.py:95
-#, fuzzy
 msgid "Award"
-msgstr "_Transfer"
+msgstr "Ödül"
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
-#, fuzzy
 msgid "Change Name"
-msgstr "_Dosyayı yeniden adlandır"
+msgstr "Adı Değiştir"
 
 #: ../gramps/plugins/importer/importgeneweb.py:90
 #: ../gramps/plugins/lib/libgedcom.py:697
 msgid "Circumcision"
-msgstr ""
+msgstr "Sünnet"
 
 #: ../gramps/plugins/importer/importgeneweb.py:94
 msgid "Military Demobilisation"
-msgstr ""
+msgstr "Askeri Terhis"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#, fuzzy
 msgid "Dotation"
-msgstr "Alıntı"
+msgstr "Bağış"
 
 #: ../gramps/plugins/importer/importgeneweb.py:101
 #: ../gramps/plugins/lib/libgedcom.py:703
-#, fuzzy
 msgid "Excommunication"
-msgstr "Basım"
+msgstr "Aforoz"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
 #, fuzzy
@@ -24604,37 +24710,32 @@ msgstr "Aile Bağlantıları"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
 #: ../gramps/plugins/lib/libgedcom.py:705
-#, fuzzy
 msgid "Funeral"
-msgstr "Genel"
+msgstr "Cenaze"
 
 #: ../gramps/plugins/importer/importgeneweb.py:106
-#, fuzzy
 msgid "Hospitalisation"
-msgstr "Alıntı"
+msgstr "Hastaneye yatış"
 
 #: ../gramps/plugins/importer/importgeneweb.py:107
 msgid "Illness"
-msgstr ""
+msgstr "Hastalık"
 
 #: ../gramps/plugins/importer/importgeneweb.py:109
-#, fuzzy
 msgid "List Passenger"
-msgstr "Sayfaya Sığdır"
+msgstr "Yolcu Listesi"
 
 #: ../gramps/plugins/importer/importgeneweb.py:110
-#, fuzzy
 msgid "Military Distinction"
-msgstr "Askerlik"
+msgstr "Askeri Distinction"
 
 #: ../gramps/plugins/importer/importgeneweb.py:111
 msgid "Militaty Mobilisation"
-msgstr ""
+msgstr "Askeri Seferberlik"
 
 #: ../gramps/plugins/importer/importgeneweb.py:112
-#, fuzzy
 msgid "Military Promotion"
-msgstr "Askerlik"
+msgstr "Askeri Terfi"
 
 #: ../gramps/plugins/importer/importgeneweb.py:120
 #, fuzzy
@@ -24643,20 +24744,19 @@ msgstr "Çocuğu Seç"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
 msgid "Sold property"
-msgstr ""
+msgstr "Satılan mülk"
 
 #: ../gramps/plugins/importer/importgeneweb.py:130
 msgid "No mention"
-msgstr ""
+msgstr "No mention"
 
 #: ../gramps/plugins/importer/importgeneweb.py:133
-#, fuzzy
 msgid "Separated"
-msgstr "Departman"
+msgstr "Ayrılmış"
 
 #: ../gramps/plugins/importer/importgeneweb.py:197
 msgid "GeneWeb import"
-msgstr ""
+msgstr "GeneWeb içe aktarma"
 
 #: ../gramps/plugins/importer/importgeneweb.py:912
 #, python-brace-format
@@ -24666,12 +24766,12 @@ msgstr ""
 #: ../gramps/plugins/importer/importgpkg.py:72
 #, python-format
 msgid "Could not create media directory %s"
-msgstr ""
+msgstr "%s medya dizini oluşturulamadı"
 
 #: ../gramps/plugins/importer/importgpkg.py:76
 #, python-format
 msgid "Media directory %s is not writable"
-msgstr ""
+msgstr "%s medya dizini yazılabilir değil"
 
 #: ../gramps/plugins/importer/importgpkg.py:81
 #, python-format
@@ -24696,10 +24796,15 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
+"Bu Aile Ağacının temel ortam yolu %s olarak ayarlandı. Daha basit bir yol "
+"izlemeyi düşünün. Medya dosyalarınızı yeni konuma taşırken ve ortam "
+"nesnelerinizde doğru yolları ayarlamak için ortam yöneticisi aracını "
+"kullanarak 'Yoldaki alt dizeyi değiştir' seçeneğini kullanarak bunu "
+"Tercihler'de değiştirebilirsiniz."
 
 #: ../gramps/plugins/importer/importgpkg.py:117
 msgid "Cannot set base media path"
-msgstr ""
+msgstr "Temel ortam yolu ayarlanamıyor"
 
 #: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
@@ -24712,6 +24817,13 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
+"İçe aktardığınız Aile Ağacı zaten bir temel ortam yoluna sahip: %(orig_path)"
+"s. Ancak içe aktarılan ortam nesneleri %(path)s yolundan görelidir. Ortam "
+"yolunu Tercihler'de değiştirebilir veya içe aktarılan dosyaları mevcut temel "
+"ortam yoluna dönüştürebilirsiniz. Bunu, ortam dosyalarınızı yeni konuma "
+"taşıyarak ve ortam nesnelerinizde doğru yolları ayarlamak için medya "
+"yöneticisi aracını, 'Yoldaki alt diziyi değiştir' seçeneğini kullanarak "
+"yapabilirsiniz."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
 #: ../gramps/plugins/importer/importprogen.py:189
@@ -24731,6 +24843,13 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
+"Veritabanı sürümü, Gramps'ın bu sürümü tarafından desteklenmiyor. Gramps'ın "
+"3.0.x sürümünde eski bir kopyasını kullanmalı ve veritabanınızı bu sürüme "
+"aktarmalısınız. Ardından verilerinizin bir kopyasını Gramps XML'e (Aile "
+"Ağacı) aktarmalısınız. Ardından Gramps'ın en son sürümüne (örneğin bu sürüme)"
+" yükseltme yapmalı, yeni bir boş veritabanı oluşturmalı ve Gramps XML'i bu "
+"sürüme aktarmalısınız. Lütfen şu adrese bakın: "
+"%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -24739,25 +24858,28 @@ msgid ""
 "(out of Settings)"
 msgstr ""
 "Kaynak referansı\n"
-"(Ayarların dışında)"
+"(Ayarlar dışında)"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
 msgid ""
 "Source reference text\n"
 "(Text & import Filename)."
 msgstr ""
+"Kaynak referans metni\n"
+"(Metin ve Dosya Adını içe aktarın)."
 
 #: ../gramps/plugins/importer/importprogen.glade:155
 #: ../gramps/plugins/importer/importprogen.glade:325
-#, fuzzy
 msgid "Attribut"
-msgstr "Sembol"
+msgstr "Bağlanmak"
 
 #: ../gramps/plugins/importer/importprogen.glade:171
 msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Kaynak özellik metni\n"
+"(Metin, Dosya Adı ve (Sistem-)Tarihi içe aktarın)."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -24783,9 +24905,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:362
-#, fuzzy
 msgid "Import Text"
-msgstr "İçe aktarıcı"
+msgstr "Metni İçe Aktar"
 
 #: ../gramps/plugins/importer/importprogen.glade:415
 msgid ""
@@ -24799,7 +24920,7 @@ msgstr "Dosya Adını İçe Aktarın."
 
 #: ../gramps/plugins/importer/importprogen.glade:492
 msgid "Default (System-)Date."
-msgstr ""
+msgstr "Varsayılan (Sistem-)Tarihi."
 
 #: ../gramps/plugins/importer/importprogen.glade:766
 #: ../gramps/plugins/importer/importprogen.glade:781
@@ -24809,7 +24930,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:841
 #: ../gramps/plugins/importer/importprogen.glade:856
 msgid "Combined default text + filename + date."
-msgstr ""
+msgstr "Birleştirilmiş varsayılan metin + dosya adı + tarih."
 
 #: ../gramps/plugins/importer/importprogen.glade:1111
 msgid ""
@@ -25258,6 +25379,14 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 " for more info."
 msgstr ""
+"İçe aktardığınız .gramps dosyası, siz daha yeni bir %(newgramps)s sürümünü "
+"çalıştırırken Gramps'ın %(oldgramps)s sürümü tarafından yapılmıştır.\n"
+"\n"
+"Dosya içe aktarılmayacak. Lütfen xml'nin %(xmlversion)s sürümünü destekleyen "
+"daha eski bir Gramps sürümü kullanın.\n"
+"Görmek\n"
+"  %(gramps_wiki_xml_url)s\n"
+" daha fazla bilgi için."
 
 #: ../gramps/plugins/importer/importxml.py:1042
 msgid "The file will not be imported"
@@ -25276,6 +25405,16 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
+"İçe aktardığınız .gramps dosyası, Gramps'ın %(oldgramps)s sürümü tarafından "
+"yapılmıştır, siz çok daha yeni bir %(newgramps)s sürümünü çalıştırırken.\n"
+"\n"
+"İçe aktardıktan sonra her şeyin doğru şekilde içe aktarıldığından emin olun. "
+"Sorun olması durumunda, lütfen bir hata gönderin ve bu arada xml'nin "
+"%(xmlversion)s sürümü olan bu dosyayı içe aktarmak için Gramps'ın daha eski "
+"bir sürümünü kullanın.\n"
+"Görmek\n"
+"  %(gramps_wiki_xml_url)s\n"
+"daha fazla bilgi için."
 
 #: ../gramps/plugins/importer/importxml.py:1057
 msgid "Old xml file"
@@ -32249,6 +32388,11 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
+"Aile Ağacınız çapraz tablo yineleme tutamaçları içeriyor.\n"
+" Bu kötüdür ve Aile Ağacınızın yedeğini alarak ve bu yedeği\n"
+"boş bir soy ağacında içe aktararak düzeltilebilir. Kontrolün\n"
+"geri kalanı atlanır, Kontrol Et ve Onar aracı bu yeni Aile\n"
+"Ağacında yeniden çalıştırılmalıdır."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
@@ -35721,6 +35865,11 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
+"Bu sayfa, bu Aile Ağacı/Anlatı web sitesinin kullanıcısı/yaratıcısının "
+"sizinle aileleriyle ilgili birkaç dosya paylaşması içindir.  Aşağıda "
+"listelenen herhangi bir dosya varsa, üzerlerine tıklamak onları indirmenize "
+"izin verecektir. İndirme sayfası ve dosyalar, bu web sayfalarının geri "
+"kalanıyla aynı telif hakkına sahiptir."
 
 #: ../gramps/plugins/webreport/download.py:126
 msgid "File Name"
@@ -35797,6 +35946,10 @@ msgid ""
 "object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
+"Bu sayfa, veritabanındaki tüm ortam nesnelerinin başlıklarına göre "
+"sıralanmış bir dizinini içerir. Başlığa tıklamak sizi o ortam nesnesinin "
+"sayfasına götürecektir.  Bir resmin üzerinde ortam boyutu boyutlarını "
+"görüyorsanız, tam boyutlu halini görmek için resmin üzerine tıklayın.  "
 
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
@@ -36757,6 +36910,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"Bu harita sayfası, o kişiyi ve soyundan gelenleri tüm etkinlikleri/yerleri "
+"ile temsil eder. Farenizi işaretçinin üzerine getirirseniz, yer adını "
+"görüntüler. İşaretler ve Referans listesi tarih sırasına göre sıralanır ("
+"eğer varsa?). Referans bölümünde bir yerin ismine tıklamak sizi o yerin "
+"sayfasına götürecektir."
 
 #: ../gramps/plugins/webreport/person.py:974
 msgid "Place Title"
