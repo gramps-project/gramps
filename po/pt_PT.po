@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-19 07:34+0000\n"
+"PO-Revision-Date: 2021-12-20 22:13+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -37193,7 +37193,7 @@ msgstr "Lista pendente -- só para navegadores WebKit"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2032
 msgid "Navigation Menu Layout"
-msgstr "Dispoição do menu de navegação"
+msgstr "Disposição do menu de navegação"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2036
 msgid "Choose which layout for the Navigation Menus."
@@ -37252,19 +37252,19 @@ msgstr "Páginas extra"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2084
 msgid "Extra page name"
-msgstr "Nome de página extra"
+msgstr "Nome da página extra"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2087
 msgid "Your extra page name like it is shown in the menubar"
-msgstr "O seu nome de página extra tal como é mostrado na barra de menu"
+msgstr "O nome da sua página extra tal como é mostrado na barra de menu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2092
 msgid "Your extra page path"
-msgstr "O seu caminho de página extra"
+msgstr "O caminho da sua página extra"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2095
 msgid "Your extra page path without extension"
-msgstr "O seu caminho de página extra sem extensão"
+msgstr "O caminho da sua página extra sem extensão"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Do we use multiple translations?"
@@ -37450,7 +37450,7 @@ msgstr "Se deve incluir objectos multimédia não usados/referenciados"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2247
 msgid "Create and only use thumbnail- sized images"
-msgstr "Criar e usar só imagens miniatura"
+msgstr "Criar e usar só miniaturas das imagens"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2249
 msgid ""
@@ -37726,7 +37726,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "Google maps API key"
-msgstr "Chave API do GoogleMaps"
+msgstr "Chave API do Google Maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2469
 msgid "The API key used for the Google maps"
@@ -37924,8 +37924,8 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Esta página contém um índice de todos os indivíduos na base de dados, "
-"ordenados pelos seus apelidos. Ao seleccionar o nome do indivíduo, será "
-"levado à sua página individual."
+"ordenado pelos seus apelidos. Seleccionar o nome do indivíduo, leva à sua "
+"página individual."
 
 #: ../gramps/plugins/webreport/person.py:262
 #: ../gramps/plugins/webreport/surname.py:95
@@ -37954,9 +37954,8 @@ msgid ""
 msgstr ""
 "Esta página de mapas representa o indivíduo e seus descendentes com todos os "
 "seus eventos e locais. Se posicionar o rato sobre o marcador será mostrado o "
-"nome do local. Os marcadores e a lista de referência são ordenados por data "
-"(se existir). Ao clicar no nome do local na secção Referência, será levado à "
-"sua página."
+"nome do local. Os marcadores e a lista de referência são ordenados por data ("
+"se existir). Clicar no nome do local na secção Referência, leva à sua página."
 
 #: ../gramps/plugins/webreport/person.py:974
 msgid "Place Title"
@@ -38059,8 +38058,8 @@ msgid ""
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
-"Esta página contém um índice de todas as fontes na base de dados, ordenadas "
-"por título. Ao clicar no título de uma fonte, será levado à sua página."
+"Esta página contém um índice de todas as fontes na base de dados, ordenado "
+"por título. Clicar no título de uma fonte, leva à sua página respectiva."
 
 #: ../gramps/plugins/webreport/source.py:171
 msgctxt "Source Name"
@@ -38087,8 +38086,7 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Esta página contém um índice de todos os indivíduos na base de dados cujo "
-"apelido é %s. Ao seleccionar o nome do indivíduo, será levado à sua página "
-"individual."
+"apelido é %s. Seleccionar o nome do indivíduo, leva à sua página individual."
 
 #: ../gramps/plugins/webreport/surnamelist.py:102
 msgid "Surnames by person count"
@@ -38100,9 +38098,9 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
-"Esta página contém um índice de todos os apelidos na base de dados Ao "
-"seleccionar uma ligação, será levado a uma lista de indivíduos na base de "
-"dados que tenham esse apelido."
+"Esta página contém um índice de todos os apelidos na base de dados. "
+"Seleccionar uma ligação, leva a uma lista de indivíduos na base de dados que "
+"tenham esse apelido."
 
 #: ../gramps/plugins/webreport/surnamelist.py:156
 msgid "Number of People"
@@ -38121,8 +38119,8 @@ msgid ""
 "image&#8217;s page."
 msgstr ""
 "Esta página contém um índice de todos os objectos multimédia na base de "
-"dados, ordenados por título. Há um índice de todos os objectos multimédia "
-"nesta base de dados. Ao clicar numa miniatura, será levado à sua página."
+"dados, ordenado por título. Há um índice de todos os objectos multimédia "
+"nesta base de dados. Clicar numa miniatura, leva à sua página respectiva."
 
 #: ../gramps/plugins/webreport/updates.py:78
 msgid "New and updated objects"
@@ -38141,7 +38139,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
 msgid "NarrativeWeb Home"
-msgstr "Página inicial da NarrativeWeb"
+msgstr "Página inicial"
 
 #: ../gramps/plugins/webreport/webcal.py:336
 #: ../gramps/plugins/webreport/webcal.py:1030
@@ -38180,8 +38178,8 @@ msgid ""
 "shows all the events for that date, if there are any.\n"
 msgstr ""
 "Este calendário destina-se a fornecer uma perspectiva geral de todos os "
-"dados num vislumbre. Ao clicar numa data, será levado a uma página que "
-"mostra todos os eventos ocorridos nessa data, se existir algum.\n"
+"dados num vislumbre. Clicar numa data leva a uma página que mostra todos os "
+"eventos ocorridos nessa data, se existir algum.\n"
 
 #: ../gramps/plugins/webreport/webcal.py:1191
 msgid "One Day Within A Year"
@@ -38225,7 +38223,7 @@ msgstr "Opções de conteúdo"
 
 #: ../gramps/plugins/webreport/webcal.py:1828
 msgid "Create multiple year calendars"
-msgstr "Criar caléndarios para vários anos"
+msgstr "Criar calendários para vários anos"
 
 #: ../gramps/plugins/webreport/webcal.py:1830
 msgid "Whether to create Multiple year calendars or not."
@@ -38410,27 +38408,27 @@ msgstr "Fornece uma colecção de recursos para a Web"
 #. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:61
 msgid "Basic-Ash"
-msgstr "Básico-Cinzento"
+msgstr "Básico - Cinzento"
 
 #. Translators: Basic Cypress style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:69
 msgid "Basic-Cypress"
-msgstr "Básico-Cipreste"
+msgstr "Básico - Cipreste"
 
 #. Translators: Basic Lilac style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:73
 msgid "Basic-Lilac"
-msgstr "Básico-Lilás"
+msgstr "Básico - Lilás"
 
 #. Translators: Basic Peach style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:77
 msgid "Basic-Peach"
-msgstr "Básico-Pêssego"
+msgstr "Básico - Pêssego"
 
 #. Translators: Basic Spruce style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:81
 msgid "Basic-Spruce"
-msgstr "Básico-Pinho"
+msgstr "Básico - Pinho"
 
 #. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
