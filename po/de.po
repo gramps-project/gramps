@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-18 08:51+0000\n"
+"PO-Revision-Date: 2021-12-20 22:13+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -1525,8 +1525,8 @@ msgstr ""
 "6. Eine Datenbank öffnen und anhand ihrer Daten einen Zeitlinienbericht als "
 "PDF-Dokument\n"
 "der meine_zeitlinie.pdf Datei:\n"
-"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,"
-"of=meine_zeitlinie.pdf\n"
+"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,of=meine_zeitlinie"
+".pdf\n"
 "\n"
 "7. Um eine Zusammenfassung der Datenbank zu erstellen, verwende:\n"
 "gramps -O 'Stammbaum 1' -a report -p name=summary\n"
@@ -1534,12 +1534,12 @@ msgstr ""
 "8. Berichtsoptionen listen\n"
 "Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht "
 "zu erhalten.\n"
-"Um Details zu einer bestimmten Option zu erhalten, verwende "
-"show=Optionsname , z.B.. name=timeline,show=off string.\n"
+"Um Details zu einer bestimmten Option zu erhalten, verwende show=Optionsname "
+", z.B.. name=timeline,show=off string.\n"
 "Um die verfügbaren Berichtsnamen zu sehen, verwende name=show string.\n"
 "\n"
-"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, "
-"verwende:\n"
+"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, verwende:"
+"\n"
 "gramps -O 'Stammbaum 1' -e Ausgabe.gramps -f gramps-xml\n"
 "\n"
 "10. Um einen Webauftritt in einer anderen Sprache zu erstellen (in deutsch), "
@@ -1547,7 +1547,7 @@ msgstr ""
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Stammbaum 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. Um abschliessend eine normale interaktive Sitzung zu starten, gib "
+"11. Um abschließend eine normale interaktive Sitzung zu starten, gib "
 "folgendes ein:\n"
 "gramps\n"
 "\n"
@@ -2406,7 +2406,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:429
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2414,7 +2414,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:434
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #: ../gramps/gen/datehandler/_datedisplay.py:435
 #, python-brace-format
@@ -2427,7 +2427,7 @@ msgstr "{date_quality}von {date_start} bis {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:454
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2435,7 +2435,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:459
 msgctxt "and-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #: ../gramps/gen/datehandler/_datedisplay.py:460
 #, python-brace-format
@@ -2450,7 +2450,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:493
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2458,7 +2458,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:498
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2466,7 +2466,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:503
 msgctxt "about-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2474,7 +2474,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:508
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2482,7 +2482,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:513
 msgctxt "calculated-date"
 msgid ""
-msgstr ""
+msgstr "  "
 
 #: ../gramps/gen/datehandler/_datedisplay.py:532
 #, python-brace-format
@@ -4395,7 +4395,7 @@ msgstr "Ereignis der gegebenen Art"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:47
 msgid "Matches events with the particular type "
-msgstr "Liefert Ereignisse der gegebenen Art "
+msgstr "Passt zu Ereignissen einer bestimmten Art "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:44
 msgid "Events matching the <filter>"
@@ -4674,7 +4674,7 @@ msgstr "Familien mit der Beziehungsart"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Liefert Familien mit dem Beziehungsart eines bestimmten Wertes"
+msgstr "Passt zu Familien mit der Beziehungsart eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:45
 msgid "Families with <count> sources"
@@ -5085,7 +5085,7 @@ msgstr "Notizen der jeweiligen Art"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:47
 msgid "Matches notes with the particular type "
-msgstr "Liefert Notizen der jeweiligen Art "
+msgstr "Passt auf Notizen der jeweiligen Art "
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:44
 msgid "Notes matching the <filter>"
@@ -5473,7 +5473,7 @@ msgstr "Personen mit der <Namensart>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 msgid "Matches people with a type of name"
-msgstr "Liefert Personen mit einer Namensart"
+msgstr "Passt auf Personen mit einer bestimmten Namensart"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:45
 msgid "People with a nickname"
@@ -6030,12 +6030,12 @@ msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
 msgstr ""
-"Liefert Personennamen, die einen Text enthalten oder einem 'regulären "
-"Ausdruck' entsprechen"
+"Entspricht den Namen von Personen, die eine Teilzeichenfolge enthalten oder "
+"einem regulären Ausdruck entsprechen"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:46
 msgid "Relationship path between <persons>"
-msgstr "Verwandtschaftspfad zwischen <Personen>"
+msgstr "Beziehungspfad zwischen <Personen>"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid ""
@@ -6060,7 +6060,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
 msgid "People matching the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Personen, die mit <Name> übereinstimmen"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:44
 msgid "Every place"
@@ -6068,24 +6068,24 @@ msgstr "Jeder Ort"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:45
 msgid "Matches every place in the database"
-msgstr "Liefert jeden Ort in der Datenbank"
+msgstr "Entspricht jedem Ort in der Datenbank"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:47
 msgid "Places changed after <date time>"
-msgstr "Orte geändert nach <Datum Zeit>"
+msgstr "Orte nach <Datum Uhrzeit> geändert"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:48
 msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Liefert Ortsdatensätzen, die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
-"TT HH:MM:ss) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/"
-"Zeitpunkt angegeben ist."
+"Findet Ortsdatensätze, die nach einem bestimmten Datum/Uhrzeit (JJJJ-MM-TT "
+"HH:MM:SS) oder im Bereich geändert wurden, wenn ein zweites Datum/Uhrzeit "
+"angegeben wird."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
-msgstr "Orte mit der <Fundstelle>"
+msgstr "Ort mit der <Fundstelle>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
@@ -8601,7 +8601,7 @@ msgstr "Zu erledigen"
 #: ../gramps/gen/lib/notetype.py:83
 msgctxt "notetype"
 msgid "Link"
-msgstr "Link"
+msgstr "Verknüpfung"
 
 #: ../gramps/gen/lib/notetype.py:87
 msgid "Person Note"
@@ -10352,7 +10352,7 @@ msgstr "Fehler beim Lesen von \"%s\""
 #: ../gramps/gen/plug/utils.py:319
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "FEHLER: unbekannter Dateityp: '%s'"
+msgstr "Fehler: unbekannter Dateityp: '%s'"
 
 #: ../gramps/gen/plug/utils.py:325
 #, python-format
@@ -12215,7 +12215,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1694
 msgid "There are no available addons of this type"
-msgstr "Es sind keine Erweiterungen dieser Art verfügbar"
+msgstr "Es gibt keine verfügbaren Erweiterungen dieses Typs"
 
 #: ../gramps/gui/configure.py:1695
 #, python-format
@@ -12554,9 +12554,9 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and "
 "others."
 msgstr ""
-"Dateityp \"%s\" ist Gramps unbekannt.\n"
+"Der Dateityp \"%s\" ist Gramps unbekannt.\n"
 "\n"
-"Gültige Typen sind: Gramps-Datenbank, Gramps-XML, Gramps-Paket, GEDCOM und "
+"Gültige Typen sind: Gramps Datenbank, Gramps XML, Gramps Paket, GEDCOM, und "
 "andere."
 
 #: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
@@ -12674,7 +12674,7 @@ msgstr "Stammbaumname"
 
 #: ../gramps/gui/dbman.py:401
 msgid "Database Type"
-msgstr "Datenbankart"
+msgstr "Datenbanktyp"
 
 #: ../gramps/gui/dbman.py:508
 #, python-format
@@ -12785,7 +12785,7 @@ msgstr "Die '%s' Datenbank konvertieren?"
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
-"Willst du diesen Stammbaum in eine %(database_type)s Datenbank umwandeln?"
+"Möchtest du diesen Stammbaum in eine %(database_type)s Datenbank umwandeln?"
 
 #: ../gramps/gui/dbman.py:786
 msgid "Convert"
@@ -14014,7 +14014,7 @@ msgstr "Das Ereignis kann gespeichert werden. ID besteht bereits."
 
 #: ../gramps/gui/editors/editevent.py:264
 msgid "The event type cannot be empty"
-msgstr "Ereignisart darf nicht leer sein"
+msgstr "Die Ereignisart darf nicht leer sein"
 
 #: ../gramps/gui/editors/editevent.py:270
 #, python-format
@@ -16288,7 +16288,7 @@ msgstr "Internetadresse:"
 
 #: ../gramps/gui/glade/editlink.glade:126
 msgid "_Link Type:"
-msgstr "_Linkart:"
+msgstr "_Verknüpfungsart:"
 
 #: ../gramps/gui/glade/editlocation.glade:107
 msgid "The town or city where the place is."
@@ -16463,7 +16463,7 @@ msgstr "Bild doppelklicken, um es in einem externen Betrachter anzuzeigen"
 #: ../gramps/gui/glade/editmediaref.glade:533
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
-"Art des Medienobjekts, wie es der Rechner angibt, z.B. Bild, Video, ..."
+"Art des Medienobjekts, wie vom Computer angegeben, z. B. Bild, Video, ..."
 
 #: ../gramps/gui/glade/editmediaref.glade:650
 msgid "Select a file"
@@ -16478,8 +16478,7 @@ msgstr "Gemeinsam benutzte Informationen"
 msgid ""
 "An identification of what type of Name this is, eg. Birth Name, Married Name."
 msgstr ""
-"Eine Bezeichnung, um welche Art von Namen es sich handelt, z.B. Geburtsname, "
-"Name nach der Hochzeit."
+"Angabe, um welche Art von Namen es sich handelt, z. B. Geburtsname, Ehename."
 
 #: ../gramps/gui/glade/editname.glade:192
 #: ../gramps/gui/glade/editperson.glade:134
@@ -16635,7 +16634,7 @@ msgstr "Gestylter Texteditor"
 
 #: ../gramps/gui/glade/editnote.glade:146
 msgid "A type to classify the note."
-msgstr "Eine Art, um die Notiz zu klassifizieren."
+msgstr "Eine Ar zur Klassifizierung der Notiz."
 
 #: ../gramps/gui/glade/editnote.glade:179
 msgid "A unique ID to identify the note."
@@ -16859,8 +16858,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:378
 #: ../gramps/gui/glade/editplaceref.glade:397
 msgid "What type of place this is. Eg 'Country', 'City', ... ."
-msgstr ""
-"Um welche Art von Ort es sich handelt. Z. B. \"Land\", \"Stadt\", ... ."
+msgstr "Um welche Art von Ort es sich handelt. Z.B. 'Land', 'Stadt', ... ."
 
 #: ../gramps/gui/glade/editplace.glade:441
 #: ../gramps/gui/glade/editplaceref.glade:599
@@ -16964,7 +16962,8 @@ msgstr "Standortn_ummer/Signatur:"
 
 #: ../gramps/gui/glade/editreporef.glade:156
 msgid "On what type of media this source is available in the repository."
-msgstr "Auf welcher Medienart die Quelle im Aufbewahrungsort verfügbar ist."
+msgstr ""
+"Auf welcher Art von Medien diese Quelle im Aufbewahrungsort verfügbar ist."
 
 #: ../gramps/gui/glade/editreporef.glade:209
 msgid "Id number of the source in the repository."
@@ -17053,7 +17052,7 @@ msgstr "_Beschreibung:"
 
 #: ../gramps/gui/glade/editurl.glade:170
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr "Art der Internetadresse, z.B. E-Mail, Webseite,...."
+msgstr "Art der Internetadresse, z. B. E-Mail, Webseite, ..."
 
 #: ../gramps/gui/glade/editurl.glade:189
 msgid ""
@@ -17588,7 +17587,7 @@ msgstr "Stilname"
 
 #: ../gramps/gui/glade/styleeditor.glade:302
 msgid "Type face"
-msgstr "Schriftart"
+msgstr "Schriftbild"
 
 #: ../gramps/gui/glade/styleeditor.glade:315
 msgid "_Roman (Times, serif)"
@@ -18055,11 +18054,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Gdk, Gtk Pango oder PangoCairo typelib ist nicht installiert.\n"
-"Installiere Gnome Introspection, und pygobject Version 3.12 oder neuer.\n"
-"Dann installiere introspection data für Gdk, Gtk, Pango und PangoCairo\n"
+"Gdk, Gtk, Pango oder PangoCairo typelib nicht installiert.\n"
+"Installiere Gnome Introspection und pygobject Version 3.12 oder höher.\n"
+"Dann installiere die Introspektionsdaten für Gdk, Gtk, Pango und PangoCairo\n"
 "\n"
-"Gramps wird jetzt beendet."
+"Gramps wird nun beendet."
 
 #: ../gramps/gui/grampsgui.py:466
 #, python-format
@@ -21763,7 +21762,7 @@ msgstr "Anzahl der im Bericht enthaltenen Generationen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:698
 msgid "Type of graph"
-msgstr "Diagrammart"
+msgstr "Art der Grafik"
 
 #: ../gramps/plugins/drawreport/fanchart.py:699
 msgid "full circle"
@@ -31710,7 +31709,7 @@ msgstr "Standortnummer/Signatur"
 
 #: ../gramps/plugins/quickview/reporef.py:62
 msgid "Type of media"
-msgstr "Medienart"
+msgstr "Art der Medien"
 
 #: ../gramps/plugins/quickview/samesurnames.py:39
 msgid "People with incomplete surnames"
@@ -33440,9 +33439,9 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"Dieses Werkzeug benennt alle Ereignisse einer Art in einer anderen Art um. "
-"Nach der Durchführung ist dies nur durch Beenden ohne zu sichern wieder "
-"rückgängig zu machen."
+"Mit diesem Werkzeug kannst du alle Ereignisse einer Art in eine andere Art "
+"umbenennen. Die Umbenennung kann nicht mehr mit der normalen Rückgängig-"
+"Funktion rückgängig gemacht werden."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
@@ -35154,7 +35153,8 @@ msgstr "Nicht verwandt"
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Find people who are not in any way related to the selected person"
 msgstr ""
-"Findet Personen, die überhaupt nicht mit der gewählten Person verwandt sind."
+"Personen finden, die in keiner Weise mit der ausgewählten Person verwandt "
+"sind"
 
 #: ../gramps/plugins/tool/tools.gpr.py:221
 msgid "Edit Database Owner Information"
@@ -35239,7 +35239,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Searches the entire database, looking for a possible loop."
-msgstr "Durchsucht die gesamte Datenbank nach möglichen Schleifen"
+msgstr ""
+"Durchsucht die gesamte Datenbank auf der Suche nach einer möglichen Schleife."
 
 #: ../gramps/plugins/tool/tools.gpr.py:490
 msgid ""
@@ -35666,7 +35667,7 @@ msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
-"Beide Objekte müssen vom selben Typ sein: entweder müssen beide Objekte "
+"Beide Objekte müssen von der gleichen Art sein, entweder müssen beide "
 "Quellen sein, oder beide müssen Fundstellen sein."
 
 #: ../gramps/plugins/view/dashboardview.py:51
@@ -35702,7 +35703,7 @@ msgstr "Ereignis _löschen"
 #: ../gramps/plugins/view/eventview.py:402
 #, python-brace-format
 msgid "Delete {type} [{gid}]?"
-msgstr "Löschen {type} [{gid}]?"
+msgstr "{type} [{gid}] löschen?"
 
 #: ../gramps/plugins/view/eventview.py:487
 msgid "Cannot merge event objects."
@@ -35905,7 +35906,7 @@ msgstr "Layout"
 #: ../gramps/plugins/view/fanchartdescview.py:568
 #: ../gramps/plugins/view/fanchartview.py:666
 msgid "No preview available"
-msgstr "Keine Vorschau verfügbar."
+msgstr "Keine Vorschau verfügbar"
 
 #: ../gramps/plugins/view/fanchartdescview.py:316
 #: ../gramps/plugins/view/fanchartview.py:411
@@ -35983,7 +35984,7 @@ msgstr "Die andere Person ist unbekannt"
 
 #: ../gramps/plugins/view/geoclose.py:327
 msgid "You must choose one reference person."
-msgstr "Du musst eine Referenzperson wählen"
+msgstr "Du musst eine Referenzperson wählen."
 
 #: ../gramps/plugins/view/geoclose.py:328
 msgid ""
@@ -36008,7 +36009,7 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:641
 msgid "Choose and bookmark the new reference person"
-msgstr "Wähle die Referenzperson und füge sie als Lesezeichen hinzu."
+msgstr "Wähle die neue Bezugsperson und setze ein Lesezeichen"
 
 #: ../gramps/plugins/view/geoclose.py:664
 msgid ""
@@ -36145,7 +36146,7 @@ msgstr "Person : %(id)s %(name)s hat keine Familie."
 
 #: ../gramps/plugins/view/geofamclose.py:830
 msgid "Choose and bookmark the new reference family"
-msgstr "Wähle die neue Referenzfamilie und füge sie als Lesezeichen hinzu."
+msgstr "Wähle die neue Referenzfamilie aus und setze ein Lesezeichen"
 
 #: ../gramps/plugins/view/geofamclose.py:853
 msgid ""
@@ -36191,14 +36192,14 @@ msgid ""
 "To build it for Gramps see the Wiki (<F1>)\n"
 " and search for 'build from source'"
 msgstr ""
-"Geografiefunktion wird nicht zur Verfügung stehen.\n"
+"Die Geografiefunktionalität wird nicht verfügbar sein.\n"
 "Versuche folgendes zu installieren:\n"
-" gir1.2-osmgpsmap-1.0 (Debian, Ubuntu, ...)\n"
-" osm-gps-map-gobject-1.0.1 für Fedora, ...\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 für fedora, ...\n"
 " typelib-1_0-OsmGpsMap-1_0 für openSuse\n"
 " ...\n"
-"Um es für Gramps zu erstellen schau im Wiki (<F1>)\n"
-"und suche nach 'build from source'"
+"Um es für Gramps zu erstellen, schau im Wiki (<F1>)\n"
+" und suche nach 'build from source'"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
@@ -36273,7 +36274,7 @@ msgstr "Eine Ansicht, die alle Orte einer Datenbank zeigt."
 
 #: ../gramps/plugins/view/geography.gpr.py:194
 msgid "All places related to Events"
-msgstr "Alle Orte, die mit Ereignissen verbunden sind."
+msgstr "Alle Orte im Zusammenhang mit Ereignissen"
 
 #: ../gramps/plugins/view/geography.gpr.py:195
 msgid "A view showing all the event places of the database."
@@ -36368,9 +36369,9 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
-"Klicke rechts auf die Karte und wähle 'zeige alle Orte', um alle bekannten "
-"Orte mit Koordinaten zu zeigen. Du kannst die Markierungsfarbe abhängig von "
-"der Ortsart ändern. Du kannst Filter verwenden."
+"Klicke mit der rechten Maustaste auf die Karte und wähle 'alle Orte "
+"anzeigen', um alle bekannten Orte mit Koordinaten anzuzeigen. Du kannst die "
+"Farbe der Markierungen je nach Ortsart ändern. Du kannst Filter verwenden."
 
 #: ../gramps/plugins/view/geoplaces.py:448
 msgid ""
@@ -36378,10 +36379,10 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
-"Klicke rechts auf die Karte und wähle 'zeige alle Orte', um alle bekannten "
-"Orte mit Koordinaten zu zeigen. Du kannst den Verlauf verwenden, um auf der "
-"Karte zu navigieren. Du kannst die Markierungsfarbe abhängig von der Ortsart "
-"ändern. Du kannst Filter verwenden."
+"Klicke mit der rechten Maustaste auf die Karte und wähle 'alle Orte "
+"anzeigen', um alle bekannten Orte mit Koordinaten anzuzeigen. Du kannst den "
+"Verlauf verwenden, um auf der Karte zu navigieren. Du kannst die Farbe der "
+"Markierungen je nach Ortsart ändern. Du kannst Filter verwenden."
 
 #: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
@@ -36688,7 +36689,7 @@ msgstr "Entferne Person als Kind dieser Eltern"
 
 #: ../gramps/plugins/view/relview.py:984
 msgid "Remove person as parent in this family"
-msgstr "Entferne Person als Elternteil dieser Familie."
+msgstr "Person als Elternteil in dieser Familie entfernen"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1044
@@ -37164,9 +37165,9 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
-"Diese Seite enthält einen Index mit allen Ereignissen in der Datenbank, die "
-"nach ihrer Art, Datum (wenn vorhanden) sortiert sind. Klicken auf eine "
-"Grampsereignis-ID öffnet eine Seite für dieses Ereignis."
+"Diese Seite enthält einen Index aller Ereignisse in der Datenbank, sortiert "
+"nach Art und Datum (falls vorhanden). Wenn du auf die Gramps-ID eines "
+"Ereignisses klickst, wird eine Seite für dieses Ereignis geöffnet."
 
 #: ../gramps/plugins/webreport/event.py:181
 #: ../gramps/plugins/webreport/family.py:193
@@ -37179,7 +37180,7 @@ msgstr "Letter"
 #: ../gramps/plugins/webreport/event.py:258
 #, python-format
 msgid "Event types beginning with letter %s"
-msgstr "Ereignisarten beginnend mit Buchstaben %s"
+msgstr "Ereignisarten, die mit dem Buchstaben %s beginnen"
 
 #: ../gramps/plugins/webreport/family.py:111
 msgid "Creating family pages..."
@@ -37231,7 +37232,7 @@ msgstr " Name"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
-msgstr "Mimetyp"
+msgstr "Mime-Typ"
 
 #: ../gramps/plugins/webreport/media.py:253
 msgid "Creating list of media pages"
@@ -37399,7 +37400,7 @@ msgstr "Dateierweiterung"
 #: ../gramps/plugins/webreport/narrativeweb.py:2004
 #: ../gramps/plugins/webreport/webcal.py:1770
 msgid "The extension to be used for the web files"
-msgstr "Die Erweiterung, die für die Webdateien verwendet wird."
+msgstr "Die Erweiterung, die für die Webdateien verwendet werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2008
 #: ../gramps/plugins/webreport/webcal.py:1773
@@ -37409,7 +37410,7 @@ msgstr "Copyright"
 #: ../gramps/plugins/webreport/narrativeweb.py:2011
 #: ../gramps/plugins/webreport/webcal.py:1776
 msgid "The copyright to be used for the web files"
-msgstr "Das Copyright, das für die Webdateien verwendet wird."
+msgstr "Das Urheberrecht, das für die Webdateien verwendet werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2014
 #: ../gramps/plugins/webreport/webcal.py:1782
@@ -37600,7 +37601,7 @@ msgstr "Einleitungsnotiz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2178
 msgid "A note to be used as the introduction"
-msgstr "Eine Notiz, die als Einleitung verwendet wird."
+msgstr "Eine Notiz, die als Einleitung verwendet werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2181
 msgid "Introduction image"
@@ -37608,7 +37609,7 @@ msgstr "Einleitungsbild"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2182
 msgid "An image to be used as the introduction"
-msgstr "Ein Bild, das als Einleitung verwendet wird."
+msgstr "Ein Bild, das als Einleitung verwendet werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2185
 msgid "Publisher contact note"
@@ -37654,7 +37655,7 @@ msgstr "HTML Fußzeile"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "A note to be used as the page footer"
-msgstr "Eine Notiz, die als Fußzeile benutzt wird."
+msgstr "Eine Notiz, die als Fußzeile der Seite verwendet werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "PHP user session"
@@ -37679,7 +37680,7 @@ msgstr "Bilder und Medienobjekte aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Whether to include a gallery of media objects"
-msgstr "Ob eine Galerie mit Medienobjekten aufgenommen wird."
+msgstr "Ob eine Galerie mit Medienobjekten hinzugefügt werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Create the images index"
@@ -37738,7 +37739,7 @@ msgstr "Enthält eine Downloadseite"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2285
 msgid "Whether to include a database download option"
-msgstr "Ob in die Datenbank eine download Option aufgenommen wird."
+msgstr "Ob eine Option zum Herunterladen der Datenbank enthalten sein soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "How many downloads"
@@ -37757,7 +37758,7 @@ msgstr "Dateiname #%c herunterladen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2303
 msgid "File to be used for downloading of database"
-msgstr "Datei, die für das Herunterladen der Datenbank verwendet wird."
+msgstr "Für das Herunterladen der Datenbank zu verwendende Datei"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2307
 msgid "Description for download"
@@ -37785,7 +37786,7 @@ msgstr "Zeichensatzkodierung"
 #: ../gramps/plugins/webreport/narrativeweb.py:2328
 #: ../gramps/plugins/webreport/webcal.py:1950
 msgid "The encoding to be used for the web files"
-msgstr "Die Kodierung, die für die Webdateien verwendet wird."
+msgstr "Die Kodierung, die für die Webdateien verwendet werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2332
 msgid "Include link to active person on every page"
@@ -37801,7 +37802,7 @@ msgstr "Spalte für Geburtsdaten auf den Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2339
 msgid "Whether to include a birth column"
-msgstr "Ob eine Spalte für Geburt aufgenommen wird."
+msgstr "Ob eine Geburtsspalte eingefügt werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2343
 msgid "Include a column for death dates on the index pages"
@@ -37809,7 +37810,7 @@ msgstr "Spalte für Todesdaten auf den Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid "Whether to include a death column"
-msgstr "Ob eine Spalte für Tod aufgenommen wird."
+msgstr "Ob eine Todesspalte eingefügt werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2347
 msgid "Include a column for partners on the index pages"
@@ -37836,7 +37837,7 @@ msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
 "Ob Halb- und/oder Stiefgeschwister mit den Eltern und Geschwistern "
-"aufgenommen werden."
+"aufgenommen werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2374
 msgid "Include family pages"
@@ -37885,7 +37886,7 @@ msgstr "GENDEX-Datei (/gendex.txt) aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2400
 msgid "Whether to include a GENDEX file or not"
-msgstr "Ob eine GENDEX-Datei aufgenommen wird."
+msgstr "Ob eine GENDEX-Datei aufgenommen werden soll oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Include address book pages"
@@ -37905,7 +37906,7 @@ msgstr "Statistikseite aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2411
 msgid "Whether or not to add statistics page"
-msgstr "Ob eine Statistikseite enthalten ist."
+msgstr "Ob eine Statistikseite hinzugefügt werden soll oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "Place Map Options"
@@ -38129,7 +38130,7 @@ msgstr "Erstelle Eintagesereignissseiten für Jahresüberblick Kalender"
 #: ../gramps/plugins/webreport/narrativeweb.py:2828
 #: ../gramps/plugins/webreport/webcal.py:1955
 msgid "Whether to create one day pages or not"
-msgstr "Legt fest, ob Eintages Seiten erstellt werden oder nicht."
+msgstr "Ob Eintagesseiten erstellt werden sollen oder nicht"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2832
 #: ../gramps/plugins/webreport/webcal.py:1959
@@ -38471,7 +38472,7 @@ msgstr "Der Titel des Kalenders"
 
 #: ../gramps/plugins/webreport/webcal.py:1785
 msgid "The stylesheet to be used for the web pages"
-msgstr "Die Formatvorlage, die für die Webseiten verwendet wird."
+msgstr "Die Formatvorlage, die für die Webseiten verwendet werden soll"
 
 #: ../gramps/plugins/webreport/webcal.py:1823
 msgid "Content Options"
@@ -38615,7 +38616,7 @@ msgstr "Link zu erzählender Website"
 
 #: ../gramps/plugins/webreport/webcal.py:1971
 msgid "Whether to link data to web report or not"
-msgstr "Legt fest, ob Daten mit einem Webbericht verknüpft werden oder nicht."
+msgstr "Ob Daten mit dem Webbericht verknüpft werden sollen oder nicht"
 
 #: ../gramps/plugins/webreport/webcal.py:1988
 msgid "Link prefix"
@@ -38623,8 +38624,7 @@ msgstr "Verknüpfungspräfix"
 
 #: ../gramps/plugins/webreport/webcal.py:1989
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
-"Ein Präfix an den Links, um dich zum erzählenden Webbericht zu bringen."
+msgstr "Ein Präfix auf den Links, die dich zum kommentierten Webbericht führen"
 
 #: ../gramps/plugins/webreport/webcal.py:2195
 #, python-format
