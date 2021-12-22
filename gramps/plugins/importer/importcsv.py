@@ -279,7 +279,7 @@ class CSVParser:
                 else:
                     my_delimiter = "\t"
         try:
-            if my_dialect == _("custom"):
+            if my_dialect == _("Custom"):
                 data = [[r.strip() for r in row]
                         for row in csv.reader(filehandle,
                                               delimiter=my_delimiter)]

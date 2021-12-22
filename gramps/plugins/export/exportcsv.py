@@ -266,7 +266,7 @@ class CSVWriter:
                         my_delimiter = CSV_DELIMITERS[item]
                     else:
                         my_delimiter = "\t"
-            if my_dialect == _("custom"):
+            if my_dialect == _("Custom"):
                 self.g = csv.writer(self.fp, delimiter=my_delimiter)
             else:
                 self.g = csv.writer(self.fp, dialect=my_dialect)

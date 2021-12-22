@@ -65,7 +65,7 @@ class CSVTab(TabbedDoc):
                     my_delimiter = CSV_DELIMITERS[item]
                 else:
                     my_delimiter = "\t"
-        if my_dialect == _("custom"):
+        if my_dialect == _("Custom"):
             self.writer = csv.writer(self.f, delimiter=my_delimiter)
         else:
             self.writer = csv.writer(self.f, dialect=my_dialect)

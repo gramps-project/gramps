@@ -87,7 +87,7 @@ class CsvDialect(Gtk.Box):
         self.delimiter = config.get('csv.delimiter')
 
         self.dialects = csv.list_dialects()
-        self.dialects.append(_("custom"))
+        self.dialects.append(_("Custom"))
         self.buttons = []
         button = None
         self.entry = Gtk.ComboBox()
@@ -120,7 +120,7 @@ class CsvDialect(Gtk.Box):
         self.entry.set_hexpand(False)
         self.entry.connect('changed', self.on_changed)
         hbox.pack_start(self.entry, False, True, 0)
-        if self.dialect == "custom":
+        if self.dialect == _("Custom"):
             self.entry.set_sensitive(True)
         else:
             self.entry.set_sensitive(False)
@@ -145,7 +145,7 @@ class CsvDialect(Gtk.Box):
         if obj.get_active():
             button = obj.get_label()
             config.set('csv.dialect', button)
-            if button == "custom":
+            if button == _("Custom"):
                 entry.set_sensitive(True)
             else:
                 entry.set_sensitive(False)
