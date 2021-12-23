@@ -378,6 +378,8 @@ class CitationTreeView(LibSourceView, ListView):
         <property name="action-name">win.Back</property>
         <property name="tooltip_text" translatable="yes">'''
         '''Go to the previous object in the history</property>
+        <property name="label" translatable="yes">_Back</property>
+        <property name="use-underline">True</property>
       </object>
       <packing>
         <property name="homogeneous">False</property>
@@ -389,6 +391,8 @@ class CitationTreeView(LibSourceView, ListView):
         <property name="action-name">win.Forward</property>
         <property name="tooltip_text" translatable="yes">'''
         '''Go to the next object in the history</property>
+        <property name="label" translatable="yes">_Forward</property>
+        <property name="use-underline">True</property>
       </object>
       <packing>
         <property name="homogeneous">False</property>
