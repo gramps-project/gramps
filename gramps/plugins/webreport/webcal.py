@@ -1370,7 +1370,7 @@ return false;
                     # current year of calendar, month nd day is their birth
                     # month and birth day
                     prob_alive_date = Date(this_year, month, day)
-
+                    month, day = birth_date.anniversary(this_year)
                     # add some things to handle maiden name:
                     father_surname = None # husband, actually
                     if person.gender == Person.FEMALE:

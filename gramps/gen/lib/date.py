@@ -30,6 +30,7 @@
 #
 # ------------------------------------------------------------------------
 import logging
+import calendar
 
 # -------------------------------------------------------------------------
 #
@@ -2063,6 +2064,24 @@ class Date:
             dlist[Date._POS_RMON] = 0
         self.dateval = tuple(dlist)
         self._calc_sort_value()
+
+    def anniversary(self, year):
+        """
+        If the date is February 29, you must choose the day to view it in the
+        event of a non-leap year.
+        This is usualy used in calendars.
+        """
+        month = self.dateval[Date._POS_MON]
+        day = self.dateval[Date._POS_DAY]
+        if month == 2 and day == 29 and not calendar.isleap(year):
+            day_show = config.get('preferences.february-29')
+            if day_show == 0:
+                day = 28
+            elif day_show == 1:
+                month = 3
+                day = 1
+            # else:  # In all other cases, keep the february 29 day
+        return (month, day)
 
     year = property(get_year, set_year)
 

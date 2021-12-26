@@ -1387,6 +1387,23 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 2, row, 2, 1)
 
         row += 1
+        # Birthday on february 29
+        feb29 = Gtk.ComboBoxText()
+        show_on = [_("on the previous day"),
+                   _("on the next day"),
+                   _("only on leap years")]
+        list(map(feb29.append_text, show_on))
+        active = config.get('preferences.february-29')
+        feb29.set_active(active)
+        feb29.connect('changed', self.date_february_29_display_on)
+        ttip = _("For non leap years, anniversaries are displayed on either "
+                 "February 28, March 1 or not at all in Gregorian calendars")
+        feb29.set_tooltip_text(ttip)
+        lwidget = BasicLabel(_("Show leap day anniversaries"))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(feb29, 2, row, 2, 1)
+
+        row += 1
         # Status bar:
         obox = Gtk.ComboBoxText()
         formats = [_("Active person's name and ID"),
@@ -1571,6 +1588,12 @@ class GrampsPreferences(ConfigureDialog):
         Save "Date calendar for input" option.
         """
         config.set('preferences.calendar-format-input', obj.get_active())
+
+    def date_february_29_display_on(self, obj):
+        """
+        Save "February 29 display on " option.
+        """
+        config.set('preferences.february-29', obj.get_active())
 
     def autobackup_changed(self, obj):
         """

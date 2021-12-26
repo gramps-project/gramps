@@ -28,6 +28,7 @@
 import datetime
 import time
 from functools import partial
+import calendar
 
 #------------------------------------------------------------------------
 #
@@ -374,6 +375,7 @@ class Calendar(Report):
             day = birth_date.get_day()
 
             prob_alive_date = Date(self.year, month, day)
+            month, day = birth_date.anniversary(self.year)
 
             nyears = self.year - year
             short_name = self.get_name(

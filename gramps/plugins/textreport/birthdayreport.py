@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 import datetime, time
+import calendar
 
 #------------------------------------------------------------------------
 #
@@ -37,8 +38,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_HOMEPAGE
 from gramps.gen.errors import ReportError
+from gramps.gen.config import config
 from gramps.gen.lib import NameType, EventType, Name, Date, Person, Surname
-from gramps.gen.lib.date import gregorian
+from gramps.gen.lib.date import gregorian, Today
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SERIF, PARA_ALIGN_RIGHT,
@@ -291,7 +293,7 @@ class BirthdayReport(Report):
                     day = birth_date.get_day()
 
                     prob_alive_date = Date(self.year, month, day)
-
+                    month, day = birth_date.anniversary(self.year)
                     nyears = self.year - year
                     # add some things to handle maiden name:
                     father_lastname = None # husband, actually
