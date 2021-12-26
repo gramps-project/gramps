@@ -969,6 +969,16 @@ class CalendarPage(BasePage):
                     # month and birth day
                     prob_alive_date = Date(this_year, month, day)
 
+                    # if birth on february, 29, we must choose
+                    # the birthday in case of non-leap year
+                    if (not calendar.isleap(Today().get_year()) and
+                            month == 2 and day == 29):
+                        if config.get('preferences.february-29'):
+                            month = 3
+                            day = 1
+                        else:
+                            day = 28
+
                     # add some things to handle maiden name:
                     father_surname = None # husband, actually
                     if person.gender == Person.FEMALE:

@@ -27,6 +27,7 @@
 from functools import partial
 import datetime
 import time
+import calendar
 
 #------------------------------------------------------------------------
 #
@@ -38,6 +39,7 @@ _ = glocale.translation.gettext
 from gramps.gen.const import URL_HOMEPAGE
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.errors import ReportError
+from gramps.gen.config import config
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SERIF, PARA_ALIGN_CENTER,
                                     PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
@@ -54,7 +56,7 @@ from gramps.gen.utils.alive import probably_alive
 from gramps.gen.datehandler import displayer as date_displayer
 from gramps.gen.lib import (Date, EventRoleType, EventType, Name, NameType,
                             Person, Surname)
-from gramps.gen.lib.date import gregorian
+from gramps.gen.lib.date import (gregorian, Today)
 
 import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.lib.libholiday import g2iso
@@ -333,6 +335,16 @@ class Calendar(Report):
                     day = birth_date.get_day()
 
                     prob_alive_date = Date(self.year, month, day)
+
+                    # if birth on february, 29, we must choose
+                    # the birthday in case of non-leap year
+                    if (not calendar.isleap(Today().get_year()) and
+                            month == 2 and day == 29):
+                        if config.get('preferences.february-29'):
+                            month = 3
+                            day = 1
+                        else:
+                            day = 28
 
                     nyears = self.year - year
                     # add some things to handle maiden name:

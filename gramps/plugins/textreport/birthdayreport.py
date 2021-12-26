@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 import datetime, time
+import calendar
 
 #------------------------------------------------------------------------
 #
@@ -37,8 +38,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_HOMEPAGE
 from gramps.gen.errors import ReportError
+from gramps.gen.config import config
 from gramps.gen.lib import NameType, EventType, Name, Date, Person, Surname
-from gramps.gen.lib.date import gregorian
+from gramps.gen.lib.date import (gregorian, Today)
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SERIF, PARA_ALIGN_RIGHT,
@@ -285,6 +287,16 @@ class BirthdayReport(Report):
                     day = birth_date.get_day()
 
                     prob_alive_date = Date(self.year, month, day)
+
+                    # if birth on february, 29, we must choose
+                    # the birthday in case of non-leap year
+                    if (not calendar.isleap(Today().get_year()) and
+                            month == 2 and day == 29):
+                        if config.get('preferences.february-29'):
+                            month = 3
+                            day = 1
+                        else:
+                            day = 28
 
                     nyears = self.year - year
                     # add some things to handle maiden name:

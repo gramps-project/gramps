@@ -1224,6 +1224,15 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 1, row, 2, 1)
 
         row += 1
+        # Birthday on february 29
+        active = config.get('preferences.february-29')
+        self.add_checkbox(
+            grid, _('Birthday on february 29 for non leap years'),
+            row, 'preferences.february-29', start=0, stop=2,
+            tooltip=_("For non leap year, the birthday is displayed in"
+                      " february 28 or march 1 (if checked) in calendars"))
+
+        row += 1
         # Place format:
         self.pformat = Gtk.ComboBox()
         renderer = Gtk.CellRendererText()
