@@ -183,10 +183,10 @@ class EditPlaceRef(EditReference):
         try:
             parts = value.index(', ')
             if len(parts) == 2:
-                longitude = parts[0].strip().replace(',', '.')
-                latitude = parts[1].strip().replace(',', '.')
+                latitude = parts[0].strip().replace(',', '.')
+                longitude = parts[1].strip().replace(',', '.')
             else:
-                longitude, latitude = value.split(',')
+                latitude, longitude = value.split(',')
 
             self.longitude.set_text(longitude)
             self.latitude.set_text(latitude)
