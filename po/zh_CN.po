@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2021-07-16 15:31+0800\n"
+"PO-Revision-Date: 2022-01-04 10:34+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
 "Language: zh_CN\n"
@@ -735,8 +735,9 @@ msgid ""
 "see which individuals reference each source. You can use filters to group "
 "your sources."
 msgstr ""
-"<b>管理信息源</b><br/>来源视图在一个窗口列出了所有的来源清单. 双击可以编辑，"
-"添加注释，并查看每个个体来源的索引.您可以使用筛查器分组您的来源信息。"
+"<b>管理信息源</b><br/>来源视图在一个窗口列出了所有的来源。您可以在此处编辑来"
+"源，合并重复项目及查看每个人员所参照的来源。您还可以用筛选功能对来源进行分"
+"组。"
 
 #: ../data/tips.xml.in.h:39
 msgid ""
@@ -3978,9 +3979,8 @@ msgid ""
 msgstr "匹配特定来源筛选名称的来源事件"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:48
-#, fuzzy
 msgid "Citations with Id containing <text>"
-msgstr "拥有笔记中包含 <substring> 的家庭"
+msgstr "id 包含 <text> 的引用"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -5694,7 +5694,7 @@ msgstr "可能健在的成员"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:46
 msgid "Matches people without indications of death that are not too old"
-msgstr ""
+msgstr "匹配年龄没有大到可能已故的人员"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:46
 msgid "People with Id containing <text>"
@@ -35043,7 +35043,7 @@ msgstr "参照家庭(_F)"
 #: ../gramps/plugins/view/geofamclose.py:220
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid "Have these two families been able to meet?"
-msgstr ""
+msgstr "这两个家庭曾遇见过吗？"
 
 #: ../gramps/plugins/view/geofamclose.py:251
 #, fuzzy
@@ -35114,6 +35114,12 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"遇见区域的可能半径。\n"
+"彩色区域为估计值。\n"
+"只显示参照家庭的遇见区域。\n"
+"9 表示 42 英里或 67 公里。\n"
+"1 表示 4.6 英里或 7.5 公里。\n"
+"值的大小为十分之一度。"
 
 #: ../gramps/plugins/view/geofamily.py:164
 msgid "Family places map"
@@ -36853,7 +36859,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/surname.py:94
 #: ../gramps/plugins/webreport/surnamelist.py:192
 msgid "<absent>"
-msgstr ""
+msgstr "<absent>"
 
 #: ../gramps/plugins/webreport/person.py:281
 #, python-format
@@ -36874,6 +36880,9 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"该地图页面显示了与该人员及其后代相关的所有事件或地点。将鼠标置于标记处可显示"
+"地点名称。（如果存在日期的话）标记和参照列表按日期排序。在参考部分中点击地点"
+"的名称可跳转到地点页面。"
 
 #: ../gramps/plugins/webreport/person.py:873
 msgid "Drop Markers"
@@ -36916,8 +36925,9 @@ msgid "Relation to main person"
 msgstr "与主人翁的关系"
 
 #: ../gramps/plugins/webreport/person.py:1870
+#, fuzzy
 msgid "Relation within this family (if not by birth)"
-msgstr ""
+msgstr "此家庭中的关系（不按出生）"
 
 #: ../gramps/plugins/webreport/place.py:116
 msgid "Creating place pages"
@@ -37318,6 +37328,8 @@ msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
+"仅显示这一年之后的数据。默认为当前年份 -  ‘可能健在的最大年龄’ 在日期设置选项"
+"栏中定义。"
 
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Link prefix"
