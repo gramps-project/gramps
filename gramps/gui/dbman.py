@@ -1269,7 +1269,7 @@ class NoviceSelection(ManagedWindow, DbLoader):
         label2 = Gtk.Label(label="")
         self.window.vbox.pack_start(label2, False, True, 0)
         target = Gtk.Label(label=config.get('database.path'))
-        target.set_tooltip_text(_("The directory for the databases"))
+        target.set_tooltip_text(_("Family Tree Database path"))
         target.set_halign(Gtk.Align.START)
         self.window.vbox.pack_start(target, False, True, 0)
         label3 = Gtk.Label(label="")
