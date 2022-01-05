@@ -1367,6 +1367,7 @@ class NoviceSelection(ManagedWindow, DbLoader):
                     )
                 ftl.write(xml)
                 ftl.close()
+                os.unlink(file_to_load)
             dbid = config.get('database.backend')
             if self.nbb == 0:
                 self.dbmanager._create_new_db(dbid=dbid, title=name,
@@ -1386,7 +1387,6 @@ class NoviceSelection(ManagedWindow, DbLoader):
                                       dbstate=self.dbstate))
                         break
             self.dbmanager.firsttime.set_sensitive(False)
-            os.unlink(file_to_load)
 
     def load_database_selection(self, *arg):
         """
