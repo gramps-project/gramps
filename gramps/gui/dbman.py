@@ -1387,6 +1387,8 @@ class NoviceSelection(ManagedWindow, DbLoader):
                                       dbstate=self.dbstate))
                         break
             self.dbmanager.firsttime.set_sensitive(False)
+        else:
+            self.window.close()
 
     def load_database_selection(self, *arg):
         """
