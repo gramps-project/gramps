@@ -1335,7 +1335,9 @@ class NoviceSelection(ManagedWindow, DbLoader):
         if resp == Gtk.ResponseType.OK:
             name = self.__targetname.get_text()
             file_to_load = self.__target1.get_text()
+            temp = False
             if file_to_load == "":
+                temp = True
                 try:
                     file_to_load = tempfile.mktemp(suffix=".gramps")
                     ftl = open(file_to_load, "wb")
@@ -1367,7 +1369,6 @@ class NoviceSelection(ManagedWindow, DbLoader):
                     )
                 ftl.write(xml)
                 ftl.close()
-                os.unlink(file_to_load)
             dbid = config.get('database.backend')
             if self.nbb == 0:
                 self.dbmanager._create_new_db(dbid=dbid, title=name,
@@ -1387,6 +1388,8 @@ class NoviceSelection(ManagedWindow, DbLoader):
                                       dbstate=self.dbstate))
                         break
             self.dbmanager.firsttime.set_sensitive(False)
+            if temp:
+                os.unlink(file_to_load)
         else:
             self.window.close()
 
