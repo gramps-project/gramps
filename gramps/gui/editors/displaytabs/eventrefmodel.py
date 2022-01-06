@@ -180,6 +180,11 @@ class EventRefModel(Gtk.TreeStore):
                              event.get_type() == EventType.DEATH)):
                 return ""
             else:
+                # bug with french calendar events. Convert if not gregorian
+                if date.calendar != Date.CAL_GREGORIAN:
+                    date = date.to_calendar("gregorian")
+                if self.start_date.calendar != Date.CAL_GREGORIAN:
+                    self.start_date = self.start_date.to_calendar("gregorian")
                 return (date - self.start_date).format(precision=age_precision)
         else:
             return ""
