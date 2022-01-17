@@ -207,7 +207,7 @@ class GeoMoves(GeoGraphyView):
         )
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        GeoGraphyView.__init__(self, _("Descendance of the active person."),
+        GeoGraphyView.__init__(self, _("Descendants of the active person."),
                                pdata, dbstate, uistate, PersonBookmarks,
                                nav_group)
         self.dbstate = dbstate
@@ -570,7 +570,7 @@ class GeoMoves(GeoGraphyView):
             if not person:
                 return
         self.message_layer.add_message(
-            _("All descendance for %s") % _nd.display(person))
+            _("All descendants for %s") % _nd.display(person))
         color = Gdk.color_parse(self._config.get('geography.color_base'))
         GLib.timeout_add(int(self._config.get("geography.generation_interval")),
                          self.animate_moves, 0, person, color)
