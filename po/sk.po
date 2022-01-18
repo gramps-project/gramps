@@ -6,13 +6,14 @@
 # LDS terms consulted with slovak-based LDS Church (www.mormoni.sk)
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Milan <mobrcian@hotmail.com>, 2021.
+# Jose Riha <jose1711@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-18 08:51+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2022-01-14 19:55+0000\n"
+"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -14422,7 +14423,7 @@ msgstr "Upraviť osobu"
 #: ../gramps/plugins/view/mediaview.py:386
 #: ../gramps/plugins/view/mediaview.py:402
 msgid "View"
-msgstr "Pohľad"
+msgstr "Zobrazenie"
 
 #: ../gramps/gui/editors/editperson.py:647
 msgid "Edit Object Properties"
@@ -17745,7 +17746,7 @@ msgstr "_Používateľský manuál"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_View"
-msgstr "_Pohľad"
+msgstr "_Zobraziť"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Windows"
