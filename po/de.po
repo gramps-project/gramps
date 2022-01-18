@@ -16,13 +16,14 @@
 # David Straub <straub@protonmail.com>, 2021.
 # nautilusx <translate@disroot.org>, 2021.
 # Andreas Abraham <andreas.abraham@gmx.de>, 2021.
+# RiseT <twilite505-4bf24909@yahoo.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
 "PO-Revision-Date: 2022-01-18 22:29+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -34945,7 +34946,7 @@ msgstr "Gramps-IDs neu ordnen"
 #: ../gramps/plugins/tool/reorderids.py:552
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "IDs neu ordnen %s ..."
+msgstr "%s-IDs neu ordnen …"
 
 #: ../gramps/plugins/tool/reorderids.py:635
 #, python-format
