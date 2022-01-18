@@ -9,13 +9,14 @@
 # Nemeséri Lajos <nemeseril@gmail.com>, 2011-2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Lajos Nemeséri <nemeseril@gmail.com>, 2021.
+# f3rr31 <5920873@disroot.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-23 08:26+0000\n"
-"Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
+"PO-Revision-Date: 2021-12-30 23:51+0000\n"
+"Last-Translator: f3rr31 <5920873@disroot.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
 "Language: hu\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -10616,7 +10617,7 @@ msgstr "Horvát"
 
 #: ../gramps/gen/utils/grampslocale.py:89
 msgid "Hungarian"
-msgstr "Magyar"
+msgstr "magyar"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Icelandic"
@@ -33005,7 +33006,7 @@ msgstr "Címke összegző %s elemre"
 
 #: ../gramps/plugins/textreport/tagreport.py:671
 msgid "Email Address"
-msgstr "E-mail cím"
+msgstr "E-mail-cím"
 
 #: ../gramps/plugins/textreport/tagreport.py:757
 #: ../gramps/plugins/view/sourceview.py:86
