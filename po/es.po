@@ -12,13 +12,14 @@
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # S <sendoasojo@gmail.com>, 2021.
 # badlop <badlop@process-one.net>, 2021.
+# Mario Ruiz <marionetarh@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-30 23:51+0000\n"
-"Last-Translator: badlop <badlop@process-one.net>\n"
+"PO-Revision-Date: 2022-01-17 22:08+0000\n"
+"Last-Translator: Mario Ruiz <marionetarh@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -38658,7 +38659,7 @@ msgstr "Recursos en la web"
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:37
 msgid "Provides a collection of resources for the web"
-msgstr "Proporciona un conjunto de recursos para la red"
+msgstr "Proporciona un conjunto de recursos para la web"
 
 #. Translators: Basic Ash style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:61
