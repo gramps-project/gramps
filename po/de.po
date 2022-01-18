@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-18 22:29+0000\n"
-"Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
+"PO-Revision-Date: 2022-01-20 20:54+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -5058,7 +5058,7 @@ msgstr "Notizart:"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:49
 msgid "Notes matching parameters"
-msgstr "Notizen mit entsprechenden Parametern"
+msgstr "Notizen zu übereinstimmenden Parametern"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:50
 msgid "Matches Notes with particular parameters"
@@ -6043,8 +6043,8 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"Liefert die Vorfahren zweier Personen, zurückgehend bis zu einem gemeinsamen "
-"Vorfahren, so dass man den Verwandtschaftspfad zwischen zwei Personen erhält."
+"Ordnet die Vorfahren zweier Personen einem gemeinsamen Vorfahren zu, wodurch "
+"der Beziehungspfad zwischen zwei Personen erstellt wird."
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:51
 msgid "Relationship path between bookmarked persons"
@@ -6055,9 +6055,9 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Liefert die Vorfahren zweier Personen aus den Lesezeichen, zurückgehend bis "
-"zu einem gemeinsamen Vorfahren, so dass man den Verwandtschaftspfad zwischen "
-"zwei Personen erhält."
+"Passt die Vorfahren der mit Lesezeichen versehenen Personen auf gemeinsame "
+"Vorfahren ab und erstellt den/die Verwandtschaftspfad(e) zwischen den mit "
+"Lesezeichen versehenen Personen."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
 msgid "People matching the <name>"
@@ -6109,7 +6109,7 @@ msgstr "Kennung:"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:52
 #: ../gramps/gen/filters/rules/place/_hasplace.py:58
 msgid "Places matching parameters"
-msgstr "Orte mit gegebenen Parametern"
+msgstr "Orte entsprechend gegebenen Parametern"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:53
 #: ../gramps/gen/filters/rules/place/_hasplace.py:59
@@ -6134,7 +6134,7 @@ msgstr "Liefert einem Ort mit einer angegebenen Gramps-ID"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:48
 msgid "Places with no latitude or longitude given"
-msgstr "Orte ohne angegeben Längen- oder Breitengrad"
+msgstr "Orte ohne Angabe von Längen- und Breitengraden"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:49
 msgid "Matches places with empty latitude or longitude"
@@ -6156,23 +6156,23 @@ msgstr "Liefert Orte mit einer bestimmten Anzahl von Notizen"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:42
 msgid "Places having notes containing <substring>"
-msgstr "Orte, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Orte mit Notizen, die <Zeichenfolge> enthalten"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:43
 msgid "Matches places whose notes contain text matching a substring"
 msgstr ""
-"Liefert Orte, deren Notizen einen Text mit einer vorgegebenen Zeichenfolge "
-"enthalten"
+"Liefert Orte, deren Notizen Text enthalten, der einer Teilzeichenkette "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:41
 msgid "Places having notes containing <text>"
-msgstr "Orte, deren Notizen den <Text> enthält"
+msgstr "Orte mit Notizen, die <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Orte, deren Notizen einen Text entsprechend eines regulären "
-"Ausdrucks enthalten"
+"Liefert Orte, deren Notizen Text enthalten, der einem regulären Ausdruck "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:49
 msgid "Street:"
@@ -6200,7 +6200,7 @@ msgstr "Land:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:55
 msgid "ZIP/Postal Code:"
-msgstr "PLZ:"
+msgstr "Postleitzahl:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:56
 msgid "Church Parish:"
@@ -6221,7 +6221,8 @@ msgstr "Orte mit <Anzahl> Quellen"
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:46
 msgid "Matches places with a certain number of sources connected to it"
 msgstr ""
-"Liefert Orte, mit einer bestimmten Anzahl von mit ihnen verbundenen Quellen"
+"Liefert Orten mit einer bestimmten Anzahl von Quellen, die mit ihnen "
+"verbunden sind"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:46
 msgid "Places with the <source>"
@@ -6241,7 +6242,7 @@ msgstr "Liefert Orte mit der vorgegebenen Markierung"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:49
 msgid "Places matching a title"
-msgstr "Orte mit Titel"
+msgstr "Orte, die einem Titel entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:50
 msgid "Matches places with a particular title"
@@ -6273,7 +6274,7 @@ msgstr "Rechteckbreite:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 msgid "Places in neighborhood of given position"
-msgstr "Orte in der Umgebung der gegebenen Position"
+msgstr "Orte in der Umgebung der angegebenen Position"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:52
 msgid ""
@@ -6281,9 +6282,9 @@ msgid ""
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
 msgstr ""
-"Liefert Orte mit Breiten- oder Längengrad, positioniert in einem Rechteck "
-"von gegebener Höhe und Breite (in Grad), und als Mittelpunkt den gegebenen "
-"Längen- und Breitengrad."
+"Liefert Orte, deren Breiten- oder Längengrad in einem Rechteck mit gegebener "
+"Höhe und Breite (in Grad) liegt und deren Mittelpunkt den gegebenen Breiten- "
+"und Längengrad hat."
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
 msgid "Places enclosed by another place"
@@ -34898,7 +34899,9 @@ msgstr "Änderung"
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
-msgstr "ID-Neuordnung mit Start/Schrittweite-Sequenz aktivieren."
+msgstr ""
+"ID-Neuanordnung aktivieren\n"
+"mit Start / Schritt-Sequenz."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
