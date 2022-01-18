@@ -20241,7 +20241,7 @@ msgstr "Familie bearbeiten"
 
 #: ../gramps/gui/widgets/fanchart.py:1841 ../gramps/plugins/view/relview.py:983
 msgid "Reorder families"
-msgstr "Familien wieder ordnen"
+msgstr "Familien neu ordnen"
 
 #: ../gramps/gui/widgets/fanchart.py:1847
 #: ../gramps/plugins/view/pedigreeview.py:1761
@@ -30996,7 +30996,7 @@ msgstr "Länge nicht innerhalb von '8.05' bis '24.15'"
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:180
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:186
 msgid "Eniro map not available"
-msgstr "Eniro Karte nicht verfügbar"
+msgstr "Eniro-Karte nicht verfügbar"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:181
 msgid "Coordinates needed in Denmark"
@@ -34897,9 +34897,7 @@ msgstr "Änderung"
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
-msgstr ""
-"Ermögliche ID-Neunummerierung mit\n"
-"Start / Schrittweite Sequenz."
+msgstr "ID-Neuordnung mit Start/Schrittweite-Sequenz aktivieren."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -34907,7 +34905,7 @@ msgstr "Start"
 
 #: ../gramps/plugins/tool/reorderids.glade:1488
 msgid "Reorder ID start number."
-msgstr "Neuordnung ID Start Nummer."
+msgstr "ID-Startnummer neu ordnen."
 
 #: ../gramps/plugins/tool/reorderids.glade:1501
 msgid "Step"
@@ -34915,7 +34913,7 @@ msgstr "Schritt"
 
 #: ../gramps/plugins/tool/reorderids.glade:1506
 msgid "Reorder ID step width."
-msgstr "Neuordnung ID Schrittweite."
+msgstr "ID-Schrittweite neu ordnen."
 
 #: ../gramps/plugins/tool/reorderids.glade:1518
 msgid "Keep"
@@ -34941,7 +34939,7 @@ msgstr "Ordne_Gramps-IDs_neu"
 #: ../gramps/plugins/tool/reorderids.py:631
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
-msgstr "Ordne Gramps-IDs neu"
+msgstr "Gramps-IDs neu ordnen"
 
 #: ../gramps/plugins/tool/reorderids.py:547
 #: ../gramps/plugins/tool/reorderids.py:552
