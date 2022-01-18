@@ -4,13 +4,14 @@
 # Bernard Banko <beernarrd at gmail.com>, 2007-2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # beernarrd <beernarrd@gmail.com>, 2021.
+# Igor Kriznar <ikriznar@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-10-27 21:38+0000\n"
-"Last-Translator: beernarrd <beernarrd@gmail.com>\n"
+"PO-Revision-Date: 2022-01-05 02:54+0000\n"
+"Last-Translator: Igor Kriznar <ikriznar@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
 "Language: sl\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -944,19 +945,17 @@ msgstr ""
 "dodajali nove funkcije."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
 "Report...\", allows you to collect a variety of reports into a single "
 "document. This single report is easier to distribute than multiple reports, "
 "especially when printed."
 msgstr ""
-"<b>Knjižna poročila</b><br/>Knjižno poročilo pod Poročila - Knjige - Knjižno "
-"poročilo ... uporabnikom omogoča združitev več poročil v en sam dokument, ki "
-"ga je potem laže posredovati drugim, zlasti v tiskani obliki."
+"<b>Knjižna poročila</b><br/>Knjižno poročilo pod \"Poročila - Knjige - "
+"Knjižno poročilo ...\" uporabnikom omogoča združitev več poročil v en sam "
+"dokument, ki ga je potem laže posredovati drugim, zlasti v tiskani obliki."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -964,7 +963,7 @@ msgid ""
 msgstr ""
 "<b>Obvestila Gramps</b><br/>Bi bili radi obveščeni, ko bo na voljo nova "
 "različica programa Gramps? Vpišite se na dopisni seznam gramps-announce v "
-"meniju Pomoč - Dopisni seznam Gramps"
+"meniju \"Pomoč - Dopisni seznam Gramps\""
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1036,17 +1035,16 @@ msgstr ""
 "standardu Unicode, tako da se znaki v vseh jezikih izpišejo pravilno."
 
 #: ../data/tips.xml:120
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use \"Edit &gt; Set Home Person\" in the Person View. The home "
 "person is the person who is selected when the database is opened or when the "
 "home button is pressed."
 msgstr ""
-"<b>Izhodiščna oseba</b><br/>Za izhodiščno osebo v Grampsu se lahko določi "
-"kogarkoli. V pogledu Osebe uporabite meni Uredi - Nastavi izhodiščno osebo. "
-"To je oseba, ki je prikazana, kadar odprete zbirko podatkov ali kadar "
-"kliknete na gumb za vrnitev na izhodiščno osebo."
+"<b>Izhodiščna oseba</b><br/>Za izhodiščno osebo v Gramps-u se lahko določi "
+"kogarkoli. V pogledu \"Osebe\" uporabite meni \"Uredi - Nastavi izhodiščno "
+"osebo\". To je oseba, ki je prikazana, kadar odprete zbirko podatkov ali "
+"kadar kliknete na gumb za vrnitev na izhodiščno osebo."
 
 #: ../data/tips.xml:122
 msgid ""
@@ -1458,11 +1456,12 @@ msgstr ""
 "\n"
 "2. Za izrecno navedbo oblike zgoraj navedenih datotek vsakemu imenu datoteke "
 "pripnemo možnosti -f:\n"
-"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/db3."
-"gramps -f gramps-xml -i datoteka4.wft -f wft -a tool -p name=check. \n"
+"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/"
+"db3.gramps -f gramps-xml -i datoteka4.wft -f wft -a tool -p name=check. \n"
 "\n"
 "3. Za shranjevanje zbirke podatkov, nastale iz uvoženih podatkov, navedemo "
-"zastavico -e (po potrebi uporabimo tudi -f):\n"
+"zastavico -e \n"
+"(po potrebi uporabimo tudi -f):\n"
 "gramps -i datoteka1.ged -i datoteka2.gpkg -e ~/novPaket -f gramps-pkg\n"
 "\n"
 "4. Za shranjevanje morebitnih sporočil o napakah v datoteki izhod in napake "
@@ -1474,7 +1473,8 @@ msgstr ""
 "gramps -i datoteka1.ged -i datoteka2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. Za odprtje zbirke podatkov in izdelavo poročila časovne premice v obliki "
-"PDF odtipkamo:\n"
+"PDF\n"
+"vstavi izhod v datoteko my_timeline.pdf:\n"
 "gramps -O 'Rodovnik 1' -a report -p name=timeline,off=pdf,of=čas.pdf\n"
 "\n"
 "7. Za izdelavo povzetka zbirke podatkov odtipkamo:\n"
@@ -2088,8 +2088,8 @@ msgid ""
 "is a personal genealogy program."
 msgstr ""
 "Gramps\n"
-" (Genealogical Research and Analysis Management Programming System) je "
-"osebni rodoslovni program."
+" (Genealogical Research and Analysis Management Programming System)\n"
+"je osebni rodoslovni program."
 
 #: ../gramps/gen/const.py:260
 msgctxt "surname"
@@ -3141,7 +3141,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3158,21 +3158,21 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Rodovnik, ki bi ga radi naložili, je zapisan v obliki %(oldschema)s. Ta "
-"različica Grampsa pa uporablja zapis različice %(newschema)s. Zaradi tega ne "
-"morete naložiti rodovnika brez nadgradnje različice zapisa Rodovnika.\n"
+"Rodovnik, ki bi ga radi naložili, je zapisan v obliki %(dbtype)s ybirke "
+"podaktov, ki ni več podprta.\n"
+"Zaradi tega ne morete naložiti rodovnika brez nadgradnje različice zapisa "
+"Rodovnika.\n"
 "\n"
 "Po nadgradnji ne boste več mogli uporabljati prejšnje različice Grampsa, "
-"čeprav %(wiki_manual_backup_html_start)snaredite varnostno kopijo"
-"%(html_end)s ali %(wiki_manual_export_html_start)sizvozite%(html_end)s "
-"nadgrajeni rodovnik.\n"
+"čeprav %(wiki_manual_backup_html_start)snaredite varnostno kopijo%(html_end)"
+"s ali %(wiki_manual_export_html_start)sizvozite%(html_end)s nadgrajeni "
+"rodovnik.\n"
 "\n"
-"Nadgradnja je zahtevno opravilo, ki lahko poškoduje rodovnik, če pri tem "
-"pride do prekinitve ali če postopek spodleti.\n"
+"Močno vam svetujemo, da naredite varnostno kopijo vašega rodovnika.\n"
 "\n"
-"Če varnostne kopije rodovnika še niste naredili, potem odprite "
-"%(bold_start)sstaro%(bold_end)s različico Grampsa in "
-"%(wiki_backup_html_start)sustvarite varnostno kopijo%(html_end)s rodovnika."
+"Če varnostne kopije rodovnika še niste naredili, potem odprite prejšnjo "
+"različico Grampsa in %(wiki_backup_html_start)sustvarite varnostno "
+"kopijo%(html_end)s vašega rodovnika."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3308,7 +3308,8 @@ msgstr ""
 "\n"
 "Morda bi bilo dobro pognati\n"
 "Orodja -> Obdelava rodovnikov -> Združi navedke,\n"
-"da se združijo navedki s podobnimi podatki"
+"da se združijo navedki s podobnimi \n"
+"podatki"
 
 #: ../gramps/gen/db/upgrade.py:737
 msgid "Upgrade Statistics"
@@ -3881,9 +3882,8 @@ msgid "Matches citations that are indicated as private"
 msgstr "Najde navedke z oznako zasebno"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
-#, fuzzy
 msgid "Citation attribute:"
-msgstr "Atributi navedka"
+msgstr "Atributi navedka:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -3903,9 +3903,8 @@ msgid "Citations with the attribute <attribute>"
 msgstr "Dogodki z določenim atributom"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
-#, fuzzy
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Najde predmete z določenim atributom"
+msgstr "Najde navedke z atributom določene vrednosti"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
@@ -5125,14 +5124,12 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "Najde vse osebe, ki imajo določeno število osebnih naslovov"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:43
-#, fuzzy
 msgid "People with an address containing <text>"
-msgstr "Osebe s številko Id, ki vsebuje določeno besedilo"
+msgstr "Osebe z naslovom, ki vsebuje <besedilo>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddresstext.py:44
-#, fuzzy
 msgid "Matches people with a personal address containing the given text"
-msgstr "Najde vse osebe, pri katerih je dodan določen osebni dogodek"
+msgstr "Najde osebe z osebnim naslovom, ki vsebuje dano besedilo"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:45
 msgid "People with an alternate name"
@@ -6248,19 +6245,16 @@ msgstr ""
 "drugi datum."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
-#, fuzzy
 msgid "Repository attribute:"
-msgstr "Nav. nahajališča"
+msgstr "Atribut nahajališča:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
-#, fuzzy
 msgid "Repositories with the attribute <attribute>"
-msgstr "Dogodki z določenim atributom"
+msgstr "Skladišča z atributom <atribut>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
-#, fuzzy
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Najde predmete z določenim atributom"
+msgstr "Najde skladišča z atributom določene vrednosti"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
@@ -6383,19 +6377,16 @@ msgstr ""
 "datum."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
-#, fuzzy
 msgid "Source attribute:"
-msgstr "Atributi vira"
+msgstr "Atribut vira:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
-#, fuzzy
 msgid "Sources with the attribute <attribute>"
-msgstr "Dogodki z določenim atributom"
+msgstr "Viri z atributom <atribut>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
-#, fuzzy
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Najde predmete z določenim atributom"
+msgstr "Najde vire z atributom določene vrednosti"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
@@ -9257,15 +9248,14 @@ msgstr ""
 "jezikov, zato bo uporabljena ameriška angleščina"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
-#, fuzzy, python-format
+#, python-format
 msgctxt "gramps_version"
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"NAPAKA: Datoteka vstavka %(filename)s je različice "
-"\"%(gramps_target_version)s\", ki pa ni veljavna za Gramps "
-"\"%(gramps_version)s\"."
+"NAPAKA: Datoteka vstavka %(filename)s je različice \"%(gramps_target_version)"
+"s\", ki pa ni veljavna za Gramps različice \"%(gramps_version)s\"."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
@@ -9993,9 +9983,8 @@ msgid "The translation to be used for the report."
 msgstr "Prevod, ki naj se uporabi za poročilo."
 
 #: ../gramps/gen/plug/report/stdoptions.py:80
-#, fuzzy
 msgid "The additional translation to be used for the report."
-msgstr "Prevod, ki naj se uporabi za poročilo."
+msgstr "Dodaten prevod, ki bo uporabljen za poročilo."
 
 #: ../gramps/gen/plug/report/stdoptions.py:89 ../gramps/gui/configure.py:1194
 #: ../gramps/plugins/webreport/webcal.py:1803
@@ -10083,9 +10072,8 @@ msgid "Include"
 msgstr "Vključi"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
-#, fuzzy
 msgid "Whether to include tags"
-msgstr "Ali naj bodo vključene oznake."
+msgstr "Ali naj bodo vključene oznake"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -11149,20 +11137,15 @@ msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr "Predmeti, navedeni v tej opombi, so manjkali v datoteki, uvoženi %s."
 
 #: ../gramps/grampsapp.py:172
-#, fuzzy, python-format
-#| msgid ""
-#| "Your Python version does not meet the requirements. At least python "
-#| "%(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
-#| "\n"
-#| "Gramps will terminate now."
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least Python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Različica nameščenega okolja Python ne ustreza zahtevam programa Gramps. Za "
-"njegovo delovanje je potrebna vsaj različica Python %(v1)d.%(v2)d.%(v3)d.\n"
+"Vaša različica Pythona ne ustreza zahtevam programa Gramps. Za njegovo "
+"delovanje je potrebna vsaj različica Python %(v1)d.%(v2)d.%(v3)d.\n"
 "\n"
 "Program Gramps se bo sedaj zaključil."
 
@@ -11172,28 +11155,21 @@ msgid "Configuration error:"
 msgstr "Napaka v nastavitvah:"
 
 #: ../gramps/grampsapp.py:432
-#, fuzzy
-#| msgid "Error reading configuration"
 msgid "Could not read configuration"
-msgstr "Napaka pri branju nastavitev"
+msgstr "Konfiguracije ni bilo mogoče prebrati"
 
 #: ../gramps/grampsapp.py:436
-#, fuzzy, python-format
-#| msgid ""
-#| "A definition for the MIME-type %s could not be found \n"
-#| "\n"
-#| " Possibly the installation of Gramps was incomplete. Make sure the MIME-"
-#| "types of Gramps are properly installed."
+#, python-format
 msgid ""
 "A definition for the media type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"Ni bilo mogoče najti definicije za MIME-tip %s.\n"
+"Definicije za vrsto medija %s ni bilo mogoče najti\n"
 "\n"
-"Najbrž se Gramps ni popolnoma namestil. Preverite, če so Grampsove vrste "
-"MIME pravilno nameščene."
+" Verjetno je bila namestitev Grampsa nepopolna. Prepričajte se, da je "
+"nameščeno nekaj, kar bo obravnavalo vrste medijev Gramps."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -11204,11 +11180,10 @@ msgid ""
 "license."
 msgstr ""
 "Veliko elementov Grampsove grafiče podobe\n"
-"prihaja neposredno iz projekta Tango\n"
-"ali pa so iz njega izvedeni. Grampsova grafična\n"
-"podoba je izdana pod licenco Creative \n"
-"Commons 2.5 s priznanjem avtorstva in\n"
-"deljenjem pod enakimi pogoji."
+"prihaja neposredno iz projekta Tango ali pa so iz njega izvedeni. \n"
+"Grampsova grafična podoba je izdana pod licenco Creative \n"
+"Commons 2.5 s priznanjem avtorstva in deljenjem pod \n"
+"enakimi pogoji."
 
 #: ../gramps/gui/aboutdialog.py:111
 msgid "Gramps Homepage"
@@ -11360,6 +11335,7 @@ msgid "_Close"
 msgstr "_Zapri"
 
 #: ../gramps/gui/configure.py:119
+#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11394,8 +11370,8 @@ msgstr ""
 "<tt>  \n"
 "  <b>Imena</b>      - imena                 <b>Priimki</b>    - priimki (s "
 "predpono in veznimi členi)\n"
-"  <b>Naziv</b>      - naziv (Dr., Msgr.)    <b>Pripona</b>    - pripona "
-"(ml., II.)\n"
+"  <b>Naziv</b>      - naziv (Dr., Msgr.)    <b>Pripona</b>    - pripona ("
+"ml., II.)\n"
 "  <b>Klicno</b>     - klicno ime            <b>Vzdevek</b>    - vzdevek\n"
 "  <b>Začetnice</b>  - prve črke imena       <b>Običajno</b>   - vzdevek ali "
 "prvo od imen\n"
@@ -11564,7 +11540,7 @@ msgstr "Ponastavi na privzeto"
 
 #: ../gramps/gui/configure.py:695
 msgid "Restore colors for current theme to default."
-msgstr "Ponastavi barve trenutne sheme"
+msgstr "Ponastavi barve trenutne sheme."
 
 #: ../gramps/gui/configure.py:701
 msgid "Colors for Male persons"
@@ -12146,14 +12122,12 @@ msgid "Every hour"
 msgstr "Vsako uro"
 
 #: ../gramps/gui/configure.py:1783
-#, fuzzy
 msgid "Every 12 hours"
-msgstr "Vsako uro"
+msgstr "Vsakih 12 ur"
 
 #: ../gramps/gui/configure.py:1784
-#, fuzzy
 msgid "Every day"
-msgstr "Vse družine"
+msgstr "Vsak dan"
 
 #: ../gramps/gui/configure.py:1789
 msgid "Autobackup"
@@ -12411,8 +12385,8 @@ msgid ""
 msgstr ""
 "Gramps ne pozna vrste datotek \"%s\".\n"
 "\n"
-"Veljavne vrste so: zbirka podatkov Gramps, Gramps XML, paket Gramps in "
-"GEDCOM."
+"Veljavne vrste so: Gramps zbirka podatkov, Gramps XML, paket Gramps, GEDCOM "
+"in ostale."
 
 #: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
 #: ../gramps/plugins/webreport/download.py:173
@@ -13145,14 +13119,12 @@ msgstr "Izdajatelj"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/plugins/gramplet/citations.py:88
-#, fuzzy
 msgid "Confidence Level"
-msgstr "Stopnja zanesljivosti:"
+msgstr "Stopnja zanesljivosti"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:88
-#, fuzzy
 msgid "Sorted date"
-msgstr "Drugi datum"
+msgstr "Razvrščeni datum"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:95
 msgid "_Source Citations"
@@ -14892,9 +14864,8 @@ msgstr ""
 "predmete brez vira."
 
 #: ../gramps/gui/editors/filtereditor.py:533
-#, fuzzy
 msgid "Family filter name:"
-msgstr "Filtri za družine"
+msgstr "Ime filtra za družine:"
 
 #: ../gramps/gui/editors/filtereditor.py:569
 msgid "Include selected Gramps ID"
@@ -15237,13 +15208,15 @@ msgstr "URL"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:62
 msgid "This updates the view with the current filter parameters."
-msgstr ""
+msgstr "S tem se pogled posodobi s trenutnimi parametri filtra."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:65
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"To ponastavi parametre filtra na prazno stanje.  Gumb 'Najdi' je treba "
+"uporabiti za dejansko posodobitev pogleda na privzete nastavitve."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -15768,18 +15741,13 @@ msgid "Con_fidence:"
 msgstr "_Zanesljivost:"
 
 #: ../gramps/gui/glade/editcitation.glade:181
-#, fuzzy
-#| msgid ""
-#| "The date of the entry in the source you are referencing, e.g. the date a "
-#| "house was visited during a census, or the date an entry was made in a "
-#| "birth log/registry. "
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry."
 msgstr ""
 "Datum vnosa v vir, ki ga navajate, npr. datum obiska določene hiše pri "
-"popisu ali datum vnosa v rojstno knjigo. "
+"popisu ali datum vnosa v rojstno knjigo."
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -16144,13 +16112,6 @@ msgid "Image preview"
 msgstr "Predogled slike"
 
 #: ../gramps/gui/glade/editmedia.glade:205
-#, fuzzy
-#| msgid ""
-#| "Path of the media object on your computer.\n"
-#| "Gramps does not store the media internally, it only stores the path! Set "
-#| "the 'Relative Path' in the Preferences to avoid retyping the common base "
-#| "directory where all your media is stored. The 'Media Manager' tool can "
-#| "help managing paths of a collection of media objects. "
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -16162,8 +16123,7 @@ msgstr ""
 "Gramps zunanjih predmetov ne shranjuje interno, ampak si le zapomni poti do "
 "njih! Da se izognete vsakokratnemu tipkanju dela poti, ki je vsem predmetom "
 "skupen, v Možnostih nastavite 'Relativno pot'. Urejevalnik zunanjih "
-"predmetov vam lahko pomaga vzdrževati urejene poti zbirke zunanjih "
-"predmetov. "
+"predmetov vam lahko pomaga vzdrževati urejene poti zbirke zunanjih predmetov."
 
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
@@ -16328,10 +16288,8 @@ msgid ""
 msgstr "Opisno ime, dodeljeno namesto ali poleg uradnega osebnega imena."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Osebno ime ali imena "
+msgstr "Osebno ime ali imena"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -16571,7 +16529,6 @@ msgid "Full title of this place."
 msgstr "Celotno ime tega kraja."
 
 #: ../gramps/gui/glade/editplace.glade:177
-#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
 "notation.\n"
@@ -16587,7 +16544,6 @@ msgstr ""
 "pa jih poiščete s pomočjo ponudnika zemljevidov v pogledu Kraji."
 
 #: ../gramps/gui/glade/editplace.glade:192
-#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
 "place in decimal or degree notation.\n"
@@ -16614,12 +16570,10 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
-#, fuzzy
-#| msgid ""
-#| "Field used to paste info from a web page like google, openstreetmap, ... "
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
 msgstr ""
-"V to polje prilepite podatek s spletne strani, npr. google, opensteetmap, ..."
+"Polje, ki se uporablja za lepljenje informacij s spletne strani, kot je "
+"Google, OpenStreetMap ..."
 
 #: ../gramps/gui/glade/editplace.glade:265
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -17618,11 +17572,10 @@ msgid ""
 msgstr ""
 "Gramps ima že v osnovnem paketu nabor vstavkov, ki zagotavljajo vse, kar "
 "potrebujete. Vseeno pa so na voljo še dodatni vstavki, ki ponujajo poročila, "
-"sezname, poglede, pripomočke in drugo.\n"
-"Tukaj lahko izbirate med dodatnimi vstavki, ki jih boste samodejno prejeli s "
-"spletne strani Grampsa in bodo nameščeni na vaš računalnik.\n"
-"Če to pogovorno okno sedaj zaprete, lahko dodatne vstavke namestite tudi "
-"kasneje preko menija Uredi -> Možnosti."
+"sezname, poglede, pripomočke in drugo. Tukaj lahko izbirate med dodatnimi "
+"vstavki, ki jih boste samodejno prejeli s spletne strani Grampsa in bodo "
+"nameščeni na vaš računalnik. Če to pogovorno okno sedaj zaprete, lahko "
+"dodatne vstavke namestite tudi kasneje preko menija Uredi -> Možnosti."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -19247,11 +19200,10 @@ msgid ""
 "backup your database."
 msgstr ""
 "Z nadaljnim izvajanjem tega orodja se bo izbrisala zgodovina razveljavitev v "
-"tej seji,\n"
-"tako da po končanem izvajanju ne boste mogli vrniti teh sprememb ali "
-"sprememb do tega trenutka na prejšnje stanje.\n"
+"tej seji, tako da po končanem izvajanju ne boste mogli vrniti teh sprememb "
+"ali sprememb do tega trenutka na prejšnje stanje.\n"
 "\n"
-"Če menite, da bi morda želeli vrniti zbirko na sedanje ali prejšnje stanje,\n"
+"Če menite, da bi morda želeli vrniti zbirko na sedanje ali prejšnje stanje, "
 "se tukaj ustavite in pred nadaljevanjem poskrbite za varnostno kopijo zbirke "
 "podatkov."
 
@@ -19860,14 +19812,14 @@ msgid "New_Tag_dialog"
 msgstr "Nova_oznaka"
 
 #: ../gramps/gui/views/tags.py:250
-#, fuzzy, python-format
+#, python-format
 msgid "Add tag '%s'"
-msgstr "Dodaj oznako (%s)"
+msgstr "Dodaj oznako '%s'"
 
 #: ../gramps/gui/views/tags.py:255
-#, fuzzy, python-format
+#, python-format
 msgid "Remove tag '%s'"
-msgstr "Ali naj bo oznaka '%s' odstranjena?"
+msgstr "Odstrani oznako '%s'"
 
 #: ../gramps/gui/views/tags.py:313
 msgid "Adding Tags"
@@ -20046,14 +19998,12 @@ msgid "Restore default gramplets"
 msgstr "Obnovi privzete pripomočke"
 
 #: ../gramps/gui/widgets/grampletbar.py:520
-#, fuzzy
 msgid "Gramplet Bar Help"
-msgstr "Plošča s pripomočki"
+msgstr "Pomoč za Gramplet vrstico"
 
 #: ../gramps/gui/widgets/grampletbar.py:525
-#, fuzzy
 msgid "About Gramplets"
-msgstr "Pripomoček"
+msgstr "O Grampletih"
 
 #: ../gramps/gui/widgets/grampletbar.py:564
 msgid "Restore to defaults?"
@@ -20836,10 +20786,6 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
 #: ../gramps/plugins/drawreport/descendtree.py:1699
-#, fuzzy
-#| msgid ""
-#| "i.e.\n"
-#| "United States of America/U.S.A"
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A."
@@ -21379,24 +21325,20 @@ msgid "The bold style used for the text display."
 msgstr "Slog krepke pisave za prikaz besedila."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1823
-#, fuzzy
 msgid "The style for the marriage box."
-msgstr "Slog za naslov."
+msgstr "Slog za polje za poroko."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1830
-#, fuzzy
 msgid "The style for the spouse box."
-msgstr "Slog za ime zakonca."
+msgstr "Slog za polje zakonca."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1838
-#, fuzzy
 msgid "The style for the direct descendant box."
-msgstr "Slog za naslove odsekov."
+msgstr "Slog za polje neposrednega potomca."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1844
-#, fuzzy
 msgid "The style for the note box."
-msgstr "Slog za naslov opombe."
+msgstr "Slog za polje za beležke."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1849
 #, fuzzy
@@ -24667,7 +24609,7 @@ msgid ""
 "the media object files.)"
 msgstr ""
 "Uvozi podatke iz paketa Gramps (rodovnik arhiviran v obliki XML skupaj z "
-"datotekami zunanjih predmetov)."
+"datotekami zunanjih predmetov)"
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
@@ -25027,9 +24969,8 @@ msgstr[2] "Uvoz končan v {number_of} sekundah"
 msgstr[3] "Uvoz končan v {number_of} sekundah"
 
 #: ../gramps/plugins/importer/importcsv.py:395
-#, fuzzy
 msgid "The following IDs were referenced but not found:\n"
-msgstr "Najdene so bile naslednje težave:\n"
+msgstr "Sledeče ID oznake so bile referencirane vendar niso bile najdene:\n"
 
 #: ../gramps/plugins/importer/importgedcom.glade:15
 msgid "ANSEL"
@@ -25342,7 +25283,7 @@ msgid ""
 "(out of Settings)."
 msgstr ""
 "Privzeto besedilo oznake\n"
-"(iz nastavitev)"
+"(iz nastavitev)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -25472,7 +25413,7 @@ msgid ""
 "event description."
 msgstr ""
 "Shrani datum smrti\n"
-"v opisu dogodka"
+"v opisu dogodka."
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
@@ -25791,16 +25732,10 @@ msgstr ""
 "nastavljena, glede na uporabnikovo mapo.\n"
 
 #: ../gramps/plugins/importer/importxml.py:321
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
-"\n"
 "\n"
 "Stvari, ki bi jih lahko združili:\n"
 
@@ -25882,8 +25817,9 @@ msgstr ""
 "\n"
 "Datoteka tako ne bo uvožena. Uporabite starejšo različico Grampsa, ki "
 "podpira različico %(xmlversion)s datoteke xml.\n"
-"Podrobnosti o tem si oglejte na \n"
-"  %(gramps_wiki_xml_url)s."
+"Oglejte si \n"
+"   %(gramps_wiki_xml_url)s.\n"
+" za več podrobnosti o tem."
 
 #: ../gramps/plugins/importer/importxml.py:1042
 msgid "The file will not be imported"
@@ -25903,13 +25839,15 @@ msgid ""
 "for more info."
 msgstr ""
 "Datoteka .gramps, ki jo skušate uvoziti, je bila ustvarjena v različici "
-"%(oldgramps)s Grampsa, vi pa uporabljate veliko novejšo: %(newgramps)s.\n"
+"%(oldgramps)s Grampsa, vi pa uporabljate veliko novejšo verzijo: "
+"%(newgramps)s.\n"
 "\n"
 "Po uvozu preverite, če je bilo vse pravilno uvoženo. Če pride do težav, "
 "javite napako. Do ureditve problema lahko za uvažanje te datoteke, zapisane "
 "v xml različice %(xmlversion)s, uporabljate starejšo različico Grampsa.\n"
-"Podrobnosti si oglejte na:\n"
-"  %(gramps_wiki_xml_url)s."
+"Oglejte si:\n"
+"   %(gramps_wiki_xml_url)s.\n"
+"za več podrobnosti o tem."
 
 #: ../gramps/plugins/importer/importxml.py:1057
 msgid "Old xml file"
@@ -26037,7 +25975,7 @@ msgstr "Iniciatorij (LDS)"
 
 #: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Military ID"
-msgstr "Vojaška št."
+msgstr "Vojaška ID"
 
 #: ../gramps/plugins/lib/libgedcom.py:709
 msgid "Mission (LDS)"
@@ -30300,7 +30238,7 @@ msgstr "Uvažanje oseb."
 
 #: ../gramps/plugins/lib/libprogen.py:1414
 msgid "see address on "
-msgstr "poglej naslov pri"
+msgstr "poglej naslov pri "
 
 #: ../gramps/plugins/lib/libprogen.py:1417
 msgid "see also address"
@@ -30591,6 +30529,13 @@ msgid ""
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"Če želite uporabiti določenega ponudnika zemljevidov, lahko naslednje polje "
+"nastavite na URL ponudnika.\n"
+"npr.:\n"
+"http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
+"http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1288
 #, fuzzy
@@ -30626,6 +30571,18 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
+"Morate preveriti in spremeniti predpomnilnik ploščic\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"v datoteki gramps.ini :\n"
+"%s\n"
+"\n"
+"Preden spremenite datoteko gramps.ini, morate zapreti gramps\n"
+"\n"
+"Naslednje napake bodo običajne"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:183
 #: ../gramps/plugins/lib/maps/osmgps.py:248
@@ -31912,7 +31869,7 @@ msgstr "Številčenje po Henryju"
 #: ../gramps/plugins/textreport/descendreport.py:531
 #: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Modified Henry numbering"
-msgstr "Prilagojeno številčenje po Henryju "
+msgstr "Prilagojeno številčenje po Henryju"
 
 #: ../gramps/plugins/textreport/descendreport.py:532
 msgid "de Villiers/Pama numbering"
@@ -32414,7 +32371,7 @@ msgstr "Ž"
 #, python-format
 msgctxt "acronym for unknown"
 msgid "%dU"
-msgstr "%d?"
+msgstr "%dN"
 
 #: ../gramps/plugins/textreport/familygroup.py:618
 #, python-format
@@ -32578,7 +32535,7 @@ msgstr "Kliknite, da postane oseba aktivna"
 msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
-msgstr ""
+msgstr "Ali naj bo v naslovu ime osebe ali 'Celotno individualno poročilo'"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
@@ -33295,9 +33252,8 @@ msgstr ""
 "%(file_name)s\n"
 "je navedena v zbirki, a je fizično ni več.\n"
 "Lahko je bila izbrisana ali premaknjena drugam.\n"
-"Sedaj imate tri možnosti: zbrišete navedbo v zbirki;\n"
-"pustite, da še naprej kaže na neobstoječo datoteko;\n"
-"ali pa izberete novo datoteko za navedbo."
+"Sedaj lahko ali zbrišete navedbo v zbirki,\n"
+"ali pustite neobstoječo navedbo, ali pa izberete novo datoteko za navedbo."
 
 #: ../gramps/plugins/tool/check.py:896
 msgid "Looking for empty people records"
@@ -34172,9 +34128,9 @@ msgid ""
 msgstr ""
 "S tem orodjem se pretvarja absolutne poti do zunanjih datotek v relativne. "
 "Relativna pot je relativna glede na osnovno pot, določeno v Možnostih. Če "
-"tam ni določena, pa je relativna glede na domačo mapo uporabnika.\n"
-"Relativna pot omogoča priklepanje mesta datotek na določeno pot, ki se jo "
-"lahko enostavno spremi."
+"tam ni določena, pa je relativna glede na domačo mapo uporabnika. Relativna "
+"pot omogoča priklepanje mesta datotek na določeno pot, ki se jo lahko "
+"enostavno spremi."
 
 #: ../gramps/plugins/tool/mediamanager.py:644
 msgid "Add images not included in database"
@@ -34390,8 +34346,8 @@ msgstr ""
 "\n"
 "Sestavljeni priimki so prikazani kot seznami, sestavljeni iz predpone, "
 "priimka, veznega člena.\n"
-"Primer za privzete nastavitve:\n"
-"\"de Mascarenhas da Silva e Lencastre\" je prikazan kot:\n"
+"Primer za privzete nastavitve, \"de Mascarenhas da Silva e Lencastre\" je "
+"prikazan kot:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
 "To orodje lahko poženete večkrat in tako izvlečete čim več podatkov iz "
@@ -34563,7 +34519,7 @@ msgstr "združi kot"
 
 #: ../gramps/plugins/tool/removespaces.py:199
 msgid "tooltip"
-msgstr ""
+msgstr "namig orodja"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
@@ -34581,12 +34537,12 @@ msgstr "Neveljavna oblika"
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
 msgid "comma instead of dot"
-msgstr ""
+msgstr "vejica namesto pike"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "neveljaven znak namesto '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -35299,21 +35255,21 @@ msgstr "Smrt enaka poroki"
 
 #: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: Title"
-msgstr "Naslov vira:"
+msgstr "Vir: Naslov"
 
 #: ../gramps/plugins/view/citationlistview.py:106
 msgid "Source: ID"
-msgstr "ID vira:"
+msgstr "Vira: ID"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 #: ../gramps/plugins/view/citationtreeview.py:100
 msgid "Source: Author"
-msgstr "Avtor vira:"
+msgstr "Vir: Avtor"
 
 #: ../gramps/plugins/view/citationlistview.py:108
 #: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Abbreviation"
-msgstr "Okrajšava vira:"
+msgstr "Vir: Okrajšava"
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
@@ -36332,7 +36288,7 @@ msgstr "Levo <-> desno"
 
 #: ../gramps/plugins/view/pedigreeview.py:1710
 msgid "About Pedigree View"
-msgstr ""
+msgstr "O pogledu prednikov"
 
 #: ../gramps/plugins/view/pedigreeview.py:1921
 #: ../gramps/plugins/view/relview.py:393
@@ -36934,7 +36890,7 @@ msgstr "Zadnjič spremenjeno"
 
 #: ../gramps/plugins/webreport/download.py:129
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:178
 #, fuzzy
@@ -37014,7 +36970,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Ime"
+msgstr " Ime"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -37124,9 +37080,9 @@ msgid "Creating address book pages ..."
 msgstr "Ustvarjanje strani imenika ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1826
-#, fuzzy, python-format
+#, python-format
 msgid "Narrative Website Report for the %s language"
-msgstr "Pripovedna spletna stran"
+msgstr "Pripovedna spletna stran za %s jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1828
 #, fuzzy
@@ -37288,7 +37244,7 @@ msgstr "Izbira naslova"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2071
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Označite, če želite odpreti/zapreti razdelek"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2081
 msgid "Extra pages"
@@ -37312,7 +37268,7 @@ msgstr "Pot dodatne strani brez pripone"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2112
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Ali želimo uporabljati več prevodov?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2114
 msgid ""
@@ -37320,29 +37276,27 @@ msgid ""
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Ali naj se pripovedni splet prikaže v več jezikih.\n"
+"Za dodajanje novih jezikov privzetemu jeziku, določenemu v naslednjem polju, "
+"glejte zavihek Prevajanje."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2128
 msgid "Sort all children in birth order"
 msgstr "Razporedi vse otroke po vrstnem redu rojstev"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2130
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
 msgstr ""
 "Ali naj bodo otroci prikazani po vrstnem redu rojstev ali po vrstnem redu "
-"vnosa?"
+"vnosa."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2134
 msgid "Do we display coordinates in the places list?"
 msgstr "Ali naj bodo v seznamu krajev prikazane koordinate?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2136
-#, fuzzy
-#| msgid "Whether to display latitude/longitude in the places list?"
 msgid "Whether to display latitude/longitude in the places list."
-msgstr ""
-"Ali naj bosta v seznamu krajev prikazani zemljepisna širina in dolžina?"
+msgstr "Ali naj bosta v seznamu krajev prikazani zemljepisna širina in dolžina."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2140
 msgid "Sort places references either by date or by name"
@@ -37443,9 +37397,8 @@ msgid "HTML user header"
 msgstr "HTML naslov uporabnika"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
-#, fuzzy
 msgid "A note to be used as the page header or a PHP code to insert."
-msgstr "Opomba za zaglavje strani"
+msgstr "Opomba za zaglavje strani ali PHP koda za vstavitev."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2204
 msgid "HTML user footer"
@@ -37457,13 +37410,15 @@ msgstr "Opomba za nogo strani"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2210
 msgid "PHP user session"
-msgstr ""
+msgstr "PHP seja uporabnika"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2211
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"Opomba, ki se uporabi za začetek seje php.\n"
+"Ta možnost je na voljo le, če je izbrana .php končnica datoteke."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Images Generation"
@@ -37479,11 +37434,11 @@ msgstr "Ali naj bo vključena galerija zunanjih predmetov"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 msgid "Create the images index"
-msgstr ""
+msgstr "Ustvarite kazalo slik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2235
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "Ta možnost vam omogoča, da ustvarite kazalo slik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2241
 msgid "Include unused images and media objects"
@@ -37514,7 +37469,7 @@ msgstr "Velikost sličice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2260
 msgid "This option allows you to create the thumbnail index"
-msgstr ""
+msgstr "Ta možnost vam omogoča, da ustvarite kazalo sličic"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2266
 msgid "Max width of initial image"
@@ -37539,7 +37494,7 @@ msgstr "Ali naj bo vključena možnost prenosa zbirke podatkov"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2289
 msgid "How many downloads"
-msgstr ""
+msgstr "Koliko prenosov"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2291
 #, fuzzy
@@ -37547,9 +37502,9 @@ msgid "The number of download files to include in the download page"
 msgstr "Število rodov, ki naj bodo vključeni v rodovnik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2300
-#, fuzzy, python-format
+#, python-format
 msgid "Download Filename #%c"
-msgstr "Ime datoteke za prenos"
+msgstr "Ime datoteke za prenos #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2303
 msgid "File to be used for downloading of database"
@@ -37560,9 +37515,9 @@ msgid "Description for download"
 msgstr "Opis prenosa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2308
-#, fuzzy, python-format
+#, python-format
 msgid "Family Tree #%c"
-msgstr "Rodovnik"
+msgstr "Rodovnik #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2309
 msgid "Give a description for this file."
@@ -37799,11 +37754,11 @@ msgstr "Ključ API za Googlove Zemljevide"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2473
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2474
 msgid "Terrain"
-msgstr ""
+msgstr "Teren"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2475
 #, fuzzy
@@ -37861,7 +37816,7 @@ msgstr "Maks. število objektov za krožni graf"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2524
 msgid "You want to see the last updates on how many days?"
-msgstr ""
+msgstr "Koliko dni nazaj želite videti zadnje posodobitve?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2528
 #, fuzzy
@@ -37870,30 +37825,27 @@ msgstr "Največje število prikazanih krajev"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2530
 msgid "How many updates do you want to see max"
-msgstr ""
+msgstr "Koliko posodobitev želite videti največ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2543
-#, fuzzy
 msgid "Translations"
-msgstr "Prevod"
+msgstr "Prevodi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2546
-#, fuzzy
 msgid "second language"
-msgstr "Drugi datum"
+msgstr "drugi jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2550
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Ime spletnega mesta za vaš drugi jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2551
 #: ../gramps/plugins/webreport/narrativeweb.py:2559
 #: ../gramps/plugins/webreport/narrativeweb.py:2567
 #: ../gramps/plugins/webreport/narrativeweb.py:2575
 #: ../gramps/plugins/webreport/narrativeweb.py:2583
-#, fuzzy
 msgid "This site title"
-msgstr "Naslov spletne strani"
+msgstr "Naslov tega spletnega mesta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2552
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
@@ -37901,25 +37853,23 @@ msgstr "Naslov spletne strani"
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
 msgid "Enter a title in the respective language"
-msgstr ""
+msgstr "Vnesite naslov v ustreznem jeziku"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2554
-#, fuzzy
 msgid "third language"
-msgstr "Jezik"
+msgstr "tretji jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2558
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Ime spletnega mesta za vaš tretji jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2562
-#, fuzzy
 msgid "fourth language"
-msgstr "Jezik"
+msgstr "četrti jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2566
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Ime spletnega mesta za vaš četrti jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2570
 #, fuzzy
@@ -37928,7 +37878,7 @@ msgstr "Jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2574
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Ime spletnega mesta za vaš peti jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
 #, fuzzy
@@ -37937,7 +37887,7 @@ msgstr "Jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2582
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Ime spletnega mesta za vaš šesti jezik"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2795
 #, fuzzy
@@ -37949,9 +37899,9 @@ msgid "Do we include the web calendar ?"
 msgstr "Ali naj bo vključen spletni koledar?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2803
-#, fuzzy, python-format
+#, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Ali naj bo vključena galerija zunanjih predmetov"
+msgstr "Ali naj bo vključena galerija zunanjih predmetov za leto %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2825
 #: ../gramps/plugins/webreport/webcal.py:1953
@@ -38101,7 +38051,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/place.py:203
 msgctxt "Place Name "
 msgid " Name"
-msgstr "Ime"
+msgstr " Ime"
 
 #: ../gramps/plugins/webreport/place.py:244
 #, python-format
@@ -38216,6 +38166,8 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
+"Ta stran vsebuje zadnje posodobljene predmete v zbirki podatkov v zadnjih "
+"%(days)d dneh in za največ %(nb)d predmetov na vrsto predmeta."
 
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
