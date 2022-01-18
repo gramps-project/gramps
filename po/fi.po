@@ -26099,7 +26099,7 @@ msgstr "Virheellinen merkki%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr "GEDCOM-tiedostosi on rikki. Se vaikuttaa loppuvan kesken."
+msgstr "GEDCOM-tiedostosi on vioittunut. Se näyttää olevan typistetty."
 
 #: ../gramps/plugins/lib/libgedcom.py:1904
 #, python-format
@@ -34682,7 +34682,7 @@ msgstr "Lajittele laskevasti"
 
 #: ../gramps/plugins/tool/sortevents.py:189
 msgid "Set the sort order"
-msgstr "Aseta lajittelu järjestys"
+msgstr "Aseta lajittelujärjestys"
 
 #: ../gramps/plugins/tool/sortevents.py:192
 msgid "Include family events"
