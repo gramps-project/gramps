@@ -9,13 +9,14 @@
 # Krystian Safjan <ksafjan@gmail.com>, 2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # WaldiS <sto@tutanota.de>, 2021.
+# Michał Stojek <stojex@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-11-01 17:36+0000\n"
-"Last-Translator: WaldiS <sto@tutanota.de>\n"
+"PO-Revision-Date: 2022-01-12 14:54+0000\n"
+"Last-Translator: Michał Stojek <stojex@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -24,13 +25,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
-msgstr "Gramps"
+msgstr "Dziadek"
 
 #: ../data/gramps.appdata.xml.in:5 ../data/gramps.desktop.in:6
 msgid ""
@@ -540,7 +541,6 @@ msgstr ""
 "kursorem myszy nad ten przycisk, a pojawi się dymek z podpowiedzią."
 
 #: ../data/tips.xml:40
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -548,12 +548,12 @@ msgid ""
 "birth date in Gramps. Click the Date button next to the date field and see "
 "the Gramps Manual to learn more."
 msgstr ""
-"<b>Niepewność co do daty?</b><br/> Jeśli jesteś niepewny co do daty danego "
+"<b>Niepewność co do daty?</b><br/>Jeśli jesteś niepewny co do daty danego "
 "zdarzenia (np. daty urodzin czy śmierci jakiejś osoby), Gramps pozwala Ci "
 "wprowadzić szeroki zakres dat bazując na przypuszczeniach albo "
-"oszacowaniach. Na przykład, &quot;about 1908&quot; jest dopuszczalną datą "
-"urodzin w programie Gramps. Kliknij na przycisk Data obok pola daty i zobacz "
-"wiki podręcznik Gramps po kompletny opis sposobów wprowadzania dat."
+"oszacowaniach. Na przykład, \"około 1908\" jest dopuszczalną datą urodzin w "
+"programie Gramps. Kliknij na przycisk Data obok pola daty i zobacz wiki "
+"podręcznik Gramps po kompletny opis sposobów wprowadzania dat."
 
 #: ../data/tips.xml:42
 #, fuzzy
@@ -689,7 +689,6 @@ msgstr ""
 "niejednokrotnie warto przedyskutować idee na listach mailingowych)."
 
 #: ../data/tips.xml:62
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -702,7 +701,7 @@ msgstr ""
 "ludzi z nich korzysta i jest spora szansa, że szybko uzyskasz swoją "
 "odpowiedź. Jeśli posiadasz jakieś pytania związane z rozwojem Gramps, "
 "spróbuj listy gramps-devel. Możesz zobaczyć listy przez wybranie opcji "
-"&quot; Pomoc &gt; Listy mailingowe Gramps &quot;."
+"\"Pomoc &gt; Listy mailingowe Gramps\"."
 
 #: ../data/tips.xml:64
 #, fuzzy
@@ -2389,7 +2388,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:429
 msgctxt "from-date"
 msgid ""
-msgstr "Data"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -6228,9 +6227,8 @@ msgid "Places enclosed by another place"
 msgstr "Miejsca z określonym źródłem"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:50
-#, fuzzy
 msgid "Matches a place enclosed by a particular place"
-msgstr "Dopasowuje miejsca z określonym źródłem"
+msgstr "Dopasowuje miejsce otoczone określonym miejscem"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
@@ -6286,14 +6284,12 @@ msgid "Units:"
 msgstr "Jednostki:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:58
-#, fuzzy
 msgid "Places within an area"
-msgstr "Miejsca z <ilością> odniesień do obiektów medialnych"
+msgstr "Miejsca w okolicy"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:59
-#, fuzzy
 msgid "Matches places within a given distance of another place"
-msgstr "Dopasowuje miejsca z cytatami o określonej wartości"
+msgstr "Dopasowuje miejsca w określonej odległości od innego miejsca"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
@@ -6821,7 +6817,7 @@ msgstr "Ulica"
 #: ../gramps/plugins/webreport/basepage.py:2900
 #: ../gramps/plugins/webreport/basepage.py:2967
 msgid "Locality"
-msgstr "Zamieszkanie"
+msgstr "Miejscowość"
 
 #: ../gramps/gen/lib/address.py:117 ../gramps/gen/lib/location.py:95
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:615
@@ -16880,7 +16876,7 @@ msgstr "Rodzaj obiektu medialnego:"
 
 #: ../gramps/gui/glade/editreporef.glade:142
 msgid "Call n_umber:"
-msgstr "Numer tel:"
+msgstr "Numer:"
 
 #: ../gramps/gui/glade/editreporef.glade:156
 msgid "On what type of media this source is available in the repository."
@@ -18059,7 +18055,6 @@ msgid "Report a bug"
 msgstr "Zgłoś błąd"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:266
-#, fuzzy
 msgid ""
 "This is the Bug Reporting Assistant. It will help you to make a bug report "
 "to the Gramps developers that will be as detailed as possible.\n"
@@ -18072,13 +18067,13 @@ msgid ""
 "review exactly what information you want to include."
 msgstr ""
 "Uruchomiony został Asystent zgłaszania błędu. Pomoże on w przygotowaniu w "
-"miarę możliwości szczegółowego raportu o błędzie dla zespołu programu "
-"GRAMPS.\n"
+"miarę możliwości szczegółowego raportu o błędzie dla zespołu programu GRAMPS."
+"\n"
 "\n"
 "Asystent zada kilka pytań i zbierze informacje o wystąpieniu błędu i "
 "używanym środowisku. Na końcu pojawi się prośba o wysłanie raportu pocztą "
-"elektroniczną na listę dyskusyjną dotyczącą błędów  w programie GRAMPS. "
-"Tekst raportu zostanie skopiowany do schowka w celu łatwego wklejenia go do "
+"elektroniczną na listę dyskusyjną dotyczącą błędów w programie GRAMPS. Tekst "
+"raportu zostanie skopiowany do schowka w celu łatwego wklejenia go do "
 "programu pocztowego i przejrzenia jego treści."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:283
@@ -24674,9 +24669,8 @@ msgid "Graph Style"
 msgstr "Styl grafu"
 
 #: ../gramps/plugins/graph/gvhourglass.py:438
-#, fuzzy
 msgid "Force Ahnentafel order"
-msgstr "Raport o przodkach"
+msgstr "Wymuś kolejność Ahnentafel"
 
 #: ../gramps/plugins/graph/gvhourglass.py:440
 msgid ""
@@ -24689,9 +24683,8 @@ msgstr ""
 "prawej."
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
-#, fuzzy
 msgid "Ahnentafel number visible"
-msgstr "Raport o przodkach"
+msgstr "Pokazuj numer Ahnentafel"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
@@ -26639,9 +26632,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, No derivations"
-msgstr ""
-"Creative Commons -  (BA, ND)\n"
-"- Uznanie Autorstwa - Bez Utworów Zależnych"
+msgstr "Creative Commons - (BA, ND) Uznanie Autorstwa, Bez Utworów Zależnych"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Share-alike"
@@ -26658,8 +26649,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libhtmlconst.py:115
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr ""
-"Creative Commons -  (BA, NC, ND)\n"
-" - Uznanie Autorstwa - Użycie Niekomercyjne - Bez Utworów Zależnych"
+"Creative Commons - (BA, NC, ND) Uznanie Autorstwa, Użycie Niekomercyjne, Bez "
+"Utworów Zależnych"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:116
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
