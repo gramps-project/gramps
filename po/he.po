@@ -4,14 +4,14 @@
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
 # Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Omer I.S. <omeritzicschwartz@gmail.com>, 2021.
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-18 08:51+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2022-01-20 20:54+0000\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
@@ -74,7 +74,7 @@ msgstr "מסד הנתונים של גרמפס"
 #: ../data/gramps.xml.in:10 ../gramps/plugins/export/export.gpr.py:76
 #: ../gramps/plugins/importer/import.gpr.py:54
 msgid "GEDCOM"
-msgstr "ג'דקום"
+msgstr "ג׳דקום"
 
 #: ../data/gramps.xml.in:20
 msgid "Gramps package"
@@ -310,9 +310,9 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>הוספת תמונות<br/></b>ניתן להוסיף תמונה לכל גלריה או תצוגת מדיה על־ידי "
+"<b>הוספת תמונות<br/></b>ניתן להוסיף תמונה לכל גלריה או תצוגת מדיה בעזרת "
 "גרירה ושחרור שלה מתוך מנהל הקבצים או דפדפן המרשתת. למעשה, ניתן להוסיף כך כל "
-"סוג קובץ. שימושי במיוחד עבור לסריקת מסמכים ומקורות דיגיטלים אחרים."
+"סוג קובץ. שימושי במיוחד עבור לסריקת מסמכים ומקורות דיגיטליים אחרים."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -10819,7 +10819,7 @@ msgstr "הטרוסקסואליות"
 
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr "טרנסג'נדר, דו-מיניים (באנטומולוגיה)"
+msgstr "טרנסג׳נדר, דו־מיניים (באנטומולוגיה)"
 
 #: ../gramps/gen/utils/symbols.py:68
 msgid "Transgender"
@@ -13340,7 +13340,7 @@ msgstr "ריבוי שמות משפחה"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:92
 msgid "Family Surnames"
-msgstr "שמות-משפחה משפחה"
+msgstr "שמות משפחה"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:54
 msgid "Create and add a new web address"
@@ -13760,7 +13760,7 @@ msgid ""
 "To make sure the information shown is still correct, the data shown has been "
 "updated. Some edits you have made may have been lost."
 msgstr ""
-"ה- %(object)s שבעריכה השתנה מחוץ לעורך זה. עשוי היה לנבוע משינוי באחת "
+"ה־ %(object)s שבעריכה השתנה מחוץ לעורך זה. עשוי היה לנבוע משינוי באחת "
 "התצוגות העיקריות, לדוגמה מקור המשמש כאן נמחק בתצוגת המקור.\n"
 "כדי לוודא שהמידע המוצג עדיין נכון, הנתונים המוצגים עודכנו. יתכן שכמה עריכות "
 "שבוצעו וטרם נשמרו יאבדו."
@@ -14795,7 +14795,7 @@ msgstr "הסרת מקור"
 
 #: ../gramps/gui/editors/objectentries.py:387
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr "לבחירת אובייקט מדיה, נא להשתמש בגרירה-ושחרר או בלחצנים"
+msgstr "לבחירת אובייקט מדיה, נא להשתמש ב\"גרירה ושחרור\" או בלחצנים"
 
 #: ../gramps/gui/editors/objectentries.py:389
 #: ../gramps/gui/plug/_guioptions.py:1117
@@ -15479,9 +15479,9 @@ msgid ""
 "in addition to the page number. "
 msgstr ""
 "מיקום מסוים במידע המופנה. עבור עבודה שפורסמה, הדבר עשוי לכלול את הכרך בעבודה "
-"מרובת כרכים ואת מספרי העמודים. עבור כתב-עת, לרוב יכלול לכלול מספרי הכרך, "
+"מרובת כרכים ואת מספרי העמודים. עבור כתב־עת, לרוב יכלול לכלול מספרי הכרך, "
 "הגיליון, והעמוד. עבור עיתון, עשוי לכלול מספר עמודה ומספר עמוד. עבור מקור שלא "
-"פורסם, יכול להיות מספר גיליון, מספר עמוד, מספר מסגרת, וכו '. רשומת מפקד "
+"פורסם, יכול להיות מספר גיליון, מספר עמוד, מספר מסגרת, וכו׳. רשומת מפקד "
 "אוכלוסין עשויה להכיל מספר שורה או כתובת מגורים ומספרי משפחה בנוסף למספר "
 "העמוד. "
 
@@ -15837,7 +15837,7 @@ msgstr "_מדינה:"
 msgid ""
 "Second level of place division, eg., in the USA a state, in Germany a "
 "Bundesland."
-msgstr "רמה שניה של מחלקות אזור, לדוגמה, מדינה ברצות הברית או חבל-ארץ בגרמניה."
+msgstr "רמה שניה של מחלקות אזור, לדוגמה, מדינה ברצות הברית או חבל־ארץ בגרמניה."
 
 #: ../gramps/gui/glade/editlocation.glade:234
 msgid "The country where the place is."
@@ -17387,7 +17387,7 @@ msgstr "_תצור..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Export..."
-msgstr "_יצוא..."
+msgstr "_ייצוא..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Extra Reports/Tools"
@@ -21598,15 +21598,15 @@ msgstr "אפשרויות ייצוא כקובץ ג׳דקום"
 #: ../gramps/plugins/export/export.gpr.py:98
 #: ../gramps/plugins/importer/import.gpr.py:73
 msgid "GeneWeb"
-msgstr "ג'נה-ווב"
+msgstr "ג׳נה־ווב"
 
 #: ../gramps/plugins/export/export.gpr.py:99
 msgid "_GeneWeb"
-msgstr "_ג'נה-ווב"
+msgstr "קוב_ץ ג׳נה־ווב"
 
 #: ../gramps/plugins/export/export.gpr.py:100
 msgid "GeneWeb is a web based genealogy program."
-msgstr "ג'נה-ווב היא תכנת גנאלוגיה מבוססת מרשתת."
+msgstr "ג׳נה־ווב היא תכנית גנאלוגיה מבוססת רשת."
 
 #: ../gramps/plugins/export/export.gpr.py:108
 msgid "GeneWeb export options"
@@ -22465,7 +22465,7 @@ msgstr "גרמפלט להצגת אובייקטי מדיה בתצוגה מקדי�
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:419
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:427
 msgid "Image Metadata"
-msgstr "מטה-דטת תמונה"
+msgstr "נתוני על לתמונה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:420
 msgid "Gramplet showing metadata for a media object"
@@ -24047,8 +24047,8 @@ msgid ""
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
-"אילוץ סדר הפריסה סוסה/סוסה-סטראדונץ/אננטופל לכל האבות הקדמונים, כך שאבות "
-"יופיעו תמיד בענף השמאלי ואמהות בענף הימני."
+"אילוץ סדר הפריסה Sosa/‏Sosa־סטראדונץ/אננטופל לכל האבות הקדמונים, כך שאבות "
+"יופיעו תמיד בענף השמאלי ואימהות בענף הימני."
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "Ahnentafel number visible"
@@ -24058,7 +24058,7 @@ msgstr "מספרי טבלת אָבוֹת קַדמוֹנִים גלויים"
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
-msgstr "הצגת מספר סוסה / סוסה-סטראדונץ / אננטפל תחת כל המידע האחר."
+msgstr "הצגת מספר Sosa / ‏Sosa־סטראדונץ / אננטפל תחת כל המידע האחר."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -29610,7 +29610,7 @@ msgstr "אספקת התשתית הנדרשת למצג רשימות אנשים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:247
 msgid "Provides common functionality for Pro-Gen import"
-msgstr "אספקת פונקציונליות נפוצה ליבוא פרו-ג'ן"
+msgstr "אספקת פונקציונליות נפוצה לייבוא פרו־ג׳ן"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:265
 msgid "Provides the Base needed for the List Place views."
@@ -29646,11 +29646,11 @@ msgstr "אתחול."
 
 #: ../gramps/plugins/lib/libprogen.py:515
 msgid "Not a supported Pro-Gen import file language"
-msgstr "אין שפת יבוא פרו-ג'ן נתמכת"
+msgstr "אין שפת ייבוא פרו־ג׳ן נתמכת"
 
 #: ../gramps/plugins/lib/libprogen.py:531
 msgid "Pro-Gen import"
-msgstr "יבוא פרו-ג'ן"
+msgstr "ייבוא פרו־ג׳ן"
 
 #: ../gramps/plugins/lib/libprogen.py:539
 msgid "Saving."
@@ -29658,7 +29658,7 @@ msgstr "שמירה..."
 
 #: ../gramps/plugins/lib/libprogen.py:929
 msgid "Pro-Gen Import"
-msgstr "יבוא פרו-ג'ן"
+msgstr "ייבוא פרו־ג׳ן"
 
 #: ../gramps/plugins/lib/libprogen.py:1138
 #, python-format
@@ -30119,7 +30119,7 @@ msgstr ""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:33
 msgid "EniroMaps"
-msgstr "אנירו-מאפס"
+msgstr "‏EniroMaps"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:34
 msgid "Opens on kartor.eniro.se"
@@ -31428,11 +31428,11 @@ msgstr "בקשר עם: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:835
 msgid "Sosa-Stradonitz number"
-msgstr "מספור סוסה-סטראדונץ"
+msgstr "מספור Sosa־סטראדונץ"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:837
 msgid "The Sosa-Stradonitz number of the central person."
-msgstr "מספור סוסה-סטראדונץ של האדם המרכזי."
+msgstr "מספור Sosa־סטראדונץ של האדם המרכזי."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:851
 #: ../gramps/plugins/textreport/detdescendantreport.py:1040
@@ -37369,7 +37369,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
 msgid "NarrativeWeb Home"
-msgstr "אתר מרשתת נארטיב-ווב"
+msgstr "אתר הבית של NerrativeWeb"
 
 #: ../gramps/plugins/webreport/webcal.py:336
 #: ../gramps/plugins/webreport/webcal.py:1030
