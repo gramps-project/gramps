@@ -11169,12 +11169,12 @@ msgstr "Katkılar"
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:120
 msgid "translator-credits"
-msgstr "Bora Atıcı"
+msgstr "Osman Öz"
 
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
 msgid "Distribution: %s"
-msgstr "Distribution: %s"
+msgstr "Dağıtım: %s"
 
 #: ../gramps/gui/aboutdialog.py:142
 #, python-format
@@ -11184,21 +11184,21 @@ msgstr "OS: %s"
 #: ../gramps/gui/clipboard.py:70
 msgctxt "manual"
 msgid "Using_the_Clipboard"
-msgstr "Pano_Kullanımı"
+msgstr "Panoyu_Kullanma"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
 msgid "Family Event"
-msgstr "Aile Etkinlikleri"
+msgstr "Aile Etkinliği"
 
 #: ../gramps/gui/clipboard.py:451
 msgid "Family Attribute"
-msgstr "Aile Niteliği"
+msgstr "Aile Özniteliği"
 
 #: ../gramps/gui/clipboard.py:483
 msgctxt "not available"
 msgid "NA"
-msgstr "NA"
+msgstr "YOK"
 
 #: ../gramps/gui/clipboard.py:492
 #, python-format
@@ -11207,11 +11207,11 @@ msgstr "Cilt/Sayfa: %(pag)s -- %(sourcetext)s"
 
 #: ../gramps/gui/clipboard.py:524
 msgid "Event ref"
-msgstr "Etkinlik ref"
+msgstr "Etkinlik referansı"
 
 #: ../gramps/gui/clipboard.py:696
 msgid "Child ref"
-msgstr "Çocuk ref"
+msgstr "Çocuk referansı"
 
 #: ../gramps/gui/clipboard.py:706
 #, python-format
@@ -11228,19 +11228,19 @@ msgstr "Pano"
 #, python-format
 msgctxt "the object"
 msgid "See %s details"
-msgstr "%s nesnesinin ayrıntılarını gör"
+msgstr "%s ayrıntılarına bakın"
 
 #: ../gramps/gui/clipboard.py:1502 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgctxt "the object"
 msgid "Make %s active"
-msgstr "%s'yi aktif yap"
+msgstr "%s etkin yap"
 
 #: ../gramps/gui/clipboard.py:1524
 #, python-format
 msgctxt "the object"
 msgid "Create Filter from %s selected..."
-msgstr "Seçilen %s arasından Süzgeç Oluştur..."
+msgstr "Seçilen %s arasından Filtre Oluştur..."
 
 #: ../gramps/gui/columnorder.py:89
 #, python-format
