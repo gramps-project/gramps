@@ -7253,7 +7253,7 @@ msgstr "sadece metin"
 #: ../gramps/plugins/tool/reorderids.glade:787
 #: ../gramps/plugins/webreport/basepage.py:776
 msgid "Event"
-msgstr "Olay"
+msgstr "Etkinlik"
 
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/ldsord.py:186
 #: ../gramps/gen/lib/place.py:134 ../gramps/gui/clipboard.py:355
@@ -7297,7 +7297,7 @@ msgstr "Yer"
 
 #: ../gramps/gen/lib/eventref.py:95
 msgid "Event reference"
-msgstr "Olay referansı"
+msgstr "Etkinlik referansı"
 
 #: ../gramps/gen/lib/eventref.py:106 ../gramps/gen/lib/family.py:171
 #: ../gramps/gen/lib/media.py:152 ../gramps/gen/lib/mediaref.py:100
@@ -7490,7 +7490,7 @@ msgstr "Seçilmiş"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Emigration"
-msgstr "Göç"
+msgstr "Göçme"
 
 #: ../gramps/gen/lib/eventtype.py:182
 msgid "First Communion"
@@ -7498,7 +7498,7 @@ msgstr "İlk Cemaat"
 
 #: ../gramps/gen/lib/eventtype.py:183
 msgid "Immigration"
-msgstr "Taşınma"
+msgstr "Göçmenlik"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Graduation"
@@ -7510,11 +7510,11 @@ msgstr "Tıbbi Bilgi"
 
 #: ../gramps/gen/lib/eventtype.py:186
 msgid "Military Service"
-msgstr "Askerlik Görevi"
+msgstr "Askerlik Hizmeti"
 
 #: ../gramps/gen/lib/eventtype.py:187
 msgid "Naturalization"
-msgstr "Vatandaşlığa Kabul"
+msgstr "Vatandaşlık"
 
 #: ../gramps/gen/lib/eventtype.py:188
 msgid "Nobility Title"
@@ -7580,7 +7580,7 @@ msgstr "Evlilik Yasakları"
 
 #: ../gramps/gen/lib/eventtype.py:203
 msgid "Engagement"
-msgstr "Nişan"
+msgstr "Nişanlanma"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/utils/symbols.py:76
 #: ../gramps/plugins/webreport/family.py:198
@@ -7623,17 +7623,17 @@ msgstr "e."
 #: ../gramps/gen/lib/eventtype.py:214
 msgctxt "Unknown abbreviation"
 msgid "unkn."
-msgstr "bm."
+msgstr "bilinm."
 
 #: ../gramps/gen/lib/eventtype.py:215
 msgctxt "Custom abbreviation"
 msgid "cust."
-msgstr "öz."
+msgstr "özel."
 
 #: ../gramps/gen/lib/eventtype.py:216
 msgctxt "Adopted abbreviation"
 msgid "adop."
-msgstr "üv."
+msgstr "evlatl."
 
 #: ../gramps/gen/lib/eventtype.py:217
 msgctxt "Adult Christening abbreviation"
@@ -7643,7 +7643,7 @@ msgstr "yetş. vaft."
 #: ../gramps/gen/lib/eventtype.py:218
 msgctxt "Baptism abbreviation"
 msgid "bap."
-msgstr "vaf."
+msgstr "vaft."
 
 #: ../gramps/gen/lib/eventtype.py:219
 msgctxt "Bar Mitzvah abbreviation"
@@ -7668,7 +7668,7 @@ msgstr "def."
 #: ../gramps/gen/lib/eventtype.py:223
 msgctxt "Cause Of Death abbreviation"
 msgid "d.cau."
-msgstr "öl.sb."
+msgstr "ö.neden."
 
 #: ../gramps/gen/lib/eventtype.py:224
 msgctxt "Census abbreviation"
@@ -7688,7 +7688,7 @@ msgstr "onay."
 #: ../gramps/gen/lib/eventtype.py:227
 msgctxt "Cremation abbreviation"
 msgid "crem."
-msgstr "yak."
+msgstr "ö. yak."
 
 #: ../gramps/gen/lib/eventtype.py:228
 msgctxt "Degree abbreviation"
@@ -7698,7 +7698,7 @@ msgstr "der."
 #: ../gramps/gen/lib/eventtype.py:229
 msgctxt "Education abbreviation"
 msgid "edu."
-msgstr "eği."
+msgstr "eğt."
 
 #: ../gramps/gen/lib/eventtype.py:230
 msgctxt "Elected abbreviation"
@@ -7718,27 +7718,27 @@ msgstr "i. cemaat."
 #: ../gramps/gen/lib/eventtype.py:233
 msgctxt "Immigration abbreviation"
 msgid "im."
-msgstr "göç."
+msgstr "göçm."
 
 #: ../gramps/gen/lib/eventtype.py:234
 msgctxt "Graduation abbreviation"
 msgid "grad."
-msgstr "mez."
+msgstr "mezun."
 
 #: ../gramps/gen/lib/eventtype.py:235
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr "tıbbi b."
+msgstr "tıbbi bil."
 
 #: ../gramps/gen/lib/eventtype.py:236
 msgctxt "Military Service abbreviation"
 msgid "milser."
-msgstr "ask."
+msgstr "ask. hiz."
 
 #: ../gramps/gen/lib/eventtype.py:237
 msgctxt "Naturalization abbreviation"
 msgid "nat."
-msgstr "vatn."
+msgstr "vatan."
 
 #: ../gramps/gen/lib/eventtype.py:238
 msgctxt "Nobility Title abbreviation"
@@ -7778,12 +7778,12 @@ msgstr "din."
 #: ../gramps/gen/lib/eventtype.py:245
 msgctxt "Residence abbreviation"
 msgid "res."
-msgstr "ika."
+msgstr "ikam."
 
 #: ../gramps/gen/lib/eventtype.py:246
 msgctxt "Retirement abbreviation"
 msgid "ret."
-msgstr "emk."
+msgstr "emek."
 
 #: ../gramps/gen/lib/eventtype.py:247
 msgctxt "Will abbreviation"
@@ -7828,12 +7828,12 @@ msgstr "boşan."
 #: ../gramps/gen/lib/eventtype.py:255
 msgctxt "Divorce Filing abbreviation"
 msgid "div.f."
-msgstr "boşan. dos."
+msgstr "boşan.dav."
 
 #: ../gramps/gen/lib/eventtype.py:256
 msgctxt "Annulment abbreviation"
 msgid "annul."
-msgstr "evl. iptal."
+msgstr "evl. fesh."
 
 #: ../gramps/gen/lib/family.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
@@ -7906,7 +7906,7 @@ msgstr "Çocuklar"
 #: ../gramps/plugins/webreport/person.py:1756
 #: ../gramps/plugins/webreport/updates.py:112
 msgid "Events"
-msgstr "Olaylar"
+msgstr "Etkinlikler"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
@@ -7922,7 +7922,7 @@ msgstr "Evlenmemiş"
 
 #: ../gramps/gen/lib/familyreltype.py:49
 msgid "Civil Union"
-msgstr "Medeni Birliktelik"
+msgstr "Sivil Birlik"
 
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
 #: ../gramps/gen/lib/ldsord.py:184 ../gramps/gui/clipboard.py:907
@@ -7989,7 +7989,7 @@ msgstr "Tür"
 
 #: ../gramps/gen/lib/ldsord.py:96
 msgid "Endowment"
-msgstr "Endowment"
+msgstr "Bağış"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Parents"
@@ -7997,7 +7997,7 @@ msgstr "Ebeveynlere Mühürlü"
 
 #: ../gramps/gen/lib/ldsord.py:99
 msgid "Sealed to Spouse"
-msgstr "Eşine Bağlılık"
+msgstr "Eşe Mühürlü"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
@@ -8005,7 +8005,7 @@ msgstr "<Durum Yok>"
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Born in Covenant"
-msgstr "Antlaşma'da doğdu"
+msgstr "Ahit'te doğdu"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
@@ -8034,7 +8034,7 @@ msgstr "Tamamlandı"
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Do not seal"
-msgstr "Do not seal"
+msgstr "Mühürlemeyin"
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Infant"
@@ -8046,15 +8046,15 @@ msgstr "1970 öncesi"
 
 #: ../gramps/gen/lib/ldsord.py:112
 msgid "Qualified"
-msgstr "Kalifiye"
+msgstr "Nitelikli"
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Do not seal/Cancel"
-msgstr "Do not seal/Cancel"
+msgstr "Mühürlemeyin/İptal etmeyin"
 
 #: ../gramps/gen/lib/ldsord.py:114
 msgid "Stillborn"
-msgstr "Ölü doğum"
+msgstr "Ölü doğmuş"
 
 #: ../gramps/gen/lib/ldsord.py:115
 msgid "Submitted"
@@ -8096,7 +8096,7 @@ msgstr "Durum"
 #: ../gramps/gen/lib/location.py:87 ../gramps/gen/lib/nameorigintype.py:86
 #: ../gramps/gui/clipboard.py:318 ../gramps/gui/plug/_windows.py:625
 msgid "Location"
-msgstr "Yer"
+msgstr "Konum"
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
 #: ../gramps/plugins/view/geoplaces.py:643
@@ -8118,11 +8118,11 @@ msgstr "MIME"
 
 #: ../gramps/gen/lib/media.py:149
 msgid "Checksum"
-msgstr "Checksum"
+msgstr "Sağlama"
 
 #: ../gramps/gen/lib/mediaref.py:86 ../gramps/gui/clipboard.py:656
 msgid "Media ref"
-msgstr "Ortam ref"
+msgstr "Medya referansı"
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
 #: ../gramps/plugins/view/geoplaces.py:634
@@ -8178,11 +8178,11 @@ msgstr "Bölge"
 #: ../gramps/plugins/webreport/person.py:2086
 #: ../gramps/plugins/webreport/surname.py:138
 msgid "Name"
-msgstr "İsim"
+msgstr "Adı"
 
 #: ../gramps/gen/lib/name.py:159 ../gramps/plugins/importer/importcsv.py:166
 msgid "Given name"
-msgstr "Ad"
+msgstr "Verilen ad"
 
 #: ../gramps/gen/lib/name.py:162 ../gramps/plugins/webreport/basepage.py:1737
 #: ../gramps/plugins/webreport/basepage.py:1789
@@ -8229,15 +8229,15 @@ msgstr "Sonek"
 #: ../gramps/plugins/view/sourceview.py:82
 #: ../gramps/plugins/webreport/basepage.py:3111
 msgid "Title"
-msgstr "Etiket"
+msgstr "Unvan"
 
 #: ../gramps/gen/lib/name.py:169 ../gramps/plugins/webreport/person.py:224
 msgid "Group as"
-msgstr "Grupla"
+msgstr "Olarak grupla"
 
 #: ../gramps/gen/lib/name.py:171
 msgid "Sort as"
-msgstr "Sırala"
+msgstr "Olarak sırala"
 
 #: ../gramps/gen/lib/name.py:173
 msgid "Display as"
@@ -8301,11 +8301,11 @@ msgstr "Alınan"
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
 #: ../gramps/gui/configure.py:857
 msgid "Patronymic"
-msgstr "Eril Soyad"
+msgstr "Eril soyadı"
 
 #: ../gramps/gen/lib/nameorigintype.py:80
 msgid "Matronymic"
-msgstr "Dişil Soyad"
+msgstr "Dişil soyadı"
 
 #: ../gramps/gen/lib/nameorigintype.py:81
 msgctxt "Surname"
@@ -8314,11 +8314,11 @@ msgstr "Feodal"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgid "Pseudonym"
-msgstr "Pseudonym"
+msgstr "Takma ad"
 
 #: ../gramps/gen/lib/nameorigintype.py:83
 msgid "Patrilineal"
-msgstr "Atasoylu"
+msgstr "Babasoylu"
 
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgid "Matrilineal"
@@ -8406,7 +8406,7 @@ msgstr "Transkript"
 
 #: ../gramps/gen/lib/notetype.py:78
 msgid "Source text"
-msgstr "Kaynak metni"
+msgstr "Kaynak metin"
 
 #: ../gramps/gen/lib/notetype.py:80 ../gramps/gen/plug/_pluginreg.py:79
 #: ../gramps/gui/logger/_errorview.py:174
@@ -8420,7 +8420,7 @@ msgstr "Html kodu"
 #: ../gramps/gen/lib/notetype.py:82
 msgctxt "notetype"
 msgid "To Do"
-msgstr "Yapılacak"
+msgstr "Yapılacaklar"
 
 #: ../gramps/gen/lib/notetype.py:83
 msgctxt "notetype"
@@ -8437,7 +8437,7 @@ msgstr "İsim Notu"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Attribute Note"
-msgstr "Özellik Notu"
+msgstr "Öznitelik Notu"
 
 #: ../gramps/gen/lib/notetype.py:90
 msgid "Address Note"
@@ -8458,11 +8458,11 @@ msgstr "Aile Notu"
 
 #: ../gramps/gen/lib/notetype.py:94
 msgid "Event Note"
-msgstr "Durum Notu"
+msgstr "Etkinlik Notu"
 
 #: ../gramps/gen/lib/notetype.py:95
 msgid "Event Reference Note"
-msgstr "Olay Referansı Notu"
+msgstr "Etkinlik Referans Notu"
 
 #: ../gramps/gen/lib/notetype.py:96
 msgid "Source Note"
@@ -8470,7 +8470,7 @@ msgstr "Kaynak Notu"
 
 #: ../gramps/gen/lib/notetype.py:97
 msgid "Source Reference Note"
-msgstr "Kaynak Referansı Notu"
+msgstr "Kaynak Referans Notu"
 
 #: ../gramps/gen/lib/notetype.py:98
 msgid "Place Note"
@@ -8482,15 +8482,15 @@ msgstr "Depo Notu"
 
 #: ../gramps/gen/lib/notetype.py:100
 msgid "Repository Reference Note"
-msgstr "Depo Referansı Notu"
+msgstr "Depo Referans Notu"
 
 #: ../gramps/gen/lib/notetype.py:101
 msgid "Media Note"
-msgstr "Ortam Notu"
+msgstr "Medya Notu"
 
 #: ../gramps/gen/lib/notetype.py:102
 msgid "Media Reference Note"
-msgstr "Ortam Referansı Notu"
+msgstr "Medya Referans Notu"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "Child Reference Note"
@@ -8554,15 +8554,15 @@ msgstr "Alternatif Adlar"
 
 #: ../gramps/gen/lib/person.py:190
 msgid "Death reference index"
-msgstr "Ölüm referans indeksi"
+msgstr "Ölüm referans endeksi"
 
 #: ../gramps/gen/lib/person.py:192
 msgid "Birth reference index"
-msgstr "Doğum referans indeksi"
+msgstr "Doğum referans endeksi"
 
 #: ../gramps/gen/lib/person.py:195
 msgid "Event references"
-msgstr "Olay referansları"
+msgstr "Etkinlik referansları"
 
 #: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:293
 #: ../gramps/plugins/graph/gvhourglass.py:434
@@ -8586,7 +8586,7 @@ msgstr "Aileler"
 
 #: ../gramps/gen/lib/person.py:203
 msgid "Parent families"
-msgstr "Parent families"
+msgstr "Ebeveyn aileler"
 
 #: ../gramps/gen/lib/person.py:209 ../gramps/gen/lib/repo.py:103
 #: ../gramps/gui/merge/mergeperson.py:268
@@ -8605,11 +8605,11 @@ msgstr "Kişi referansları"
 
 #: ../gramps/gen/lib/person.py:537
 msgid "Merged Gramps ID"
-msgstr "Birleştirilmiş Gramps ID"
+msgstr "Birleştirilmiş Gramps Kimliği"
 
 #: ../gramps/gen/lib/personref.py:98 ../gramps/gui/clipboard.py:676
 msgid "Person ref"
-msgstr "Kişi ref"
+msgstr "Kişi referansı"
 
 #: ../gramps/gen/lib/personref.py:115
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
@@ -8654,7 +8654,7 @@ msgstr "Yerler"
 #: ../gramps/plugins/textreport/indivcomplete.py:393
 #: ../gramps/plugins/webreport/basepage.py:2936
 msgid "Alternate Names"
-msgstr "Alternatif Isimler"
+msgstr "Alternatif İsimler"
 
 #: ../gramps/gen/lib/place.py:157
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:110
@@ -8686,7 +8686,7 @@ msgstr "Dil"
 
 #: ../gramps/gen/lib/placeref.py:87 ../gramps/gui/clipboard.py:543
 msgid "Place ref"
-msgstr "Yer ref"
+msgstr "Yer referansı"
 
 #: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:631
 #: ../gramps/plugins/webreport/basepage.py:2908
@@ -8699,7 +8699,7 @@ msgstr "Bölüm"
 
 #: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:601
 msgid "Neighborhood"
-msgstr "Neighborhood"
+msgstr "Mahalle"
 
 #: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:640
 msgid "District"
@@ -8711,11 +8711,11 @@ msgstr "İlçe"
 
 #: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:652
 msgid "Municipality"
-msgstr "Belediye"
+msgstr "Belde"
 
 #: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:649
 msgid "Town"
-msgstr "İlçe"
+msgstr "Kasaba"
 
 #: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:607
 msgid "Village"
@@ -8723,7 +8723,7 @@ msgstr "Köy"
 
 #: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:610
 msgid "Hamlet"
-msgstr "Mezra(küçük köy)"
+msgstr "Mezra"
 
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:613
 msgid "Farm"
@@ -8754,12 +8754,12 @@ msgstr "Depo"
 
 #: ../gramps/gen/lib/reporef.py:96 ../gramps/gui/clipboard.py:505
 msgid "Repository ref"
-msgstr "Depo ref"
+msgstr "Depo referansı"
 
 #: ../gramps/gen/lib/reporef.py:107
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Call Number"
-msgstr "Telefon No"
+msgstr "Çağrı Numarası"
 
 #: ../gramps/gen/lib/repotype.py:54
 msgid "Library"
@@ -8775,7 +8775,7 @@ msgstr "Kilise"
 
 #: ../gramps/gen/lib/repotype.py:57
 msgid "Archive"
-msgstr "Arşivle"
+msgstr "Arşiv"
 
 #: ../gramps/gen/lib/repotype.py:58
 msgid "Album"
@@ -8795,7 +8795,7 @@ msgstr "Koleksiyon"
 
 #: ../gramps/gen/lib/repotype.py:62
 msgid "Safe"
-msgstr "Kasa"
+msgstr "Güvenli"
 
 #: ../gramps/gen/lib/src.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:81
@@ -8820,7 +8820,7 @@ msgstr "Yayın bilgisi"
 #: ../gramps/plugins/view/sourceview.py:85
 #: ../gramps/plugins/webreport/source.py:270
 msgid "Abbreviation"
-msgstr "kisaltma"
+msgstr "Kısaltma"
 
 #: ../gramps/gen/lib/src.py:127 ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
@@ -8892,7 +8892,7 @@ msgstr "Video"
 
 #: ../gramps/gen/lib/styledtext.py:318
 msgid "Styled Text"
-msgstr "Stilize Metin"
+msgstr "Tarz Metin"
 
 #: ../gramps/gen/lib/styledtext.py:325
 msgid "Styled Text Tags"
@@ -8922,7 +8922,7 @@ msgstr "Aralıklar"
 #: ../gramps/gen/lib/styledtexttagtype.py:61
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Bold"
-msgstr "Koyu"
+msgstr "Kalın"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:62
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -8932,19 +8932,19 @@ msgstr "İtalik"
 #: ../gramps/gen/lib/styledtexttagtype.py:63
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Underline"
-msgstr "Altı çizgili"
+msgstr "Altı çizili"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:64
 msgid "Fontface"
-msgstr "Yazıyüzü"
+msgstr "Yazı tipi yüzü"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:65
 msgid "Fontsize"
-msgstr "Yazıtipi boyutu"
+msgstr "Yazı tipi boyutu"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
 msgid "Fontcolor"
-msgstr "Yazıtipi rengi"
+msgstr "Yazı tipi rengi"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:67
 msgid "Highlight"
@@ -8952,7 +8952,7 @@ msgstr "Vurgula"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:68
 msgid "Superscript"
-msgstr "Superscript"
+msgstr "Üst simge"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:69
 #: ../gramps/gui/glade/editlink.glade:171
@@ -8977,7 +8977,7 @@ msgstr "Bağlantı"
 #: ../gramps/plugins/webreport/surname.py:99
 #: ../gramps/plugins/webreport/surnamelist.py:148
 msgid "Surname"
-msgstr "Soyad"
+msgstr "Soyadı"
 
 #: ../gramps/gen/lib/surname.py:93 ../gramps/gen/utils/keyword.py:71
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
@@ -9018,11 +9018,11 @@ msgstr "E-posta"
 
 #: ../gramps/gen/lib/urltype.py:50
 msgid "Web Home"
-msgstr "Web Evi"
+msgstr "Web Ana Sayfası"
 
 #: ../gramps/gen/lib/urltype.py:51
 msgid "Web Search"
-msgstr "İnternette Ara"
+msgstr "Web Araması"
 
 #: ../gramps/gen/lib/urltype.py:52
 msgid "FTP"
@@ -9042,11 +9042,11 @@ msgstr "Alıntıyı Birleştir"
 
 #: ../gramps/gen/merge/mergeeventquery.py:59
 msgid "Merge Event Objects"
-msgstr "Olay Nesnelerini Birleştir"
+msgstr "Etkinlik Nesnelerini Birleştir"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:90
 msgid "A parent should be a father or mother."
-msgstr "Bir ebeveyn, baba veya anne olmalıdır."
+msgstr "Bir ebeveyn, bir baba veya anne olmalıdır."
 
 #: ../gramps/gen/merge/mergefamilyquery.py:103
 #: ../gramps/gen/merge/mergefamilyquery.py:114
@@ -9068,7 +9068,7 @@ msgstr "Aileyi Birleştir"
 #: ../gramps/gen/merge/mergemediaquery.py:59
 #: ../gramps/gui/merge/mergemedia.py:66
 msgid "Merge Media Objects"
-msgstr "Ortam Nesnelerini Birleştir"
+msgstr "Medya Nesnelerini Birleştir"
 
 #: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
@@ -9079,8 +9079,8 @@ msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
-"Eşler birleştirilemez. Bu kişileri birleştirmek için önce ilişkilerini "
-"silmelisiniz."
+"Eşler birleştirilemez. Bu insanları birleştirmek için önce aralarındaki "
+"ilişkiyi koparmalısın."
 
 #: ../gramps/gen/merge/mergepersonquery.py:118
 msgid "Merge Person"
@@ -9089,12 +9089,12 @@ msgstr "Kişiyi Birleştir"
 #: ../gramps/gen/merge/mergeplacequery.py:60
 #: ../gramps/gui/merge/mergeplace.py:78
 msgid "Merge Places"
-msgstr "Birlesen Yerler"
+msgstr "Yerleri Birleştir"
 
 #: ../gramps/gen/merge/mergerepositoryquery.py:59
 #: ../gramps/gui/merge/mergerepository.py:67
 msgid "Merge Repositories"
-msgstr "Depoları Yönet"
+msgstr "Depoları Birleştir"
 
 #: ../gramps/gen/merge/mergesourcequery.py:62
 msgid "Merge Source"
@@ -9113,12 +9113,12 @@ msgstr "Kaynağı Birleştir"
 #: ../gramps/plugins/view/relview.py:791
 #: ../gramps/plugins/webreport/person.py:455
 msgid "unknown"
-msgstr "Bilinmeyen"
+msgstr "bilinmeyen"
 
 #: ../gramps/gen/plug/_gramplet.py:347
 #, python-format
 msgid "Gramplet %s caused an error"
-msgstr "Gramplet %s hatasına neden oldu"
+msgstr "Gramplet %s bir hataya neden oldu"
 
 #: ../gramps/gen/plug/_manager.py:62
 msgid "No description was provided"
@@ -9132,7 +9132,7 @@ msgid ""
 "  but is not known to the module.  Ignoring..."
 msgstr ""
 "'%(opt_name)s' seçeneği %(file)s içinde mevcut\n"
-"ancak modül tarafından bilinmiyor. Yoksayılıyor..."
+"  ancak modül tarafından bilinmiyor.  Yoksayılıyor..."
 
 #: ../gramps/gen/plug/_pluginreg.py:59
 msgid "Stable"
@@ -9156,19 +9156,19 @@ msgstr "İçe aktarıcı"
 
 #: ../gramps/gen/plug/_pluginreg.py:83
 msgid "Exporter"
-msgstr "Dışa Aktarıcı"
+msgstr "Dışa aktarıcı"
 
 #: ../gramps/gen/plug/_pluginreg.py:84
 msgid "Doc creator"
-msgstr "Doküman oluşturucu"
+msgstr "Belge oluşturucu"
 
 #: ../gramps/gen/plug/_pluginreg.py:85
 msgid "Plugin lib"
-msgstr "Uzantı kit"
+msgstr "Eklenti kitaplığı"
 
 #: ../gramps/gen/plug/_pluginreg.py:86
 msgid "Map service"
-msgstr "Harita servisi"
+msgstr "Harita hizmeti"
 
 #: ../gramps/gen/plug/_pluginreg.py:87
 msgid "Gramps View"
@@ -9194,7 +9194,7 @@ msgstr "Kenar çubuğu"
 
 #: ../gramps/gen/plug/_pluginreg.py:92
 msgid "Rule"
-msgstr "Kurallar"
+msgstr "Kural"
 
 #: ../gramps/gen/plug/_pluginreg.py:528
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
@@ -9233,7 +9233,7 @@ msgstr ""
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
-msgstr "HATA: %(regfile)s kayıt dosyasında yanlış %(filename)s python dosyası"
+msgstr "HATA: %(regfile)s kayıt dosyasında yanlış python dosyası %(filename)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1253
 #, python-format
@@ -9306,7 +9306,7 @@ msgstr "%s oluşturulamadı"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
@@ -9346,7 +9346,7 @@ msgstr "Alt, sağ"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:84
 msgid "Top, left"
-msgstr "Sol üst"
+msgstr "Üst, sol"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:85
 msgid "Top, Right"
@@ -9384,7 +9384,7 @@ msgstr "Eşit olarak genişlet"
 #: ../gramps/gen/plug/docgen/treedoc.py:86
 #: ../gramps/gui/glade/styleeditor.glade:1359
 msgid "Top"
-msgstr "Yukarı"
+msgstr "Üst"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:96
 #: ../gramps/gen/plug/docgen/treedoc.py:87
@@ -9406,12 +9406,12 @@ msgstr "Dikgen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
 msgid "Graphviz Layout"
-msgstr "Graphviz Dosyası"
+msgstr "Graphviz Düzeni"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:143
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Font family"
-msgstr "Yazıtipi Ailesi"
+msgstr "Yazı Tipi Ailesi"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:146
 msgid ""
@@ -9425,7 +9425,7 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/graphdoc.py:152
 #: ../gramps/gui/widgets/styledtexteditor.py:78
 msgid "Font size"
-msgstr "Yazıtipi boyutu"
+msgstr "Yazı tipi boyutu"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:153
 msgid "The font size, in points."
@@ -9451,7 +9451,7 @@ msgid ""
 msgstr ""
 "Graphviz, grafiği dikdörtgen bir sayfa dizisine yayarak çok büyük grafikler "
 "oluşturabilir. Bu, dizideki sayı sayfalarını yatay olarak kontrol eder. "
-"Ghostscript üzerinden sadece dot ve pdf için geçerlidir."
+"Ghostscript üzerinden sadece nokta ve pdf için geçerlidir."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:171
 msgid "Number of Vertical Pages"
@@ -9465,7 +9465,7 @@ msgid ""
 msgstr ""
 "Graphviz, grafiği dikdörtgen bir sayfa dizisine yayarak çok büyük grafikler "
 "oluşturabilir. Bu, dizideki sayfa sayısını dikey olarak kontrol eder. "
-"Ghostscript üzerinden sadece dot ve pdf için geçerlidir."
+"Ghostscript üzerinden sadece nokta ve pdf için geçerlidir."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:179
 msgid "Paging Direction"
@@ -9481,19 +9481,19 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:187
 msgid "Connecting lines"
-msgstr "Bağlantı hatları"
+msgstr "Bağlantı çizgileri"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
 msgid "How the lines between objects will be drawn."
-msgstr "Nesneler arasındaki çizgiler nasıl çizilecek."
+msgstr "Nesneler arasındaki çizgilerin nasıl çizileceği."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
 msgid "Alternate line attachment"
-msgstr "Alternatif satır eki"
+msgstr "Alternatif çizgi eki"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:194
 msgid "Whether lines attach to nodes differently"
-msgstr "Çizgilerin düğümlere farklı şekilde eklenip eklenmeyeceği"
+msgstr "Çizgilerin düğümlere farklı şekilde bağlanıp bağlanmayacağı"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
 msgid "Graphviz Options"
@@ -9519,19 +9519,19 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
-"Grafiğin düğüm aralığını ve ölçeklemesini etkiler.\n"
+"Düğüm aralığını ve grafiğin ölçeklenmesini etkiler.\n"
 "Grafik, yazdırma alanından küçükse:\n"
-"  Sıkıştırma, düğüm aralığını değiştirmez. \n"
-"  Dolgu, yazdırma alanına hem genişlik hem de yükseklik olarak sığdırmak "
-"için düğüm aralığını artıracaktır.\n"
-"  Genişlet, en boy oranını korumak için düğüm aralığını eşit şekilde "
+"  Sıkıştırma, düğüm aralığını değiştirmez. \n"
+"  Dolgu, düğüm aralığını yazdırma alanına hem genişlik hem de yüksekliğe "
+"sığacak şekilde artıracaktır.\n"
+"  Genişletme, en boy oranını korumak için düğüm aralığını eşit olarak "
 "artıracaktır.\n"
 "Grafik yazdırma alanından büyükse:\n"
-"  Sıkıştırma, simetri pahasına sıkı paketleme elde etmek için grafiği "
+"  Sıkıştırma, simetri pahasına sıkı paketleme elde etmek için grafiği "
 "küçültür.\n"
-"  Dolgu, ilk önce düğüm aralığını artırdıktan sonra grafiği baskı alanına "
+"  Dolgu, önce düğüm aralığını artırdıktan sonra grafiği yazdırma alanına "
 "sığacak şekilde küçültür.\n"
-"  Genişlet, grafiği baskı alanına sığdırmak için eşit şekilde küçültür."
+"  Genişletme, grafiği yazdırma alanına sığdırmak için eşit şekilde küçültür."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:233
 msgid "DPI"
@@ -9549,7 +9549,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:241
 msgid "Node spacing"
-msgstr "Düğüm boşluğu"
+msgstr "Düğüm aralığı"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:242
 msgid ""
@@ -9563,7 +9563,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:249
 msgid "Rank spacing"
-msgstr "Sıra boşluğu"
+msgstr "Sıra aralığı"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:250
 msgid ""
@@ -9599,7 +9599,7 @@ msgstr "Bu metin grafiğe eklenecektir."
 #: ../gramps/gen/plug/docgen/graphdoc.py:273
 #: ../gramps/gen/plug/docgen/treedoc.py:206
 msgid "Note location"
-msgstr "Not yeri"
+msgstr "Not konumu"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:276
 #: ../gramps/gen/plug/docgen/treedoc.py:209
@@ -9638,15 +9638,15 @@ msgstr "Sıkıştırılmış Yapılandırılmış Vektör Grafikleri (SVGZ)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1103
 msgid "JPEG image"
-msgstr "JPEG görüntüsü"
+msgstr "JPEG resmi"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1109
 msgid "GIF image"
-msgstr "GIF görüntüsü"
+msgstr "GIF resmi"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1115
 msgid "PNG image"
-msgstr "PNG görüntüsü"
+msgstr "PNG resmi"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1121
 msgid "Graphviz File"
@@ -9655,12 +9655,12 @@ msgstr "Graphviz Dosyası"
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 msgctxt "paper size"
 msgid "Letter"
-msgstr "Zarf"
+msgstr "Mektup"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:80
 msgctxt "paper size"
 msgid "Legal"
-msgstr "Resmi"
+msgstr "Yasal"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgid "Custom Size"
@@ -9727,7 +9727,7 @@ msgstr "Örgü"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Tiny"
-msgstr "Küçücük"
+msgstr "Minik"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Script"
@@ -9759,7 +9759,7 @@ msgstr "Çok büyük"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:96
 msgid "Extra large"
-msgstr "Çok büyük"
+msgstr "Ekstra büyük"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
 msgid "Huge"
@@ -9767,7 +9767,7 @@ msgstr "Kocaman"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Extra huge"
-msgstr "Çok kocaman"
+msgstr "Ekstra kocaman"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:141
 msgid "Node Options"
@@ -9845,8 +9845,8 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Düzeyler arasında mm cinsinden minimum boş alan miktarı.\tDikey grafikler "
-"için bu, satırlar arasındaki boşluğa karşılık gelir.\tYatay grafikler için "
+"Seviyeler arasındaki mm cinsinden minimum boş alan miktarı.  Dikey grafikler "
+"için bu, satırlar arasındaki boşluğa karşılık gelir.  Yatay grafikler için "
 "bu, sütunlar arasındaki boşluğa karşılık gelir."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:202
@@ -9898,7 +9898,7 @@ msgstr "Grafik Raporlar"
 
 #: ../gramps/gen/plug/report/_constants.py:47
 msgid "Code Generators"
-msgstr "Kod Oluşturucular"
+msgstr "Kod Üreteçleri"
 
 #: ../gramps/gen/plug/report/_constants.py:48
 msgid "Web Pages"
@@ -9931,19 +9931,19 @@ msgstr "Kuşak başlığı için kullanılan stil."
 
 #: ../gramps/gen/plug/report/endnotes.py:68
 msgid "The basic style used for the endnotes source display."
-msgstr "Son notların kaynak gösterimi için kullanılan temel stil."
+msgstr "Son not kaynağını görüntüleme için kullanılan temel stil."
 
 #: ../gramps/gen/plug/report/endnotes.py:76
 msgid "The basic style used for the endnotes notes display."
-msgstr "Son not notları için kullanılan temel stil görüntülenir."
+msgstr "Son not notlarını görüntüleme için kullanılan temel stil."
 
 #: ../gramps/gen/plug/report/endnotes.py:84
 msgid "The basic style used for the endnotes reference display."
-msgstr "Son not referans gösterimi için kullanılan temel stil."
+msgstr "Son not referansını görüntüleme için kullanılan temel stil."
 
 #: ../gramps/gen/plug/report/endnotes.py:92
 msgid "The basic style used for the endnotes reference notes display."
-msgstr "Son not referans notları için kullanılan temel stil görüntülenir."
+msgstr "Son not referans notlarını görüntüleme için kullanılan temel stil."
 
 #: ../gramps/gen/plug/report/stdoptions.py:58
 msgid "Translation"
@@ -9977,7 +9977,7 @@ msgstr "Özel verilerin dahil edilip edilmeyeceği"
 
 #: ../gramps/gen/plug/report/stdoptions.py:188
 msgid "Living People"
-msgstr "Yaşayan Kişiler"
+msgstr "Yaşayan İnsanlar"
 
 #: ../gramps/gen/plug/report/stdoptions.py:190
 msgctxt "'living people'"
@@ -9992,7 +9992,7 @@ msgstr "Tam adlar, ancak veriler kaldırıldı"
 #: ../gramps/gen/plug/report/stdoptions.py:196
 msgctxt "'living people'"
 msgid "Given names replaced, and data removed"
-msgstr "Adlar değiştirildi ve veriler kaldırıldı"
+msgstr "Verilen adlar değiştirildi ve veriler kaldırıldı"
 
 #: ../gramps/gen/plug/report/stdoptions.py:198
 msgctxt "'living people'"
@@ -10002,11 +10002,11 @@ msgstr "Tam adlar değiştirildi ve veriler kaldırıldı"
 #: ../gramps/gen/plug/report/stdoptions.py:201
 msgctxt "'living people'"
 msgid "Not included"
-msgstr "İçermez"
+msgstr "Dahil değil"
 
 #: ../gramps/gen/plug/report/stdoptions.py:203
 msgid "How to handle living people"
-msgstr "Yaşayan insanlarla nasıl başa çıkılır"
+msgstr "Yaşayan insanların yönetimi"
 
 #: ../gramps/gen/plug/report/stdoptions.py:206
 msgid "Years from death to consider living"
@@ -10028,7 +10028,7 @@ msgstr "Örneklerle birlikte tarihler için biçim ve dil"
 #: ../gramps/gen/plug/report/stdoptions.py:333
 #: ../gramps/gen/plug/report/stdoptions.py:357
 msgid "Do not include"
-msgstr "Dahil etme"
+msgstr "Dahil etmeyin"
 
 #: ../gramps/gen/plug/report/stdoptions.py:334
 #: ../gramps/gen/plug/report/stdoptions.py:363
@@ -10049,23 +10049,23 @@ msgstr "Etiketlerin dahil edilip edilmeyeceği"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
-msgstr "Mevcut bir hattı paylaş"
+msgstr "Mevcut bir çizgiyi paylaş"
 
 #: ../gramps/gen/plug/report/stdoptions.py:360
 msgid "On a line of its own"
-msgstr "Kendi çizgisinde"
+msgstr "Kendi başına bir çizgide"
 
 #: ../gramps/gen/plug/report/stdoptions.py:361
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Gramps ID'lerinin dahil edilip edilmeyeceği (ve nereye)"
+msgstr "Gramps Kimliklerinin dahil edilip edilmeyeceği (ve nereye)"
 
 #: ../gramps/gen/plug/report/stdoptions.py:364
 msgid "Whether to include Gramps IDs"
-msgstr "Gramps ID'lerinin dahil edilip edilmeyeceği"
+msgstr "Gramps Kimliklerinin dahil edilip edilmeyeceği"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Place format"
-msgstr "Yer formatı"
+msgstr "Yer biçimi"
 
 #: ../gramps/gen/plug/report/stdoptions.py:376
 msgid "Select the format to display places"
@@ -10074,7 +10074,7 @@ msgstr "Yerleri görüntülemek için biçimi seçin"
 #: ../gramps/gen/plug/report/utils.py:157
 #: ../gramps/plugins/textreport/indivcomplete.py:925
 msgid "File does not exist"
-msgstr "Dosya bulunamıyor"
+msgstr "Dosya bulunmuyor"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:921
@@ -10094,7 +10094,7 @@ msgstr "KİŞİ"
 #: ../gramps/plugins/textreport/summary.py:280
 #: ../gramps/plugins/tool/eventcmp.py:157
 msgid "Entire Database"
-msgstr "Tam Veri tabanı"
+msgstr "Tam Veri Tabanı"
 
 #: ../gramps/gen/plug/report/utils.py:300
 #: ../gramps/gui/plug/export/_exportoptions.py:460
@@ -10142,7 +10142,7 @@ msgstr "AİLE"
 #: ../gramps/gen/plug/report/utils.py:385
 #, python-format
 msgid "Ancestor Families of %s"
-msgstr "%s Soyundan Geldiği Aileler"
+msgstr "%s Atasının Aileleri"
 
 #: ../gramps/gen/plug/utils.py:249
 msgid "Updated"
@@ -10156,7 +10156,7 @@ msgstr "Yeni"
 #: ../gramps/gen/plug/utils.py:290 ../gramps/gen/plug/utils.py:297
 #, python-format
 msgid "Unable to open '%s'"
-msgstr "'%s' açılamadı"
+msgstr "'%s' açılamıyor"
 
 #: ../gramps/gen/plug/utils.py:304
 #, python-format
@@ -10206,12 +10206,12 @@ msgstr "Kayıtlı '%s'"
 #: ../gramps/gen/recentfiles.py:204
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr "En son DB dosyası {fname} listesi kaydedilemiyor: {error}"
+msgstr "En son veri tabanı dosyasının {fname} listesi kaydedilemiyor: {error}"
 
 #: ../gramps/gen/recentfiles.py:265
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr "En son DB dosyası {fname} listesi açılamıyor: {error}"
+msgstr "En son veri tabanı dosyasının {fname} listesi açılamıyor: {error}"
 
 #: ../gramps/gen/recentfiles.py:269
 #, python-brace-format
@@ -10221,7 +10221,7 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"{fname} dosyasından son DB'lerin listesi ayrıştırılırken hata oluştu: "
+"{fname} dosyasından son veri tabanı listesi ayrıştırılırken hata oluştu: "
 "{error}.\n"
 "Bu, dosyalarınızda bir hasar olduğunu gösterebilir.\n"
 "Diğer dosyalarda bir sorun olmadığından eminseniz, silin ve Gramps'ı yeniden "
@@ -10230,7 +10230,7 @@ msgstr ""
 #: ../gramps/gen/relationship.py:1273
 #: ../gramps/plugins/view/pedigreeview.py:1606
 msgid "Relationship loop detected"
-msgstr "İlişki döngüsü bulundu"
+msgstr "İlişki döngüsü algılandı"
 
 #: ../gramps/gen/relationship.py:1332
 #, python-format
@@ -10238,12 +10238,12 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Aile Ağacı, aranan maksimum %d nesilden daha fazlasına ulaşıyor.\n"
+"Aile Ağacı, aranan maksimum %d kuşaktan daha fazlasına ulaşıyor.\n"
 "İlişkiler gözden kaçmış olabilir"
 
 #: ../gramps/gen/relationship.py:1406
 msgid "Relationship loop detected:"
-msgstr "İlişki döngüsü tespit edildi:"
+msgstr "İlişki döngüsü algılandı:"
 
 #: ../gramps/gen/relationship.py:1407
 #, python-format
@@ -10360,8 +10360,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Aile ilişkileri çevirici '%s' dili için mevcut değil. Bunun yerine "
-"'ingilizce' kullanılabilir."
+"Aile ilişkileri çevirmeni '%s' dili için mevcut değil. Bunun yerine "
+"'ingilizce' kullanılır."
 
 #: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:205
 msgid "death date"
@@ -10373,7 +10373,7 @@ msgstr "doğum tarihi"
 
 #: ../gramps/gen/utils/alive.py:183
 msgid "sibling birth date"
-msgstr "kardeşin doğum tarihi"
+msgstr "kardeş doğum tarihi"
 
 #: ../gramps/gen/utils/alive.py:195
 msgid "sibling death date"
@@ -10381,7 +10381,7 @@ msgstr "kardeş ölüm tarihi"
 
 #: ../gramps/gen/utils/alive.py:209
 msgid "sibling birth-related date"
-msgstr "kardeşin doğum ilişkili tarihi"
+msgstr "kardeş doğumuyla ilgili tarih"
 
 #: ../gramps/gen/utils/alive.py:220
 msgid "sibling death-related date"
@@ -10389,52 +10389,52 @@ msgstr "kardeş ölümüyle ilgili tarih"
 
 #: ../gramps/gen/utils/alive.py:235 ../gramps/gen/utils/alive.py:246
 msgid "a spouse's birth-related date, "
-msgstr "eşin doğum ilişkili tarihi, "
+msgstr "bir eşin doğumuyla ilgili tarih, "
 
 #: ../gramps/gen/utils/alive.py:239 ../gramps/gen/utils/alive.py:250
 msgid "a spouse's death-related date, "
-msgstr "eşin ölüm ilişkili tarihi, "
+msgstr "bir eşin ölümüyle ilgili tarih, "
 
 #: ../gramps/gen/utils/alive.py:268
 msgid "event with spouse"
-msgstr "eşli olay"
+msgstr "eş ile etkinlik"
 
 #: ../gramps/gen/utils/alive.py:295
 msgid "descendant birth date"
-msgstr "alt kuşağın doğum tarihi"
+msgstr "soyundan gelenin doğum tarihi"
 
 #: ../gramps/gen/utils/alive.py:304
 msgid "descendant death date"
-msgstr "atanın ölüm tarihi"
+msgstr "soyundan gelenin ölüm tarihi"
 
 #: ../gramps/gen/utils/alive.py:320
 msgid "descendant birth-related date"
-msgstr "alt kuşağın doğum ilişkili tarihi"
+msgstr "soyundan gelenin doğumuyla ilgili tarih"
 
 #: ../gramps/gen/utils/alive.py:328
 msgid "descendant death-related date"
-msgstr "atanın ölüm ilişkili tarihi"
+msgstr "soyundan gelenin ölümüyle ilgili tarih"
 
 #: ../gramps/gen/utils/alive.py:341
 #, python-format
 msgid "Database error: loop in %s's descendants"
-msgstr "Veri tabanı hatası: %s'nin torunlarında döngü"
+msgstr "Veri tabanı hatası: %s'nin soyundan gelenlerinde döngü"
 
 #: ../gramps/gen/utils/alive.py:370 ../gramps/gen/utils/alive.py:416
 msgid "ancestor birth date"
-msgstr "atanın doğm tarihi"
+msgstr "ataların doğum tarihi"
 
 #: ../gramps/gen/utils/alive.py:380 ../gramps/gen/utils/alive.py:426
 msgid "ancestor death date"
-msgstr "atanın ölüm tarihi"
+msgstr "ataların ölüm tarihi"
 
 #: ../gramps/gen/utils/alive.py:391 ../gramps/gen/utils/alive.py:437
 msgid "ancestor birth-related date"
-msgstr "atanın doğum ilişkili tarihi"
+msgstr "ataların doğumuyla ilgili tarih"
 
 #: ../gramps/gen/utils/alive.py:399 ../gramps/gen/utils/alive.py:445
 msgid "ancestor death-related date"
-msgstr "ata ölümüyle ilgili tarih"
+msgstr "ataların ölümüyle ilgili tarih"
 
 #: ../gramps/gen/utils/alive.py:460
 #, python-format
@@ -10462,7 +10462,7 @@ msgid ""
 msgstr ""
 "UYARI: dosya ayrıştırılamadı:\n"
 "%(file)s\n"
-"çünkü %(error)s -- yeniden yaratılıyor\n"
+"çünkü %(error)s -- yeniden oluşturuluyor\n"
 
 #: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
@@ -10496,7 +10496,7 @@ msgstr "Çekçe"
 
 #: ../gramps/gen/utils/grampslocale.py:76
 msgid "Danish"
-msgstr "Danimarkaca"
+msgstr "Danca"
 
 #: ../gramps/gen/utils/grampslocale.py:77
 msgid "German"
@@ -10536,7 +10536,7 @@ msgstr "Fransızca"
 
 #: ../gramps/gen/utils/grampslocale.py:86
 msgid "Gaelic"
-msgstr "İskoçça"
+msgstr "Galce"
 
 #: ../gramps/gen/utils/grampslocale.py:87
 msgid "Hebrew"
@@ -10676,7 +10676,7 @@ msgstr "not"
 
 #: ../gramps/gen/utils/grampslocale.py:909
 msgid "the media"
-msgstr "ortam"
+msgstr "medya"
 
 #: ../gramps/gen/utils/grampslocale.py:911
 msgid "the source"
@@ -10684,7 +10684,7 @@ msgstr "kaynak"
 
 #: ../gramps/gen/utils/grampslocale.py:913
 msgid "the filter"
-msgstr "süzgeç"
+msgstr "filtre"
 
 #: ../gramps/gen/utils/grampslocale.py:915
 msgid "the citation"
@@ -10692,7 +10692,7 @@ msgstr "alıntı"
 
 #: ../gramps/gen/utils/grampslocale.py:917
 msgid "See details"
-msgstr "Ayrıntıları gör"
+msgstr "Ayrıntılara bakın"
 
 #: ../gramps/gen/utils/image.py:123
 msgid ""
@@ -10705,17 +10705,17 @@ msgstr ""
 #: ../gramps/gen/utils/keyword.py:54
 msgctxt "Person"
 msgid "TITLE"
-msgstr "SAN"
+msgstr "UNVAN"
 
 #: ../gramps/gen/utils/keyword.py:54 ../gramps/plugins/export/exportcsv.py:356
 #: ../gramps/plugins/tool/patchnames.py:446
 msgctxt "Person"
 msgid "Title"
-msgstr "San"
+msgstr "Unvan"
 
 #: ../gramps/gen/utils/keyword.py:55
 msgid "GIVEN"
-msgstr "ADI"
+msgstr "VERİLEN"
 
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/configure.py:851
 #: ../gramps/gui/configure.py:858 ../gramps/gui/configure.py:860
@@ -10727,24 +10727,24 @@ msgstr "SOYADI"
 #: ../gramps/gen/utils/keyword.py:57
 msgctxt "Name"
 msgid "CALL"
-msgstr "SESLENİŞ"
+msgstr "ÇAĞRI"
 
 #: ../gramps/gen/utils/keyword.py:57
 msgctxt "Name"
 msgid "Call"
-msgstr "Sesleniş"
+msgstr "Çağrı"
 
 #: ../gramps/gen/utils/keyword.py:58
 msgctxt "Name"
 msgid "COMMON"
-msgstr "ORTAK"
+msgstr "YAYGIN"
 
 #: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:848
 #: ../gramps/gui/configure.py:850 ../gramps/gui/configure.py:853
 #: ../gramps/gui/configure.py:854 ../gramps/gui/configure.py:860
 msgctxt "Name"
 msgid "Common"
-msgstr "Ortak"
+msgstr "Yaygın"
 
 #: ../gramps/gen/utils/keyword.py:59
 msgid "INITIALS"
@@ -10786,55 +10786,55 @@ msgstr "Birincil[soyad]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "PRIMARY[CON]"
-msgstr "BİRİNCİL[ORTAK]"
+msgstr "BİRİNCİL[YAYGIN]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "Primary[con]"
-msgstr "Birincil[ortak]"
+msgstr "Birincil[yaygın]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "PATRONYMIC"
-msgstr ""
+msgstr "ATASOYLU"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "PATRONYMIC[PRE]"
-msgstr ""
+msgstr "ATASOYLU[ÖNEK]"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "Patronymic[pre]"
-msgstr ""
+msgstr "Atasoylu[önek]"
 
 #: ../gramps/gen/utils/keyword.py:67
 msgid "PATRONYMIC[SUR]"
-msgstr ""
+msgstr "ATASOYLU[SOYAD]"
 
 #: ../gramps/gen/utils/keyword.py:67
 msgid "Patronymic[sur]"
-msgstr ""
+msgstr "Atasoylu[soyad]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "PATRONYMIC[CON]"
-msgstr ""
+msgstr "ATASOYLU[YAYGIN]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "Patronymic[con]"
-msgstr ""
+msgstr "Atasoylu[yaygın]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "RAWSURNAMES"
-msgstr ""
+msgstr "HAMSOYADLARI"
 
 #: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:865
 msgid "Rawsurnames"
-msgstr ""
+msgstr "Hamsoyadları"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "NOTPATRONYMIC"
-msgstr ""
+msgstr "ATASOYLUDEĞİL"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "Notpatronymic"
-msgstr ""
+msgstr "Atasoyludeğil"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "PREFIX"
@@ -10893,7 +10893,7 @@ msgstr "kadın"
 #: ../gramps/gen/utils/string.py:48
 msgctxt "gender"
 msgid "unknown"
-msgstr "bilinmiyor"
+msgstr "bilinmeyen"
 
 #: ../gramps/gen/utils/string.py:52
 msgid "Invalid"
@@ -10927,7 +10927,7 @@ msgstr "Bir karı koca arasındaki yasal veya ortak hukuk ilişkisi"
 
 #: ../gramps/gen/utils/string.py:67
 msgid "No legal or common-law relationship between man and woman"
-msgstr "Erkek ve kadın arasında yasal veya nikahsız ilişki yok"
+msgstr "Kadın ve erkek arasında hukuki veya ortak hukuk ilişkisi yok"
 
 #: ../gramps/gen/utils/string.py:69
 msgid "An established relationship between members of the same sex"
@@ -10946,7 +10946,7 @@ msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
-"Veriler yalnızca Geri Al işlemiyle veya değişikliklerden vazgeçilerek "
+"Veriler yalnızca Geri Al işlemiyle veya değişikliklerden vazgeçilip "
 "çıkılarak kurtarılabilir."
 
 #: ../gramps/gen/utils/symbols.py:61
@@ -10969,7 +10969,7 @@ msgstr "Erkek"
 
 #: ../gramps/gen/utils/symbols.py:63
 msgid "Asexuality, sexless, genderless"
-msgstr "Aseksüellik, sexless, cinsiyetsiz"
+msgstr "Aseksüellik, eşeysizlik, cinsiyetsizlik"
 
 #: ../gramps/gen/utils/symbols.py:64
 msgid "Lesbianism"
@@ -10977,7 +10977,7 @@ msgstr "Lezbiyenlik"
 
 #: ../gramps/gen/utils/symbols.py:65
 msgid "Male homosexuality"
-msgstr "Erkek eşcinsel"
+msgstr "Erkek eşcinsellik"
 
 #: ../gramps/gen/utils/symbols.py:66
 msgid "Heterosexuality"
@@ -11001,7 +11001,7 @@ msgstr "Gayri meşru"
 
 #: ../gramps/gen/utils/symbols.py:73
 msgid "Baptism/Christening"
-msgstr ""
+msgstr "Vaftiz/Ad Koyma"
 
 #: ../gramps/gen/utils/symbols.py:74
 msgid "Engaged"
@@ -11017,23 +11017,23 @@ msgstr "Gömülü"
 
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Yakılan/Cenaze vazosu"
 
 #: ../gramps/gen/utils/symbols.py:80
 msgid "Killed in action"
-msgstr ""
+msgstr "Eylemde öldürüldü"
 
 #: ../gramps/gen/utils/symbols.py:81
 msgid "Extinct"
-msgstr ""
+msgstr "Nesli tükenmiş"
 
 #: ../gramps/gen/utils/symbols.py:106
 msgid "Nothing"
-msgstr "Hiç"
+msgstr "Hiçbir şey"
 
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "Kafatası ve çapraz kemikler"
 
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Ankh"
@@ -11045,7 +11045,7 @@ msgstr "Ortodoks haçı"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Chi rho"
-msgstr "Khi rho"
+msgstr "Chi Rho"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Cross of Lorraine"
@@ -11085,7 +11085,7 @@ msgstr "Malta haçı"
 
 #: ../gramps/gen/utils/symbols.py:121
 msgid "Star of David"
-msgstr "David'in yıldızı"
+msgstr "Davut Yıldızı"
 
 #: ../gramps/gen/utils/symbols.py:122
 msgid "Dead"
@@ -11093,12 +11093,12 @@ msgstr "Ölü"
 
 #: ../gramps/gen/utils/unknown.py:140
 msgid "Unknown, created to replace a missing note object."
-msgstr "Bilinmiyor, eksik bir not nesnesini değiştirmek için oluşturuldu."
+msgstr "Bilinmeyen, eksik bir not nesnesini değiştirmek için oluşturuldu."
 
 #: ../gramps/gen/utils/unknown.py:150
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr "Bilinmiyor, %(time)s (%(count)d) eksikti"
+msgstr "Bilinmeyen, %(time)s (%(count)d) eksikti"
 
 #: ../gramps/gen/utils/unknown.py:169
 #, python-format
@@ -11137,10 +11137,10 @@ msgid ""
 " Possibly the installation of Gramps was incomplete. Make sure something to "
 "handle the media types of Gramps is installed."
 msgstr ""
-"%s ortam türü için bir tanım bulunamadı  \n"
+"%s medya türü için bir tanım bulunamadı  \n"
 "\n"
-" Büyük ihtimalle Gramps kurulumu tamamlanmamıştı. Gramps'ın ortam türlerini "
-"idare edecek bir şeyin kurulu olduğundan emin olun."
+" Büyük ihtimalle Gramps kurulumu tamamlanmamıştı. Gramps'ın medya türlerini "
+"işlemek için bir şey yüklendiğinden emin olun."
 
 #: ../gramps/gui/aboutdialog.py:97
 msgid ""
@@ -11151,10 +11151,10 @@ msgid ""
 "license."
 msgstr ""
 "Gramps'ın yapıtlarının çoğu ya Tango\n"
-"Projesi'nden ya da Tango Projesi'nden\n"
-"türetilmiştir. Bu sanat eseri Creative\n"
+"Projesi'nden ya da Tango'dan\n"
+"türetilen Projedir. Bu sanat eseri Creative\n"
 "Commons Attribution-ShareAlike 2.5\n"
-"lisansı ile yayınlanmıştır."
+"lisansı altında yayınlanmıştır."
 
 #: ../gramps/gui/aboutdialog.py:111
 msgid "Gramps Homepage"
@@ -11167,7 +11167,7 @@ msgstr "Katkılar"
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:120
 msgid "translator-credits"
-msgstr "Bora Atıcı"
+msgstr "Osman Öz"
 
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
@@ -11620,11 +11620,11 @@ msgstr "Genel"
 #: ../gramps/gui/configure.py:852 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
 msgid "Call"
-msgstr ""
+msgstr "Seslenme"
 
 #: ../gramps/gui/configure.py:857
 msgid "NotPatronymic"
-msgstr ""
+msgstr "AtaerkilDeğil"
 
 #: ../gramps/gui/configure.py:935
 msgid "Enter to save, Esc to cancel editing"
@@ -24025,7 +24025,7 @@ msgstr "Graphviz kullanarak ilişki grafikleri üretir."
 #: ../gramps/plugins/graph/gvhourglass.py:59
 #: ../gramps/plugins/graph/gvrelgraph.py:73
 msgid "B&W outline"
-msgstr ""
+msgstr "S&B outline"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:75
 #: ../gramps/plugins/graph/gvhourglass.py:60
@@ -24664,7 +24664,7 @@ msgstr "ad"
 
 #: ../gramps/plugins/importer/importcsv.py:168
 msgid "call"
-msgstr ""
+msgstr "seslenme"
 
 #: ../gramps/plugins/importer/importcsv.py:169
 msgid "title"
@@ -25286,6 +25286,8 @@ msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
+"Varsayılan tüm Metni\n"
+"Etiket Metni'ne Kopyala ."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -25963,7 +25965,7 @@ msgstr "Satır yoksayıldı "
 #: ../gramps/plugins/lib/libgedcom.py:1540
 #, python-format
 msgid "Illegal character%s"
-msgstr ""
+msgstr "Geçersiz karakter %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -26063,7 +26065,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:3481
 msgid "(Submitter):"
-msgstr ""
+msgstr "(Gönderen):"
 
 #: ../gramps/plugins/lib/libgedcom.py:3505
 #: ../gramps/plugins/lib/libgedcom.py:7319
@@ -26210,7 +26212,7 @@ msgstr "%s'den içe aktar"
 
 #: ../gramps/plugins/lib/libgedcom.py:7425
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Gönderim kaydı tanımlayıcısı"
 
 #: ../gramps/plugins/lib/libgedcom.py:7438
 msgid "Language of GEDCOM text"
@@ -26297,7 +26299,7 @@ msgstr "Submission: Generations of descendants"
 
 #: ../gramps/plugins/lib/libgedcom.py:7744
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Gönderim: Ordinance process flag"
 
 #: ../gramps/plugins/lib/libgedcom.py:7999
 msgid "Invalid temple code"
@@ -26708,12 +26710,12 @@ msgstr "%(death_place)s içinde %(death_date)s öldü."
 #: ../gramps/plugins/lib/libnarrate.py:251
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s (%(age)s)."
-msgstr ""
+msgstr "%(death_place)s (%(age)s) yaşında %(death_date)s tarihinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:224
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(death_place)s içinde %(death_date)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:225
 #, python-format
@@ -26721,74 +26723,79 @@ msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
+"%(unknown_gender_name)s %(death_date)s %(death_place)s içinde %(age)s "
+"yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:228
 #, python-format
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "%(male_name)s, %(death_place)s içinde %(death_date)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:229
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
+"%(male_name)s %(death_date)s %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:232
 #, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "%(female_name)s, %(death_place)s içinde %(death_date)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:233
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
+"%(female_name)s %(death_date)s %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:237
 #, python-format
 msgid "This person died %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "Bu kişi %(death_date)s tarihinde %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:238
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
+msgstr "Bu kişi %(death_date)s %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:241
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "%(death_date)s %(death_place)s sonra öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:242
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
+msgstr "%(death_date)s %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:245
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "%(death_date)s %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:246
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
+msgstr "%(death_date)s %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:257
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(death_date)s tarihinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:258
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)s."
 msgstr ""
+"%(unknown_gender_name)s, %(death_date)s tarihinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:261
 #, python-format
 msgid "%(male_name)s died on %(death_date)s."
-msgstr ""
+msgstr "%(male_name)s, %(death_date)s tarihinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:262
 #, python-format
@@ -26799,7 +26806,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:265
 #, python-format
 msgid "%(female_name)s died on %(death_date)s."
-msgstr ""
+msgstr "%(female_name)s, %(death_date)s tarihinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:266
 #, python-format
@@ -26810,7 +26817,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:270
 #, python-format
 msgid "This person died on %(death_date)s."
-msgstr ""
+msgstr "Bu kişi %(death_date)s tarihinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:271
 #, python-format
@@ -26820,7 +26827,7 @@ msgstr "Bu kişi, %(death_date)s tarihinde %(age)s yaşındayken vefat etti."
 #: ../gramps/plugins/lib/libnarrate.py:274
 #, python-format
 msgid "He died on %(death_date)s."
-msgstr ""
+msgstr "%(death_date)s tarihinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
@@ -26886,7 +26893,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:303
 #, python-format
 msgid "This person died %(death_date)s."
-msgstr ""
+msgstr "Bu kişi %(death_date)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:304
 #, python-format
@@ -26896,7 +26903,7 @@ msgstr "Bu kişi, %(death_date)s tarihinde %(age)s yaşındayken vefat etti."
 #: ../gramps/plugins/lib/libnarrate.py:307
 #, python-format
 msgid "He died %(death_date)s."
-msgstr ""
+msgstr "%(death_date)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
@@ -26906,7 +26913,7 @@ msgstr "%(death_date)s tarihinde %(age)s yaşındayken vefat etti."
 #: ../gramps/plugins/lib/libnarrate.py:311
 #, python-format
 msgid "She died %(death_date)s."
-msgstr ""
+msgstr "%(death_date)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
@@ -26917,6 +26924,7 @@ msgstr "%(death_date)s tarihinde %(age)s yaşındayken vefat etti."
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
 msgstr ""
+"%(unknown_gender_name)s, %(month_year)s içinde %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:324
 #, python-format
@@ -26924,11 +26932,13 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
+"%(unknown_gender_name)s, %(month_year)s içinde %(death_place)s içinde "
+"%(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:327
 #, python-format
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "%(male_name)s, %(month_year)s içinde %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:328
 #, python-format
@@ -26936,11 +26946,13 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
+"%(male_name)s %(month_year)s içinde %(death_place)s içinde %(age)s yaşında "
+"öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:331
 #, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "%(female_name)s, %(month_year)s içinde %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:332
 #, python-format
@@ -26948,122 +26960,125 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
+"%(female_name)s, %(month_year)s içinde %(death_place)s içinde %(age)s "
+"yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:336
 #, python-format
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "Bu kişi %(month_year)s içinde %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:337
 #, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
+"Bu kişi %(month_year)s içinde %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:340
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:341
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:344
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:345
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(death_place)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:349
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "%(death_place)s içinde %(month_year)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:350
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr ""
+msgstr "%(death_place)s (%(age)s) içinde %(month_year)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:356
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(month_year)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:357
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(month_year)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:360
 #, python-format
 msgid "%(male_name)s died in %(month_year)s."
-msgstr ""
+msgstr "%(male_name)s, %(month_year)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:361
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
-msgstr ""
+msgstr "%(male_name)s, %(month_year)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:364
 #, python-format
 msgid "%(female_name)s died in %(month_year)s."
-msgstr ""
+msgstr "%(female_name)s, %(month_year)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:365
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
-msgstr ""
+msgstr "%(female_name)s, %(month_year)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:369
 #, python-format
 msgid "This person died in %(month_year)s."
-msgstr ""
+msgstr "Bu kişi %(month_year)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:370
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr ""
+msgstr "Bu kişi %(month_year)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:373
 #, python-format
 msgid "He died in %(month_year)s."
-msgstr ""
+msgstr "%(month_year)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:374
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:377
 #, python-format
 msgid "She died in %(month_year)s."
-msgstr ""
+msgstr "%(month_year)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:378
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(age)s yaşında öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:382
 #, python-format
 msgid "Died %(month_year)s."
-msgstr ""
+msgstr "%(month_year)s öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:383
 #, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr ""
+msgstr "Öldü %(month_year)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:389
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(death_place)s içinde öldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:390
 #, python-format
@@ -27176,7 +27191,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:462
 #, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_date)s tarihinde %(burial_place)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:465
 #, python-format
@@ -27184,11 +27199,13 @@ msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(female_name)s, %(burial_date)s tarihinde %(burial_place)s%(endnotes)s "
+"içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_date)s tarihinde %(burial_place)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:469
 #, python-format
@@ -27196,74 +27213,83 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(burial_date)s tarihinde %(burial_place)s"
+"%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
 msgid ""
 "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
+"Bu kişi %(burial_date)s tarihinde %(burial_place)s%(endnotes)s içinde "
+"gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:472
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_date)s, %(burial_place)s%(endnotes)s içinde gömülü."
 
 #: ../gramps/plugins/lib/libnarrate.py:477
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s, %(burial_date)s%(endnotes)s tarihinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:478
 #, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_date)s%(endnotes)s tarihinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:481
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s, %(burial_date)s%(endnotes)s tarihinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:482
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_date)s%(endnotes)s tarihinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:485
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(burial_date)s%(endnotes)s tarihinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:486
 #, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(burial_date)s%(endnotes)s tarihinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:488
 #, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:493
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
+"%(male_name)s %(month_year)s içinde %(burial_place)s%(endnotes)s içinde "
+"gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:494
 #, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(burial_place)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:497
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
+"%(female_name)s, %(month_year)s içinde %(burial_place)s%(endnotes)s içinde "
+"gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(month_year)s içinde %(burial_place)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:501
 #, python-format
@@ -27271,74 +27297,80 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(month_year)s içinde %(burial_place)s%(endnotes)s "
+"içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
+"Bu kişi %(month_year)s içinde %(burial_place)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:504
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(month_year)s, %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:509
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s, %(month_year)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:510
 #, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(month_year)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:513
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s, %(month_year)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:514
 #, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(month_year)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:517
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(month_year)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:518
 #, python-format
 msgid "This person was buried in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(month_year)s%(endnotes)s içinde gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:520
 #, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(month_year)s%(endnotes)s gömülü."
 
 #: ../gramps/plugins/lib/libnarrate.py:525
 #, python-format
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
+"%(male_name)s, %(modified_date)s %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:526
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:529
 #, python-format
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
+"%(female_name)s, %(modified_date)s %(burial_place)s%(endnotes)s içine "
+"gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:533
 #, python-format
@@ -27346,62 +27378,64 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(modified_date)s %(burial_place)s%(endnotes)s "
+"içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:534
 #, python-format
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(modified_date)s %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:536
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s, %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:541
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s, %(modified_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:545
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s, %(modified_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:546
 #, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:549
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(modified_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:550
 #, python-format
 msgid "This person was buried %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(modified_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:552
 #, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:557
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s, %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:558
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:561
 #, python-format
@@ -27411,57 +27445,57 @@ msgstr "%(female_name)s, %(burial_place)s%(endnotes)s içine gömüldü."
 #: ../gramps/plugins/lib/libnarrate.py:562
 #, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s, %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:568
 #, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(burial_place)s%(endnotes)s içine gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:573
 #, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s gömüldü%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:574
 #, python-format
 msgid "He was buried%(endnotes)s."
-msgstr ""
+msgstr "%(endnotes)s gömüldü."
 
 #: ../gramps/plugins/lib/libnarrate.py:577
 #, python-format
 msgid "%(female_name)s was buried%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s gömüldü%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:578
 #, python-format
 msgid "She was buried%(endnotes)s."
-msgstr ""
+msgstr "O gömüldü%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:581
 #, python-format
 msgid "%(unknown_gender_name)s was buried%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s gömüldü%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:582
 #, python-format
 msgid "This person was buried%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi gömüldü%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:584
 #, python-format
 msgid "Buried%(endnotes)s."
-msgstr ""
+msgstr "Gömülü%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:594
 #, python-format
@@ -27469,11 +27503,15 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(male_name)s %(baptism_date)s tarihinde %(baptism_place)s%(endnotes)s "
+"içinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
+"%(baptism_date)s tarihinde %(baptism_place)s%(endnotes)s içinde vaftiz "
+"edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:598
 #, python-format
@@ -27481,11 +27519,15 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(female_name)s %(baptism_date)s tarihinde %(baptism_place)s%(endnotes)s "
+"içinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
 msgid "She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
+"%(baptism_date)s tarihinde %(baptism_place)s%(endnotes)s içinde vaftiz "
+"edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:602
 #, python-format
@@ -27493,6 +27535,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s %(baptism_date)s tarihinde %(baptism_place)s"
+"%(endnotes)s içinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
@@ -27500,6 +27544,8 @@ msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişi %(baptism_date)s tarihinde %(baptism_place)s%(endnotes)s içinde "
+"vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:605
 #, python-format
@@ -27816,37 +27862,41 @@ msgstr ""
 #, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
+"%(male_name)s, %(christening_date)s%(endnotes)s tarihinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:744
 #, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(christening_date)s%(endnotes)s tarihinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:747
 #, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
+"%(female_name)s, %(christening_date)s%(endnotes)s tarihinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:748
 #, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(christening_date)s%(endnotes)s tarihinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:751
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(christening_date)s%(endnotes)s tarihinde vaftiz "
+"edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:752
 #, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(christening_date)s%(endnotes)s tarihinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:754
 #, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(christening_date)s%(endnotes)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:759
 #, python-format
@@ -27854,12 +27904,15 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(male_name)s %(month_year)s içinde %(christening_place)s%(endnotes)s içinde "
+"vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
+"%(month_year)s içinde %(christening_place)s%(endnotes)s içinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:763
 #, python-format
@@ -27947,12 +28000,16 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(female_name)s, %(christening_place)s%(endnotes)s içinde %(modified_date)s "
+"olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
 msgid ""
 "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
+"%(christening_place)s%(endnotes)s içinde %(modified_date)s olarak vaftiz "
+"edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:799
 #, python-format
@@ -27960,6 +28017,8 @@ msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(christening_place)s%(endnotes)s içinde "
+"%(modified_date)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:800
 #, python-format
@@ -27967,117 +28026,124 @@ msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişiye %(modified_date)s %(christening_place)s%(endnotes)s içinde vaftiz "
+"edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:802
 #, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
+"%(christening_place)s%(endnotes)s içinde %(modified_date)s vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:807
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s, %(modified_date)s%(endnotes)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:808
 #, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s%(endnotes)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:811
 #, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s, %(modified_date)s%(endnotes)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:812
 #, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s%(endnotes)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:815
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(modified_date)s%(endnotes)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:816
 #, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişiye %(modified_date)s%(endnotes)s adı verildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:818
 #, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(modified_date)s%(endnotes)s olarak vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:823
 #, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s, %(christening_place)s%(endnotes)s içinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:824
 #, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(christening_place)s%(endnotes)s ile vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:827
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
+"%(female_name)s, %(christening_place)s%(endnotes)s içinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:828
 #, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(christening_place)s%(endnotes)s ile vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:831
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s, %(christening_place)s%(endnotes)s içinde vaftiz "
+"edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:832
 #, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(christening_place)s%(endnotes)s ile vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:834
 #, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(christening_place)s%(endnotes)s içinde vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:839
 #, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s vaftiz edildi%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:840
 #, python-format
 msgid "He was christened%(endnotes)s."
-msgstr ""
+msgstr "O vaftiz edildi%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:843
 #, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s vaftiz edildi%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:844
 #, python-format
 msgid "She was christened%(endnotes)s."
-msgstr ""
+msgstr "O vaftiz edildi%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:847
 #, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s vaftiz edildi%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:848
 #, python-format
 msgid "This person was christened%(endnotes)s."
-msgstr ""
+msgstr "Bu kişiye%(endnotes)s vaftiz edildi."
 
 #: ../gramps/plugins/lib/libnarrate.py:850
 #, python-format
 msgid "Christened%(endnotes)s."
-msgstr ""
+msgstr "Vaftiz edilmiş%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:861
 #, python-format
@@ -28152,77 +28218,77 @@ msgstr "%(father)s ve %(mother)s'nin kızıydı."
 #: ../gramps/plugins/lib/libnarrate.py:890
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(father)s ve %(mother)s'nin kızı."
 
 #: ../gramps/plugins/lib/libnarrate.py:897
 #, python-format
 msgid "%(male_name)s is the child of %(father)s."
-msgstr ""
+msgstr "%(male_name)s, %(father)s'ın çocuğu."
 
 #: ../gramps/plugins/lib/libnarrate.py:898
 #, python-format
 msgid "%(male_name)s was the child of %(father)s."
-msgstr ""
+msgstr "%(male_name)s, %(father)s'ın çocuğuydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:901
 #, python-format
 msgid "This person is the child of %(father)s."
-msgstr ""
+msgstr "Bu kişi %(father)s'ın çocuğu."
 
 #: ../gramps/plugins/lib/libnarrate.py:902
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr ""
+msgstr "Bu kişi %(father)s'ın çocuğuydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:904
 #, python-format
 msgid "Child of %(father)s."
-msgstr ""
+msgstr "%(father)s'ın çocuğu."
 
 #: ../gramps/plugins/lib/libnarrate.py:908
 #, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr ""
+msgstr "%(male_name)s, %(father)s'ın oğludur."
 
 #: ../gramps/plugins/lib/libnarrate.py:909
 #, python-format
 msgid "%(male_name)s was the son of %(father)s."
-msgstr ""
+msgstr "%(male_name)s, %(father)s'ın oğluydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:912
 #, python-format
 msgid "He is the son of %(father)s."
-msgstr ""
+msgstr "%(father)s'ın oğludur."
 
 #: ../gramps/plugins/lib/libnarrate.py:913
 #, python-format
 msgid "He was the son of %(father)s."
-msgstr ""
+msgstr "%(father)s'ın oğluydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:915
 #, python-format
 msgid "Son of %(father)s."
-msgstr ""
+msgstr "%(father)s'ın oğlu."
 
 #: ../gramps/plugins/lib/libnarrate.py:919
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr ""
+msgstr "%(female_name)s, %(father)s'ın kızıdır."
 
 #: ../gramps/plugins/lib/libnarrate.py:920
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr ""
+msgstr "%(female_name)s, %(father)s'ın kızıydı."
 
 #: ../gramps/plugins/lib/libnarrate.py:923
 #, python-format
 msgid "She is the daughter of %(father)s."
-msgstr ""
+msgstr "%(father)s'ın kızıdır."
 
 #: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr ""
+msgstr "%(father)s'ın kızıydı."
 
 #: ../gramps/plugins/lib/libnarrate.py:926
 #, python-format
@@ -28232,100 +28298,107 @@ msgstr "%(father)s'ın kızı."
 #: ../gramps/plugins/lib/libnarrate.py:933
 #, python-format
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s, %(mother)s'nin çocuğudur."
 
 #: ../gramps/plugins/lib/libnarrate.py:934
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s, %(mother)s'nin çocuğuydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:937
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr ""
+msgstr "Bu kişi %(mother)s'ın çocuğu."
 
 #: ../gramps/plugins/lib/libnarrate.py:938
 #, python-format
 msgid "This person was the child of %(mother)s."
-msgstr ""
+msgstr "Bu kişi %(mother)s'ın çocuğuydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:940
 #, python-format
 msgid "Child of %(mother)s."
-msgstr ""
+msgstr "%(mother)s'nin çocuğu."
 
 #: ../gramps/plugins/lib/libnarrate.py:944
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s, %(mother)s'in oğludur."
 
 #: ../gramps/plugins/lib/libnarrate.py:945
 #, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s, %(mother)s'in oğluydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:948
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr ""
+msgstr "%(mother)s'nin oğludur."
 
 #: ../gramps/plugins/lib/libnarrate.py:949
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr ""
+msgstr "%(mother)s'nin oğluydu."
 
 #: ../gramps/plugins/lib/libnarrate.py:951
 #, python-format
 msgid "Son of %(mother)s."
-msgstr ""
+msgstr "%(mother)s'nin oğlu."
 
 #: ../gramps/plugins/lib/libnarrate.py:955
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s, %(mother)s'nin kızıdır."
 
 #: ../gramps/plugins/lib/libnarrate.py:956
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s, %(mother)s'nin kızıydı."
 
 #: ../gramps/plugins/lib/libnarrate.py:959
 #, python-format
 msgid "She is the daughter of %(mother)s."
-msgstr ""
+msgstr "%(mother)s'nin kızıdır."
 
 #: ../gramps/plugins/lib/libnarrate.py:960
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr ""
+msgstr "%(mother)s'nin kızıydı."
 
 #: ../gramps/plugins/lib/libnarrate.py:962
 #, python-format
 msgid "Daughter of %(mother)s."
-msgstr ""
+msgstr "%(mother)s'nin kızı."
 
 #: ../gramps/plugins/lib/libnarrate.py:973
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişi %(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:974
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişi %(spouse)s ile %(full_date)s tarihinde %(place)s%(endnotes)s içinde "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:975
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişi %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:978
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"%(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
@@ -28336,37 +28409,39 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:983
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"%(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:984
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"%(spouse)s ile %(full_date)s tarihinde %(place)s%(endnotes)s içinde evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:985
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:988
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(partial_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:989
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(full_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:990
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:996
 #, python-format
@@ -28374,6 +28449,8 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişi ayrıca %(partial_date)s içinde %(place)s%(endnotes)s içinde "
+"%(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:997
 #, python-format
@@ -28381,6 +28458,8 @@ msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişi ayrıca %(spouse)s ile %(full_date)s tarihinde %(place)s%(endnotes)s "
+"ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:998
 #, python-format
@@ -28388,53 +28467,68 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişi ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s ile %(full_date)s tarihinde %(place)s%(endnotes)s ile "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1006
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1007
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s ile %(full_date)s tarihinde %(place)s%(endnotes)s içinde "
+"evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1008
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1011
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(partial_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(full_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1013
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1019
 #, python-format
@@ -28444,67 +28538,69 @@ msgstr "Bu kişi %(partial_date)s%(endnotes)s içinde %(spouse)s ile evlendi."
 #: ../gramps/plugins/lib/libnarrate.py:1020
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(spouse)s ile %(full_date)s%(endnotes)s tarihinde evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1021
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(spouse)s %(modified_date)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1024
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(partial_date)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1025
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s ile %(full_date)s%(endnotes)s tarihinde evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1026
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1029
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(partial_date)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1030
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s ile %(full_date)s%(endnotes)s tarihinde evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1031
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1034
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Evli %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1035
 #, python-format
 msgid "Married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Evli %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Evli %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1042
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
+"Bu kişi ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
+"Bu kişi ayrıca %(full_date)s%(endnotes)s tarihinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1044
 #, python-format
@@ -28514,27 +28610,27 @@ msgstr "Bu kişi ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evlendi."
 #: ../gramps/plugins/lib/libnarrate.py:1047
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s ile %(full_date)s%(endnotes)s tarihinde evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1049
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1052
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1053
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s ile %(full_date)s%(endnotes)s tarihinde evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1054
 #, python-format
@@ -28544,97 +28640,97 @@ msgstr "Ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evlendi."
 #: ../gramps/plugins/lib/libnarrate.py:1057
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(partial_date)s%(endnotes)s ile evli."
 
 #: ../gramps/plugins/lib/libnarrate.py:1058
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(full_date)s%(endnotes)s ile evli."
 
 #: ../gramps/plugins/lib/libnarrate.py:1059
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evli."
 
 #: ../gramps/plugins/lib/libnarrate.py:1064
 #, python-format
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(place)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1065
 #, python-format
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1066
 #, python-format
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1067
 #, python-format
 msgid "Married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s ile evli."
 
 #: ../gramps/plugins/lib/libnarrate.py:1071
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1072
 #, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1073
 #, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1074
 #, python-format
 msgid "Also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1078
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi %(spouse)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1079
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1080
 #, python-format
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1081
 #, python-format
 msgid "Married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Evli %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1085
 #, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişi ayrıca %(spouse)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1086
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1087
 #, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s%(endnotes)s ile evlendi."
 
 #: ../gramps/plugins/lib/libnarrate.py:1088
 #, python-format
 msgid "Also married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca evli %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1098
 #, python-format
@@ -28651,6 +28747,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin, %(place)s%(endnotes)s içinde %(full_date)s tarihinde %(spouse)s "
+"ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1100
 #, python-format
@@ -28658,6 +28756,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1103
 #, python-format
@@ -28665,6 +28765,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"%(partial_date)s içinde %(place)s%(endnotes)s içinde %(spouse)s ile "
+"evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1104
 #, python-format
@@ -28672,6 +28774,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"%(full_date)s tarihinde %(place)s%(endnotes)s'de %(spouse)s ile evlenmemiş "
+"bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1105
 #, python-format
@@ -28679,6 +28783,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlenmemiş bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1108
 #, python-format
@@ -28686,6 +28792,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"%(partial_date)s içinde %(place)s%(endnotes)s içinde %(spouse)s ile evli "
+"olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1109
 #, python-format
@@ -28693,6 +28801,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(full_date)s tarihinde %(spouse)s ile "
+"evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1110
 #, python-format
@@ -28700,6 +28810,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evlenmemiş bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -28708,6 +28820,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s %(partial_date)s ile evli olmayan "
+"ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1114
 #: ../gramps/plugins/lib/libnarrate.py:1137
@@ -28716,6 +28830,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s %(full_date)s ile evli olmayan "
+"ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1115
 #: ../gramps/plugins/lib/libnarrate.py:1138
@@ -28724,6 +28840,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile evli olmayan "
+"ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1121
 #, python-format
@@ -28731,6 +28849,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(partial_date)s içinde %(place)s%(endnotes)s içinde "
+"%(spouse)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1122
 #, python-format
@@ -28738,6 +28858,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(full_date)s tarihinde %(place)s%(endnotes)s içinde "
+"%(spouse)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1123
 #, python-format
@@ -28745,6 +28867,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s "
+"ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1126
 #, python-format
@@ -28752,6 +28876,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Aynı zamanda %(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s "
+"ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -28759,6 +28885,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(full_date)s tarihinde %(place)s%(endnotes)s'de %(spouse)s ile evli "
+"olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
@@ -28766,6 +28894,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -28773,6 +28903,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(partial_date)s içinde %(place)s%(endnotes)s içinde %(spouse)s ile "
+"evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
@@ -28780,6 +28912,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(full_date)s tarihinde %(place)s%(endnotes)s içinde %(spouse)s ile "
+"evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
@@ -28787,6 +28921,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1144
 #, python-format
@@ -28794,6 +28930,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin %(partial_date)s%(endnotes)s içinde %(spouse)s ile evli olmayan "
+"bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
@@ -28801,6 +28939,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin %(full_date)s%(endnotes)s tarihinde %(spouse)s ile evli olmayan "
+"bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -28808,6 +28948,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin %(spouse)s %(modified_date)s%(endnotes)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
@@ -28815,6 +28957,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
+"%(partial_date)s%(endnotes)s içinde %(spouse)s ile evlenmemiş bir ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
@@ -28822,6 +28966,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
+"%(full_date)s%(endnotes)s tarihinde %(spouse)s ile evlenmemiş bir ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1151
 #, python-format
@@ -28829,6 +28975,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
+"%(spouse)s %(modified_date)s%(endnotes)s ile evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1154
 #, python-format
@@ -28836,6 +28983,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
+"%(partial_date)s%(endnotes)s içinde %(spouse)s ile evlenmemiş bir ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1155
 #, python-format
@@ -28843,6 +28992,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
+"%(full_date)s%(endnotes)s tarihinde %(spouse)s ile evlenmemiş bir ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1156
 #, python-format
@@ -28850,21 +29001,22 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
+"%(spouse)s %(modified_date)s%(endnotes)s ile evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1159
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(partial_date)s%(endnotes)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1160
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(full_date)s%(endnotes)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1161
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1167
 #, python-format
@@ -28872,6 +29024,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile evli "
+"olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
@@ -28879,6 +29033,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(full_date)s%(endnotes)s tarihinde %(spouse)s ile evli "
+"olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1169
 #, python-format
@@ -28886,6 +29042,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evli olmayan "
+"bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1172
 #, python-format
@@ -28893,6 +29051,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1173
 #, python-format
@@ -28900,6 +29060,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(full_date)s%(endnotes)s tarihinde %(spouse)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
@@ -28907,6 +29069,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1177
 #, python-format
@@ -28914,6 +29078,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1178
 #, python-format
@@ -28921,6 +29087,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(full_date)s%(endnotes)s tarihinde %(spouse)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1179
 #, python-format
@@ -28928,23 +29096,27 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1182
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s %(partial_date)s%(endnotes)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1183
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(full_date)s%(endnotes)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1184
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1189
 #, python-format
@@ -28952,24 +29124,28 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin %(place)s%(endnotes)s içinde %(spouse)s ile evli olmayan bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1190
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s ile evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1191
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s ile evlenmemiş bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1192
 #: ../gramps/plugins/lib/libnarrate.py:1199
 #, python-format
 msgid "Unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1196
 #, python-format
@@ -28977,6 +29153,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile evli olmayan "
+"bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1197
 #, python-format
@@ -28984,6 +29162,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile evli olmayan bir ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1198
 #, python-format
@@ -28991,43 +29171,46 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile evli olmayan bir ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1203
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişinin %(spouse)s%(endnotes)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1204
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s%(endnotes)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1205
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s%(endnotes)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1206
 #: ../gramps/plugins/lib/libnarrate.py:1213
 #, python-format
 msgid "Unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s%(endnotes)s ile evli olmayan ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1210
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(spouse)s%(endnotes)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1211
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s%(endnotes)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1212
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s%(endnotes)s ile evli olmayan bir ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1224
 #, python-format
@@ -29035,6 +29218,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin, %(place)s%(endnotes)s içindeki %(partial_date)s içindeki "
+"%(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -29042,6 +29227,8 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin %(spouse)s ile %(full_date)s günü %(place)s%(endnotes)s'de "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -29049,6 +29236,8 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -29056,6 +29245,8 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -29063,6 +29254,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(spouse)s ile %(full_date)s tarihinde %(place)s%(endnotes)s'de bir ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -29070,6 +29263,7 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
@@ -29077,6 +29271,8 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(partial_date)s içinde %(place)s%(endnotes)s içinde %(spouse)s ile ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -29084,6 +29280,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(full_date)s tarihinde %(place)s%(endnotes)s'de %(spouse)s ile ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
@@ -29091,22 +29289,23 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(partial_date)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1240
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(full_date)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1241
 #, python-format
 msgid ""
 "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1247
 #, python-format
@@ -29114,6 +29313,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(place)s%(endnotes)s içindeki %(partial_date)s içindeki "
+"%(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1248
 #, python-format
@@ -29121,6 +29322,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(full_date)s tarihinde %(place)s%(endnotes)s içinde "
+"%(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1249
 #, python-format
@@ -29128,6 +29331,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s "
+"ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1252
 #, python-format
@@ -29135,6 +29340,8 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1253
 #, python-format
@@ -29142,6 +29349,8 @@ msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s ile %(full_date)s tarihinde %(place)s%(endnotes)s'de bir "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1254
 #, python-format
@@ -29149,6 +29358,8 @@ msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1257
 #, python-format
@@ -29156,6 +29367,8 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(spouse)s ile %(partial_date)s içinde %(place)s%(endnotes)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
@@ -29163,6 +29376,8 @@ msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(full_date)s tarihinde %(place)s%(endnotes)s'de %(spouse)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1259
 #, python-format
@@ -29170,24 +29385,30 @@ msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içinde %(spouse)s %(modified_date)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1262
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içindeki %(spouse)s %(partial_date)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1263
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içindeki %(spouse)s %(full_date)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1264
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(place)s%(endnotes)s içindeki %(spouse)s %(modified_date)s ile "
+"ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1270
 #, python-format
@@ -29195,63 +29416,66 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin %(partial_date)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1271
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
+"Bu kişinin %(full_date)s%(endnotes)s tarihinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1272
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
+"Bu kişinin %(spouse)s %(modified_date)s%(endnotes)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1275
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(partial_date)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1276
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(full_date)s%(endnotes)s tarihinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1277
 #, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1280
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(partial_date)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1281
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(full_date)s%(endnotes)s tarihinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1282
 #, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1285
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(partial_date)s%(endnotes)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1286
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(full_date)s%(endnotes)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1287
 #, python-format
 msgid "Relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1293
 #, python-format
@@ -29259,6 +29483,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1294
 #, python-format
@@ -29266,6 +29492,8 @@ msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(full_date)s%(endnotes)s tarihinde %(spouse)s ile "
+"ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1295
 #, python-format
@@ -29273,89 +29501,96 @@ msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile ilişkisi "
+"vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1298
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1299
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(full_date)s%(endnotes)s tarihinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1300
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile de ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1303
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(partial_date)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1304
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
+"Ayrıca %(full_date)s%(endnotes)s tarihinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1305
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(spouse)s %(modified_date)s%(endnotes)s ile de ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1308
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(partial_date)s%(endnotes)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1309
 #, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(full_date)s%(endnotes)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1310
 #, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(spouse)s %(modified_date)s%(endnotes)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1315
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Bu kişinin %(place)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1316
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1317
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1318
 #, python-format
 msgid "Relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "%(place)s%(endnotes)s içinde %(spouse)s ile ilişki."
 
 #: ../gramps/plugins/lib/libnarrate.py:1322
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
+"Bu kişinin ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1323
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Ayrıca %(place)s%(endnotes)s içinde %(spouse)s ile ilişkisi vardı."
 
 #: ../gramps/plugins/lib/libnarrate.py:1324
 #, python-format
@@ -30870,6 +31105,9 @@ msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
+"Bu rapor, matronymic soy mtDNA soyu olarak da adlandırılan ana soyu "
+"gösterir. Bu soydaki insanların hepsi aynı Mitokondriyal DNA'yı (mtDNA) "
+"paylaşır."
 
 #: ../gramps/plugins/quickview/lineage.py:93
 msgid "Name Mother"
@@ -31748,7 +31986,7 @@ msgstr "Yinelenen üstsoyların atlanıp atlanmayacağı."
 #: ../gramps/plugins/textreport/detancestralreport.py:894
 #: ../gramps/plugins/textreport/detdescendantreport.py:1079
 msgid "Use callname for common name"
-msgstr ""
+msgstr "Genel ad için seslenme adını kullanın"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:895
 #: ../gramps/plugins/textreport/detdescendantreport.py:1080
@@ -31796,7 +32034,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:923
 #: ../gramps/plugins/textreport/detdescendantreport.py:1112
 msgid "Whether to add descendant references in child list."
-msgstr ""
+msgstr "Çocuk listesine altsoy referanslarının eklenip eklenmeyeceğini."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:927
 #: ../gramps/plugins/textreport/detdescendantreport.py:1116
@@ -31908,13 +32146,13 @@ msgstr "Eksik Tarihlerin boşluklarla değiştirilip değiştirilmeyeceğini."
 #: ../gramps/plugins/textreport/detancestralreport.py:1000
 #: ../gramps/plugins/textreport/detdescendantreport.py:1203
 msgid "The style used for the children list title."
-msgstr ""
+msgstr "Çocuk listesi başlığı için kullanılan stil."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1011
 #: ../gramps/plugins/textreport/detdescendantreport.py:1214
 #: ../gramps/plugins/textreport/familygroup.py:900
 msgid "The style used for the text related to the children."
-msgstr ""
+msgstr "Çocuklarla ilgili metin için kullanılan stil."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1021
 #: ../gramps/plugins/textreport/detdescendantreport.py:1224
@@ -32071,7 +32309,7 @@ msgstr "Süzgeç için merkez aile"
 
 #: ../gramps/plugins/textreport/familygroup.py:725
 msgid "Recursive (down)"
-msgstr ""
+msgstr "Özyinelemeli (aşağı)"
 
 #: ../gramps/plugins/textreport/familygroup.py:726
 msgid "Create reports for all descendants of this family."
@@ -32143,11 +32381,11 @@ msgstr "Çocuklar için evlilik bilgilerinin dahil edilip edilmeyeceği."
 
 #: ../gramps/plugins/textreport/familygroup.py:802
 msgid "Generation numbers (recursive only)"
-msgstr ""
+msgstr "Kuşak numaraları (sadece özyinelemeli)"
 
 #: ../gramps/plugins/textreport/familygroup.py:804
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr ""
+msgstr "Kuşağın her rapora dahil edilip edilmeyeceği (sadece özyinelemeli)."
 
 #: ../gramps/plugins/textreport/familygroup.py:808
 msgid "Print fields for missing information"
@@ -32174,7 +32412,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:305
 msgid "Alternate Parents"
-msgstr ""
+msgstr "Alternatif Ebeveynler"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:447
 #: ../gramps/plugins/webreport/person.py:1418
@@ -32189,7 +32427,7 @@ msgstr "Görüntüler"
 #: ../gramps/plugins/textreport/indivcomplete.py:861
 #: ../gramps/plugins/textreport/textplugins.gpr.py:214
 msgid "Complete Individual Report"
-msgstr ""
+msgstr "Tam Bireysel Rapor"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:958
 msgid "(image)"
@@ -32197,7 +32435,7 @@ msgstr "(görüntü)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1079
 msgid "List events chronologically"
-msgstr ""
+msgstr "Olayları kronolojik olarak listeleyin"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1080
 msgid "Whether to sort events into chronological order."
@@ -32211,7 +32449,7 @@ msgstr "Başlık olarak kişinin adını kullanın"
 msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
-msgstr ""
+msgstr "Başlık kişinin adı mı yoksa 'Tam Bireysel Rapor' mu olmalı"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
@@ -32658,11 +32896,11 @@ msgstr "Ayrıntılı bir altsoy raporu üretir"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:169
 msgid "End of Line Report"
-msgstr ""
+msgstr "Satır Sonu Raporu"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:170
 msgid "Produces a textual end of line report"
-msgstr ""
+msgstr "Metinsel bir satır sonu raporu üretir"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:192
 msgid ""
@@ -33036,7 +33274,7 @@ msgstr "Hata bulunamadı"
 
 #: ../gramps/plugins/tool/check.py:2452
 msgid "The database has passed internal checks"
-msgstr ""
+msgstr "Veri tabanı dahili kontrolleri geçti"
 
 #: ../gramps/plugins/tool/check.py:2455
 msgid "No errors were found: the database has passed internal checks."
@@ -33162,7 +33400,7 @@ msgstr[0] "{quantity} eksik ortam nesnesi kaldırıldı\n"
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] ""
+msgstr[0] "{quantity} olaylar referans edildi, ancak bulunamadı\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2651
