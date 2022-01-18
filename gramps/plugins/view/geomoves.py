@@ -554,7 +554,7 @@ class GeoMoves(GeoGraphyView):
             if not person:
                 return
         self.message_layer.add_message(
-                              _("All descendance for %s") % _nd.display(person))
+                              _("All descendants for %s") % _nd.display(person))
         color = Gdk.color_parse(self._config.get('geography.color_base'))
         GLib.timeout_add(int(self._config.get("geography.generation_interval")),
                          self.animate_moves, 0, person, color)
