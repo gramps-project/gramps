@@ -8,7 +8,7 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # R. B. <weblate@macdefender.org>, 2021.
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-20 22:13+0000\n"
+"PO-Revision-Date: 2022-01-16 17:04+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -1525,8 +1525,8 @@ msgstr ""
 "6. Eine Datenbank öffnen und anhand ihrer Daten einen Zeitlinienbericht als "
 "PDF-Dokument\n"
 "der meine_zeitlinie.pdf Datei:\n"
-"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,of=meine_zeitlinie"
-".pdf\n"
+"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,"
+"of=meine_zeitlinie.pdf\n"
 "\n"
 "7. Um eine Zusammenfassung der Datenbank zu erstellen, verwende:\n"
 "gramps -O 'Stammbaum 1' -a report -p name=summary\n"
@@ -1534,12 +1534,12 @@ msgstr ""
 "8. Berichtsoptionen listen\n"
 "Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht "
 "zu erhalten.\n"
-"Um Details zu einer bestimmten Option zu erhalten, verwende show=Optionsname "
-", z.B.. name=timeline,show=off string.\n"
+"Um Details zu einer bestimmten Option zu erhalten, verwende "
+"show=Optionsname , z.B.. name=timeline,show=off string.\n"
 "Um die verfügbaren Berichtsnamen zu sehen, verwende name=show string.\n"
 "\n"
-"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, verwende:"
-"\n"
+"9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln, "
+"verwende:\n"
 "gramps -O 'Stammbaum 1' -e Ausgabe.gramps -f gramps-xml\n"
 "\n"
 "10. Um einen Webauftritt in einer anderen Sprache zu erstellen (in deutsch), "
@@ -3506,7 +3506,7 @@ msgstr "Präfix"
 
 #: ../gramps/gen/display/name.py:648 ../gramps/gen/display/name.py:739
 msgid "rawsurnames"
-msgstr "unbearbeitete Nachnamen"
+msgstr "roheNachnamen"
 
 #: ../gramps/gen/display/name.py:650 ../gramps/gen/display/name.py:741
 msgid "nickname"
@@ -4674,7 +4674,7 @@ msgstr "Familien mit der Beziehungsart"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Passt zu Familien mit der Beziehungsart eines bestimmten Wertes"
+msgstr "Liefert Familien mit der Beziehungsart eines bestimmten Wertes"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:45
 msgid "Families with <count> sources"
@@ -5085,7 +5085,7 @@ msgstr "Notizen der jeweiligen Art"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:47
 msgid "Matches notes with the particular type "
-msgstr "Passt auf Notizen der jeweiligen Art "
+msgstr "Liefert Notizen der bestimmten Art "
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:44
 msgid "Notes matching the <filter>"
@@ -5473,7 +5473,7 @@ msgstr "Personen mit der <Namensart>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 msgid "Matches people with a type of name"
-msgstr "Passt auf Personen mit einer bestimmten Namensart"
+msgstr "Liefert Personen mit einer bestimmten Art von Namen"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:45
 msgid "People with a nickname"
@@ -5706,7 +5706,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:47
 msgid "Descendant family members of <filter> match"
-msgstr "Ist Familienmitglied eines Nachkommen von <Filter> Treffer"
+msgstr "Nachkommende Familienmitglieder von <Filter> Treffer"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid ""
@@ -9308,8 +9308,8 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
-"Die Option '%(opt_name)s' befindet sich in %(file)s,\n"
-"  sie ist aber in dem Modul nicht verfügbar, und wird daher nicht beachtet..."
+"Option '%(opt_name)s' ist in %(file)s vorhanden\n"
+"  ist dem Modul aber nicht bekannt. Ignorieren..."
 
 #: ../gramps/gen/plug/_pluginreg.py:59
 msgid "Stable"
@@ -9702,20 +9702,20 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
-"Beeinflusst die Knotenabstände und Skalierung der Grafik.\n"
-"Wenn die Grafik kleiner ist als der Druckbereich:\n"
-"  Komprimieren ändert nicht die Knotenabstände. \n"
-"  Füllen vergrößert die Knotenabstände, damit der Druckbereich in Höhe und "
-"Breite gefüllt wird.\n"
-"  Ausdehnen vergrößert die Knotenabstände gleichmäßig, damit das "
-"Seitenverhältnis beibehalten wird.\n"
-"Wenn die Grafik größer ist als der Druckbereich:\n"
-"  Komprimieren verkleinert die Grafik, damit die Kompaktheit auf Kosten der "
-"Symmetrie erhalten bleibt.\n"
-"  Füllen verkleinert die Grafik nach dem Vergrößern der Knotenabstände, "
-"damit der Druckbereich ausgefüllt wird.\n"
-"  Ausdehnen verkleinert die Grafik gleichmäßig, damit sie in den "
-"Druckbereich passt."
+"Beeinflusst die Knotenabstände und die Skalierung des Diagramms.\n"
+"Wenn das Diagramm kleiner als der Druckbereich ist:\n"
+"  Durch Komprimieren wird der Knotenabstand nicht verändert.\n"
+"  Füllen vergrößert den Knotenabstand so, dass er sowohl in der Breite als "
+"auch in der Höhe in den Druckbereich passt.\n"
+"  Erweitern vergrößert die Knotenabstände gleichmäßig, um das "
+"Seitenverhältnis beizubehalten.\n"
+"Wenn das Diagramm größer als der Druckbereich ist:\n"
+"  Komprimieren schrumpft das Diagramm, um eine enge Packung auf Kosten der "
+"Symmetrie zu erreichen.\n"
+"  Füllen schrumpft das Diagramm so, dass es in den Druckbereich passt, "
+"nachdem zuvor der Knotenabstand vergrößert wurde.\n"
+"  Erweitern schrumpft das Diagramm gleichmäßig, um es an den Druckbereich "
+"anzupassen."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:233
 msgid "DPI"
@@ -10407,11 +10407,11 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"Fehler beim Zerlegen der Liste aktueller DBs aus der Datei {fname}: "
-"{error}.\n"
-"Dies könnte eine Beschädigung deiner Dateien anzeigen.\n"
-"Wenn du dir sicher bist, das es kein Problem mit anderen Dateien gibt, "
-"lösche sie und starte Gramps neu."
+"Fehler bei der Syntaxsanalyse der Liste der letzten DBs aus der Datei "
+"{fname}: {error}.\n"
+"Dies könnte auf einen Schaden an deinen Dateien hinweisen.\n"
+"Wenn du sicher bist, dass es kein Problem mit anderen Dateien gibt, lösche "
+"die Datei und starte Gramps neu."
 
 #: ../gramps/gen/relationship.py:1273
 #: ../gramps/plugins/view/pedigreeview.py:1606
@@ -10649,7 +10649,7 @@ msgid ""
 msgstr ""
 "WARNUNG: konnte Datei nicht analysieren:\n"
 "%(file)s\n"
-"weil %(error)s -- erstelle es neu\n"
+"weil %(error)s -- erstelle sie neu\n"
 
 #: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
@@ -11668,7 +11668,7 @@ msgstr "E-Mail"
 
 #: ../gramps/gui/configure.py:629
 msgid "Researcher"
-msgstr "Informationen zum Forscher"
+msgstr "Forscher"
 
 #: ../gramps/gui/configure.py:638
 msgid "Gramps ID format settings"
@@ -11688,7 +11688,7 @@ msgstr "Farben, die für Felder in den grafischen Ansichten verwendet werden"
 
 #: ../gramps/gui/configure.py:683
 msgid "Light colors"
-msgstr "Helle Farbe"
+msgstr "Helle Farben"
 
 #: ../gramps/gui/configure.py:684
 msgid "Dark colors"
@@ -11708,15 +11708,15 @@ msgstr "Setzt die Farben für das aktuelle Design auf die Standardwerte zurück.
 
 #: ../gramps/gui/configure.py:701
 msgid "Colors for Male persons"
-msgstr "Farben für männliche Personen"
+msgstr "Farben für Männliche Personen"
 
 #: ../gramps/gui/configure.py:702
 msgid "Colors for Female persons"
-msgstr "Farben für weibliche Personen"
+msgstr "Farben für Weibliche Personen"
 
 #: ../gramps/gui/configure.py:703
 msgid "Colors for Unknown persons"
-msgstr "Farben für unbekannte Personen"
+msgstr "Farben für Unbekannte Personen"
 
 #: ../gramps/gui/configure.py:704
 msgid "Colors for Family nodes"
@@ -11728,11 +11728,11 @@ msgstr "Andere Farben"
 
 #: ../gramps/gui/configure.py:707
 msgid "Background for Alive"
-msgstr "Hintergrundfarbe für „Lebend“"
+msgstr "Hintergrund für Lebend"
 
 #: ../gramps/gui/configure.py:708
 msgid "Background for Dead"
-msgstr "Hintergrundfarbe für Verstorben"
+msgstr "Hintergrund für Tote"
 
 #: ../gramps/gui/configure.py:709
 msgid "Border for Alive"
@@ -11752,7 +11752,7 @@ msgstr "Hintergrund für Verheiratet"
 
 #: ../gramps/gui/configure.py:732
 msgid "Background for Unmarried"
-msgstr "Hintergrundfarbe für Nicht verheiratet"
+msgstr "Hintergrund für Unverheiratete"
 
 #: ../gramps/gui/configure.py:734
 msgid "Background for Civil union"
@@ -11764,7 +11764,7 @@ msgstr "Hintergrund für Unbekannt"
 
 #: ../gramps/gui/configure.py:737
 msgid "Background for Divorced"
-msgstr "Hintergrundfarbe für Geschieden"
+msgstr "Hintergrund für Geschiedene"
 
 #: ../gramps/gui/configure.py:738
 msgid "Default border"
@@ -12123,9 +12123,8 @@ msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell nicht geladen. Die Rechtschreibprüfung wird nicht zur Verfügung "
-"stehen.\n"
-"Um es für Gramps zu erstellen, siehe %(gramps_wiki_build_spell_url)s"
+"GtkSpell nicht geladen. Die Rechtschreibprüfung wird nicht verfügbar sein.\n"
+"Um es für Gramps zu bauen siehe %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1596
 msgid "Display Tip of the Day"
@@ -12173,11 +12172,11 @@ msgstr "Immer"
 
 #: ../gramps/gui/configure.py:1635
 msgid "Check for addon updates"
-msgstr "Nach Aktualisierungen für Erweiterungen suchen"
+msgstr "Nach Zusatzmodul Aktualisierungen suchen"
 
 #: ../gramps/gui/configure.py:1641
 msgid "Updated addons only"
-msgstr "Nur aktualisierte Erweiterungen"
+msgstr "Nur aktualisierte Zusatzmodule"
 
 #: ../gramps/gui/configure.py:1642
 msgid "New addons only"
@@ -12185,7 +12184,7 @@ msgstr "Nur neue Erweiterungen"
 
 #: ../gramps/gui/configure.py:1643
 msgid "New and updated addons"
-msgstr "Neue und aktualisierte Erweiterungen"
+msgstr "Neue und aktualisierte Zusatzmodule"
 
 #: ../gramps/gui/configure.py:1653
 msgid "What to check"
@@ -12197,11 +12196,11 @@ msgstr "Wo prüfen"
 
 #: ../gramps/gui/configure.py:1663
 msgid "Do not ask about previously notified addons"
-msgstr "Bereits aktualisierte Erweiterungen nicht erneut abfragen"
+msgstr "Nicht nach bereits benachrichtigten Zusatzmodulen fragen"
 
 #: ../gramps/gui/configure.py:1668
 msgid "Check for updated addons now"
-msgstr "Jetzt nach Aktualisierungen für Erweiterungen suchen"
+msgstr "Jetzt nach aktualisierten Zusatzmodulen suchen"
 
 #: ../gramps/gui/configure.py:1680
 msgid "Checking Addons Failed"
@@ -12232,11 +12231,12 @@ msgstr "neu"
 
 #: ../gramps/gui/configure.py:1701
 msgid "update"
-msgstr "Aktualisierung"
+msgstr "aktualisieren"
 
 #: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
-msgstr "Stammbaum-Datenbank Einstellungen und Sicherung Verwaltung"
+msgstr ""
+"Einstellungen der Stammbaumdatenbank und Verwaltung von Sicherungskopien"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
@@ -12271,11 +12271,13 @@ msgstr "Sicherungspfad"
 
 #: ../gramps/gui/configure.py:1772
 msgid "Backup on exit"
-msgstr "Beim Beenden sichern"
+msgstr "Sicherung beim Beenden"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr "Deinen Stammbaum im oben angegeben Pfad beim Beenden sichern."
+msgstr ""
+"Sichert deinen Familienstammbaum beim Beenden im oben angegebenen "
+"Sicherungspfad."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12371,7 +12373,7 @@ msgstr "Datenbankverzeichnis auswählen"
 
 #: ../gramps/gui/configure.py:1882 ../gramps/gui/viewmanager.py:1820
 msgid "Select backup directory"
-msgstr "Sicherungsverzeichnis wählen"
+msgstr "Sicherungsverzeichnis auswählen"
 
 #: ../gramps/gui/configure.py:1947
 msgid ""
@@ -12480,12 +12482,12 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Während des Importes wird die Bearbeitungschronik für diese Sitzung "
-"gelöscht. Du kannst vor allem nicht den Import und die davor gemachten "
-"Änderungen rückgängig machen.\n"
+"Wenn du mit dem Import fortfährst, wird die Bearbeitungschronik für diese "
+"Sitzung gelöscht. Insbesondere kannst du weder den Import noch zuvor "
+"vorgenommene Änderungen rückgängig machen.\n"
 "\n"
-"Wenn du den Import möglicherweise doch rückgängig machen willst, sichere "
-"bitte deine Datenbank vorher."
+"Wenn du den Import rückgängig machen möchtest, brich bitte hier ab und "
+"erstelle eine Sicherungskopie deiner Datenbank."
 
 #: ../gramps/gui/dbloader.py:122
 msgid "_Proceed with import"
@@ -12497,7 +12499,7 @@ msgstr "_Stopp"
 
 #: ../gramps/gui/dbloader.py:207
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Willst du wirklich den Stammbaum aktualisieren?"
+msgstr "Bist du sicher, dass du diesen Stammbaum aktualisieren möchtest?"
 
 #: ../gramps/gui/dbloader.py:210
 msgid ""
@@ -12587,8 +12589,9 @@ msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
-"Diese Datei gibt ihren Zeichensatz falsch an, daher kann sie nicht korrekt "
-"importiert werden. Bitte korrigiere den Zeichensatz und importiere sie erneut"
+"Diese Datei gibt ihren Zeichensatz nicht korrekt an, so dass sie nicht "
+"korrekt importiert werden kann. Bitte korrigiere die Kodierung, und "
+"importiere erneut"
 
 #: ../gramps/gui/dbman.py:97
 #, python-format
@@ -12688,11 +12691,11 @@ msgid ""
 "database you may safely break the lock. However, if someone else is editing "
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
-"Gramps glaubt, dass jemand anderes aktiv diese Datenbank bearbeitet. Du "
-"kannst diese Datenbank nicht bearbeiten, während sie gesperrt ist. Wenn "
-"niemand die Datenbank bearbeitet, kannst du die Sperrung sicher aufheben. "
-"Jedoch wenn jemand anderes die Datenbank bearbeitet und du die Sperrung "
-"aufhebst, kannst du die Datenbank beschädigen."
+"Gramps glaubt, dass jemand anderes diese Datenbank aktiv bearbeitet. Du "
+"kannst diese Datenbank nicht bearbeiten, solange sie gesperrt ist. Wenn die "
+"Datenbank von niemandem bearbeitet wird, kannst du die Sperre gefahrlos "
+"aufheben. Wenn jedoch jemand anderes die Datenbank bearbeitet und du die "
+"Sperre aufhebst, kannst du die Datenbank beschädigen."
 
 #: ../gramps/gui/dbman.py:515
 msgid "Break lock"
@@ -12752,8 +12755,7 @@ msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr ""
-"Das Entfernen dieser Version verhindert, dass du sie zukünftig auswählen "
-"kannst."
+"Das Entfernen dieser Version verhindert, dass du sie in Zukunft extrahierst."
 
 #: ../gramps/gui/dbman.py:709
 msgid "Remove version"
@@ -12854,33 +12856,35 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"Wenn du %(bold_start)sfortsetzen%(bold_end)s klickst, versucht Gramps deinen "
-"Stammbaum aus der letzten gültigen Sicherung wieder herzustellen. Es gibt "
-"mehrere Möglichkeiten, das dies zu ungewollten Ergebnissen führt. Also "
-"%(bold_start)ssichere%(bold_end)s erst deinen Stammbaum.\n"
-"Der gewählte Stammbaum ist in %(dirname)s gespeichert.\n"
+"Wenn du auf %(bold_start)sFortfahren%(bold_end)s klickst, wird Gramps "
+"versuchen, deinen Stammbaum aus der letzten guten Sicherung "
+"wiederherzustellen. Es gibt mehrere Möglichkeiten, wie dies zu unerwünschten "
+"Effekten führen kann, also %(bold_start)ssichere%(bold_end)s zuerst den "
+"Stammbaum.\n"
+"Der von die ausgewählte Stammbaum wird in %(dirname)s gespeichert.\n"
 "\n"
-"Überprüfe vor einer Reparatur, ob sich der Stammbaum tatsächlich nicht mehr "
-"öffnen lässt, denn Gramps kann einige Fehler automatisch korrigieren.\n"
+"Stelle vor einer Reparatur sicher, dass der Stammbaum wirklich nicht mehr "
+"geöffnet werden kann, da das Datenbank-Backend einige Fehler automatisch "
+"beheben kann.\n"
 "\n"
-"%(bold_start)sDetails:%(bold_end)s Die Reparatur eines Stammbaums geschieht "
-"praktisch durch die Verwendung der letzten Stammbaumsicherung, die Gramps "
-"nach der letzten Benutzung gespeichert hat. Wenn du Gramps mehrere Stunden/"
-"Tage ohne es zu schließen verwendet hast, gehen all diese Informationen "
-"verloren! Wenn die Reparatur fehlschlägt, geht auch der original Stammbaum "
-"für immer verloren. Daher wird eine Sicherung benötigt. Wenn die Reparatur "
-"fehlschlägt oder zu viele Daten verloren gegangen sind, kannst du den "
-"original Stammbaum manuell reparieren. Schaue hierfür auf folgende Webseite\n"
+"%(bold_start)sDetails:%(bold_end)s Das Reparieren eines Stammbaums verwendet "
+"tatsächlich die letzte Sicherung des Stammbaums, die Gramps bei der letzten "
+"Verwendung gespeichert hat. Wenn du mehrere Stunden/Tage gearbeitet hast, "
+"ohne Gramps zu schließen, gehen all diese Informationen verloren! Wenn die "
+"Reparatur fehlschlägt, geht der ursprüngliche Stammbaum für immer verloren, "
+"daher ist eine Sicherungskopie erforderlich. Wenn die Reparatur fehlschlägt "
+"oder zu viele Informationen verloren gehen, kannst du den ursprünglichen "
+"Stammbaum manuell reparieren. Einzelheiten findest du auf der Webseite\n"
 "%(gramps_wiki_recover_url)s\n"
-"Versuche vor der Reparatur, den Stammbaum auf herkömmliche Art zu öffnen. "
-"Jene Fehler, die automatisch repariert werden können, aktivieren auch die "
-"Reparaturschaltfläche. In diesem Fall kannst du die Reparaturschaltfläche "
-"deaktivieren, indem du die Datei %(recover_file)s aus dem "
+"Versuche vor einer Reparatur, den Stammbaum auf die übliche Weise zu öffnen. "
+"Mehrere Fehler, die die Reparatur-Schaltfläche auslösen, können automatisch "
+"behoben werden. Wenn dies der Fall ist, kannst du die Schaltfläche "
+"„Reparieren“ deaktivieren, indem du die Datei %(recover_file)s im "
 "Stammbaumverzeichnis entfernst."
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
-msgstr "Weiter, ich habe eine Sicherung"
+msgstr "Fortfahren, ich habe eine Sicherung erstellt"
 
 #: ../gramps/gui/dbman.py:925
 msgid "Stop"
@@ -12888,7 +12892,7 @@ msgstr "Stopp"
 
 #: ../gramps/gui/dbman.py:944
 msgid "Rebuilding database from backup files"
-msgstr "Datenbank aus Sicherungsdateien wiederherstellen"
+msgstr "Wiederherstellung der Datenbank aus Sicherungsdateien"
 
 #: ../gramps/gui/dbman.py:949
 msgid "Error restoring backup data"
@@ -13898,9 +13902,9 @@ msgid ""
 "leave blank to get the next available ID value."
 msgstr ""
 "Du hast versucht, eine existierende Gramps-ID mit dem Wert %(id)s zu "
-"verwenden. Dieser Wert wird bereits von '%(prim_object)s' benutzt. Bitte gib "
-"eine andere ID ein oder lasse sie leer, um den nächsten verfügbaren ID-Wert "
-"zu erhalten."
+"verwenden. Dieser Wert wird bereits von '%(prim_object)s' verwendet. Bitte "
+"gib eine andere ID ein oder lasse sie leer, um den nächsten verfügbaren ID-"
+"Wert zu erhalten."
 
 #: ../gramps/gui/editors/editcitation.py:333
 #, python-format
@@ -14195,13 +14199,13 @@ msgid ""
 "To make sure the information shown is still correct, the data shown has been "
 "updated. Some edits you have made may have been lost."
 msgstr ""
-"Das %(object)s das du bearbeitest wurde außerhalb dieses Editors geändert. "
-"Dies kann wegen einer Änderung in einer der Hauptansichten geschehen sein z."
-"B. eine Quelle, die hier verwendet wird, wurde in der Quellenansicht "
-"gelöscht.\n"
-"Um sicher zu stellen, das die angezeigten Informationen noch stimmen, wurden "
-"die angezeigten Daten aktualisiert. Einige ihrer Änderungen können verloren "
-"gegangen sein."
+"Das %(object)s, das du bearbeitest, hat sich außerhalb dieses Editors "
+"geändert. Dies kann auf eine Änderung in einer der Hauptansichten "
+"zurückzuführen sein, z. B. wurde eine hier verwendete Quelle in der "
+"Quellansicht gelöscht.\n"
+"Um sicherzustellen, dass die angezeigten Informationen noch korrekt sind, "
+"wurden die angezeigten Daten aktualisiert. Einige Änderungen, die du "
+"vorgenommen hast, sind möglicherweise verloren gegangen."
 
 #: ../gramps/gui/editors/editfamily.py:529
 #: ../gramps/plugins/importer/importcsv.py:230
@@ -14353,9 +14357,9 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"Du hast versucht, eine existierende Gramps-ID mit dem Wert %(id)s zu "
-"verwenden. Dieser Wert wird bereits benutzt. Bitte gib eine andere ID ein "
-"oder lasse sie leer, um den nächsten verfügbaren ID-Wert zu erhalten."
+"Du hast versucht, die bestehende Gramps-ID mit dem Wert %(id)s zu verwenden. "
+"Dieser Wert wird bereits verwendet. Bitte gib eine andere ID ein oder lasse "
+"sie leer, um den nächsten verfügbaren ID-Wert zu erhalten."
 
 #: ../gramps/gui/editors/editfamily.py:1158
 msgid "Add Family"
@@ -15078,7 +15082,7 @@ msgstr "Wähle %s von einer Liste"
 #: ../gramps/gui/editors/filtereditor.py:391
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
-"Gib eine Quellen-ID ein, wähle eine aus oder lasse sie leer um Objekte ohne "
+"Gib eine Quellen-ID an oder wähle eine aus, lasse sie leer, um Objekte ohne "
 "Quelle zu finden."
 
 #: ../gramps/gui/editors/filtereditor.py:533
@@ -16121,8 +16125,8 @@ msgid ""
 "Description of the event. Leave empty if you want to autogenerate this with "
 "the tool 'Extract Event Description'."
 msgstr ""
-"Beschreibung des Ereignisses. Lass es leer, wenn du sie mit dem Werkzeug "
-"'Ereignisbeschreibung extrahieren' automatisch erstellen willst."
+"Beschreibung des Ereignisses. Leer lassen, wenn du diese mit dem Werkzeug "
+"'Ereignisbeschreibung extrahieren' automatisch generieren möchtest."
 
 #: ../gramps/gui/glade/editevent.glade:194
 #: ../gramps/gui/glade/editeventref.glade:270
@@ -16341,8 +16345,7 @@ msgstr "Niedrigste Stufe einer Lokationsaufteilung: z.B. der Straßenname."
 #: ../gramps/gui/glade/editlocation.glade:327
 msgid "A district within, or a settlement near to, a town or city."
 msgstr ""
-"Ein Bereich in, oder eine Siedlung in der Nähe von einer Kleinstadt oder "
-"einer Stadt."
+"Ein Bezirk innerhalb einer Stadt oder eine Siedlung in der Nähe einer Stadt."
 
 #: ../gramps/gui/glade/editmedia.glade:139
 #: ../gramps/gui/glade/editmediaref.glade:379
@@ -16554,9 +16557,9 @@ msgid ""
 "A non official name given to a family to distinguish them of people with the "
 "same family name. Often referred to as eg. Farm name."
 msgstr ""
-"Ein nicht offizieller Name, der einer Familie gegeben wurde, um sie von "
-"Personen mit dem selben Nachnamen abzugrenzen. Oft bezieht sich dies auf "
-"einen gesellschaftlichen Namen bei Hofe."
+"Ein nicht offizieller Name, der einer Familie gegeben wird, um sie von "
+"Personen mit demselben Familiennamen zu unterscheiden. Oft auch als Hofname "
+"bezeichnet."
 
 #: ../gramps/gui/glade/editname.glade:424
 msgid "Family Names "
@@ -16581,11 +16584,11 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Personen werden basierend auf dem Namensformat aus den Einstellungen (dem "
-"Standard) angezeigt.\n"
-"Hier kannst du sicherstellen, dass diese Person nach einem "
-"Benutzernamensformat angezeigt wird (zusätzliche Formate können in den "
-"Präferenzen definiert werden)."
+"Personen werden gemäß dem in den Einstellungen angegebenen Namensformat "
+"angezeigt (Standardeinstellung).\n"
+"Hier kannst du sicherstellen, dass diese Person gemäß einem "
+"benutzerdefinierten Namensformat angezeigt wird (zusätzliche Formate können "
+"in den Einstellungen festgelegt werden)."
 
 #: ../gramps/gui/glade/editname.glade:524
 msgid "Dat_e:"
@@ -16598,11 +16601,11 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Personen werden basierend auf dem Namensformat aus den Einstellungen (dem "
-"Standard) sortiert.\n"
+"Personen werden nach dem in den Einstellungen angegebenen Namensformat "
+"sortiert (Standardeinstellung).\n"
 "Hier kannst du sicherstellen, dass diese Person nach einem "
-"Benutzernamensformat sortiert wird (zusätzliche Formate können in den "
-"Präferenzen definiert werden)."
+"benutzerdefinierten Namensformat sortiert wird (zusätzliche Formate können "
+"in den Einstellungen festgelegt werden)."
 
 #: ../gramps/gui/glade/editname.glade:601
 msgid ""
@@ -17840,7 +17843,7 @@ msgstr "Gewählte _Erweiterungen installieren"
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:1083
 msgid "Available Gramps Updates for Addons"
-msgstr "Verfügbare Gramps-Aktualisierungen für die Erweiterungen (Addons)"
+msgstr "Verfügbare Gramps-Aktualisierungen für Zusatzmodule"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
 msgid ""
@@ -17852,14 +17855,14 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
-"Gramps wird mit einem Grundbestand von Zusatzmodulen ausgeliefert. Darüber "
-"hinaus kannst du mit zusätzlichen Erweiterungen deren Funktionalität "
-"ergänzen. Die Erweiterungen liefern Berichte, Listen, Ansichten, "
-"Gramplets... Hier kannst du verfügbare Erweiterungen auswählen. Sie werden "
-"aus dem Internet von der Gramps Webseite geladen und lokal auf deinem "
-"Rechner installiert. Wenn du den Dialog jetzt schließt, kannst du "
-"Erweiterungen auch später über das Menü Bearbeiten -> Einstellungen "
-"installieren."
+"Gramps wird mit einem Kernsatz von Zusatzmodulen geliefert, die alle "
+"notwendigen Funktionen bieten. Du kannst diese Funktionalität jedoch mit "
+"zusätzlichen Zusatzmodulen erweitern. Diese Zusatzmodule bieten Berichte, "
+"Auflistungen, Ansichten, Gramplets und mehr. Hier kannst du unter den "
+"verfügbaren zusätzlichen Zusatzmodulen auswählen. Diese werden dann aus dem "
+"Internet von der Gramps-Website abgerufen und lokal auf deinem Computer "
+"installiert. Wenn du diesen Dialog jetzt schließt, kannst du später über das "
+"Menü unter Bearbeiten -> Einstellungen Zusatzmodule installieren."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -18158,15 +18161,16 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"Dieser Assistent für Fehlerberichte wird dir helfen, einen Fehlerbericht mit "
-"so vielen Informationen wie möglich an die Gramps-Entwickler zu schicken.\n"
+"Dies ist der Assistent für Fehlerberichte. Er hilft dir, einen möglichst "
+"detaillierten Fehlerbericht an die Gramps-Entwickler zu senden.\n"
 "\n"
-"Der Assistent wird dir einige Fragen über das Entstehen des Fehler und das "
-"eingesetzte System stellen. Am Ende des Assistenten wirst du gebeten, einen "
-"Fehlerbericht im Gramps bug tracking System anzulegen. Der Assistent wird "
-"den Fehlerbericht in die Zwischenablage kopieren, sodass du ihn in das "
-"Formular auf der bug tracking Website einfügen kannst und genau siehst, "
-"welche Informationen der Bericht enthalten soll."
+"Der Assistent wird dir einige Fragen stellen und einige Informationen über "
+"den aufgetretenen Fehler und die Betriebsumgebung sammeln. Am Ende des "
+"Assistenten wirst du gebeten, einen Fehlerbericht im Gramps Bug Tracking "
+"System einzureichen. Der Assistent wird den Fehlerbericht in die "
+"Zwischenablage legen, so dass du ihn in das Formular auf der "
+"Fehlerverfolgungs-Website einfügen und genau prüfen kannst, welche "
+"Informationen du einfügen möchtest."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:283
 msgid ""
@@ -18187,10 +18191,9 @@ msgid ""
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
-"Detaillierte Gramps-Fehlerinformationen. Du brauchst dir keine Sorgen "
-"machen, wenn du sie nicht verstehst. Du wirst die Möglichkeit haben, weitere "
-"Details über den Fehler auf den folgenden Seiten des Assistenten "
-"hinzuzufügen."
+"Dies ist die detaillierte Gramps-Fehlerinformation, mach dir keine Sorgen, "
+"wenn du sie nicht verstehst. Du hast die Möglichkeit, auf den folgenden "
+"Seiten des Assistenten weitere Details zu dem Fehler hinzuzufügen."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:363
 msgid ""
@@ -18478,11 +18481,11 @@ msgid ""
 "handle.  We recommend that you go to Relationships view and see if "
 "additional manual merging of families is necessary."
 msgstr ""
-"Die Personen wurden zusammengefasst.\n"
-"Jedoch sind die Familien für diese Zusammenführung zu komplex, um sie "
-"automatisch durchzuführen. Wir empfehlen, dass du in die Beziehungenansicht "
-"gehst und schaust ob noch zusätzliche Zusammenfassungen von Familien nötig "
-"sind."
+"Die Personen sind zusammengeführt worden.\n"
+"Allerdings waren die Familien für diese Zusammenführung zu komplex, um sie "
+"automatisch zu verarbeiten.  Wir empfehlen dir, die Ansicht \"Beziehungen\" "
+"aufzurufen und zu prüfen, ob eine zusätzliche manuelle Zusammenführung von "
+"Familien erforderlich ist."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
@@ -18573,7 +18576,7 @@ msgstr "Person wählen"
 #: ../gramps/gui/plug/_guioptions.py:1580
 #, python-format
 msgid "Select color for %s"
-msgstr "Wähle die Farbe für %s"
+msgstr "Farbe auswählen für %s"
 
 #: ../gramps/gui/plug/_guioptions.py:1743
 #: ../gramps/gui/plug/report/_reportdialog.py:452
@@ -18655,7 +18658,7 @@ msgstr "Alle Erweiterungen installieren"
 
 #: ../gramps/gui/plug/_windows.py:276
 msgid "Refresh Addon List"
-msgstr "Erweiterungsliste aktualisieren"
+msgstr "Zusatzmodul-Liste aktualisieren"
 
 #: ../gramps/gui/plug/_windows.py:289
 msgid "Reload"
@@ -18663,7 +18666,7 @@ msgstr "Neu laden"
 
 #: ../gramps/gui/plug/_windows.py:316
 msgid "Refreshing Addon List"
-msgstr "Erweiterungsliste wird aktualisiert"
+msgstr "Aktualisieren der Zusatzmodul-Liste"
 
 #: ../gramps/gui/plug/_windows.py:318 ../gramps/gui/plug/_windows.py:323
 #: ../gramps/gui/plug/_windows.py:418
@@ -18907,19 +18910,19 @@ msgid ""
 "If you change your mind during this process, you can safely press the Cancel "
 "button at any time and your present database will still be intact."
 msgstr ""
-"Unter normalen Umständen erfordert es Gramps nicht, dass du deine Änderungen "
-"direkt speicherst. Alle Änderungen, die du machst, werden sofort in der "
+"Unter normalen Umständen verlangt Gramps nicht, dass du deine Änderungen "
+"direkt speicherst. Alle Änderungen, die du vornimmst, werden sofort in der "
 "Datenbank gespeichert.\n"
 "\n"
-"Dieser Vorgang hilft dir, deine Daten in einem der verschiedenen Formate, "
-"die Gramps unterstützt, zu speichern. Dies kann dazu verwendet werden, eine "
-"Kopie deiner Daten zu erstellen, deine Daten zu sichern oder sie in ein "
-"Format zu konvertieren, das es dir erlaubt, sie in ein anderes Programm zu "
-"transferieren.\n"
+"Mit diesem Verfahren kannst du eine Kopie deiner Daten in einem der "
+"verschiedenen von Gramps unterstützten Formate speichern. Damit kannst du "
+"eine Kopie deiner Daten erstellen, deine Daten sichern oder sie in ein "
+"Format konvertieren, das die Übertragung in ein anderes Programm "
+"ermöglicht.\n"
 "\n"
-"Falls du während des Vorgangs deine Meinung änderst, kannst du jederzeit "
-"gefahrlos auf die Abbrechen Schaltfläche klicken und deine aktuelle "
-"Datenbank wird weiterhin intakt bleiben."
+"Solltest du während dieses Vorgangs deine Meinung ändern, kannst du "
+"jederzeit auf die Schaltfläche Abbrechen klicken, und deine aktuelle "
+"Datenbank bleibt erhalten."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:597
 msgid "Error exporting your Family Tree"
@@ -19497,12 +19500,13 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Wenn du dieses Werkzeug verwendest, wird die Bearbeitungschronik dieser "
-"Sitzung gelöscht. Dadurch können vorherige und durch das Werkzeuge getätigte "
-"Änderungen nicht mehr rückgängig gemacht werden.\n"
+"Wenn du mit diesem Werkzeug fortfährst, wird die Bearbeitungschronik für "
+"diese Sitzung gelöscht. Insbesondere kannst du weder die mit diesem Werkzeug "
+"vorgenommenen Änderungen noch die davor vorgenommenen Änderungen rückgängig "
+"machen.\n"
 "\n"
-"Wenn du jedoch die Änderungen, die durch das Werkzeug gemacht werden, "
-"rückgängig machen willst, stoppe hier und sichere deine Datenbank."
+"Wenn du die Ausführung dieses Werkzeugs rückgängig machen möchtest, brich "
+"bitte hier ab und erstelle eine Sicherungskopie deiner Datenbank."
 
 #: ../gramps/gui/plug/tool.py:116
 msgid "_Proceed with the tool"
@@ -19829,12 +19833,12 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Wenn du den Fehler nicht alleine beheben kannst, erstelle einen "
-"Fehlerbericht über %(gramps_bugtracker_url)s oder kontaktiere den "
-"Ansichtsautor(%(firstauthoremail)s).\n"
+"Wenn du den Fehler nicht selbst beheben kannst, kannst du einen Fehler unter "
+"%(gramps_bugtracker_url)s melden oder den Autor der Ansicht kontaktieren "
+"(%(firstauthoremail)s).\n"
 "\n"
-"Wenn du nicht willst, das Gramps weiter versucht diese Ansicht zu laden, "
-"kannst du sie in der Zusatzmodulverwaltung über das Hilfemenü verstecken."
+"Wenn du nicht möchtest, dass Gramps versucht, diese Ansicht erneut zu laden, "
+"kannst du sie über die Zusatzmodulverwaltung im Hilfemenü ausblenden."
 
 #: ../gramps/gui/viewmanager.py:1605
 msgid "Failed Loading Plugin"
@@ -19868,7 +19872,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1686
 msgid "Gramps XML Backup"
-msgstr "Gramps XML Sicherung"
+msgstr "Gramps XML-Sicherung"
 
 #: ../gramps/gui/viewmanager.py:1715
 msgid "File:"
@@ -19904,16 +19908,16 @@ msgstr "Fortsetzen und überschreiben"
 
 #: ../gramps/gui/viewmanager.py:1779
 msgid "Cancel the backup"
-msgstr "Sicherung abbrechen"
+msgstr "Abbrechen der Sicherung"
 
 #: ../gramps/gui/viewmanager.py:1794
 msgid "Making backup..."
-msgstr "Erstelle Sicherung..."
+msgstr "Sicherung erstellen..."
 
 #: ../gramps/gui/viewmanager.py:1807
 #, python-format
 msgid "Backup saved to '%s'"
-msgstr "Sicherung gespeichert in '%s'"
+msgstr "Sicherung gespeichert auf '%s'"
 
 #: ../gramps/gui/viewmanager.py:1810
 msgid "Backup aborted"
@@ -20206,7 +20210,7 @@ msgstr "%(title)s - Gramps"
 
 #: ../gramps/gui/views/tags.py:704
 msgid "Pick a Color"
-msgstr "Eine Farbe wählen"
+msgstr "Wähle eine Farbe"
 
 #: ../gramps/gui/views/treemodels/placemodel.py:145
 #: ../gramps/gui/views/treemodels/placemodel.py:153
@@ -20321,8 +20325,8 @@ msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"Die Grampletleiste wird zurückgesetzt, damit sie ihre original Gramplets "
-"enthält. Dieser Vorgang kann nicht rückgängig gemacht werden."
+"Die Gramplet-Leiste wird wiederhergestellt und enthält ihre Standard-"
+"Gramplets. Diese Aktion kann nicht rückgängig gemacht werden."
 
 #: ../gramps/gui/widgets/grampletpane.py:816
 msgid "Drag Properties Button to move and click it for setup"
@@ -20479,11 +20483,11 @@ msgstr "Verknüpfung _bearbeiten"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:699
 msgid "Select font color"
-msgstr "Wähle Schriftfarbe"
+msgstr "Schriftfarbe auswählen"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:703
 msgid "Select background color"
-msgstr "Wähle Hintergrundfarbe"
+msgstr "Hintergrundfarbe auswählen"
 
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1144
 #, python-format
@@ -20570,7 +20574,7 @@ msgstr "Drucken..."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:56
 msgid "Generates documents and prints them directly."
-msgstr "Erstellt Dokumente und druckt sie gleich."
+msgstr "Erzeugt Dokumente und druckt sie direkt aus."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:76
 msgid "HTML"
@@ -20760,7 +20764,7 @@ msgstr "gelb"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:359
 msgid "The color, if any, of the SVG background"
-msgstr "Die Farbe, wenn vorhanden, des SVG Hintergrund"
+msgstr "Die Farbe des SVG-Hintergrunds, falls vorhanden"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:115
 msgid "Ancestor Graph"
@@ -21786,7 +21790,7 @@ msgstr "von der Generation abhängig"
 
 #: ../gramps/plugins/drawreport/fanchart.py:709
 msgid "Background color is either white or generation dependent"
-msgstr "Hintergrundfarbe ist entweder weiß oder von der Generation abhängig"
+msgstr "Hintergrundfarbe ist entweder weiß oder generationsabhängig"
 
 #: ../gramps/plugins/drawreport/fanchart.py:713
 msgid "Orientation of radial texts"
@@ -21820,7 +21824,7 @@ msgstr "Verwende einen Schriftstil für alle Generationen"
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
-"Du kannst die Schrift und Farbe für jede Generation im Stileditor einstellen"
+"Du kannst Schriftart und die Farbe für jede Generation im Stileditor anpassen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:782
 #, python-format
@@ -22296,8 +22300,9 @@ msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"Der Gramps-XML Export ist eine komplett archivierte XML-Sicherung des Gramps "
-"Stammbaum ohne die Medienobjektdateien. Passend für Sicherungszwecke."
+"Der Gramps XML-Export ist eine vollständige archivierte XML-Sicherung eines "
+"Gramps-Stammbaums ohne die Medienobjektdateien. Geeignet für "
+"Sicherungszwecke."
 
 #: ../gramps/plugins/export/export.gpr.py:153
 msgid "Gramps XML export options"
@@ -22753,8 +22758,9 @@ msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
 msgstr ""
-"  5. %(gramps_FAQ_html_start)s%(faq_section)sIst es nötig, Gramps nach jeder "
-"veröffentlichten Aktualisierung zu aktualisieren?%(html_end)s\n"
+"  5. %(gramps_FAQ_html_start)s%(faq_section)sIst es notwendig, Gramps jedes "
+"Mal zu aktualisieren, wenn eine Aktualisierung veröffentlicht wird?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:103
 msgid "Data Entry"
@@ -23086,7 +23092,7 @@ msgstr "Was als nächstes"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:333
 msgid "Gramplet suggesting items to research"
-msgstr "Gramplet schlägt zu erforschende Punkte vor"
+msgstr "Gramplet schlägt Gegenstände für die Forschung vor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:339
 msgid "What's Next?"
@@ -23150,8 +23156,8 @@ msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
-"Die Bildmetadaten Funktionalität wird nicht zur Verfügung stehen.\n"
-"Um es für Gramps zu erstellen siehe %(gramps_wiki_build_gexiv2_url)s"
+"Die Funktionalität der Bildmetadaten wird nicht verfügbar sein.\n"
+"Um sie für Gramps zu erstellen, siehe %(gramps_wiki_build_gexiv2_url)s"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:455
 msgid "Person Residence"
@@ -23697,7 +23703,7 @@ msgstr "Aktualisieren"
 
 #: ../gramps/plugins/gramplet/leak.py:122
 msgid "Press Refresh to see initial results"
-msgstr "Klick Aktualisieren um die ersten Ergebnisse zu sehen"
+msgstr "Drücke Aktualisieren, um die ersten Ergebnisse zu sehen"
 
 #: ../gramps/plugins/gramplet/leak.py:158
 #, python-format
@@ -24110,9 +24116,9 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
-"Gramps ist ein für die genealogische Arbeit geschriebenes Softwarepaket. Es "
-"ähnelt zwar anderen Genealogieprogrammen, bietet gleichwohl besondere "
-"Fähigkeiten an.\n"
+"Gramps ist ein Softwarepaket, das für die Ahnenforschung entwickelt wurde. "
+"Obwohl es anderen Ahnenforschungsprogrammen ähnelt, bietet Gramps einige "
+"einzigartige und leistungsstarke Funktionen.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
@@ -24153,11 +24159,12 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps wird von Genealogen für Genealogen erstellt, die sich im Gramps "
-"Projekt organisieren. Gramps ist ein Open Source Softwarepaket. Das "
-"bedeutet, es ist dir freigestellt, Kopien zu erstellen und an jeden zu "
-"verteilen. Es wird von einem weltweiten Team aus Ehrenamtlichen entwickelt "
-"und gewartet, deren Ziel es ist, Gramps einfach bedienbar zu machen.\n"
+"Gramps wurde von Genealogen für Genealogen entwickelt und ist im Gramps-"
+"Projekt organisiert. Gramps ist ein Open-Source-Softwarepaket, was bedeutet, "
+"dass du frei bist, Kopien zu erstellen und es an jeden weiterzugeben, den du "
+"magst. Es wird von einem weltweiten Team von Freiwilligen entwickelt und "
+"gepflegt, deren Ziel es ist, Gramps leistungsfähig und dennoch einfach zu "
+"bedienen zu machen.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
@@ -24361,7 +24368,7 @@ msgstr "Schwarz-Weiß umrandet"
 #: ../gramps/plugins/graph/gvhourglass.py:60
 #: ../gramps/plugins/graph/gvrelgraph.py:74
 msgid "Colored outline"
-msgstr "Farbig umrandet"
+msgstr "Farbige Umrandung"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:76
 #: ../gramps/plugins/graph/gvhourglass.py:61
@@ -24586,25 +24593,26 @@ msgstr "Farben, die für verschiedene Familienlinien zu verwenden sind."
 #: ../gramps/plugins/graph/gvhourglass.py:422
 #: ../gramps/plugins/graph/gvrelgraph.py:944
 msgid "The color to use to display men."
-msgstr "Die Farbe, die für die Anzeige von Männern verwendet wird."
+msgstr "Die Farbe, die verwendet werden soll, um Männer anzuzeigen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:285
 #: ../gramps/plugins/graph/gvhourglass.py:426
 #: ../gramps/plugins/graph/gvrelgraph.py:948
 msgid "The color to use to display women."
-msgstr "Die Farbe, die für die Anzeige von Frauen verwendet wird."
+msgstr "Die Farbe, die verwendet werden soll, um Frauen anzuzeigen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:289
 #: ../gramps/plugins/graph/gvhourglass.py:430
 #: ../gramps/plugins/graph/gvrelgraph.py:953
 msgid "The color to use when the gender is unknown."
-msgstr "Die Farbe die verwendet wird, wenn das Geschlecht unbekannt ist."
+msgstr ""
+"Die Farbe, die verwendet werden soll, wenn das Geschlecht unbekannt ist."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:294
 #: ../gramps/plugins/graph/gvhourglass.py:435
 #: ../gramps/plugins/graph/gvrelgraph.py:958
 msgid "The color to use to display families."
-msgstr "Die Farbe, die für die Anzeige von Familien verwendet wird."
+msgstr "Die Farbe, die zum Anzeigen von Familien verwendet werden soll."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:406
 #: ../gramps/plugins/textreport/familygroup.py:680
@@ -24942,8 +24950,8 @@ msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Der Gramps-XML-Stammbaum ist eine Textversion eines Stammbaum. Sie ist lese- "
-"und schreib kompatibel zum aktuellen Gramps-Datenbankformat."
+"Das Gramps XML-Format ist eine Textversion eines Stammbaums. Es ist lesend "
+"und schreibend mit dem derzeitigen Gramps-Datenbankformat kompatibel."
 
 #: ../gramps/plugins/importer/import.gpr.py:131
 msgid "Gramps 2.x database"
@@ -33492,12 +33500,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"Dein Stammbaum enthält Kreuztabellenduplikate.\n"
-" Dies ist schlecht und kann repariert werden durch erstellen einer Sicherung "
-"von deinem\n"
-" Stammbaum und importieren dieser Sicherung in einen leeren Stammbaum.\n"
-" Der Rest des Test wurde abgebrochen, das überprüfen und reparieren\n"
-" Werkzeug sollte auf dem neuen Stammbaum erneut ausgeführt werden."
+"Dein Familienstammbaum enthält doppelte Kreuztabellen-Handles.\n"
+" Das ist schlecht und kann behoben werden, indem du eine Sicherung deines\n"
+"Stammbaums erstellst und diese Sicherung in einen leeren Stammbaum\n"
+"importierst. Der Rest der Prüfung wird übersprungen, das Werkzeug Prüfen "
+"und\n"
+"Reparieren sollte für diesen neuen Stammbaum erneut ausgeführt werden."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
@@ -34552,7 +34560,9 @@ msgstr "_E-Mail:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:383
 msgid "Right-click to copy from/to Researcher Preferences"
-msgstr "Rechtsklick zum Kopieren von/in Forscher Einstellungen"
+msgstr ""
+"Klicke mit der rechten Maustaste, um von/nach Forschereinstellungen zu "
+"kopieren"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
@@ -35844,7 +35854,7 @@ msgstr "Hintergrund"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:313
 msgid "Add global background colored gradient"
-msgstr "Allgemeinen Farbverlauf Hintergrund hinzufügen"
+msgstr "Globalen Hintergrundfarbverlauf hinzufügen"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
@@ -36020,12 +36030,12 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
-"Der Radius der wahrscheinlichen Begegnungszone.\n"
-"Der farbliche Bereich ist nur angenähert.\n"
-"Die Begegnungszone wird nur für die Referenzperson angezeigt.\n"
-"Der Wert 9 bedeutet ungefähr 42 Meilen oder 67 km.\n"
-"Der Wert 1 bedeutet ungefähr 4,6 Meilen oder 7,5 km.\n"
-"Die Werteaufteilung ist in Gradzehntel."
+"Der Wahrscheinlichkeitsradius der Begegnungszone.\n"
+"Die farbige Zone ist ein Näherungswert.\n"
+"Die Begegnungszone wird nur für die Bezugsperson angezeigt.\n"
+"Der Wert 9 bedeutet etwa 42 Meilen oder 67 km.\n"
+"Der Wert 1 bedeutet etwa 4,6 Meilen oder 7,5 km.\n"
+"Der Wert ist in Zehntelgraden angegeben."
 
 #: ../gramps/plugins/view/geoclose.py:675
 #: ../gramps/plugins/view/geofamclose.py:864
@@ -36157,12 +36167,12 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
-"Der Radius der wahrscheinlichen Begegnungszone.\n"
-"Der farbliche Bereich ist nur angenähert.\n"
+"Der Wahrscheinlichkeitsradius der Begegnungszone.\n"
+"Die farbige Zone ist ein Näherungswert.\n"
 "Die Begegnungszone wird nur für die Referenzfamilie angezeigt.\n"
-"Der Wert 9 bedeutet ungefähr 42 Meilen oder 67 km.\n"
-"Der Wert 1 bedeutet ungefähr 4,6 Meilen oder 7,5 km.\n"
-"Die Werteaufteilung ist in Gradzehntel."
+"Der Wert 9 bedeutet etwa 42 Meilen oder 67 km.\n"
+"Der Wert 1 bedeutet etwa 4,6 Meilen oder 7,5 km.\n"
+"Der Wert ist in Zehntelgraden angegeben."
 
 #: ../gramps/plugins/view/geofamily.py:164
 msgid "Family places map"
@@ -36424,7 +36434,7 @@ msgstr "Benutzerdefinierter Ortsname"
 
 #: ../gramps/plugins/view/geoplaces.py:665
 msgid "The places marker color"
-msgstr "Die Ortemakierungsfarbe"
+msgstr "Die Farbe der Ortsmarkierung"
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Edit the selected media object"
