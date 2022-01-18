@@ -3450,7 +3450,7 @@ msgstr "Rufname"
 #: ../gramps/gen/display/name.py:613 ../gramps/gen/display/name.py:712
 msgctxt "Name"
 msgid "common"
-msgstr "gemeinsame"
+msgstr "üblicher"
 
 #: ../gramps/gen/display/name.py:617 ../gramps/gen/display/name.py:715
 msgid "initials"
