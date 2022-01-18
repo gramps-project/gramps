@@ -11,13 +11,14 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # S <sendoasojo@gmail.com>, 2021.
+# badlop <badlop@process-one.net>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-10-26 04:12+0000\n"
-"Last-Translator: S <sendoasojo@gmail.com>\n"
+"PO-Revision-Date: 2021-12-30 23:51+0000\n"
+"Last-Translator: badlop <badlop@process-one.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -9512,7 +9513,7 @@ msgstr "No se pudo crear %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
-msgstr "Predefinido"
+msgstr "Por defecto"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
@@ -12455,7 +12456,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1980
 msgid "Try to find"
-msgstr "Intentar encontrar"
+msgstr "Intenta encontrar"
 
 #: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
 msgid "Choose font"
