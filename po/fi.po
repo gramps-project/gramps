@@ -6,13 +6,14 @@
 # Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # PeterJPower <pekka.valta@kolumbus.fi>, 2021.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-30 23:51+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2022-01-03 12:41+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -62,7 +63,7 @@ msgstr ""
 
 #: ../data/gramps.appdata.xml.in:12
 msgid "Gramps Development Team"
-msgstr "Gramps kehitystiimi"
+msgstr "Gramps-kehitystiimi"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -74,7 +75,7 @@ msgstr "Sukututkimus;Suvun tarina;Tutkimus;Sukupuu;GEDCOM;"
 
 #: ../data/gramps.xml.in:6
 msgid "Gramps database"
-msgstr "Gramps tietokanta"
+msgstr "Gramps-tietokanta"
 
 #: ../data/gramps.xml.in:10 ../gramps/plugins/export/export.gpr.py:76
 #: ../gramps/plugins/importer/import.gpr.py:54
@@ -83,15 +84,15 @@ msgstr "GEDCOM"
 
 #: ../data/gramps.xml.in:20
 msgid "Gramps package"
-msgstr "Gramps paketti"
+msgstr "Gramps-paketti"
 
 #: ../data/gramps.xml.in:24
 msgid "Gramps XML database"
-msgstr "Gramps XML tietokanta"
+msgstr "Grampsin XML-tietokanta"
 
 #: ../data/gramps.xml.in:32
 msgid "GeneWeb source file"
-msgstr "GeneWeb lähdetiedosto"
+msgstr "GeneWeb-lähdetiedosto"
 
 # Kalenteri valikko älä käännä kielivalintoja
 #: ../data/holidays.xml:3
@@ -256,7 +257,7 @@ msgstr "8. Hanukka"
 
 #: ../data/holidays.xml:371
 msgid "New Zealand"
-msgstr "Uusi -Seelanti"
+msgstr "Uusi-Seelanti"
 
 # 20200823
 #: ../data/holidays.xml:387
@@ -441,10 +442,10 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Gramps työkalut</b><br/>Grampsin mukana tulee runsas joukko työkaluja. "
+"<b>Gramps-työkalut</b><br/>Grampsin mukana tulee runsas joukko työkaluja. "
 "Niillä voit tarkistaa tietokantasi virheiden ja epäyhtenäisyyksien varalta, "
 "verrata tapahtumia, löytää kahdennettuja tietoja, käyttää interaktiivista "
-"jälkeläisselainta jne. Kaikki työkalut löytyvät \"Työkalut\" valikosta."
+"jälkeläisselainta jne. Kaikki työkalut löytyvät \"Työkalut\"-valikosta."
 
 #: ../data/tips.xml:28
 msgid ""
@@ -498,7 +499,7 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>Gramps raportit</b><br/>Gramps tarjoaa laajan kirjon erilaisia "
+"<b>Gramps-raportit</b><br/>Gramps tarjoaa laajan kirjon erilaisia "
 "raportteja. Tekstiraportit ovat erityisen käyttökelpoisia, jos haluat "
 "lähettää sukupuusi tuloksia sukulaisillesi sähköpostin välityksellä. Jos "
 "olet valmis näyttämään sukupuun nettisivuilla, siihen löytyy myös raportti."
@@ -673,11 +674,11 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>Gramps postituslistat</b><br/>Haluatko vastauksia Grampsia koskeviin "
-"kysymyksiisi? Tarkista Gramps-users sähköpostilista. Listalla on useita "
+"<b>Gramps-postituslistat</b><br/>Haluatko vastauksia Grampsia koskeviin "
+"kysymyksiisi? Tarkista Gramps-users-sähköpostilista. Listalla on useita "
 "käyttäjiä, joten todennäköisesti saat vastauksen nopeasti. Jos sinulla on "
-"Grampsin kehitystä koskevia kysymyksiä, yritä Gramps-devel listaa. Tietoja "
-"molemmista listoista saat valitsemalla \"Ohjeet &gt; Gramps postituslistat\"."
+"Grampsin kehitystä koskevia kysymyksiä, yritä Gramps-devel-listaa. Tietoja "
+"molemmista listoista saat valitsemalla \"Ohjeet &gt; Gramps-postituslistat\"."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -836,10 +837,10 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
-"<b>GEDCOM tiedostomuoto</b><br/>Grampsilla voit tuoda ja viedä tietoja "
-"GEDCOM-tiedostomuodossa. GEDCOM standardin versiolla 5.5.1 on laaja tuki, "
+"<b>GEDCOM-tiedostomuoto</b><br/>Grampsilla voit tuoda ja viedä tietoja "
+"GEDCOM-tiedostomuodossa. GEDCOM-standardin versiolla 5.5.1 on laaja tuki, "
 "joten voit vaihtaa Grampsin sisältämiä tietoja useimpien "
-"sukututkimusohjelmien kanssa. Olemassa olevat suotimet tekevät GEDCOM "
+"sukututkimusohjelmien kanssa. Olemassa olevat suotimet tekevät GEDCOM-"
 "tiedostojen tuonnista ja viennistä yksinkertaisen."
 
 #: ../data/tips.xml:88
@@ -851,13 +852,13 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>The Gramps XML paketti</b><br/>Voit muuttaa tietosi Gramps-"
-"pakettimuotoon. Se on pakattu tiedosto, joka sisältää sukutietosi, sekä "
-"kaikki muut tiedostot (kuten kuvat), joihin tietokannastasi viitataan. "
-"Tiedosto on täysin siirrettävissä, joten se käy hyvin varmuuskopioiden "
-"tekoon tai tietojen vaihtoon muiden Grampsin käyttäjien kanssa. GEDCOM-"
-"muotoon verrattuna tällä on se etu, että sitä käytettäessä tietoja ei "
-"koskaan häviä niitä ohjelmasta viedessä tai tuodessa."
+"<b>Gramps-XML-paketti</b><br/>Voit muuttaa tietosi Gramps-pakettimuotoon. Se "
+"on pakattu tiedosto, joka sisältää sukutietosi, sekä kaikki muut tiedostot "
+"(kuten kuvat), joihin tietokannastasi viitataan. Tiedosto on täysin "
+"siirrettävissä, joten se käy hyvin varmuuskopioiden tekoon tai tietojen "
+"vaihtoon muiden Grampsin käyttäjien kanssa. GEDCOM-muotoon verrattuna tällä "
+"on se etu, että sitä käytettäessä tietoja ei koskaan häviä niitä ohjelmasta "
+"viedessä tai tuodessa."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -894,8 +895,8 @@ msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/"
 msgstr ""
-"<b>Gramps kotisivu</b><br/>Gramps-projektin kotisivu on osoitteessa http://"
-"Gramps-project.org/"
+"<b>Gramps-kotisivu</b><br/>Gramps-projektin kotisivu on osoitteessa http://"
+"gramps-project.org/"
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1013,7 +1014,7 @@ msgid ""
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net"
 msgstr ""
-"<b>Gramps kääntäjät</b><br/>Gramps on suunniteltu siten, että uusia "
+"<b>Gramps-kääntäjät</b><br/>Gramps on suunniteltu siten, että uusia "
 "kielikäännöksiä voidaan lisätä helposti. Jos haluat auttaa, lähetä "
 "sähköpostia osoitteeseen Gramps-devel@lists.sf.net"
 
@@ -1060,7 +1061,7 @@ msgid ""
 "Foundation and the Open Source Initiative."
 msgstr ""
 "<b>Open Source Software</b><br/>Ilmaisen/Vapaan ja Avoimen lähdekoodin "
-"(FLOSS) kehitysmalli tarkoittaa, että Gramps ohjelmaa voi kuka tahansa "
+"(FLOSS) kehitysmalli tarkoittaa, että Gramps-ohjelmaa voi kuka tahansa "
 "kehittää eteenpäin, koska kaikki lähdekoodi on vapaasti saatavilla "
 "lisenssinsä mukaisesti."
 
@@ -1071,7 +1072,7 @@ msgid ""
 "License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
 "rights and restrictions of this license."
 msgstr ""
-"<b>The Gramps käyttölisenssi</b><br/>Gramps on vapaasti levitettävissä GNU "
+"<b>Gramps-käyttölisenssi</b><br/>Gramps on vapaasti levitettävissä GNU "
 "General Public Licence -lisenssin ehtojen mukaisesti, kts. http://www.gnu."
 "org/licenses/licenses.html#GPL."
 
@@ -1166,7 +1167,7 @@ msgstr "%(full_DB_path)s nimeltään \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:431 ../gramps/cli/clidbman.py:188
 msgid "Gramps Family Trees:"
-msgstr "Gramps Sukupuut:"
+msgstr "Gramps-sukupuut:"
 
 #: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:439
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
@@ -1550,7 +1551,7 @@ msgstr "OLETUS"
 #: ../gramps/cli/argparser.py:387
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
-msgstr "    Uusi Gramps asetusmääritys: %(name)s:%(value)s"
+msgstr "    Uusi Gramps-asetusmääritys: %(name)s:%(value)s"
 
 #: ../gramps/cli/argparser.py:395
 #, python-format
@@ -1839,7 +1840,7 @@ msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
-"Käytä poista lukitus vaihtoehtoa, jos olet varma, että tietokanta ei ole "
+"Käytä --force-unlock -valintaa jos olet varma, että tietokanta ei ole "
 "käytössä."
 
 #: ../gramps/cli/grampscli.py:322
@@ -1930,7 +1931,7 @@ msgstr "=tyylitiedoston (css) nimi"
 
 #: ../gramps/cli/plug/__init__.py:308
 msgid "CSS filename to use, html format only"
-msgstr "Käytettävä CSS tiedostonimi, vain html muoto"
+msgstr "Käytettävä CSS-tiedostonimi, vain html-muoto"
 
 #. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:416
@@ -3107,7 +3108,7 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different schema versions."
 msgstr ""
-"Tämä Gramps versio ei tue valittua skeemaversiota.\n"
+"Tämä Gramps-versio ei tue valittua skeemaversiota.\n"
 "\n"
 "Tämä sukupuu on skeemaversiota %(tree_vers)s, ja Grampsin tämä versio tukee "
 "versiota %(min_vers)s ja aina versioon %(max_vers)s \n"
@@ -3126,13 +3127,13 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different Python versions."
 msgstr ""
-"Python versio ei tue tätä Gramps versiota..\n"
+"Python-versio ei tue tätä Gramps-versiota.\n"
 "\n"
-"Tämä Sukupuu on Python versio %(tree_vers)s, ja tämä Gramps versio tukee "
+"Tämä Sukupuu on Python-versio %(tree_vers)s, ja tämä Gramps-versio tukee "
 "versioita %(min_vers)s - %(max_vers)s\n"
 "\n"
 "Päivitä vastaavaan versioon tai käytä XML-muotoa tietojen siirtämiseen eri "
-"Python versioiden välillä."
+"Python-versioiden välillä."
 
 #: ../gramps/gen/db/exceptions.py:137
 #, python-format
@@ -3283,7 +3284,7 @@ msgstr "Tagien määrä"
 
 #: ../gramps/gen/db/generic.py:2426
 msgid "Schema version"
-msgstr "Skeema versio"
+msgstr "Skeeman versio"
 
 #: ../gramps/gen/db/upgrade.py:372
 #, python-format
@@ -5325,11 +5326,11 @@ msgstr "Poimii henkilöt, joilla on määritelty Gramps ID"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "Henkilöt, joilla MAP tapahtumia on <lukumäärä>"
+msgstr "Henkilöt, joilla MAP-tapahtumia on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
-msgstr "Poimii henkilöt, joilla on tietty määrä MAP tapahtumia"
+msgstr "Poimii henkilöt, joilla on tietty määrä MAP-tapahtumia"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:46
 msgid "Given name:"
@@ -6113,11 +6114,11 @@ msgstr "Maakunta:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "State:"
-msgstr "Lääni tai Osavaltio:"
+msgstr "Lääni tai osavaltio:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "Country:"
-msgstr "Valtio tai Liittovaltio:"
+msgstr "Valtio tai liittovaltio:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:55
 msgid "ZIP/Postal Code:"
@@ -6826,7 +6827,7 @@ msgstr "Maakunta"
 #: ../gramps/plugins/lib/maps/placeselection.py:150
 #: ../gramps/plugins/view/geoplaces.py:625
 msgid "State"
-msgstr "Lääni tai Osavaltio"
+msgstr "Lääni tai osavaltio"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:101
 #: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:620
@@ -6842,7 +6843,7 @@ msgstr "Lääni tai Osavaltio"
 #: ../gramps/plugins/webreport/place.py:193
 #: ../gramps/plugins/webreport/place.py:205
 msgid "Country"
-msgstr "Valtio tai Liittovaltio"
+msgstr "Valtio tai liittovaltio"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1241
@@ -8505,7 +8506,7 @@ msgstr "Raportti"
 
 #: ../gramps/gen/lib/notetype.py:81
 msgid "Html code"
-msgstr "HTML koodi"
+msgstr "HTML-koodi"
 
 # muutos
 #: ../gramps/gen/lib/notetype.py:82
@@ -8814,15 +8815,15 @@ msgstr "Kylä"
 
 #: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:610
 msgid "Hamlet"
-msgstr "Taloryhmä tai Osakylä"
+msgstr "Taloryhmä tai osakylä"
 
 #: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:613
 msgid "Farm"
-msgstr "Tila tai Talo"
+msgstr "Tila tai talo"
 
 #: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:616
 msgid "Building"
-msgstr "Rakennus tai Torppa"
+msgstr "Rakennus tai torppa"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
 #: ../gramps/plugins/view/geoplaces.py:619
@@ -9263,7 +9264,7 @@ msgstr "Karttapalvelu"
 
 #: ../gramps/gen/plug/_pluginreg.py:87
 msgid "Gramps View"
-msgstr "Gramps näkymä"
+msgstr "Gramps-näkymä"
 
 #: ../gramps/gen/plug/_pluginreg.py:88 ../gramps/plugins/view/relview.py:131
 #: ../gramps/plugins/view/view.gpr.py:112
@@ -9500,7 +9501,7 @@ msgstr "Suorakulmainen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
 msgid "Graphviz Layout"
-msgstr "Graphviz pohja"
+msgstr "Graphviz-pohja"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:143
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -9545,7 +9546,7 @@ msgid ""
 msgstr ""
 "Graphviz saattaa luoda hyvinkin laajan kaavion levittämällä sen usealle "
 "sivulle. Tämä asetus määrittää sivujen määrän vaakasuunnassa. Vain "
-"Ghostscript:llä luoduille dot ja pdf tiedostoille."
+"Ghostscriptillä luoduille dot- ja pdf-tiedostoille."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:171
 msgid "Number of Vertical Pages"
@@ -9559,7 +9560,7 @@ msgid ""
 msgstr ""
 "Graphviz saattaa luoda hyvinkin laajan kaavion levittämällä sen usealle "
 "sivulle. Tämä asetus määrittää sivujen määrän pystysuunnassa. Vain "
-"Ghostscript:llä luoduille dot ja pdf tiedostoille."
+"Ghostscriptillä luoduille dot- ja pdf-tiedostoille."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:179
 msgid "Paging Direction"
@@ -9591,7 +9592,7 @@ msgstr "Kiinnitetäänkö linjat solmuihin eri tavalla"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:210
 msgid "Graphviz Options"
-msgstr "Graphviz valinnat"
+msgstr "Graphviz-valinnat"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:213
 msgid "Aspect ratio"
@@ -9744,7 +9745,7 @@ msgstr "PNG-kuva"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1121
 msgid "Graphviz File"
-msgstr "Graphviz tiedosto"
+msgstr "Graphviz-tiedosto"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 msgctxt "paper size"
@@ -9966,7 +9967,7 @@ msgstr "Graafinen tiedosto sukupusta"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
 msgid "LaTeX File"
-msgstr "LaTeX tiedosto"
+msgstr "LaTeX-tiedosto"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:145
 #, python-format
@@ -10795,7 +10796,7 @@ msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
 msgstr ""
-"VAROITUS: PIL moduulia ei ladattu. Kuvan rajaaminen raporttitiedostoon ei "
+"VAROITUS: PIL-moduulia ei ladattu. Kuvan rajaaminen raporttitiedostoon ei "
 "toimi."
 
 #: ../gramps/gen/utils/keyword.py:54
@@ -11252,7 +11253,7 @@ msgstr ""
 
 #: ../gramps/gui/aboutdialog.py:111
 msgid "Gramps Homepage"
-msgstr "Gramps kotisivu"
+msgstr "Gramps-kotisivu"
 
 #: ../gramps/gui/aboutdialog.py:117
 msgid "Contributions by"
@@ -11540,7 +11541,7 @@ msgstr "%s: "
 #: ../gramps/plugins/importer/importprogen.glade:1749
 #: ../gramps/plugins/tool/testcasegenerator.py:329
 msgid "_Help"
-msgstr "_Ohjeet"
+msgstr "_Ohje"
 
 #: ../gramps/gui/configure.py:597
 msgid "Researcher information"
@@ -11558,7 +11559,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
-msgstr "Lääni tai Osavaltio"
+msgstr "Lääni tai osavaltio"
 
 #: ../gramps/gui/configure.py:623 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
@@ -11583,7 +11584,7 @@ msgstr "Mediatiedosto"
 
 #: ../gramps/gui/configure.py:669
 msgid "ID Formats"
-msgstr "ID muodot"
+msgstr "ID-muodot"
 
 #: ../gramps/gui/configure.py:677
 msgid "Colors used for boxes in the graphical views"
@@ -11647,7 +11648,7 @@ msgstr "Reunaviiva kuolleet"
 
 #: ../gramps/gui/configure.py:730
 msgid "Default background"
-msgstr "Oletus tausta"
+msgstr "Oletustausta"
 
 #: ../gramps/gui/configure.py:731
 msgid "Background for Married"
@@ -12026,7 +12027,7 @@ msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
-"GtkSpell ohjelma asentamatta. Oikeellisuustarkistukset eivät toimi.\n"
+"GtkSpell-ohjelma asentamatta. Oikeellisuustarkistukset eivät toimi.\n"
 "Katso miten saat sen mukaan Grampsiin %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1596
@@ -12333,7 +12334,7 @@ msgstr "Valitse kirjasintyyppi"
 
 #: ../gramps/gui/configure.py:2004 ../gramps/gui/configure.py:2109
 msgid "Select default death symbol"
-msgstr "Aseta oletus symboli kuolemalle"
+msgstr "Aseta oletusarvoinen symboli kuolemalle"
 
 #: ../gramps/gui/configure.py:2013
 msgid "Genealogical Symbols"
@@ -12681,7 +12682,7 @@ msgstr "Muunnetaanko '%s' tietokanta?"
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
-msgstr "Haluatko muuttaa tämän sukupuun %(database_type)s tietokannaksi?"
+msgstr "Haluatko muuttaa tämän sukupuun tietokannaksi %(database_type)s?"
 
 #: ../gramps/gui/dbman.py:786
 msgid "Convert"
@@ -13196,7 +13197,7 @@ msgstr "Päivämäärä lajittelu"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:95
 msgid "_Source Citations"
-msgstr "_Lähde Lainaukset"
+msgstr "_Lähdelainaukset"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:175
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:186
@@ -13722,7 +13723,7 @@ msgstr "Lapsiviite_muokkain"
 #: ../gramps/gui/editors/editchildref.py:99
 #: ../gramps/gui/editors/editchildref.py:190
 msgid "Child Reference Editor"
-msgstr "Lapsiviite muokkain"
+msgstr "Lapsiviitemuokkain"
 
 # WIKI_HELP_SEC osa2
 #: ../gramps/gui/editors/editcitation.py:69
@@ -14352,7 +14353,7 @@ msgstr "Medianviitteiden_muokkaus_ikkuna"
 #: ../gramps/gui/editors/editmediaref.py:96
 #: ../gramps/gui/editors/editmediaref.py:415
 msgid "Media Reference Editor"
-msgstr "Mediaviite muokkain"
+msgstr "Mediaviitemuokkain"
 
 #: ../gramps/gui/editors/editmediaref.py:100
 #: ../gramps/gui/editors/editmediaref.py:101
@@ -14364,7 +14365,7 @@ msgstr "Y"
 
 #: ../gramps/gui/editors/editname.py:120 ../gramps/gui/editors/editname.py:314
 msgid "Name Editor"
-msgstr "Nimi muokkain"
+msgstr "Nimimuokkain"
 
 # WIKI_HELP_SEC osa3
 #: ../gramps/gui/editors/editname.py:162
@@ -14595,7 +14596,7 @@ msgstr "Henkil.C3.B6viite_muokkain"
 #: ../gramps/gui/editors/editpersonref.py:93
 #: ../gramps/gui/editors/editpersonref.py:213
 msgid "Person Reference Editor"
-msgstr "Henkilöviite muokkain"
+msgstr "Henkilöviitemuokkain"
 
 #: ../gramps/gui/editors/editpersonref.py:213
 msgid "Person Reference"
@@ -14690,7 +14691,7 @@ msgstr "Poista paikka (%s)"
 
 #: ../gramps/gui/editors/editplaceformat.py:49
 msgid "Place Format Editor"
-msgstr "Paikanmuoto muokkain"
+msgstr "Paikanmuotomuokkain"
 
 #: ../gramps/gui/editors/editplaceformat.py:137
 msgid "New"
@@ -14705,7 +14706,7 @@ msgstr "Paikannimi_muokkain_ikkuna"
 #: ../gramps/gui/editors/editplacename.py:101
 #: ../gramps/gui/editors/editplacename.py:134
 msgid "Place Name Editor"
-msgstr "Paikannimi muokkain"
+msgstr "Paikannimen muokkain"
 
 #: ../gramps/gui/editors/editplacename.py:125
 msgid "Invalid ISO code"
@@ -14722,7 +14723,7 @@ msgstr "Paikannimi ei voi olla tyhjä"
 #: ../gramps/gui/editors/editplaceref.py:59
 #: ../gramps/gui/editors/editplaceref.py:100
 msgid "Place Reference Editor"
-msgstr "Paikkaviite muokkain"
+msgstr "Paikkaviitemuokkain"
 
 #: ../gramps/gui/editors/editplaceref.py:324
 msgid "Modify Place"
@@ -14765,7 +14766,7 @@ msgstr "Uusi arkisto"
 
 #: ../gramps/gui/editors/editreporef.py:188
 msgid "Repo Reference Editor"
-msgstr "Arkistoviite muokkain"
+msgstr "Arkistoviitemuokkain"
 
 #: ../gramps/gui/editors/editreporef.py:195
 msgid "Modify Repository"
@@ -14868,7 +14869,7 @@ msgstr "Internet-osoite_muokkain"
 
 #: ../gramps/gui/editors/editurl.py:68 ../gramps/gui/editors/editurl.py:103
 msgid "Internet Address Editor"
-msgstr "Internet-osoite muokkain"
+msgstr "Internet-osoitteen muokkain"
 
 # WIKI_HELP_SEC filter
 # Lisää sääntö ikkuna
@@ -14973,7 +14974,7 @@ msgstr "Käytä samaa kirjainkokoa"
 
 #: ../gramps/gui/editors/filtereditor.py:572
 msgid "Regular-Expression matching:"
-msgstr "Säännöllinen lauseke poiminta:"
+msgstr "Säännöllisen lausekkeen poiminta:"
 
 #: ../gramps/gui/editors/filtereditor.py:573
 msgid "Use regular expression"
@@ -15064,7 +15065,7 @@ msgstr "Kommentti"
 
 #: ../gramps/gui/editors/filtereditor.py:1129
 msgid "Custom Filter Editor"
-msgstr "Käyttäjän suodin muokkain"
+msgstr "Käyttäjän suodinmuokkain"
 
 #: ../gramps/gui/editors/filtereditor.py:1201
 msgid "Delete Filter?"
@@ -15616,7 +15617,7 @@ msgstr "Älä kysy uudelleen"
 
 #: ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps Warnings"
-msgstr "Gramps varoitukset"
+msgstr "Gramps-varoitukset"
 
 #: ../gramps/gui/glade/editaddress.glade:44
 #: ../gramps/gui/glade/editchildref.glade:47
@@ -15661,7 +15662,7 @@ msgstr "Osoitteessa oleva paikkakunta"
 #: ../gramps/gui/glade/editaddress.glade:151
 #: ../gramps/plugins/tool/ownereditor.glade:192
 msgid "_State/County:"
-msgstr "O_savaltio/Maakunta:"
+msgstr "O_savaltio/maakunta:"
 
 #: ../gramps/gui/glade/editaddress.glade:166
 #: ../gramps/gui/glade/editlocation.glade:248
@@ -15675,7 +15676,7 @@ msgstr "Postinumero"
 #: ../gramps/gui/glade/editaddress.glade:194
 #: ../gramps/gui/glade/editlocation.glade:220
 msgid "Cou_ntry:"
-msgstr "_Valtio tai Liittovaltio:"
+msgstr "_Valtio tai liittovaltio:"
 
 #: ../gramps/gui/glade/editaddress.glade:209
 #: ../gramps/gui/glade/editlocation.glade:274
@@ -16120,7 +16121,7 @@ msgstr "Tagit:"
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:819
 msgid "Edit the tag list"
-msgstr "Muokkaa tagi listaa"
+msgstr "Muokkaa tagilistaa"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
@@ -16145,7 +16146,7 @@ msgstr "_Tila:"
 
 #: ../gramps/gui/glade/editlink.glade:97
 msgid "Gramps item:"
-msgstr "Gramps kohde:"
+msgstr "Gramps-kohde:"
 
 #: ../gramps/gui/glade/editlink.glade:111
 msgid "Internet Address:"
@@ -16183,7 +16184,7 @@ msgstr "Kolmas taso paikkatiedossa. USA:ssa \"county\", Suomessa \"maakunta\"."
 
 #: ../gramps/gui/glade/editlocation.glade:192
 msgid "_State:"
-msgstr "Lääni tai O_savaltio:"
+msgstr "Lääni tai o_savaltio:"
 
 #: ../gramps/gui/glade/editlocation.glade:206
 msgid ""
@@ -16474,7 +16475,7 @@ msgstr "Tähän nimeen liittyvä päivämäärä. Esim. avionimessä avioitumisp
 
 #: ../gramps/gui/glade/editnote.glade:101
 msgid "Styled Text Editor"
-msgstr "Tyyli muokkain"
+msgstr "Tyylimuokkain"
 
 #: ../gramps/gui/glade/editnote.glade:146
 msgid "A type to classify the note."
@@ -16700,7 +16701,7 @@ msgstr "Paikannimi."
 #: ../gramps/gui/glade/editplace.glade:456
 #: ../gramps/gui/glade/editplaceref.glade:618
 msgid "Invoke place name editor."
-msgstr "Avaa paikannimi muokkain."
+msgstr "Avaa paikannimen muokkain."
 
 #: ../gramps/gui/glade/editplaceformat.glade:124
 msgid "Levels:"
@@ -16725,7 +16726,7 @@ msgstr "Numero katu"
 
 #: ../gramps/gui/glade/editplaceformat.glade:187
 msgid "Street Number"
-msgstr "Katu numero"
+msgstr "Katunumero"
 
 #: ../gramps/gui/glade/editplacename.glade:156
 #: ../gramps/plugins/webreport/basepage.py:2934
@@ -16884,7 +16885,7 @@ msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
 msgstr ""
-"Internet selailuun tarvittava osoite on esim. http://gramps-project.org"
+"Internet-selailuun tarvittava osoite on esim. http://gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:205
 msgid "Open the web address in the default browser."
@@ -17703,15 +17704,15 @@ msgstr "Avaa äskettäin käytetty tietokanta"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "F_ull Screen"
-msgstr "K_okoruutu"
+msgstr "K_oko näyttö"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Gramps _Home Page"
-msgstr "_Gramps kotisivu"
+msgstr "_Gramps-kotisivu"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Gramps _Mailing Lists"
-msgstr "Gramps _postituslistat"
+msgstr "Gramps-_postituslistat"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Make Backup..."
@@ -17727,15 +17728,15 @@ msgstr "V_iimeksi avattu"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the Clipboard dialog"
-msgstr "Avaa Leikepöytä ikkuna"
+msgstr "Avaa Leikepöytä-ikkunan"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the reports dialog"
-msgstr "Avaa raportti-ikkunan"
+msgstr "Avaa Raportti-ikkunan"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the tools dialog"
-msgstr "Avaa työkalut ikkunan"
+msgstr "Avaa Työkalut-ikkunan"
 
 #: ../gramps/gui/grampsgui.py:56 ../gramps/gui/tipofday.py:67
 #: ../gramps/gui/tipofday.py:68 ../gramps/gui/tipofday.py:121
@@ -18406,7 +18407,7 @@ msgstr "_Avaa"
 #: ../gramps/gui/plug/_guioptions.py:1823
 #: ../gramps/gui/plug/report/_reportdialog.py:329
 msgid "Style Editor"
-msgstr "Tyyli muokkain"
+msgstr "Tyylimuokkain"
 
 #: ../gramps/gui/plug/_windows.py:90
 msgid "Hidden"
@@ -18587,7 +18588,7 @@ msgstr[1] "{number_of} laajennusta asennettu."
 #: ../gramps/gui/plug/_windows.py:1227
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgstr ""
-"Jos olet asentanut \"Gramps näkymän\", sinun on käynnistettävä Gramps "
+"Jos olet asentanut \"Gramps-näkymän\", sinun on käynnistettävä Gramps "
 "uudelleen."
 
 #: ../gramps/gui/plug/_windows.py:1231
@@ -18745,7 +18746,7 @@ msgstr "Odota kun tietoja etsitään ja tallennetaan"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:68
 msgid "Selecting Preview Data"
-msgstr "Valitaan Tietojen esikatselu toiminto"
+msgstr "Valitaan \"Tietojen esikatselu\"-toiminto"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:69
 #: ../gramps/gui/plug/export/_exportoptions.py:72
@@ -19045,7 +19046,7 @@ msgstr "Tuota kirja"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:985
 msgid "Gramps Book"
-msgstr "Gramps kirja"
+msgstr "Gramps-kirja"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:143
 #: ../gramps/gui/plug/report/_graphreportdialog.py:185
@@ -19054,7 +19055,7 @@ msgstr "Paperivalinnat"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:149
 msgid "HTML Options"
-msgstr "HTML valinnat"
+msgstr "HTML-valinnat"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_graphreportdialog.py:154
@@ -19068,7 +19069,7 @@ msgstr "Näytä oletussovelluksella"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 msgid "CSS file"
-msgstr "CSS muotoilutiedosto"
+msgstr "CSS-muotoilutiedosto"
 
 #: ../gramps/gui/plug/report/_papermenu.py:106
 msgid "Portrait"
@@ -19598,7 +19599,7 @@ msgstr "Näkymän lataus epäonnistui. Tarkista virheyhteenveto."
 #: ../gramps/gui/viewmanager.py:949
 #: ../gramps/plugins/importer/importprogen.py:195
 msgid "Import Statistics"
-msgstr "Tuonti tilastot"
+msgstr "Tuontitilastot"
 
 #: ../gramps/gui/viewmanager.py:1024
 msgid "Read Only"
@@ -19610,7 +19611,7 @@ msgstr "Grampsissa oli ongelma viimeksi käytettäessä."
 
 #: ../gramps/gui/viewmanager.py:1029
 msgid "Would you like to run the Check and Repair tool?"
-msgstr "Haluatko suorittaa Tarkista ja korjaa työkalun?"
+msgstr "Haluatko suorittaa \"Tarkista ja korjaa\"-työkalun?"
 
 #: ../gramps/gui/viewmanager.py:1220
 msgid "Autobackup..."
@@ -19680,7 +19681,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1686
 msgid "Gramps XML Backup"
-msgstr "Gramps XML varmuuskopio"
+msgstr "Grampsin XML-varmuuskopio"
 
 #: ../gramps/gui/viewmanager.py:1715
 msgid "File:"
@@ -19695,7 +19696,7 @@ msgstr "Media:"
 #: ../gramps/plugins/webreport/statistics.py:147
 msgctxt "Megabyte"
 msgid "MB"
-msgstr "Mbyte"
+msgstr "Mt"
 
 #: ../gramps/gui/viewmanager.py:1756
 msgid "Exclude"
@@ -19837,7 +19838,7 @@ msgstr "CSV"
 
 #: ../gramps/gui/views/listview.py:1079
 msgid "OpenDocument Spreadsheet"
-msgstr "OpenDocument laskentataulukko"
+msgstr "OpenDocument-laskentataulukko"
 
 #: ../gramps/gui/views/listview.py:1270
 msgid "Columns"
@@ -19872,7 +19873,7 @@ msgstr ""
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:338
 msgid "Jump to by Gramps ID"
-msgstr "Siirry Gramps ID tunnuksella"
+msgstr "Siirry Gramps ID -tunnuksella"
 
 #: ../gramps/gui/views/navigationview.py:362
 #, python-format
@@ -20009,7 +20010,7 @@ msgstr "Muokkaa tagia (%s)"
 
 #: ../gramps/gui/views/tags.py:697
 msgid "Tag Name:"
-msgstr "Taginimi:"
+msgstr "Tagin nimi:"
 
 #: ../gramps/gui/views/tags.py:704
 #, python-format
@@ -20093,7 +20094,7 @@ msgstr "Nimetön gramplet"
 
 #: ../gramps/gui/widgets/grampletbar.py:361
 msgid "Gramplet Bar"
-msgstr "Gramplet palkki"
+msgstr "Gramplet-palkki"
 
 #: ../gramps/gui/widgets/grampletbar.py:363
 msgid ""
@@ -20114,11 +20115,11 @@ msgstr "Poista gramplet"
 
 #: ../gramps/gui/widgets/grampletbar.py:510
 msgid "Restore default gramplets"
-msgstr "Palauta oletus grampletit"
+msgstr "Palauta oletusarvoiset grampletit"
 
 #: ../gramps/gui/widgets/grampletbar.py:520
 msgid "Gramplet Bar Help"
-msgstr "Gramplet palkin ohjeet"
+msgstr "Gramplet-palkin ohjeet"
 
 #: ../gramps/gui/widgets/grampletbar.py:525
 msgid "About Gramplets"
@@ -20133,11 +20134,12 @@ msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"Gramplet palkki palautetaan oletustilaan. Toimenpidettä ei voi peruuttaa."
+"Gramplet-palkki palautetaan oletustilaan. Toimenpidettä ei voi peruuttaa."
 
 #: ../gramps/gui/widgets/grampletpane.py:816
 msgid "Drag Properties Button to move and click it for setup"
-msgstr "Napsauta laajennuskirjaston valintapainiketta asetusten valintaa varten"
+msgstr ""
+"Napsauta laajennuskirjaston valintapainiketta asetusten valintaa varten"
 
 #: ../gramps/gui/widgets/grampletpane.py:1017
 msgid "Right click to add gramplets"
@@ -20157,7 +20159,7 @@ msgstr "Sarakkeiden lukumäärä"
 
 #: ../gramps/gui/widgets/grampletpane.py:1584
 msgid "Gramplet Layout"
-msgstr "Grampletin layout"
+msgstr "Grampletin asettelu"
 
 #: ../gramps/gui/widgets/grampletpane.py:1614
 msgid "Use maximum height available"
@@ -20316,11 +20318,11 @@ msgstr "BSDDB"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "_BSDDB Database"
-msgstr "_BSDDB tietokanta"
+msgstr "_BSDDB-tietokanta"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:28
 msgid "Berkeley Software Distribution Database Backend"
-msgstr "Berkeley Software Distribution tietokantaohjelmisto"
+msgstr "Berkeley Software Distribution -tietokantaohjelmisto"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:26
 msgid "SQLite"
@@ -20328,11 +20330,11 @@ msgstr "SQLite"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:27
 msgid "_SQLite Database"
-msgstr "_SQLite tietokanta"
+msgstr "_SQLite-tietokanta"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:28
 msgid "SQLite Database"
-msgstr "SQLite tietokanta"
+msgstr "SQLite-tietokanta"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:61
 msgid "Database version"
@@ -20344,7 +20346,7 @@ msgstr "Tietokantamoduulin versio"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:63
 msgid "Database module location"
-msgstr "Tietokanta moduulin sijainti"
+msgstr "Tietokantamoduulin sijainti"
 
 #: ../gramps/plugins/docgen/asciidoc.py:469
 msgid "Characters per line"
@@ -20397,15 +20399,15 @@ msgstr "LaTeX"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:98
 msgid "Generates documents in LaTeX format."
-msgstr "Tuottaa LaTeX muotoisia dokumentteja."
+msgstr "Tuottaa LaTeX-muotoisia dokumentteja."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:118
 msgid "OpenDocument Text"
-msgstr "OpenDocument (ODF) teksti"
+msgstr "OpenDocument-teksti (ODF)"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:119
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr "Tuottaa dokumentteja OpenDocument (.odt) tekstimuodossa."
+msgstr "Tuottaa dokumentteja OpenDocument-tekstimuodossa (.odt)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:140
 msgid "PDF document"
@@ -20413,11 +20415,11 @@ msgstr "PDF-dokumentti"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:141
 msgid "Generates documents in PDF format (.pdf)."
-msgstr "Tuottaa PDF muodossa dokumentteja (.pdf)."
+msgstr "Tuottaa PDF-muodossa dokumentteja (.pdf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:162
 msgid "Generates documents in PostScript format (.ps)."
-msgstr "Tuottaa dokumentteja PostScript muodossa (.ps)."
+msgstr "Tuottaa dokumentteja PostScript-muodossa (.ps)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:182
 msgid "RTF document"
@@ -20425,7 +20427,7 @@ msgstr "RTF-dokumentti"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:183
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr "Tuottaa Rich Text format (.rtf) dokumentteja."
+msgstr "Tuottaa Rich Text format -dokumentteja (.rtf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:203
 msgid "SVG document"
@@ -20433,7 +20435,7 @@ msgstr "SVG-dokumentti"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:204
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr "Tuottaa Scalable Vector Graphics (.svg) muotoisia dokumentteja."
+msgstr "Tuottaa Scalable Vector Graphics -muotoisia (.svg) dokumentteja."
 
 #: ../gramps/plugins/docgen/gtkprint.glade:6
 msgid "Print Preview"
@@ -20507,7 +20509,7 @@ msgstr ""
 #: ../gramps/plugins/docgen/htmldoc.py:567
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "Kuvan %(name)s jpeg version luonti epäonnistui"
+msgstr "Kuvan %(name)s jpeg-version luonti epäonnistui"
 
 #: ../gramps/plugins/docgen/latexdoc.py:1240
 msgid "PIL (Python Imaging Library) not loaded."
@@ -20530,7 +20532,7 @@ msgstr "Tiedoston %s avaus epäonnistui"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:348
 msgid "SVG background color"
-msgstr "SVG taustaväri"
+msgstr "SVG-taustaväri"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:350
 msgid "transparent background"
@@ -21034,7 +21036,7 @@ msgstr "Kalenterini"
 #: ../gramps/plugins/drawreport/calendarreport.py:75
 #: ../gramps/plugins/textreport/birthdayreport.py:67
 msgid "Produced with Gramps"
-msgstr "Tuotettu Gramps ohjelmalla"
+msgstr "Tuotettu Gramps-ohjelmalla"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:199
 #: ../gramps/plugins/drawreport/calendarreport.py:225
@@ -22017,7 +22019,7 @@ msgstr "CSV on yleinen taulukkomuotoisen tekstin muoto."
 
 #: ../gramps/plugins/export/export.gpr.py:44
 msgid "CSV spreadsheet options"
-msgstr "CSV taulukkotiedon valinnat"
+msgstr "CSV-taulukkotiedon valinnat"
 
 #: ../gramps/plugins/export/export.gpr.py:55
 msgid "Web Family Tree"
@@ -22051,7 +22053,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:87
 msgid "GEDCOM export options"
-msgstr "GEDCOM vientivalinnat"
+msgstr "GEDCOM-vientivalinnat"
 
 #: ../gramps/plugins/export/export.gpr.py:98
 #: ../gramps/plugins/importer/import.gpr.py:73
@@ -22068,27 +22070,27 @@ msgstr "GeneWeb on nettipohjainen sukututkimusohjelma."
 
 #: ../gramps/plugins/export/export.gpr.py:108
 msgid "GeneWeb export options"
-msgstr "GeneWeb vientivalinnat"
+msgstr "GeneWeb-vientivalinnat"
 
 #: ../gramps/plugins/export/export.gpr.py:119
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Gramps XML paketti (sukupuu ja mediatiedostot)"
+msgstr "Grampsin XML-paketti (sukupuu ja mediatiedostot)"
 
 #: ../gramps/plugins/export/export.gpr.py:120
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Gra_mps XML paketti (sukupuu ja mediatiedostot)"
+msgstr "Gra_mpsin XML-paketti (sukupuu ja mediatiedostot)"
 
 #: ../gramps/plugins/export/export.gpr.py:121
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
 msgstr ""
-"Gramps paketti sisältää arkistoidun sukupuun XML muodossa ja kaikki siihen "
+"Gramps paketti sisältää arkistoidun sukupuun XML-muodossa ja kaikki siihen "
 "liittyvät mediatiedostot."
 
 #: ../gramps/plugins/export/export.gpr.py:130
 msgid "Gramps package export options"
-msgstr "Gramps paketin vientivalinnat"
+msgstr "Gramps-paketin vientivalinnat"
 
 #: ../gramps/plugins/export/export.gpr.py:141
 msgid "Gramps XML (family tree)"
@@ -22103,12 +22105,12 @@ msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"Gramps XML vienti on täydellinen arkisto Gramps sukupuusta XML-tiedostona "
+"Grampsin XML-vienti on täydellinen arkisto Gramps-sukupuusta XML-tiedostona "
 "ilman mediatiedostoja. Soveltuu varmuuskopiointiin."
 
 #: ../gramps/plugins/export/export.gpr.py:153
 msgid "Gramps XML export options"
-msgstr "Gramps XML vientivalinnat"
+msgstr "Grampsin XML-vientivalinnat"
 
 #: ../gramps/plugins/export/export.gpr.py:164
 msgid "vCalendar"
@@ -22124,7 +22126,7 @@ msgstr "vCalendar-muotoa käytetään useissa kalenteri- ja PIM-sovelluksissa."
 
 #: ../gramps/plugins/export/export.gpr.py:174
 msgid "vCalendar export options"
-msgstr "vCalendar vientivalinnat"
+msgstr "vCalendar-vientivalinnat"
 
 #: ../gramps/plugins/export/export.gpr.py:185
 #: ../gramps/plugins/importer/import.gpr.py:167
@@ -22141,7 +22143,7 @@ msgstr "vCard-muotoa käytetään monissa osoitekirja- ja PIM-sovelluksissa."
 
 #: ../gramps/plugins/export/export.gpr.py:195
 msgid "vCard export options"
-msgstr "vCard vientivalinnat"
+msgstr "vCard-vientivalinnat"
 
 #: ../gramps/plugins/export/exportcsv.py:136
 msgid "Include people"
@@ -22173,7 +22175,7 @@ msgstr "Ympärillä"
 #: ../gramps/plugins/export/exportcsv.py:340
 #, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr "CSV vienti ei tue muita kuin ensisijaisia sukunimiä, {count} ohitettu"
+msgstr "CSV-vienti ei tue muita kuin ensisijaisia sukunimiä, {count} ohitettu"
 
 #: ../gramps/plugins/export/exportcsv.py:357
 msgid "Birth source"
@@ -22267,7 +22269,7 @@ msgstr "Kirjoitetaan media"
 
 #: ../gramps/plugins/export/exportgedcom.py:1600
 msgid "GEDCOM Export failed"
-msgstr "GEDCOM vienti epäonnistui"
+msgstr "GEDCOM-vienti epäonnistui"
 
 #: ../gramps/plugins/export/exportgeneweb.py:97
 msgid "No families matched by selected filter"
@@ -22944,7 +22946,7 @@ msgstr "Gramplet näyttää mediatiedoston metadatan"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:441
 msgid "GExiv2 module not loaded."
-msgstr "GExiv2 moduuli lataamatta."
+msgstr "GExiv2-moduulia ei ole ladattu."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:442
 #, python-format
@@ -23285,7 +23287,7 @@ msgstr "Gramplet näyttää mediaan tulevat linkit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:987
 msgid "Note References"
-msgstr "Lisätieto viitteet"
+msgstr "Lisätietoviitteet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:988
 msgid "Gramplet showing the backlink references for a note"
@@ -23445,7 +23447,7 @@ msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1282
 msgid "Gramplet to generate SoundEx codes"
-msgstr "Luo SoundEx koodeja"
+msgstr "Luo SoundEx-koodeja"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1294
 msgid "Place Enclosed By"
@@ -23750,7 +23752,7 @@ msgstr "Valittu"
 
 #: ../gramps/plugins/gramplet/soundgen.py:67
 msgid "SoundEx code:"
-msgstr "SoundEX koodi:"
+msgstr "SoundEX-koodi:"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:59
 msgid "Double-click item to see matches"
@@ -23923,7 +23925,7 @@ msgstr "Linkkejä"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:106
 msgid "Home Page"
-msgstr "Gramps projektinkotisivu"
+msgstr "Gramps-projektin kotisivu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:107
 msgid "Start with Genealogy and Gramps"
@@ -23931,7 +23933,7 @@ msgstr "Aloita sukututkimus ja Grampsin käyttäminen"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:110
 msgid "Gramps online manual"
-msgstr "Gramps online käyttöohje"
+msgstr "Gramps-käyttöohje verkossa"
 
 # /fi on ohjaus Wiki Gramps online käyttöohje suomenkieliselle sivulle.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
@@ -23956,11 +23958,11 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps on sukututkijoiden toisille sukututkijoille Gramps projektissa tekemä "
-"ohjelmisto. Gramps on toteutettu avoimen lähdekoodin käyttöoikeuksilla. Voit "
-"siksi ottaa siitä vapaasti kopioita ja jakaa niitä muille. Grampsia kehittää "
-"ja ylläpitää kansainvälinen vapaehtoisten joukko, jonka tavoite on tehdä "
-"Grampsista entistä tehokkaampi mutta samalla helppokäyttöisempi.\n"
+"Gramps on sukututkijoiden toisille sukututkijoille Gramps-projektissa tekemä "
+"ohjelmisto. Gramps on toteutettu avoimen lähdekoodin mallilla. Voit siksi "
+"ottaa siitä vapaasti kopioita ja jakaa niitä muille. Grampsia kehittää ja "
+"ylläpitää kansainvälinen vapaehtoisten joukko, jonka tavoite on tehdä "
+"Grampsista entistä tehokkaampi mutta samalla helppokäyttöinen.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
@@ -23983,7 +23985,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
-msgstr "Työpöytä näkymä"
+msgstr "Työpöytänäkymä"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:131
 msgid ""
@@ -24530,7 +24532,7 @@ msgstr "Kaaviotyyli"
 
 #: ../gramps/plugins/graph/gvhourglass.py:438
 msgid "Force Ahnentafel order"
-msgstr "Pakota Ahnentafel järjestys"
+msgstr "Pakota Ahnentafel-järjestys"
 
 #: ../gramps/plugins/graph/gvhourglass.py:440
 msgid ""
@@ -24543,7 +24545,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "Ahnentafel number visible"
-msgstr "Ahnentafel numero näkyvä"
+msgstr "Ahnentafel-numero näkyvä"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
@@ -24701,43 +24703,44 @@ msgstr "Perheet näytetään vanhempiin ja lapsiin linkitettyinä soikioina."
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
-msgstr "Tuo tiedot CSV tiedostoista"
+msgstr "Tuo tiedot CSV-tiedostoista"
 
 #: ../gramps/plugins/importer/import.gpr.py:74
 msgid "Import data from GeneWeb files"
-msgstr "Tuo tiedot GeneWeb tiedostoista"
+msgstr "Tuo tiedot GeneWeb-tiedostoista"
 
 #: ../gramps/plugins/importer/import.gpr.py:91
 msgid "Gramps package (portable XML)"
-msgstr "Gramps paketti (siirrettävä kattava XML)"
+msgstr "Gramps-paketti (siirrettävä kattava XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:92
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files.)"
 msgstr ""
-"Tuo tiedot Gramps paketista (sisältää tietokannan XML muodossa ja kaikki "
+"Tuo tiedot Gramps-paketista (sisältää tietokannan XML-muodossa ja kaikki "
 "siihen liittyvät mediatiedostot.)"
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
-msgstr "Gramps XML sukupuu"
+msgstr "Grampsin XML-sukupuu"
 
 #: ../gramps/plugins/importer/import.gpr.py:111
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Gramps XML tietokanta on tekstiversio sukupuusta. Se on täysin yhteensopiva "
-"Grampsin oletustietokanta muodon kanssa ja säilyttää kaikki sen tiedot."
+"Grampsin XML-tietokanta on tekstiversio sukupuusta. Se on täysin "
+"yhteensopiva Grampsin oletustietokanta muodon kanssa ja säilyttää kaikki sen "
+"tiedot."
 
 #: ../gramps/plugins/importer/import.gpr.py:131
 msgid "Gramps 2.x database"
-msgstr "Gramps 2.x tietokanta"
+msgstr "Gramps 2.x -tietokanta"
 
 #: ../gramps/plugins/importer/import.gpr.py:132
 msgid "Import data from Gramps 2.x database files"
-msgstr "Tuo tiedot Gramps 2.x tietokantatiedostoista"
+msgstr "Tuo tiedot Gramps 2.x -tietokantatiedostoista"
 
 #: ../gramps/plugins/importer/import.gpr.py:149
 msgid "Pro-Gen"
@@ -24745,11 +24748,11 @@ msgstr "Pro-Gen"
 
 #: ../gramps/plugins/importer/import.gpr.py:150
 msgid "Import data from Pro-Gen files"
-msgstr "Tuo tiedot Pro-Gen tiedostoista"
+msgstr "Tuo tiedot Pro-Gen-tiedostoista"
 
 #: ../gramps/plugins/importer/import.gpr.py:168
 msgid "Import data from vCard files"
-msgstr "Tuo tiedot vCard tiedostoista"
+msgstr "Tuo tiedot vCard-tiedostoista"
 
 #: ../gramps/plugins/importer/importcsv.py:125
 msgid "Bad references"
@@ -25053,7 +25056,7 @@ msgstr "muotoiluvirhe: rivi %(line)d: %(zero)s"
 
 #: ../gramps/plugins/importer/importcsv.py:356
 msgid "CSV Import"
-msgstr "CSV tuonti"
+msgstr "CSV-tuonti"
 
 #: ../gramps/plugins/importer/importcsv.py:358
 msgid "Reading data..."
@@ -25061,7 +25064,7 @@ msgstr "Luetaan tietoja..."
 
 #: ../gramps/plugins/importer/importcsv.py:365
 msgid "CSV import"
-msgstr "CSV tuonti"
+msgstr "CSV-tuonti"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/importer/importcsv.py:374
@@ -25095,11 +25098,11 @@ msgstr "UTF-8"
 
 #: ../gramps/plugins/importer/importgedcom.glade:30
 msgid "Gramps - GEDCOM Encoding"
-msgstr "Gramps - GEDCOM koodaus"
+msgstr "Gramps - GEDCOM-koodaus"
 
 #: ../gramps/plugins/importer/importgedcom.glade:77
 msgid "GEDCOM Encoding"
-msgstr "GEDCOM koodaus"
+msgstr "GEDCOM-koodaus"
 
 #: ../gramps/plugins/importer/importgedcom.glade:97
 msgid ""
@@ -25118,7 +25121,7 @@ msgstr "Koodaus: "
 
 #: ../gramps/plugins/importer/importgedcom.py:132
 msgid "Invalid GEDCOM file"
-msgstr "Kelvoton GEDCOM tiedosto"
+msgstr "Kelvoton GEDCOM-tiedosto"
 
 #: ../gramps/plugins/importer/importgedcom.py:133
 #, python-format
@@ -25127,7 +25130,7 @@ msgstr "Tiedoston %s tuonti ei onnistunut"
 
 #: ../gramps/plugins/importer/importgedcom.py:150
 msgid "Error reading GEDCOM file"
-msgstr "GEDCOM tiedoston luku epäonnistui"
+msgstr "GEDCOM-tiedoston luku epäonnistui"
 
 #: ../gramps/plugins/importer/importgeneweb.py:80
 msgid "Accomplishment"
@@ -25219,7 +25222,7 @@ msgstr "Ero"
 
 #: ../gramps/plugins/importer/importgeneweb.py:197
 msgid "GeneWeb import"
-msgstr "GeneWeb tuonti"
+msgstr "GeneWeb-tuonti"
 
 #: ../gramps/plugins/importer/importgeneweb.py:912
 #, python-brace-format
@@ -25383,7 +25386,7 @@ msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
-"Oletus tagiteksti\n"
+"Oletusarvoinen tagiteksti\n"
 "(asetusten ulkopuolella)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
@@ -25392,7 +25395,7 @@ msgstr "Tuontitiedoston nimi."
 
 #: ../gramps/plugins/importer/importprogen.glade:492
 msgid "Default (System-)Date."
-msgstr "Oletus (järjestelmä-) päivämäärä."
+msgstr "Oletusarvoinen (järjestelmä-) päivämäärä."
 
 #: ../gramps/plugins/importer/importprogen.glade:766
 #: ../gramps/plugins/importer/importprogen.glade:781
@@ -25438,7 +25441,7 @@ msgid ""
 "all object tags."
 msgstr ""
 "Ota käyttöön/poista käytöstä\n"
-"kaikki Tagi kohteet."
+"kaikki tagikohteet."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -25529,7 +25532,7 @@ msgid ""
 "Store REFN number\n"
 "in event description."
 msgstr ""
-"Tallenna REFN numero\n"
+"Tallenna REFN-numero\n"
 "tapahtumakuvaukseen."
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
@@ -25585,18 +25588,18 @@ msgstr "Tuonti_toisesta_sukuohjelmasta"
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
 msgid "Import from Pro-Gen (%s)"
-msgstr "Tuo Pro-Gen ohjelmasta (%s)"
+msgstr "Tuo Pro-Gen-ohjelmasta (%s)"
 
 #: ../gramps/plugins/importer/importprogen.py:186
 #: ../gramps/plugins/lib/libprogen.py:492
 #: ../gramps/plugins/lib/libprogen.py:516
 msgid "Pro-Gen data error"
-msgstr "Pro-Gen tietovirhe"
+msgstr "Pro-Gen-tietovirhe"
 
 #: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/importer/importprogen.py:466
 msgid "Import Pro-Gen"
-msgstr "Pro-Gen tuonti"
+msgstr "Pro-Gen-tuonti"
 
 #: ../gramps/plugins/importer/importvcard.py:228
 #, python-format
@@ -25605,16 +25608,16 @@ msgstr "Rivi %(line)5d: %(prob)s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:243
 msgid "vCard import"
-msgstr "vCard tuonti"
+msgstr "vCard-tuonti"
 
 #: ../gramps/plugins/importer/importvcard.py:254
 msgid "VCARD import report: No errors detected"
-msgstr "VCARD tuontiraportti: Ei virheitä"
+msgstr "VCARD-tuontiraportti: Ei virheitä"
 
 #: ../gramps/plugins/importer/importvcard.py:256
 #, python-format
 msgid "VCARD import report: %s errors detected\n"
-msgstr "VCARD tuontiraportti: %s virhettä löytynyt\n"
+msgstr "VCARD-tuontiraportti: %s virhettä löytynyt\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
@@ -25626,13 +25629,13 @@ msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested VCards."
 msgstr ""
-"BEGIN ominaisuus ei ole kunnolla sulkenut END ominaisuutta, Gramps ei "
-"hyväksy sisäkkäisiä VCard."
+"END-ominaisuus ei ole kunnolla sulkenut BEGIN-ominaisuutta, Gramps ei "
+"hyväksy sisäkkäisiä VCardeja."
 
 #: ../gramps/plugins/importer/importvcard.py:346
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
-msgstr "Gramps ei tue VCards version %s tuontia."
+msgstr "Gramps ei tue VCardien version %s tuontia."
 
 #: ../gramps/plugins/importer/importvcard.py:366
 msgid ""
@@ -25646,12 +25649,12 @@ msgstr ""
 msgid ""
 "VCard is malformed missing the compulsory FN property, get name from N alone."
 msgstr ""
-"VCard muoto on virheellinen, puuttuu pakollinen FN ominaisuus, käytetään "
+"VCard-muoto on virheellinen, puuttuu pakollinen FN-ominaisuus, käytetään "
 "vain N nimeä."
 
 #: ../gramps/plugins/importer/importvcard.py:375
 msgid "VCard is malformed wrong number of name components."
-msgstr "VCard muoto on virheellinen, väärä numero nimiosassa."
+msgstr "VCard-muoto on virheellinen, väärä numero nimiosassa."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -25689,7 +25692,7 @@ msgstr "Virhe luettaessa %s"
 
 #: ../gramps/plugins/importer/importxml.py:161
 msgid "The file is probably either corrupt or not a valid Gramps database."
-msgstr "Tiedosto ei ole Gramps tietokanta tai se on korruptoitunut."
+msgstr "Tiedosto ei ole Gramps-tietokanta tai se on korruptoitunut."
 
 #: ../gramps/plugins/importer/importxml.py:245
 #, python-format
@@ -25836,7 +25839,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1566
 #: ../gramps/plugins/importer/importxml.py:1987
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr "Tuotavassa Gramps XML tiedostossa on rakennevirhe."
+msgstr "Tuotavassa Grampsin XML-tiedostossa on rakennevirhe."
 
 #: ../gramps/plugins/importer/importxml.py:810
 msgid "Attributes that link the data together are missing."
@@ -25844,7 +25847,7 @@ msgstr "Tietoja koostavia ominaisuuksia puuttuu."
 
 #: ../gramps/plugins/importer/importxml.py:923
 msgid "Gramps XML import"
-msgstr "Gramps XML tuonti"
+msgstr "Grampsin XML-tuonti"
 
 #: ../gramps/plugins/importer/importxml.py:958
 msgid "Could not change media path"
@@ -25869,7 +25872,7 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
-"Tuotavasta Gramps tiedostosta puuttuu tieto, millä Grampsin versiolla se on "
+"Tuotavasta Gramps-tiedostosta puuttuu tieto, millä Grampsin versiolla se on "
 "tuotettu\n"
 "\n"
 "Tiedoston tuontia ei jatketa."
@@ -25885,9 +25888,9 @@ msgid ""
 "while you are running an older version %(older)s. The file will not be "
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
-".Gramps tiedosto, jota olet tuomassa on Gramps versiosta %(newer)s, joka on "
+".Gramps-tiedosto, jota olet tuomassa on Gramps-versiosta %(newer)s, joka on "
 "uudempi kuin käyttämäsi versio %(older)s. Tiedoston tuonti on peruttu. "
-"Päivitä viimeisimpään julkaistuun Gramps versioon ja yritä uudelleen."
+"Päivitä viimeisimpään julkaistuun Gramps-versioon ja yritä uudelleen."
 
 #: ../gramps/plugins/importer/importxml.py:1031
 #, python-format
@@ -25927,7 +25930,7 @@ msgid ""
 "  %(gramps_wiki_xml_url)s\n"
 "for more info."
 msgstr ""
-"Gramps tiedosto jota tuot oli tehty Grampsin versiolla %(oldgramps)s, kun "
+"Gramps-tiedosto, jota tuot, oli tehty Grampsin versiolla %(oldgramps)s, kun "
 "käytät itse uudempaa versiota %(newgramps)s.\n"
 "\n"
 "Varmista tuotuasi että kaikki tuotiin oikein. Jos ongelmia tulee, tee "
@@ -26096,7 +26099,7 @@ msgstr "Virheellinen merkki%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr "GEDCOM tiedostosi on rikki. Se vaikuttaa loppuvan kesken."
+msgstr "GEDCOM-tiedostosi on rikki. Se vaikuttaa loppuvan kesken."
 
 #: ../gramps/plugins/lib/libgedcom.py:1904
 #, python-format
@@ -26106,16 +26109,16 @@ msgstr "Tuo GEDCOM-tiedosto (%s)"
 #: ../gramps/plugins/lib/libgedcom.py:2741
 #: ../gramps/plugins/lib/libgedcom.py:3198
 msgid "GEDCOM import"
-msgstr "GEDCOM tuonti"
+msgstr "GEDCOM-tuonti"
 
 #: ../gramps/plugins/lib/libgedcom.py:2769
 msgid "GEDCOM import report: No errors detected"
-msgstr "GEDCOM tuonnin raportti: Ei virheitä"
+msgstr "GEDCOM-tuonnin raportti: Ei virheitä"
 
 #: ../gramps/plugins/lib/libgedcom.py:2771
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr "GEDCOM tuonnin raportti: %s virhettä löytynyt"
+msgstr "GEDCOM-tuonnin raportti: %s virhettä löytynyt"
 
 #: ../gramps/plugins/lib/libgedcom.py:3091
 #: ../gramps/plugins/lib/libgedcom.py:3116
@@ -26184,7 +26187,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:3431
 #, python-format
 msgid "ADDR element ignored '%s'"
-msgstr "ADDR elementti jätetty huomiotta '%s'"
+msgstr "ADDR-elementti jätetty huomiotta '%s'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3452
 msgid "TRLR (trailer)"
@@ -26197,7 +26200,7 @@ msgstr "(Luovuttaja):"
 #: ../gramps/plugins/lib/libgedcom.py:3505
 #: ../gramps/plugins/lib/libgedcom.py:7319
 msgid "GEDCOM data"
-msgstr "GEDCOM data"
+msgstr "GEDCOM-tieto"
 
 #: ../gramps/plugins/lib/libgedcom.py:3550
 msgid "Unknown tag"
@@ -26326,7 +26329,7 @@ msgstr "Lähdeaineiston nimi"
 
 #: ../gramps/plugins/lib/libgedcom.py:7355
 msgid "Copyright of source data"
-msgstr "Lähdeaineiston copyright"
+msgstr "Lähdeaineiston tekijänoikeus"
 
 #: ../gramps/plugins/lib/libgedcom.py:7372
 msgid "Publication date of source data"
@@ -26343,7 +26346,7 @@ msgstr "Luovutuksen tietuetunniste"
 
 #: ../gramps/plugins/lib/libgedcom.py:7438
 msgid "Language of GEDCOM text"
-msgstr "GEDCOM tekstin kieli"
+msgstr "GEDCOM-tekstin kieli"
 
 #: ../gramps/plugins/lib/libgedcom.py:7460
 #, python-format
@@ -26351,7 +26354,7 @@ msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
 "the resulting database!"
 msgstr ""
-"GEDCOM tiedoston %(filename)s, jossa DEST=%(by)s, tuonti saattaisi aiheuttaa "
+"GEDCOM-tiedoston %(filename)s, jossa DEST=%(by)s, tuonti saattaisi aiheuttaa "
 "virheitä syntyvään tietokantaan!"
 
 #: ../gramps/plugins/lib/libgedcom.py:7463
@@ -26368,11 +26371,11 @@ msgstr "Merkistön koodaus ja versio"
 
 #: ../gramps/plugins/lib/libgedcom.py:7508
 msgid "GEDCOM version not supported"
-msgstr "GEDCOM versio ei ole tuettu"
+msgstr "GEDCOM-versio ei ole tuettu"
 
 #: ../gramps/plugins/lib/libgedcom.py:7512
 msgid "GEDCOM version"
-msgstr "GEDCOM versio"
+msgstr "GEDCOM-versio"
 
 #: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "GEDCOM FORM should be in uppercase"
@@ -26388,7 +26391,7 @@ msgstr "GEDCOM muoto"
 
 #: ../gramps/plugins/lib/libgedcom.py:7578
 msgid "Creation date of GEDCOM"
-msgstr "GEDCOM luontipäivä"
+msgstr "GEDCOM-luontipäivä"
 
 #: ../gramps/plugins/lib/libgedcom.py:7583
 msgid "Creation date and time of GEDCOM"
@@ -26437,12 +26440,12 @@ msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
-"GEDCOM tiedostosi on viallinen. Tiedosto näyttäisi käyttävän UTF16-"
+"GEDCOM-tiedostosi on viallinen. Tiedosto näyttäisi käyttävän UTF16-"
 "merkkikoodausta, mutta siitä puuttuu vaadittu BOM-merkintä."
 
 #: ../gramps/plugins/lib/libgedcom.py:8098
 msgid "Your GEDCOM file is empty."
-msgstr "GEDCOM tiedostosi on tyhjä."
+msgstr "GEDCOM-tiedostosi on tyhjä."
 
 #: ../gramps/plugins/lib/libhtmlconst.py:51
 msgid "Unicode UTF-8 (recommended)"
@@ -29754,7 +29757,7 @@ msgstr "Vanhempien määrä"
 
 #: ../gramps/plugins/lib/libpersonview.py:109
 msgid "Number of To Do Notes"
-msgstr "To Do lisätietojen määrä"
+msgstr "To Do -lisätietojen määrä"
 
 #: ../gramps/plugins/lib/libpersonview.py:112
 #: ../gramps/plugins/lib/libplaceview.py:94
@@ -30171,7 +30174,7 @@ msgstr "Näiden paikkojen sulautus loisi silmukan paikka hierarkiassa."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:35
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "Tarjoaa Cairo kirjaston dokumenttien tuottamiseksi."
+msgstr "Tarjoaa Cairo-kirjaston dokumenttien tuottamiseksi."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:54
 msgid "Provides GEDCOM processing functionality"
@@ -30183,7 +30186,7 @@ msgstr "Tarjoaa itseään toistavia rutiineja raportteja varten"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:88
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr "Tarjoaa perustoiminnallisuuden Gramps XML tuontiin ja vientiin."
+msgstr "Tarjoaa perustoiminnallisuuden Grampsin XML-tuontiin ja -vientiin."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:107
 msgid "Provides holiday information for different countries."
@@ -30191,7 +30194,7 @@ msgstr "Tarjoaa juhlapyhien tiedot eri maille."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:125
 msgid "Manages a HTML file implementing DocBackend."
-msgstr "Hoitaa HTML tiedoston DocBackend.py avulla."
+msgstr "Hoitaa HTML-tiedoston DocBackendin implementoiden."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:143
 msgid "Common constants for html files."
@@ -30211,7 +30214,7 @@ msgstr "Tuottaa tekstimuotoisen kertomuksen."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:213
 msgid "Manages an ODF file implementing DocBackend."
-msgstr "Hoitaa ODF tiedoston DocBackend.py ohjelman avulla."
+msgstr "Hoitaa ODF-tiedoston DocBackendin implementoiden."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:230
 msgid "Provides the Base needed for the List People views."
@@ -30219,7 +30222,7 @@ msgstr "Tarjoaa kehikon henkilölistausten näkymille."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:247
 msgid "Provides common functionality for Pro-Gen import"
-msgstr "Tarjoaa yhteisiä toimintoja Pro-Gen tuonnille"
+msgstr "Tarjoaa yhteisiä toimintoja Pro-Gen-tuonnille"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:265
 msgid "Provides the Base needed for the List Place views."
@@ -30247,7 +30250,7 @@ msgstr "Ei (oikea) DEF-tiedosto: %(dname)s"
 #: ../gramps/plugins/lib/libprogen.py:498
 #: ../gramps/plugins/lib/libprogen.py:732
 msgid "Import from Pro-Gen"
-msgstr "Tuo Pro-Gen ohjelmasta"
+msgstr "Tuo Pro-Gen-ohjelmasta"
 
 #: ../gramps/plugins/lib/libprogen.py:498
 msgid "Initializing."
@@ -30255,11 +30258,11 @@ msgstr "Alustetaan."
 
 #: ../gramps/plugins/lib/libprogen.py:515
 msgid "Not a supported Pro-Gen import file language"
-msgstr "Pro-Gen tuontitiedoston kieltä ei tueta"
+msgstr "Pro-Gen-tuontitiedoston kieltä ei tueta"
 
 #: ../gramps/plugins/lib/libprogen.py:531
 msgid "Pro-Gen import"
-msgstr "Pro-Gen tuonti"
+msgstr "Pro-Gen-tuonti"
 
 #: ../gramps/plugins/lib/libprogen.py:539
 msgid "Saving."
@@ -30267,7 +30270,7 @@ msgstr "Tallennus."
 
 #: ../gramps/plugins/lib/libprogen.py:929
 msgid "Pro-Gen Import"
-msgstr "Pro-Gen tuonti"
+msgstr "Pro-Gen-tuonti"
 
 #: ../gramps/plugins/lib/libprogen.py:1138
 #, python-format
@@ -30484,7 +30487,7 @@ msgstr "Et voi käyttää tulostustoimintoja"
 
 #: ../gramps/plugins/lib/maps/geography.py:853
 msgid "Your Gtk version is too old."
-msgstr "GTK versio on liian vanha."
+msgstr "GTK-versio on liian vanha."
 
 #: ../gramps/plugins/lib/maps/geography.py:896
 #: ../gramps/plugins/view/geoclose.py:623
@@ -30503,7 +30506,7 @@ msgstr "Keskitä tähän paikkaan"
 
 #: ../gramps/plugins/lib/maps/geography.py:994
 msgid "Select a kml file used to add places"
-msgstr "Valitse kml tiedosto, lisätäksesi paikkoja"
+msgstr "Valitse kml-tiedosto lisätäksesi paikkoja"
 
 #: ../gramps/plugins/lib/maps/geography.py:1074
 msgid "You have at least two places with the same title."
@@ -30736,7 +30739,7 @@ msgstr "Avaa kartor.eniro.se"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:52
 msgid "GoogleMaps"
-msgstr "Google kartat"
+msgstr "Googlen kartat"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:53
 msgid "Open on maps.google.com"
@@ -30745,7 +30748,7 @@ msgstr "Avaa maps.google.com"
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
 #: ../gramps/plugins/webreport/narrativeweb.py:2424
 msgid "OpenStreetMap"
-msgstr "OpenStreetMap kartat"
+msgstr "OpenStreetMap-kartat"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:72
 msgid "Open on openstreetmap.org"
@@ -31214,7 +31217,7 @@ msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
-"Raportti näyttää äitilinjan, eli niin sanotun mtDNA matronyymilinjan. "
+"Raportti näyttää äitilinjan, eli niin sanotun mtDNA-matronyymilinjan. "
 "Henkilöillä tässä linjassa on sama mitokondrio DNA (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:93
@@ -31897,25 +31900,25 @@ msgstr "Yksinkertainen numerointi"
 #: ../gramps/plugins/textreport/descendreport.py:529
 #: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "d'Aboville numbering"
-msgstr "d'Aboville numerointi"
+msgstr "d'Aboville-numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:530
 #: ../gramps/plugins/textreport/detdescendantreport.py:1013
 msgid "Henry numbering"
-msgstr "Henry numerointi"
+msgstr "Henry-numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:531
 #: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Modified Henry numbering"
-msgstr "Muunnettu Henry numerointi"
+msgstr "Muunnettu Henry-numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:532
 msgid "de Villiers/Pama numbering"
-msgstr "de Villiers/Pama numerointi"
+msgstr "de Villiers/Pama -numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:533
 msgid "Meurgey de Tupigny numbering"
-msgstr "Meurgey de Tupigny numerointi"
+msgstr "Meurgey de Tupigny -numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:534
 #: ../gramps/plugins/textreport/detdescendantreport.py:1018
@@ -32047,11 +32050,11 @@ msgstr "Suhde henkilöön: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:835
 msgid "Sosa-Stradonitz number"
-msgstr "Sosa-Stradonitz numero"
+msgstr "Sosa-Stradonitz-numero"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:837
 msgid "The Sosa-Stradonitz number of the central person."
-msgstr "Keskushenkilön Sosa-Stradonitz numero."
+msgstr "Keskushenkilön Sosa-Stradonitz-numero."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:851
 #: ../gramps/plugins/textreport/detdescendantreport.py:1040
@@ -32602,11 +32605,11 @@ msgstr "Lisää ominaisuudet"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
 msgid "Include Census Events"
-msgstr "Lisää väestölaskenta tapahtumat"
+msgstr "Lisää väestölaskentatapahtumat"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1152
 msgid "Whether to include Census Events."
-msgstr "Lisätäänkö väestölaskenta tapahtumat."
+msgstr "Lisätäänkö väestölaskentatapahtumat."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1162
 msgid "Sections"
@@ -32929,7 +32932,7 @@ msgstr "Yksittäisiä mediatiedostoja: %d"
 #: ../gramps/plugins/textreport/summary.py:252
 #, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "Mediatiedostojen yhteenlaskettu koko: %s MB"
+msgstr "Mediatiedostojen yhteenlaskettu koko: %s Mt"
 
 #: ../gramps/plugins/textreport/summary.py:290
 msgid "Whether to count private data"
@@ -32951,7 +32954,7 @@ msgstr "Käytettävä tyyli otsikolle."
 #: ../gramps/plugins/textreport/tagreport.py:106
 #: ../gramps/plugins/textreport/textplugins.gpr.py:258
 msgid "Tag Report"
-msgstr "Tagi raportti"
+msgstr "Tagiraportti"
 
 #: ../gramps/plugins/textreport/tagreport.py:107
 msgid "You must first create a tag before running this report."
@@ -33085,7 +33088,7 @@ msgstr "Ennätykset raportti"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:437
 msgid "Note Link Report"
-msgstr "Lisätietolinkki raportti"
+msgstr "Lisätietolinkkien raportti"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:438
 msgid "Shows status of links in notes"
@@ -33378,7 +33381,7 @@ msgstr "Päivitän median tarkistussummia"
 
 #: ../gramps/plugins/tool/check.py:1972
 msgid "Looking for tag reference problems"
-msgstr "Etsitään virheellisiä tagi viitteitä"
+msgstr "Etsitään virheellisiä tagiviitteitä"
 
 #: ../gramps/plugins/tool/check.py:2117
 msgid "Looking for media source reference problems"
@@ -33386,7 +33389,7 @@ msgstr "Etsitään virheellisiä lähdeviitteitä"
 
 #: ../gramps/plugins/tool/check.py:2185
 msgid "Looking for Duplicated Gramps ID problems"
-msgstr "Etsitään mahdolliset Gramps ID kahdennukset"
+msgstr "Etsitään mahdolliset Gramps ID -kahdennukset"
 
 #: ../gramps/plugins/tool/check.py:2300
 msgid "Checking for bad links in Notes"
@@ -33402,7 +33405,7 @@ msgstr "Tietokanta on läpäissyt sisäisen tarkastuksen"
 
 #: ../gramps/plugins/tool/check.py:2455
 msgid "No errors were found: the database has passed internal checks."
-msgstr "Virheitä ei löytynyt: Tietokanta on läpäissyt sisäisen tarkastukseen."
+msgstr "Virheitä ei löytynyt: Tietokanta on läpäissyt sisäiset tarkastukset."
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2462
@@ -33667,7 +33670,7 @@ msgstr "Tarkista ja korjaa"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:67
 msgid "Start date test?"
-msgstr "Aloita päivämäärä testi?"
+msgstr "Aloita päivämäärätesti?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:68
 msgid ""
@@ -33683,7 +33686,7 @@ msgstr "Suorita testi"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:80
 msgid "Running Date Test"
-msgstr "Suorittaa päivämäärä testiä"
+msgstr "Suorittaa päivämäärätestiä"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:82
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:183
@@ -33692,7 +33695,7 @@ msgstr "Luodaan päivämääriä"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
 msgid "Date Test Plugin"
-msgstr "Päivämäärän testi laajennus"
+msgstr "Päivämäärän testauslaajennus"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
 msgid "Pass"
@@ -33700,7 +33703,7 @@ msgstr "Ohita"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:57
 msgid "Gender Statistics tool"
-msgstr "Sukupuoli tilastojen työkalu"
+msgstr "Sukupuolitilastojen työkalu"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:75
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
@@ -33722,7 +33725,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.glade:249
 msgid "Custom filter _editor"
-msgstr "Käyttäjän suodin muokkain"
+msgstr "Käyttäjän suodinmuokkain"
 
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/eventcmp.py:70
@@ -33813,7 +33816,7 @@ msgstr "Hakuraja"
 
 #: ../gramps/plugins/tool/finddupes.glade:144
 msgid "Use soundex codes"
-msgstr "Käytä SoundEx koodeja"
+msgstr "Käytä SoundEx-koodeja"
 
 #: ../gramps/plugins/tool/finddupes.glade:239
 msgid "Co_mpare"
@@ -33922,7 +33925,7 @@ msgstr "Medianhallinta"
 
 #: ../gramps/plugins/tool/mediamanager.py:91
 msgid "Help"
-msgstr "_Ohjeet"
+msgstr "Ohje"
 
 #: ../gramps/plugins/tool/mediamanager.py:101
 #: ../gramps/plugins/webreport/basepage.py:1733
@@ -34140,7 +34143,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:164
 msgid "Merge citations tool"
-msgstr "Sulauta lainaukset työkalu"
+msgstr "Sulauta lainaukset -työkalu"
 
 #: ../gramps/plugins/tool/mergecitations.py:185
 msgid "Checking Sources"
@@ -34238,7 +34241,7 @@ msgstr "_Paikkakunta:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:206
 msgid "_Country:"
-msgstr "_Valtio tai Liittovaltio:"
+msgstr "_Valtio tai liittovaltio:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:220
 msgid "_ZIP/Postal Code:"
@@ -34597,7 +34600,7 @@ msgstr "Aloita"
 
 #: ../gramps/plugins/tool/reorderids.glade:1488
 msgid "Reorder ID start number."
-msgstr "Muuta ID aloitusnumeroa."
+msgstr "Muuta ID-aloitusnumeroa."
 
 #: ../gramps/plugins/tool/reorderids.glade:1501
 msgid "Step"
@@ -34709,7 +34712,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
 msgid "Generate database errors"
-msgstr "Luo tietokanta virheitä"
+msgstr "Luo tietokantavirheitä"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:294
 msgid "Generate dummy data"
@@ -34789,7 +34792,7 @@ msgstr "Luodaan perheitä"
 #: ../gramps/plugins/tool/testcasegenerator.py:1685
 #, python-format
 msgid "Testcase generator step %d"
-msgstr "Testitapaus generaattorin askel %d"
+msgstr "Testitapausgeneraattorin vaihe %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:38
 msgid "Fix Capitalization of Family Names"
@@ -34913,7 +34916,7 @@ msgstr "Poistaa käyttämättömiä tietoja tietokannasta"
 #: ../gramps/plugins/tool/tools.gpr.py:376
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr ""
-"Järjestää uudelleen Gramps ID tunnukset Grampsin oletussääntöjen mukaan."
+"Järjestää uudelleen Gramps ID -tunnukset Grampsin oletussääntöjen mukaan."
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
@@ -35254,12 +35257,12 @@ msgstr "Sulauta valitut lainaukset"
 
 #: ../gramps/plugins/view/citationlistview.py:143
 msgid "Citation View"
-msgstr "Lainaus näkymä"
+msgstr "Lainausnäkymä"
 
 #: ../gramps/plugins/view/citationlistview.py:215
 #: ../gramps/plugins/view/citationtreeview.py:365
 msgid "Citation Filter Editor"
-msgstr "Näkymäsuodin muokkain"
+msgstr "Näkymäsuodinmuokkain"
 
 #: ../gramps/plugins/view/citationlistview.py:395
 msgid ""
@@ -35627,7 +35630,7 @@ msgstr "Näytä gramps-ID"
 
 #: ../gramps/plugins/view/fanchartview.py:227
 msgid "Print or save the Fan Chart View"
-msgstr "Tulostaa tai tallentaa Viuhkakaavio näkymän"
+msgstr "Tulostaa tai tallentaa viuhkakaavionäkymän"
 
 #: ../gramps/plugins/view/fanchartview.py:426
 msgid "Show children ring"
@@ -35871,7 +35874,7 @@ msgstr "Paikat perheelle %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:67
 msgid "OsmGpsMap module not loaded."
-msgstr "OsmGpsMap moduulia ei ladattuna."
+msgstr "OsmGpsMap-moduulia ei ladattuna."
 
 #: ../gramps/plugins/view/geography.gpr.py:68
 msgid ""
@@ -36446,7 +36449,7 @@ msgstr "Virheellinen perhe tunnistettu"
 
 #: ../gramps/plugins/view/relview.py:1541
 msgid "Please run the Check and Repair Database tool"
-msgstr "Suorita, Tarkista ja korjaa tietokantatyökalu"
+msgstr "Suorita \"Tarkista ja korjaa\"-tietokantatyökalu"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1564
@@ -36990,7 +36993,7 @@ msgstr "Perhe %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1202
 msgid "Creating GENDEX file"
-msgstr "GENDEX tiedostoa luodaan"
+msgstr "GENDEX-tiedostoa luodaan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1262
 msgid "Creating surname pages"
@@ -37023,11 +37026,11 @@ msgstr "Kertova-nettisivusto raportti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1941
 msgid "Store website in .tar.gz archive"
-msgstr "Talleta nettisivut .tar.gz arkistoon"
+msgstr "Talleta nettisivut .tar.gz-arkistoon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
 msgid "Whether to store the website in an archive file"
-msgstr "Talletetaanko nettisivut .tar.gz arkistoon"
+msgstr "Talletetaanko nettisivut .tar.gz-arkistoon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1954
 #: ../gramps/plugins/webreport/webcal.py:1746
@@ -37065,7 +37068,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1998
 msgid "Html options"
-msgstr "Html valinnat"
+msgstr "Html-valinnat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2001
 #: ../gramps/plugins/webreport/webcal.py:1767
@@ -37314,7 +37317,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2199
 msgid "HTML user header"
-msgstr "HTML ylätunniste"
+msgstr "HTML-ylätunniste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2200
 msgid "A note to be used as the page header or a PHP code to insert."
@@ -37322,7 +37325,7 @@ msgstr "Huomautus, jota käytetään sivun otsikkona tai lisättävänä PHP-koo
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2204
 msgid "HTML user footer"
-msgstr "HTML alatunniste"
+msgstr "HTML-alatunniste"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "A note to be used as the page footer"
@@ -37338,7 +37341,7 @@ msgid ""
 "This option will be available only if the .php file extension is selected."
 msgstr ""
 "Huomautus, jota käytetään php-istunnon aloittamiseen.\n"
-"Tämä vaihtoehto on käytettävissä vain, jos .php tiedostopääte on valittu."
+"Tämä vaihtoehto on käytettävissä vain, jos .php-tiedostopääte on valittu."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2222
 msgid "Images Generation"
@@ -37547,11 +37550,11 @@ msgstr "Lisätäänkö arkistosivut."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2399
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr "Ota mukaan GENDEX tiedosto (/gendex.txt)"
+msgstr "Sisällytä GENDEX-tiedosto (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2400
 msgid "Whether to include a GENDEX file or not"
-msgstr "Lisätäänkö GENDEX tiedosto vai ei"
+msgstr "Lisätäänkö GENDEX-tiedosto vai ei"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Include address book pages"
@@ -37584,7 +37587,7 @@ msgstr "Stamen Map"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
-msgstr "Google kartat"
+msgstr "Googlen kartat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2427
 msgid "Map Service"
@@ -37644,11 +37647,11 @@ msgstr "Valitse haluamasi vaihtoehto Google Mapsin perhekarttasivuille ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "Google maps API key"
-msgstr "Google kartat API-avain"
+msgstr "Google-karttojen API-avain"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2469
 msgid "The API key used for the Google maps"
-msgstr "Käytetään Google kartat API-avainta"
+msgstr "Google-kartoissa käytettävä API-avain"
 
 # 10
 #: ../gramps/plugins/webreport/narrativeweb.py:2473
@@ -37813,7 +37816,7 @@ msgstr "Ota kalenteriin mukaan vuosipäivät"
 #: ../gramps/plugins/webreport/narrativeweb.py:2839
 #: ../gramps/plugins/webreport/webcal.py:1966
 msgid "Include death dates"
-msgstr "Sisällytä kuolinpäivä"
+msgstr "Sisällytä kuolinpäivät"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2840
 #: ../gramps/plugins/webreport/webcal.py:1967
@@ -38088,7 +38091,7 @@ msgstr "Muotoillaan kuukausia..."
 
 #: ../gramps/plugins/webreport/webcal.py:1116
 msgid "Creating Year At A Glance calendar"
-msgstr "Luodaan 'Vuosi yhdellä silmäyksellä' kalenteria"
+msgstr "Luodaan \"Vuosi yhdellä silmäyksellä\"-kalenteria"
 
 #: ../gramps/plugins/webreport/webcal.py:1122
 #, python-format
@@ -38124,7 +38127,7 @@ msgstr "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
 msgstr ""
-"Tuotettu %(gramps_home_html_start)s Gramps%(html_end)s ohjelmalla %(date)s"
+"Tuotettu %(gramps_home_html_start)sGramps%(html_end)s-ohjelmalla %(date)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1750
 msgid "Calendar Title"
@@ -38228,7 +38231,7 @@ msgstr "Lisätiedot kesäkuulle"
 
 #: ../gramps/plugins/webreport/webcal.py:1913
 msgid "Jul - Dec Notes"
-msgstr "Heinä- joulukuun tiedot"
+msgstr "Heinä-joulukuun tiedot"
 
 #: ../gramps/plugins/webreport/webcal.py:1915
 msgid "July Note"
@@ -38316,7 +38319,7 @@ msgstr "Kertova-nettisivusto"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:35
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Tuottaa netti (HTML) sivuja henkilöistä tai henkilöjoukosta"
+msgstr "Tuottaa nettisivuja (HTML) henkilöistä tai henkilöjoukosta"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:59
 msgid "Produces web (HTML) calendars."
