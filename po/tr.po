@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-20 20:54+0000\n"
-"Last-Translator: Osman Öz <osmanoz05@hotmail.com>\n"
+"PO-Revision-Date: 2022-01-21 20:13+0000\n"
+"Last-Translator: Bora Atıcı <boratici@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -499,7 +499,7 @@ msgid ""
 msgstr ""
 "<b>Gramps Raporları</b><br/>Gramps çok çeşitli raporlar sunar. Grafik "
 "Raporlar ve Çizgeler karmaşık ilişkileri kolayca sunabilir ve Metin "
-"Raporları özellikle aile ağacınızın sonuçlarını ePosta yoluyla aile "
+"Raporları özellikle aile ağacınızın sonuçlarını e-posta yoluyla aile "
 "üyelerine göndermek istiyorsanız kullanışlıdır. Soy ağacınız için bir web "
 "sitesi yapmaya hazırsanız, bunun için de bir rapor var."
 
@@ -660,7 +660,7 @@ msgid ""
 msgstr ""
 "<b>Gramps'ı İyileştirme</b><br/>Kullanıcıların Gramps için geliştirmeler "
 "talep etmeleri önerilir. Geliştirme isteği, gramps-kullanıcılar veya gramps-"
-"gelişim posta listeleri aracılığıyla veya https://gramps-project.org/bugs/ "
+"gelişim e-posta listeleri aracılığıyla veya https://gramps-project.org/bugs/ "
 "adresine gidip bir Özellik İsteği oluşturarak yapılabilir. Özellik İsteği "
 "göndermek tercih edilir ancak fikirlerinizi e-posta listelerinde tartışmak "
 "iyi olabilir."
@@ -674,7 +674,7 @@ msgid ""
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
 "<b>Gramps Posta Listeleri</b><br/>Gramps hakkındaki sorularınıza yanıt mı "
-"istiyorsunuz? Gramps-users ePosta listesine göz atın. Listede birçok "
+"istiyorsunuz? Gramps-users e-posta listesine göz atın. Listede birçok "
 "yardımsever insan var, bu nedenle hızlı bir şekilde yanıt almanız muhtemel. "
 "Gramps'ın gelişimi ile ilgili sorularınız varsa, gramps-devel listesini "
 "deneyin. \"Yardım &gt; Gramps Posta Listeleri\" seçeneğini seçerek listeleri "
@@ -11169,7 +11169,7 @@ msgstr "Katkılar"
 #. Translators: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:120
 msgid "translator-credits"
-msgstr "Osman Öz"
+msgstr "Bora Atıcı"
 
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
@@ -11193,7 +11193,7 @@ msgstr "Aile Etkinliği"
 
 #: ../gramps/gui/clipboard.py:451
 msgid "Family Attribute"
-msgstr "Aile Özniteliği"
+msgstr "Aile Niteliği"
 
 #: ../gramps/gui/clipboard.py:483
 msgctxt "not available"
@@ -11240,7 +11240,7 @@ msgstr "%s 'i etkin yap"
 #, python-format
 msgctxt "the object"
 msgid "Create Filter from %s selected..."
-msgstr "Seçilen %s arasından Filtre Oluştur..."
+msgstr "Seçilen %s arasından Süzgeç Oluştur..."
 
 #: ../gramps/gui/columnorder.py:89
 #, python-format
@@ -11284,7 +11284,7 @@ msgstr "İzlanda stili"
 
 #: ../gramps/gui/configure.py:114 ../gramps/gui/configure.py:115
 msgid "Display Name Editor"
-msgstr "Görünen Ad Düzenleyicisi"
+msgstr "Ad Düzenleyiciyi Göster"
 
 #: ../gramps/gui/configure.py:116 ../gramps/gui/configure.py:189
 #: ../gramps/gui/dialog.py:261 ../gramps/gui/dialog.py:307
@@ -11339,32 +11339,32 @@ msgid ""
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
 "Aşağıdaki anahtar sözcükleri, uygun ad bölümleriyle değiştirilir:<tt>\n"
-"\t<b>Verilen</b>\t- verilen ad (ad) \t\t\t\t\t<b>Soyadı</b>\t- soyadlar ("
-"önek ve bağlayıcılarla birlikte)\n"
-"\t<b>Unvan</b>\t\t\t- unvan (Dr., Bay.)\t\t<b>Sonek</b>\t- sonek (Jr., Sr.)\n"
-"\t<b>Çağrı</b>\t- çağrı adı\t\t\t<b>Takma ad</b>\t- takma ad\n"
-"\t<b>Baş Harfler</b>\t- verilen ilk harfler\t<b>Ortak</b>\t- takma ad, arama "
-"veya verilen ilk harfler\n"
+"\t<b>Ad Soyadı</b>\t- ad \t\t\t\t\t<b>Soyadı</b>\t- soyadları (önek ve "
+"bağlayıcılarla birlikte)\n"
+"\t<b>San</b>\t\t\t- san (Dr., Mrs.)\t\t<b>Sonek</b>\t- sonek (Jr., Sr.)\n"
+"\t<b>Seslenme</b>\t- seslenme adı\t\t\t<b>Lakap</b>\t- lakap\n"
+"\t<b>Baş Harfler</b>\t- ad soyadın ilk harfleri\t<b>Genel</b>\t- lakap, "
+"seslenme veya ad soyadın ilk harfleri\n"
 "\t<b>Önek</b>\t\t- tüm önekler (von, de)\n"
 "Soyadları:\n"
-"\t<b>Diğer</b>\t\t- birincil olmayan soyadlar\t<b>Babasoyludeğil</b>- baba/"
-"anne soylu ve birincil hariç tüm soyadlar\n"
-"\t<b>Aile takma adı</b>\t- aile takma adı\t\t\t\t\t<b>Hamsoyadlar</b> - "
-"soyadlar (önek ve bağlayıcı yok)\n"
+"\t<b>Diğer</b>\t\t- birincil olmayan soyadları\t<b>Babasoyludeğil</b>- baba/"
+"anne soylu ve birincil hariç tüm soyadları\n"
+"\t<b>Aile Lakabı</b>\t- aile lakabı\t\t\t\t\t<b>Hamsoyadlar</b> - soyadları ("
+"önek ve bağlayıcı yok)\n"
 "\t<b>Birincil, Birincil[önek], [soyadı] veya [bağlayıcı]</b>\t- tam birincil "
 "soyadı, önek, yalnızca soyadı, bağlayıcı\n"
 "\t<b>Baba soylu veya [önek] veya [soyadı] veya [bağlayıcı]</b>\t- tam baba/"
 "anne soylu soyadı, önek, yalnızca soyadı, bağlayıcı\n"
 "</tt>\n"
-"BÜYÜK HARF anahtar sözcüğü büyük harfe zorlar. Fazladan parantezler, "
+"UPPERCASE anahtar sözcüğü büyük harfe zorlar. Fazladan parantezler, "
 "virgüller kaldırılır. Diğer metin tam anlamıyla görünür.\n"
 "\n"
 "<b>Örnek</b>: Dr. Edwin Jose von der Smith ve Weston Wilson Sr (\"Ed\") - "
 "Underhills\n"
-"\t    <i>Edwin Jose</i>: Verilen, <i>von der</i>: Önek, <i>Smith</i> ve "
+"\t    <i>Edwin Jose</i>: Ad Soyadı, <i>von der</i>: Önek, <i>Smith</i> ve "
 "<i>Weston</i>: Birincil, <i>ve</i>: [bağlayıcı], <i>Wilson</i>: Baba soylu,\n"
-"\t    <i>Dr.</i>: Unvan, <i>Sr</i>: Sonek, <i>Ed</i>: Takma ad, "
-"<i>Underhills</i>: Aile takma adı, <i>Jose</i>: Çağrı.\n"
+"\t    <i>Dr.</i>: San, <i>Sr</i>: Sonek, <i>Ed</i>: Lakap, <i>Underhills</i>:"
+" Aile lakabı, <i>Jose</i>: Seslenme.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -11452,7 +11452,7 @@ msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree"
 msgstr ""
-"Aile Ağacınızı dağıtırken insanların sizinle iletişim kurabilmesi için "
+"Aile Ağacınızı paylaşırken insanların sizinle iletişim kurabilmesi için "
 "kendinizle ilgili bilgileri girin"
 
 #: ../gramps/gui/configure.py:617
@@ -11476,15 +11476,15 @@ msgstr "Araştırmacı"
 
 #: ../gramps/gui/configure.py:638
 msgid "Gramps ID format settings"
-msgstr "Gramps Kimliği biçimi ayarları"
+msgstr "Gramps KNo biçim ayarları"
 
 #: ../gramps/gui/configure.py:658
 msgid "Media Object"
-msgstr "Medya Nesnesi"
+msgstr "Ortam Nesnesi"
 
 #: ../gramps/gui/configure.py:669
 msgid "ID Formats"
-msgstr "Kimlik Biçimleri"
+msgstr "KNo Biçimleri"
 
 #: ../gramps/gui/configure.py:677
 msgid "Colors used for boxes in the graphical views"
@@ -11617,16 +11617,16 @@ msgstr "Uyarılar"
 
 #: ../gramps/gui/configure.py:845 ../gramps/gui/configure.py:859
 msgid "Common"
-msgstr "Ortak"
+msgstr "Genel"
 
 #: ../gramps/gui/configure.py:852 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
 msgid "Call"
-msgstr "Çağrı"
+msgstr "Seslenme"
 
 #: ../gramps/gui/configure.py:857
 msgid "NotPatronymic"
-msgstr "Babasoyludeğil"
+msgstr "BabasoyluDeğil"
 
 #: ../gramps/gui/configure.py:935
 msgid "Enter to save, Esc to cancel editing"
@@ -11747,7 +11747,7 @@ msgstr "Çoklu soyadı kutusu yüksekliği (piksel)"
 
 #: ../gramps/gui/configure.py:1322
 msgid "Active person's name and ID"
-msgstr "Etkin kişinin adı ve kimliği"
+msgstr "Etkin kişinin adı ve KNo'su"
 
 #: ../gramps/gui/configure.py:1323
 #: ../gramps/plugins/textreport/indivcomplete.py:372
@@ -11793,7 +11793,7 @@ msgstr "Eksik soyadı"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Missing given name"
-msgstr "Eksik verilen ad"
+msgstr "Eksik ad"
 
 #: ../gramps/gui/configure.py:1382
 msgid "Missing record"
@@ -11805,7 +11805,7 @@ msgstr "Özel soyadı"
 
 #: ../gramps/gui/configure.py:1389
 msgid "Private given name"
-msgstr "Özel verilen ad"
+msgstr "Gizli ad"
 
 #: ../gramps/gui/configure.py:1393
 msgid "Private record"
@@ -11949,7 +11949,7 @@ msgstr "İlişkiler için en fazla kuşak sayısı"
 
 #: ../gramps/gui/configure.py:1612
 msgid "Base path for relative media paths"
-msgstr "Göreli medya yolları için temel yol"
+msgstr "Göreli ortam yolları için temel yol"
 
 #: ../gramps/gui/configure.py:1618
 msgid "Third party addons management"
@@ -11997,7 +11997,7 @@ msgstr "Nerede kontrol edilsin"
 
 #: ../gramps/gui/configure.py:1663
 msgid "Do not ask about previously notified addons"
-msgstr "Daha önce bildirilen eklentiler hakkında soru sormayın"
+msgstr "Daha önce bildirilen eklentileri kontrol etme"
 
 #: ../gramps/gui/configure.py:1668
 msgid "Check for updated addons now"
@@ -12105,7 +12105,7 @@ msgstr "Otomatik yedekleme"
 
 #: ../gramps/gui/configure.py:1834
 msgid "Select media directory"
-msgstr "Medya dizini seç"
+msgstr "Ortam dizini seç"
 
 #: ../gramps/gui/configure.py:1837 ../gramps/gui/configure.py:1860
 #: ../gramps/gui/configure.py:1885 ../gramps/gui/dbloader.py:345
@@ -12290,7 +12290,7 @@ msgstr ""
 
 #: ../gramps/gui/dbloader.py:122
 msgid "_Proceed with import"
-msgstr "_İçe aktarma ile işleme koy"
+msgstr "_İçe aktarmaya devam edin"
 
 #: ../gramps/gui/dbloader.py:122 ../gramps/gui/plug/tool.py:116
 msgid "_Stop"
@@ -12789,7 +12789,7 @@ msgstr "Etkin depo yok"
 
 #: ../gramps/gui/displaystate.py:407
 msgid "No active media"
-msgstr "Etkin medya yok"
+msgstr "Etkin ortam yok"
 
 #: ../gramps/gui/displaystate.py:408
 msgid "No active note"
@@ -12845,11 +12845,11 @@ msgstr "Bir_medya_seçici_seçin"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
-msgstr "Bir medya nesnesi seçin"
+msgstr "Bir ortam nesnesi seçin"
 
 #: ../gramps/gui/editors/addmedia.py:148
 msgid "Select media object"
-msgstr "Medya nesnesini seçin"
+msgstr "Ortam nesnesi seçin"
 
 #: ../gramps/gui/editors/addmedia.py:158
 msgid "Import failed"
@@ -12870,7 +12870,7 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
-"Tercihlerde belirtilen dizin: Göreli medya yolları için temel yol: %s mevcut "
+"Tercihlerde belirtilen dizin: Göreli ortam yolları için temel yol: %s mevcut "
 "değil. İçe aktarırken tercihleri değiştirin veya göreli yolu kullanmayın"
 
 #: ../gramps/gui/editors/addmedia.py:238
@@ -12892,7 +12892,7 @@ msgstr "Yeni bir adres oluşturun ve ekleyin"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:62
 msgid "Remove the existing address"
-msgstr "Varolan adresi kaldır"
+msgstr "Var olan adresi kaldır"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:63
 msgid "Edit the selected address"
@@ -12913,32 +12913,32 @@ msgstr "_Adresler"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:52
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:53
 msgid "Create and add a new attribute"
-msgstr "Yeni bir öznitelik oluşturun ve ekleyin"
+msgstr "Yeni bir nitelik oluşturun ve ekleyin"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:54
 msgid "Remove the existing attribute"
-msgstr "Varolan özniteliği kaldır"
+msgstr "Var olan niteliği kaldır"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:55
 msgid "Edit the selected attribute"
-msgstr "Seçilen özniteliği düzenle"
+msgstr "Seçilen niteliği düzenle"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:56
 msgid "Move the selected attribute upwards"
-msgstr "Seçilen özniteliği yukarı taşı"
+msgstr "Seçilen niteliği yukarı taşı"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:56
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:57
 msgid "Move the selected attribute downwards"
-msgstr "Seçilen özniteliği aşağı taşı"
+msgstr "Seçilen niteliği aşağı taşı"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:76
 msgid "_Attributes"
-msgstr "_Öznitelikler"
+msgstr "_Nitelikler"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:60
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:86
@@ -12988,7 +12988,7 @@ msgstr "_Öznitelikler"
 #: ../gramps/plugins/view/relview.py:731 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
-msgstr "Kimlik"
+msgstr "KNo"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:67
 msgid "_References"
@@ -17194,7 +17194,7 @@ msgstr "Durum:"
 
 #: ../gramps/gui/glade/plugins.glade:206
 msgid "Author's email:"
-msgstr "Yazarın ePostası:"
+msgstr "Yazarın e-postası:"
 
 #: ../gramps/gui/glade/reorder.glade:87
 msgid "Parent relationships"
@@ -22134,7 +22134,7 @@ msgstr "Depolar yazmak"
 #: ../gramps/plugins/export/exportgedcom.py:1166
 #: ../gramps/plugins/lib/libgedcom.py:5945
 msgid "EMAIL"
-msgstr "EPOSTA"
+msgstr "E-POSTA"
 
 #: ../gramps/plugins/export/exportgedcom.py:1168
 #: ../gramps/plugins/lib/libgedcom.py:5957
@@ -32900,7 +32900,7 @@ msgstr "%s Öğe için Etiket Raporu"
 
 #: ../gramps/plugins/textreport/tagreport.py:671
 msgid "Email Address"
-msgstr "ePosta Adresi"
+msgstr "E-posta Adresi"
 
 #: ../gramps/plugins/textreport/tagreport.py:757
 #: ../gramps/plugins/view/sourceview.py:86
@@ -34149,7 +34149,7 @@ msgstr "_Telefon:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:248
 msgid "_Email:"
-msgstr "_Eposta:"
+msgstr "_E-posta:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:383
 msgid "Right-click to copy from/to Researcher Preferences"
