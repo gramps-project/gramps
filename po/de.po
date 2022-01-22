@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-20 20:54+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2022-01-22 08:47+0000\n"
+"Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -33424,7 +33424,7 @@ msgstr "Nachnamen suchen"
 #: ../gramps/plugins/tool/eventnames.py:126
 #: ../gramps/plugins/tool/patchnames.py:368
 msgid "No modifications made"
-msgstr "Keine Veränderungen gemacht"
+msgstr "Keine Änderungen durchgeführt"
 
 #: ../gramps/plugins/tool/changenames.py:145
 msgid "No capitalization changes were detected."
