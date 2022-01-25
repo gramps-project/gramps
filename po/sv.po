@@ -21,14 +21,14 @@
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
-# Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020, 2021.
+# Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-15 22:20+0200\n"
-"PO-Revision-Date: 2021-07-05 15:42+0200\n"
-"Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
+"PO-Revision-Date: 2022-01-25 17:50+0100\n"
+"Last-Translator: Pär Ekholm <pehlm@pekholm.org>\n"
 "Language-Team: \n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -11225,7 +11225,7 @@ msgstr "OS: %s"
 
 #: ../gramps/gui/clipboard.py:70
 msgid "manual|Using_the_Clipboard"
-msgstr "Hur använda urklipp"
+msgstr "Använda urklipp"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
@@ -12258,7 +12258,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1980
 msgid "Try to find"
-msgstr "Försök hitta"
+msgstr "Försöka hitta"
 
 #: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
 msgid "Choose font"
