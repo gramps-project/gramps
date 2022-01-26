@@ -23,13 +23,14 @@
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 # Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020.
 # Pär Ekholm <par.ekholm@pekholm.org>, 2021.
+# Pär Ekholm <github1@m.pekholm.org>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-20 22:13+0000\n"
-"Last-Translator: Pär Ekholm <par.ekholm@pekholm.org>\n"
+"PO-Revision-Date: 2022-01-26 21:34+0000\n"
+"Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
 "Language: sv\n"
@@ -37,7 +38,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -11196,7 +11197,7 @@ msgstr "OS: %s"
 #: ../gramps/gui/clipboard.py:70
 msgctxt "manual"
 msgid "Using_the_Clipboard"
-msgstr "Hur använda urklipp"
+msgstr "Använda urklipp"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
