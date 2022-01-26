@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2009
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
-# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021.
+# Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022.
 msgid ""
@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-20 20:54+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2022-01-26 21:34+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -2744,7 +2744,7 @@ msgstr "אקסטרא"
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr "מוהרם"
+msgstr "מוהראם"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "Islamic month lexeme"
@@ -2754,22 +2754,22 @@ msgstr "סאפאר"
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr "רביעל-אוואל"
+msgstr "רביע אל־אוואל"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr "רביעת-טאני"
+msgstr "רביע א־ת׳אני"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr "ג'ומאדא אי-אולה"
+msgstr "ג'ומאדא אי־אולה"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr "ג'ומאדא ט-טאניה"
+msgstr "ג'ומאדא ט־טאניה"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "Islamic month lexeme"
@@ -2898,15 +2898,15 @@ msgstr "מחושב "
 
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgid "Sunday"
-msgstr "ראשון"
+msgstr "יום ראשון"
 
 #: ../gramps/gen/datehandler/_datestrings.py:243
 msgid "Monday"
-msgstr "שני"
+msgstr "יום שני"
 
 #: ../gramps/gen/datehandler/_datestrings.py:244
 msgid "Tuesday"
-msgstr "שלישי"
+msgstr "יום שלישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgid "Wednesday"
@@ -2914,11 +2914,11 @@ msgstr "רביעי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:246
 msgid "Thursday"
-msgstr "חמישי"
+msgstr "יום חמישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:247
 msgid "Friday"
-msgstr "שישי"
+msgstr "יום שישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgid "Saturday"
