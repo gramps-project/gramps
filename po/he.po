@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
 "PO-Revision-Date: 2022-01-26 21:34+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -2910,7 +2910,7 @@ msgstr "יום שלישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgid "Wednesday"
-msgstr "רביעי"
+msgstr "יום רביעי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:246
 msgid "Thursday"
