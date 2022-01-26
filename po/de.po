@@ -72,7 +72,7 @@ msgstr ""
 
 #: ../data/gramps.appdata.xml.in:12
 msgid "Gramps Development Team"
-msgstr "Gramps Entwicklerteam"
+msgstr "Gramps-Entwicklerteam"
 
 #: ../data/gramps.desktop.in:4
 msgid "Genealogy System"
@@ -23650,7 +23650,7 @@ msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1282
 msgid "Gramplet to generate SoundEx codes"
-msgstr "Gramplet zum SoundEx-Codes Erstellen"
+msgstr "Gramplet zum Erzeugen von SoundEx-Codes"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1294
 msgid "Place Enclosed By"
@@ -24145,7 +24145,7 @@ msgstr "De"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "Ask questions on gramps-users mailing list"
-msgstr "Fragen an die gramps-users Mailingliste stellen"
+msgstr "Stelle Fragen auf der Mailingliste „gramps-users“"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:117
 msgid "Who makes Gramps?"
@@ -24189,7 +24189,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
-msgstr "Übersicht Ansicht"
+msgstr "Übersicht"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:131
 msgid ""
@@ -33633,7 +33633,7 @@ msgstr "Suche nach kaputten Beziehungen von Elternteilen"
 
 #: ../gramps/plugins/tool/check.py:1070
 msgid "Looking for event problems"
-msgstr "Suche nach Problemen mit Ereignissen"
+msgstr "Es wird nach Problemen mit Ereignissen gesucht"
 
 #: ../gramps/plugins/tool/check.py:1242 ../gramps/plugins/tool/check.py:1271
 #: ../gramps/plugins/tool/check.py:1296
@@ -35973,7 +35973,7 @@ msgstr "Die Karte drucken oder speichern"
 #: ../gramps/plugins/view/geoclose.py:221
 #: ../gramps/plugins/view/geography.gpr.py:160
 msgid "Have they been able to meet?"
-msgstr "War es ihnen möglich, sich zu treffen?"
+msgstr "Konnten sie sich treffen?"
 
 #: ../gramps/plugins/view/geoclose.py:255
 msgid "GeoClose"
@@ -36096,7 +36096,7 @@ msgstr "Referenz_familie"
 #: ../gramps/plugins/view/geofamclose.py:221
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid "Have these two families been able to meet?"
-msgstr "War es diesen zwei Familien möglich sich zu treffen?"
+msgstr "Konnten sich diese beiden Familien treffen?"
 
 #: ../gramps/plugins/view/geofamclose.py:252
 msgid "GeoFamClose"
