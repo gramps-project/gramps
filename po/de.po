@@ -6288,15 +6288,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
 msgid "Places enclosed by another place"
-msgstr "Orte die in anderen Orten enthalten sind"
+msgstr "Von einem anderen Ort umschlossene Orte"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:50
 msgid "Matches a place enclosed by a particular place"
-msgstr "Liefert Orte die in einem bestimmten Ort enthalten sind"
+msgstr "Liefert einen Ort, der von einem bestimmten Ort umschlossen ist"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
-msgstr "Orte von Ereignissen entsprechend dem <Ereignisfilter>"
+msgstr "Orte von Ereignissen, die dem <Ereignisfilter> entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
 msgid ""
@@ -6308,11 +6308,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:44
 msgid "Places matching the <filter>"
-msgstr "Orte entsprechend <Filter>"
+msgstr "Orte, die dem <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:45
 msgid "Matches places matched by the specified filter name"
-msgstr "Liefert Orte, die dem vorgegebenen Filter entsprechen"
+msgstr "Liefert Orte, die mit dem angegebenen Filternamen übereinstimmen"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
 msgid "Place with a direct source >= <confidence level>"
@@ -6325,7 +6325,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:42
 msgid "Places marked private"
-msgstr "Als vertraulich markierte Orte"
+msgstr "Als vertraulich gekennzeichnete Orte"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:43
 msgid "Matches places that are indicated as private"
@@ -6333,13 +6333,11 @@ msgstr "Liefert Orte, die als vertraulich gekennzeichnet sind"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
 msgid "Places with Id containing <text>"
-msgstr "Orte, deren ID den <Text> enthält"
+msgstr "Orte mit einer ID, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert Orte, deren Gramps-ID dem vorgegebenen 'regulären Ausdruck' "
-"entspricht"
+msgstr "Liefert Orte, deren Gramps-ID dem regulären Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:57
 #: ../gramps/gui/editors/filtereditor.py:591
@@ -6352,19 +6350,20 @@ msgstr "Orte innerhalb eines Gebiets"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:59
 msgid "Matches places within a given distance of another place"
-msgstr "Liefer Orte innerhalb einer bestimmten Distanz zu einem anderen Ort"
+msgstr ""
+"Liefert Orte innerhalb einer bestimmten Entfernung von einem anderen Ort"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr "Kann den Filter 'innerhalb eines Bereichs' nicht verwenden"
+msgstr "Kann den Filter 'innerhalb des Gebiets' nicht verwenden"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
-"Der Ort, den du gewählt hast, enthält ungültige Koordinaten, verwende das "
-"Werkzeug 'Eingabedaten säubern'"
+"Der ausgewählte Ort enthält fehlerhafte Koordinaten. Bitte führe das "
+"Werkzeug 'Eingabedaten bereinigen' aus"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -6376,7 +6375,7 @@ msgstr "Liefert jeden Aufbewahrungsort in der Datenbank"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 msgid "Repositories changed after <date time>"
-msgstr "Aufbewahrungsorte geändert nach <Datum Zeit>"
+msgstr "Aufbewahrungsorte, die nach <Datum Zeit> geändert wurden"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid ""
@@ -6409,24 +6408,24 @@ msgstr "Liefert einen Aufbewahrungsort mit einer angegebenen Gramps-ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
-msgstr "Aufbewahrungsorte, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Aufbewahrungsorte mit Notizen, die <Zeichenfolge> enthalten"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
-"Liefert Aufbewahrungsorte, deren Notizen einen Text mit vorgegebener "
-"Zeichenfolge enthalten"
+"Liefert Aufbewahrungsorte, deren Notizen Text enthalten, der einer "
+"Teilzeichenkette entspricht"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
 msgid "Repositories having notes containing <text>"
-msgstr "Aufbewahrungsorte, deren Notizen den <Text> enthalten"
+msgstr "Aufbewahrungsorte mit Notizen, die <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Aufbewahrungsorte, deren Notizen einen Text entsprechend des "
-"'regulären Ausdrucks' enthalten"
+"Liefert Aufbewahrungsorte, deren Notizen Text enthalten, der einem regulären "
+"Ausdruck entspricht"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:42
 msgid "Repositories with a reference count of <count>"
@@ -6466,11 +6465,11 @@ msgstr "Aufbewahrungsorte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 msgid "Matches repositories with the particular tag"
-msgstr "Liefert Aufbewahrungsorte mit der angegebenen Markierung"
+msgstr "Liefert Aufbewahrungsorte mit einer bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:44
 msgid "Repositories matching the <filter>"
-msgstr "Aufbewahrungsorte entsprechend <Filter>"
+msgstr "Aufbewahrungsorte, die mit <Filter> übereinstimmen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Matches repositories matched by the specified filter name"
@@ -24190,7 +24189,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
-msgstr "Übersicht"
+msgstr "Übersicht Ansicht"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:131
 msgid ""
@@ -24203,16 +24202,16 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
-"Du liest gerade auf der Ansicht \"Gramplet Werkzeugbank\". Hier kannst du "
-"Gramplets hinzufügen und entfernen - auch eigene Gramplets. Du kannst "
-"Gramplets zu jeder anderen Ansicht als Seiten- Fußleiste hinzufügen. Klicke "
-"dazu auf den kleinen Pfeil am rechten Leistenrand.\n"
+"Du liest gerade in der Ansicht \"Übersicht\", wo du deine eigenen Gramplets "
+"hinzufügen kannst. Du kannst auch Gramplets zu jeder Ansicht hinzufügen, "
+"indem du eine Seitenleiste und/oder eine Bodenleiste hinzufügst und mit der "
+"rechten Maustaste auf die Registerkarte klickst.\n"
 "\n"
-"Du kannst auf das Konfigurationssymbol in der Werkzeugleiste klicken, um "
-"weitere Spalten hinzufügen, wobei Rechtsklicken auf den Hintergrund das "
-"Hinzufügen von Gramplets erlaubt. Du kannst auch den Einstellungenknopf "
-"ziehen, um das Gramplet auf der Seite neu zu positionieren. Abgelöste "
-"Gramplets sind 'schwebend' über anderen Ansichten zu sehen."
+"Du kannst auf das Konfigurationssymbol in der Symbolleiste klicken, um "
+"zusätzliche Spalten hinzuzufügen, und mit einem Rechtsklick auf den "
+"Hintergrund kannst du Gramplets hinzufügen. Du kannst auch die Schaltfläche "
+"Eigenschaften ziehen, um das Gramplet auf dieser Seite neu zu positionieren, "
+"und das Gramplet abtrennen, damit es über Gramps schwebt."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -33424,7 +33423,7 @@ msgstr "Nachnamen suchen"
 #: ../gramps/plugins/tool/eventnames.py:126
 #: ../gramps/plugins/tool/patchnames.py:368
 msgid "No modifications made"
-msgstr "Keine Änderungen durchgeführt"
+msgstr "Keine Änderungen vorgenommen"
 
 #: ../gramps/plugins/tool/changenames.py:145
 msgid "No capitalization changes were detected."
@@ -35686,7 +35685,7 @@ msgstr ""
 #: ../gramps/plugins/view/dashboardview.py:83
 #: ../gramps/plugins/view/view.gpr.py:67 ../gramps/plugins/view/view.gpr.py:75
 msgid "Dashboard"
-msgstr "Gramplet Werkzeugbank"
+msgstr "Übersicht"
 
 #: ../gramps/plugins/view/eventview.py:97
 msgid "Add a new event"
