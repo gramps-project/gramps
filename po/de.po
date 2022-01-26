@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-25 19:19+0000\n"
-"Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
+"PO-Revision-Date: 2022-01-26 21:34+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -13256,7 +13256,7 @@ msgstr "Beteiligen"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
 msgid "Jump To"
-msgstr "Springen nach"
+msgstr "Springen zu"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Move Up"
@@ -13807,7 +13807,7 @@ msgstr "_Internet"
 #: ../gramps/gui/glade/editurl.glade:200
 #: ../gramps/gui/views/navigationview.py:350
 msgid "_Jump to"
-msgstr "_Springen nach"
+msgstr "_Springen zu"
 
 #: ../gramps/gui/editors/editaddress.py:65
 msgctxt "manual"
@@ -19686,7 +19686,7 @@ msgstr "Möchtest du den Bearbeitungsverlauf wirklich leeren?"
 
 #: ../gramps/gui/undohistory.py:199 ../gramps/plugins/gramplet/eval.py:80
 msgid "Clear"
-msgstr "Löschen"
+msgstr "Leeren"
 
 #: ../gramps/gui/undohistory.py:236
 msgid "Database opened"
@@ -24189,7 +24189,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
-msgstr "Übersicht"
+msgstr "Übersicht Ansicht"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:131
 msgid ""
@@ -36528,7 +36528,7 @@ msgstr "⚱"
 
 #: ../gramps/plugins/view/pedigreeview.py:1211
 msgid "Jump to child..."
-msgstr "Zu Kind springen …"
+msgstr "Zum Kind springen…"
 
 #: ../gramps/plugins/view/pedigreeview.py:1225
 msgid "Jump to father"
