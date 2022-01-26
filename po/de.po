@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-22 08:47+0000\n"
+"PO-Revision-Date: 2022-01-25 19:19+0000\n"
 "Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -404,12 +404,12 @@ msgid ""
 "enter."
 msgstr ""
 "<b>Personen lokalisieren</b><br/>Als Standard wird jeder Nachnamen in der "
-"Personenansicht nur einmal gelistet. Durch das Klicken auf den Pfeil links "
-"neben einem Namen wird die Liste aufgeklappt und alle Personen mit diesem "
-"Namen werden angezeigt. Um einen Nachnamen aus einer langen Liste zu "
-"lokalisieren, wähle einen Nachnamen (keine Person) und fange an zu tippen."
-"Die Ansicht springt zu dem ersten Nachnamen, der mit deinen eingegebenen "
-"Buchstaben übereinstimmt."
+"Personenansicht nur einmal gelistet. Durch Klicken auf den Pfeil links neben "
+"einem Namen werden die Liste aufgeklappt und alle Personen mit diesem Namen "
+"angezeigt. Um einen Nachnamen aus einer langen Liste zu lokalisieren, wähle "
+"einen Nachnamen (keine Person) und beginne zu tippen. Die Ansicht springt "
+"zum ersten Nachnamen, der mit dem von dir eingegebenen Buchstaben "
+"übereinstimmt."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -12473,7 +12473,7 @@ msgstr "Was du sehen wirst"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
-msgstr "Bearbeitungschronik zurücksetzen Warnung"
+msgstr "Warnung: Zurücksetzen des Bearbeitungsverlaufs"
 
 #: ../gramps/gui/dbloader.py:117
 msgid ""
@@ -12484,11 +12484,11 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Wenn du mit dem Import fortfährst, wird die Bearbeitungschronik für diese "
+"Wenn du mit dem Import fortfährst, wird der Bearbeitungsverlauf dieser "
 "Sitzung gelöscht. Insbesondere kannst du weder den Import noch zuvor "
 "vorgenommene Änderungen rückgängig machen.\n"
 "\n"
-"Wenn du den Import rückgängig machen möchtest, brich bitte hier ab und "
+"Falls du den Import rückgängig machen möchtest, brich bitte hier ab und "
 "erstelle eine Sicherungskopie deiner Datenbank."
 
 #: ../gramps/gui/dbloader.py:122
@@ -13257,7 +13257,7 @@ msgstr "Beteiligen"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
 msgid "Jump To"
-msgstr "Springe nach"
+msgstr "Springen nach"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 msgid "Move Up"
@@ -13808,7 +13808,7 @@ msgstr "_Internet"
 #: ../gramps/gui/glade/editurl.glade:200
 #: ../gramps/gui/views/navigationview.py:350
 msgid "_Jump to"
-msgstr "_Springe nach"
+msgstr "_Springen nach"
 
 #: ../gramps/gui/editors/editaddress.py:65
 msgctxt "manual"
@@ -16838,8 +16838,8 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"oder verwende copy/paste von deinem bevorzugten Kartenanbieter (Format: "
-"Breitengrad, Längengrad) im folgenden Feld:"
+"oder verwende Kopieren/Einfügen von deinem bevorzugten Kartenanbieter "
+"(Format: Breitengrad, Längengrad) in das folgende Feld:"
 
 #: ../gramps/gui/glade/editplace.glade:238
 #: ../gramps/gui/glade/editplaceref.glade:376
@@ -17933,7 +17933,7 @@ msgstr "Tipp des Tages"
 
 #: ../gramps/gui/grampsgui.py:56 ../gramps/gui/undohistory.py:73
 msgid "Undo History"
-msgstr "Bearbeitungschronik"
+msgstr "Bearbeitungsverlauf"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Abandon Changes and Quit"
@@ -19502,12 +19502,12 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Wenn du mit diesem Werkzeug fortfährst, wird die Bearbeitungschronik für "
-"diese Sitzung gelöscht. Insbesondere kannst du weder die mit diesem Werkzeug "
+"Wenn du mit diesem Werkzeug fortfährst, wird der Bearbeitungsverlauf dieser "
+"Sitzung gelöscht. Insbesondere kannst du weder die mit diesem Werkzeug "
 "vorgenommenen Änderungen noch die davor vorgenommenen Änderungen rückgängig "
 "machen.\n"
 "\n"
-"Wenn du die Ausführung dieses Werkzeugs rückgängig machen möchtest, brich "
+"Falls du die Ausführung dieses Werkzeugs rückgängig machen möchtest, brich "
 "bitte hier ab und erstelle eine Sicherungskopie deiner Datenbank."
 
 #: ../gramps/gui/plug/tool.py:116
@@ -19683,7 +19683,7 @@ msgstr "Bestätigung zum Löschen"
 
 #: ../gramps/gui/undohistory.py:198
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Willst du wirklich die Bearbeitungschronik leeren?"
+msgstr "Möchtest du den Bearbeitungsverlauf wirklich leeren?"
 
 #: ../gramps/gui/undohistory.py:199 ../gramps/plugins/gramplet/eval.py:80
 msgid "Clear"
@@ -20067,7 +20067,7 @@ msgstr ""
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:338
 msgid "Jump to by Gramps ID"
-msgstr "Springe zur Gramps-ID"
+msgstr "Via Gramps-ID springen"
 
 #: ../gramps/gui/views/navigationview.py:362
 #, python-format
@@ -22968,7 +22968,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:147
 #: ../gramps/plugins/view/view.gpr.py:158
 msgid "Descendant Fan"
-msgstr "Nachfahrefächer"
+msgstr "Nachfahrenfächer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:155
 #: ../gramps/plugins/view/fanchart2wayview.py:79
@@ -23000,7 +23000,7 @@ msgstr "Gramplet zeigt die am häufigsten gestellten Fragen"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:185
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:192
 msgid "Given Name Cloud"
-msgstr "Vornamen-Wolke"
+msgstr "Vornamenwolke"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:186
 msgid "Gramplet showing all given names as a text cloud"
@@ -23043,7 +23043,7 @@ msgstr "Gramplet zeigt eine Zusammenfassung der Daten dieses Stammbaums"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:276
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:283
 msgid "Surname Cloud"
-msgstr "Nachnamen-Wolke"
+msgstr "Nachnamenwolke"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:277
 msgid "Gramplet showing all surnames as a text cloud"
@@ -23090,7 +23090,7 @@ msgstr "Willkommen bei Gramps!"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:332
 msgid "What's Next"
-msgstr "Was als nächstes"
+msgstr "Was als Nächstes"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:333
 msgid "Gramplet suggesting items to research"
@@ -23098,7 +23098,7 @@ msgstr "Gramplet schlägt Gegenstände für die Forschung vor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:339
 msgid "What's Next?"
-msgstr "Was als nächstes?"
+msgstr "Was als Nächstes?"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:349
 msgid "Person Details"
@@ -24190,7 +24190,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
-msgstr "Gramplet Werkzeugbank"
+msgstr "Übersicht"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:131
 msgid ""
@@ -24364,7 +24364,7 @@ msgstr "Erstellt eine Beziehungengrafik mit GraphViz."
 #: ../gramps/plugins/graph/gvhourglass.py:59
 #: ../gramps/plugins/graph/gvrelgraph.py:73
 msgid "B&W outline"
-msgstr "Schwarz-Weiß umrandet"
+msgstr "Schwarz-weiß umrandet"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:75
 #: ../gramps/plugins/graph/gvhourglass.py:60
@@ -24559,12 +24559,12 @@ msgstr "Miniaturbild Position"
 #: ../gramps/plugins/graph/gvfamilylines.py:256
 #: ../gramps/plugins/graph/gvrelgraph.py:914
 msgid "Above the name"
-msgstr "Über dem Namen"
+msgstr "Oberhalb des Namens"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:257
 #: ../gramps/plugins/graph/gvrelgraph.py:915
 msgid "Beside the name"
-msgstr "Neben dem Namen"
+msgstr "Seitlich des Namens"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:258
 #: ../gramps/plugins/graph/gvrelgraph.py:917
@@ -24833,7 +24833,7 @@ msgstr "Ob Daten und/oder Orte enthalten sein sollen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:885
 msgid "Show all family nodes"
-msgstr "Zeige alle Familienknoten"
+msgstr "Alle Familienknoten anzeigen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
@@ -24860,7 +24860,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/birthdayreport.py:568
 #: ../gramps/plugins/textreport/indivcomplete.py:1156
 msgid "Include relationship to center person"
-msgstr "Mit Beziehungen zur Hauptperson"
+msgstr "Beziehung zur Hauptperson einschließen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:900
 msgid "Whether to show every person's relationship to the center person"
@@ -31589,7 +31589,7 @@ msgstr "Personen und Alter an einem bestimmten Datum anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:55
 msgid "Attribute Match"
-msgstr "Attribut Übereinstimmung"
+msgstr "Attributsübereinstimmung"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:56
 msgid "Display people with same attribute."
@@ -31911,7 +31911,7 @@ msgstr "Kategorie"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Drop-down Sidebar"
-msgstr "Drop-Down Seitenleiste"
+msgstr "Drop-down-Seitenleiste"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:49
 msgid "Selection of categories and views from drop-down lists"
@@ -31919,7 +31919,7 @@ msgstr "Auswahl von Kategorien und Ansichten aus Aufklapplisten"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:57
 msgid "Drop-Down"
-msgstr "Drop-Down"
+msgstr "Drop-down"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:63
 msgid "Expander Sidebar"
@@ -34934,7 +34934,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Ordne_Gramps-IDs_neu"
+msgstr "Gramps-IDs_neu_ordnen"
 
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
@@ -36529,15 +36529,15 @@ msgstr "⚱"
 
 #: ../gramps/plugins/view/pedigreeview.py:1211
 msgid "Jump to child..."
-msgstr "Springe zu Kind..."
+msgstr "Zu Kind springen …"
 
 #: ../gramps/plugins/view/pedigreeview.py:1225
 msgid "Jump to father"
-msgstr "Springe zum Vater"
+msgstr "Zum Vater springen"
 
 #: ../gramps/plugins/view/pedigreeview.py:1239
 msgid "Jump to mother"
-msgstr "Springe zur Mutter"
+msgstr "Zur Mutter springen"
 
 #: ../gramps/plugins/view/pedigreeview.py:1607
 msgid "A person was found to be his/her own ancestor."
@@ -37448,7 +37448,7 @@ msgstr "Überblenden  -- Nur WebKit Browser"
 #: ../gramps/plugins/webreport/narrativeweb.py:2030
 #: ../gramps/plugins/webreport/narrativeweb.py:2044
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr "Drop-Down  -- Nur WebKit Browser"
+msgstr "Drop-down  -- Nur WebKit-Browser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2032
 msgid "Navigation Menu Layout"
