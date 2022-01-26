@@ -9,13 +9,14 @@
 # Brtc <boratici@gmail.com>, 2021.
 # Bora <boratici@gmail.com>, 2021, 2022.
 # Bora Atıcı <boratici@gmail.com>, 2022.
+# Bora Atıcı <boratici.acc@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-25 20:42+0000\n"
-"Last-Translator: Bora Atıcı <boratici@gmail.com>\n"
+"PO-Revision-Date: 2022-01-26 21:34+0000\n"
+"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -21045,12 +21046,12 @@ msgstr "Takvim yılı"
 #: ../gramps/plugins/textreport/birthdayreport.py:530
 #: ../gramps/plugins/webreport/webcal.py:1849
 msgid "Country for holidays"
-msgstr "Ülke tatilleri"
+msgstr "Ülkelerin bayramları"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:528
 #: ../gramps/plugins/textreport/birthdayreport.py:541
 msgid "Select the country to see associated holidays"
-msgstr "İlişkili tatilleri görmek için ülkeyi seçin"
+msgstr "İlişkili özel günleri görmek için ülkeyi seçin"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:531
 #: ../gramps/plugins/webreport/narrativeweb.py:2808
