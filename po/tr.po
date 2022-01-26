@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-21 20:13+0000\n"
+"PO-Revision-Date: 2022-01-25 20:42+0000\n"
 "Last-Translator: Bora Atıcı <boratici@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -72,7 +72,7 @@ msgstr "Soy Araştırma Sistemi"
 
 #: ../data/gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Soy Araştırması;Aile Tarihi;Araştırma;Soy Ağacı;GEDCOM;"
+msgstr "Soy Araştırması;Aile Tarihi;Araştırma;Soyağacı;GEDCOM;"
 
 #: ../data/gramps.xml.in:6
 msgid "Gramps database"
@@ -365,7 +365,7 @@ msgstr ""
 "'süzebilirsiniz'. Yeni bir süzgeç tanımlamak için \"Düzenle &gt; Kişi Süzgeç "
 "Düzenleyicisi\" ne gidin. Burada süzgecinizi adlandırabilir ve önceden "
 "ayarlanmış birçok kuralı kullanarak kurallar ekleyebilir ve "
-"birleştirebilirsiniz. Örneğin, aile ağacında evlat edinilen tüm kişileri "
+"birleştirebilirsiniz. Örneğin, soyağacında evlat edinilen tüm kişileri "
 "bulmak için bir süzgeç tanımlayabilirsiniz. Doğum tarihi belirtilmeyen "
 "kişiler de süzülebilir. Sonuçları almak için süzgecinizi kaydedin ve Süzgeç "
 "Kenar Çubuğunun altından seçin, ardından Uygulaya tıklatın. Süzgeç Kenar "
@@ -499,9 +499,9 @@ msgid ""
 msgstr ""
 "<b>Gramps Raporları</b><br/>Gramps çok çeşitli raporlar sunar. Grafik "
 "Raporlar ve Çizgeler karmaşık ilişkileri kolayca sunabilir ve Metin "
-"Raporları özellikle aile ağacınızın sonuçlarını e-posta yoluyla aile "
-"üyelerine göndermek istiyorsanız kullanışlıdır. Soy ağacınız için bir web "
-"sitesi yapmaya hazırsanız, bunun için de bir rapor var."
+"Raporları özellikle soyağacınızın sonuçlarını e-posta yoluyla aile üyelerine "
+"göndermek istiyorsanız kullanışlıdır. Soy ağacınız için bir web sitesi "
+"yapmaya hazırsanız, bunun için de bir rapor var."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -850,13 +850,12 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>Gramps XML Paketi</b><br/>Aile Ağacınızı Gramps XML Paketi olarak dışa "
-"aktarabilirsiniz. Bu, aile ağacı verilerinizi ve veri tabanına bağlı tüm "
-"ortam dosyalarını (örneğin resimler) içeren sıkıştırılmış bir dosyadır. Bu "
-"dosya tamamen taşınabilir olduğundan yedekleme veya diğer Gramps "
-"kullanıcılarıyla paylaşım için kullanışlıdır. Bu biçim, GEDCOM'a göre, dışa "
-"ve içe aktarma sırasında hiçbir bilginin kaybolmaması gibi önemli bir "
-"avantaja sahiptir."
+"<b>Gramps XML Paketi</b><br/>Soyağacınızı Gramps XML Paketi olarak dışa "
+"aktarabilirsiniz. Bu, soyağacı verilerinizi ve veri tabanına bağlı tüm ortam "
+"dosyalarını (örneğin resimler) içeren sıkıştırılmış bir dosyadır. Bu dosya "
+"tamamen taşınabilir olduğundan yedekleme veya diğer Gramps kullanıcılarıyla "
+"paylaşım için kullanışlıdır. Bu biçim, GEDCOM'a göre, dışa ve içe aktarma "
+"sırasında hiçbir bilginin kaybolmaması gibi önemli bir avantaja sahiptir."
 
 #: ../data/tips.xml:90
 msgid ""
@@ -864,9 +863,9 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>Web Aile Ağacı Biçimi</b><br/>Gramps, verileri Web Aile Ağacı (WFT) "
-"biçimine aktarabilir. Bu biçim, bir aile ağacının birçok html dosyası yerine "
-"tek bir dosya kullanılarak çevrimiçi olarak görüntülenmesine olanak tanır."
+"<b>Web Soyağacı Biçimi</b><br/>Gramps, verileri Web Soyağacı (WFT) biçimine "
+"aktarabilir. Bu biçim, bir soyağacının birçok html dosyası yerine tek bir "
+"dosya kullanılarak çevrimiçi olarak görüntülenmesine olanak tanır."
 
 #: ../data/tips.xml:92
 msgid ""
@@ -875,7 +874,7 @@ msgid ""
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web."
 msgstr ""
-"<b>Bir Soy Araştırması Web Sitesi Yapmak</b><br/>Aile ağacınızı kolayca bir "
+"<b>Bir Soy Araştırması Web Sitesi Yapmak</b><br/>Soyağacınızı kolayca bir "
 "web sayfasına aktarabilirsiniz. World Wide Web'e yüklenmeye hazır web "
 "sayfaları koleksiyonuna tüm veri tabanını, aile hatlarını veya seçilen "
 "kişileri ekleyin."
@@ -1097,7 +1096,7 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Hata: '%s' Aile Ağacı zaten var.\n"
+"Hata: '%s' Soyağacı zaten var.\n"
 "'-C' seçeneği kullanılamaz."
 
 #: ../gramps/cli/arghandler.py:241
@@ -1107,8 +1106,8 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"Hata: Giriş Aile Ağacı \"%s\" mevcut değil.\n"
-"GEDCOM, Gramps-xml veya grdb ise, bunun yerine bir Aile Ağacına içe aktarmak "
+"Hata: Giriş Soyağacı \"%s\" mevcut değil.\n"
+"GEDCOM, Gramps-xml veya grdb ise, bunun yerine bir Soyağacına içe aktarmak "
 "için -i seçeneğini kullanın."
 
 #: ../gramps/cli/arghandler.py:255
@@ -1180,7 +1179,7 @@ msgstr "Gramps Soyağaçları:"
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1793
 msgid "Family Tree"
-msgstr "Aile Ağacı"
+msgstr "Soyağacı"
 
 #. Translators: used in French+Russian, ignore otherwise
 #: ../gramps/cli/arghandler.py:445 ../gramps/cli/arghandler.py:449
@@ -1209,7 +1208,7 @@ msgstr "Temizleme."
 
 #: ../gramps/cli/arghandler.py:514
 msgid "Created empty Family Tree successfully"
-msgstr "Boş Aile Ağacı başarıyla oluşturuldu"
+msgstr "Boş Soyağacı başarıyla oluşturuldu"
 
 #: ../gramps/cli/arghandler.py:517 ../gramps/cli/arghandler.py:543
 msgid "Error opening the file."
@@ -1350,15 +1349,15 @@ msgstr ""
 "  --usage                                Kısa kullanım mesajını görüntüle\n"
 "\n"
 "Uygulama seçenekleri\n"
-"  -O, --open=FAMILY_TREE                 Aile Ağacını Aç\n"
+"  -O, --open=FAMILY_TREE                 Soyağacını Aç\n"
 "  -U, --username=USERNAME                Veri tabanı kullanıcı adı\n"
 "  -P, --password=PASSWORD                Veri tabanı şifresi\n"
-"  -C, --create=FAMILY_TREE               Yeni Aile Ağacı açılırsa oluştur\n"
+"  -C, --create=FAMILY_TREE               Yeni Soyağacı açılırsa oluştur\n"
 "  -i, --import=FILENAME                  Dosyayı içe aktar\n"
 "  -e, --export=FILENAME                  Dosyayı dışa aktar\n"
-"  -r, --remove=FAMILY_TREE_PATTERN       Eşleşen Aile Ağacını/Ağaçlarını "
+"  -r, --remove=FAMILY_TREE_PATTERN       Eşleşen Soyağacını/Ağaçlarını "
 "kaldırın (normal ifadeler kullanın)\n"
-"  -f, --format=FORMAT                    Aile Ağacı biçimini belirtin\n"
+"  -f, --format=FORMAT                    Soyağacı biçimini belirtin\n"
 "  -a, --action=ACTION                    Eylem belirtin\n"
 "  -p, --options=OPTIONS_STRING           Seçenekleri belirtin\n"
 "  -d, --debug=LOGGER_NAME                Hata ayıklama günlüklerini "
@@ -1368,7 +1367,7 @@ msgstr ""
 "Listele\n"
 "  -t [FAMILY_TREE_PATTERN...]            Sekmeyle ayrılmış Soyağaçlarını "
 "listele\n"
-"  -u, --force-unlock                     Zorla Aile Ağacının kilidini aç\n"
+"  -u, --force-unlock                     Zorla Soyağacının kilidini aç\n"
 "  -s, --show                             Yapılandırma ayarlarını göster\n"
 "  -c, --config=[config.setting[:value]]  Yapılandırma ayar(lar)ını "
 "belirleyin ve Gramps'ı başlatın\n"
@@ -1477,11 +1476,11 @@ msgstr ""
 "6. Bir veri tabanı açmak ve bu verilere dayanarak PDF formatında\n"
 "zaman çizelgesi raporu oluşturmak için çıktıyı my_timeline.pdf dosyasına "
 "koyarak:\n"
-"gramps -O 'Aile Ağacı 1' -a rapor -p ad=zaman çizelgesi,off=pdf,"
-"of=my_timeline.pdf\n"
+"gramps -O 'Soyağacı 1' -a rapor -p ad=zaman çizelgesi,off=pdf,of=my_timeline."
+"pdf\n"
 "\n"
 "7. Bir veri tabanının özetini oluşturmak için:\n"
-"gramps -O 'Aile Ağacı 1' -a rapor -p ad=özet\n"
+"gramps -O 'Soyağacı 1' -a rapor -p ad=özet\n"
 "\n"
 "8. Listeleme raporu seçenekleri\n"
 "Zaman çizelgesi raporu için mevcut tüm seçenekleri öğrenmek için "
@@ -1491,11 +1490,11 @@ msgstr ""
 "Kullanılabilir rapor adları hakkında bilgi edinmek için name=show string'i "
 "kullanın.\n"
 "\n"
-"9. Bir Aile Ağacını anında bir .gramps xml dosyasına dönüştürmek için:\n"
-"gramps -O 'Aile Ağacı 1' -e output.gramps -f gramps-xml\n"
+"9. Bir Soyağacını anında bir .gramps xml dosyasına dönüştürmek için:\n"
+"gramps -O 'Soyağacı 1' -e output.gramps -f gramps-xml\n"
 "\n"
 "10. Başka bir yerel ayarda bir web sitesi oluşturmak için (almanca):\n"
-"DİL=de_DE; LANG=de_DE.UTF-8 gramps -O 'Aile Ağacı 1' -a raporu -p "
+"DİL=de_DE; LANG=de_DE.UTF-8 gramps -O 'Soyağacı 1' -a raporu -p "
 "name=navwebpage,target=/../de\n"
 "\n"
 "11. Son olarak, normal etkileşimli oturum türünü başlatmak için:\n"
@@ -1616,7 +1615,7 @@ msgstr "Kilitli mi?"
 #: ../gramps/cli/clidbman.py:197
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Aile Ağacı \"%s\":"
+msgstr "Soyağacı \"%s\":"
 
 #. Translators: needed for French, ignore otherwise
 #. Translators: for French, else ignore
@@ -1658,7 +1657,7 @@ msgstr "Veri içe aktarılıyor..."
 
 #: ../gramps/cli/clidbman.py:425
 msgid "Remove family tree warning"
-msgstr "Aile ağacı uyarısını kaldır"
+msgstr "Soyağacı uyarısını kaldır"
 
 #: ../gramps/cli/clidbman.py:426
 #, python-format
@@ -1666,16 +1665,16 @@ msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
 msgstr ""
-"Şu adlı aile ağacını kaldırmak istediğinizden emin misiniz?\n"
+"Şu adlı soyağacını kaldırmak istediğinizden emin misiniz?\n"
 "\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:738
 msgid "Could not delete Family Tree"
-msgstr "Aile Ağacı silinemedi"
+msgstr "Soyağacı silinemedi"
 
 #: ../gramps/cli/clidbman.py:450
 msgid "Could not rename Family Tree"
-msgstr "Aile Ağacı yeniden adlandırılamadı"
+msgstr "Soyağacı yeniden adlandırılamadı"
 
 #: ../gramps/cli/clidbman.py:483
 #, python-format
@@ -1807,9 +1806,8 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps, temel alınan veri tabanında bir sorun tespit etti. Bu bazen Aile "
-"Ağacı Yöneticisinden onarılabilir. Veri tabanını seçin ve Onar düğmesine "
-"tıklayın"
+"Gramps, temel alınan veri tabanında bir sorun tespit etti. Bu bazen Soyağacı "
+"Yöneticisinden onarılabilir. Veri tabanını seçin ve Onar düğmesine tıklayın"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:161
 msgid "Read only database"
@@ -1833,11 +1831,11 @@ msgstr "Dosya açılamadı: %s"
 
 #: ../gramps/cli/grampscli.py:237
 msgid "Could not load a recent Family Tree."
-msgstr "Yakın tarihli bir Aile Ağacı yüklenemedi."
+msgstr "Yakın tarihli bir Soyağacı yüklenemedi."
 
 #: ../gramps/cli/grampscli.py:238
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "Aile Ağacı silindiği için mevcut değil."
+msgstr "Soyağacı silindiği için mevcut değil."
 
 #: ../gramps/cli/grampscli.py:243
 msgid "The database is locked."
@@ -3072,8 +3070,8 @@ msgid ""
 msgstr ""
 "Şema sürümü, Gramps'ın bu sürümü tarafından desteklenmiyor.\n"
 "\n"
-"Bu Aile Ağacı %(tree_vers)s şema sürümüdür ve Gramps'ın bu sürümü "
-"%(min_vers)s ile %(max_vers)s arasındaki sürümleri destekler\n"
+"Bu Soyağacı %(tree_vers)s şema sürümüdür ve Gramps'ın bu sürümü %(min_vers)s "
+"ile %(max_vers)s arasındaki sürümleri destekler\n"
 "\n"
 "Lütfen ilgili sürüme yükseltin veya farklı şema sürümleri arasında veri "
 "taşımak için XML kullanın."
@@ -3091,7 +3089,7 @@ msgid ""
 msgstr ""
 "Python sürümü, Gramps'ın bu sürümü tarafından desteklenmiyor.\n"
 "\n"
-"Bu Aile Ağacı, Python %(tree_vers)s sürümüdür ve Gramps'ın bu sürümü "
+"Bu Soyağacı, Python %(tree_vers)s sürümüdür ve Gramps'ın bu sürümü "
 "%(min_vers)s ile %(max_vers)s arasındaki sürümleri destekler\n"
 "\n"
 "Lütfen ilgili sürüme yükseltin veya farklı Python sürümleri arasında veri "
@@ -3117,20 +3115,20 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Yüklemeye çalıştığınız Aile Ağacı şema sürümü %(oldschema)s biçiminde. "
-"Gramps'ın bu sürümü %(newschema)s şema sürümünü kullanır. Bu nedenle, Aile "
-"Ağacının şema sürümünü yükseltmeden bu Aile Ağacını yükleyemezsiniz.\n"
+"Yüklemeye çalıştığınız Soyağacı şema sürümü %(oldschema)s biçiminde. "
+"Gramps'ın bu sürümü %(newschema)s şema sürümünü kullanır. Bu nedenle, "
+"Soyağacının şema sürümünü yükseltmeden bu Soyağacını yükleyemezsiniz.\n"
 "\n"
-"Yükseltirseniz, daha sonra yükseltilmiş Aile Ağacınızı "
+"Yükseltirseniz, daha sonra yükseltilmiş Soyağacınızı "
 "%(wiki_manual_backup_html_start)sbackup%(html_end)s veya "
 "%(wiki_manual_export_html_start)sexport%(html_end)s yapsanız bile Gramps'ın "
 "önceki sürümünü kullanamazsınız.\n"
 "\n"
-"Yükseltme, kesintiye uğraması veya başarısız olması durumunda Aile Ağacınızı "
+"Yükseltme, kesintiye uğraması veya başarısız olması durumunda Soyağacınızı "
 "geri dönüşü olmayan bir şekilde bozabilecek zor bir iştir.\n"
 "\n"
-"Henüz Aile Ağacınızın yedeğini almadıysanız, Gramps'ın %(bold_start)sold"
-"%(bold_end)s sürümünü başlatmalı ve Aile Ağacınızın "
+"Henüz Soyağacınızın yedeğini almadıysanız, Gramps'ın "
+"%(bold_start)sold%(bold_end)s sürümünü başlatmalı ve Soyağacınızın "
 "%(wiki_backup_html_start)smake bir backup%(html_end)s yedeğini almalısınız."
 
 #: ../gramps/gen/db/exceptions.py:174
@@ -3166,20 +3164,20 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
-"Yüklemeye çalıştığınız Aile Ağacı, artık desteklenmeyen %(dbtype)s veri "
+"Yüklemeye çalıştığınız Soyağacı, artık desteklenmeyen %(dbtype)s veri "
 "tabanında bulunuyor.\n"
-"Bu nedenle, bu Aile Ağacını yükseltmeden yükleyemezsiniz.\n"
+"Bu nedenle, bu Soyağacını yükseltmeden yükleyemezsiniz.\n"
 "\n"
-"Yükseltirseniz, daha sonra yükseltilmiş Aile Ağacınızı "
+"Yükseltirseniz, daha sonra yükseltilmiş Soyağacınızı "
 "%(wiki_manual_backup_html_start)sbackup%(html_end)s veya "
 "%(wiki_manual_export_html_start)sexport%(html_end)s yapsanız bile Gramps'ın "
 "önceki sürümünü kullanamazsınız.\n"
 "\n"
-"Aile Ağacınızı yedeklemeniz şiddetle tavsiye edilir.\n"
+"Soyağacınızı yedeklemeniz şiddetle tavsiye edilir.\n"
 "\n"
-"Henüz Aile Ağacınızın yedeğini almadıysanız, Gramps'ın önceki sürümünü "
-"başlatmalı ve Aile Ağacınızın %(wiki_backup_html_start)smake bir backup"
-"%(html_end)s yedeğini almanız gerekir."
+"Henüz Soyağacınızın yedeğini almadıysanız, Gramps'ın önceki sürümünü "
+"başlatmalı ve Soyağacınızın %(wiki_backup_html_start)smake bir "
+"backup%(html_end)s yedeğini almanız gerekir."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3313,7 +3311,7 @@ msgstr ""
 "\n"
 "\n"
 "Benzer bilgileri içeren alıntıları birleştirmek için\n"
-"Araçlar -> Aile Ağacı İşleme -> Birleştir\n"
+"Araçlar -> Soyağacı İşleme -> Birleştir\n"
 "komutunu çalıştırmak\n"
 "isteyebilirsiniz"
 
@@ -4431,7 +4429,7 @@ msgstr "Çocuk süzgeçleri"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:45
 msgid "Families with child with the <name>"
-msgstr "<name> adlı çocuğu olan aileler"
+msgstr "<Ad> adlı çocuğu olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:46
 msgid "Matches families where child has a specified (partial) name"
@@ -4462,7 +4460,7 @@ msgstr "Baba süzgeçleri"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:45
 msgid "Families with father with the <name>"
-msgstr "<name> adlı babası olan aileler"
+msgstr "<Ad> adlı babası olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:46
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:46
@@ -4687,7 +4685,7 @@ msgstr "Anne süzgeçleri"
 
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:45
 msgid "Families with mother with the <name>"
-msgstr "<name> adı ile annesi olan aileler"
+msgstr "<Ad> adı ile annesi olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:46
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:46
@@ -4739,7 +4737,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:45
 msgid "Families with any child matching the <name>"
-msgstr "<name> ile eşleşen herhangi bir çocuğu olan aileler"
+msgstr "<Ad> ile eşleşen herhangi bir çocuğu olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
@@ -4749,11 +4747,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
-msgstr "<name> ile eşleşen babası olan aileler"
+msgstr "<Ad> ile eşleşen babası olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:45
 msgid "Families with mother matching the <name>"
-msgstr "<name> ile eşleşen annesi olan aileler"
+msgstr "<Ad> ile eşleşen annesi olan aileler"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:44
 msgid "Every media object"
@@ -5326,7 +5324,7 @@ msgstr "Aile Lakabı:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:57
 msgid "People with the <name>"
-msgstr "<name> olan kişiler"
+msgstr "<Ad> olan kişiler"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:58
 #: ../gramps/gen/filters/rules/person/_searchname.py:47
@@ -5355,7 +5353,7 @@ msgstr "Ad türü:"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:47
 msgid "People with the <Name type>"
-msgstr "<Name type> olan kişiler"
+msgstr "<Ad türü> olan kişiler"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 msgid "Matches people with a type of name"
@@ -5440,7 +5438,7 @@ msgstr "Ad:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:42
 msgid "Soundex match of People with the <name>"
-msgstr "<name> ile Kişilerin Soundex eşleşmesi"
+msgstr "<Ad> ile Kişilerin Soundex eşleşmesi"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:43
 msgid ""
@@ -5641,7 +5639,7 @@ msgstr "Kuşak sayısı:"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:46
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "<person> ataları en fazla <N> kuşak uzakta"
+msgstr "<Kişi> ataları en fazla <N> kuşak uzakta"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:48
 msgid ""
@@ -9032,7 +9030,7 @@ msgstr "FTP"
 
 #: ../gramps/gen/merge/diff.py:106
 msgid "Family Tree Differences"
-msgstr "Aile Ağacı Farklılıkları"
+msgstr "Soyağacı Farklılıkları"
 
 #: ../gramps/gen/merge/diff.py:107
 msgid "Searching..."
@@ -10240,7 +10238,7 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Aile Ağacı, aranan azami %d kuşaktan daha fazlasına ulaşıyor.\n"
+"Soyağacı, aranan azami %d kuşaktan daha fazlasına ulaşıyor.\n"
 "İlişkiler gözden kaçmış olabilir"
 
 #: ../gramps/gen/relationship.py:1406
@@ -11452,7 +11450,7 @@ msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree"
 msgstr ""
-"Aile Ağacınızı paylaşırken insanların sizinle iletişim kurabilmesi için "
+"Soyağacınızı paylaşırken insanların sizinle iletişim kurabilmesi için "
 "kendinizle ilgili bilgileri girin"
 
 #: ../gramps/gui/configure.py:617
@@ -12036,7 +12034,7 @@ msgstr "güncelle"
 
 #: ../gramps/gui/configure.py:1730
 msgid "Family tree database settings and Backup management"
-msgstr "Aile ağacı veri tabanı ayarları ve Yedekleme yönetimi"
+msgstr "Soyağacı veri tabanı ayarları ve Yedekleme yönetimi"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
@@ -12052,18 +12050,18 @@ msgstr "Port"
 
 #: ../gramps/gui/configure.py:1756
 msgid "Family Tree Database path"
-msgstr "Aile Ağacı Veri tabanı yolu"
+msgstr "Soyağacı Veri tabanı yolu"
 
 #: ../gramps/gui/configure.py:1760
 msgid "Automatically load last Family Tree"
-msgstr "Son Aile Ağacını otomatik olarak yükle"
+msgstr "Son Soyağacını otomatik olarak yükle"
 
 #: ../gramps/gui/configure.py:1762
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Başlangıçta yüklenecek aile ağacını seçmek için iletişim kutusunu açmayın, "
+"Başlangıçta yüklenecek soyağacını seçmek için iletişim kutusunu açmayın, "
 "sadece en son kullanılanı yükleyin."
 
 #: ../gramps/gui/configure.py:1767
@@ -12076,8 +12074,7 @@ msgstr "Çıkışta yedekleme"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr ""
-"Çıkışta aile ağacınızı yukarıda belirtilen yedekleme yoluna yedekleyin."
+msgstr "Çıkışta soyağacınızı yukarıda belirtilen yedekleme yoluna yedekleyin."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12298,7 +12295,7 @@ msgstr "_Durdur"
 
 #: ../gramps/gui/dbloader.py:207
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Bu Aile Ağacını yükseltmek istediğinizden emin misiniz?"
+msgstr "Bu Soyağacını yükseltmek istediğinizden emin misiniz?"
 
 #: ../gramps/gui/dbloader.py:210
 msgid ""
@@ -12306,7 +12303,7 @@ msgid ""
 "please upgrade my Family Tree"
 msgstr ""
 "Bir yedekleme yaptım,\n"
-"lütfen Aile Ağacımı yükseltin"
+"lütfen Soyağacımı yükseltin"
 
 #: ../gramps/gui/dbloader.py:212 ../gramps/gui/glade/dialog.glade:701
 #: ../gramps/gui/plug/report/_bookdialog.py:250
@@ -12341,7 +12338,7 @@ msgstr "Şifre: "
 
 #: ../gramps/gui/dbloader.py:369
 msgid "Import Family Tree"
-msgstr "Aile Ağacını İçe Aktar"
+msgstr "Soyağacını İçe Aktar"
 
 #: ../gramps/gui/dbloader.py:380
 msgid "Import"
@@ -12393,11 +12390,11 @@ msgstr ""
 #: ../gramps/gui/dbman.py:97
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr "%s_-_Aile_Ağaçlarını_Yönet"
+msgstr "%s_-_Soyağaçlarını_Yönet"
 
 #: ../gramps/gui/dbman.py:98
 msgid "Family_Trees_manager_window"
-msgstr "Aile_Ağacı_yönetici_penceresi"
+msgstr "Soyağacı_yönetici_penceresi"
 
 #: ../gramps/gui/dbman.py:112 ../gramps/gui/glade/dbman.glade:346
 msgid "_Archive"
@@ -12466,11 +12463,11 @@ msgstr "Ayar"
 
 #: ../gramps/gui/dbman.py:200
 msgid "Family Trees"
-msgstr "Aile Ağaçları"
+msgstr "Soyağaçları"
 
 #: ../gramps/gui/dbman.py:381
 msgid "Family Tree name"
-msgstr "Aile Ağacı adı"
+msgstr "Soyağacı adı"
 
 #: ../gramps/gui/dbman.py:401
 msgid "Database Type"
@@ -12514,11 +12511,11 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:626
 msgid "Could not rename the Family Tree."
-msgstr "Aile Ağacı yeniden adlandırılamadı."
+msgstr "Soyağacı yeniden adlandırılamadı."
 
 #: ../gramps/gui/dbman.py:627
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Aile Ağacı zaten var, benzersiz bir ad seçin."
+msgstr "Soyağacı zaten var, benzersiz bir ad seçin."
 
 #: ../gramps/gui/dbman.py:674
 msgid "Extracting archive..."
@@ -12531,15 +12528,15 @@ msgstr "Arşiv içe aktarılıyor..."
 #: ../gramps/gui/dbman.py:695
 #, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "'%s' Aile Ağacı kaldırılsın mı?"
+msgstr "'%s' Soyağacı kaldırılsın mı?"
 
 #: ../gramps/gui/dbman.py:696
 msgid "Removing this Family Tree will permanently destroy the data."
-msgstr "Bu Aile Ağacını kaldırmak, verileri kalıcı olarak yok edecektir."
+msgstr "Bu Soyağacını kaldırmak, verileri kalıcı olarak yok edecektir."
 
 #: ../gramps/gui/dbman.py:698
 msgid "Remove Family Tree"
-msgstr "Aile Ağacını Kaldır"
+msgstr "Soyağacını Kaldır"
 
 #: ../gramps/gui/dbman.py:703
 #, python-format
@@ -12580,7 +12577,7 @@ msgstr "'%s' veri tabanı dönüştürülsün mü?"
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
-"Bu aile ağacını %(database_type)s veri tabanına dönüştürmek istiyor musunuz?"
+"Bu soyağacını %(database_type)s veri tabanına dönüştürmek istiyor musunuz?"
 
 #: ../gramps/gui/dbman.py:786
 msgid "Convert"
@@ -12621,7 +12618,7 @@ msgstr "Veri tabanına içe aktarma girişimi başarısız oldu."
 
 #: ../gramps/gui/dbman.py:892
 msgid "Repair Family Tree?"
-msgstr "Aile Ağacı Onarılsın Mı?"
+msgstr "Soyağacı onarılsın mı?"
 
 #: ../gramps/gui/dbman.py:893
 #, python-format
@@ -12649,28 +12646,28 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"%(bold_start)sDevam et%(bold_end)s'e tıklarsanız, Gramps Aile Ağacınızı son "
-"iyi yedekten kurtarmaya çalışır. Bunun istenmeyen etkilere neden olmasının "
-"birkaç yolu vardır, bu nedenle önce Aile Ağacını %(bold_start)syedekleyin"
+"%(bold_start)sDevam et%(bold_end)s'e tıklarsanız, GrampsSoyağacınızı son iyi "
+"yedekten kurtarmaya çalışır. Bunun istenmeyen etkilere neden olmasının "
+"birkaç yolu vardır, bu nedenle önce Soyağacını %(bold_start)syedekleyin"
 "%(bold_end)s.\n"
-"Seçtiğiniz Aile Ağacı %(dirname)s içinde saklanır.\n"
+"Seçtiğiniz Soyağacı %(dirname)s içinde saklanır.\n"
 "\n"
 "Bir onarım yapmadan önce, veri tabanı arka ucu bazı hatalardan otomatik "
-"olarak kurtulabileceğinden, Aile Ağacı'nın gerçekten artık açılamayacağını "
+"olarak kurtulabileceğinden, Soyağacı'nın gerçekten artık açılamayacağını "
 "doğrulayın.\n"
 "\n"
-"%(bold_start)sAyrıntılar:%(bold_end)s Bir Aile Ağacını onarmak, aslında, "
-"Gramps'ın son kullanımda sakladığı Aile Ağacının son yedeğini kullanır. "
+"%(bold_start)sAyrıntılar:%(bold_end)s Bir Soyağacını onarmak, aslında, "
+"Gramps'ın son kullanımda sakladığı Soyağacının son yedeğini kullanır. "
 "Gramps'ı kapatmadan birkaç saat/gün çalıştıysanız, tüm bu bilgiler "
-"kaybolacaktır! Onarım başarısız olursa, orijinal Aile Ağacı sonsuza kadar "
+"kaybolacaktır! Onarım başarısız olursa, orijinal Soyağacı sonsuza kadar "
 "kaybolur, bu nedenle bir yedekleme gerekir. Onarım başarısız olursa veya çok "
-"fazla bilgi kaybolursa, orijinal Aile Ağacını manuel olarak "
-"düzeltebilirsiniz. Ayrıntılar için web sayfasına bakın\n"
+"fazla bilgi kaybolursa, orijinal Soyağacını manuel olarak düzeltebilirsiniz. "
+"Ayrıntılar için web sayfasına bakın\n"
 "%(gramps_wiki_recover_url)s\n"
-"Onarım yapmadan önce, Aile Ağacı'nı normal şekilde açmayı deneyin. Onarım "
+"Onarım yapmadan önce, Soyağacı'nı normal şekilde açmayı deneyin. Onarım "
 "düğmesini tetikleyen birkaç hata otomatik olarak düzeltilebilir. Bu durumda, "
-"Aile Ağacı dizinindeki %(recover_file)s dosyasını kaldırarak onarım "
-"düğmesini devre dışı bırakabilirsiniz."
+"Soyağacı dizinindeki %(recover_file)s dosyasını kaldırarak onarım düğmesini "
+"devre dışı bırakabilirsiniz."
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
@@ -12690,7 +12687,7 @@ msgstr "Yedekleme verileri geri yüklenirken hata oluştu"
 
 #: ../gramps/gui/dbman.py:988
 msgid "Could not create Family Tree"
-msgstr "Aile Ağacı oluşturulamadı"
+msgstr "Soyağacı oluşturulamadı"
 
 #: ../gramps/gui/dbman.py:1109
 msgid "Retrieve failed"
@@ -15380,7 +15377,7 @@ msgstr "_Pencereyi Kapat"
 
 #: ../gramps/gui/glade/dbman.glade:134
 msgid "_Load Family Tree"
-msgstr "_Aile Ağacını Aç"
+msgstr "_Soyağacını Aç"
 
 #: ../gramps/gui/glade/dbman.glade:235 ../gramps/gui/glade/editlink.glade:208
 msgid "_New"
@@ -17557,7 +17554,7 @@ msgstr "_Başlangıçta göster"
 #: ../gramps/plugins/view/sourceview.py:153
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "_Forward"
-msgstr "_Sonraki"
+msgstr "_İleri"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
@@ -17604,7 +17601,7 @@ msgstr "Pa_no"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Configure the active view"
-msgstr "Geçerli görünümü yapılandır"
+msgstr "Etkin görünümü yapılandırın"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Connect to a recent database"
@@ -17852,8 +17849,8 @@ msgstr ""
 "\n"
 "Gramps başlatılamadı. Lütfen bununla ilgili bir hata bildirin.\n"
 "Bunun nedeni, başlangıç görünümdeki (üçüncü taraf) bir hata olabilir.\n"
-"Başka bir görünüm kullanmak için bir Aile Ağacı yüklemeyin, görünümü "
-"değiştirmeyin ve ardından Aile Ağacınızı yüklemeyin.\n"
+"Başka bir görünüm kullanmak için bir Soyağacı yüklemeyin, görünümü "
+"değiştirmeyin ve ardından Soyağacınızı yüklemeyin.\n"
 "gramps.ini dosyasındaki başlangıç görünümünü manuel olarak da "
 "değiştirebilirsiniz \n"
 "son görünüm parametresini değiştirerek.\n"
@@ -18624,15 +18621,15 @@ msgstr ""
 "\n"
 "Bu işlev verinizi Gramps'ın desteklediği biçimlerde kopyalayıp "
 "kaydedebilmenize yardım eder. Bu sayede verinizin kopyasını oluşturabilir, "
-"yedeğini alabilir veya başka bir programa aktarmak için "
-"dönüştürebilirsiniz.\n"
+"yedeğini alabilir veya başka bir programa aktarmak için dönüştürebilirsiniz."
+"\n"
 "\n"
 "İşleyiş sırasında fikrinizi değiştirirseniz istediğiniz her an mevcut "
-"verilenize zarar vermeden İptal tuşuna basabilirsiniz."
+"verilerinize zarar vermeden İptal tuşuna basabilirsiniz."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:597
 msgid "Error exporting your Family Tree"
-msgstr "Aile Ağacı dışa aktarılırken hata"
+msgstr "Soyağacı dışa aktarılırken hata"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:605
 #: ../gramps/gui/plug/export/_exportassistant.py:639
@@ -18650,7 +18647,7 @@ msgstr "Seçiliyor..."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:163
 msgid "Unfiltered Family Tree:"
-msgstr "Süzülmüş Aile Ağacı:"
+msgstr "Süzülmüş Soyağacı:"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/export/_exportoptions.py:167
@@ -18700,7 +18697,7 @@ msgstr "Gizlilik Süzgeci"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:327
 msgid "Click to see preview after privacy filter"
-msgstr "Gizlilik süzgecinden sonraki önizlemeyi görmek için tıklayın"
+msgstr "Gizlilik süzgecinden sonraki ön izlemeyi görmek için tıklayın"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:330
 msgid "Living Filter"
@@ -19177,11 +19174,11 @@ msgstr "Analiz ve Gezinme"
 
 #: ../gramps/gui/plug/tool.py:57
 msgid "Family Tree Processing"
-msgstr "Aile Ağacı İşleme"
+msgstr "Soyağacı İşleme"
 
 #: ../gramps/gui/plug/tool.py:58
 msgid "Family Tree Repair"
-msgstr "Aile Ağacı Tamiri"
+msgstr "Soyağacı Onarımı"
 
 #: ../gramps/gui/plug/tool.py:59
 msgid "Revision Control"
@@ -19438,7 +19435,7 @@ msgstr "Yeni alıntı düzenleyicisi açılamıyor"
 
 #: ../gramps/gui/viewmanager.py:335 ../gramps/gui/viewmanager.py:1057
 msgid "No Family Tree"
-msgstr "Aile Ağacı Yok"
+msgstr "Soyağacı Yok"
 
 #: ../gramps/gui/viewmanager.py:561
 msgid "Registering plugins..."
@@ -19756,7 +19753,7 @@ msgstr ""
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:338
 msgid "Jump to by Gramps ID"
-msgstr "Gramps KNo.suna göre git"
+msgstr "Gramps KNo'lu kişiye git"
 
 #: ../gramps/gui/views/navigationview.py:362
 #, python-format
@@ -21883,11 +21880,11 @@ msgstr "Bölüm başlıkları için kullanılan stil."
 #: ../gramps/plugins/export/export.gpr.py:34
 #: ../gramps/plugins/importer/import.gpr.py:36
 msgid "Comma Separated Values Spreadsheet (CSV)"
-msgstr "Virgülle Ayrılmış Değerler e-Tablosu (CSV)"
+msgstr "Virgülle Ayrılmış Değerler E-tablosu (CSV)"
 
 #: ../gramps/plugins/export/export.gpr.py:35
 msgid "Comma _Separated Values Spreadsheet (CSV)"
-msgstr "Virgülle _Ayrılmış Değerler e-Tablosu (CSV)"
+msgstr "Virgülle _Ayrılmış Değerler E-tablosu (CSV)"
 
 #: ../gramps/plugins/export/export.gpr.py:36
 msgid "CSV is a common spreadsheet format."
@@ -21899,19 +21896,19 @@ msgstr "CSV e-Tablo seçenekleri"
 
 #: ../gramps/plugins/export/export.gpr.py:55
 msgid "Web Family Tree"
-msgstr "Web Aile Ağacı"
+msgstr "Web Soyağacı"
 
 #: ../gramps/plugins/export/export.gpr.py:56
 msgid "_Web Family Tree"
-msgstr "_Web Aile Ağacı"
+msgstr "_Web Soyağacı"
 
 #: ../gramps/plugins/export/export.gpr.py:57
 msgid "Web Family Tree format"
-msgstr "Web Aile Ağacı biçimi"
+msgstr "Web Soyağacı biçimi"
 
 #: ../gramps/plugins/export/export.gpr.py:65
 msgid "Web Family Tree export options"
-msgstr "Web Aile Ağacı dışa aktarma seçenekleri"
+msgstr "Web Soyağacı dışa aktarma seçenekleri"
 
 #: ../gramps/plugins/export/export.gpr.py:77
 msgid "GE_DCOM"
@@ -21949,19 +21946,19 @@ msgstr "GeneWeb dışa aktarma seçenekleri"
 
 #: ../gramps/plugins/export/export.gpr.py:119
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Gramps XML Paketi (aile ağacı ve ortam)"
+msgstr "Gramps XML Paketi (soyağacı ve ortam)"
 
 #: ../gramps/plugins/export/export.gpr.py:120
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Gra_mps XML Paketi (aile ağacı ve ortam)"
+msgstr "Gra_mps XML Paketi (soyağacı ve ortam)"
 
 #: ../gramps/plugins/export/export.gpr.py:121
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
 msgstr ""
-"Gramps paketi, ortam nesne dosyalarıyla birlikte arşivlenmiş bir XML aile "
-"ağacıdır."
+"Gramps paketi, ortam nesne dosyalarıyla birlikte arşivlenmiş bir XML "
+"soyağacıdır."
 
 #: ../gramps/plugins/export/export.gpr.py:130
 msgid "Gramps package export options"
@@ -21969,20 +21966,19 @@ msgstr "Gramps paketi dışa aktarma seçenekleri"
 
 #: ../gramps/plugins/export/export.gpr.py:141
 msgid "Gramps XML (family tree)"
-msgstr "Gramps XML (aile ağacı)"
+msgstr "Gramps XML (soyağacı)"
 
 #: ../gramps/plugins/export/export.gpr.py:142
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps _XML (aile ağacı)"
+msgstr "Gramps _XML (soyağacı)"
 
 #: ../gramps/plugins/export/export.gpr.py:143
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"Gramps XML dışa aktarma, ortam nesnesi dosyaları olmadan Gramps aile "
-"ağacının eksiksiz bir arşivlenmiş XML yedeğidir. Yedekleme amaçları için "
-"uygundur."
+"Gramps XML dışa aktarma, ortam nesnesi dosyaları olmadan Gramps soyağacının "
+"eksiksiz bir arşivlenmiş XML yedeğidir. Yedekleme amaçları için uygundur."
 
 #: ../gramps/plugins/export/export.gpr.py:153
 msgid "Gramps XML export options"
@@ -22189,7 +22185,7 @@ msgid ""
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
 "Aşağıdaki girişe geçerli bir tarih (YYYY-AA-GG gibi) girin ve Çalıştır'a "
-"tıklayın. Bu, o tarihteki Aile Ağacınızdaki herkesin yaşlarını "
+"tıklayın. Bu, o tarihteki Soyağacınızdaki herkesin yaşlarını "
 "hesaplayacaktır. Daha sonra yaş sütununa göre sıralayabilir ve görüntülemek "
 "veya düzenlemek için satırı çift tıklayabilirsiniz."
 
@@ -22554,7 +22550,7 @@ msgstr "Ayrıntılar için ada çift tıklayın"
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:60
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
-msgstr "Hiçbir Aile Ağacı Yüklenmedi."
+msgstr "Hiçbir Soyağacı Yüklenmedi."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:70
 #: ../gramps/plugins/gramplet/recordsgramplet.py:50
@@ -22713,7 +22709,7 @@ msgstr "Bu oturum için tüm etkinliği gösteren Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:263
 msgid "Gramplet showing summary data of the Family Tree"
-msgstr "Aile Ağacının özet bilgisini gösteren Gramplet"
+msgstr "Soyağacının özet bilgisini gösteren Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:276
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:283
@@ -23367,9 +23363,8 @@ msgid "Gramplet showing the events for all the family"
 msgstr "Tüm aile için etkinlikleri gösteren Gramplet"
 
 #: ../gramps/plugins/gramplet/leak.py:99
-#, fuzzy
 msgid "Referrer"
-msgstr "Referrer"
+msgstr "Referans"
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
@@ -23851,10 +23846,10 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"Yapmanız gereken ilk şey, yeni bir Aile Ağacı oluşturmaktır. Yeni bir Aile "
-"Ağacı (bazen 'veri tabanı' olarak adlandırılır) oluşturmak için menüden "
+"Yapmanız gereken ilk şey, yeni bir soyağacı oluşturmaktır. Yeni bir Soyağacı "
+"(bazen 'veri tabanı' olarak adlandırılır) oluşturmak için menüden "
 "\"Soyağaçları\"nı seçin, \"Soyağaçlarını Yönet\"i seçin, \"Yeni\"ye basın ve "
-"Aile Ağacınıza bir ad verin. Daha fazla ayrıntı için lütfen yukarıdaki "
+"Soyağacınıza bir ad verin. Daha fazla ayrıntı için lütfen yukarıdaki "
 "İlişimlerdeki bilgileri okuyun\n"
 "\n"
 
@@ -24599,18 +24594,18 @@ msgid ""
 "the media object files.)"
 msgstr ""
 "Bir Gramps paketinden (ortam nesnesi dosyalarıyla birlikte arşivlenmiş bir "
-"XML Aile Ağacı) verileri içe aktarın"
+"XML Soyağacı) verileri içe aktarın"
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
-msgstr "Gramps XML Aile Ağacı"
+msgstr "Gramps XML Soyağacı"
 
 #: ../gramps/plugins/importer/import.gpr.py:111
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Gramps XML formatı, bir Aile Ağacının metin versiyonudur. Mevcut Gramps veri "
+"Gramps XML formatı, bir Soyağacının metin versiyonudur. Mevcut Gramps veri "
 "tabanı formatı ile okuma-yazma uyumludur."
 
 #: ../gramps/plugins/importer/import.gpr.py:131
@@ -25021,7 +25016,7 @@ msgstr "Kazanma"
 
 #: ../gramps/plugins/importer/importgeneweb.py:82
 msgid "Adhesion"
-msgstr "Adhesion"
+msgstr "Bağlılık"
 
 #: ../gramps/plugins/importer/importgeneweb.py:83
 #: ../gramps/plugins/importer/importgeneweb.py:95
@@ -25093,7 +25088,7 @@ msgstr "Satılan mülk"
 
 #: ../gramps/plugins/importer/importgeneweb.py:130
 msgid "No mention"
-msgstr "No mention"
+msgstr "Açıklama yok"
 
 #: ../gramps/plugins/importer/importgeneweb.py:133
 msgid "Separated"
@@ -25143,7 +25138,7 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Bu Aile Ağacının temel ortam yolu %s olarak ayarlandı. Daha basit bir yol "
+"Bu Soyağacının temel ortam yolu %s olarak ayarlandı. Daha basit bir yol "
 "izlemeyi düşünün. Ortam dosyalarınızı yeni konuma taşırken ve ortam "
 "nesnelerinizde doğru yolları ayarlamak için ortam yöneticisi aracını "
 "kullanarak 'Yoldaki alt dizeyi değiştir' seçeneğini kullanarak bunu "
@@ -25164,13 +25159,13 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"İçe aktardığınız Aile Ağacı zaten bir temel ortam yoluna sahip: "
-"%(orig_path)s. Ancak içe aktarılan ortam nesneleri %(path)s yolundan "
-"görelidir. Ortam yolunu Tercihler'de değiştirebilir veya içe aktarılan "
-"dosyaları mevcut temel ortam yoluna dönüştürebilirsiniz. Bunu, ortam "
-"dosyalarınızı yeni konuma taşıyarak ve ortam nesnelerinizde doğru yolları "
-"ayarlamak için ortam yöneticisi aracını, 'Yoldaki alt diziyi değiştir' "
-"seçeneğini kullanarak yapabilirsiniz."
+"İçe aktardığınız Soyağacı zaten bir temel ortam yoluna sahip: %(orig_path)s. "
+"Ancak içe aktarılan ortam nesneleri %(path)s yolundan görelidir. Ortam "
+"yolunu Tercihler'de değiştirebilir veya içe aktarılan dosyaları mevcut temel "
+"ortam yoluna dönüştürebilirsiniz. Bunu, ortam dosyalarınızı yeni konuma "
+"taşıyarak ve ortam nesnelerinizde doğru yolları ayarlamak için ortam "
+"yöneticisi aracını, 'Yoldaki alt diziyi değiştir' seçeneğini kullanarak "
+"yapabilirsiniz."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
 #: ../gramps/plugins/importer/importprogen.py:189
@@ -25192,10 +25187,10 @@ msgid ""
 msgstr ""
 "Veri tabanı sürümü, Gramps'ın bu sürümü tarafından desteklenmiyor. Gramps'ın "
 "3.0.x sürümünde eski bir kopyasını kullanmalı ve veri tabanınızı bu sürüme "
-"aktarmalısınız. Ardından verilerinizin bir kopyasını Gramps XML'e (Aile "
-"Ağacı) aktarmalısınız. Ardından Gramps'ın en son sürümüne (örneğin bu "
-"sürüme) yükseltme yapmalı, yeni bir boş veri tabanı oluşturmalı ve Gramps "
-"XML'i bu sürüme aktarmalısınız. Lütfen şu adrese bakın: "
+"aktarmalısınız. Ardından verilerinizin bir kopyasını Gramps XML'e (Soyağacı) "
+"aktarmalısınız. Ardından Gramps'ın en son sürümüne (örneğin bu sürüme) "
+"yükseltme yapmalı, yeni bir boş veri tabanı oluşturmalı ve Gramps XML'i bu "
+"sürüme aktarmalısınız. Lütfen şu adrese bakın: "
 "%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
@@ -25502,7 +25497,7 @@ msgstr "VCARD içe aktarma raporu: %s hata algılandı\n"
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
 msgid "Token >%(token)s< unknown. line skipped: %(line)s"
-msgstr ""
+msgstr "Token >%(token)s< bilinmiyor. %(line)s satır atlandı."
 
 #: ../gramps/plugins/importer/importvcard.py:335
 msgid ""
@@ -25740,9 +25735,9 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"Açılan dosya, içe aktardığınız Aile Ağacı'nın ortam yolu ile çakışan %s "
-"ortam yoluna sahip. Orijinal ortam yolu korunmuştur. Dosyaları doğru bir "
-"dizine kopyalayın veya Tercihler'deki ortam yolunu değiştirin."
+"Açılan dosya, içe aktardığınız Soyağacı'nın ortam yolu ile çakışan %s ortam "
+"yoluna sahip. Orijinal ortam yolu korunmuştur. Dosyaları doğru bir dizine "
+"kopyalayın veya Tercihler'deki ortam yolunu değiştirin."
 
 #: ../gramps/plugins/importer/importxml.py:1018
 msgid ""
@@ -25844,7 +25839,7 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"Aile Ağacı gruplarınızın adı \"%(key)s\" ile birlikte \"%(parent)s\", bu "
+"Soyağacı gruplarınızın adı \"%(key)s\" ile birlikte \"%(parent)s\", bu "
 "gruplandırmayı \"%(value)s\" olarak değiştirmedi."
 
 #: ../gramps/plugins/importer/importxml.py:1759
@@ -30016,7 +30011,7 @@ msgstr "Düzenle..."
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
 msgid "Forward"
-msgstr "Sonraki"
+msgstr "İleri"
 
 #: ../gramps/plugins/lib/libpersonview.py:454
 msgid "_Delete Person"
@@ -32243,7 +32238,7 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "%(person_name)s için Altsoy Raporu"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:636
-#, fuzzy, python-format
+#, python-format
 msgid "Ref: %(number)s. %(name)s"
 msgstr "Ref: %(number)s. %(name)s"
 
@@ -32298,6 +32293,8 @@ msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
+"Bir çocuğun altsoyu sayısını belirtmek için çocuk listesinde sayının önüne "
+"bir artı işareti ('+') eklenip eklenmeyeceği."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1155
 msgid "Include path to start-person"
@@ -33138,11 +33135,11 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
-"Aile Ağacınız çapraz tablo yineleme tutamaçları içeriyor.\n"
-" Bu kötüdür ve Aile Ağacınızın yedeğini alarak ve bu yedeği\n"
-"boş bir soy ağacında içe aktararak düzeltilebilir. Kontrolün\n"
-"geri kalanı atlanır, Kontrol Et ve Onar aracı bu yeni Aile\n"
-"Ağacında yeniden çalıştırılmalıdır."
+"Soyağacınız çapraz tablo yineleme kulpları içeriyor.\n"
+" Bu kötüdür ve Soyağacınızın yedeğini alarak ve bu yedeği\n"
+"boş bir soyağacında içe aktararak düzeltilebilir. Kontrolün\n"
+"geri kalanı atlanır, Kontrol Et ve Onar aracı bu yeni\n"
+"Soyağacında yeniden çalıştırılmalıdır."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
@@ -33981,7 +33978,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:607
 msgid "Convert paths from absolute to r_elative"
-msgstr "Yolları mutlaktan _göreceliye dönüştürün"
+msgstr "Yolları mutlaktan _göreliye dönüştürün"
 
 #: ../gramps/plugins/tool/mediamanager.py:608
 msgid ""
@@ -34187,8 +34184,8 @@ msgid ""
 "Run this tool several times to correct names that have multiple information "
 "that can be extracted."
 msgstr ""
-"Aşağıda, Gramps'ın Aile Ağacından çıkarabileceği takma adlar, sanlar, "
-"önekler ve bileşik soyadların bir listesi bulunmaktadır.\n"
+"Aşağıda, Gramps'ın Soyağacından çıkarabileceği takma adlar, sanlar, önekler "
+"ve bileşik soyadların bir listesi bulunmaktadır.\n"
 "Değişiklikleri kabul ederseniz, Gramps seçilen girdileri değiştirecektir.\n"
 "\n"
 "Bileşik soyadlar [önek, soyad, bağlaç] listeleri olarak gösterilir.\n"
@@ -34349,7 +34346,7 @@ msgstr "Başında veya sonunda boşluk bulunan olası alanları aramak"
 #: ../gramps/plugins/tool/removespaces.py:135
 #: ../gramps/plugins/tool/removespaces.py:185
 msgid "handle"
-msgstr ""
+msgstr "işlemek"
 
 #: ../gramps/plugins/tool/removespaces.py:140
 msgid "firstname"
@@ -34458,7 +34455,7 @@ msgid ""
 "List next ID available\n"
 "(maynot be continuous)."
 msgstr ""
-"Kullanılabilir sonraki ID'yi listele\n"
+"Kullanılabilir sonraki KNo'yu listele\n"
 "(sürekli olmayabilir)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1424
@@ -34709,7 +34706,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:84
 msgid "Check and Repair Database"
-msgstr "Veri tabanını Kontrol ve Tamir Et"
+msgstr "Veri tabanını Kontrol ve Onar"
 
 #: ../gramps/plugins/tool/tools.gpr.py:85
 msgid ""
@@ -36505,16 +36502,16 @@ msgstr "Gruplandırılmış Kişiler"
 #: ../gramps/plugins/view/view.gpr.py:189
 msgid "The view showing all people in the Family Tree grouped per family name"
 msgstr ""
-"Aile Ağacındaki tüm kişileri aile adına göre gruplandırılmış olarak gösteren "
+"Soyağacındaki tüm kişileri aile adına göre gruplandırılmış olarak gösteren "
 "görünüm"
 
 #: ../gramps/plugins/view/view.gpr.py:206
 msgid "The view showing all people in the Family Tree in a flat list"
-msgstr "Aile Ağacındaki tüm kişileri düz bir listede gösteren görünüm"
+msgstr "Soyağacındaki tüm kişileri düz bir listede gösteren görünüm"
 
 #: ../gramps/plugins/view/view.gpr.py:222
 msgid "The view showing all the places of the Family Tree"
-msgstr "Aile Ağacının tüm yerlerini gösteren görünüm"
+msgstr "Soyağacının tüm yerlerini gösteren görünüm"
 
 #: ../gramps/plugins/view/view.gpr.py:236
 msgid "Place Tree"
@@ -36717,11 +36714,11 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
-"Bu sayfa, bu Aile Ağacı/Anlatı web sitesinin kullanıcısı/yaratıcısının "
-"sizinle aileleriyle ilgili birkaç dosya paylaşması içindir.  Aşağıda "
-"listelenen herhangi bir dosya varsa, üzerlerine tıklamak onları indirmenize "
-"izin verecektir. İndirme sayfası ve dosyalar, bu web sayfalarının geri "
-"kalanıyla aynı telif hakkına sahiptir."
+"Bu sayfa, bu Soyağacı/Anlatı web sitesinin kullanıcısı/yaratıcısının sizinle "
+"aileleriyle ilgili birkaç dosya paylaşması içindir.  Aşağıda listelenen "
+"herhangi bir dosya varsa, üzerlerine tıklamak onları indirmenize izin "
+"verecektir. İndirme sayfası ve dosyalar, bu web sayfalarının geri kalanıyla "
+"aynı telif hakkına sahiptir."
 
 #: ../gramps/plugins/webreport/download.py:126
 msgid "File Name"
@@ -36945,7 +36942,7 @@ msgstr "Web dosyaları için hedef dizin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
 msgid "My Family Tree"
-msgstr "Aile Ağacım"
+msgstr "Soyağacım"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1960
 msgid "Website title"
@@ -37104,7 +37101,7 @@ msgid ""
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
-"Anlatı ağının birden çok dilde görüntülenip görüntülenmeyeceğini.\n"
+"Anlatı web sitesinin birden çok dilde görüntülenip görüntülenmeyeceğini.\n"
 "Sonraki alanda tanımlanan varsayılan dillere yeni diller eklemek için çeviri "
 "sekmesine bakın."
 
@@ -37343,7 +37340,7 @@ msgstr "İndirme açıklaması"
 #: ../gramps/plugins/webreport/narrativeweb.py:2308
 #, python-format
 msgid "Family Tree #%c"
-msgstr "Aile Ağacı #%c"
+msgstr "Soyağacı #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2309
 msgid "Give a description for this file."
@@ -37488,9 +37485,8 @@ msgid "Place Map Options"
 msgstr "Yer Harita Seçenekleri"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2425
-#, fuzzy
 msgid "Stamen Map"
-msgstr "Stamen Map"
+msgstr "Stamen Haritası"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2426
 msgid "Google"
@@ -37538,7 +37534,6 @@ msgid "Family Links"
 msgstr "Aile İlişimleri"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2457
-#, fuzzy
 msgid "Drop"
 msgstr "Drop"
 
@@ -37974,7 +37969,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
 msgid "NarrativeWeb Home"
-msgstr "NarrativeWeb Ana Sayfası"
+msgstr "AnlatıWeb Ana Sayfası"
 
 #: ../gramps/plugins/webreport/webcal.py:336
 #: ../gramps/plugins/webreport/webcal.py:1030
