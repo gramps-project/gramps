@@ -42,8 +42,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 -->
 
-  <include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
   <distutils id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
@@ -72,9 +72,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
   <meson id="json-glib" mesonargs="-Dgtk_doc=disabled -Dman=false -Dtests=false">
-    <branch module="json-glib/1.6/json-glib-1.6.2.tar.xz"
-            version="1.6.2" repo="ftp.gnome.org"
-            hash="sha256:a33d66c6d038bda46b910c6c6d59c4e15db014e363dc997a0414c2e07d134f24"/>
+    <branch module="json-glib/1.6/json-glib-1.6.6.tar.xz"
+            version="1.6.6" repo="ftp.gnome.org"
+            hash="sha256:96ec98be7a91f6dde33636720e3da2ff6ecbb90e76ccaa49497f31a6855a490e"/>
     <dependencies>
       <dep package="gobject-introspection"/>
     </dependencies>
@@ -101,18 +101,19 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <cmake id="exiv2" cmakeargs="-DEXIV2_ENABLE_PNG=ON">
-    <branch module="exiv2-0.27.3-Source.tar.gz" repo="exiv2.org"
-            checkoutdir="exiv2-0.27.3-Source" version="0.27.3"
-            hash="sha256:a79f5613812aa21755d578a297874fb59a85101e793edc64ec2c6bd994e3e778"/>
+    <branch module="exiv2-0.27.4-Source.tar.gz" repo="exiv2.org"
+            checkoutdir="exiv2-0.27.4-Source" version="0.27.4"
+            hash="sha256:84366dba7c162af9a7603bcd6c16f40fe0e9af294ba2fd2f66ffffb9fbec904e"/>
   </cmake>
 
   <meson id="gexiv2" mesonargs="-Dvapi=false">
-    <branch module="gexiv2/0.12/gexiv2-0.12.2.tar.xz"
-            repo="ftp.gnome.org" version="0.12.2"
-            hash="sha256:2322b552aca330eef79724a699c51a302345d5e074738578b398b7f2ff97944c">
+    <branch module="gexiv2/0.14/gexiv2-0.14.0.tar.xz"
+            repo="ftp.gnome.org" version="0.14.0"
+            hash="sha256:e58279a6ff20b6f64fa499615da5e9b57cf65ba7850b72fafdf17221a9d6d69e">
     </branch>
     <dependencies>
       <dep package="exiv2"/>
+      <dep package="pygobject3"/>
     </dependencies>
   </meson>
 https://files.pythonhosted.org/packages/
@@ -183,7 +184,7 @@ https://files.pythonhosted.org/packages/
     <branch repo='pymodules' version="0.5.1"
             module="e6/01/a28b0160f82ca5e946e315251c797f07c74e5c5a53f2a9e706eebc680191/Python-fontconfig-0.5.1.tar.gz"
             hash="sha256:b7cfe366242f83b8cd7175b7d4dd95d19f42d619c58a51914f72b1e741739994">
-      <patch file="python-fontconfig-curexc.patch" strip="1"/>
+      <patch file="pyfontconfig-curexc.patch" strip="1"/>
     </branch>
     <dependencies>
       <dep package="python3"/>
