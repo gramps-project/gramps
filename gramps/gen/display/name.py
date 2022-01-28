@@ -999,6 +999,8 @@ class NameDisplay:
         1. if group name is defined, use that
         2. if group name is defined for the primary surname, use that
         3. use primary surname itself otherwise
+        4. if no primary surname, do we have a ma/patronymic surname ?
+           in this case, group name will be the ma/patronymic name.
 
         :param pn: raw unserialized data of name
         :type pn: tuple
@@ -1007,8 +1009,25 @@ class NameDisplay:
         """
         if pn[_GROUP]:
             return pn[_GROUP]
-        return db.get_name_group_mapping(_raw_primary_surname_only(
-                                                    pn[_SURNAME_LIST]))
+        name = pn[_GROUP]
+        if not name:
+            # if we have no primary surname, perhaps we have a
+            # patronymic/matronynic name ?
+            srnme = pn[_ORIGINPATRO]
+            surname = []
+            for _surname in srnme:
+                if (_surname[_TYPE_IN_LIST][0] == _ORIGINPATRO
+                        or _surname[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+                    # Yes, we have one.
+                    surname = [_surname]
+            # name1 is the ma/patronymic name.
+            name1 = _raw_patro_surname_only(surname)
+            if name1 and len(srnme) == 1:
+                name = db.get_name_group_mapping(name1)
+        if not name:
+            name = db.get_name_group_mapping(_raw_primary_surname_only(
+                                                     pn[_SURNAME_LIST]))
+        return name
 
     def _make_fn(self, format_str, d, args):
         """
