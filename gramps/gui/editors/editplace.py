@@ -186,14 +186,40 @@ class EditPlace(EditPrimary):
             self.db.readonly)
 
     def set_latlongitude(self, value):
+        """
+        This method is useful for directly copying the coordinates
+        of openstreetmap, googlemaps, and perhaps other if they
+        provide coordinates like it is define in conv_lat_lon
+        (see gramps/gen/utils/place.py)
+
+        To copy the coordinates:
+
+        - openstreetmap:
+         1 - choose the place where you want to save the coordinates.
+         2 - right click on this place
+         3 - select "show address"
+         4 - On the left side of the map, copy the coordinates of
+             "Result from internal"
+         5 - In the latlon field of the edit place window of gramps,
+             type <CTRL> V
+
+        - googlemap:
+         1 - choose the place where you want to save the coordinates.
+         2 - right click on this place
+         3 - select the coordinates at the top of the popup window.
+             They are automaticaly copied.
+         4 - In the latlon field of the edit place window of gramps,
+             type <CTRL> V
+
+        """
         try:
-            # Bug 12349
+            # Bug 12349, 12374
             parts = value.split(', ')
             if len(parts) == 2:
-                longitude = parts[0].strip().replace(',', '.')
-                latitude = parts[1].strip().replace(',', '.')
+                latitude = parts[0].strip().replace(',', '.')
+                longitude = parts[1].strip().replace(',', '.')
             else:
-                longitude, latitude = value.split(',')
+                latitude, longitude = value.split(',')
 
             self.longitude.set_text(longitude)
             self.latitude.set_text(latitude)
