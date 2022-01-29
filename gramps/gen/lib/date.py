@@ -77,14 +77,14 @@ class Span:
         self.precision = 2
         self.negative = False
         if self.valid:
-            if self.date1.calendar != Date.CAL_GREGORIAN:
-                self.date1 = self.date1.to_calendar("gregorian")
-            if self.date2.calendar != Date.CAL_GREGORIAN:
-                self.date2 = self.date2.to_calendar("gregorian")
             if self.date1.sortval < self.date2.sortval:
                 self.date1 = date2
                 self.date2 = date1
                 self.negative = True
+            if self.date1.calendar != Date.CAL_GREGORIAN:
+                self.date1 = self.date1.to_calendar("gregorian")
+            if self.date2.calendar != Date.CAL_GREGORIAN:
+                self.date2 = self.date2.to_calendar("gregorian")
             if self.date1.get_modifier() == Date.MOD_NONE:
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     val = self.date1.sortval - self.date2.sortval

@@ -38,7 +38,7 @@ from ...datehandler import get_date_formats, set_format
 from ...datehandler import parser as _dp
 from ...datehandler import displayer as _dd
 from ...datehandler._datedisplay import DateDisplayEn
-from ...lib.date import Date, DateError, Today, calendar_has_fixed_newyear
+from ...lib.date import Date, DateError, Today, calendar_has_fixed_newyear, Span
 
 date_tests = {}
 
@@ -431,6 +431,36 @@ class ArithmeticDateTest(BaseDateTest):
             val2 = eval(exp2)
             self.assertEqual(val1, val2,
                         "'%s' should be '%s' but was '%s'" % (exp1, val2, val1))
+
+#-------------------------------------------------------------------------
+#
+# SpanTest
+#
+#-------------------------------------------------------------------------
+class SpanTest(BaseDateTest):
+    """
+    Test spans.
+    """
+    tests = [((2000, 1, 31), (2000, 1, 1), 30),
+             ((1799, 11, 19), (8, 2, 18, Date.CAL_FRENCH), 10),
+             ((8, 2, 18, Date.CAL_FRENCH), (1799, 11, 4), 5),
+             ((8, 2, 18, Date.CAL_FRENCH), (3, 2, 9, Date.CAL_FRENCH), 1836)]
+
+    def test_evaluate(self):
+        for value1, value2, duration in self.tests:
+            date1 = self._get_date(value1)
+            date2 = self._get_date(value2)
+            span1 = Span(date1, date2)
+            self.assertEqual(int(span1), duration)
+            span2 = Span(date2, date1)
+            self.assertEqual(int(span2), -duration)
+
+    def _get_date(self, value):
+        date = Date()
+        if len(value) == 4:
+            date.set_calendar(value[3])
+        date.set_yr_mon_day(value[0], value[1], value[2])
+        return date
 
 #-------------------------------------------------------------------------
 #
