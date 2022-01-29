@@ -8,14 +8,14 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-11 22:31+0200\n"
-"PO-Revision-Date: 2021-11-03 19:40+0100\n"
+"PO-Revision-Date: 2022-01-29 13:19+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -3452,7 +3452,7 @@ msgstr "primär"
 
 #: ../gramps/gen/display/name.py:623 ../gramps/gen/display/name.py:719
 msgid "primary[pre]"
-msgstr "primär[pri]"
+msgstr "primär[Prä]"
 
 #: ../gramps/gen/display/name.py:626 ../gramps/gen/display/name.py:721
 msgid "primary[sur]"
@@ -3460,7 +3460,7 @@ msgstr "primär[Nach]"
 
 #: ../gramps/gen/display/name.py:629 ../gramps/gen/display/name.py:723
 msgid "primary[con]"
-msgstr "primär[übl]"
+msgstr "primär[Verb]"
 
 #: ../gramps/gen/display/name.py:631 ../gramps/gen/display/name.py:725
 msgid "patronymic"
@@ -3468,7 +3468,7 @@ msgstr "Patronymikon"
 
 #: ../gramps/gen/display/name.py:633 ../gramps/gen/display/name.py:727
 msgid "patronymic[pre]"
-msgstr "Patronymikon[pri]"
+msgstr "Patronymikon[Prä]"
 
 #: ../gramps/gen/display/name.py:635 ../gramps/gen/display/name.py:729
 msgid "patronymic[sur]"
@@ -3476,11 +3476,11 @@ msgstr "Patronymikon[Nach]"
 
 #: ../gramps/gen/display/name.py:637 ../gramps/gen/display/name.py:731
 msgid "patronymic[con]"
-msgstr "Patronymikon[übl]"
+msgstr "Patronymikon[Verb]"
 
 #: ../gramps/gen/display/name.py:639 ../gramps/gen/display/name.py:733
 msgid "notpatronymic"
-msgstr "Kein Patronymikon"
+msgstr "Nichtpatronymisch "
 
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
 msgid "Remaining names|rest"
@@ -3494,7 +3494,7 @@ msgstr "Präfix"
 
 #: ../gramps/gen/display/name.py:648 ../gramps/gen/display/name.py:739
 msgid "rawsurnames"
-msgstr "unbearbeitete Nachnamen"
+msgstr "OriginalNachnamen"
 
 #: ../gramps/gen/display/name.py:650 ../gramps/gen/display/name.py:741
 msgid "nickname"
