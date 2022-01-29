@@ -98,10 +98,10 @@ class BaseTest(unittest.TestCase):
         filter_.set_invert(invert)
         stime = perf_counter()
         results = filter_.apply(self.db)
-        if __debug__:
-            frame = inspect.currentframe()
-            rulename = frame.f_back.f_code.co_name
-            print("%s: %.2f\n" % (rulename, perf_counter() - stime))
+        # if __debug__:
+            # frame = inspect.currentframe()
+            # rulename = frame.f_back.f_code.co_name
+            # print("%s: %.2f\n" % (rulename, perf_counter() - stime))
         return set(results)
 
     def test_Complex_1(self):

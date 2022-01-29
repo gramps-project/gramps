@@ -132,7 +132,7 @@ class DbTestClassBase(object):
         self._log_sig("note-delete", args)
 
     def _log_sig(self, sig, args):
-        print("('%s', %s)," % (sig, args))
+        # print("('%s', %s)," % (sig, args))
         self.sigs.append((sig, args[0]))
 
     def _cm_pers_add(self, *args):
