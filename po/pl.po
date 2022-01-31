@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-07 21:13+0100\n"
-"PO-Revision-Date: 2022-01-09 20:50+0100\n"
+"PO-Revision-Date: 2022-01-31 13:05+0100\n"
 "Last-Translator: Krystian Safjan <ksafjan@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
 "Language: pl_PL\n"
@@ -8129,7 +8129,7 @@ msgstr "Wysłany"
 
 #: ../gramps/gen/lib/ldsord.py:116
 msgid "Uncleared"
-msgstr "Nieoczyszczony"
+msgstr "Niepewny"
 
 #: ../gramps/gen/lib/ldsord.py:170 ../gramps/gui/editors/editldsord.py:314
 #: ../gramps/gui/editors/editldsord.py:442
@@ -12764,7 +12764,7 @@ msgstr ""
 #: ../gramps/gui/dbman.py:808 ../gramps/gui/dbman.py:834
 #, python-format
 msgid "Converting the '%s' database"
-msgstr "Konvertowanie bazy '%s'"
+msgstr "Konwertowanie bazy '%s'"
 
 #: ../gramps/gui/dbman.py:809
 msgid "An attempt to export the database failed."
@@ -13602,7 +13602,7 @@ msgstr "Miejsce, które dodajesz już zawiera się w tym miejscu"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
-msgstr "Utwórz i dodaj nowy repozytorium"
+msgstr "Utwórz i dodaj nowe repozytorium"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Remove the existing repository"
@@ -14470,7 +14470,7 @@ msgstr "Nowa Osoba"
 
 #: ../gramps/gui/editors/editperson.py:242
 msgid "manual|Editing_information_about_people"
-msgstr "Edytowanie informacji o osobach"
+msgstr "Edytowanie_informacji_o_osobach"
 
 #: ../gramps/gui/editors/editperson.py:600
 #: ../gramps/plugins/view/geofamily.py:479
@@ -14726,11 +14726,11 @@ msgstr "Nowe Repozytorium"
 
 #: ../gramps/gui/editors/editreporef.py:187
 msgid "Repo Reference Editor"
-msgstr "Edytor odwołań do repozytorium"
+msgstr "Edytor Odwołań do Repozytorium"
 
 #: ../gramps/gui/editors/editreporef.py:192
 msgid "Modify Repository"
-msgstr "Modyfikuj repozytorium"
+msgstr "Modyfikuj Repozytorium"
 
 #: ../gramps/gui/editors/editreporef.py:197
 msgid "Add Repository"
@@ -14818,7 +14818,7 @@ msgstr "Okno_wyboru_tagów"
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:127
 msgid "Tag selection"
-msgstr "Wybór taka"
+msgstr "Wybór tagu"
 
 #: ../gramps/gui/editors/editurl.py:47
 msgid "manual|Internet_Address_Editor"
@@ -18523,7 +18523,7 @@ msgstr "Błędy instalacji"
 
 #: ../gramps/gui/plug/_windows.py:1218
 msgid "The following addons had errors: "
-msgstr "Następujące dodatki wywołuje błędy: "
+msgstr "Następujące dodatki wywołują błędy: "
 
 #: ../gramps/gui/plug/_windows.py:1224 ../gramps/gui/plug/_windows.py:1232
 msgid "Done downloading and installing addons"
@@ -18832,7 +18832,7 @@ msgstr "Zamień imię żyjących osób"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:735
 msgid "Replace complete name of living people"
-msgstr "Zamień kompletna nazwę żyjących osób"
+msgstr "Zamień kompletną nazwę żyjących osób"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:736
 msgid "Do not include living people"
@@ -19907,14 +19907,14 @@ msgstr "Zmień priorytet taga"
 #: ../gramps/gui/views/tags.py:529
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Tag atrybut '%s'?"
+msgstr "Usunąć tag '%s'?"
 
 #: ../gramps/gui/views/tags.py:530
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Definicja taka będzie usunięta. Tag będzie też usunięty ze wszystkich "
+"Definicja taga będzie usunięta. Tag będzie też usunięty ze wszystkich "
 "obiektów w bazie."
 
 #: ../gramps/gui/views/tags.py:562
@@ -24522,7 +24522,7 @@ msgstr "Ilość osób w bazie danych:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:469
 msgid "Number of people of interest:"
-msgstr "Ilość osób (które nasz interesują) w bazie danych:"
+msgstr "Ilość osób (które nas interesują) w bazie danych:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:472
 msgid "Number of families in database:"
@@ -25045,7 +25045,7 @@ msgstr "Zamieszkanie"
 
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "residence place id"
-msgstr "ID miejsca śmierci"
+msgstr "ID miejsca zamieszkania"
 
 #: ../gramps/plugins/importer/importcsv.py:218
 #, fuzzy
@@ -30009,7 +30009,7 @@ msgstr "Początek"
 #: ../gramps/plugins/view/sourceview.py:226
 #: ../gramps/plugins/view/sourceview.py:278
 msgid "_Add..."
-msgstr "_Dodaj"
+msgstr "_Dodaj…"
 
 #: ../gramps/plugins/lib/libpersonview.py:226
 #: ../gramps/plugins/lib/libpersonview.py:303
@@ -30364,7 +30364,7 @@ msgstr "Import Pro-Gen"
 
 #: ../gramps/plugins/lib/libprogen.py:539
 msgid "Saving."
-msgstr "Zapisywanie"
+msgstr "Zapisywanie."
 
 #: ../gramps/plugins/lib/libprogen.py:929
 msgid "Pro-Gen Import"
@@ -30392,7 +30392,7 @@ msgstr "zobacz adres "
 
 #: ../gramps/plugins/lib/libprogen.py:1417
 msgid "see also address"
-msgstr "zobacz również adres "
+msgstr "zobacz również adres"
 
 #: ../gramps/plugins/lib/libprogen.py:1517
 msgid "Death cause"
