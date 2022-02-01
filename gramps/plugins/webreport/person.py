@@ -661,6 +661,60 @@ class PersonPages(BasePage):
                                 placetitle.replace("'", "\\'"), links)
         return tracelife
 
+    def __create_links_tracelife(self, links, person, placetitle,
+                                 latitude, longitude, ref,
+                                 event):
+        """
+        creates individual family events for a marker
+
+        @param: links      -- Used to add links in the popup html page
+        @param: person     -- family for this person
+        @param: placetitle -- The place title to add to the event list
+        @param: latitude   -- The latitude for this place
+        @param: longitude  -- The longitude for this place
+        @param: event      -- The event for which we are working
+        @param: ref        -- The back reference and role for the event
+        """
+        if not person:
+            return links
+        url_fct = self.report.build_url_fname_html
+        ppl_fct = self.r_db.get_person_from_handle
+        ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
+        ppl_lnk = ""
+        (bkref_class, bkref_hdle, role) = ref
+        if role == "Marriage" or role == "Divorce" or role == "Family":
+            url = url_fct(bkref_hdle,
+                          "fam", self.uplink)
+            fam_fct = self.r_db.get_family_from_handle
+            fam = fam_fct(bkref_hdle)
+            fam_name = self.report.get_family_name(fam)
+            ppl_lnk = ln_str % (url,
+                                fam.get_gramps_id(),
+                                fam_name)
+            if "<p>" in links:
+                links += ' + "<br>%s"' % ppl_lnk
+            else:
+                links = '"<p>%s"' % ppl_lnk
+        elif bkref_class == Person:  # and role == "Primary":
+            pers = ppl_fct(bkref_hdle)
+            url = url_fct(bkref_hdle, "ppl", self.uplink)
+            ppl_lnk = ln_str % (url,
+                                pers.get_gramps_id(),
+                                self.get_name(pers))
+            ppl_lnk = ln_str % (url,
+                                pers.get_gramps_id(),
+                                self.get_name(pers))
+            evt_type = self._(event.get_type().xml_str())
+            evt_date = self.rlocale.get_date(event.get_date_object())
+            url = url_fct(event.get_handle(), "evt", self.uplink)
+            evt_lnk = ln_str % (url, evt_date, evt_type)
+            evt_lnk += " (" + evt_date + ")"
+            if "<p>" in links:
+                links += ' + "<br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
+            else:
+                links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+        return links
+
     def __create_family_map(self, person, place_lat_long):
         """
         creates individual family map page
@@ -765,149 +819,54 @@ class PersonPages(BasePage):
             seq_ = 0
             old_place_title = ""
             links = "''"
-            ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
-            ppl_lnk = ""
             for index in range(0, number_markers):
                 (latitude, longitude, placetitle, handle,
                  event) = place_lat_long[index]
                 # Do we have several events for this place?
-                if placetitle == old_place_title:
-                    evthdle = event.get_handle()
-                    bkref_list = self.report.bkref_dict[Event][evthdle]
-                    url_fct = self.report.build_url_fname_html
-                    if bkref_list:
+                evthdle = event.get_handle()
+                bkref_list = self.report.bkref_dict[Event][evthdle]
+                if bkref_list:
+                    if placetitle == old_place_title:
                         for ref in bkref_list:
-                            (bkref_class, bkref_hdle, role) = ref
-                            if bkref_class == Family and role == "Primary":
-                                url = url_fct(bkref_hdle,
-                                              "fam", self.uplink)
-                                fam_fct = self.r_db.get_family_from_handle
-                                fam = fam_fct(bkref_hdle)
-                                fam_name = self.report.get_family_name(fam)
-                                ppl_lnk = ln_str % (url,
-                                                    fam.get_gramps_id(),
-                                                    fam_name)
-                            if bkref_class == Person and role == "Primary":
-                                url = url_fct(bkref_hdle,
-                                              "ppl", self.uplink)
-                                ppl_fct = self.r_db.get_person_from_handle
-                                pers = ppl_fct(bkref_hdle)
-                                ppl_lnk = ln_str % (url,
-                                                    pers.get_gramps_id(),
-                                                    self.get_name(pers))
-                    url = self.report.build_url_fname_html(event.get_handle(),
-                                                           "evt", self.uplink)
-                    evt_type = self._(event.get_type().xml_str())
-                    evt_date = self.rlocale.get_date(event.get_date_object())
-                    evt_lnk = ln_str % (url, evt_date, evt_type)
-                    evt_lnk += " (" + evt_date + ")"
-
-                    links += ' + "<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
-                    if index == number_markers - 1:
+                            links = self.__create_links_tracelife(
+                                        links, person, placetitle,
+                                        latitude, longitude, ref,
+                                        event)
+                        # break
+                    # continue
+                    elif old_place_title != "" and index != 0:
+                        (lat, lng, plcetitle, dummy_handle,
+                         dummy_event) = place_lat_long[index-1]
                         tracelife = self._create_family_tracelife(tracelife,
-                                                                  placetitle,
-                                                                  latitude,
-                                                                  longitude,
-                                                                  seq_,
-                                                                  links)
-                        break
-                    continue
-                elif old_place_title != "" and index != 0:
-                    (lat, lng, plcetitle, dummy_handle,
-                     dummy_event) = place_lat_long[index-1]
-                    tracelife = self._create_family_tracelife(tracelife,
-                                                              plcetitle,
+                                                              old_place_title,
                                                               lat,
                                                               lng,
                                                               seq_,
                                                               links)
-                    if old_place_title != placetitle:
                         old_place_title = placetitle
-                        evthdle = event.get_handle()
-                        bkref_list = self.report.bkref_dict[Event][evthdle]
-                        url_fct = self.report.build_url_fname_html
-                        if bkref_list:
-                            for ref in bkref_list:
-                                (bkref_class, bkref_hdle, role) = ref
-                                if bkref_class == Family and role == "Primary":
-                                    url = url_fct(bkref_hdle,
-                                                  "fam", self.uplink)
-                                    fam_fct = self.r_db.get_family_from_handle
-                                    fam = fam_fct(bkref_hdle)
-                                    fam_name = self.report.get_family_name(fam)
-                                    ppl_lnk = ln_str % (url,
-                                                        fam.get_gramps_id(),
-                                                        fam_name)
-                                if bkref_class == Person and role == "Primary":
-                                    url = url_fct(bkref_hdle,
-                                                  "ppl", self.uplink)
-                                    ppl_fct = self.r_db.get_person_from_handle
-                                    pers = ppl_fct(bkref_hdle)
-                                    ppl_lnk = ln_str % (url,
-                                                        pers.get_gramps_id(),
-                                                        self.get_name(pers))
-                        url = self.report.build_url_fname_html(event.handle,
-                                                               "evt",
-                                                               self.uplink)
-                        evt_type = self._(event.get_type().xml_str())
-                        date = self.rlocale.get_date(event.get_date_object())
-                        evt_lnk = ln_str % (url, date, evt_type)
-                        evt_lnk += " (" + date + ")"
-
-                        links = '"<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
-                elif index == number_markers-1:
-                    tracelife = self._create_family_tracelife(tracelife,
-                                                              placetitle,
-                                                              latitude,
-                                                              longitude,
-                                                              seq_,
-                                                              links)
-                else:
-                    evthdle = event.get_handle()
-                    bkref_list = self.report.bkref_dict[Event][evthdle]
-                    url_fct = self.report.build_url_fname_html
-                    if bkref_list:
+                        links = "''"
                         for ref in bkref_list:
                             (bkref_class, bkref_hdle, role) = ref
-                            if bkref_class == Family and role == "Primary":
-                                url = url_fct(bkref_hdle,
-                                              "fam", self.uplink)
-                                fam_fct = self.r_db.get_family_from_handle
-                                fam = fam_fct(bkref_hdle)
-                                fam_name = self.report.get_family_name(fam)
-                                ppl_lnk = ln_str % (url,
-                                                    fam.get_gramps_id(),
-                                                    fam_name)
-                            if bkref_class == Person and role == "Primary":
-                                url = url_fct(bkref_hdle,
-                                              "ppl", self.uplink)
-                                ppl_fct = self.r_db.get_person_from_handle
-                                pers = ppl_fct(bkref_hdle)
-                                ppl_lnk = ln_str % (url,
-                                                    pers.get_gramps_id(),
-                                                    self.get_name(pers))
-                        url = self.report.build_url_fname_html(event.handle,
-                                                               "evt",
-                                                               self.uplink)
-                        evt_type = self._(event.get_type().xml_str())
-                        date = self.rlocale.get_date(event.get_date_object())
-                        evt_lnk = ln_str % (url, evt_type, evt_type)
-                        evt_lnk += " (" + date + ")"
-                    if "<p>" in links:
-                        links += '"<br>%s"' % (ppl_lnk+self._(":") + evt_lnk)
+                            links = self.__create_links_tracelife(
+                                        links, person, placetitle,
+                                        latitude, longitude, ref,
+                                        event)
                     else:
-                        links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                        for ref in bkref_list:
+                            (bkref_class, bkref_hdle, role) = ref
+                            links = self.__create_links_tracelife(
+                                           links, person, placetitle,
+                                           latitude, longitude, ref,
+                                           event)
                     old_place_title = placetitle
                 seq_ += 1
+            tracelife = self._create_family_tracelife(tracelife,
+                                                  placetitle,
+                                                  latitude, longitude,
+                                                  seq_, links)
 
-        (lat, lng, plcetitle, dummy_handle,
-         dummy_event) = place_lat_long[number_markers-1]
-        tracelife = self._create_family_tracelife(tracelife,
-                                                  plcetitle,
-                                                  lat,
-                                                  lng,
-                                                  seq_,
-                                                  links)
+        # (lat, lng, plcetitle, dummy_handle,
+        #  dummy_event) = place_lat_long[number_markers-1]
         tracelife += "];"
         # begin MapDetail division...
         with Html("div", class_="content", id="FamilyMapDetail") as mapdetail:
@@ -921,8 +880,8 @@ class PersonPages(BasePage):
 
             # page description
             msg = self._("This map page represents that person "
-                         "and any descendants with all of their event/ places. "
-                         "If you place your mouse over "
+                         "and any descendants with all of their event/places."
+                         " If you place your mouse over "
                          "the marker it will display the place name. "
                          "The markers and the Reference "
                          "list are sorted in date order (if any?). "
