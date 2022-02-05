@@ -574,6 +574,7 @@ gramps/plugins/rel/rel_ru.py
 gramps/plugins/rel/rel_sk.py
 gramps/plugins/rel/rel_sl.py
 gramps/plugins/rel/rel_sv.py
+gramps/plugins/rel/rel_tr.py
 gramps/plugins/rel/rel_uk.py
 #
 # plugins/sidebar directory

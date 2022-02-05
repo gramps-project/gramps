@@ -323,6 +323,22 @@ plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["sv", "SV", "sv_SE", "swedish", "Swedish", "sv_SE.UTF8",
                  "sv_SE@euro", "sv_SE.UTF8@euro", "svenska", "Svenska",
                  "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8", "Swedish_Sweden"]
+
+# tr
+plg = newplugin()
+plg.id = 'relcalc_tr'
+plg.name = _("Turkish Relationship Calculator")
+plg.description = _("Calculates relationship between people")
+plg.version = '1.0'
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = 'rel_tr.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["tr", "TR", "tr_TR", "türkçe", "Türkçe",
+                 "turkish", "Turkish", "tr_TR.utf8",
+                 "tr_TR.UTF8", "tr_TR.utf-8", "tr_TR.UTF-8"]
+
 # uk
 plg = newplugin()
 plg.id = 'relcalc_uk'
