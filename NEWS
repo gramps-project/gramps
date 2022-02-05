@@ -1,3 +1,42 @@
+2022-02-05
+Version 5.1.5
+* Update translations: de, pl, sv, zh_CN.
+* Remove Travis CI configuration.
+* Fix badges in README file.
+* Update copyright date.
+* Strange behavior for the scrollbar in the bottombar. Fixes #12438.
+* Fix place object element order in DTD and RNG schemas. Element placeobj
+  content does not follow the DTD and RNG, expecting (ptitle? , pname+).
+  Fixes #12500.
+* Solve InterpolationSyntaxError if "%" in a string. The grampletpane module
+  saves data in a config file for all the gramplets added in the dashboard.  The
+  python configparser module doesn't like if we have a "%" character in a string.
+  Fixes #12423.
+* '<' not supported between 2 instances of IndexMark. Fixes #12467.
+* Remove debug statements in unit tests.
+* Fix negative Span when dates are not Gregorian. Fixes #12525.
+* Incorrect grouping if no ma/patronymic surname.
+* Group As override is ignored for ma/patronymic surnames. Fixes #12395.
+  See: https://gramps.discourse.group/t/patronymic-and-matronymic-name/1684/5
+* Add comments for the lat-lon field of editplace.
+* Place editor, lat and long text are swapped. Fixes #12374.
+* Fix Statusbar progress being shown before use. Fixes #12373.
+* Fix exception when removing a group name in Sqlite db when group name is
+  already missing.  Fixes #12367.
+* Fix error when trying to close name editor during long name group mapping
+  view rebuild.  Fixes #12328.
+* OsmGpsMap-CRITICAL: Map source setup called twice Fixes #12352.
+* Fix probably alive function unit test.
+* Use GitHub Actions to run continuous integration checks.
+* Mac:
+  * Update Exiv2, PYExiv2, and json-glib.
+  * Repackage Gramps.app to work with macOS 12.
+  * Add entitlements path to bundle-file so Gramps.app is signed with it.
+  * Add python-fontconfig to the macOS build.  Needed to enable using
+    genealogical symbols.
+  * Inlude fontconfig's etc/fonts in macOS app bundle.  Graphviz now uses
+    fontconfig to find its fonts.  Fixes #12370.
+
 2021-07-26
 Version 5.1.4
 * Update translations: cs, de, es, fi, fr, hu, nl, pt_BR, ru, sv, zh_CN.

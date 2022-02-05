@@ -1,187 +1,48 @@
-2021-07-09  Tian Shixiong <tiansworld@fedoraproject.org>
+2022-01-31  Krystian Safjan <ksafjan@gmail.com>
 
-    * po/zh_CN.po: Update and fix Simplified Chinese translation
+	* po/pl.po: Fixes suggested after review by @stojex
 
-2021-07-16  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2022-01-07  Krystian Safjan <ksafjan@gmail.com>
 
-    * po/de.po: fixed small German translation error for item also fixed
-    in Weblate GUI for master
+	* po/pl.po: Update Polish translation - Consistent usage of "Tag": was "Tag" or "Atrybut", note that   "Attribute" (atrybut) is something different than tag - "Magazyn" (repository) renamed to "Repozytorium" - other fixes and addons
 
-2021-06-28  Tian Shixiong <tiansworld@fedoraproject.org>
+2022-01-29  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-    * po/zh_CN.po: Update Simplified Chinese translation
+	* po/de.po: get German translation with manual in sync (Display name
+	editor)
 
-2021-07-05  pehlm <par.ekholm@pekholm.org>
+2022-01-25  pehlm <github1@m.pekholm.org>
 
-    * po/sv.po: One update Swedish translation
+	* po/sv.po: Minor update of Swedish translation
 
-2021-06-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2022-01-04  Tian Shixiong <tiansworld@fedoraproject.org>
 
-    * po/de.po: Fixed different German translations for "What's next"
-    also fixed in master (Weblate)
+	* po/zh_CN.po: Minor update to zh_CN translation
 
-2021-06-22  Matti Niemelä <matti.u.niemela@gmail.com>
+2021-11-03  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-    * po/fi.po: Fix translation in Finnish
+	* po/de.po: small German translation fixes
 
-2021-06-17  Tian Shixiong <tiansworld@fedoraproject.org>
+2021-11-01  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-    * po/zh_CN.po: Correct and improve Simplified Chinese translation.
-    Correct some terribly wrong and low quality translation, even machine
-    translation.  Improve some existing translation for better user experience
-    as a software, use more written language.
+	* po/de.po: Fixed German translation error of "Character set
+	encoding"
 
-2021-05-31  Tian Shixiong <tiansworld@fedoraproject.org>
+2021-10-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-    * po/zh_CN.po: Improve and correct Simplified Chinese translation
+	* po/de.po: Fixed German translation error of "Graph generations"
 
-2021-05-27  Tian Shixiong <tiansworld@fedoraproject.org>
+2021-09-19  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-    * po/zh_CN.po: Improve and correct the Simplified Chinese
-    translation
+	* po/de.po: Fixed German translation error of "filter person"
 
-2021-05-21  Tian Shixiong <tiansworld@fedoraproject.org>
+2021-08-30  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-    * po/zh_CN.po: Update and improve Simplified Chinese translation
+	* po/de.po: fixed error in German translation found during manual
+	translation also fixed in master
 
-2021-05-17  Tian Shixiong <tiansworld@fedoraproject.org>
+2021-08-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-    * po/zh_CN.po: Update Simplified Chinese translation
+	* fixed German translation of 'Descendant families of' already done in
+	trunk Weblate
 
-2020-09-26  Jan Sparreboom <jan@sparreboom.net>
-
-    * po/nl.po: Update Dutch translation
-
-2021-05-07  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Correct and Update Simplified Chinese translation
-
-2020-10-13  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update Simplified Chinese translation
-
-2021-05-14  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Corrected some German translation errors found during
-    handbook revision
-
-2021-04-28  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: corrected German translation of "confidence"
-
-2021-04-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: German corrected translation of 'attribute'
-
-2021-04-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Fixed translation error of "display name editor" into
-    German
-
-2021-04-24  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: some translation fixes for German
-
-2021-04-24  pehlm <par.ekholm@pekholm.org>
-
-    * po/sv.po: Changed immigration too, Swedish
-
-2021-04-24  pehlm <par.ekholm@pekholm.org>
-
-    * po/sv.po: Correction of Swedish translation
-
-2021-04-22  Helder Geovane Gomes de Lima <he7d3r@gmail.com>
-
-    * po/pt_BR.po: Update Portuguese translation (pt_BR) (#1199)
-    This pull request is an updated version of the patch I've provided
-    at <https://gramps-project.org/bugs/view.php?id=10547> in 2018, now
-    based on branch 5.1
-
-2021-04-19  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Corrected translation of markup in German translation
-
-2021-04-17  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Fixed translation of tags in German translation
-
-2021-04-14  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: German translation for type unified
-
-2021-04-13  romjerome <romjerome@yahoo.fr>
-
-    * po/fr.po: 11656: typo, spelling correction contribution by Philippe
-
-2021-04-13  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Fixed German translation of number for places
-
-2021-03-21  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Some small fixes in German translation
-
-2021-03-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Update German translation for csv import/export
-
-2021-03-01  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: small fix in German translation
-
-2021-02-12  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: additional small German translation fixes
-
-2021-02-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Small fixes German translation
-
-2021-02-06  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: fix wrong translation of source text in German
-    translation
-
-2021-02-06  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: fixed small error in German translation
-
-2021-01-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: small fixes German translation
-
-2020-10-15  vantu5z <vantu5z@mail.ru>
-
-    * po/ru.po: Update Russian translation
-
-2020-09-25  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-    * po/cs.po: Update Czech translation - typo fixes
-
-2020-09-06  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update Simplified Chinese translation
-
-2020-08-16  Jan Sparreboom <jan@sparreboom.net>
-
-    * po/nl.po: Update Dutch translation
-
-2020-04-21  Lajos Nemeséri <nemeseril@gmail.com>
-
-    * po/hu.po: Revised and updated hu translation
-
-2020-09-13  Juan Saavedra <jcsaaver@gmail.com>
-
-    * po/es.po: Update Spanish translation
-
-2020-08-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: German translation two small corrections
-
-2020-08-21  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-    * po/cs.po: Update Czech translation
-
-2020-08-12  pehlm <par.ekholm@pekholm.org>
-
-    * Update Swedish translation

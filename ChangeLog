@@ -1,458 +1,192 @@
+2022-02-05  Nick Hall <nick-h@gramps-project.org>
+
+	* .travis.yml: Remove Travis CI configuration
+
+2022-02-05  Nick Hall <nick-h@gramps-project.org>
+
+	* README.md: Fix badges in README file
+
+2022-02-05  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/const.py: Update copyright date
+
+2021-09-18  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/gui/views/pageview.py, gramps/gui/widgets/grampletbar.py: 
+	Strange behavior for the scrollbar in the bottombar Fixes #012438
+
+2022-02-04  romjerome <romjerome@yahoo.fr>
+
+	* data/grampsxml.dtd, data/grampsxml.rng: Fix place object element
+	order in DTD and RNG schemas Element placeobj content does not follow the DTD and RNG, expecting
+	(ptitle? , pname+) Fixes #12500
+
+2022-01-31  Krystian Safjan <ksafjan@gmail.com>
+
+	* po/pl.po: Fixes suggested after review by @stojex
+
+2022-01-07  Krystian Safjan <ksafjan@gmail.com>
+
+	* po/pl.po: Update Polish translation - Consistent usage of "Tag": was "Tag" or "Atrybut", note that   "Attribute" (atrybut) is something different than tag - "Magazyn" (repository) renamed to "Repozytorium" - other fixes and addons
+
+2021-09-04  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/gui/widgets/grampletpane.py: Solve InterpolationSyntaxError
+	if "%" in a string The grampletpane module save data in a config file for all the
+	gramplets added in the dashboard.  The python configparser module
+	doesn't like if we have a "%" character in a string.  Fixes #012423
+
+2021-11-06  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/plugins/drawreport/calendarreport.py: '<' not supported
+	between 2 instances of IndexMark Fixes #012467
+
+2022-01-29  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/filters/rules/test/person_rules_test.py,
+	gramps/plugins/test/db_undo_and_signals_test.py: Remove debug
+	sattements in unit tests
+
+2022-01-29  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/lib/date.py, gramps/gen/lib/test/date_test.py: Fix
+	negative Span when dates are not Gregorian Fixes #12525
+
+2022-01-29  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: get German translation with manual in sync (Display name
+	editor)
+
+2021-08-11  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/gen/display/name.py: Incorrect grouping if no ma/patronymic
+	surname
+
+2021-08-07  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/gen/display/name.py: Group As override is ignored for
+	ma/patronymic surnames Fixes #12395 discourse:
+
+	https://gramps.discourse.group/t/patronymic-and-matronymic-name/1684/5
+
+2021-07-29  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/gui/editors/editplace.py: Add comments for the lat-lon
+	field of editplace
+
+2021-07-28  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/gui/editors/editplace.py,
+	gramps/gui/editors/editplaceref.py: Place editor, lat and long text
+	are swapped Fixes #012374
+
+2021-07-28  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/viewmanager.py: Fix Statusbar progress being shown
+	before use Fixes #12373
+
+2021-07-26  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/db/dbapi/dbapi.py: Fix exception when removing a
+	group name in Sqlite db when group name is already missing.  Fixes #12367
+
+2021-07-26  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/editors/editname.py: Fix error when trying to close
+	name editor during long name group mapping view rebuild.  Fixes #12328
+
+2021-07-19  SNoiraud <Serge.Noiraud@free.fr>
+
+	* gramps/plugins/lib/maps/geography.py,
+	gramps/plugins/lib/maps/osmgps.py, gramps/plugins/view/geoclose.py,
+	gramps/plugins/view/geofamclose.py: OsmGpsMap-CRITICAL: Map source
+	setup called twice Fixes #012352
+
+2021-08-15  Ross Gammon <rossgammon@debian.org>
+
+	* gramps/gen/filters/rules/test/person_rules_test.py: Fix probably
+	alive test The probably alive funtion was fixed just prior to the Gramps 5.1.4
+	release. It appears the relevant unit test was not updated to match.
+	The relevant commit:
+
+	https://github.com/gramps-project/gramps/commit/a685b96f700dcfc6b953413cb3adc8be61d87438
+
+2022-01-28  Nick Hall <nick-h@gramps-project.org>
+
+	* .github/workflows/gramps-ci.yml, setup.py: Use GitHub Actions to
+	run continuous integration checks
+
+2022-01-27  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules: Update Exiv2, PYExiv2, and json-glib.
+
+2021-08-15  Ross Gammon <rossgammon@debian.org>
+
+	* debian/changelog, debian/copyright,
+	debian/patches/fix-probably_alive_test.patch,
+	debian/patches/series, debian/watch: Update Debian folder for Gramps
+	5.1.4 release
+
+2022-01-25  pehlm <github1@m.pekholm.org>
+
+	* po/sv.po: Minor update of Swedish translation
+
+2022-01-04  Tian Shixiong <tiansworld@fedoraproject.org>
+
+	* po/zh_CN.po: Minor update to zh_CN translation
+
+2021-11-03  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: small German translation fixes
+
+2021-11-01  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Fixed German translation error of "Character set
+	encoding"
+
+2021-10-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Fixed German translation error of "Graph generations"
+
+2021-10-16  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist: Repackage Gramps.app to work with macOS 12.
+
+2021-10-16  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.bundle: [macOS]Add entitlements path to bundle-file so
+	Gramps.app is signed with it.
+
+2021-09-19  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: Fixed German translation error of "filter person"
+
+2021-08-30  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: fixed error in German translation found during manual
+	translation also fixed in master
+
+2021-08-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: fixed German translation of 'Descendant families of'
+	already done in trunk Weblate
+
+2021-08-10  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules, mac/patches/pyfontconfig-curexc.patch: Add
+	python-fontconfig to the macOS build.  Needed to enable using genealogical symbols.
+
+2021-07-29  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist, mac/gramps.bundle: Inlude fontconfig's etc/fonts
+	in macOS app bundle.  Graphviz now uses fontconfig to find its fonts.  Fixes #12370
+
+2021-07-26  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist, mac/gramps.bundle, mac/gramps.modules,
+	mac/gramps_launcher.py: Bundle release of Gramps 5.1.4.
+
 2021-07-26  Nick Hall <nick-h@gramps-project.org>
 
-    * gramps/gen/const.py: Update copyright date
+	* Bump to 5.1.5
 
-2021-07-23  SNoiraud <Serge.Noiraud@free.fr>
-
-    * gramps/gen/utils/alive.py: Probably alive incorrect if death
-    without date
-
-2021-07-10  SNoiraud <Serge.Noiraud@free.fr>
-
-    * gramps/gui/editors/editplace.py,
-    gramps/gui/editors/editplaceref.py: Place editor, copy and paste of
-    lat and long text no longer auto-populating latitude and longitude fields.
-    Fixes #12349
-
-2021-06-25  prculley <paulr2787@gmail.com>
-
-    * gramps/gui/viewmanager.py: Fix for crash when changing views if
-    part of toolbar is not shown because of a small screen when changing
-    views.  Fixes #12048
-
-2021-06-25  prculley <paulr2787@gmail.com>
-
-    * gramps/gui/views/pageview.py: Fix bottombar always showing after
-    restart, even when not wanted.  Fixes #12338
-
-2021-07-09  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update and fix Simplified Chinese translation
-
-2021-07-16  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: fixed small German translation error for item also fixed
-    in Weblate GUI for master
-
-2021-06-28  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update Simplified Chinese translation
-
-2021-07-05  pehlm <par.ekholm@pekholm.org>
-
-    * po/sv.po: One update Swedish translation
-
-2021-07-03  John Ralls <jralls@ceridwen.us>
-
-    * gramps/plugins/db/dbapi/dbapi.py: Better to use
-    locale.get_collation than locale.collation.
-
-2021-07-03  John Ralls <jralls@ceridwen.us>
-
-    * gramps/plugins/db/dbapi/dbapi.py: Wrap call to
-    dbapi.check_collection to prevent a forced API change.
-
-2021-07-01  John Ralls <jralls@ceridwen.us>
-
-    * mac/gramps.modules: Fix URL for berkeleydb patch.
-
-2021-07-01  John Ralls <jralls@ceridwen.us>
-
-    * gramps/plugins/db/dbapi/dbapi.py,
-    gramps/plugins/db/dbapi/sqlite.py: Always use filtered collation
-    names.  Store the Sqlite3 collations in the __collations array to
-    short-circuit re-creation.  Fixes #12343
-
-2021-06-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Fixed different German translations for "What's next"
-    also fixed in master (Weblate)
-
-2021-06-23  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * gramps/plugins/rel/rel_de.py: German relation calculator fixed
-    issue if more then 24 generations between the two person
-
-2021-06-22  Matti Niemelä <matti.u.niemela@gmail.com>
-
-    * po/fi.po: Fix translation in Finnish
-
-2021-06-17  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Correct and improve Simplified Chinese translation.
-    Correct some terribly wrong and low quality translation, even machine
-    translation.  Improve some existing translation for better user experience
-    as a software, use more written language.
-
-2021-05-31  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Improve and correct Simplified Chinese translation
-
-2021-05-27  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Improve and correct the Simplified Chinese
-    translation
-
-2021-05-21  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update and improve Simplified Chinese translation
-
-2021-05-17  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update Simplified Chinese translation
-
-2020-09-26  Jan Sparreboom <jan@sparreboom.net>
-
-    * gramps/gen/datehandler/_date_nl.py, gramps/plugins/rel/rel_nl.py,
-    po/nl.po: Update Dutch translation
-
-2021-05-07  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Correct and Update Simplified Chinese translation
-
-2020-10-13  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update Simplified Chinese translation
-
-2021-05-14  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Corrected some German translation errors found during
-    handbook revision
-
-2021-05-04  John Ralls <jralls@ceridwen.us>
-
-    * gramps/grampsapp.py: Add file logging for macOS.  When Gramps is launched
-    from macOS's LaunchServices it doesn't have a sys.stderr attached so the
-    default stream logger goes to /dev/null.  Use a FileHandler in tht case,
-    writing the log to $TMPDIR/gramps-pid.log.  This will help particularly in
-    analyzing crashes where python shuts down as there's no crash report in
-    that case.
-
-2021-05-06  John Ralls <jralls@ceridwen.us>
-
-    * mac/gramps.modules: Update PyICU to 2.7.2 in macOS build.
-
-2021-05-06  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/plugins/lib/libplaceview.py: Fix libplaceview to avoid
-    exception when mapservice is no longer present (#1193) Fixes #12263
-
-2021-05-06  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/plugins/gramplet/backlinks.py: Fix References Gramplet for
-    inadequate updates when other objects change (#1192) Fixes #12248
-
-2021-05-06  Serge Noiraud <Serge.Noiraud@free.fr>
-
-    * gramps/plugins/view/geofamily.py: geofamily crashes if a family
-    has no father (#1188)
-
-2021-05-06  Serge Noiraud <Serge.Noiraud@free.fr>
-
-    * gramps/gen/merge/mergepersonquery.py: Home Person setting does not
-      convey in a merge. Fixes #12235
-
-2021-05-06  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gen/utils/docgen/csvtab.py: Fix CSV export of view to only
-    put single CR character. (#1186) Fixes #12158
-
-2021-05-06  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gen/filters/rules/media/__init__.py: Add Media filter rule
-    'HasMedia' to list of media rules for editor (#1182) Fixes #12212
-
-2021-04-28  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: corrected German translation of "confidence"
-
-2021-04-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: German corrected translation of 'attribute'
-
-2021-04-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Fixed translation error of "display name editor" into
-    German
-
-2021-04-24  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: some translation fixes for German
-
-2021-04-24  pehlm <par.ekholm@pekholm.org>
-
-    * po/sv.po: Changed immigration too, Swedish
-
-2021-04-24  pehlm <par.ekholm@pekholm.org>
-
-    * po/sv.po: Correction of Swedish translation
-
-2021-04-22  Helder Geovane Gomes de Lima <he7d3r@gmail.com>
-
-    * po/pt_BR.po: Update Portuguese translation (pt_BR) (#1199)
-    This pull request is an updated version of the patch I've provided
-    at <https://gramps-project.org/bugs/view.php?id=10547> in 2018, now
-    based on branch 5.1
-
-2021-04-19  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Corrected translation of markup in German translation
-
-2021-04-17  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Fixed translation of tags in German translation
-
-2021-04-14  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: German translation for type unified
-
-2021-04-13  romjerome <romjerome@yahoo.fr>
-
-    * po/fr.po: 11656: typo, spelling correction contribution by Philippe
-
-2021-04-13  romjerome <romjerome@yahoo.fr>
-
-    * gramps/gen/utils/grampslocale.py: Need to set locale.textdomain
-    under linux (#1198) _build_popup_ui() ignores translated strings without
-    locale.textdomain set.
-
-2021-04-13  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Fixed German translation of number for places
-
-2021-04-11  John Ralls <jralls@ceridwen.us>
-
-    * mac/gramps.bundle, mac/gramps.modules,
-    mac/patches/berkeleydb-4.8-atomic.patch: Update dependencies.
-    Includes moving berkeleydb and pybsddb over from gtk-osx.
-
-2021-03-21  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Some small fixes in German translation
-
-2021-03-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Update German translation for csv import/export
-
-2021-03-01  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: small fix in German translation
-
-2021-02-19  Matthias Kemmer <49940207+Mattkmmr@users.noreply.github.com>
-
-    * gramps/gen/filters/rules/person/_matcheseventfilter.py: Change
-    category of 'MatchesEventFilter' (#1130)
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gui/viewmanager.py, gramps/gui/views/pageview.py: Fix issue
-    where separator between top and bottom bar of View creeps up.
-    (#1122) Fixes #11973
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/plugins/gramplet/locations.py: Fix Locations Gramplet
-    (Enclosed by) to properly display certain nested places. (#1127)
-    when the smallest place has undated enclosure and larger places are dated.
-    Issue #11691
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gui/dbman.py: Fix Family Tree Manager drop error on Windows
-    (#1132) Fixes #10734
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/plugins/export/exportvcalendar.py: Fix exportvcalendar
-    error is "is not" with a literal (Python 3.8 issue) (#1135) Fixes #12000
-
-2021-02-19  Serge Noiraud <Serge.Noiraud@free.fr>
-
-    * gramps/gui/clipboard.py: Handle not found when copying source from
-    the citation tree (#1175) Fixes #12170
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gui/dbloader.py: DbLoader: Fix call to 'file' function,
-    which doesn't exist in Python3 (#1173)
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gen/db/utils.py: Fix write_lock_file exception when
-    USERNAME is missing (#1171) Fixes #12150
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gui/glade/editplace.glade: Fix EditPlace so Tab key doesn't
-    get stuck on Private icon (#1168) Fixes #12139
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/plugins/textreport/tagreport.py: Fix Tag report for places
-    that have a hierarchy. (#1162) Fixes #12124
-
-2021-02-19  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gui/viewmanager.py: Fix exception when cancelling out of a
-    db upgrade in GUI (#1154) Fixes #12063
-
-2021-02-12  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: additional small German translation fixes
-
-2021-02-11  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: Small fixes German translation
-
-2021-02-06  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: fix wrong translation of source text in German
-    translation
-
-2021-02-06  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: fixed small error in German translation
-
-2021-01-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: small fixes German translation
-
-2020-11-06  Chris Mayo <aklhfex@gmail.com>
-
-    * setup.py: Install 128x128 and 256x256 application icons created with
-    ImageMagick using e.g.:
-    convert -background none ../../../gramps.svg -geometry 256x256 gramps.png
-
-2020-11-06  Chris Mayo <aklhfex@gmail.com>
-
-    * data/{gnome-mime-application-x-gedcom.svg =>
-    application-x-gedcom.svg},
-    data/{gnome-mime-application-x-geneweb.svg =>
-    application-x-geneweb.svg},
-    data/{gnome-mime-application-x-gramps-package.svg =>
-    application-x-gramps-package.svg},
-    data/{gnome-mime-application-x-gramps-xml.svg =>
-    application-x-gramps-xml.svg},
-    data/{gnome-mime-application-x-gramps.svg =>
-    application-x-gramps.svg},
-    setup.py: Install MIME type icons into the hicolor theme.
-    The gnome theme is defunct.  Remove gnome-mime- prefix from icon filenames.
-
-2020-08-20  Nick Hall <nick-h@gramps-project.org>
-
-    * images/hicolor/scalable/{actions => apps}/gramps.svg, setup.py:
-    Install application icons into correct directories
-
-2020-10-15  vantu5z <vantu5z@mail.ru>
-
-    * po/ru.po: Update Russian translation
-
-2020-09-25  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-    * po/cs.po: Update Czech translation - typo fixes
-
-2020-09-06  Tian Shixiong <tiansworld@fedoraproject.org>
-
-    * po/zh_CN.po: Update Simplified Chinese translation
-
-2020-08-16  Jan Sparreboom <jan@sparreboom.net>
-
-    * po/nl.po: Update Dutch translation
-
-2020-04-21  Lajos Nemeséri <nemeseril@gmail.com>
-
-    * po/hu.po: Revised and updated hu translation
-
-2020-09-13  Juan Saavedra <jcsaaver@gmail.com>
-
-    * po/es.po: Update Spanish translation
-
-2020-09-15  bokfink <62996239+bokfink@users.noreply.github.com>
-
-    * gramps/plugins/textreport/birthdayreport.py: Fix error in Birthday
-    and Anniversary report (#1113) Fixes an error triggered when the first
-    person_handle in the list has a death event, but no birth event
-    (get_birth_ref() == None) and does not have family relationships
-    (spouse_handle == None).  These conditions lead to the local variable
-    short_name not being declared before it comes time to process death events.
-    Fixes #11766
-
-2020-09-14  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gen/plug/docgen/graphdoc.py: Fix graphdoc to properly
-    escape characters in ids for Graphviz (#1111) Fixes #11741
-
-2020-09-14  John Ralls <jralls@ceridwen.us>
-
-    * gramps/gen/db/dummydb.py, gramps/gen/db/txn.py,
-    gramps/gen/db/utils.py, gramps/gen/dbstate.py,
-    gramps/gen/filters/rules/test/person_rules_test.py,
-    gramps/gen/utils/callback.py, gramps/plugins/db/bsddb/bsddbtxn.py:
-    Replace inspect.stack() with inspect.currentframe() (#1104)
-    * Replace inspect.stack() with inspect.currentframe() Fixes #11874
-    Works around https://bugs.python.org/issue12920 which causes every
-    call to inspect.trace() to fail because __main__ is always the
-    starting point.  * Fix a few Codecov complaints from files touched by
-    previous commit.  Ignoring the "duplicate code" issue caused by the empty
-    comment line at the beginning of every file.
-
-2020-09-14  RossGammon <rossgammon@mail.dk>
-
-    * debian/changelog, debian/copyright: Update Debian directory after
-    producing the deb file for the 5.1.3 (#1100) Release.
-
-2020-09-14  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gui/selectors/baseselector.py: Fix crash sorting on columns
-    in Selectors with TreeModels (#1099) Fixes #11750
-
-2020-09-14  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/gui/dbloader.py, gramps/gui/displaystate.py,
-    gramps/gui/uimanager.py, gramps/gui/utils.py,
-    gramps/gui/viewmanager.py: Fix progress bar freeze due to changes in
-    Gtk (#1103) Fixes #11642
-
-2020-09-14  Paul Culley <paulr2787@gmail.com>
-
-    * gramps/plugins/docgen/svgdrawdoc.py: Fix svgdrawdoc for text
-    containing XML invalid characters (#1110) Fixes #11929
-
-2020-08-30  John Ralls <jralls@ceridwen.us>
-
-    * mac/gramps.bundle: Further changes for bundling with Python 3.8.
-
-2020-08-30  John Ralls <jralls@ceridwen.us>
-
-    * mac/gramps.bundle: Add libgeocode-glib to bundle so that it
-    actually works.
-
-2020-08-26  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-    * po/de.po: German translation two small corrections
-
-2020-08-25  John Ralls <jralls@ceridwen.us>
-
-    * mac/gramps_launcher.py: [mac] Set __file__ if gramps_launcher.py
-    is run as __main__.  Fixes #11874.
-
-2020-08-21  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-    * po/cs.po: Update Czech translation
-
-2020-08-20  John Ralls <jralls@ceridwen.us>
-
-    * mac/Info.plist, mac/gramps.modules: Bundle release of Gramps
-    5.1.3.
-
-2020-08-20  John Ralls <jralls@ceridwen.us>
-
-    * mac/gramps.modules: Add geocode-glib to build.
-
-2020-08-12  pehlm <par.ekholm@pekholm.org>
-
-    * po/sv.po: Update Swedish translation
-
-2020-08-12  prculley <paulr2787@gmail.com>
-
-    * Bump to 5.1.4
