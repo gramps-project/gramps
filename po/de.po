@@ -1740,8 +1740,8 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"FEHLER: Falscher Datenbankpfad im Bearbeiten Menü -> Einstellungen.\n"
-"Öffne die Einstellungen und stelle den korrekten Datenbankpfad ein.\n"
+"FEHLER: Falscher Datenbankpfad im Menü „Bearbeiten → Einstellungen“.\n"
+"Öffne die Einstellungen und lege den korrekten Datenbankpfad fest.\n"
 "\n"
 "Details: Das Datenbankverzeichnis konnte nicht erstellt werden:\n"
 "    %s\n"
@@ -3374,7 +3374,7 @@ msgstr ""
 "\n"
 "\n"
 "Du kannst Folgendes starten:\n"
-"„Werkzeuge“ → „Stammbaumverarbeitung“ → „Fundstellen zusammenfassen“,\n"
+"„Werkzeuge → Stammbaumverarbeitung → Fundstellen zusammenfassen“,\n"
 "um Fundstellen zusammenzufassen, die identische\n"
 "Informationen enthalten"
 
@@ -3451,7 +3451,7 @@ msgstr "Rufname"
 #: ../gramps/gen/display/name.py:613 ../gramps/gen/display/name.py:712
 msgctxt "Name"
 msgid "common"
-msgstr "üblicher"
+msgstr "Üblich"
 
 #: ../gramps/gen/display/name.py:617 ../gramps/gen/display/name.py:715
 msgid "initials"
@@ -3464,7 +3464,7 @@ msgstr "primär"
 
 #: ../gramps/gen/display/name.py:623 ../gramps/gen/display/name.py:719
 msgid "primary[pre]"
-msgstr "primär[Vor]"
+msgstr "primär[Prä]"
 
 #: ../gramps/gen/display/name.py:626 ../gramps/gen/display/name.py:721
 msgid "primary[sur]"
@@ -3472,32 +3472,32 @@ msgstr "primär[Nach]"
 
 #: ../gramps/gen/display/name.py:629 ../gramps/gen/display/name.py:723
 msgid "primary[con]"
-msgstr "primär[con]"
+msgstr "primär[Verb]"
 
 #: ../gramps/gen/display/name.py:631 ../gramps/gen/display/name.py:725
 msgid "patronymic"
-msgstr "patronymisch"
+msgstr "Patronymikon"
 
 #: ../gramps/gen/display/name.py:633 ../gramps/gen/display/name.py:727
 msgid "patronymic[pre]"
-msgstr "Patronymikon[pri]"
+msgstr "Patronymikon[Prä]"
 
 #: ../gramps/gen/display/name.py:635 ../gramps/gen/display/name.py:729
 msgid "patronymic[sur]"
-msgstr "Patronymisch[Nach]"
+msgstr "Patronymikon[Nach]"
 
 #: ../gramps/gen/display/name.py:637 ../gramps/gen/display/name.py:731
 msgid "patronymic[con]"
-msgstr "Vatersname[con]"
+msgstr "Patronymikon[Verb]"
 
 #: ../gramps/gen/display/name.py:639 ../gramps/gen/display/name.py:733
 msgid "notpatronymic"
-msgstr "nicht patronymisch"
+msgstr "Nichtpatronymisch"
 
 #: ../gramps/gen/display/name.py:642 ../gramps/gen/display/name.py:735
 msgctxt "Remaining names"
 msgid "rest"
-msgstr "Andere"
+msgstr "Rest"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:737
 #: ../gramps/gui/editors/editperson.py:401
@@ -3507,7 +3507,7 @@ msgstr "Präfix"
 
 #: ../gramps/gen/display/name.py:648 ../gramps/gen/display/name.py:739
 msgid "rawsurnames"
-msgstr "roheNachnamen"
+msgstr "OriginalNachnamen"
 
 #: ../gramps/gen/display/name.py:650 ../gramps/gen/display/name.py:741
 msgid "nickname"
@@ -3956,7 +3956,7 @@ msgstr "Liefert Fundstellen, die als vertraulich markiert sind"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 msgid "Citation attribute:"
-msgstr "Fundstellenattribute:"
+msgstr "Fundstellenattribut:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -6468,26 +6468,26 @@ msgstr "Aufbewahrungsorte, die mit <Filter> übereinstimmen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Liefert Aufbewahrungsorte, die dem vorgegebenen Filter entsprechen"
+msgstr "Liefert Aufbewahrungsorte, die auf den angegebenen Filternamen passen"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
 msgid "Repositories with name containing <text>"
-msgstr "Aufbewahrungsortname enthält <Text>"
+msgstr "Aufbewahrungsorte, deren Name <Text> enthält"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:44
 msgid "Matches repositories whose name contains a certain substring"
 msgstr ""
-"Liefert Aufbewahrungsorte, deren Name eine bestimmte Zeichenfolge enthält"
+"Liefert Aufbewahrungsorte, deren Name eine bestimmte Teilzeichenkette enthält"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
 msgid "Repositories with Id containing <text>"
-msgstr "Aufbewahrungsorte, deren ID den <Text> enthält"
+msgstr "Aufbewahrungsorte, deren ID <Text> enthält"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Liefert alle Aufbewahrungsorte, deren Gramps-ID den 'regulären Ausdruck' "
-"enthalten"
+"Liefert Aufbewahrungsorte, deren Gramps-ID mit dem regulären Ausdruck "
+"übereinstimmt"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
@@ -6556,23 +6556,23 @@ msgstr "Liefert Quellen mit einer bestimmten Anzahl von Notizen"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:42
 msgid "Sources having notes containing <substring>"
-msgstr "Quellen, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Quellen mit Notizen, die <Zeichenfolge> enthalten"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:43
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Liefert Quellen, deren Notizen einen Text mit der vorgegebenen Zeichenfolge "
-"enthalten"
+"Liefert Quellen, deren Notizen Text enthalten, der mit einer "
+"Teilzeichenkette übereinstimmt"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:41
 msgid "Sources having notes containing <text>"
-msgstr "Quellen, deren Notizen den <Text> enthalten"
+msgstr "Quellen mit Notizen, die <Text> enthalten"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:42
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Quellen, deren Notizen einen Text entsprechend des "
-"'regulärenAusdrucks' enthalten"
+"Liefert Quellen, deren Notizen Text enthalten, der einem regulären Ausdruck "
+"entspricht"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:42
 msgid "Sources with a reference count of <count>"
@@ -6603,7 +6603,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "Liefert Quellen, deren Aufbewahrungsortreferenz\n"
-"eine Zeichenfolge in der \"Signatur\" enthält"
+"eine Teilzeichenfolge in der \"Signatur\" enthält"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
@@ -6611,15 +6611,15 @@ msgstr "Quellen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 msgid "Matches sources with the particular tag"
-msgstr "Liefert Quellen mit der angegebenen Markierung"
+msgstr "Liefert Quellen mit der bestimmten Markierung"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:44
 msgid "Sources matching the <filter>"
-msgstr "Quellen entsprechend <Filter>"
+msgstr "Quellen, die dem <Filter> entsprechen"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:45
 msgid "Matches sources matched by the specified filter name"
-msgstr "Liefert Quellen, die dem vorgegebenen Filter entsprechen"
+msgstr "Liefert Quellen, die mit dem angegebenen Filternamen übereinstimmen"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
@@ -6637,25 +6637,24 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
-msgstr "Quellentitel enthält <Text>"
+msgstr "Quellen mit Titel, der <Text> enthält"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:44
 msgid "Matches sources whose title contains a certain substring"
-msgstr "Liefert Quellen, deren Titel eine bestimmte Zeichenfolge enthält"
+msgstr "Liefert Quellen, deren Titel eine bestimmte Teilzeichenkette enthält"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
 msgid "Sources with Id containing <text>"
-msgstr "Quellen, deren ID den <Text> enthält"
+msgstr "Quellen mit einer ID, die <Text> enthält"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr ""
-"Liefert Quellen, deren Gramps-ID dem vorgegebenen 'regulären Ausdruck' "
-"entsprechen"
+"Liefert Quellen, deren Gramps-ID mit dem regulären Ausdruck übereinstimmt"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:42
 msgid "Sources marked private"
-msgstr "Als vertraulich markierte Quellen"
+msgstr "Als vertraulich gekennzeichnete Quellen"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:43
 msgid "Matches sources that are indicated as private"
@@ -6976,7 +6975,7 @@ msgstr "Benutzerdefiniert"
 
 #: ../gramps/gen/lib/attrtype.py:65
 msgid "Caste"
-msgstr "Gesellschaftsklasse"
+msgstr "Kaste"
 
 #: ../gramps/gen/lib/attrtype.py:66 ../gramps/gen/lib/event.py:148
 #: ../gramps/gen/lib/media.py:147 ../gramps/gen/lib/url.py:96
@@ -7012,7 +7011,7 @@ msgstr "Nationale Herkunft"
 
 #: ../gramps/gen/lib/attrtype.py:69 ../gramps/plugins/lib/libpersonview.py:108
 msgid "Number of Children"
-msgstr "Kinderzahl"
+msgstr "Anzahl der Kinder"
 
 #: ../gramps/gen/lib/attrtype.py:70
 msgid "Social Security Number"
@@ -7067,7 +7066,7 @@ msgstr "Beruf"
 
 #: ../gramps/gen/lib/childref.py:105 ../gramps/gui/editors/editchildref.py:190
 msgid "Child Reference"
-msgstr "Kindreferenz"
+msgstr "Referenz für Kinder"
 
 #: ../gramps/gen/lib/childref.py:120 ../gramps/gen/lib/citation.py:102
 #: ../gramps/gen/lib/event.py:141 ../gramps/gen/lib/family.py:150
@@ -7095,7 +7094,7 @@ msgstr "Identifikator"
 #: ../gramps/plugins/graph/gvfamilylines.py:83
 #: ../gramps/plugins/tool/check.py:2530
 msgid "None"
-msgstr "Ohne"
+msgstr "Keine"
 
 #: ../gramps/gen/lib/childreftype.py:68 ../gramps/gen/lib/eventtype.py:165
 #: ../gramps/gen/utils/symbols.py:72 ../gramps/gui/merge/mergeperson.py:189
@@ -7124,7 +7123,7 @@ msgstr "Stiefkind"
 
 #: ../gramps/gen/lib/childreftype.py:71
 msgid "Sponsored"
-msgstr "Patenschaft"
+msgstr "Gefördert"
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Foster"
@@ -7260,7 +7259,7 @@ msgstr "Quellenattribute"
 #: ../gramps/gen/lib/place.py:176 ../gramps/gen/lib/repo.py:108
 #: ../gramps/gen/lib/src.py:121 ../gramps/gen/lib/tag.py:130
 msgid "Last changed"
-msgstr "Zuletzt geändert"
+msgstr "Letzte Änderung"
 
 #: ../gramps/gen/lib/citation.py:131 ../gramps/gen/lib/event.py:171
 #: ../gramps/gen/lib/family.py:188 ../gramps/gen/lib/media.py:167
@@ -7300,7 +7299,7 @@ msgstr "Markierungen"
 #: ../gramps/gen/lib/date.py:350
 msgctxt "age"
 msgid "about"
-msgstr "um"
+msgstr "etwa"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:427 ../gramps/gen/lib/date.py:434
@@ -7335,7 +7334,7 @@ msgstr "Kalender"
 
 #: ../gramps/gen/lib/date.py:712
 msgid "Modifier"
-msgstr "Umwandler"
+msgstr "Modifikator"
 
 #: ../gramps/gen/lib/date.py:714
 msgid "Quality"
@@ -7360,11 +7359,11 @@ msgstr "Text"
 
 #: ../gramps/gen/lib/date.py:721
 msgid "Sort value"
-msgstr "Sortierwert"
+msgstr "Wert sortieren"
 
 #: ../gramps/gen/lib/date.py:723
 msgid "New year begins"
-msgstr "Neues Jahr beginnt"
+msgstr "Das neue Jahr beginnt"
 
 #: ../gramps/gen/lib/date.py:1856
 msgctxt "date-quality"
@@ -7382,11 +7381,11 @@ msgstr "geschätzt"
 #: ../gramps/gen/lib/date.py:1871
 msgctxt "date-modifier"
 msgid "none"
-msgstr "kein"
+msgstr "keine"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/webreport/basepage.py:3248
 msgid "about"
-msgstr "um"
+msgstr "etwa"
 
 #: ../gramps/gen/lib/date.py:1872 ../gramps/plugins/lib/libprogen.py:1841
 #: ../gramps/plugins/webreport/basepage.py:3244
@@ -7496,7 +7495,7 @@ msgstr "Primär"
 
 #: ../gramps/gen/lib/eventroletype.py:55
 msgid "Clergy"
-msgstr "Geistlicher"
+msgstr "Klerus"
 
 #: ../gramps/gen/lib/eventroletype.py:56
 msgid "Celebrant"
@@ -7562,11 +7561,11 @@ msgstr "Religiös"
 
 #: ../gramps/gen/lib/eventtype.py:145
 msgid "Vocational"
-msgstr "Beruflich"
+msgstr "Berufliches"
 
 #: ../gramps/gen/lib/eventtype.py:147
 msgid "Academic"
-msgstr "Wissenschaftlich"
+msgstr "Akademisch"
 
 #: ../gramps/gen/lib/eventtype.py:149
 msgid "Travel"
@@ -7574,7 +7573,7 @@ msgstr "Reisen"
 
 #: ../gramps/gen/lib/eventtype.py:151
 msgid "Legal"
-msgstr "Juristisch"
+msgstr "Rechtliches"
 
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
@@ -7583,7 +7582,7 @@ msgstr "Juristisch"
 #: ../gramps/plugins/webreport/addressbooklist.py:115
 #: ../gramps/plugins/webreport/basepage.py:3156
 msgid "Residence"
-msgstr "Wohnort"
+msgstr "Aufenthalt"
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gui/glade/mergedata.glade:523
 #: ../gramps/gui/glade/mergedata.glade:610
@@ -7638,7 +7637,7 @@ msgstr "Volkszählung"
 
 #: ../gramps/gen/lib/eventtype.py:175
 msgid "Christening"
-msgstr "Kleinkindtaufe"
+msgstr "Kindtaufe"
 
 #: ../gramps/gen/lib/eventtype.py:176 ../gramps/gen/lib/ldsord.py:97
 msgid "Confirmation"
@@ -7658,7 +7657,7 @@ msgstr "Bildung"
 
 #: ../gramps/gen/lib/eventtype.py:180
 msgid "Elected"
-msgstr "Wahl"
+msgstr "Gewählt"
 
 #: ../gramps/gen/lib/eventtype.py:181
 msgid "Emigration"
@@ -7695,7 +7694,7 @@ msgstr "Adelstitel"
 #: ../gramps/gen/lib/eventtype.py:189
 #: ../gramps/plugins/lib/libpersonview.py:107
 msgid "Number of Marriages"
-msgstr "Anzahl der Ehen"
+msgstr "Anzahl der Eheschließungen"
 
 #: ../gramps/gen/lib/eventtype.py:191
 msgid "Ordination"
@@ -7707,7 +7706,7 @@ msgstr "Testamentseröffnung"
 
 #: ../gramps/gen/lib/eventtype.py:193
 msgid "Property"
-msgstr "Besitz"
+msgstr "Eigentum"
 
 #: ../gramps/gen/lib/eventtype.py:194
 #: ../gramps/plugins/gramplet/persondetails.py:166
@@ -7716,7 +7715,7 @@ msgstr "Religion"
 
 #: ../gramps/gen/lib/eventtype.py:196
 msgid "Retirement"
-msgstr "Pensionierung"
+msgstr "Ruhestand"
 
 #: ../gramps/gen/lib/eventtype.py:197
 msgid "Will"
@@ -7732,15 +7731,15 @@ msgstr "Testament"
 #: ../gramps/plugins/textreport/familygroup.py:606
 #: ../gramps/plugins/webreport/family.py:197
 msgid "Marriage"
-msgstr "Hochzeit"
+msgstr "Heirat"
 
 #: ../gramps/gen/lib/eventtype.py:199
 msgid "Marriage Settlement"
-msgstr "Ehevereinbarung"
+msgstr "Ehevertrag"
 
 #: ../gramps/gen/lib/eventtype.py:200
 msgid "Marriage License"
-msgstr "Eheerlaubnis"
+msgstr "Heiratsurkunde"
 
 #: ../gramps/gen/lib/eventtype.py:201
 msgid "Marriage Contract"
@@ -7765,7 +7764,7 @@ msgstr "Einreichung der Scheidung"
 
 #: ../gramps/gen/lib/eventtype.py:206
 msgid "Annulment"
-msgstr "Annullierung"
+msgstr "Aufhebung"
 
 #: ../gramps/gen/lib/eventtype.py:207
 msgid "Alternate Marriage"
@@ -7776,21 +7775,21 @@ msgstr "Alternative Hochzeit"
 #: ../gramps/plugins/drawreport/descendtree.py:57
 msgctxt "birth abbreviation"
 msgid "b."
-msgstr "*"
+msgstr "geb."
 
 #: ../gramps/gen/lib/eventtype.py:212
 #: ../gramps/plugins/drawreport/ancestortree.py:61
 #: ../gramps/plugins/drawreport/descendtree.py:58
 msgctxt "death abbreviation"
 msgid "d."
-msgstr "†"
+msgstr "gest."
 
 #: ../gramps/gen/lib/eventtype.py:213
 #: ../gramps/plugins/drawreport/ancestortree.py:62
 #: ../gramps/plugins/drawreport/descendtree.py:59
 msgctxt "marriage abbreviation"
 msgid "m."
-msgstr "oo"
+msgstr "verh."
 
 #: ../gramps/gen/lib/eventtype.py:214
 msgctxt "Unknown abbreviation"
@@ -7815,7 +7814,7 @@ msgstr "~"
 #: ../gramps/gen/lib/eventtype.py:218
 msgctxt "Baptism abbreviation"
 msgid "bap."
-msgstr "~"
+msgstr "get."
 
 #: ../gramps/gen/lib/eventtype.py:219
 msgctxt "Bar Mitzvah abbreviation"
@@ -7835,7 +7834,7 @@ msgstr "segn."
 #: ../gramps/gen/lib/eventtype.py:222
 msgctxt "Burial abbreviation"
 msgid "bur."
-msgstr "▭"
+msgstr "begr."
 
 #: ../gramps/gen/lib/eventtype.py:223
 msgctxt "Cause Of Death abbreviation"
@@ -7850,7 +7849,7 @@ msgstr "Zens."
 #: ../gramps/gen/lib/eventtype.py:225
 msgctxt "Christening abbreviation"
 msgid "chr."
-msgstr "~"
+msgstr "get."
 
 #: ../gramps/gen/lib/eventtype.py:226
 msgctxt "Confirmation abbreviation"
@@ -7880,7 +7879,7 @@ msgstr "gew."
 #: ../gramps/gen/lib/eventtype.py:231
 msgctxt "Emigration abbreviation"
 msgid "em."
-msgstr "Em."
+msgstr "ausgw."
 
 #: ../gramps/gen/lib/eventtype.py:232
 msgctxt "First Communion abbreviation"
@@ -7890,7 +7889,7 @@ msgstr "Erstko."
 #: ../gramps/gen/lib/eventtype.py:233
 msgctxt "Immigration abbreviation"
 msgid "im."
-msgstr "Im."
+msgstr "eingw."
 
 #: ../gramps/gen/lib/eventtype.py:234
 msgctxt "Graduation abbreviation"
@@ -7900,7 +7899,7 @@ msgstr "Grad."
 #: ../gramps/gen/lib/eventtype.py:235
 msgctxt "Medical Information abbreviation"
 msgid "medinf."
-msgstr "medinf."
+msgstr "Medinf."
 
 #: ../gramps/gen/lib/eventtype.py:236
 msgctxt "Military Service abbreviation"
@@ -7935,12 +7934,12 @@ msgstr "Ord."
 #: ../gramps/gen/lib/eventtype.py:242
 msgctxt "Probate abbreviation"
 msgid "prob."
-msgstr "Test. eröf."
+msgstr "Testeröf."
 
 #: ../gramps/gen/lib/eventtype.py:243
 msgctxt "Property abbreviation"
 msgid "prop."
-msgstr "Besi."
+msgstr "Besitz"
 
 #: ../gramps/gen/lib/eventtype.py:244
 msgctxt "Religion abbreviation"
@@ -7995,12 +7994,12 @@ msgstr "o"
 #: ../gramps/gen/lib/eventtype.py:254
 msgctxt "Divorce abbreviation"
 msgid "div."
-msgstr "⚮"
+msgstr "gesch."
 
 #: ../gramps/gen/lib/eventtype.py:255
 msgctxt "Divorce Filing abbreviation"
 msgid "div.f."
-msgstr "⚮ einr."
+msgstr "Scheinr."
 
 #: ../gramps/gen/lib/eventtype.py:256
 msgctxt "Annulment abbreviation"
@@ -8094,7 +8093,7 @@ msgstr "Unverheiratet"
 
 #: ../gramps/gen/lib/familyreltype.py:49
 msgid "Civil Union"
-msgstr "Gesetzliche Partnerschaft"
+msgstr "Eingetragene Partnerschaft"
 
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
 #: ../gramps/gen/lib/ldsord.py:184 ../gramps/gui/clipboard.py:907
@@ -8181,7 +8180,7 @@ msgstr "Geboren im Bündnis (HLT)"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
-msgstr "Abgebrochen"
+msgstr "Aufgehoben"
 
 #: ../gramps/gen/lib/ldsord.py:106
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:124
@@ -8198,7 +8197,7 @@ msgstr "Kind"
 
 #: ../gramps/gen/lib/ldsord.py:107
 msgid "Cleared"
-msgstr "Gelöscht"
+msgstr "Freigegeben"
 
 #: ../gramps/gen/lib/ldsord.py:108
 msgid "Completed"
@@ -8278,7 +8277,7 @@ msgstr "Kirchengemeinde"
 #: ../gramps/gen/lib/markertype.py:53
 #: ../gramps/gui/logger/_errorreportassistant.py:700
 msgid "Complete"
-msgstr "Fertig"
+msgstr "Vollständig"
 
 #: ../gramps/gen/lib/markertype.py:54 ../gramps/plugins/tool/notrelated.py:103
 msgid "ToDo"
@@ -8405,7 +8404,7 @@ msgstr "Titel"
 
 #: ../gramps/gen/lib/name.py:169 ../gramps/plugins/webreport/person.py:224
 msgid "Group as"
-msgstr "Gruppieren nach"
+msgstr "Gruppieren als"
 
 #: ../gramps/gen/lib/name.py:171
 msgid "Sort as"
@@ -8425,7 +8424,7 @@ msgstr "Spitzname"
 
 #: ../gramps/gen/lib/name.py:179
 msgid "Family nick name"
-msgstr "Familienspitzname"
+msgstr "Spitzname der Familie"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:461 ../gramps/gen/lib/name.py:476
@@ -8458,7 +8457,7 @@ msgstr "%(first)s %(surname)s, %(suffix)s"
 #: ../gramps/gen/lib/nameorigintype.py:76
 msgctxt "Surname"
 msgid "Inherited"
-msgstr "Geerbt"
+msgstr "Übernommen"
 
 #: ../gramps/gen/lib/nameorigintype.py:77
 msgctxt "Surname"
@@ -8473,11 +8472,11 @@ msgstr "Angenommen"
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
 #: ../gramps/gui/configure.py:857
 msgid "Patronymic"
-msgstr "Patronymikon"
+msgstr "Patronymisch"
 
 #: ../gramps/gen/lib/nameorigintype.py:80
 msgid "Matronymic"
-msgstr "Matronymikon"
+msgstr "Matronymisch"
 
 #: ../gramps/gen/lib/nameorigintype.py:81
 msgctxt "Surname"
@@ -8506,7 +8505,7 @@ msgstr "Geburtsname"
 
 #: ../gramps/gen/lib/nametype.py:50
 msgid "Married Name"
-msgstr "Name nach der Hochzeit"
+msgstr "Ehenamen"
 
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:265
 #: ../gramps/gen/plug/docgen/treedoc.py:199 ../gramps/gui/clipboard.py:375
@@ -8566,7 +8565,7 @@ msgstr "Format"
 #: ../gramps/gui/glade/editreporef.glade:445
 #: ../gramps/plugins/tool/verify.glade:406
 msgid "General"
-msgstr "Allgemeines"
+msgstr "Allgemein"
 
 #: ../gramps/gen/lib/notetype.py:76
 msgid "Research"
@@ -8587,7 +8586,7 @@ msgstr "Bericht"
 
 #: ../gramps/gen/lib/notetype.py:81
 msgid "Html code"
-msgstr "HTML Code"
+msgstr "HTML Quelltext"
 
 #: ../gramps/gen/lib/notetype.py:82
 msgctxt "notetype"
@@ -8601,7 +8600,7 @@ msgstr "Verknüpfung"
 
 #: ../gramps/gen/lib/notetype.py:87
 msgid "Person Note"
-msgstr "Personennotiz"
+msgstr "Anmerkung zur Person"
 
 #: ../gramps/gen/lib/notetype.py:88
 msgid "Name Note"
@@ -8609,11 +8608,11 @@ msgstr "Namensnotiz"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "Attribute Note"
-msgstr "Attributsnotiz"
+msgstr "Attributnotiz"
 
 #: ../gramps/gen/lib/notetype.py:90
 msgid "Address Note"
-msgstr "Adressennotiz"
+msgstr "Adressnotiz"
 
 #: ../gramps/gen/lib/notetype.py:91
 msgid "Association Note"
@@ -8634,7 +8633,7 @@ msgstr "Ereignisnotiz"
 
 #: ../gramps/gen/lib/notetype.py:95
 msgid "Event Reference Note"
-msgstr "Ereignis-Referenz Notiz"
+msgstr "Ereignisreferenz Notiz"
 
 #: ../gramps/gen/lib/notetype.py:96
 msgid "Source Note"
@@ -8642,7 +8641,7 @@ msgstr "Quellennotiz"
 
 #: ../gramps/gen/lib/notetype.py:97
 msgid "Source Reference Note"
-msgstr "Quellen-Referenz Notiz"
+msgstr "Quellenreferenz Notiz"
 
 #: ../gramps/gen/lib/notetype.py:98
 msgid "Place Note"
@@ -8650,11 +8649,11 @@ msgstr "Ortsnotiz"
 
 #: ../gramps/gen/lib/notetype.py:99
 msgid "Repository Note"
-msgstr "Aufbewahrungsorts-Notiz"
+msgstr "Aufbewahrungsortnotiz"
 
 #: ../gramps/gen/lib/notetype.py:100
 msgid "Repository Reference Note"
-msgstr "Aufbewahrungsort-Referenz Notiz"
+msgstr "Aufbewahrungsortreferenz Notiz"
 
 #: ../gramps/gen/lib/notetype.py:101
 msgid "Media Note"
@@ -8666,7 +8665,7 @@ msgstr "Medienreferenznotiz"
 
 #: ../gramps/gen/lib/notetype.py:103
 msgid "Child Reference Note"
-msgstr "Kind-Referenzen Notiz"
+msgstr "Kindreferenzen Notiz"
 
 #: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:719
 #: ../gramps/gui/configure.py:643 ../gramps/gui/editors/editlink.py:96
@@ -8758,7 +8757,7 @@ msgstr "Familien"
 
 #: ../gramps/gen/lib/person.py:203
 msgid "Parent families"
-msgstr "Eltern Familien"
+msgstr "Elternfamilien"
 
 #: ../gramps/gen/lib/person.py:209 ../gramps/gen/lib/repo.py:103
 #: ../gramps/gui/merge/mergeperson.py:268
@@ -8777,7 +8776,7 @@ msgstr "Personreferenzen"
 
 #: ../gramps/gen/lib/person.py:537
 msgid "Merged Gramps ID"
-msgstr "Zusammengefasste Gramps-ID"
+msgstr "Zusammengeführte Gramps ID"
 
 #: ../gramps/gen/lib/personref.py:98 ../gramps/gui/clipboard.py:676
 msgid "Person ref"
@@ -8786,7 +8785,7 @@ msgstr "Personref"
 #: ../gramps/gen/lib/personref.py:115
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:68
 msgid "Association"
-msgstr "Verknüpfung"
+msgstr "Verbindung"
 
 #: ../gramps/gen/lib/place.py:145 ../gramps/plugins/export/exportcsv.py:287
 #: ../gramps/plugins/gramplet/coordinates.py:96
@@ -8838,7 +8837,7 @@ msgstr "Kennung"
 
 #: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2960
 msgid "Alternate Locations"
-msgstr "Alternative Ortsangaben"
+msgstr "Alternative Standorte"
 
 #: ../gramps/gen/lib/place.py:163 ../gramps/gen/lib/repo.py:106
 msgid "URLs"
@@ -8867,7 +8866,7 @@ msgstr "Provinz"
 
 #: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:637
 msgid "Department"
-msgstr "Amt"
+msgstr "Gebiet"
 
 #: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:601
 msgid "Neighborhood"
@@ -12059,7 +12058,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1514
 msgid "Date about range"
-msgstr "Datumsspanne für „um“"
+msgstr "Datumsspanne für „etwa“"
 
 #: ../gramps/gui/configure.py:1518
 msgid "Date after range"
@@ -12128,7 +12127,7 @@ msgstr "Tipp des Tages anzeigen"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Show useful information about using Gramps on startup."
-msgstr "Zeigt hilfreiche Informationen zur Gramps Verwendung beim Starten."
+msgstr "Nützliche Informationen zur Verwendung von Gramps beim Start anzeigen."
 
 #: ../gramps/gui/configure.py:1601
 msgid "Remember last view displayed"
@@ -13123,27 +13122,27 @@ msgstr "_Adressen"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:52
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:53
 msgid "Create and add a new attribute"
-msgstr "Neues Attribut erstellen und hinzufügen"
+msgstr "Erstellen und Hinzufügen eines neuen Attributs"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:54
 msgid "Remove the existing attribute"
-msgstr "Das vorhandene Attribut entfernen"
+msgstr "Entfernen des vorhandenen Attributs"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:55
 msgid "Edit the selected attribute"
-msgstr "Das gewählte Attribut bearbeiten"
+msgstr "Bearbeiten des ausgewählten Attributs"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:56
 msgid "Move the selected attribute upwards"
-msgstr "Gewähltes Attribut nach oben verschieben"
+msgstr "Das ausgewählte Attribut nach oben verschieben"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:56
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:57
 msgid "Move the selected attribute downwards"
-msgstr "Gewähltes Attribut nach unten verschieben"
+msgstr "Das ausgewählte Attribut nach unten verschieben"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:76
@@ -13831,11 +13830,11 @@ msgstr "Neues Attribut"
 
 #: ../gramps/gui/editors/editattribute.py:149
 msgid "Cannot save attribute"
-msgstr "Kann das Attribut nicht speichern"
+msgstr "Attribut kann nicht gespeichert werden"
 
 #: ../gramps/gui/editors/editattribute.py:150
 msgid "The attribute type cannot be empty"
-msgstr "Attributart darf nicht leer sein"
+msgstr "Der Attributtyp darf nicht leer sein"
 
 #: ../gramps/gui/editors/editchildref.py:66
 msgctxt "manual"
@@ -13931,7 +13930,7 @@ msgstr "Nach"
 
 #: ../gramps/gui/editors/editdate.py:79
 msgid "About"
-msgstr "Um"
+msgstr "Etwa"
 
 #: ../gramps/gui/editors/editdate.py:80
 msgid "Range"
@@ -15916,13 +15915,13 @@ msgid ""
 "standard."
 msgstr ""
 "Der Name eines Attributs, das du verwenden möchtest. Zum Beispiel: Größe "
-"(für eine Person), Tageswetter (für ein Ereignis), ...\n"
-"Verwende dies, wenn du Details von gesammelten Informationen speichern, und "
-"Quellen korrekt zugeordnet haben willst. Attribute können für Personen, "
+"(für eine Person), Wetter an diesem Tag (für ein Ereignis), ...\n"
+"Verwende dies, um Informationsschnipsel zu speichern, die du sammeln und die "
+"du korrekt mit Quellen verknüpfen möchtest. Attribute können für Personen, "
 "Familien, Ereignisse und Medien verwendet werden.\n"
 " \n"
-"Beachte: Einige vordefinierte Attribute beziehen sich auf Werte, die im "
-"GEDCOM Standard vorhanden sind."
+"Hinweis: Mehrere vordefinierte Attribute beziehen sich auf Werte, die im "
+"GEDCOM-Standard enthalten sind."
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
@@ -16149,8 +16148,8 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
-"Datum des Ereignis. Dies kann ein exaktes Datum sein, ein Zeitraum (von ... "
-"bis, zwischen, ...) oder ein ungenaues Datum (um, ...)."
+"Datum des Ereignisses. Dies kann ein genaues Datum, ein Bereich (von ... "
+"bis, zwischen, ...) oder ein ungenaues Datum (etwa, ...) sein."
 
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
@@ -16711,7 +16710,7 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:511
 msgid "Go to Name Editor to add more information about this name"
 msgstr ""
-"Gehe zum Namenseditor, um mehr Informationen zu diesem Namen hinzuzufügen"
+"Gehe zum Namenseditor, um weitere Informationen zu diesem Namen hinzuzufügen"
 
 #: ../gramps/gui/glade/editperson.glade:536
 msgid "O_rigin:"
@@ -17208,8 +17207,8 @@ msgstr "Ereignis 2"
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
 msgstr ""
-"Attribute, Notizen, Quellen und Medienobjekte werden von beiden Ereignissen "
-"vereint."
+"Attribute, Notizen, Quellen und Medienobjekte der beiden Ereignisse werden "
+"kombiniert."
 
 #: ../gramps/gui/glade/mergefamily.glade:98
 msgid ""
@@ -17269,7 +17268,7 @@ msgstr "Objekt 2"
 #: ../gramps/gui/glade/mergemedia.glade:455
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
-"Attribute, Quellen, Notizen und Markierungen werden von beiden Objekten "
+"Attribute, Quellen, Notizen und Markierungen der beiden Objekte werden "
 "kombiniert."
 
 #: ../gramps/gui/glade/mergenote.glade:97
@@ -17321,8 +17320,8 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Ereignisse, Medienobjekte, Adressen, Attribute, URLs. Notizen, Quellen und "
-"Markierungen werden von beiden Personen kombiniert."
+"Ereignisse, Medienobjekte, Adressen, Attribute, URLs, Notizen, Quellen und "
+"Markierungen beider Personen werden kombiniert."
 
 #: ../gramps/gui/glade/mergeperson.glade:500
 msgid "Context Information"
@@ -17935,7 +17934,7 @@ msgstr "Änderungen _verwerfen und beenden"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_About"
-msgstr "_Info"
+msgstr "_Über"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
@@ -18128,14 +18127,14 @@ msgid ""
 "by changing the last-view parameter.\n"
 msgstr ""
 "\n"
-"Gramps konnte nicht starten. Bitte fülle hierüber einen Fehlerbericht aus.\n"
-"Dies könnte wegen eines Fehlers in einer Ansicht (dritter) beim Start "
-"geschehen sein.\n"
-"Um eine andere Ansicht zu verwenden, lade keinen Stammbaum, ändere die "
+"Gramps konnte nicht gestartet werden. Bitte melde einen Fehler in diesem "
+"Fall.\n"
+"Dies könnte auf einen Fehler in einer (fremden) Ansicht beim Start "
+"zurückzuführen sein.\n"
+"Um eine andere Ansicht zu verwenden, lade keinen Stammbaum, wechsle die "
 "Ansicht und lade dann deinen Stammbaum.\n"
-"Du kannst auch händisch die Startansicht in der gramps.ini Datei durch "
-"Ändern \n"
-"des last-view Parameter ändern.\n"
+"Du kannst die Startansicht auch manuell in der Datei gramps.ini ändern, \n"
+"indem du den Parameter last-view änderst.\n"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:97
 msgid "Error Report Assistant"
@@ -18210,8 +18209,8 @@ msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
-"Das sind die Informationen über dein System, die den Entwicklern helfen, den "
-"Fehler zu beheben."
+"Dies sind die Informationen über dein System, die den Entwicklern helfen, "
+"den Fehler zu beheben."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:442
 msgid ""
@@ -19217,9 +19216,9 @@ msgid ""
 "\n"
 "Please give it a name before saving it away."
 msgstr ""
-"Du versuchst ein Buch ohne Namen zu speichern.\n"
+"Du bist dabei, ein Buch ohne Namen zu speichern.\n"
 "\n"
-"Bitte gib ihm vor dem Speichern einen Namen."
+"Bitte gib ihm einen Namen, bevor du es abspeicherst."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:747
 msgid "Book name already exists"
@@ -19228,7 +19227,7 @@ msgstr "Buchname existiert bereits"
 #: ../gramps/gui/plug/report/_bookdialog.py:748
 msgid "You are about to save away a book with a name which already exists."
 msgstr ""
-"Du bist dabei ein Buch mit einem bereits bestehenden Namen zu speichern."
+"Du bist dabei, ein Buch mit einem bereits existierenden Namen zu speichern."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:938
 msgid "Generate Book"
@@ -20055,7 +20054,7 @@ msgid ""
 msgstr ""
 "Du musst eine „Hauptperson“ festlegen, zu der du gehst. Wähle die "
 "Personenansicht, wähle die Person, die du als „Hauptperson“ festlegen "
-"möchtest, und bestätige deine Wahl über das Menü „Bearbeiten“ → „Hauptperson "
+"möchtest, und bestätige deine Wahl über das Menü „Bearbeiten → Hauptperson "
 "festlegen“."
 
 #: ../gramps/gui/views/navigationview.py:334
@@ -21798,7 +21797,7 @@ msgstr "Vertikal"
 
 #: ../gramps/plugins/drawreport/fanchart.py:716
 msgid "roundabout"
-msgstr "ringsum"
+msgstr "umlaufend"
 
 #: ../gramps/plugins/drawreport/fanchart.py:717
 msgid "Print radial texts upright or roundabout"
@@ -22603,8 +22602,8 @@ msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
-"Doppelklick auf eine Zeile, um einen Schnellbericht mit allen Personen mit "
-"dem gewählten Attribut zu sehen."
+"Doppelklicke auf eine Zeile, um einen Schnellbericht anzuzeigen, der alle "
+"Personen mit dem ausgewählten Attribut enthält."
 
 #: ../gramps/plugins/gramplet/attributes.py:56
 #: ../gramps/plugins/lib/libmetadata.py:172
@@ -23241,7 +23240,7 @@ msgstr "Gramplet zeigt Medienobjekte einer Fundstelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:581
 msgid "Person Attributes"
-msgstr "Person Attribute"
+msgstr "Personenattribute"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:582
 msgid "Gramplet showing the attributes of a person"
@@ -24777,7 +24776,7 @@ msgstr "Legt fest, welche Personen in das Diagramm aufgenommen werden"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:836
 msgid "Use hexagons"
-msgstr "Verwende Sechsecke"
+msgstr "Sechsecke verwenden"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:837
 msgid "Use hexagons to differentiate those of unknown gender."
@@ -25566,7 +25565,7 @@ msgid ""
 "(Text, import Filename & (System-)Date)."
 msgstr ""
 "Quellenattributtext\n"
-"(Text, Importdateiname & (System)Datum)."
+"(Text, Importdateiname & (System-)Datum)."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -26063,7 +26062,7 @@ msgstr "Die Gramps-XML, die du versuchst zu importieren, ist missgebildet."
 
 #: ../gramps/plugins/importer/importxml.py:810
 msgid "Attributes that link the data together are missing."
-msgstr "Attribute, die die Daten verbinden, fehlen."
+msgstr "Es fehlen Attribute, die die Daten miteinander verbinden."
 
 #: ../gramps/plugins/importer/importxml.py:923
 msgid "Gramps XML import"
@@ -26093,8 +26092,8 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
-"Die .gramps Datei, die du importieren willst, enthält keine Informationen "
-"über die Version von Gramps mit der sie erstellt wurde.\n"
+"Die .gramps-Datei, die du importierst, enthält keine Informationen über die "
+"Version von Gramps, mit der sie erstellt wurde.\n"
 "\n"
 "Die Datei wird nicht importiert."
 
@@ -26175,11 +26174,11 @@ msgstr "Namen des Zeugen: %s"
 
 #: ../gramps/plugins/importer/importxml.py:1295
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Alle Ereignisreferenzen müssen ein 'hlink' Attribut besitzen."
+msgstr "Jeder Ereignisverweis muss ein 'hlink' Attribut haben."
 
 #: ../gramps/plugins/importer/importxml.py:1567
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "Alle Personenreferenzen müssen ein 'hlink' Attribut besitzen."
+msgstr "Jede Personenreferenz muss ein 'hlink' Attribut haben."
 
 #: ../gramps/plugins/importer/importxml.py:1756
 #, python-format
@@ -26200,7 +26199,7 @@ msgstr "Beim Import unbekannt"
 
 #: ../gramps/plugins/importer/importxml.py:1988
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
+msgstr "Jeder Notizverweis muss ein 'hlink' Attribut haben."
 
 #. Translators: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
@@ -26403,11 +26402,11 @@ msgid ""
 "referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Die importierte Datei war nicht in sich abgeschlossen\n"
+"Die importierte Datei war nicht in sich geschlossen.\n"
 "Um dies zu korrigieren, wurden %(new)d Objekte erstellt und\n"
-"ihr klassifizierendes Attribut wurden auf 'Unbekannt'\n"
-"gesetzt. Wo es möglich ist, werden diese 'Unbekannten' Objekte\n"
-"durch Notiz %(unknown)s referenziert.\n"
+"ihr typisierendes Attribut wurde auf 'Unbekannt' gesetzt.\n"
+"Wo möglich, werden diese 'Unbekannt' Objekte\n"
+"durch den Hinweis %(unknown)s referenziert.\n"
 
 #: ../gramps/plugins/lib/libgedcom.py:3431
 #, python-format
@@ -31190,7 +31189,7 @@ msgstr "Folgende Probleme traten auf:"
 #: ../gramps/plugins/quickview/attributematch.py:32
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Personen, die das '%s' Attribut besitzen"
+msgstr "Personen, die das Attribut '%s' besitzen"
 
 #: ../gramps/plugins/quickview/attributematch.py:46
 #, python-format
@@ -31586,7 +31585,7 @@ msgstr "Personen und Alter an einem bestimmten Datum anzeigen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:55
 msgid "Attribute Match"
-msgstr "Attributsübereinstimmung"
+msgstr "Attributübereinstimmung"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:56
 msgid "Display people with same attribute."
@@ -32503,14 +32502,14 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:947
 #: ../gramps/plugins/textreport/detdescendantreport.py:1136
 msgid "Include attributes"
-msgstr "Attribute aufnehmen"
+msgstr "Attribute einbeziehen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:948
 #: ../gramps/plugins/textreport/detdescendantreport.py:1137
 #: ../gramps/plugins/textreport/familygroup.py:773
 #: ../gramps/plugins/textreport/indivcomplete.py:1148
 msgid "Whether to include attributes."
-msgstr "Ob Attribute aufgenommen werden."
+msgstr "Ob Attribute einbezogen werden sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:951
 #: ../gramps/plugins/textreport/detdescendantreport.py:1140
@@ -32760,7 +32759,7 @@ msgstr "Ob Notizen für Eltern enthalten sind."
 
 #: ../gramps/plugins/textreport/familygroup.py:772
 msgid "Parent Attributes"
-msgstr "Attribute der Eltern"
+msgstr "Eltern Attribute"
 
 #: ../gramps/plugins/textreport/familygroup.py:776
 msgid "Alternate Parent Names"
@@ -32889,7 +32888,7 @@ msgstr "Ob Markierungen aufgenommen werden."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1147
 msgid "Include Attributes"
-msgstr "Attribute aufnehmen"
+msgstr "Attribute einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
 msgid "Include Census Events"
@@ -34257,25 +34256,25 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Dieses Werkzeug erlaubt dir Änderungen an Medienobjekten vorzunehmen. Es "
-"muss jedoch eine wichtige Unterscheidung zwischen Gramps-Medienobjekten und "
-"deren Dateien gemacht werden.\n"
+"Dieses Werkzeug ermöglicht Stapel-Operationen auf in Gramps gespeicherten "
+"Medienobjekten. Es muss ein wichtiger Unterschied zwischen einem Gramps-"
+"Medienobjekt und seiner Datei gemacht werden.\n"
 "\n"
-"Das Gramps-Medienobjekt ist eine Sammlung von Daten über die entsprechende "
-"Datei, z.B. der Dateiname, der Pfad im Datenverzeichnis, seine Bezeichnung, "
-"ID, Notizen, Quellenreferenzen, usw. Diese Gramps-Daten %(bold_start)ssind "
-"nicht in der Datei selber enthalten%(bold_end)s.\n"
+"Das Gramps-Medienobjekt ist eine Sammlung von Daten über die "
+"Medienobjektdatei: ihr Dateiname und/oder Pfad, ihre Beschreibung, ihre ID, "
+"Notizen, Quellenangaben usw. Diese Daten %(bold_start)sumfassen nicht die "
+"Datei selbst%(bold_end)s.\n"
 "\n"
-"Die Dateien, die Bilder, Klänge, Videos usw. enthalten, bestehen getrennt "
-"von Gramps auf der Festplatte. Diese Dateien werden nicht von Gramps "
-"verwaltet und gehören nicht in die Gramps-Datenbank. Die Gramps-Datenbank "
-"speichert nur den Pfad und Dateinamen ab.\n"
+"Die Dateien, die Bild, Ton, Video usw. enthalten, existieren separat auf "
+"deiner Festplatte. Diese Dateien werden nicht von Gramps verwaltet und sind "
+"nicht in der Gramps-Datenbank enthalten. Die Gramps-Datenbank speichert nur "
+"den Pfad und die Dateinamen.\n"
 "\n"
-"Dieses Werkzeug erlaubt es nur, die Daten in Gramps zu modifizieren. Wenn "
-"die Dateien als solche verschoben oder umbenannt werden sollen, musst du das "
-"selber im entsprechenden Verzeichnis vornehmen - nicht in Gramps! Danach "
-"kannst du die Pfade mit Hilfe dieses Werkzeugs mit den neuen Dateiorten "
-"abgleichen."
+"Mit diesem Werkzeug kannst du nur die Datensätze in deiner Gramps-Datenbank "
+"ändern. Wenn du die Dateien verschiebst oder umbenennen möchtest, müsst du "
+"dies selbst tun, außerhalb von Gramps. Dann kannst du die Pfade mit diesem "
+"Werkzeug anpassen, damit die Medienobjekte die richtigen Dateispeicherorte "
+"speichern."
 
 #: ../gramps/plugins/tool/mediamanager.py:344
 msgid "Affected path"
@@ -36558,7 +36557,7 @@ msgstr "Bildlaufrichtung der Maus"
 
 #: ../gramps/plugins/view/pedigreeview.py:1685
 msgid "Top <-> Bottom"
-msgstr "Oben <-> Unten"
+msgstr "Oben ↔ Unten"
 
 #: ../gramps/plugins/view/pedigreeview.py:1692
 msgid "Left <-> Right"
@@ -37585,8 +37584,8 @@ msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
-"Mit erzählenden Anmerkungen direkt nach Namen, Geschlecht und Alter beim Tod "
-"(Standard) oder platziere sie direkt vor den Attributen."
+"Erzählnotizen direkt nach Name, Geschlecht und Alter beim Tod "
+"(Standardeinstellung) oder direkt vor Attributen einfügen."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2166
 msgid "Page Generation"
