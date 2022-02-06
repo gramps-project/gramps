@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-26 21:34+0000\n"
+"PO-Revision-Date: 2022-02-04 18:57+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -43,8 +43,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"Gramps, hem hobiler için sezgisel hem de profesyonel soy araştırmacıları "
-"için tam özellikli bir soy ağacı programıdır."
+"Gramps, hem hobi amaçlı kullanım için sezgisel hem de profesyonel soy "
+"araştırmacıları için tam özellikli bir soy ağacı programıdır."
 
 #: ../data/gramps.appdata.xml.in:8
 msgid ""
@@ -1373,11 +1373,11 @@ msgstr ""
 "  -c, --config=[config.setting[:value]]  Yapılandırma ayar(lar)ını "
 "belirleyin ve Gramps'ı başlatın\n"
 "  -y, --yes                              Tehlikeli eylemleri onaylamayı "
-"istemeyin (yalnızca GUI dışı mod)\n"
+"istemeyin (yalnızca GUI dışı kip)\n"
 "  -q, --quiet                            İlerleme göstergesi çıktısını "
-"bastır (yalnızca GUI olmayan mod)\n"
+"bastır (yalnızca GUI dışı kip)\n"
 "  -v, --version                          Sürümleri göster\n"
-"  -S, --safe                             Gramps'ı 'Güvenli modda' başlat\n"
+"  -S, --safe                             Gramps'ı 'Güvenli kipte' başlat\n"
 "                                          (geçici olarak varsayılan ayarları "
 "kullanın)\n"
 "  -D, --default=[APXFE]                  Ayarları varsayılana sıfırla;\n"
@@ -2369,7 +2369,7 @@ msgstr "ile"
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
 "{date_quality} {date_start} tarihinden {date_stop}{nonstd_calendar_and_ny} "
-"tarihine"
+"tarihine kadar"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2894,12 +2894,12 @@ msgstr "Zilhicce"
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr "Farvardin"
+msgstr "Ferverdin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr "Ordibeheşt"
+msgstr "Ürdibehişt"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Persian month lexeme"
@@ -2919,12 +2919,12 @@ msgstr "Mordad"
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr "Şehrivar"
+msgstr "Şehriver"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr "Mehr"
+msgstr "Mihr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgctxt "Persian month lexeme"
@@ -2934,7 +2934,7 @@ msgstr "Aban"
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr "Azar"
+msgstr "Azer"
 
 #: ../gramps/gen/datehandler/_datestrings.py:217
 msgctxt "Persian month lexeme"
@@ -2944,26 +2944,26 @@ msgstr "Dey"
 #: ../gramps/gen/datehandler/_datestrings.py:218
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr "Bahman"
+msgstr "Behmen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:219
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr "Esfand"
+msgstr "İsfendarmaz"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "date modifier"
 msgid "before "
-msgstr " önce"
+msgstr " öncesi"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "date modifier"
 msgid "after "
-msgstr " sonra"
+msgstr " sonrası"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -3741,7 +3741,7 @@ msgstr "Örnek sayısı:"
 #: ../gramps/gui/editors/filtereditor.py:522
 #: ../gramps/gui/glade/editplaceref.glade:245
 msgid "ID:"
-msgstr "Kimlik:"
+msgstr "KNo:"
 
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:43
 #: ../gramps/gen/filters/rules/_regexpidbase.py:48
@@ -3784,7 +3784,7 @@ msgstr "Referans sayısı:"
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:45
 #: ../gramps/gui/editors/filtereditor.py:525
 msgid "Source ID:"
-msgstr "Kaynak Kimliği:"
+msgstr "Kaynak KNo:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:54
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:132
@@ -3939,7 +3939,7 @@ msgstr "<ld> ile alıntı"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:46
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Belirtilen Gramps Kimliğine sahip bir alıntıyla eşleşir"
+msgstr "Belirtilen Gramps kimlik numarasına sahip bir alıntıyla eşleşir"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
@@ -4037,7 +4037,9 @@ msgstr "Kaynak <Id> ile alıntı"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:47
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Bir alıntıyı belirtilen Gramps Kimliğine sahip bir kaynakla eşleştirir"
+msgstr ""
+"Bir alıntıyı belirtilen Gramps kimlik numarasına sahip bir kaynakla "
+"eşleştirir"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
 msgid "Citations having source notes containing <text>"
@@ -4122,23 +4124,23 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:48
 msgid "Citations with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip alıntılar"
+msgstr "<Metin> içeren kimlik numarasına sahip alıntılar"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen alıntılarla eşleşir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen alıntılarla eşleşir"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:48
 msgid "Citations with Source Id containing <text>"
-msgstr "<Metin> içeren Kaynak Kimliğine sahip alıntılar"
+msgstr "<Metin> içeren Kaynak kimlik numarasına sahip alıntılar"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:49
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
 msgstr ""
-"Kaynağı normal ifadeyle eşleşen bir Gramps Kimliğine sahip olan alıntılarla "
-"eşleşir"
+"Kaynağı normal ifadeyle eşleşen bir Gramps kimlik numarasına sahip olan "
+"alıntılarla eşleşir"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:44
 msgid "Every event"
@@ -4256,7 +4258,7 @@ msgstr "<Id> ile etkinlik"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:45
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Belirtilen Gramps Kimliği bir etkinlikle eşleşir"
+msgstr "Belirtilen Gramps kimlik numarası bir etkinlikle eşleşir"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:45
 msgid "Events having <count> notes"
@@ -4379,11 +4381,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:47
 msgid "Events with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip etkinlikler"
+msgstr "<Metin> içeren kimlik numarasına sahip etkinlikler"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen etkinlikleri eşleştirir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen etkinlikleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:377
@@ -4410,15 +4412,16 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:45
 msgid "Person ID:"
-msgstr "Kişi Kimliği:"
+msgstr "Kişi KNo:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:46
 msgid "Families having child with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip çocukları olan aileler"
+msgstr "<Metin> içeren kimlik numarasına sahip çocukları olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:47
 msgid "Matches families where child has a specified Gramps ID"
-msgstr "Çocuğun belirli bir Gramps Kimliğine sahip olduğu ailelerle eşleşir"
+msgstr ""
+"Çocuğun belirli bir Gramps kimlik numarasına sahip olduğu ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:49
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:48
@@ -4446,11 +4449,11 @@ msgstr "Özel olarak belirtilen ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:46
 msgid "Families having father with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip babası olan aileler"
+msgstr "<Metin> içeren kimlik numarasına sahip babası olan aileler"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
 msgid "Matches families whose father has a specified Gramps ID"
-msgstr "Babası belirli bir Gramps Kimliğine sahip ailelerle eşleşir"
+msgstr "Babası belirli bir Gramps kimlik numarasına sahip ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:49
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:48
@@ -4524,11 +4527,11 @@ msgstr "Galerideki belirli sayıda öğeye sahip aileleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:44
 msgid "Family with <Id>"
-msgstr "<Id> kimliği olan aile"
+msgstr "<Id> kimlik numarası olan aile"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:45
 msgid "Matches a family with a specified Gramps ID"
-msgstr "Belirtilen Gramps Kimliğine sahip bir aileyle eşleşir"
+msgstr "Belirtilen Gramps kimlik numarasına sahip bir aileyle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
@@ -4671,11 +4674,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:46
 msgid "Families having mother with Id containing <text>"
-msgstr "<Metin> içeren kimliği olan anneye sahip aileler"
+msgstr "<Metin> içeren kimlik numarası olan anneye sahip aileler"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:47
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr "Anneleri belirli bir Gramps Kimliğine sahip ailelerle eşleşir"
+msgstr "Anneleri belirli bir Gramps kimlik numarasına sahip ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:49
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:48
@@ -4719,11 +4722,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:47
 msgid "Families with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip aileler"
+msgstr "<Metin> içeren kimlik numarasına sahip aileler"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:48
 msgid "Matches families whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen ailelerle eşleşir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen ailelerle eşleşir"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:45
 msgid "Families with mother matching the <regex_name>"
@@ -4913,11 +4916,12 @@ msgstr "Özel olarak belirtilen ortam nesneleriyle eşleşir"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:47
 msgid "Media objects with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip ortam nesneleri"
+msgstr "<Metin> içeren kimlik numarasına sahip ortam nesneleri"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Matches media objects whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen ortam nesneleriyle eşleşir"
+msgstr ""
+"Gramps kimlik numarası normal ifadeyle eşleşen ortam nesneleriyle eşleşir"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:44
 msgid "Every note"
@@ -4945,7 +4949,7 @@ msgstr "<Id> ile not"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:45
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Belirtilen Gramps Kimliği ile bir notu eşleştirir"
+msgstr "Belirtilen Gramps kimlik numarası ile bir notu eşleştirir"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:47
 #: ../gramps/gen/filters/rules/note/_hastype.py:45
@@ -5020,11 +5024,11 @@ msgstr "Özel olarak belirtilen notlarla eşleşir"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:47
 msgid "Notes with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip notlar"
+msgstr "<Metin> içeren kimlik numarasına sahip notlar"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:48
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen notlarla eşleşir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen notlarla eşleşir"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:47
 msgid "Persons changed after <date time>"
@@ -5266,7 +5270,7 @@ msgstr "<Id> olan kişi"
 #: ../gramps/gen/filters/rules/person/_hasidof.py:45
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 msgid "Matches person with a specified Gramps ID"
-msgstr "Belirtilen Gramps kimliğine sahip kişiyle eşleştirir"
+msgstr "Belirtilen Gramps kimlik numarasına sahip kişiyle eşleştirir"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
@@ -5872,11 +5876,11 @@ msgstr "Çok yaşlı olmayan ölüm belirtileri olmayan kişilerle eşleşir"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:46
 msgid "People with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip kişiler"
+msgstr "<Metin> içeren kimlik numarasına sahip kişiler"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen kişilerle eşleşir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen kişilerle eşleşir"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:46
 msgid "People with a name matching <text>"
@@ -5984,7 +5988,7 @@ msgstr "<Id> ile yer"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:45
 msgid "Matches a place with a specified Gramps ID"
-msgstr "Belirtilen Gramps kimliğine sahip bir yerle eşleşir"
+msgstr "Belirtilen Gramps kimlik numarasına sahip bir yerle eşleşir"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:48
 msgid "Places with no latitude or longitude given"
@@ -6181,11 +6185,11 @@ msgstr "Özel olarak belirtilen yerlerle eşleşir"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
 msgid "Places with Id containing <text>"
-msgstr "<Metin> içeren Kimliği olan yerler"
+msgstr "<Metin> içeren kimlik numarası olan yerler"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen yerleri eşleştirir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen yerleri eşleştirir"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:57
 #: ../gramps/gui/editors/filtereditor.py:591
@@ -6250,7 +6254,7 @@ msgstr "<Id> ile depo"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:45
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Belirtilen Gramps kimliğine sahip bir depoyla eşleşir"
+msgstr "Belirtilen Gramps kimlik numarasına sahip bir depoyla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
@@ -6327,11 +6331,11 @@ msgstr "Adı belirli bir alt dize içeren depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
 msgid "Repositories with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip depolar"
+msgstr "<Metin> içeren kimlik numarasına sahip depolar"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen depolarla eşleşir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen depolarla eşleşir"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
@@ -6387,7 +6391,7 @@ msgstr "<Id> ile kaynak"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:45
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Belirtilen Gramps kimliğine sahip bir kaynakla eşleşir"
+msgstr "Belirtilen Gramps kimlik numarasına sahip bir kaynakla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:45
 msgid "Sources having <count> notes"
@@ -6479,11 +6483,11 @@ msgstr "Başlığı belirli bir alt dize içeren kaynaklarla eşleşir"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
 msgid "Sources with Id containing <text>"
-msgstr "<Metin> içeren kimliğe sahip kaynaklar"
+msgstr "<Metin> içeren kimlik numarasına sahip kaynaklar"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Matches sources whose Gramps ID matches the regular expression"
-msgstr "Gramps Kimliği normal ifadeyle eşleşen kaynakları eşleştirir"
+msgstr "Gramps kimlik numarası normal ifadeyle eşleşen kaynakları eşleştirir"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:42
 msgid "Sources marked private"
@@ -7012,7 +7016,7 @@ msgstr "Alıntı"
 #: ../gramps/plugins/webreport/repository.py:256
 #: ../gramps/plugins/webreport/source.py:268
 msgid "Gramps ID"
-msgstr "Gramps Kimliği"
+msgstr "Gramps KNo"
 
 #: ../gramps/gen/lib/citation.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
@@ -8606,7 +8610,7 @@ msgstr "Kişi referansları"
 
 #: ../gramps/gen/lib/person.py:537
 msgid "Merged Gramps ID"
-msgstr "Birleştirilmiş Gramps Kimliği"
+msgstr "Birleştirilmiş Gramps KNo"
 
 #: ../gramps/gen/lib/personref.py:98 ../gramps/gui/clipboard.py:676
 msgid "Person ref"
@@ -10058,11 +10062,11 @@ msgstr "Kendi başına bir çizgide"
 
 #: ../gramps/gen/plug/report/stdoptions.py:361
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Gramps Kimliklerinin dahil edilip edilmeyeceği (ve nereye)"
+msgstr "Gramps kimlik numaralarının dahil edilip edilmeyeceği (ve nereye)"
 
 #: ../gramps/gen/plug/report/stdoptions.py:364
 msgid "Whether to include Gramps IDs"
-msgstr "Gramps Kimliklerinin dahil edilip edilmeyeceği"
+msgstr "Gramps kimlik numaralarının dahil edilip edilmeyeceği"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Place format"
@@ -12071,7 +12075,7 @@ msgstr "Yedekleme yolu"
 
 #: ../gramps/gui/configure.py:1772
 msgid "Backup on exit"
-msgstr "Çıkışta yedekleme"
+msgstr "Çıkışta yedekle"
 
 #: ../gramps/gui/configure.py:1774
 msgid "Backup Your family tree on exit to Backup path specified above."
@@ -12906,7 +12910,7 @@ msgstr "Seçilen adresi aşağı taşı"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:82
 msgid "_Addresses"
-msgstr "_Adresler"
+msgstr "Ad_resler"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:52
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:53
@@ -12990,7 +12994,7 @@ msgstr "KNo"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:67
 msgid "_References"
-msgstr "_Referanslar"
+msgstr "Re_feranslar"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:107
 msgid "Edit reference"
@@ -13263,7 +13267,7 @@ msgstr "Seçili LDS ayinini aşağı taşı"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:71
 msgid "_LDS"
-msgstr "_LDS"
+msgstr "LDS"
 
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:65
 msgid "Alternate _Locations"
@@ -13300,7 +13304,7 @@ msgstr "Notlar Önizleme"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:90
 msgid "_Names"
-msgstr "A_dlar"
+msgstr "_Adlar"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:125
 msgid "Set as default name"
@@ -13365,7 +13369,7 @@ msgstr "Önizleme"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:88
 msgid "_Notes"
-msgstr "N_otlar"
+msgstr "No_tlar"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
 #: ../gramps/plugins/webreport/basepage.py:1967
@@ -13696,23 +13700,23 @@ msgstr "Alıntıyı Sil (%s)"
 
 #: ../gramps/gui/editors/editdate.py:76 ../gramps/gui/editors/editdate.py:85
 msgid "Regular"
-msgstr "Düzenli"
+msgstr "Normal"
 
 #: ../gramps/gui/editors/editdate.py:77
 msgid "Before"
-msgstr "Önce"
+msgstr "Öncesi"
 
 #: ../gramps/gui/editors/editdate.py:78
 msgid "After"
-msgstr "Sonra"
+msgstr "Sonrası"
 
 #: ../gramps/gui/editors/editdate.py:79
 msgid "About"
-msgstr "Hakkında"
+msgstr "Yaklaşık"
 
 #: ../gramps/gui/editors/editdate.py:80
 msgid "Range"
-msgstr "Dizi"
+msgstr "Arasında"
 
 #: ../gramps/gui/editors/editdate.py:81
 msgid "Span"
@@ -13724,7 +13728,7 @@ msgstr "Sadece yazı"
 
 #: ../gramps/gui/editors/editdate.py:86
 msgid "Estimated"
-msgstr "Deger"
+msgstr "Tahmini"
 
 #: ../gramps/gui/editors/editdate.py:87
 msgid "Calculated"
@@ -15783,7 +15787,7 @@ msgstr ""
 #: ../gramps/gui/glade/editrepository.glade:165
 #: ../gramps/gui/glade/editsource.glade:263
 msgid "_ID:"
-msgstr "_ID:"
+msgstr "KN_o:"
 
 #: ../gramps/gui/glade/editcitation.glade:240
 msgid "A unique ID to identify the citation"
@@ -15825,7 +15829,7 @@ msgstr "K_alite"
 
 #: ../gramps/gui/glade/editdate.glade:293
 msgid "_Type"
-msgstr "_Tür"
+msgstr "T_ür"
 
 #: ../gramps/gui/glade/editdate.glade:338
 msgid "_Day"
@@ -15993,7 +15997,7 @@ msgstr "Aile için benzersiz bir ID"
 #: ../gramps/gui/glade/editrepository.glade:112
 #: ../gramps/gui/glade/editurl.glade:126
 msgid "_Type:"
-msgstr "_Tür:"
+msgstr "T_ür:"
 
 #: ../gramps/gui/glade/editfamily.glade:712
 msgid ""
@@ -16009,7 +16013,7 @@ msgstr ""
 #: ../gramps/gui/glade/editnote.glade:248
 #: ../gramps/gui/glade/editperson.glade:650
 msgid "_Tags:"
-msgstr "E_tiketler:"
+msgstr "Etiket_ler:"
 
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:819
@@ -16244,7 +16248,7 @@ msgstr "_Ad:"
 #: ../gramps/gui/glade/editname.glade:207
 #: ../gramps/gui/glade/editperson.glade:197
 msgid "T_itle:"
-msgstr "Sa_n:"
+msgstr "_San:"
 
 #: ../gramps/gui/glade/editname.glade:221
 msgid "Suffi_x:"
@@ -16261,7 +16265,7 @@ msgstr "Kişiye verilen adlar"
 
 #: ../gramps/gui/glade/editname.glade:265
 msgid "_Nick Name:"
-msgstr "_Lakap:"
+msgstr "Laka_p:"
 
 #: ../gramps/gui/glade/editname.glade:278
 #: ../gramps/gui/glade/editperson.glade:179
@@ -16407,11 +16411,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/editperson.glade:165
 msgid "C_all:"
-msgstr "S_eslenme:"
+msgstr "Seslen_me:"
 
 #: ../gramps/gui/glade/editperson.glade:245
 msgid "_Nick:"
-msgstr "_Lakap:"
+msgstr "Laka_p:"
 
 #: ../gramps/gui/glade/editperson.glade:335
 msgid "Click on a table cell to edit."
@@ -16437,7 +16441,7 @@ msgstr "Kişiyi gizli veri olarak ayarla"
 
 #: ../gramps/gui/glade/editperson.glade:450
 msgid "_Surname:"
-msgstr "_Soyadı:"
+msgstr "So_yadı:"
 
 #: ../gramps/gui/glade/editperson.glade:466
 msgid ""
@@ -16705,7 +16709,7 @@ msgstr "Depodaki kaynağın ID'si."
 #: ../gramps/gui/glade/rule.glade:656
 #: ../gramps/plugins/tool/ownereditor.glade:150
 msgid "_Name:"
-msgstr "_Ad:"
+msgstr "A_d:"
 
 #: ../gramps/gui/glade/editreporef.glade:293
 #: ../gramps/gui/glade/editrepository.glade:126
@@ -17663,7 +17667,7 @@ msgstr "_Hakkında"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Bookmarks"
-msgstr "_Yer imleri"
+msgstr "Yer i_mleri"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Configure..."
@@ -22519,7 +22523,8 @@ msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14.%(gramps_wiki_html_start)s%(section)sÖğreticiler mevcut mu?%(html_end)s\n"
+" 14. %(gramps_wiki_html_start)s%(section)sÖğreticiler mevcut mu?%(html_end)"
+"s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -23851,7 +23856,7 @@ msgstr ""
 "(bazen 'veri tabanı' olarak adlandırılır) oluşturmak için menüden "
 "\"Soyağaçları\"nı seçin, \"Soyağaçlarını Yönet\"i seçin, \"Yeni\"ye basın ve "
 "Soyağacınıza bir ad verin. Daha fazla ayrıntı için lütfen yukarıdaki "
-"İlişimlerdeki bilgileri okuyun\n"
+"ilişimlerdeki bilgileri okuyun\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
@@ -24508,7 +24513,7 @@ msgid ""
 "Web Site' report."
 msgstr ""
 "'Anlatılan Web Sitesi' raporu tarafından oluşturulan dosyalara etkin "
-"İlişimler içeren PDF ve imagemap dosyalarının oluşturulabilmesi için her "
+"ilişimler içeren PDF ve imagemap dosyalarının oluşturulabilmesi için her "
 "çizge düğümüne bir URL ekleyin."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:899
@@ -24815,7 +24820,7 @@ msgstr "ikamet yeri id"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "residenceplace_id"
-msgstr "ikametyeri_id"
+msgstr "ikametyeri_kno"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "residence source"
@@ -24859,7 +24864,7 @@ msgstr "anne"
 
 #: ../gramps/plugins/importer/importcsv.py:233
 msgid "wife"
-msgstr "karı"
+msgstr "karısı"
 
 #: ../gramps/plugins/importer/importcsv.py:234
 msgid "parent2"
@@ -24871,7 +24876,7 @@ msgstr "baba"
 
 #: ../gramps/plugins/importer/importcsv.py:236
 msgid "husband"
-msgstr "koca"
+msgstr "kocası"
 
 #: ../gramps/plugins/importer/importcsv.py:237
 msgid "parent1"
@@ -24891,7 +24896,7 @@ msgstr "yer"
 
 #: ../gramps/plugins/importer/importcsv.py:241
 msgid "place id"
-msgstr "yer id"
+msgstr "yer kno"
 
 #: ../gramps/plugins/importer/importcsv.py:242
 #: ../gramps/plugins/tool/removespaces.py:190
@@ -25498,7 +25503,7 @@ msgstr "VCARD içe aktarma raporu: %s hata algılandı\n"
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
 msgid "Token >%(token)s< unknown. line skipped: %(line)s"
-msgstr "Token >%(token)s< bilinmiyor. %(line)s satır atlandı."
+msgstr "Token >%(token)s< bilinmiyor. %(line)s satır atlandı"
 
 #: ../gramps/plugins/importer/importvcard.py:335
 msgid ""
@@ -30797,7 +30802,7 @@ msgstr "%(person)s ve %(active_person)s aynı kişidir."
 #: ../gramps/plugins/tool/relcalc.py:214
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr "%(person)s, %(active_person)s kişisinin %(relationship)s'sıdır."
+msgstr "%(person)s, %(active_person)s kişisinin %(relationship)sdir."
 
 #: ../gramps/plugins/quickview/all_relations.py:102
 #, python-format
@@ -33861,10 +33866,10 @@ msgstr ""
 "Bu araç, Gramps'ta depolanan ortam nesnelerinde toplu işlemlere izin verir. "
 "Gramps ortam nesnesi ve dosyası arasında önemli bir ayrım yapılmalıdır.\n"
 "\n"
-"Gramps ortam nesnesi, ortam nesnesi dosyası hakkında bir veri "
-"koleksiyonudur: dosya adı ve/veya yolu, açıklaması, kimliği, notları, kaynak "
-"referansları, vb. Bu veriler %(bold_start)s dosyanın kendisini içermez"
-"%(bold_end)s.\n"
+"Gramps ortam nesnesi, ortam nesnesi dosyası hakkında bir veri koleksiyonudur:"
+" dosya adı ve/veya yolu, açıklaması, kimlik numarası, notları, kaynak "
+"referansları, vb. Bu veriler %(bold_start)s dosyanın kendisini "
+"içermez%(bold_end)s.\n"
 "\n"
 "Görüntü, ses, video vb. içeren dosyalar sabit sürücünüzde ayrı olarak "
 "bulunur. Bu dosyalar Gramps tarafından yönetilmez ve Gramps veri tabanına "
@@ -34518,7 +34523,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Gramps_ID'yi_Yeniden_Sırala"
+msgstr "Gramps_KNo'yu_Yeniden_Sırala"
 
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
@@ -34811,7 +34816,8 @@ msgstr "Kullanılmayan nesneleri veri tabanından kaldırır"
 #: ../gramps/plugins/tool/tools.gpr.py:376
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr ""
-"Gramps kimliklerini Gramps'ın varsayılan kurallarına göre yeniden sıralar."
+"Gramps kimlik numaralarını Gramps'ın varsayılan kurallarına göre yeniden "
+"sıralar."
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
@@ -37536,7 +37542,7 @@ msgstr "Aile İlişimleri"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2457
 msgid "Drop"
-msgstr "Drop"
+msgstr "Damla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2458
 msgid "Markers"
