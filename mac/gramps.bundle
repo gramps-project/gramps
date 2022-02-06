@@ -12,8 +12,9 @@
   </meta>
 
   <plist>${project}/Info.plist</plist>
+  <entitlements>${project}/release.entitlements.plist</entitlements>
   <!-- Build gramps-launcher with:
-          gcc -L$PREFIX/lib `python-config -\-cflags -\-ldflags` \
+          gcc -L$PREFIX/lib `python-config -\-cflags -\-ldflags -\-embed` \
               -o $PREFIX/bin/gramps-launcher \
 	      path/to/gtk-mac-bundler/examples/python-launcher.c
        with the obvious substitution.
@@ -41,19 +42,15 @@
   </binary>
 
   <binary recurse="True">
-    ${prefix}/lib/python3.6/*.so
+    ${prefix}/lib/python3.9/*.so
   </binary>
 
   <binary>
     ${prefix}/lib/librsvg-2.2.dylib
   </binary>
 
-  <!--binary>
-    ${prefix}/lib/libwebkit-1.0.2.dylib
-  </binary-->
-
   <binary>
-    ${prefix}/lib/libgtkmacintegration-gtk3.2.dylib
+    ${prefix}/lib/libgtkmacintegration-gtk3.4.dylib
   </binary>
 
   <binary>
@@ -65,7 +62,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/enchant
+    ${prefix}/lib/enchant-2
   </binary>
 
   <binary>
@@ -77,7 +74,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libhunspell-1.6.0.dylib
+    ${prefix}/lib/libhunspell-1.7.0.dylib
   </binary>
 
   <binary>
@@ -94,6 +91,14 @@
 
   <binary>
     ${prefix}/lib/libgexiv2.dylib
+  </binary>
+
+  <binary>
+    ${prefix}/lib/libgeocode-glib.dylib
+  </binary>
+
+  <binary>
+    ${prefix}/lib/gio/modules/libgiognutls.so
   </binary>
 
   <gir>
@@ -138,25 +143,29 @@
   </data>
 
   <data>
+    ${prefix}/etc/fonts
+  </data>
+
+  <data>
     ${prefix}/share/glib-2.0/schemas
   </data>
 
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
   <data recurse="True">
-    ${prefix}/lib/python3.6/*.py
+    ${prefix}/lib/python3.9/*.py
   </data>
 
   <data>
-    ${prefix}/lib/python3.6/config-3.6m-darwin/
+    ${prefix}/lib/python3.9/config-3.9-darwin/
   </data>
 
   <data>
-    ${prefix}/lib/python3.6/site-packages/gramps/gen/utils/resource-path
+    ${prefix}/lib/python3.9/site-packages/gramps/gen/utils/resource-path
   </data>
 
   <data>
-    ${prefix}/include/python3.6m/pyconfig.h
+    ${prefix}/include/python3.9/pyconfig.h
   </data>
 
 
@@ -173,7 +182,7 @@
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python3.6/site-packages/gramps/*.glade
+    ${prefix}/lib/python3.9/site-packages/gramps/*.glade
   </data>
 
   <data>
@@ -205,6 +214,7 @@
   <data>
     ${prefix}/share/icons
   </data>
+
   <!-- Copy icons. Note that the .icns file is an Apple format which
        contains up to 4 sizes of icon. You can use
        /Developer/Applications/Utilities/Icon Composer.app to import

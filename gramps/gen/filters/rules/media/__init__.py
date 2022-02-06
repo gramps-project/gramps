@@ -51,6 +51,7 @@ editor_rule_list = [
     MediaPrivate,
     MatchesFilter,
     MatchesSourceConfidence,
+    HasMedia,
     HasAttribute,
     ChangedSince,
     HasTag,

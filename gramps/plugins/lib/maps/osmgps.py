@@ -191,14 +191,11 @@ class OsmGps:
             self.osm = DummyMapNoGpsPoint()
         else:
             if http_proxy:
-                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                         proxy_uri=http_proxy,
-                                         map_source=constants.MAP_TYPE[
-                                                                      map_type])
+                self.osm = osmgpsmap.Map(proxy_uri=http_proxy)
             else:
-                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                         map_source=constants.MAP_TYPE[
-                                                                      map_type])
+                self.osm = osmgpsmap.Map()
+            self.osm.set_property("tile_cache", tiles_path)
+            self.osm.set_property("map_source", constants.MAP_TYPE[map_type])
         self.osm.props.tile_cache = osmgpsmap.MAP_CACHE_AUTO
         current_map = osmgpsmap.MapOsd(show_dpad=False, show_zoom=True)
         self.end_selection = None

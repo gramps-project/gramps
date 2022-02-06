@@ -244,6 +244,13 @@ class GeoFamClose(GeoGraphyView):
         self.cal = config.get('preferences.calendar-format-report')
         self.no_show_places_in_status_bar = False
         self.config_meeting_slider = None
+        self.dbstate.connect('database-changed', self.reset_change_db)
+
+    def reset_change_db(self, dummy_dbase):
+        """
+        Used to reset the family reference
+        """
+        self.reffamily = None
 
     def get_title(self):
         """

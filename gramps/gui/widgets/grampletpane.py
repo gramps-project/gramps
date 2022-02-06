@@ -1240,6 +1240,12 @@ class GrampletPane(Gtk.ScrolledWindow):
                                     else:
                                         cnt = 0
                                         for item in base_opts["data"]:
+                                            # If we have a "%" in a string,
+                                            # escape it by writing "%%"
+                                            # to avoid InterpolationSyntaxError
+                                            # in python configparser module.
+                                            if isinstance(item, str):
+                                                item = item.replace("%", "%%")
                                             fp.write("data[%d]=%s\n" % (cnt, item))
                                             cnt += 1
                                 else:

@@ -325,7 +325,6 @@ class BaseSelector(ManagedWindow):
                 self.sortorder = Gtk.SortType.ASCENDING
             else:
                 self.sortorder = Gtk.SortType.DESCENDING
-            self.model.reverse_order()
         self.build_tree()
 
         return True

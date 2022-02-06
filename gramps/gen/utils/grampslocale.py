@@ -526,6 +526,8 @@ class GrampsLocale:
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
         if self.localedir:
             if not sys.platform == 'win32':
+                # bug12278, _build_popup_ui() under linux and macOS
+                locale.textdomain(self.localedomain)
                 locale.bindtextdomain(self.localedomain, self.localedir)
             else:
                 self._win_bindtextdomain(self.localedomain.encode('utf-8'),

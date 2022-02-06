@@ -370,8 +370,9 @@ class GeoFamily(GeoGraphyView):
                           _("Family places for %s") % self.family_label(family))
         person = None
         if family:
-            person = dbstate.db.get_person_from_handle(
-                                                     family.get_father_handle())
+            handle = family.get_father_handle()
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         else:
             return
         family_id = family.gramps_id

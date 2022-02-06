@@ -125,13 +125,17 @@ class Backlinks(Gramplet):
 
         edit_object(self.dbstate, self.uistate, objclass, handle)
 
+    def db_changed(self):
+        for item in ['person', 'family', 'source', 'citation', 'event',
+                     'media', 'place', 'repository', 'note']:
+            self.connect(self.dbstate.db, '%s-delete' % item, self.update)
+            self.connect(self.dbstate.db, '%s-add' % item, self.update)
+            self.connect(self.dbstate.db, '%s-update' % item, self.update)
+
 class PersonBacklinks(Backlinks):
     """
     Displays the back references for a person.
     """
-    def db_changed(self):
-        self.connect(self.dbstate.db, 'person-update', self.update)
-
     def active_changed(self, handle):
         self.update()
 
@@ -152,7 +156,7 @@ class EventBacklinks(Backlinks):
     Displays the back references for an event.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'event-update', self.update)
+        super().db_changed()
         self.connect_signal('Event', self.update)
 
     def update_has_data(self):
@@ -172,7 +176,7 @@ class FamilyBacklinks(Backlinks):
     Displays the back references for a family.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'family-update', self.update)
+        super().db_changed()
         self.connect_signal('Family', self.update)
 
     def update_has_data(self):
@@ -192,7 +196,7 @@ class PlaceBacklinks(Backlinks):
     Displays the back references for a place.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'place-update', self.update)
+        super().db_changed()
         self.connect_signal('Place', self.update)
 
     def update_has_data(self):
@@ -212,7 +216,7 @@ class SourceBacklinks(Backlinks):
     Displays the back references for a source,.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'source-update', self.update)
+        super().db_changed()
         self.connect_signal('Source', self.update)
 
     def update_has_data(self):
@@ -232,7 +236,7 @@ class CitationBacklinks(Backlinks):
     Displays the back references for a Citation,.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'citation-update', self.update)
+        super().db_changed()
         self.connect_signal('Citation', self.update)
 
     def update_has_data(self):
@@ -252,7 +256,7 @@ class RepositoryBacklinks(Backlinks):
     Displays the back references for a repository.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'repository-update', self.update)
+        super().db_changed()
         self.connect_signal('Repository', self.update)
 
     def update_has_data(self):
@@ -272,7 +276,7 @@ class MediaBacklinks(Backlinks):
     Displays the back references for a media object.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'media-update', self.update)
+        super().db_changed()
         self.connect_signal('Media', self.update)
 
     def update_has_data(self):
@@ -292,7 +296,7 @@ class NoteBacklinks(Backlinks):
     Displays the back references for a note.
     """
     def db_changed(self):
-        self.connect(self.dbstate.db, 'note-update', self.update)
+        super().db_changed()
         self.connect_signal('Note', self.update)
 
     def update_has_data(self):

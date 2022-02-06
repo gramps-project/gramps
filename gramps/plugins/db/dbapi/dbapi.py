@@ -225,6 +225,16 @@ class DBAPI(DbGeneric):
         if self.transaction == None:
             self.dbapi.rollback()
 
+    def _collation(self, locale):
+        """
+        Get the adjusted collation if there is one, falling back on
+        the locale.collation.
+        """
+        collation = self.dbapi.check_collation(locale)
+        if collation == None:
+            return locale.get_collation()
+        return collation
+
     def transaction_begin(self, transaction):
         """
         Transactions are handled automatically by the db layer.
@@ -365,12 +375,9 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
             self.dbapi.execute('SELECT handle FROM person '
                                'ORDER BY surname '
-                               'COLLATE "%s"' % locale.get_collation())
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM person")
         rows = self.dbapi.fetchall()
@@ -387,9 +394,6 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
             sql = ('SELECT family.handle ' +
                    'FROM family ' +
                    'LEFT JOIN person AS father ' +
@@ -404,7 +408,7 @@ class DBAPI(DbGeneric):
                    'THEN mother.given_name ' +
                    'ELSE father.given_name ' +
                    'END) ' +
-                   'COLLATE "%s"' % locale.get_collation())
+                   'COLLATE "%s"' % self._collation(locale))
             self.dbapi.execute(sql)
         else:
             self.dbapi.execute("SELECT handle FROM family")
@@ -431,12 +435,9 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
             self.dbapi.execute('SELECT handle FROM citation '
                                'ORDER BY page '
-                               'COLLATE "%s"' % locale.get_collation())
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM citation")
         rows = self.dbapi.fetchall()
@@ -453,12 +454,9 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
             self.dbapi.execute('SELECT handle FROM source '
                                'ORDER BY title '
-                               'COLLATE "%s"' % locale.get_collation())
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle from source")
         rows = self.dbapi.fetchall()
@@ -475,12 +473,9 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
             self.dbapi.execute('SELECT handle FROM place '
                                'ORDER BY title '
-                               'COLLATE "%s"' % locale.get_collation())
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM place")
         rows = self.dbapi.fetchall()
@@ -506,12 +501,9 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
             self.dbapi.execute('SELECT handle FROM media '
                                'ORDER BY desc '
-                               'COLLATE "%s"' % locale.get_collation())
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM media")
         rows = self.dbapi.fetchall()
@@ -537,12 +529,9 @@ class DBAPI(DbGeneric):
         :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            if locale != glocale:
-                self.dbapi.check_collation(locale)
-
             self.dbapi.execute('SELECT handle FROM tag '
                                'ORDER BY name '
-                               'COLLATE "%s"' % locale.get_collation())
+                               'COLLATE "%s"' % self._collation(locale))
         else:
             self.dbapi.execute("SELECT handle FROM tag")
         rows = self.dbapi.fetchall()
@@ -589,12 +578,13 @@ class DBAPI(DbGeneric):
                                "WHERE name = ?", [grouping, name])
         elif row and grouping is None:
             self.dbapi.execute("DELETE FROM name_group WHERE name = ?", [name])
-            grouping = ''
         else:
             self.dbapi.execute(
                 "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
                 [name, grouping])
         self._txn_commit()
+        if grouping is None:
+            grouping = ''
         self.emit('person-groupname-rebuild', (name, grouping))
 
     def _commit_base(self, obj, obj_key, trans, change_time):

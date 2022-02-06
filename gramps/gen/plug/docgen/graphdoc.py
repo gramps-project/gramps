@@ -113,6 +113,10 @@ else:
     _GS_CMD = where_is("gs")
 
 
+def esc(id_txt):
+    return id_txt.replace('"', '\\"')
+
+
 #------------------------------------------------------------------------------
 #
 # GVOptions
@@ -575,7 +579,7 @@ class GVDocBase(BaseDoc, GVDoc):
             text += ' URL="%s"' % url
 
         text += " ]"
-        self.write('  "%s" %s;\n' % (node_id, text))
+        self.write('  "%s" %s;\n' % (esc(node_id), text))
 
     def add_link(self, id1, id2, style="", head="", tail="", comment=""):
         """
@@ -583,7 +587,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.add_link().
         """
-        self.write('  "%s" -> "%s"' % (id1, id2))
+        self.write('  "%s" -> "%s"' % (esc(id1), esc(id2)))
 
         if style or head or tail:
             self.write(' [')
@@ -635,7 +639,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.add_samerank().
         """
-        self.write('  {rank=same "%s" "%s"}\n' % (id1, id2))
+        self.write('  {rank=same "%s" "%s"}\n' % (esc(id1), esc(id2)))
 
     def rewrite_label(self, id, label):
         """
@@ -643,7 +647,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.rewrite_label().
         """
-        self.write('  "%s" [label = "%s"]\n' % (id, label))
+        self.write('  "%s" [label = "%s"]\n' % (esc(id), label))
 
     def start_subgraph(self, graph_id):
         """ Implement GVDocBase.start_subgraph() """
