@@ -4,13 +4,13 @@
 # Fedir Zinchuk <fedikw@gmail.com>, 2011-2020, 2021.
 # Oleh Petriv, 2013.
 # qqqlb <qllb.ch@gmail.com>, 2021.
-# Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
+# Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-09-11 10:11+0000\n"
+"PO-Revision-Date: 2022-01-31 23:52+0000\n"
 "Last-Translator: Tymofii Lytvynenko <till.svit@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -8718,7 +8718,7 @@ msgstr "Муніципалітет"
 
 #: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:649
 msgid "Town"
-msgstr "Місто"
+msgstr "Містечко"
 
 #: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:607
 msgid "Village"
