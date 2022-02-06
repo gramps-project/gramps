@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-26 21:34+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2022-02-06 18:18+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -36,7 +36,7 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"גרמפס הוא תכנה גנאלוגיות אינטואיטיבית הן לחובבי גנאלוגיה והן לגנאלוגים "
+"גרמפס היא תכנה גנאלוגיות אינטואיטיבית הן לחובבי גנאלוגיה והן לגנאלוגים "
 "מקצועיים בזכות עושר ושלמות התכונות שלו."
 
 #: ../data/gramps.appdata.xml.in:8
@@ -299,9 +299,9 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b>עריכת עצמים<br/></b>ברוב המקרים הקשה כפולה על שם, מקור, מקום או רשומת "
-"מדיה תקפיץ חלון לעריכת האובייקט. נא לשים לב שהתוצאה עשויה להיות תלויה בהקשר. "
-"לדוגמה, במצג משפחה, הקשה על הורה או צאצא תציג את עורך קשרי־הגומלין."
+"<b>עריכת עצמים<br/></b>ברוב המקרים הקשה כפולה על, שם, מקור, מקום או רשומת "
+"מדיה תקפיץ חלון לעריכת העצם. לתשומת לב, התוצאה עשויה להיות תלויה בהקשר. "
+"לדוגמה, במצג משפחה, הקשה על הורה או צאצא תשפעל את עורך קשרי־הגומלין."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -612,10 +612,10 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>תיבת סימון הצגת הכול<br/></b>בעת הוספת אדם קיים כבן זוג, רשימת האנשים "
+"<b>תיבת סימון הצגת־הכול<br/></b>בעת הוספת אדם קיים כבן זוג, רשימת האנשים "
 "המוצגת מסוננת כך שיוצגו רק אנשים שעשויים להתאים באופן מעשי (בהתבסס על "
 "תאריכים במסד הנתונים). במקרה שגרמפס פספס, ניתן לעקוף את המסנן על־ידי סימון "
-"תיבת סימון הצגת הכול."
+"תיבת־הסימון 'הצגת־הכול'."
 
 #: ../data/tips.xml:60
 msgid ""
@@ -790,7 +790,7 @@ msgstr ""
 "<b>תבנית קובץ GEDCOM<br/></b>גרמפס מאפשר לייבא ולייצא לתבנית GEDCOM. קיימת "
 "תמיכה נרחבת בתעשייה בתקן GEDCOM גרסה 5.5, כך שניתן להחליף מידע בין גרמפס "
 "ומשתמשים אחרים המשתמשים בתכנות גנאלוגיות אחרות. מסננים מובנים הופכים את "
-"היבוא והיצוא של קבצי GEDCOM למשימה פשוטה."
+"היבוא והיצוא של קובצי GEDCOM למשימה פשוטה."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -9402,8 +9402,8 @@ msgid ""
 "vertical graphs, this corresponds to spacing between columns.  For "
 "horizontal graphs, this corresponds to spacing between rows."
 msgstr ""
-"גודל השטח המזערי הפנוי בין צמתים נפרדים, באינצ'ים.  עבור תרשימים אנכיים, "
-"תואם לריווח בין עמודות.  עבור תרשימים אופקיים, תואם לריווח בין שורות."
+"גודל השטח המזערי הפנוי בין צמתים נפרדים, באינצ'ים. עבור תרשימים אנכיים, תואם "
+"לריווח בין עמודות. עבור תרשימים אופקיים, תואם לריווח בין שורות."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:249
 msgid "Rank spacing"
@@ -17330,7 +17330,7 @@ msgstr "מ_סך מלא"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Gramps _Home Page"
-msgstr "עמוד־ _הבית של גרמפס"
+msgstr "עמוד־_הבית של גרמפס"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Gramps _Mailing Lists"
@@ -17431,7 +17431,7 @@ msgstr "_העדפות..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Quit"
-msgstr "_יצאה"
+msgstr "_יציאה"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Report a Bug"
@@ -23460,7 +23460,7 @@ msgstr "מדריך גרמפס מקוון"
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
 msgctxt "locale_suffix"
 msgid ""
-msgstr ""
+msgstr " "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "Ask questions on gramps-users mailing list"
