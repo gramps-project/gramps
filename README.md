@@ -1,5 +1,9 @@
-The Gramps Project ( https://gramps-project.org ) [![Build Status](https://travis-ci.org/gramps-project/gramps.svg?branch=master)](https://travis-ci.org/gramps-project/gramps)[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=master)](https://codecov.io/github/gramps-project/gramps?branch=master)[![Translation status](https://hosted.weblate.org/widgets/gramps-project/-/gramps/svg-badge.svg)](https://hosted.weblate.org/engage/gramps-project)
+The Gramps Project ( https://gramps-project.org )
 ===================
+[![GitHub CI](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml/badge.svg?event=push&branch=master)](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml?query=branch%3Amaster)
+[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=master)](https://app.codecov.io/gh/gramps-project/gramps/branch/master)
+[![Translation status](https://hosted.weblate.org/widgets/gramps-project/-/gramps/svg-badge.svg)](https://hosted.weblate.org/engage/gramps-project)
+
 We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
 
 Please read the **COPYING** file first.
