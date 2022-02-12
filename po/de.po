@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-01-27 21:52+0000\n"
-"Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
+"PO-Revision-Date: 2022-02-12 23:21+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -569,7 +569,7 @@ msgid ""
 msgstr ""
 "<b>Doppelte Einträge</b><br/>\"Werkzeuge &gt; Datenbankverarbeitung &gt; "
 "Finde doppelt vorkommende Personen...\"; ermöglicht dir, Einträge von der "
-"selben Person zu lokalisieren (und zu verschmelzen), die mehr als einmal in "
+"selben Person zu lokalisieren (und zusammenzuführen), die mehr als einmal in "
 "der Datenbank vorkommt."
 
 #: ../data/tips.xml:44
@@ -582,7 +582,7 @@ msgid ""
 "Sources and Repositories views."
 msgstr ""
 "<b>Einträge zusammenfassen</b><br/>Die Funktion \"Bearbeiten &gt; "
-"Vergleichen und zusammenfassen...\" erlaubt es, separat gelistete Personen "
+"Vergleichen und zusammenführen...\" erlaubt es, separat gelistete Personen "
 "zu einer zu vereinigen. Wähle den zweiten Eintrag durch Gedrückt halten der "
 "Steuerungstaste (Strg), während du klickst. Dies ist sehr nützlich, wenn man "
 "zwei Stammbäume mit sich überlappenden Personen oder irrtümlicherweise sich "
@@ -822,7 +822,7 @@ msgid ""
 msgstr ""
 "<b>Quellen verwalten</b><br/>Die Quellenansicht zeigt eine Liste mit allen "
 "Quellen in einem einzigen Fenster. Von hier kannst du deine Quellen "
-"bearbeiten, Duplikate zusammenfassen und sehen, welche Person mit welcher "
+"bearbeiten, Duplikate zusammenführen und sehen, welche Person mit welcher "
 "Quelle verknüpft ist. Du kannst Filter verwenden, um deine Quellen zu "
 "gruppieren."
 
@@ -3374,8 +3374,8 @@ msgstr ""
 "\n"
 "\n"
 "Du kannst Folgendes starten:\n"
-"„Werkzeuge → Stammbaumverarbeitung → Fundstellen zusammenfassen“,\n"
-"um Fundstellen zusammenzufassen, die identische\n"
+"„Werkzeuge → Stammbaumverarbeitung → Fundstellen zusammenführen“,\n"
+"um Fundstellen zusammenzuführen, die identische\n"
 "Informationen enthalten"
 
 #: ../gramps/gen/db/upgrade.py:737
@@ -7768,7 +7768,7 @@ msgstr "Aufhebung"
 
 #: ../gramps/gen/lib/eventtype.py:207
 msgid "Alternate Marriage"
-msgstr "Alternative Hochzeit"
+msgstr "Alternative Ehe"
 
 #: ../gramps/gen/lib/eventtype.py:211
 #: ../gramps/plugins/drawreport/ancestortree.py:60
@@ -7864,7 +7864,7 @@ msgstr "⚱"
 #: ../gramps/gen/lib/eventtype.py:228
 msgctxt "Degree abbreviation"
 msgid "deg."
-msgstr "Dipl."
+msgstr "grad."
 
 #: ../gramps/gen/lib/eventtype.py:229
 msgctxt "Education abbreviation"
@@ -7984,7 +7984,7 @@ msgstr "Aufg."
 #: ../gramps/gen/lib/eventtype.py:252
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr "alt.Trau."
+msgstr "alt.Ehe"
 
 #: ../gramps/gen/lib/eventtype.py:253
 msgctxt "Engagement abbreviation"
@@ -8267,7 +8267,7 @@ msgstr "Status"
 #: ../gramps/gen/lib/location.py:87 ../gramps/gen/lib/nameorigintype.py:86
 #: ../gramps/gui/clipboard.py:318 ../gramps/gui/plug/_windows.py:625
 msgid "Location"
-msgstr "Standort"
+msgstr "Lokation"
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
 #: ../gramps/plugins/view/geoplaces.py:643
@@ -8408,7 +8408,7 @@ msgstr "Gruppieren als"
 
 #: ../gramps/gen/lib/name.py:171
 msgid "Sort as"
-msgstr "Sortieren nach"
+msgstr "Sortieren als"
 
 #: ../gramps/gen/lib/name.py:173
 msgid "Display as"
@@ -8616,7 +8616,7 @@ msgstr "Adressnotiz"
 
 #: ../gramps/gen/lib/notetype.py:91
 msgid "Association Note"
-msgstr "Verknüpfungsnotiz"
+msgstr "Verbindungsnotiz"
 
 #: ../gramps/gen/lib/notetype.py:92
 msgid "LDS Note"
@@ -8954,11 +8954,11 @@ msgstr "Album"
 
 #: ../gramps/gen/lib/repotype.py:59
 msgid "Web site"
-msgstr "Internetseite"
+msgstr "Internetauftritt"
 
 #: ../gramps/gen/lib/repotype.py:60
 msgid "Bookstore"
-msgstr "Buchladen"
+msgstr "Buchhandlung"
 
 #: ../gramps/gen/lib/repotype.py:61
 msgid "Collection"
@@ -8983,7 +8983,7 @@ msgstr "Autor"
 
 #: ../gramps/gen/lib/src.py:110
 msgid "Publication info"
-msgstr "Veröffentlichungsinformation"
+msgstr "Informationen zur Veröffentlichung"
 
 #: ../gramps/gen/lib/src.py:119
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
@@ -9019,7 +9019,7 @@ msgstr "Buch"
 
 #: ../gramps/gen/lib/srcmediatype.py:60
 msgid "Card"
-msgstr "Karteikarte"
+msgstr "Karte"
 
 #: ../gramps/gen/lib/srcmediatype.py:61
 msgid "Electronic"
@@ -9035,7 +9035,7 @@ msgstr "Film"
 
 #: ../gramps/gen/lib/srcmediatype.py:64
 msgid "Magazine"
-msgstr "Magazin"
+msgstr "Zeitschrift"
 
 #: ../gramps/gen/lib/srcmediatype.py:65
 msgid "Manuscript"
@@ -9063,11 +9063,11 @@ msgstr "Video"
 
 #: ../gramps/gen/lib/styledtext.py:318
 msgid "Styled Text"
-msgstr "Gestylter Text"
+msgstr "Gestalteter Text"
 
 #: ../gramps/gen/lib/styledtext.py:325
 msgid "Styled Text Tags"
-msgstr "Gestylte Textmarkierungen"
+msgstr "Gestaltete Textmarkierungen"
 
 #: ../gramps/gen/lib/styledtexttag.py:101 ../gramps/gen/lib/tag.py:115
 #: ../gramps/gui/editors/edittaglist.py:109
@@ -9201,7 +9201,7 @@ msgstr "FTP"
 
 #: ../gramps/gen/merge/diff.py:106
 msgid "Family Tree Differences"
-msgstr "Stammbaumunterschiede"
+msgstr "Unterschiede im Stammbaum"
 
 #: ../gramps/gen/merge/diff.py:107
 msgid "Searching..."
@@ -9209,15 +9209,15 @@ msgstr "Suche..."
 
 #: ../gramps/gen/merge/mergecitationquery.py:61
 msgid "Merge Citation"
-msgstr "Fundstellen zusammenfassen"
+msgstr "Fundstellen zusammenführen"
 
 #: ../gramps/gen/merge/mergeeventquery.py:59
 msgid "Merge Event Objects"
-msgstr "Ereignisobjekte zusammenfassen"
+msgstr "Ereignisobjekte zusammenführen"
 
 #: ../gramps/gen/merge/mergefamilyquery.py:90
 msgid "A parent should be a father or mother."
-msgstr "Ein Elternteil sollte entweder Vater oder Mutter sein."
+msgstr "Ein Elternteil sollte ein Vater oder eine Mutter sein."
 
 #: ../gramps/gen/merge/mergefamilyquery.py:103
 #: ../gramps/gen/merge/mergefamilyquery.py:114
@@ -9229,48 +9229,48 @@ msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
-"Ein Elternteil und ein Kind können nicht zusammengefasst werden. Um diese "
-"Personen zusammenzufassen, musst du zuerst die Verbindung zwischen ihnen "
-"lösen."
+"Ein Elternteil und ein Kind können nicht zusammengeführt werden. Um diese "
+"Personen zusammenzuführen, müsst du zunächst die Beziehung zwischen ihnen "
+"auflösen."
 
 #: ../gramps/gen/merge/mergefamilyquery.py:135
 msgid "Merge Family"
-msgstr "Familien zusammenfassen"
+msgstr "Familien zusammenführen"
 
 #: ../gramps/gen/merge/mergemediaquery.py:59
 #: ../gramps/gui/merge/mergemedia.py:66
 msgid "Merge Media Objects"
-msgstr "Medienobjekte zusammenfassen"
+msgstr "Medienobjekte zusammenführen"
 
 #: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
-msgstr "Notizen zusammenfassen"
+msgstr "Notizen zusammenführen"
 
 #: ../gramps/gen/merge/mergepersonquery.py:51
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
-"Ehepaare können nicht zusammengefasst werden. Um diese Personen "
-"zusammenzufassen, musst du zuerst die Verbindung zwischen ihnen lösen."
+"Ehegatten können nicht zusammengeführt werden. Um diese Personen "
+"zusammenzuführen, müsst du zunächst die Beziehung zwischen ihnen auflösen."
 
 #: ../gramps/gen/merge/mergepersonquery.py:118
 msgid "Merge Person"
-msgstr "Personen zusammenfassen"
+msgstr "Personen zusammenführen"
 
 #: ../gramps/gen/merge/mergeplacequery.py:60
 #: ../gramps/gui/merge/mergeplace.py:78
 msgid "Merge Places"
-msgstr "Orte zusammenfassen"
+msgstr "Orte zusammenführen"
 
 #: ../gramps/gen/merge/mergerepositoryquery.py:59
 #: ../gramps/gui/merge/mergerepository.py:67
 msgid "Merge Repositories"
-msgstr "Aufbewahrungsorte zusammenfassen"
+msgstr "Aufbewahrungsorte zusammenführen"
 
 #: ../gramps/gen/merge/mergesourcequery.py:62
 msgid "Merge Source"
-msgstr "Quellen zusammenfassen"
+msgstr "Quelle zusammenführen"
 
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:523
@@ -9290,11 +9290,11 @@ msgstr "unbekannt"
 #: ../gramps/gen/plug/_gramplet.py:347
 #, python-format
 msgid "Gramplet %s caused an error"
-msgstr "Gramplet %s verursachte einen Fehler"
+msgstr "Gramplet %s hat einen Fehler verursacht"
 
 #: ../gramps/gen/plug/_manager.py:62
 msgid "No description was provided"
-msgstr "Keine Beschreibung angegeben"
+msgstr "Es wurde keine Beschreibung angegeben"
 
 #: ../gramps/gen/plug/_options.py:386
 #: ../gramps/plugins/textreport/recordsreport.py:162
@@ -9340,7 +9340,7 @@ msgstr "Zusatzmodul-Bibliothek"
 
 #: ../gramps/gen/plug/_pluginreg.py:86
 msgid "Map service"
-msgstr "Landkartenservice"
+msgstr "Kartendienst"
 
 #: ../gramps/gen/plug/_pluginreg.py:87
 msgid "Gramps View"
@@ -9399,16 +9399,14 @@ msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
-"FEHLER: Die Zusatzmoduldatei %(filename)s hat eine Version von "
-"\"%(gramps_target_version)s\", die für Gramps \"%(gramps_version)s\" "
-"ungültig ist."
+"FEHLER: Die Zusatzmoduldatei %(filename)s hat eine Version von \""
+"%(gramps_target_version)s\", die für Gramps \"%(gramps_version)s\" ungültig "
+"ist."
 
 #: ../gramps/gen/plug/_pluginreg.py:1245
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
-msgstr ""
-"FEHLER: Falsche Pythondatei %(filename)s in der Registrierungsdatei "
-"%(regfile)s"
+msgstr "ERROR: Falsche Python-Datei %(filename)s in Registerdatei %(regfile)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1253
 #, python-format
@@ -9420,7 +9418,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:129
 msgid "Close file first"
-msgstr "Datei erst schließen"
+msgstr "Datei zuerst schließen"
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:139
 msgid "No filename given"
@@ -9429,7 +9427,7 @@ msgstr "Kein Dateiname angegeben"
 #: ../gramps/gen/plug/docbackend/docbackend.py:141
 #, python-format
 msgid "File %s already open, close it first."
-msgstr "Datei %s ist bereits geöffnet, erst schließen."
+msgstr "Datei %s bereits geöffnet, schließe sie zuerst."
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:147
 #: ../gramps/gen/plug/docbackend/docbackend.py:150
@@ -9470,7 +9468,7 @@ msgstr "Datei %s ist bereits geöffnet, erst schließen."
 #: ../gramps/plugins/webreport/narrativeweb.py:360
 #, python-format
 msgid "Could not create %s"
-msgstr "Konnte %s nicht erstellen"
+msgstr "%s konnte nicht erstellt werden"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:68
 #: ../gramps/gen/plug/docgen/treedoc.py:67
@@ -9482,7 +9480,7 @@ msgstr "Konnte %s nicht erstellen"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
-msgstr "Vorgabe"
+msgstr "Standard"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
@@ -9550,7 +9548,7 @@ msgstr "Auf minimale Größe komprimieren"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:92
 msgid "Fill the given area"
-msgstr "Gegebenen Bereich füllen"
+msgstr "Den angegebenen Bereich ausfüllen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:93
 msgid "Expand uniformly"
@@ -9578,7 +9576,7 @@ msgstr "Gebogen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:100
 msgid "Orthogonal"
-msgstr "Rechtwinklig"
+msgstr "Orthogonal"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:141
 msgid "Graphviz Layout"
@@ -13632,19 +13630,19 @@ msgstr "Die ausgewählte Verbindung entfernen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:58
 msgid "Edit the selected association"
-msgstr "Gewählte Verbindung bearbeiten"
+msgstr "Ausgewählte Verbindung bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:59
 msgid "Move the selected association upwards"
-msgstr "Gewählte Verbindung nach oben verschieben"
+msgstr "Ausgewählte Verbindung nach oben verschieben"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:60
 msgid "Move the selected association downwards"
-msgstr "Gewählte Verbindung nach unten verschieben"
+msgstr "Ausgewählte Verbindung nach unten verschieben"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:76
 msgid "_Associations"
-msgstr "_Verknüpfungen"
+msgstr "_Verbindungen"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:138
 #: ../gramps/plugins/lib/libprogen.py:1469
@@ -16742,7 +16740,7 @@ msgstr "_Person:"
 
 #: ../gramps/gui/glade/editpersonref.glade:111
 msgid "_Association:"
-msgstr "_Assoziierung:"
+msgstr "_Verbindung:"
 
 #: ../gramps/gui/glade/editpersonref.glade:125
 msgid ""
@@ -16754,23 +16752,22 @@ msgid ""
 msgstr ""
 "Beschreibung der Verbindung z.B. Pate, Freund, ....\n"
 "\n"
-"Beachte: Verwende für Dinge, die mit bestimmten Zeiträumen oder Gründen "
-"verbunden sind, Ereignisse anstatt Beziehungen. Ereignisse können von "
-"Personen gemeinsam benutzt werden, denn jede Person gibt ihre Rolle im "
-"Ereignis an."
+"Hinweis: Verwende stattdessen Ereignisse für Beziehungen, die an bestimmte "
+"Zeiträume oder Anlässe gebunden sind. Ereignisse können zwischen Personen "
+"geteilt werden, wobei jede Person ihre Rolle bei dem Ereignis angibt."
 
 #: ../gramps/gui/glade/editpersonref.glade:176
 msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
 msgstr ""
-"Verwende die Auswahlschaltfläche, um eine Person zu wählen, die eine "
-"Verbindung zu der bearbeiteten Person besitzt."
+"Verwende die Auswahlschaltfläche, um eine Person auszuwählen, die mit der "
+"bearbeiteten Person in Verbindung steht."
 
 #: ../gramps/gui/glade/editpersonref.glade:193
 msgid "Select a person that has an association to the edited person."
 msgstr ""
-"Wähle eine Person, die eine Verbindung zu der bearbeiteten Person besitzt."
+"Wähle eine Person aus, die mit der bearbeiteten Person in Verbindung steht."
 
 #: ../gramps/gui/glade/editplace.glade:106
 #: ../gramps/gui/glade/editplaceref.glade:229
@@ -17097,8 +17094,8 @@ msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Wähle die Fundstelle aus, welche die Primärdaten \n"
-"für die zusammengeführte Fundstelle liefert."
+"Wähle die Fundstelle aus, die die Primärdaten\n"
+"für das zusammengeführte Fundstelle liefert."
 
 #: ../gramps/gui/glade/mergecitation.glade:186
 #: ../gramps/gui/glade/mergedata.glade:732
@@ -17171,7 +17168,9 @@ msgstr "Auswählen"
 #: ../gramps/gui/glade/mergedata.glade:322
 msgid ""
 "Select the person that will provide the primary data for the merged person."
-msgstr "Wähle die Hauptperson für das Zusammenfassen aus."
+msgstr ""
+"Wähle die Person aus, die die Primärdaten für die zusammengeführte Person "
+"liefern soll."
 
 #: ../gramps/gui/glade/mergedata.glade:564
 msgid "Title selection"
@@ -17192,8 +17191,8 @@ msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
 msgstr ""
-"Wähle das Ereignis, das die Hauptdaten\n"
-"für das zusammengefasste Ereignis enthält."
+"Wähle das Ereignis aus, das die Primärdaten\n"
+"für das zusammengeführte Ereignis liefert."
 
 #: ../gramps/gui/glade/mergeevent.glade:186
 msgid "Event 1"
@@ -17215,8 +17214,8 @@ msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
 msgstr ""
-"Wähle die Familie, welche die Hauptdaten\n"
-"für die zusammengefasste Familie enthält."
+"Wähle die Familie aus, die die Primärdaten\n"
+"für die zusammengeführte Familie liefert."
 
 #: ../gramps/gui/glade/mergefamily.glade:187
 #: ../gramps/gui/glade/mergefamily.glade:203
@@ -17254,8 +17253,8 @@ msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
 msgstr ""
-"Wähle das Objekt, das die Hauptdaten\n"
-"für das zusammengefasste Objekt enthält."
+"Wähle das Objekt aus, das die Primärdaten\n"
+"für das zusammengeführte Objekt liefert."
 
 #: ../gramps/gui/glade/mergemedia.glade:186
 msgid "Object 1"
@@ -17276,8 +17275,8 @@ msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
 msgstr ""
-"Wähle die Notiz, welche die Hauptdaten\n"
-"für die zusammengefasste Notiz enthält."
+"Wähle die Notiz aus, die die Primärdaten\n"
+"für die zusammengeführte Notiz liefert."
 
 #: ../gramps/gui/glade/mergenote.glade:186
 msgid "Note 1"
@@ -17297,8 +17296,8 @@ msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
 msgstr ""
-"Wähle die Person, welche die Hauptdaten\n"
-"für die zusammengefasste Person enthält."
+"Wähle die Person aus, die die Primärdaten\n"
+"für die zusammengeführte Person liefern soll."
 
 #: ../gramps/gui/glade/mergeperson.glade:196
 #: ../gramps/plugins/textreport/recordsreport.py:268
@@ -17332,8 +17331,8 @@ msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
 msgstr ""
-"Wähle den Ort, der die Hauptdaten\n"
-"für den zusammengefassten Ort enthält."
+"Wähle den Ort aus, der die Primärdaten\n"
+"für den zusammengeführten Ort liefert."
 
 #: ../gramps/gui/glade/mergeplace.glade:619
 msgid ""
@@ -17348,8 +17347,8 @@ msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Wähle den Aufbewahrungsort, der die Hauptdaten\n"
-"für den zusammengefassten Aufbewahrungsort enthält."
+"Wähle den Aufbewahrungsort, der die Primärdaten\n"
+"für den zusammengeführte Aufbewahrungsort bereitstellt."
 
 #: ../gramps/gui/glade/mergerepository.glade:186
 msgid "Repository 1"
@@ -17368,8 +17367,8 @@ msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
 msgstr ""
-"Wähle die Quelle, welche die Hauptdaten\n"
-"für die zusammengefasste Quelle enthält."
+"Wähle die Quelle aus, die die Primärdaten\n"
+"für die zusammengeführte Quelle liefert."
 
 #: ../gramps/gui/glade/mergesource.glade:512
 msgid ""
@@ -18350,30 +18349,30 @@ msgstr "Erstellt am %(year)4d/%(month)02d/%(day)02d"
 #: ../gramps/gui/merge/mergecitation.py:46
 msgctxt "manual"
 msgid "Merge_Citations"
-msgstr "Fundstellen_zusammenfassen"
+msgstr "Fundstellen_zusammenführen"
 
 #: ../gramps/gui/merge/mergecitation.py:68
 #: ../gramps/plugins/tool/tools.gpr.py:442
 msgid "Merge Citations"
-msgstr "Fundstellen zusammenfassen"
+msgstr "Fundstellen zusammenführen"
 
 #: ../gramps/gui/merge/mergeevent.py:45
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "Ereignisse_zusammenfassen"
+msgstr "Ereignisse_zusammenführen"
 
 #: ../gramps/gui/merge/mergeevent.py:67
 msgid "Merge Events"
-msgstr "Ereignisse zusammenfassen"
+msgstr "Ereignisse zusammenführen"
 
 #: ../gramps/gui/merge/mergefamily.py:46
 msgctxt "manual"
 msgid "Merge_Families"
-msgstr "Familien_zusammenfassen"
+msgstr "Familien_zusammenführen"
 
 #: ../gramps/gui/merge/mergefamily.py:68
 msgid "Merge Families"
-msgstr "Familien zusammenfassen"
+msgstr "Familien zusammenführen"
 
 #: ../gramps/gui/merge/mergefamily.py:155
 #: ../gramps/plugins/quickview/all_relations.py:282
@@ -18391,12 +18390,12 @@ msgstr "Personen können nicht zusammengeführt werden"
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "Medienobjekte_zusammenfassen"
+msgstr "Medienobjekte_zusammenführen"
 
 #: ../gramps/gui/merge/mergenote.py:44
 msgctxt "manual"
 msgid "Merge_Notes"
-msgstr "Notizen_zusammenfassen"
+msgstr "Notizen_zusammenführen"
 
 #: ../gramps/gui/merge/mergenote.py:94
 msgid "flowed"
@@ -18409,7 +18408,7 @@ msgstr "vorformatiert"
 #: ../gramps/gui/merge/mergeperson.py:58
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "Personen_zusammenfassen"
+msgstr "Personen_zusammenführen"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -18419,7 +18418,7 @@ msgstr "%(key)s:\t%(value)s"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
-msgstr "Personen zusammenfassen"
+msgstr "Personen zusammenführen"
 
 #: ../gramps/gui/merge/mergeperson.py:224
 #: ../gramps/gui/widgets/fanchart.py:1994
@@ -18478,28 +18477,28 @@ msgid ""
 msgstr ""
 "Die Personen sind zusammengeführt worden.\n"
 "Allerdings waren die Familien für diese Zusammenführung zu komplex, um sie "
-"automatisch zu verarbeiten.  Wir empfehlen dir, die Ansicht \"Beziehungen\" "
+"automatisch zu verarbeiten. Wir empfehlen dir, die Ansicht \"Beziehungen\" "
 "aufzurufen und zu prüfen, ob eine zusätzliche manuelle Zusammenführung von "
 "Familien erforderlich ist."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
 msgid "Merge_Places"
-msgstr "Orte_zusammenfassen"
+msgstr "Orte_zusammenführen"
 
 #: ../gramps/gui/merge/mergerepository.py:44
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Aufbewahrungsorte_zusammenfassen"
+msgstr "Aufbewahrungsorte_zusammenführen"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
 msgid "Merge_Sources"
-msgstr "Quellen_zusammenfassen"
+msgstr "Quellen_zusammenführen"
 
 #: ../gramps/gui/merge/mergesource.py:67
 msgid "Merge Sources"
-msgstr "Quellen zusammenfassen"
+msgstr "Quellen zusammenführen"
 
 #: ../gramps/gui/plug/_dialogs.py:291
 msgid "Report Selection"
@@ -22330,7 +22329,7 @@ msgstr "_vCard"
 
 #: ../gramps/plugins/export/export.gpr.py:187
 msgid "vCard is used in many addressbook and pim applications."
-msgstr "vCard wird von vielen Adressbuch- und PIM-Anwendungen verwendet."
+msgstr "vCard wird in vielen Adressbuch- und PIM-Anwendungen verwendet."
 
 #: ../gramps/plugins/export/export.gpr.py:195
 msgid "vCard export options"
@@ -25827,7 +25826,7 @@ msgstr "Linie %(line)5d: %(prob)s\n"
 
 #: ../gramps/plugins/importer/importvcard.py:243
 msgid "vCard import"
-msgstr "vCard importieren"
+msgstr "vCard-Import"
 
 #: ../gramps/plugins/importer/importvcard.py:254
 msgid "VCARD import report: No errors detected"
@@ -26051,7 +26050,7 @@ msgid ""
 "Objects that are candidates to be merged:\n"
 msgstr ""
 "\n"
-"Objekte, die Kandidaten für das Zusammenfassen sind:\n"
+"Objekte, die zusammengeführt werden sollen:\n"
 
 #: ../gramps/plugins/importer/importxml.py:809
 #: ../gramps/plugins/importer/importxml.py:1294
@@ -30053,7 +30052,7 @@ msgstr "Ausgewählte Person löschen"
 
 #: ../gramps/plugins/lib/libpersonview.py:127
 msgid "Merge the selected persons"
-msgstr "Gewählte Personen zusammenfassen"
+msgstr "Die ausgewählten Personen zusammenführen"
 
 #: ../gramps/plugins/lib/libpersonview.py:186
 #: ../gramps/plugins/lib/libplaceview.py:269
@@ -30219,7 +30218,7 @@ msgstr "_Hinzufügen..."
 #: ../gramps/plugins/view/sourceview.py:226
 #: ../gramps/plugins/view/sourceview.py:278
 msgid "_Merge..."
-msgstr "_Zusammenfassen..."
+msgstr "_Zusammenführen..."
 
 #: ../gramps/plugins/lib/libpersonview.py:245
 #: ../gramps/plugins/lib/libpersonview.py:403
@@ -30357,9 +30356,10 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
-"Genau zwei Personen müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Eine zweite Person kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden."
+"Es müssen genau zwei Personen ausgewählt werden, um eine Zusammenführung "
+"durchzuführen. Eine zweite Person kann ausgewählt werden, indem du die "
+"Steuerungstaste gedrückt hältst, während du auf die gewünschte Person "
+"klicken."
 
 #: ../gramps/plugins/lib/libplaceview.py:104
 msgid "Edit the selected place"
@@ -30371,7 +30371,7 @@ msgstr "Ausgewählten Ort löschen"
 
 #: ../gramps/plugins/lib/libplaceview.py:106
 msgid "Merge the selected places"
-msgstr "Die ausgewählten Orte zusammenfassen"
+msgstr "Die ausgewählten Orte zusammenführen"
 
 #: ../gramps/plugins/lib/libplaceview.py:229
 msgid "No map service is available."
@@ -30428,7 +30428,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libplaceview.py:548
 #: ../gramps/plugins/lib/libplaceview.py:556
 msgid "Cannot merge places."
-msgstr "Kann Orte nicht zusammenfassen."
+msgstr "Orte können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/lib/libplaceview.py:549
 msgid ""
@@ -30436,9 +30436,9 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
-"Genau zwei Orte müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Ein zweiter Ort kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden."
+"Es müssen genau zwei Orte ausgewählt werden, um eine Zusammenführung "
+"durchzuführen. Ein zweiter Ort kann ausgewählt werden, indem du die "
+"Steuerungstaste gedrückt hältst und auf den gewünschten Ort klickst."
 
 #: ../gramps/plugins/lib/libplaceview.py:557
 msgid "Merging these places would create a cycle in the place hierarchy."
@@ -30799,12 +30799,12 @@ msgid ""
 "\n"
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
-"Der Titel dieses Ortes ist :\n"
+"Der Titel der Orte lautet:\n"
 "%(title)s\n"
-"Die folgenden Orte sind identisch : %(gid)s\n"
-"Du solltest die Orte umbenennen oder zusammenfassen.\n"
+"Die folgenden Orte sind ähnlich: %(gid)s\n"
+"Du solltest entweder die Orte umbenennen oder sie zusammenführen.\n"
 "\n"
-"%(bold_start)sIch kann deine Anfrage nicht durchführen%(bold_end)s.\n"
+"%(bold_start)s Ich kann deiner Anfrage nicht nachkommen%(bold_end)s.\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1229
 msgid "Nothing for this view."
@@ -32827,7 +32827,7 @@ msgstr "Alternative Eltern"
 #: ../gramps/plugins/textreport/indivcomplete.py:447
 #: ../gramps/plugins/webreport/person.py:1418
 msgid "Associations"
-msgstr "Verknüpfungen"
+msgstr "Verbindungen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:593
 msgid "Images"
@@ -34183,11 +34183,11 @@ msgstr "Zweite Person"
 
 #: ../gramps/plugins/tool/finddupes.py:585
 msgid "Merge candidates"
-msgstr "Kandidaten zum Zusammenfügen"
+msgstr "Kandidaten zum Zusammenführen"
 
 #: ../gramps/plugins/tool/finddupes.py:585
 msgid "Merge persons"
-msgstr "Personen zusammenfassen"
+msgstr "Personen zusammenführen"
 
 #: ../gramps/plugins/tool/findloop.py:58
 msgctxt "manual"
@@ -34413,7 +34413,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.glade:144
 msgid "Don't merge if citation has notes"
-msgstr "Nicht zusammenfassen, wenn die Fundstelle Notizen enthält"
+msgstr "Nicht zusammenführen, wenn die Fundstelle Notizen enthält"
 
 #: ../gramps/plugins/tool/mergecitations.py:76
 msgid "Match on Page/Volume, Date and Confidence"
@@ -34434,7 +34434,7 @@ msgstr "Datum und Vertrauen ignorieren"
 #: ../gramps/plugins/tool/mergecitations.py:83
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "Fundstellen_zusammenfassen"
+msgstr "Fundstellen_zusammenführen"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -34445,7 +34445,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:164
 msgid "Merge citations tool"
-msgstr "Werkzeug zum Zusammenfassen von Fundstellen"
+msgstr "Werkzeug zum Zusammenführen von Fundstellen"
 
 #: ../gramps/plugins/tool/mergecitations.py:185
 msgid "Checking Sources"
@@ -34464,8 +34464,8 @@ msgstr "Anzahl der durchgeführten Zusammenführungen"
 #, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
-msgstr[0] "{number_of} Fundstelle zusammengefasst"
-msgstr[1] "{number_of} Fundstellen zusammengefasst"
+msgstr[0] "{number_of} Fundstelle zusammengeführt"
+msgstr[1] "{number_of} Fundstellen zusammengeführt"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
 msgid "_Tag"
@@ -35564,7 +35564,7 @@ msgstr "Gewählte Fundstelle löschen"
 
 #: ../gramps/plugins/view/citationlistview.py:129
 msgid "Merge the selected citations"
-msgstr "Gewählte Fundstellen zusammenfassen"
+msgstr "Die ausgewählten Fundstellen zusammenführen"
 
 #: ../gramps/plugins/view/citationlistview.py:143
 msgid "Citation View"
@@ -35594,7 +35594,7 @@ msgstr ""
 #: ../gramps/plugins/view/citationtreeview.py:664
 #: ../gramps/plugins/view/citationtreeview.py:677
 msgid "Cannot merge citations."
-msgstr "Kann Fundstellen nicht zusammenfassen."
+msgstr "Fundstellen können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/citationlistview.py:409
 #: ../gramps/plugins/view/citationtreeview.py:665
@@ -35603,9 +35603,9 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired citation."
 msgstr ""
-"Genau zwei Fundstellen müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Eine zweite Fundstelle kann durch Anklicken der gewünschten "
-"Fundstelle bei gehaltener Strg-Taste gewählt werden."
+"Es müssen genau zwei Fundstellen ausgewählt werden, um eine Zusammenführung "
+"durchzuführen. Eine zweite Fundstelle kann ausgewählt werden, indem du die "
+"Strg-Taste gedrückt hältst, während du auf die gewünschte Fundstelle klickst."
 
 #: ../gramps/plugins/view/citationlistview.py:420
 #: ../gramps/plugins/view/citationtreeview.py:678
@@ -35613,9 +35613,9 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
-"Die zwei gewählten Fundstellen müssen zu der selben Quelle gehören, um eine "
-"Zusammenfassung durchzuführen. Wenn du diese beiden Fundstellen "
-"zusammenfassen willst, musst du zuerst die Quellen zusammenfassen."
+"Die beiden ausgewählten Fundstellen müssen dieselbe Quelle haben, damit eine "
+"Zusammenführung möglich ist. Wenn du diese beiden Fundstellen zusammenführen "
+"willst, musst du zuerst die Quellen zusammenführen."
 
 #: ../gramps/plugins/view/citationtreeview.py:124
 msgid "Edit the selected citation or source"
@@ -35627,7 +35627,7 @@ msgstr "Die gewählte Fundstelle oder Quelle löschen"
 
 #: ../gramps/plugins/view/citationtreeview.py:126
 msgid "Merge the selected citations or selected sources"
-msgstr "Die gewählten Fundstellen oder Quellen zusammenfassen"
+msgstr "Die ausgewählten Fundstellen oder Quellen zusammenführen"
 
 #: ../gramps/plugins/view/citationtreeview.py:144
 msgid "Citation Tree View"
@@ -35672,7 +35672,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/citationtreeview.py:690
 msgid "Cannot perform merge."
-msgstr "Kann das Zusammenfassen nicht durchführen."
+msgstr "Die Zusammenführung kann nicht durchgeführt werden."
 
 #: ../gramps/plugins/view/citationtreeview.py:691
 msgid ""
@@ -35702,7 +35702,7 @@ msgstr "Gewähltes Ereignis löschen"
 
 #: ../gramps/plugins/view/eventview.py:100
 msgid "Merge the selected events"
-msgstr "Die gewählten Ereignisse zusammenfassen"
+msgstr "Die ausgewählten Ereignisse zusammenführen"
 
 #: ../gramps/plugins/view/eventview.py:230
 msgid "Event Filter Editor"
@@ -35719,7 +35719,7 @@ msgstr "{type} [{gid}] löschen?"
 
 #: ../gramps/plugins/view/eventview.py:487
 msgid "Cannot merge event objects."
-msgstr "Kann Ereignisobjekte nicht zusammenfassen."
+msgstr "Ereignisobjekte können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/eventview.py:488
 msgid ""
@@ -35727,9 +35727,10 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "event."
 msgstr ""
-"Genau zwei Ereignisse müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Ein zweites Ereignis kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden."
+"Es müssen genau zwei Ereignisse ausgewählt werden, um eine Zusammenführung "
+"durchzuführen. Ein zweites Objekt kann ausgewählt werden, indem du die "
+"Steuerungstaste gedrückt hältst, während du auf das gewünschte Ereignis "
+"klickst."
 
 #: ../gramps/plugins/view/familyview.py:83
 msgid "Marriage Date"
@@ -35749,7 +35750,7 @@ msgstr "Gewählte Familie löschen"
 
 #: ../gramps/plugins/view/familyview.py:100
 msgid "Merge the selected families"
-msgstr "Die gewählten Familien zusammenfassen"
+msgstr "Die ausgewählten Familien zusammenführen"
 
 #: ../gramps/plugins/view/familyview.py:188
 msgid "Family Filter Editor"
@@ -35774,7 +35775,7 @@ msgstr "Familie [%s]"
 
 #: ../gramps/plugins/view/familyview.py:432
 msgid "Cannot merge families."
-msgstr "Kann Familien nicht zusammenfassen."
+msgstr "Familien können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/familyview.py:433
 msgid ""
@@ -35782,9 +35783,9 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired family."
 msgstr ""
-"Genau zwei Familien müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Eine zweite Familie kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden."
+"Es müssen genau zwei Familien ausgewählt werden, um eine Zusammenführung "
+"durchzuführen. Eine zweite Familie kann ausgewählt werden, indem du die "
+"Steuerungstaste gedrückt hältst und auf die gewünschte Familie klickst."
 
 #: ../gramps/plugins/view/fanchart2wayview.py:280
 msgid "Max ancestor generations"
@@ -36448,7 +36449,7 @@ msgstr "Das ausgewählte Medienobjekt löschen"
 
 #: ../gramps/plugins/view/mediaview.py:115
 msgid "Merge the selected media objects"
-msgstr "Die ausgewählten Medienobjekte zusammenfassen"
+msgstr "Die ausgewählten Medienobjekte zusammenführen"
 
 #: ../gramps/plugins/view/mediaview.py:295
 msgid "Media Filter Editor"
@@ -36460,7 +36461,7 @@ msgstr "Im Standardbetrachter anzeigen"
 
 #: ../gramps/plugins/view/mediaview.py:490
 msgid "Cannot merge media objects."
-msgstr "Kann Medienobjekt nicht zusammenfassen."
+msgstr "Medienobjekte können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/mediaview.py:491
 msgid ""
@@ -36468,9 +36469,9 @@ msgid ""
 "object can be selected by holding down the control key while clicking on the "
 "desired object."
 msgstr ""
-"Genau zwei Medienobjekte müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Ein zweites Medienobjekt kann durch Anklicken bei gehaltener "
-"Strg-Taste gewählt werden."
+"Es müssen genau zwei Medienobjekte ausgewählt sein, um eine Zusammenführung "
+"durchzuführen. Ein zweites Objekt kann ausgewählt werden, indem du die "
+"Steuerungstaste gedrückt hältst und auf das gewünschte Objekt klickst."
 
 #: ../gramps/plugins/view/noteview.py:95
 msgid "Delete the selected note"
@@ -36478,7 +36479,7 @@ msgstr "Gewählte Notiz löschen"
 
 #: ../gramps/plugins/view/noteview.py:96
 msgid "Merge the selected notes"
-msgstr "Die gewählten Notizen zusammenfassen"
+msgstr "Die ausgewählten Notizen zusammenführen"
 
 #: ../gramps/plugins/view/noteview.py:188
 msgid "Note Filter Editor"
@@ -36486,16 +36487,16 @@ msgstr "Filtereditor für Notizen"
 
 #: ../gramps/plugins/view/noteview.py:357
 msgid "Cannot merge notes."
-msgstr "Kann Notizen nicht zusammenfassen."
+msgstr "Notizen können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/noteview.py:358
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
-"Genau zwei Notizen müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Eine zweite Notiz kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden."
+"Es müssen genau zwei Notizen ausgewählt werden, um eine Zusammenführung "
+"durchzuführen. Eine zweite Notiz kann ausgewählt werden, indem du die "
+"Steuerungstaste gedrückt hältst, während du auf die gewünschte Notiz klickst."
 
 #: ../gramps/plugins/view/pedigreeview.py:81
 msgctxt "short for born"
@@ -36833,7 +36834,7 @@ msgstr "Gewählten Aufbewahrungsort löschen"
 
 #: ../gramps/plugins/view/repoview.py:115
 msgid "Merge the selected repositories"
-msgstr "Die gewählten Aufbewahrungsort zusammenfassen"
+msgstr "Die ausgewählten Aufbewahrungsort zusammenführen"
 
 #: ../gramps/plugins/view/repoview.py:201
 msgid "Repository Filter Editor"
@@ -36841,7 +36842,7 @@ msgstr "Filtereditor für Aufbewahrungsorte"
 
 #: ../gramps/plugins/view/repoview.py:363
 msgid "Cannot merge repositories."
-msgstr "Kann Aufbewahrungsorte nicht zusammenfassen."
+msgstr "Aufbewahrungsorte können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/repoview.py:364
 msgid ""
@@ -36849,9 +36850,10 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Genau zwei Aufbewahrungsorte müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Eine zweiter Aufbewahrungsort kann durch Anklicken bei "
-"gehaltener Strg-Taste gewählt werden."
+"Es müssen genau zwei Aufbewahrungsorte ausgewählt werden, um eine "
+"Zusammenführung durchzuführen. Ein zweiter Aufbewahrungsort kann ausgewählt "
+"werden, indem du die Steuerungstaste gedrückt hältst und auf den gewünschten "
+"Aufbewahrungsort klickst."
 
 #: ../gramps/plugins/view/sourceview.py:99
 msgid "Edit the selected source"
@@ -36863,7 +36865,7 @@ msgstr "Die gewählte Quelle löschen"
 
 #: ../gramps/plugins/view/sourceview.py:101
 msgid "Merge the selected sources"
-msgstr "Die gewählten Quellen zusammenfassen"
+msgstr "Die ausgewählten Quellen zusammenführen"
 
 #: ../gramps/plugins/view/sourceview.py:187
 msgid "Source Filter Editor"
@@ -36871,7 +36873,7 @@ msgstr "Filtereditor für Quellen"
 
 #: ../gramps/plugins/view/sourceview.py:348
 msgid "Cannot merge sources."
-msgstr "Kann Quellen nicht zusammenfassen."
+msgstr "Quellen können nicht zusammengeführt werden."
 
 #: ../gramps/plugins/view/sourceview.py:349
 msgid ""
@@ -36879,9 +36881,10 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "source."
 msgstr ""
-"Genau zwei Quellen müssen ausgewählt sein, um eine Zusammenfassung "
-"durchzuführen. Eine zweite Quelle kann durch Anklicken bei gehaltener Strg-"
-"Taste gewählt werden."
+"Es müssen genau zwei Quellen ausgewählt werden, um eine Zusammenführung "
+"durchzuführen. Eine zweite Quelle kann ausgewählt werden, indem du die "
+"Steuerungstaste gedrückt hältst, während du auf die gewünschte Quelle "
+"klickst."
 
 #: ../gramps/plugins/view/view.gpr.py:38
 msgid "The view showing all the events"
