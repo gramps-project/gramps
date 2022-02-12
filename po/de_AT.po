@@ -11,7 +11,7 @@
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
 # Christoph Eder <christoph.eder@phsalzburg.at>, 2020, 2021.
-# cedecode <christoph.eder@phsalzburg.at>, 2021.
+# cedecode <christoph.eder@phsalzburg.at>, 2021, 2022.
 #
 # changes de_AT:
 #
@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-06-17 09:17+0000\n"
+"PO-Revision-Date: 2022-02-10 20:54+0000\n"
 "Last-Translator: cedecode <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
@@ -38,7 +38,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -8487,11 +8487,11 @@ msgstr "Pseudonym"
 
 #: ../gramps/gen/lib/nameorigintype.py:83
 msgid "Patrilineal"
-msgstr "Patrilineal"
+msgstr "Patrilinear"
 
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgid "Matrilineal"
-msgstr "Matrilineal"
+msgstr "Matrilinear"
 
 #: ../gramps/gen/lib/nametype.py:48
 msgid "Also Known As"
@@ -9972,8 +9972,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
-"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
-"ist, ist dies die Breite, sonst ist es die Höhe."
+"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf auf- oder abwärts "
+"geht, ist dies die Breite, sonst ist es die Höhe."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
 msgid "Level size"
@@ -9984,8 +9984,8 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
-"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
-"ist, ist dies die Höhe, sonst ist es die Breite."
+"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf auf- oder abwärts "
+"geht, ist dies die Höhe, sonst ist es die Breite."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
 msgid "Node color."
@@ -11223,7 +11223,7 @@ msgstr "Totenkopf und gekreuzte Knochen"
 
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Ankh"
-msgstr "Ankh"
+msgstr "Anch"
 
 #: ../gramps/gen/utils/symbols.py:110
 msgid "Orthodox cross"
@@ -16505,9 +16505,9 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"Teil des Vornamens, der normalerweise verwendet wird. Wenn der Hintergrund "
-"rot ist, ist der Rufname nicht Teil des Vornamen und wird in einigen "
-"Berichten nicht unterstrichen gedruckt."
+"Teil des Vornamens, der normalerweise verwendet wird. Mit rotem Hintergrund "
+"ist der Rufname nicht Teil des Vornamens und wird in einigen Berichten nicht "
+"unterstrichen gedruckt."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
@@ -18850,8 +18850,8 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"Die Kopie von deinen Daten wurde erfolgreich gespeichert. Du kannst nun auf "
-"Schließen klicken, um fortzufahren.\n"
+"Die Kopie deiner Daten wurde erfolgreich gespeichert. Du kannst nun auf "
+"Schließen klicken um fortzufahren.\n"
 "\n"
 "Anmerkung: Die Datenbank, die gerade in deinem Gramps-Fenster geöffnet ist, "
 "ist NICHT die Datei, die du gerade gespeichert hast. Zukünftige Änderungen "
@@ -34900,7 +34900,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Ordne Gramps-IDs neu"
+msgstr "Gramps-IDs_neuordnen"
 
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
@@ -35116,7 +35116,7 @@ msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
 msgstr ""
-"Durchsucht die gesamte Datenbank nach Einträgen, die die gleiche Person "
+"Durchsucht die gesamte Datenbank nach Einträgen, die dieselbe Person "
 "repräsentieren könnten."
 
 #: ../gramps/plugins/tool/tools.gpr.py:177
@@ -37094,7 +37094,7 @@ msgstr "zwischen"
 
 #: ../gramps/plugins/webreport/basepage.py:3250
 msgid "circa"
-msgstr "circa"
+msgstr "ca."
 
 #: ../gramps/plugins/webreport/basepage.py:3252
 msgid "around"
