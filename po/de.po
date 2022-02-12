@@ -23,7 +23,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
 "PO-Revision-Date: 2022-02-12 23:21+0000\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -22304,7 +22304,7 @@ msgstr "Gramps-XML Exportoptionen"
 
 #: ../gramps/plugins/export/export.gpr.py:164
 msgid "vCalendar"
-msgstr "vKalender"
+msgstr "vCalendar"
 
 #: ../gramps/plugins/export/export.gpr.py:165
 msgid "vC_alendar"
@@ -22312,11 +22312,11 @@ msgstr "vK_alender"
 
 #: ../gramps/plugins/export/export.gpr.py:166
 msgid "vCalendar is used in many calendaring and PIM applications."
-msgstr "vKalender wird von vielen Kalender- und PIM-Anwendungen verwendet."
+msgstr "vCalendar wird von vielen Kalender- und PIM-Anwendungen verwendet."
 
 #: ../gramps/plugins/export/export.gpr.py:174
 msgid "vCalendar export options"
-msgstr "vKalender Exportoptionen"
+msgstr "vCalendar-Export-Optionen"
 
 #: ../gramps/plugins/export/export.gpr.py:185
 #: ../gramps/plugins/importer/import.gpr.py:167
@@ -31353,8 +31353,8 @@ msgstr "Zusammenfassende Zählungen der aktuellen Auswahl"
 #: ../gramps/plugins/quickview/filterbyname.py:87
 msgid "Right-click row (or press ENTER) to see selected items."
 msgstr ""
-"Zeile rechts klicken (oder Eingabe drücken), um die Ausgewählten Elemente zu "
-"sehen."
+"Klicke mit der rechten Maustaste auf die Zeile (oder drücke die Eingabetaste)"
+", um die ausgewählten Elemente zu sehen."
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
 msgid "Count/Total"
