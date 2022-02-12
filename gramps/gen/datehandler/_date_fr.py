@@ -252,9 +252,6 @@ class DateDisplayFR(DateDisplay):
                "MOI Jour, Année",)  # 7
         # this definition must agree with its "_display_gregorian" method
 
-    def right(self, s, amount):
-        return s[-amount:]
-
     def _display_gregorian(self, date_val, **kwargs):
         """
         display gregorian calendar date in different format
@@ -276,8 +273,8 @@ class DateDisplayFR(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self.dhformat.replace('%m', self.right('0'+str(date_val[1]),2))
-                    value = value.replace('%d', self.right('0'+str(date_val[0]),2))
+                    value = self.dhformat.replace('%m', str(date_val[1]).zfill(2))
+                    value = value.replace('%d', str(date_val[0]).zfill(2))
 
                     # base_display :
                     # value = value.replace('%Y', str(abs(date_val[2])))
