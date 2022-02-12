@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2022-02-06 18:18+0000\n"
+"PO-Revision-Date: 2022-02-10 20:54+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -3052,10 +3052,10 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
-"חיבור למסד הנתונים כשל.\n"
+"התחברות למסד הנתונים כשל.\n"
 "\n"
 "‫%(message)s\n"
-"נא לבדוק את קובץ הגדרות החיבור:\n"
+"נא לבדוק את קובץ הגדרות ההתחברות:\n"
 "‏%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
@@ -9331,7 +9331,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:187
 msgid "Connecting lines"
-msgstr "חיבור קוים"
+msgstr "קוי חיבור"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
 msgid "How the lines between objects will be drawn."
@@ -14689,8 +14689,8 @@ msgstr ""
 "פענוח תוכן שדות מחרוזות כביטויים רגילים.\n"
 "נקודה עשרונית, מתאים לכל תו. סימן שאלה, יתאים לאפס או לחזרה אחת של התו הקודם "
 "או הקבוצה הקודמת. כוכבית, תתאים לאפס או יותר חזרות. סימן חיבור, יתאים לאחד "
-"או יותר חזרות. סוגריים, משמשים לקיבוץ ביטויים. קו אנכי, למספר חלופות . התו "
-"^, יתאים לתחילתה של שורה. סימן דולר יתאים לסוף השורה."
+"או יותר חזרות. סוגריים, משמשים לקיבוץ ביטויים. קו אנכי, למספר חלופות . התו ^"
+", יתאים לתחילתה של שורה. סימן דולר יתאים לסוף השורה."
 
 #: ../gramps/gui/editors/filtereditor.py:637
 msgid "Rule Name"
@@ -17322,7 +17322,7 @@ msgstr "תצור התצוגה הפעילה"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Connect to a recent database"
-msgstr "חיבור למסד הנתונים האחרון"
+msgstr "התחברות למסד נתונים שהיה בשימוש לאחרונה"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "F_ull Screen"
@@ -21095,7 +21095,7 @@ msgstr "יצירת תרשים קו זמן."
 #: ../gramps/plugins/drawreport/fanchart.py:256
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr "תרשים מניפה של %(generations)d עבור %(person)s"
+msgstr "תרשים מניפה בן %(generations)d דורות, עבור %(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:271
 #, python-format
@@ -21103,7 +21103,7 @@ msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
 msgstr ""
-"%(generations)d יצירת תרשים מניפה עבור\n"
+"יצירת תרשים מניפה בן %(generations)d דורות, עבור\n"
 "‏%(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:694
@@ -22039,9 +22039,9 @@ msgid ""
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sשאלות נפוצות"
-"%(html_end)s%(bold_end)s\n"
-"(נדרש חיבור למרשתתt)\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sשאלות "
+"נפוצות%(html_end)s%(bold_end)s\n"
+"(נדרש חיבור למרשתת)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
 msgid "Editing Spouses"
@@ -22279,7 +22279,7 @@ msgstr "גרמפלט להצגת אבות קדמונים של האדם הפעיל
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:122
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
-msgstr "גרמפלט להצגת אבות קדמונים ישירים של האדם הפעיל כתרשים מניפה"
+msgstr "גרמפלט להצגת אבות־קדמונים ישירים של 'האדם הפעיל' כתרשים מניפה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:138
 #: ../gramps/plugins/view/fanchartdescview.py:76
@@ -22288,7 +22288,7 @@ msgstr "תרשים מניפה צאצאים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:139
 msgid "Gramplet showing active person's direct descendants as a fanchart"
-msgstr "גרמפלט להצגת צאצאים ישירים של האדם הפעיל כתרשים מניפה"
+msgstr "גרמפלט להצגת צאצאים ישירים של 'האדם הפעיל' כתרשים מניפה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:147
 #: ../gramps/plugins/view/view.gpr.py:158
@@ -22298,18 +22298,18 @@ msgstr "מניפת צאצאים"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:155
 #: ../gramps/plugins/view/fanchart2wayview.py:79
 msgid "2-Way Fan Chart"
-msgstr "תרשים מניפה כפולה"
+msgstr "תרשים מניפה דו־כיווני"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:156
 msgid ""
 "Gramplet showing active person's direct ancestors and descendants as a "
 "fanchart"
-msgstr "גרמפלט להצגת אבות קדמונים וצאצאים של האדם הפעיל כתרשים מניפה"
+msgstr "גרמפלט להצגת אבות קדמונים וצאצאים של 'האדם הפעיל' כתרשים מניפה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:164
 #: ../gramps/plugins/view/view.gpr.py:173
 msgid "2-Way Fan"
-msgstr "תרשים מניפה כפול"
+msgstr "תרשים מניפה דו־כיווני"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:172
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:178
@@ -29935,9 +29935,9 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"במידה ואין יותר מקום במערכת הקבצים. ניתן להסיר את כל האריחים שמוקמו בנתיב "
-"שלעיל.\n"
-"אזהרה! אם אין חיבור למרשתת, לא תתקבל מפה."
+"במידה והמקום במערכת הקבצים אזל, ניתן להסיר את כל האריחים שמוקמו בנתיב שלעיל."
+"\n"
+"אזהרה! לא תתקבל מפה, ללא חיבור למרשתת."
 
 #: ../gramps/plugins/lib/maps/geography.py:1259
 msgid "Zoom used when centering"
@@ -35352,7 +35352,7 @@ msgstr "מונפש"
 
 #: ../gramps/plugins/view/geoperson.py:605
 msgid "Animation speed in milliseconds (big value means slower)"
-msgstr "מהיאות אנימציה באלפיות שניה (ערך גבוהה משמעו אטי יותר)"
+msgstr "מהירות הַנְפָּשָׁה באלפיות שניה (ערך גבוהה משמעו אטי יותר)"
 
 #: ../gramps/plugins/view/geoperson.py:613
 msgid "How many steps between two markers when we are on large move ?"
@@ -35823,7 +35823,7 @@ msgstr "הצגת אַחָאִים"
 
 #: ../gramps/plugins/view/repoview.py:88
 msgid "Home URL"
-msgstr "מען הבית URL"
+msgstr "מען URL של עמוד הבית"
 
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Search URL"
