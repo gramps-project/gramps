@@ -10,13 +10,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Lajos Nemeséri <nemeseril@gmail.com>, 2021.
 # f3rr31 <5920873@disroot.org>, 2021.
+# Mukli Krisztián <weblate@rejtettmail.eu.org>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-05 19:16+0100\n"
-"PO-Revision-Date: 2021-12-30 23:51+0000\n"
-"Last-Translator: f3rr31 <5920873@disroot.org>\n"
+"PO-Revision-Date: 2022-02-10 20:54+0000\n"
+"Last-Translator: Mukli Krisztián <weblate@rejtettmail.eu.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
 "Language: hu\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/gramps.appdata.xml.in:4 ../data/gramps.desktop.in:3
 msgid "Gramps"
@@ -23749,7 +23750,7 @@ msgstr "Családinformáció"
 #: ../gramps/plugins/gramplet/statsgramplet.py:175
 #: ../gramps/plugins/webreport/statistics.py:135
 msgid "Unique surnames"
-msgstr "Különleges vezetéknevek"
+msgstr "Egyedi vezetéknevek"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:179
 #: ../gramps/plugins/textreport/summary.py:228
@@ -23769,7 +23770,7 @@ msgstr "A média objektum hivatkozások összes száma"
 #: ../gramps/plugins/gramplet/statsgramplet.py:189
 #: ../gramps/plugins/webreport/statistics.py:143
 msgid "Number of unique media objects"
-msgstr "Különleges média objektumok száma"
+msgstr "Egyedi média objektumok száma"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:194
 #: ../gramps/plugins/webreport/statistics.py:145
@@ -23808,7 +23809,7 @@ msgstr "Legnagyobb betűméret"
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:174
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:111
 msgid "Total unique surnames"
-msgstr "Az összes különleges vezetéknév"
+msgstr "Az összes egyedi vezetéknév"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:176
 msgid "Total surnames showing"
@@ -23853,9 +23854,9 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
-"A Gramps egy származáskutatásra tervezett szoftver-csomag. Bár hasonló a "
-"többi származáskutató programhoz, a Gramps néhány különleges és erőteljes "
-"funkciót is kínál.\n"
+"A Gramps egy genealógiai kutatásra tervezett szoftvercsomag. Bár hasonlít "
+"más genealógiai programokhoz, a Gramps néhány egyedi és hatékony funkciót "
+"kínál.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
@@ -34764,7 +34765,7 @@ msgstr "Hosszú neveket generálni"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:304
 msgid "Add special characters"
-msgstr "Különleges karakterek hozzáadása"
+msgstr "Speciális karakterek hozzáadása"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:308
 msgid "Add serial number"
