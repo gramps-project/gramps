@@ -163,9 +163,9 @@ def build_intl(build_cmd):
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
 
-    merge_files = (('data/gramps.desktop', 'share/applications', '--desktop'),
-                   ('data/gramps.xml', 'share/mime/packages', '--xml'),
-                   ('data/gramps.appdata.xml', 'share/metainfo', '--xml'))
+    merge_files = (('data/org.gramps_project.Gramps.desktop', 'share/applications', '--desktop'),
+                   ('data/org.gramps_project.Gramps.xml', 'share/mime/packages', '--xml'),
+                   ('data/org.gramps_project.Gramps.appdata.xml', 'share/metainfo', '--xml'))
 
     for filename, target, option in merge_files:
         filenamelocal = convert_path(filename)
@@ -372,13 +372,13 @@ data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_22))
 data_files_gui.append(('share/gramps/images/hicolor/24x24/actions', ICON_24))
 data_files_gui.append(('share/gramps/images/hicolor/48x48/actions', ICON_48))
 data_files_gui.append(('share/gramps/images/hicolor/scalable/actions', ICON_SC))
-APP_16 = os.path.join(THEME, '16x16', 'apps', 'gramps.png')
-APP_22 = os.path.join(THEME, '22x22', 'apps', 'gramps.png')
-APP_24 = os.path.join(THEME, '24x24', 'apps', 'gramps.png')
-APP_48 = os.path.join(THEME, '48x48', 'apps', 'gramps.png')
-APP_128 = os.path.join(THEME, '128x128', 'apps', 'gramps.png')
-APP_256 = os.path.join(THEME, '256x256', 'apps', 'gramps.png')
-APP_SC = os.path.join(THEME, 'scalable', 'apps', 'gramps.svg')
+APP_16 = os.path.join(THEME, '16x16', 'apps', 'org.gramps_project.Gramps.png')
+APP_22 = os.path.join(THEME, '22x22', 'apps', 'org.gramps_project.Gramps.png')
+APP_24 = os.path.join(THEME, '24x24', 'apps', 'org.gramps_project.Gramps.png')
+APP_48 = os.path.join(THEME, '48x48', 'apps', 'org.gramps_project.Gramps.png')
+APP_128 = os.path.join(THEME, '128x128', 'apps', 'org.gramps_project.Gramps.png')
+APP_256 = os.path.join(THEME, '256x256', 'apps', 'org.gramps_project.Gramps.png')
+APP_SC = os.path.join(THEME, 'scalable', 'apps', 'org.gramps_project.Gramps.svg')
 data_files_gui.append(('share/icons/hicolor/16x16/apps', [APP_16]))
 data_files_gui.append(('share/icons/hicolor/22x22/apps', [APP_22]))
 data_files_gui.append(('share/icons/hicolor/24x24/apps', [APP_24]))
