@@ -59,6 +59,7 @@ Specific symbols for parts of a name are defined:
 #-------------------------------------------------------------------------
 import re
 import logging
+
 LOG = logging.getLogger(".gramps.gen")
 
 #-------------------------------------------------------------------------
@@ -491,54 +492,29 @@ class NameDisplay:
                         only_custom=False,
                         only_active=True):
         """
-        Get a list of tuples (num, name,fmt_str,act)
+        Returns a list of name formats as tuples on
+        the form (index, name,fmt_str,act).
+        The will contain standard formats followed
+        by custom formats both in ascending order on
+        their indices.
         """
-        the_list = []
 
-        keys = sorted(self.name_formats, key=self.cmp_to_key(self._sort_name_format))
+        custom_formats = sorted([
+            (index, name, format_string, active)
+            for index, (name, format_string, active, *rest) in self.name_formats.items()
+            if index < 0 and (not only_active or active)
+        ])
 
-        for num in keys:
-            if ((also_default or num) and
-                (not only_custom or (num < 0)) and
-                (not only_active or self.name_formats[num][_F_ACT])):
-                the_list.append((num,) + self.name_formats[num][_F_NAME:_F_FN])
+        if only_custom:
+            return custom_formats
 
-        return the_list
+        standard_formats = sorted([
+            (index, name, format_string, active)
+            for index, (name, format_string, active, *rest) in self.name_formats.items()
+            if index >= 0 and (also_default or index) and (not only_active or active)
+        ])
 
-    def cmp_to_key(self, mycmp):
-        """
-        python 2 to 3 conversion, python recipe http://code.activestate.com/recipes/576653/
-        Convert a :func:`cmp` function into a :func:`key` function
-        We use this in Gramps as understanding the old compare function is
-        not trivial. This should be replaced by a proper key function
-        """
-        class K:
-            def __init__(self, obj, *args):
-                self.obj = obj
-            def __lt__(self, other):
-                return mycmp(self.obj, other.obj) < 0
-            def __gt__(self, other):
-                return mycmp(self.obj, other.obj) > 0
-            def __eq__(self, other):
-                return mycmp(self.obj, other.obj) == 0
-            def __le__(self, other):
-                return mycmp(self.obj, other.obj) <= 0
-            def __ge__(self, other):
-                return mycmp(self.obj, other.obj) >= 0
-            def __ne__(self, other):
-                return mycmp(self.obj, other.obj) != 0
-        return K
-    def _sort_name_format(self, x, y):
-        if x < 0:
-            if y < 0:
-                return x+y
-            else:
-                return -x+y
-        else:
-            if y < 0:
-                return -x+y
-            else:
-                return x-y
+        return standard_formats + custom_formats
 
     def _is_format_valid(self, num):
         try:
