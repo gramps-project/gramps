@@ -309,8 +309,8 @@ class DetDescendantReport(Report):
         """ Entry Filter for Record-style (Modified Register) numbering """
         self.apply_mod_reg_filter_aux(person_handle, 1, 1)
         mod_reg_number = 1
-        for generation in range(len(self.gen_keys)):
-            for key in self.gen_keys[generation]:
+        for keys in self.gen_keys:
+            for key in keys:
                 person_handle = self.map[key]
                 if person_handle not in self.dnumber:
                     self.dnumber[person_handle] = mod_reg_number
@@ -348,7 +348,7 @@ class DetDescendantReport(Report):
         self.numbers_printed = list()
 
         if self.structure == "by generation":
-            for generation in range(len(self.gen_keys)):
+            for generation, gen_keys in enumerate(self.gen_keys):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
                 self.doc.start_paragraph("DDR-Generation")
@@ -359,7 +359,7 @@ class DetDescendantReport(Report):
                 if self.childref:
                     self.prev_gen_handles = self.gen_handles.copy()
                     self.gen_handles.clear()
-                for key in self.gen_keys[generation]:
+                for key in gen_keys:
                     person_handle = self.map[key]
                     self.gen_handles[person_handle] = key
                     self.write_person(key)

@@ -170,8 +170,8 @@ def tabstops_to_tabarray(tab_stops, dpi):
     tab_array = Pango.TabArray.new(initial_size=len(tab_stops),
                                             positions_in_pixels=False)
 
-    for index in range(len(tab_stops)):
-        location = tab_stops[index] * dpi * Pango.SCALE / 2.54
+    for index, tab_stop in enumerate(tab_stops):
+        location = tab_stop * dpi * Pango.SCALE / 2.54
         tab_array.set_tab(index, Pango.TabAlign.LEFT, int(location))
 
     return tab_array

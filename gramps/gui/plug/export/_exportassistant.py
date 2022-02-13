@@ -547,8 +547,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         selected one.
 
         """
-        for ix in range(len(self.format_buttons)):
-            button = self.format_buttons[ix]
+        for ix, button in enumerate(self.format_buttons):
             if button.get_active():
                 return ix
         return 0

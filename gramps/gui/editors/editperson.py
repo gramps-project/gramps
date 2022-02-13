@@ -41,7 +41,6 @@ import pickle
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import Pango
 from gi.repository.GLib import markup_escape_text
 
 #-------------------------------------------------------------------------
@@ -988,8 +987,7 @@ class EditPerson(EditPrimary):
         inorder = True
         prev_date = 0
         handle_list = [ref.ref for ref in child_ref_list]
-        for i in range(len(handle_list)):
-            child_handle = handle_list[i]
+        for child_handle in handle_list:
             child = self.db.get_person_from_handle(child_handle)
             if child.get_birth_ref():
                 event_handle = child.get_birth_ref().ref

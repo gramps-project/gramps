@@ -234,7 +234,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         while node is not None:
             newlist.append(self.iconmodel.get_value(node, 2))
             node = self.iconmodel.iter_next(node)
-        for i in range(len(self.media_list)):
+        for i in self.media_list:
             self.media_list.pop()
         for i in newlist:
             if i:

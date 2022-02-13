@@ -107,10 +107,10 @@ def roman(num):
     nums = ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L',
             'XL', 'X', 'IX', 'V', 'IV', 'I')
     retval = ""
-    for i in range(len(vals)):
-        amount = int(num / vals[i])
+    for i, value in enumerate(vals):
+        amount = int(num / value)
         retval += nums[i] * amount
-        num -= vals[i] * amount
+        num -= value * amount
     return retval
 
 #-------------------------------------------------------------------------

@@ -300,9 +300,7 @@ def string_trim(font, text, width, ellipses = "..."):
     # find the part that is < width
     retval = ""
     sumlen = 0
-    length = 0
-    for i in range(len(text)):
-        c = text[i]
+    for c in text:
         try:
             length = l[ord(c)]
         except:
@@ -325,9 +323,7 @@ def string_trim(font, text, width, ellipses = "..."):
     # too long; try again with ellipses
     retval = ""
     sumlen = 0
-    length = 0
-    for i in range(len(text)):
-        c = text[i]
+    for c in text:
         try:
             length = l[ord(c)]
         except:

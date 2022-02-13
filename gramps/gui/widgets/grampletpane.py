@@ -1309,7 +1309,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             x = sx - x
         # first, find column:
         col = 0
-        for i in range(len(self.columns)):
+        for i, column in enumerate(self.columns):
             if x < (sx/len(self.columns) * (i + 1)):
                 col = i
                 break

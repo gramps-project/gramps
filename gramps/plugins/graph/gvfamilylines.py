@@ -149,8 +149,8 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option("arrow", arrow)
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
-        for i in range(len(_COLORS)):
-            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
+        for COLOR in _COLORS:
+            color.add_item(COLOR["value"], COLOR["name"])
         color.set_help(_("Males will be shown with blue, females "
                          "with red, unless otherwise set above for filled. "
                          "If the sex of an individual "

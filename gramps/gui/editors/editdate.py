@@ -141,15 +141,15 @@ class EditDate(ManagedWindow):
         self.calendar_box.connect('changed', self.switch_calendar)
 
         self.quality_box = self.top.get_object('quality_box')
-        for item_number in range(len(QUAL_TEXT)):
-            self.quality_box.append_text(QUAL_TEXT[item_number][1])
-            if self.date.get_quality() == QUAL_TEXT[item_number][0]:
+        for item_number, item in enumerate(QUAL_TEXT):
+            self.quality_box.append_text(item[1])
+            if self.date.get_quality() == item[0]:
                 self.quality_box.set_active(item_number)
 
         self.type_box = self.top.get_object('type_box')
-        for item_number in range(len(MOD_TEXT)):
-            self.type_box.append_text(MOD_TEXT[item_number][1])
-            if self.date.get_modifier() == MOD_TEXT[item_number][0]:
+        for item_number, item in enumerate(MOD_TEXT):
+            self.type_box.append_text(item[1])
+            if self.date.get_modifier() == item[0]:
                 self.type_box.set_active(item_number)
         self.type_box.connect('changed', self.switch_type)
 
