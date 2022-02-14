@@ -50,6 +50,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.utils.symbols import Symbols
 
 #------------------------------------------------------------------------
 #
@@ -121,6 +122,8 @@ class HourGlassReport(Report):
         self.ahnentafel = menu.get_option_by_name('ahnentafel').get_value()
 
         self.ahnentafelnum = menu.get_option_by_name('ahnentafelnum').get_value()
+
+        self.datesymbol = menu.get_option_by_name('datesymbol').get_value()
 
         self.includeid = menu.get_option_by_name('inc_id').get_value()
 
@@ -254,21 +257,29 @@ class HourGlassReport(Report):
         p_id = person.get_gramps_id()
         name = self._name_display.display(person)
         name = html.escape(name)
+        if self.datesymbol:
+            symbols = Symbols()
 
         birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
             birth = self.get_date(birth_evt.get_date_object())
+            if self.datesymbol:
+                birth = symbols.get_symbol_for_string(symbols.SYMBOL_BIRTH)+" %s" % birth
         else:
             birth = ""
 
         death_evt = get_death_or_fallback(self.__db, person)
         if death_evt:
             death = self.get_date(death_evt.get_date_object())
+            if self.datesymbol:
+                death = symbols.get_death_symbol_fallback(symbols.DEATH_SYMBOL_LATIN_CROSS)+" %s" % death
         else:
             death = ""
 
-        if death:
+        if death and self.datesymbol == False:
             death = " – %s" % death
+        elif death and birth:
+            death = " %s" % death
 
         if self.includeid == 0: # no ID
             label = "%s \\n(%s%s)" % (name, birth, death)
@@ -293,6 +304,8 @@ class HourGlassReport(Report):
         Add a family to the Graph. The node id will be the family's gramps id.
         """
         family_id = family.get_gramps_id()
+        if self.datesymbol:
+            symbols = Symbols()
         label = ""
         marriage = utils.find_marriage(self.__db, family)
         if marriage:
@@ -305,6 +318,9 @@ class HourGlassReport(Report):
             label = "%s\\n(%s)" % (label, family_id)
         elif self.includeid == 2 and not label:
             label = "(%s)" % family_id
+        if self.datesymbol and label:
+            label = symbols.get_symbol_for_string(symbols.SYMBOL_MARRIAGE)+" %s" % label
+
         color = ""
         fill = ""
         style = "solid"
@@ -454,3 +470,8 @@ class HourGlassOptions(MenuReportOptions):
         ahnentafelnumvisible.set_help(
             _("Show Sosa / Sosa-Stradonitz / Ahnentafel number."))
         menu.add_option(category_name, "ahnentafelnum", ahnentafelnumvisible)
+
+        datesymbol = BooleanOption(_("Show symbols for events"), False)
+        datesymbol.set_help(
+            _("Show genealogical symbols for birth, marriage and death events."))
+        menu.add_option(category_name, "datesymbol", datesymbol)
