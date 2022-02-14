@@ -8,6 +8,7 @@ setup.py
 # gramps
 #
 gramps/__init__.py
+gramps/__main__.py
 gramps/version.py
 #
 # cli
