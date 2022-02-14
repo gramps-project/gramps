@@ -312,7 +312,7 @@ def extract_xml():
 
     for input_file in ['../data/holidays.xml',
                       '../data/tips.xml',
-                      '../data/gramps.xml.in',
+                      '../data/org.gramps_project.Gramps.xml.in',
                       '../data/org.gramps_project.Gramps.appdata.xml.in',
                       '../data/org.gramps_project.Gramps.desktop.in']:
         os.system(('GETTEXTDATADIR=. %(xgettext)s -F -j '
