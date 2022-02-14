@@ -275,9 +275,9 @@ class UIManager():
                 parent = self.et_xml.find(".//*[@id='%s'].." % el_id)
                 if parent:
                     # we found it, now delete original, inset updated
-                    for indx, p in enumerate(parent):
-                        if p.get('id') == el_id:
-                            del p
+                    for indx in range(len(parent)):
+                        if parent[indx].get('id') == el_id:
+                            del parent[indx]
                             parent.insert(indx, update)
                 else:
                     # updated item not present in original, just add it
@@ -314,7 +314,7 @@ class UIManager():
             # find parent of id'd element
             element = self.et_xml.find(".//*[@id='%s']" % el_id)
             if element:  # element may have already been deleted
-                for dummy in element:
+                for dummy in range(len(element)):
                     del element[0]
         #results = ET.tostring(self.et_xml, encoding="unicode")
         #LOG.info(results)
