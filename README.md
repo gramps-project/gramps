@@ -163,6 +163,9 @@ Prerequistes required for the following Addons to work:
 
 No longer needed:
 -----------------
+* Since Gramps 5.2:
+   **xdg-utils**
+
 * Since Gramps 4.2:
    **gir-webkit**
 
