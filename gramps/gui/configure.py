@@ -1312,6 +1312,19 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 2, row, 2, 1)
 
         row += 1
+        # Calendar format on input:
+        obox = Gtk.ComboBoxText()
+        list(map(obox.append_text, Date.ui_calendar_names))
+        active = config.get('preferences.calendar-format-input')
+        if active >= len(formats):
+            active = 0
+        obox.set_active(active)
+        obox.connect('changed', self.date_calendar_for_input_changed)
+        lwidget = BasicLabel(_("%s: ") % _('Calendar on input'))
+        grid.attach(lwidget, 1, row, 1, 1)
+        grid.attach(obox, 2, row, 2, 1)
+
+        row += 1
         # Status bar:
         obox = Gtk.ComboBoxText()
         formats = [_("Active person's name and ID"),
