@@ -2878,6 +2878,16 @@ class BasePage:
             tbody += trow
 
         data = place.get_latitude()
+        v_lat, v_lon = conv_lat_lon(data, "0.0", "D.D8")
+        if not v_lat:
+            data += self._(":")
+            # We use the same message as in:
+            # gramps/gui/editors/editplace.py
+            # gramps/gui/editors/editplaceref.py
+            data += self._("Invalid latitude\n(syntax: 18\\u00b09'48.21\"S,"
+                           " -18.2412 or -18:9:48.21)")
+            # We need to convert "\\u00b0" to "&deg;" for html
+            data = data.replace("\\u00b0", "&deg;")
         if data != "":
             trow = Html('tr') + (
                 Html("td", self._("Latitude"), class_="ColumnAttribute",
@@ -2886,6 +2896,16 @@ class BasePage:
             )
             tbody += trow
         data = place.get_longitude()
+        v_lat, v_lon = conv_lat_lon("0.0", data, "D.D8")
+        if not v_lon:
+            data += self._(":")
+            # We use the same message as in:
+            # gramps/gui/editors/editplace.py
+            # gramps/gui/editors/editplaceref.py
+            data += self._("Invalid longitude\n(syntax: 18\\u00b09'48.21\"E,"
+                           " -18.2412 or -18:9:48.21)")
+            # We need to convert "\\u00b0" to "&deg;" for html
+            data = data.replace("\\u00b0", "&deg;")
         if data != "":
             trow = Html('tr') + (
                 Html("td", self._("Longitude"), class_="ColumnAttribute",

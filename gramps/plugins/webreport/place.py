@@ -495,11 +495,14 @@ class PlacePages(BasePage):
 
             # Begin inline javascript code because jsc is a
             # docstring, it does NOT have to be properly indented
+            latitude, longitude = conv_lat_lon(place.get_latitude(),
+                                               place.get_longitude(),
+                                               "D.D8")
+            if not (latitude and longitude):
+                # We have incorrect longitude and/or latitude for this place.
+                latitude = longitude = 0.0
             if self.placemappages:
                 if place and (place.lat and place.long):
-                    latitude, longitude = conv_lat_lon(place.get_latitude(),
-                                                       place.get_longitude(),
-                                                       "D.D8")
                     tracelife = " "
                     if self.create_media and media_list:
                         for fmedia in media_list:
