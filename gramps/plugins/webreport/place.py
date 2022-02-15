@@ -523,11 +523,10 @@ class PlacePages(BasePage):
                                 if photo_hdle in self.report.obj_dict[Media]:
                                     tracelife += str(imglnk)
                                 break # We show only the first image
-                    scripts = Html()
-                    if self.mapservice == "Google":
-                        with Html("script", type="text/javascript",
-                                  indent=False) as jsc:
-                            scripts += jsc
+                    with Html("script", type="text/javascript",
+                              indent=False) as jsc:
+                        if self.mapservice == "Google":
+                            # scripts += jsc
                             # Google adds Latitude/ Longitude to its maps...
                             plce = placetitle.replace("'", "\\'")
                             jsc += MARKER_PATH % marker_path
@@ -537,18 +536,14 @@ class PlacePages(BasePage):
                                                 1, tracelife]],
                                               latitude, longitude,
                                               10)
-                    elif self.mapservice == "OpenStreetMap":
-                        with Html("script", type="text/javascript") as jsc:
-                            scripts += jsc
+                        elif self.mapservice == "OpenStreetMap":
                             jsc += MARKER_PATH % marker_path
                             jsc += OSM_MARKERS % ([[float(longitude),
                                                     float(latitude),
                                                     placetitle, tracelife]],
                                                   longitude, latitude, 10)
                             jsc += OPENLAYER
-                    else: # STAMEN
-                        with Html("script", type="text/javascript") as jsc:
-                            scripts += jsc
+                        else: # STAMEN
                             jsc += MARKER_PATH % marker_path
                             jsc += STAMEN_MARKERS % ([[float(longitude),
                                                        float(latitude),
@@ -556,7 +551,7 @@ class PlacePages(BasePage):
                                                      self.stamenopts,
                                                      longitude, latitude, 10)
                             jsc += OPENLAYER
-                    placedetail += scripts
+                    placedetail += jsc
 
         # add clearline for proper styling
         # add footer section
