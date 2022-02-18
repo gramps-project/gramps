@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2022-01-26 21:34+0000\n"
+"PO-Revision-Date: 2022-02-18 21:05+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -7344,10 +7344,8 @@ msgid "Informant"
 msgstr "Sagesman"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "förälder2"
+msgstr "Fadder"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
@@ -12899,10 +12897,8 @@ msgid "Move the selected address downwards"
 msgstr "Flytta den valda adressen neråt"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
-msgstr "Postnummer"
+msgstr "Post"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:84
 msgid "_Addresses"
@@ -31376,10 +31372,8 @@ msgid "German Relationship Calculator"
 msgstr "Tysk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Rysk släktskapsberäknare"
+msgstr "Österrikisk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
@@ -32233,10 +32227,9 @@ msgid "The style used for the subtitle."
 msgstr "Mall som används för undertiteln."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Släktskap:"
+msgstr "Släktskap: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -37373,16 +37366,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Huruvida ta med platssidorna eller inte."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Ta med platssidor"
+msgstr "Ta med oanvända platssidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Huruvida ta med platssidorna eller inte."
+msgstr "Huruvida ta med de oanvända platssidorna eller inte."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -37712,13 +37701,6 @@ msgid "Tracking %s"
 msgstr "Spårar %s"
 
 #: ../gramps/plugins/webreport/person.py:882
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
