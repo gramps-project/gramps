@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2022-02-04 18:57+0000\n"
+"PO-Revision-Date: 2022-02-14 19:42+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -7339,10 +7339,8 @@ msgid "Informant"
 msgstr "Bilgi veren"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "ebeveyn2"
+msgstr "Vaftiz baba"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
@@ -12895,8 +12893,6 @@ msgid "Move the selected address downwards"
 msgstr "Seçilen adresi aşağı taşı"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
 msgstr "Posta Kodu"
 
@@ -31471,10 +31467,8 @@ msgid "German Relationship Calculator"
 msgstr "Alman İlişki Hesaplayıcısı"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Rus İlişki Hesaplayıcısı"
+msgstr "Avusturya İlişki Hesaplayıcısı"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
@@ -32323,10 +32317,9 @@ msgid "The style used for the subtitle."
 msgstr "Altyazı için kullanılan stil."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "İlişki:"
+msgstr "İlişki: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -37440,16 +37433,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Yer sayfalarının dahil edilip edilmeyeceği."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Yer sayfalarını dahil et"
+msgstr "Kullanılmayan yer sayfalarını dahil et"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Yer sayfalarının dahil edilip edilmeyeceği."
+msgstr "Kullanılmayan yer sayfalarının dahil edilip edilmeyeceği."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -37787,13 +37776,6 @@ msgid "Tracking %s"
 msgstr "%s izleniyor"
 
 #: ../gramps/plugins/webreport/person.py:882
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -37803,8 +37785,8 @@ msgid ""
 msgstr ""
 "Bu harita sayfası, o kişiyi ve soyundan gelenleri tüm etkinlikleri/yerleri "
 "ile temsil eder. Farenizi işaretçinin üzerine getirirseniz, yer adını "
-"görüntüler. İşaretler ve karşılaştırma listesi tarih sırasına göre sıralanır "
-"(eğer varsa?). Karşılaştırma bölümünde bir yerin adına tıklamak sizi o yerin "
+"görüntüler. İşaretler ve karşılaştırma listesi (varsa) tarih sırasına göre "
+"sıralanır. Karşılaştırma bölümünde bir yerin adına tıklamak sizi o yerin "
 "sayfasına götürecektir."
 
 #: ../gramps/plugins/webreport/person.py:934
