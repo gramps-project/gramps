@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2022-02-12 23:21+0000\n"
-"Last-Translator: RiseT <twilite505-4bf24909@yahoo.com>\n"
+"PO-Revision-Date: 2022-02-17 22:56+0000\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
 "Language: de\n"
@@ -7505,10 +7505,8 @@ msgid "Informant"
 msgstr "Informant"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "Elter2"
+msgstr "Taufpate"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
@@ -8268,7 +8266,7 @@ msgstr "Vollständig"
 
 #: ../gramps/gen/lib/markertype.py:54 ../gramps/plugins/tool/notrelated.py:103
 msgid "ToDo"
-msgstr "Zu erledigen"
+msgstr "OffenePunkte"
 
 #: ../gramps/gen/lib/media.py:145
 msgid "MIME"
@@ -9319,7 +9317,7 @@ msgstr "Exporteur"
 
 #: ../gramps/gen/plug/_pluginreg.py:84
 msgid "Doc creator"
-msgstr "Dok Ersteller"
+msgstr "Dokumentersteller"
 
 #: ../gramps/gen/plug/_pluginreg.py:85
 msgid "Plugin lib"
@@ -9579,9 +9577,9 @@ msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
-"Wähle die Schriftfamilie. Wenn internationale Zeichen nicht angezeigt "
-"werden, benutze die FreeSans-Schrift. FreeSans ist verfügbar unter: https://"
-"www.nongnu.org/freefont/"
+"Wähle die Schriftfamilie. Wenn die internationalen Zeichen nicht angezeigt "
+"werden, verwende die Schriftart FreeSans. FreeSans ist erhältlich unter: "
+"http://www.nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:156
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -9590,11 +9588,11 @@ msgstr "Schriftgröße"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:157
 msgid "The font size, in points."
-msgstr "Die Schriftgröße in Punkten."
+msgstr "Die Schriftgröße in Punkt."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:160
 msgid "Graph Direction"
-msgstr "Ausrichtung der Grafik"
+msgstr "Grafik Richtung"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:163
 msgid "Whether graph goes from top to bottom or left to right."
@@ -9603,7 +9601,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:167
 msgid "Number of Horizontal Pages"
-msgstr "Horizontale Seitenzahl"
+msgstr "Anzahl der horizontalen Seiten"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:168
 msgid ""
@@ -9611,14 +9609,14 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"Graphviz kann sehr große Graphen erzeugen, indem der Graph über eine "
-"rechteckige Fläche aus mehreren Seiten verteilt wird. Dies gibt die "
-"horizontale Anzahl an Seiten vor. Nur gültig für DOT und PDF über "
+"Graphviz kann sehr große Diagramme erstellen, indem das Diagramm über ein "
+"rechteckiges Feld von Seiten verteilt wird. Dies steuert die Anzahl der "
+"Seiten in der horizontalen Anordnung. Gilt nur für Dot und PDF über "
 "Ghostscript."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:175
 msgid "Number of Vertical Pages"
-msgstr "Vertikale Seitenzahl"
+msgstr "Anzahl der vertikalen Seiten"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:176
 msgid ""
@@ -9626,9 +9624,9 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"Graphviz kann sehr große Graphen erzeugen, indem der Graph über eine "
-"rechteckige Fläche aus mehreren Seiten verteilt wird. Dies gibt die "
-"vertikale Anzahl an Seiten vor. Nur gültig für DOT und PDF über Ghostscript."
+"Graphviz kann sehr große Diagramme erstellen, indem es das Diagramm über ein "
+"rechteckiges Feld von Seiten verteilt. Dies steuert die Anzahl der Seiten in "
+"dem Array vertikal. Gilt nur für Dot und PDF über Ghostscript."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "Paging Direction"
@@ -9639,8 +9637,9 @@ msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
-"Reihenfolge, in der die Diagrammseiten ausgegeben werden. Diese Option wirkt "
-"nur, wenn die horizontale oder vertikale Seitenzahl größer 1 ist."
+"Die Reihenfolge, in der die Diagrammseiten ausgegeben werden. Diese Option "
+"gilt nur, wenn die horizontalen oder die vertikalen Seitenanzahl größer als "
+"1 ist."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:191
 msgid "Connecting lines"
@@ -9660,11 +9659,11 @@ msgstr "Ob Linien unterschiedliche an Knoten angehängt werden"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:214
 msgid "Graphviz Options"
-msgstr "Optionen für Graphviz"
+msgstr "Graphviz-Optionen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:217
 msgid "Aspect ratio"
-msgstr "Streckung"
+msgstr "Seitenverhältnis"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:221
 msgid ""
@@ -9707,9 +9706,9 @@ msgid ""
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
 "DPI."
 msgstr ""
-"Punkte pro Zoll. Wenn du Bilder wie .gif oder .png Dateien fürs Web "
-"erstellst, versuche Werte wie 100 oder 300 DPI. Für PostScript und PDF "
-"Dateien verwende immer 72 DPI."
+"Punkte pro Zoll.  Wenn du Bilder wie .gif- oder .png-Dateien für das Web "
+"erstellst, versuche es mit Zahlen wie 100 oder 300 DPI.  PostScript- und PDF-"
+"Dateien verwenden immer 72 DPI."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:245
 msgid "Node spacing"
@@ -9721,13 +9720,13 @@ msgid ""
 "vertical graphs, this corresponds to spacing between columns.  For "
 "horizontal graphs, this corresponds to spacing between rows."
 msgstr ""
-"Der minimale freie Platz in Zoll zwischen einzelnen Knoten. Für senkrechte "
-"Grafen entspricht das dem Abstand zwischen Spalten. Für waagerechte Grafen "
-"entspricht das dem Abstand zwischen Zeilen."
+"Der Mindestabstand in Zoll zwischen den einzelnen Knotenpunkten.  Bei "
+"vertikalen Diagrammen entspricht dies dem Abstand zwischen den Spalten.  Bei "
+"horizontalen Diagrammen entspricht dies dem Abstand zwischen den Zeilen."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:253
 msgid "Rank spacing"
-msgstr "Ebenenabstand"
+msgstr "Reihenabstand"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:254
 msgid ""
@@ -9735,13 +9734,13 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Der minimale freie Platz in Zoll zwischen Ebenen. Für senkrechte Grafen "
-"entspricht dies dem Abstand zwischen Zeilen. Für waagerechte Grafen "
-"entspricht das dem Abstand zwischen Spalten."
+"Der Mindestabstand zwischen den Reihen in Zoll.  Bei vertikalen Diagrammen "
+"entspricht dies dem Abstand zwischen den Zeilen.  Bei horizontalen "
+"Diagrammen entspricht dies dem Abstand zwischen den Spalten."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:261
 msgid "Use subgraphs"
-msgstr "Benutze Unterdiagramme"
+msgstr "Verwende Unterdiagramme"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:262
 msgid ""
@@ -9754,11 +9753,11 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:272
 msgid "Note to add to the graph"
-msgstr "Notizen zur Grafik hinzufügen"
+msgstr "Notiz zum Hinzufügen zum Diagramm"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:274
 msgid "This text will be added to the graph."
-msgstr "Dieser Text wird der Grafik hinzugefügt."
+msgstr "Dieser Text wird dem Diagramm hinzugefügt."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:277
 #: ../gramps/gen/plug/docgen/treedoc.py:206
@@ -9777,7 +9776,7 @@ msgstr "Notizgröße"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:285
 msgid "The size of note text, in points."
-msgstr "Die Größe des Notizentext in Punkten."
+msgstr "Die Größe des Notiztextes in Punkt."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1077
 msgid "PDF (Ghostscript)"
@@ -9794,27 +9793,27 @@ msgstr "PostScript"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1095
 msgid "Structured Vector Graphics (SVG)"
-msgstr "Strukturierte Vektor Grafiken (SVG)"
+msgstr "Strukturierte Vektorgrafiken (SVG)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1101
 msgid "Compressed Structured Vector Graphs (SVGZ)"
-msgstr "Komprimierte SVG-Grafik (SVGZ)"
+msgstr "Komprimierte strukturierte Vektorgrafiken (SVGZ)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1107
 msgid "JPEG image"
-msgstr "JPEG-Grafik"
+msgstr "JPEG-Bild"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1113
 msgid "GIF image"
-msgstr "GIF-Grafik"
+msgstr "GIF-Bild"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1119
 msgid "PNG image"
-msgstr "PNG-Grafik"
+msgstr "PNG-Bild"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:1125
 msgid "Graphviz File"
-msgstr "Graphviz Datei"
+msgstr "Graphviz-Datei"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 msgctxt "paper size"
@@ -9841,11 +9840,11 @@ msgstr "Kurz"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Above"
-msgstr "Oberhalb"
+msgstr "Über"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
 msgid "Below"
-msgstr "Unterhalb"
+msgstr "Unter"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
 msgid "Not shown"
@@ -9859,11 +9858,11 @@ msgstr "Einstellungen"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:76
 msgid "Down (↓)"
-msgstr "Runter (↓)"
+msgstr "Nach unten (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Up (↑)"
-msgstr "Hoch (↑)"
+msgstr "Nach oben (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Right (→)"
@@ -9879,7 +9878,7 @@ msgstr "Senkrecht"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:82
 msgid "Rounded"
-msgstr "Abgerundet"
+msgstr "Gerundet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
 msgid "Swing"
@@ -13101,10 +13100,8 @@ msgid "Move the selected address downwards"
 msgstr "Gewählte Adresse nach unten verschieben"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
-msgstr "Postleitzahl"
+msgstr "Postalisch"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:84
 msgid "_Addresses"
@@ -31810,10 +31807,8 @@ msgid "German Relationship Calculator"
 msgstr "Deutscher Verwandtschaftsrechner"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Russischer Verwandtschaftsrechner"
+msgstr "Österreichischer Beziehungsrechner"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
@@ -32674,10 +32669,9 @@ msgid "The style used for the subtitle."
 msgstr "Der Stil, der für Untertitel verwendet wird."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Beziehung:"
+msgstr "Beziehung: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -37877,16 +37871,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Ob die Ortsseiten einbezogen werden sollen oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Ortsseiten einbeziehen"
+msgstr "Ungenutzte Ortsseiten einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Ob die Ortsseiten einbezogen werden sollen oder nicht."
+msgstr "Ob die ungenutzten Ortsseiten einbezogen werden sollen oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -38224,13 +38214,6 @@ msgid "Tracking %s"
 msgstr "Verfolge %s"
 
 #: ../gramps/plugins/webreport/person.py:882
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -38238,11 +38221,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"Diese Kartenseite stellt die Person mit ihren Nachkommen und all ihren "
-"Ereignissen/Orten dar. Wenn du die Maus über einer Markierung platzierst, "
-"wird der Name des Ort angezeigt. Die Markierungen und Referenzliste sind "
-"nach Datum sortiert (wenn vorhanden). Klicken auf einen Ort im "
-"Referenzbereich bringt dich auf die Ortsseite."
+"Diese Kartenseite stellt diese Person mit ihren Nachkommen und all ihren "
+"Ereignissen/Orten dar. Wenn du mit der Maus über die Markierung fährst, wird "
+"der Ortsname angezeigt. Die Markierungen und Referenzliste sind nach Datum "
+"sortiert (falls vorhanden?). Wenn du auf den Namen eines Ortes in der "
+"Referenzliste klickst, gelangst du auf die Seite dieses Ortes."
 
 #: ../gramps/plugins/webreport/person.py:934
 msgid "Place Title"
