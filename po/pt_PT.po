@@ -6,14 +6,14 @@
 # lcc <lcc@6zap.com>, 2009-2009.
 # Frederico Muñoz <fsmunoz@gmail.com>, 2010-2011, 2013.
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2017, 2018, 2019.
-# Pedro Albuquerque <pmra@gmx.com>, 2021.
+# Pedro Albuquerque <pmra@gmx.com>, 2021, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-12-20 22:13+0000\n"
+"PO-Revision-Date: 2022-02-15 06:11+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7410,10 +7410,8 @@ msgid "Informant"
 msgstr "Informador"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "progenitor2"
+msgstr "Padrinho"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
@@ -12979,10 +12977,8 @@ msgid "Move the selected address downwards"
 msgstr "Mover o endereço seleccionado abaixo"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
-msgstr "Código postal"
+msgstr "Postal"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:84
 msgid "_Addresses"
@@ -31593,10 +31589,8 @@ msgid "German Relationship Calculator"
 msgstr "Calculadora de parentesco alemã"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Calculadora de parentesco russa"
+msgstr "Calculadora de parentesco austríaca"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
@@ -32452,10 +32446,9 @@ msgid "The style used for the subtitle."
 msgstr "O estilo usado para o sub-título."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Parentesco:"
+msgstr "Parentesco: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -37631,16 +37624,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Se deve ou não incluir páginas de locais."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Incluir páginas de locais"
+msgstr "Incluir páginas de locais não usados"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Se deve ou não incluir páginas de locais."
+msgstr "Se deve incluir páginas de locais não utilizados."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -37978,13 +37967,6 @@ msgid "Tracking %s"
 msgstr "A seguir %s"
 
 #: ../gramps/plugins/webreport/person.py:882
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -37994,9 +37976,8 @@ msgid ""
 msgstr ""
 "Esta página de mapas representa o indivíduo e seus descendentes com todos os "
 "seus eventos e locais. Se posicionar o rato sobre o marcador será mostrado o "
-"nome do local. Os marcadores e a lista de referência são ordenados por data "
-"(se existir). Clicar no nome do local na secção Referência, leva à sua "
-"página."
+"nome do local. Os marcadores e a lista de referência são ordenados por data ("
+"se existir). Clicar no nome do local na secção Referência, leva à sua página."
 
 #: ../gramps/plugins/webreport/person.py:934
 msgid "Place Title"
