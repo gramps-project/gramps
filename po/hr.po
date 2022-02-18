@@ -3,13 +3,13 @@
 # Copyright (C) Gramps project
 # josip <josip@pisoj.com>, 2008-2011.
 # Milo Ivir <mivir@milotype.de>, 2018., 2019.
-# Milo Ivir <mail@milotype.de>, 2021.
+# Milo Ivir <mail@milotype.de>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-12-18 21:49+0000\n"
+"PO-Revision-Date: 2022-02-15 21:58+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -7332,7 +7332,7 @@ msgstr "Slavljenik"
 
 #: ../gramps/gen/lib/eventroletype.py:58
 msgid "Aide"
-msgstr "Pomoć"
+msgstr "Pomoćnik"
 
 #: ../gramps/gen/lib/eventroletype.py:59
 msgid "Bride"
@@ -7352,14 +7352,12 @@ msgid "Informant"
 msgstr "Izvjestitelj"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "roditelj2"
+msgstr "Kum/Kuma"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
-msgstr "Životni"
+msgstr "Životni događaji"
 
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
 #: ../gramps/gen/lib/ldsord.py:188 ../gramps/gui/clipboard.py:748
@@ -7392,7 +7390,7 @@ msgstr "Obitelj"
 
 #: ../gramps/gen/lib/eventtype.py:142
 msgid "Religious"
-msgstr "Vjerski"
+msgstr "Vjera"
 
 #: ../gramps/gen/lib/eventtype.py:145
 msgid "Vocational"
@@ -7404,7 +7402,7 @@ msgstr "Znanost"
 
 #: ../gramps/gen/lib/eventtype.py:149
 msgid "Travel"
-msgstr "Putovanje"
+msgstr "Putovanja"
 
 #: ../gramps/gen/lib/eventtype.py:151
 msgid "Legal"
@@ -12914,8 +12912,6 @@ msgid "Move the selected address downwards"
 msgstr "Pomakni odabranu adresu prema dolje"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
 msgstr "Poštanski broj"
 
@@ -31396,10 +31392,8 @@ msgid "German Relationship Calculator"
 msgstr "Njemački kalkulator srodstva"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Ruski kalkulator srodstva"
+msgstr "Austrijski kalkulator srodstva"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
@@ -32258,10 +32252,9 @@ msgid "The style used for the subtitle."
 msgstr "Stil korišten za podnaslov."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Srodstvo:"
+msgstr "Srodstvo: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -37427,16 +37420,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Da li uključiti stranice mjesta."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Uključi stranice mjesta"
+msgstr "Uključi nekorištene stranice mjesta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Da li uključiti stranice mjesta."
+msgstr "Da li uključiti nekorištene stranice mjesta."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -37772,13 +37761,6 @@ msgid "Tracking %s"
 msgstr "Praćenje %s"
 
 #: ../gramps/plugins/webreport/person.py:882
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -37789,7 +37771,7 @@ msgstr ""
 "Ova kartografska stranica prikazuje tu osobu i sve potomke sa svim njihovim "
 "događajima/mjestima. Postavljanjem miša iznad oznake, prikazat će se ime "
 "mjesta. Oznake i popis referenca su svrstani po datumu (ukoliko ih ima?). "
-"Klikom na ime mjesta u odjelku za reference se otvara stranica mjesta."
+"Klikom na ime mjesta u odjelku za reference otvara se stranica mjesta."
 
 #: ../gramps/plugins/webreport/person.py:934
 msgid "Place Title"
