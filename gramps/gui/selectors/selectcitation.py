@@ -39,6 +39,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import CitationTreeModel
 from .baseselector import BaseSelector
+from gramps.gen.lib.date import Today
 from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
@@ -49,16 +50,60 @@ from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
-# SelectSource
+# SelectCitation
 #
 #-------------------------------------------------------------------------
 class SelectCitation(BaseSelector):
+    
+    
+    namespace = 'Citation'
+
+    def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
+                 skip=set(), show_search_bar=False, default=None, expand=True):
+
+        # SelectCitation may have a title passed to it which should be used
+        # instead of the default defined for get_window_title()
+        if title is not None:
+            self.title = title
+
+        history = uistate.get_history(self.namespace).mru
+        active_handle = uistate.get_active(self.namespace)
+
+        # see gui.plug._guioptions
+
+        from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Baseselector? rules.citation.IsBookmarked?
+        # Create a filter for the citation selector.
+        sfilter = GenericFilterFactory(self.namespace)()
+        sfilter.set_logical_op('or')
+        #sfilter.add_rule(rules.citation.IsBookmarked([]))
+
+        # Add last edited citations.
+        year = Today() - 1
+        sfilter.add_rule(rules.citation.ChangedSince(["%s" % year, ""]))
+
+        # Add recent citations.
+        for handle in history:
+            recent = dbstate.db.get_citation_from_handle(handle)
+            gid = recent.get_gramps_id()
+            sfilter.add_rule(rules.citation.HasIdOf([gid]))
+
+        # Add bookmarked citations.
+        for handle in dbstate.db.get_citation_bookmarks().get():
+            marked = dbstate.db.get_citation_from_handle(handle)
+            gid = marked.get_gramps_id()
+            sfilter.add_rule(rules.citation.HasIdOf([gid]))
+
+        BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                              skip, show_search_bar, active_handle, True)
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
         self.setup_configs('interface.source-sel', 600, 450)
+        SWITCH = self.switch.get_state()
 
     def get_window_title(self):
         return _("Select Source or Citation")
