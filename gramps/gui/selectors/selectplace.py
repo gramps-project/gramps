@@ -35,6 +35,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels.placemodel import PlaceTreeModel
 from .baseselector import BaseSelector
+from .selectorexceptions import SelectorException
 from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
@@ -48,19 +49,77 @@ from gramps.gen.const import URL_MANUAL_SECT2
 # SelectPlace
 #
 #-------------------------------------------------------------------------
+class Filter(object):
+
+    def __init__(self, db):
+
+        self.db = db
+
+    def match(self, handle, db):
+
+        value = self.db.get_raw_place_data(handle)
+        if value[8][0] == "4":
+            return value[2] == Gtk.TextIter.forward_search()
+
 class SelectPlace(BaseSelector):
+    
+    namespace = 'Place'
+
+    def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
+                 skip=set(), show_search_bar=False, default=None, expand=True):
+
+        # Need purge the skip list, else it will only work the first time
+        if len(skip) != 0:
+            skip = []
+
+        history = uistate.get_history(self.namespace).mru
+        active_handle = uistate.get_active(self.namespace)
+
+        # tests, Filter(dbstate.db)
+
+        for handle in dbstate.db.get_place_handles():
+            #print(dbstate.db.get_raw_place_data(handle)[2], dbstate.db.get_raw_place_data(handle)[8][0])
+            skip.append(handle.decode('utf8'))
+
+        for handle in dbstate.db.get_place_bookmarks().get():
+            skip.remove(handle)
+
+        for handle in history:
+            if handle in skip:
+                skip.remove(handle)
+
+        # extra test
+        # to check navigation, active and history
+        if active_handle and (active_handle in skip):
+            try:
+                skip.remove(active_handle)
+            except ValueError:
+                pass
+                #raise SelectorException("Attempt to remove "
+                                #"active place record "
+                                #"place handle = %s" % (active_handle,))
+
+        BaseSelector.__init__(self, dbstate, uistate, track, None,
+                            [x for x in skip], True, active_handle, True)
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
         self.setup_configs('interface.place-sel', 600, 450)
+        SWITCH = self.switch.get_state() # nothing set yet
 
     def get_window_title(self):
         return _("Select Place")
 
     def get_model_class(self):
         return PlaceTreeModel
+    
+    def exact_search(self):
+        """
+        Returns a tuple indicating columns requiring an exact search
+        """
+        return (0,)
 
     def get_column_titles(self):
         return [
