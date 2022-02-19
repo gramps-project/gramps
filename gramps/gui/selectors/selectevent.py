@@ -34,6 +34,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import EventModel
 from .baseselector import BaseSelector
+from gramps.gen.lib.date import Today
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
@@ -48,12 +49,55 @@ from gramps.gen.const import URL_MANUAL_SECT1
 #
 #-------------------------------------------------------------------------
 class SelectEvent(BaseSelector):
+    
+    namespace = 'Event'
+
+    def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
+                 skip=set(), show_search_bar=False, default=None):
+
+        # SelectEvent may have a title passed to it which should be used
+        # instead of the default defined for get_window_title()
+        if title is not None:
+            self.title = title
+
+        history = uistate.get_history(self.namespace).mru
+        active_handle = uistate.get_active(self.namespace)
+
+        # see gui.plug._guioptions
+
+        from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Baseselector? rules.event.IsBookmarked?
+        # Create a filter for the family selector.
+        sfilter = GenericFilterFactory(self.namespace)()
+        sfilter.set_logical_op('or')
+        #sfilter.add_rule(rules.event.IsBookmarked([]))
+
+        # Add last edited events.
+        year = Today() - 1
+        sfilter.add_rule(rules.event.ChangedSince(["%s" % year, ""]))
+
+        # Add recent events.
+        for handle in history:
+            recent = dbstate.db.get_event_from_handle(handle)
+            gid = recent.get_gramps_id()
+            sfilter.add_rule(rules.event.HasIdOf([gid]))
+
+        # Add bookmarked events.
+        for handle in dbstate.db.get_event_bookmarks().get():
+            marked = dbstate.db.get_event_from_handle(handle)
+            gid = marked.get_gramps_id()
+            sfilter.add_rule(rules.event.HasIdOf([gid]))
+
+        BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                              skip, show_search_bar, active_handle)
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
         self.setup_configs('interface.event-sel', 600, 450)
+        SWITCH = self.switch.get_state()
 
     def get_window_title(self):
         return _("Select Event")
