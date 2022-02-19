@@ -40,11 +40,12 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 # Person and relation types
 from gramps.gen.lib import Person, FamilyRelType, EventType, EventRoleType
-from gramps.gen.lib.date import Date, gregorian
+from gramps.gen.lib.date import Date
 # gender and report type names
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, FONT_SERIF,
@@ -230,6 +231,8 @@ def estimate_age(dbase, person,
     @rtype: tuple
     """
 
+    calendar = config.get('preferences.calendar-format-report')
+
     bhandle = None
     if start_handle:
         bhandle = start_handle
@@ -251,8 +254,10 @@ def estimate_age(dbase, person,
         return (-1, -1)
 
     bdata = dbase.get_event_from_handle(bhandle).get_date_object()
+    bdata = bdata.to_calendar(calendar)
     if dhandle:
         ddata = dbase.get_event_from_handle(dhandle).get_date_object()
+        ddata = ddata.to_calendar(calendar)
     else:
         if today is not None:
             ddata = today
@@ -427,6 +432,7 @@ class Extract:
     def get_year(self, event):
         "return year for given event"
         date = event.get_date_object()
+        date = date.to_calendar(self.calendar)
         if date:
             year = date.get_year()
             if year:
@@ -681,6 +687,7 @@ class Extract:
         self._ = rlocale.translation.sgettext
         self._get_type = rlocale.get_type
         self._get_date = rlocale.get_date
+        self.calendar = config.get('preferences.calendar-format-report')
 
         data = []
         ext = self.extractors
@@ -704,7 +711,7 @@ class Extract:
             if birth:
                 birthdate = birth.get_date_object()
                 if birthdate.get_year_valid():
-                    birthdate = gregorian(birthdate)
+                    birthdate = birthdate.to_calendar(self.calendar)
 
                     year = birthdate.get_year()
                     if not (year >= year_from and year <= year_to):
@@ -715,7 +722,7 @@ class Extract:
                     if death:
                         deathdate = death.get_date_object()
                         if deathdate.get_year_valid():
-                            deathdate = gregorian(deathdate)
+                            deathdate = deathdate.to_calendar(self.calendar)
 
                             if deathdate.get_year() < year_from:
                                 continue
