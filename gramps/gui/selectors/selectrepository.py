@@ -48,12 +48,51 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #
 #-------------------------------------------------------------------------
 class SelectRepository(BaseSelector):
+    
+    namespace = 'Repository'
+
+    def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
+                 skip=set(), show_search_bar=False, default=None):
+
+        # SelectRepository may have a title passed to it which should be used
+        # instead of the default defined for get_window_title()
+        if title is not None:
+            self.title = title
+
+        history = uistate.get_history(self.namespace).mru
+        active_handle = uistate.get_active(self.namespace)
+
+        # see gui.plug._guioptions
+
+        from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Baseselector? rules.repository.IsBookmarked?
+        # Create a filter for the repository selector.
+        sfilter = GenericFilterFactory(self.namespace)()
+        sfilter.set_logical_op('or')
+        #sfilter.add_rule(rules.repository.IsBookmarked([]))
+
+        # Add recent repositories.
+        for handle in history:
+            recent = dbstate.db.get_repository_from_handle(handle)
+            gid = recent.get_gramps_id()
+            sfilter.add_rule(rules.repository.HasIdOf([gid]))
+
+        # Add bookmarked repositories.
+        for handle in dbstate.db.get_repo_bookmarks().get():
+            marked = dbstate.db.get_repository_from_handle(handle)
+            gid = marked.get_gramps_id()
+            sfilter.add_rule(rules.repository.HasIdOf([gid]))
+
+        BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                              skip, show_search_bar, active_handle)
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
         self.setup_configs('interface.repo-sel', 600, 450)
+        SWITCH = self.switch.get_state()
 
     def get_window_title(self):
         return _("Select Repository")
@@ -65,7 +104,7 @@ class SelectRepository(BaseSelector):
         return [
             (_('Title'), 350, BaseSelector.TEXT, 0),
             (_('ID'),     75, BaseSelector.TEXT, 1),
-            (_('Last Change'), 150, BaseSelector.TEXT, 14),
+            #(_('Last Change'), 150, BaseSelector.TEXT, 14),
             ]
 
     def get_from_handle_func(self):
