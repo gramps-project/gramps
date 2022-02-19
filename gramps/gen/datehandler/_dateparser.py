@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
 # Copyright (C) 2017       Paul Franklin
+# Copyright (c) 2020       Steve Youngs
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -445,6 +446,9 @@ class DateParser:
         self._range = re.compile(
             r"(bet|bet.|between)\s+(?P<start>.+)\s+and\s+(?P<stop>.+)",
             re.IGNORECASE)
+        self._quarter = re.compile(
+            r"[qQ](?P<quarter>[1-4])\s+(?P<year>.+)",
+            re.IGNORECASE)
         self._modifier = re.compile(r'%s\s+(.*)' % self._mod_str,
                                     re.IGNORECASE)
         self._modifier_after = re.compile(r'(.*)\s+%s' % self._mod_after_str,
@@ -836,6 +840,31 @@ class DateParser:
             return 1
         return 0
 
+    def match_quarter(self, text, cal, ny, qual, date):
+        """
+        Try matching calendar quarter date.
+
+        On success, set the date and return 1. On failure return 0.
+        """
+        match = self._quarter.match(text)
+        if match:
+            quarter = self._get_int(match.group('quarter'))
+
+            text_parser = self.parser[cal]
+            (text, bc) = self.match_bce(match.group('year'))
+            start = self._parse_subdate(text, text_parser, cal)
+            if (start == Date.EMPTY and text != "") or (start[0] != 0) or (start[1] != 0): # reject dates where the day or month have been set
+                return 0
+            if bc:
+                start = self.invert_year(start)
+
+            stop_month = quarter * 3
+            stop_day = _max_days[stop_month - 1] # no need to worry about leap years since no quarter ends in February
+
+            date.set(qual, Date.MOD_RANGE, cal, (1, stop_month - 2, start[2], start[3]) + (stop_day, stop_month, start[2], start[3]), newyear=ny)
+            return 1
+        return 0
+
     def match_bce(self, text):
         """
         Try matching BCE qualifier.
@@ -922,6 +951,8 @@ class DateParser:
         if self.match_span(text, cal, newyear, qual, date):
             return
         if self.match_range(text, cal, newyear, qual, date):
+            return
+        if self.match_quarter(text, cal, newyear, qual, date):
             return
 
         (text, bc) = self.match_bce(text)
