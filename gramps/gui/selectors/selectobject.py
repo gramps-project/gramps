@@ -62,6 +62,44 @@ from gramps.gen.const import URL_MANUAL_SECT1
 #
 #-------------------------------------------------------------------------
 class SelectObject(BaseSelector):
+    
+    namespace = 'Media'
+
+    def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
+                 skip=set(), show_search_bar=False, default=None):
+
+        # SelectMedia may have a title passed to it which should be used
+        # instead of the default defined for get_window_title()
+        if title is not None:
+            self.title = title
+
+        history = uistate.get_history(self.namespace).mru
+        active_handle = uistate.get_active(self.namespace)
+
+        # see gui.plug._guioptions
+
+        from gramps.gen.filters import GenericFilterFactory, rules
+
+        # Baseselector? rules.media.IsBookmarked?
+        # Create a filter for the media selector.
+        sfilter = GenericFilterFactory(self.namespace)()
+        sfilter.set_logical_op('or')
+        #sfilter.add_rule(rules.media.IsBookmarked([]))
+
+        # Add recent media.
+        for handle in history:
+            recent = dbstate.db.get_media_from_handle(handle)
+            gid = recent.get_gramps_id()
+            sfilter.add_rule(rules.media.HasIdOf([gid]))
+
+        # Add bookmarked media.
+        for handle in dbstate.db.get_media_bookmarks().get():
+            marked = dbstate.db.get_media_from_handle(handle)
+            gid = marked.get_gramps_id()
+            sfilter.add_rule(rules.media.HasIdOf([gid]))
+
+        BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                              skip, show_search_bar, active_handle)
 
     def get_window_title(self):
         return _("Select Media Object")
@@ -77,7 +115,7 @@ class SelectObject(BaseSelector):
             (_('Title'), 350, BaseSelector.TEXT, 0),
             (_('ID'),     75, BaseSelector.TEXT, 1),
             (_('Type'),   75, BaseSelector.TEXT, 2),
-            (_('Last Change'), 150, BaseSelector.TEXT, 7),
+            #(_('Last Change'), 150, BaseSelector.TEXT, 7),
             ]
 
     def _local_init(self):
@@ -93,6 +131,7 @@ class SelectObject(BaseSelector):
         vbox.reorder_child(self.preview,1)
         self.preview.show()
         self.selection.connect('changed',self._row_change)
+        SWITCH = self.switch.get_state()
 
     def _row_change(self, obj):
         id_list = self.get_selected_ids()
