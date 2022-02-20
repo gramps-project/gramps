@@ -38,6 +38,8 @@ from ..views.treemodels import PeopleBaseModel, PersonTreeModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT1
 
+PERSON_DATE = '2016-12-01'
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -100,7 +102,7 @@ class SelectPerson(BaseSelector):
             sfilter.add_rule(rules.person.HasIdOf([gid]))
 
         # Add last edited people.
-        sfilter.add_rule(rules.person.ChangedSince(["2016-11-01", ""]))
+        sfilter.add_rule(rules.person.ChangedSince([PERSON_DATE, ""]))
         
         family_handle = active_person.get_main_parents_family_handle()
         if family_handle:
