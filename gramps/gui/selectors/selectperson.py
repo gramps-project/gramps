@@ -72,9 +72,6 @@ class SelectPerson(BaseSelector):
             self.WIKI_HELP_SEC = _('Select_Child_selector', 'manual')
         else:
             self.WIKI_HELP_SEC = _('Select_Person_selector', 'manual')
-
-        BaseSelector.__init__(self, dbstate, uistate, track, filter,
-                              skip, show_search_bar, default)
         
         history = uistate.get_history(self.namespace).mru
 
