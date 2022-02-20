@@ -118,10 +118,10 @@ class SelectPerson(BaseSelector):
                 mid = mother.get_gramps_id()
                 sfilter.add_rule(rules.person.HasIdOf([mid]))
             sib_list = family.get_child_ref_list()
-                for sib_ref in sib_list:
-                    sibling = dbstate.db.get_person_from_handle(sib_ref.ref)
-                    sbid = sibling.get_gramps_id()
-                    sfilter.add_rule(rules.person.HasIdOf([sbid]))
+            for sib_ref in sib_list:
+                sibling = dbstate.db.get_person_from_handle(sib_ref.ref)
+                sbid = sibling.get_gramps_id()
+                sfilter.add_rule(rules.person.HasIdOf([sbid]))
 
         # Add recent people.
         for handle in history:
