@@ -106,10 +106,10 @@ class SelectPlace(BaseSelector):
 
         if active_handle:
             BaseSelector.__init__(self, dbstate, uistate, track, None,
-                                [x for x in skip], True, active_handle, True)
+                                [x for x in skip], True, active_handle)
         else:
             BaseSelector.__init__(self, dbstate, uistate, track, None,
-                                [x for x in skip], True, True)
+                                [x for x in skip], True)
 
     def _local_init(self):
         """
