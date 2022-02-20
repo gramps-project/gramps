@@ -137,7 +137,7 @@ class SelectPerson(BaseSelector):
                               skip, show_search_bar, active_handle)
         else:
             BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
-                              skip, show_search_bar)
+                              show_search_bar)
 
     def _local_init(self):
         """
