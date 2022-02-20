@@ -37,6 +37,9 @@ from .baseselector import BaseSelector
 from gramps.gen.lib.date import Today
 from gramps.gen.const import URL_MANUAL_SECT2
 
+SOURCE_DATE = Today() - 1
+
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -75,8 +78,7 @@ class SelectSource(BaseSelector):
         #sfilter.add_rule(rules.source.IsBookmarked([]))
 
         # Add last edited sources.
-        year = Today() - 1
-        sfilter.add_rule(rules.source.ChangedSince(["%s" % year, ""]))
+        sfilter.add_rule(rules.source.ChangedSince(["%s" % SOURCE_DATE, "%s" % Today()])
 
         # Add recent sources.
         for handle in history:
