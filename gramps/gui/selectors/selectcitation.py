@@ -98,10 +98,10 @@ class SelectCitation(BaseSelector):
 
         if active_handle:
             BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
-                                  skip, show_search_bar, active_handle, True)
+                              skip, show_search_bar, active_handle)
         else:
             BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
-                                  skip, show_search_bar, True)
+                              skip, show_search_bar)
 
     def _local_init(self):
         """
