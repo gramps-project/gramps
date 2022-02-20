@@ -36,6 +36,8 @@ from ..views.treemodels import RepositoryModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT2
 
+REPOSITORY_DATE = None
+
 #-------------------------------------------------------------------------
 #
 # Constants
