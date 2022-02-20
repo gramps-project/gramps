@@ -96,8 +96,12 @@ class SelectCitation(BaseSelector):
             gid = marked.get_gramps_id()
             sfilter.add_rule(rules.citation.HasIdOf([gid]))
 
-        BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
-                              skip, show_search_bar, active_handle, True)
+        if active_handle:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar, active_handle, True)
+        else:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar, True)
 
     def _local_init(self):
         """
