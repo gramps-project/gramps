@@ -36,6 +36,8 @@ from ..views.treemodels import FamilyModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_PAGE
 
+FAMILY_DATE = None
+
 #-------------------------------------------------------------------------
 #
 # Constants
