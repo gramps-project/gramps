@@ -50,6 +50,8 @@ from ..views.treemodels import MediaModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT1
 
+MEDIA_DATE = None
+
 #-------------------------------------------------------------------------
 #
 # Constants
