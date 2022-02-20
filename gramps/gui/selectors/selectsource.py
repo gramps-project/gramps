@@ -78,7 +78,7 @@ class SelectSource(BaseSelector):
         #sfilter.add_rule(rules.source.IsBookmarked([]))
 
         # Add last edited sources.
-        sfilter.add_rule(rules.source.ChangedSince(["%s" % SOURCE_DATE, "%s" % Today()])
+        sfilter.add_rule(rules.source.ChangedSince(["%s" % SOURCE_DATE, "%s" % Today()]))
 
         # Add recent sources.
         for handle in history:
