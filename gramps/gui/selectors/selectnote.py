@@ -39,6 +39,8 @@ from ..views.treemodels import NoteModel
 from .baseselector import BaseSelector
 from gramps.gen.const import URL_MANUAL_SECT1
 
+NOTE_DATE = None
+
 #-------------------------------------------------------------------------
 #
 # Constants
