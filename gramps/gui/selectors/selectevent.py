@@ -90,8 +90,12 @@ class SelectEvent(BaseSelector):
             gid = marked.get_gramps_id()
             sfilter.add_rule(rules.event.HasIdOf([gid]))
 
-        BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
-                              skip, show_search_bar, active_handle)
+        if active_handle:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar, active_handle)
+        else:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar)
 
     def _local_init(self):
         """
