@@ -100,8 +100,12 @@ class SelectObject(BaseSelector):
             gid = marked.get_gramps_id()
             sfilter.add_rule(rules.media.HasIdOf([gid]))
 
-        BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
-                              skip, show_search_bar, active_handle)
+        if active_handle:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar, active_handle)
+        else:
+            BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
+                                  skip, show_search_bar)
 
     def get_window_title(self):
         return _("Select Media Object")
