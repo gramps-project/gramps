@@ -101,6 +101,20 @@ class SelectPerson(BaseSelector):
 
         # Add last edited people.
         sfilter.add_rule(rules.person.ChangedSince(["2016-11-01", ""]))
+        
+        family_handle = active_person.get_main_parents_family_handle()
+        if family_handle:
+            family = dbstate.db.get_family_from_handle(family_handle)
+            father_handle = family.get_father_handle()
+            if father_handle:
+                father = dbstate.db.get_person_from_handle(father_handle)
+                fid = father.get_gramps_id()
+                sfilter.add_rule(rules.person.HasIdOf([fid]))
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mother = dbstate.db.get_person_from_handle(mother_handle)
+                mid = mother.get_gramps_id()
+                sfilter.add_rule(rules.person.HasIdOf([mid]))
 
         # Add recent people.
         for handle in history:
