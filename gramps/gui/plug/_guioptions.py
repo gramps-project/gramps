@@ -707,7 +707,8 @@ class GuiPersonOption(Gtk.Box):
         active_person = self.__dbstate.db.get_person_from_handle(person_handle)
         if active_person:
             gid = active_person.get_gramps_id()
-            rfilter.add_rule(rules.person.HasIdOf([gid]))            family_handle = active_person.get_main_parents_family_handle()
+            rfilter.add_rule(rules.person.HasIdOf([gid]))            
+            family_handle = active_person.get_main_parents_family_handle()
             if family_handle:
                 family = self.__dbstate.db.get_family_from_handle(family_handle)
                 father_handle = family.get_father_handle()
