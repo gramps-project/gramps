@@ -98,6 +98,11 @@ class SelectPlace(BaseSelector):
                 #raise SelectorException("Attempt to remove "
                                 #"active place record "
                                 #"place handle = %s" % (active_handle,))
+        # enclosed places
+        for link in dbstate.db.find_backlink_handles(
+                active_handle, include_classes=['Place']):
+            if link[1] in skip:
+                skip.remove(link[1])
 
         BaseSelector.__init__(self, dbstate, uistate, track, None,
                             [x for x in skip], True, active_handle, True)
