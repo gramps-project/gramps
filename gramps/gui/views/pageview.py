@@ -583,7 +583,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
             config_funcs += self.bottombar.get_config_funcs()
 
         try:
-            ViewConfigureDialog(self.uistate, self.dbstate,
+            ViewConfigureDialog(self.uistate, self.dbstate, [],
                             config_funcs,
                             self, self._config, dialogtitle=title,
                             ident=_("%(cat)s - %(view)s") %
@@ -596,17 +596,22 @@ class ViewConfigureDialog(ConfigureDialog):
     """
     All views can have their own configuration dialog
     """
-    def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
-                 configmanager,
-                 dialogtitle=_("Preferences"), on_close=None, ident=''):
-        self.ident = ident
-        ConfigureDialog.__init__(self, uistate, dbstate, configure_page_funcs,
+    def __init__(self, uistate, dbstate, track,
+                 configure_page_funcs, configobj, configmanager,
+                 dialogtitle=_("Preferences"), on_close=None, ident='',
+                 can_branch=False):
+        if can_branch:
+            self.view_title = (dialogtitle, dialogtitle)
+        else:
+            self.view_title = (_('Configure %s View') % ident, None)
+        ConfigureDialog.__init__(self, uistate, dbstate, track,
+                                 configure_page_funcs,
                                  configobj, configmanager,
                                  dialogtitle=dialogtitle, on_close=on_close)
         self.setup_configs('interface.viewconfiguredialog', 420, 500)
 
     def build_menu_names(self, obj):
-        return (_('Configure %s View') % self.ident, None)
+        return self.view_title
 
 class DummyPage(PageView):
     """

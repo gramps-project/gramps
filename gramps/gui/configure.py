@@ -161,13 +161,15 @@ class ConfigureDialog(ManagedWindow):
     On save, a config file on which the dialog works, is saved to disk, and
     a callback called.
     """
-    def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
-                 configmanager,
+    def __init__(self, uistate, dbstate, track,
+                 configure_page_funcs, configobj, configmanager,
                  dialogtitle=_("Preferences"), on_close=None):
         """
         Set up a configuration dialog
         :param uistate: a DisplayState instance
         :param dbstate: a DbState instance
+        :param track: {list of parent windows, [] if the main Gramps window
+                       is the parent}
         :param configure_page_funcs: a list of function that return a tuple
             (str, Gtk.Widget). The string is used as label for the
             configuration page, and the widget as the content of the
@@ -184,7 +186,7 @@ class ConfigureDialog(ManagedWindow):
         """
         self.dbstate = dbstate
         self.__config = configmanager
-        ManagedWindow.__init__(self, uistate, [], configobj)
+        ManagedWindow.__init__(self, uistate, track, configobj)
         self.set_window(Gtk.Dialog(title=dialogtitle), None, dialogtitle, None)
         self.window.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.panel = Gtk.Notebook()
@@ -571,7 +573,7 @@ class GrampsPreferences(ConfigureDialog):
             self.add_warnings_panel,
             self.add_researcher_panel,
             )
-        ConfigureDialog.__init__(self, uistate, dbstate, page_funcs,
+        ConfigureDialog.__init__(self, uistate, dbstate, [], page_funcs,
                                  GrampsPreferences, config,
                                  on_close=update_constants)
         help_btn = self.window.add_button(_('_Help'), Gtk.ResponseType.HELP)
