@@ -37,6 +37,8 @@ from .baseselector import BaseSelector
 from gramps.gen.lib.date import Today
 from gramps.gen.const import URL_MANUAL_SECT1
 
+EVENT_DATE = Today() - 1
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -74,7 +76,6 @@ class SelectEvent(BaseSelector):
         #sfilter.add_rule(rules.event.IsBookmarked([]))
 
         # Add last edited events.
-        year = Today() - 1
         sfilter.add_rule(rules.event.ChangedSince(["%s" % year, ""]))
 
         # Add recent events.
