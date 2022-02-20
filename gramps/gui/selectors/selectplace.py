@@ -104,8 +104,12 @@ class SelectPlace(BaseSelector):
             if link[1] in skip:
                 skip.remove(link[1])
 
-        BaseSelector.__init__(self, dbstate, uistate, track, None,
-                            [x for x in skip], True, active_handle, True)
+        if active_handle:
+            BaseSelector.__init__(self, dbstate, uistate, track, None,
+                                [x for x in skip], True, active_handle, True)
+        else:
+            BaseSelector.__init__(self, dbstate, uistate, track, None,
+                                [x for x in skip], True, True)
 
     def _local_init(self):
         """
