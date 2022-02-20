@@ -79,7 +79,7 @@ class SelectPlace(BaseSelector):
 
         for handle in dbstate.db.get_place_handles():
             #print(dbstate.db.get_raw_place_data(handle)[2], dbstate.db.get_raw_place_data(handle)[8][0])
-            skip.append(handle.decode('utf8'))
+            skip.append(handle)
 
         for handle in dbstate.db.get_place_bookmarks().get():
             skip.remove(handle)
