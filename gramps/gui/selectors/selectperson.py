@@ -135,12 +135,12 @@ class SelectPerson(BaseSelector):
             gid = marked.get_gramps_id()
             sfilter.add_rule(rules.person.HasIdOf([gid]))
 
-        if filter is not None:
+        if filter is not None and active_handle:
             BaseSelector.__init__(self, dbstate, uistate, track, filter,
                               skip, show_search_bar, active_handle)
         else:
             BaseSelector.__init__(self, dbstate, uistate, track, sfilter,
-                              skip, show_search_bar, active_handle)
+                              skip, show_search_bar)
 
     def _local_init(self):
         """
