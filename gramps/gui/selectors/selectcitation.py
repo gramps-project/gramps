@@ -82,7 +82,7 @@ class SelectCitation(BaseSelector):
         #sfilter.add_rule(rules.citation.IsBookmarked([]))
 
         # Add last edited citations.
-        sfilter.add_rule(rules.citation.ChangedSince(["%s" % year, ""]))
+        sfilter.add_rule(rules.citation.ChangedSince(["%s" % SOURCE_DATE, ""]))
 
         # Add recent citations.
         for handle in history:
