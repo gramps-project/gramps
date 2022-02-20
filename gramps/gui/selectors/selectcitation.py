@@ -42,6 +42,8 @@ from .baseselector import BaseSelector
 from gramps.gen.lib.date import Today
 from gramps.gen.const import URL_MANUAL_SECT2
 
+SOURCE_DATE = Today() - 1
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -80,7 +82,6 @@ class SelectCitation(BaseSelector):
         #sfilter.add_rule(rules.citation.IsBookmarked([]))
 
         # Add last edited citations.
-        year = Today() - 1
         sfilter.add_rule(rules.citation.ChangedSince(["%s" % year, ""]))
 
         # Add recent citations.
