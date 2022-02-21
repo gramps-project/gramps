@@ -76,7 +76,7 @@ class SelectEvent(BaseSelector):
         #sfilter.add_rule(rules.event.IsBookmarked([]))
 
         # Add last edited events.
-        sfilter.add_rule(rules.event.ChangedSince(["%s" % year, ""]))
+        sfilter.add_rule(rules.event.ChangedSince(["%s" % EVENT_DATE, ""]))
 
         # Add recent events.
         for handle in history:
