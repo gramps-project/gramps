@@ -51,7 +51,7 @@ EVENT_DATE = Today() - 1
 #
 #-------------------------------------------------------------------------
 class SelectEvent(BaseSelector):
-    
+
     namespace = 'Event'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
