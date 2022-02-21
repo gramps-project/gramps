@@ -161,7 +161,7 @@ class BaseSelector(ManagedWindow):
 
         if default:
             self.goto_handle(default)
-            
+
     def _show_all(self, new_state_obj, was):
         """
         Filtering or not?
