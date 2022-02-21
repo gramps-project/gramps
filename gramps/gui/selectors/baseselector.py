@@ -141,7 +141,7 @@ class BaseSelector(ManagedWindow):
 
         self.skip_list=skip
         # self.filter
-        #print(self.filter)
+        _LOG.debug(self.filter)
         self.selection = self.tree.get_selection()
         self.track_ref_for_deletion("selection")
 
@@ -194,7 +194,7 @@ class BaseSelector(ManagedWindow):
 
     def _search_changed(self, obj):
         text = self.search.get_text()
-        print(text)
+        _LOG.info(text)
 
     def goto_handle(self, handle):
         """
