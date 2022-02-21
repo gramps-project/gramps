@@ -167,7 +167,7 @@ class BaseSelector(ManagedWindow):
             self.goto_handle(default)
 
         two = time.clock()
-        _LOG.debug("BaseSelector for '%(obj)s' needs: '%(sec)s' seconds" % 
+        _LOG.info("BaseSelector for '%(obj)s' needs: '%(sec)s' seconds" % 
                    {'obj':self.title, 'sec':two - one}
                    )
 
