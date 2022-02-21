@@ -50,7 +50,7 @@ REPOSITORY_DATE = None
 #
 #-------------------------------------------------------------------------
 class SelectRepository(BaseSelector):
-    
+
     namespace = 'Repository'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
