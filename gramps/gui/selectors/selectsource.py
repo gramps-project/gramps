@@ -52,8 +52,7 @@ SOURCE_DATE = Today() - 1
 #
 #-------------------------------------------------------------------------
 class SelectSource(BaseSelector):
-    
-    
+
     namespace = 'Source'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
