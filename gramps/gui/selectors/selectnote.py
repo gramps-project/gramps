@@ -55,8 +55,7 @@ NOTE_DATE = None
 class SelectNote(BaseSelector):
     """ Class that handles the selection of a note
     """
-    
-    
+
     namespace = 'Note'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
