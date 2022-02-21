@@ -883,7 +883,7 @@ class EditFamily(EditPrimary):
         data_filter = FastFemaleFilter(self.dbstate.db)
         sel = SelectPerson(self.dbstate, self.uistate, self.track,
                            _("Select Mother"),
-                           filter=data_filter,
+                           #filter=data_filter,
                            skip=[x.ref for x in self.obj.get_child_ref_list()])
         person = sel.run()
 
@@ -928,7 +928,7 @@ class EditFamily(EditPrimary):
         data_filter = FastMaleFilter(self.dbstate.db)
         sel = SelectPerson(self.dbstate, self.uistate, self.track,
                            _("Select Father"),
-                           filter=data_filter,
+                           #filter=data_filter,
                            skip=[x.ref for x in self.obj.get_child_ref_list()])
         person = sel.run()
         if person:
