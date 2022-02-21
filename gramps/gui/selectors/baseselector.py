@@ -61,7 +61,7 @@ class BaseSelector(ManagedWindow):
             set of handles to skip in the view, and search_bar to show the
             SearchBar at the top or not.
         """
-        
+
         '''
         The model search parameter takes a tuple.
         The first element is True for a filter, or False for a search.
