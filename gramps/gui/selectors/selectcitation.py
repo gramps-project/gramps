@@ -56,8 +56,7 @@ SOURCE_DATE = Today() - 1
 #
 #-------------------------------------------------------------------------
 class SelectCitation(BaseSelector):
-    
-    
+
     namespace = 'Citation'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
