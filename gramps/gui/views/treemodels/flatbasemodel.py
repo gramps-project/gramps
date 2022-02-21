@@ -454,7 +454,10 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)
         self.uistate = uistate
-        self.user = User(parent=uistate.window, uistate=uistate)
+        try:
+            self.user = User(parent=uistate.window, uistate=uistate)
+        except:
+            _LOG.debug('No parent window')
         #inheriting classes must set self.map to obtain the data
         self.prev_handle = None
         self.prev_data = None
