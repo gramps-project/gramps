@@ -53,7 +53,7 @@ PERSON_DATE = '2016-12-01'
 #
 #-------------------------------------------------------------------------
 class SelectPerson(BaseSelector):
-    
+
     namespace = 'Person'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
@@ -72,7 +72,7 @@ class SelectPerson(BaseSelector):
             self.WIKI_HELP_SEC = _('Select_Child_selector', 'manual')
         else:
             self.WIKI_HELP_SEC = _('Select_Person_selector', 'manual')
-        
+
         history = uistate.get_history(self.namespace).mru
 
         # see gui.plug._guioptions
@@ -100,7 +100,7 @@ class SelectPerson(BaseSelector):
 
         # Add last edited people.
         sfilter.add_rule(rules.person.ChangedSince([PERSON_DATE, ""]))
-        
+
         family_handle = active_person.get_main_parents_family_handle()
         if family_handle:
             family = dbstate.db.get_family_from_handle(family_handle)
