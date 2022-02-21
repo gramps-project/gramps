@@ -168,8 +168,8 @@ class BaseSelector(ManagedWindow):
 
         two = time.clock()
         _LOG.info("BaseSelector for '%(obj)s' needs: '%(sec)s' seconds" % 
-                   {'obj':self.title, 'sec':two - one}
-                   )
+                {'obj':self.title, 'sec':two - one}
+                )
 
     def _show_all(self, new_state_obj, was):
         """
