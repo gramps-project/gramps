@@ -64,7 +64,7 @@ MEDIA_DATE = None
 #
 #-------------------------------------------------------------------------
 class SelectObject(BaseSelector):
-    
+
     namespace = 'Media'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
