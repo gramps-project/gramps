@@ -584,7 +584,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
         self.__total += items
         assert not skip
-        if dfilter and skip:
+        if dfilter:
             cdb = CacheProxyDb(self.db)
             for handle in dfilter.apply(cdb, tree=True,
                                         user=User(parent=self.uistate.window,
