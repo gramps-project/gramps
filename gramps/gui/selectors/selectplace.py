@@ -62,7 +62,7 @@ class Filter(object):
             return value[2] == Gtk.TextIter.forward_search()
 
 class SelectPlace(BaseSelector):
-    
+
     namespace = 'Place'
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
@@ -123,7 +123,7 @@ class SelectPlace(BaseSelector):
 
     def get_model_class(self):
         return PlaceTreeModel
-    
+
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search
