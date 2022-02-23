@@ -1,3 +1,19 @@
+gramps (5.1.4-1) unstable; urgency=medium
+
+  * New release
+  * Add new copyrights
+  * Update watch file
+  * Patch probably alive test to fix FTBFS
+
+ -- Ross Gammon <rossgammon@debian.org>  Sun, 15 Aug 2021 18:31:56 +0200
+
+gramps (5.1.3-1) focal; urgency=medium
+
+  * New release
+  * Update debian/copyright for Alex Roitman
+
+ -- Ross Gammon <rosco2@ubuntu.com>  Sun, 16 Aug 2020 20:23:34 +0200
+
 gramps (5.1.2-1) unstable; urgency=medium
 
   * New release

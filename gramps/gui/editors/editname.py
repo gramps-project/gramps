@@ -366,6 +366,7 @@ class EditName(EditSecondary):
             5/     local set, not global set --> set (change local)
             6/     local set,     global set --> set (set to global if possible)
         """
+        ngm = False  # name group mapping setting
         closeit = True
         surname = self.obj.get_primary_surname().get_surname()
         group_as= self.obj.get_group_as()
@@ -388,7 +389,7 @@ class EditName(EditSecondary):
                 val = q.run()
                 if val:
                     #delete the grouping link on database
-                    self.db.set_name_group_mapping(surname, None)
+                    ngm = None  # delay setting until dialog closes
                     self.obj.set_group_as("")
                 else :
                     closeit = False
@@ -421,9 +422,9 @@ class EditName(EditSecondary):
                     val = q.run()
                     if val:
                         if group_as == surname :
-                            self.db.set_name_group_mapping(surname, None)
+                            ngm = None  # delay setting until dialog closes
                         else:
-                            self.db.set_name_group_mapping(surname, group_as)
+                            ngm = group_as  # delay setting until dialog closes
                         self.obj.set_group_as("")
                     else:
                         if self.global_group_set :
@@ -455,10 +456,15 @@ class EditName(EditSecondary):
                     pass
 
         if closeit:
+            db = self.db  # close cleanup loses self.db, so save for later
             if self.callback:
                 self.callback(self.obj)
             self.callback = None
             self.close()
+            # bug 12328 to avoid gui interaction during view rebuild, delay
+            # the rebuild until closeing this dialog
+            if ngm is not False:
+                db.set_name_group_mapping(surname, ngm)
 
     def _cleanup_on_exit(self):
         """

@@ -202,7 +202,7 @@ class CalendarWriter:
         date = event.get_date_object()
         place_handle = event.get_place_handle()
         date_string = self.format_date(date, 1)
-        if date_string is not "":
+        if date_string != "":
             # self.writeln("")
             self.writeln("BEGIN:VEVENT")
             time_s = time.gmtime(event.change)

@@ -221,8 +221,8 @@ class CommandLineTool:
             vals = self.options_help[self.show][2]
             if isinstance(vals, (list, tuple)):
                 if self.options_help[self.show][3]:
-                    for num in range(len(vals)):
-                        print("      %d\t%s" % (num, vals[num]))
+                    for num, value in enumerate(vals):
+                        print("      %d\t%s" % (num, value))
                 else:
                     for val in vals:
                         print("      %s" % val)

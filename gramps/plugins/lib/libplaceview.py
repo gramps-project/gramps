@@ -206,8 +206,10 @@ class PlaceBaseView(ListView):
         """
         if action:
             action.set_state(value)
-        self.mapservice = mapkey = value.get_string()
-        config.set('interface.mapservice', mapkey)
+            self.mapservice = value.get_string()
+        else:
+            self.mapservice = value
+        config.set('interface.mapservice', self.mapservice)
         config.save()
         _ui = self.__create_maps_menu_actions()
         self.uimanager.add_ui_from_string(_ui)

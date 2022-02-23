@@ -389,14 +389,14 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 #------------------------------------------------------------------------
 #
-# Sorts events
+# Sort events
 #
 #------------------------------------------------------------------------
 
 register(TOOL,
 id = 'sortevents',
-name = _("Sorts events"),
-description = _("Sorts events"),
+name = _("Sort events"),
+description = _("Sort events"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,

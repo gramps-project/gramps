@@ -412,8 +412,8 @@ class FlatNodeMap:
         """
         #remove it from the full list first
         if not self._identical:
-            for indx in range(len(self._fullhndl)):
-                if self._fullhndl[indx][1] == handle:
+            for indx, hndle in enumerate(self._fullhndl):
+                if self.hndle[1] == handle:
                     del self._fullhndl[indx]
                     break
         #now remove it from the index maps

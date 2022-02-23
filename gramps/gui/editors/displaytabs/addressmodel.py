@@ -50,7 +50,7 @@ class AddressModel(Gtk.ListStore):
         """
         AddressModel derives from the ListStore, defining te items in the list
         """
-        Gtk.ListStore.__init__(self, str, str, str, str, str, str, bool, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, str, str, str, bool, object)
         self.db = dbase
         for obj in obj_list:
             self.append(row=[
@@ -60,6 +60,8 @@ class AddressModel(Gtk.ListStore):
                 obj.city,
                 obj.state,
                 obj.country,
+                obj.postal,
+                obj.phone,
                 obj.get_privacy(),
                 obj,
                 ])

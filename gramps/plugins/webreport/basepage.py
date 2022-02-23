@@ -835,9 +835,9 @@ class BasePage:
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
-        notelist = event.get_note_list()[:]  # we don't want to modify
-                                             # cached original
-        notelist.extend(event_ref.get_note_list())
+        notelist = event_ref.get_note_list()
+        notelist.extend(event.get_note_list()[:]) # we don't want to modify
+                                                  # cached original
         htmllist = self.dump_notes(notelist, Event)
 
         # if the event or event reference has an attribute attached to it,

@@ -269,13 +269,6 @@ class DateDisplayDE(DateDisplay):
     German language date display class.
     """
 
-    long_months = (  "", "Januar", "Februar", "März", "April", "Mai",
-                    "Juni", "Juli", "August", "September", "Oktober",
-                    "November", "Dezember" )
-
-    short_months = ( "", "Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
-                     "Jul", "Aug", "Sep", "Okt", "Nov", "Dez" )
-
     calendar = (
         "", "julianisch", "hebräisch",
         "französisch republikanisch", "persisch", "islamisch",
@@ -408,6 +401,7 @@ class DateDisplayDE(DateDisplay):
 #
 #-------------------------------------------------------------------------
 register_datehandler(
-    ('de_DE', 'german', 'German', 'de_AT', 'de_CH',
+    ('de_DE', 'german', 'German', 'de_CH',
      'de_LI', 'de_LU', 'de_BE', 'de', ('%d.%m.%Y',)),
     DateParserDE, DateDisplayDE)
+register_datehandler( ('de_AT', ('%d.%m.%Y',)), DateParserDE, DateDisplayDE)

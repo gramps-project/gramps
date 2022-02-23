@@ -611,6 +611,11 @@ class NavWebReport(Report):
         @param: bkref_class   -- The class associated to this handle (person)
         @param: bkref_handle  -- The handle associated to this person
         """
+        if self.obj_dict[Person][person_handle]:
+            # This person is already in the list of selected people.
+            # This can be achieved with associated people.
+            return
+
         person = self._db.get_person_from_handle(person_handle)
         if person:
             person_name = self.get_person_name(person)
@@ -2384,6 +2389,11 @@ class NavWebOptions(MenuReportOptions):
         inc_places.set_help(
             _('Whether or not to include the place pages.'))
         addopt("inc_places", inc_places)
+
+        inc_uplaces = BooleanOption(_('Include unused place pages'), False)
+        inc_uplaces.set_help(
+            _('Whether or not to include the unused place pages.'))
+        addopt("inc_uplaces", inc_uplaces)
 
         inc_sources = BooleanOption(_('Include source pages'), False)
         inc_sources.set_help(

@@ -65,7 +65,8 @@ from gramps.gen.config import config
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
-from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
+from gramps.gui.utils import (color_graph_box, hex_to_rgb_float,
+                              is_right_click, get_contrast_color)
 from gramps.gen.constfunc import lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -337,7 +338,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
 
         # text
         context.move_to(5, 4)
-        context.set_source_rgb(0, 0, 0)
+        fg_color = get_contrast_color(self.bgcolor)
+        context.set_source_rgb(*fg_color[:3])
         PangoCairo.show_layout(context, self.textlayout)
         context.restore()
         context.get_target().flush()

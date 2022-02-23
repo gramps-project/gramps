@@ -9,22 +9,12 @@
 	      href="http://pywebkitgtk.googlecode.com/files/"/>
   <repository type="tarball" name="ftp.gnome.org"
 	      href="http://ftp.gnome.org/pub/GNOME/sources/"/>
-  <repository type="tarball" name="pyxdg"
-	      href="http://www.gnome.org/~fpeters/pyxdg/"/>
-  <repository type="tarball" name="xdg-utils"
-	      href="http://portland.freedesktop.org/download/"/>
-  <repository type="svn" name="gramps-addons"
-	      href="https://svn.code.sf.net/p/gramps-addons/code/"/>
   <repository type="tarball" name="oracle"
 	      href="http://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
 	      href="https://pypi.python.org/packages/"/>
-  <repository type="tarball" name="stowers"
-	     href="http://www.johnstowers.co.nz/files/"/>
   <repository type="git" name="github" href="git://github.com/"/>
   <repository type="tarball" name="github-tarball" href="https://github.com/"/>
-  <repository type="tarball" name="graphviz"
-              href="https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="exiv2.org"
 	      href="http://www.exiv2.org/releases/"/>
   <repository type="tarball" name="pythonware"
@@ -52,8 +42,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 -->
 
-  <include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
   <distutils id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
@@ -65,9 +55,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v5.1.3.tar.gz"
-	    repo="github-tarball" version="5.1.3"
-	    checkoutdir="gramps-gramps-5.1.3"/>
+    <branch module="gramps-project/gramps/archive/v5.1.5.tar.gz"
+	    repo="github-tarball" version="5.1.5"
+	    checkoutdir="gramps-gramps-5.1.5"/>
     <dependencies>
       <dep package="meta-gramps-modules"/>
     </dependencies>
@@ -81,35 +71,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </distutils>
 
-  <autotools id="pyWebKitGtk" >
-    <branch module="pywebkitgtk-1.1.7.tar.bz2" version="1.1.7"
-	    repo="pywebkitgtk"/>
-    <dependencies>
-      <dep package="WebKit"/>
-      <dep package="sqlite"/>
-    </dependencies>
-  </autotools>
-
-
-  <distutils id="pyenchant">
-    <branch repo="pymodules" module="73/73/49f95fe636ab3deed0ef1e3b9087902413bcdf74ec00298c3059e660cfbb/pyenchant-1.6.8.tar.gz"
-	    version="1.6.1"/>
-  </distutils>
-
-  <distutils id="pyxdg">
-    <branch repo="pyxdg" module="pyxdg-0.17.tar.gz" version="0.17"
-            hash="sha256:fbc87711922b2dd6ceb23ee041f1f96da9b7dbb6971df03a3081b439def069ce"
-            md5sum="a086de99cc536095684d87f15594e4db" size="37372"/>
-  </distutils>
-
-  <autotools id="xdg-utils">
-    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
-  </autotools>
-
-  <meson id="json-glib">
-    <branch module="json-glib/1.4/json-glib-1.4.4.tar.xz"
-            version="1.4.4" repo="ftp.gnome.org"
-            hash="sha256:720c5f4379513dc11fd97dc75336eb0c0d3338c53128044d9fabec4374f4bc47"/>
+  <meson id="json-glib" mesonargs="-Dgtk_doc=disabled -Dman=false -Dtests=false">
+    <branch module="json-glib/1.6/json-glib-1.6.6.tar.xz"
+            version="1.6.6" repo="ftp.gnome.org"
+            hash="sha256:96ec98be7a91f6dde33636720e3da2ff6ecbb90e76ccaa49497f31a6855a490e"/>
     <dependencies>
       <dep package="gobject-introspection"/>
     </dependencies>
@@ -128,46 +93,34 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="osmgpsmap" skip-autogen="never"
 	     autogenargs="--disable-gtk-doc-html"
 	     supports-non-srcdir-builds="no">
-    <branch module="nzjrs/osm-gps-map" revision="1.1.0" repo="github"/>
+    <branch module="nzjrs/osm-gps-map" revision="1.2.0" repo="github"/>
     <dependencies>
       <dep package="libsoup"/>
-    </dependencies>
-    <after>
-      <dep package="meta-gtk-osx-gtk3"/>
-      <dep package="meta-gtk-osx-gtk3.14"/>
-    </after>
-  </autotools>
-
-  <autotools id="graphviz" autogen-sh="configure"
-	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo">
-    <branch module="graphviz.tar.gz" version="2.40.1"
-            repo="graphviz" checkoutdir="graphviz-2.40.1"/>
-    <dependencies>
-      <dep package="pango"/>
-      <dep package="meta-gtk-osx-freetype"/>
-      <dep package="librsvg"/>
+      <dep package="gtk+-3.0"/>
     </dependencies>
   </autotools>
 
   <cmake id="exiv2" cmakeargs="-DEXIV2_ENABLE_PNG=ON">
-    <branch module="exiv2-0.27.0a-Source.tar.gz" repo="exiv2.org"
-            checkoutdir="exiv2-0.27.0-Source" version="0.27.0"/>
+    <branch module="exiv2-0.27.4-Source.tar.gz" repo="exiv2.org"
+            checkoutdir="exiv2-0.27.4-Source" version="0.27.4"
+            hash="sha256:84366dba7c162af9a7603bcd6c16f40fe0e9af294ba2fd2f66ffffb9fbec904e"/>
   </cmake>
 
   <meson id="gexiv2" mesonargs="-Dvapi=false">
-    <branch module="gexiv2/0.12/gexiv2-0.12.0.tar.xz"
-            repo="ftp.gnome.org" version="0.12.0"
-            hash="sha256:58f539b0386f36300b76f3afea3a508de4914b27e78f58ee4d142486a42f926a">
+    <branch module="gexiv2/0.14/gexiv2-0.14.0.tar.xz"
+            repo="ftp.gnome.org" version="0.14.0"
+            hash="sha256:e58279a6ff20b6f64fa499615da5e9b57cf65ba7850b72fafdf17221a9d6d69e">
     </branch>
     <dependencies>
       <dep package="exiv2"/>
+      <dep package="pygobject3"/>
     </dependencies>
   </meson>
-
-  <distutils id="pil">
-    <branch module="93/73/66854f63b1941aad9af18a1de59f9cf95ad1a87c801540222e332f6688d7/Pillow-4.1.1.tar.gz" version="4.1.1"
+https://files.pythonhosted.org/packages/
+  <distutils id="pillow">
+    <branch module="21/23/af6bac2a601be6670064a817273d4190b79df6f74d8012926a39bc7aa77f/Pillow-8.2.0.tar.gz" version="8.2.0"
 	    repo="pymodules"
-	    hash="md5:f2565954955c8d10f3b4f1f72f852bf7">
+	    hash="sha256:a787ab10d7bb5494e5f76536ac460741788f1fbce851068d73a87ca7c35fc3e1">
     </branch>
     <dependencies>
       <!--dep package="setuptools"/-->
@@ -175,10 +128,67 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id='pyicu'>
-    <branch version='2.5' repo='pymodules'
-	    module='5a/99/c48c816095208bf3f4936ff67e571621fbddef461303a35a076f234e31f6/PyICU-2.5.tar.gz'/>
+    <branch version='2.7.2' repo='pymodules'
+            module='17/0f/9d6b7eb01650960239a5d4dc21cd6e7a96921807c043d287bae4b2f440e1/PyICU-2.7.2.tar.gz'
+            hash="sha256:1382869b22d91cc99274f9b525fa7d9199b44d9007ff0036a09747839a01e9dc"/>
+
     <dependencies>
       <dep package='icu'/>
+    </dependencies>
+ </distutils>
+
+ <!--Note the leading ; in autogen-template. It's there on purpose in case the user has set nice_build so that the nice prepended to the command doesn't eat the cd. -->
+  <autotools id="berkeleydb" autogen-sh="configure"
+	     supports-non-srcdir-builds="no"  makeargs="-C build_unix"
+	     autogen-template="cd .;cd build_unix; ../dist/%(autogen-sh)s --prefix %(prefix)s  %(autogenargs)s"
+	     makeinstallargs="-C build_unix install">
+
+    <branch module="berkeley-db/db-4.8.30.NC.tar.gz" version="4.8.30"
+        repo="oracle"
+            hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef" >
+      <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+    </branch>
+  </autotools>
+
+  <!-- For out-of-source-tree builds (i.e., builddir is defined either
+       in .jhbuildrc-custom or passed as an option on the
+       command-line, the normal berkeleydb module will build in its
+       srcdir/build_unix directory. If you want to build it in the
+       build directory with most of the other modules, use this module
+       instead. -->
+  <autotools id="berkeleydb-nonsrctree" autogen-sh="configure"
+         autogen-template="%(srcdir)s/dist/%(autogen-sh)s --prefix %(prefix)s  %(autogenargs)s" >
+
+    <branch module="berkeley-db/db-4.8.30.NC.tar.gz" version="4.8.30"
+            repo="oracle"
+            hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef">
+      <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+    </branch>
+  </autotools>
+
+
+  <distutils id="pybsddb">
+    <branch repo="pymodules" version="6.2.9"
+            module="f0/24/92034482656945fc6ceb10551222b43a0ff8d0c87e15839120487820067e/bsddb3-6.2.9.tar.gz"
+            hash="sha256:70d05ec8dc568f42e70fc919a442e0daadc2a905a1cfb7ca77f549d49d6e7801" />
+    <dependencies>
+      <dep package="python3"/>
+    </dependencies>
+    <after>
+      <dep package="berkeleydb"/>
+      <dep package="berkeleydb-nonsrctree"/>
+    </after>
+  </distutils>
+
+  <distutils id='pyfontconfig'>
+    <branch repo='pymodules' version="0.5.1"
+            module="e6/01/a28b0160f82ca5e946e315251c797f07c74e5c5a53f2a9e706eebc680191/Python-fontconfig-0.5.1.tar.gz"
+            hash="sha256:b7cfe366242f83b8cd7175b7d4dd95d19f42d619c58a51914f72b1e741739994">
+      <patch file="pyfontconfig-curexc.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="python3"/>
+      <dep package="fontconfig"/>
     </dependencies>
   </distutils>
 
@@ -186,7 +196,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <dependencies>
       <dep package="python3"/>
       <dep package="meta-gtk-osx-gtk3"/>
-      <dep package="meta-gtk-osx-gtk3-core-themes"/>
       <dep package="goocanvas2"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
@@ -202,7 +211,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pygobject3"/>
       <dep package='pyicu'/>
       <dep package='pybsddb'/>
-      <dep package="pil"/>
+      <dep package="pillow"/>
     </dependencies>
   </metamodule>
 

@@ -711,7 +711,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         does not update for every change signal.
         """
         if node.children:
-            rows = list(range(len(node.children)-1,-1,-1))
+            rows = reversed(node.children)
             if node.parent is None:
                 path = iter = None
             else:

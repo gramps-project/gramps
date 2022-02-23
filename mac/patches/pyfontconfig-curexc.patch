@@ -1,0 +1,56 @@
+
+--- a/fontconfig.c	2011-11-02 07:59:41.000000000 -0700
++++ b/fontconfig.c	2021-08-09 18:07:50.000000000 -0700
+@@ -4525,12 +4525,12 @@
+     Py_INCREF(local_type);
+     Py_INCREF(local_value);
+     Py_INCREF(local_tb);
+-    tmp_type = tstate->exc_type;
+-    tmp_value = tstate->exc_value;
+-    tmp_tb = tstate->exc_traceback;
+-    tstate->exc_type = local_type;
+-    tstate->exc_value = local_value;
+-    tstate->exc_traceback = local_tb;
++    tmp_type = tstate->curexc_type;
++    tmp_value = tstate->curexc_value;
++    tmp_tb = tstate->curexc_traceback;
++    tstate->curexc_type = local_type;
++    tstate->curexc_value = local_value;
++    tstate->curexc_traceback = local_tb;
+     /* Make sure tstate is in a consistent state when we XDECREF
+        these objects (XDECREF may run arbitrary code). */
+     Py_XDECREF(tmp_type);
+@@ -4735,9 +4735,9 @@
+ 
+ static CYTHON_INLINE void __Pyx_ExceptionSave(PyObject **type, PyObject **value, PyObject **tb) {
+     PyThreadState *tstate = PyThreadState_GET();
+-    *type = tstate->exc_type;
+-    *value = tstate->exc_value;
+-    *tb = tstate->exc_traceback;
++    *type = tstate->curexc_type;
++    *value = tstate->curexc_value;
++    *tb = tstate->curexc_traceback;
+     Py_XINCREF(*type);
+     Py_XINCREF(*value);
+     Py_XINCREF(*tb);
+@@ -4746,12 +4746,12 @@
+ static void __Pyx_ExceptionReset(PyObject *type, PyObject *value, PyObject *tb) {
+     PyObject *tmp_type, *tmp_value, *tmp_tb;
+     PyThreadState *tstate = PyThreadState_GET();
+-    tmp_type = tstate->exc_type;
+-    tmp_value = tstate->exc_value;
+-    tmp_tb = tstate->exc_traceback;
+-    tstate->exc_type = type;
+-    tstate->exc_value = value;
+-    tstate->exc_traceback = tb;
++    tmp_type = tstate->curexc_type;
++    tmp_value = tstate->curexc_value;
++    tmp_tb = tstate->curexc_traceback;
++    tstate->curexc_type = type;
++    tstate->curexc_value = value;
++    tstate->curexc_traceback = tb;
+     Py_XDECREF(tmp_type);
+     Py_XDECREF(tmp_value);
+     Py_XDECREF(tmp_tb);
+
+Diff finished.  Mon Aug  9 18:09:16 2021
