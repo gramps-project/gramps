@@ -860,58 +860,31 @@ class GrampsPreferences(ConfigureDialog):
         return name_format_model, the_index
 
     def __new_name(self, obj):
-        lyst = [
-            "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"),
-                                _("Common")),
-            "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"),
-                                _("Nickname")),
-            "%s, %s %s (%s)" % (_("Surname"), _("Name|Common"), _("Suffix"),
-                                _("Nickname")),
-            "%s, %s %s" % (_("Surname"), _("Name|Common"), _("Suffix")),
-            "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"),
-                                _("Call")),
-            "%s, %s (%s)" % (_("Surname"), _("Given"), _("Name|Common")),
-            "%s, %s (%s)" % (_("Surname"), _("Name|Common"), _("Nickname")),
-            "%s %s" % (_("Given"), _("Surname")),
-            "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
-            "%s %s %s" % (_("Given"), _("NotPatronymic"), _("Patronymic")),
-            "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"),
-                                _("Common")),
-            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Name|Common")),
-            "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Nickname")),
-            "%s %s" % (_("Given"), _("SURNAME")),
-            "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
-            "%s /%s/" % (_("Given"), _("SURNAME")),
-            "%s %s, %s" % (_("Given"), _("Rawsurnames"), _("Suffix")),
-            ]
-        # repeat above list, but not translated.
-        fmtlyst = [
-            "%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"),
-                                ("Common")),
-            "%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"),
-                                ("Nickname")),
-            "%s, %s %s (%s)" % (("Surname"), ("Name|Common"), ("Suffix"),
-                                ("Nickname")),
-            "%s, %s %s" % (("Surname"), ("Name|Common"), ("Suffix")),
-            "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"),
-                                ("Call")),
-            "%s, %s (%s)" % (("Surname"), ("Given"), ("Name|Common")),
-            "%s, %s (%s)" % (("Surname"), ("Name|Common"), ("Nickname")),
-            "%s %s" % (("Given"), ("Surname")),
-            "%s %s, %s" % (("Given"), ("Surname"), ("Suffix")),
-            "%s %s %s" % (("Given"), ("NotPatronymic"), ("Patronymic")),
-            "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"),
-                                ("Common")),
-            "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Name|Common")),
-            "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Nickname")),
-            "%s %s" % (("Given"), ("SURNAME")),
-            "%s %s, %s" % (("Given"), ("SURNAME"), ("Suffix")),
-            "%s /%s/" % (("Given"), ("SURNAME")),
-            "%s %s, %s" % (("Given"), ("Rawsurnames"), ("Suffix")),
-            ]
-        rand = int(random.random() * len(lyst))
-        f = lyst[rand]
-        fmt = fmtlyst[rand]
+
+        formats = [
+            "%s, %s %s (%s)", ("Surname", "Given", "Suffix", "Common"),
+            "%s, %s %s (%s)", ("Surname", "Given", "Suffix", "Nickname"),
+            "%s, %s %s (%s)", ("Surname", "Name|Common", "Suffix", "Nickname"),
+            "%s, %s %s", ("Surname", "Name|Common", "Suffix"),
+            "%s, %s %s (%s)", ("SURNAME", "Given", "Suffix", "Call"),
+            "%s, %s (%s)", ("Surname", "Given", "Name|Common"),
+            "%s, %s (%s)", ("Surname", "Name|Common", "Nickname"),
+            "%s %s", ("Given", "Surname"),
+            "%s %s, %s", ("Given", "Surname", "Suffix"),
+            "%s %s %s", ("Given", "NotPatronymic", "Patronymic"),
+            "%s, %s %s (%s)", ("SURNAME", "Given", "Suffix", "Common"),
+            "%s, %s (%s)", ("SURNAME", "Given", "Name|Common"),
+            "%s, %s (%s)", ("SURNAME", "Given", "Nickname"),
+            "%s %s", ("Given", "SURNAME"),
+            "%s %s, %s", ("Given", "SURNAME", "Suffix"),
+            "%s /%s/", ("Given", "SURNAME"),
+            "%s %s, %s", ("Given", "Rawsurnames", "Suffix"),
+        ]
+
+        (name_format, keywords) = random.choice(formats)
+
+        f = name_format % tuple(_(keyword) for keyword in keywords)
+        fmt = name_format % keywords
         i = _nd.add_name_format(f, fmt)
         fmt_str = _nd.format_str(self.examplename, fmt)
         node = self.fmt_model.append(row=[i, f, fmt, fmt_str])
