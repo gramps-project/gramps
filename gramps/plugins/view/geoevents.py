@@ -216,6 +216,8 @@ class GeoEvents(GeoGraphyView):
         """
         Rebuild the tree with the given events handle as the root.
         """
+        if self.osm is None:
+            return
         self.places_found = []
         self.build_tree()
 
@@ -232,6 +234,8 @@ class GeoEvents(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
+        if self.osm is None:
+            return
         if not self.dbstate.is_open():
             return
         active = self.uistate.get_active('Event')
@@ -320,6 +324,8 @@ class GeoEvents(GeoGraphyView):
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
+        if self.osm is None:
+            return
         dbstate = self.dbstate
         self.place_list = []
         self.places_found = []

@@ -118,6 +118,7 @@ class SelectCitation(BaseSelector):
     def get_column_titles(self):
         return [
             (_('Source: Title or Citation: Volume/Page'), 350, BaseSelector.TEXT, 0),
+            (_('Abbreviation'), 100, BaseSelector.TEXT, 8),
             (_('ID'),     75, BaseSelector.TEXT, 1),
             (_('Last Change'), 150, BaseSelector.TEXT, 6),
             ]
