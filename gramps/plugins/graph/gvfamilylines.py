@@ -149,8 +149,8 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option("arrow", arrow)
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
-        for i in range(len(_COLORS)):
-            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
+        for COLOR in _COLORS:
+            color.add_item(COLOR["value"], COLOR["name"])
         color.set_help(_("Males will be shown with blue, females "
                          "with red, unless otherwise set above for filled. "
                          "If the sex of an individual "
@@ -180,6 +180,13 @@ class FamilyLinesOptions(MenuReportOptions):
         locale_opt = stdoptions.add_localization_option(menu, category_name)
 
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
+
+        use_subgraphs = BooleanOption(_('Use subgraphs'), True)
+        use_subgraphs.set_help(_("Subgraphs can help Graphviz position "
+                                 "spouses together, but with non-trivial "
+                                 "graphs will result in longer lines and "
+                                 "larger graphs."))
+        add_option("usesubgraphs", use_subgraphs)
 
         # --------------------------------
         add_option = partial(menu.add_option, _('People of Interest'))

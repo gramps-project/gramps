@@ -373,10 +373,6 @@ class GrampletBar(Gtk.Notebook):
         """
         Add a tab to the notebook for the given gramplet.
         """
-        width = -1  # Allow tab width to adjust (smaller) to sidebar
-        height = min(int(self.uistate.screen_height() * 0.20), 400)
-        gramplet.set_size_request(width, height)
-
         label = self.__create_tab_label(gramplet)
         page_num = self.append_page(gramplet, label)
         return page_num

@@ -83,9 +83,22 @@ plg.fname = 'rel_de.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["de", "DE", "de_DE", "deutsch", "Deutsch", "de_DE.UTF8",
-                 "de_DE@euro", "de_DE.UTF8@euro", "de_AT.UTF-8", "de_AT.utf-8",
-                 "de_AT.utf8", "german","German", "de_DE.UTF-8", "de_DE.utf-8",
-                 "de_DE.utf8", "de_CH.UTF-8", "de_CH.utf-8", "de_CH.utf8"]
+                 "de_DE@euro", "de_DE.UTF8@euro","german","German", "de_DE.UTF-8",
+                 "de_DE.utf-8", "de_DE.utf8", "de_CH.UTF-8", "de_CH.utf-8", "de_CH.utf8"]
+
+# de_at
+plg = newplugin()
+plg.id = 'relcalc_de_at'
+plg.name = _("Austrian Relationship Calculator")
+plg.description = _("Calculates relationships between people")
+plg.version = '1.0'
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = 'rel_de_AT.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["de", "AT", "de_AT", "deutsch", "Deutsch", "de_AT.UTF-8", "de_AT.utf-8",
+                 "de_AT.utf8", "german","German"]
 
 # es
 plg = newplugin()

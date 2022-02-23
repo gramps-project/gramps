@@ -399,9 +399,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             divs = [x/(steps-1) for x in range(steps)]
             self.gradval = ['%d' % int(self.minperiod + x *
                                        periodrange) for x in divs]
-            for i in range(len(self.gradval)):
-                if i % 2 == 1:
-                    self.gradval[i] = ''
+            for index, value in enumerate(self.gradval):
+                if index % 2 == 1:
+                    self.gradval[index] = ''
             self.gradcol = [colorsys.hsv_to_rgb(
                 (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
                 (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
@@ -424,9 +424,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             divs = [x/(steps-1) for x in range(steps)]
             self.gradval = ['%d' % int(x * MAX_AGE) for x in divs]
             self.gradval[-1] = '%d+' % MAX_AGE
-            for i in range(len(self.gradval)):
-                if i % 2 == 1:
-                    self.gradval[i] = ''
+            for index, value in enumerate(self.gradval):
+                if index % 2 == 1:
+                    self.gradval[index] = ''
             self.gradcol = [colorsys.hsv_to_rgb(
                 (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
                 (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
@@ -1312,7 +1312,7 @@ class FanChartWidget(FanChartBaseWidget):
             angle = self.rootangle_rad[0]
             portion = 1/ (2 ** i) * (self.rootangle_rad[1] -
                                      self.rootangle_rad[0])
-            for dummy_count in range(len(self.data[i])):
+            for dummy_count in self.data[i]:
                 # start, stop, state
                 self.angle[i].append([angle, angle + portion, NORMAL])
                 angle += portion
@@ -1399,9 +1399,7 @@ class FanChartWidget(FanChartBaseWidget):
         """
         #compute the number of generations present
         for generation in range(self.generations - 1, 0, -1):
-            for idx in range(len(self.data[generation])):
-                (person, dummy_parents, dummy_child,
-                 dummy_userdata) = self.data[generation][idx]
+            for person, *rest in self.data[generation]:
                 if person:
                     return generation
         return 1
@@ -1425,10 +1423,8 @@ class FanChartWidget(FanChartBaseWidget):
         a generator over all people outside of the core person
         """
         for generation in range(self.generations):
-            for idx in range(len(self.data[generation])):
-                (person, dummy_parents, dummy_child,
-                 userdata) = self.data[generation][idx]
-                yield (person, userdata)
+            for person, dummy_parents, dummy_child, userdata in self.data[generation]:
+                yield person, userdata
 
     def innerpeople_generator(self):
         """
@@ -1479,13 +1475,11 @@ class FanChartWidget(FanChartBaseWidget):
         ctx.save()
         ctx.rotate(math.radians(self.rotate_value))
         for generation in range(self.generations - 1, 0, -1):
-            for idx in range(len(self.data[generation])):
-                (person, parents, child, userdata) = self.data[generation][idx]
+            for idx, (person, parents, child, userdata) in enumerate(self.data[generation]):
                 if person:
                     start, stop, state = self.angle[generation][idx]
                     if state in [NORMAL, EXPANDED]:
-                        (radiusin,
-                         radiusout) = self.get_radiusinout_for_gen(generation)
+                        (radiusin, radiusout) = self.get_radiusinout_for_gen(generation)
                         dup = False
                         indicator = (generation == self.generations - 1
                                      and parents)
@@ -1691,8 +1685,7 @@ class FanChartWidget(FanChartBaseWidget):
         if not (generation is None) and generation > 0:
             selected = self.personpos_at_angle(generation, rads)
         elif generation == -2:
-            for idx in range(len(self.angle[generation])):
-                start, stop, dummy_state = self.angle[generation][idx]
+            for idx, (start, stop, dummy_state) in enumerate(self.angle[generation]):
                 if self.radian_in_bounds(start, raw_rads, stop):
                     selected = idx
                     break
@@ -1707,9 +1700,8 @@ class FanChartWidget(FanChartBaseWidget):
         if generation == 0:
             return 0
         selected = None
-        for idx in range(len(self.angle[generation])):
+        for idx, (start, stop, state) in enumerate(self.angle[generation]):
             if self.data[generation][idx][0]: # there is a person there
-                start, stop, state = self.angle[generation][idx]
                 if state == COLLAPSED:
                     continue
                 if self.radian_in_bounds(start, rads, stop):

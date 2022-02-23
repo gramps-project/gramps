@@ -127,15 +127,32 @@ if win():
         elif not os.path.isdir(HOME_DIR):
             os.makedirs(HOME_DIR)
         sys.stdout = sys.stderr = open(logfile, "w", encoding='utf-8')
-stderrh = logging.StreamHandler(sys.stderr)
-stderrh.setFormatter(form)
-stderrh.setLevel(logging.DEBUG)
+# macOS sets stderr to /dev/null when running without a terminal,
+# e.g. if Gramps.app is lauched by double-clicking on it in
+# finder. Write to a file instead.
+if mac() and not sys.stdin.isatty():
+    from tempfile import gettempdir
 
-# Setup the base level logger, this one gets
-# everything.
-l = logging.getLogger()
-l.setLevel(logging.WARNING)
-l.addHandler(stderrh)
+    log_file_name = 'gramps-' + str(os.getpid()) + '.log'
+    log_file_path = os.path.join(gettempdir(), log_file_name)
+    log_file_handler = logging.FileHandler(log_file_path, mode='a',
+                                           encoding='utf-8')
+    log_file_handler.setFormatter(form)
+    log_file_handler.setLevel(logging.DEBUG)
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.WARNING)
+    logger.addHandler(log_file_handler)
+else:
+    stderrh = logging.StreamHandler(sys.stderr)
+    stderrh.setFormatter(form)
+    stderrh.setLevel(logging.DEBUG)
+
+    # Setup the base level logger, this one gets
+    # everything.
+    l = logging.getLogger()
+    l.setLevel(logging.WARNING)
+    l.addHandler(stderrh)
 
 
 def exc_hook(err_type, value, t_b):

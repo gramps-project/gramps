@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
-  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="editplace">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox19">
         <property name="visible">True</property>
@@ -101,7 +103,7 @@
                 <child>
                   <object class="GtkLabel" id="comment1">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Either use the two fields below to enter coordinates (latitude and longitude),</property>
                     <property name="hexpand">True</property>

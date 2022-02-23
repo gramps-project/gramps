@@ -78,15 +78,13 @@ class DbTxn(defaultdict):
 
         elapsed_time = time.time() - self.start_time
         if __debug__:
-            caller_frame = inspect.stack()[1]
+            frame = inspect.currentframe()
+            c_frame = frame.f_back
+            c_code = c_frame.f_code
             _LOG.debug("    **** DbTxn %s exited. Called from file %s, "
-                       "line %s, in %s **** %.2f seconds" %
-                       ((hex(id(self)),)+
-                        (os.path.split(caller_frame[1])[1],)+
-                        tuple(caller_frame[i] for i in range(2, 4))+
-                        (elapsed_time,)
-                       )
-                      )
+                       "line %s, in %s **** %.2f seconds",
+                       hex(id(self)), c_code.co_filename, c_frame.f_lineno,
+                       c_code.co_name, elapsed_time)
 
         return False
 

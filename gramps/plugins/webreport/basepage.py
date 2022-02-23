@@ -835,9 +835,9 @@ class BasePage:
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
-        notelist = event.get_note_list()[:]  # we don't want to modify
-                                             # cached original
-        notelist.extend(event_ref.get_note_list())
+        notelist = event_ref.get_note_list()
+        notelist.extend(event.get_note_list()[:]) # we don't want to modify
+                                                  # cached original
         htmllist = self.dump_notes(notelist, Event)
 
         # if the event or event reference has an attribute attached to it,
@@ -1783,7 +1783,7 @@ class BasePage:
                     check_cs = False
                     if nav_text == currentsection:
                         check_cs = True
-                    elif nav_text == self._("Html|Home"):
+                    elif nav_text == self._("Home", "Html"):
                         if "index" in self.report.cur_fname:
                             check_cs = True
                     elif nav_text == self._("Surnames"):
@@ -2549,7 +2549,7 @@ class BasePage:
         with Html("div", class_="subsection", id="sourcerefs") as section:
             section += Html("h4", self._("Source References"), inline=True)
 
-            ordered = Html("ol")
+            ordered = Html("ol", id="srcr")
 
             cindex = 0
             citationlist = bibli.get_citation_list()
@@ -2572,7 +2572,7 @@ class BasePage:
                 else:
                     list_html = Html("li", "None")
 
-                ordered1 = Html("ol")
+                ordered1 = Html("ol", id="citr")
                 citation_ref_list = citation.get_ref_list()
                 for key, sref in citation_ref_list:
                     cit_ref_li = Html("li", id="sref%d%s" % (cindex, key))

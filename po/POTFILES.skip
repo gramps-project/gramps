@@ -8,6 +8,7 @@ setup.py
 # gramps
 #
 gramps/__init__.py
+gramps/__main__.py
 gramps/version.py
 #
 # cli
@@ -435,6 +436,7 @@ gramps/gui/widgets/dateentry.py
 gramps/gui/widgets/fanchart2way.py
 gramps/gui/widgets/fanchartdesc.py
 gramps/gui/widgets/grabbers.py
+gramps/gui/widgets/histogram.py
 gramps/gui/widgets/interactivesearchbox.py
 gramps/gui/widgets/linkbox.py
 gramps/gui/widgets/menuitem.py

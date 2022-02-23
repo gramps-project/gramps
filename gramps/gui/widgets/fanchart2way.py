@@ -195,7 +195,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
             angle = self.rootangle_rad_asc[0]
             portion = 1 / (2 ** i) * (self.rootangle_rad_asc[1] -
                                       self.rootangle_rad_asc[0])
-            for dummy_count in range(len(self.data[i])):
+            for dummy_count in self.data[i]:
                 # start, stop, state
                 self.angle[i].append([angle, angle + portion, NORMAL])
                 angle += portion
@@ -259,9 +259,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         compute the number of generations present
         """
         for generation in range(self.generations_asc - 1, 0, -1):
-            for idx in range(len(self.data[generation])):
-                (person, dummy_parents, dummy_child,
-                 dummy_userdata) = self.data[generation][idx]
+            for idx, (person, *rest) in enumerate(self.data[generation]):
                 if person:
                     return generation
         return 1
@@ -349,10 +347,8 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
             for data in self.gen2fam[generation]:
                 yield (data[7], data[6])
         for generation in range(self.generations_asc):
-            for idx in range(len(self.data[generation])):
-                (person, dummy_parents, dummy_child,
-                 userdata) = self.data[generation][idx]
-                yield (person, userdata)
+            for (person, dummy_parents, dummy_child, userdata) in self.data[generation]:
+                yield person, userdata
 
     def innerpeople_generator(self):
         """
@@ -458,9 +454,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         ctx.rotate(math.radians(self.rotate_value))
         # Ascendance
         for generation in range(self.generations_asc - 1, 0, -1):
-            for idx in range(len(self.data[generation])):
-                (person, parents, dummy_child,
-                 userdata) = self.data[generation][idx]
+            for idx, (person, parents, dummy_child, userdata) in enumerate(self.data[generation]):
                 if person:
                     start, stop, state = self.angle[generation][idx]
                     if state in [NORMAL, EXPANDED]:

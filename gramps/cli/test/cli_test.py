@@ -94,6 +94,25 @@ class Test(unittest.TestCase):
         g = re.search("INDI", content)
         self.assertTrue(g, "found 'INDI' in output file")
 
+    def test2_exec_cli_m(self):
+        """Test the `python -m gramps` way to run the CLI."""
+        ifile = min1r
+        ofile = out_ged
+        gcmd = [sys.executable, "-m", "gramps", "-i", ifile, "-e", ofile]
+        process = subprocess.Popen(gcmd,
+                                   stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE)
+        result_str, err_str = process.communicate()
+        self.assertEqual(process.returncode, 0,
+                         "executed CLI command %r" % gcmd)
+        # simple validation o output
+        self.assertTrue(os.path.isfile(ofile), "output file created")
+        with open(ofile) as f:
+            content = f.read()
+        g = re.search("INDI", content)
+        self.assertTrue(g, "found 'INDI' in output file")
+
     # this verifies that files in the temporary "import dir"
     # get cleaned before (and after) running a CLI
     # (eg cleanout stale files from prior crash-runs)

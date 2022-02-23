@@ -117,6 +117,8 @@ class Connection:
         collation = locale.get_collation().translate(self.__tmap)
         if collation not in self.__collations:
             self.__connection.create_collation(collation, locale.strcoll)
+            self.__collations.append(collation)
+        return collation
 
     def execute(self, *args, **kwargs):
         """

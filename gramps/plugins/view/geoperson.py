@@ -266,6 +266,8 @@ class GeoPerson(GeoGraphyView):
         """
         Rebuild the tree with the given person handle as the root.
         """
+        if self.osm is None:
+            return
         active = self.get_active()
         self._createmap(None)
         self.uistate.modify_statusbar(self.dbstate)
@@ -356,6 +358,8 @@ class GeoPerson(GeoGraphyView):
         a lat/lon.
         @param: active is mandatory but unused in this view. Fix : 10088
         """
+        if self.osm is None:
+            return
         dbstate = self.dbstate
         self.cal = config.get('preferences.calendar-format-report')
         self.place_list = []

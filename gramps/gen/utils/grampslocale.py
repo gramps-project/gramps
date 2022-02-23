@@ -75,6 +75,7 @@ _LOCALE_NAMES = {
     'cs': ('Czech_Czech Republic', '1250', _("Czech")),
     'da': ('Danish_Denmark', '1252', _("Danish")),
     'de': ('German_Germany', '1252',  _("German")),
+    'de_AT': ('German_Austria', '1252',  _("German (Austria)")),
     'el': ('Greek_Greece', '1253', _("Greek")),
     'en': ('English_United States', '1252', _("English (USA)")),
     'en_GB': ('English_United Kingdom', '1252', _("English")),
@@ -86,6 +87,7 @@ _LOCALE_NAMES = {
     'he': ('Hebrew_Israel', '1255', _("Hebrew")),
     'hr': ('Croatian_Croatia', '1250', _("Croatian")),
     'hu': ('Hungarian_Hungary', '1250', _("Hungarian")),
+    'id': ('Indonesian', '1057', _("Indonesian")),
     'is': ('Icelandic', '1252', _("Icelandic")),
     'it': ('Italian_Italy', '1252', _("Italian")),
     'ja': ('Japanese_Japan', '932', _("Japanese")),
@@ -525,6 +527,8 @@ class GrampsLocale:
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
         if self.localedir:
             if not sys.platform == 'win32':
+                # bug12278, _build_popup_ui() under linux and macOS
+                locale.textdomain(self.localedomain)
                 locale.bindtextdomain(self.localedomain, self.localedir)
             else:
                 self._win_bindtextdomain(self.localedomain.encode('utf-8'),
@@ -1037,10 +1041,12 @@ class Lexeme(str):
 
     Translation database (Russian example)::
 
-        msgid "lexeme||December"
+        msgctxt "localized lexeme inflections"
+        msgid "|December"
         msgstr "NOMINATIVE=декабрь|GENITIVE=декабря|ABLATIVE=декабрём|LOCATIVE=декабре"
 
-        msgid "lexeme||Christmas"
+        msgctxt "lexeme"
+        msgid "|Christmas"
         msgstr "NOMINATIVE=рождество|GENITIVE=рождества|ABLATIVE=рождеством"
 
         msgid "{holiday} is celebrated in {month}"

@@ -300,6 +300,8 @@ class DateRange:
         """
         start = None
         stop = None
+        if date.is_empty():
+            return (None, None)
         if date.modifier == Date.MOD_NONE:
             start = date.sortval
             stop = date.sortval

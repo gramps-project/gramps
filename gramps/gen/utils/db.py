@@ -261,14 +261,8 @@ def get_participant_from_event(db, event_handle, all_=False):
     """
     participant = ""
     ellipses = False
-    try:
-        result_list = list(db.find_backlink_handles(event_handle,
-                                 include_classes=['Person', 'Family']))
-    except:
-        # during a magic batch transaction find_backlink_handles tries to
-        # access the reference_map_referenced_map which is closed
-        # under those circumstances.
-        return ''
+    result_list = list(db.find_backlink_handles(
+        event_handle, include_classes=['Person', 'Family']))
 
     #obtain handles without duplicates
     people = set([x[1] for x in result_list if x[0] == 'Person'])

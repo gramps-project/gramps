@@ -110,10 +110,10 @@ class AddressBookListPage(BasePage):
                     Html("th", label, class_=colclass, inline=True)
                     for (label, colclass) in [
                         ["&nbsp;", "ColumnRowLabel"],
-                        [_("Full Name"), "ColumnName"],
-                        [_("Address"), "ColumnAddress"],
-                        [_("Residence"), "ColumnResidence"],
-                        [_("Web Links"), "ColumnWebLinks"]
+                        [self._("Full Name"), "ColumnName"],
+                        [self._("Address"), "ColumnAddress"],
+                        [self._("Residence"), "ColumnResidence"],
+                        [self._("Web Links"), "ColumnWebLinks"]
                     ]
                 )
 

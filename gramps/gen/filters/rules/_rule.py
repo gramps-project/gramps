@@ -81,12 +81,12 @@ class Rule:
         if self.nrprepare == 0:
             if self.use_regex:
                 self.regex = [None]*len(self.labels)
-                for i in range(len(self.labels)):
-                    if self.list[i]:
+                for index, label in enumerate(self.labels):
+                    if self.list[index]:
                         try:
-                            self.regex[i] = re.compile(self.list[i], re.I)
+                            self.regex[index] = re.compile(self.list[index], re.I)
                         except re.error:
-                            self.regex[i] = re.compile('')
+                            self.regex[index] = re.compile('')
                 self.match_substring = self.match_regex
             self.prepare(db, user)
         self.nrprepare += 1
@@ -141,10 +141,10 @@ class Rule:
 
     def display_values(self):
         """Return the labels and values of this rule."""
-        l_v = ('%s="%s"' % (_(self.labels[ix][0] if
-                              isinstance(self.labels[ix], tuple) else
-                              self.labels[ix]), self.list[ix])
-               for ix in range(len(self.list)) if self.list[ix])
+        l_v = ('%s="%s"' % (_(self.labels[index][0] if
+                              isinstance(self.labels[index], tuple) else
+                              self.labels[index]), item)
+               for index, item in enumerate(self.list) if item)
 
         return ';'.join(l_v)
 

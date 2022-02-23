@@ -916,12 +916,7 @@ class GrampsParser(UpdateCallback):
         :param ifile: must be a file handle that is already open, with position
                       at the start of the file
         """
-        if personcount < 1000:
-            no_magic = True
-        else:
-            no_magic = False
-        with DbTxn(_("Gramps XML import"), self.db, batch=True,
-                   no_magic=no_magic) as self.trans:
+        with DbTxn(_("Gramps XML import"), self.db, batch=True) as self.trans:
             self.set_total(linecount)
 
             self.db.disable_signals()

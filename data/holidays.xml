@@ -81,6 +81,23 @@
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Boxing Day" value="*/12/26" type="national" />
   </country>
+  <country name="Catalonia">
+    <date name="Any Nou (estatal)" value="*/1/1" type="religious" />
+     <date name="Reis (estatal)" value="*/1/6" type="religious" />
+     <date name="Festa del Treball (estatal)" value="*/5/1" type="secular" />
+     <date name="Sant Joan (a Catalunya)" value="*/6/24" type="religious" />
+     <date name="Mare de Déu d'Agost (estatal)" value="*/8/15" type="religious" />
+     <date name="Diada Nacional de Catalunya" value="*/9/11" type="national" />
+     <date name="Festa Nacional d'Espanya (estatal)" value="*/10/12" type="religious" />
+     <date name="Tots Sants" value="*/11/1" type="religious" />
+     <date name="Dia de la Constitució (estatal)" value="*/12/6" type="secular" />
+     <date name="La Immaculada (estatal)" value="*/12/8" type="religious" />
+     <date name="Nadal (estatal)" value="*/12/25" type="religious" />
+     <date name="Sant Esteve" value="*/12/26" type="religious" />
+     <date name="Easter" value="> easter(y)" type="religious" />
+     <date name="Divendres Sant (estatal)" value="> easter(y)" offset="-2" type="religious" />
+     <date name="Dilluns de Pasqua Florida" value="> easter(y)" offset="1" type="religious" />
+  </country>
   <country name="Chile">
     <date name="Año nuevo" value="*/1/1" type="national" />
     <date name="Viernes Santo" value="2007/4/6" type="religious" />
@@ -367,6 +384,20 @@
     <date name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
     <date name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
     <date name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
+  </country>
+  <country name="Italy">
+    <date name="Capodanno" value="*/1/1" type="national" />
+    <date name="Epifania" value="*/1/6" type="religious" />
+    <date name="Pasqua" type="religious" value="> easter(y)"  />
+    <date name="Pasquetta" type="religious" value="> easter(y)" offset="1" />
+    <date name="Festa della Liberazione" value="*/4/25" type="national" />
+    <date name="Festa dei lavoratori" value="*/5/1" type="national" />
+    <date name="Festa della Repubblica" value="*/6/2" type="national" />
+    <date name="Ferragosto" value="*/8/15" type="national" />
+    <date name="Tutti i santi" value="*/11/1" type="religious" />
+    <date name="Immacolata Concezione" value="*/12/8" type="religious" />
+    <date name="Natale" value="*/12/25" type="religious" />
+    <date name="Santo Stefano" value="*/12/26" type="religious" />
   </country>
   <country name="New Zealand">
     <date value="*/1/1" type="national" name="New Year's Day"/>

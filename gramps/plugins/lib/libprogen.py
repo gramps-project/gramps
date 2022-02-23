@@ -380,17 +380,17 @@ class PG30DefTable(object):
         """ Convert records to list. """
 
         flds = []
-        for i in range(len(rec)):
+        for i, record in enumerate(rec):
             typ = self.recflds[i].type_
             if typ == 2 or typ == 3 or typ == 22 or typ == 23:
                 # Record field is record number
-                flds.append("%d" % rec[i])
+                flds.append("%d" % record)
             elif typ == 46 or typ == 47:
                 # Record field is memory type
                 flds.append(self.get_mem_text(mems, rec[i]))
             else:
                 # Not a record number, not a memory type. It must be just text.
-                fld = rec[i].strip()
+                fld = record.strip()
                 fld = fld.decode('cp850')   # Convert to unicode
                 flds.append(fld)
 

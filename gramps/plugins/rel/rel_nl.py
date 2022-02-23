@@ -5,6 +5,7 @@
 # Copyright (C) 2003-2005  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2018       Robin van der Vliet
+# Copyright (C) 2020       Jan Sparreboom
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +36,7 @@ import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 #
-#
+# Levels
 #
 #-------------------------------------------------------------------------
 
@@ -69,9 +70,207 @@ _child_level = [ "", "",
 _nibling_level = [ "", "",
     "achter", "achterachter", "achterachterachter" ]
 
+_parents_level = ["",
+                   "ouders",
+                   "grootouders",
+                   "overgrootouders",
+                   "betovergrootouders",
+                   "overgrootouders 5e graad",
+                   "overgrootouders 6e graad",
+                   "overgrootouders 7e graad",
+                   "overgrootouders 8e graad",
+                   "overgrootouders 9e graad",
+                   "overgrootouders 10e graad",
+                   "overgrootouders 11e graad",
+                   "overgrootouders 12e graad",
+                   "overgrootouders 13e graad",
+                   "overgrootouders 14e graad",
+                   "overgrootouders 15e graad",
+                   "overgrootouders 16e graad",
+                   "overgrootouders 17e graad",
+                   "overgrootouders 18e graad",
+                   "overgrootouders 19e graad",
+                   "overgrootouders 20e graad",
+                   "overgrootouders 21e graad",
+                   "overgrootouders 22e graad",
+                   "overgrootouders 23e graad",
+                   "overgrootouders 24e graad",
+                   "overgrootouders 25e graad",
+                   "overgrootouders 26e graad",
+                   "overgrootouders 27e graad",
+                   "overgrootouders 28e graad",
+                   "overgrootouders 29e graad",
+                   "overgrootouders 30e graad",
+                   "overgrootouders 31e graad",
+                   "overgrootouders 32e graad",
+                   "overgrootouders 33e graad",
+                   "overgrootouders 34e graad",
+                   "overgrootouders 35e graad",
+                   "overgrootouders 36e graad",
+                   "overgrootouders 37e graad",
+                   "overgrootouders 38e graad",
+                   "overgrootouders 39e graad",
+                   "overgrootouders 40e graad",
+                   "overgrootouders 41e graad",
+                   "overgrootouders 42e graad",
+                   "overgrootouders 43e graad",
+                   "overgrootouders 44e graad",
+                   "overgrootouders 45e graad",
+                   "overgrootouders 46e graad",
+                   "overgrootouders 47e graad",
+                   "overgrootouders 48e graad",
+                   "overgrootouders 49e graad",
+                   "overgrootouders 50e graad", ]
+
+_siblings_level = ["",
+                   "broers en zussen",
+                   "ooms en tantes",
+                   "oudooms en -tantes",
+                   "overoudooms en -tantes",
+                   "overoudooms en -tantes 5e graad",
+                   "overoudooms en -tantes 6e graad",
+                   "overoudooms en -tantes 7e graad",
+                   "overoudooms en -tantes 8e graad",
+                   "overoudooms en -tantes 9e graad",
+                   "overoudooms en -tantes 10e graad",
+                   "overoudooms en -tantes 11e graad",
+                   "overoudooms en -tantes 12e graad",
+                   "overoudooms en -tantes 13e graad",
+                   "overoudooms en -tantes 14e graad",
+                   "overoudooms en -tantes 15e graad",
+                   "overoudooms en -tantes 16e graad",
+                   "overoudooms en -tantes 17e graad",
+                   "overoudooms en -tantes 18e graad",
+                   "overoudooms en -tantes 19e graad",
+                   "overoudooms en -tantes 20e graad",
+                   "overoudooms en -tantes 21e graad",
+                   "overoudooms en -tantes 22e graad",
+                   "overoudooms en -tantes 23e graad",
+                   "overoudooms en -tantes 24e graad",
+                   "overoudooms en -tantes 25e graad",
+                   "overoudooms en -tantes 26e graad",
+                   "overoudooms en -tantes 27e graad",
+                   "overoudooms en -tantes 28e graad",
+                   "overoudooms en -tantes 29e graad",
+                   "overoudooms en -tantes 30e graad",
+                   "overoudooms en -tantes 41e graad",
+                   "overoudooms en -tantes 42e graad",
+                   "overoudooms en -tantes 43e graad",
+                   "overoudooms en -tantes 44e graad",
+                   "overoudooms en -tantes 45e graad",
+                   "overoudooms en -tantes 46e graad",
+                   "overoudooms en -tantes 47e graad",
+                   "overoudooms en -tantes 48e graad",
+                   "overoudooms en -tantes 49e graad",
+                   "overoudooms en -tantes 50e graad", ]
+
+_children_level = ["",
+                   "kinderen",
+                   "kleinkinderen",
+                   "achterkleinkinderen",
+                   "betachterkleinkinderen",
+                   "kleinkinderen 5e graad",
+                   "kleinkinderen 6e graad",
+                   "kleinkinderen 7e graad",
+                   "kleinkinderen 8e graad",
+                   "kleinkinderen 9e graad",
+                   "kleinkinderen 10e graad",
+                   "kleinkinderen 11e graad",
+                   "kleinkinderen 12e graad",
+                   "kleinkinderen 13e graad",
+                   "kleinkinderen 14e graad",
+                   "kleinkinderen 15e graad",
+                   "kleinkinderen 16e graad",
+                   "kleinkinderen 17e graad",
+                   "kleinkinderen 18e graad",
+                   "kleinkinderen 19e graad",
+                   "kleinkinderen 20e graad",
+                   "kleinkinderen 21e graad",
+                   "kleinkinderen 22e graad",
+                   "kleinkinderen 23e graad",
+                   "kleinkinderen 24e graad",
+                   "kleinkinderen 25e graad",
+                   "kleinkinderen 26e graad",
+                   "kleinkinderen 27e graad",
+                   "kleinkinderen 28e graad",
+                   "kleinkinderen 29e graad",
+                   "kleinkinderen 30e graad",
+                   "kleinkinderen 31e graad",
+                   "kleinkinderen 32e graad",
+                   "kleinkinderen 33e graad",
+                   "kleinkinderen 34e graad",
+                   "kleinkinderen 35e graad",
+                   "kleinkinderen 36e graad",
+                   "kleinkinderen 37e graad",
+                   "kleinkinderen 38e graad",
+                   "kleinkinderen 39e graad",
+                   "kleinkinderen 40e graad",
+                   "kleinkinderen 41e graad",
+                   "kleinkinderen 42e graad",
+                   "kleinkinderen 43e graad",
+                   "kleinkinderen 44e graad",
+                   "kleinkinderen 45e graad",
+                   "kleinkinderen 46e graad",
+                   "kleinkinderen 47e graad",
+                   "kleinkinderen 48e graad",
+                   "kleinkinderen 49e graad",
+                   "kleinkinderen 50e graad", ]
+
+_nephews_nieces_level = ["",
+                         "broers en zussen",
+                         "neven en nichten",
+                         "achterneven en -nichten",
+                         "achterneven en -nichten 4e graad",
+                         "achterneven en -nichten 5e graad",
+                         "achterneven en -nichten 6e graad",
+                         "achterneven en -nichten 7e graad",
+                         "achterneven en -nichten 8e graad",
+                         "achterneven en -nichten 9e graad",
+                         "achterneven en -nichten 10e graad",
+                         "achterneven en -nichten 11e graad",
+                         "achterneven en -nichten 12e graad",
+                         "achterneven en -nichten 13e graad",
+                         "achterneven en -nichten 14e graad",
+                         "achterneven en -nichten 15e graad",
+                         "achterneven en -nichten 16e graad",
+                         "achterneven en -nichten 17e graad",
+                         "achterneven en -nichten 18e graad",
+                         "achterneven en -nichten 19e graad",
+                         "achterneven en -nichten 20e graad",
+                         "achterneven en -nichten 21e graad",
+                         "achterneven en -nichten 22e graad",
+                         "achterneven en -nichten 23e graad",
+                         "achterneven en -nichten 24e graad",
+                         "achterneven en -nichten 25e graad",
+                         "achterneven en -nichten 26e graad",
+                         "achterneven en -nichten 27e graad",
+                         "achterneven en -nichten 28e graad",
+                         "achterneven en -nichten 29e graad",
+                         "achterneven en -nichten 30e graad",
+                         "achterneven en -nichten 31e graad",
+                         "achterneven en -nichten 32e graad",
+                         "achterneven en -nichten 33e graad",
+                         "achterneven en -nichten 34e graad",
+                         "achterneven en -nichten 35e graad",
+                         "achterneven en -nichten 36e graad",
+                         "achterneven en -nichten 37e graad",
+                         "achterneven en -nichten 38e graad",
+                         "achterneven en -nichten 39e graad",
+                         "achterneven en -nichten 40e graad",
+                         "achterneven en -nichten 41e graad",
+                         "achterneven en -nichten 42e graad",
+                         "achterneven en -nichten 43e graad",
+                         "achterneven en -nichten 44e graad",
+                         "achterneven en -nichten 45e graad",
+                         "achterneven en -nichten 46e graad",
+                         "achterneven en -nichten 47e graad",
+                         "achterneven en -nichten 48e graad",
+                         "achterneven en -nichten 49e graad",
+                         "achterneven en -nichten 50e graad", ]
+
 #-------------------------------------------------------------------------
 #
-#
+# Relationship calculator Dutch version
 #
 #-------------------------------------------------------------------------
 
@@ -273,6 +472,104 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         else:
             return "%s%snicht (kozijn)" % (inlaw, step) \
                         + " " + _ordinal_level[removed] + " graad"
+# NIEUW
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
+        """
+        Provide a string that describes the relationsip between a person, and
+        a group of people with the same relationship. E.g. "grandparents" or
+        "children".
+
+        Ga and Gb can be used to mathematically calculate the relationship.
+
+        .. seealso::
+            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+
+        :param Ga: The number of generations between the main person and the
+                   common ancestor.
+        :type Ga: int
+        :param Gb: The number of generations between the group of people and the
+                   common ancestor
+        :type Gb: int
+        :param reltocommon_a: relation path to common ancestor or common
+                              Family for person a.
+                              Note that length = Ga
+        :type reltocommon_a: str
+        :param reltocommon_b: relation path to common ancestor or common
+                              Family for person b.
+                              Note that length = Gb
+        :type reltocommon_b: str
+        :param only_birth: True if relation between a and b is by birth only
+                           False otherwise
+        :type only_birth: bool
+        :param in_law_a: True if path to common ancestors is via the partner
+                         of person a
+        :type in_law_a: bool
+        :param in_law_b: True if path to common ancestors is via the partner
+                         of person b
+        :type in_law_b: bool
+        :returns: A string describing the relationship between the person and
+                  the group.
+        :rtype: str
+        """
+        rel_str = "verre familie"
+        if Ga == 0:
+            # These are descendants
+            if Gb < len(_children_level):
+                rel_str = _children_level[Gb]
+            else:
+                rel_str = "verre afstammelingen"
+        elif Gb == 0:
+            # These are parents/grand parents
+            if Ga < len(_parents_level):
+                rel_str = _parents_level[Ga]
+            else:
+                rel_str = "verre voorouders"
+        elif Gb == 1:
+            # These are siblings/aunts/uncles
+            if Ga < len(_siblings_level):
+                rel_str = _siblings_level[Ga]
+            else:
+                rel_str = "verre ooms/tantes"
+        elif Ga == 1:
+            # These are nieces/nephews
+            if Gb < len(_nephews_nieces_level):
+                rel_str = _nephews_nieces_level[Gb]
+            else:
+                rel_str = "verre neven/nichten"
+        elif Ga > 1 and Ga == Gb:
+            # These are cousins in the same generation
+            if Ga <= len(_ordinal_level):
+                rel_str = "%s neven" % _ordinal_level[Ga-1]
+            else:
+                rel_str = "verre neven"
+        elif Ga > 1 and Ga > Gb:
+            # These are cousins in different generations with the second person
+            # being in a higher generation from the common ancestor than the
+            # first person.
+            if Gb <= len(_LEVEL_NAME) and (Ga-Gb) < len(_removed_level):
+                rel_str = "%s neven%s (omhoog)" % (_ordinal_level[Gb-1],
+                                                 _removed_level[Ga-Gb])
+            else:
+                rel_str = "verre neven"
+        elif Gb > 1 and Gb > Ga:
+            # These are cousins in different generations with the second person
+            # being in a lower generation from the common ancestor than the
+            # first person.
+            if Ga <= len(_LEVEL_NAME) and (Gb-Ga) < len(_removed_level):
+                rel_str = "%s neven%s (omlaag)" % (_ordinal_level[Ga-1],
+                                                   _removed_level[Gb-Ga])
+            else:
+                rel_str = "verre neven"
+
+        if in_law_b is True:
+            rel_str = "echtgenoten van %s" % rel_str
+
+        return rel_str
+
+
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
@@ -424,3 +721,6 @@ if __name__ == "__main__":
     from gramps.gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)
+
+
+

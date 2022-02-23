@@ -2008,8 +2008,7 @@ class DbWriteBase(DbReadBase):
         birth_ref_index = -1
         death_ref_index = -1
         event_ref_list = person.get_event_ref_list()
-        for index in range(len(event_ref_list)):
-            ref = event_ref_list[index]
+        for index, ref in enumerate(event_ref_list):
             event = self.get_event_from_handle(ref.ref)
             if (event.type.is_birth()
                 and ref.role.is_primary()

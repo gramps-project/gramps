@@ -497,7 +497,8 @@ class RelGraphReport(Report):
             self.doc.start_subgraph(fam_id)
             f_handle = fam.get_father_handle()
             m_handle = fam.get_mother_handle()
-            if f_handle and m_handle:
+            if(self.use_subgraphs == 2 and f_handle in self.persons and
+               m_handle in self.persons):
                 father = self._db.get_person_from_handle(f_handle)
                 mother = self._db.get_person_from_handle(m_handle)
                 fcount = 0
@@ -968,6 +969,22 @@ class RelGraphOptions(MenuReportOptions):
         showfamily.set_help(_("Families will show up as ellipses, linked "
                               "to parents and children."))
         add_option("showfamily", showfamily)
+
+        use_subgraphs = EnumeratedListOption(_('Parent grouping'), 0)
+        use_subgraphs.add_item(0, _('Normal'))
+        use_subgraphs.add_item(1, _('Parents together'))
+        use_subgraphs.add_item(2, _('Parents offset'))
+        use_subgraphs.set_help(_(
+            "In the 'Normal' setting parents will be located to keep most "
+            "lines short.\n"
+            "The 'Parents together' setting can help position "
+            "spouses next to each other, but with non-trivial graphs will "
+            "result in longer lines and larger graphs.\n"
+            "The Parents offset setting will also try to put spouses near "
+            "each other, however they will be offset from each other.  This "
+            "will tend to make graphs with many people in a generation more "
+            "square."))
+        add_option("usesubgraphs", use_subgraphs)
 
     def __update_filters(self):
         """

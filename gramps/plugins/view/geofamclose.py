@@ -244,6 +244,13 @@ class GeoFamClose(GeoGraphyView):
         self.cal = config.get('preferences.calendar-format-report')
         self.no_show_places_in_status_bar = False
         self.config_meeting_slider = None
+        self.dbstate.connect('database-changed', self.reset_change_db)
+
+    def reset_change_db(self, dummy_dbase):
+        """
+        Used to reset the family reference
+        """
+        self.reffamily = None
 
     def get_title(self):
         """
@@ -318,6 +325,8 @@ class GeoFamClose(GeoGraphyView):
         """
         Rebuild the tree with the given family handle as reference.
         """
+        if self.osm is None:
+            return
         self.place_list_active = []
         self.place_list_ref = []
         self.all_place_list = []
@@ -388,6 +397,8 @@ class GeoFamClose(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
+        if self.osm is None:
+            return
         self.lifeway_layer.clear_ways()
         if not self.dbstate.is_open():
             return

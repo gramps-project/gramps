@@ -138,7 +138,7 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.name, str(self.type)]
+        return [self.name, str(self.type), self.gramps_id]
 
     def get_text_data_child_list(self):
         """
