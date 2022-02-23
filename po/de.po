@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2022-02-17 22:56+0000\n"
+"PO-Revision-Date: 2022-02-22 22:50+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -1035,7 +1035,7 @@ msgid ""
 msgstr ""
 "<b>Das \"Wie und Warum\" deiner Ahnenforschung</b><br/>Ahnenforschung "
 "beschäftigt sich nicht nur mit Daten und Namen: es geht um Menschen! Sei "
-"beschreibend. Nimm auf, warum etwas passiert und wie die Nachkommen durch "
+"beschreibend. Erläutere, warum etwas passiert und wie die Nachkommen durch "
 "die Ereignisse geprägt sein könnten, die sie erlebt haben. Erzählungen sind "
 "eine lange erprobte Möglichkeit, deine Familiengeschichte erlebbar zu machen."
 
@@ -4387,7 +4387,7 @@ msgstr "Liefert Ereignisse, die dem gegebenen Filternamen entsprechen"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:574
 msgid "Include Family events:"
-msgstr "Familienereignisse aufnehmen:"
+msgstr "Familienereignisse einbeziehen:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:531
@@ -9848,7 +9848,7 @@ msgstr "Unter"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
 msgid "Not shown"
-msgstr "Nicht gezeigt"
+msgstr "Wird nicht angezeigt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:99
 #: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1939
@@ -9894,7 +9894,7 @@ msgstr "Winzig"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Script"
-msgstr "Schrift"
+msgstr "Skript"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:91
 msgid "Footnote"
@@ -9930,7 +9930,7 @@ msgstr "Riesig"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Extra huge"
-msgstr "Extra riesig"
+msgstr "Besonders riesig"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:141
 msgid "Node Options"
@@ -9942,11 +9942,11 @@ msgstr "Knotendetails"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:147
 msgid "Detail of information to be shown in a node."
-msgstr "Details der Informationen die in einem Knoten angezeigt werden."
+msgstr "Detail der Informationen, die in einem Knoten angezeigt werden sollen."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Position of marriage information."
-msgstr "Position der Heiratsinformationen."
+msgstr "Position der Heiratsinformation."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 msgid "Node size"
@@ -9996,7 +9996,7 @@ msgstr "Kantenstil"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:187
 msgid "Style of the edges between nodes."
-msgstr "Stil der Kanten zwischen Knoten."
+msgstr "Stil der Kanten zwischen den Knoten."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:190
 msgid "Level distance"
@@ -10008,9 +10008,9 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Der minimale freie Platz in Zoll zwischen Ebenen. Für vertikale Grafen "
-"entspricht dies dem Abstand zwischen Zeilen. Für horizontale Grafen "
-"entspricht das dem Abstand zwischen Spalten."
+"Der Mindestfreiraum in mm zwischen den Ebenen.  Bei vertikalen Diagrammen "
+"entspricht dies dem Abstand zwischen den Zeilen.  Bei horizontalen "
+"Diagrammen entspricht dies dem Abstand zwischen den Spalten."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:202
 msgid "Note to add to the tree"
@@ -10022,7 +10022,7 @@ msgstr "Dieser Text wird dem Baum hinzugefügt."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:216
 msgid "The size of note text."
-msgstr "Die Größe des Notizentext."
+msgstr "Die Größe des Notiztextes."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:694
 msgid "PDF"
@@ -10030,11 +10030,11 @@ msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
 msgid "Graph File for genealogytree"
-msgstr "Diagrammdatei für LaTex genealogytree"
+msgstr "Diagrammdatei für Stammbaum"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:705
 msgid "LaTeX File"
-msgstr "LaTeX Datei"
+msgstr "LaTeX-Datei"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:145
 #, python-format
@@ -10053,7 +10053,7 @@ msgstr "Nicht unterstützt"
 
 #: ../gramps/gen/plug/report/_constants.py:45
 msgid "Text Reports"
-msgstr "Schriftliche Berichte"
+msgstr "Textberichte"
 
 #: ../gramps/gen/plug/report/_constants.py:46
 msgid "Graphical Reports"
@@ -10074,7 +10074,7 @@ msgstr "Bücher"
 
 #: ../gramps/gen/plug/report/_constants.py:50
 msgid "Graphs"
-msgstr "Grafiken"
+msgstr "Schaubilder"
 
 #: ../gramps/gen/plug/report/_constants.py:51
 msgid "Trees"
@@ -10090,25 +10090,30 @@ msgstr "Grafiken"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1193
 #: ../gramps/plugins/textreport/endoflinereport.py:326
 msgid "The style used for the generation header."
-msgstr "Der Stil, der für die Generation Überschriften verwendet wird."
+msgstr "Der für die Generation Überschriften verwendete Stil."
 
 #: ../gramps/gen/plug/report/endnotes.py:68
 msgid "The basic style used for the endnotes source display."
-msgstr "Der Standardstil, der für Quellen im Quellennachweis verwendet wird."
+msgstr ""
+"Der grundlegende Stil, der für die Anzeige der Endnotenquelle verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:76
 msgid "The basic style used for the endnotes notes display."
-msgstr "Der Standardstil, der für Notizen im Quellennachweis verwendet wird."
+msgstr ""
+"Der grundlegende Stil, der für die Anzeige der Endnotennotizen verwendet "
+"wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:84
 msgid "The basic style used for the endnotes reference display."
 msgstr ""
-"Der Standardstil, der für Referenzen im Quellennachweis verwendet wird."
+"Der grundlegende Stil, der für die Anzeige der Endnotenreferenz verwendet "
+"wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:92
 msgid "The basic style used for the endnotes reference notes display."
 msgstr ""
-"Der Standardstil, der für Referenznotizen im Quellennachweis verwendet wird."
+"Der grundlegende Stil, der für die Anzeige der Endnotenreferenznotizen "
+"verwendet wird."
 
 #: ../gramps/gen/plug/report/stdoptions.py:58
 msgid "Translation"
@@ -10116,7 +10121,7 @@ msgstr "Übersetzung"
 
 #: ../gramps/gen/plug/report/stdoptions.py:64
 msgid "The translation to be used for the report."
-msgstr "Die Übersetzung, die für den Bericht verwendet wird."
+msgstr "Die Übersetzung, die für den Bericht verwendet werden soll."
 
 #: ../gramps/gen/plug/report/stdoptions.py:80
 msgid "The additional translation to be used for the report."
@@ -10135,7 +10140,7 @@ msgstr "Wähle das Format für die Anzeige von Namen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:122
 msgid "Include data marked private"
-msgstr "Als vertraulich markierte Daten einbeziehen"
+msgstr "Als vertraulich gekennzeichnete Daten einbeziehen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:123
 msgid "Whether to include private data"
@@ -10148,12 +10153,12 @@ msgstr "Lebende Personen"
 #: ../gramps/gen/plug/report/stdoptions.py:190
 msgctxt "'living people'"
 msgid "Included, and all data"
-msgstr "Einbezogen und alle Daten"
+msgstr "Eingeschlossen, und alle Daten"
 
 #: ../gramps/gen/plug/report/stdoptions.py:194
 msgctxt "'living people'"
 msgid "Full names, but data removed"
-msgstr "Vollständige Namen, aber Daten entfernen"
+msgstr "Vollständige Namen, aber Daten entfernt"
 
 #: ../gramps/gen/plug/report/stdoptions.py:196
 msgctxt "'living people'"
@@ -10163,7 +10168,7 @@ msgstr "Vornamen ersetzt und Daten entfernt"
 #: ../gramps/gen/plug/report/stdoptions.py:198
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr "Kompletter Name ersetzt und Daten entfernt"
+msgstr "Vollständige Namen ersetzt, und Daten entfernt"
 
 #: ../gramps/gen/plug/report/stdoptions.py:201
 msgctxt "'living people'"
@@ -10172,7 +10177,7 @@ msgstr "Nicht enthalten"
 
 #: ../gramps/gen/plug/report/stdoptions.py:203
 msgid "How to handle living people"
-msgstr "Wie lebende Personen behandelt werden"
+msgstr "Wie man mit lebenden Personen umgeht"
 
 #: ../gramps/gen/plug/report/stdoptions.py:206
 msgid "Years from death to consider living"
@@ -10180,7 +10185,7 @@ msgstr "Jahre nach dem Tod, um als lebend zu betrachten"
 
 #: ../gramps/gen/plug/report/stdoptions.py:209
 msgid "Whether to restrict data on recently-dead people"
-msgstr "Ob Daten von kürzlich verstorbenen Personen beschränkt werden"
+msgstr "Ob Daten über kürzlich verstorbene Personen eingeschränkt werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:274 ../gramps/gui/configure.py:1222
 msgid "Date format"
@@ -10188,7 +10193,7 @@ msgstr "Datumsformat"
 
 #: ../gramps/gen/plug/report/stdoptions.py:277
 msgid "The format and language for dates, with examples"
-msgstr "Das Format und die Sprache von Daten mit Beispielen"
+msgstr "Format und Sprache für Daten, mit Beispielen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:333
 #: ../gramps/gen/plug/report/stdoptions.py:357
@@ -10210,7 +10215,7 @@ msgstr "Einbeziehen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:335
 msgid "Whether to include tags"
-msgstr "Ob Markierungen aufgenommen werden"
+msgstr "Ob Markierungen einbezogen werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:359
 msgid "Share an existing line"
@@ -10218,15 +10223,15 @@ msgstr "Eine bestehende Linie teilen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:360
 msgid "On a line of its own"
-msgstr "In einer eigenen Linie"
+msgstr "Auf einer eigenen Linie"
 
 #: ../gramps/gen/plug/report/stdoptions.py:361
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Ob (und wo) Gramps-IDs enthalten sind"
+msgstr "Ob (und wo) Gramps-IDs einbezogen werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:364
 msgid "Whether to include Gramps IDs"
-msgstr "Ob Gramps-IDs enthalten sind"
+msgstr "Ob Gramps-IDs einbezogen werden sollen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:372
 msgid "Place format"
@@ -11663,7 +11668,7 @@ msgstr "ID-Formate"
 
 #: ../gramps/gui/configure.py:677
 msgid "Colors used for boxes in the graphical views"
-msgstr "Farben, die für Felder in den grafischen Ansichten verwendet werden"
+msgstr "Farben für Felder in den grafischen Ansichten"
 
 #: ../gramps/gui/configure.py:683
 msgid "Light colors"
@@ -12396,9 +12401,9 @@ msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
 msgstr ""
-"Du hast das Werkzeug zum Finden Genealogischer Schriftarten schon laufen "
-"lassen.\n"
-"Starte es nur erneut wenn du Schriftarten deinem System hinzugefügt hast."
+"Du hast das Werkzeug zur Suche nach Genealogieschriften bereits ausgeführt.\n"
+"Führe es nur dann erneut aus, wenn du deinem System Schriften hinzugefügt "
+"hast."
 
 #: ../gramps/gui/configure.py:1980
 msgid "Try to find"
@@ -12406,7 +12411,7 @@ msgstr "Versuche zu finden"
 
 #: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
 msgid "Choose font"
-msgstr "Zeichensatz wählen"
+msgstr "Schriftart wählen"
 
 #: ../gramps/gui/configure.py:2004 ../gramps/gui/configure.py:2109
 msgid "Select default death symbol"
@@ -12418,31 +12423,31 @@ msgstr "Genealogische Symbole"
 
 #: ../gramps/gui/configure.py:2022
 msgid "Cannot look for genealogical fonts"
-msgstr "Kann nicht nach genealogischen Zeichensätzen suchen"
+msgstr "Kann nicht nach genealogischen Schriftarten suchen"
 
 #: ../gramps/gui/configure.py:2023
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
 msgstr ""
-"Ich kann keine genealogischen Zeichensätze wählen. Bitte installiere das "
+"Ich kann keine genealogischen Schriftarten auswählen. Bitte installiere das "
 "Modul fontconfig für Python 3."
 
 #: ../gramps/gui/configure.py:2040
 msgid "Checking available genealogical fonts"
-msgstr "Prüfe verfügbare genealogische Zeichensätze"
+msgstr "Überprüfung der verfügbaren genealogischen Schriften"
 
 #: ../gramps/gui/configure.py:2044
 msgid "Looking for all fonts with genealogical symbols."
-msgstr "Suche nach allen Zeichensätzen mit genealogischen Symbolen."
+msgstr "Gesucht werden alle Schriftarten mit genealogischen Symbolen."
 
 #: ../gramps/gui/configure.py:2117
 msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
 msgstr ""
-"Du hast keinen Zeichensatz mit genealogischen Symbolen auf deinem System. "
-"Gramps wird es nicht möglich sein, Symbole zu verwenden."
+"Du hast keine Schriftart mit genealogischen Symbolen auf deinem System. "
+"Gramps wird keine Symbole verwenden können."
 
 #: ../gramps/gui/configure.py:2155
 msgid "What you will see"
@@ -13860,11 +13865,11 @@ msgid ""
 "location of the information referenced within the source in the 'Volume/"
 "Page' field."
 msgstr ""
-"Eine Quelle ist alles (persönliche Aussagen, Videoaufzeichnungen, Fotos, "
-"Zeitungsausschnitte, Grabsteine,....), von dem Informationen abgeleitet "
-"werden können. Um eine Fundstelle zu erstellen, wähle zuerst die benötigte "
-"Quelle und gib dann die Stelle ein, an der sich die Informationen in dieser "
-"Quelle befinden, im 'Band/Seite' Feld ein."
+"Eine Quelle ist alles (persönliches Zeugnis, Videoaufnahme, Foto, "
+"Zeitungsartikel, Grabstein...), aus dem Informationen abgeleitet werden "
+"können. Um eine Fundstelle zu erstellen, wähle zunächst die gewünschte "
+"Quelle aus und gib dann im Feld 'Band/Seite' den Ort der Information an, auf "
+"die in der Quelle verwiesen wird."
 
 #: ../gramps/gui/editors/editcitation.py:322
 msgid "Cannot save citation. ID already exists."
@@ -15093,7 +15098,7 @@ msgstr "Auch Familienereignisse, bei denen die Person Partner(in) ist"
 
 #: ../gramps/gui/editors/filtereditor.py:577
 msgid "Only include primary participants"
-msgstr "Nur Hauptbeteiligte einbeziehen"
+msgstr "Nur primäre Teilnehmer einbeziehen"
 
 #: ../gramps/gui/editors/filtereditor.py:593
 #: ../gramps/gui/widgets/placewithin.py:73
@@ -15943,14 +15948,14 @@ msgid ""
 "etc. A census record might have a line number or dwelling and family numbers "
 "in addition to the page number. "
 msgstr ""
-"Spezifiziert einen Ort auf den innerhalb der Informationen verwiesen wird. "
-"Für ein veröffentlichtes Werk kann dies die Ausgabennr. eines mehrbändigen "
-"Werkes und die Seitenzahl(en) enthalten. Für eine Zeitschrift, könnte es "
-"Jahrgang, Heft und Seitenzahlen enthalten. Für eine Zeitung, könnte es eine "
-"Spalte mit der Nummer und Seitenzahl sein. Für unveröffentlichte Quellen "
-"könnte dies Blatt-Nr., Rahmen-Nr., usw. sein. Ein Volkszählungsdatensatz "
-"könnte eine Zeilennummer, eine Wohnung und die Familiennummer nebst der "
-"Seitenzahl enthalten. "
+"Spezifische Stelle innerhalb der referenzierten Information. Bei einem "
+"veröffentlichten Werk könnte dies den Band eines mehrbändigen Werks und die "
+"Seitenzahl(en) umfassen. Bei einer Zeitschrift könnten dies Band, Ausgabe "
+"und Seitenzahl sein. Bei einer Zeitung können Spalten- und Seitenzahl "
+"angegeben werden. Bei einer unveröffentlichten Quelle kann es sich um eine "
+"Blatt-, Seiten-, Rahmennummer usw. handeln. Ein Volkszählungsdatensatz kann "
+"neben der Seitenzahl auch eine Zeilennummer oder Wohnungs- und "
+"Familiennummern enthalten. "
 
 #: ../gramps/gui/glade/editcitation.glade:152
 msgid "_Volume/Page:"
@@ -16313,8 +16318,8 @@ msgid ""
 "Second level of place division, eg., in the USA a state, in Germany a "
 "Bundesland."
 msgstr ""
-"Zweite Stufe einer Lokationsaufteilung: z.B. in Deutschland das Bundesland, "
-"in den USA der Staat."
+"Zweite Ebene der Ortseinteilung. Z.B. in Deutschland ein Bundesland, in den "
+"USA ein Staat."
 
 #: ../gramps/gui/glade/editlocation.glade:234
 msgid "The country where the place is."
@@ -16322,7 +16327,7 @@ msgstr "Das Land, in dem sich der Ort befindet."
 
 #: ../gramps/gui/glade/editlocation.glade:299
 msgid "Lowest level of a place division: eg the street name."
-msgstr "Niedrigste Stufe einer Lokationsaufteilung: z.B. der Straßenname."
+msgstr "Niedrigste Ebene einer Ortseinteilung. Z.B. der Straßenname."
 
 #: ../gramps/gui/glade/editlocation.glade:327
 msgid "A district within, or a settlement near to, a town or city."
@@ -16913,12 +16918,12 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Breitengrad (Position über dem Äquator) des Ortes in Dezimal oder Grad- "
-"Notation.\n"
-"Z.B. gültige Werte sind 12.0154, 50°52'21.92\"N, N50°52'21.92\" oder "
-"50:52:21.92\n"
-"Du kannst diesen Wert über die Geografieansicht durch Suchen des Ortes oder "
-"über einen Kartenservice in der Orteansicht setzen."
+"Breitengrad (Position über dem Äquator) des Ortes in Dezimal- oder "
+"Gradschreibweise.\n"
+"Gültige Werte sind z.B. 12.0154, 50°52′21.92″N, N50°52′21.92″ oder 50:52:21."
+"92\n"
+"Du kannst diese Werte über die Geografieansicht einstellen, indem du den Ort "
+"suchst, oder über einen Kartendienst in der Ortsansicht."
 
 #: ../gramps/gui/glade/editplaceref.glade:475
 msgid ""
@@ -16929,12 +16934,12 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Längengrad (Position relativ zum 0. oder Greenwich-Meridian) des Ortes in "
-"Dezimal oder Grad Notation.\n"
-"Z.B. gültige Werte sind -124.3647, 124°52'21.92\"O, O124°52'21.92\" oder "
+"Längengrad (Position in Bezug auf den Nullmeridian oder Greenwich-Meridian) "
+"des Ortes in Dezimal- oder Gradschreibweise.\n"
+"Gültige Werte sind z. B. -124.3647, 124°52′21.92″E, E124°52′21.92″ oder "
 "124:52:21.92\n"
-"Du kannst diesen Wert über die Geografieansicht durch Suchen des Ortes oder "
-"über einen Kartenservice in der Orteansicht setzen."
+"Du kannst diese Werte über die Geografieansicht einstellen, indem du den Ort "
+"suchst, oder über einen Kartendienst in der Ortsansicht."
 
 #: ../gramps/gui/glade/editreporef.glade:127
 msgid "_Media Type:"
@@ -17607,7 +17612,7 @@ msgstr "_Unterstrichen"
 
 #: ../gramps/gui/glade/styleeditor.glade:542
 msgid "Font options"
-msgstr "Schriftoptionen"
+msgstr "Schriftartoptionen"
 
 #: ../gramps/gui/glade/styleeditor.glade:567
 msgid "Alignment"
@@ -18160,8 +18165,8 @@ msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
-"Wenn du irgendwelche persönliche Informationen in dem Fehler findest, "
-"entferne diese."
+"Wenn du siehst, dass der Fehler persönliche Informationen enthält, entferne "
+"diese bitte."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:328
 #: ../gramps/gui/logger/_errorreportassistant.py:356
@@ -18184,8 +18189,9 @@ msgid ""
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
-"Bitte überprüfe die Informationen unterhalb und verbessere, was falsch ist "
-"oder was du nicht mit dem Fehlerbericht verschicken möchtest."
+"Bitte überprüfe die unten stehenden Informationen und korrigiere alles, von "
+"dem du weist, dass es falsch ist, oder entferne alles, was du lieber nicht "
+"in den Fehlerbericht aufgenommen hättest."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:409
 #: ../gramps/gui/logger/_errorreportassistant.py:435
@@ -18549,7 +18555,7 @@ msgstr "Eine andere Familie wählen"
 #: ../gramps/gui/plug/_guioptions.py:1254
 #, python-format
 msgid "Also include %s?"
-msgstr "%s auch berücksichtigen?"
+msgstr "Auch %s einbeziehen?"
 
 #: ../gramps/gui/plug/_guioptions.py:1256
 #: ../gramps/gui/selectors/selectperson.py:83
@@ -18945,7 +18951,8 @@ msgstr "Klicke hier, um eine Vorschau der ungefilterten Daten zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:182
 msgid "_Do not include records marked private"
-msgstr "Als vertraulich markierte _Datensätze ignorieren"
+msgstr ""
+"_Datensätze, die als vertraulich gekennzeichnet sind nicht berücksichtigen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:197
 #: ../gramps/gui/plug/export/_exportoptions.py:394
@@ -20609,7 +20616,7 @@ msgstr "SVG-Dokument"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:204
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr "Erstellt Dokumente im Scalable Vector Graphics-Format (.svg)."
+msgstr "Erzeugt Dokumente im Format Scalable Vector Graphics (.svg)."
 
 #: ../gramps/plugins/docgen/gtkprint.glade:6
 msgid "Print Preview"
@@ -20756,7 +20763,7 @@ msgstr "Ahnendiagramm"
 #: ../gramps/plugins/drawreport/ancestortree.py:133
 #, python-format
 msgid "Ancestor Graph for %s"
-msgstr "Vorfahrendiagramm für %s"
+msgstr "Ahnendiagramm für %s"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:364
 #: ../gramps/plugins/drawreport/calendarreport.py:114
@@ -20831,7 +20838,7 @@ msgstr "Generationen"
 #: ../gramps/plugins/drawreport/ancestortree.py:813
 #: ../gramps/plugins/drawreport/descendtree.py:1545
 msgid "The number of generations to include in the tree"
-msgstr "Anzahl der im Baum berücksichtigten Generationen"
+msgstr "Die Anzahl der Generationen, die in den Baum aufgenommen werden sollen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:817
 msgid ""
@@ -20881,7 +20888,7 @@ msgstr "Wähle einen Titel für den Bericht"
 #: ../gramps/plugins/drawreport/ancestortree.py:851
 #: ../gramps/plugins/drawreport/descendtree.py:1594
 msgid "Include a border"
-msgstr "Mit Rand"
+msgstr "Einen Rahmen einbeziehen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:852
 #: ../gramps/plugins/drawreport/descendtree.py:1595
@@ -20891,7 +20898,7 @@ msgstr "Ob ein Rand um den Bericht gelegt wird."
 #: ../gramps/plugins/drawreport/ancestortree.py:855
 #: ../gramps/plugins/drawreport/descendtree.py:1598
 msgid "Include Page Numbers"
-msgstr "Mit Seitennummern"
+msgstr "Seitenzahlen einschließen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
 msgid "Whether to print page numbers on each page."
@@ -20970,12 +20977,12 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
 msgid "Include Blank Pages"
-msgstr "Enthält leere Seiten"
+msgstr "Leere Seiten einbeziehen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:897
 #: ../gramps/plugins/drawreport/descendtree.py:1641
 msgid "Whether to include pages that are blank."
-msgstr "Ob leere Seiten enthalten sind."
+msgstr "Ob leere Seiten einbezogen werden sollen."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/calendarreport.py:491
@@ -21047,12 +21054,14 @@ msgstr "Das Anzeigeformat für die zentrale Person"
 #: ../gramps/plugins/drawreport/ancestortree.py:948
 #: ../gramps/plugins/drawreport/descendtree.py:1681
 msgid "Include Marriage box"
-msgstr "Heiratsboxen einbeziehen"
+msgstr "Heiratsbox einbeziehen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:950
 #: ../gramps/plugins/drawreport/descendtree.py:1683
 msgid "Whether to include a separate marital box in the report"
-msgstr "Ob eine extra Ehebox in dem Bericht enthalten ist"
+msgstr ""
+"Ob ein separates Feld für den Familienstand in den Bericht aufgenommen "
+"werden soll"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:954
 #: ../gramps/plugins/drawreport/descendtree.py:1687
@@ -21095,12 +21104,12 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:977
 #: ../gramps/plugins/drawreport/descendtree.py:1702
 msgid "Include a note"
-msgstr "Eine Notiz einbeziehen"
+msgstr "Eine Notiz aufnehmen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:978
 #: ../gramps/plugins/drawreport/descendtree.py:1703
 msgid "Whether to include a note on the report."
-msgstr "Ob eine Notiz auf dem Bericht enthalten ist."
+msgstr "Ob eine Notiz in den Bericht aufgenommen werden soll."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:983
 #: ../gramps/plugins/drawreport/descendtree.py:1708
@@ -21328,7 +21337,7 @@ msgstr "Nur lebende Personen einbeziehen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2855
 #: ../gramps/plugins/webreport/webcal.py:1813
 msgid "Include only living people in the calendar"
-msgstr "Kalender nur mit lebenden Personen"
+msgstr "Nur lebende Personen in den Kalender aufnehmen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:509
 #: ../gramps/plugins/textreport/birthdayreport.py:524
@@ -21408,24 +21417,24 @@ msgstr "Wähle den anzuzeigenden Nachnamen für verheiratete Frauen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2841
 #: ../gramps/plugins/webreport/webcal.py:1958
 msgid "Include birthdays"
-msgstr "Geburtstage mit einbeziehen"
+msgstr "Geburtstage einbeziehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:555
 #: ../gramps/plugins/textreport/birthdayreport.py:557
 msgid "Whether to include birthdays"
-msgstr "Ob Geburtstage aufgenommen werden"
+msgstr "Ob Geburtstage einbezogen werden sollen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:558
 #: ../gramps/plugins/textreport/birthdayreport.py:560
 #: ../gramps/plugins/webreport/narrativeweb.py:2845
 #: ../gramps/plugins/webreport/webcal.py:1962
 msgid "Include anniversaries"
-msgstr "Jahrestage aufnehmen"
+msgstr "Jahrestage einbeziehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:559
 #: ../gramps/plugins/textreport/birthdayreport.py:561
 msgid "Whether to include anniversaries"
-msgstr "Ob Gedenktage aufgenommen werden"
+msgstr "Ob Jahrestage einbezogen werden sollen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:628
 msgid "Title text and background color"
@@ -21491,7 +21500,7 @@ msgstr "Nachkommenschaubild von %(father)s und %(mother)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:213
 msgid "Descendant Graph"
-msgstr "Nachkommen Grafik"
+msgstr "Nachkommenschaftsdiagramm"
 
 #: ../gramps/plugins/drawreport/descendtree.py:332
 #, python-format
@@ -21532,7 +21541,9 @@ msgstr "Ebene der Partner"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
+msgstr ""
+"0=keine Ehegatten, 1=Ehegatten einbeziehen, 2=Ehegatten des Ehegatten "
+"einbeziehen, usw."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1554
 msgid "Start with the parent(s) of the selected first"
@@ -21584,7 +21595,7 @@ msgstr "Cousinenschaubild für [Namen der Kinder]"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1599
 msgid "Whether to include page numbers on each page."
-msgstr "Ob Seitennummern auf jeder Seite enthalten sind."
+msgstr "Ob die Seitenzahlen auf jeder Seite angegeben werden sollen."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1660
 msgid ""
@@ -21656,7 +21667,7 @@ msgstr "Erzeugt eine grafische Ahnentafel in Baumstruktur"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:76
 msgid "Produces a graphical calendar"
-msgstr "Erstellt einen grafischen Kalender"
+msgstr "Erzeugt einen grafischen Kalender"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:97
 msgid "Descendant Chart"
@@ -21745,7 +21756,8 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:841
 #: ../gramps/plugins/textreport/detdescendantreport.py:1030
 msgid "The number of generations to include in the report"
-msgstr "Anzahl der im Bericht enthaltenen Generationen"
+msgstr ""
+"Die Anzahl der Generationen, die in den Bericht aufgenommen werden sollen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:698
 msgid "Type of graph"
@@ -21765,7 +21777,7 @@ msgstr "Viertelkreis"
 
 #: ../gramps/plugins/drawreport/fanchart.py:702
 msgid "The form of the graph: full circle, half circle, or quarter circle."
-msgstr "Art des Diagrammes: Vollkreis, Halbkreis oder Viertelkreis."
+msgstr "Die Form des Diagramms: Vollkreis, Halbkreis oder Viertelkreis."
 
 #: ../gramps/plugins/drawreport/fanchart.py:708
 msgid "generation dependent"
@@ -22002,7 +22014,7 @@ msgstr "%s (Personen):"
 #: ../gramps/plugins/drawreport/statisticschart.py:1013
 #: ../gramps/plugins/textreport/recordsreport.py:219
 msgid "Determines what people are included in the report."
-msgstr "Legt fest, welche Personen im Bericht enthalten sind."
+msgstr "Legt fest, welche Personen in den Bericht aufgenommen werden."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1018
 #: ../gramps/plugins/drawreport/timeline.py:422
@@ -22043,7 +22055,7 @@ msgstr "Personen geboren nach"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1037
 msgid "Birth year from which to include people."
-msgstr "Geburtsjahr, ab dem Personen enthalten sind."
+msgstr "Geburtsjahr, ab dem Personen aufgenommen werden sollen."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1040
 msgid "People Born Before"
@@ -22055,15 +22067,15 @@ msgstr "Geburtsjahr, bis zu dem die Personen einbezogen werden sollen"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1045
 msgid "Include people without known birth years"
-msgstr "Personen ohne Geburtsjahr einbeziehen"
+msgstr "Personen ohne bekannte Geburtsjahre einbeziehen"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1047
 msgid "Whether to include people without known birth years."
-msgstr "Legt fest, ob Personen ohne bekanntes Geburtsjahr aufgenommen werden."
+msgstr "Ob Personen ohne bekanntes Geburtsjahr einbezogen werden sollen."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1051
 msgid "Genders included"
-msgstr "Geschlechter einbeziehen"
+msgstr "Geschlechter eingeschlossen"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1055
 msgid "Select which genders are included into statistics."
@@ -22090,7 +22102,7 @@ msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
 msgstr ""
-"Ob die Anzahl der Personen, welche die Informationen nicht haben, "
+"Ob die Anzahl der Personen, denen die angegebenen Informationen fehlen, "
 "eingeschlossen werden soll."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1100
@@ -22330,7 +22342,7 @@ msgstr "Personen einbeziehen"
 
 #: ../gramps/plugins/export/exportcsv.py:137
 msgid "Include marriages"
-msgstr "Heiraten einbeziehen"
+msgstr "Eheschließungen einbeziehen"
 
 #: ../gramps/plugins/export/exportcsv.py:138
 #: ../gramps/plugins/textreport/detancestralreport.py:902
@@ -22896,7 +22908,7 @@ msgstr "Altersstatistiken"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:59
 msgid "Gramplet showing graphs of various ages"
-msgstr "Gramplet zeigt Grafen verschiedener Lebensalter"
+msgstr "Gramplet mit Diagrammen verschiedener Altersstufen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:75
 msgid "Gramplet showing calendar and events on specific dates in history"
@@ -23651,7 +23663,7 @@ msgstr "Enthalten"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1322
 msgid "Geography coordinates for Person Events"
-msgstr "Geografiekoordinaten für Personen Ereignisse"
+msgstr "Geographische Koordinaten für Personenereignisse"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1330
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1344
@@ -23660,7 +23672,7 @@ msgstr "Ereigniskoordinaten"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1336
 msgid "Geography coordinates for Family Events"
-msgstr "Geografiekoordinaten für Familien Ereignisse"
+msgstr "Geografische Koordinaten für Familienereignisse"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1337
 msgid "Gramplet showing the events for all the family"
@@ -24312,7 +24324,7 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:36
 msgid "Family Lines Graph"
-msgstr "Familienliniendiagramm"
+msgstr "Diagramm der Familienlinien"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:37
 msgid "Produces family line graphs using Graphviz."
@@ -24320,20 +24332,20 @@ msgstr "Erzeugt Familienliniendiagramme mit Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:59
 msgid "Hourglass Graph"
-msgstr "Stundenglasdiagramm"
+msgstr "Sanduhrdiagramm"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:60
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Erstellt ein Stundenglasdiagramm mit Graphviz."
+msgstr "Erzeugt ein Sanduhrdiagramm mit Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:81
 #: ../gramps/plugins/graph/gvrelgraph.py:208
 msgid "Relationship Graph"
-msgstr "Beziehungengrafik"
+msgstr "Beziehungsdiagramm"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:82
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Erstellt eine Beziehungengrafik mit GraphViz."
+msgstr "Erzeugt Beziehungsdiagramme mit Graphviz."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:74
 #: ../gramps/plugins/graph/gvhourglass.py:59
@@ -24469,7 +24481,7 @@ msgstr "Ob die Anzahl der Vorfahren begrenzt werden soll."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:201
 msgid "The maximum number of ancestors to include."
-msgstr "Höchstzahl zu berücksichtigender Vorfahren."
+msgstr "Die maximale Anzahl der einzubeziehenden Vorfahren."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:205
 msgid "Limit the number of descendants"
@@ -24481,15 +24493,15 @@ msgstr "Ob die Anzahl der Nachkommen begrenzt wird."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:214
 msgid "The maximum number of descendants to include."
-msgstr "Höchstzahl zu berücksichtigender Nachkommen."
+msgstr "Die maximale Anzahl von Nachkommen, die einbezogen werden sollen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:223
 msgid "Include dates"
-msgstr "Kalenderdaten einbeziehen"
+msgstr "Daten einbeziehen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:224
 msgid "Whether to include dates for people and families."
-msgstr "Ob Daten für Personen und Familien enthalten sind."
+msgstr "Ob Daten für Personen und Familien aufgenommen werden sollen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:229
 msgid "Limit dates to years only"
@@ -24505,7 +24517,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:236
 msgid "Whether to include placenames for people and families."
-msgstr "Ob Ortsnamen für Personen und Familien enthalten sind."
+msgstr "Ob Ortsnamen für Personen und Familien aufgenommen werden sollen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:240
 msgid "Include the number of children"
@@ -24516,16 +24528,17 @@ msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
 msgstr ""
-"Ob die Anzahl der Kinder für Familien mit mehr als einem Kind enthalten ist."
+"Ob die Anzahl der Kinder für Familien mit mehr als 1 Kind einbezogen werden "
+"soll."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:247
 #: ../gramps/plugins/graph/gvrelgraph.py:907
 msgid "Include thumbnail images of people"
-msgstr "Mit Miniaturbildern der Personen"
+msgstr "Miniaturbilder von Personen einfügen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:250
 msgid "Whether to include thumbnail images of people."
-msgstr "Ob Miniaturbilder von Personen aufgenommen werden."
+msgstr "Ob Miniaturbilder von Personen aufgenommen werden sollen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:255
 msgid "Thumbnail location"
@@ -24672,7 +24685,7 @@ msgstr "Zentrum - Andere"
 
 #: ../gramps/plugins/graph/gvhourglass.py:369
 msgid "The Center person for the graph"
-msgstr "Die zentrale Person für die Grafik"
+msgstr "Die zentrale Person für das Diagramm"
 
 #: ../gramps/plugins/graph/gvhourglass.py:372
 #: ../gramps/plugins/textreport/kinshipreport.py:362
@@ -24681,7 +24694,9 @@ msgstr "Max. Nachkommengenerationen"
 
 #: ../gramps/plugins/graph/gvhourglass.py:373
 msgid "The number of generations of descendants to include in the graph"
-msgstr "Die Anzahl der Generationen von Nachkommen für die Grafik"
+msgstr ""
+"Die Anzahl der Generationen von Nachkommen, die in das Diagramm aufgenommen "
+"werden sollen"
 
 #: ../gramps/plugins/graph/gvhourglass.py:377
 #: ../gramps/plugins/textreport/kinshipreport.py:366
@@ -24690,7 +24705,9 @@ msgstr "Max. Vorfahrengenerationen"
 
 #: ../gramps/plugins/graph/gvhourglass.py:378
 msgid "The number of generations of ancestors to include in the graph"
-msgstr "Die Anzahl der Vorfahrengenerationen in der Grafik"
+msgstr ""
+"Die Anzahl der Generationen von Vorfahren, die in das Diagramm aufgenommen "
+"werden sollen"
 
 #: ../gramps/plugins/graph/gvhourglass.py:391
 #: ../gramps/plugins/graph/gvrelgraph.py:824
@@ -24773,38 +24790,38 @@ msgstr "Keine Daten oder Orte aufnehmen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:867
 msgid "Include (birth, marriage, death) dates, but no places"
-msgstr "Daten (Geburt, Hochzeit, Tod) einbeziehen, aber keine Orte"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -daten, aber keine Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:869
 msgid "Include (birth, marriage, death) dates, and places"
-msgstr "Daten (Geburt, Hochzeit, Tod) und Orte einbeziehen"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -daten, und Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:871
 msgid "Include (birth, marriage, death) dates, and places if no dates"
 msgstr ""
-"Daten (Geburt, Hochzeit, Tod) einbeziehen und Orte, falls kein Datum "
-"vorhanden"
+"Aufnehmen (Geburts-, Heirats-, Todes-) -daten, und Orte falls keine Daten "
+"vorliegen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:873
 msgid "Include (birth, marriage, death) years, but no places"
-msgstr "Jahre (Geburt, Hochzeit, Tod) einbeziehen, aber keine Orte"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -jahre, aber keine Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:875
 msgid "Include (birth, marriage, death) years, and places"
-msgstr "Jahre (Geburt, Hochzeit, Tod) und Orte einbeziehen"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -jahre, und Orte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:877
 msgid "Include (birth, marriage, death) places, but no dates"
-msgstr "Orte (Geburt, Hochzeit, Tod) einbeziehen, aber keine Daten"
+msgstr "Aufnehmen (Geburts-, Heirats-, Todes-) -orte, aber keine Daten"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:879
 msgid "Include (birth, marriage, death) dates and places on same line"
 msgstr ""
-"Geburts-, Heirats- und Sterbedaten und -orte in derselben Zeile angeben"
+"Aufnehmen (Geburts-, Heirats-, Todes-) -daten und -orte in derselben Zeile"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:882
 msgid "Whether to include dates and/or places"
-msgstr "Ob Daten und/oder Orte enthalten sein sollen"
+msgstr "Ob Daten und/oder Orte einbezogen werden sollen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:885
 msgid "Show all family nodes"
@@ -24827,7 +24844,7 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Eine URL in jeden Diagrammknoten aufnehmen, damit PDF- und Imagemap-Dateien "
+"Füge in jeden Diagrammknoten eine URL ein, so dass PDF- und Imagemap-Dateien "
 "erzeugt werden können, die aktive Links zu den vom Bericht „Erzählende "
 "Website“ erzeugten Dateien enthalten."
 
@@ -24835,7 +24852,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/birthdayreport.py:569
 #: ../gramps/plugins/textreport/indivcomplete.py:1156
 msgid "Include relationship to center person"
-msgstr "Beziehung zur Hauptperson einschließen"
+msgstr "Beziehung zur zentralen Person einbeziehen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:900
 msgid "Whether to show every person's relationship to the center person"
@@ -24843,7 +24860,7 @@ msgstr "Ob die Beziehung jeder Person zur Hauptperson gezeigt werden soll"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:909
 msgid "Whether to include thumbnails of people."
-msgstr "Ob Miniaturbildern von Personen enthalten sein werden."
+msgstr "Ob Miniaturansichten von Personen aufgenommen werden sollen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:913
 msgid "Thumbnail Location"
@@ -24851,7 +24868,7 @@ msgstr "Miniaturbilder Position"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:921
 msgid "Include occupation"
-msgstr "Beruf aufnehmen"
+msgstr "Beruf einbeziehen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:922
 msgid "Do not include any occupation"
@@ -24859,26 +24876,26 @@ msgstr "Keinen Beruf aufnehmen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:923
 msgid "Include description of most recent occupation"
-msgstr "Beschreibung des aktuellsten Berufs aufnehmen"
+msgstr "Beschreibung der letzten Beschäftigung aufnehmen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:925
 msgid "Include date, description and place of all occupations"
-msgstr "Datum, Beschreibung und Ort aller Berufe aufnehmen"
+msgstr "Datum, Beschreibung und Ort aller Tätigkeiten aufnehmen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:927
 msgid "Whether to include the last occupation"
-msgstr "Ob der letzte Beruf aufgenommen wird"
+msgstr "Ob der letzte Beruf einbezogen werden soll"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:931
 msgid "Include relationship debugging numbers also"
-msgstr "Mit Beziehungen Fehlerprüfungnummern"
+msgstr "Auch Zahlen zur Beziehungsanalyse einbeziehen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:934
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
-"Ob auch 'Ga' und 'Gb' eingeschlossen werden sollen, um den Beziehungsrechner "
-"zu debuggen"
+"Ob 'Ga' und 'Gb' mit einbezogen werden sollen, um den Beziehungsrechner zu "
+"debuggen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:962
 msgid "Indicate non-birth relationships with dotted lines"
@@ -30492,8 +30509,8 @@ msgstr "Bietet variable Ersetzungen in Anzeigezeilen."
 msgid ""
 "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr ""
-"Liefert die Basis, die für die grafischen Vorfahren und Nachkommen Berichte "
-"benötigt wird."
+"Stellt die Basis für die grafischen Berichte über Vorfahren und Nachkommen "
+"bereit."
 
 #: ../gramps/plugins/lib/libprogen.py:375
 #, python-format
@@ -30880,16 +30897,16 @@ msgid ""
 msgstr ""
 "Du musst den Kachel-Cache überprüfen und ändern\n"
 "...\n"
-"[Geographie]\n"
+"[geography]\n"
 "...\n"
-"path = 'ungültig/Pfad'\n"
+"path = 'ungültiger/Pfad'\n"
 "...\n"
 "in der Datei gramps.ini:\n"
 "%s\n"
 "\n"
-"Bevor du die Datei gramps.ini ändern kannst, musst du gramps schließen\n"
+"Bevor du die Datei gramps.ini änderst, musst du Gramps schließen\n"
 "\n"
-"Die nächsten Fehler sind normal"
+"Die nächsten Fehler werden normal sein"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:183
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -31491,7 +31508,7 @@ msgstr "Weibliche Nachkommen in direkter Linie"
 #: ../gramps/plugins/quickview/lineage.py:125
 #: ../gramps/plugins/quickview/lineage.py:221
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr "FEHLER: Zu viele Ebenen in dem Baum (vielleicht eine Schleife?)."
+msgstr "FEHLER: Zu viele Ebenen im Baum (vielleicht eine Schleife?)."
 
 #: ../gramps/plugins/quickview/lineage.py:156
 msgid "No birth relation with child"
@@ -32052,7 +32069,7 @@ msgstr "Dritte Textzeile am Ende des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:509
 msgid "Include only living people in the report"
-msgstr "Nur lebende Personen in den Bericht aufnehmen"
+msgstr "Nur lebende Personen in den Bericht einbeziehen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:512
 msgid "Dead Symbol"
@@ -32078,16 +32095,16 @@ msgstr "Jahr des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:564
 msgid "Include death anniversaries"
-msgstr "Todestage aufnehmen"
+msgstr "Todestage einbeziehen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:565
 msgid "Whether to include anniversaries of death"
-msgstr "Ob Todestage aufgenommen werden"
+msgstr "Ob Todestage einbezogen werden sollen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:571
 #: ../gramps/plugins/textreport/indivcomplete.py:1158
 msgid "Whether to include relationships to the center person"
-msgstr "Ob die Beziehungen zur Hauptperson aufgenommen werden"
+msgstr "Ob Beziehungen zur zentralen Person einbezogen werden sollen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:640
 msgid "Title text style"
@@ -32220,13 +32237,12 @@ msgstr "Ob doppelte Stammbäume in dem Bericht enthalten sind."
 #: ../gramps/plugins/textreport/descendreport.py:598
 #, python-format
 msgid "The style used for the level %d display."
-msgstr "Der Stil, der für Anzeigen der Stufe %d verwendet wird."
+msgstr "Der für die Anzeige der Ebene %d verwendete Stil."
 
 #: ../gramps/plugins/textreport/descendreport.py:609
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr ""
-"Der Stil, der für die Anzeige der Stufe des Ehepartners %d verwendet wird."
+msgstr "Der für die Anzeige der Ehegattenebene %d verwendete Stil."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:216
 #, python-format
@@ -32394,7 +32410,7 @@ msgstr "Ob Kinder aufgelistet werden."
 #: ../gramps/plugins/textreport/detancestralreport.py:906
 #: ../gramps/plugins/textreport/detdescendantreport.py:1091
 msgid "Include spouses of children"
-msgstr "Partner(-innen) der Kinder einbeziehen"
+msgstr "Ehepartner von Kindern einbeziehen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:908
 #: ../gramps/plugins/textreport/detdescendantreport.py:1093
@@ -32404,26 +32420,27 @@ msgstr "Ob die Partner(inen) der Kinder aufgelistet werden."
 #: ../gramps/plugins/textreport/detancestralreport.py:911
 #: ../gramps/plugins/textreport/detdescendantreport.py:1105
 msgid "Include events"
-msgstr "Ereignisse aufnehmen"
+msgstr "Ereignisse einbeziehen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:912
 #: ../gramps/plugins/textreport/detdescendantreport.py:1106
 msgid "Whether to include events."
-msgstr "Ob Ereignisse aufgenommen werden."
+msgstr "Ob Ereignisse einbezogen werden sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:915
 msgid "Include other events"
-msgstr "Andere Ereignisse aufnehmen"
+msgstr "Andere Ereignisse einbeziehen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:916
 msgid "Whether to include other events people participated in."
 msgstr ""
-"Ob andere Ereignisse an denen Personen beteiligt sind aufgenommen werden."
+"Ob andere Ereignisse einbezogen werden sollen, an denen Personen "
+"teilgenommen haben."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:921
 #: ../gramps/plugins/textreport/detdescendantreport.py:1110
 msgid "Include descendant reference in child list"
-msgstr "Verweis auf Nachfahren in die Liste der Kinder aufnehmen"
+msgstr "Verweis auf Nachkommen in die Kindliste aufnehmen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:923
 #: ../gramps/plugins/textreport/detdescendantreport.py:1112
@@ -32434,13 +32451,13 @@ msgstr "Ob Verweise auf Nachfahren in die Liste der Kinder aufgenommen wird."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1116
 #: ../gramps/plugins/textreport/indivcomplete.py:1133
 msgid "Include Photo/Images from Gallery"
-msgstr "Fotos/Bilder aus der Galerie aufnehmen"
+msgstr "Foto/Bilder aus der Galerie einfügen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:928
 #: ../gramps/plugins/textreport/detdescendantreport.py:1117
 #: ../gramps/plugins/textreport/indivcomplete.py:1134
 msgid "Whether to include images."
-msgstr "Ob Bilder aufgenommen werden."
+msgstr "Ob Bilder aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1120
@@ -32452,12 +32469,12 @@ msgstr "Einbeziehen (2)"
 #: ../gramps/plugins/textreport/detancestralreport.py:933
 #: ../gramps/plugins/textreport/detdescendantreport.py:1122
 msgid "Include notes"
-msgstr "Notizen aufnehmen"
+msgstr "Notizen einbeziehen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:934
 #: ../gramps/plugins/textreport/detdescendantreport.py:1123
 msgid "Whether to include notes."
-msgstr "Ob Notizen aufgenommen werden."
+msgstr "Ob Notizen aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:937
 #: ../gramps/plugins/textreport/detdescendantreport.py:1126
@@ -32467,7 +32484,7 @@ msgstr "Quellen einbeziehen"
 #: ../gramps/plugins/textreport/detancestralreport.py:938
 #: ../gramps/plugins/textreport/detdescendantreport.py:1127
 msgid "Whether to include source references."
-msgstr "Ob Quellennachweise einbezogen werden."
+msgstr "Ob Quellenangaben enthalten sein sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:941
 #: ../gramps/plugins/textreport/detdescendantreport.py:1130
@@ -32482,8 +32499,8 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
-"Ob Notizen in die Quellennachweise aufgenommen werden. Funktioniert nur, "
-"wenn 'Quellen aufnehmen' gewählt ist."
+"Ob Quellnotizen in den Abschnitt Endnoten aufgenommen werden sollen. "
+"Funktioniert nur, wenn Quellen einschließen ausgewählt ist."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:947
 #: ../gramps/plugins/textreport/detdescendantreport.py:1136
@@ -32505,17 +32522,17 @@ msgstr "Adressen einbeziehen"
 #: ../gramps/plugins/textreport/detancestralreport.py:952
 #: ../gramps/plugins/textreport/detdescendantreport.py:1141
 msgid "Whether to include addresses."
-msgstr "Ob Adressen aufgenommen werden."
+msgstr "Ob Adressen einbezogen werden sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:955
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
 msgid "Include alternative names"
-msgstr "Alternative Namen mit einbeziehen"
+msgstr "Alternative Namen einbeziehen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:956
 #: ../gramps/plugins/textreport/detdescendantreport.py:1145
 msgid "Whether to include other names."
-msgstr "Ob andere Namen aufgenommen werden."
+msgstr "Ob andere Namen aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:962
 #: ../gramps/plugins/textreport/detdescendantreport.py:1164
@@ -32557,7 +32574,7 @@ msgstr "Der Stil, der für die Notiz Überschrift verwendet wird."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1238
 #: ../gramps/plugins/textreport/tableofcontents.py:117
 msgid "The style used for first level headings."
-msgstr "Der Stil für Ebene eins Überschriften."
+msgstr "Der für die Überschriften der ersten Ebene verwendete Stil."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1045
 #: ../gramps/plugins/textreport/detdescendantreport.py:1248
@@ -32565,7 +32582,7 @@ msgstr "Der Stil für Ebene eins Überschriften."
 #: ../gramps/plugins/textreport/summary.py:319
 #: ../gramps/plugins/textreport/tableofcontents.py:123
 msgid "The style used for second level headings."
-msgstr "Der Stil für Ebene zwei Überschriften."
+msgstr "Der für Überschriften der zweiten Ebene verwendete Stil."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1055
 #: ../gramps/plugins/textreport/detdescendantreport.py:1258
@@ -32612,15 +32629,16 @@ msgstr "Wie Personen im Bericht geordnet sind"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1096
 #: ../gramps/plugins/textreport/kinshipreport.py:370
 msgid "Include spouses"
-msgstr "Partner einbeziehen"
+msgstr "Ehepartner einbeziehen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1098
 msgid "Whether to include detailed spouse information."
-msgstr "Ob detaillierte Informationen über den Partner enthalten sind."
+msgstr ""
+"Ob detaillierte Informationen über den Ehepartner aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1101
 msgid "Include spouse reference"
-msgstr "Partner Referenzen einbeziehen"
+msgstr "Referenz des Ehepartners einschließen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1102
 msgid "Whether to include reference to spouse."
@@ -32628,27 +32646,27 @@ msgstr "Ob Referenzen zum Partner einbezogen werden."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 msgid "Include sign of succession ('+') in child-list"
-msgstr "Mit Nachkommenzeichen ('+') in Kinderliste"
+msgstr "Zeichen der Nachfolge ('+') in die Kinderliste aufnehmen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
-"Ob ein Zeichen ('+') vor der Nachkommennummer in der Kinderliste angezeigt "
-"wird, um anzuzeigen, dass ein Kind Nachkommen hat."
+"Ob ein Zeichen ('+') vor der Nachkommennummer in der Kinderliste eingefügt "
+"werden soll, um anzuzeigen, dass ein Kind Nachkommen hat."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1155
 msgid "Include path to start-person"
-msgstr "Mit Weg zur Start-Person"
+msgstr "Pfad zur Startperson einbeziehen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1156
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr ""
-"Ob der Pfad der Nachkommenschaft von der Startperson zu jedem Nachkommen "
-"enthalten ist."
+"Ob der Abstammungspfad von der Startperson zu jedem Nachkommen einbezogen "
+"werden soll."
 
 #: ../gramps/plugins/textreport/endoflinereport.py:159
 #, python-format
@@ -32722,7 +32740,7 @@ msgstr "Hochzeit der Eltern"
 
 #: ../gramps/plugins/textreport/familygroup.py:753
 msgid "Whether to include marriage information for parents."
-msgstr "Ob Heiratsinformationen der Eltern enthalten sind."
+msgstr "Ob Heiratsinformationen für die Eltern aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:756
 msgid "Parent Events"
@@ -32730,7 +32748,7 @@ msgstr "Ereignisse der Eltern"
 
 #: ../gramps/plugins/textreport/familygroup.py:757
 msgid "Whether to include events for parents."
-msgstr "Ob Ereignisse für Eltern enthalten sind."
+msgstr "Ob Ereignisse für Eltern einbezogen werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:760
 msgid "Parent Addresses"
@@ -32738,7 +32756,7 @@ msgstr "Adressen der Eltern"
 
 #: ../gramps/plugins/textreport/familygroup.py:761
 msgid "Whether to include addresses for parents."
-msgstr "Ob Adressen der Eltern enthalten sind."
+msgstr "Ob die Adressen der Eltern angegeben werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:764
 msgid "Parent Notes"
@@ -32746,7 +32764,7 @@ msgstr "Notizen der Eltern"
 
 #: ../gramps/plugins/textreport/familygroup.py:765
 msgid "Whether to include notes for parents."
-msgstr "Ob Notizen für Eltern enthalten sind."
+msgstr "Ob Notizen für Eltern hinzugefügt werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:768
 msgid "Parent Attributes"
@@ -32758,11 +32776,11 @@ msgstr "Alternative Namen der Eltern"
 
 #: ../gramps/plugins/textreport/familygroup.py:774
 msgid "Whether to include alternate names for parents."
-msgstr "Ob alternative Namen der Eltern enthalten sind."
+msgstr "Ob alternative Namen für die Eltern angegeben werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:785
 msgid "Whether to include notes for families."
-msgstr "Ob Notizen für Familien enthalten sind."
+msgstr "Ob Notizen für Familien aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:788
 msgid "Dates of Relatives"
@@ -32770,7 +32788,8 @@ msgstr "Daten von Verwandten"
 
 #: ../gramps/plugins/textreport/familygroup.py:789
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "Ob Daten von Verwandten (Vater, Mutter, Partner) enthalten sind."
+msgstr ""
+"Ob Daten für Verwandte (Vater, Mutter, Ehepartner) angegeben werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:793
 msgid "Children Marriages"
@@ -32778,7 +32797,7 @@ msgstr "Hochzeiten der Kinder"
 
 #: ../gramps/plugins/textreport/familygroup.py:795
 msgid "Whether to include marriage information for children."
-msgstr "Ob Heiratsinformationen der Kinder enthalten sind."
+msgstr "Ob Heiratsinformationen für Kinder aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:798
 msgid "Generation numbers (recursive only)"
@@ -32786,7 +32805,9 @@ msgstr "Generationen-Nummerierung (nur Rekursiv)"
 
 #: ../gramps/plugins/textreport/familygroup.py:800
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "Ob die Generation auf jedem Bericht angegeben wird (nur rekursiv)."
+msgstr ""
+"Angabe, ob die Generation in jeden Bericht aufgenommen werden soll (nur "
+"rekursiv)."
 
 #: ../gramps/plugins/textreport/familygroup.py:804
 msgid "Print fields for missing information"
@@ -32794,7 +32815,7 @@ msgstr "Drucke Felder für fehlende Informationen"
 
 #: ../gramps/plugins/textreport/familygroup.py:806
 msgid "Whether to include fields for missing information."
-msgstr "Ob Felder für fehlende Informationen enthalten sind."
+msgstr "Ob Felder für fehlende Informationen aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/familygroup.py:906
 msgid "The style used for the parent's name"
@@ -32855,15 +32876,15 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
-msgstr "Notizen aufnehmen"
+msgstr "Notizen einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1117
 msgid "Whether to include Person and Family Notes."
-msgstr "Ob Personen- und Familiennotizen aufgenommen werden."
+msgstr "Ob Notizen zu Person und Familie aufgenommen werden sollen."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1120
 msgid "Include Source Information"
-msgstr "Quellinformationen aufnehmen"
+msgstr "Quellenangaben einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1121
 msgid "Whether to cite sources."
@@ -32871,11 +32892,11 @@ msgstr "Ob Quellen zitiert werden."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1143
 msgid "Include Tags"
-msgstr "Markierungen aufnehmen"
+msgstr "Markierungen einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1144
 msgid "Whether to include tags."
-msgstr "Ob Markierungen aufgenommen werden."
+msgstr "Ob Markierungen einbezogen werden sollen."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1147
 msgid "Include Attributes"
@@ -32883,11 +32904,11 @@ msgstr "Attribute einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1151
 msgid "Include Census Events"
-msgstr "Volkszählungsereignisse aufnehmen"
+msgstr "Volkszählungsereignisse einbeziehen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1152
 msgid "Whether to include Census Events."
-msgstr "Ob Volkszählungsereignisse aufgenommen werden."
+msgstr "Ob Volkszählungsereignisse einbezogen werden sollen."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1162
 msgid "Sections"
@@ -32939,7 +32960,7 @@ msgstr "Ob Ehepartner einbezogen werden sollen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:374
 msgid "Include cousins"
-msgstr "Cousins aufnehmen"
+msgstr "Cousins und Cousinen einbeziehen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:375
 msgid "Whether to include cousins"
@@ -32947,7 +32968,7 @@ msgstr "Ob Cousins und Cousinen einbezogen werden sollen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:378
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr "Tanten/Onkel/Neffen/Nichten aufnehmen"
+msgstr "Tanten/Onkel/Neffen/Nichten einbeziehen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:379
 msgid "Whether to include aunts/uncles/nephews/nieces"
@@ -33228,7 +33249,7 @@ msgstr "Inhalt"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:129
 msgid "The style used for third level headings."
-msgstr "Der Stil für Ebene drei Überschriften."
+msgstr "Der für Überschriften der dritten Ebene verwendete Stil."
 
 #: ../gramps/plugins/textreport/tagreport.py:106
 #: ../gramps/plugins/textreport/textplugins.gpr.py:258
@@ -34247,23 +34268,23 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Dieses Werkzeug ermöglicht Stapel-Operationen auf in Gramps gespeicherten "
+"Dieses Werkzeug ermöglicht Batch-Operationen auf in Gramps gespeicherten "
 "Medienobjekten. Es muss ein wichtiger Unterschied zwischen einem Gramps-"
 "Medienobjekt und seiner Datei gemacht werden.\n"
 "\n"
-"Das Gramps-Medienobjekt ist eine Sammlung von Daten über die "
-"Medienobjektdatei: ihr Dateiname und/oder Pfad, ihre Beschreibung, ihre ID, "
-"Notizen, Quellenangaben usw. Diese Daten %(bold_start)sumfassen nicht die "
-"Datei selbst%(bold_end)s.\n"
+"Das Gramps-Medienobjekt ist eine Sammlung von Daten über die Datei des "
+"Medienobjekts: sein Dateiname und/oder Pfad, seine Beschreibung, seine ID, "
+"Anmerkungen, Quellenangaben usw. Diese Daten %(bold_start)s umfassen nicht "
+"die Datei selbst%(bold_end)s.\n"
 "\n"
 "Die Dateien, die Bild, Ton, Video usw. enthalten, existieren separat auf "
 "deiner Festplatte. Diese Dateien werden nicht von Gramps verwaltet und sind "
 "nicht in der Gramps-Datenbank enthalten. Die Gramps-Datenbank speichert nur "
 "den Pfad und die Dateinamen.\n"
 "\n"
-"Mit diesem Werkzeug kannst du nur die Datensätze in deiner Gramps-Datenbank "
-"ändern. Wenn du die Dateien verschiebst oder umbenennen möchtest, müsst du "
-"dies selbst tun, außerhalb von Gramps. Dann kannst du die Pfade mit diesem "
+"Mit diesem Werkzeug kann man nur die Einträge in der Gramps-Datenbank "
+"ändern. Wenn du die Dateien verschieben oder umbenennen willst, musst du das "
+"selbst tun, außerhalb von Gramps. Dann kannst du die Pfade mit diesem "
 "Werkzeug anpassen, damit die Medienobjekte die richtigen Dateispeicherorte "
 "speichern."
 
@@ -34388,11 +34409,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:644
 msgid "Add images not included in database"
-msgstr "Bilder, die nicht in der Datenbank enthalten sind, hinzufügen"
+msgstr "Bilder hinzufügen, die nicht in der Datenbank enthalten sind"
 
 #: ../gramps/plugins/tool/mediamanager.py:645
 msgid "Check directories for images not included in database"
-msgstr "Verzeichnisse auf nicht in der Datenbank enthaltene Bilder überprüfen"
+msgstr "Verzeichnisse auf nicht in der Datenbank enthaltene Bilder prüfen"
 
 #: ../gramps/plugins/tool/mediamanager.py:646
 msgid ""
@@ -34984,7 +35005,7 @@ msgstr "Sortiereihenfolge setzen"
 
 #: ../gramps/plugins/tool/sortevents.py:192
 msgid "Include family events"
-msgstr "Familienereignisse aufnehmen"
+msgstr "Familienereignisse einbeziehen"
 
 #: ../gramps/plugins/tool/sortevents.py:193
 msgid "Sort family events of the person"
@@ -35004,8 +35025,8 @@ msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
-"Generiere Datenbankfehler auf niedriger Ebene \n"
-"Die Korrektur erfordert das erneute Laden der Datenbank"
+"Generierung von Datenbankfehlern auf niedriger Ebene\n"
+"Korrektur erfordert Neuladen der Datenbank"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
 msgid "Generate database errors"
@@ -35047,7 +35068,7 @@ msgstr "Erstelle Testfälle"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:378
 msgid "Generating low level database errors"
-msgstr "Erstelle Datenbankfehler auf niedriger Ebene"
+msgstr "Generierung von Datenbankfehlern auf niedriger Ebene"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:388
 msgid "Generating database errors"
@@ -35790,7 +35811,7 @@ msgstr "Max. Nachkommengenerationen"
 #: ../gramps/plugins/view/fanchartdescview.py:283
 #: ../gramps/plugins/view/fanchartview.py:381
 msgid "Text Font"
-msgstr "Textschriftart"
+msgstr "Text Schriftart"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:291
 #: ../gramps/plugins/view/fanchartdescview.py:288
@@ -36407,7 +36428,7 @@ msgstr "Bitte verwende Filter, um die Anzahl zu reduzieren."
 
 #: ../gramps/plugins/view/geoplaces.py:475
 msgid "You can modify this value in the geography option."
-msgstr "Du kannst diesen Wert in den Geografieoptionen ändern."
+msgstr "Du kannst diesen Wert in der Option Geografie ändern."
 
 #: ../gramps/plugins/view/geoplaces.py:477
 msgid "In this case, it may take time to show all markers."
@@ -37571,7 +37592,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2158
 msgid "Include narrative notes just after name, gender"
-msgstr "Mit erzählenden Anmerkungen direkt nach Namen, Geschlecht"
+msgstr "Erzählerische Notizen direkt nach Namen, Geschlecht aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2160
 msgid ""
@@ -37682,7 +37703,7 @@ msgstr "Bilder Erstellung"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2230
 msgid "Include images and media objects"
-msgstr "Bilder und Medienobjekte aufnehmen"
+msgstr "Bilder und Medienobjekte einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2232
 msgid "Whether to include a gallery of media objects"
@@ -37698,11 +37719,12 @@ msgstr "Mit dieser Option kannst du den Bilderindex erstellen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Include unused images and media objects"
-msgstr "Unbenutzte Bilder und Medienobjekte aufnehmen"
+msgstr "Nicht verwendete Bilder und Medienobjekte einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2247
 msgid "Whether to include unused or unreferenced media objects"
-msgstr "Ob unbenutzte nicht referenzierte Medienobjekte aufgenommen werden"
+msgstr ""
+"Ob ungenutzte oder nicht referenzierte Medienobjekte einbezogen werden sollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2252
 msgid "Create and only use thumbnail- sized images"
@@ -37741,7 +37763,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2288
 msgid "Include download page"
-msgstr "Enthält eine Downloadseite"
+msgstr "Downloadseite einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2290
 msgid "Whether to include a database download option"
@@ -37754,7 +37776,7 @@ msgstr "Wie viele Downloads"
 #: ../gramps/plugins/webreport/narrativeweb.py:2296
 msgid "The number of download files to include in the download page"
 msgstr ""
-"Die Anzahl der Download-Dateien, die auf der Download-Seite enthalten sein "
+"Die Anzahl der Downloaddateien, die in die Downloadseite aufgenommen werden "
 "sollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2305
@@ -37796,66 +37818,66 @@ msgstr "Die Kodierung, die für die Webdateien verwendet werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2337
 msgid "Include link to active person on every page"
-msgstr "Link zur aktiven Person auf jeder Seite"
+msgstr "Link zur aktiven Person auf jeder Seite einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2339
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr "Link zur aktiven Person auf jeder Seite (wenn sie eine Website hat)"
+msgstr "Einen Link zur aktiven Person einfügen (falls sie eine Webseite hat)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2343
 msgid "Include a column for birth dates on the index pages"
-msgstr "Spalte für Geburtsdaten auf den Indexseiten"
+msgstr "Einfügen einer Spalte für Geburtsdaten auf den Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2344
 msgid "Whether to include a birth column"
-msgstr "Ob eine Geburtsspalte eingefügt werden soll"
+msgstr "Ob eine Geburtsspalte aufgenommen werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2348
 msgid "Include a column for death dates on the index pages"
-msgstr "Spalte für Todesdaten auf den Indexseiten"
+msgstr "Aufnahme einer Spalte für Sterbedaten in die Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2349
 msgid "Whether to include a death column"
-msgstr "Ob eine Todesspalte eingefügt werden soll"
+msgstr "Ob eine Sterbespalte eingefügt werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2352
 msgid "Include a column for partners on the index pages"
-msgstr "Spalte für Partner auf den Indexseiten"
+msgstr "Eine Spalte für Partner auf den Indexseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2354
 msgid "Whether to include a partners column"
-msgstr "Ob eine Spalte für Partner aufgenommen wird"
+msgstr "Ob eine Partnerspalte eingefügt werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2357
 msgid "Include a column for parents on the index pages"
-msgstr "Spalte für Eltern auf den Indexseiten"
+msgstr "Eine Spalte für Eltern auf den Indexseiten einfügen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2359
 msgid "Whether to include a parents column"
-msgstr "Ob eine Spalte für Eltern aufgenommen wird"
+msgstr "Ob eine Elternspalte eingefügt werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2363
 msgid "Include half and/or step-siblings on the individual pages"
-msgstr "Halb- und/oder Stiefgeschwister auf den Personenseiten aufnehmen"
+msgstr "Halb- und/oder Stiefgeschwister auf den persönlichen Seiten einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2366
 msgid ""
 "Whether to include half and/or step-siblings with the parents and siblings"
 msgstr ""
 "Ob Halb- und/oder Stiefgeschwister mit den Eltern und Geschwistern "
-"aufgenommen werden"
+"einbezogen werden sollen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2379
 msgid "Include family pages"
-msgstr "Familienseiten aufnehmen"
+msgstr "Familienseiten einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2380
 msgid "Whether or not to include family pages."
-msgstr "Ob Familienseiten enthalten sind."
+msgstr "Ob Familienseiten aufgenommen werden sollen oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2383
 msgid "Include event pages"
-msgstr "Ereignisseiten aufnehmen"
+msgstr "Ereignisseiten einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2385
 msgid "Add a complete events list and relevant pages or not"
@@ -37888,15 +37910,15 @@ msgstr "Ob die Quellenseiten einbezogen werden sollen oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2403
 msgid "Include repository pages"
-msgstr "Aufbewahrungsorteseiten aufnehmen"
+msgstr "Aufbewahrungsortseiten einbeziehen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2405
 msgid "Whether or not to include the repository pages."
-msgstr "Ob Aufbewahrungsorteseiten einbezogen werden sollen oder nicht."
+msgstr "Ob Aufbewahrungsortseiten einbezogen werden sollen oder nicht."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2409
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr "GENDEX-Datei (/gendex.txt) aufnehmen"
+msgstr "GENDEX-Datei einbinden (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2410
 msgid "Whether to include a GENDEX file or not"
@@ -37911,12 +37933,13 @@ msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"Ob Adressbuchseiten enthalten sind, die E-mail-, Webseiten-, und persönliche "
-"Adressen und Wohnortsereignisse enthalten können."
+"Ob Adressbuchseiten hinzugefügt werden sollen oder nicht, die E-Mail- und "
+"Website-Adressen sowie persönliche Adressen und Ereignisse am Wohnort "
+"enthalten können."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2420
 msgid "Include the statistics page"
-msgstr "Statistikseite aufnehmen"
+msgstr "Einbindung der Statistikseite"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2421
 msgid "Whether or not to add statistics page"
@@ -37944,19 +37967,20 @@ msgstr "Wähle den Kartenservice zum Erstellen der Ortskartenseiten."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2447
 msgid "Include Place map on Place Pages"
-msgstr "Mit Orte Karte auf den Ortsseiten"
+msgstr "Ortskarte auf Ortsseiten einbinden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2449
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr ""
-"Ob eine Ortskarte auf der Ortsseite aufgenommen wird, wo Längen-/"
-"Breitenangaben vorhanden sind."
+"Ob eine Ortskarte auf den Ortsseiten eingefügt werden soll, wenn Längen- und "
+"Breitengrad verfügbar sind."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2454
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Mit Familien Kartenseite mit allen Orten angezeigt auf der Karte"
+msgstr ""
+"Familienkartenseiten mit allen auf der Karte gezeigten Orten einschließen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2458
 msgid ""
@@ -38129,12 +38153,12 @@ msgstr "Kalenderoptionen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2812
 msgid "Do we include the web calendar ?"
-msgstr "Integrieren wir den Webkalender?"
+msgstr "Wird der Webkalender einbezogen?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2813
 #, python-format
 msgid "Whether to include a calendar for year %s"
-msgstr "Ob ein Kalender für das Jahr %s enthalten sein soll"
+msgstr "Ob ein Kalender für das Jahr %s eingefügt werden soll"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2835
 #: ../gramps/plugins/webreport/webcal.py:1953
@@ -38150,7 +38174,7 @@ msgstr "Ob Eintagesseiten erstellt werden sollen oder nicht"
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
 #: ../gramps/plugins/webreport/webcal.py:1959
 msgid "Include birthdays in the calendar"
-msgstr "Kalender mit Geburtstagen"
+msgstr "Geburtstage in den Kalender aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2846
 #: ../gramps/plugins/webreport/webcal.py:1963
@@ -38165,7 +38189,7 @@ msgstr "Todesdaten einbeziehen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2850
 #: ../gramps/plugins/webreport/webcal.py:1967
 msgid "Include death anniversaries in the calendar"
-msgstr "Todesjahrestage in Kalender aufnehmen"
+msgstr "Todestage in den Kalender aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2859
 #: ../gramps/plugins/webreport/webcal.py:1977
