@@ -64,8 +64,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-12-09 06:50+0000\n"
-"Last-Translator: Gianluca Boiano <morf3089@gmail.com>\n"
+"PO-Revision-Date: 2022-02-23 19:27+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -73,7 +73,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2654,64 +2654,76 @@ msgstr "dic"
 #. to learn how to add proper alternatives to be recognized in your localized
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
+#, fuzzy
 msgctxt "alternative month names for January"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
+#, fuzzy
 msgctxt "alternative month names for February"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
+#, fuzzy
 msgctxt "alternative month names for March"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
+#, fuzzy
 msgctxt "alternative month names for April"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
+#, fuzzy
 msgctxt "alternative month names for May"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
+#, fuzzy
 msgctxt "alternative month names for June"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
+#, fuzzy
 msgctxt "alternative month names for July"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
+#, fuzzy
 msgctxt "alternative month names for August"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
+#, fuzzy
 msgctxt "alternative month names for September"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
+#, fuzzy
 msgctxt "alternative month names for October"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
+#, fuzzy
 msgctxt "alternative month names for November"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
+#, fuzzy
 msgctxt "alternative month names for December"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
@@ -3161,7 +3173,7 @@ msgstr ""
 "tra versioni differenti di Python."
 
 #: ../gramps/gen/db/exceptions.py:137
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Family Tree you are trying to load is in the schema version "
 "%(oldschema)s format. This version of Gramps uses schema version "
@@ -3180,6 +3192,22 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
+"The Family Tree you are trying to load is in the schema version %(oldschema)"
+"s format. This version of Gramps uses schema version %(newschema)s. "
+"Therefore you cannot load this Family Tree without upgrading the schema "
+"version of the Family Tree.\n"
+"\n"
+"If you upgrade then you won't be able to use the previous version of Gramps, "
+"even if you subsequently %(wiki_manual_backup_html_start)sbackup%(html_end)s "
+"or %(wiki_manual_export_html_start)sexport%(html_end)s your upgraded Family "
+"Tree.\n"
+"\n"
+"Upgrading is a difficult task which could irretrievably corrupt your Family "
+"Tree if it is interrupted or fails.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your %(bold_start)sold%(bold_end)s version of Gramps and "
+"%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 
 #: ../gramps/gen/db/exceptions.py:174
 #, python-format
@@ -3197,7 +3225,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3214,6 +3242,20 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
+"The Family Tree you are trying to load is in the %(dbtype)s database, which "
+"is no longer supported.\n"
+"Therefore you cannot load this Family Tree without upgrading.\n"
+"\n"
+"If you upgrade then you won't be able to use the previous version of Gramps, "
+"even if you subsequently %(wiki_manual_backup_html_start)sbackup%(html_end)s "
+"or %(wiki_manual_export_html_start)sexport%(html_end)s your upgraded Family "
+"Tree.\n"
+"\n"
+"You are strongly advised to backup your Family Tree.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your previous version of Gramps and %(wiki_backup_html_start)smake a "
+"backup%(html_end)s of your Family Tree."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3359,8 +3401,9 @@ msgstr "Statistiche aggiornamento"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:707
+#, fuzzy
 msgid ","
-msgstr ""
+msgstr ","
 
 #: ../gramps/gen/display/name.py:353
 msgid "Default format (defined by Gramps preferences)"
@@ -8142,12 +8185,14 @@ msgid "<No Status>"
 msgstr "<Nessuno stato>"
 
 #: ../gramps/gen/lib/ldsord.py:104
+#, fuzzy
 msgid "Born in Covenant"
-msgstr ""
+msgstr "Born in Covenant"
 
 #: ../gramps/gen/lib/ldsord.py:105
+#, fuzzy
 msgid "Canceled"
-msgstr ""
+msgstr "Canceled"
 
 #: ../gramps/gen/lib/ldsord.py:106
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:124
@@ -8178,8 +8223,9 @@ msgid "Do not seal"
 msgstr "Non ridimensionare l'albero"
 
 #: ../gramps/gen/lib/ldsord.py:110
+#, fuzzy
 msgid "Infant"
-msgstr ""
+msgstr "Infant"
 
 #: ../gramps/gen/lib/ldsord.py:111
 msgid "Pre-1970"
@@ -8204,8 +8250,9 @@ msgid "Submitted"
 msgstr "Inviato"
 
 #: ../gramps/gen/lib/ldsord.py:116
+#, fuzzy
 msgid "Uncleared"
-msgstr ""
+msgstr "Uncleared"
 
 #: ../gramps/gen/lib/ldsord.py:170 ../gramps/gui/editors/editldsord.py:314
 #: ../gramps/gui/editors/editldsord.py:442
@@ -9653,6 +9700,7 @@ msgid "Aspect ratio"
 msgstr "Rapporto d'aspetto"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:221
+#, fuzzy
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -9668,6 +9716,19 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
+"Affects node spacing and scaling of the graph.\n"
+"If the graph is smaller than the print area:\n"
+"  Compress will not change the node spacing. \n"
+"  Fill will increase the node spacing to fit the print area in both width "
+"and height.\n"
+"  Expand will increase the node spacing uniformly to preserve the aspect "
+"ratio.\n"
+"If the graph is larger than the print area:\n"
+"  Compress will shrink the graph to achieve tight packing at the expense of "
+"symmetry.\n"
+"  Fill will shrink the graph to fit the print area after first increasing "
+"the node spacing.\n"
+"  Expand will shrink the graph uniformly to fit the print area."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid "DPI"
@@ -10651,8 +10712,9 @@ msgid "German"
 msgstr "Tedesco"
 
 #: ../gramps/gen/utils/grampslocale.py:78
+#, fuzzy
 msgid "German (Austria)"
-msgstr ""
+msgstr "German (Austria)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -11456,6 +11518,7 @@ msgid "_Close"
 msgstr "_Chiudi"
 
 #: ../gramps/gui/configure.py:119
+#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11486,6 +11549,34 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
+"The following keywords are replaced with the appropriate name parts:<tt>\n"
+"  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames ("
+"with prefix and connectors)\n"
+"  <b>Title</b>   - title (Dr., Mrs.)           <b>Suffix</b>   - suffix ("
+"Jr., Sr.)\n"
+"  <b>Call</b>    - call name                   <b>Nickname</b> - nick name\n"
+"  <b>Initials</b>- first letters of given      <b>Common</b>   - nick name, "
+"call, or first of given\n"
+"  <b>Prefix</b>  - all prefixes (von, de)\n"
+"Surnames:\n"
+"  <b>Rest</b>      - non primary surnames    <b>Notpatronymic</b>- all "
+"surnames, except pa/matronymic &amp; primary\n"
+"  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames ("
+"no prefixes and connectors)\n"
+"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
+"prefix, surname only, connector\n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic "
+"surname, prefix, surname only, connector\n"
+"</tt>\n"
+"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. "
+"Other text appears literally.\n"
+"\n"
+"<b>Example</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"Underhills\n"
+"     <i>Edwin Jose</i>: Given, <i>von der</i>: Prefix, <i>Smith</i> and "
+"<i>Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: Patronymic,\n"
+"     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
+"<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 
 #: ../gramps/gui/configure.py:148
 msgid " Name Editor"
@@ -11954,7 +12045,7 @@ msgid "Markup for invalid date format"
 msgstr "Marcatore per formati di data non validi"
 
 #: ../gramps/gui/configure.py:1498
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Convenience markups are:\n"
 "<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n"
@@ -11970,6 +12061,19 @@ msgid ""
 "For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
+"Convenience markups are:\n"
+"<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Makes font relatively larger&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Makes font relatively smaller&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n"
+"\n"
+"For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
+"will display <u><b>Underlined bold date</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1514
 msgid "Date about range"
@@ -12016,10 +12120,13 @@ msgid "Add tag on import"
 msgstr "Aggiungi etichetta in fase di importazione"
 
 #: ../gramps/gui/configure.py:1576
+#, fuzzy
 msgid ""
 "Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
 
 #: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
@@ -12744,7 +12851,7 @@ msgid "Repair Family Tree?"
 msgstr "Correggi albero genealogico?"
 
 #: ../gramps/gui/dbman.py:893
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
 "recover your Family Tree from the last good backup. There are several ways "
@@ -12769,6 +12876,28 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
+"If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
+"recover your Family Tree from the last good backup. There are several ways "
+"this can cause unwanted effects, so %(bold_start)sbackup%(bold_end)s the "
+"Family Tree first.\n"
+"The Family Tree you have selected is stored in %(dirname)s.\n"
+"\n"
+"Before doing a repair, verify that the Family Tree can really no longer be "
+"opened, as the database back-end can recover from some errors automatically."
+"\n"
+"\n"
+"%(bold_start)sDetails:%(bold_end)s Repairing a Family Tree actually uses the "
+"last backup of the Family Tree, which Gramps stored on last use. If you have "
+"worked for several hours/days without closing Gramps, then all this "
+"information will be lost! If the repair fails, then the original Family Tree "
+"will be lost forever, hence a backup is needed. If the repair fails, or too "
+"much information is lost, you can fix the original Family Tree manually. For "
+"details, see the webpage\n"
+"%(gramps_wiki_recover_url)s\n"
+"Before doing a repair, try to open the Family Tree in the normal manner. "
+"Several errors that trigger the repair button can be fixed automatically. If "
+"this is the case, you can disable the repair button by removing the file "
+"%(recover_file)s in the Family Tree directory."
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
@@ -13867,9 +13996,10 @@ msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Correggere la data o passare da «{cur_mode}» a «{text_mode}»"
 
 #: ../gramps/gui/editors/editevent.py:64
+#, fuzzy
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr ""
+msgstr "New_Event_dialog"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -13958,9 +14088,10 @@ msgid "Add Event"
 msgstr "Aggiunge evento"
 
 #: ../gramps/gui/editors/editfamily.py:92
+#, fuzzy
 msgctxt "manual"
 msgid "Family_Editor_dialog"
-msgstr ""
+msgstr "Family_Editor_dialog"
 
 #: ../gramps/gui/editors/editfamily.py:113
 msgid "Create a new person and add the child to the family"
@@ -14307,9 +14438,10 @@ msgid "Location Editor"
 msgstr "Editor posizione"
 
 #: ../gramps/gui/editors/editmedia.py:68
+#, fuzzy
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr ""
+msgstr "New_Media_dialog"
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:412
@@ -14645,9 +14777,10 @@ msgid "You must either select a person or Cancel the edit"
 msgstr "Bisogna selezionare una persona o annullare la modifica"
 
 #: ../gramps/gui/editors/editplace.py:69
+#, fuzzy
 msgctxt "manual"
 msgid "Place_Editor_dialog"
-msgstr ""
+msgstr "Place_Editor_dialog"
 
 #: ../gramps/gui/editors/editplace.py:91
 #: ../gramps/gui/glade/editplace.glade:357 ../gramps/gui/merge/mergeplace.py:55
@@ -14910,14 +15043,16 @@ msgid "Internet Address Editor"
 msgstr "Editor indirizzi Internet"
 
 #: ../gramps/gui/editors/filtereditor.py:84
+#, fuzzy
 msgctxt "manual"
 msgid "Add_Rule_dialog"
-msgstr ""
+msgstr "Add_Rule_dialog"
 
 #: ../gramps/gui/editors/filtereditor.py:85
+#, fuzzy
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr ""
+msgstr "Define_Filter_dialog"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 #, fuzzy
@@ -15049,6 +15184,7 @@ msgid "Use regular expressions"
 msgstr "Usare espressioni regolari"
 
 #: ../gramps/gui/editors/filtereditor.py:608
+#, fuzzy
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or "
@@ -15058,6 +15194,13 @@ msgid ""
 "A caret will match the start of a line. A dollar sign will match the end of "
 "a line."
 msgstr ""
+"Interpret the contents of string fields as regular expressions.\n"
+"A decimal point will match any character. A question mark will match zero or "
+"one occurences of the previous character or group. An asterisk will match "
+"zero or more occurences. A plus sign will match one or more occurences. Use "
+"parentheses to group expressions. Specify alternatives using a vertical bar. "
+"A caret will match the start of a line. A dollar sign will match the end of "
+"a line."
 
 #: ../gramps/gui/editors/filtereditor.py:637
 msgid "Rule Name"
@@ -15800,6 +15943,7 @@ msgid "The value of the attribute. Eg. 1.8, Sunny, or Blue eyes."
 msgstr "Il valore dell'attributo. Ad es. 1,8 , Assolato, o Occhi blu."
 
 #: ../gramps/gui/glade/editattribute.glade:167
+#, fuzzy
 msgid ""
 "The name of an attribute you want to use. For example: Height (for a "
 "person), Weather on this Day (for an event), ... \n"
@@ -15810,6 +15954,14 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
+"The name of an attribute you want to use. For example: Height (for a person)"
+", Weather on this Day (for an event), ... \n"
+"Use this to store snippets of information you collect and want to correctly "
+"link to sources. Attributes can be used for people, families, events and "
+"media.\n"
+" \n"
+"Note: several predefined attributes refer to values present in the GEDCOM "
+"standard."
 
 #: ../gramps/gui/glade/editchildref.glade:97
 msgid "Relationship to _Mother:"
@@ -15835,6 +15987,7 @@ msgid "Edition"
 msgstr "Edizione"
 
 #: ../gramps/gui/glade/editcitation.glade:136
+#, fuzzy
 msgid ""
 "Specific location within the information referenced. For a published work, "
 "this could include the volume of a multi-volume work and the page number(s). "
@@ -15844,6 +15997,13 @@ msgid ""
 "etc. A census record might have a line number or dwelling and family numbers "
 "in addition to the page number. "
 msgstr ""
+"Specific location within the information referenced. For a published work, "
+"this could include the volume of a multi-volume work and the page number(s). "
+"For a periodical, it could include volume, issue, and page numbers. For a "
+"newspaper, it could include a column number and page number. For an "
+"unpublished source, this could be a sheet number, page number, frame number, "
+"etc. A census record might have a line number or dwelling and family numbers "
+"in addition to the page number. "
 
 #: ../gramps/gui/glade/editcitation.glade:152
 msgid "_Volume/Page:"
@@ -16283,6 +16443,7 @@ msgstr "An_golo 2:  X"
 #: ../gramps/gui/glade/editmediaref.glade:146
 #: ../gramps/gui/glade/editmediaref.glade:162
 #: ../gramps/gui/glade/editmediaref.glade:240
+#, fuzzy
 msgid ""
 "If media is an image, select the specific part of the image you want to "
 "reference.\n"
@@ -16291,6 +16452,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
+"If media is an image, select the specific part of the image you want to "
+"reference.\n"
+"You can use the mouse on the picture to select a region, or use these "
+"spinbuttons to set the top left, and bottom right corner of the referenced "
+"region. Point (0,0) is the top left corner of the picture, and (100,100) the "
+"bottom right corner."
 
 #: ../gramps/gui/glade/editmediaref.glade:178
 msgid ""
@@ -16310,6 +16477,7 @@ msgid "_Corner 1:  X"
 msgstr "An_golo 1:  X"
 
 #: ../gramps/gui/glade/editmediaref.glade:221
+#, fuzzy
 msgid ""
 "If media is an image, select the specific part of the image you want to "
 "reference.\n"
@@ -16318,6 +16486,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner.\n"
 msgstr ""
+"If media is an image, select the specific part of the image you want to "
+"reference.\n"
+"You can use the mouse on the picture to select a region, or use these "
+"spinbuttons to set the top left, and bottom right corner of the referenced "
+"region. Point (0,0) is the top left corner of the picture, and (100,100) the "
+"bottom right corner.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:459
 msgid ""
@@ -17988,6 +18162,7 @@ msgid "Gramps terminated because of no DISPLAY"
 msgstr "Gramps è terminato per la mancanza di DISPLAY"
 
 #: ../gramps/gui/grampsgui.py:655 ../gramps/gui/grampsgui.py:729
+#, fuzzy
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -17997,6 +18172,13 @@ msgid ""
 "You can also change manually the startup view in the gramps.ini file \n"
 "by changing the last-view parameter.\n"
 msgstr ""
+"\n"
+"Gramps failed to start. Please report a bug about this.\n"
+"This could be because of an error in a (third party) View on startup.\n"
+"To use another view, don't load a Family Tree, change view, and then load "
+"your Family Tree.\n"
+"You can also change manually the startup view in the gramps.ini file \n"
+"by changing the last-view parameter.\n"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:97
 msgid "Error Report Assistant"
@@ -19459,19 +19641,22 @@ msgid "Select_Media_Object_selector"
 msgstr "Fusione_oggetti_multimediali"
 
 #: ../gramps/gui/selectors/selectperson.py:64
+#, fuzzy
 msgctxt "manual"
 msgid "Select_Father_selector"
-msgstr ""
+msgstr "Select_Father_selector"
 
 #: ../gramps/gui/selectors/selectperson.py:66
+#, fuzzy
 msgctxt "manual"
 msgid "Select_Mother_selector"
-msgstr ""
+msgstr "Select_Mother_selector"
 
 #: ../gramps/gui/selectors/selectperson.py:68
+#, fuzzy
 msgctxt "manual"
 msgid "Select_Child_selector"
-msgstr ""
+msgstr "Select_Child_selector"
 
 #: ../gramps/gui/selectors/selectperson.py:70
 #, fuzzy
@@ -19606,6 +19791,7 @@ msgid "File %s does not exist"
 msgstr "Il file %s non esiste"
 
 #: ../gramps/gui/utils.py:596
+#, fuzzy
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -19615,6 +19801,13 @@ msgid ""
 "To edit the citation, close the source editor and open an editor for the "
 "citation alone"
 msgstr ""
+"Cannot open new citation editor at this time. Either the citation is already "
+"being edited, or the associated source is already being edited, and opening "
+"a citation editor (which also allows the source to be edited), would create "
+"ambiguity by opening two editors on the same source. \n"
+"\n"
+"To edit the citation, close the source editor and open an editor for the "
+"citation alone"
 
 #: ../gramps/gui/utils.py:609
 msgid "Cannot open new citation editor"
@@ -19933,11 +20126,15 @@ msgid "No Home Person"
 msgstr "Persona principale non impostata"
 
 #: ../gramps/gui/views/navigationview.py:324
+#, fuzzy
 msgid ""
 "You need to set a 'Home Person' to go to. Select the People View, select the "
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
 
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:338
@@ -20320,10 +20517,13 @@ msgid "Undo"
 msgstr "Annulla"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:401
+#, fuzzy
 msgid ""
 "\n"
 "Command-Click to follow link"
 msgstr ""
+"\n"
+"Command-Click to follow link"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:402
 msgid ""
@@ -20586,11 +20786,15 @@ msgid "PIL (Python Imaging Library) not loaded."
 msgstr "PIL (Python Imaging Library) non caricata."
 
 #: ../gramps/plugins/docgen/latexdoc.py:1241
+#, fuzzy
 msgid ""
 "Production of jpg images from non-jpg images in LaTeX documents will not be "
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
+"Production of jpg images from non-jpg images in LaTeX documents will not be "
+"available. Use your package manager to install python-imaging or python-"
+"pillow or python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1182
 #, python-format
@@ -20832,6 +21036,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:876
 #: ../gramps/plugins/drawreport/descendtree.py:1620
+#, fuzzy
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -20848,6 +21053,20 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
+"Whether to resize the page to fit the size \n"
+"of the tree.  Note:  the page will have a \n"
+"non standard size.\n"
+"\n"
+"With this option selected, the following will happen:\n"
+"\n"
+"With the 'Do not scale tree' option the page\n"
+"  is resized to the height/width of the tree\n"
+"\n"
+"With 'Scale tree to fit page width only' the height of\n"
+"  the page is resized to the height of the tree\n"
+"\n"
+"With 'Scale tree to fit the size of the page' the page\n"
+"  is resized to remove any gap in either height or width"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/descendtree.py:1640
@@ -23567,9 +23786,9 @@ msgid "Press Refresh to see initial results"
 msgstr "Premere Aggiorna per vedere i risultati iniziali"
 
 #: ../gramps/plugins/gramplet/leak.py:158
-#, python-format
+#, fuzzy, python-format
 msgid "Referrers of %d"
-msgstr ""
+msgstr "Referrers of %d"
 
 #: ../gramps/plugins/gramplet/leak.py:181
 #, python-format
@@ -25244,8 +25463,9 @@ msgid "Military Demobilisation"
 msgstr "Smobilitazione militare"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
+#, fuzzy
 msgid "Dotation"
-msgstr ""
+msgstr "Dotation"
 
 #: ../gramps/plugins/importer/importgeneweb.py:101
 #: ../gramps/plugins/lib/libgedcom.py:703
@@ -25428,10 +25648,13 @@ msgid "Attribut"
 msgstr "Attributo"
 
 #: ../gramps/plugins/importer/importprogen.glade:171
+#, fuzzy
 msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Source attribute text\n"
+"(Text, import Filename & (System-)Date)."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -25447,26 +25670,35 @@ msgstr ""
 "(molto basso - molto alto)."
 
 #: ../gramps/plugins/importer/importprogen.glade:308
+#, fuzzy
 msgid ""
 "Citation volume/page text\n"
 "(Text & (System-)Date)."
 msgstr ""
+"Citation volume/page text\n"
+"(Text & (System-)Date)."
 
 #: ../gramps/plugins/importer/importprogen.glade:341
+#, fuzzy
 msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Citation attribute text\n"
+"(Text, import Filename & (System-)Date)."
 
 #: ../gramps/plugins/importer/importprogen.glade:362
 msgid "Import Text"
 msgstr "Importa testo"
 
 #: ../gramps/plugins/importer/importprogen.glade:415
+#, fuzzy
 msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
+"Default Tagtext\n"
+"(out of Settings)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -25487,32 +25719,44 @@ msgid "Combined default text + filename + date."
 msgstr "Combinazione di testo predefinito + nome file + data."
 
 #: ../gramps/plugins/importer/importprogen.glade:1111
+#, fuzzy
 msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
+"Copy Default Text\n"
+"to all Tag Text'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
+#, fuzzy
 msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copy Default Filename\n"
+"to all sensitive Tag Text'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
+#, fuzzy
 msgid ""
 "Copy Default Date\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copy Default Date\n"
+"to all sensitive Tag Text'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
 msgstr "  Oggetto"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
+#, fuzzy
 msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
+"Enable/Disable\n"
+"all object tags."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 #, fuzzy
@@ -25653,9 +25897,10 @@ msgid "_Ok"
 msgstr "_Ok"
 
 #: ../gramps/plugins/importer/importprogen.py:62
+#, fuzzy
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
-msgstr ""
+msgstr "Import_from_another_genealogy_program"
 
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
@@ -26140,8 +26385,9 @@ msgid "Height"
 msgstr "Altezza"
 
 #: ../gramps/plugins/lib/libgedcom.py:707
+#, fuzzy
 msgid "Initiatory (LDS)"
-msgstr ""
+msgstr "Initiatory (LDS)"
 
 #: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Military ID"
@@ -26271,8 +26517,9 @@ msgid "ADDR element ignored '%s'"
 msgstr "Elemento ADDR ignorato «%s»"
 
 #: ../gramps/plugins/lib/libgedcom.py:3452
+#, fuzzy
 msgid "TRLR (trailer)"
-msgstr ""
+msgstr "TRLR (trailer)"
 
 #: ../gramps/plugins/lib/libgedcom.py:3481
 msgid "(Submitter):"
@@ -34703,9 +34950,10 @@ msgid "Their common ancestors are: "
 msgstr "I loro ascendenti comuni sono: "
 
 #: ../gramps/plugins/tool/removespaces.py:55
+#, fuzzy
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr ""
+msgstr "Remove_leading_and_trailing_spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:88
 #: ../gramps/plugins/tool/tools.gpr.py:489

@@ -47,8 +47,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-06-04 11:36+0000\n"
-"Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
+"PO-Revision-Date: 2022-02-23 19:25+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
 "Language: da\n"
@@ -56,7 +56,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -10617,8 +10617,9 @@ msgid "German"
 msgstr "Tysk"
 
 #: ../gramps/gen/utils/grampslocale.py:78
+#, fuzzy
 msgid "German (Austria)"
-msgstr ""
+msgstr "German (Austria)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -15333,14 +15334,18 @@ msgid "URL"
 msgstr "Webadresse"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:62
+#, fuzzy
 msgid "This updates the view with the current filter parameters."
-msgstr ""
+msgstr "This updates the view with the current filter parameters."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:65
+#, fuzzy
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"This resets the filter parameters to empty state.  The 'Find' button should "
+"be used to actually update the view to its defaults."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -30675,6 +30680,7 @@ msgstr ""
 "ellers bruger vi tegnene fra tastaturet."
 
 #: ../gramps/plugins/lib/maps/geography.py:1271
+#, fuzzy
 msgid ""
 "If you want to use a specific map provider, You can set the following field "
 "to the provider's url.\n"
@@ -30684,6 +30690,13 @@ msgid ""
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"If you want to use a specific map provider, You can set the following field "
+"to the provider's url.\n"
+"i.e:\n"
+"http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
+"http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1285
 #, fuzzy
@@ -30704,7 +30717,7 @@ msgid "Can't create tiles cache directory %s"
 msgstr "Kan ikke oprette cache-mappen til fliser: %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "You must verify and change the tiles cache\n"
 "...\n"
@@ -30719,6 +30732,18 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:183
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -32666,10 +32691,13 @@ msgid "Use name of person as title"
 msgstr "Klik på navnet for at gøre personen aktiv\n"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
+#, fuzzy
 msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
 msgstr ""
+"Whether the title should be the name of the person, or 'Complete Individual "
+"Report'"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
@@ -34575,8 +34603,9 @@ msgid "group as"
 msgstr "Grupper som"
 
 #: ../gramps/plugins/tool/removespaces.py:199
+#, fuzzy
 msgid "tooltip"
-msgstr ""
+msgstr "tooltip"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
@@ -34593,13 +34622,15 @@ msgstr "Ugyldigt format"
 
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
+#, fuzzy
 msgid "comma instead of dot"
-msgstr ""
+msgstr "comma instead of dot"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
+#, fuzzy
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "invalid char instead of '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -36348,8 +36379,9 @@ msgid "Left <-> Right"
 msgstr "Venstre <-> højre"
 
 #: ../gramps/plugins/view/pedigreeview.py:1710
+#, fuzzy
 msgid "About Pedigree View"
-msgstr ""
+msgstr "About Pedigree View"
 
 #: ../gramps/plugins/view/pedigreeview.py:1921
 #: ../gramps/plugins/view/relview.py:393
@@ -36915,8 +36947,9 @@ msgid "between"
 msgstr "mellem"
 
 #: ../gramps/plugins/webreport/basepage.py:3250
+#, fuzzy
 msgid "circa"
-msgstr ""
+msgstr "circa"
 
 #: ../gramps/plugins/webreport/basepage.py:3252
 #, fuzzy
@@ -36946,8 +36979,9 @@ msgid "Last Modified"
 msgstr "Sidst ændret"
 
 #: ../gramps/plugins/webreport/download.py:129
+#, fuzzy
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:178
 #, fuzzy
@@ -37304,8 +37338,9 @@ msgid "Toggle sections"
 msgstr "Valg af titel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
+#, fuzzy
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Check it if you want to open/close a section"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2086
 msgid "Extra pages"
@@ -37328,15 +37363,20 @@ msgid "Your extra page path without extension"
 msgstr "Din ekstra side uden fil-endelse"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
+#, fuzzy
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Do we use multiple translations?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2119
+#, fuzzy
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Whether to display the narrative web in multiple languages.\n"
+"See the translation tab to add new languages to the default one defined in "
+"the next field."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Sort all children in birth order"
@@ -37470,14 +37510,18 @@ msgid "A note to be used as the page footer"
 msgstr "En note der bruges til sidefoden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
+#, fuzzy
 msgid "PHP user session"
-msgstr ""
+msgstr "PHP user session"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2216
+#, fuzzy
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"A note to use for starting the php session.\n"
+"This option will be available only if the .php file extension is selected."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Images Generation"
@@ -37492,12 +37536,14 @@ msgid "Whether to include a gallery of media objects"
 msgstr "Vælg om et galleri af medieobjekter skal medtages"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2238
+#, fuzzy
 msgid "Create the images index"
-msgstr ""
+msgstr "Create the images index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2240
+#, fuzzy
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "This option allows you to create the images index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Include unused images and media objects"
@@ -37528,8 +37574,9 @@ msgid "Create the thumbnail index"
 msgstr "Størrelse af miniature billeder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2265
+#, fuzzy
 msgid "This option allows you to create the thumbnail index"
-msgstr ""
+msgstr "This option allows you to create the thumbnail index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2271
 msgid "Max width of initial image"
@@ -37553,8 +37600,9 @@ msgid "Whether to include a database download option"
 msgstr "Vælg om en mulighed for download af database skal medtages"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2294
+#, fuzzy
 msgid "How many downloads"
-msgstr ""
+msgstr "How many downloads"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2296
 #, fuzzy
@@ -37828,12 +37876,14 @@ msgid "The API key used for the Google maps"
 msgstr "API nøglen, der bruges til Google maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
+#, fuzzy
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2484
+#, fuzzy
 msgid "Terrain"
-msgstr ""
+msgstr "Terrain"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2485
 #, fuzzy
@@ -37890,8 +37940,9 @@ msgid "Max days for updates"
 msgstr "Største antal elementer til et lagkagediagram"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2534
+#, fuzzy
 msgid "You want to see the last updates on how many days?"
-msgstr ""
+msgstr "You want to see the last updates on how many days?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
 #, fuzzy
@@ -37899,8 +37950,9 @@ msgid "Max number of updates per object to show"
 msgstr "Det største antal steder at vise"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2540
+#, fuzzy
 msgid "How many updates do you want to see max"
-msgstr ""
+msgstr "How many updates do you want to see max"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2553
 #, fuzzy
@@ -37913,8 +37965,9 @@ msgid "second language"
 msgstr "Anden dato"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
+#, fuzzy
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Site name for your second language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2561
 #: ../gramps/plugins/webreport/narrativeweb.py:2569
@@ -37930,8 +37983,9 @@ msgstr "Webstedets titel"
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
 #: ../gramps/plugins/webreport/narrativeweb.py:2586
 #: ../gramps/plugins/webreport/narrativeweb.py:2594
+#, fuzzy
 msgid "Enter a title in the respective language"
-msgstr ""
+msgstr "Enter a title in the respective language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2564
 #, fuzzy
@@ -37939,8 +37993,9 @@ msgid "third language"
 msgstr "Sprog"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
+#, fuzzy
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Site name for your third language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2572
 #, fuzzy
@@ -37948,8 +38003,9 @@ msgid "fourth language"
 msgstr "Sprog"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
+#, fuzzy
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Site name for your fourth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2580
 #, fuzzy
@@ -37957,8 +38013,9 @@ msgid "fifth language"
 msgstr "Sprog"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
+#, fuzzy
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Site name for your fifth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2588
 #, fuzzy
@@ -37966,8 +38023,9 @@ msgid "sixth language"
 msgstr "Sprog"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2592
+#, fuzzy
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Site name for your sixth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2805
 #, fuzzy
@@ -38256,12 +38314,14 @@ msgid "New and updated objects"
 msgstr "Nye og opdaterede tilføjelsesprogrammer"
 
 #: ../gramps/plugins/webreport/updates.py:88
-#, python-format
+#, fuzzy, python-format
 msgctxt "nb"
 msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
+"This page contains the last updated objects in the database in the last "
+"%(days)d days and for a maximum of %(nb)d objects per object type."
 
 # FIXME Better translation?
 #: ../gramps/plugins/webreport/webcal.py:193

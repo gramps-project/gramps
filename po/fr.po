@@ -39,8 +39,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-08-11 17:32+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2022-02-23 19:26+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -48,7 +48,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -10435,8 +10435,9 @@ msgid "Rounded"
 msgstr "non défini(e)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
+#, fuzzy
 msgid "Swing"
-msgstr ""
+msgstr "Swing"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
 msgid "Mesh"

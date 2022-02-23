@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-06-23 08:26+0000\n"
-"Last-Translator: jcreusand <joan.creusandreu@gmail.com>\n"
+"PO-Revision-Date: 2022-02-23 19:25+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -25734,9 +25734,10 @@ msgid "_Ok"
 msgstr "_Ok"
 
 #: ../gramps/plugins/importer/importprogen.py:62
+#, fuzzy
 msgctxt "manual"
 msgid "Import_from_another_genealogy_program"
-msgstr ""
+msgstr "Import_from_another_genealogy_program"
 
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
@@ -34688,9 +34689,10 @@ msgid "Their common ancestors are: "
 msgstr "Els seus avantpassats comuns són: "
 
 #: ../gramps/plugins/tool/removespaces.py:55
+#, fuzzy
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr ""
+msgstr "Remove_leading_and_trailing_spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:88
 #: ../gramps/plugins/tool/tools.gpr.py:489

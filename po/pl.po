@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2022-01-12 14:54+0000\n"
-"Last-Translator: Michał Stojek <stojex@gmail.com>\n"
+"PO-Revision-Date: 2022-02-23 19:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -34810,10 +34810,13 @@ msgid "Change"
 msgstr "Zmiana"
 
 #: ../gramps/plugins/tool/reorderids.glade:1470
+#, fuzzy
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"Enable ID reordering\n"
+"with Start / Step sequence."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -34837,10 +34840,13 @@ msgid "Keep"
 msgstr "Zachowaj"
 
 #: ../gramps/plugins/tool/reorderids.glade:1523
+#, fuzzy
 msgid ""
 "Keep IDs with alternate\n"
 "prefixes untouched."
 msgstr ""
+"Keep IDs with alternate\n"
+"prefixes untouched."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
@@ -34912,8 +34918,9 @@ msgid "Sort family events of the person"
 msgstr "Sortuj zdarzenia rodzinne osoby"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:91
+#, fuzzy
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr ""
+msgstr "Generate_Testcases_for_Persons_and_Families"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:274
 #: ../gramps/plugins/tool/testcasegenerator.py:280
@@ -34922,10 +34929,13 @@ msgid "Generate testcases"
 msgstr "Ogólne filtry"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:285
+#, fuzzy
 msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
+"Generate low level database errors\n"
+"Correction needs database reload"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
 #, fuzzy
@@ -35188,8 +35198,9 @@ msgid "Dump Gender Statistics"
 msgstr "Przebuduj statystyki płci"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
+#, fuzzy
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr ""
+msgstr "Will dump the statistics for guessing the gender from the first name."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -35778,8 +35789,9 @@ msgid "Background"
 msgstr "Tło"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:313
+#, fuzzy
 msgid "Add global background colored gradient"
-msgstr ""
+msgstr "Add global background colored gradient"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
@@ -35823,8 +35835,9 @@ msgstr "Pokaż nazwiska w dwóch liniach"
 #: ../gramps/plugins/view/fanchart2wayview.py:339
 #: ../gramps/plugins/view/fanchartdescview.py:338
 #: ../gramps/plugins/view/fanchartview.py:422
+#, fuzzy
 msgid "Flip name on the left of the fan"
-msgstr ""
+msgstr "Flip name on the left of the fan"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:343
 msgid "Show the gramps id"
@@ -35986,11 +35999,15 @@ msgid "Selecting all events"
 msgstr "Wybieranie wszystkich zdarzeń"
 
 #: ../gramps/plugins/view/geoevents.py:368
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
+"Right click on the map and select 'show all events' to show all known events "
+"with coordinates. You can use the history to navigate on the map. You can "
+"use filtering."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
@@ -36291,18 +36308,26 @@ msgid "Selecting all places"
 msgstr "Wybieranie wszystkich miejsc"
 
 #: ../gramps/plugins/view/geoplaces.py:433
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can change the markers color depending on place type. "
+"You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:448
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can use the history to navigate on the map. You can "
+"change the markers color depending on place type. You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
@@ -37418,8 +37443,9 @@ msgid "Toggle sections"
 msgstr "Wybór selekcji"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
+#, fuzzy
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Check it if you want to open/close a section"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2086
 msgid "Extra pages"
@@ -37430,27 +37456,35 @@ msgid "Extra page name"
 msgstr "Nazwa dodatkowej strony"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2092
+#, fuzzy
 msgid "Your extra page name like it is shown in the menubar"
-msgstr ""
+msgstr "Your extra page name like it is shown in the menubar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2097
+#, fuzzy
 msgid "Your extra page path"
-msgstr ""
+msgstr "Your extra page path"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2100
+#, fuzzy
 msgid "Your extra page path without extension"
-msgstr ""
+msgstr "Your extra page path without extension"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
+#, fuzzy
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Do we use multiple translations?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2119
+#, fuzzy
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Whether to display the narrative web in multiple languages.\n"
+"See the translation tab to add new languages to the default one defined in "
+"the next field."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Sort all children in birth order"
@@ -37470,12 +37504,14 @@ msgid "Whether to display latitude/longitude in the places list."
 msgstr "Czy wyświetlać szerokość/długość geograficzną na liście miejsc."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2145
+#, fuzzy
 msgid "Sort places references either by date or by name"
-msgstr ""
+msgstr "Sort places references either by date or by name"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2147
+#, fuzzy
 msgid "Sort the places references by date or by name. Not set means by date."
-msgstr ""
+msgstr "Sort the places references by date or by name. Not set means by date."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2151
 msgid "Graph generations"
@@ -37490,10 +37526,13 @@ msgid "Include narrative notes just after name, gender"
 msgstr "Dołącz notatki narracyjne tuż za nazwiskiem i płcią"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2160
+#, fuzzy
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Include narrative notes just after name, gender and age at death (default) "
+"or include them just before attributes."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2171
 msgid "Page Generation"

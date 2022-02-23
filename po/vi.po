@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-06-04 21:08+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
-"Language-Team: Vietnamese <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/vi/>\n"
+"PO-Revision-Date: 2022-02-23 19:29+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-KeywordsList: July 13, 2018: Gramps Version 4.2.8 based on "
 "Vietnamese Translation Feb 29, 2012. 14:02 VN time, VIETNAMESE TRANSLATION "
 "OF GRAMPS, V. 3\n"
@@ -2566,64 +2566,76 @@ msgstr "Th12"
 #. to learn how to add proper alternatives to be recognized in your localized
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
+#, fuzzy
 msgctxt "alternative month names for January"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
+#, fuzzy
 msgctxt "alternative month names for February"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
+#, fuzzy
 msgctxt "alternative month names for March"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
+#, fuzzy
 msgctxt "alternative month names for April"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
+#, fuzzy
 msgctxt "alternative month names for May"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
+#, fuzzy
 msgctxt "alternative month names for June"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
+#, fuzzy
 msgctxt "alternative month names for July"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
+#, fuzzy
 msgctxt "alternative month names for August"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
+#, fuzzy
 msgctxt "alternative month names for September"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
+#, fuzzy
 msgctxt "alternative month names for October"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
+#, fuzzy
 msgctxt "alternative month names for November"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
+#, fuzzy
 msgctxt "alternative month names for December"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
@@ -3806,12 +3818,14 @@ msgid "No description"
 msgstr "Không có mô tả "
 
 #: ../gramps/gen/filters/rules/_rule.py:94
+#, fuzzy
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "The filter definition contains a loop."
 
 #: ../gramps/gen/filters/rules/_rule.py:95
+#, fuzzy
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "One rule references another which eventually references the first."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -6156,14 +6170,18 @@ msgid "Matches places within a given distance of another place"
 msgstr "Các trùng khớp địa điểm trong độ xa cho sẵn của một địa điểm khác"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
+#, fuzzy
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Cannot use the filter 'within area'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
+#, fuzzy
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"The place you selected contains bad coordinates. Please, run the tool 'clean "
+"input data'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -9635,12 +9653,14 @@ msgid "Medium"
 msgstr "Trung bình "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:65
+#, fuzzy
 msgid "Short"
-msgstr ""
+msgstr "Short"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
+#, fuzzy
 msgid "Above"
-msgstr ""
+msgstr "Above"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
 #, fuzzy
@@ -9659,12 +9679,14 @@ msgid "Preferences"
 msgstr "Tùy thích "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:76
+#, fuzzy
 msgid "Down (↓)"
-msgstr ""
+msgstr "Down (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
+#, fuzzy
 msgid "Up (↑)"
-msgstr ""
+msgstr "Up (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 #, fuzzy
@@ -9672,12 +9694,14 @@ msgid "Right (→)"
 msgstr "Phải "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
+#, fuzzy
 msgid "Left (←)"
-msgstr ""
+msgstr "Left (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
+#, fuzzy
 msgid "Perpendicular"
-msgstr ""
+msgstr "Perpendicular"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:82
 #, fuzzy
@@ -9685,16 +9709,19 @@ msgid "Rounded"
 msgstr "không xác định"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
+#, fuzzy
 msgid "Swing"
-msgstr ""
+msgstr "Swing"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
+#, fuzzy
 msgid "Mesh"
-msgstr ""
+msgstr "Mesh"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
+#, fuzzy
 msgid "Tiny"
-msgstr ""
+msgstr "Tiny"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 #, fuzzy
@@ -9707,8 +9734,9 @@ msgid "Footnote"
 msgstr "Chân trang "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:92
+#, fuzzy
 msgid "Small"
-msgstr ""
+msgstr "Small"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:214
@@ -9733,8 +9761,9 @@ msgid "Extra large"
 msgstr "Trang thêm"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
+#, fuzzy
 msgid "Huge"
-msgstr ""
+msgstr "Huge"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 #, fuzzy
@@ -9752,8 +9781,9 @@ msgid "Node detail"
 msgstr "Xem chi tiết "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:147
+#, fuzzy
 msgid "Detail of information to be shown in a node."
-msgstr ""
+msgstr "Detail of information to be shown in a node."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 #, fuzzy
@@ -9766,10 +9796,13 @@ msgid "Node size"
 msgstr "Kích thước ghi chú "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:157
+#, fuzzy
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
+"One dimension of a node, in mm. If the timeflow is up or down then this is "
+"the width, otherwise it is the height."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
 #, fuzzy
@@ -9777,10 +9810,13 @@ msgid "Level size"
 msgstr "Kích thước cây "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:163
+#, fuzzy
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
+"One dimension of a node, in mm. If the timeflow is up or down then this is "
+"the height, otherwise it is the width."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
 #, fuzzy
@@ -9799,8 +9835,9 @@ msgid "Timeflow"
 msgstr "Thời gian "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:181
+#, fuzzy
 msgid "Direction that the graph will grow over time."
-msgstr ""
+msgstr "Direction that the graph will grow over time."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:184
 #, fuzzy
@@ -9808,12 +9845,14 @@ msgid "Edge style"
 msgstr "Kiểu cây "
 
 #: ../gramps/gen/plug/docgen/treedoc.py:187
+#, fuzzy
 msgid "Style of the edges between nodes."
-msgstr ""
+msgstr "Style of the edges between nodes."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:190
+#, fuzzy
 msgid "Level distance"
-msgstr ""
+msgstr "Level distance"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:191
 #, fuzzy
@@ -9842,8 +9881,9 @@ msgid "The size of note text."
 msgstr "Kích thước của văn bản chú thích, tính bằng point."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:694
+#, fuzzy
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:700
 #, fuzzy
@@ -10488,8 +10528,9 @@ msgid "German"
 msgstr "Người Đức "
 
 #: ../gramps/gen/utils/grampslocale.py:78
+#, fuzzy
 msgid "German (Austria)"
-msgstr ""
+msgstr "German (Austria)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -10951,24 +10992,29 @@ msgid "Male"
 msgstr "Nam "
 
 #: ../gramps/gen/utils/symbols.py:63
+#, fuzzy
 msgid "Asexuality, sexless, genderless"
-msgstr ""
+msgstr "Asexuality, sexless, genderless"
 
 #: ../gramps/gen/utils/symbols.py:64
+#, fuzzy
 msgid "Lesbianism"
-msgstr ""
+msgstr "Lesbianism"
 
 #: ../gramps/gen/utils/symbols.py:65
+#, fuzzy
 msgid "Male homosexuality"
-msgstr ""
+msgstr "Male homosexuality"
 
 #: ../gramps/gen/utils/symbols.py:66
+#, fuzzy
 msgid "Heterosexuality"
-msgstr ""
+msgstr "Heterosexuality"
 
 #: ../gramps/gen/utils/symbols.py:67
+#, fuzzy
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr ""
+msgstr "Transgender, hermaphrodite (in entomology)"
 
 #: ../gramps/gen/utils/symbols.py:68
 #, fuzzy
@@ -10976,8 +11022,9 @@ msgid "Transgender"
 msgstr "giới tính "
 
 #: ../gramps/gen/utils/symbols.py:69
+#, fuzzy
 msgid "Neuter"
-msgstr ""
+msgstr "Neuter"
 
 #: ../gramps/gen/utils/symbols.py:71
 #, fuzzy
@@ -11005,8 +11052,9 @@ msgid "Buried"
 msgstr "Lễ an táng "
 
 #: ../gramps/gen/utils/symbols.py:79
+#, fuzzy
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Cremated/Funeral urn"
 
 #: ../gramps/gen/utils/symbols.py:80
 #, fuzzy
@@ -11014,8 +11062,9 @@ msgid "Killed in action"
 msgstr "Bộ sưu tập "
 
 #: ../gramps/gen/utils/symbols.py:81
+#, fuzzy
 msgid "Extinct"
-msgstr ""
+msgstr "Extinct"
 
 #: ../gramps/gen/utils/symbols.py:106
 #, fuzzy
@@ -11023,28 +11072,34 @@ msgid "Nothing"
 msgstr "Trong vòng"
 
 #: ../gramps/gen/utils/symbols.py:108
+#, fuzzy
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "Skull and crossbones"
 
 #: ../gramps/gen/utils/symbols.py:109
+#, fuzzy
 msgid "Ankh"
-msgstr ""
+msgstr "Ankh"
 
 #: ../gramps/gen/utils/symbols.py:110
+#, fuzzy
 msgid "Orthodox cross"
-msgstr ""
+msgstr "Orthodox cross"
 
 #: ../gramps/gen/utils/symbols.py:111
+#, fuzzy
 msgid "Chi rho"
-msgstr ""
+msgstr "Chi rho"
 
 #: ../gramps/gen/utils/symbols.py:112
+#, fuzzy
 msgid "Cross of Lorraine"
-msgstr ""
+msgstr "Cross of Lorraine"
 
 #: ../gramps/gen/utils/symbols.py:113
+#, fuzzy
 msgid "Cross of Jerusalem"
-msgstr ""
+msgstr "Cross of Jerusalem"
 
 #: ../gramps/gen/utils/symbols.py:114
 #, fuzzy
@@ -11052,8 +11107,9 @@ msgid "Star and crescent"
 msgstr "Bắt đầu kiểm tra ngày tháng?"
 
 #: ../gramps/gen/utils/symbols.py:115
+#, fuzzy
 msgid "West Syriac cross"
-msgstr ""
+msgstr "West Syriac cross"
 
 #: ../gramps/gen/utils/symbols.py:116
 #, fuzzy
@@ -11061,8 +11117,9 @@ msgid "East Syriac cross"
 msgstr "Lần truy cập cuối "
 
 #: ../gramps/gen/utils/symbols.py:117
+#, fuzzy
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Heavy Greek cross"
 
 #: ../gramps/gen/utils/symbols.py:118
 #, fuzzy
@@ -11070,8 +11127,9 @@ msgid "Latin cross"
 msgstr "Tiếng La Tinh "
 
 #: ../gramps/gen/utils/symbols.py:119
+#, fuzzy
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Shadowed White Latin cross"
 
 #: ../gramps/gen/utils/symbols.py:120
 #, fuzzy
@@ -11079,8 +11137,9 @@ msgid "Maltese cross"
 msgstr "Maltese"
 
 #: ../gramps/gen/utils/symbols.py:121
+#, fuzzy
 msgid "Star of David"
-msgstr ""
+msgstr "Star of David"
 
 #: ../gramps/gen/utils/symbols.py:122
 #, fuzzy
@@ -11519,8 +11578,9 @@ msgid "Restore to defaults"
 msgstr "Khôi phục một gramplet về mặc định? "
 
 #: ../gramps/gui/configure.py:695
+#, fuzzy
 msgid "Restore colors for current theme to default."
-msgstr ""
+msgstr "Restore colors for current theme to default."
 
 #: ../gramps/gui/configure.py:701
 #, fuzzy
@@ -11528,8 +11588,9 @@ msgid "Colors for Male persons"
 msgstr "Chọn màu để sao chép"
 
 #: ../gramps/gui/configure.py:702
+#, fuzzy
 msgid "Colors for Female persons"
-msgstr ""
+msgstr "Colors for Female persons"
 
 #: ../gramps/gui/configure.py:703
 #, fuzzy
@@ -11621,8 +11682,9 @@ msgid "Colors"
 msgstr "Màu"
 
 #: ../gramps/gui/configure.py:794
+#, fuzzy
 msgid "Warnings and Error dialogs"
-msgstr ""
+msgstr "Warnings and Error dialogs"
 
 #: ../gramps/gui/configure.py:800
 #, fuzzy
@@ -11854,8 +11916,9 @@ msgstr ""
 "Thay đổi dạng ngày tháng sẽ không hiệu lực tới khi bạn chạy lại Gramps."
 
 #: ../gramps/gui/configure.py:1488
+#, fuzzy
 msgid "Dates settings used for calculation operations"
-msgstr ""
+msgstr "Dates settings used for calculation operations"
 
 #: ../gramps/gui/configure.py:1494
 msgid "Markup for invalid date format"
@@ -11925,8 +11988,9 @@ msgid "Dates"
 msgstr "Ngày "
 
 #: ../gramps/gui/configure.py:1549
+#, fuzzy
 msgid "General Gramps settings"
-msgstr ""
+msgstr "General Gramps settings"
 
 #: ../gramps/gui/configure.py:1554
 msgid "Add default source on GEDCOM import"
@@ -11937,10 +12001,13 @@ msgid "Add tag on import"
 msgstr "Thêm thẻ k hi nhập"
 
 #: ../gramps/gui/configure.py:1576
+#, fuzzy
 msgid ""
 "Specified tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
+"Specified tag will be added on import.\n"
+"Clear to set default value."
 
 #: ../gramps/gui/configure.py:1581
 msgid "Enable spelling checker"
@@ -11960,8 +12027,9 @@ msgid "Display Tip of the Day"
 msgstr "Hiển thị lời nhắc của ngày "
 
 #: ../gramps/gui/configure.py:1598
+#, fuzzy
 msgid "Show useful information about using Gramps on startup."
-msgstr ""
+msgstr "Show useful information about using Gramps on startup."
 
 #: ../gramps/gui/configure.py:1601
 msgid "Remember last view displayed"
@@ -11981,8 +12049,9 @@ msgid "Base path for relative media paths"
 msgstr "Đường dẫn cơ bản cho đường dẫn đa phương tiện tương đối "
 
 #: ../gramps/gui/configure.py:1618
+#, fuzzy
 msgid "Third party addons management"
-msgstr ""
+msgstr "Third party addons management"
 
 #: ../gramps/gui/configure.py:1627
 msgid "Once a month"
@@ -12062,8 +12131,9 @@ msgid "update"
 msgstr "cập nhật "
 
 #: ../gramps/gui/configure.py:1730
+#, fuzzy
 msgid "Family tree database settings and Backup management"
-msgstr ""
+msgstr "Family tree database settings and Backup management"
 
 #: ../gramps/gui/configure.py:1736
 msgid "Database backend"
@@ -12086,10 +12156,13 @@ msgid "Automatically load last Family Tree"
 msgstr "Tự động tải cây gia đình cuối cùng"
 
 #: ../gramps/gui/configure.py:1762
+#, fuzzy
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
+"Don't open dialog to choose family tree to load on startup, just load last "
+"used."
 
 #: ../gramps/gui/configure.py:1767
 msgid "Backup path"
@@ -12100,8 +12173,9 @@ msgid "Backup on exit"
 msgstr "Sao lưu khi thoát"
 
 #: ../gramps/gui/configure.py:1774
+#, fuzzy
 msgid "Backup Your family tree on exit to Backup path specified above."
-msgstr ""
+msgstr "Backup Your family tree on exit to Backup path specified above."
 
 #: ../gramps/gui/configure.py:1780
 msgid "Every 15 minutes"
@@ -12202,6 +12276,7 @@ msgid "Select backup directory"
 msgstr "Chọn thư mục sao lưu "
 
 #: ../gramps/gui/configure.py:1947
+#, fuzzy
 msgid ""
 "This tab gives you the possibility to use one font which is able to show all "
 "genealogical symbols\n"
@@ -12209,37 +12284,55 @@ msgid ""
 "If you select the \"use symbols\" checkbox, Gramps will use the selected "
 "font if it exists."
 msgstr ""
+"This tab gives you the possibility to use one font which is able to show all "
+"genealogical symbols\n"
+"\n"
+"If you select the \"use symbols\" checkbox, Gramps will use the selected "
+"font if it exists."
 
 #: ../gramps/gui/configure.py:1953
+#, fuzzy
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
+"This can be useful if you want to add phonetic in a note to show how to "
+"pronounce a name or if you mix multiple languages like greek and russian."
 
 #: ../gramps/gui/configure.py:1960
+#, fuzzy
 msgid "Use symbols"
-msgstr ""
+msgstr "Use symbols"
 
 #: ../gramps/gui/configure.py:1965
+#, fuzzy
 msgid ""
 "Be careful, if you click on the \"Try to find\" button, it can take a while "
 "before you can continue (10 minutes or more). \n"
 "If you cancel the process, nothing will be changed."
 msgstr ""
+"Be careful, if you click on the \"Try to find\" button, it can take a while "
+"before you can continue (10 minutes or more). \n"
+"If you cancel the process, nothing will be changed."
 
 #: ../gramps/gui/configure.py:1975
+#, fuzzy
 msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
 msgstr ""
+"You have already run the tool to search for genealogy fonts.\n"
+"Run it again only if you added fonts on your system."
 
 #: ../gramps/gui/configure.py:1980
+#, fuzzy
 msgid "Try to find"
-msgstr ""
+msgstr "Try to find"
 
 #: ../gramps/gui/configure.py:1991 ../gramps/gui/configure.py:2092
+#, fuzzy
 msgid "Choose font"
-msgstr ""
+msgstr "Choose font"
 
 #: ../gramps/gui/configure.py:2004 ../gramps/gui/configure.py:2109
 #, fuzzy
@@ -12252,32 +12345,42 @@ msgid "Genealogical Symbols"
 msgstr "Hệ thống Gia phả "
 
 #: ../gramps/gui/configure.py:2022
+#, fuzzy
 msgid "Cannot look for genealogical fonts"
-msgstr ""
+msgstr "Cannot look for genealogical fonts"
 
 #: ../gramps/gui/configure.py:2023
+#, fuzzy
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
 msgstr ""
+"I am not able to select genealogical fonts. Please, install the module "
+"fontconfig for python 3."
 
 #: ../gramps/gui/configure.py:2040
+#, fuzzy
 msgid "Checking available genealogical fonts"
-msgstr ""
+msgstr "Checking available genealogical fonts"
 
 #: ../gramps/gui/configure.py:2044
+#, fuzzy
 msgid "Looking for all fonts with genealogical symbols."
-msgstr ""
+msgstr "Looking for all fonts with genealogical symbols."
 
 #: ../gramps/gui/configure.py:2117
+#, fuzzy
 msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
 msgstr ""
+"You have no font with genealogical symbols on your system. Gramps will not "
+"be able to use symbols."
 
 #: ../gramps/gui/configure.py:2155
+#, fuzzy
 msgid "What you will see"
-msgstr ""
+msgstr "What you will see"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -15209,14 +15312,18 @@ msgid "URL"
 msgstr "URL "
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:62
+#, fuzzy
 msgid "This updates the view with the current filter parameters."
-msgstr ""
+msgstr "This updates the view with the current filter parameters."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:65
+#, fuzzy
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"This resets the filter parameters to empty state.  The 'Find' button should "
+"be used to actually update the view to its defaults."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -19498,8 +19605,9 @@ msgid "Read Only"
 msgstr "Chỉ đọc "
 
 #: ../gramps/gui/viewmanager.py:1036
+#, fuzzy
 msgid "Gramps had a problem the last time it was run."
-msgstr ""
+msgstr "Gramps had a problem the last time it was run."
 
 #: ../gramps/gui/viewmanager.py:1037
 #, fuzzy
@@ -20137,16 +20245,22 @@ msgid "Undo"
 msgstr "Phục hồi "
 
 #: ../gramps/gui/widgets/styledtexteditor.py:401
+#, fuzzy
 msgid ""
 "\n"
 "Command-Click to follow link"
 msgstr ""
+"\n"
+"Command-Click to follow link"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:402
+#, fuzzy
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
 msgstr ""
+"\n"
+"Ctrl-Click to follow link"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:450
 msgid "Spellcheck"
@@ -21677,9 +21791,9 @@ msgid "(Living people: %(option_name)s)"
 msgstr "(người sống: %(option_name)s)"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:801
-#, python-format
+#, fuzzy, python-format
 msgid "%s born"
-msgstr ""
+msgstr "%s born"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:803
 #, fuzzy
@@ -23768,8 +23882,9 @@ msgid "Add a new To Do note"
 msgstr "Thêm một ghi chú Việc Cần Làm mới "
 
 #: ../gramps/plugins/gramplet/todo.py:201
+#, fuzzy
 msgid "First select the object to which you want to attach a note"
-msgstr ""
+msgstr "First select the object to which you want to attach a note"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -24403,11 +24518,15 @@ msgid "Force Ahnentafel order"
 msgstr "Báo cáo Ahnentafel"
 
 #: ../gramps/plugins/graph/gvhourglass.py:440
+#, fuzzy
 msgid ""
 "Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so "
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
+"Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so "
+"that fathers are always on the left branch and mothers are on the right "
+"branch."
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 #, fuzzy
@@ -24415,10 +24534,13 @@ msgid "Ahnentafel number visible"
 msgstr "Báo cáo Ahnentafel"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
+#, fuzzy
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
 msgstr ""
+"Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
+"informations."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -24488,9 +24610,11 @@ msgid "Show all family nodes"
 msgstr "Hiện nút của gia đình "
 
 #: ../gramps/plugins/graph/gvrelgraph.py:886
+#, fuzzy
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
 msgstr ""
+"Show family nodes even if the output contains only one member of the family."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "Include URLs"
@@ -30505,6 +30629,7 @@ msgstr ""
 "hoặc là chúng ta dùng các ký tự từ bàn phím."
 
 #: ../gramps/plugins/lib/maps/geography.py:1271
+#, fuzzy
 msgid ""
 "If you want to use a specific map provider, You can set the following field "
 "to the provider's url.\n"
@@ -30514,6 +30639,13 @@ msgid ""
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"If you want to use a specific map provider, You can set the following field "
+"to the provider's url.\n"
+"i.e:\n"
+"http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
+"http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1285
 #, fuzzy
@@ -30534,7 +30666,7 @@ msgid "Can't create tiles cache directory %s"
 msgstr "Không thể tạo tu mục nhớ tạm tile %s "
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "You must verify and change the tiles cache\n"
 "...\n"
@@ -30549,6 +30681,18 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:183
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -30570,17 +30714,24 @@ msgstr ""
 "Trên bản đồ bạn phải thấy một vòng tròn hay bán nguyêt tuỳ vào vĩ tuyến. "
 
 #: ../gramps/plugins/lib/maps/placeselection.py:125
+#, fuzzy
 msgid ""
 "\n"
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"In the following table you may have :\n"
+" - a green row related to a selected place."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:128
+#, fuzzy
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+" - a red row related to a geocoding result."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:165
 msgid "The green values in the row correspond to the current place values."
@@ -31607,8 +31758,9 @@ msgid "My Birthday Report"
 msgstr "Báo cáo ngày sinh của tôi"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:68
+#, fuzzy
 msgid "✝"
-msgstr ""
+msgstr "✝"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:221
 #, python-format
@@ -32483,10 +32635,13 @@ msgid "Use name of person as title"
 msgstr "Nhấp tên để kích hoạt người đó\n"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
+#, fuzzy
 msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
 msgstr ""
+"Whether the title should be the name of the person, or 'Complete Individual "
+"Report'"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
@@ -34308,14 +34463,16 @@ msgid "Their common ancestors are: "
 msgstr "Tổ tiên chung của họ là: "
 
 #: ../gramps/plugins/tool/removespaces.py:55
+#, fuzzy
 msgctxt "manual"
 msgid "Remove_leading_and_trailing_spaces"
-msgstr ""
+msgstr "Remove_leading_and_trailing_spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:88
 #: ../gramps/plugins/tool/tools.gpr.py:489
+#, fuzzy
 msgid "Clean input data"
-msgstr ""
+msgstr "Clean input data"
 
 #: ../gramps/plugins/tool/removespaces.py:108
 #, fuzzy
@@ -34354,14 +34511,16 @@ msgid "group as"
 msgstr "Xếp dưới nhóm "
 
 #: ../gramps/plugins/tool/removespaces.py:199
+#, fuzzy
 msgid "tooltip"
-msgstr ""
+msgstr "tooltip"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
+#, fuzzy
 msgid "leading and/or trailing spaces"
-msgstr ""
+msgstr "leading and/or trailing spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:282
 #: ../gramps/plugins/tool/removespaces.py:294
@@ -34371,13 +34530,15 @@ msgstr "Dạng không đúng"
 
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
+#, fuzzy
 msgid "comma instead of dot"
-msgstr ""
+msgstr "comma instead of dot"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
+#, fuzzy
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "invalid char instead of '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -35763,6 +35924,7 @@ msgid "OsmGpsMap module not loaded."
 msgstr "Mô đun OsmGpsMap không tải được"
 
 #: ../gramps/plugins/view/geography.gpr.py:68
+#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "Try to install:\n"
@@ -35773,6 +35935,14 @@ msgid ""
 "To build it for Gramps see the Wiki (<F1>)\n"
 " and search for 'build from source'"
 msgstr ""
+"Geography functionality will not be available.\n"
+"Try to install:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 for fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 for openSuse\n"
+" ...\n"
+"To build it for Gramps see the Wiki (<F1>)\n"
+" and search for 'build from source'"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
@@ -36683,8 +36853,9 @@ msgid "between"
 msgstr "giữa "
 
 #: ../gramps/plugins/webreport/basepage.py:3250
+#, fuzzy
 msgid "circa"
-msgstr ""
+msgstr "circa"
 
 #: ../gramps/plugins/webreport/basepage.py:3252
 #, fuzzy
@@ -36713,8 +36884,9 @@ msgid "Last Modified"
 msgstr "Sửa lần cuối "
 
 #: ../gramps/plugins/webreport/download.py:129
+#, fuzzy
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:178
 #, fuzzy
@@ -37050,8 +37222,9 @@ msgid "Add previous/next"
 msgstr "Thêm bạn đời "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
+#, fuzzy
 msgid "Add previous/next to the navigation bar."
-msgstr ""
+msgstr "Add previous/next to the navigation bar."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2070
 #, fuzzy
@@ -37069,8 +37242,9 @@ msgid "Toggle sections"
 msgstr "Chọn tiêu đề"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
+#, fuzzy
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Check it if you want to open/close a section"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2086
 #, fuzzy
@@ -37094,15 +37268,20 @@ msgid "Your extra page path without extension"
 msgstr "Trang dư của bạn không có mở rộng"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
+#, fuzzy
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Do we use multiple translations?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2119
+#, fuzzy
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Whether to display the narrative web in multiple languages.\n"
+"See the translation tab to add new languages to the default one defined in "
+"the next field."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Sort all children in birth order"
@@ -37125,12 +37304,14 @@ msgid "Whether to display latitude/longitude in the places list."
 msgstr "Có hiện kinh độ/vĩ độ cho các địa điểm trong danh sách không? "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2145
+#, fuzzy
 msgid "Sort places references either by date or by name"
-msgstr ""
+msgstr "Sort places references either by date or by name"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2147
+#, fuzzy
 msgid "Sort the places references by date or by name. Not set means by date."
-msgstr ""
+msgstr "Sort the places references by date or by name. Not set means by date."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2151
 msgid "Graph generations"
@@ -37141,14 +37322,18 @@ msgid "The number of generations to include in the ancestor graph"
 msgstr "Số thế hệ đưa vào biểu đồ tổ tiên "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2158
+#, fuzzy
 msgid "Include narrative notes just after name, gender"
-msgstr ""
+msgstr "Include narrative notes just after name, gender"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2160
+#, fuzzy
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Include narrative notes just after name, gender and age at death (default) "
+"or include them just before attributes."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2171
 msgid "Page Generation"
@@ -37232,14 +37417,18 @@ msgid "A note to be used as the page footer"
 msgstr "Ghi chú dùng làm chân trang "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
+#, fuzzy
 msgid "PHP user session"
-msgstr ""
+msgstr "PHP user session"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2216
+#, fuzzy
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"A note to use for starting the php session.\n"
+"This option will be available only if the .php file extension is selected."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Images Generation"
@@ -37254,12 +37443,14 @@ msgid "Whether to include a gallery of media objects"
 msgstr "Có đưa tập ảnh các đối tượng đa phương tiện vào không "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2238
+#, fuzzy
 msgid "Create the images index"
-msgstr ""
+msgstr "Create the images index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2240
+#, fuzzy
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "This option allows you to create the images index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Include unused images and media objects"
@@ -37291,8 +37482,9 @@ msgid "Create the thumbnail index"
 msgstr "Tạo và chỉ dùng hình ảnh thu nhỏ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2265
+#, fuzzy
 msgid "This option allows you to create the thumbnail index"
-msgstr ""
+msgstr "This option allows you to create the thumbnail index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2271
 msgid "Max width of initial image"
@@ -37316,8 +37508,9 @@ msgid "Whether to include a database download option"
 msgstr "Có đưa tùy chọn tải về của CSDL không "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2294
+#, fuzzy
 msgid "How many downloads"
-msgstr ""
+msgstr "How many downloads"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2296
 #, fuzzy
@@ -37586,12 +37779,14 @@ msgid "The API key used for the Google maps"
 msgstr "Khóa API được dùng cho bản đồ G"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
+#, fuzzy
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2484
+#, fuzzy
 msgid "Terrain"
-msgstr ""
+msgstr "Terrain"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2485
 #, fuzzy
@@ -37650,8 +37845,9 @@ msgid "Max days for updates"
 msgstr "Số mục tối đa cho biểu đồ hình bánh "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2534
+#, fuzzy
 msgid "You want to see the last updates on how many days?"
-msgstr ""
+msgstr "You want to see the last updates on how many days?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
 #, fuzzy
@@ -37659,8 +37855,9 @@ msgid "Max number of updates per object to show"
 msgstr "Số địa điểm tối đa hiển thị"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2540
+#, fuzzy
 msgid "How many updates do you want to see max"
-msgstr ""
+msgstr "How many updates do you want to see max"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2553
 #, fuzzy
@@ -37673,8 +37870,9 @@ msgid "second language"
 msgstr "Ngày thứ hai"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
+#, fuzzy
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Site name for your second language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2561
 #: ../gramps/plugins/webreport/narrativeweb.py:2569
@@ -37690,8 +37888,9 @@ msgstr "Tiêu đề site "
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
 #: ../gramps/plugins/webreport/narrativeweb.py:2586
 #: ../gramps/plugins/webreport/narrativeweb.py:2594
+#, fuzzy
 msgid "Enter a title in the respective language"
-msgstr ""
+msgstr "Enter a title in the respective language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2564
 #, fuzzy
@@ -37699,8 +37898,9 @@ msgid "third language"
 msgstr "Ngôn nữa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
+#, fuzzy
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Site name for your third language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2572
 #, fuzzy
@@ -37708,8 +37908,9 @@ msgid "fourth language"
 msgstr "Ngôn nữa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
+#, fuzzy
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Site name for your fourth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2580
 #, fuzzy
@@ -37717,8 +37918,9 @@ msgid "fifth language"
 msgstr "Ngôn nữa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
+#, fuzzy
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Site name for your fifth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2588
 #, fuzzy
@@ -37726,8 +37928,9 @@ msgid "sixth language"
 msgstr "Ngôn nữa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2592
+#, fuzzy
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Site name for your sixth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2805
 #, fuzzy
@@ -37777,15 +37980,19 @@ msgstr "Gồm cả ngày kỷ niệm trên lịch "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2859
 #: ../gramps/plugins/webreport/webcal.py:1977
+#, fuzzy
 msgid "Show data only after year"
-msgstr ""
+msgstr "Show data only after year"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2862
 #: ../gramps/plugins/webreport/webcal.py:1980
+#, fuzzy
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
+"Show data only after this year. Default is current year -  'maximum age "
+"probably alive' which is defined in the dates preference tab."
 
 #: ../gramps/plugins/webreport/person.py:150
 msgid "Creating individual pages"
@@ -38007,12 +38214,14 @@ msgid "New and updated objects"
 msgstr "Trình addon mới và cập nhật "
 
 #: ../gramps/plugins/webreport/updates.py:88
-#, python-format
+#, fuzzy, python-format
 msgctxt "nb"
 msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
+"This page contains the last updated objects in the database in the last "
+"%(days)d days and for a maximum of %(nb)d objects per object type."
 
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
@@ -38249,9 +38458,9 @@ msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "Một tiền tốt liên kết đưa bạn đến báo cáo tường thuật web "
 
 #: ../gramps/plugins/webreport/webcal.py:2195
-#, python-format
+#, fuzzy, python-format
 msgid "%s since death"
-msgstr ""
+msgstr "%s since death"
 
 #: ../gramps/plugins/webreport/webcal.py:2196
 #, fuzzy

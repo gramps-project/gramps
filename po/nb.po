@@ -17,16 +17,16 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2022-01-10 22:09+0000\n"
-"Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"PO-Revision-Date: 2022-02-23 19:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -24539,21 +24539,28 @@ msgid "Force Ahnentafel order"
 msgstr "Tving Ahnentafel rekkefølge"
 
 #: ../gramps/plugins/graph/gvhourglass.py:440
+#, fuzzy
 msgid ""
 "Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so "
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
+"Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so "
+"that fathers are always on the left branch and mothers are on the right "
+"branch."
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid "Ahnentafel number visible"
 msgstr "Ahnentafel -nummer synlig"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
+#, fuzzy
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
 msgstr ""
+"Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
+"informations."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -25528,14 +25535,18 @@ msgid "Diverse"
 msgstr "Diverse"
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
+#, fuzzy
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
+#, fuzzy
 msgid ""
 "Store REFN number\n"
 "in event description."
 msgstr ""
+"Store REFN number\n"
+"in event description."
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
@@ -25627,10 +25638,13 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Token >%(token)s< ukjent. hoppet over linje: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
+#, fuzzy
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested VCards."
 msgstr ""
+"BEGIN property not properly closed by END property, Gramps can't cope with "
+"nested VCards."
 
 #: ../gramps/plugins/importer/importvcard.py:346
 #, python-format
@@ -25638,19 +25652,25 @@ msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Import av VCards versjon %s er ikke støttet av Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:366
+#, fuzzy
 msgid ""
 "VCard is malformed missing the compulsory N property, so there is no name; "
 "skip it."
 msgstr ""
+"VCard is malformed missing the compulsory N property, so there is no name; "
+"skip it."
 
 #: ../gramps/plugins/importer/importvcard.py:371
+#, fuzzy
 msgid ""
 "VCard is malformed missing the compulsory FN property, get name from N alone."
 msgstr ""
+"VCard is malformed missing the compulsory FN property, get name from N alone."
 
 #: ../gramps/plugins/importer/importvcard.py:375
+#, fuzzy
 msgid "VCard is malformed wrong number of name components."
-msgstr ""
+msgstr "VCard is malformed wrong number of name components."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -30611,7 +30631,7 @@ msgid "Can't create tiles cache directory %s"
 msgstr "Kan ikke opprette mellomlagerkatalog for titler %s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "You must verify and change the tiles cache\n"
 "...\n"
@@ -30626,6 +30646,18 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:183
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -30647,17 +30679,24 @@ msgstr ""
 "Du bør se en sirkel eller ellipse på kartet, avhengig av lengdegraden."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:125
+#, fuzzy
 msgid ""
 "\n"
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"In the following table you may have :\n"
+" - a green row related to a selected place."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:128
+#, fuzzy
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+" - a red row related to a geocoding result."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:165
 msgid "The green values in the row correspond to the current place values."
@@ -32676,8 +32715,9 @@ msgstr "Ta med tanter/unkler/nevøer/nieser"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:67
 #: ../gramps/plugins/textreport/notelinkreport.py:102
+#, fuzzy
 msgid "Note Link Check Report"
-msgstr ""
+msgstr "Note Link Check Report"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:77
 msgid "Note ID"
@@ -33906,8 +33946,9 @@ msgid "Starting"
 msgstr "Starter"
 
 #: ../gramps/plugins/tool/findloop.py:95
+#, fuzzy
 msgid "Looking for possible loop for each person"
-msgstr ""
+msgstr "Looking for possible loop for each person"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
 msgctxt "manual"
@@ -34252,8 +34293,9 @@ msgid "_Email:"
 msgstr "_E-post:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:383
+#, fuzzy
 msgid "Right-click to copy from/to Researcher Preferences"
-msgstr ""
+msgstr "Right-click to copy from/to Researcher Preferences"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
@@ -34445,8 +34487,9 @@ msgstr ""
 "Dobbeltklikk på en rad for å redigere innholdet."
 
 #: ../gramps/plugins/tool/removespaces.py:118
+#, fuzzy
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr ""
+msgstr "Looking for possible fields with leading or trailing spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:135
 #: ../gramps/plugins/tool/removespaces.py:185
@@ -34584,10 +34627,13 @@ msgid "Change"
 msgstr "Endre"
 
 #: ../gramps/plugins/tool/reorderids.glade:1470
+#, fuzzy
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"Enable ID reordering\n"
+"with Start / Step sequence."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -34602,8 +34648,9 @@ msgid "Step"
 msgstr "Stebarn"
 
 #: ../gramps/plugins/tool/reorderids.glade:1506
+#, fuzzy
 msgid "Reorder ID step width."
-msgstr ""
+msgstr "Reorder ID step width."
 
 #: ../gramps/plugins/tool/reorderids.glade:1518
 msgid "Keep"
@@ -34932,8 +34979,9 @@ msgstr ""
 "sidetall, dato eller troverdighetsnivå."
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
+#, fuzzy
 msgid "Searches the entire database, looking for a possible loop."
-msgstr ""
+msgstr "Searches the entire database, looking for a possible loop."
 
 #: ../gramps/plugins/tool/tools.gpr.py:490
 msgid ""
@@ -35534,8 +35582,9 @@ msgid "Background"
 msgstr "Bakgrunn"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:313
+#, fuzzy
 msgid "Add global background colored gradient"
-msgstr ""
+msgstr "Add global background colored gradient"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
@@ -35744,11 +35793,15 @@ msgid "Selecting all events"
 msgstr "Velger alle hendelser"
 
 #: ../gramps/plugins/view/geoevents.py:368
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
+"Right click on the map and select 'show all events' to show all known events "
+"with coordinates. You can use the history to navigate on the map. You can "
+"use filtering."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
@@ -35873,6 +35926,7 @@ msgid "OsmGpsMap module not loaded."
 msgstr "Modulen OsmGpsMap er ikke lastet."
 
 #: ../gramps/plugins/view/geography.gpr.py:68
+#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "Try to install:\n"
@@ -35883,6 +35937,14 @@ msgid ""
 "To build it for Gramps see the Wiki (<F1>)\n"
 " and search for 'build from source'"
 msgstr ""
+"Geography functionality will not be available.\n"
+"Try to install:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 for fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 for openSuse\n"
+" ...\n"
+"To build it for Gramps see the Wiki (<F1>)\n"
+" and search for 'build from source'"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
@@ -36042,18 +36104,26 @@ msgid "Selecting all places"
 msgstr "Velger alle steder"
 
 #: ../gramps/plugins/view/geoplaces.py:433
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can change the markers color depending on place type. "
+"You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:448
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can use the history to navigate on the map. You can "
+"change the markers color depending on place type. You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
@@ -36095,8 +36165,9 @@ msgid "Custom places name"
 msgstr "Fullstendig stedsnavn"
 
 #: ../gramps/plugins/view/geoplaces.py:665
+#, fuzzy
 msgid "The places marker color"
-msgstr ""
+msgstr "The places marker color"
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Edit the selected media object"
@@ -37190,27 +37261,34 @@ msgid "Extra page name"
 msgstr "Ekstra side navn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2092
+#, fuzzy
 msgid "Your extra page name like it is shown in the menubar"
-msgstr ""
+msgstr "Your extra page name like it is shown in the menubar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2097
+#, fuzzy
 msgid "Your extra page path"
-msgstr ""
+msgstr "Your extra page path"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2100
+#, fuzzy
 msgid "Your extra page path without extension"
-msgstr ""
+msgstr "Your extra page path without extension"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
 msgid "Do we use multiple translations?"
 msgstr "Bruker vi flere oversettelser?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2119
+#, fuzzy
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Whether to display the narrative web in multiple languages.\n"
+"See the translation tab to add new languages to the default one defined in "
+"the next field."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Sort all children in birth order"
@@ -37344,10 +37422,13 @@ msgid "PHP user session"
 msgstr "PHP-brukerøkt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2216
+#, fuzzy
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"A note to use for starting the php session.\n"
+"This option will be available only if the .php file extension is selected."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Images Generation"
@@ -37669,8 +37750,9 @@ msgid "The API key used for the Google maps"
 msgstr "API-nøkkelen som ble brukt for Google Kart"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
+#, fuzzy
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2484
 msgid "Terrain"

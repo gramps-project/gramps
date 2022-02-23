@@ -15,15 +15,16 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-06-17 16:22+0800\n"
-"Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
-"Language-Team: Chinese (simplified)\n"
+"PO-Revision-Date: 2022-02-23 19:29+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -1124,9 +1125,9 @@ msgid "Performing action: %s."
 msgstr "采取行动：%s。"
 
 #: ../gramps/cli/arghandler.py:461 ../gramps/gen/plug/report/stdoptions.py:302
-#, python-format
+#, fuzzy, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "Using options string: %s"
 
 #: ../gramps/cli/arghandler.py:467
 #, python-format
@@ -2005,14 +2006,14 @@ msgid ":"
 msgstr ":"
 
 #: ../gramps/gen/datehandler/__init__.py:88
-#, python-format
+#, fuzzy, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr ""
+msgstr "Date parser for '%s' not available, using default"
 
 #: ../gramps/gen/datehandler/__init__.py:105
-#, python-format
+#, fuzzy, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr ""
+msgstr "Date displayer for '%s' not available, using default"
 
 #. Translators: Numeric year, month, day
 #: ../gramps/gen/datehandler/_datedisplay.py:71
@@ -2599,266 +2600,316 @@ msgstr "瑞典历"
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:146
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr ""
+msgstr "Tishri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr ""
+msgstr "Heshvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:148
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr ""
+msgstr "Kislev"
 
 #: ../gramps/gen/datehandler/_datestrings.py:149
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Tevet"
-msgstr ""
+msgstr "Tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:150
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Shevat"
-msgstr ""
+msgstr "Shevat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:151
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr ""
+msgstr "AdarI"
 
 #: ../gramps/gen/datehandler/_datestrings.py:152
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr ""
+msgstr "AdarII"
 
 #: ../gramps/gen/datehandler/_datestrings.py:153
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Nisan"
-msgstr ""
+msgstr "Nisan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:154
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Iyyar"
-msgstr ""
+msgstr "Iyyar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Sivan"
-msgstr ""
+msgstr "Sivan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Tammuz"
-msgstr ""
+msgstr "Tammuz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:157
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Av"
-msgstr ""
+msgstr "Av"
 
 #: ../gramps/gen/datehandler/_datestrings.py:158
+#, fuzzy
 msgctxt "Hebrew month lexeme"
 msgid "Elul"
-msgstr ""
+msgstr "Elul"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:167
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Vendémiaire"
-msgstr ""
+msgstr "Vendémiaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:168
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Brumaire"
-msgstr ""
+msgstr "Brumaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:169
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Frimaire"
-msgstr ""
+msgstr "Frimaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:170
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Nivôse"
-msgstr ""
+msgstr "Nivôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:171
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Pluviôse"
-msgstr ""
+msgstr "Pluviôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:172
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Ventôse"
-msgstr ""
+msgstr "Ventôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:173
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Germinal"
-msgstr ""
+msgstr "Germinal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:174
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Floréal"
-msgstr ""
+msgstr "Floréal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Prairial"
-msgstr ""
+msgstr "Prairial"
 
 #: ../gramps/gen/datehandler/_datestrings.py:176
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Messidor"
-msgstr ""
+msgstr "Messidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:177
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Thermidor"
-msgstr ""
+msgstr "Thermidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:178
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Fructidor"
-msgstr ""
+msgstr "Fructidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:179
+#, fuzzy
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr ""
+msgstr "Extra"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:188
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr ""
+msgstr "Muharram"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr ""
+msgstr "Safar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr ""
+msgstr "Rabi`al-Awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr ""
+msgstr "Rabi`ath-Thani"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr ""
+msgstr "Jumada l-Ula"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr ""
+msgstr "Jumada t-Tania"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "Rajab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr ""
+msgstr "Sha`ban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr ""
+msgstr "Ramadan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr ""
+msgstr "Shawwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr ""
+msgstr "Dhu l-Qa`da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:199
+#, fuzzy
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr ""
+msgstr "Dhu l-Hijja"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:208
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Farvardin"
-msgstr ""
+msgstr "Farvardin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Ordibehesht"
-msgstr ""
+msgstr "Ordibehesht"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr ""
+msgstr "Khordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr ""
+msgstr "Tir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Mordad"
-msgstr ""
+msgstr "Mordad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:213
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Shahrivar"
-msgstr ""
+msgstr "Shahrivar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:214
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Mehr"
-msgstr ""
+msgstr "Mehr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Aban"
-msgstr ""
+msgstr "Aban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Azar"
-msgstr ""
+msgstr "Azar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:217
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Dey"
-msgstr ""
+msgstr "Dey"
 
 #: ../gramps/gen/datehandler/_datestrings.py:218
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Bahman"
-msgstr ""
+msgstr "Bahman"
 
 #: ../gramps/gen/datehandler/_datestrings.py:219
+#, fuzzy
 msgctxt "Persian month lexeme"
 msgid "Esfand"
-msgstr ""
+msgstr "Esfand"
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -3052,7 +3103,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/exceptions.py:191
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Family Tree you are trying to load is in the %(dbtype)s database, which "
 "is no longer supported.\n"
@@ -3069,6 +3120,20 @@ msgid ""
 "start your previous version of Gramps and %(wiki_backup_html_start)smake a "
 "backup%(html_end)s of your Family Tree."
 msgstr ""
+"The Family Tree you are trying to load is in the %(dbtype)s database, which "
+"is no longer supported.\n"
+"Therefore you cannot load this Family Tree without upgrading.\n"
+"\n"
+"If you upgrade then you won't be able to use the previous version of Gramps, "
+"even if you subsequently %(wiki_manual_backup_html_start)sbackup%(html_end)s "
+"or %(wiki_manual_export_html_start)sexport%(html_end)s your upgraded Family "
+"Tree.\n"
+"\n"
+"You are strongly advised to backup your Family Tree.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your previous version of Gramps and %(wiki_backup_html_start)smake a "
+"backup%(html_end)s of your Family Tree."
 
 #: ../gramps/gen/db/generic.py:152 ../gramps/gen/db/generic.py:202
 #: ../gramps/gen/db/generic.py:2024
@@ -3140,46 +3205,53 @@ msgid "Schema version"
 msgstr "Schema 版本"
 
 #: ../gramps/gen/db/upgrade.py:372
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:374
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:376
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:378
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:380
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:382
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:384
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
+"%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:724
 msgid "Number of new objects upgraded:\n"
@@ -3237,8 +3309,9 @@ msgstr "继承的姓"
 
 #. Translators: long string, have a look at Preferences dialog
 #: ../gramps/gen/display/name.py:363
+#, fuzzy
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr ""
+msgstr "Main Surnames, Given Patronymic Suffix Prefix"
 
 #: ../gramps/gen/display/name.py:366
 msgid "Patronymic, Given"
@@ -3724,8 +3797,9 @@ msgid "The filter definition contains a loop."
 msgstr "筛选器中包含了循环。"
 
 #: ../gramps/gen/filters/rules/_rule.py:95
+#, fuzzy
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "One rule references another which eventually references the first."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -5358,10 +5432,13 @@ msgid "Soundex match of People with the <name>"
 msgstr "成员使用姓名 <name>"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:43
+#, fuzzy
 msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
+"Soundex Match of people with a specified name. First name, Surname, Call "
+"name, and Nickname are searched in primary and alternate names."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:45
 msgid "People with <count> sources"
@@ -6108,8 +6185,9 @@ msgid "Matches places within a given distance of another place"
 msgstr "匹配出生日期符合特定值的成员"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
+#, fuzzy
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Cannot use the filter 'within area'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
@@ -6834,8 +6912,9 @@ msgstr "子女参照信息"
 #: ../gramps/gen/lib/placeref.py:91 ../gramps/gen/lib/repo.py:91
 #: ../gramps/gen/lib/reporef.py:104 ../gramps/gen/lib/src.py:102
 #: ../gramps/gen/lib/tag.py:120
+#, fuzzy
 msgid "Handle"
-msgstr ""
+msgstr "Handle"
 
 #: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:72
 #: ../gramps/gui/configure.py:87
@@ -7089,8 +7168,9 @@ msgid "Calendar"
 msgstr "日历"
 
 #: ../gramps/gen/lib/date.py:712
+#, fuzzy
 msgid "Modifier"
-msgstr ""
+msgstr "Modifier"
 
 #: ../gramps/gen/lib/date.py:714
 #, fuzzy
@@ -7748,9 +7828,10 @@ msgid "m.ban."
 msgstr "婚姻预告"
 
 #: ../gramps/gen/lib/eventtype.py:252
+#, fuzzy
 msgctxt "Alternate Marriage abbreviation"
 msgid "alt.mar."
-msgstr ""
+msgstr "alt.mar."
 
 #: ../gramps/gen/lib/eventtype.py:253
 msgctxt "Engagement abbreviation"
@@ -7941,8 +8022,9 @@ msgid "<No Status>"
 msgstr "<No Status>"
 
 #: ../gramps/gen/lib/ldsord.py:104
+#, fuzzy
 msgid "Born in Covenant"
-msgstr ""
+msgstr "Born in Covenant"
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
@@ -9075,11 +9157,13 @@ msgstr "未提供描述"
 
 #: ../gramps/gen/plug/_options.py:386
 #: ../gramps/plugins/textreport/recordsreport.py:162
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
+"Option '%(opt_name)s' is present in %(file)s\n"
+"  but is not known to the module.  Ignoring..."
 
 #: ../gramps/gen/plug/_pluginreg.py:59
 msgid "Stable"
@@ -9652,16 +9736,19 @@ msgid "Rounded"
 msgstr "圆角"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
+#, fuzzy
 msgid "Swing"
-msgstr ""
+msgstr "Swing"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
+#, fuzzy
 msgid "Mesh"
-msgstr ""
+msgstr "Mesh"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
+#, fuzzy
 msgid "Tiny"
-msgstr ""
+msgstr "Tiny"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Script"
@@ -9924,14 +10011,16 @@ msgid "Full names, but data removed"
 msgstr "包含健在人员全名，但移除数据"
 
 #: ../gramps/gen/plug/report/stdoptions.py:196
+#, fuzzy
 msgctxt "'living people'"
 msgid "Given names replaced, and data removed"
-msgstr ""
+msgstr "Given names replaced, and data removed"
 
 #: ../gramps/gen/plug/report/stdoptions.py:198
+#, fuzzy
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr ""
+msgstr "Complete names replaced, and data removed"
 
 #: ../gramps/gen/plug/report/stdoptions.py:201
 msgctxt "'living people'"
@@ -10021,8 +10110,9 @@ msgid "Could not add photo to page"
 msgstr "无法向页面添加照片"
 
 #: ../gramps/gen/plug/report/utils.py:288
+#, fuzzy
 msgid "PERSON"
-msgstr ""
+msgstr "PERSON"
 
 #: ../gramps/gen/plug/report/utils.py:296
 #: ../gramps/plugins/textreport/notelinkreport.py:164
@@ -10378,12 +10468,14 @@ msgid "no evidence"
 msgstr "无证据"
 
 #: ../gramps/gen/utils/cast.py:46
+#, fuzzy
 msgid "True"
-msgstr ""
+msgstr "True"
 
 #: ../gramps/gen/utils/cast.py:46
+#, fuzzy
 msgid "true"
-msgstr ""
+msgstr "true"
 
 #: ../gramps/gen/utils/configmanager.py:259
 #, fuzzy, python-format
@@ -10435,8 +10527,9 @@ msgid "German"
 msgstr "德语"
 
 #: ../gramps/gen/utils/grampslocale.py:78
+#, fuzzy
 msgid "German (Austria)"
-msgstr ""
+msgstr "German (Austria)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -10935,8 +11028,9 @@ msgid "Transgender"
 msgstr "变性人"
 
 #: ../gramps/gen/utils/symbols.py:69
+#, fuzzy
 msgid "Neuter"
-msgstr ""
+msgstr "Neuter"
 
 #: ../gramps/gen/utils/symbols.py:71
 msgid "Illegitimate"
@@ -10960,8 +11054,9 @@ msgid "Buried"
 msgstr "埋葬"
 
 #: ../gramps/gen/utils/symbols.py:79
+#, fuzzy
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Cremated/Funeral urn"
 
 #: ../gramps/gen/utils/symbols.py:80
 #, fuzzy
@@ -10969,36 +11064,43 @@ msgid "Killed in action"
 msgstr "收藏"
 
 #: ../gramps/gen/utils/symbols.py:81
+#, fuzzy
 msgid "Extinct"
-msgstr ""
+msgstr "Extinct"
 
 #: ../gramps/gen/utils/symbols.py:106
 msgid "Nothing"
 msgstr "无"
 
 #: ../gramps/gen/utils/symbols.py:108
+#, fuzzy
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "Skull and crossbones"
 
 #: ../gramps/gen/utils/symbols.py:109
+#, fuzzy
 msgid "Ankh"
-msgstr ""
+msgstr "Ankh"
 
 #: ../gramps/gen/utils/symbols.py:110
+#, fuzzy
 msgid "Orthodox cross"
-msgstr ""
+msgstr "Orthodox cross"
 
 #: ../gramps/gen/utils/symbols.py:111
+#, fuzzy
 msgid "Chi rho"
-msgstr ""
+msgstr "Chi rho"
 
 #: ../gramps/gen/utils/symbols.py:112
+#, fuzzy
 msgid "Cross of Lorraine"
-msgstr ""
+msgstr "Cross of Lorraine"
 
 #: ../gramps/gen/utils/symbols.py:113
+#, fuzzy
 msgid "Cross of Jerusalem"
-msgstr ""
+msgstr "Cross of Jerusalem"
 
 #: ../gramps/gen/utils/symbols.py:114
 #, fuzzy
@@ -11006,8 +11108,9 @@ msgid "Star and crescent"
 msgstr "启动日期测试？"
 
 #: ../gramps/gen/utils/symbols.py:115
+#, fuzzy
 msgid "West Syriac cross"
-msgstr ""
+msgstr "West Syriac cross"
 
 #: ../gramps/gen/utils/symbols.py:116
 #, fuzzy
@@ -11015,32 +11118,36 @@ msgid "East Syriac cross"
 msgstr "上次修订时间"
 
 #: ../gramps/gen/utils/symbols.py:117
+#, fuzzy
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Heavy Greek cross"
 
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
 msgstr "拉丁十字架"
 
 #: ../gramps/gen/utils/symbols.py:119
+#, fuzzy
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Shadowed White Latin cross"
 
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
 msgstr "马尔他十字架"
 
 #: ../gramps/gen/utils/symbols.py:121
+#, fuzzy
 msgid "Star of David"
-msgstr ""
+msgstr "Star of David"
 
 #: ../gramps/gen/utils/symbols.py:122
 msgid "Dead"
 msgstr "已故"
 
 #: ../gramps/gen/utils/unknown.py:140
+#, fuzzy
 msgid "Unknown, created to replace a missing note object."
-msgstr ""
+msgstr "Unknown, created to replace a missing note object."
 
 #: ../gramps/gen/utils/unknown.py:150
 #, python-format
@@ -11048,9 +11155,9 @@ msgid "Unknown, was missing %(time)s (%(count)d)"
 msgstr "未知，缺少 %(time)s (%(count)d)"
 
 #: ../gramps/gen/utils/unknown.py:169
-#, python-format
+#, fuzzy, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
-msgstr ""
+msgstr "Objects referenced by this note were missing in a file imported on %s."
 
 #: ../gramps/grampsapp.py:189
 #, fuzzy, python-format
@@ -11663,8 +11770,9 @@ msgid "Place format (auto place title)"
 msgstr "地点格式（自动设置地点标题）"
 
 #: ../gramps/gui/configure.py:1243
+#, fuzzy
 msgid "Enables automatic place title generation using specified format."
-msgstr ""
+msgstr "Enables automatic place title generation using specified format."
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -11971,8 +12079,9 @@ msgid "' and '"
 msgstr "'和'"
 
 #: ../gramps/gui/configure.py:1701
+#, fuzzy
 msgid "new"
-msgstr ""
+msgstr "new"
 
 #: ../gramps/gui/configure.py:1701
 msgid "update"
@@ -12202,8 +12311,9 @@ msgid ""
 msgstr "您的系统中没有带系谱学符号的字体。Gramps 无法使用符号。"
 
 #: ../gramps/gui/configure.py:2155
+#, fuzzy
 msgid "What you will see"
-msgstr ""
+msgstr "What you will see"
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -13295,8 +13405,9 @@ msgstr "注解(_N)"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
 #: ../gramps/plugins/webreport/basepage.py:1967
+#, fuzzy
 msgid "Personal"
-msgstr ""
+msgstr "Personal"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:53
 msgid "<Unknown>"
@@ -15096,10 +15207,13 @@ msgid "This updates the view with the current filter parameters."
 msgstr "匹配事件（特定的参数）"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:65
+#, fuzzy
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
+"This resets the filter parameters to empty state.  The 'Find' button should "
+"be used to actually update the view to its defaults."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -15934,10 +16048,13 @@ msgid "Ch_urch parish:"
 msgstr "教会堂区(_U)："
 
 #: ../gramps/gui/glade/editlocation.glade:150
+#, fuzzy
 msgid ""
 "Lowest clergical division of this place. Typically used for church sources "
 "that only mention the parish."
 msgstr ""
+"Lowest clergical division of this place. Typically used for church sources "
+"that only mention the parish."
 
 #: ../gramps/gui/glade/editlocation.glade:164
 msgid "Co_unty:"
@@ -16125,11 +16242,15 @@ msgstr "昵称(_N)："
 
 #: ../gramps/gui/glade/editname.glade:278
 #: ../gramps/gui/glade/editperson.glade:179
+#, fuzzy
 msgid ""
 "Part of the Given name that is the normally used name. If background is red, "
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
+"Part of the Given name that is the normally used name. If background is red, "
+"call name is not part of Given name and will not be printed underlined in "
+"some reports."
 
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
@@ -16241,6 +16362,7 @@ msgid "_Preformatted"
 msgstr "预格式化(_P)"
 
 #: ../gramps/gui/glade/editnote.glade:198
+#, fuzzy
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use "
 "this to add formatting layout with spaces, eg a table. \n"
@@ -16248,6 +16370,11 @@ msgid ""
 "improve the report layout.\n"
 "Use monospace font to keep preformatting."
 msgstr ""
+"When active the whitespace in your note will be respected in reports. Use "
+"this to add formatting layout with spaces, eg a table. \n"
+"When not checked, notes are automatically cleaned in the reports, which will "
+"improve the report layout.\n"
+"Use monospace font to keep preformatting."
 
 #: ../gramps/gui/glade/editperson.glade:165
 msgid "C_all:"
@@ -16371,6 +16498,7 @@ msgid "Full title of this place."
 msgstr "此地点的完整标题。"
 
 #: ../gramps/gui/glade/editplace.glade:179
+#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
 "notation.\n"
@@ -16378,8 +16506,14 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
+"Latitude (position above the Equator) of the place in decimal or degree "
+"notation.\n"
+"Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92\n"
+"You can set these values via the Geography View by searching the place, or "
+"via a map service in the place view."
 
 #: ../gramps/gui/glade/editplace.glade:194
+#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
 "place in decimal or degree notation.\n"
@@ -16388,6 +16522,12 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
+"Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
+"place in decimal or degree notation.\n"
+"Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or 124:52:21."
+"92\n"
+"You can set these values via the Geography View by searching the place, or "
+"via a map service in the place view."
 
 #: ../gramps/gui/glade/editplace.glade:215
 #: ../gramps/gui/glade/editplaceref.glade:351
@@ -16400,8 +16540,9 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:240
 #: ../gramps/gui/glade/editplaceref.glade:376
+#, fuzzy
 msgid "Field used to paste info from a web page like Google, OpenStreetMap..."
-msgstr ""
+msgstr "Field used to paste info from a web page like Google, OpenStreetMap..."
 
 #: ../gramps/gui/glade/editplace.glade:267
 #: ../gramps/gui/glade/editplaceref.glade:496
@@ -16989,16 +17130,18 @@ msgid "Parent relationships"
 msgstr "父母关系"
 
 #: ../gramps/gui/glade/reorder.glade:117 ../gramps/gui/glade/reorder.glade:260
+#, fuzzy
 msgid "Arrow top"
-msgstr ""
+msgstr "Arrow top"
 
 #: ../gramps/gui/glade/reorder.glade:124
 msgid "Move parent up"
 msgstr "上移父母"
 
 #: ../gramps/gui/glade/reorder.glade:147 ../gramps/gui/glade/reorder.glade:290
+#, fuzzy
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Arrow bottom"
 
 #: ../gramps/gui/glade/reorder.glade:154
 msgid "Move parent down"
@@ -17282,8 +17425,9 @@ msgid "Shadow"
 msgstr "阴影"
 
 #: ../gramps/gui/glade/styleeditor.glade:1598
+#, fuzzy
 msgid "pt"
-msgstr ""
+msgstr "pt"
 
 #: ../gramps/gui/glade/styleeditor.glade:1621
 msgid "Spacing:"
@@ -17628,8 +17772,9 @@ msgid "Error parsing arguments"
 msgstr "解析参数出错"
 
 #: ../gramps/gui/grampsgui.py:632
+#, fuzzy
 msgid "Gramps terminated because of no DISPLAY"
-msgstr ""
+msgstr "Gramps terminated because of no DISPLAY"
 
 #: ../gramps/gui/grampsgui.py:655 ../gramps/gui/grampsgui.py:729
 msgid ""
@@ -18586,8 +18731,9 @@ msgstr "您有尚未保存的更改。"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:249
 #: ../gramps/gui/plug/report/_bookdialog.py:750
+#, fuzzy
 msgid "Proceed"
-msgstr ""
+msgstr "Proceed"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:309
 msgid "Name of the book. MANDATORY"
@@ -18679,19 +18825,24 @@ msgid "No book name"
 msgstr "无书名"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:741
+#, fuzzy
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
 "Please give it a name before saving it away."
 msgstr ""
+"You are about to save away a book with no name.\n"
+"\n"
+"Please give it a name before saving it away."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:747
 msgid "Book name already exists"
 msgstr "书名已经存在"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:748
+#, fuzzy
 msgid "You are about to save away a book with a name which already exists."
-msgstr ""
+msgstr "You are about to save away a book with a name which already exists."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:938
 msgid "Generate Book"
@@ -18916,9 +19067,9 @@ msgid "No description available"
 msgstr "没有可用的描述"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:355
-#, python-format
+#, fuzzy, python-format
 msgid "(Embedded style '%s' must be edited separately)"
-msgstr ""
+msgstr "(Embedded style '%s' must be edited separately)"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:408
 #, python-format
@@ -19169,6 +19320,7 @@ msgid "File %s does not exist"
 msgstr "文件 %s 不存在"
 
 #: ../gramps/gui/utils.py:596
+#, fuzzy
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -19178,6 +19330,13 @@ msgid ""
 "To edit the citation, close the source editor and open an editor for the "
 "citation alone"
 msgstr ""
+"Cannot open new citation editor at this time. Either the citation is already "
+"being edited, or the associated source is already being edited, and opening "
+"a citation editor (which also allows the source to be edited), would create "
+"ambiguity by opening two editors on the same source. \n"
+"\n"
+"To edit the citation, close the source editor and open an editor for the "
+"citation alone"
 
 #: ../gramps/gui/utils.py:609
 msgid "Cannot open new citation editor"
@@ -19253,7 +19412,7 @@ msgid "Failed Loading View"
 msgstr "读取视图失败"
 
 #: ../gramps/gui/viewmanager.py:1476
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
 "\n"
@@ -19266,13 +19425,23 @@ msgid ""
 "If you do not want Gramps to try and load this view again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
+"The view %(name)s did not load and reported an error.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"If you are unable to fix the fault yourself then you can submit a bug at "
+"%(gramps_bugtracker_url)s or contact the view author (%(firstauthoremail)s)."
+"\n"
+"\n"
+"If you do not want Gramps to try and load this view again, you can hide it "
+"by using the Plugin Manager on the Help menu."
 
 #: ../gramps/gui/viewmanager.py:1568
 msgid "Failed Loading Plugin"
 msgstr "载入插件失败"
 
 #: ../gramps/gui/viewmanager.py:1569
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
 "\n"
@@ -19285,6 +19454,16 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
+"The plugin %(name)s did not load and reported an error.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"If you are unable to fix the fault yourself then you can submit a bug at "
+"%(gramps_bugtracker_url)s or contact the plugin author "
+"(%(firstauthoremail)s).\n"
+"\n"
+"If you do not want Gramps to try and load this plugin again, you can hide it "
+"by using the Plugin Manager on the Help menu."
 
 #: ../gramps/gui/viewmanager.py:1649
 msgid "Gramps XML Backup"
@@ -19463,11 +19642,15 @@ msgid "No Home Person"
 msgstr "未设置主人翁"
 
 #: ../gramps/gui/views/navigationview.py:324
+#, fuzzy
 msgid ""
 "You need to set a 'Home Person' to go to. Select the People View, select the "
 "person you want as 'Home Person', then confirm your choice via the menu Edit "
 "-> Set Home Person."
 msgstr ""
+"You need to set a 'Home Person' to go to. Select the People View, select the "
+"person you want as 'Home Person', then confirm your choice via the menu Edit "
+"-> Set Home Person."
 
 #: ../gramps/gui/views/navigationview.py:334
 #: ../gramps/gui/views/navigationview.py:338
@@ -19788,14 +19971,18 @@ msgid ""
 msgstr "双击图片可用默认图片浏览程序查看。"
 
 #: ../gramps/gui/widgets/photo.py:87
+#, fuzzy
 msgid "Make Active Media"
-msgstr ""
+msgstr "Make Active Media"
 
 #: ../gramps/gui/widgets/placewithin.py:63
+#, fuzzy
 msgid ""
 "Matches places within a given distance of the active place. You have no "
 "active place."
 msgstr ""
+"Matches places within a given distance of the active place. You have no "
+"active place."
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
@@ -20161,8 +20348,9 @@ msgid "yellow"
 msgstr "黄色"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:359
+#, fuzzy
 msgid "The color, if any, of the SVG background"
-msgstr ""
+msgstr "The color, if any, of the SVG background"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:115
 msgid "Ancestor Graph"
@@ -20255,8 +20443,9 @@ msgid ""
 msgstr "显示未知的世代"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:819
+#, fuzzy
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr ""
+msgstr "The number of generations of empty boxes that will be displayed"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:826
 #: ../gramps/plugins/drawreport/descendtree.py:1562
@@ -20535,17 +20724,20 @@ msgid "Where to place the note."
 msgstr "何处放置注释。"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:995
+#, fuzzy
 msgid "inter-box scale factor"
-msgstr ""
+msgstr "inter-box scale factor"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:998
+#, fuzzy
 msgid "Make the inter-box spacing bigger or smaller"
-msgstr ""
+msgstr "Make the inter-box spacing bigger or smaller"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1001
 #: ../gramps/plugins/drawreport/descendtree.py:1725
+#, fuzzy
 msgid "box shadow scale factor"
-msgstr ""
+msgstr "box shadow scale factor"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1003
 #: ../gramps/plugins/drawreport/descendtree.py:1727
@@ -21010,12 +21202,14 @@ msgid "Display format for a spouse."
 msgstr "配偶的显示格式。"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1720
+#, fuzzy
 msgid "inter-box Y scale factor"
-msgstr ""
+msgstr "inter-box Y scale factor"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1722
+#, fuzzy
 msgid "Make the inter-box Y bigger or smaller"
-msgstr ""
+msgstr "Make the inter-box Y bigger or smaller"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1798
 msgid "The bold style used for the text display."
@@ -21212,9 +21406,9 @@ msgid ""
 msgstr "您可在样式编辑器中定制每一代的字体和颜色"
 
 #: ../gramps/plugins/drawreport/fanchart.py:782
-#, python-format
+#, fuzzy, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr ""
+msgstr "The style used for the text display of generation \"%d\""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:311
 msgid "Item count"
@@ -21380,8 +21574,9 @@ msgid "%s born"
 msgstr "%s 出生"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:803
+#, fuzzy
 msgid "Persons born"
-msgstr ""
+msgstr "Persons born"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:813
 msgid "Collecting data..."
@@ -21485,10 +21680,13 @@ msgid "Include counts of missing information"
 msgstr "包含缺失信息的数量"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1066
+#, fuzzy
 msgid ""
 "Whether to include counts of the number of people who lack the given "
 "information."
 msgstr ""
+"Whether to include counts of the number of people who lack the given "
+"information."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1100
 msgid "Charts 3"
@@ -21741,13 +21939,14 @@ msgid "Translate headers"
 msgstr "翻译 字头"
 
 #: ../gramps/plugins/export/exportcsv.py:288
+#, fuzzy
 msgid "Enclosed_by"
-msgstr ""
+msgstr "Enclosed_by"
 
 #: ../gramps/plugins/export/exportcsv.py:340
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr ""
+msgstr "CSV export doesn't support non-primary surnames, {count} dropped"
 
 #: ../gramps/plugins/export/exportcsv.py:357
 msgid "Birth source"
@@ -21834,8 +22033,9 @@ msgid "WWW"
 msgstr "万维网"
 
 #: ../gramps/plugins/export/exportgedcom.py:1426
+#, fuzzy
 msgid "Writing media"
-msgstr ""
+msgstr "Writing media"
 
 #: ../gramps/plugins/export/exportgedcom.py:1600
 msgid "GEDCOM Export failed"
@@ -22433,8 +22633,9 @@ msgid "Welcome to Gramps!"
 msgstr "欢迎使用 Gramps！"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:332
+#, fuzzy
 msgid "What's Next"
-msgstr ""
+msgstr "What's Next"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:333
 msgid "Gramplet suggesting items to research"
@@ -22970,8 +23171,9 @@ msgid "Gramplet showing the To Do notes for a place"
 msgstr "显示地点的待做注释的 Gramplet 控件"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1199
+#, fuzzy
 msgid "Source To Do"
-msgstr ""
+msgstr "Source To Do"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1200
 #, fuzzy
@@ -23462,8 +23664,9 @@ msgid "First select the object to which you want to attach a note"
 msgstr "首先选择您要添加注释的对象"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
+#, fuzzy
 msgid "Unattached"
-msgstr ""
+msgstr "Unattached"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:100
 msgid "Intro"
@@ -23569,12 +23772,14 @@ msgid "Minimum number of items to display"
 msgstr "要显示的最小条目数"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:63
+#, fuzzy
 msgid "Descendant generations per ancestor generation"
-msgstr ""
+msgstr "Descendant generations per ancestor generation"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:69
+#, fuzzy
 msgid "Delay before descendants of an ancestor is processed"
-msgstr ""
+msgstr "Delay before descendants of an ancestor is processed"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
@@ -23980,8 +24185,9 @@ msgid "Number of families of interest:"
 msgstr "感兴趣的家庭数量："
 
 #: ../gramps/plugins/graph/gvfamilylines.py:479
+#, fuzzy
 msgid "Additional people removed:"
-msgstr ""
+msgstr "Additional people removed:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:482
 msgid "Additional families removed:"
@@ -24091,10 +24297,13 @@ msgid "Ahnentafel number visible"
 msgstr "Ahnentafel 编号可见"
 
 #: ../gramps/plugins/graph/gvhourglass.py:445
+#, fuzzy
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
 msgstr ""
+"Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
+"informations."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -24216,8 +24425,9 @@ msgid "Whether to include the last occupation"
 msgstr "是否包含上一个职业"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:931
+#, fuzzy
 msgid "Include relationship debugging numbers also"
-msgstr ""
+msgstr "Include relationship debugging numbers also"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:934
 msgid ""
@@ -24483,12 +24693,14 @@ msgid "residenceplace_id"
 msgstr "居住地 ID 编号"
 
 #: ../gramps/plugins/importer/importcsv.py:222
+#, fuzzy
 msgid "residence source"
-msgstr ""
+msgstr "residence source"
 
 #: ../gramps/plugins/importer/importcsv.py:222
+#, fuzzy
 msgid "residencesource"
-msgstr ""
+msgstr "residencesource"
 
 #: ../gramps/plugins/importer/importcsv.py:224
 msgid "attribute type"
@@ -24583,12 +24795,14 @@ msgid "code"
 msgstr "代码"
 
 #: ../gramps/plugins/importer/importcsv.py:247
+#, fuzzy
 msgid "enclosed by"
-msgstr ""
+msgstr "enclosed by"
 
 #: ../gramps/plugins/importer/importcsv.py:248
+#, fuzzy
 msgid "enclosed_by"
-msgstr ""
+msgstr "enclosed_by"
 
 #: ../gramps/plugins/importer/importcsv.py:275
 #, python-format
@@ -24689,8 +24903,9 @@ msgstr "版本"
 
 #: ../gramps/plugins/importer/importgeneweb.py:83
 #: ../gramps/plugins/importer/importgeneweb.py:95
+#, fuzzy
 msgid "Award"
-msgstr ""
+msgstr "Award"
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
 msgid "Change Name"
@@ -24698,12 +24913,14 @@ msgstr "修改名称"
 
 #: ../gramps/plugins/importer/importgeneweb.py:90
 #: ../gramps/plugins/lib/libgedcom.py:697
+#, fuzzy
 msgid "Circumcision"
-msgstr ""
+msgstr "Circumcision"
 
 #: ../gramps/plugins/importer/importgeneweb.py:94
+#, fuzzy
 msgid "Military Demobilisation"
-msgstr ""
+msgstr "Military Demobilisation"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
 #, fuzzy
@@ -24729,12 +24946,14 @@ msgid "Hospitalisation"
 msgstr "住院"
 
 #: ../gramps/plugins/importer/importgeneweb.py:107
+#, fuzzy
 msgid "Illness"
-msgstr ""
+msgstr "Illness"
 
 #: ../gramps/plugins/importer/importgeneweb.py:109
+#, fuzzy
 msgid "List Passenger"
-msgstr ""
+msgstr "List Passenger"
 
 #: ../gramps/plugins/importer/importgeneweb.py:110
 #, fuzzy
@@ -24742,8 +24961,9 @@ msgid "Military Distinction"
 msgstr "服兵役"
 
 #: ../gramps/plugins/importer/importgeneweb.py:111
+#, fuzzy
 msgid "Militaty Mobilisation"
-msgstr ""
+msgstr "Militaty Mobilisation"
 
 #: ../gramps/plugins/importer/importgeneweb.py:112
 #, fuzzy
@@ -24844,7 +25064,7 @@ msgid "%s could not be opened"
 msgstr "%s 无法打开"
 
 #: ../gramps/plugins/importer/importgrdb.py:62
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Database version is not supported by this version of Gramps.You should "
 "use an old copy of Gramps at version 3.0.x and import your database into "
@@ -24853,6 +25073,12 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
+"The Database version is not supported by this version of Gramps.You should "
+"use an old copy of Gramps at version 3.0.x and import your database into "
+"that version. You should then export a copy of your data to Gramps XML ("
+"Family Tree). Then you should upgrade to the latest version of Gramps (for "
+"example this version), create a new empty database and import the Gramps XML "
+"into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -24863,10 +25089,13 @@ msgid ""
 msgstr "参照来源笔记"
 
 #: ../gramps/plugins/importer/importprogen.glade:124
+#, fuzzy
 msgid ""
 "Source reference text\n"
 "(Text & import Filename)."
 msgstr ""
+"Source reference text\n"
+"(Text & import Filename)."
 
 #: ../gramps/plugins/importer/importprogen.glade:155
 #: ../gramps/plugins/importer/importprogen.glade:325
@@ -24874,10 +25103,13 @@ msgid "Attribut"
 msgstr "属性"
 
 #: ../gramps/plugins/importer/importprogen.glade:171
+#, fuzzy
 msgid ""
 "Source attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Source attribute text\n"
+"(Text, import Filename & (System-)Date)."
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
@@ -24885,32 +25117,44 @@ msgid "Citation reference."
 msgstr "引用参考。"
 
 #: ../gramps/plugins/importer/importprogen.glade:274
+#, fuzzy
 msgid ""
 "Citation confidence level\n"
 "(Very low - very high)."
 msgstr ""
+"Citation confidence level\n"
+"(Very low - very high)."
 
 #: ../gramps/plugins/importer/importprogen.glade:308
+#, fuzzy
 msgid ""
 "Citation volume/page text\n"
 "(Text & (System-)Date)."
 msgstr ""
+"Citation volume/page text\n"
+"(Text & (System-)Date)."
 
 #: ../gramps/plugins/importer/importprogen.glade:341
+#, fuzzy
 msgid ""
 "Citation attribute text\n"
 "(Text, import Filename & (System-)Date)."
 msgstr ""
+"Citation attribute text\n"
+"(Text, import Filename & (System-)Date)."
 
 #: ../gramps/plugins/importer/importprogen.glade:362
 msgid "Import Text"
 msgstr "导入文本"
 
 #: ../gramps/plugins/importer/importprogen.glade:415
+#, fuzzy
 msgid ""
 "Default Tagtext\n"
 "(out of Settings)."
 msgstr ""
+"Default Tagtext\n"
+"(out of Settings)."
 
 #: ../gramps/plugins/importer/importprogen.glade:443
 msgid "Import Filename."
@@ -24927,36 +25171,49 @@ msgstr "默认（系统）日期。"
 #: ../gramps/plugins/importer/importprogen.glade:826
 #: ../gramps/plugins/importer/importprogen.glade:841
 #: ../gramps/plugins/importer/importprogen.glade:856
+#, fuzzy
 msgid "Combined default text + filename + date."
-msgstr ""
+msgstr "Combined default text + filename + date."
 
 #: ../gramps/plugins/importer/importprogen.glade:1111
+#, fuzzy
 msgid ""
 "Copy Default Text\n"
 "to all Tag Text'."
 msgstr ""
+"Copy Default Text\n"
+"to all Tag Text'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
+#, fuzzy
 msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copy Default Filename\n"
+"to all sensitive Tag Text'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
+#, fuzzy
 msgid ""
 "Copy Default Date\n"
 "to all sensitive Tag Text'."
 msgstr ""
+"Copy Default Date\n"
+"to all sensitive Tag Text'."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
 msgstr "对象"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
+#, fuzzy
 msgid ""
 "Enable/Disable\n"
 "all object tags."
 msgstr ""
+"Enable/Disable\n"
+"all object tags."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -24967,34 +25224,49 @@ msgid "Import Objects"
 msgstr "导入对象"
 
 #: ../gramps/plugins/importer/importprogen.glade:1241
+#, fuzzy
 msgid ""
 "Enable/Disable\n"
 "Person import."
 msgstr ""
+"Enable/Disable\n"
+"Person import."
 
 #: ../gramps/plugins/importer/importprogen.glade:1260
+#, fuzzy
 msgid ""
 "Enable/Disable\n"
 "Family import."
 msgstr ""
+"Enable/Disable\n"
+"Family import."
 
 #: ../gramps/plugins/importer/importprogen.glade:1279
+#, fuzzy
 msgid ""
 "Enable/Disable\n"
 "Child import."
 msgstr ""
+"Enable/Disable\n"
+"Child import."
 
 #: ../gramps/plugins/importer/importprogen.glade:1330
+#, fuzzy
 msgid ""
 "Use original Person\n"
 "Identifier as Gramps ID."
 msgstr ""
+"Use original Person\n"
+"Identifier as Gramps ID."
 
 #: ../gramps/plugins/importer/importprogen.glade:1349
+#, fuzzy
 msgid ""
 "Use original Family\n"
 "Identifier as Gramps ID."
 msgstr ""
+"Use original Family\n"
+"Identifier as Gramps ID."
 
 #: ../gramps/plugins/importer/importprogen.glade:1369
 msgid "Identifier"
@@ -25025,12 +25297,14 @@ msgstr ""
 "保存去世日期。"
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
+#, fuzzy
 msgid "Diverse"
-msgstr ""
+msgstr "Diverse"
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
+#, fuzzy
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 msgid ""
@@ -25126,9 +25400,9 @@ msgid "VCARD import report: %s errors detected\n"
 msgstr "VCARD 导入报告：检测 %s 项错误\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
-#, python-format
+#, fuzzy, python-format
 msgid "Token >%(token)s< unknown. line skipped: %(line)s"
-msgstr ""
+msgstr "Token >%(token)s< unknown. line skipped: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
 msgid ""
@@ -25142,19 +25416,25 @@ msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Gramps 不支持导入的 VCards 版本 %s。"
 
 #: ../gramps/plugins/importer/importvcard.py:366
+#, fuzzy
 msgid ""
 "VCard is malformed missing the compulsory N property, so there is no name; "
 "skip it."
 msgstr ""
+"VCard is malformed missing the compulsory N property, so there is no name; "
+"skip it."
 
 #: ../gramps/plugins/importer/importvcard.py:371
+#, fuzzy
 msgid ""
 "VCard is malformed missing the compulsory FN property, get name from N alone."
 msgstr ""
+"VCard is malformed missing the compulsory FN property, get name from N alone."
 
 #: ../gramps/plugins/importer/importvcard.py:375
+#, fuzzy
 msgid "VCard is malformed wrong number of name components."
-msgstr ""
+msgstr "VCard is malformed wrong number of name components."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -25197,14 +25477,14 @@ msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - 带有 %(id2)s 的 %(text)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:251
-#, python-format
+#, fuzzy, python-format
 msgid "  Family %(id)s with %(id2)s\n"
-msgstr ""
+msgstr "  Family %(id)s with %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:254
-#, python-format
+#, fuzzy, python-format
 msgid "  Source %(id)s with %(id2)s\n"
-msgstr ""
+msgstr "  Source %(id)s with %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:257
 #, python-format
@@ -25293,7 +25573,7 @@ msgid "Number of new objects imported:\n"
 msgstr "导入的新对象数量:\n"
 
 #: ../gramps/plugins/importer/importxml.py:302
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25303,6 +25583,13 @@ msgid ""
 "number in parentheses. Where possible these\n"
 "'Unknown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
+"\n"
+"The imported file was not self-contained.\n"
+"To correct for that, %(new)d objects were created and\n"
+"their typifying attribute was set to 'Unknown'.\n"
+"The breakdown per category is depicted by the\n"
+"number in parentheses. Where possible these\n"
+"'Unknown' objects are referenced by note %(unknown)s.\n"
 
 #: ../gramps/plugins/importer/importxml.py:310
 msgid ""
@@ -25332,12 +25619,14 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1294
 #: ../gramps/plugins/importer/importxml.py:1566
 #: ../gramps/plugins/importer/importxml.py:1987
+#, fuzzy
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr ""
+msgstr "The Gramps Xml you are trying to import is malformed."
 
 #: ../gramps/plugins/importer/importxml.py:810
+#, fuzzy
 msgid "Attributes that link the data together are missing."
-msgstr ""
+msgstr "Attributes that link the data together are missing."
 
 #: ../gramps/plugins/importer/importxml.py:923
 msgid "Gramps XML import"
@@ -25480,28 +25769,34 @@ msgid "Witness comment: %s"
 msgstr "目击者评论: %s"
 
 #: ../gramps/plugins/importer/importxml.py:3233
-#, python-format
+#, fuzzy, python-format
 msgctxt "father"
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
+"Error: family '%(family)s' father '%(father)s' does not refer back to the "
+"family. Reference added."
 
 #: ../gramps/plugins/importer/importxml.py:3249
-#, python-format
+#, fuzzy, python-format
 msgctxt "mother"
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
+"Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
+"family. Reference added."
 
 #: ../gramps/plugins/importer/importxml.py:3271
-#, python-format
+#, fuzzy, python-format
 msgctxt "child"
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
+"Error: family '%(family)s' child '%(child)s' does not refer back to the "
+"family. Reference added."
 
 #: ../gramps/plugins/lib/libcairodoc.py:1398
 #, python-format
@@ -25513,8 +25808,9 @@ msgstr ""
 "  按照扩展名 %(impliedext)s 写入 %(filename)s。"
 
 #: ../gramps/plugins/lib/libgedcom.py:698
+#, fuzzy
 msgid "Common Law Marriage"
-msgstr ""
+msgstr "Common Law Marriage"
 
 #: ../gramps/plugins/lib/libgedcom.py:699
 #: ../gramps/plugins/webreport/narrativeweb.py:1956
@@ -25564,8 +25860,9 @@ msgid "Ordinance"
 msgstr "教仪："
 
 #: ../gramps/plugins/lib/libgedcom.py:713
+#, fuzzy
 msgid "Separation"
-msgstr ""
+msgstr "Separation"
 
 #: ../gramps/plugins/lib/libgedcom.py:714
 msgid "Weight"
@@ -25576,9 +25873,9 @@ msgid "Line ignored "
 msgstr "忽略的行"
 
 #: ../gramps/plugins/lib/libgedcom.py:1540
-#, python-format
+#, fuzzy, python-format
 msgid "Illegal character%s"
-msgstr ""
+msgstr "Illegal character%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -25625,29 +25922,36 @@ msgid "Records not imported into "
 msgstr "%s 无法导入"
 
 #: ../gramps/plugins/lib/libgedcom.py:3226
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
 msgstr ""
+"Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
+"Record synthesised"
 
 #: ../gramps/plugins/lib/libgedcom.py:3235
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
+"Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
+"Record with typifying attribute 'Unknown' created"
 
 #: ../gramps/plugins/lib/libgedcom.py:3279
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
+"Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s ("
+"input as %(orig_person)s) is not a member of the referenced family. Family "
+"reference removed from person"
 
 #: ../gramps/plugins/lib/libgedcom.py:3357
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25656,15 +25960,22 @@ msgid ""
 "Where possible these 'Unknown' objects are \n"
 "referenced by note %(unknown)s.\n"
 msgstr ""
+"\n"
+"The imported file was not self-contained.\n"
+"To correct for that, %(new)d objects were created and\n"
+"their typifying attribute was set to 'Unknown'.\n"
+"Where possible these 'Unknown' objects are \n"
+"referenced by note %(unknown)s.\n"
 
 #: ../gramps/plugins/lib/libgedcom.py:3431
-#, python-format
+#, fuzzy, python-format
 msgid "ADDR element ignored '%s'"
-msgstr ""
+msgstr "ADDR element ignored '%s'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3452
+#, fuzzy
 msgid "TRLR (trailer)"
-msgstr ""
+msgstr "TRLR (trailer)"
 
 #: ../gramps/plugins/lib/libgedcom.py:3481
 msgid "(Submitter):"
@@ -25687,13 +25998,14 @@ msgid "Top Level"
 msgstr "顶层"
 
 #: ../gramps/plugins/lib/libgedcom.py:3666
-#, python-format
+#, fuzzy, python-format
 msgid "INDI (individual) Gramps ID %s"
-msgstr ""
+msgstr "INDI (individual) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:3794
+#, fuzzy
 msgid "Empty Alias <NAME PERSONAL> ignored"
-msgstr ""
+msgstr "Empty Alias <NAME PERSONAL> ignored"
 
 #: ../gramps/plugins/lib/libgedcom.py:5025
 #, python-format
@@ -25723,16 +26035,18 @@ msgid "Multiple FILE in a single OBJE ignored"
 msgstr "已忽略单个 OBJE 中的多个文件"
 
 #: ../gramps/plugins/lib/libgedcom.py:5659
+#, fuzzy
 msgid "A second PLAC ignored"
-msgstr ""
+msgstr "A second PLAC ignored"
 
 #: ../gramps/plugins/lib/libgedcom.py:5798
 msgid "Detail"
 msgstr "详细信息"
 
 #: ../gramps/plugins/lib/libgedcom.py:5811
+#, fuzzy
 msgid "Location already populated; ADDR ignored"
-msgstr ""
+msgstr "Location already populated; ADDR ignored"
 
 #: ../gramps/plugins/lib/libgedcom.py:6212
 #: ../gramps/plugins/lib/libgedcom.py:7100
@@ -25773,12 +26087,14 @@ msgid "Only one phone number supported"
 msgstr "仅支持一个电话号码"
 
 #: ../gramps/plugins/lib/libgedcom.py:7235
+#, fuzzy
 msgid "HEAD (header)"
-msgstr ""
+msgstr "HEAD (header)"
 
 #: ../gramps/plugins/lib/libgedcom.py:7256
+#, fuzzy
 msgid "Approved system identification"
-msgstr ""
+msgstr "Approved system identification"
 
 #: ../gramps/plugins/lib/libgedcom.py:7268
 msgid "Generated By"
@@ -25793,9 +26109,9 @@ msgid "Version number of software product"
 msgstr "软件版本号"
 
 #: ../gramps/plugins/lib/libgedcom.py:7316
-#, python-format
+#, fuzzy, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "Business that produced the product: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7338
 msgid "Name of source data"
@@ -25815,8 +26131,9 @@ msgid "Import from %s"
 msgstr "从 %s 中导入"
 
 #: ../gramps/plugins/lib/libgedcom.py:7425
+#, fuzzy
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Submission record identifier"
 
 #: ../gramps/plugins/lib/libgedcom.py:7438
 msgid "Language of GEDCOM text"
@@ -25891,8 +26208,9 @@ msgid "Submission: Family file"
 msgstr "Smith 家族树"
 
 #: ../gramps/plugins/lib/libgedcom.py:7738
+#, fuzzy
 msgid "Submission: Temple code"
-msgstr ""
+msgstr "Submission: Temple code"
 
 #: ../gramps/plugins/lib/libgedcom.py:7740
 #, fuzzy
@@ -25905,8 +26223,9 @@ msgid "Submission: Generations of descendants"
 msgstr "限定父母的数量"
 
 #: ../gramps/plugins/lib/libgedcom.py:7744
+#, fuzzy
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Submission: Ordinance process flag"
 
 #: ../gramps/plugins/lib/libgedcom.py:7999
 msgid "Invalid temple code"
@@ -25974,8 +26293,9 @@ msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:102
+#, fuzzy
 msgid "Camera"
-msgstr ""
+msgstr "Camera"
 
 #: ../gramps/plugins/lib/libmetadata.py:103
 msgid "GPS"
@@ -29517,10 +29837,13 @@ msgid "Cannot delete place."
 msgstr "无法删除地点。"
 
 #: ../gramps/plugins/lib/libplaceview.py:509
+#, fuzzy
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
 msgstr ""
+"This place is currently referenced by another place. First remove the places "
+"it contains."
 
 #: ../gramps/plugins/lib/libplaceview.py:550
 #: ../gramps/plugins/lib/libplaceview.py:558
@@ -29537,8 +29860,9 @@ msgstr ""
 "中第二个地点。"
 
 #: ../gramps/plugins/lib/libplaceview.py:559
+#, fuzzy
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
+msgstr "Merging these places would create a cycle in the place hierarchy."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:35
 msgid "Provides a library for using Cairo to generate documents."
@@ -29549,8 +29873,9 @@ msgid "Provides GEDCOM processing functionality"
 msgstr "提供 GEDCOM 处理功能"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:71
+#, fuzzy
 msgid "Provides recursive routines for reports"
-msgstr ""
+msgstr "Provides recursive routines for reports"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:88
 msgid "Provides common functionality for Gramps XML import/export."
@@ -29625,8 +29950,9 @@ msgid "Initializing."
 msgstr "初始化。"
 
 #: ../gramps/plugins/lib/libprogen.py:515
+#, fuzzy
 msgid "Not a supported Pro-Gen import file language"
-msgstr ""
+msgstr "Not a supported Pro-Gen import file language"
 
 #: ../gramps/plugins/lib/libprogen.py:531
 msgid "Pro-Gen import"
@@ -29655,12 +29981,14 @@ msgid "Importing persons."
 msgstr "导入人员。"
 
 #: ../gramps/plugins/lib/libprogen.py:1414
+#, fuzzy
 msgid "see address on "
-msgstr ""
+msgstr "see address on "
 
 #: ../gramps/plugins/lib/libprogen.py:1417
+#, fuzzy
 msgid "see also address"
-msgstr ""
+msgstr "see also address"
 
 #: ../gramps/plugins/lib/libprogen.py:1517
 msgid "Death cause"
@@ -29671,16 +29999,18 @@ msgid "Importing families."
 msgstr "导入家庭。"
 
 #: ../gramps/plugins/lib/libprogen.py:1691
+#, fuzzy
 msgid "Civil union"
-msgstr ""
+msgstr "Civil union"
 
 #: ../gramps/plugins/lib/libprogen.py:1796
 msgid "Wedding"
 msgstr "婚礼"
 
 #: ../gramps/plugins/lib/libprogen.py:1831
+#, fuzzy
 msgid "future"
-msgstr ""
+msgstr "future"
 
 #: ../gramps/plugins/lib/libprogen.py:1903
 msgid "Adding children."
@@ -29840,14 +30170,14 @@ msgid "Replace '%(map)s' by =>"
 msgstr "用 => 代替 %(map)s"
 
 #: ../gramps/plugins/lib/maps/geography.py:417
-#, python-format
+#, fuzzy, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr ""
+msgstr "Reload all visible tiles for '%(map)s'."
 
 #: ../gramps/plugins/lib/maps/geography.py:426
-#, python-format
+#, fuzzy, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr ""
+msgstr "Clear the '%(map)s' tiles cache."
 
 #: ../gramps/plugins/lib/maps/geography.py:849
 msgid "You can't use the print functionality"
@@ -29898,8 +30228,9 @@ msgstr ""
 "%(bold_start)s无法处理您的请求%(bold_end)s。\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1226
+#, fuzzy
 msgid "Nothing for this view."
-msgstr ""
+msgstr "Nothing for this view."
 
 #: ../gramps/plugins/lib/maps/geography.py:1227
 msgid "Specific parameters"
@@ -29910,15 +30241,20 @@ msgid "Where to save the tiles for offline mode."
 msgstr "离线模式下标题存储的位置。"
 
 #: ../gramps/plugins/lib/maps/geography.py:1251
+#, fuzzy
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
+"If you have no more space in your file system. You can remove all tiles "
+"placed in the above path.\n"
+"Be careful! If you have no internet, you'll get no map."
 
 #: ../gramps/plugins/lib/maps/geography.py:1256
+#, fuzzy
 msgid "Zoom used when centering"
-msgstr ""
+msgstr "Zoom used when centering"
 
 #: ../gramps/plugins/lib/maps/geography.py:1259
 msgid "The maximum number of places to show"
@@ -29935,6 +30271,7 @@ msgstr ""
 "也可以使用键盘上的字母进行。"
 
 #: ../gramps/plugins/lib/maps/geography.py:1271
+#, fuzzy
 msgid ""
 "If you want to use a specific map provider, You can set the following field "
 "to the provider's url.\n"
@@ -29944,6 +30281,13 @@ msgid ""
 "http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
+"If you want to use a specific map provider, You can set the following field "
+"to the provider's url.\n"
+"i.e:\n"
+"http://tile.stamen.com/toner/#Z/#X/#Y.png\n"
+"http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n"
+"http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n"
+"http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1285
 #, fuzzy
@@ -29955,8 +30299,9 @@ msgid "The map"
 msgstr "地图"
 
 #: ../gramps/plugins/lib/maps/geography.py:1331
+#, fuzzy
 msgid "Select tile cache directory for offline mode"
-msgstr ""
+msgstr "Select tile cache directory for offline mode"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:139
 #, python-format
@@ -29964,7 +30309,7 @@ msgid "Can't create tiles cache directory %s"
 msgstr "无法创建图块缓存目录：%s"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:143
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "You must verify and change the tiles cache\n"
 "...\n"
@@ -29979,6 +30324,18 @@ msgid ""
 "\n"
 "The next errors will be normal"
 msgstr ""
+"You must verify and change the tiles cache\n"
+"...\n"
+"[geography]\n"
+"...\n"
+"path='bad/path'\n"
+"...\n"
+"in the gramps.ini file :\n"
+"%s\n"
+"\n"
+"Before to change the gramps.ini file, you need to close gramps\n"
+"\n"
+"The next errors will be normal"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:183
 #: ../gramps/plugins/lib/maps/osmgps.py:245
@@ -30000,29 +30357,38 @@ msgstr ""
 "根据纬度的不同，您会看到一个圆或椭圆。"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:125
+#, fuzzy
 msgid ""
 "\n"
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"In the following table you may have :\n"
+" - a green row related to a selected place."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:128
+#, fuzzy
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+" - a red row related to a geocoding result."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:165
+#, fuzzy
 msgid "The green values in the row correspond to the current place values."
-msgstr ""
+msgstr "The green values in the row correspond to the current place values."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:223
 msgid "New place with empty fields"
 msgstr "新建空白字段的地点"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:298
+#, fuzzy
 msgid "you have a wrong latitude for:"
-msgstr ""
+msgstr "you have a wrong latitude for:"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:300
 #: ../gramps/plugins/lib/maps/placeselection.py:310
@@ -30030,8 +30396,9 @@ msgid "Please, correct this before linking"
 msgstr "请在链接前改正此项"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:308
+#, fuzzy
 msgid "you have a wrong longitude for:"
-msgstr ""
+msgstr "you have a wrong longitude for:"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:53
 msgid "Denmark"
@@ -30102,9 +30469,9 @@ msgid "People and their ages the %s"
 msgstr "人员还有他们的年龄 %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:52
-#, python-format
+#, fuzzy, python-format
 msgid "People and their ages on %s"
-msgstr ""
+msgstr "People and their ages on %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:64
 #: ../gramps/plugins/quickview/ageondate.py:67
@@ -30119,11 +30486,13 @@ msgid "Deceased: %s"
 msgstr "已故: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:81
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "\n"
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
+"\n"
+"Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
@@ -30287,9 +30656,10 @@ msgid "Inverse Source"
 msgstr "来源倒序排列"
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
+#, fuzzy
 msgctxt "Filtering_on"
 msgid "Inverse Repository"
-msgstr ""
+msgstr "Inverse Repository"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgctxt "Filtering_on"
@@ -30327,9 +30697,10 @@ msgid "all sources"
 msgstr "所有来源"
 
 #: ../gramps/plugins/quickview/filterbyname.py:55
+#, fuzzy
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr ""
+msgstr "all repositories"
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgctxt "Filtering_on"
@@ -30954,8 +31325,9 @@ msgid "Category Sidebar"
 msgstr "类别侧边栏"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
+#, fuzzy
 msgid "A sidebar to allow the selection of view categories"
-msgstr ""
+msgstr "A sidebar to allow the selection of view categories"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:42
 msgid "Category"
@@ -30970,16 +31342,18 @@ msgid "Selection of categories and views from drop-down lists"
 msgstr "从下拉列表中选择类别和视图"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:57
+#, fuzzy
 msgid "Drop-Down"
-msgstr ""
+msgstr "Drop-Down"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:63
 msgid "Expander Sidebar"
 msgstr "扩展显示边栏"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:64
+#, fuzzy
 msgid "Selection of views from lists with expanders"
-msgstr ""
+msgstr "Selection of views from lists with expanders"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:72
 msgid "Expander"
@@ -31211,14 +31585,14 @@ msgid "sp. %(spouse)s"
 msgstr "配偶：%(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:333
-#, python-format
+#, fuzzy, python-format
 msgid "sp. see %(reference)s: %(spouse)s"
-msgstr ""
+msgstr "sp. see %(reference)s: %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:393
-#, python-format
+#, fuzzy, python-format
 msgid "%s sp."
-msgstr ""
+msgstr "%s sp."
 
 #: ../gramps/plugins/textreport/descendreport.py:526
 #: ../gramps/plugins/textreport/detdescendantreport.py:1011
@@ -31856,9 +32230,9 @@ msgid "The style used for the parent's name"
 msgstr "父母姓名应用的风格"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:193
-#, python-format
+#, fuzzy, python-format
 msgid "%(str1)s in %(str2)s. "
-msgstr ""
+msgstr "%(str1)s in %(str2)s. "
 
 #. Translators: e.g. (a stepfather): John Smith, relationship: Step
 #: ../gramps/plugins/textreport/indivcomplete.py:251
@@ -31903,10 +32277,13 @@ msgid "Use name of person as title"
 msgstr "点击名字激活人员\n"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1089
+#, fuzzy
 msgid ""
 "Whether the title should be the name of the person, or 'Complete Individual "
 "Report'"
 msgstr ""
+"Whether the title should be the name of the person, or 'Complete Individual "
+"Report'"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Include Notes"
@@ -32115,8 +32492,9 @@ msgid "Center on"
 msgstr "置为中心"
 
 #: ../gramps/plugins/textreport/placereport.py:459
+#, fuzzy
 msgid "If report is event or person centered"
-msgstr ""
+msgstr "If report is event or person centered"
 
 #: ../gramps/plugins/textreport/recordsreport.py:173
 #, python-format
@@ -32529,6 +32907,7 @@ msgid "Looking for cross table duplicates"
 msgstr "正在查找跨表格的重复项"
 
 #: ../gramps/plugins/tool/check.py:177
+#, fuzzy
 msgid ""
 "Your Family Tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -32536,6 +32915,11 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
+"Your Family Tree contains cross table duplicate handles.\n"
+" This is bad and can be fixed by making a backup of your\n"
+"Family Tree and importing that backup in an empty family\n"
+"tree. The rest of the checking is skipped, the Check and\n"
+"Repair tool should be run anew on this new Family Tree."
 
 #: ../gramps/plugins/tool/check.py:187
 msgid "Check Integrity"
@@ -32552,11 +32936,13 @@ msgid "Rebuilding reference maps..."
 msgstr "重建参照地图..."
 
 #: ../gramps/plugins/tool/check.py:300
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
+"Objects referenced by this note were referenced but missing so that is why "
+"they have been created when you ran Check and Repair on %s."
 
 #: ../gramps/plugins/tool/check.py:322
 msgid "Looking for invalid name format references"
@@ -32575,8 +32961,9 @@ msgid "Looking for ctrl characters in notes"
 msgstr "在注释中搜寻控制字符"
 
 #: ../gramps/plugins/tool/check.py:463
+#, fuzzy
 msgid "Looking for bad alternate place names"
-msgstr ""
+msgstr "Looking for bad alternate place names"
 
 #: ../gramps/plugins/tool/check.py:492
 msgid "Looking for broken family links"
@@ -32824,10 +33211,10 @@ msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "有 {quantity} 个媒体对象被参照，但无法找到\n"
 
 #: ../gramps/plugins/tool/check.py:2619
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] ""
+msgstr[0] "Reference to {quantity} missing media object was kept\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2627
@@ -33523,8 +33910,9 @@ msgid "_Email:"
 msgstr "电子邮件(_E)："
 
 #: ../gramps/plugins/tool/ownereditor.glade:383
+#, fuzzy
 msgid "Right-click to copy from/to Researcher Preferences"
-msgstr ""
+msgstr "Right-click to copy from/to Researcher Preferences"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
@@ -33633,16 +34021,18 @@ msgid "All secondary indexes have been rebuilt."
 msgstr "所有次级索引已经重建完毕。"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:82
+#, fuzzy
 msgid "Rebuilding gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Rebuilding gender statistics for name gender guessing..."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:95
 msgid "Gender statistics rebuilt"
 msgstr "性别统计已重建"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:96
+#, fuzzy
 msgid "Gender statistics for name gender guessing have been rebuilt."
-msgstr ""
+msgstr "Gender statistics for name gender guessing have been rebuilt."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:87
 msgid "Reference maps rebuilt"
@@ -33696,8 +34086,9 @@ msgstr "Remove_leading_and_trailing_spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:88
 #: ../gramps/plugins/tool/tools.gpr.py:489
+#, fuzzy
 msgid "Clean input data"
-msgstr ""
+msgstr "Clean input data"
 
 #: ../gramps/plugins/tool/removespaces.py:108
 #, fuzzy
@@ -33713,8 +34104,9 @@ msgstr "正在查找首尾带有空格的字段"
 
 #: ../gramps/plugins/tool/removespaces.py:135
 #: ../gramps/plugins/tool/removespaces.py:185
+#, fuzzy
 msgid "handle"
-msgstr ""
+msgstr "handle"
 
 #: ../gramps/plugins/tool/removespaces.py:140
 msgid "firstname"
@@ -33731,14 +34123,16 @@ msgid "group as"
 msgstr "分组："
 
 #: ../gramps/plugins/tool/removespaces.py:199
+#, fuzzy
 msgid "tooltip"
-msgstr ""
+msgstr "tooltip"
 
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
+#, fuzzy
 msgid "leading and/or trailing spaces"
-msgstr ""
+msgstr "leading and/or trailing spaces"
 
 #: ../gramps/plugins/tool/removespaces.py:282
 #: ../gramps/plugins/tool/removespaces.py:294
@@ -33748,13 +34142,15 @@ msgstr "无效格式"
 
 #: ../gramps/plugins/tool/removespaces.py:288
 #: ../gramps/plugins/tool/removespaces.py:300
+#, fuzzy
 msgid "comma instead of dot"
-msgstr ""
+msgstr "comma instead of dot"
 
 #: ../gramps/plugins/tool/removespaces.py:291
 #: ../gramps/plugins/tool/removespaces.py:303
+#, fuzzy
 msgid "invalid char instead of '-'"
-msgstr ""
+msgstr "invalid char instead of '-'"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -33830,30 +34226,36 @@ msgstr ""
 "（可能并不连续）。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1424
+#, fuzzy
 msgid "  Actual"
-msgstr ""
+msgstr "  Actual"
 
 #: ../gramps/plugins/tool/reorderids.glade:1436
 msgid "Amount of ID in use."
 msgstr "在用的 ID 数量。"
 
 #: ../gramps/plugins/tool/reorderids.glade:1438
+#, fuzzy
 msgid " Quantity"
-msgstr ""
+msgstr " Quantity"
 
 #: ../gramps/plugins/tool/reorderids.glade:1452
+#, fuzzy
 msgid "Actual / Upcoming ID format."
-msgstr ""
+msgstr "Actual / Upcoming ID format."
 
 #: ../gramps/plugins/tool/reorderids.glade:1465
 msgid "Change"
 msgstr "修改"
 
 #: ../gramps/plugins/tool/reorderids.glade:1470
+#, fuzzy
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"Enable ID reordering\n"
+"with Start / Step sequence."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -33868,8 +34270,9 @@ msgid "Step"
 msgstr "梯度"
 
 #: ../gramps/plugins/tool/reorderids.glade:1506
+#, fuzzy
 msgid "Reorder ID step width."
-msgstr ""
+msgstr "Reorder ID step width."
 
 #: ../gramps/plugins/tool/reorderids.glade:1518
 msgid "Keep"
@@ -33953,8 +34356,9 @@ msgid "Sort family events of the person"
 msgstr "排列人员的家庭事件"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:91
+#, fuzzy
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr ""
+msgstr "Generate_Testcases_for_Persons_and_Families"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:274
 #: ../gramps/plugins/tool/testcasegenerator.py:280
@@ -33962,10 +34366,13 @@ msgid "Generate testcases"
 msgstr "生成测试实例"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:285
+#, fuzzy
 msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
+"Generate low level database errors\n"
+"Correction needs database reload"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
 msgid "Generate database errors"
@@ -34006,8 +34413,9 @@ msgid "Generating testcases"
 msgstr "正在生成测试实例"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:378
+#, fuzzy
 msgid "Generating low level database errors"
-msgstr ""
+msgstr "Generating low level database errors"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:388
 msgid "Generating database errors"
@@ -34047,9 +34455,9 @@ msgstr "正在生成家庭"
 #: ../gramps/plugins/tool/testcasegenerator.py:1554
 #: ../gramps/plugins/tool/testcasegenerator.py:1660
 #: ../gramps/plugins/tool/testcasegenerator.py:1685
-#, python-format
+#, fuzzy, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "Testcase generator step %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:38
 msgid "Fix Capitalization of Family Names"
@@ -34436,8 +34844,9 @@ msgid "Marriage date but not married"
 msgstr "结婚日期但是未结婚"
 
 #: ../gramps/plugins/tool/verify.py:1790
+#, fuzzy
 msgid "Old age but no death"
-msgstr ""
+msgstr "Old age but no death"
 
 #: ../gramps/plugins/tool/verify.py:1806
 #, fuzzy
@@ -34750,8 +35159,9 @@ msgstr "基于年龄（0-100 岁）的渐变"
 #: ../gramps/plugins/view/fanchart2wayview.py:294
 #: ../gramps/plugins/view/fanchartdescview.py:292
 #: ../gramps/plugins/view/fanchartview.py:389
+#, fuzzy
 msgid "Single main (filter) color"
-msgstr ""
+msgstr "Single main (filter) color"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:295
 #: ../gramps/plugins/view/fanchartdescview.py:293
@@ -34768,14 +35178,16 @@ msgstr "白色"
 #: ../gramps/plugins/view/fanchart2wayview.py:297
 #: ../gramps/plugins/view/fanchartdescview.py:295
 #: ../gramps/plugins/view/fanchartview.py:392
+#, fuzzy
 msgid "Color scheme classic report"
-msgstr ""
+msgstr "Color scheme classic report"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:298
 #: ../gramps/plugins/view/fanchartdescview.py:296
 #: ../gramps/plugins/view/fanchartview.py:393
+#, fuzzy
 msgid "Color scheme classic view"
-msgstr ""
+msgstr "Color scheme classic view"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:306
 #: ../gramps/plugins/view/fanchartdescview.py:304
@@ -34784,8 +35196,9 @@ msgid "Background"
 msgstr "背景"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:313
+#, fuzzy
 msgid "Add global background colored gradient"
-msgstr ""
+msgstr "Add global background colored gradient"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
@@ -34811,8 +35224,9 @@ msgstr "扇形图分布"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:327
 #: ../gramps/plugins/view/fanchartdescview.py:326
+#, fuzzy
 msgid "Homogeneous children distribution"
-msgstr ""
+msgstr "Homogeneous children distribution"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:329
 #: ../gramps/plugins/view/fanchartdescview.py:328
@@ -34866,8 +35280,9 @@ msgstr "半圈"
 
 #: ../gramps/plugins/view/fanchartdescview.py:320
 #: ../gramps/plugins/view/fanchartview.py:414
+#, fuzzy
 msgid "Quadrant"
-msgstr ""
+msgstr "Quadrant"
 
 #: ../gramps/plugins/view/fanchartdescview.py:342
 #: ../gramps/plugins/view/fanchartview.py:430
@@ -34883,8 +35298,9 @@ msgid "Show children ring"
 msgstr "显示子女扇形"
 
 #: ../gramps/plugins/view/geoclose.py:111
+#, fuzzy
 msgid "Select the person which is the reference for life ways"
-msgstr ""
+msgstr "Select the person which is the reference for life ways"
 
 #: ../gramps/plugins/view/geoclose.py:111
 msgid "reference _Person"
@@ -34902,8 +35318,9 @@ msgstr "打印或保存地图"
 
 #: ../gramps/plugins/view/geoclose.py:221
 #: ../gramps/plugins/view/geography.gpr.py:160
+#, fuzzy
 msgid "Have they been able to meet?"
-msgstr ""
+msgstr "Have they been able to meet?"
 
 #: ../gramps/plugins/view/geoclose.py:263
 #, fuzzy
@@ -34925,14 +35342,18 @@ msgid "The other person is unknown"
 msgstr "另一人员未知"
 
 #: ../gramps/plugins/view/geoclose.py:335
+#, fuzzy
 msgid "You must choose one reference person."
-msgstr ""
+msgstr "You must choose one reference person."
 
 #: ../gramps/plugins/view/geoclose.py:336
+#, fuzzy
 msgid ""
 "Go to the person view and select the people you want to compare. Return to "
 "this view and use the history."
 msgstr ""
+"Go to the person view and select the people you want to compare. Return to "
+"this view and use the history."
 
 #: ../gramps/plugins/view/geoclose.py:394
 msgid "Select the person which will be our reference."
@@ -34948,10 +35369,12 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:649
+#, fuzzy
 msgid "Choose and bookmark the new reference person"
-msgstr ""
+msgstr "Choose and bookmark the new reference person"
 
 #: ../gramps/plugins/view/geoclose.py:672
+#, fuzzy
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -34960,6 +35383,12 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"The meeting zone probability radius.\n"
+"The colored zone is approximative.\n"
+"The meeting zone is only shown for the reference person.\n"
+"The value 9 means about 42 miles or 67 kms.\n"
+"The value 1 means about 4.6 miles or 7.5 kms.\n"
+"The value is in tenth of degree."
 
 #: ../gramps/plugins/view/geoclose.py:683
 #: ../gramps/plugins/view/geofamclose.py:871
@@ -34971,12 +35400,14 @@ msgid "Events places map"
 msgstr "事件地点地图"
 
 #: ../gramps/plugins/view/geoevents.py:186
+#, fuzzy
 msgid "GeoEvents"
-msgstr ""
+msgstr "GeoEvents"
 
 #: ../gramps/plugins/view/geoevents.py:305
+#, fuzzy
 msgid "incomplete or unreferenced event ?"
-msgstr ""
+msgstr "incomplete or unreferenced event ?"
 
 #: ../gramps/plugins/view/geoevents.py:344
 #: ../gramps/plugins/view/geoevents.py:357
@@ -34984,11 +35415,15 @@ msgid "Selecting all events"
 msgstr "选择所有事件"
 
 #: ../gramps/plugins/view/geoevents.py:368
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
+"Right click on the map and select 'show all events' to show all known events "
+"with coordinates. You can use the history to navigate on the map. You can "
+"use filtering."
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:437
@@ -35005,8 +35440,9 @@ msgid "Centering on Place"
 msgstr "地点居中"
 
 #: ../gramps/plugins/view/geofamclose.py:109
+#, fuzzy
 msgid "Select the family which is the reference for life ways"
-msgstr ""
+msgstr "Select the family which is the reference for life ways"
 
 #: ../gramps/plugins/view/geofamclose.py:109
 #: ../gramps/plugins/view/geoperson.py:152
@@ -35015,8 +35451,9 @@ msgstr "参照家庭(_F)"
 
 #: ../gramps/plugins/view/geofamclose.py:221
 #: ../gramps/plugins/view/geography.gpr.py:142
+#, fuzzy
 msgid "Have these two families been able to meet?"
-msgstr ""
+msgstr "Have these two families been able to meet?"
 
 #: ../gramps/plugins/view/geofamclose.py:259
 #, fuzzy
@@ -35030,9 +35467,9 @@ msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(gramps_id)s：%(father)s 和 %(mother)s"
 
 #: ../gramps/plugins/view/geofamclose.py:350
-#, python-format
+#, fuzzy, python-format
 msgid "Family reference : %s"
-msgstr ""
+msgstr "Family reference : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:353
 #: ../gramps/plugins/view/geofamclose.py:356
@@ -35041,14 +35478,18 @@ msgid "The other family : %s"
 msgstr "其他家庭：%s"
 
 #: ../gramps/plugins/view/geofamclose.py:363
+#, fuzzy
 msgid "You must choose one reference family."
-msgstr ""
+msgstr "You must choose one reference family."
 
 #: ../gramps/plugins/view/geofamclose.py:365
+#, fuzzy
 msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
 msgstr ""
+"Go to the family view and select the families you want to compare. Return to "
+"this view and use the history."
 
 #: ../gramps/plugins/view/geofamclose.py:689
 #: ../gramps/plugins/view/geofamily.py:397
@@ -35075,10 +35516,12 @@ msgid "Person : %(id)s %(name)s has no family."
 msgstr "人员：%(id)s %(name)s 无家庭。"
 
 #: ../gramps/plugins/view/geofamclose.py:837
+#, fuzzy
 msgid "Choose and bookmark the new reference family"
-msgstr ""
+msgstr "Choose and bookmark the new reference family"
 
 #: ../gramps/plugins/view/geofamclose.py:860
+#, fuzzy
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -35087,14 +35530,21 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"The meeting zone probability radius.\n"
+"The colored zone is approximative.\n"
+"The meeting zone is only shown for the reference family.\n"
+"The value 9 means about 42 miles or 67 kms.\n"
+"The value 1 means about 4.6 miles or 7.5 kms.\n"
+"The value is in tenth of degree."
 
 #: ../gramps/plugins/view/geofamily.py:164
 msgid "Family places map"
 msgstr "家庭地点地图"
 
 #: ../gramps/plugins/view/geofamily.py:186
+#, fuzzy
 msgid "GeoFamily"
-msgstr ""
+msgstr "GeoFamily"
 
 #: ../gramps/plugins/view/geofamily.py:370
 #, python-format
@@ -35106,6 +35556,7 @@ msgid "OsmGpsMap module not loaded."
 msgstr "无法载入 OsmGpsMap 模块。"
 
 #: ../gramps/plugins/view/geography.gpr.py:68
+#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "Try to install:\n"
@@ -35116,6 +35567,14 @@ msgid ""
 "To build it for Gramps see the Wiki (<F1>)\n"
 " and search for 'build from source'"
 msgstr ""
+"Geography functionality will not be available.\n"
+"Try to install:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 for fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 for openSuse\n"
+" ...\n"
+"To build it for Gramps see the Wiki (<F1>)\n"
+" and search for 'build from source'"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
@@ -35144,15 +35603,20 @@ msgid "A view showing the places visited by one family during all their life."
 msgstr "可显示一个家庭全部成员曾前往地点的视图。"
 
 #: ../gramps/plugins/view/geography.gpr.py:121
+#, fuzzy
 msgid "Every residence or move for a person and any descendants"
-msgstr ""
+msgstr "Every residence or move for a person and any descendants"
 
 #: ../gramps/plugins/view/geography.gpr.py:123
+#, fuzzy
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
+"A view showing all the places visited by all persons during their life.\n"
+"This is for a person and any descendant.\n"
+"You can see the dates corresponding to the period."
 
 #: ../gramps/plugins/view/geography.gpr.py:143
 msgid ""
@@ -35187,8 +35651,9 @@ msgid "Descendance of the active person."
 msgstr "当前人员的后代。"
 
 #: ../gramps/plugins/view/geomoves.py:239
+#, fuzzy
 msgid "GeoMoves"
-msgstr ""
+msgstr "GeoMoves"
 
 #: ../gramps/plugins/view/geomoves.py:557
 #, python-format
@@ -35208,8 +35673,9 @@ msgid "Time in milliseconds between drawing two generations.\n"
 msgstr "两代间绘制所间隔的毫秒数。\n"
 
 #: ../gramps/plugins/view/geomoves.py:742
+#, fuzzy
 msgid "The parameters for moves"
-msgstr ""
+msgstr "The parameters for moves"
 
 #: ../gramps/plugins/view/geoperson.py:212
 msgid "Person places map"
@@ -35230,18 +35696,23 @@ msgid "Animate"
 msgstr "动画"
 
 #: ../gramps/plugins/view/geoperson.py:605
+#, fuzzy
 msgid "Animation speed in milliseconds (big value means slower)"
-msgstr ""
+msgstr "Animation speed in milliseconds (big value means slower)"
 
 #: ../gramps/plugins/view/geoperson.py:613
+#, fuzzy
 msgid "How many steps between two markers when we are on large move ?"
-msgstr ""
+msgstr "How many steps between two markers when we are on large move ?"
 
 #: ../gramps/plugins/view/geoperson.py:620
+#, fuzzy
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
+"The minimum latitude/longitude to select large move.\n"
+"The value is in tenth of degree."
 
 #: ../gramps/plugins/view/geoperson.py:627
 msgid "The animation parameters"
@@ -35262,22 +35733,31 @@ msgid "Selecting all places"
 msgstr "选择所有地点"
 
 #: ../gramps/plugins/view/geoplaces.py:433
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can change the markers color depending on place type. "
+"You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:448
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can use the history to navigate on the map. You can "
+"change the markers color depending on place type. You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:463
+#, fuzzy
 msgid "The place name in the status bar is disabled."
-msgstr ""
+msgstr "The place name in the status bar is disabled."
 
 #: ../gramps/plugins/view/geoplaces.py:468
 #, python-format
@@ -35289,16 +35769,18 @@ msgid "Some information are missing."
 msgstr "某些信息缺失。"
 
 #: ../gramps/plugins/view/geoplaces.py:473
+#, fuzzy
 msgid "Please, use filtering to reduce this number."
-msgstr ""
+msgstr "Please, use filtering to reduce this number."
 
 #: ../gramps/plugins/view/geoplaces.py:475
 msgid "You can modify this value in the geography option."
 msgstr "您可在地里选项中修改此值。"
 
 #: ../gramps/plugins/view/geoplaces.py:477
+#, fuzzy
 msgid "In this case, it may take time to show all markers."
-msgstr ""
+msgstr "In this case, it may take time to show all markers."
 
 #: ../gramps/plugins/view/geoplaces.py:507
 #: ../gramps/plugins/view/geoplaces.py:530
@@ -35636,9 +36118,9 @@ msgid "Relationship type: %s"
 msgstr "关系类型：%s"
 
 #: ../gramps/plugins/view/relview.py:1521
-#, python-format
+#, fuzzy, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr ""
+msgstr "%(event_type)s %(date)s in %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1525
 #, python-format
@@ -36005,12 +36487,14 @@ msgid "between"
 msgstr "在...之间"
 
 #: ../gramps/plugins/webreport/basepage.py:3250
+#, fuzzy
 msgid "circa"
-msgstr ""
+msgstr "circa"
 
 #: ../gramps/plugins/webreport/basepage.py:3252
+#, fuzzy
 msgid "around"
-msgstr ""
+msgstr "around"
 
 #: ../gramps/plugins/webreport/download.py:100
 msgid ""
@@ -36033,8 +36517,9 @@ msgid "Last Modified"
 msgstr "上次修订"
 
 #: ../gramps/plugins/webreport/download.py:129
+#, fuzzy
 msgid "MD5"
-msgstr ""
+msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:178
 #, fuzzy
@@ -36181,8 +36666,9 @@ msgid "Missing media objects:"
 msgstr "缺失媒体对象："
 
 #: ../gramps/plugins/webreport/narrativeweb.py:587
+#, fuzzy
 msgid "Constructing list of other objects..."
-msgstr ""
+msgstr "Constructing list of other objects..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:844
 #, python-format
@@ -36313,17 +36799,20 @@ msgid "Horizontal -- Default"
 msgstr "水平 — 默认"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2033
+#, fuzzy
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Vertical   -- Left Side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2034
+#, fuzzy
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Fade       -- WebKit Browsers Only"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2035
 #: ../gramps/plugins/webreport/narrativeweb.py:2049
+#, fuzzy
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Drop-Down  -- WebKit Browsers Only"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2037
 msgid "Navigation Menu Layout"
@@ -36334,17 +36823,20 @@ msgid "Choose which layout for the Navigation Menus."
 msgstr "为巡航菜单选择布局"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2048
+#, fuzzy
 msgid "Normal Outline Style"
-msgstr ""
+msgstr "Normal Outline Style"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2052
 msgid "Citation Referents Layout"
 msgstr "引文参考布局"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2056
+#, fuzzy
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
+"Determine the default layout for the Source Page's Citation Referents section"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2060
 msgid "Include ancestor's tree"
@@ -36360,8 +36852,9 @@ msgid "Add previous/next"
 msgstr "添加配偶"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2067
+#, fuzzy
 msgid "Add previous/next to the navigation bar."
-msgstr ""
+msgstr "Add previous/next to the navigation bar."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2070
 #, fuzzy
@@ -36378,8 +36871,9 @@ msgid "Toggle sections"
 msgstr "标题选择"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
+#, fuzzy
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Check it if you want to open/close a section"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2086
 msgid "Extra pages"
@@ -36403,15 +36897,20 @@ msgid "Your extra page path without extension"
 msgstr "额外页面的路径，不带扩展名"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
+#, fuzzy
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Do we use multiple translations?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2119
+#, fuzzy
 msgid ""
 "Whether to display the narrative web in multiple languages.\n"
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Whether to display the narrative web in multiple languages.\n"
+"See the translation tab to add new languages to the default one defined in "
+"the next field."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Sort all children in birth order"
@@ -36452,10 +36951,13 @@ msgid "Include narrative notes just after name, gender"
 msgstr "在姓名、性别后包括叙述注释"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2160
+#, fuzzy
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Include narrative notes just after name, gender and age at death (default) "
+"or include them just before attributes."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2171
 msgid "Page Generation"
@@ -36498,22 +37000,30 @@ msgid "Publisher contact note"
 msgstr "出版者联系笔记"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2191
+#, fuzzy
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
+"A note to be used as the publisher contact.\n"
+"If no publisher information is given,\n"
+"no contact page will be created"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2197
 msgid "Publisher contact image"
 msgstr "出版者联系图像"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2198
+#, fuzzy
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
+"An image to be used as the publisher contact.\n"
+"If no publisher information is given,\n"
+"no contact page will be created"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2204
 msgid "HTML user header"
@@ -36533,14 +37043,18 @@ msgid "A note to be used as the page footer"
 msgstr "用于页脚的笔记"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2215
+#, fuzzy
 msgid "PHP user session"
-msgstr ""
+msgstr "PHP user session"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2216
+#, fuzzy
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"A note to use for starting the php session.\n"
+"This option will be available only if the .php file extension is selected."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Images Generation"
@@ -36555,12 +37069,14 @@ msgid "Whether to include a gallery of media objects"
 msgstr "是否包含媒体对象"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2238
+#, fuzzy
 msgid "Create the images index"
-msgstr ""
+msgstr "Create the images index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2240
+#, fuzzy
 msgid "This option allows you to create the images index"
-msgstr ""
+msgstr "This option allows you to create the images index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2246
 msgid "Include unused images and media objects"
@@ -36589,8 +37105,9 @@ msgid "Create the thumbnail index"
 msgstr "缩略图大小"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2265
+#, fuzzy
 msgid "This option allows you to create the thumbnail index"
-msgstr ""
+msgstr "This option allows you to create the thumbnail index"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2271
 msgid "Max width of initial image"
@@ -36611,8 +37128,9 @@ msgid "Whether to include a database download option"
 msgstr "是否包含数据库下载选项"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2294
+#, fuzzy
 msgid "How many downloads"
-msgstr ""
+msgstr "How many downloads"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2296
 #, fuzzy
@@ -36837,8 +37355,9 @@ msgid "Family Links"
 msgstr "家庭链接"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2467
+#, fuzzy
 msgid "Drop"
-msgstr ""
+msgstr "Drop"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2468
 msgid "Markers"
@@ -36864,12 +37383,14 @@ msgid "The API key used for the Google maps"
 msgstr "用于谷歌地图的 API 密钥"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
+#, fuzzy
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2484
+#, fuzzy
 msgid "Terrain"
-msgstr ""
+msgstr "Terrain"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2485
 #, fuzzy
@@ -36923,8 +37444,9 @@ msgid "Max days for updates"
 msgstr "饼图中最多项目"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2534
+#, fuzzy
 msgid "You want to see the last updates on how many days?"
-msgstr ""
+msgstr "You want to see the last updates on how many days?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2538
 #, fuzzy
@@ -36932,8 +37454,9 @@ msgid "Max number of updates per object to show"
 msgstr "要显示地点的最大数量"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2540
+#, fuzzy
 msgid "How many updates do you want to see max"
-msgstr ""
+msgstr "How many updates do you want to see max"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2553
 #, fuzzy
@@ -36946,8 +37469,9 @@ msgid "second language"
 msgstr "第二日期"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2560
+#, fuzzy
 msgid "Site name for your second language"
-msgstr ""
+msgstr "Site name for your second language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2561
 #: ../gramps/plugins/webreport/narrativeweb.py:2569
@@ -36963,8 +37487,9 @@ msgstr "网站标题"
 #: ../gramps/plugins/webreport/narrativeweb.py:2578
 #: ../gramps/plugins/webreport/narrativeweb.py:2586
 #: ../gramps/plugins/webreport/narrativeweb.py:2594
+#, fuzzy
 msgid "Enter a title in the respective language"
-msgstr ""
+msgstr "Enter a title in the respective language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2564
 #, fuzzy
@@ -36972,8 +37497,9 @@ msgid "third language"
 msgstr "语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2568
+#, fuzzy
 msgid "Site name for your third language"
-msgstr ""
+msgstr "Site name for your third language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2572
 #, fuzzy
@@ -36981,8 +37507,9 @@ msgid "fourth language"
 msgstr "语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2576
+#, fuzzy
 msgid "Site name for your fourth language"
-msgstr ""
+msgstr "Site name for your fourth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2580
 #, fuzzy
@@ -36990,8 +37517,9 @@ msgid "fifth language"
 msgstr "语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2584
+#, fuzzy
 msgid "Site name for your fifth language"
-msgstr ""
+msgstr "Site name for your fifth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2588
 #, fuzzy
@@ -36999,8 +37527,9 @@ msgid "sixth language"
 msgstr "语言"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2592
+#, fuzzy
 msgid "Site name for your sixth language"
-msgstr ""
+msgstr "Site name for your sixth language"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2805
 #, fuzzy
@@ -37053,10 +37582,13 @@ msgstr "只在年份后显示数据"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2862
 #: ../gramps/plugins/webreport/webcal.py:1980
+#, fuzzy
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
 "probably alive' which is defined in the dates preference tab."
 msgstr ""
+"Show data only after this year. Default is current year -  'maximum age "
+"probably alive' which is defined in the dates preference tab."
 
 #: ../gramps/plugins/webreport/person.py:150
 msgid "Creating individual pages"
@@ -37074,8 +37606,9 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:263
 #: ../gramps/plugins/webreport/surname.py:95
 #: ../gramps/plugins/webreport/surnamelist.py:193
+#, fuzzy
 msgid "<absent>"
-msgstr ""
+msgstr "<absent>"
 
 #: ../gramps/plugins/webreport/person.py:293
 #, fuzzy, python-format
@@ -37084,11 +37617,12 @@ msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "以字母 %(letter)s 开头的姓氏 %(surname)s"
 
 #: ../gramps/plugins/webreport/person.py:877
-#, python-format
+#, fuzzy, python-format
 msgid "Tracking %s"
-msgstr ""
+msgstr "Tracking %s"
 
 #: ../gramps/plugins/webreport/person.py:882
+#, fuzzy
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -37096,6 +37630,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"This map page represents that person and any descendants with all of their "
+"event/places. If you place your mouse over the marker it will display the "
+"place name. The markers and the Reference list are sorted in date order (if "
+"any?). Clicking on a place&#8217;s name in the Reference section will take "
+"you to that place&#8217;s page."
 
 #: ../gramps/plugins/webreport/person.py:934
 msgid "Place Title"
@@ -37138,8 +37677,9 @@ msgid "Relation to main person"
 msgstr "与主人翁的关系"
 
 #: ../gramps/plugins/webreport/person.py:2073
+#, fuzzy
 msgid "Relation within this family (if not by birth)"
-msgstr ""
+msgstr "Relation within this family (if not by birth)"
 
 #: ../gramps/plugins/webreport/place.py:124
 msgid "Creating place pages"
@@ -37266,12 +37806,14 @@ msgid "New and updated objects"
 msgstr "新插件和更新的插件"
 
 #: ../gramps/plugins/webreport/updates.py:88
-#, python-format
+#, fuzzy, python-format
 msgctxt "nb"
 msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
+"This page contains the last updated objects in the database in the last "
+"%(days)d days and for a maximum of %(nb)d objects per object type."
 
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
@@ -37327,10 +37869,10 @@ msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s 和 %(person)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1567
-#, python-format
+#, fuzzy, python-format
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
+msgstr "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format
@@ -37507,9 +38049,9 @@ msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "链接的前缀带您到叙事网页报告"
 
 #: ../gramps/plugins/webreport/webcal.py:2195
-#, python-format
+#, fuzzy, python-format
 msgid "%s since death"
-msgstr ""
+msgstr "%s since death"
 
 #: ../gramps/plugins/webreport/webcal.py:2196
 msgid "death"
@@ -37534,8 +38076,9 @@ msgid "Produces web (HTML) calendars."
 msgstr "生成网页 (HTML) 日历。"
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:36
+#, fuzzy
 msgid "Webstuff"
-msgstr ""
+msgstr "Webstuff"
 
 #: ../gramps/plugins/webstuff/webstuff.gpr.py:37
 msgid "Provides a collection of resources for the web"
