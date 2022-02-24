@@ -175,6 +175,10 @@ class Test3(U.TestCase):
 
     def test3b_delete_tree_constraint(self):
         if self.home:
+            sep = os.path.sep
+            tmp = tempfile.gettempdir() + sep
+            if ((self.home + sep).startswith(tmp)):
+                self.skipTest("skipping delete_tree_constraint test")
             err = None
             try:
                 tu.delete_tree(self.home_junk)
