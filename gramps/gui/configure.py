@@ -862,7 +862,7 @@ class GrampsPreferences(ConfigureDialog):
     def __new_name(self, obj):
         lyst = [
             "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"),
-                                _("Common")),
+                                _("Common", "Name")),
             "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"),
                                 _("Nickname")),
             "%s, %s %s (%s)" % (_("Surname"), _("Common", "Name"), _("Suffix"),

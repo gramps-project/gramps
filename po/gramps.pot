@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10080,7 +10080,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr ""
@@ -10904,16 +10907,6 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
-msgstr ""
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr ""
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-msgid "Name|Common"
 msgstr ""
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
@@ -22424,7 +22417,8 @@ msgid "Gramps online manual"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
