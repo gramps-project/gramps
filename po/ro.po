@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2003-03-03 09:54+0100\n"
 "Last-Translator: Radu Bogdan Mare <bogdan_mare@web.de>\n"
 "Language-Team: romanian <ro@li.org>\n"
@@ -11049,7 +11049,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 #, fuzzy
 msgctxt "Name"
 msgid "Common"
@@ -11938,18 +11941,6 @@ msgstr ""
 #, fuzzy
 msgid "Warnings"
 msgstr "Avertisment"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-#, fuzzy
-msgid "Common"
-msgstr "Comentariu"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-msgid "Name|Common"
-msgstr "Comentariu"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24776,7 +24767,8 @@ msgstr "_Pagina de Internet GRAMPS"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr "Sufix"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
@@ -39839,6 +39831,18 @@ msgid "No style sheet"
 msgstr "Eroare la salvarea stilurilor de paginare"
 
 #, fuzzy
+#~ msgid "Common"
+#~ msgstr "Comentariu"
+
+#, fuzzy
+#~ msgid "Name|Common"
+#~ msgstr "Comentariu"
+
+#, fuzzy
+#~ msgid "locale_suffix|"
+#~ msgstr "Sufix"
+
+#, fuzzy
 #~ msgid "Researcher information"
 #~ msgstr "<b>Informaţii Sursă</b>"
 
@@ -39877,11 +39881,6 @@ msgstr "Eroare la salvarea stilurilor de paginare"
 #, fuzzy
 #~ msgid "Links"
 #~ msgstr "Educaţie"
-
-#, fuzzy
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "Sufix"
 
 #, fuzzy
 #~ msgid "Check Backlink Integrity"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-15 06:11+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
@@ -10879,7 +10879,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "COMUM"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Comum"
@@ -11759,18 +11762,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Avisos"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Comum"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Comum"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24112,11 +24103,12 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Manual em linha do Gramps"
 
+# NÃO ALTERAR
+# Necessário para levar as hiperligações às páginas wiki portuguesas de Portugal
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "sufixo"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "/pt_PT"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38897,6 +38889,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Sem folha de estilos"
 
+#~ msgid "Common"
+#~ msgstr "Comum"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Comum"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "sufixo"
+
 #~ msgid "Researcher information"
 #~ msgstr "Informação do investigador"
 
@@ -39005,12 +39010,6 @@ msgstr "Sem folha de estilos"
 
 #~ msgid "Links"
 #~ msgstr "Ligações"
-
-# NÃO ALTERAR
-# Necessário para levar as hiperligações às páginas wiki portuguesas de Portugal
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "/pt_PT"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Verificar integridade de ligações de retorno"

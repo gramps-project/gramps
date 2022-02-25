@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-10 20:54+0000\n"
 "Last-Translator: Mukli Krisztián <weblate@rejtettmail.eu.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
@@ -10875,7 +10875,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "KÖZÖS"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Közös"
@@ -11754,18 +11757,6 @@ msgstr "Beépülő állapot párbeszéd ablak mutatása beépülő betöltés hi
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Figyelmeztetések"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Közös"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Közös"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24067,10 +24058,9 @@ msgid "Gramps online manual"
 msgstr "Gramps online kézikönyv"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "utótag"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "hu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38866,6 +38856,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nincs stíluslap"
 
+#~ msgid "Common"
+#~ msgstr "Közös"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Közös"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "utótag"
+
 #~ msgid "Researcher information"
 #~ msgstr "Kutató információ"
 
@@ -38974,10 +38977,6 @@ msgstr "Nincs stíluslap"
 
 #~ msgid "Links"
 #~ msgstr "Hivatkozások"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "hu"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Visszahivatkozás integritás ellenőrzése"

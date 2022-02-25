@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-25 22:47+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
@@ -10761,7 +10761,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "VANLIGT"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Vanligt"
@@ -11639,16 +11642,6 @@ msgstr "Visa statusfönster vid problem att ladda insticksmoduler"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Varningar"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Vanligt"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-msgid "Name|Common"
-msgstr "Namn|Vanligt"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23919,8 +23912,9 @@ msgid "Gramps online manual"
 msgstr "Gramps online-handbok"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-msgid "locale_suffix|"
-msgstr "språk_ändelse|"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "/sv"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38541,6 +38535,15 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Inget mallblad"
 
+#~ msgid "Common"
+#~ msgstr "Vanligt"
+
+#~ msgid "Name|Common"
+#~ msgstr "Namn|Vanligt"
+
+#~ msgid "locale_suffix|"
+#~ msgstr "språk_ändelse|"
+
 #~ msgid "Researcher information"
 #~ msgstr "Forskarinformation"
 
@@ -38650,10 +38653,6 @@ msgstr "Inget mallblad"
 
 #~ msgid "Links"
 #~ msgstr "Länkar"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "/sv"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Kontrollera länkintegritet"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-06-04 21:07+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/gramps-"
@@ -10817,7 +10817,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "ĮPRASTAS"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Dažniausiai naudojamas"
@@ -11745,18 +11748,6 @@ msgstr "Kai įskiepis įkeliamas su klaida, rodyti įskiepio būsenos dialogą."
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Įspėjimai"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Dažniausiai naudojamas"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Dažniausiai naudojamas"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24122,9 +24113,8 @@ msgid "Gramps online manual"
 msgstr "Gramps internetinis žinynas"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr "prievardis"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
@@ -39051,6 +39041,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Jokio stiliaus"
 
+#~ msgid "Common"
+#~ msgstr "Dažniausiai naudojamas"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Dažniausiai naudojamas"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "prievardis"
+
 #, fuzzy
 #~ msgid "Researcher information"
 #~ msgstr "Nuorodos informacija"
@@ -39093,10 +39096,6 @@ msgstr "Jokio stiliaus"
 
 #~ msgid "Links"
 #~ msgstr "Nuorodos"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "prievardis"
 
 #, fuzzy
 #~ msgid "Check Backlink Integrity"

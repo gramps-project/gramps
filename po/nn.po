@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-07-02 13:33+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/gramps-"
@@ -10859,7 +10859,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "VANLEG NAMN"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Vanleg namn"
@@ -11788,18 +11791,6 @@ msgstr "Vis status for programtillegg når innlasting av programtillegg feilar."
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Åtvaringar"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Vanleg"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Vanleg"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24172,11 +24163,32 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Gramps brukarhandbok på nettet"
 
+# Norwegian (Nynorsk) translation for Gramps
+# This file is distributed under the same license as the Gramps package.
+# Copyright (C) 2008
+#
+# Sigmund Lorentsen <siglorent@gmail.com>, 2008, 2009, 2010, 2011, 2012, 2014, 2018.
+# Allan Nordhøy <epost@anotheragency.no>, 2021.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "etterstaving"
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
+msgstr ""
+"Project-Id-Version: nn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2021-07-02 13:33+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Nynorsk <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/nn/>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.8-dev\n"
+"Generated-By: pygettext.py 1.4\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38951,6 +38963,19 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Ingen stilsett"
+
+#~ msgid "Common"
+#~ msgstr "Vanleg"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Vanleg"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "etterstaving"
 
 #, fuzzy
 #~ msgid "Researcher information"

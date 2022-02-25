@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-25 21:42+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
@@ -1394,8 +1394,8 @@ msgstr ""
 "(non-GUI mode only)\n"
 "  -v, --version                          Show versions\n"
 "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-"                                          (temporarily use default settings)"
-"\n"
+"                                          (temporarily use default "
+"settings)\n"
 "  -D, --default=[APXFE]                  Reset settings to default;\n"
 "                 A - addons are cleared\n"
 "                 P - Preferences to default\n"
@@ -10748,7 +10748,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "COMMON"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Common"
@@ -11621,18 +11624,6 @@ msgstr "Show plugin status dialog on plugin load error"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Warnings"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Common"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Common"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23876,11 +23867,61 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Gramps online manual"
 
+# English (United Kingdom) translation for Gramps
+# This file is distributed under the same license as the Gramps package.
+#
+# alternate -> alternative
+# approximative -> approximate
+# analyzing -> analysing
+# baptized -> baptised
+# canceled -> cancelled
+# canceling -> cancelling
+# capitalization -> capitalisation
+# center -> centre
+# centered -> centred
+# centering -> centring
+# color -> colour
+# colored -> coloured
+# coloring -> colouring
+# customize -> customise
+# dialog (for computer terminology don't use dialogue)
+# favorite -> favourite
+# gray -> grey
+# indexes (use indexes rather than indices)
+# initialization -> initialisation
+# initializing -> initialising
+# kilometers -> kilometres
+# license -> licence
+# maximized -> maximised
+# naturalization -> naturalisation
+# neighborhood -> neighbourhood
+# organize -> organise
+# organized -> organised
+# recognized -> recognised
+# traveled -> travelled
+# unrecognized -> unrecognised
+#
+# Copyright (C)
+# Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "suffix"
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
+msgstr ""
+"Project-Id-Version: gramps 3.5.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2022-02-25 21:42+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/en_GB/>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38565,6 +38606,19 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "No style sheet"
+
+#~ msgid "Common"
+#~ msgstr "Common"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Common"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "suffix"
 
 #~ msgid "Researcher information"
 #~ msgstr "Researcher information"

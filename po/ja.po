@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-06-04 21:07+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
@@ -10239,7 +10239,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "一般"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "一般"
@@ -11091,18 +11094,6 @@ msgstr "プラグイン読み込みエラー時にステータスダイアログ
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "警告"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "一般"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "一般"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23101,8 +23092,8 @@ msgstr "Grampsオンラインマニュアル"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr "接尾辞"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
@@ -37384,6 +37375,19 @@ msgstr "ネブラスカ"
 msgid "No style sheet"
 msgstr "スタイルシートなし"
 
+#~ msgid "Common"
+#~ msgstr "一般"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "一般"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "接尾辞"
+
 #~ msgid "Researcher information"
 #~ msgstr "調査者情報"
 
@@ -37433,11 +37437,6 @@ msgstr "スタイルシートなし"
 
 #~ msgid "Links"
 #~ msgstr "リンク"
-
-#, fuzzy
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "接尾辞"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "被リンク整合性の検証"

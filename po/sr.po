@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-06-04 21:08+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
@@ -10873,7 +10873,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "ОПШТЕ"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Опште"
@@ -11766,18 +11769,6 @@ msgstr "Прикажи прозорче стања прикључка прили
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Упозорења"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Опште"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Опште"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24241,11 +24232,31 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Дедовниково упутство на мрежи"
 
+# Serbian translation for Gramps
+# This file is distributed under the same license as the Gramps package.
+# Vlada Perić <vlada.peric@gmail.com>, 2008.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2013—2014.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "суфикс"
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
+msgstr ""
+"Project-Id-Version: 4.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/sr/>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38981,6 +38992,19 @@ msgstr "Небраска"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Нема стилског листа"
+
+#~ msgid "Common"
+#~ msgstr "Опште"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Опште"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "суфикс"
 
 #, fuzzy
 #~ msgid "Researcher information"

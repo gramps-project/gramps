@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-01-05 02:54+0000\n"
 "Last-Translator: Igor Kriznar <ikriznar@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
@@ -10837,7 +10837,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "OBIČAJNO"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Običajno"
@@ -11716,18 +11719,6 @@ msgstr "Ob napakah pri nalaganju vključkov prikaži stanje vključkov"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Opozorila"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Običajno"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Običajno"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24021,10 +24012,9 @@ msgid "Gramps online manual"
 msgstr "Grampsov spletni priročnik"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "pripona"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "sl"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38933,6 +38923,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Brez lista slogov"
 
+#~ msgid "Common"
+#~ msgstr "Običajno"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Običajno"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "pripona"
+
 #~ msgid "Researcher information"
 #~ msgstr "Podatki o raziskovalcu"
 
@@ -39041,10 +39044,6 @@ msgstr "Brez lista slogov"
 
 #~ msgid "Links"
 #~ msgstr "Povezave"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "sl"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Preveri notranjo skladnost povratnih povezav"

@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-10 20:54+0000\n"
 "Last-Translator: cedecode <christoph.eder@phsalzburg.at>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/gramps-"
@@ -10986,7 +10986,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "ÜBLICH"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Üblich"
@@ -11871,18 +11874,6 @@ msgstr "Zeige Zusatzmodulstatusdialog bei Zusatzmodulladefehler"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Warnungen"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Üblich"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Üblich"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24302,10 +24293,9 @@ msgid "Gramps online manual"
 msgstr "Gramps online Handbuch"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "Zusatz"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "De"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39111,6 +39101,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
 
+#~ msgid "Common"
+#~ msgstr "Üblich"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Üblich"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "Zusatz"
+
 #~ msgid "Researcher information"
 #~ msgstr "Forscher Information"
 
@@ -39221,10 +39224,6 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Links"
 #~ msgstr "Verknüpfungen"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "De"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Rückverweis Integrität überprüfen"

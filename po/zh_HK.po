@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2015-03-18 17:31-0600\n"
 "Last-Translator: Anthony Fok <foka@debian.org>\n"
 "Language-Team: Chinese (Hong Kong) <(nothing)>\n"
@@ -10727,7 +10727,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "常用名字"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "常用名字"
@@ -11663,18 +11666,6 @@ msgstr "當插件讀取錯誤時，顯示插件狀態列。"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "警告"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "通用的，共有的"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "通用的，共有的"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23995,8 +23986,8 @@ msgstr "Gramps 線上手冊"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr "字尾"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
@@ -38959,6 +38950,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "無樣式表"
 
+#~ msgid "Common"
+#~ msgstr "通用的，共有的"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "通用的，共有的"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "字尾"
+
 #, fuzzy
 #~ msgid "Researcher information"
 #~ msgstr "參考資訊"
@@ -39001,11 +39005,6 @@ msgstr "無樣式表"
 
 #~ msgid "Links"
 #~ msgstr "相關連結"
-
-#, fuzzy
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "字尾"
 
 #, fuzzy
 #~ msgid "Check Backlink Integrity"

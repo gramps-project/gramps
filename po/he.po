@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-17 22:56+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
@@ -10642,7 +10642,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "נפוץ"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "נפוץ"
@@ -11511,18 +11514,6 @@ msgstr "הצגת דו־שיח מצב מתקעים עם שגיאת טעינת מ�
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "התראות"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "נפוץ"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "נפוץ"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23657,10 +23648,9 @@ msgid "Gramps online manual"
 msgstr "מדריך גרמפס מקוון"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "סיומת"
+msgctxt "locale_suffix"
+msgid ""
+msgstr " "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38128,6 +38118,19 @@ msgstr "נברסקה"
 msgid "No style sheet"
 msgstr "ללא עמוד סגנון"
 
+#~ msgid "Common"
+#~ msgstr "נפוץ"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "נפוץ"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "סיומת"
+
 #~ msgid "Researcher information"
 #~ msgstr "מידע על החוקר"
 
@@ -38230,10 +38233,6 @@ msgstr "ללא עמוד סגנון"
 
 #~ msgid "Links"
 #~ msgstr "קישורים"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr " "
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "בדיקת שְׁלֵמוּת קישורים נכנסים"

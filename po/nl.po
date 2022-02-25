@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-10-02 09:53+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
@@ -10963,7 +10963,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "GEWOON"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Gewoon"
@@ -11857,18 +11860,6 @@ msgstr "Toon plug-in statusdialoog op laadfout van plug-in"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Waarschuwingen"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Algemeen"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Algemeen"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24314,10 +24305,9 @@ msgid "Gramps online manual"
 msgstr "Gramps online handleiding"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "achtervoegsel"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "suffix"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39246,6 +39236,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Geen stijlblad"
 
+#~ msgid "Common"
+#~ msgstr "Algemeen"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Algemeen"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "achtervoegsel"
+
 #~ msgid "Researcher information"
 #~ msgstr "Onderzoeker informatie"
 
@@ -39358,10 +39361,6 @@ msgstr "Geen stijlblad"
 
 #~ msgid "Links"
 #~ msgstr "Links"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "suffix"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Controleer integriteit van koppelingen"

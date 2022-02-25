@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-04-20 08:34-0300\n"
 "Last-Translator: Helder Geovane Gomes de Lima <he7d3r@gmail.com>\n"
 "Language-Team: \n"
@@ -11014,7 +11014,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "COMUM"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Comum"
@@ -11911,18 +11914,6 @@ msgstr "Exibir janela de status dos plugins se ocorrer um erro ao carregá-los"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Avisos"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Comum"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Comum"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24347,11 +24338,35 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Manual on-line do Gramps"
 
+# Portuguese (Brazil) translation for Gramps
+# This file is distributed under the same license as the Gramps package.
+# Copyright (C) 2002-2016 Free Software Foundation, Inc.
+#
+# Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
+# Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>, 2007-2007.
+# lcc <lcc@6zap.com>, 2009-2009.
+# André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2011, 2012, 2013, 2014.
+# Paulo Henrique Paiva de Moraes <paulohpmoraes@gmail.com>, 2016, 2017, 2018...
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "sufixo"
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
+msgstr ""
+"Project-Id-Version: GRAMPS 5.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2021-04-20 08:34-0300\n"
+"Last-Translator: Helder Geovane Gomes de Lima <he7d3r@gmail.com>\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-Basepath: ../gramps-master/gramps\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39303,6 +39318,19 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Sem folha de estilo"
+
+#~ msgid "Common"
+#~ msgstr "Comum"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Comum"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "sufixo"
 
 #~ msgid "Researcher information"
 #~ msgstr "Informações do pesquisador"

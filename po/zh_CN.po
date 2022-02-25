@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-06-17 16:22+0800\n"
 "Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -10750,7 +10750,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "常用名字"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "常用名字"
@@ -11649,18 +11652,6 @@ msgstr "插件加载出错时显示插件状态对话框"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "警告"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "通用的，共有的"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "通用的，共有的"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23705,11 +23696,37 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Gramps 在线手册"
 
+# Chinese (simplified) translation for Gramps
+# Copyright (C) 2009, 2010, 2011, 2012, 2014, 2015, 2020
+# This file is distributed under the same license as the Gramps package.
+#
+# 陈欣(Celia), 2009.
+# 黄晓敏 (武汉工业职业技术学院管理工程系会计0801班), 2009.
+# 赖洁(Lexi), 2009.
+# 黄友诚 <grampscn@gmail.com>, 2009, 2010, 2011.
+# Yin Hoe TAN <astyh83@gmail.com> 2014.
+# Anthony Fok (霍东灵) <foka@debian.org>, 2015.
+# Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021.
+#
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "后缀"
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
+msgstr ""
+"Project-Id-Version: Gramps 4.2.0-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2021-06-17 16:22+0800\n"
+"Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
+"Language-Team: Chinese (simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38012,6 +38029,19 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "无样式表"
+
+#~ msgid "Common"
+#~ msgstr "通用的，共有的"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "通用的，共有的"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "后缀"
 
 #~ msgid "Researcher information"
 #~ msgstr "研究人员信息"

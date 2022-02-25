@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-01-17 22:08+0000\n"
 "Last-Translator: Mario Ruiz <marionetarh@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
@@ -11025,7 +11025,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "HABITUAL"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Habitual"
@@ -11910,18 +11913,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Advertencias"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Habitual"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Habitual"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24327,10 +24318,9 @@ msgid "Gramps online manual"
 msgstr "Manual en línea de Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "sufijo"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "es"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39145,6 +39135,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Sin hoja de estilo"
 
+#~ msgid "Common"
+#~ msgstr "Habitual"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Habitual"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "sufijo"
+
 #~ msgid "Researcher information"
 #~ msgstr "Información del investigador/a"
 
@@ -39256,10 +39259,6 @@ msgstr "Sin hoja de estilo"
 
 #~ msgid "Links"
 #~ msgstr "Enlaces"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "es"
 
 #~ msgid ""
 #~ "The first thing you must do is to create a new Family Tree. To create a "

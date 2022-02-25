@@ -46,7 +46,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-06-04 11:36+0000\n"
 "Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
@@ -10932,7 +10932,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "ALMINDELIG"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Almindelig"
@@ -11828,18 +11831,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Advarsler"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Almindelig"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Almindelig"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24200,11 +24191,70 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Gramps online-brugerhåndbog"
 
+# Danish translation for Gramps
+# This file is distributed under the same license as the Gramps package.
+# Dansk oversættelse til GRAMPS
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Lars Kr. Lundin <gramps@lklundin.dk>, 2002.
+# Morten Bo Johansen <mbj@spamcop.net>, 2006-, >= Gramps 0.7.3
+# *** Vedr. ordstilling: ***
+# Ofte vil det lyde mere naturligt at ændre en ordstilling ved at
+# bytte om på hoved- og ledsætning, som f.eks.
+# Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017, 2018.
+# Allan Nordhøy <epost@anotheragency.no>, 2021.
+# Kaj Arne Mikkelsen <kmi@vgdata.dk>, 2021.
+#
+# "Før reparationen udføres, forvis dig om at databasen virkelig
+# "ikke længere kan åbnes"
+# til
+#
+# "forvis dig om at databasen virkelig ikke kan åbnes før du
+# "udfører reparationen."
+#
+# Jeg har dog i mange tilfælde valgt at bevare den oprindelige
+# ordstilling, da der ligger en opmærksomhedsskabende værdi i denne. Her
+# bliver man f.eks. som det første i sætningen gjort opmærksom på at man
+# IKKE skal udføre reparationen FØR .. -MBJ
+# *** Oversættelser af visse ord/vendinger: ***
+# LDS: SDH (Latter Day Saints -> Sidste Dages Hellige)
+# home person: proband
+# ancestor: ane
+# given name: fornavn
+# preferences: indstillinger
+# link: forbindelse
+# family tree: slægtsbog (men se nedenfor)
+# First Communion: Førstekommunion
+# probate: skifte
+# record: optegnelse
+#
+# Anvendt af Lars Kr. Lundin:
+# citation: citering (fremfor f.eks. 'kildehenvisning')
+# citering er i 2016 blevet ændret til kildehenvisning af Kaj Mikkelsen
+# database: database (fremfor det tidligere 'slægtsbog')
+# matches: matcher (fremfor det tidligere 'passer med')
+# locale: landestandard (i mangel af bedre)
+#
+#
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "efterstavelse"
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2021-06-04 11:36+0000\n"
+"Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
+"Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/da/>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
+"Generated-By: pygettext.py 1.4\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39003,6 +39053,19 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Intet stilark"
+
+#~ msgid "Common"
+#~ msgstr "Almindelig"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Almindelig"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "efterstavelse"
 
 #~ msgid "Researcher information"
 #~ msgstr "Oplysning om forskeren"

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-01-10 22:09+0000\n"
 "Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
@@ -10871,7 +10871,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "VANLIG NAVN"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Vanlig navn"
@@ -11754,18 +11757,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Advarsler"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Vanlig"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Vanlig"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24102,9 +24093,9 @@ msgstr "Gramps brukerveiledning på Internett"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "etterstavelse"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "nb_NO"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38773,6 +38764,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ingen stilsett"
 
+#~ msgid "Common"
+#~ msgstr "Vanlig"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Vanlig"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "etterstavelse"
+
 #, fuzzy
 #~ msgid "Researcher information"
 #~ msgstr "Referanseinformasjon"
@@ -38883,11 +38887,6 @@ msgstr "Ingen stilsett"
 
 #~ msgid "Links"
 #~ msgstr "Lenker"
-
-#, fuzzy
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "nb_NO"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Kontroller integritet på tilbakelenker"
