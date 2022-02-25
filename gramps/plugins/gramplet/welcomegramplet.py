@@ -118,7 +118,7 @@ class WelcomeGramplet(Gramplet):
             ' lists and Discourse forum to share ideas and techniques.\n\n')
         welcome += linkst(_('Gramps online manual'),
                           URL_WIKISTRING + URL_MANUAL_PAGE +
-                          _('locale_suffix|')) + '\n\n'
+                          _('', 'locale_suffix')) + '\n\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
                           '%(gramps_home_url)scontact/' %
                           {'gramps_home_url': URL_HOMEPAGE}) + '\n\n'
