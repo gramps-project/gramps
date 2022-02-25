@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2022-02-25 22:47+0000\n"
+"PO-Revision-Date: 2022-02-26 18:25+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -11926,7 +11926,7 @@ msgstr "Aktivera stavningskontroll"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Enable the spelling checker for notes."
-msgstr "Aktivera stavningskontroll för anteckningar."
+msgstr "Aktivera stavningskontroll för notiser."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -23100,7 +23100,7 @@ msgstr "Gramplet som visar notiserna för ett mediaobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:779
 msgid "Gramplet showing the selected note"
-msgstr "Gramplet som visar den valda anteckningen"
+msgstr "Gramplet som visar den valda notisen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 msgid "Person Citations"
@@ -23956,10 +23956,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Börja med släktforskning och Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:140
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "Alla familjer"
+msgstr "Lägg till din första familj"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:141
 msgid ""
@@ -23987,18 +23985,38 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
+"Du kan nu lägga till din första familj och den börjar med den första "
+"personen.\n"
+"\n"
+"Växla till \"Person\"-vyn och från menyn klickar du på \"Lägg till\" och "
+"sedan på \"Person\" (eller använder [+]-ikonen) för att öppna fönstret för "
+"att ange en person. Att ange grundinformationen och spara posten ger dig en "
+"utgångspunkt. Välj denna persons post och växla nu till vyn \"Relationer\".\n"
+"\n"
+"Med denna första person har alla menyalternativ och ikonfunktioner blivit "
+"tillgängliga. Lägg lite tid på att flytta musen över ikonerna. När markören "
+"passerar över en ikon visas ett meddelande som talar om ikonens funktion. "
+"Detsamma gäller för alla redigeringsfönster. Om du flyttar muspekaren över "
+"ett objekt kommer du att se vad det är till för.\n"
+"\n"
+"Du kan nu skapa familjer genom att lägga till föräldrar, en make och barn. "
+"När du väl har startat kommer du att kunna lägga till händelser för personer "
+"och familjer. Du kan tillhandahålla källor och citat för att tillhandahålla "
+"dokumentation för dina poster.\n"
+"\n"
+" När du börjar använda Gramps kommer du att upptäcka att information kan "
+"matas in från alla olika vyer. Det finns flera sätt att göra de flesta "
+"aktiviteter i Gramps. Flexibiliteten gör att du kan välja vilken som passar "
+"din arbetsstil.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:162
-#, fuzzy
-#| msgid "Open an existing database"
 msgid "Entering and editing data (brief)"
-msgstr "Öppna en befintlig databas"
+msgstr "Mata in och redigera data (kortfattat)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:165
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
-msgstr "Importera släktträd"
+msgstr "Importera ett släktträd"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:166
 msgid ""
@@ -24009,13 +24027,16 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"För att importera ett släktträd från ett annat program skapa först en GEDCOM "
+"(eller annan data) fil från det föregående programmet.\n"
+"\n"
+"När du har skapat en ny Gramps-databasfil, använd alternativet \"Importera\" "
+"under menyn \"Släktträd\" för att importera GEDCOM-data.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
-#, fuzzy
-#| msgctxt "manual"
-#| msgid "Import_from_another_genealogy_program"
 msgid "Import from another genealogy program"
-msgstr "Import_från_ett_annat_släktforskningsprogram"
+msgstr "Importera från ett annat släktforskningsprogram"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:173
 msgid "Dashboard View"
@@ -24044,17 +24065,13 @@ msgstr ""
 "ovan Gramps."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:184
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "Grampsvy"
+msgstr "Grampsvy kategorier"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:187
 #: ../gramps/plugins/gramplet/welcomegramplet.py:192
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "Lägg till en Gramplet"
+msgstr "Tillägg och \"Gramplets\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:188
 msgid ""
@@ -24063,12 +24080,15 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"Det finns många tillägg eller \"Gramplets\" som är tillgängliga för att "
+"hjälpa dig med datainmatning och visualisering av ditt släktträd. Många av "
+"dessa verktyg är redan tillgängliga för dig. Många fler finns att ladda ner "
+"och installera.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "Hela databasen"
+msgstr "Exempel-databas"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -24083,12 +24103,19 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
+"Vill du se Gramps i bruk. Skapa och importera exempeldatabasen.\n"
+"\n"
+"Skapa ett nytt släktträd enligt beskrivningen ovan. Föreslå att du namnger "
+"släktträdet \"EXEMPEL\".\n"
+"\n"
+"Importera Gramps-filen example.gramps.\n"
+"\n"
+"Följ instruktionerna för var filen lagras med programmet Gramps.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Exempel"
+msgstr "Exempel.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -24796,22 +24823,16 @@ msgstr ""
 "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:973
-#, fuzzy
-#| msgid "Event groups"
 msgid "Parent grouping"
-msgstr "Händelsegrupper"
+msgstr "Föräldragruppering"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:975
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents together"
-msgstr "Föräldrarnas notiser"
+msgstr "Föräldrarna tillsammans"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:976
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents offset"
-msgstr "Föräldrarnas notiser"
+msgstr "Föräldrarna förskjutna"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:978
 msgid ""
@@ -24822,6 +24843,14 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
+"I inställningen \"Normal\" kommer föräldrar att placeras för att hålla de "
+"flesta linjer korta.\n"
+"Inställningen \"Föräldrarna tillsammans\" kan hjälpa till att placera makar "
+"bredvid varandra, men med icke-triviala grafer kommer det att resultera i "
+"längre linjer och större grafer.\n"
+"Inställningen Föräldrarna förskjutna kommer också att försöka placera makar "
+"nära varandra, men de kommer att förskjutas från varandra.  Detta kommer att "
+"tendera att göra grafer med många människor i en generation mer fyrkantiga."
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -30520,7 +30549,7 @@ msgstr "Nederkant, höger"
 
 #: ../gramps/plugins/lib/maps/geography.py:158
 msgid "Tile path"
-msgstr ""
+msgstr "Sökväg för delrutor"
 
 #: ../gramps/plugins/lib/maps/geography.py:159
 #, python-format
@@ -30530,6 +30559,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"Katalogen för delrutor finns inte längre:\n"
+"%s\n"
+"Försök att skapa en ny misslyckades.\n"
+"Konfigurera vyn för sökvägen för delrutor och starta om Gramps."
 
 #: ../gramps/plugins/lib/maps/geography.py:378
 msgid "Remove cross hair"
@@ -33027,64 +33060,49 @@ msgid "Number of families: %d"
 msgstr "Antal familjer: %d"
 
 #: ../gramps/plugins/textreport/summary.py:230
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "Sammanhang"
+msgstr "Händelseinformation"
 
 #: ../gramps/plugins/textreport/summary.py:234
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "Antal händelser"
+msgstr "Antal händelser: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "Platsformat"
+msgstr "Platsinformation"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy, python-format
-#| msgid "Number of places"
+#, python-format
 msgid "Number of places: %d"
-msgstr "Antal platser"
+msgstr "Antal platser: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
-#, fuzzy
-#| msgid "Shared Information"
 msgid "Source Information"
-msgstr "Delad information"
+msgstr "Källinformation"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Antal källor"
+msgstr "Antal källor: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation Information"
-msgstr "Publiceringsinformation"
+msgstr "Citeringsinformation"
 
 #: ../gramps/plugins/textreport/summary.py:273
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Antal källhänvisningar"
+msgstr "Antal citeringar: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "Släktskapsinformation"
+msgstr "Arkivplatsinformation"
 
 #: ../gramps/plugins/textreport/summary.py:286
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Antal arkivplatser"
+msgstr "Antal arkivplatser: %d"
 
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
@@ -33097,16 +33115,13 @@ msgid "Total size of media objects: %s MB"
 msgstr "Sammanlagd storlek på mediaobjekt: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:342
-#, fuzzy
-#| msgid "No Date Information"
 msgid "Note Information"
-msgstr "Ingen datuminformation"
+msgstr "Notisinformation"
 
 #: ../gramps/plugins/textreport/summary.py:346
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Antal notiser"
+msgstr "Antal notiser: %d"
 
 #: ../gramps/plugins/textreport/summary.py:374
 msgid "Whether to count private data"
@@ -35077,10 +35092,8 @@ msgstr "Sorterar om Gramps-ID:n efter Gramps standardregler."
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
-msgstr "Sorterar händelser"
+msgstr "Sortera händelser"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Verify the Data"
