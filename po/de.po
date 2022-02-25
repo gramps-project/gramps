@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 17:40+0000\n"
-"PO-Revision-Date: 2022-02-22 22:50+0000\n"
+"PO-Revision-Date: 2022-02-25 22:44+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -42,10 +42,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalanisch"
+msgstr "Katalonien"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -200,10 +198,8 @@ msgid "8 of Hanuka"
 msgstr "8 vor Chanukka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kursiv"
+msgstr "Italien"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -1357,53 +1353,6 @@ msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Usage: gramps.py [OPTION...]\n"
-#| "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#| "\n"
-#| "Help options\n"
-#| "  -?, --help                             Show this help message\n"
-#| "  --usage                                Display brief usage message\n"
-#| "\n"
-#| "Application options\n"
-#| "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#| "  -U, --username=USERNAME                Database username\n"
-#| "  -P, --password=PASSWORD                Database password\n"
-#| "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#| "Tree\n"
-#| "  -i, --import=FILENAME                  Import file\n"
-#| "  -e, --export=FILENAME                  Export file\n"
-#| "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#| "(use regular expressions)\n"
-#| "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#| "  -a, --action=ACTION                    Specify action\n"
-#| "  -p, --options=OPTIONS_STRING           Specify options\n"
-#| "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#| "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#| "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#| "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#| "delimited\n"
-#| "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#| "  -s, --show                             Show config settings\n"
-#| "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#| "Gramps\n"
-#| "  -y, --yes                              Don't ask to confirm dangerous "
-#| "actions (non-GUI mode only)\n"
-#| "  -q, --quiet                            Suppress progress indication "
-#| "output (non-GUI mode only)\n"
-#| "  -v, --version                          Show versions\n"
-#| "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-#| "                                          (temporarily use default "
-#| "settings)\n"
-#| "  -D, --default=[APXFE]                  Reset settings to default;\n"
-#| "                 A - addons are cleared\n"
-#| "                 P - Preferences to default\n"
-#| "                 X - Books are cleared, reports and tool settings to "
-#| "default\n"
-#| "                 F - filters are cleared\n"
-#| "                 E - Everything is set to default or cleared\n"
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1450,7 +1399,7 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"Aufruf: gramps.py [OPTION...]\n"
+"Aufruf: gramps [OPTION...]\n"
 "  --load-modules=MODUL1,MODUL2,...     Dynamische Module zum nachladen\n"
 "\n"
 "Hilfeoptionen\n"
@@ -9893,16 +9842,12 @@ msgid "Short"
 msgstr "Kurz"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Given Name Cloud Gramplet"
 msgid "Given Nickname Surname"
-msgstr "Vornamen Wolke Gramplet"
+msgstr "Vorname Spitzname Nachname"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname Given Nickname"
-msgstr "Gleiche Vornamen"
+msgstr "Nachname Vorname Spitzname"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Above"
@@ -10012,8 +9957,6 @@ msgid "Detail of information to be shown in a node."
 msgstr "Detail der Informationen, die in einem Knoten angezeigt werden sollen."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
 msgstr "Namensformat"
 
@@ -11720,16 +11663,12 @@ msgid "Email"
 msgstr "E-Mail"
 
 #: ../gramps/gui/configure.py:633
-#, fuzzy
-#| msgid ""
-#| "Enter information about yourself so people can contact you when you "
-#| "distribute your Family Tree"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
-"Gib Informationen über dich selbst ein, damit andere Personen dich "
-"kontaktieren können, wenn du deinen Stammbaum verteilst"
+"Gib Informationen über dich ein, damit andere Personen dich kontaktieren "
+"können, wenn du deinen Familienstammbaum verteilst."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -11746,6 +11685,10 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"Standard-Gramps-ID-Formate mit einem Buchstabenpräfix gefolgt von einer "
+"numerischen Zeichenfolge. \"I%04d\" erstellt IDs von I0000 bis I9999. Große "
+"Datenbanken benötigen möglicherweise größere IDs. \"I%06d\" erstellt IDs von "
+"I000000 bis I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -11885,10 +11828,8 @@ msgstr "Üblich"
 #: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
 #: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
 #: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
 msgid "Name|Common"
-msgstr "Üblich"
+msgstr "geläufig"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -11956,10 +11897,8 @@ msgid "_Remove"
 msgstr "_Entfernen"
 
 #: ../gramps/gui/configure.py:1173
-#, fuzzy
-#| msgid "Display as"
 msgid "Display Options"
-msgstr "Anzeigen als"
+msgstr "Anzeigeoptionen"
 
 #: ../gramps/gui/configure.py:1189 ../gramps/gui/configure.py:1243
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11975,10 +11914,8 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Orteformat"
+msgstr "Automatisches Orteformat"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Enables automatic place title generation using specified format."
@@ -11989,16 +11926,16 @@ msgstr ""
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
+"Die Optionen für die Anzeige benutzerdefinierter Namen sind für jeden "
+"Familienstammbaum individuell."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
 msgstr "Einzelnes Pa/Matronymikon als Nachname betrachten"
 
 #: ../gramps/gui/configure.py:1274
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "Datumsformat"
+msgstr "Datumsformat *"
 
 #: ../gramps/gui/configure.py:1282
 msgid "Years"
@@ -12013,20 +11950,16 @@ msgid "Years, Months, Days"
 msgstr "Jahre, Monate, Tage"
 
 #: ../gramps/gui/configure.py:1297
-#, fuzzy
-#| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
-msgstr "Alter genau anzeigen (erfordert Neustart)"
+msgstr "Genauigkeit der Altersanzeige *"
 
 #: ../gramps/gui/configure.py:1310
 msgid "Calendar on reports"
 msgstr "Kalender für Berichte"
 
 #: ../gramps/gui/configure.py:1323
-#, fuzzy
-#| msgid "Calendar on reports"
 msgid "Calendar on input"
-msgstr "Kalender für Berichte"
+msgstr "Kalender bei Eingabe"
 
 #: ../gramps/gui/configure.py:1330
 msgid "Active person's name and ID"
@@ -12042,12 +11975,12 @@ msgid "Status bar"
 msgstr "Statusleiste"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Berichtsoptionen"
+msgstr ""
+"\n"
+"Eingabeoptionen"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -12059,17 +11992,15 @@ msgstr "Standardfamilienbeziehung"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "HLT-Registerkarte in Personen- und Familieneditoren ausblenden"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Erfordert einen Neustart"
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "_Data"
 msgid "Data"
-msgstr "_Daten"
+msgstr "Daten"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
