@@ -33,21 +33,22 @@
 # unrecognized -> unrecognised
 #
 # Copyright (C)
-# Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-14 17:42+0000\n"
-"PO-Revision-Date: 2021-06-07 12:32+0000\n"
+"PO-Revision-Date: 2022-02-25 17:42+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
-"Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/gramps-project/gramps/en_GB/>\n"
+"Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/en_GB/>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7055,24 +7056,24 @@ msgstr "about"
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} year"
+msgstr[1] "{number_of} years"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:443
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} month"
+msgstr[1] "{number_of} months"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:454
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} day"
+msgstr[1] "{number_of} days"
 
 #: ../gramps/gen/lib/date.py:710
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:75
@@ -18199,8 +18200,8 @@ msgstr "Done downloading and installing addons"
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} addon was installed."
+msgstr[1] "{number_of} addons were installed."
 
 #: ../gramps/gui/plug/_windows.py:1227
 msgid ""
@@ -18361,8 +18362,8 @@ msgstr "Unfiltered Family Tree:"
 #, python-brace-format
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} Person"
+msgstr[1] "{number_of} People"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:170
 msgid "Click to see preview of unfiltered data"
@@ -20630,8 +20631,8 @@ msgstr "%(person)s, birth"
 #, python-brace-format
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{person}, {age}"
+msgstr[1] "{person}, {age}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:422
 #, python-format
@@ -20652,7 +20653,11 @@ msgid_plural ""
 "{spouse} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
+"{spouse} and\n"
+" {person}, {nyears}"
 msgstr[1] ""
+"{spouse} and\n"
+" {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:469
 #: ../gramps/plugins/webreport/webcal.py:1756
@@ -23164,7 +23169,9 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
+" has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[1] ""
+" has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:279
 msgid "All generations"
@@ -23179,8 +23186,8 @@ msgstr "Double-click to see all generations"
 #, python-brace-format
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " have {number_of} individual\n"
+msgstr[1] " have {number_of} individuals\n"
 
 #: ../gramps/plugins/gramplet/persondetails.py:267
 #, python-format
@@ -23953,8 +23960,8 @@ msgstr "Initial list of people of interest:"
 #, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} child"
+msgstr[1] "{number_of} children"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1057
 #, python-format
@@ -24577,8 +24584,8 @@ msgstr "CSV import"
 #, python-brace-format
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Import Complete: {number_of} second"
+msgstr[1] "Import Complete: {number_of} seconds"
 
 #: ../gramps/plugins/importer/importcsv.py:395
 msgid "The following IDs were referenced but not found:\n"
@@ -30719,8 +30726,8 @@ msgstr "Size in bytes"
 #, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Filter matched {number_of} record."
+msgstr[1] "Filter matched {number_of} records."
 
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
@@ -31027,8 +31034,8 @@ msgstr "People sharing the surname '%s'"
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "There is {number_of} person with a matching name, or alternate name.\n"
+msgstr[1] "There are {number_of} people with a matching name, or alternate name.\n"
 
 #: ../gramps/plugins/quickview/samesurnames.py:158
 #, python-format
@@ -31265,8 +31272,8 @@ msgstr "* %(person)s, birth%(relation)s"
 #, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
+msgstr[1] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:403
 #, python-format
@@ -31287,7 +31294,11 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
+"⚭ {year}{spouse}{deadtxt2} and\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[1] ""
+"⚭ {year}{spouse}{deadtxt2} and\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:443
 #, python-brace-format
@@ -31298,8 +31309,8 @@ msgstr "✝ {person}, death {relation}"
 #, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "✝ {year}{person}, {age}{relation}"
+msgstr[1] "✝ {year}{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:476
 #: ../gramps/plugins/textreport/familygroup.py:712
@@ -31941,10 +31952,9 @@ msgid "The style used for the subtitle."
 msgstr "The style used for the subtitle."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Family Relationship"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Family Colours"
+msgstr "Relationship: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -32257,8 +32267,8 @@ msgstr "Number of Ancestors for %s"
 #, python-brace-format
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Generation {number} has {count} individual. {percent}"
+msgstr[1] "Generation {number} has {count} individuals. {percent}"
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:167
 #, python-format
@@ -32741,8 +32751,8 @@ msgstr "No event record was modified."
 #, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} event record was modified."
+msgstr[1] "{number_of} event records were modified."
 
 #: ../gramps/plugins/tool/check.py:119 ../gramps/plugins/tool/check.py:297
 msgid "Checking Database"
@@ -32964,8 +32974,8 @@ msgstr "No errors were found: the database has passed internal checks."
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} broken child/family link was fixed\n"
+msgstr[1] "{quantity} broken child/family links were fixed\n"
 
 #: ../gramps/plugins/tool/check.py:2470
 msgid "Non existing child"
@@ -32981,8 +32991,8 @@ msgstr "%(person)s was removed from the family of %(family)s\n"
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} broken spouse/family link was fixed\n"
+msgstr[1] "{quantity} broken spouse/family links were fixed\n"
 
 #: ../gramps/plugins/tool/check.py:2496 ../gramps/plugins/tool/check.py:2524
 msgid "Non existing person"
@@ -32998,178 +33008,178 @@ msgstr "%(person)s was restored to the family of %(family)s\n"
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} duplicate spouse/family link was found\n"
+msgstr[1] "{quantity} duplicate spouse/family links were found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2542
 #, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} family with no parents or children found, removed.\n"
+msgstr[1] "{quantity} families with no parents or children found, removed.\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2554
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} corrupted family relationship fixed\n"
+msgstr[1] "{quantity} corrupted family relationships fixed\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2562
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} place alternative name fixed\n"
+msgstr[1] "{quantity} place alternative names fixed\n"
 
 #: ../gramps/plugins/tool/check.py:2571
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} person was referenced but not found\n"
+msgstr[1] "{quantity} persons were referenced, but not found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2579
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} family was referenced but not found\n"
+msgstr[1] "{quantity} families were referenced, but not found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2589
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} date was corrected\n"
+msgstr[1] "{quantity} dates were corrected\n"
 
 #: ../gramps/plugins/tool/check.py:2598
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} repository was referenced but not found\n"
+msgstr[1] "{quantity} repositories were referenced, but not found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2608 ../gramps/plugins/tool/check.py:2695
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} media object was referenced but not found\n"
+msgstr[1] "{quantity} media objects were referenced, but not found\n"
 
 #: ../gramps/plugins/tool/check.py:2619
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} missing media objects were kept\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Reference to {quantity} missing media object was kept\n"
+msgstr[1] "References to {quantity} missing media objects were kept\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2627
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} missing media object was replaced\n"
+msgstr[1] "{quantity} missing media objects were replaced\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2635
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} missing media object was removed\n"
+msgstr[1] "{quantity} missing media objects were removed\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2643
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} event was referenced but not found\n"
+msgstr[1] "{quantity} events were referenced, but not found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2651
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} invalid birth event name was fixed\n"
+msgstr[1] "{quantity} invalid birth event names were fixed\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2659
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} invalid death event name was fixed\n"
+msgstr[1] "{quantity} invalid death event names were fixed\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2667
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} place was referenced but not found\n"
+msgstr[1] "{quantity} places were referenced, but not found\n"
 
 #: ../gramps/plugins/tool/check.py:2676
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} citation was referenced but not found\n"
+msgstr[1] "{quantity} citations were referenced, but not found\n"
 
 #: ../gramps/plugins/tool/check.py:2686
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} source was referenced but not found\n"
+msgstr[1] "{quantity} sources were referenced, but not found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2704
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} note object was referenced but not found\n"
+msgstr[1] "{quantity} note objects were referenced, but not found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2714 ../gramps/plugins/tool/check.py:2724
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} tag object was referenced but not found\n"
+msgstr[1] "{quantity} tag objects were referenced, but not found\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2734
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} invalid name format reference was removed\n"
+msgstr[1] "{quantity} invalid name format references were removed\n"
 
 #: ../gramps/plugins/tool/check.py:2745
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} invalid source citation was fixed\n"
+msgstr[1] "{quantity} invalid source citations were fixed\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2754
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} Duplicated Gramps ID fixed\n"
+msgstr[1] "{quantity} Duplicated Gramps IDs fixed\n"
 
 #: ../gramps/plugins/tool/check.py:2761
 #, python-format
@@ -33347,8 +33357,8 @@ msgstr "Extract Event Description"
 #, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} event description has been added"
+msgstr[1] "{quantity} event descriptions have been added"
 
 #: ../gramps/plugins/tool/eventnames.py:123
 msgid "Modifications made"
@@ -33689,8 +33699,8 @@ msgstr "Number of merges done"
 #, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} citation merged"
+msgstr[1] "{number_of} citations merged"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
 msgid "_Tag"
@@ -33721,8 +33731,8 @@ msgstr "Everyone in the database is related to %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Setting tag for {number_of} person"
+msgstr[1] "Setting tag for {number_of} people"
 
 #. Translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
@@ -33730,24 +33740,24 @@ msgstr[1] ""
 #, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Finding relationships between {number_of} person"
+msgstr[1] "Finding relationships between {number_of} people"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:385
 #, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Looking for {number_of} person"
+msgstr[1] "Looking for {number_of} people"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:413
 #, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Looking up the name of {number_of} person"
+msgstr[1] "Looking up the names of {number_of} people"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
@@ -35894,8 +35904,8 @@ msgstr "Remove person as parent in this family"
 #, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " ({number_of} sibling)"
+msgstr[1] " ({number_of} siblings)"
 
 #: ../gramps/plugins/view/relview.py:1051
 #: ../gramps/plugins/view/relview.py:1106
@@ -35972,8 +35982,8 @@ msgstr "Please run the Check and Repair Database tool"
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " ({number_of} child)"
+msgstr[1] " ({number_of} children)"
 
 #: ../gramps/plugins/view/relview.py:1568
 #: ../gramps/plugins/view/relview.py:1614
@@ -37053,10 +37063,8 @@ msgid "Include unused place pages"
 msgstr "Include unused place pages"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Whether or not to include the place pages."
+msgstr "Whether or not to include the unused place pages."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -37835,8 +37843,8 @@ msgstr "death"
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{couple}, {years} year anniversary"
+msgstr[1] "{couple}, {years} year anniversary"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
