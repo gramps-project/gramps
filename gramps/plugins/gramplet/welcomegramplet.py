@@ -31,6 +31,7 @@ from gi.repository import Gtk
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE, URL_HOMEPAGE
 from gramps.gen.const import WIKI_EXTRAPLUGINS
+from gramps.gui.display import EXTENSION
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
@@ -58,6 +59,16 @@ def linkst(text, url):
     """
     tags = [StyledTextTag(StyledTextTagType.LINK, url, [(0, len(text))])]
     return StyledText('  • ') + StyledText(text, tags)
+
+def wiki(page, manual=False):
+    """
+    Build a link to a wiki page.
+    """
+    url = URL_WIKISTRING
+    if manual:
+        url += URL_MANUAL_PAGE
+    url += page + EXTENSION
+    return url
 
 #------------------------------------------------------------------------
 #
@@ -117,8 +128,7 @@ class WelcomeGramplet(Gramplet):
             'There is an active community of users available on the mailing'
             ' lists and Discourse forum to share ideas and techniques.\n\n')
         welcome += linkst(_('Gramps online manual'),
-                          URL_WIKISTRING + URL_MANUAL_PAGE +
-                          _('', 'locale_suffix')) + '\n\n'
+                          wiki('', manual=True)) + '\n\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
                           '%(gramps_home_url)scontact/' %
                           {'gramps_home_url': URL_HOMEPAGE}) + '\n\n'
@@ -135,8 +145,7 @@ class WelcomeGramplet(Gramplet):
             ' family, or importing a family tree. For more details, please'
             ' read the information at the links below.\n\n')
         welcome += linkst(_('Start with Genealogy and Gramps'),
-                          '%(gramps_wiki_url)sStart_with_Genealogy' %
-                          {'gramps_wiki_url': URL_WIKISTRING}) + '\n\n'
+                          wiki('Start_with_Genealogy')) + '\n\n'
         welcome += boldst(_('Enter your first Family')) + '\n\n' + _(
             'You will now want to start entering your first Family and that'
             ' starts with the first Person.\n\n'
@@ -160,16 +169,15 @@ class WelcomeGramplet(Gramplet):
             ' doing most activities in Gramps. The flexibility allows you to'
             ' choose which fits your work style.\n\n')
         welcome += linkst(_('Entering and editing data (brief)'),
-                          '%(gramps_wiki_url)s_-_Entering_and_editing_data:_brief' %
-                          {'gramps_wiki_url': URL_WIKISTRING + URL_MANUAL_PAGE}) + '\n\n'
+                          wiki('_-_Entering_and_editing_data:_brief',
+                               manual=True)) + '\n\n'
         welcome += boldst(_('Importing a Family Tree')) + '\n\n' + _(
             'To import a Family Tree from another program first create'
             ' a GEDCOM (or other data) file from the previous program.\n\n'
             'Once you have created a new Gramps database file, use the "Import"'
             ' option under the "Family Trees" menu to import the GEDCOM data.\n\n')
         welcome += linkst(_('Import from another genealogy program'),
-                          '%(gramps_wiki_url)sImport_from_another_genealogy_program' %
-                          {'gramps_wiki_url': URL_WIKISTRING}) + '\n\n'
+                          wiki('Import_from_another_genealogy_program')) + '\n\n'
         welcome += boldst(_('Dashboard View')) + '\n\n' + _(
             'You are currently reading from the "Dashboard" view, where you can'
             ' add your own gramplets. You can also add gramplets to any view by'
@@ -182,15 +190,14 @@ class WelcomeGramplet(Gramplet):
             ' float above Gramps.')
         welcome += '\n\n'
         welcome += linkst(_('Gramps View Categories'),
-                          '%(gramps_wiki_url)s_-_Categories' %
-                          {'gramps_wiki_url': URL_WIKISTRING + URL_MANUAL_PAGE}) + '\n\n'
+                          wiki('_-_Categories', manual=True)) + '\n\n'
         welcome += boldst(_('Addons and "Gramplets"')) + '\n\n' + _(
             'There many Addons or "Gramplets" that are available to assist you'
             ' in data entry and visualizing your family tree. Many of these tools'
             ' are already available to you. Many more are available to download'
             ' and install.\n\n')
         welcome += linkst(_('Addons and "Gramplets"'),
-                          URL_WIKISTRING + WIKI_EXTRAPLUGINS) + '\n\n'
+                          wiki(WIKI_EXTRAPLUGINS)) + '\n\n'
         welcome += boldst(_('Example Database')) + '\n\n' + _(
             'Want to see Gramps in use. Create and Import the Example database.\n\n'
             'Create a new Family Tree as described above. Suggest that you name'
@@ -199,8 +206,7 @@ class WelcomeGramplet(Gramplet):
             'Follow the instructions for the location of the file stored with'
             ' the Gramps program.\n\n')
         welcome += linkst(_('Example.gramps'),
-                          '%(gramps_wiki_url)sExample.gramps' %
-                          {'gramps_wiki_url': URL_WIKISTRING}) + '\n\n'
+                          wiki('Example.gramps')) + '\n\n'
 
         self.texteditor.set_text(welcome)
 
