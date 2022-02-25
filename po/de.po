@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-25 22:44+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
@@ -10932,7 +10932,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "ÜBLICH"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Üblich"
@@ -11820,16 +11823,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Warnungen"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Üblich"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-msgid "Name|Common"
-msgstr "geläufig"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24263,10 +24256,9 @@ msgid "Gramps online manual"
 msgstr "Gramps online Handbuch"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "Suffix"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "De"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39103,6 +39095,17 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Keine Formatvorlage"
 
+#~ msgid "Common"
+#~ msgstr "Üblich"
+
+#~ msgid "Name|Common"
+#~ msgstr "geläufig"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "Suffix"
+
 #~ msgid "Researcher information"
 #~ msgstr "Forscher Information"
 
@@ -39215,10 +39218,6 @@ msgstr "Keine Formatvorlage"
 
 #~ msgid "Links"
 #~ msgstr "Verknüpfungen"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "De"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Rückverweis Integrität überprüfen"

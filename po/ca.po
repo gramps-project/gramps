@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-06-23 08:26+0000\n"
 "Last-Translator: jcreusand <joan.creusandreu@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
@@ -10987,7 +10987,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "COMÚ"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Comú"
@@ -11868,18 +11871,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Avisos"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Comú"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Comú"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24281,10 +24272,9 @@ msgid "Gramps online manual"
 msgstr "Manual en línia de Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "sufix"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "ca"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39118,6 +39108,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Sense full d'estil"
 
+#~ msgid "Common"
+#~ msgstr "Comú"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Comú"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "sufix"
+
 #~ msgid "Researcher information"
 #~ msgstr "Informació d'investigador"
 
@@ -39229,10 +39232,6 @@ msgstr "Sense full d'estil"
 
 #~ msgid "Links"
 #~ msgstr "Enllaços"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "ca"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Comprovar la Integritat d'enllaços de retrocès"

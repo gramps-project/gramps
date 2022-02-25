@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-06-04 21:08+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
@@ -10612,7 +10612,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr ""
@@ -11471,16 +11474,6 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
-msgstr ""
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr ""
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-msgid "Name|Common"
 msgstr ""
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
@@ -23677,9 +23670,32 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr ""
 
+# Tamil translation for gramps
+# This file is distributed under the same license as the gramps package.
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Copyright முரளி (murali) (Logan M) <vmmlog@gmail.com>, 2012, 2014, 2017
+# Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-msgid "locale_suffix|"
+#, fuzzy
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
 msgstr ""
+"Project-Id-Version: gramps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/ta/>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
+"X-Launchpad-Export-Date: 2014-07-26 03:32+0000\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"

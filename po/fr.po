@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-08-11 17:32+0000\n"
 "Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
@@ -11579,7 +11579,10 @@ msgid "COMMON"
 msgstr "COURANT"
 
 # courant ou commun
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Courant"
@@ -12553,20 +12556,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Messages d'avertissement"
-
-# Name|Common
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Courant"
-
-# Name|Common
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Courant"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -25712,11 +25701,11 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Manuel en ligne de Gramps"
 
+# master
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "suffixe"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "/fr"
 
 # "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
@@ -41509,6 +41498,21 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Aucune feuille de style"
 
+# Name|Common
+#~ msgid "Common"
+#~ msgstr "Courant"
+
+# Name|Common
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Courant"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "suffixe"
+
 # trunk
 # https://gramps-project.org/bugs/view.php?id=11286
 #~ msgid "Researcher information"
@@ -41644,11 +41648,6 @@ msgstr "Aucune feuille de style"
 
 #~ msgid "Links"
 #~ msgstr "Liens"
-
-# master
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "/fr"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Contrôle d'intégrité des liens de retour"

@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-10-02 09:53+0000\n"
 "Last-Translator: Artem <Localizer_in_Russian@protonmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
@@ -10890,7 +10890,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "РАЗГОВОРНОЕ"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Разговорное"
@@ -11773,18 +11776,6 @@ msgstr "Показывать статус модулей при ошибках �
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Предупреждения"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Разговорное"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Разговорное"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24127,10 +24118,9 @@ msgid "Gramps online manual"
 msgstr "Руководство Gramps в Интернете"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "суффикс"
+msgctxt "locale_suffix"
+msgid ""
+msgstr " "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39019,6 +39009,19 @@ msgstr "Небраска"
 msgid "No style sheet"
 msgstr "Страница без стиля"
 
+#~ msgid "Common"
+#~ msgstr "Разговорное"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Разговорное"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "суффикс"
+
 #~ msgid "Researcher information"
 #~ msgstr "Информация об исследователе"
 
@@ -39127,10 +39130,6 @@ msgstr "Страница без стиля"
 
 #~ msgid "Links"
 #~ msgstr "Ссылки"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr " "
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Проверка совместимости обратных ссылок"

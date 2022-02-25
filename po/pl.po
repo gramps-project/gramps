@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-01-12 14:54+0000\n"
 "Last-Translator: Michał Stojek <stojex@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
@@ -10887,7 +10887,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "WSPÓLNA"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Wspólna"
@@ -11776,18 +11779,6 @@ msgstr "Pokazuj okno dialogowe statusu wtyczek przy błędzie ładowania wtyczki
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Ostrzeżenia"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "wspólne"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "wspólne"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24194,11 +24185,40 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr "Podręcznik Gramps online"
 
+# Polish translation for Gramps
+# $Id: pl.po 22700 2013-07-21 06:57:33Z vassilii $
+# This file is distributed under the same license as the Gramps package.
+# Copyright (C) 2002-2003, 2006, 2007 Free Software Foundation, Inc.
+#
+# Piotr Czubaszek <pioterus(at)gmail(dot)com>, 2007.
+# Piotr Czubaszek <piotrek@gmail.com>, 2007.
+# Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>, 2008,2009.
+# Krystian Safjan <ksafjan@gmail.com>, 2020.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
+# WaldiS <sto@tutanota.de>, 2021.
+# Michał Stojek <stojex@gmail.com>, 2022.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "Przyrostek"
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
+msgstr ""
+"Project-Id-Version: GRAMPS 4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2022-01-12 14:54+0000\n"
+"Last-Translator: Michał Stojek <stojex@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
+"gramps/pl/>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.10.1\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -39015,6 +39035,19 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Bez arkusza stylów"
+
+#~ msgid "Common"
+#~ msgstr "wspólne"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "wspólne"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "Przyrostek"
 
 #~ msgid "Researcher information"
 #~ msgstr "Informacje o badaczu"

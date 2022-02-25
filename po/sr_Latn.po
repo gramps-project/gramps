@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2008-09-08 20:44+0200\n"
 "Last-Translator: Vlada Perić <vlada.peric@gmail.com>\n"
 "Language-Team: Serbian Latin <>\n"
@@ -10088,7 +10088,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr ""
@@ -10912,16 +10915,6 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
-msgstr ""
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr ""
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-msgid "Name|Common"
 msgstr ""
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
@@ -22452,9 +22445,28 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr ""
 
+# Serbian translation for Gramps
+# This file is distributed under the same license as the Gramps package.
+# Vlada Perić <vlada.peric@gmail.com>, 2008.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-msgid "locale_suffix|"
+#, fuzzy
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
 msgstr ""
+"Project-Id-Version: GRAMPS 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2008-09-08 20:44+0200\n"
+"Last-Translator: Vlada Perić <vlada.peric@gmail.com>\n"
+"Language-Team: Serbian Latin <>\n"
+"Language: sr_Latn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"

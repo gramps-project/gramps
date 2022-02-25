@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-14 19:42+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
@@ -10807,7 +10807,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "YAYGIN"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Yaygın"
@@ -11682,18 +11685,6 @@ msgstr "Eklenti yükleme hatasında eklenti durumu iletişim kutusunu göster"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Uyarılar"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Genel"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Genel"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23997,10 +23988,9 @@ msgid "Gramps online manual"
 msgstr "Gramps çevrimiçi kılavuzu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "sonek"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "sonekDeneme"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38710,6 +38700,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Stil sayfası yok"
 
+#~ msgid "Common"
+#~ msgstr "Genel"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Genel"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "sonek"
+
 #~ msgid "Researcher information"
 #~ msgstr "Araştırmacı bilgileri"
 
@@ -38818,10 +38821,6 @@ msgstr "Stil sayfası yok"
 
 #~ msgid "Links"
 #~ msgstr "İlişimler"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "sonekDeneme"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Backlink Bütünlüğünü Kontrol Edin"

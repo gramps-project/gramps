@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/gramps-project/"
@@ -11255,7 +11255,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "ΚΟΙΝΟ"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Κοινό"
@@ -12199,18 +12202,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Προειδοποιήσεις"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Κοινό"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Κοινό"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -24956,8 +24947,8 @@ msgstr "Διαδικτυακό εγχειρίδιο του Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
 #, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
+msgctxt "locale_suffix"
+msgid ""
 msgstr "κατάληξη"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
@@ -40214,6 +40205,19 @@ msgstr "Αποχρώσεις καφέ-γκρι"
 msgid "No style sheet"
 msgstr "Χωρίς χρωματικό θέμα"
 
+#~ msgid "Common"
+#~ msgstr "Κοινό"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Κοινό"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "κατάληξη"
+
 #, fuzzy
 #~ msgid "Researcher information"
 #~ msgstr "<b>Πληροφορίες επί της αναφοράς</b>"
@@ -40257,11 +40261,6 @@ msgstr "Χωρίς χρωματικό θέμα"
 
 #~ msgid "Links"
 #~ msgstr "Σύνδεσμοι"
-
-#, fuzzy
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "κατάληξη"
 
 #, fuzzy
 #~ msgid "Check Backlink Integrity"

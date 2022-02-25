@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2021-12-20 22:13+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
@@ -10804,7 +10804,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr "BĚŽNÝ NÁZEV"
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr "Běžný název"
@@ -11680,18 +11683,6 @@ msgstr "Při chybě v nahrávání zásuvného modulu zobrazit stavový dialog"
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
 msgstr "Varování"
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr "Společné"
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Společné"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -23950,10 +23941,9 @@ msgid "Gramps online manual"
 msgstr "Online příručka Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
-msgid "locale_suffix|"
-msgstr "přípona"
+msgctxt "locale_suffix"
+msgid ""
+msgstr "cs"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -38597,6 +38587,19 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Žádná šablona stylu"
 
+#~ msgid "Common"
+#~ msgstr "Společné"
+
+#, fuzzy
+#~| msgid "Common"
+#~ msgid "Name|Common"
+#~ msgstr "Společné"
+
+#, fuzzy
+#~| msgid "suffix"
+#~ msgid "locale_suffix|"
+#~ msgstr "přípona"
+
 #~ msgid "Researcher information"
 #~ msgstr "Informace o badateli"
 
@@ -38705,10 +38708,6 @@ msgstr "Žádná šablona stylu"
 
 #~ msgid "Links"
 #~ msgstr "Odkazy"
-
-#~ msgctxt "locale_suffix"
-#~ msgid ""
-#~ msgstr "cs"
 
 #~ msgid "Check Backlink Integrity"
 #~ msgstr "Ověřit integritu zpětných odkazů"

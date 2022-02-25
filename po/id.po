@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"POT-Creation-Date: 2022-02-25 22:46+0000\n"
 "PO-Revision-Date: 2022-02-22 19:36+0000\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
@@ -10228,7 +10228,10 @@ msgctxt "Name"
 msgid "COMMON"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:58
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:865
+#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
+#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
+#: ../gramps/gui/configure.py:879 ../gramps/gui/configure.py:880
 msgctxt "Name"
 msgid "Common"
 msgstr ""
@@ -11052,16 +11055,6 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
-msgstr ""
-
-#: ../gramps/gui/configure.py:865 ../gramps/gui/configure.py:879
-msgid "Common"
-msgstr ""
-
-#: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
-#: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
-#: ../gramps/gui/configure.py:880
-msgid "Name|Common"
 msgstr ""
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
@@ -22569,9 +22562,30 @@ msgstr ""
 msgid "Gramps online manual"
 msgstr ""
 
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Nick Hall <nick-h@gramps-project.org>, 2021.
+# Andika Triwidada <andika@gmail.com>, 2021, 2022.
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-msgid "locale_suffix|"
+#, fuzzy
+#| msgid ""
+msgctxt "locale_suffix"
+msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-25 17:40+0000\n"
+"PO-Revision-Date: 2022-02-22 19:36+0000\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
