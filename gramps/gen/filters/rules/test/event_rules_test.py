@@ -39,6 +39,12 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 GenericEventFilter = GenericFilterFactory('Event')
 
+def skipIfNotEnglish(obj):
+    from ....utils.grampslocale import GrampsLocale
+    if not GrampsLocale().language[0].startswith("en"):
+        obj.skipTest("skipping test for non-English language %s" % (GrampsLocale().language,))
+
+
 class BaseTest(unittest.TestCase):
     """
     Event rule tests.
@@ -171,6 +177,7 @@ class BaseTest(unittest.TestCase):
         """
         Test HasData rule.
         """
+        skipIfNotEnglish(self)
         rule = HasData(['Burial', 'before 1800', 'USA', ''])
         self.assertEqual(self.filter_with_rule(rule), set([
             'a5af0ed4211095487d2', 'a5af0ed36793c1d3e05',

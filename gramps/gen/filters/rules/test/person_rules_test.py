@@ -59,6 +59,11 @@ from ..person import (
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
+def skipIfNotEnglish(obj):
+    from ....utils.grampslocale import GrampsLocale
+    if not GrampsLocale().language[0].startswith("en"):
+        obj.skipTest("skipping test for non-English language %s" % (GrampsLocale().language,))
+
 class BaseTest(unittest.TestCase):
     """
     Person rule tests.
@@ -238,6 +243,7 @@ class BaseTest(unittest.TestCase):
         """
         Test rule.
         """
+        skipIfNotEnglish(self)
         rule = HasBirth(['between 1600 and 1700', 'akron', ''])
         res = self.filter_with_rule(rule)
         self.assertEqual(len(res), 2)
@@ -246,6 +252,7 @@ class BaseTest(unittest.TestCase):
         """
         Test HasDeath rule.
         """
+        skipIfNotEnglish(self)
         rule = HasDeath(['between 1600 and 1700', 'ashtabula', ''])
         res = self.filter_with_rule(rule)
         self.assertEqual(len(res), 2)
@@ -254,6 +261,7 @@ class BaseTest(unittest.TestCase):
         """
         Test rule.
         """
+        skipIfNotEnglish(self)
         rule = HasEvent(['Birth', 'between 1600 and 1700', 'akron',
                          '', '', 1])
         res = self.filter_with_rule(rule)
@@ -271,6 +279,7 @@ class BaseTest(unittest.TestCase):
         """
         Test rule.
         """
+        skipIfNotEnglish(self)
         rule = HasFamilyEvent(['Marriage', 'after 1900', 'craw', ''])
         res = self.filter_with_rule(rule)
         self.assertEqual(len(res), 4)
