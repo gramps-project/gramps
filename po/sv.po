@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 17:40+0000\n"
-"PO-Revision-Date: 2022-02-18 21:05+0000\n"
+"PO-Revision-Date: 2022-02-25 22:44+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -38,7 +38,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -49,10 +49,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalanska"
+msgstr "Katalonien"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -207,10 +205,8 @@ msgid "8 of Hanuka"
 msgstr "8 i Chanukka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kursiv"
+msgstr "Italien"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -1310,53 +1306,6 @@ msgid "Unknown action: %s."
 msgstr "Okänd åtgärd: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Usage: gramps.py [OPTION...]\n"
-#| "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#| "\n"
-#| "Help options\n"
-#| "  -?, --help                             Show this help message\n"
-#| "  --usage                                Display brief usage message\n"
-#| "\n"
-#| "Application options\n"
-#| "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#| "  -U, --username=USERNAME                Database username\n"
-#| "  -P, --password=PASSWORD                Database password\n"
-#| "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#| "Tree\n"
-#| "  -i, --import=FILENAME                  Import file\n"
-#| "  -e, --export=FILENAME                  Export file\n"
-#| "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#| "(use regular expressions)\n"
-#| "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#| "  -a, --action=ACTION                    Specify action\n"
-#| "  -p, --options=OPTIONS_STRING           Specify options\n"
-#| "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#| "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#| "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#| "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#| "delimited\n"
-#| "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#| "  -s, --show                             Show config settings\n"
-#| "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#| "Gramps\n"
-#| "  -y, --yes                              Don't ask to confirm dangerous "
-#| "actions (non-GUI mode only)\n"
-#| "  -q, --quiet                            Suppress progress indication "
-#| "output (non-GUI mode only)\n"
-#| "  -v, --version                          Show versions\n"
-#| "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-#| "                                          (temporarily use default "
-#| "settings)\n"
-#| "  -D, --default=[APXFE]                  Reset settings to default;\n"
-#| "                 A - addons are cleared\n"
-#| "                 P - Preferences to default\n"
-#| "                 X - Books are cleared, reports and tool settings to "
-#| "default\n"
-#| "                 F - filters are cleared\n"
-#| "                 E - Everything is set to default or cleared\n"
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1403,7 +1352,7 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"Usage: gramps.py [ALTERNATIV...]\n"
+"Usage: gramps [ALTERNATIV...]\n"
 "  --load-modules=MODULE1,MODULE2,...     Dynamiska moduler som ska läsas in\n"
 "\n"
 "Hjälp-alternativ\n"
@@ -9728,16 +9677,12 @@ msgid "Short"
 msgstr "Kort"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Given Name Cloud Gramplet"
 msgid "Given Nickname Surname"
-msgstr "Gramplet med förnamnsstatistik"
+msgstr "Förnamn Smeknamn Efternamn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname Given Nickname"
-msgstr "Samma förnamn"
+msgstr "Efternamn Förnamn Smeknamn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Above"
@@ -9847,8 +9792,6 @@ msgid "Detail of information to be shown in a node."
 msgstr "Detaljerad information som ska visas i en nod."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
 msgstr "Namnformat"
 
@@ -11542,16 +11485,12 @@ msgid "Email"
 msgstr "E-post"
 
 #: ../gramps/gui/configure.py:633
-#, fuzzy
-#| msgid ""
-#| "Enter information about yourself so people can contact you when you "
-#| "distribute your Family Tree"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
 "Skriv in information om dig själv, så personer kan ta kontakt med dig, när "
-"du delar ditt släktträd"
+"du delar ditt släktträd."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -11568,6 +11507,9 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"Standard Gramps-ID format som innehåller ett bokstavsprefix som följs av en "
+"numerisk sträng. \"I%04d\" skapar IDn från I0000 till I9999. Stora databaser "
+"kan behöva större IDn. \"I%06d\" skapar IDn från I000000 till I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -11705,10 +11647,8 @@ msgstr "Vanligt"
 #: ../gramps/gui/configure.py:868 ../gramps/gui/configure.py:870
 #: ../gramps/gui/configure.py:873 ../gramps/gui/configure.py:874
 #: ../gramps/gui/configure.py:880
-#, fuzzy
-#| msgid "Common"
 msgid "Name|Common"
-msgstr "Vanligt"
+msgstr "Namn|Vanligt"
 
 #: ../gramps/gui/configure.py:872 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:168
@@ -11776,10 +11716,8 @@ msgid "_Remove"
 msgstr "_Ta bort"
 
 #: ../gramps/gui/configure.py:1173
-#, fuzzy
-#| msgid "Display as"
 msgid "Display Options"
-msgstr "Visa som"
+msgstr "Visningsalternativ"
 
 #: ../gramps/gui/configure.py:1189 ../gramps/gui/configure.py:1243
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11795,10 +11733,8 @@ msgid "Edit"
 msgstr "Redigera"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Platsformat"
+msgstr "Automatisera platsformat"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Enables automatic place title generation using specified format."
@@ -11806,17 +11742,15 @@ msgstr "Tillåt automatiskt skapande av platstitel med specificerat format."
 
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
-msgstr ""
+msgstr "Anpassade namnvisningsalternativ är unika för varje släktträd."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
 msgstr "Överväg enkelt patro/matronymikon som efternamn"
 
 #: ../gramps/gui/configure.py:1274
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "Datumformat"
+msgstr "Datumformat *"
 
 #: ../gramps/gui/configure.py:1282
 msgid "Years"
@@ -11831,20 +11765,16 @@ msgid "Years, Months, Days"
 msgstr "År, månader, dagar"
 
 #: ../gramps/gui/configure.py:1297
-#, fuzzy
-#| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
-msgstr "Precision vid visning av ålder (omstart krävs)"
+msgstr "Precision vid visning av ålder *"
 
 #: ../gramps/gui/configure.py:1310
 msgid "Calendar on reports"
 msgstr "Kalender för rapporter"
 
 #: ../gramps/gui/configure.py:1323
-#, fuzzy
-#| msgid "Calendar on reports"
 msgid "Calendar on input"
-msgstr "Kalender för rapporter"
+msgstr "Kalender för inmatning"
 
 #: ../gramps/gui/configure.py:1330
 msgid "Active person's name and ID"
@@ -11860,12 +11790,12 @@ msgid "Status bar"
 msgstr "Statusrad"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Rapportalternativ"
+msgstr ""
+"\n"
+"Inmatningsalternativ"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -11877,21 +11807,19 @@ msgstr "Standardfamiljesläktskap"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Dölj SDH-flik i person och familjeredigerare"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Kräver omstart"
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "_Data"
 msgid "Data"
-msgstr "_Data"
+msgstr "Data"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Villkorliga textersättningar"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -11928,28 +11856,20 @@ msgid ""
 msgstr "Ändring av datumformat blir effektivt först när Gramps har startat om."
 
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Beräknar tidslinje..."
+msgstr "Beräkningsgränser"
 
 #: ../gramps/gui/configure.py:1534
-#, fuzzy
-#| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Ungefärligt datumintervall"
+msgstr "Ungefärligt datum årsintervall: (datum ± #)"
 
 #: ../gramps/gui/configure.py:1538
-#, fuzzy
-#| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Datum efterintervall"
+msgstr "Datum 'efter' årsintervall:   (datum + #)"
 
 #: ../gramps/gui/configure.py:1542
-#, fuzzy
-#| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
-msgstr "Datum föreintervall"
+msgstr "Datum 'före' årsintervall: (datum - #)"
 
 #: ../gramps/gui/configure.py:1546
 msgid "Maximum age probably alive"
@@ -11973,13 +11893,11 @@ msgstr "Största antal generationer för släktskap"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Gränser"
 
 #: ../gramps/gui/configure.py:1575
-#, fuzzy
-#| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "Händelseciteringar"
+msgstr "Miljöinställningar"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
@@ -11990,10 +11908,8 @@ msgid "Show useful information about using Gramps on startup."
 msgstr "Visa användbar information för att använda Gramps vid uppstart."
 
 #: ../gramps/gui/configure.py:1585
-#, fuzzy
-#| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
-msgstr "Ta bort släktträd"
+msgstr "Kom ihåg det senaste släktträdet"
 
 #: ../gramps/gui/configure.py:1587
 msgid ""
@@ -12012,16 +11928,12 @@ msgid "Remember last view displayed and open it next time."
 msgstr "Kom ihåg senast visade vy och öppna den nästa gång."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "Aktivera stavningskontroll"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Aktivera stavningskontroll"
+msgstr "Aktivera stavningskontroll för anteckningar."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12033,10 +11945,8 @@ msgstr ""
 "För att åstadkomma det för Gramps se %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1615
-#, fuzzy
-#| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
-msgstr "Visa textetiketter bredvid navigeringsknappar (aktiveras vid omstart)"
+msgstr "Visa textetiketter bredvid navigeringsknappar *"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
@@ -12091,16 +12001,16 @@ msgstr ""
 "kommer att visa <u><b>Datum i fetstil, understruken</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1656
-#, fuzzy
-#| msgid "Multiple Surnames"
 msgid "Multiple surname box height"
-msgstr "Flera efternamn"
+msgstr "Höjd på ruta för flera efternamn"
 
 #: ../gramps/gui/configure.py:1660
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Ange höjd i pixlar. När flera efternamn skrivs in visas dessa namn i en "
+"ruta. Den här inställningen anger storleken på denna ruta."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -12108,6 +12018,10 @@ msgid ""
 "Addons and Plugins. The Plugin Manager has the complete list of installed "
 "Addons and Plugins and their activation status.\n"
 msgstr ""
+"Konfigurationsinställningar för att få Gramps att söka efter nya eller "
+"uppdaterade tillägg och insticksmoduler från tredje part. "
+"Insticksmodulhanteraren har den kompletta listan över installerade tillägg "
+"och insticksmoduler och deras aktiveringsstatus.\n"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Once a month"
@@ -12158,10 +12072,8 @@ msgid "Check for updated addons now"
 msgstr "Kontrollera uppdaterade tillägg nu"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "Namn på tillägg"
+msgstr "Tillägg"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -12193,22 +12105,20 @@ msgid "update"
 msgstr "uppdatera"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
-#| msgid "Database version"
 msgid "Database Setting"
-msgstr "Databasversion"
+msgstr "Databasinställning"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
 msgstr "Databashanterare"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Databasinformation"
+msgstr ""
+"\n"
+"Databasens plats"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12219,18 +12129,16 @@ msgid "Port"
 msgstr "Port"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
-#| msgid "Database Repair"
 msgid "Database path"
-msgstr "Reparera databas"
+msgstr "Sökväg till databas"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Gör säkerhetskopiering vid avslut"
+msgstr ""
+"\n"
+"Hantering av säkerhetskopiering"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12261,18 +12169,16 @@ msgid "Autobackup"
 msgstr "Automatisk säkerhetskopiering"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Sökväg för databas till Släktträd"
+msgstr ""
+"\n"
+"Mediasökväg för Släktträd"
 
 #: ../gramps/gui/configure.py:1870
-#, fuzzy
-#| msgid "Cannot set base media path"
 msgid "Base media path"
-msgstr "Kan inte ställa in mediasökväg"
+msgstr "Mediasökväg"
 
 #: ../gramps/gui/configure.py:1876
 msgid ""
@@ -12280,36 +12186,33 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"Den relativa mediasökvägen är specifik för det aktiva släktträdet. Det är "
+"inte en global inställning. Varje släktträd kan ha en unik relativ "
+"mediasökväg som lagras med databasen."
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
-#| msgid "Records"
 msgid "Tag Records"
-msgstr "Poster"
+msgstr "Taggposter"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
 msgstr "Lägg till tagg vid import"
 
 #: ../gramps/gui/configure.py:1915
-#, fuzzy
-#| msgid ""
-#| "Specified tag will be added on import.\n"
-#| "Clear to set default value."
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Specificerad tagg kommer att läggas till vid import.\n"
+"Specificerad tagg kommer att läggas till alla poster vid import.\n"
 "Rensa för att ange standardvärde."
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "GEDCOM-import"
+msgstr ""
+"\n"
+"Källa GEDCOM-import"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -12398,6 +12301,10 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"Om markerad, använd de vanliga genealogiska symbolerna (dödssymbolen kan "
+"väljas av användaren).\n"
+"Om det inte är markerat kan du använda den nedre panelen för att anpassa "
+"symbolerna själv."
 
 #: ../gramps/gui/configure.py:2094
 msgid ""
@@ -12437,11 +12344,11 @@ msgstr "Partner"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Dödad"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Standardersättning av släktforskningssymboler"
 
 #: ../gramps/gui/configure.py:2253
 msgid ""
@@ -12449,6 +12356,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Du kan ställa in vilken text du vill för detta fält.\n"
+"Du kan dra och släppa en symbol från symbollistan ovan.\n"
+"Det kommer bara att vara synligt om ditt teckensnitt innehåller denna glyf."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -23196,10 +23106,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet som visar notiserna för ett mediaobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:779
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the selected note"
-msgstr "Gramplet som visar händelser för en person"
+msgstr "Gramplet som visar den valda anteckningen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 msgid "Person Citations"
@@ -24002,16 +23910,17 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"Det finns en aktiv gemenskap av användare tillgänglig på e-postlistorna och "
+"Discourse-forumet för att dela idéer och tekniker.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Gramps online manual"
 msgstr "Gramps online-handbok"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-#| msgid "suffix"
 msgid "locale_suffix|"
-msgstr "suffix"
+msgstr "språk_ändelse|"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:122
 msgid "Ask questions on gramps-users mailing list"
@@ -24019,7 +23928,7 @@ msgstr "Ställ frågor på Gramps-användare-brevlista"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:125
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Gramps Discourse-forum"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
 msgid "Getting Started"
