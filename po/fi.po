@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2022-02-25 17:42+0000\n"
+"PO-Revision-Date: 2022-02-26 14:27+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -11593,6 +11593,10 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"Oletusarvoiset Gramps-ID muodot, jotka sisältävät kirjaimen etuliitteen ja "
+"sen jälkeen numeerisen merkkijonon. \"I%04d\" luo tunnukset välillä I0000 - "
+"I9999. Suuret tietokannat saattavat tarvita suurempia tunnuksia. \"I%06d\" "
+"luo tunnukset välillä I000000 - I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -12013,7 +12017,7 @@ msgstr "Ota käyttöön oikoluku"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Enable the spelling checker for notes."
-msgstr "Ota käyttöön lisätietojen oikoluku"
+msgstr "Ota käyttöön lisätietojen oikoluku."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12083,15 +12087,16 @@ msgstr ""
 "näyttää <u><b>alleviivatun lihavoidun päiväyksen</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1656
-#, fuzzy
 msgid "Multiple surname box height"
-msgstr "Useita sukunimiä"
+msgstr "Usean sukunimen laatikon korkeus"
 
 #: ../gramps/gui/configure.py:1660
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Syötä korkeus pikseleinä. Kun syötetään useita sukunimiä, nämä nimet näkyvät "
+"laatikossa. Tämä asetus määrittää laatikon koon."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -12099,6 +12104,10 @@ msgid ""
 "Addons and Plugins. The Plugin Manager has the complete list of installed "
 "Addons and Plugins and their activation status.\n"
 msgstr ""
+"Määritysasetukset, joilla Gramps tarkistaa uusien tai päivitettyjen "
+"kolmannen osapuolen lisäosien ja laajennuksien varalta. Plugin Managerissa "
+"on täydellinen luettelo asennetuista lisäosista ja laajennuksista sekä "
+"niiden aktivointitila.\n"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Once a month"
@@ -12149,9 +12158,8 @@ msgid "Check for updated addons now"
 msgstr "Tarkista laajennusten päivitykset nyt"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
 msgid "Addons"
-msgstr "Laajennuksen nimi"
+msgstr "Laajennukset"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -12183,20 +12191,20 @@ msgid "update"
 msgstr "päivitä"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
 msgid "Database Setting"
-msgstr "Tietokannan versio"
+msgstr "Tietokannan asetus"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
 msgstr "Tietokantaohjelmisto"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
 msgid ""
 "\n"
 "Database Location"
-msgstr "Tietokannan tiedot"
+msgstr ""
+"\n"
+"Tietokannan sijainti"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12207,16 +12215,16 @@ msgid "Port"
 msgstr "Portti"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
 msgid "Database path"
-msgstr "Tietokannan tyyppi"
+msgstr "Tietokannan polku"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Varmuuskopio poistuttaessa"
+msgstr ""
+"\n"
+"Varmuuskopion hallinta"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12249,16 +12257,16 @@ msgid "Autobackup"
 msgstr "Automaattinen varmuuskopio"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Sukukannan tietokantapolku"
+msgstr ""
+"\n"
+"Sukupuun mediapolku"
 
 #: ../gramps/gui/configure.py:1870
-#, fuzzy
 msgid "Base media path"
-msgstr "Median peruspolun asetus ei onnistu"
+msgstr "Median peruspolku"
 
 #: ../gramps/gui/configure.py:1876
 msgid ""
@@ -12266,31 +12274,33 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"Suhteellinen perusmediapolku koskee vain aktiivista sukupuuta. Se ei ole "
+"globaali asetus. Jokaisella perhepuulla voi olla yksilöllinen suhteellinen "
+"mediapolku, joka tallennetaan tietokantaan."
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
 msgid "Tag Records"
-msgstr "Ennätykset"
+msgstr "Tagi tietueet"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
 msgstr "Lisää oletustagi tuonnissa"
 
 #: ../gramps/gui/configure.py:1915
-#, fuzzy
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Määritetty tunniste lisätään tuonnin yhteydessä.\n"
+"Määritetty tagi lisätään tuonnin yhteydessä.\n"
 "Tyhjennä asettaaksesi oletusarvon."
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "GEDCOM-tuonti"
+msgstr ""
+"\n"
+"Lähde GEDCOM-tuonti"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -12379,6 +12389,9 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"Jos tämä on valittuna, käytä tavallisia genealogisia symboleja (kuoleman "
+"symboli on käyttäjän valittavissa).\n"
+"Jos ei ole valittuna, voit muokata symboleja itse alapaneelin avulla."
 
 #: ../gramps/gui/configure.py:2094
 msgid ""
@@ -12418,11 +12431,11 @@ msgstr "Kumppani"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Surmattu"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Sukututkimuksen oletussymbolien korvaaminen"
 
 #: ../gramps/gui/configure.py:2253
 msgid ""
@@ -12430,6 +12443,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Voit määrittää kenttään minkä tahansa haluamasi tekstin.\n"
+"Voit vetää ja pudottaa symbolin yllä olevasta symboliluettelosta.\n"
+"Se näkyy vain, jos fontti sisältää tämän merkin."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -23195,9 +23211,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet näyttää mediatiedoston lisätiedot"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:779
-#, fuzzy
 msgid "Gramplet showing the selected note"
-msgstr "Gramplet näyttää henkilöön liittyvät tapahtumat"
+msgstr "Gramplet, joka näyttää valitun lisätiedon"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 msgid "Person Citations"
@@ -24000,6 +24015,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"Postituslistoilla ja keskustelufoorumilla on aktiivinen käyttäjäyhteisö, "
+"joka jakaa ideoita ja tekniikoita.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Gramps online manual"
@@ -24017,14 +24035,13 @@ msgstr "Grampsin postituslistalla voit esittää kysymyksiä"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:125
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Gramps keskustelufoorumi"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
 msgid "Getting Started"
 msgstr "Käytön aloittaminen"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:128
-#, fuzzy
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -24036,10 +24053,15 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"Luo aluksi uusi sukupuu (sitä kutsutaan joskus tietokannaksi tai "
-"sukukannaksi) valitsemalla ensin \"Sukupuut\" ja sitten \"Hallinnoi sukupuita"
-"\". Napsauta \"Uusi\" ja anna sukupuullesi nimi. Tarkempia ohjeita saat yllä "
-"olevien linkkien kautta.\n"
+"Kun Gramps käynnistetään ensimmäistä kertaa, kaikki näkymät ovat tyhjiä. "
+"Valikkovaihtoehtoja on hyvin vähän. Sukupuu tarvitaan, jotta mitään "
+"toimintoja voi tapahtua.\n"
+"\n"
+"Luodaksesi uuden Sukupuun (jota joskus kutsutaan 'tietokannaksi') valitse "
+"valikosta \"Sukupuut\", valitse \"Hallinnoi sukupuita...\", paina \"Uusi\" "
+"ja anna Sukupuulle nimi. \"Lataa sukupuu\" tekee puusta aktiivisen ja "
+"valmiin vastaanottamaan tietoja syöttämällä ensimmäisen perheesi tai "
+"tuomalla sukupuun. Lisätietoja saat alla olevista linkeistä.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:137
@@ -24047,9 +24069,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Aloita sukututkimus ja Grampsin käyttäminen"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:140
-#, fuzzy
 msgid "Enter your first Family"
-msgstr "Kaikki perheet"
+msgstr "Syötä ensimmäinen perheesi"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:141
 msgid ""
@@ -24077,15 +24098,38 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
+"Haluat nyt aloittaa ensimmäisen perheesi syöttämisen, ja se alkaa "
+"ensimmäisestä henkilöstä.\n"
+"\n"
+"Siirry \"Henkilöt\"-näkymään ja klikkaa valikosta \"Lisää\" ja sitten "
+"\"Henkilö\" (tai käytä [+]-kuvaketta), jolloin avautuu ikkuna henkilön "
+"syöttämistä varten. Perustietojen syöttäminen ja tietueen tallentaminen "
+"antaa sinulle lähtökohdan. Valitse tämän henkilön tietue ja siirry nyt "
+"\"Suhteet\"-näkymään.\n"
+"\n"
+"Tämän ensimmäisen henkilön kohdalla kaikki valikkovaihtoehdot ja "
+"kuvaketoiminnot ovat tulleet saataville. Vietä hieman aikaa liikuttelemalla "
+"hiirtä kuvakkeiden päällä. Kun kursori kulkee kuvakkeen yli, näyttöön "
+"ilmestyy viesti, joka kertoo kuvakkeen toiminnon. Sama pätee kaikkiin "
+"muokkausikkunoihin. Kun siirrät hiiren kursorin kohteen päälle, saat tiedon, "
+"mitä se tekee.\n"
+"\n"
+"Voit nyt luoda perheitä lisäämällä vanhemmat, puolison ja lapset. Kun olet "
+"aloittanut, voit lisätä tapahtumia henkilöihin ja perheisiin. Voit antaa "
+"lähteitä ja viittauksia dokumentoidaksesi merkintöjäsi.\n"
+"\n"
+"Kun alat käyttää Grampsia, huomaat, että tietoja voi syöttää kaikista eri "
+"näkymistä. Useimmat toiminnot voidaan tehdä Grampsissa monella eri tavalla. "
+"Joustavuuden ansiosta voit valita, mikä sopii sinun työskentelytyyliisi.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:162
 msgid "Entering and editing data (brief)"
-msgstr ""
+msgstr "Tietojen syöttäminen ja muokkaaminen (lyhyesti)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:165
-#, fuzzy
 msgid "Importing a Family Tree"
-msgstr "Tuo sukupuu"
+msgstr "Sukupuun tuonti"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:166
 msgid ""
@@ -24096,11 +24140,16 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"Jos haluat tuoda sukupuun toisesta ohjelmasta, luo ensin GEDCOM-tiedosto ("
+"tai muu data) edellisestä ohjelmasta.\n"
+"\n"
+"Kun olet luonut uuden Gramps-tietokantatiedoston, käytä \"Tuonti...\"-"
+"vaihtoehtoa \"Sukupuut\"-valikon alla tuodaksesi GEDCOM-tiedot.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
-#, fuzzy
 msgid "Import from another genealogy program"
-msgstr "Tuonti_toisesta_sukuohjelmasta"
+msgstr "Tuonti toisesta sukuohjelmasta"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:173
 msgid "Dashboard View"
@@ -24128,15 +24177,13 @@ msgstr ""
 "ikkunaan."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:184
-#, fuzzy
 msgid "Gramps View Categories"
-msgstr "Gramps-näkymä"
+msgstr "Gramps-näkymä kategoriat"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:187
 #: ../gramps/plugins/gramplet/welcomegramplet.py:192
-#, fuzzy
 msgid "Addons and \"Gramplets\""
-msgstr "Lisää gramplet"
+msgstr "Laajennukset ja \"Gampletit\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:188
 msgid ""
@@ -24145,11 +24192,14 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"Saatavilla on monia lisäosia tai \"Grampletteja\", jotka auttavat sinua "
+"syöttämään tietoja ja visualisoimaan sukupuusi. Monet näistä työkaluista "
+"ovat jo käytettävissäsi. Monia muita on ladattavissa ja asennettavissa.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
-#, fuzzy
 msgid "Example Database"
-msgstr "Koko tietokanta"
+msgstr "Esimerkkitietokanta"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -24164,11 +24214,20 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
+"Haluatko nähdä Grampsin käytössä. Luo ja tuo esimerkkitietokanta.\n"
+"\n"
+"Luo uusi Sukupuu edellä kuvatulla tavalla. Ehdotan, että annat sukupuulle "
+"nimen \"ESIMERKKI\".\n"
+"\n"
+"Tuo Gramps-tiedosto example.gramps.\n"
+"\n"
+"Noudata Gramps-ohjelman kanssa tallennetun tiedoston sijaintia koskevia "
+"ohjeita.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
-#, fuzzy
 msgid "Example.gramps"
-msgstr "Esimerkki"
+msgstr "Example.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -24877,19 +24936,16 @@ msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Perheet näytetään vanhempiin ja lapsiin linkitettyinä soikioina."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:973
-#, fuzzy
 msgid "Parent grouping"
-msgstr "Tapahtumaryhmät"
+msgstr "Vanhempien ryhmittely"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:975
-#, fuzzy
 msgid "Parents together"
-msgstr "Lisätietoja vanhemmista"
+msgstr "Vanhemmat yhdessä"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:976
-#, fuzzy
 msgid "Parents offset"
-msgstr "Lisätietoja vanhemmista"
+msgstr "Vanhemmat kompensoivat"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:978
 msgid ""
@@ -24900,6 +24956,14 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
+"\"Normaali\"-asetuksella vanhemmat sijoitetaan pitämään useimmat rivit "
+"lyhyinä.\n"
+"Vanhemmat yhdessä asetus voi auttaa puolisoiden sijoittamisessa vierekkäin, "
+"mutta ei-triviaalit kaaviot johtavat pidempiin riveihin ja suurempiin "
+"kaavioihin.\n"
+"Vanhempien siirtoasetus yrittää myös asettaa puolisot lähelle toisiaan, "
+"mutta ne kuitenkin erotetaan toisistaan. Tämä tekee kaavioista, joissa on "
+"monia sukupolven ihmisiä, neliömäisempiä."
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -30636,7 +30700,7 @@ msgstr "Oikea alakulma"
 
 #: ../gramps/plugins/lib/maps/geography.py:158
 msgid "Tile path"
-msgstr ""
+msgstr "Laattojen polku"
 
 #: ../gramps/plugins/lib/maps/geography.py:159
 #, python-format
@@ -30646,6 +30710,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"Laattahakemistoa ei ole enää olemassa:\n"
+"%s\n"
+"Yritys luoda uusi epäonnistui.\n"
+"Määritä näkymä laattapolkua varten ja käynnistä gramps uudelleen."
 
 #: ../gramps/plugins/lib/maps/geography.py:378
 msgid "Remove cross hair"
@@ -30752,7 +30820,7 @@ msgstr "Erityiset parametrit"
 
 #: ../gramps/plugins/lib/maps/geography.py:1272
 msgid "Where to save the tiles for offline mode."
-msgstr "Tallennetaanko tiilet offline-tilaa varten."
+msgstr "Tallennetaanko laatat offline-tilaa varten."
 
 #: ../gramps/plugins/lib/maps/geography.py:1278
 msgid ""
@@ -33139,54 +33207,49 @@ msgid "Number of families: %d"
 msgstr "Perheiden määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:230
-#, fuzzy
 msgid "Event Information"
-msgstr "Tapahtumat ja perhe"
+msgstr "Tapahtuman tiedot"
 
 #: ../gramps/plugins/textreport/summary.py:234
-#, fuzzy, python-format
+#, python-format
 msgid "Number of events: %d"
-msgstr "Tapahtumien määrä"
+msgstr "Tapahtumien määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
-#, fuzzy
 msgid "Place Information"
-msgstr "Paikan muoto"
+msgstr "Paikan tiedot"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "Number of places: %d"
-msgstr "Paikkojen määrä"
+msgstr "Paikkojen määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
-#, fuzzy
 msgid "Source Information"
-msgstr "Jaetut tiedot"
+msgstr "Lähteen tiedot"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy, python-format
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Lähteiden määrä"
+msgstr "Lähteiden määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
-#, fuzzy
 msgid "Citation Information"
-msgstr "Julkaisutiedot"
+msgstr "Lainausten tiedot"
 
 #: ../gramps/plugins/textreport/summary.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Lainausten määrä"
+msgstr "Lainausten määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
 msgid "Repository Information"
-msgstr "Suhdetiedot"
+msgstr "Arkiston tiedot"
 
 #: ../gramps/plugins/textreport/summary.py:286
-#, fuzzy, python-format
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Arkistojen määrä"
+msgstr "Arkistojen määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
@@ -33199,14 +33262,13 @@ msgid "Total size of media objects: %s MB"
 msgstr "Mediatiedostojen yhteenlaskettu koko: %s Mt"
 
 #: ../gramps/plugins/textreport/summary.py:342
-#, fuzzy
 msgid "Note Information"
-msgstr "Päivämäärätietoa ei ole"
+msgstr "Lisätietojen tiedot"
 
 #: ../gramps/plugins/textreport/summary.py:346
-#, fuzzy, python-format
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Lisätietojen määrä"
+msgstr "Lisätietojen määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:374
 msgid "Whether to count private data"
@@ -35190,9 +35252,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
-#, fuzzy
 msgid "Sort events"
-msgstr "Lajittelee tapahtumat"
+msgstr "Lajittele tapahtumat"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Verify the Data"
