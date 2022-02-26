@@ -28,6 +28,7 @@ from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
 from ....const import DATA_DIR
 from ....user import User
+from ....utils.unittest import localize_date
 
 from ..family import (
     AllFamilies, HasRelType, HasGallery, HasIdOf, HasLDS, HasNote, RegExpIdOf,
@@ -176,7 +177,8 @@ class BaseTest(unittest.TestCase):
         """
         Test HasEvent rule.
         """
-        rule = HasEvent(['Marriage', 'before 1900', 'USA', '', 'Garner'])
+        date_str = localize_date('before 1900')
+        rule = HasEvent(['Marriage', date_str, 'USA', '', 'Garner'])
         self.assertEqual(self.filter_with_rule(rule), set([
             'KSFKQCP4V0YXGM1LR9', '8ZFKQC3FRSHACOJBOU', '3XFKQCE7QUDJ99AVNV',
             'OVFKQC51DX0OQUV3JB', '9OUJQCBOHW9UEK9CNV']))

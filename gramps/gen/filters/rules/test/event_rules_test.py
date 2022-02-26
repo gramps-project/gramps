@@ -28,6 +28,7 @@ from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
 from ....const import DATA_DIR
 from ....user import User
+from ....utils.unittest import localize_date
 
 from ..event import (
     AllEvents, HasType, HasIdOf, HasGallery, RegExpIdOf, HasCitation, HasNote,
@@ -171,7 +172,8 @@ class BaseTest(unittest.TestCase):
         """
         Test HasData rule.
         """
-        rule = HasData(['Burial', 'before 1800', 'USA', ''])
+        date_str = localize_date('before 1800')
+        rule = HasData(['Burial', date_str, 'USA', ''])
         self.assertEqual(self.filter_with_rule(rule), set([
             'a5af0ed4211095487d2', 'a5af0ed36793c1d3e05',
             'a5af0ecfcc16ce7a96a']))

@@ -280,6 +280,7 @@ gramps/gen/utils/lru.py
 gramps/gen/utils/maclocale.py
 gramps/gen/utils/resourcepath.py
 gramps/gen/utils/thumbnails.py
+gramps/gen/utils/unittest.py
 #
 # gen.utils.docgen
 #
