@@ -40,7 +40,7 @@ from gramps.gui.views.treemodels import RepositoryModel
 from gramps.gui.views.bookmarks import RepoBookmarks
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
-from gramps.gui.editors import EditRepository, DeleteRepositoryQuery
+from gramps.gui.editors import EditRepository
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.filters.sidebar import RepoSidebarFilter
@@ -333,17 +333,12 @@ class RepositoryView(ListView):
         EditRepository(self.dbstate, self.uistate, [], Repository())
 
     def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        source_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle, ['Source'])]
-        object = self.dbstate.db.get_repository_from_handle(handle)
-        query = DeleteRepositoryQuery(self.dbstate, self.uistate, object,
-                                      source_list)
-        is_used = len(source_list) > 0
-        return (query, is_used, object)
+        """
+        Method called when deleting repo(s) from the repo view.
+        """
+        handles = self.selected_handles()
+        ht_list = [('Repository', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
         for handle in self.selected_handles():

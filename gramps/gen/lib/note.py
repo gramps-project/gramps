@@ -161,7 +161,79 @@ class Note(BasicPrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_tag_handles()
+        reflist = []
+        for dom, obj, prop, hndl in self.get_links():
+            if dom != "gramps" or prop != "handle":
+                continue
+            else:
+                reflist.append((obj, hndl))
+        reflist.extend(self.get_referenced_tag_handles())
+        return reflist
+
+    def has_handle_reference(self, classname, handle):
+        """
+        Return True if the object has reference to a given handle of given
+        primary object type.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+
+        :returns:
+          Returns whether the object has reference to this handle of
+          this object type.
+
+        :rtype: bool
+        """
+        for dom, obj, prop, hndl in self.get_links():
+            if dom == "gramps" and prop == "handle" and \
+                    obj == classname and hndl == handle:
+                return True
+        return False
+
+    def remove_handle_references(self, classname, handle_list):
+        """
+        Remove all references in this object to object handles in the list.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
+
+        If the link is in the styled text, we just remove the style for that
+        link.
+        """
+        tags = []
+        for styledtext_tag in self.text.get_tags():
+            if(styledtext_tag.name == StyledTextTagType.LINK and
+               styledtext_tag.value.startswith("gramps://")):
+                obj, prop, value = styledtext_tag.value[9:].split("/", 2)
+                if obj == classname and prop == 'handle' and \
+                        value in handle_list:
+                    continue
+            tags.append(styledtext_tag)
+        self.text.set_tags(tags)
+
+    def replace_handle_reference(self, classname, old_handle, new_handle):
+        """
+        Replace all references to old handle with those to the new handle.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
+        """
+        for styledtext_tag in self.text.get_tags():
+            if(styledtext_tag.name == StyledTextTagType.LINK and
+               styledtext_tag.value.startswith("gramps://")):
+                obj, prop, value = styledtext_tag.value[9:].split("/", 2)
+                if(obj == classname and prop == 'handle' and
+                   value == old_handle):
+                    styledtext_tag.value = styledtext_tag.value.replace(
+                        old_handle, new_handle)
 
     def merge(self, acquisition):
         """

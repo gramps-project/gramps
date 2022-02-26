@@ -41,15 +41,15 @@ from gramps.gen.lib import Source
 from gramps.gen.config import config
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import SourceModel
-from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gui.views.bookmarks import SourceBookmarks
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
-from gramps.gui.editors import EditSource, DeleteSrcQuery
+from gramps.gui.editors import EditSource
 from gramps.gui.filters.sidebar import SourceSidebarFilter
 from gramps.gui.merge import MergeSource
 from gramps.gen.plug import CATEGORY_QR_SOURCE
+from gramps.plugins.lib.libsourceview import LibSourceView
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +65,7 @@ _ = glocale.translation.sgettext
 # SourceView
 #
 #-------------------------------------------------------------------------
-class SourceView(ListView):
+class SourceView(LibSourceView, ListView):
     """ sources listview class
     """
     COL_TITLE = 0
@@ -317,18 +317,6 @@ class SourceView(ListView):
 
     def add(self, *obj):
         EditSource(self.dbstate, self.uistate, [], Source())
-
-    def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        the_lists = get_source_and_citation_referents(handle, self.dbstate.db)
-        LOG.debug('the_lists %s' % [the_lists])
-
-        object = self.dbstate.db.get_source_from_handle(handle)
-        query = DeleteSrcQuery(self.dbstate, self.uistate, object, the_lists)
-        is_used = any(the_lists)
-        return (query, is_used, object)
 
     def edit(self, *obj):
         for handle in self.selected_handles():

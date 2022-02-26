@@ -114,7 +114,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasReferenceCountOf(['greater than', '1'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            '238CGQ939HG18SS5MG', 'b39fe1cfc1305ac4a21']))
+            '238CGQ939HG18SS5MG', 'b39fe1cfc1305ac4a21',
+            'Y3ARGQWE088EQRTTDH']))
 
     def test_hassourcecount(self):
         """

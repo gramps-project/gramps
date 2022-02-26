@@ -47,12 +47,11 @@ from gramps.gui.views.treemodels.citationlistmodel import CitationListModel
 from gramps.gen.plug import CATEGORY_QR_CITATION
 from gramps.gen.lib import Citation, Source
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
-from gramps.gen.utils.db import get_citation_referents
 from gramps.gui.views.bookmarks import CitationBookmarks
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
-from gramps.gui.editors import EditCitation, DeleteCitationQuery
+from gramps.gui.editors import EditCitation
 from gramps.gui.filters.sidebar import CitationSidebarFilter
 from gramps.gui.merge import MergeCitation
 
@@ -367,15 +366,9 @@ class CitationListView(ListView):
             pass
 
     def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        the_lists = get_citation_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_citation_from_handle(handle)
-        query = DeleteCitationQuery(self.dbstate, self.uistate, object,
-                                    the_lists)
-        is_used = any(the_lists)
-        return (query, is_used, object)
+        handles = self.selected_handles()
+        ht_list = [('Citation', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
         """

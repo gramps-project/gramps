@@ -210,23 +210,3 @@ class EditRepository(EditPrimary):
         self._do_close()
         if self.callback:
             self.callback(self.obj)
-
-class DeleteRepositoryQuery:
-    def __init__(self, dbstate, uistate, repository, sources):
-        self.obj = repository
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.sources = sources
-
-    def query_response(self):
-        with DbTxn(_("Delete Repository (%s)") % self.obj.get_name(),
-                   self.db) as trans:
-
-            repos_handle_list = [self.obj.get_handle()]
-
-            for handle in self.sources:
-                source = self.db.get_source_from_handle(handle)
-                source.remove_repo_references(repos_handle_list)
-                self.db.commit_source(source, trans)
-
-            self.db.remove_repository(self.obj.get_handle(), trans)

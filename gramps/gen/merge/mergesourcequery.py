@@ -29,8 +29,7 @@ Provide merge capabilities for sources.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..lib import (Person, Family, Event, Place, Source, Repository,
-                   Media, Citation)
+from ..lib import (Citation, Note)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -68,6 +67,12 @@ class MergeSourceQuery:
                     assert(citation.get_reference_handle() == old_handle)
                     citation.set_reference_handle(new_handle)
                     self.database.commit_citation(citation, trans)
+                elif class_name == Note.__name__:
+                    note = self.database.get_note_from_handle(handle)
+                    assert(note.has_handle_reference('Source', old_handle))
+                    note.replace_handle_reference(
+                        'Source', old_handle, new_handle)
+                    self.database.commit_note(note, trans)
                 else:
                     raise MergeError("Encounter an object of type %s that has "
                             "a source reference." % class_name)

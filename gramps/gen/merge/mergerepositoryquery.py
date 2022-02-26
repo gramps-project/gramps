@@ -27,7 +27,7 @@ Provide merge capabilities for repositories.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..lib import Source
+from ..lib import Source, Note
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -65,6 +65,12 @@ class MergeRepositoryQuery:
                     assert source.has_handle_reference('Repository', old_handle)
                     source.replace_repo_references(old_handle, new_handle)
                     self.database.commit_source(source, trans)
+                elif class_name == Note.__name__:
+                    note = self.database.get_note_from_handle(handle)
+                    assert(note.has_handle_reference('Repository', old_handle))
+                    note.replace_handle_reference(
+                        'Repository', old_handle, new_handle)
+                    self.database.commit_note(note, trans)
                 else:
                     raise MergeError("Encounter an object of type %s that has "
                         "a repository reference." % class_name)

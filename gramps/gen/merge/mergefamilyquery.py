@@ -194,12 +194,17 @@ class MergeFamilyQuery:
             if phoenix_mother:
                 phoenix_mother.remove_family_handle(old_handle)
                 self.database.commit_person(phoenix_mother, trans)
-            # replace the family in lds ordinances
-            for (dummy, person_handle) in self.database.find_backlink_handles(
-                    old_handle, ['Person']):
-                if person_handle in (self.titanic_fh, self.titanic_mh):
+            # replace the family in lds ordinances and notes
+            for (ref_obj, ref_handle) in self.database.find_backlink_handles(
+                    old_handle, ['Person', 'Note']):
+                if ref_handle in (self.titanic_fh, self.titanic_mh):
                     continue
-                person = self.database.get_person_from_handle(person_handle)
-                person.replace_handle_reference('Family', old_handle,new_handle)
-                self.database.commit_person(person, trans)
+                obj = self.database.method(
+                    "get_%s_from_handle", ref_obj)(ref_handle)
+                assert obj.has_handle_reference('Family', old_handle)
+                obj.replace_handle_reference(
+                    'Family', old_handle, new_handle)
+                if ref_handle != old_handle:
+                    self.database.method("commit_%s", ref_obj)(obj, trans)
+
             self.database.remove_family(old_handle, trans)

@@ -1894,14 +1894,10 @@ class DbWriteBase(DbReadBase):
 
         handle = person.get_handle()
 
-        person_list = [
-            item[1] for item in
-            self.find_backlink_handles(handle, ['Person'])]
-
-        for phandle in person_list:
-            prsn = self.get_person_from_handle(phandle)
-            prsn.remove_handle_references('Person', [handle])
-            self.commit_person(prsn, trans)
+        for obj_type, ohandle in self.find_backlink_handles(handle):
+            obj = self.method("get_%s_from_handle", obj_type)(ohandle)
+            obj.remove_handle_references('Person', [handle])
+            self.method("commit_%s", obj_type)(obj, trans)
         self.remove_person(handle, trans)
 
     def remove_family_relationships(self, family_handle, trans=None):
@@ -1919,13 +1915,11 @@ class DbWriteBase(DbReadBase):
         """
         Remove a family and all that references it; trans is compulsory.
         """
-        person_list = [item[1] for item in
-                self.find_backlink_handles(family_handle, ['Person'])]
-        for phandle in person_list:
-            person = self.get_person_from_handle(phandle)
-            if person:
-                person.remove_handle_references('Family', [family_handle])
-                self.commit_person(person, trans)
+        for obj_type, ohandle in self.find_backlink_handles(family_handle):
+            obj = self.method("get_%s_from_handle", obj_type)(ohandle)
+            if obj:
+                obj.remove_handle_references('Family', [family_handle])
+                self.method("commit_%s", obj_type)(obj, trans)
         self.remove_family(family_handle, trans)
 
     def remove_parent_from_family(self, person_handle, family_handle,
