@@ -505,7 +505,8 @@ def persian_sdn(year, month, day):
 
 def persian_ymd(sdn):
     """Convert an SDN number to a Persian calendar date."""
-    sdn = math.floor(sdn) + 0.5  #float
+    # The following is commented out and is related to bug 12576
+    # sdn = math.floor(sdn) + 0.5         # float
 
     depoch = sdn - 2121446       #float
     cycle = math.floor(depoch / 1029983) #int
