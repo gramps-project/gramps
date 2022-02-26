@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2022-02-17 22:56+0000\n"
+"PO-Revision-Date: 2022-02-26 18:25+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -31,8 +31,6 @@ msgid "Canada"
 msgstr "קנדה"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
 msgstr "קטלנית"
 
@@ -189,10 +187,8 @@ msgid "8 of Hanuka"
 msgstr "נר שמיני של חנוכה"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "נטוי"
+msgstr "איטליה"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -314,9 +310,9 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b>עריכת עצמים<br/></b>ברוב המקרים הקשה כפולה על, שם, מקור, מקום או רשומת "
-"מדיה תקפיץ חלון לעריכת העצם. לתשומת לב, התוצאה עשויה להיות תלויה בהקשר. "
-"לדוגמה, במצג משפחה, הקשה על הורה או צאצא תשפעל את עורך קשרי־הגומלין."
+"<b>עריכת עצמים<br/></b>ברוב המקרים הקשה כפולה על: שם, מקור, מקום או רשומת "
+"מדיה, תקפיץ חלון לעריכת העצם. לתשומת לב, התוצאה עשויה להיות תלויה בהקשר. "
+"לדוגמה, במצג משפחה, הקשה על הורה או צאצא, תשפעל את עורך קשרי־הגומלין."
 
 #: ../data/tips.xml:8
 msgid ""
@@ -627,9 +623,9 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>תיבת סימון הצגת־הכול<br/></b>בעת הוספת אדם קיים כבן זוג, רשימת האנשים "
-"המוצגת מסוננת כך שיוצגו רק אנשים שעשויים להתאים באופן מעשי (בהתבסס על "
-"תאריכים במסד הנתונים). במקרה שגרמפס פספס, ניתן לעקוף את המסנן על־ידי סימון "
+"<b>תיבת סימון הצגת־הכול<br/></b>בעת הוספת אדם קיים כזוגאי, רשימת האנשים "
+"המוצגים, תסונן כך שרק אנשים שעשויים להתאים לְמַעֲשֶׂה (בהתבסס על תאריכים "
+"במסד הנתונים), יוצגו . במקרה שגרמפס פספס, ניתן לעקוף את המסנן על־ידי סימון "
 "תיבת־הסימון 'הצגת־הכול'."
 
 #: ../data/tips.xml:60
@@ -653,11 +649,11 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>רשימות הדיוור של גרמפס<br/></b> רוצים תשובות לשאלות על גרמפס? אפשר לבדוק "
-"את רשימת הדואר האלקטרוני של משתמשי גרמפס. אנשים רבים שנכונים לעזור נמצאים "
-"ברשימה, כך שסביר להניח שתקבלו תשובות במהירות. אם יש לכם שאלות הקשורות לפתוח "
-"מערכת גרמפס, כדאי לנסות את רשימת gramps-devel. את הרשימות ניתן למצוא בתפריט "
-"'עזרה &gt; רשימות דיוור של גרמפס'."
+"<b>רשימות הדיוור של גרמפס<br/></b> מחפשים תשובות לשאלות על גרמפס? אפשר לבדוק "
+"ברשימות הדואר האלקטרוני של משתמשי גרמפס. אנשים רבים שנכונים לעזור, מופיעים "
+"ברשימה, כך שסביר להניח שתשובות יתקבלו במהירות. לגבי שאלות הקשורות לפיתוח "
+"מערכת גרמפס, כדאי לנסות את רשימת gramps-devel. אל הרשימות ניתן ללהגיע מתפריט "
+"'עזרה &gt; רשימות דיוור גרמפס'."
 
 #: ../data/tips.xml:64
 msgid ""
@@ -802,10 +798,10 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
-"<b>תבנית קובץ GEDCOM<br/></b>גרמפס מאפשר לייבא ולייצא לתבנית GEDCOM. קיימת "
-"תמיכה נרחבת בתעשייה בתקן GEDCOM גרסה 5.5, כך שניתן להחליף מידע בין גרמפס "
-"ומשתמשים אחרים המשתמשים בתכנות גנאלוגיות אחרות. מסננים מובנים הופכים את "
-"היבוא והיצוא של קובצי GEDCOM למשימה פשוטה."
+"<b>תבנית קובץ GEDCOM<br/></b>גרמפס מאפשרת לייבא ולייצא תבנית GEDCOM. תעשייה "
+"מספקת תמיכה נרחבת לתקן GEDCOM גרסה 5.5, כך שניתן להחליף מידע בין גרמפס "
+"ואנשים אחרים המשתמשים בתכנות גנאלוגיות אחרות. מסננים מובנים הופכים את יבוא "
+"ויצוא קובצי GEDCOM למשימה פשוטה."
 
 #: ../data/tips.xml:88
 msgid ""
@@ -1242,53 +1238,6 @@ msgid "Unknown action: %s."
 msgstr "פעולה לא ידועה: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Usage: gramps.py [OPTION...]\n"
-#| "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#| "\n"
-#| "Help options\n"
-#| "  -?, --help                             Show this help message\n"
-#| "  --usage                                Display brief usage message\n"
-#| "\n"
-#| "Application options\n"
-#| "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#| "  -U, --username=USERNAME                Database username\n"
-#| "  -P, --password=PASSWORD                Database password\n"
-#| "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#| "Tree\n"
-#| "  -i, --import=FILENAME                  Import file\n"
-#| "  -e, --export=FILENAME                  Export file\n"
-#| "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#| "(use regular expressions)\n"
-#| "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#| "  -a, --action=ACTION                    Specify action\n"
-#| "  -p, --options=OPTIONS_STRING           Specify options\n"
-#| "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#| "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#| "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#| "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#| "delimited\n"
-#| "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#| "  -s, --show                             Show config settings\n"
-#| "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#| "Gramps\n"
-#| "  -y, --yes                              Don't ask to confirm dangerous "
-#| "actions (non-GUI mode only)\n"
-#| "  -q, --quiet                            Suppress progress indication "
-#| "output (non-GUI mode only)\n"
-#| "  -v, --version                          Show versions\n"
-#| "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-#| "                                          (temporarily use default "
-#| "settings)\n"
-#| "  -D, --default=[APXFE]                  Reset settings to default;\n"
-#| "                 A - addons are cleared\n"
-#| "                 P - Preferences to default\n"
-#| "                 X - Books are cleared, reports and tool settings to "
-#| "default\n"
-#| "                 F - filters are cleared\n"
-#| "                 E - Everything is set to default or cleared\n"
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1335,45 +1284,50 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"שימוש: gramps.py [OPTION ...]\n"
-" - load-modules = MODULE1, MODULE2,...  רכיבים דינמיים לטעינה\n"
+"אופן שימוש: \t\t\t\t\t\t\t\t\t\t\t\t\t\t\tgramps [OPTION ...]\n"
+" טעינת רכיבים דינמיים\t\t\t\t\t\t\t... ,load-modules = MODULE1, MODULE2--\n"
 "\n"
 "אפשרויות עזרה\n"
-" - ?, --help הצגת הודעת העזרה הזו\n"
-" --usage הצגת הודעת שימוש קצרה\n"
+" הצגת הודעת עזרה זו \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t?-, help--\n"
+" הצגת הודעת שימוש קצרה    \t\t\t\t\t\t\t\t\t\t\t\t\t\tusage--\n"
 "\n"
 "אפשרויות יישום\n"
-" -O, --open=FAMILY_TREE     פתיחת אילן יוחסין\n"
-" -U, --username=USERNAME     שם משתמש מסד נתונים\n"
-" -P, --password=PASSWORD     ססמת מסד נתונים\n"
-" -C, --create=FAMILY_TREE     יצירת על אילן יוחסין בפתיחה במידה וחדש\n"
-" -i, --import=FILENAME     יבוא קובץ\n"
-" -e, --export=FILENAME      יצוא קובץ\n"
-" -r, --remove=FAMILY_TREE_PATTERN  הסרת אילן/ות יוחסין תואמים (שימוש "
-"בביטויים רגילים)\n"
-" -f, --format=FORMAT      הגדרת תבנית אילן יוחסין\n"
-" -a, --action=ACTION      הגדרת פעולה\n"
-" -p,--options=OPTIONS_STRING      הגדרת אפשרויות\n"
-" -d, --debug=LOGGER_NAME      אפשור יומני ניפוי תקלים\n"
-" -l [FAMILY_TREE_PATTERN ...]      רשימת אילנות היוחסין\n"
-" -L [FAMILY_TREE_PATTERN ...]      רשימת אילנות היוחסין בפירוט\n"
-" -t [FAMILY_TREE_PATTERN...]...]    רשימת אילנות היוחסין, מופרד בטאב\n"
-" -u, --force-unlock       אילוץ ביטול נעילת אילן היוחסין\n"
-" -s, --show       הצגת הגדרות תצורה\n"
-" -c, --config=[config.setting [: value]] קביעת הגדרות תצורה ואיתחול גרמפס\n"
-" -y, --yes        לא לבקש לאשר פעולות מסוכנות (מצב שאינו ממשק משתמש גראפי "
-"בלבד)\n"
-" -q, --quiet       דיכוי פלט חיווי התקדמות (מצב שאינו ממשק משתמש גראפי "
-"בלבד)\n"
-" -v, --version       הצגת גרסאות\n"
-" -S, --safe        איתחול גרמפס ב'מצב בטוח''\n"
-"           (שימוש זמני בהגדרות ברירת מחדל)\n"
-" -D, --default=[APXFE]]     אפס את ההגדרות לברירת המחדל;\n"
-"     A - ללא תוספים\n"
-"     P - העדפות לברירת מחדל\n"
-"     X - ללא ספרים, דוחות והגדרות כלים לברירת מחדל\n"
-"     F - ללא מסננים\n"
-"     E - הכול מוגדר כברירת מחדל\n"
+" פתיחת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tO, --open=FAMILY_TREE-\n"
+" שם משתמש מסד נתונים\t\t\t\t\t\t\t\t\t\t\t\t U, --username=USERNAME-\n"
+" ססמת מסד נתונים\t\t\t\t\t\t\t\t\t\t\t\t\t\t P, --password=PASSWORD-\n"
+" יצירת אילן־יוחסין בפתיחה, במידה וחדש\t\t\t\t\t\t\t\t C, "
+"--create=FAMILY_TREE-\n"
+" ייבוא קובץ\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ti, --import=FILENAME-\n"
+" ייצוא קובץ \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t e, --export=FILENAME-\n"
+" הסרת אילנות־יוחסין תואמים (שימוש בביטויים רגילים)\t\t\tr, "
+"--remove=FAMILY_TREE_PATTERN-\n"
+" הגדרת תבנית אילן־יוחסין \t\t\t\t\t\t\t\t\t\t\t\t\t\t f, --format=FORMAT-\n"
+" הגדרת פעולה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t a, --action=ACTION-\n"
+" הגדרת אפשרויות\t\t\t\t\t\t\t\t\t\t\t\t\tp,--options=OPTIONS_STRING-\n"
+" אפשור יומני ניפוי־תקלים \t\t\t\t\t\t\t\t\t\t\t\td, --debug=LOGGER_NAME-\n"
+" רשימת אילנות־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\tl [FAMILY_TREE_PATTERN ...]-\n"
+" רשימת אילנות־יוחסין מפורטת \t\t\t\t\t\t\t\t\t\t\tL [FAMILY_TREE_PATTERN "
+"...]-\n"
+" רשימת אילנות־יוחסין, מופרדים בתו 'טבלר' \t\t\t\t\t\t\t\tt "
+"[FAMILY_TREE_PATTERN...]-\n"
+" אילוץ ביטול נעילת אילן־יוחסין\t\t\t\t\t\t\t\t\t\t\t\t\t\tu, --force-unlock-"
+"\n"
+" הצגת הגדרות תצורה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-s, --show-\n"
+" קביעת הגדרות תצורה ואיתחול גרמפס\t\t\t\t\t\tc, --config=[config.setting [: "
+"value]]-\n"
+" ויתור על בקשת אפשור פעולות מסוכנות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\ty, "
+"--yes-\n"
+" דיכוי פלט חיווי התקדמות (מצב שורת פקודה בלבד)\t\t\t\t\t\t\t\t\t\t q, "
+"--quiet-\n"
+" פלט גרסת חבילה\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tv, --version-\n"
+" איתחול ב'מצב בטוח' \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t S, --safe-\n"
+"    (שימוש זמני בהגדרות ברירת מחדל)\n"
+" החזרת כול ההגדרות לברירת המחדל;\t\t\t\t\t\t\t\t\t\t\tD, --default=[APXFE]-\n"
+" \tללא תוספים\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t A-\n"
+" \tהחזרת 'העדפות' לברירת מחדל\t\t\t\t\t\t\t\t\t\t\t\t P-\n"
+" \tללא ספרים, דוחות והגדרות כלים יוחזרו לברירת מחדל \t\t\t\t\t\t\tX-\n"
+" \tללא מסננים\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tF-\n"
+" \tחזרה לכול הגדרות ברירת המחדל, או ללא הגדרות כלל\t\t\t\t\t\tE-\n"
 
 #: ../gramps/cli/argparser.py:95
 msgid ""
@@ -7254,10 +7208,8 @@ msgid "Informant"
 msgstr "מדווח"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "הורה2"
+msgstr "סנדק"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
@@ -9562,16 +9514,12 @@ msgid "Short"
 msgstr "קצר"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Finding Surnames"
 msgid "Given Nickname Surname"
-msgstr "איתור שמות משפחה"
+msgstr "כינוי ניתן שם־משפחה"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname Given Nickname"
-msgstr "שם פרטי זהה"
+msgstr "שם־משפחה כינוי ניתן"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Above"
@@ -9681,8 +9629,6 @@ msgid "Detail of information to be shown in a node."
 msgstr "פרטי המידע שיוצג במוצת."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
 msgstr "תבנית שם"
 
@@ -10453,7 +10399,7 @@ msgstr "הונגרית"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "אינדונזית"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -11361,14 +11307,10 @@ msgid "Email"
 msgstr "דואר אלקטרוני"
 
 #: ../gramps/gui/configure.py:633
-#, fuzzy
-#| msgid ""
-#| "Enter information about yourself so people can contact you when you "
-#| "distribute your Family Tree"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
-msgstr "הזנת מידע על עצמך כדי שאנשים יוכלו ליצור עמך קשר שכאילן היוחסין יופץ"
+msgstr "מידע אישי, כדי שאנשים יוכלו ליצור קשר לאחר הפצת אילן־היוחסין."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -11385,6 +11327,10 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"תבניות ברירת־מחדל למזהי גרמפס, המכילות אות קידומת ואחריה מחרוזת מספרית. "
+"תבנית \"I%04d\" תיצור מזהים מ־I0000 עד I9999. מסד נתונים גדול, עם רשומות "
+"רבות, עשוי להזדקק למזהים ארוכים יותר. תבנית \"I%06d\" תיצור מזהים מ־I000000 "
+"עד I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -11581,10 +11527,8 @@ msgid "_Remove"
 msgstr "_הסרה"
 
 #: ../gramps/gui/configure.py:1173
-#, fuzzy
-#| msgid "Display as"
 msgid "Display Options"
-msgstr "הצגה כ"
+msgstr "אפשרויות תצוגה"
 
 #: ../gramps/gui/configure.py:1189 ../gramps/gui/configure.py:1243
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11600,10 +11544,8 @@ msgid "Edit"
 msgstr "עריכה"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "תבנית מקום"
+msgstr "תבנית מקום אוטומטית"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Enables automatic place title generation using specified format."
@@ -11611,17 +11553,15 @@ msgstr "אפשור חילול אוטומטי של כותרת מקום תוך ש�
 
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
-msgstr ""
+msgstr "אפשרויות מצג שמות מותאמות אישית, הן ייחודיות לאילן־יוחסין."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
 msgstr "להחשיב משפחה פטרו/מטרונימית חד הורית כשם משפחה"
 
 #: ../gramps/gui/configure.py:1274
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "תבנית תאריך"
+msgstr "תבנית תאריך*"
 
 #: ../gramps/gui/configure.py:1282
 msgid "Years"
@@ -11636,20 +11576,16 @@ msgid "Years, Months, Days"
 msgstr "שנים, חודשים, ימים"
 
 #: ../gramps/gui/configure.py:1297
-#, fuzzy
-#| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
-msgstr "דיוק מצג גיל (נדרשת הפעלה מחדש)"
+msgstr "דיוק מצג גיל *"
 
 #: ../gramps/gui/configure.py:1310
 msgid "Calendar on reports"
 msgstr "לוח־שנה בדוחות"
 
 #: ../gramps/gui/configure.py:1323
-#, fuzzy
-#| msgid "Calendar on reports"
 msgid "Calendar on input"
-msgstr "לוח־שנה בדוחות"
+msgstr "לוח־שנה בעת קלט"
 
 #: ../gramps/gui/configure.py:1330
 msgid "Active person's name and ID"
@@ -11665,12 +11601,12 @@ msgid "Status bar"
 msgstr "סרגל מצב"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "אפשרויות דוח"
+msgstr ""
+"\n"
+"אפשרויות קלט"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -11682,21 +11618,19 @@ msgstr "קשר משפחה ברירת מחדל"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "הסתרת לשונית LDS בעורכי 'אדם' ו'משפחה'"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* נדרש איתחול"
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "Database"
 msgid "Data"
-msgstr "מסד נתונים"
+msgstr "נתונים"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "החלפות מלל מותנה"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -11733,28 +11667,20 @@ msgid ""
 msgstr "שינוי תבנית התאריך ייכנס לתוקף רק לאחר אתחול גרמפס."
 
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "חישוב ציר זמן..."
+msgstr "מגבלות חישוב"
 
 #: ../gramps/gui/configure.py:1534
-#, fuzzy
-#| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
-msgstr "תאריך בסביבות/בטווח"
+msgstr "תאריך 'בסביבות', טווח שנים: (תאריך ± #)"
 
 #: ../gramps/gui/configure.py:1538
-#, fuzzy
-#| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
-msgstr "תאריך מאוחר מהטווח"
+msgstr "תאריך 'אחרי', טווח שנים: (תאריך + #)"
 
 #: ../gramps/gui/configure.py:1542
-#, fuzzy
-#| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
-msgstr "תאריך מוקדם מהטווח"
+msgstr "תאריך 'לפני', טווח שנים: (תאריך - #)"
 
 #: ../gramps/gui/configure.py:1546
 msgid "Maximum age probably alive"
@@ -11778,13 +11704,11 @@ msgstr "מספר דורות מרבי לקשרי־גומלין"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "מגבלות"
 
 #: ../gramps/gui/configure.py:1575
-#, fuzzy
-#| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "מובאות אירוע"
+msgstr "הגדרות סביבה"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
@@ -11795,10 +11719,8 @@ msgid "Show useful information about using Gramps on startup."
 msgstr "הצגת מידע שימושי באתחול גרמפס."
 
 #: ../gramps/gui/configure.py:1585
-#, fuzzy
-#| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
-msgstr "הסרת אילן יוחסין"
+msgstr "הסרת אילן־יוחסין אחרון"
 
 #: ../gramps/gui/configure.py:1587
 msgid ""
@@ -11816,16 +11738,12 @@ msgid "Remember last view displayed and open it next time."
 msgstr "זכירת המצג האחרון שהוצג ופתיחתו בפעם הבאה."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "אפשור בדיקת איות"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "אפשור בדיקת איות"
+msgstr "אפשור בדיקת איות בשדות הערות."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -11837,10 +11755,8 @@ msgstr ""
 "כדי לבנות אותו עבור גרמפס נא לעיין ב־%(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1615
-#, fuzzy
-#| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
-msgstr "הצגת תווית מלל לצד לחצני ניווט (נדרשת הפעלה מחדש)"
+msgstr "הצגת תווית מלל לצד לחצני ניווט *"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
@@ -11894,16 +11810,16 @@ msgstr ""
 "‏יוצג <u><b>תאריך מודגש עם קו תחתון</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1656
-#, fuzzy
-#| msgid "Multiple Surnames"
 msgid "Multiple surname box height"
-msgstr "ריבוי שמות משפחה"
+msgstr "גובה תיבת 'שמות משפחה מרובים'"
 
 #: ../gramps/gui/configure.py:1660
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"נא להזין גובה בפיקסלים. כאשר מוזנים מספר שמות משפחה, השמות מוצגים בתיבה. "
+"הגדרה זו קובעת את גודל התיבה."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -11911,6 +11827,9 @@ msgid ""
 "Addons and Plugins. The Plugin Manager has the complete list of installed "
 "Addons and Plugins and their activation status.\n"
 msgstr ""
+"הגדרות תצורה, שתגרום לגרמפס לבדיקת המצאות תוספים ותוספי צד שלישי, חדשים או "
+"מעודכנים. מנהל המתקעים מחזיר את מלוא רשימת התוספים והמתקעים המותקנים ומצב "
+"ההפעלתם.\n"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Once a month"
@@ -11961,10 +11880,8 @@ msgid "Check for updated addons now"
 msgstr "בדיקת זמינות עדכוני תוספים"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "שם תוסף"
+msgstr "תוספים"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -11996,22 +11913,20 @@ msgid "update"
 msgstr "עדכון"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
-#| msgid "Database version"
 msgid "Database Setting"
-msgstr "גרסת מסד נתונים"
+msgstr "הגדרות מסד נתונים"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
 msgstr "שרת מסד נתונים"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "מידע מסד נתונים"
+msgstr ""
+"\n"
+"מיקום מסד נתונים"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12022,18 +11937,16 @@ msgid "Port"
 msgstr "פיתחה"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
-#| msgid "Database Type"
 msgid "Database path"
-msgstr "סוג מסד נתונים"
+msgstr "נתיב מסד נתונים"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "ביצוע גיבוי ביציאה"
+msgstr ""
+"\n"
+"ניהול גיבויים"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12064,18 +11977,16 @@ msgid "Autobackup"
 msgstr "גיבוי אוטומטי"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "נתיב מסד נתונים"
+msgstr ""
+"\n"
+"נתיב מדית אילן־יוחסין"
 
 #: ../gramps/gui/configure.py:1870
-#, fuzzy
-#| msgid "Cannot set base media path"
 msgid "Base media path"
-msgstr "לא ניתן להגדיר נתיב בסיס למדיה"
+msgstr "נתיב מדיה בסיסי"
 
 #: ../gramps/gui/configure.py:1876
 msgid ""
@@ -12083,36 +11994,32 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"נתיב המדיה הבסיסי היחסי, ייחודי לאילן־היוחסין הפעיל. זו לא הגדרה ככלית. לכל "
+"אילן־יוחסין יש נתיב מדיה יחסי ייחודי המאוחסן במסד הנתונים."
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
-#| msgid "Records"
 msgid "Tag Records"
-msgstr "שיאים"
+msgstr "רשומות תגים"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
 msgstr "הוספת תגית בייבוא"
 
 #: ../gramps/gui/configure.py:1915
-#, fuzzy
-#| msgid ""
-#| "Specified tag will be added on import.\n"
-#| "Clear to set default value."
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"התגית שצוינה תתווסף בייבוא.\n"
-"ניקוי יגדיר את הערך כברירת מחדל."
+"התג שפורט יתווסף לכל הרשומות, בייבוא.\n"
+"נא לנקות להגדרת ערכי ברירת מחדל."
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "ייבוא מקובץ ג׳דקום"
+msgstr ""
+"\n"
+"ייבוא מ־GEDCOM מקור"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -12201,6 +12108,9 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"אם סומן, ייעשה שימוש בסמלים גנאלוגיים תקניים (סמל ה'פטירה' נתון לבחירת "
+"משתמש).\n"
+"אם לא סומן, ניתן להשתמש בלוח התחתון להתאמה אישית של הסמלים."
 
 #: ../gramps/gui/configure.py:2094
 msgid ""
@@ -12239,11 +12149,11 @@ msgstr "בן זוג"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "נהרגו"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "החלפת סמלים גנאלוגיים תקניים"
 
 #: ../gramps/gui/configure.py:2253
 msgid ""
@@ -12251,6 +12161,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"ניתן להגדיר לשדה זה כול מלל.\n"
+"ניתן לגרור ולשחרר סמל מרשימת הסמלים מעלה.\n"
+"השדה יהיה גלוי רק אם הגופן מכיל גליף זה."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -12874,8 +12787,6 @@ msgid "Move the selected address downwards"
 msgstr "העברת הכתובת שנבחרה מטה"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
 msgstr "מיקוד"
 
@@ -22843,10 +22754,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "גרמפלט להצגת הערות לאובייקט מדיה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:779
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the selected note"
-msgstr "גרמפלט להצגת אירועים לאדם"
+msgstr "גרמפלט להצגת ההערה שנבחרה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 msgid "Person Citations"
@@ -23642,6 +23551,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"קהילת משתמשים פעילה, זמינה מרשימות התפוצה ופורום Discourse, שם ניתן ךשתף "
+"רעיונות וטכניקות עבודה.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Gramps online manual"
@@ -23658,21 +23570,13 @@ msgstr "ניתן לשאול שאלות ברשימות הדיוור של משתמ
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:125
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "פורום Discourse של גרמפס"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
 msgid "Getting Started"
 msgstr "להתחיל"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:128
-#, fuzzy
-#| msgid ""
-#| "The first thing you must do is to create a new Family Tree. To create a "
-#| "new Family Tree (sometimes called 'database') select \"Family Trees\" "
-#| "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#| "Family Tree. For more details, please read the information at the links "
-#| "above\n"
-#| "\n"
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -23684,10 +23588,14 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"הדבר הראשון אותו יש לעשות הוא ליצור אילן יוחסין חדש. ליצירת אילן יוחסין חדש "
-"(לעתים נקרא 'מסד נתונים') נא לבחור ב'אילנות יוחסין' מהתפריט, ואז 'ניהול אילן "
-"יוחסין', הקשה על 'חדש' והזנת שם אילן היוחסין. לפרטים נוספים, נא לעיין במידע "
-"בקישורים שלעיל\n"
+"באיתחול הראשון של גרמפס, כל המצגים יהיו ריקים, עם מספר מעט של אפשרויות תפריט "
+"פעילות. כדי שמשו יקרה, נדרש אילן יוחסין.\n"
+"\n"
+"ליצירת אילן־יוחסין חדש (נקרא לעיתם גם 'מסד־נתונים') נא לבחור מהתפריט "
+"ב'אילנות־יוחסין', 'ניהול אילות־יוחסין', לחיצה על 'חדש' והזנת שם לאילן־"
+"היוחסין. 'טעינת אילן־יוחסין' כדי להפוך אותו לפעיל וזמין לקליטת נתונים. קליטת "
+"הנתונים יכולה להתבצעה על ידי, הזנת המשפחה הראשונה, או ייבוא אילן־"
+"יוחסין.לפרטים נוספים, נא לעיין במידע בקישורים שלהלן.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:137
@@ -23695,10 +23603,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "‪להתחיל עם גנאלוגיה וגרמפס"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:140
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "כול משפחה"
+msgstr "הזנת ה'משפחה הראשונה'"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:141
 msgid ""
@@ -23726,14 +23632,33 @@ msgid ""
 "in Gramps. The flexibility allows you to choose which fits your work style.\n"
 "\n"
 msgstr ""
+"כעת ניתן להתחיל להזין את נתוני ה'משפחה הראשונה', זה נעשה על ידי הזנת נתוני "
+"ה'אדם' הראשון.\n"
+"\n"
+"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־[+])"
+" תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
+"נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
+"למצג קישרי־גומלין.\n"
+"\n"
+"עם הקמת רשומת אדם ראשונה זו, כול אפשרויות התפריט ותפקודי הסמלים יהפכו "
+"לזמינים. שווה להקדיש זמן מה, למעבר באמצעות סמן העכבר, מעל הסמלים. כאשר הסמן "
+"עובר מעל סמל, תופיע הודעה שמתארת את תפקודי הסמל. האמור יהיה נכון לכול אחד "
+"מחלונות העריכה. העברת סמן העכבר מעל פריט כלשהו, יחשפו את תפקודו.\n"
+"\n"
+"כעת ניתן ליצור משפחות על ידי הוספת: הורים, בני זוג, אחאיים וצאצאים. בשלב זה, "
+"ניתן להוסיף אירועים לאנשים ולמשפחות, לציין מקורות ומובאות שיהוו סימוכין "
+"ותיעוד עבור הערכים שהוזנו.\n"
+"\n"
+"לאחר תחילת השימוש בגרמפס, יתברר שניתן להזין מידע מכל אחד מהמצגים. את מירב "
+"הפעיליויות אפשר לבצע ביותר מדרך אחת. הגמישות הזו מאפשרת לבחור את הדרך "
+"המתאימה ביותר לסגנון העבודה של כול אחד.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:162
 msgid "Entering and editing data (brief)"
-msgstr ""
+msgstr "הזנה ועריכת נתונים (קצרה)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:165
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
 msgstr "ייבוא אילן יוחסין"
 
@@ -23746,13 +23671,16 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"כדי לייבא אילן־יוחסין מתוכנה אחרת, יש לייצור תחילה קובץ GEDCOM (או במבנה "
+"נתונים אחר) מהתוכנה האחרת.\n"
+"\n"
+"לאחר יצרת קובץ מסד־נתונים חדש בגרמפס, נא לבחור באפשרות \"ייבוא\" מתפריט "
+"\"אילנות־משפחה\" כדי לייבא את נתוני GEDCOM.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
-#, fuzzy
-#| msgctxt "manual"
-#| msgid "Import_from_another_genealogy_program"
 msgid "Import from another genealogy program"
-msgstr "ייבוא_מתכנית_גנאלוגיה_אחרת"
+msgstr "ייבוא מתוכנת גנאלוגיה אחרת"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:173
 msgid "Dashboard View"
@@ -23778,17 +23706,13 @@ msgstr ""
 "למקם מחדש את הגרמפלטים בעמוד זה, או לנתק אתו כך שיצוף מעל גרמפס."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:184
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "מצג גרמפס"
+msgstr "מצג סוגי־אב גרמפס"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:187
 #: ../gramps/plugins/gramplet/welcomegramplet.py:192
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "הוספת גרמפלט"
+msgstr "תוספים ו'גרמפלטים'"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:188
 msgid ""
@@ -23797,12 +23721,14 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"תוספים או 'גרמפלטים' רבים זמינים במטרה לסיוע בהזנת נתונים והצגת אילן־"
+"היוחסין. רבים מהכלים הללו זמינים כבר עם התקנת גרמפס. בנוסף, עוד רבים אחרים "
+"זמינים להורדה והתקנה.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "כול מסד הנתונים"
+msgstr "מסד נתונים לגודמה"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -23817,12 +23743,18 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
+"מעונינים לראות את גרמפס בפעולה? צורו וייבאו את מסד־נתוני ההדגמה.\n"
+"\n"
+"ייצירת אילן־יוחסין חדש כמתואר לעיל. מומלץ לכנות את אילן־היוחסין \"דוגמה\".\n"
+"\n"
+"ייבוא קובץ Gramps example.gramps.\n"
+"\n"
+"כעת נותר רק לעקוב אחר ההוראות למיקום הקובץ המאוחסן בתוכנת גרמפס.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "דוגמה"
+msgstr "Example.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -24516,22 +24448,16 @@ msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "משפחות יוצגו כאליפסות, מקושרות להורים והצאצאים."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:973
-#, fuzzy
-#| msgid "Event groups"
 msgid "Parent grouping"
-msgstr "קבוצות אירועים"
+msgstr "קיבוץ הורים"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:975
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents together"
-msgstr "הערות הורה"
+msgstr "הורים יחד"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:976
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents offset"
-msgstr "הערות הורה"
+msgstr "הזחת הורים"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:978
 msgid ""
@@ -24542,6 +24468,11 @@ msgid ""
 "however they will be offset from each other.  This will tend to make graphs "
 "with many people in a generation more square."
 msgstr ""
+"בהגדרה 'רגיל', הורים יאותרו לשימור מרבית הקווים קצרים.\n"
+"ההגדרה 'הורים יחד' תסייע למקם בני־זוג בסמיכות, אבל התרשימים לא יהיו ברורים "
+"מאליהם, התוצאה תתקבל עם קווים ארוכים יותר ותרשימום גדולים יותר.\n"
+"גם הגדרת 'הזחת הורים', תנסה למקם בני זוג בסמיכות, אך הם יוזחו זו מזה. הגדרה "
+"זו נוטה להפוך תרשימים בעלי מספר רב של פרטים בדור ל'מרובע' יותר."
 
 #: ../gramps/plugins/importer/import.gpr.py:37
 msgid "Import data from CSV files"
@@ -30163,7 +30094,7 @@ msgstr "מטה, ימין"
 
 #: ../gramps/plugins/lib/maps/geography.py:158
 msgid "Tile path"
-msgstr ""
+msgstr "שביל אריחים"
 
 #: ../gramps/plugins/lib/maps/geography.py:159
 #, python-format
@@ -30173,6 +30104,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"מחיצת האריחים אינה קיימת עוד:\n"
+"%s\n"
+"ניסיון יצירת מחיצה חדשה, כשל.\n"
+"נא לתצר מצג 'שביל אריחים' ולאתחל את גרמפס."
 
 #: ../gramps/plugins/lib/maps/geography.py:378
 msgid "Remove cross hair"
@@ -31268,10 +31203,8 @@ msgid "German Relationship Calculator"
 msgstr "מחשבון יחסים גרמני"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "מחשבון יחסים רוסי"
+msgstr "מחשבון יחסי־גומלין אוסטרי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
@@ -32122,10 +32055,9 @@ msgid "The style used for the subtitle."
 msgstr "הסגנון שמשמש לכותרות משנה."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "קשר־גומלין:"
+msgstr "קשר־גומלין: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -32655,64 +32587,49 @@ msgid "Number of families: %d"
 msgstr "מספר משפחות: %d"
 
 #: ../gramps/plugins/textreport/summary.py:230
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "מידע תוכן"
+msgstr "מידע אירוע"
 
 #: ../gramps/plugins/textreport/summary.py:234
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "מספר אירועים"
+msgstr "מספר אירועים: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "תבנית מקום"
+msgstr "מידע מקום"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy, python-format
-#| msgid "Number of places"
+#, python-format
 msgid "Number of places: %d"
-msgstr "מספר מקומות"
+msgstr "מספר מקומות: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
-#, fuzzy
-#| msgid "Shared Information"
 msgid "Source Information"
-msgstr "מידע משותף"
+msgstr "מידע מקור"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "מספר מקורות"
+msgstr "מספר מקורות: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation Information"
-msgstr "מידע על פרסומים"
+msgstr "מידע מובאות"
 
 #: ../gramps/plugins/textreport/summary.py:273
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "מספר מובאות"
+msgstr "מספר מובאות: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "מידע קשר־גומלין"
+msgstr "מידע מאגר"
 
 #: ../gramps/plugins/textreport/summary.py:286
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "מספר מאגרים"
+msgstr "מספר מאגרים: %d"
 
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
@@ -32725,16 +32642,13 @@ msgid "Total size of media objects: %s MB"
 msgstr "סך־כול נפח אובייקטי המדיה: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:342
-#, fuzzy
-#| msgid "No Date Information"
 msgid "Note Information"
-msgstr "אין מידע מערכת"
+msgstr "מידע הערות"
 
 #: ../gramps/plugins/textreport/summary.py:346
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "מספר הערות"
+msgstr "מספר הערות: %d"
 
 #: ../gramps/plugins/textreport/summary.py:374
 msgid "Whether to count private data"
@@ -34683,8 +34597,6 @@ msgstr "סידור מזהי גרמפס מחדש לפי כללי ברירת המ�
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
 msgstr "מיון אירועים"
 
@@ -37279,16 +37191,12 @@ msgid "Whether or not to include the place pages."
 msgstr "האם לכלול עמודי מקום."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "הכללת עמודי מקום"
+msgstr "הכללת עמודי 'מקומות שאינם בשימוש'"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "האם לכלול עמודי מקום."
+msgstr "האם לכלול עמודי 'מקומות שאינם בשימוש'."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -37616,13 +37524,6 @@ msgid "Tracking %s"
 msgstr "עוקב אחר %s"
 
 #: ../gramps/plugins/webreport/person.py:882
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -37630,9 +37531,10 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
-"עמוד המפה מייצג את האדם ואת כל הצאצאים שלו, לרבות כל האירועים/המקומות. מיקום "
-"העכבר מעל הסמן יציג את שם המקום. הסמנים ורשימת ההפניות ממוינים לפי סדר "
-"התאריכים (ככל שקיימים?). הקשה על שם מקום במקטע ההפניה יפתח את עמוד המקום."
+"עמוד המפה מייצג את ה'אדם' וכל צאצאיו, לרבות כל האירועים/המקומות. במיקום סמן־"
+"העכבר מעל הסמן על המפה, יוצג שם המקום. רשימת ההפניות והסמנים, ממוינים על־פי "
+"סדר התאריכים (ככל שקיימים כאלה). הקשה על שם מקום במקטע ההפניה תפתח את עמוד "
+"המקום."
 
 #: ../gramps/plugins/webreport/person.py:934
 msgid "Place Title"
