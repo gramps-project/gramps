@@ -308,13 +308,13 @@ class DateParser:
 
     _langs = set()
     def __init_prefix_tables(self):
+        ds = self._ds = DateStrings(self._locale)
         lang = self._locale.lang
         if lang in DateParser._langs:
             log.debug("Prefix tables for {} already built".format(lang))
             return
         else:
             DateParser._langs.add(lang)
-        ds = self._ds = DateStrings(self._locale)
         log.debug("Begin building parser prefix tables for {}".format(lang))
         _build_prefix_table(DateParser.month_to_int,
             _generate_variants(
