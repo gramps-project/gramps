@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2022-02-14 19:42+0000\n"
+"PO-Revision-Date: 2022-02-27 21:30+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -38,10 +38,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalanca"
+msgstr "Katalonya"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -196,10 +194,8 @@ msgid "8 of Hanuka"
 msgstr "Hanuka 8"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "İtalik"
+msgstr "İtalya"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -1311,53 +1307,6 @@ msgid "Unknown action: %s."
 msgstr "Bilinmeyen eylem: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Usage: gramps.py [OPTION...]\n"
-#| "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#| "\n"
-#| "Help options\n"
-#| "  -?, --help                             Show this help message\n"
-#| "  --usage                                Display brief usage message\n"
-#| "\n"
-#| "Application options\n"
-#| "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#| "  -U, --username=USERNAME                Database username\n"
-#| "  -P, --password=PASSWORD                Database password\n"
-#| "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#| "Tree\n"
-#| "  -i, --import=FILENAME                  Import file\n"
-#| "  -e, --export=FILENAME                  Export file\n"
-#| "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#| "(use regular expressions)\n"
-#| "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#| "  -a, --action=ACTION                    Specify action\n"
-#| "  -p, --options=OPTIONS_STRING           Specify options\n"
-#| "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#| "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#| "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#| "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#| "delimited\n"
-#| "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#| "  -s, --show                             Show config settings\n"
-#| "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#| "Gramps\n"
-#| "  -y, --yes                              Don't ask to confirm dangerous "
-#| "actions (non-GUI mode only)\n"
-#| "  -q, --quiet                            Suppress progress indication "
-#| "output (non-GUI mode only)\n"
-#| "  -v, --version                          Show versions\n"
-#| "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-#| "                                          (temporarily use default "
-#| "settings)\n"
-#| "  -D, --default=[APXFE]                  Reset settings to default;\n"
-#| "                 A - addons are cleared\n"
-#| "                 P - Preferences to default\n"
-#| "                 X - Books are cleared, reports and tool settings to "
-#| "default\n"
-#| "                 F - filters are cleared\n"
-#| "                 E - Everything is set to default or cleared\n"
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1404,7 +1353,7 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"Kullanım: gramps.py [SEÇENEK...]\n"
+"Kullanım: gramps [SEÇENEK...]\n"
 "  --load-modules=MODÜL1,MODÜL2,...     Yüklenecek dinamik modüller\n"
 "\n"
 "Yardım seçenekleri\n"
@@ -9720,16 +9669,12 @@ msgid "Short"
 msgstr "Kısa"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Finding Surnames"
 msgid "Given Nickname Surname"
-msgstr "Soyadları Bulunuyor"
+msgstr "Ad, Lakap, Soyadı"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname Given Nickname"
-msgstr "Aynı Adlar"
+msgstr "Soyadı, Ad, Lakap"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Above"
@@ -9839,8 +9784,6 @@ msgid "Detail of information to be shown in a node."
 msgstr "Bir düğümde gösterilecek bilgilerin ayrıntısı."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
 msgstr "Ad biçimi"
 
@@ -10616,7 +10559,7 @@ msgstr "Macarca"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Endonezce"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -11530,16 +11473,12 @@ msgid "Email"
 msgstr "E-posta"
 
 #: ../gramps/gui/configure.py:633
-#, fuzzy
-#| msgid ""
-#| "Enter information about yourself so people can contact you when you "
-#| "distribute your Family Tree"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
 "Soyağacınızı paylaşırken insanların sizinle iletişim kurabilmesi için "
-"kendinizle ilgili bilgileri girin"
+"kendinizle ilgili bilgileri girin."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -11752,10 +11691,8 @@ msgid "_Remove"
 msgstr "_Kaldır"
 
 #: ../gramps/gui/configure.py:1173
-#, fuzzy
-#| msgid "Display as"
 msgid "Display Options"
-msgstr "Olarak göster"
+msgstr "Görüntüleme seçenekleri"
 
 #: ../gramps/gui/configure.py:1189 ../gramps/gui/configure.py:1243
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11771,10 +11708,8 @@ msgid "Edit"
 msgstr "Düzenle"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Yer biçimi"
+msgstr "Otomatik yer biçimi"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Enables automatic place title generation using specified format."
@@ -11790,10 +11725,8 @@ msgid "Consider single pa/matronymic as surname"
 msgstr "Soyadı olarak tek baba/anne soylu düşünün"
 
 #: ../gramps/gui/configure.py:1274
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "Tarih biçimi"
+msgstr "Tarih biçimi *"
 
 #: ../gramps/gui/configure.py:1282
 msgid "Years"
@@ -11808,10 +11741,8 @@ msgid "Years, Months, Days"
 msgstr "Yıllar, Aylar, Günler"
 
 #: ../gramps/gui/configure.py:1297
-#, fuzzy
-#| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
-msgstr "Yaş görüntüleme hassasiyeti (yeniden başlatma gerektirir)"
+msgstr "Yaş görüntüleme hassasiyeti *"
 
 #: ../gramps/gui/configure.py:1310
 msgid "Calendar on reports"
@@ -11837,12 +11768,12 @@ msgid "Status bar"
 msgstr "Durum çubuğu"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Rapor Seçenekleri"
+msgstr ""
+"\n"
+"Girdi seçenekleri"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -11854,17 +11785,15 @@ msgstr "Varsayılan aile ilişkisi"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Kişi ve aile düzenleyicilerinde LDS sekmesini gizle"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Yeniden başlatma gerektirir"
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "Database"
 msgid "Data"
-msgstr "Veri tabanı"
+msgstr "Veri"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
@@ -11907,10 +11836,8 @@ msgstr ""
 "etkili olmayacaktır."
 
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Zaman çizgisi hesaplanıyor..."
+msgstr "Hesaplama sınırları"
 
 #: ../gramps/gui/configure.py:1534
 #, fuzzy
@@ -11952,7 +11879,7 @@ msgstr "İlişkiler için en fazla kuşak sayısı"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Sınırlar"
 
 #: ../gramps/gui/configure.py:1575
 #, fuzzy
@@ -11969,10 +11896,8 @@ msgid "Show useful information about using Gramps on startup."
 msgstr "Başlangıçta Gramps'ı kullanma hakkında faydalı bilgiler göster."
 
 #: ../gramps/gui/configure.py:1585
-#, fuzzy
-#| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
-msgstr "Soyağacını Kaldır"
+msgstr "Son soyağacını hatırla"
 
 #: ../gramps/gui/configure.py:1587
 msgid ""
@@ -11991,16 +11916,12 @@ msgid "Remember last view displayed and open it next time."
 msgstr "Görüntülenen son görünümü hatırla ve bir dahaki sefere aç."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "Yazım denetleyicisini etkinleştir"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Yazım denetleyicisini etkinleştir"
+msgstr "Notlar için yazım denetleyicisini etkinleştir"
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12012,12 +11933,8 @@ msgstr ""
 "Gramps için oluşturmak için %(gramps_wiki_build_spell_url)s'ye bakın"
 
 #: ../gramps/gui/configure.py:1615
-#, fuzzy
-#| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
-msgstr ""
-"Gezgin düğmelerinin yanında metin etiketini göster (yeniden başlatma "
-"gerektirir)"
+msgstr "Gezgin düğmelerinin yanında metin etiketini göster *"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
@@ -12074,10 +11991,8 @@ msgstr ""
 "<u><b>Altı çizili kalın tarih</b></u> görüntülenecektir.\n"
 
 #: ../gramps/gui/configure.py:1656
-#, fuzzy
-#| msgid "Multiple Surnames"
 msgid "Multiple surname box height"
-msgstr "Birden Fazla Soyadı"
+msgstr "Çoklu soyadı kutusu yüksekliği"
 
 #: ../gramps/gui/configure.py:1660
 msgid ""
@@ -12141,10 +12056,8 @@ msgid "Check for updated addons now"
 msgstr "Güncellenmiş eklentileri şimdi kontrol edin"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "Eklenti Adı"
+msgstr "Eklentiler"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -12188,12 +12101,12 @@ msgid "Database backend"
 msgstr "Veri tabanı arka ucu"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Veri Tabanı Bilgileri"
+msgstr ""
+"\n"
+"Veri tabanı konumu"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12204,10 +12117,8 @@ msgid "Port"
 msgstr "Port"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
-#| msgid "Database Type"
 msgid "Database path"
-msgstr "Veri Tabanı Türü"
+msgstr "Veri tabanı yolu"
 
 #: ../gramps/gui/configure.py:1831
 #, fuzzy
@@ -12246,18 +12157,16 @@ msgid "Autobackup"
 msgstr "Otomatik yedekleme"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Soyağacı Veri tabanı yolu"
+msgstr ""
+"\n"
+"Soyağacının ortam yolu"
 
 #: ../gramps/gui/configure.py:1870
-#, fuzzy
-#| msgid "Cannot set base media path"
 msgid "Base media path"
-msgstr "Temel ortam yolu ayarlanamıyor"
+msgstr "Temel ortam yolu"
 
 #: ../gramps/gui/configure.py:1876
 msgid ""
@@ -12267,10 +12176,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
-#| msgid "Records"
 msgid "Tag Records"
-msgstr "Kayıtlar"
+msgstr "Etiket kayıtları"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
@@ -24036,10 +23943,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Genealogy ve Gramps ile başlayın"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:140
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "Her aile"
+msgstr "İilk ailenizi girin"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:141
 msgid ""
@@ -24075,10 +23980,8 @@ msgid "Entering and editing data (brief)"
 msgstr "Mevcut bir veritabanını aç"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:165
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
-msgstr "Soyağacını İçe Aktar"
+msgstr "Soyağacını içe aktar"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:166
 msgid ""
@@ -24091,11 +23994,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
-#, fuzzy
-#| msgctxt "manual"
-#| msgid "Import_from_another_genealogy_program"
 msgid "Import from another genealogy program"
-msgstr "Başka_soy_araştırma_programından_içe_aktar"
+msgstr "Başka soy araştırma programından içe aktar"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:173
 msgid "Dashboard View"
@@ -24130,10 +24030,8 @@ msgstr "Gramps Görünümü"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:187
 #: ../gramps/plugins/gramplet/welcomegramplet.py:192
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "Gramplet ekle"
+msgstr "Eklentiler ve \"Grampletler\""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:188
 msgid ""
