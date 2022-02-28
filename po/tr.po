@@ -10,13 +10,14 @@
 # Bora <boratici@gmail.com>, 2021, 2022.
 # Bora Atıcı <boratici@gmail.com>, 2022.
 # Bora Atıcı <boratici.acc@gmail.com>, 2022.
+# Nick Hall <nick-h@gramps-project.org>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2022-02-27 21:30+0000\n"
-"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
+"PO-Revision-Date: 2022-02-28 23:08+0000\n"
+"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -2074,7 +2075,7 @@ msgstr "Özel Kayıt"
 #: ../gramps/gen/config.py:330 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
 msgid "|January"
-msgstr "|Ocak"
+msgstr "Ocak"
 
 #: ../gramps/gen/const.py:230
 msgid ""
@@ -2458,57 +2459,57 @@ msgstr "bugün"
 #: ../gramps/gen/datehandler/_datestrings.py:80
 msgctxt "localized lexeme inflections"
 msgid "|February"
-msgstr "|Şubat"
+msgstr "Şubat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:81
 msgctxt "localized lexeme inflections"
 msgid "|March"
-msgstr "|Mart"
+msgstr "Mart"
 
 #: ../gramps/gen/datehandler/_datestrings.py:82
 msgctxt "localized lexeme inflections"
 msgid "|April"
-msgstr "|Nisan"
+msgstr "Nisan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgctxt "localized lexeme inflections"
 msgid "|May"
-msgstr "|Mayıs"
+msgstr "Mayıs"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgctxt "localized lexeme inflections"
 msgid "|June"
-msgstr "|Haziran"
+msgstr "Haziran"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgctxt "localized lexeme inflections"
 msgid "|July"
-msgstr "|Temmuz"
+msgstr "Temmuz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgctxt "localized lexeme inflections"
 msgid "|August"
-msgstr "|Ağustos"
+msgstr "Ağustos"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgctxt "localized lexeme inflections"
 msgid "|September"
-msgstr "|Eylül"
+msgstr "Eylül"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgctxt "localized lexeme inflections"
 msgid "|October"
-msgstr "|Ekim"
+msgstr "Ekim"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
 msgid "|November"
-msgstr "|Kasım"
+msgstr "Kasım"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
 msgid "|December"
-msgstr "|Aralık"
+msgstr "Aralık"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2517,62 +2518,62 @@ msgstr "|Aralık"
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Jan"
-msgstr "|Oca"
+msgstr "Oca"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Feb"
-msgstr "|Şub"
+msgstr "Şub"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Mar"
-msgstr "|Mar"
+msgstr "Mar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Apr"
-msgstr "|Nis"
+msgstr "Nis"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections - short month form"
 msgid "|May"
-msgstr "|May"
+msgstr "May"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Jun"
-msgstr "|Haz"
+msgstr "Haz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Jul"
-msgstr "|Tem"
+msgstr "Tem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Aug"
-msgstr "|Ağu"
+msgstr "Ağu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Sep"
-msgstr "|Eyl"
+msgstr "Eyl"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Oct"
-msgstr "|Eki"
+msgstr "Eki"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Nov"
-msgstr "|Kas"
+msgstr "Kas"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgctxt "localized lexeme inflections - short month form"
 msgid "|Dec"
-msgstr "|Ara"
+msgstr "Ara"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
