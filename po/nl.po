@@ -9,13 +9,14 @@
 # Jan Sparreboom <jan@sparreboom.net>, 2020, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Milan <mobrcian@hotmail.com>, 2021.
+# Freek Olgers <freek@olgers.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2021-10-02 09:53+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2022-02-27 21:30+0000\n"
+"Last-Translator: Freek Olgers <freek@olgers.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -34,10 +35,8 @@ msgid "Canada"
 msgstr "Canada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Catalaans"
+msgstr "Catalonië"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -192,10 +191,8 @@ msgid "8 of Hanuka"
 msgstr "Achtste chanoeka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Cursief"
+msgstr "Italië"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -3966,9 +3963,8 @@ msgid "Matches citations that are indicated as private"
 msgstr "Vindt citaten die als privé aangegeven zijn"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
-#, fuzzy
 msgid "Citation attribute:"
-msgstr "Citaatkenmerken"
+msgstr "Citaatkenmerk:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -3990,7 +3986,7 @@ msgstr "Gebeurtenissen met het <kenmerk>"
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:48
 #, fuzzy
 msgid "Matches citations with the attribute of a particular value"
-msgstr "Vindt media-objecten met een kenmerk van een bepaalde waarde"
+msgstr "Vind media-objecten met een kenmerk van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
 #: ../gramps/gen/filters/rules/event/_hascitation.py:50
