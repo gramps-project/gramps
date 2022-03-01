@@ -178,7 +178,6 @@ register('export.proxy-order',
 register('geography.center-lon', 0.0)
 register('geography.lock', False)
 register('geography.center-lat', 0.0)
-register('geography.map', "person")
 register('geography.map_service', 1)
 register('geography.zoom', 0)
 register('geography.zoom_when_center', 12)

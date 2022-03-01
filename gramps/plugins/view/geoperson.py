@@ -23,32 +23,29 @@
 """
 Geography for one person
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import operator
-from gi.repository import Gdk
-KEY_TAB = Gdk.KEY_Tab
-from gi.repository import Gtk
-from gi.repository import GLib
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("GeoGraphy.geoperson")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import GLib
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config
 from gramps.gen.datehandler import displayer
@@ -59,11 +56,14 @@ from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.plugins.lib.maps import constants
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+_LOG = logging.getLogger("GeoGraphy.geoperson")
+KEY_TAB = Gdk.KEY_Tab
+_ = glocale.translation.gettext
 
 _UI_DEF = [
     '''
@@ -172,11 +172,11 @@ _UI_DEF = [
 # pylint: disable=unused-variable
 # pylint: disable=unused-argument
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GeoView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GeoPerson(GeoGraphyView):
     """
     The view used to render person map.
@@ -210,9 +210,9 @@ class GeoPerson(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Person places map"),
-                                      pdata, dbstate, uistate,
-                                      PersonBookmarks,
-                                      nav_group)
+                               pdata, dbstate, uistate,
+                               PersonBookmarks,
+                               nav_group)
         self.dbstate = dbstate
         self.uistate = uistate
         self.place_list = []
@@ -278,17 +278,15 @@ class GeoPerson(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
-        if not self.dbstate.is_open():
-            return
-        active = self.get_active()
-        self._createmap(None)
-        self.uistate.modify_statusbar(self.dbstate)
+        pass
 
     def animate(self, menu, marks, index, stepyear):
         """
         Create all movements for the people's event.
         Yes, you can see the person moving.
         """
+        if self.stop: # no more database. stop to work
+            return
         if len(marks) == 0:
             self.already_started = False
             return False
@@ -309,7 +307,7 @@ class GeoPerson(GeoGraphyView):
         max_lon_lat = float(self._config.get("geography.maximum_lon_lat")) / 10
         if stepyear < 9000:
             if ((abs(float(endlat) - float(startlat)) > max_lon_lat) or
-                (abs(float(endlon) - float(startlon)) > max_lon_lat)):
+                    (abs(float(endlon) - float(startlon)) > max_lon_lat)):
                 self.large_move = True
                 stepyear = 9000
             else:
@@ -348,8 +346,8 @@ class GeoPerson(GeoGraphyView):
         # in this case, stepyear is >= 9000
         # large move means longitude or latitude differences greater than
         # geography.maximum_lon_lat degrees.
-        GLib.timeout_add(int(self._config.get("geography.speed")), self.animate,
-                         menu, marks, i, stepyear)
+        GLib.timeout_add(int(self._config.get("geography.speed")),
+                         self.animate, menu, marks, i, stepyear)
         return False
 
     def _createmap(self, active):
@@ -383,7 +381,7 @@ class GeoPerson(GeoGraphyView):
             # For each event, if we have a place, set a marker.
             self.load_kml_files(person)
             self.message_layer.add_message(
-                                _("Person places for %s") % _nd.display(person))
+                _("Person places for %s") % _nd.display(person))
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
                     continue
@@ -391,7 +389,7 @@ class GeoPerson(GeoGraphyView):
                 self.load_kml_files(event)
                 role = event_ref.get_role()
                 eyear = str(
-         "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
+     "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
      str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
      str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
                 place_handle = event.get_place_handle()
@@ -405,8 +403,8 @@ class GeoPerson(GeoGraphyView):
                         descr = _pd.display(dbstate.db, place)
                         evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
-                                        'eventtype': evt,
-                                        'name': _nd.display(person)}
+                            'eventtype': evt,
+                            'name': _nd.display(person)}
                         self.load_kml_files(place)
                         # place.get_longitude and place.get_latitude return
                         # one string. We have coordinates when the two values
@@ -420,16 +418,15 @@ class GeoPerson(GeoGraphyView):
                                                         person.gramps_id,
                                                         place.gramps_id,
                                                         event.gramps_id,
-                                                        role
-                                                        )
+                                                        role)
                         else:
                             self._append_to_places_without_coord(
-                                                        place.gramps_id, descr)
+                                place.gramps_id, descr)
             family_list = person.get_family_handle_list()
             for family_hdl in family_list:
                 family = self.dbstate.db.get_family_from_handle(family_hdl)
                 if family is not None:
-                    fhandle = family_list[0] # first is primary
+                    fhandle = family_list[0]  # first is primary
                     fam = dbstate.db.get_family_from_handle(fhandle)
                     father = mother = None
                     handle = fam.get_father_handle()
@@ -446,14 +443,14 @@ class GeoPerson(GeoGraphyView):
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(
-                                                                  event_ref.ref)
+                                event_ref.ref)
                             self.load_kml_files(event)
                             role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
                                 if place_handle:
                                     place = dbstate.db.get_place_from_handle(
-                                                                   place_handle)
+                                        place_handle)
                                     if place:
                                         longitude = place.get_longitude()
                                         latitude = place.get_latitude()
@@ -464,21 +461,21 @@ class GeoPerson(GeoGraphyView):
                                         descr = _pd.display(dbstate.db, place)
                                         evt = EventType(event.get_type())
                                         eyear = str(
-         "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
+     "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
      str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
      str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
                                         self.load_kml_files(place)
                                         if longitude and latitude:
-                                            self._append_to_places_list(descr,
-                                                 evt, _nd.display(person),
-                                                 latitude, longitude,
-                                                 descr1, eyear,
-                                                 event.get_type(),
-                                                 person.gramps_id,
-                                                 place.gramps_id,
-                                                 event.gramps_id,
-                                                 role
-                                                 )
+                                            self._append_to_places_list(
+                                                descr,
+                                                evt, _nd.display(person),
+                                                latitude, longitude,
+                                                descr1, eyear,
+                                                event.get_type(),
+                                                person.gramps_id,
+                                                place.gramps_id,
+                                                event.gramps_id,
+                                                role)
                                         else:
                                             self._append_to_places_without_coord(place.gramps_id, descr)
 
@@ -605,27 +602,21 @@ class GeoPerson(GeoGraphyView):
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
-        configdialog.add_text(grid,
-                _('Animation speed in milliseconds (big value means slower)'),
-                1, line_wrap=False)
-        configdialog.add_slider(grid,
-                "",
-                2, 'geography.speed',
-                (100, 1000))
+        configdialog.add_text(
+            grid,
+            _('Animation speed in milliseconds (big value means slower)'),
+            1, line_wrap=False)
+        configdialog.add_slider(grid, "", 2, 'geography.speed', (100, 1000))
         configdialog.add_text(
             grid,
             _('How many steps between two markers when we are on large move ?'),
             3, line_wrap=False)
-        configdialog.add_slider(grid,
-                "",
-                4, 'geography.steps',
-                (10, 100))
-        configdialog.add_text(grid,
-                _('The minimum latitude/longitude to select large move.\n'
-                  'The value is in tenth of degree.'),
-                5, line_wrap=False)
-        configdialog.add_slider(grid,
-                "",
-                6, 'geography.maximum_lon_lat',
-                (5, 50))
+        configdialog.add_slider(grid, "", 4, 'geography.steps', (10, 100))
+        configdialog.add_text(
+            grid,
+            _('The minimum latitude/longitude to select large move.\n'
+              'The value is in tenth of degree.'),
+            5, line_wrap=False)
+        configdialog.add_slider(grid, "", 6, 'geography.maximum_lon_lat',
+                                (5, 50))
         return _('The animation parameters'), grid

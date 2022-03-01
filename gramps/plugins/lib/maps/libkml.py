@@ -26,18 +26,16 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gi.repository import GObject
+import logging
 import xml.etree.ElementTree as ETree
+from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
 # Set up logging
 #
 #------------------------------------------------------------------------
-import logging
 _LOG = logging.getLogger("maps.libkml")
-
-# pylint: disable=unused-variable
 
 class Kml(GObject.GObject):
     """
@@ -72,8 +70,8 @@ class Kml(GObject.GObject):
         root = self.tree.getroot()
         self.tag = root.tag.replace('}kml', '}')
         _LOG.debug("Tag version of kml file %s is %s", kml_file, self.tag)
-        fname, extension = os.path.splitext(kml_file)
-        fdir, self.kmlfile = os.path.split(fname)
+        fname, dummy_extension = os.path.splitext(kml_file)
+        dummy_fdir, self.kmlfile = os.path.split(fname)
 
     def set_default(self):
         """
@@ -103,7 +101,7 @@ class Kml(GObject.GObject):
         self.points = []
         for point in attributes.text.split():
             try:
-                (longitude, latitude, altitude) = point.split(',')
+                (longitude, latitude, dummy_altitude) = point.split(',')
             except:
                 (longitude, latitude) = point.split(',')
             self.points.append((float(latitude), float(longitude)))
