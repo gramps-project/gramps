@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2022-02-28 23:08+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2022-03-04 15:57+0000\n"
+"Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
 "Language: tr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -805,7 +805,7 @@ msgstr ""
 "<b>Kaynakları Yönetme</b><br/>Kaynaklar Görünümü, tek bir pencerede tüm "
 "kaynakların bir listesini gösterir. Buradan kaynaklarınızı düzenleyebilir, "
 "kopyaları birleştirebilir ve her bir kaynağa hangi kişilerin referans "
-"olduğunu görebilirsiniz. Kaynaklarınızı gruplamak için süzgeçleri "
+"olduğunu görebilirsiniz. Kaynaklarınızı kümelemek için süzgeçleri "
 "kullanabilirsiniz."
 
 #: ../data/tips.xml:80
@@ -8238,7 +8238,7 @@ msgstr "Başlık"
 
 #: ../gramps/gen/lib/name.py:169 ../gramps/plugins/webreport/person.py:225
 msgid "Group as"
-msgstr "Olarak grupla"
+msgstr "Olarak kümele"
 
 #: ../gramps/gen/lib/name.py:171
 msgid "Sort as"
@@ -11719,7 +11719,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
-msgstr ""
+msgstr "Özel ad görüntüleme seçenekleri her soyağacı için farklıdır."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
@@ -11798,7 +11798,7 @@ msgstr "Veri"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Koşullu Metin Değişiklikleri"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -11841,22 +11841,16 @@ msgid "Calculation limits"
 msgstr "Hesaplama sınırları"
 
 #: ../gramps/gui/configure.py:1534
-#, fuzzy
-#| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Aralık hakkında tarih"
+msgstr "Tarih 'yaklaşık' yıl aralığı: (tarih ± #)"
 
 #: ../gramps/gui/configure.py:1538
-#, fuzzy
-#| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Aralıktan sonraki tarih"
+msgstr "Tarih 'sonrası' yıl aralığı:  (tarih + #)"
 
 #: ../gramps/gui/configure.py:1542
-#, fuzzy
-#| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
-msgstr "Aralıktan önceki tarih"
+msgstr "Tarih 'öncesi' yıl aralığı: (tarih - #)"
 
 #: ../gramps/gui/configure.py:1546
 msgid "Maximum age probably alive"
@@ -11883,10 +11877,8 @@ msgid "Limits"
 msgstr "Sınırlar"
 
 #: ../gramps/gui/configure.py:1575
-#, fuzzy
-#| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "Etkinlik Alıntıları"
+msgstr "Ortam Ayarları"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
@@ -11922,7 +11914,7 @@ msgstr "Yazım denetleyicisini etkinleştir"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Enable the spelling checker for notes."
-msgstr "Notlar için yazım denetleyicisini etkinleştir"
+msgstr "Notlar için yazım denetleyicisini etkinleştir."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12000,6 +11992,8 @@ msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Yüksekliği piksel cinsinden girin. Birden çok soyadı girildiğinde, bu "
+"soyadları bir kutu içinde görüntülenir. Bu ayar, kutunun boyutunu belirler."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -12007,6 +12001,9 @@ msgid ""
 "Addons and Plugins. The Plugin Manager has the complete list of installed "
 "Addons and Plugins and their activation status.\n"
 msgstr ""
+"Gramps'ın yeni veya güncellenmiş üçüncü taraf eklentileri kontrol etmesini "
+"sağlayacak yapılandırma ayarları. Eklenti Yöneticisi, kurulu eklentilerin "
+"tam listesine ve bunların etkinleştirme durumlarına sahiptir.\n"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Once a month"
@@ -12092,10 +12089,8 @@ msgid "update"
 msgstr "güncelle"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
-#| msgid "Database version"
 msgid "Database Setting"
-msgstr "Veri tabanı sürümü"
+msgstr "Veri tabanı Ayarı"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
@@ -12122,12 +12117,12 @@ msgid "Database path"
 msgstr "Veri tabanı yolu"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Çıkışta yedekle"
+msgstr ""
+"\n"
+"Yedekleme yöneticisi"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12175,6 +12170,9 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"Temel göreli ortam yolu, etkin soyağacına özeldir. Küresel bir ayar "
+"değildir. Her soyağacı, veri tabanında saklanan benzersiz bir göreli ortam "
+"yoluna sahip olabilir."
 
 #: ../gramps/gui/configure.py:1892
 msgid "Tag Records"
@@ -12185,24 +12183,20 @@ msgid "Add tag on import"
 msgstr "İçe aktarırken etiket ekle"
 
 #: ../gramps/gui/configure.py:1915
-#, fuzzy
-#| msgid ""
-#| "Specified tag will be added on import.\n"
-#| "Clear to set default value."
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Belirtilen etiket içe aktarma sırasında eklenecektir.\n"
+"Belirtilen etiket içe aktarma sırasında tüm kayıtlara eklenecektir.\n"
 "Varsayılan değeri ayarlamak için temizleyin."
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "GEDCOM içe aktarma"
+msgstr ""
+"\n"
+"Kaynak GEDCOM içe aktarma"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -12291,6 +12285,10 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"İşaretliyse standart soy sembollerini kullanır (ölüm sembolü kullanıcı "
+"tarafından seçilebilir).\n"
+"İşaretli değilse, sembolleri kendiniz özelleştirmek için alt paneli "
+"kullanabilirsiniz."
 
 #: ../gramps/gui/configure.py:2094
 msgid ""
@@ -12330,11 +12328,11 @@ msgstr "Eş"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Öldürüldü"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Varsayılan soy sembollerinin değiştirilmesi"
 
 #: ../gramps/gui/configure.py:2253
 msgid ""
@@ -12342,6 +12340,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Bu alan için istediğiniz metni ayarlayabilirsiniz.\n"
+"Yukarıdaki sembol listesinden bir sembolü sürükleyip bırakabilirsiniz.\n"
+"Yalnızca yazı tipiniz bu glifi içeriyorsa görünür olacaktır."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -13368,7 +13369,7 @@ msgstr "Seçili adı aşağı taşı"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
 #: ../gramps/gui/views/treemodels/peoplemodel.py:614
 msgid "Group As"
-msgstr "Grup Olarak"
+msgstr "Küme olarak"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:79
 msgid "Notes Preview"
@@ -14356,7 +14357,7 @@ msgstr "Yeni Ad"
 
 #: ../gramps/gui/editors/editname.py:381
 msgid "Break global name grouping?"
-msgstr "Küresel ad gruplandırması kırılsın mı?"
+msgstr "Küresel ad kümelemesi kırılsın mı?"
 
 #: ../gramps/gui/editors/editname.py:382
 #, python-format
@@ -14364,7 +14365,7 @@ msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
 msgstr ""
-"%(surname)s adlı tüm kişiler artık %(group_name)s adıyla gruplandırılmayacak."
+"%(surname)s adlı tüm kişiler artık %(group_name)s adıyla kümelenmeyecek."
 
 #: ../gramps/gui/editors/editname.py:386
 msgid "Continue"
@@ -14376,7 +14377,7 @@ msgstr "Ad Düzenleyicisine Dön"
 
 #: ../gramps/gui/editors/editname.py:413
 msgid "Group all people with the same name?"
-msgstr "Tüm insanları aynı ada sahip gruplandırmak mı?"
+msgstr "Aynı ada sahip tüm insanlar kümelensin mi?"
 
 #: ../gramps/gui/editors/editname.py:414
 #, python-format
@@ -14384,16 +14385,16 @@ msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
-"Tüm kişileri %(surname)s soyadıyla %(group_name)s adıyla gruplandırma veya "
+"Tüm kişileri %(surname)s soyadıyla %(group_name)s adıyla kümeleme veya "
 "sadece bu özel adı eşleme seçeneğine sahipsiniz."
 
 #: ../gramps/gui/editors/editname.py:419
 msgid "Group all"
-msgstr "Tümünü gruplandır"
+msgstr "Tümünü kümele"
 
 #: ../gramps/gui/editors/editname.py:420
 msgid "Group this name only"
-msgstr "Yalnızca bu adı gruplandır"
+msgstr "Yalnızca bu adı kümele"
 
 #: ../gramps/gui/editors/editnote.py:67
 msgctxt "manual"
@@ -14989,9 +14990,9 @@ msgid ""
 msgstr ""
 "Dize alanlarının içeriğini normal ifadeler olarak yorumlayın.\n"
 "Ondalık nokta herhangi bir karakterle eşleşir. Bir soru işareti, önceki "
-"karakter veya grubun sıfır veya bir tekrarı ile eşleşir. Yıldız işareti, "
+"karakter veya kümenin sıfır veya bir tekrarı ile eşleşir. Yıldız işareti, "
 "sıfır veya daha fazla oluşumla eşleşir. Bir artı işareti, bir veya daha "
-"fazla etkinlikle eşleşir. İfadeleri gruplamak için parantez kullanın. Dikey "
+"fazla etkinlikle eşleşir. İfadeleri kümelemek için parantez kullanın. Dikey "
 "bir çubuk kullanarak alternatifleri belirtin. Bir şapka, bir satırın "
 "başlangıcıyla eşleşir. Bir satırın sonu dolar işaretiyle eşleşecektir."
 
@@ -16427,10 +16428,10 @@ msgid ""
 "You will be asked if you want to group this person only, or all people with "
 "this specific primary surname."
 msgstr ""
-"Kişi Ağacı görünümü, kişileri birincil soyadı altında gruplandırır. Burada "
-"bir grup değeri ayarlayarak bunu geçersiz kılabilirsiniz.\n"
+"Kişi ağacı görünümü, kişileri birincil soyadı altında kümeler. Burada bir "
+"küme değeri ayarlayarak bunu geçersiz kılabilirsiniz.\n"
 "Yalnızca bu kişiyi mi yoksa bu belirli birincil soyadına sahip tüm kişileri "
-"mi gruplamak istediğiniz sorulacaktır."
+"mi kümelemek istediğiniz sorulacaktır."
 
 #: ../gramps/gui/glade/editname.glade:615
 msgid "O_verride"
@@ -23089,10 +23090,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Bir ortam nesnesi için notları gösteren Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:779
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the selected note"
-msgstr "Kişinin etkinliklerini gösteren Gramplet"
+msgstr "Seçili notu gösteren Gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 msgid "Person Citations"
@@ -23913,14 +23912,6 @@ msgid "Getting Started"
 msgstr "Başlarken"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:128
-#, fuzzy
-#| msgid ""
-#| "The first thing you must do is to create a new Family Tree. To create a "
-#| "new Family Tree (sometimes called 'database') select \"Family Trees\" "
-#| "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#| "Family Tree. For more details, please read the information at the links "
-#| "above\n"
-#| "\n"
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -23932,11 +23923,15 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"Yapmanız gereken ilk şey, yeni bir soyağacı oluşturmaktır. Yeni bir Soyağacı "
-"(bazen 'veri tabanı' olarak adlandırılır) oluşturmak için menüden "
-"\"Soyağaçları\"nı seçin, \"Soyağaçlarını Yönet\"i seçin, \"Yeni\"ye basın ve "
-"Soyağacınıza bir ad verin. Daha fazla ayrıntı için lütfen yukarıdaki "
-"ilişimlerdeki bilgileri okuyun\n"
+"Gramps ilk kez başlatıldığında, tüm görünümler boştur. Çok az menü seçeneği "
+"vardır. Herhangi bir etkinliğin gerçekleşmesi için bir soyağacı gereklidir.\n"
+"\n"
+"Yeni bir soyağacı (bazen 'veri tabanı' olarak adlandırılır) oluşturmak için "
+"menüden \"Soyağaçları\" içinden \"Soyağaçlarını Yönet...\"i seçin, \"Yeni\"ye"
+" basın ve soyağacınıza bir ad verin. İlk ailenizi girerek veya bir "
+"soyağacını içe aktararak ağacı etkin ve veri kabul etmeye hazır hale "
+"getirmek için \"Soyağacı Yükle\". Daha fazla ayrıntı için lütfen aşağıdaki "
+"bağlantılardaki bilgileri okuyun.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:137
@@ -23975,10 +23970,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:162
-#, fuzzy
-#| msgid "Open an existing database"
 msgid "Entering and editing data (brief)"
-msgstr "Mevcut bir veritabanını aç"
+msgstr "Veri girme ve düzenleme (özet)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:165
 msgid "Importing a Family Tree"
@@ -23993,6 +23986,13 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"Başka bir programdan bir soyağacı almak için önce önceki programdan bir "
+"GEDCOM (veya başka veri) dosyası oluşturun.\n"
+"\n"
+"Yeni bir Gramps veri tabanı dosyası oluşturduktan sonra, GEDCOM verilerini "
+"almak için \"Soyağaçları\" menüsü altındaki \"İçe Aktar...\" seçeneğini "
+"kullanın.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:170
 msgid "Import from another genealogy program"
@@ -24024,10 +24024,8 @@ msgstr ""
 "üzerinde yüzecek şekilde ayırabilirsiniz."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:184
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "Gramps Görünümü"
+msgstr "Gramps Görünüm Kategorileri"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:187
 #: ../gramps/plugins/gramplet/welcomegramplet.py:192
@@ -24041,12 +24039,14 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"Veri girişinde ve soyağacınızı görselleştirmede size yardımcı olacak birçok "
+"eklenti veya \"Gramplet\" vardır. Bu araçların çoğu zaten sizin için "
+"kullanılabilir durumda. İndirmek ve kurmak için daha pek çok şey mevcuttur.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "Tam Veri Tabanı"
+msgstr "Örnek Veri Tabanı"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -24063,10 +24063,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Örnek"
+msgstr "Örnek.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -24780,16 +24778,12 @@ msgstr ""
 "Aileler, ebeveynler ve çocuklarla bağlantılı elipsler olarak görünecektir."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:973
-#, fuzzy
-#| msgid "Event groups"
 msgid "Parent grouping"
-msgstr "Olay grupları"
+msgstr "Ebeveyn kümeleme"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:975
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents together"
-msgstr "Ebeveyn Notları"
+msgstr "Ebeveynlerle birlikte"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:976
 #, fuzzy
@@ -26070,12 +26064,12 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"Soyağacı gruplarınızın adı \"%(key)s\" ile birlikte \"%(parent)s\", bu "
-"gruplandırmayı \"%(value)s\" olarak değiştirmedi."
+"Soyağacı kümelerinizi \"%(key)s\" ile birlikte \"%(parent)s\", bu kümelemeyi "
+"\"%(value)s\" olarak değiştirmedi."
 
 #: ../gramps/plugins/importer/importxml.py:1754
 msgid "Gramps ignored a name grouping"
-msgstr "Gramps bir ad gruplamasını görmezden geldi"
+msgstr "Gramps bir ad kümesini görmezden geldi"
 
 #: ../gramps/plugins/importer/importxml.py:1813
 msgid "Unknown when imported"
@@ -30613,7 +30607,7 @@ msgstr "Sağ alt"
 
 #: ../gramps/plugins/lib/maps/geography.py:158
 msgid "Tile path"
-msgstr ""
+msgstr "Kaplama yolu"
 
 #: ../gramps/plugins/lib/maps/geography.py:159
 #, python-format
@@ -30623,6 +30617,10 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"Kaplama dizini artık mevcut değil:\n"
+"%s\n"
+"Yeni bir tane oluşturmaya çalışmak başarısız oldu.\n"
+"Kaplama yolu için görünümü yapılandırın ve gramps'ı yeniden başlatın."
 
 #: ../gramps/plugins/lib/maps/geography.py:378
 msgid "Remove cross hair"
@@ -32590,13 +32588,13 @@ msgstr "%dB"
 #: ../gramps/plugins/textreport/familygroup.py:614
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Aile Grubu Raporu - Kuşak %d"
+msgstr "Aile Kümesi Raporu - Kuşak %d"
 
 #: ../gramps/plugins/textreport/familygroup.py:616
 #: ../gramps/plugins/textreport/familygroup.py:668
 #: ../gramps/plugins/textreport/textplugins.gpr.py:191
 msgid "Family Group Report"
-msgstr "Aile Grubu Raporu"
+msgstr "Aile Kümesi Raporu"
 
 #: ../gramps/plugins/textreport/familygroup.py:716
 msgid "Center Family"
@@ -32792,7 +32790,7 @@ msgstr "Bölümler"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1165
 msgid "Event groups"
-msgstr "Olay grupları"
+msgstr "Olay kümeleri"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1166
 msgid "Check if a separate section is required."
@@ -33100,64 +33098,49 @@ msgid "Number of families: %d"
 msgstr "Ailelerin sayısı: %d"
 
 #: ../gramps/plugins/textreport/summary.py:230
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "Context Bilgileri"
+msgstr "Etkinlik Bilgisi"
 
 #: ../gramps/plugins/textreport/summary.py:234
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "Etkinliklerin sayısı"
+msgstr "Etkinlik sayısı: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "Yer biçimi"
+msgstr "Yer Bilgisi"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy, python-format
-#| msgid "Number of places"
+#, python-format
 msgid "Number of places: %d"
-msgstr "Yerlerin sayısı"
+msgstr "Yer sayısı: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
-#, fuzzy
-#| msgid "Shared Information"
 msgid "Source Information"
-msgstr "Paylaşılan Bilgiler"
+msgstr "Kaynak Bilgisi"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Kaynakların sayısı"
+msgstr "Kaynak sayısı: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation Information"
-msgstr "Yayın Bilgileri"
+msgstr "Alıntı Bilgisi"
 
 #: ../gramps/plugins/textreport/summary.py:273
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Alıntıların sayısı"
+msgstr "Alıntı sayısı: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "İlişki Bilgisi"
+msgstr "Depo Bilgisi"
 
 #: ../gramps/plugins/textreport/summary.py:286
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Depoların sayısı"
+msgstr "Depo sayısı: %d"
 
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
@@ -33170,16 +33153,13 @@ msgid "Total size of media objects: %s MB"
 msgstr "Ortam nesnelerinin toplam boyutu: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:342
-#, fuzzy
-#| msgid "No Date Information"
 msgid "Note Information"
-msgstr "Tarih Bilgisi Yok"
+msgstr "Not Bilgisi"
 
 #: ../gramps/plugins/textreport/summary.py:346
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Notların sayısı"
+msgstr "Not sayısı: %d"
 
 #: ../gramps/plugins/textreport/summary.py:374
 msgid "Whether to count private data"
@@ -33278,7 +33258,7 @@ msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Bir ebeveyn ve çocukları hakkında bilgi gösteren aile grubu raporu üretir."
+"Bir ebeveyn ve çocukları hakkında bilgi gösteren aile kümesi raporu üretir."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:215
 msgid "Produces a complete report on the selected people"
@@ -34671,7 +34651,7 @@ msgstr "alternatif ad"
 
 #: ../gramps/plugins/tool/removespaces.py:152
 msgid "group as"
-msgstr "grupla"
+msgstr "kümele"
 
 #: ../gramps/plugins/tool/removespaces.py:199
 msgid "tooltip"
@@ -35128,10 +35108,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
-msgstr "Olayları sıralar"
+msgstr "Etkinlikleri sırala"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Verify the Data"
@@ -36514,11 +36492,11 @@ msgstr "Yer Ağaç Görünümü"
 
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse this Entire Group"
-msgstr "Bu Grubun Tümünü Daralt"
+msgstr "Bu Kümenin Tümünü Daralt"
 
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand this Entire Group"
-msgstr "Bu Grubu Tümünü Genişlet"
+msgstr "Bu Kümenin Tümünü Genişlet"
 
 #: ../gramps/plugins/view/relview.py:370
 msgid "Organize Bookmarks..."
@@ -36813,13 +36791,12 @@ msgstr "Bir yelpaze çizelgesi aracılığıyla alt ve üst soyu gösterme"
 
 #: ../gramps/plugins/view/view.gpr.py:188
 msgid "Grouped People"
-msgstr "Gruplandırılmış Kişiler"
+msgstr "Kümelenmiş Kişiler"
 
 #: ../gramps/plugins/view/view.gpr.py:189
 msgid "The view showing all people in the Family Tree grouped per family name"
 msgstr ""
-"Soyağacındaki tüm kişileri aile adına göre gruplandırılmış olarak gösteren "
-"görünüm"
+"Soyağacındaki tüm kişileri aile adına göre kümelemiş olarak gösteren görünüm"
 
 #: ../gramps/plugins/view/view.gpr.py:206
 msgid "The view showing all people in the Family Tree in a flat list"
@@ -38546,7 +38523,7 @@ msgstr "Anlatılan Web Sitesi"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:35
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Bireyler veya bir grup birey için web (HTML) sayfaları üretir"
+msgstr "Bireyler veya bir dizi birey için web (HTML) sayfaları üretir"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:59
 msgid "Produces web (HTML) calendars."
