@@ -3,22 +3,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # FIRST AUTHOR <trande@gmail.com>, 2012.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
-# Nick Hall <nick-h@gramps-project.org>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"PO-Revision-Date: 2022-03-01 00:39+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
-"Language-Team: Vietnamese <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/vi/>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 "X-Poedit-KeywordsList: July 13, 2018: Gramps Version 4.2.8 based on "
 "Vietnamese Translation Feb 29, 2012. 14:02 VN time, VIETNAMESE TRANSLATION "
 "OF GRAMPS, V. 3\n"
@@ -2640,37 +2640,37 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
 msgid "Gregorian"
-msgstr "Gregorian "
+msgstr "Gregorian"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:610
 msgctxt "calendar"
 msgid "Julian"
-msgstr "Julian "
+msgstr "Julian"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:611
 msgctxt "calendar"
 msgid "Hebrew"
-msgstr "Do Thái "
+msgstr "Do Thái"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgctxt "calendar"
 msgid "French Republican"
-msgstr "Cộng hòa Pháp "
+msgstr "Cộng hòa Pháp"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
 msgctxt "calendar"
 msgid "Persian"
-msgstr "Persian  "
+msgstr "Persian"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:614
 msgctxt "calendar"
 msgid "Islamic"
-msgstr "Hồi giáo "
+msgstr "Hồi giáo"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:615
 msgctxt "calendar"
 msgid "Swedish"
-msgstr "Thụy Điển "
+msgstr "Thụy Điển"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -37050,7 +37050,7 @@ msgstr "Địa điểm"
 
 #: ../gramps/plugins/webreport/basepage.py:3239
 msgid "between"
-msgstr "giữa "
+msgstr "giữa"
 
 #: ../gramps/plugins/webreport/basepage.py:3250
 msgid "circa"

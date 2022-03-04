@@ -3,13 +3,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Keiichiro Yamamoto <k.yanmar@gmail.com>, 2011, 2020.
 # Megumi Sakata <megumi.sakata.k@gmail.com>, 2020.
-# Nick Hall <nick-h@gramps-project.org>, 2021.
+# Nick Hall <nick-h@gramps-project.org>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
+"PO-Revision-Date: 2022-03-04 22:09+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ja/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../data/holidays.xml:3
@@ -1959,9 +1959,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:435
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{nonstd_calendar_and_ny}{date_start}から{date_stop}と{date_quality}"
+msgstr "{nonstd_calendar_and_ny}{date_start}から{date_stop}まで{date_quality}"
 
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
@@ -2571,7 +2571,7 @@ msgstr "の見積り "
 #: ../gramps/gen/datehandler/_datestrings.py:236
 msgctxt "date quality"
 msgid "calculated "
-msgstr ""
+msgstr "計算上 "
 
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgid "Sunday"
