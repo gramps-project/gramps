@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 22:46+0000\n"
-"PO-Revision-Date: 2022-02-28 20:34+0000\n"
+"PO-Revision-Date: 2022-03-04 22:09+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1937,7 +1937,7 @@ msgstr "=Name"
 
 #: ../gramps/cli/plug/__init__.py:296
 msgid "Style name."
-msgstr "Stilname."
+msgstr "Name der Vorlage."
 
 #: ../gramps/cli/plug/__init__.py:297
 msgid "Paper size name."
@@ -10359,32 +10359,32 @@ msgstr "Fehler: unbekannter Dateityp: '%s'"
 #: ../gramps/gen/plug/utils.py:326
 #, python-format
 msgid "Examining '%s'..."
-msgstr "Untersuche '%s'..."
+msgstr "Prüfung von '%s'..."
 
 #: ../gramps/gen/plug/utils.py:353
 #, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr "'%s' ist für diese Gramps Version."
+msgstr "'%s' ist für diese Version von Gramps."
 
 #: ../gramps/gen/plug/utils.py:357
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
-msgstr "'%s' ist NICHT für diese Gramps Version."
+msgstr "'%s' ist NICHT für diese Version von Gramps."
 
 #: ../gramps/gen/plug/utils.py:358
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
-msgstr "Es ist für Version %(v1)d.%(v2)d"
+msgstr "Es ist für die Version %(v1)d.%(v2)d"
 
 #: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
-msgstr "FEHLER: fehlende gramps_ziel_version in '%s'...."
+msgstr "Fehler: fehlende gramps_target_version in '%s'..."
 
 #: ../gramps/gen/plug/utils.py:380
 #, python-format
 msgid "Installing '%s'..."
-msgstr "Installiere '%s'..."
+msgstr "Installation von '%s'..."
 
 #: ../gramps/gen/plug/utils.py:385
 #, python-format
@@ -10394,12 +10394,14 @@ msgstr "Registriert '%s'"
 #: ../gramps/gen/recentfiles.py:184
 #, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr "Kann Liste der jüngsten DB Datei {fname} nicht speichern: {error}"
+msgstr "Liste der letzten DBs kann nicht gespeichert werden {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:243
 #, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr "Kann Liste der jüngsten DB Datei {fname} nicht öffnen: {error}"
+msgstr ""
+"Die Datei {fname} mit der Liste der letzten DBs kann nicht geöffnet werden: "
+"{error}"
 
 #: ../gramps/gen/recentfiles.py:247
 #, python-brace-format
@@ -10418,7 +10420,7 @@ msgstr ""
 #: ../gramps/gen/relationship.py:1273
 #: ../gramps/plugins/view/pedigreeview.py:1611
 msgid "Relationship loop detected"
-msgstr "Verwandtschaftsschleife entdeckt"
+msgstr "Beziehungsschleife entdeckt"
 
 #: ../gramps/gen/relationship.py:1332
 #, python-format
@@ -10432,12 +10434,12 @@ msgstr ""
 
 #: ../gramps/gen/relationship.py:1406
 msgid "Relationship loop detected:"
-msgstr "Verwandtschaftsschleife entdeckt:"
+msgstr "Beziehungsschleife entdeckt:"
 
 #: ../gramps/gen/relationship.py:1407
 #, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
-msgstr "Person %(person)s hat eine Verbindung zu sich selbst über %(relation)s"
+msgstr "Person %(person)s verbindet sich mit sich selbst über %(relation)s"
 
 #: ../gramps/gen/relationship.py:1685
 msgid "undefined"
@@ -10456,12 +10458,12 @@ msgstr "Ex-Partner(in)"
 #: ../gramps/gen/relationship.py:2184
 msgctxt "male,unmarried"
 msgid "partner"
-msgstr "Lebensgefährte"
+msgstr "Partner"
 
 #: ../gramps/gen/relationship.py:2186
 msgctxt "female,unmarried"
 msgid "partner"
-msgstr "Lebensgefährtin"
+msgstr "Partnerin"
 
 #: ../gramps/gen/relationship.py:2188
 msgctxt "gender unknown,unmarried"
@@ -10471,17 +10473,17 @@ msgstr "Partner(in)"
 #: ../gramps/gen/relationship.py:2191
 msgctxt "male,unmarried"
 msgid "ex-partner"
-msgstr "Ex-Lebensgefährte"
+msgstr "Ex-Partner"
 
 #: ../gramps/gen/relationship.py:2193
 msgctxt "female,unmarried"
 msgid "ex-partner"
-msgstr "Ex-Lebensgefährtin"
+msgstr "Ex-Partnerin"
 
 #: ../gramps/gen/relationship.py:2195
 msgctxt "gender unknown,unmarried"
 msgid "ex-partner"
-msgstr "Ex-Lebensgefährt(e/in)"
+msgstr "Ex-Partner(in)"
 
 #: ../gramps/gen/relationship.py:2198
 msgctxt "male,civil union"
@@ -10501,17 +10503,17 @@ msgstr "eingetragene(r) Lebenspartner(in)"
 #: ../gramps/gen/relationship.py:2205
 msgctxt "male,civil union"
 msgid "former partner"
-msgstr "früherer eingetragener Lebenspartner"
+msgstr "ehemaliger eingetragener Lebenspartner"
 
 #: ../gramps/gen/relationship.py:2207
 msgctxt "female,civil union"
 msgid "former partner"
-msgstr "frühere eingetragene Lebenspartnerin"
+msgstr "ehemalige eingetragene Lebenspartnerin"
 
 #: ../gramps/gen/relationship.py:2209
 msgctxt "gender unknown,civil union"
 msgid "former partner"
-msgstr "frühere(r) eingetragene(r) Lebenspartner(in)"
+msgstr "ehemalige(r) eingetragene(r) Lebenspartner(in)"
 
 #: ../gramps/gen/relationship.py:2212
 msgctxt "male,unknown relation"
@@ -10531,17 +10533,17 @@ msgstr "Partner(in)"
 #: ../gramps/gen/relationship.py:2221
 msgctxt "male,unknown relation"
 msgid "former partner"
-msgstr "früherer Partner"
+msgstr "ehemaliger Partner"
 
 #: ../gramps/gen/relationship.py:2223
 msgctxt "female,unknown relation"
 msgid "former partner"
-msgstr "frühere Partnerin"
+msgstr "ehemalige Partnerin"
 
 #: ../gramps/gen/relationship.py:2225
 msgctxt "gender unknown,unknown relation"
 msgid "former partner"
-msgstr "frühere(r) Partner(in)"
+msgstr "ehemalige(r) Partner(in)"
 
 #: ../gramps/gen/relationship.py:2318
 #, python-format
@@ -10549,8 +10551,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Für diese Sprache '%s' ist keine Übersetzung der Familienbeziehungen "
-"verfügbar.Verwende stattdessen Englisch."
+"Familienbeziehungen Übersetzer nicht verfügbar für Sprache „%s“. Stattdessen "
+"„Englisch“ verwenden."
 
 #: ../gramps/gen/utils/alive.py:147 ../gramps/plugins/importer/importcsv.py:205
 msgid "death date"
@@ -10562,11 +10564,11 @@ msgstr "Geburtsdatum"
 
 #: ../gramps/gen/utils/alive.py:185
 msgid "sibling birth date"
-msgstr "Geschwister Geburtsdatum"
+msgstr "Geburtsdatum des Geschwisters"
 
 #: ../gramps/gen/utils/alive.py:197
 msgid "sibling death date"
-msgstr "Geschwister Todesdatum"
+msgstr "Todesdatum des Geschwisters"
 
 #: ../gramps/gen/utils/alive.py:211
 msgid "sibling birth-related date"
@@ -10590,49 +10592,49 @@ msgstr "Ereignisse mit Partner(in)"
 
 #: ../gramps/gen/utils/alive.py:297
 msgid "descendant birth date"
-msgstr "Nachfahre Geburtsdatum"
+msgstr "Nachkomme Geburtsdatum"
 
 #: ../gramps/gen/utils/alive.py:306
 msgid "descendant death date"
-msgstr "Nachfahre Todesdatum"
+msgstr "Nachkomme Sterbedatum"
 
 #: ../gramps/gen/utils/alive.py:322
 msgid "descendant birth-related date"
-msgstr "Nachfahre geburtsbezogenes Datum"
+msgstr "Nachkomme geburtsbezogenes Datum"
 
 #: ../gramps/gen/utils/alive.py:330
 msgid "descendant death-related date"
-msgstr "Nachfahre todesbezogenes Datum"
+msgstr "Nachkomme todesbezogenes Datum"
 
 #: ../gramps/gen/utils/alive.py:343
 #, python-format
 msgid "Database error: loop in %s's descendants"
-msgstr "Datenbankfehler: Schleife in %s's Nachkommen"
+msgstr "Datenbankfehler: Schleife in den Nachkommen von %s"
 
 #: ../gramps/gen/utils/alive.py:372 ../gramps/gen/utils/alive.py:418
 msgid "ancestor birth date"
-msgstr "Vorfahre Geburtsdatum"
+msgstr "Geburtsdatum des Vorfahren"
 
 #: ../gramps/gen/utils/alive.py:382 ../gramps/gen/utils/alive.py:428
 msgid "ancestor death date"
-msgstr "Vorfahre Sterbedatum"
+msgstr "Todesdatum des Vorfahren"
 
 #: ../gramps/gen/utils/alive.py:393 ../gramps/gen/utils/alive.py:439
 msgid "ancestor birth-related date"
-msgstr "Nachfahre geburtsbezogenes Datum"
+msgstr "Vorfahre geburtsbezogenes Datum"
 
 #: ../gramps/gen/utils/alive.py:401 ../gramps/gen/utils/alive.py:447
 msgid "ancestor death-related date"
-msgstr "Nachfahre todesbezogenes Datum"
+msgstr "Vorfahre todesbezogenes Datum"
 
 #: ../gramps/gen/utils/alive.py:462
 #, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "Datenbankfehler: Schleife in %s's Vorfahren"
+msgstr "Datenbankfehler: Schleife in den Vorfahren von %s"
 
 #: ../gramps/gen/utils/alive.py:509
 msgid "no evidence"
-msgstr "kein Beleg"
+msgstr "kein Nachweis"
 
 #: ../gramps/gen/utils/cast.py:46
 msgid "True"
@@ -10765,7 +10767,7 @@ msgstr "Mazedonisch"
 
 #: ../gramps/gen/utils/grampslocale.py:96
 msgid "Norwegian Bokmal"
-msgstr "Norwegisch Bokmal"
+msgstr "Norwegisches Bokmal"
 
 #: ../gramps/gen/utils/grampslocale.py:97
 msgid "Dutch"
@@ -10837,7 +10839,7 @@ msgstr "Chinesisch (vereinfacht)"
 
 #: ../gramps/gen/utils/grampslocale.py:114
 msgid "Chinese (Hong Kong)"
-msgstr "Chinesisch (Hong Kong)"
+msgstr "Chinesisch (Hongkong)"
 
 #: ../gramps/gen/utils/grampslocale.py:115
 msgid "Chinese (Traditional)"
@@ -10892,8 +10894,8 @@ msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
 msgstr ""
-"WARNUNG: PIL Modul nicht geladen. Bildbeschneidung in Berichtsdateien ist "
-"beeinträchtigt."
+"WARNUNG: PIL-Modul nicht geladen.  Das Zuschneiden von Bildern in "
+"Berichtsdateien wird beeinträchtigt."
 
 #: ../gramps/gen/utils/keyword.py:54
 msgctxt "Person"
@@ -10964,11 +10966,11 @@ msgstr "Primär"
 
 #: ../gramps/gen/utils/keyword.py:62
 msgid "PRIMARY[PRE]"
-msgstr "PRIMÄR[PRI]"
+msgstr "PRIMÄR[PRÄ]"
 
 #: ../gramps/gen/utils/keyword.py:62
 msgid "Primary[pre]"
-msgstr "Primär[pri]"
+msgstr "Primär[Prä]"
 
 #: ../gramps/gen/utils/keyword.py:63
 msgid "PRIMARY[SUR]"
@@ -10980,11 +10982,11 @@ msgstr "Primär[Nach]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "PRIMARY[CON]"
-msgstr "PRIMÄR[ÜBL]"
+msgstr "PRIMÄR[VERB]"
 
 #: ../gramps/gen/utils/keyword.py:64
 msgid "Primary[con]"
-msgstr "Primär[übl]"
+msgstr "Primär[Verb]"
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "PATRONYMIC"
@@ -10992,11 +10994,11 @@ msgstr "PATRONYMIKON"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "PATRONYMIC[PRE]"
-msgstr "PATRONYMIKON[PRI]"
+msgstr "PATRONYMIKON[PRÄ]"
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "Patronymic[pre]"
-msgstr "Patronymikon[pri]"
+msgstr "Patronymikon[Prä]"
 
 #: ../gramps/gen/utils/keyword.py:67
 msgid "PATRONYMIC[SUR]"
@@ -11008,27 +11010,27 @@ msgstr "Patronymikon[Nach]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "PATRONYMIC[CON]"
-msgstr "PATRONYMIKON[ÜBL]"
+msgstr "PATRONYMIKON[VERB]"
 
 #: ../gramps/gen/utils/keyword.py:68
 msgid "Patronymic[con]"
-msgstr "Patronymikon[übl]"
+msgstr "Patronymikon[Verb]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "RAWSURNAMES"
-msgstr "UNBEARBEITETE NACHNAMEN"
+msgstr "ORIGINALNACHNAMEN"
 
 #: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:885
 msgid "Rawsurnames"
-msgstr "unbearbeitete Nachnamen"
+msgstr "OriginalNachnamen"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "NOTPATRONYMIC"
-msgstr "KEIN PATRONYMIKON"
+msgstr "NICHTPATRONYMISCH"
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "Notpatronymic"
-msgstr "Kein Patronymikon"
+msgstr "Nichtpatronymisch"
 
 #: ../gramps/gen/utils/keyword.py:71
 msgid "PREFIX"
@@ -11118,14 +11120,12 @@ msgstr "Sehr niedrig"
 #: ../gramps/gen/utils/string.py:65
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr ""
-"Ein eheliches oder ehe-ähnliches Verhältnis zwischen einem Ehemann und einer "
+"Eine rechtliche oder eheähnliche Beziehung zwischen einem Ehemann und einer "
 "Ehefrau"
 
 #: ../gramps/gen/utils/string.py:67
 msgid "No legal or common-law relationship between man and woman"
-msgstr ""
-"Kein eheliches oder ehe-ähnliches Verhältnis zwischen einem Mann und einer "
-"Frau"
+msgstr "Keine rechtliche oder eheähnliche Beziehung zwischen Mann und Frau"
 
 #: ../gramps/gen/utils/string.py:69
 msgid "An established relationship between members of the same sex"
@@ -11138,15 +11138,16 @@ msgstr "Unbekannte Beziehung zwischen einem Mann und einer Frau"
 
 #: ../gramps/gen/utils/string.py:73
 msgid "An unspecified relationship between a man and woman"
-msgstr "Eine unbestimmte Beziehung zwischen einem Mann und einer Frau"
+msgstr ""
+"Eine nicht näher bezeichnete Beziehung zwischen einem Mann und einer Frau"
 
 #: ../gramps/gen/utils/string.py:77
 msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
-"Wiederherstellung der Daten nur durch 'Rückgängig Strg+z' oder durch "
-"'Änderungen verwerfen und beenden' möglich."
+"Die Daten können nur durch Rückgängigmachen oder durch Beenden mit Abbrechen "
+"der Änderungen wiederhergestellt werden."
 
 #: ../gramps/gen/utils/symbols.py:83
 #: ../gramps/plugins/graph/gvfamilylines.py:84
@@ -11168,11 +11169,11 @@ msgstr "Männlich"
 
 #: ../gramps/gen/utils/symbols.py:85
 msgid "Asexuality, sexless, genderless"
-msgstr "Asexualität, geschlechtslos"
+msgstr "Asexualität, ungeschlechtlich, geschlechtslos"
 
 #: ../gramps/gen/utils/symbols.py:86
 msgid "Lesbianism"
-msgstr "Lesbische Liebe"
+msgstr "Lesbischsein"
 
 #: ../gramps/gen/utils/symbols.py:87
 msgid "Male homosexuality"
@@ -11200,7 +11201,7 @@ msgstr "Illegitim"
 
 #: ../gramps/gen/utils/symbols.py:94
 msgid "Baptism/Christening"
-msgstr "Taufe"
+msgstr "Taufe/Kindstaufe"
 
 #: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2232
 msgid "Engaged"
@@ -11216,11 +11217,11 @@ msgstr "Begraben"
 
 #: ../gramps/gen/utils/symbols.py:102 ../gramps/gui/configure.py:2239
 msgid "Cremated/Funeral urn"
-msgstr "Einäscherung/Beerdigung Urne"
+msgstr "Einäscherung/Bestattung Urne"
 
 #: ../gramps/gen/utils/symbols.py:104
 msgid "Killed in action"
-msgstr "Gefallen"
+msgstr "Im Kampf gefallen"
 
 #: ../gramps/gen/utils/symbols.py:105
 msgid "Extinct"
