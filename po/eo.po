@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 22:46+0000\n"
+"POT-Creation-Date: 2022-03-05 23:23+0000\n"
 "PO-Revision-Date: 2021-06-04 21:07+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
@@ -222,10 +222,16 @@ msgid "Sweden"
 msgstr "Svedio"
 
 #: ../data/holidays.xml:508
+#, fuzzy
+#| msgid "Turkish"
+msgid "Turkey"
+msgstr "Turka"
+
+#: ../data/holidays.xml:536
 msgid "Ukraine"
 msgstr "Ukrainio"
 
-#: ../data/holidays.xml:535
+#: ../data/holidays.xml:563
 msgid "United States of America"
 msgstr "Usono"
 
@@ -1597,7 +1603,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
 #: ../gramps/gui/glade/editmedia.glade:289
 #: ../gramps/gui/glade/editmediaref.glade:670
-#: ../gramps/plugins/view/mediaview.py:97
+#: ../gramps/plugins/view/mediaview.py:96
 msgid "Path"
 msgstr "Vojprefikso"
 
@@ -1717,8 +1723,8 @@ msgstr "Blokita de %s"
 #: ../gramps/gen/utils/unknown.py:115 ../gramps/gen/utils/unknown.py:117
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:127
 #: ../gramps/gen/utils/unknown.py:132 ../gramps/gui/clipboard.py:185
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:173
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:191
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:174
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:192
 #: ../gramps/gui/editors/editmedia.py:178
 #: ../gramps/gui/editors/editmediaref.py:146
 #: ../gramps/plugins/gramplet/persondetails.py:214
@@ -1733,9 +1739,9 @@ msgstr "Blokita de %s"
 #: ../gramps/plugins/importer/importcsv.py:389
 #: ../gramps/plugins/importer/importcsv.py:905
 #: ../gramps/plugins/lib/libprogen.py:1058
-#: ../gramps/plugins/lib/maps/geography.py:828
-#: ../gramps/plugins/lib/maps/geography.py:838
-#: ../gramps/plugins/lib/maps/geography.py:839
+#: ../gramps/plugins/lib/maps/geography.py:846
+#: ../gramps/plugins/lib/maps/geography.py:856
+#: ../gramps/plugins/lib/maps/geography.py:857
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/descendreport.py:322
@@ -1766,13 +1772,13 @@ msgstr "Blokita de %s"
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:100
-#: ../gramps/plugins/view/geoclose.py:607
-#: ../gramps/plugins/view/geofamclose.py:359
-#: ../gramps/plugins/view/geofamclose.py:796
-#: ../gramps/plugins/view/geofamily.py:521
-#: ../gramps/plugins/view/geomoves.py:666
-#: ../gramps/plugins/view/geoperson.py:545
-#: ../gramps/plugins/view/geoplaces.py:593
+#: ../gramps/plugins/view/geoclose.py:609
+#: ../gramps/plugins/view/geofamclose.py:358
+#: ../gramps/plugins/view/geofamclose.py:793
+#: ../gramps/plugins/view/geofamily.py:519
+#: ../gramps/plugins/view/geomoves.py:680
+#: ../gramps/plugins/view/geoperson.py:542
+#: ../gramps/plugins/view/geoplaces.py:588
 #: ../gramps/plugins/view/relview.py:595 ../gramps/plugins/view/relview.py:1173
 #: ../gramps/plugins/view/relview.py:1228
 #: ../gramps/plugins/webreport/basepage.py:2124
@@ -1959,8 +1965,8 @@ msgstr "   Validaj opcioj estas:"
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:463 ../gramps/cli/plug/__init__.py:553
 #: ../gramps/plugins/drawreport/descendtree.py:358
-#: ../gramps/plugins/drawreport/fanchart.py:364
-#: ../gramps/plugins/drawreport/fanchart.py:380
+#: ../gramps/plugins/drawreport/fanchart.py:387
+#: ../gramps/plugins/drawreport/fanchart.py:403
 #: ../gramps/plugins/gramplet/persondetails.py:238
 #: ../gramps/plugins/gramplet/whatsnext.py:371
 #: ../gramps/plugins/gramplet/whatsnext.py:393
@@ -2053,27 +2059,27 @@ msgstr ""
 "ĉe %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:248
+#: ../gramps/gen/config.py:247
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Importita %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:259
+#: ../gramps/gen/config.py:258
 msgid "Missing Given Name"
 msgstr "Mankas antaŭnomo"
 
-#: ../gramps/gen/config.py:260
+#: ../gramps/gen/config.py:259
 msgid "Missing Record"
 msgstr "Mankas rikordo"
 
-#: ../gramps/gen/config.py:261
+#: ../gramps/gen/config.py:260
 msgid "Missing Surname"
 msgstr "Mankas Familinomo"
 
-#: ../gramps/gen/config.py:268 ../gramps/gen/config.py:270
+#: ../gramps/gen/config.py:267 ../gramps/gen/config.py:269
 msgid "[Living]"
 msgstr "[Vivanta]"
 
-#: ../gramps/gen/config.py:269
+#: ../gramps/gen/config.py:268
 msgid "Private Record"
 msgstr "Privata rikordo"
 
@@ -2081,7 +2087,7 @@ msgstr "Privata rikordo"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:330 ../gramps/gen/datehandler/_datestrings.py:79
+#: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
 msgid "|January"
 msgstr "Januaro"
@@ -3042,15 +3048,15 @@ msgstr "Aldonu gefilon al la familio"
 msgid "Remove child from family"
 msgstr "Forigu gefilon el la familio"
 
-#: ../gramps/gen/db/base.py:1912 ../gramps/gen/db/base.py:1916
+#: ../gramps/gen/db/base.py:1908 ../gramps/gen/db/base.py:1912
 msgid "Remove Family"
 msgstr "Forigu familion"
 
-#: ../gramps/gen/db/base.py:1958
+#: ../gramps/gen/db/base.py:1952
 msgid "Remove father from family"
 msgstr "Forigu la patron el la familio"
 
-#: ../gramps/gen/db/base.py:1960
+#: ../gramps/gen/db/base.py:1954
 msgid "Remove mother from family"
 msgstr "Forigu la patrinon el la familio"
 
@@ -3815,11 +3821,11 @@ msgid "Miscellaneous filters"
 msgstr "Diversaj filtriloj"
 
 #: ../gramps/gen/filters/rules/_rule.py:56 ../gramps/gui/glade/rule.glade:950
-#: ../gramps/plugins/view/geoclose.py:619
-#: ../gramps/plugins/view/geofamclose.py:808
-#: ../gramps/plugins/view/geofamily.py:534
-#: ../gramps/plugins/view/geomoves.py:679
-#: ../gramps/plugins/view/geoperson.py:556
+#: ../gramps/plugins/view/geoclose.py:621
+#: ../gramps/plugins/view/geofamclose.py:805
+#: ../gramps/plugins/view/geofamily.py:532
+#: ../gramps/plugins/view/geomoves.py:693
+#: ../gramps/plugins/view/geoperson.py:553
 msgid "No description"
 msgstr "Neniu priskribo"
 
@@ -4500,7 +4506,7 @@ msgstr "Famili-evento:"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:83
 #: ../gramps/gui/selectors/selectevent.py:67
 #: ../gramps/plugins/gramplet/events.py:95
-#: ../gramps/plugins/view/eventview.py:87
+#: ../gramps/plugins/view/eventview.py:85
 msgid "Main Participants"
 msgstr "Ĉefaj partoprenantoj"
 
@@ -6549,19 +6555,19 @@ msgstr "Adreso"
 #: ../gramps/gen/lib/reporef.py:110 ../gramps/gen/lib/src.py:133
 #: ../gramps/gen/lib/srcattribute.py:74 ../gramps/gen/lib/url.py:92
 #: ../gramps/gen/proxy/private.py:831
-#: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
-#: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:80
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:90
-#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:56
-#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:66
+#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:57
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/notetab.py:79
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:69
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:70
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:70
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
-#: ../gramps/gui/editors/editfamily.py:136
+#: ../gramps/gui/editors/editfamily.py:137
 #: ../gramps/gui/glade/editaddress.glade:297
 #: ../gramps/gui/glade/editattribute.glade:153
 #: ../gramps/gui/glade/editchildref.glade:180
@@ -6586,13 +6592,13 @@ msgstr "Adreso"
 #: ../gramps/gui/glade/editurl.glade:156
 #: ../gramps/plugins/importer/importprogen.glade:108
 #: ../gramps/plugins/importer/importprogen.glade:244
-#: ../gramps/plugins/lib/libpersonview.py:110
+#: ../gramps/plugins/lib/libpersonview.py:108
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/view/citationlistview.py:102
-#: ../gramps/plugins/view/citationtreeview.py:97
-#: ../gramps/plugins/view/eventview.py:84
+#: ../gramps/plugins/view/citationlistview.py:101
+#: ../gramps/plugins/view/citationtreeview.py:96
+#: ../gramps/plugins/view/eventview.py:82
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/mediaview.py:98 ../gramps/plugins/view/noteview.py:81
 #: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
@@ -6637,7 +6643,7 @@ msgstr "Citaĵoj"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:272
 #: ../gramps/plugins/textreport/tagreport.py:489
-#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
+#: ../gramps/plugins/view/noteview.py:109 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/basepage.py:1381
 #: ../gramps/plugins/webreport/basepage.py:2380
@@ -6705,10 +6711,10 @@ msgstr "Notoj"
 #: ../gramps/plugins/textreport/tagreport.py:588
 #: ../gramps/plugins/textreport/tagreport.py:833
 #: ../gramps/plugins/tool/sortevents.py:54
-#: ../gramps/plugins/view/citationlistview.py:100
-#: ../gramps/plugins/view/citationtreeview.py:95
-#: ../gramps/plugins/view/eventview.py:82
-#: ../gramps/plugins/view/mediaview.py:98
+#: ../gramps/plugins/view/citationlistview.py:99
+#: ../gramps/plugins/view/citationtreeview.py:94
+#: ../gramps/plugins/view/eventview.py:80
+#: ../gramps/plugins/view/mediaview.py:97
 #: ../gramps/plugins/webreport/basepage.py:777
 #: ../gramps/plugins/webreport/basepage.py:1024
 #: ../gramps/plugins/webreport/basepage.py:1061
@@ -6725,7 +6731,7 @@ msgstr "Dato"
 #: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
-#: ../gramps/plugins/view/geoplaces.py:602
+#: ../gramps/plugins/view/geoplaces.py:594
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1236
 #: ../gramps/plugins/webreport/basepage.py:2899
@@ -6737,7 +6743,7 @@ msgstr "Strato"
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:610
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
-#: ../gramps/plugins/view/geoplaces.py:599
+#: ../gramps/plugins/view/geoplaces.py:592
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1237
 #: ../gramps/plugins/webreport/basepage.py:2900
@@ -6749,7 +6755,7 @@ msgstr "Loko"
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:613
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
-#: ../gramps/plugins/view/geoplaces.py:650
+#: ../gramps/plugins/view/geoplaces.py:626
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1238
 #: ../gramps/plugins/webreport/basepage.py:2901
@@ -6761,8 +6767,8 @@ msgstr "Urbo"
 #: ../gramps/gen/lib/placetype.py:67
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:151
-#: ../gramps/plugins/view/geoplaces.py:632
+#: ../gramps/plugins/lib/maps/placeselection.py:148
+#: ../gramps/plugins/view/geoplaces.py:614
 #: ../gramps/plugins/webreport/basepage.py:1240
 #: ../gramps/plugins/webreport/basepage.py:2904
 #: ../gramps/plugins/webreport/basepage.py:2970
@@ -6773,8 +6779,8 @@ msgstr "Provinco"
 #: ../gramps/gen/lib/placetype.py:66
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:150
-#: ../gramps/plugins/view/geoplaces.py:629
+#: ../gramps/plugins/lib/maps/placeselection.py:147
+#: ../gramps/plugins/view/geoplaces.py:612
 msgid "State"
 msgstr "Ŝtato"
 
@@ -6783,8 +6789,8 @@ msgstr "Ŝtato"
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:149
-#: ../gramps/plugins/view/geoplaces.py:626
+#: ../gramps/plugins/lib/maps/placeselection.py:146
+#: ../gramps/plugins/view/geoplaces.py:610
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1242
 #: ../gramps/plugins/webreport/basepage.py:2909
@@ -6840,7 +6846,7 @@ msgstr "Valoro"
 #: ../gramps/gen/lib/srcmediatype.py:57 ../gramps/gen/lib/urltype.py:48
 #: ../gramps/gui/autocomp.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:74
-#: ../gramps/plugins/view/geoplaces.py:596
+#: ../gramps/plugins/view/geoplaces.py:590
 msgid "Custom"
 msgstr "Propra"
 
@@ -6863,7 +6869,7 @@ msgstr "Kasto"
 #: ../gramps/plugins/textreport/placereport.py:226
 #: ../gramps/plugins/textreport/placereport.py:303
 #: ../gramps/plugins/tool/sortevents.py:57
-#: ../gramps/plugins/view/eventview.py:79
+#: ../gramps/plugins/view/eventview.py:77
 #: ../gramps/plugins/webreport/basepage.py:779
 #: ../gramps/plugins/webreport/basepage.py:1027
 #: ../gramps/plugins/webreport/basepage.py:2455
@@ -6880,7 +6886,7 @@ msgstr "Identig-numero"
 msgid "National Origin"
 msgstr "Nacieco"
 
-#: ../gramps/gen/lib/attrtype.py:69 ../gramps/plugins/lib/libpersonview.py:108
+#: ../gramps/gen/lib/attrtype.py:69 ../gramps/plugins/lib/libpersonview.py:106
 msgid "Number of Children"
 msgstr "Gefilonombro"
 
@@ -7062,16 +7068,23 @@ msgstr "Paĝo"
 
 #: ../gramps/gen/lib/citation.py:112
 #: ../gramps/plugins/importer/importprogen.glade:261
-#: ../gramps/plugins/view/citationlistview.py:101
-#: ../gramps/plugins/view/citationtreeview.py:96
+#: ../gramps/plugins/view/citationlistview.py:100
+#: ../gramps/plugins/view/citationtreeview.py:95
 #: ../gramps/plugins/webreport/basepage.py:2588
 msgid "Confidence"
 msgstr "Konfido"
 
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
 #: ../gramps/gui/clipboard.py:770 ../gramps/gui/configure.py:661
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:91
+#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:56
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:66
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
-#: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:69
+#: ../gramps/gui/editors/editfamily.py:136 ../gramps/gui/editors/editlink.py:99
+#: ../gramps/gui/editors/editsource.py:86
 #: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -7107,7 +7120,7 @@ msgstr "Fonto"
 #: ../gramps/plugins/quickview/references.py:93
 #: ../gramps/plugins/textreport/tagreport.py:559
 #: ../gramps/plugins/tool/reorderids.glade:848
-#: ../gramps/plugins/view/mediaview.py:129
+#: ../gramps/plugins/view/mediaview.py:128
 #: ../gramps/plugins/view/view.gpr.py:82 ../gramps/plugins/view/view.gpr.py:90
 #: ../gramps/plugins/webreport/basepage.py:1743
 #: ../gramps/plugins/webreport/basepage.py:1812
@@ -7145,16 +7158,16 @@ msgstr "Laste modifita"
 #: ../gramps/gui/glade/editperson.glade:683
 #: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:527
-#: ../gramps/plugins/lib/libpersonview.py:111
+#: ../gramps/plugins/lib/libpersonview.py:109
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/indivcomplete.py:551
 #: ../gramps/plugins/tool/notrelated.py:129
-#: ../gramps/plugins/view/citationlistview.py:103
-#: ../gramps/plugins/view/citationtreeview.py:98
-#: ../gramps/plugins/view/eventview.py:85
+#: ../gramps/plugins/view/citationlistview.py:102
+#: ../gramps/plugins/view/citationtreeview.py:97
+#: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/view/mediaview.py:100
-#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:98
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:98
 #: ../gramps/plugins/view/sourceview.py:88
 #: ../gramps/plugins/webreport/basepage.py:2987
 #: ../gramps/plugins/webreport/event.py:432
@@ -7335,7 +7348,7 @@ msgstr "Evento"
 #: ../gramps/plugins/tool/removespaces.py:182
 #: ../gramps/plugins/tool/reorderids.glade:799
 #: ../gramps/plugins/tool/sortevents.py:58
-#: ../gramps/plugins/view/eventview.py:83
+#: ../gramps/plugins/view/eventview.py:81
 #: ../gramps/plugins/webreport/basepage.py:778
 #: ../gramps/plugins/webreport/basepage.py:1026
 #: ../gramps/plugins/webreport/basepage.py:1063
@@ -7413,7 +7426,7 @@ msgstr "Viveventoj"
 #: ../gramps/gui/configure.py:655
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:561 ../gramps/gui/editors/editlink.py:93
+#: ../gramps/gui/editors/editfamily.py:562 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/grampsgui.py:56
 #: ../gramps/plugins/export/exportcsv.py:506
@@ -7468,8 +7481,8 @@ msgstr "Loĝloko"
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gui/glade/mergedata.glade:523
 #: ../gramps/gui/glade/mergedata.glade:610
-#: ../gramps/plugins/lib/maps/placeselection.py:152
-#: ../gramps/plugins/lib/maps/placeselection.py:203
+#: ../gramps/plugins/lib/maps/placeselection.py:149
+#: ../gramps/plugins/lib/maps/placeselection.py:200
 msgid "Other"
 msgstr "Alia"
 
@@ -7576,7 +7589,7 @@ msgid "Nobility Title"
 msgstr "Nobeltitolo"
 
 #: ../gramps/gen/lib/eventtype.py:189
-#: ../gramps/plugins/lib/libpersonview.py:107
+#: ../gramps/plugins/lib/libpersonview.py:105
 msgid "Number of Marriages"
 msgstr "Ĝeedziĝnombro"
 
@@ -7951,7 +7964,7 @@ msgstr "Gefiloj"
 #: ../gramps/plugins/quickview/filterbyname.py:97
 #: ../gramps/plugins/quickview/filterbyname.py:122
 #: ../gramps/plugins/textreport/tagreport.py:324
-#: ../gramps/plugins/view/eventview.py:123
+#: ../gramps/plugins/view/eventview.py:121
 #: ../gramps/plugins/view/view.gpr.py:37 ../gramps/plugins/view/view.gpr.py:45
 #: ../gramps/plugins/webreport/basepage.py:1739
 #: ../gramps/plugins/webreport/basepage.py:1809
@@ -8029,8 +8042,8 @@ msgstr "Registrita partnereco"
 #: ../gramps/plugins/textreport/tagreport.py:666
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
-#: ../gramps/plugins/view/eventview.py:81
-#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/eventview.py:79
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/basepage.py:1060
 #: ../gramps/plugins/webreport/basepage.py:1379
@@ -8154,7 +8167,7 @@ msgid "Location"
 msgstr "Loko"
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
-#: ../gramps/plugins/view/geoplaces.py:647
+#: ../gramps/plugins/view/geoplaces.py:624
 msgid "Parish"
 msgstr "Paroko"
 
@@ -8180,7 +8193,7 @@ msgid "Media ref"
 msgstr "Aŭdvidaĵo-ref."
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
-#: ../gramps/plugins/view/geoplaces.py:638
+#: ../gramps/plugins/view/geoplaces.py:618
 msgid "Region"
 msgstr "Regiono"
 
@@ -8213,7 +8226,7 @@ msgstr "Regiono"
 #: ../gramps/plugins/gramplet/locations.py:85
 #: ../gramps/plugins/gramplet/placedetails.py:125
 #: ../gramps/plugins/importer/importcsv.py:242
-#: ../gramps/plugins/lib/libpersonview.py:98
+#: ../gramps/plugins/lib/libpersonview.py:96
 #: ../gramps/plugins/lib/libplaceview.py:85
 #: ../gramps/plugins/quickview/filterbyname.py:306
 #: ../gramps/plugins/textreport/indivcomplete.py:933
@@ -8280,7 +8293,7 @@ msgstr "Postantaŭnoma vorteto"
 #: ../gramps/plugins/textreport/tagreport.py:424
 #: ../gramps/plugins/textreport/tagreport.py:576
 #: ../gramps/plugins/textreport/tagreport.py:746
-#: ../gramps/plugins/view/mediaview.py:94
+#: ../gramps/plugins/view/mediaview.py:93
 #: ../gramps/plugins/view/sourceview.py:82
 #: ../gramps/plugins/webreport/basepage.py:3111
 msgid "Title"
@@ -8596,7 +8609,7 @@ msgstr "Persono"
 #: ../gramps/plugins/drawreport/statisticschart.py:344
 #: ../gramps/plugins/export/exportcsv.py:356
 #: ../gramps/plugins/importer/importcsv.py:172
-#: ../gramps/plugins/lib/libpersonview.py:100
+#: ../gramps/plugins/lib/libpersonview.py:98
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:934
 #: ../gramps/plugins/webreport/person.py:1637
@@ -8743,53 +8756,53 @@ msgstr "Lingvo"
 msgid "Place ref"
 msgstr "Lok-ref."
 
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:635
+#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:616
 #: ../gramps/plugins/webreport/basepage.py:2908
 msgid "Province"
 msgstr "Provinco"
 
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:641
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:620
 msgid "Department"
 msgstr "Departmento"
 
-#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:605
+#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:596
 msgid "Neighborhood"
 msgstr "Proksimeco"
 
-#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:644
+#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:622
 msgid "District"
 msgstr "Distrikto"
 
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:608
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:598
 msgid "Borough"
 msgstr "Urbodistrikto"
 
-#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:656
+#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:630
 msgid "Municipality"
 msgstr "Municipo"
 
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:653
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:628
 msgid "Town"
 msgstr "Urbo"
 
-#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:611
+#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:600
 msgid "Village"
 msgstr "Vilaĝo"
 
-#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:614
+#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:602
 msgid "Hamlet"
 msgstr "Vilaĝeto"
 
-#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:617
+#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:604
 msgid "Farm"
 msgstr "Farmo"
 
-#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:620
+#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:606
 msgid "Building"
 msgstr "Konstruaĵo"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
-#: ../gramps/plugins/view/geoplaces.py:623
+#: ../gramps/plugins/view/geoplaces.py:608
 #: ../gramps/plugins/webreport/basepage.py:3109
 #: ../gramps/plugins/webreport/source.py:169
 msgid "Number"
@@ -9109,9 +9122,9 @@ msgstr "Gepatro devus esti patroaŭ patrino"
 #: ../gramps/gen/merge/mergefamilyquery.py:103
 #: ../gramps/gen/merge/mergefamilyquery.py:114
 #: ../gramps/gen/merge/mergepersonquery.py:55
-#: ../gramps/gen/merge/test/merge_ref_test.py:1899
-#: ../gramps/gen/merge/test/merge_ref_test.py:1923
-#: ../gramps/gen/merge/test/merge_ref_test.py:1947
+#: ../gramps/gen/merge/test/merge_ref_test.py:2054
+#: ../gramps/gen/merge/test/merge_ref_test.py:2078
+#: ../gramps/gen/merge/test/merge_ref_test.py:2102
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -9140,7 +9153,7 @@ msgstr ""
 "Oni ne povas kunfandi geedzoj. Por kunfandi ĉi tiujn personojn, oni devas "
 "unue rompi la parencecon inter ili."
 
-#: ../gramps/gen/merge/mergepersonquery.py:119
+#: ../gramps/gen/merge/mergepersonquery.py:121
 msgid "Merge Person"
 msgstr "Kunfandu personon"
 
@@ -9154,7 +9167,7 @@ msgstr "Kunfandu lokojn"
 msgid "Merge Repositories"
 msgstr "Kunfandu deponejojn"
 
-#: ../gramps/gen/merge/mergesourcequery.py:62
+#: ../gramps/gen/merge/mergesourcequery.py:61
 msgid "Merge Source"
 msgstr "Kunfandu fonton"
 
@@ -11367,8 +11380,8 @@ msgstr "Ŝovu kaj demetu la kolumnojn por ŝanĝi la ordigon"
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1973
 #: ../gramps/gui/configure.py:1997 ../gramps/gui/configure.py:2023
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1787
-#: ../gramps/plugins/lib/maps/geography.py:1022
-#: ../gramps/plugins/lib/maps/geography.py:1362
+#: ../gramps/plugins/lib/maps/geography.py:1041
+#: ../gramps/plugins/lib/maps/geography.py:1377
 msgid "_Apply"
 msgstr "_Apliku"
 
@@ -11415,7 +11428,7 @@ msgstr "Montru nomredaktilon"
 #: ../gramps/gui/viewmanager.py:1651 ../gramps/gui/views/bookmarks.py:298
 #: ../gramps/gui/views/tags.py:495 ../gramps/gui/widgets/grampletbar.py:657
 #: ../gramps/gui/widgets/grampletpane.py:239
-#: ../gramps/plugins/lib/maps/placeselection.py:120
+#: ../gramps/plugins/lib/maps/placeselection.py:117
 #: ../gramps/plugins/tool/dumpgenderstats.py:85
 msgid "_Close"
 msgstr "_Fermu"
@@ -11784,12 +11797,12 @@ msgstr "Ekzemplo"
 #: ../gramps/gui/configure.py:1074
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:147
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:314
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:316
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:129
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:122
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
-#: ../gramps/gui/editors/editfamily.py:195 ../gramps/gui/grampsgui.py:56
+#: ../gramps/gui/editors/editfamily.py:196 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/plug/report/_bookdialog.py:665 ../gramps/gui/views/tags.py:487
 #: ../gramps/gui/widgets/fanchart.py:2022
 #: ../gramps/gui/widgets/fanchart.py:2064
@@ -11800,7 +11813,7 @@ msgstr "_Aldonu"
 #: ../gramps/gui/configure.py:1077
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:149
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:155
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:315
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:317
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:131
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:123
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:130
@@ -11819,7 +11832,7 @@ msgstr "_Redaktu"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:132
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:124
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
-#: ../gramps/gui/editors/editfamily.py:198
+#: ../gramps/gui/editors/editfamily.py:199
 #: ../gramps/gui/plug/report/_bookdialog.py:634
 #: ../gramps/gui/views/bookmarks.py:294 ../gramps/gui/views/tags.py:489
 msgid "_Remove"
@@ -12414,12 +12427,12 @@ msgstr "Elektu aŭdvidaĵan dosierujon"
 #: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1786 ../gramps/gui/views/listview.py:1068
+#: ../gramps/gui/viewmanager.py:1786 ../gramps/gui/views/listview.py:1151
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/tags.py:711
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
-#: ../gramps/plugins/lib/maps/geography.py:1021
-#: ../gramps/plugins/lib/maps/geography.py:1361
+#: ../gramps/plugins/lib/maps/geography.py:1040
+#: ../gramps/plugins/lib/maps/geography.py:1376
 #: ../gramps/plugins/tool/check.py:777 ../gramps/plugins/tool/eventcmp.py:398
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:327
@@ -12956,12 +12969,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dialog.py:434 ../gramps/gui/dialog.py:516
+#: ../gramps/gui/dialog.py:434 ../gramps/gui/dialog.py:534
 #: ../gramps/gui/utils.py:309
 msgid "Attempt to force closing the dialog"
 msgstr "Provo perforte fermi la dialogon"
 
-#: ../gramps/gui/dialog.py:435 ../gramps/gui/dialog.py:517
+#: ../gramps/gui/dialog.py:435 ../gramps/gui/dialog.py:535
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -13125,7 +13138,7 @@ msgstr "Movu malsupren la elektitan adreson"
 msgid "Postal"
 msgstr "Poŝtkodo"
 
-#: ../gramps/gui/editors/displaytabs/addrembedlist.py:84
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:85
 msgid "_Addresses"
 msgstr "_Adresoj"
 
@@ -13154,7 +13167,7 @@ msgstr "Movu supren la elektitan atributon"
 msgid "Move the selected attribute downwards"
 msgstr "Movu malsupren la elektitan atributon"
 
-#: ../gramps/gui/editors/displaytabs/attrembedlist.py:75
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:76
 msgid "_Attributes"
 msgstr "_Atributoj"
@@ -13192,18 +13205,18 @@ msgstr "_Atributoj"
 #: ../gramps/gui/views/bookmarks.py:281
 #: ../gramps/gui/views/navigationview.py:344
 #: ../gramps/plugins/gramplet/locations.py:88
-#: ../gramps/plugins/lib/libpersonview.py:99
+#: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/lib/libplaceview.py:86
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:199
 #: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:575
-#: ../gramps/plugins/view/citationlistview.py:99
-#: ../gramps/plugins/view/citationtreeview.py:94
-#: ../gramps/plugins/view/eventview.py:80
+#: ../gramps/plugins/view/citationlistview.py:98
+#: ../gramps/plugins/view/citationtreeview.py:93
+#: ../gramps/plugins/view/eventview.py:78
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/mediaview.py:94 ../gramps/plugins/view/noteview.py:79
 #: ../gramps/plugins/view/relview.py:729 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
@@ -13289,7 +13302,7 @@ msgid "Remove the existing citation"
 msgstr "Forigu la ekzistantan citaĵon"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
-#: ../gramps/plugins/view/citationlistview.py:127
+#: ../gramps/plugins/view/citationlistview.py:126
 msgid "Edit the selected citation"
 msgstr "Redaktu la elektitan citaĵon"
 
@@ -13329,15 +13342,15 @@ msgstr "_Fontocitaĵoj"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:186
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:260
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:281
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:267
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:269
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:334
-#: ../gramps/plugins/view/citationtreeview.py:590
-#: ../gramps/plugins/view/citationtreeview.py:633
+#: ../gramps/plugins/view/citationtreeview.py:589
+#: ../gramps/plugins/view/citationtreeview.py:610
 msgid "Cannot share this reference"
 msgstr "Ne eblas kunhavigi ĉi tiun referencon"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:196
-#: ../gramps/plugins/view/citationtreeview.py:641
+#: ../gramps/plugins/view/citationtreeview.py:618
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -13380,12 +13393,12 @@ msgstr "Movu malsupren la elektitan eventon"
 msgid "Role"
 msgstr "Rolo"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:98
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:99
 msgid "_Events"
 msgstr "_Eventoj"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:247
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:348
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:249
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:350
 msgid ""
 "This event reference cannot be edited at this time. Either the associated "
 "event is already being edited or another event reference that is associated "
@@ -13398,8 +13411,8 @@ msgstr ""
 "\n"
 "Por redakti la eventreferencon necesas fermi la eventon."
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:281
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:347
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:283
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:349
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:355
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 #: ../gramps/plugins/drawreport/ancestortree.py:1103
@@ -13407,11 +13420,11 @@ msgstr ""
 msgid "Cannot edit this reference"
 msgstr "Ne eblas redakti ĉi tiun referencon"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:324
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:326
 msgid "Cannot change Person"
 msgstr "Ne eblas ŝanĝi personon"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:325
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:327
 msgid "You cannot change Person events in the Family Editor"
 msgstr "Ne eblas ŝanĝi personeventojn en la famili-redaktilo"
 
@@ -13432,7 +13445,7 @@ msgid "_View"
 msgstr "_Vido"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
-#: ../gramps/plugins/view/mediaview.py:402
+#: ../gramps/plugins/view/mediaview.py:401
 msgid "Open Containing _Folder"
 msgstr "Malfermu la entendosierujon"
 
@@ -13461,7 +13474,7 @@ msgstr ""
 "Por redakti ĉi tiun aŭdvidaĵan referencon necesas fermi la aŭdvideanobjekton."
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:578
-#: ../gramps/plugins/view/mediaview.py:195
+#: ../gramps/plugins/view/mediaview.py:194
 msgid "Drag Media Object"
 msgstr "Trenu aŭdvidean objekton"
 
@@ -13485,7 +13498,7 @@ msgstr "Movu supren la elektitan EJKSLT-ceremonion"
 msgid "Move the selected LDS ordinance downwards"
 msgstr "Movu malsupren la elektitan EJKSLT-ceremonion"
 
-#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:71
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:72
 msgid "_LDS"
 msgstr "_Mormonoj"
 
@@ -13561,7 +13574,7 @@ msgid "Remove the existing note"
 msgstr "Forigu la ekzistantan noton"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:68
-#: ../gramps/plugins/view/noteview.py:94
+#: ../gramps/plugins/view/noteview.py:93
 msgid "Edit the selected note"
 msgstr "Redaktu la elektitan noton"
 
@@ -13583,7 +13596,7 @@ msgstr "Movu malsupren la elektitan noton"
 #: ../gramps/gui/glade/editmediaref.glade:190
 #: ../gramps/gui/glade/editmediaref.glade:503
 #: ../gramps/gui/selectors/selectnote.py:71
-#: ../gramps/plugins/view/noteview.py:79
+#: ../gramps/plugins/view/noteview.py:78
 msgid "Preview"
 msgstr "Antaŭrigardo"
 
@@ -13648,11 +13661,11 @@ msgstr "Movu supren la elektitan asocion"
 msgid "Move the selected association downwards"
 msgstr "Movu malsupren la elektitan asocion"
 
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:76
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:77
 msgid "_Associations"
 msgstr "_Asocioj"
 
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:138
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:139
 #: ../gramps/plugins/lib/libprogen.py:1469
 msgid "Godfather"
 msgstr "Baptopatro"
@@ -13913,11 +13926,6 @@ msgstr "Aldonu citaĵon (%s)"
 msgid "Edit Citation (%s)"
 msgstr "Redaktu citaĵon (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:376
-#, python-format
-msgid "Delete Citation (%s)"
-msgstr "Forigu citaĵon (%s)"
-
 #: ../gramps/gui/editors/editdate.py:77 ../gramps/gui/editors/editdate.py:86
 msgid "Regular"
 msgstr "Regula"
@@ -13985,15 +13993,15 @@ msgid "New Event"
 msgstr "Nova evento"
 
 #: ../gramps/gui/editors/editevent.py:230
-#: ../gramps/plugins/view/geoclose.py:630
-#: ../gramps/plugins/view/geoevents.py:400
-#: ../gramps/plugins/view/geoevents.py:433
-#: ../gramps/plugins/view/geofamclose.py:818
-#: ../gramps/plugins/view/geofamily.py:487
-#: ../gramps/plugins/view/geomoves.py:689
-#: ../gramps/plugins/view/geoperson.py:506
-#: ../gramps/plugins/view/geoperson.py:526
-#: ../gramps/plugins/view/geoperson.py:566
+#: ../gramps/plugins/view/geoclose.py:632
+#: ../gramps/plugins/view/geoevents.py:398
+#: ../gramps/plugins/view/geoevents.py:431
+#: ../gramps/plugins/view/geofamclose.py:815
+#: ../gramps/plugins/view/geofamily.py:485
+#: ../gramps/plugins/view/geomoves.py:703
+#: ../gramps/plugins/view/geoperson.py:503
+#: ../gramps/plugins/view/geoperson.py:523
+#: ../gramps/plugins/view/geoperson.py:563
 msgid "Edit Event"
 msgstr "Redaktu eventon"
 
@@ -14026,11 +14034,6 @@ msgstr "Aldonu eventon (%s)"
 #, python-format
 msgid "Edit Event (%s)"
 msgstr "Redaktu eventon (%s)"
-
-#: ../gramps/gui/editors/editevent.py:338
-#, python-format
-msgid "Delete Event (%s)"
-msgstr "Forigu eventon (%s)"
 
 #: ../gramps/gui/editors/editeventref.py:57
 msgctxt "manual"
@@ -14103,7 +14106,7 @@ msgstr "Patrina"
 #: ../gramps/gui/selectors/selectperson.py:93
 #: ../gramps/plugins/gramplet/children.py:94
 #: ../gramps/plugins/gramplet/children.py:193
-#: ../gramps/plugins/lib/libpersonview.py:101
+#: ../gramps/plugins/lib/libpersonview.py:99
 #: ../gramps/plugins/quickview/filterbyname.py:154
 #: ../gramps/plugins/quickview/filterbyname.py:234
 #: ../gramps/plugins/quickview/filterbyname.py:282
@@ -14124,7 +14127,7 @@ msgstr "Naskiĝdato"
 #: ../gramps/gui/selectors/selectperson.py:95
 #: ../gramps/plugins/gramplet/children.py:96
 #: ../gramps/plugins/gramplet/children.py:195
-#: ../gramps/plugins/lib/libpersonview.py:103
+#: ../gramps/plugins/lib/libpersonview.py:101
 #: ../gramps/plugins/quickview/lineage.py:61
 #: ../gramps/plugins/quickview/lineage.py:93
 #: ../gramps/plugins/webreport/basepage.py:476
@@ -14133,44 +14136,44 @@ msgstr "Mortodato"
 
 #: ../gramps/gui/editors/editfamily.py:131
 #: ../gramps/gui/selectors/selectperson.py:94
-#: ../gramps/plugins/lib/libpersonview.py:102
+#: ../gramps/plugins/lib/libpersonview.py:100
 msgid "Birth Place"
 msgstr "Naskiĝloko"
 
 #: ../gramps/gui/editors/editfamily.py:132
 #: ../gramps/gui/selectors/selectperson.py:96
-#: ../gramps/plugins/lib/libpersonview.py:104
+#: ../gramps/plugins/lib/libpersonview.py:102
 msgid "Death Place"
 msgstr "Mortoloko"
 
-#: ../gramps/gui/editors/editfamily.py:145
+#: ../gramps/gui/editors/editfamily.py:146
 msgid "Chil_dren"
 msgstr "Id_oj"
 
-#: ../gramps/gui/editors/editfamily.py:194
+#: ../gramps/gui/editors/editfamily.py:195
 msgid "Edit child"
 msgstr "Redaktu gefilon"
 
-#: ../gramps/gui/editors/editfamily.py:196
+#: ../gramps/gui/editors/editfamily.py:197
 msgid "Add an existing child"
 msgstr "Aldonu jam ekzistantan gefilon"
 
-#: ../gramps/gui/editors/editfamily.py:197
+#: ../gramps/gui/editors/editfamily.py:198
 msgid "Edit relationship"
 msgstr "Redaktu parencecon"
 
-#: ../gramps/gui/editors/editfamily.py:267
-#: ../gramps/gui/editors/editfamily.py:282
+#: ../gramps/gui/editors/editfamily.py:268
+#: ../gramps/gui/editors/editfamily.py:283
 #: ../gramps/gui/selectors/selectperson.py:67
 #: ../gramps/plugins/view/relview.py:1750
 msgid "Select Child"
 msgstr "Elektu gefilon"
 
-#: ../gramps/gui/editors/editfamily.py:417
+#: ../gramps/gui/editors/editfamily.py:418
 msgid "Adding parents to a person"
 msgstr "Aldonas gepatrojn al persono"
 
-#: ../gramps/gui/editors/editfamily.py:418
+#: ../gramps/gui/editors/editfamily.py:419
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -14182,11 +14185,11 @@ msgstr ""
 "kiam oni kreas novan familion. La ceteraj kampoj fariĝos disponeblaj kiam "
 "oni provos elekti gepatron."
 
-#: ../gramps/gui/editors/editfamily.py:523
+#: ../gramps/gui/editors/editfamily.py:524
 msgid "Family has changed"
 msgstr "Familio estis modifita"
 
-#: ../gramps/gui/editors/editfamily.py:524
+#: ../gramps/gui/editors/editfamily.py:525
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -14201,62 +14204,62 @@ msgstr ""
 "Por certiĝi ke la informo montrita estas plu ĝusta, la montritaj datumoj "
 "estis aktualigitaj. Kelkaj modifoj kiujn oni faris, eble perdiĝis."
 
-#: ../gramps/gui/editors/editfamily.py:529
+#: ../gramps/gui/editors/editfamily.py:530
 #: ../gramps/plugins/importer/importcsv.py:230
-#: ../gramps/plugins/view/familyview.py:387
+#: ../gramps/plugins/view/familyview.py:370
 msgid "family"
 msgstr "familio"
 
-#: ../gramps/gui/editors/editfamily.py:560
-#: ../gramps/gui/editors/editfamily.py:563
+#: ../gramps/gui/editors/editfamily.py:561
+#: ../gramps/gui/editors/editfamily.py:564
 msgid "New Family"
 msgstr "Nova familio"
 
-#: ../gramps/gui/editors/editfamily.py:567
-#: ../gramps/gui/editors/editfamily.py:1185
-#: ../gramps/plugins/view/geofamily.py:479
+#: ../gramps/gui/editors/editfamily.py:568
+#: ../gramps/gui/editors/editfamily.py:1186
+#: ../gramps/plugins/view/geofamily.py:477
 msgid "Edit Family"
 msgstr "Redaktu familion"
 
-#: ../gramps/gui/editors/editfamily.py:598
+#: ../gramps/gui/editors/editfamily.py:599
 msgid "Select a person as the mother"
 msgstr "Elektu personon kiel patrinon"
 
-#: ../gramps/gui/editors/editfamily.py:599
+#: ../gramps/gui/editors/editfamily.py:600
 msgid "Add a new person as the mother"
 msgstr "Aldonu novan personon kiel patrinon"
 
-#: ../gramps/gui/editors/editfamily.py:600
+#: ../gramps/gui/editors/editfamily.py:601
 msgid "Remove the person as the mother"
 msgstr "Forigu la personon disde la rolo de patrino"
 
-#: ../gramps/gui/editors/editfamily.py:613
+#: ../gramps/gui/editors/editfamily.py:614
 msgid "Select a person as the father"
 msgstr "Elektu personon kiel patron"
 
-#: ../gramps/gui/editors/editfamily.py:614
+#: ../gramps/gui/editors/editfamily.py:615
 msgid "Add a new person as the father"
 msgstr "Aldonu novan personon kiel patron"
 
-#: ../gramps/gui/editors/editfamily.py:615
+#: ../gramps/gui/editors/editfamily.py:616
 msgid "Remove the person as the father"
 msgstr "Forigu la personon disde la rolo de patro"
 
-#: ../gramps/gui/editors/editfamily.py:885
+#: ../gramps/gui/editors/editfamily.py:886
 #: ../gramps/gui/selectors/selectperson.py:65
 msgid "Select Mother"
 msgstr "Elektu patrinon"
 
-#: ../gramps/gui/editors/editfamily.py:930
+#: ../gramps/gui/editors/editfamily.py:931
 #: ../gramps/gui/selectors/selectperson.py:63
 msgid "Select Father"
 msgstr "Elektu patron"
 
-#: ../gramps/gui/editors/editfamily.py:954
+#: ../gramps/gui/editors/editfamily.py:955
 msgid "Duplicate Family"
 msgstr "Duobligu familion"
 
-#: ../gramps/gui/editors/editfamily.py:955
+#: ../gramps/gui/editors/editfamily.py:956
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -14267,8 +14270,8 @@ msgstr ""
 "tiu fenestro, kaj elekti ekzistantan familion"
 
 #. Translators: needed for French, ignore otherwise
-#: ../gramps/gui/editors/editfamily.py:996
-#: ../gramps/gui/editors/editfamily.py:1003
+#: ../gramps/gui/editors/editfamily.py:997
+#: ../gramps/gui/editors/editfamily.py:1004
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 #: ../gramps/gui/plug/report/_graphreportdialog.py:154
@@ -14304,44 +14307,44 @@ msgstr ""
 msgid "%s:"
 msgstr "%s:"
 
-#: ../gramps/gui/editors/editfamily.py:1005
+#: ../gramps/gui/editors/editfamily.py:1006
 #, python-format
 msgid "Edit %s"
 msgstr "Redaktu %s"
 
-#: ../gramps/gui/editors/editfamily.py:1114
+#: ../gramps/gui/editors/editfamily.py:1115
 msgid "A father cannot be his own child"
 msgstr "Patro ne povas estis sia filo"
 
-#: ../gramps/gui/editors/editfamily.py:1115
+#: ../gramps/gui/editors/editfamily.py:1116
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s estas listigita kaj kiel patro kaj kiel filo de la familio"
 
-#: ../gramps/gui/editors/editfamily.py:1125
+#: ../gramps/gui/editors/editfamily.py:1126
 msgid "A mother cannot be her own child"
 msgstr "Patrino ne povas estis sia filino"
 
-#: ../gramps/gui/editors/editfamily.py:1126
+#: ../gramps/gui/editors/editfamily.py:1127
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s estas listigita kaj kiel patrino kaj kiel filino de la familio"
 
-#: ../gramps/gui/editors/editfamily.py:1134
+#: ../gramps/gui/editors/editfamily.py:1135
 msgid "Cannot save family"
 msgstr "Ne eblas konservi familion"
 
-#: ../gramps/gui/editors/editfamily.py:1135
+#: ../gramps/gui/editors/editfamily.py:1136
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "Ne ekzistas datumoj por ĉi tiu familio. Enigu datumojn aŭ rezignu pri "
 "redaktado."
 
-#: ../gramps/gui/editors/editfamily.py:1143
+#: ../gramps/gui/editors/editfamily.py:1144
 msgid "Cannot save family. ID already exists."
 msgstr "Ne eblas konservi familion. ID jam ekzistanta"
 
-#: ../gramps/gui/editors/editfamily.py:1144
+#: ../gramps/gui/editors/editfamily.py:1145
 #: ../gramps/gui/editors/editnote.py:328
 #: ../gramps/gui/editors/editreference.py:295
 #, python-format
@@ -14354,7 +14357,7 @@ msgstr ""
 "valoro jam estas utiligita. Enigu malsaman ID aŭ lasu malplena por akiri la "
 "venontan disponeblan ID-valoron."
 
-#: ../gramps/gui/editors/editfamily.py:1159
+#: ../gramps/gui/editors/editfamily.py:1160
 msgid "Add Family"
 msgstr "Aldonu familion"
 
@@ -14462,10 +14465,6 @@ msgstr "Aldonu aŭdvidean objekton (%s)"
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Redaktu aŭdvidean objekton (%s)"
-
-#: ../gramps/gui/editors/editmedia.py:372
-msgid "Remove Media Object"
-msgstr "Forigu aŭdvidean objekton"
 
 #: ../gramps/gui/editors/editmediaref.py:72
 msgctxt "manual"
@@ -14599,11 +14598,6 @@ msgstr "Ne eblas konservi la noton. ID jam ekzistas."
 msgid "Add Note"
 msgstr "Aldonu noton"
 
-#: ../gramps/gui/editors/editnote.py:361
-#, python-format
-msgid "Delete Note (%s)"
-msgstr "Forigu noton (%s)"
-
 #: ../gramps/gui/editors/editperson.py:157
 #, python-format
 msgid "Person: %(name)s"
@@ -14624,13 +14618,13 @@ msgid "Editing_information_about_people"
 msgstr "Redaktado_de_informoj_pri_la_personoj"
 
 #: ../gramps/gui/editors/editperson.py:602
-#: ../gramps/plugins/view/geofamily.py:483
+#: ../gramps/plugins/view/geofamily.py:481
 msgid "Edit Person"
 msgstr "Redaktu personon"
 
 #: ../gramps/gui/editors/editperson.py:645
-#: ../gramps/plugins/view/mediaview.py:386
-#: ../gramps/plugins/view/mediaview.py:402
+#: ../gramps/plugins/view/mediaview.py:385
+#: ../gramps/plugins/view/mediaview.py:401
 msgid "View"
 msgstr "Montru"
 
@@ -14773,9 +14767,9 @@ msgid ""
 msgstr "Nevalida longitudo (syntax: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:256
-#: ../gramps/plugins/lib/maps/geography.py:916
-#: ../gramps/plugins/view/geoplaces.py:499
-#: ../gramps/plugins/view/geoplaces.py:524
+#: ../gramps/plugins/lib/maps/geography.py:935
+#: ../gramps/plugins/view/geoplaces.py:495
+#: ../gramps/plugins/view/geoplaces.py:520
 msgid "Edit Place"
 msgstr "Redaktu lokon"
 
@@ -14802,11 +14796,6 @@ msgstr "Aldonu lokon (%s)"
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Redaktu lokon (%s)"
-
-#: ../gramps/gui/editors/editplace.py:401
-#, python-format
-msgid "Delete Place (%s)"
-msgstr "Forigu lokon (%s)"
 
 #: ../gramps/gui/editors/editplaceformat.py:49
 #, fuzzy
@@ -14926,11 +14915,6 @@ msgstr "Aldonu deponejon (%s)"
 msgid "Edit Repository (%s)"
 msgstr "Redaktu deponejon (%s)"
 
-#: ../gramps/gui/editors/editrepository.py:222
-#, python-format
-msgid "Delete Repository (%s)"
-msgstr "Forigu deponejon (%s)"
-
 #: ../gramps/gui/editors/editsource.py:64
 msgctxt "manual"
 msgid "New_Source_dialog"
@@ -14967,11 +14951,6 @@ msgstr "Aldonu fonton (%s)"
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Redaktu fonton (%s)"
-
-#: ../gramps/gui/editors/editsource.py:243
-#, python-format
-msgid "Delete Source (%s)"
-msgstr "Forigu fonton (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
 msgctxt "manual"
@@ -15241,8 +15220,8 @@ msgid "Select an existing source"
 msgstr "Elektu ekzistantan fonton"
 
 #: ../gramps/gui/editors/objectentries.py:346
-#: ../gramps/plugins/view/citationlistview.py:125
-#: ../gramps/plugins/view/citationtreeview.py:122
+#: ../gramps/plugins/view/citationlistview.py:124
+#: ../gramps/plugins/view/citationtreeview.py:121
 #: ../gramps/plugins/view/sourceview.py:98
 msgid "Add a new source"
 msgstr "Aldonu novan fonton"
@@ -15271,7 +15250,7 @@ msgid "Select an existing media object"
 msgstr "Elektu ekzistantan aŭdvidean objekton"
 
 #: ../gramps/gui/editors/objectentries.py:392
-#: ../gramps/plugins/view/mediaview.py:112
+#: ../gramps/plugins/view/mediaview.py:111
 msgid "Add a new media object"
 msgstr "Aldonu aŭdvidean objekton"
 
@@ -15294,7 +15273,7 @@ msgid "Select an existing note"
 msgstr "Elektu ekzistantan noton"
 
 #: ../gramps/gui/editors/objectentries.py:439
-#: ../gramps/plugins/view/noteview.py:93
+#: ../gramps/plugins/view/noteview.py:92
 msgid "Add a new note"
 msgstr "Aldonu novan noton"
 
@@ -15332,8 +15311,8 @@ msgstr "%s ne estas"
 msgid "%s does not contain"
 msgstr "%s ne entenas"
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1202
-#: ../gramps/gui/views/listview.py:1222 ../gramps/plugins/gramplet/leak.py:193
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1279
+#: ../gramps/gui/views/listview.py:1299 ../gramps/plugins/gramplet/leak.py:193
 #: ../gramps/plugins/gramplet/leak.py:200
 msgid "Updating display..."
 msgstr "Aktualigas la vidigon..."
@@ -15355,7 +15334,7 @@ msgstr "Rotacio:"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
 #: ../gramps/plugins/gramplet/citations.py:87
 #: ../gramps/plugins/textreport/tagreport.py:827
-#: ../gramps/plugins/view/citationlistview.py:98
+#: ../gramps/plugins/view/citationlistview.py:97
 msgid "Volume/Page"
 msgstr "Volumo/Paĝo"
 
@@ -15507,30 +15486,31 @@ msgid "Configure currently selected item"
 msgstr "Agordu la elektitan elementon"
 
 #: ../gramps/gui/glade/book.glade:540 ../gramps/gui/glade/dbman.glade:266
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/gui/views/listview.py:561
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -15671,7 +15651,7 @@ msgstr ""
 msgid "Cancel the rest of the operations"
 msgstr "Nuligu la restantajn operaciojn"
 
-#: ../gramps/gui/glade/dialog.glade:433 ../gramps/gui/views/listview.py:572
+#: ../gramps/gui/glade/dialog.glade:433 ../gramps/gui/views/listview.py:666
 #: ../gramps/plugins/tool/reorderids.glade:21
 msgid "_No"
 msgstr "_Ne"
@@ -15681,7 +15661,7 @@ msgstr "_Ne"
 msgid "Do not apply the operation to this item"
 msgstr "Ne apliku la operacion al ĉi tiu elemento"
 
-#: ../gramps/gui/glade/dialog.glade:449 ../gramps/gui/views/listview.py:572
+#: ../gramps/gui/glade/dialog.glade:449 ../gramps/gui/views/listview.py:666
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr "_Jes"
@@ -15718,7 +15698,7 @@ msgstr "Fermu _ne konservante"
 
 #: ../gramps/gui/glade/dialog.glade:873
 #: ../gramps/gui/plug/report/_bookdialog.py:637
-#: ../gramps/gui/views/listview.py:1069
+#: ../gramps/gui/views/listview.py:1152
 #: ../gramps/gui/widgets/grampletpane.py:590
 #: ../gramps/plugins/tool/eventcmp.py:399
 msgid "_Save"
@@ -17060,6 +17040,7 @@ msgid "Click to delete gramplet from view"
 msgstr "Alklaku por forigi gramplet el la vido"
 
 #: ../gramps/gui/glade/grampletpane.glade:144
+#: ../gramps/gui/views/listview.py:591
 msgid "Delete"
 msgstr "Forigu"
 
@@ -17260,7 +17241,7 @@ msgid "Note 2"
 msgstr "Noto 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1073
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1156
 msgid "Format:"
 msgstr "Formo:"
 
@@ -17596,7 +17577,7 @@ msgid "Alignment"
 msgstr "Aranĝo"
 
 #: ../gramps/gui/glade/styleeditor.glade:586
-#: ../gramps/plugins/drawreport/fanchart.py:706
+#: ../gramps/plugins/drawreport/fanchart.py:730
 msgid "Background color"
 msgstr "Fonkoloro"
 
@@ -17763,35 +17744,35 @@ msgid "_Display on startup"
 msgstr "Mon_tru ĉe la startigo"
 
 #: ../gramps/gui/glade/tipofday.glade:102
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:291
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:181
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:323
-#: ../gramps/plugins/view/eventview.py:196
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:180
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:322
+#: ../gramps/plugins/view/eventview.py:194
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:154
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:67
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:67
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:70
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:261
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:154
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:260
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:658
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:167
@@ -18340,7 +18321,7 @@ msgstr "kaj "
 
 #: ../gramps/gui/merge/mergefamily.py:227
 #: ../gramps/gui/merge/mergeperson.py:351
-#: ../gramps/plugins/lib/libpersonview.py:559
+#: ../gramps/plugins/lib/libpersonview.py:492
 msgid "Cannot merge people"
 msgstr "Ne eblas kunfandi personojn"
 
@@ -18411,7 +18392,7 @@ msgstr "Geedzoj"
 #: ../gramps/gui/selectors/selectperson.py:97
 #: ../gramps/gui/widgets/reorderfam.py:102
 #: ../gramps/plugins/gramplet/children.py:98
-#: ../gramps/plugins/lib/libpersonview.py:105
+#: ../gramps/plugins/lib/libpersonview.py:103
 #: ../gramps/plugins/textreport/familygroup.py:566
 #: ../gramps/plugins/view/relview.py:1578
 msgid "Spouse"
@@ -19238,7 +19219,7 @@ msgstr "Stilo"
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 #: ../gramps/plugins/drawreport/calendarreport.py:463
 #: ../gramps/plugins/drawreport/descendtree.py:1579
-#: ../gramps/plugins/drawreport/fanchart.py:687
+#: ../gramps/plugins/drawreport/fanchart.py:710
 #: ../gramps/plugins/drawreport/statisticschart.py:1008
 #: ../gramps/plugins/drawreport/timeline.py:414
 #: ../gramps/plugins/graph/gvfamilylines.py:121
@@ -19467,7 +19448,7 @@ msgid "Select Source or Citation"
 msgstr "Elektu fonton aŭ citaĵon"
 
 #: ../gramps/gui/selectors/selectcitation.py:71
-#: ../gramps/plugins/view/citationtreeview.py:93
+#: ../gramps/plugins/view/citationtreeview.py:92
 msgid "Source: Title or Citation: Volume/Page"
 msgstr "Fonto: Titolo aŭ Citaĵo: Volumo/Paĝo"
 
@@ -19664,7 +19645,7 @@ msgstr "Eraro el ekstera programo"
 msgid "File %s does not exist"
 msgstr "La dosiero %s ne ekzistas"
 
-#: ../gramps/gui/utils.py:605
+#: ../gramps/gui/utils.py:607
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -19681,7 +19662,7 @@ msgstr ""
 "Por redakti la citaĵon, fermu la fontredaktikon kaj malfermu redaktilon por "
 "la sola citaĵo."
 
-#: ../gramps/gui/utils.py:618
+#: ../gramps/gui/utils.py:620
 msgid "Cannot open new citation editor"
 msgstr "Ne eblas malfermi novan citaĵoredaktilon"
 
@@ -19872,22 +19853,22 @@ msgstr "Legosignoj"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
-#: ../gramps/plugins/lib/libpersonview.py:205
+#: ../gramps/plugins/lib/libpersonview.py:203
 #: ../gramps/plugins/lib/libplaceview.py:290
-#: ../gramps/plugins/view/citationlistview.py:180
-#: ../gramps/plugins/view/citationtreeview.py:322
-#: ../gramps/plugins/view/eventview.py:195
+#: ../gramps/plugins/view/citationlistview.py:179
+#: ../gramps/plugins/view/citationtreeview.py:321
+#: ../gramps/plugins/view/eventview.py:193
 #: ../gramps/plugins/view/familyview.py:153
 #: ../gramps/plugins/view/fanchartview.py:183
-#: ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geoclose.py:109
 #: ../gramps/plugins/view/geoevents.py:100
-#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geofamclose.py:107
 #: ../gramps/plugins/view/geofamily.py:100
-#: ../gramps/plugins/view/geomoves.py:107
+#: ../gramps/plugins/view/geomoves.py:109
 #: ../gramps/plugins/view/geoperson.py:108
 #: ../gramps/plugins/view/geoplaces.py:103
-#: ../gramps/plugins/view/mediaview.py:260
-#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/mediaview.py:259
+#: ../gramps/plugins/view/noteview.py:152
 #: ../gramps/plugins/view/pedigreeview.py:689
 #: ../gramps/plugins/view/relview.py:433 ../gramps/plugins/view/repoview.py:166
 #: ../gramps/plugins/view/sourceview.py:152
@@ -19898,45 +19879,45 @@ msgstr "Organizu legosignojn"
 msgid "Cannot bookmark this reference"
 msgstr "Ne eblis meti legosignon ĉe ĉi tiu referenco"
 
-#: ../gramps/gui/views/listview.py:439
+#: ../gramps/gui/views/listview.py:441
 msgid "Active object not visible"
 msgstr "Aktiva objekto nevidebla"
 
-#: ../gramps/gui/views/listview.py:449
+#: ../gramps/gui/views/listview.py:451
 #: ../gramps/gui/views/navigationview.py:256
-#: ../gramps/plugins/lib/maps/geography.py:229
-#: ../gramps/plugins/lib/maps/geography.py:246
+#: ../gramps/plugins/lib/maps/geography.py:233
+#: ../gramps/plugins/lib/maps/geography.py:250
 #: ../gramps/plugins/view/familyview.py:347
 msgid "Could Not Set a Bookmark"
 msgstr "Ne eblis meti legosignon"
 
-#: ../gramps/gui/views/listview.py:450
+#: ../gramps/gui/views/listview.py:452
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Ne eblis meti legosignon ĉar nenio estis elektita."
 
-#: ../gramps/gui/views/listview.py:542
-#: ../gramps/plugins/lib/libpersonview.py:523
-#: ../gramps/plugins/view/eventview.py:459
+#: ../gramps/gui/views/listview.py:578 ../gramps/plugins/view/eventview.py:384
+#, python-brace-format
+msgid "Delete {type} [{gid}]?"
+msgstr ""
+
+#: ../gramps/gui/views/listview.py:585 ../gramps/gui/views/listview.py:661
+msgid "Deleting item will remove it from the database."
+msgstr "Forigante la elementon oni forigus ĝin ankaŭ el la datumbazo."
+
+#: ../gramps/gui/views/listview.py:612
+#: ../gramps/plugins/gramplet/givennamegramplet.py:70
+#: ../gramps/plugins/gramplet/recordsgramplet.py:50
+#: ../gramps/plugins/gramplet/statsgramplet.py:71
+#: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
+msgid "Processing..."
+msgstr "Prilaboras..."
+
+#: ../gramps/gui/views/listview.py:625
 msgid "Multiple Selection Delete"
 msgstr "Plurobla elekto por forigo"
 
-#: ../gramps/gui/views/listview.py:543
-msgid ""
-"More than one item has been selected for deletion. Select the option "
-"indicating how to delete the items:"
-msgstr ""
-"Oni elektis pli ol unu elementon por forigo. Elektu la opcion montrantan "
-"kiel forigi la elementojn:"
-
-#: ../gramps/gui/views/listview.py:545
-msgid "Delete All"
-msgstr "Forigu ĉiujn"
-
-#: ../gramps/gui/views/listview.py:546
-msgid "Confirm Each Delete"
-msgstr "Konfirmu ĉiun forigon"
-
-#: ../gramps/gui/views/listview.py:561
+#: ../gramps/gui/views/listview.py:657
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -19944,35 +19925,30 @@ msgstr ""
 "Ĉi tiu fonto estas daŭre utiligata. Ĝia forigo forprenos ĝin el la datumbazo "
 "kaj el ĉiuj aliaj rikordoj kiuj referencas ĝin."
 
-#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/eventview.py:409
-#: ../gramps/plugins/view/familyview.py:394
-msgid "Deleting item will remove it from the database."
-msgstr "Forigante la elementon oni forigus ĝin ankaŭ el la datumbazo."
-
-#: ../gramps/gui/views/listview.py:571
-#: ../gramps/plugins/lib/libpersonview.py:469
-#: ../gramps/plugins/view/familyview.py:387
+#: ../gramps/gui/views/listview.py:665
+#: ../gramps/plugins/lib/libpersonview.py:448
+#: ../gramps/plugins/view/familyview.py:370
 #, python-format
 msgid "Delete %s?"
 msgstr "Ĉu forigi %s?"
 
-#: ../gramps/gui/views/listview.py:620
+#: ../gramps/gui/views/listview.py:703
 msgid "Column clicked, sorting..."
 msgstr "Kolumno alklakita, ordigas..."
 
-#: ../gramps/gui/views/listview.py:1065
+#: ../gramps/gui/views/listview.py:1148
 msgid "Export View as Spreadsheet"
 msgstr "Eksportu la vidon kiel kalkultabelon"
 
-#: ../gramps/gui/views/listview.py:1078
+#: ../gramps/gui/views/listview.py:1161
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1079
+#: ../gramps/gui/views/listview.py:1162
 msgid "OpenDocument Spreadsheet"
 msgstr "OpenDocument Kalkultabelo"
 
-#: ../gramps/gui/views/listview.py:1270
+#: ../gramps/gui/views/listview.py:1347
 msgid "Columns"
 msgstr "Kolumnoj"
 
@@ -19982,8 +19958,8 @@ msgid "%s has been bookmarked"
 msgstr "%s estis markita per legosigno"
 
 #: ../gramps/gui/views/navigationview.py:257
-#: ../gramps/plugins/lib/maps/geography.py:230
-#: ../gramps/plugins/lib/maps/geography.py:247
+#: ../gramps/plugins/lib/maps/geography.py:234
+#: ../gramps/plugins/lib/maps/geography.py:251
 #: ../gramps/plugins/view/familyview.py:348
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Ne eblis meti legosignon ĉar neniu estis elektita."
@@ -20501,14 +20477,14 @@ msgstr "Generas dokumentojn en platteksta formo (.txt)"
 #: ../gramps/plugins/docgen/docgen.gpr.py:55
 #: ../gramps/plugins/view/fanchartview.py:164
 #: ../gramps/plugins/view/fanchartview.py:227
-#: ../gramps/plugins/view/geoclose.py:91 ../gramps/plugins/view/geoclose.py:167
+#: ../gramps/plugins/view/geoclose.py:90 ../gramps/plugins/view/geoclose.py:166
 #: ../gramps/plugins/view/geoevents.py:81
-#: ../gramps/plugins/view/geoevents.py:129
-#: ../gramps/plugins/view/geofamclose.py:89
-#: ../gramps/plugins/view/geofamclose.py:165
+#: ../gramps/plugins/view/geoevents.py:131
+#: ../gramps/plugins/view/geofamclose.py:88
+#: ../gramps/plugins/view/geofamclose.py:164
 #: ../gramps/plugins/view/geofamily.py:81
 #: ../gramps/plugins/view/geofamily.py:131
-#: ../gramps/plugins/view/geomoves.py:88 ../gramps/plugins/view/geomoves.py:151
+#: ../gramps/plugins/view/geomoves.py:90 ../gramps/plugins/view/geomoves.py:153
 #: ../gramps/plugins/view/geoperson.py:89
 #: ../gramps/plugins/view/geoplaces.py:84
 #: ../gramps/plugins/view/geoplaces.py:134
@@ -20664,48 +20640,48 @@ msgstr ""
 msgid "Could not open %s"
 msgstr "Ne eblis malfermi %s"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:348
+#: ../gramps/plugins/docgen/svgdrawdoc.py:349
 msgid "SVG background color"
 msgstr "SVG-fonkoloro"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:350
+#: ../gramps/plugins/docgen/svgdrawdoc.py:351
 msgid "transparent background"
 msgstr "travidebla fono"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:351
-#: ../gramps/plugins/drawreport/fanchart.py:707
+#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/drawreport/fanchart.py:731
 msgid "white"
 msgstr "blanka"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "black"
 msgstr "nigra"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:353
+#: ../gramps/plugins/docgen/svgdrawdoc.py:354
 msgid "red"
 msgstr "ruĝa"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:354
+#: ../gramps/plugins/docgen/svgdrawdoc.py:355
 msgid "green"
 msgstr "verda"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:355
+#: ../gramps/plugins/docgen/svgdrawdoc.py:356
 msgid "blue"
 msgstr "blua"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:356
+#: ../gramps/plugins/docgen/svgdrawdoc.py:357
 msgid "cyan"
 msgstr "cejanbluo"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:357
+#: ../gramps/plugins/docgen/svgdrawdoc.py:358
 msgid "magenta"
 msgstr "karmezina"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:358
+#: ../gramps/plugins/docgen/svgdrawdoc.py:359
 msgid "yellow"
 msgstr "flava"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:359
+#: ../gramps/plugins/docgen/svgdrawdoc.py:360
 msgid "The color, if any, of the SVG background"
 msgstr "La koloro, se ĉeestas, de la SVG-fono"
 
@@ -20721,7 +20697,7 @@ msgstr "Praulara grafikaĵo por %s"
 #: ../gramps/plugins/drawreport/ancestortree.py:364
 #: ../gramps/plugins/drawreport/calendarreport.py:114
 #: ../gramps/plugins/drawreport/descendtree.py:695
-#: ../gramps/plugins/drawreport/fanchart.py:194
+#: ../gramps/plugins/drawreport/fanchart.py:195
 #: ../gramps/plugins/graph/gvhourglass.py:110
 #: ../gramps/plugins/graph/gvrelgraph.py:185
 #: ../gramps/plugins/textreport/ancestorreport.py:117
@@ -20752,7 +20728,7 @@ msgstr "Printas la arbon..."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:801
 #: ../gramps/plugins/drawreport/calendarreport.py:473
-#: ../gramps/plugins/drawreport/fanchart.py:689
+#: ../gramps/plugins/drawreport/fanchart.py:712
 #: ../gramps/plugins/graph/gvhourglass.py:368
 #: ../gramps/plugins/graph/gvrelgraph.py:811
 #: ../gramps/plugins/textreport/ancestorreport.py:290
@@ -20780,7 +20756,7 @@ msgstr "Ĉu montri nur la centran personon aŭ ankaŭ ties gefratojn"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:812
 #: ../gramps/plugins/drawreport/descendtree.py:1544
-#: ../gramps/plugins/drawreport/fanchart.py:693
+#: ../gramps/plugins/drawreport/fanchart.py:716
 #: ../gramps/plugins/textreport/ancestorreport.py:294
 #: ../gramps/plugins/textreport/descendreport.py:537
 #: ../gramps/plugins/textreport/detancestralreport.py:840
@@ -20938,7 +20914,7 @@ msgstr "Ĉu inkluzivi paĝojn blankajn."
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/calendarreport.py:491
 #: ../gramps/plugins/drawreport/descendtree.py:1645
-#: ../gramps/plugins/drawreport/fanchart.py:730
+#: ../gramps/plugins/drawreport/fanchart.py:754
 #: ../gramps/plugins/drawreport/statisticschart.py:1072
 #: ../gramps/plugins/drawreport/timeline.py:435
 #: ../gramps/plugins/graph/gvfamilylines.py:170
@@ -21117,7 +21093,7 @@ msgstr " Generacioj de malplenaj kadroj por nekonataj prauloj"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1057
 #: ../gramps/plugins/drawreport/descendtree.py:1787
-#: ../gramps/plugins/drawreport/fanchart.py:771
+#: ../gramps/plugins/drawreport/fanchart.py:795
 #: ../gramps/plugins/drawreport/timeline.py:480
 #: ../gramps/plugins/textreport/alphabeticalindex.py:120
 #: ../gramps/plugins/textreport/ancestorreport.py:386
@@ -21145,7 +21121,7 @@ msgstr "La baza stilo uzota por la notomontro."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1076
 #: ../gramps/plugins/drawreport/descendtree.py:1778
-#: ../gramps/plugins/drawreport/fanchart.py:761
+#: ../gramps/plugins/drawreport/fanchart.py:785
 #: ../gramps/plugins/drawreport/statisticschart.py:1157
 #: ../gramps/plugins/drawreport/timeline.py:498
 #: ../gramps/plugins/textreport/alphabeticalindex.py:103
@@ -21240,7 +21216,7 @@ msgstr ""
 "kalendaro"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:474
-#: ../gramps/plugins/drawreport/fanchart.py:690
+#: ../gramps/plugins/drawreport/fanchart.py:713
 #: ../gramps/plugins/graph/gvrelgraph.py:812
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:523
@@ -21688,12 +21664,12 @@ msgstr "Templinia grafikaĵo"
 msgid "Produces a timeline chart."
 msgstr "Kreas templinian grafikaĵon."
 
-#: ../gramps/plugins/drawreport/fanchart.py:256
+#: ../gramps/plugins/drawreport/fanchart.py:274
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "%(generations)d Generacia ventumila grafikaĵo por %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:271
+#: ../gramps/plugins/drawreport/fanchart.py:289
 #, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
@@ -21702,7 +21678,7 @@ msgstr ""
 "%(generations)d Generacia ventumila grafikaĵo por\n"
 "%(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:694
+#: ../gramps/plugins/drawreport/fanchart.py:717
 #: ../gramps/plugins/textreport/ancestorreport.py:296
 #: ../gramps/plugins/textreport/descendreport.py:538
 #: ../gramps/plugins/textreport/detancestralreport.py:841
@@ -21710,70 +21686,78 @@ msgstr ""
 msgid "The number of generations to include in the report"
 msgstr "La nombro de generacioj inkluzivota en la raporto"
 
-#: ../gramps/plugins/drawreport/fanchart.py:698
+#: ../gramps/plugins/drawreport/fanchart.py:721
 msgid "Type of graph"
 msgstr "Tipo de grafikaĵo"
 
-#: ../gramps/plugins/drawreport/fanchart.py:699
+#: ../gramps/plugins/drawreport/fanchart.py:722
 msgid "full circle"
 msgstr "tutcirkla"
 
-#: ../gramps/plugins/drawreport/fanchart.py:700
+#: ../gramps/plugins/drawreport/fanchart.py:723
 msgid "half circle"
 msgstr "duoncirkla"
 
-#: ../gramps/plugins/drawreport/fanchart.py:701
+#: ../gramps/plugins/drawreport/fanchart.py:724
+msgid "overhang"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/fanchart.py:725
 msgid "quarter circle"
 msgstr "kvaroncirkla"
 
-#: ../gramps/plugins/drawreport/fanchart.py:702
-msgid "The form of the graph: full circle, half circle, or quarter circle."
+#: ../gramps/plugins/drawreport/fanchart.py:726
+#, fuzzy
+#| msgid "The form of the graph: full circle, half circle, or quarter circle."
+msgid ""
+"The form of the graph: full circle, half circle, half circle with overhang "
+"or quarter circle."
 msgstr "La formo de la grafikaĵo: tutcirkla, duoncirkla aŭ kvaroncirkla."
 
-#: ../gramps/plugins/drawreport/fanchart.py:708
+#: ../gramps/plugins/drawreport/fanchart.py:732
 msgid "generation dependent"
 msgstr "laŭ la generacio"
 
-#: ../gramps/plugins/drawreport/fanchart.py:709
+#: ../gramps/plugins/drawreport/fanchart.py:733
 msgid "Background color is either white or generation dependent"
 msgstr "Fonkoloro estas aŭ blanka aŭ generacidependa"
 
-#: ../gramps/plugins/drawreport/fanchart.py:713
+#: ../gramps/plugins/drawreport/fanchart.py:737
 msgid "Orientation of radial texts"
 msgstr "Rotacio de radiaj tekstoj"
 
-#: ../gramps/plugins/drawreport/fanchart.py:715
+#: ../gramps/plugins/drawreport/fanchart.py:739
 msgid "upright"
 msgstr "suprena"
 
-#: ../gramps/plugins/drawreport/fanchart.py:716
+#: ../gramps/plugins/drawreport/fanchart.py:740
 msgid "roundabout"
 msgstr "cirkla"
 
-#: ../gramps/plugins/drawreport/fanchart.py:717
+#: ../gramps/plugins/drawreport/fanchart.py:741
 msgid "Print radial texts upright or roundabout"
 msgstr "Printas radian tekston supren aŭ cirkle"
 
-#: ../gramps/plugins/drawreport/fanchart.py:719
+#: ../gramps/plugins/drawreport/fanchart.py:743
 msgid "Draw empty boxes"
 msgstr "Desegnu malplenajn kadrojn"
 
-#: ../gramps/plugins/drawreport/fanchart.py:720
+#: ../gramps/plugins/drawreport/fanchart.py:744
 msgid "Draw the background although there is no information"
 msgstr "Desegnu la fonon se ne estas informoj"
 
-#: ../gramps/plugins/drawreport/fanchart.py:724
+#: ../gramps/plugins/drawreport/fanchart.py:748
 msgid "Use one font style for all generations"
 msgstr "Uzu unu tiparstilon por ĉiuj generacioj"
 
-#: ../gramps/plugins/drawreport/fanchart.py:726
+#: ../gramps/plugins/drawreport/fanchart.py:750
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
 "Oni povas akomodi tiparon kaj koloron por ĉiu unuopa generacio en la "
 "stilredaktilo."
 
-#: ../gramps/plugins/drawreport/fanchart.py:782
+#: ../gramps/plugins/drawreport/fanchart.py:806
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
 msgstr "La stilo uzota por la tekstovidigo de la generacio \"%d\""
@@ -22813,16 +22797,6 @@ msgstr "Por detaloj duoble alklaku antaŭnomon"
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
 msgstr "Neniu genealogia arbo ŝargita."
-
-#: ../gramps/plugins/gramplet/givennamegramplet.py:70
-#: ../gramps/plugins/gramplet/recordsgramplet.py:50
-#: ../gramps/plugins/gramplet/statsgramplet.py:71
-#: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
-#: ../gramps/plugins/lib/libpersonview.py:513
-#: ../gramps/plugins/view/eventview.py:431
-msgid "Processing..."
-msgstr "Prilaboras..."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:150
 msgid "Total unique given names"
@@ -30131,69 +30105,69 @@ msgstr "Ŝi havis ankaŭ rilaton kun %(spouse)s%(endnotes)s."
 msgid "Also relationship with %(spouse)s%(endnotes)s."
 msgstr "Ankaŭ rilato kun %(spouse)s%(endnotes)s."
 
-#: ../gramps/plugins/lib/libpersonview.py:106
+#: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Number of Parents"
 msgstr "Gepatronombro"
 
-#: ../gramps/plugins/lib/libpersonview.py:109
+#: ../gramps/plugins/lib/libpersonview.py:107
 msgid "Number of To Do Notes"
 msgstr "Nombro de farotaj notoj"
 
-#: ../gramps/plugins/lib/libpersonview.py:112
+#: ../gramps/plugins/lib/libpersonview.py:110
 #: ../gramps/plugins/lib/libplaceview.py:94
-#: ../gramps/plugins/view/citationlistview.py:104
-#: ../gramps/plugins/view/citationtreeview.py:99
-#: ../gramps/plugins/view/eventview.py:86
+#: ../gramps/plugins/view/citationlistview.py:103
+#: ../gramps/plugins/view/citationtreeview.py:98
+#: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/familyview.py:86
-#: ../gramps/plugins/view/mediaview.py:101
-#: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:99
+#: ../gramps/plugins/view/mediaview.py:100
+#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:89
 msgid "Last Changed"
 msgstr "Laste modifita"
 
-#: ../gramps/plugins/lib/libpersonview.py:124
+#: ../gramps/plugins/lib/libpersonview.py:122
 msgid "Add a new person"
 msgstr "Aldonu novan personon"
 
-#: ../gramps/plugins/lib/libpersonview.py:125
+#: ../gramps/plugins/lib/libpersonview.py:123
 msgid "Edit the selected person"
 msgstr "Redaktu la elektitan personon"
 
-#: ../gramps/plugins/lib/libpersonview.py:126
+#: ../gramps/plugins/lib/libpersonview.py:124
 msgid "Delete the selected person"
 msgstr "Forigu la elektitan personon"
 
-#: ../gramps/plugins/lib/libpersonview.py:127
+#: ../gramps/plugins/lib/libpersonview.py:125
 msgid "Merge the selected persons"
 msgstr "Forigu la elektitajn personojn"
 
-#: ../gramps/plugins/lib/libpersonview.py:186
+#: ../gramps/plugins/lib/libpersonview.py:184
 #: ../gramps/plugins/lib/libplaceview.py:271
-#: ../gramps/plugins/view/citationlistview.py:161
-#: ../gramps/plugins/view/citationtreeview.py:303
-#: ../gramps/plugins/view/eventview.py:176
+#: ../gramps/plugins/view/citationlistview.py:160
+#: ../gramps/plugins/view/citationtreeview.py:302
+#: ../gramps/plugins/view/eventview.py:174
 #: ../gramps/plugins/view/familyview.py:134
-#: ../gramps/plugins/view/mediaview.py:241
-#: ../gramps/plugins/view/noteview.py:134
+#: ../gramps/plugins/view/mediaview.py:240
+#: ../gramps/plugins/view/noteview.py:133
 #: ../gramps/plugins/view/repoview.py:147
 #: ../gramps/plugins/view/sourceview.py:133
 msgid "Export View..."
 msgstr "Eksportu la vidon..."
 
-#: ../gramps/plugins/lib/libpersonview.py:194
+#: ../gramps/plugins/lib/libpersonview.py:192
 #: ../gramps/plugins/lib/libplaceview.py:279
-#: ../gramps/plugins/view/citationlistview.py:169
-#: ../gramps/plugins/view/citationtreeview.py:311
-#: ../gramps/plugins/view/eventview.py:184
+#: ../gramps/plugins/view/citationlistview.py:168
+#: ../gramps/plugins/view/citationtreeview.py:310
+#: ../gramps/plugins/view/eventview.py:182
 #: ../gramps/plugins/view/familyview.py:142
 #: ../gramps/plugins/view/fanchartview.py:172
-#: ../gramps/plugins/view/geoclose.py:99 ../gramps/plugins/view/geoevents.py:89
-#: ../gramps/plugins/view/geofamclose.py:97
-#: ../gramps/plugins/view/geofamily.py:89 ../gramps/plugins/view/geomoves.py:96
+#: ../gramps/plugins/view/geoclose.py:98 ../gramps/plugins/view/geoevents.py:89
+#: ../gramps/plugins/view/geofamclose.py:96
+#: ../gramps/plugins/view/geofamily.py:89 ../gramps/plugins/view/geomoves.py:98
 #: ../gramps/plugins/view/geoperson.py:97
 #: ../gramps/plugins/view/geoplaces.py:92
-#: ../gramps/plugins/view/mediaview.py:249
-#: ../gramps/plugins/view/noteview.py:142
+#: ../gramps/plugins/view/mediaview.py:248
+#: ../gramps/plugins/view/noteview.py:141
 #: ../gramps/plugins/view/pedigreeview.py:678
 #: ../gramps/plugins/view/relview.py:370 ../gramps/plugins/view/relview.py:422
 #: ../gramps/plugins/view/repoview.py:155
@@ -30201,43 +30175,43 @@ msgstr "Eksportu la vidon..."
 msgid "_Add Bookmark"
 msgstr "_Aldonu legosignon"
 
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:291
 #: ../gramps/plugins/lib/libplaceview.py:334
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:181
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:323
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:196
-#: ../gramps/plugins/view/eventview.py:239
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:180
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:322
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:194
+#: ../gramps/plugins/view/eventview.py:237
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:154
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/familyview.py:279
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:67
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:67
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:70
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:261
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:154
-#: ../gramps/plugins/view/noteview.py:197
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:260
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/noteview.py:196
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/pedigreeview.py:658
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:167
@@ -30249,15 +30223,15 @@ msgstr "_Aldonu legosignon"
 msgid "_Back"
 msgstr "_Reen"
 
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:658
@@ -30267,30 +30241,30 @@ msgstr "_Reen"
 msgid "_Home"
 msgstr "_Hejmo"
 
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -30300,30 +30274,30 @@ msgstr "_Hejmo"
 msgid "_Add..."
 msgstr "_Aldonu..."
 
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -30333,22 +30307,22 @@ msgstr "_Aldonu..."
 msgid "_Merge..."
 msgstr "_Kunfandu..."
 
-#: ../gramps/plugins/lib/libpersonview.py:245
-#: ../gramps/plugins/lib/libpersonview.py:403
+#: ../gramps/plugins/lib/libpersonview.py:243
+#: ../gramps/plugins/lib/libpersonview.py:401
 #: ../gramps/plugins/lib/libplaceview.py:324
 #: ../gramps/plugins/lib/libplaceview.py:459
-#: ../gramps/plugins/view/citationlistview.py:214
-#: ../gramps/plugins/view/citationlistview.py:343
-#: ../gramps/plugins/view/citationtreeview.py:364
-#: ../gramps/plugins/view/citationtreeview.py:527
-#: ../gramps/plugins/view/eventview.py:229
-#: ../gramps/plugins/view/eventview.py:358
+#: ../gramps/plugins/view/citationlistview.py:213
+#: ../gramps/plugins/view/citationlistview.py:342
+#: ../gramps/plugins/view/citationtreeview.py:363
+#: ../gramps/plugins/view/citationtreeview.py:526
+#: ../gramps/plugins/view/eventview.py:227
+#: ../gramps/plugins/view/eventview.py:356
 #: ../gramps/plugins/view/familyview.py:187
 #: ../gramps/plugins/view/familyview.py:328
-#: ../gramps/plugins/view/mediaview.py:294
-#: ../gramps/plugins/view/mediaview.py:448
-#: ../gramps/plugins/view/noteview.py:187
-#: ../gramps/plugins/view/noteview.py:316
+#: ../gramps/plugins/view/mediaview.py:293
+#: ../gramps/plugins/view/mediaview.py:447
+#: ../gramps/plugins/view/noteview.py:186
+#: ../gramps/plugins/view/noteview.py:315
 #: ../gramps/plugins/view/repoview.py:200
 #: ../gramps/plugins/view/repoview.py:329
 #: ../gramps/plugins/view/sourceview.py:186
@@ -30357,114 +30331,110 @@ msgctxt "action"
 msgid "_Edit..."
 msgstr "_Redaktu..."
 
-#: ../gramps/plugins/lib/libpersonview.py:246
+#: ../gramps/plugins/lib/libpersonview.py:244
 #: ../gramps/plugins/view/pedigreeview.py:690
 #: ../gramps/plugins/view/relview.py:391
 msgid "Person Filter Editor"
 msgstr "Persona filtrilredaktilo"
 
-#: ../gramps/plugins/lib/libpersonview.py:246
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:244
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/view/pedigreeview.py:1668
 msgid "Set _Home Person"
 msgstr "_Agordu la hejmpersonon"
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434
 msgid "Go to the home person"
 msgstr "Iru al la defaŭlta persono"
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:373
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:210
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the next object in the history"
 msgstr "Iru la la posta objekto en la historio"
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:373
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:210
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the previous object in the history"
 msgstr "Iru la la antaŭa objekto en la historio"
 
-#: ../gramps/plugins/lib/libpersonview.py:303
+#: ../gramps/plugins/lib/libpersonview.py:301
 #: ../gramps/plugins/lib/libplaceview.py:364
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/eventview.py:269
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/eventview.py:267
 #: ../gramps/plugins/view/familyview.py:227
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/noteview.py:227 ../gramps/plugins/view/relview.py:391
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/noteview.py:226 ../gramps/plugins/view/relview.py:391
 #: ../gramps/plugins/view/relview.py:477 ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/sourceview.py:226
 msgid "Edit..."
 msgstr "Redaktu..."
 
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
 #, fuzzy
 msgid "Forward"
 msgstr "_Antaŭen"
 
-#: ../gramps/plugins/lib/libpersonview.py:454
-msgid "_Delete Person"
-msgstr "_Forigu personon"
-
-#: ../gramps/plugins/lib/libpersonview.py:473
+#: ../gramps/plugins/lib/libpersonview.py:452
 msgid "Deleting the person will remove the person from the database."
 msgstr "Forigante la personon oni forigos ĝin ankaŭ el la datumbazo."
 
-#: ../gramps/plugins/lib/libpersonview.py:496
+#: ../gramps/plugins/lib/libpersonview.py:459
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Forigu personon (%s)"
 
-#: ../gramps/plugins/lib/libpersonview.py:560
+#: ../gramps/plugins/lib/libpersonview.py:493
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -30524,11 +30494,11 @@ msgstr ""
 msgid "Select a Map Service"
 msgstr "Elektu Mapservon"
 
-#: ../gramps/plugins/lib/libplaceview.py:508
+#: ../gramps/plugins/lib/libplaceview.py:510
 msgid "Cannot delete place."
 msgstr "Ne eblas forigi lokon."
 
-#: ../gramps/plugins/lib/libplaceview.py:509
+#: ../gramps/plugins/lib/libplaceview.py:511
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -30536,12 +30506,12 @@ msgstr ""
 "Ĉi tiu loko estas aktuale referencita de alia loko. Unu forigu la lokojn "
 "kiujn ĝi entenas."
 
-#: ../gramps/plugins/lib/libplaceview.py:550
-#: ../gramps/plugins/lib/libplaceview.py:558
+#: ../gramps/plugins/lib/libplaceview.py:533
+#: ../gramps/plugins/lib/libplaceview.py:541
 msgid "Cannot merge places."
 msgstr "Ne eblas kunfandi lokojn."
 
-#: ../gramps/plugins/lib/libplaceview.py:551
+#: ../gramps/plugins/lib/libplaceview.py:534
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -30550,7 +30520,7 @@ msgstr ""
 "Por kunfandi necesas elekti ekzakte du lokojn. Eblas elekti duan "
 "lokontenante premita la Stir-klavon dum elektoklako de la celita loko."
 
-#: ../gramps/plugins/lib/libplaceview.py:559
+#: ../gramps/plugins/lib/libplaceview.py:542
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr "La kunfando de ĉi tiu lokoj kreus cicklon en la lokhierarkio."
 
@@ -30831,11 +30801,11 @@ msgstr "Malsupre maldekstre"
 msgid "Bottom Right"
 msgstr "Malsupre dekstre"
 
-#: ../gramps/plugins/lib/maps/geography.py:158
+#: ../gramps/plugins/lib/maps/geography.py:160
 msgid "Tile path"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:159
+#: ../gramps/plugins/lib/maps/geography.py:161
 #, python-format
 msgid ""
 "The tile directory doesn't exist anymore:\n"
@@ -30844,85 +30814,85 @@ msgid ""
 "Configure the view for the tile path and restart gramps."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:378
+#: ../gramps/plugins/lib/maps/geography.py:398
 msgid "Remove cross hair"
 msgstr "Forigu celilon"
 
-#: ../gramps/plugins/lib/maps/geography.py:380
+#: ../gramps/plugins/lib/maps/geography.py:400
 msgid "Add cross hair"
 msgstr "Aldonu celilon"
 
-#: ../gramps/plugins/lib/maps/geography.py:387
+#: ../gramps/plugins/lib/maps/geography.py:407
 msgid "Unlock zoom and position"
 msgstr "Malbloku zomilon kaj pozicion"
 
-#: ../gramps/plugins/lib/maps/geography.py:389
+#: ../gramps/plugins/lib/maps/geography.py:409
 msgid "Lock zoom and position"
 msgstr "Bloku zomilon kaj pozicion"
 
-#: ../gramps/plugins/lib/maps/geography.py:396
+#: ../gramps/plugins/lib/maps/geography.py:416
 msgid "Add place"
 msgstr "Aldonu lokon"
 
-#: ../gramps/plugins/lib/maps/geography.py:401
+#: ../gramps/plugins/lib/maps/geography.py:421
 msgid "Link place"
 msgstr "Ligu lokon"
 
-#: ../gramps/plugins/lib/maps/geography.py:406
+#: ../gramps/plugins/lib/maps/geography.py:426
 msgid "Add place from kml"
 msgstr "Aldonu lokon el kml"
 
-#: ../gramps/plugins/lib/maps/geography.py:411
+#: ../gramps/plugins/lib/maps/geography.py:431
 msgid "Center here"
 msgstr "Encentrigu ĉi tie"
 
-#: ../gramps/plugins/lib/maps/geography.py:424
+#: ../gramps/plugins/lib/maps/geography.py:444
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Anstataŭigu '%(map)s' per =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:440
+#: ../gramps/plugins/lib/maps/geography.py:460
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
 msgstr "Reŝargu ĉiujn videblajn kahelojn por '%(map)s'."
 
-#: ../gramps/plugins/lib/maps/geography.py:449
+#: ../gramps/plugins/lib/maps/geography.py:469
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr "Purigu la kahelan kaŝmemoran de '%(map)s'."
 
-#: ../gramps/plugins/lib/maps/geography.py:876
+#: ../gramps/plugins/lib/maps/geography.py:895
 msgid "You can't use the print functionality"
 msgstr "Ne eblas uzi ĉi tiun printeblon"
 
-#: ../gramps/plugins/lib/maps/geography.py:877
+#: ../gramps/plugins/lib/maps/geography.py:896
 msgid "Your Gtk version is too old."
 msgstr "Via GTK versio estas tro malnova."
 
-#: ../gramps/plugins/lib/maps/geography.py:920
-#: ../gramps/plugins/view/geoclose.py:635
-#: ../gramps/plugins/view/geoevents.py:405
-#: ../gramps/plugins/view/geoevents.py:437
-#: ../gramps/plugins/view/geofamclose.py:823
-#: ../gramps/plugins/view/geofamily.py:491
-#: ../gramps/plugins/view/geomoves.py:694
-#: ../gramps/plugins/view/geoperson.py:511
-#: ../gramps/plugins/view/geoperson.py:531
-#: ../gramps/plugins/view/geoperson.py:570
-#: ../gramps/plugins/view/geoplaces.py:504
-#: ../gramps/plugins/view/geoplaces.py:528
+#: ../gramps/plugins/lib/maps/geography.py:939
+#: ../gramps/plugins/view/geoclose.py:637
+#: ../gramps/plugins/view/geoevents.py:403
+#: ../gramps/plugins/view/geoevents.py:435
+#: ../gramps/plugins/view/geofamclose.py:820
+#: ../gramps/plugins/view/geofamily.py:489
+#: ../gramps/plugins/view/geomoves.py:708
+#: ../gramps/plugins/view/geoperson.py:508
+#: ../gramps/plugins/view/geoperson.py:528
+#: ../gramps/plugins/view/geoperson.py:567
+#: ../gramps/plugins/view/geoplaces.py:500
+#: ../gramps/plugins/view/geoplaces.py:524
 msgid "Center on this place"
 msgstr "Encentrigu ĉi tiun lokon"
 
-#: ../gramps/plugins/lib/maps/geography.py:1018
+#: ../gramps/plugins/lib/maps/geography.py:1037
 msgid "Select a kml file used to add places"
 msgstr "Elektu kml-dosieron uzotan por aldoni lokojn"
 
-#: ../gramps/plugins/lib/maps/geography.py:1098
+#: ../gramps/plugins/lib/maps/geography.py:1117
 msgid "You have at least two places with the same title."
 msgstr "Oni havas almenaŭ du lokojn kun la sama titolo."
 
-#: ../gramps/plugins/lib/maps/geography.py:1099
+#: ../gramps/plugins/lib/maps/geography.py:1118
 #, python-format
 msgid ""
 "The title of the places is:\n"
@@ -30939,19 +30909,19 @@ msgstr ""
 "\n"
 "%(bold_start)sNe eblas procedi kun la peto%(bold_end)s.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1253
+#: ../gramps/plugins/lib/maps/geography.py:1272
 msgid "Nothing for this view."
 msgstr "Nenio por ĉi tiu vido."
 
-#: ../gramps/plugins/lib/maps/geography.py:1254
+#: ../gramps/plugins/lib/maps/geography.py:1273
 msgid "Specific parameters"
 msgstr "Specifaj parametroj"
 
-#: ../gramps/plugins/lib/maps/geography.py:1272
+#: ../gramps/plugins/lib/maps/geography.py:1291
 msgid "Where to save the tiles for offline mode."
 msgstr "Kie konservi la kahelojn por eksterreta reĝimo."
 
-#: ../gramps/plugins/lib/maps/geography.py:1278
+#: ../gramps/plugins/lib/maps/geography.py:1298
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -30961,15 +30931,15 @@ msgstr ""
 "kahelojn metitajn en la supra vojo.\n"
 "Estu atenta! Se oni ne havas interreton, oni ne havos mapon."
 
-#: ../gramps/plugins/lib/maps/geography.py:1283
+#: ../gramps/plugins/lib/maps/geography.py:1303
 msgid "Zoom used when centering"
 msgstr "Zomado uzita dum encentrigo"
 
-#: ../gramps/plugins/lib/maps/geography.py:1286
+#: ../gramps/plugins/lib/maps/geography.py:1306
 msgid "The maximum number of places to show"
 msgstr "La maksimuma nombro de montrotaj lokoj"
 
-#: ../gramps/plugins/lib/maps/geography.py:1290
+#: ../gramps/plugins/lib/maps/geography.py:1310
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
@@ -30979,7 +30949,7 @@ msgstr ""
 "Aŭ ni elektas la + kaj - el la klavareto, se ni elektas tion,\n"
 "aŭ ni uzas la signojn el la klavaro."
 
-#: ../gramps/plugins/lib/maps/geography.py:1298
+#: ../gramps/plugins/lib/maps/geography.py:1318
 msgid ""
 "If you want to use a specific map provider, You can set the following field "
 "to the provider's url.\n"
@@ -30990,25 +30960,25 @@ msgid ""
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1312
+#: ../gramps/plugins/lib/maps/geography.py:1333
 #, fuzzy
 msgid "Personal map"
 msgstr "Persona"
 
-#: ../gramps/plugins/lib/maps/geography.py:1318
+#: ../gramps/plugins/lib/maps/geography.py:1337
 msgid "The map"
 msgstr "La mapo"
 
-#: ../gramps/plugins/lib/maps/geography.py:1358
+#: ../gramps/plugins/lib/maps/geography.py:1373
 msgid "Select tile cache directory for offline mode"
 msgstr "Elektu la dosierujon de la kaheloj por eksterreta reĝimo"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:139
+#: ../gramps/plugins/lib/maps/osmgps.py:137
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Ne eblis krei kahelan kaŝmemoran dosierujon %s"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:143
+#: ../gramps/plugins/lib/maps/osmgps.py:141
 #, python-format
 msgid ""
 "You must verify and change the tiles cache\n"
@@ -31025,18 +30995,18 @@ msgid ""
 "The next errors will be normal"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/osmgps.py:183
+#: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Ne eblis krei kahelan kaŝmemoran dosierujon por '%s'."
 
+#: ../gramps/plugins/lib/maps/placeselection.py:115
 #: ../gramps/plugins/lib/maps/placeselection.py:118
-#: ../gramps/plugins/lib/maps/placeselection.py:121
 msgid "Place Selection in a region"
 msgstr "Lokelekto en regiono"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:122
+#: ../gramps/plugins/lib/maps/placeselection.py:119
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
@@ -31044,37 +31014,37 @@ msgstr ""
 "Elektu la radion de la selektaĵo.\n"
 "Sur la mapo vi devus vidi cirklon aŭ ovalon dependajn de la latitudo."
 
-#: ../gramps/plugins/lib/maps/placeselection.py:125
+#: ../gramps/plugins/lib/maps/placeselection.py:122
 msgid ""
 "\n"
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:128
+#: ../gramps/plugins/lib/maps/placeselection.py:125
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:165
+#: ../gramps/plugins/lib/maps/placeselection.py:162
 msgid "The green values in the row correspond to the current place values."
 msgstr "La verdaj valoroj en la linio kongruas kun la aktualaj lokvaloroj."
 
-#: ../gramps/plugins/lib/maps/placeselection.py:223
+#: ../gramps/plugins/lib/maps/placeselection.py:220
 msgid "New place with empty fields"
 msgstr "Nova loko kun malplenaj kampoj"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:298
+#: ../gramps/plugins/lib/maps/placeselection.py:295
 msgid "you have a wrong latitude for:"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:300
-#: ../gramps/plugins/lib/maps/placeselection.py:310
+#: ../gramps/plugins/lib/maps/placeselection.py:297
+#: ../gramps/plugins/lib/maps/placeselection.py:307
 msgid "Please, correct this before linking"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:308
+#: ../gramps/plugins/lib/maps/placeselection.py:305
 msgid "you have a wrong longitude for:"
 msgstr ""
 
@@ -31901,7 +31871,7 @@ msgstr "Kataluna parenceckalkulilo"
 #: ../gramps/plugins/rel/relplugins.gpr.py:289
 #: ../gramps/plugins/rel/relplugins.gpr.py:303
 #: ../gramps/plugins/rel/relplugins.gpr.py:316
-#: ../gramps/plugins/rel/relplugins.gpr.py:330
+#: ../gramps/plugins/rel/relplugins.gpr.py:346
 msgid "Calculates relationships between people"
 msgstr "Kalkulas parencecojn inter personoj"
 
@@ -31983,7 +31953,19 @@ msgstr "Slovena parenceckalkulilo"
 msgid "Swedish Relationship Calculator"
 msgstr "Sveda parenceckalkulilo"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:329
+#: ../gramps/plugins/rel/relplugins.gpr.py:330
+#, fuzzy
+#| msgid "Danish Relationship Calculator"
+msgid "Turkish Relationship Calculator"
+msgstr "Dana parenceckalkulilo"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:331
+#, fuzzy
+#| msgid "Calculates relationships between people"
+msgid "Calculates relationship between people"
+msgstr "Kalkulas parencecojn inter personoj"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:345
 msgid "Ukrainian Relationship Calculator"
 msgstr "Ukraina parenceckalkulilo"
 
@@ -35678,65 +35660,65 @@ msgstr "Plej mallonga pasinta geedziĝo"
 msgid "Death equals marriage"
 msgstr "Malfruaĝa geedziĝo"
 
-#: ../gramps/plugins/view/citationlistview.py:105
+#: ../gramps/plugins/view/citationlistview.py:104
 msgid "Source: Title"
 msgstr "Fonto: Titolo"
 
-#: ../gramps/plugins/view/citationlistview.py:106
+#: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: ID"
 msgstr "Fonto: ID"
 
-#: ../gramps/plugins/view/citationlistview.py:107
-#: ../gramps/plugins/view/citationtreeview.py:100
+#: ../gramps/plugins/view/citationlistview.py:106
+#: ../gramps/plugins/view/citationtreeview.py:99
 msgid "Source: Author"
 msgstr "Fonto: Aŭtoroj"
 
-#: ../gramps/plugins/view/citationlistview.py:108
-#: ../gramps/plugins/view/citationtreeview.py:101
+#: ../gramps/plugins/view/citationlistview.py:107
+#: ../gramps/plugins/view/citationtreeview.py:100
 msgid "Source: Abbreviation"
 msgstr "Fonto: Mallongigo"
 
-#: ../gramps/plugins/view/citationlistview.py:109
-#: ../gramps/plugins/view/citationtreeview.py:102
+#: ../gramps/plugins/view/citationlistview.py:108
+#: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Publication Information"
 msgstr "Fonto: Publikaĵaj informoj"
 
-#: ../gramps/plugins/view/citationlistview.py:110
+#: ../gramps/plugins/view/citationlistview.py:109
 msgid "Source: Private"
 msgstr "Fonto: Privata"
 
-#: ../gramps/plugins/view/citationlistview.py:111
+#: ../gramps/plugins/view/citationlistview.py:110
 msgid "Source: Last Changed"
 msgstr "Fonto: Laste modifita"
 
-#: ../gramps/plugins/view/citationlistview.py:124
-#: ../gramps/plugins/view/citationtreeview.py:121
+#: ../gramps/plugins/view/citationlistview.py:123
+#: ../gramps/plugins/view/citationtreeview.py:120
 msgid "Add a new citation and a new source"
 msgstr "Aldonu novajn citaĵon kaj fonton"
 
-#: ../gramps/plugins/view/citationlistview.py:126
-#: ../gramps/plugins/view/citationtreeview.py:123
+#: ../gramps/plugins/view/citationlistview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:122
 msgid "Add a new citation to an existing source"
 msgstr "Aldonu novan citaĵon al ekzistanta fonto"
 
-#: ../gramps/plugins/view/citationlistview.py:128
+#: ../gramps/plugins/view/citationlistview.py:127
 msgid "Delete the selected citation"
 msgstr "Forigu la elektitan citaĵon"
 
-#: ../gramps/plugins/view/citationlistview.py:129
+#: ../gramps/plugins/view/citationlistview.py:128
 msgid "Merge the selected citations"
 msgstr "Kunfandu la elektitajn citaĵojn"
 
-#: ../gramps/plugins/view/citationlistview.py:143
+#: ../gramps/plugins/view/citationlistview.py:142
 msgid "Citation View"
 msgstr "Citaĵovido"
 
-#: ../gramps/plugins/view/citationlistview.py:215
-#: ../gramps/plugins/view/citationtreeview.py:365
+#: ../gramps/plugins/view/citationlistview.py:214
+#: ../gramps/plugins/view/citationtreeview.py:364
 msgid "Citation Filter Editor"
 msgstr "Citaĵfiltrila redaktilo"
 
-#: ../gramps/plugins/view/citationlistview.py:395
+#: ../gramps/plugins/view/citationlistview.py:388
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -35750,15 +35732,15 @@ msgstr ""
 "\n"
 "Por redakti la deponejreferencon necesas fermi la deponejon."
 
-#: ../gramps/plugins/view/citationlistview.py:408
-#: ../gramps/plugins/view/citationlistview.py:419
-#: ../gramps/plugins/view/citationtreeview.py:664
-#: ../gramps/plugins/view/citationtreeview.py:677
+#: ../gramps/plugins/view/citationlistview.py:401
+#: ../gramps/plugins/view/citationlistview.py:412
+#: ../gramps/plugins/view/citationtreeview.py:641
+#: ../gramps/plugins/view/citationtreeview.py:654
 msgid "Cannot merge citations."
 msgstr "Ne eblas kunfandi citaĵojn"
 
-#: ../gramps/plugins/view/citationlistview.py:409
-#: ../gramps/plugins/view/citationtreeview.py:665
+#: ../gramps/plugins/view/citationlistview.py:402
+#: ../gramps/plugins/view/citationtreeview.py:642
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -35767,8 +35749,8 @@ msgstr ""
 "Por kunfandi necesas elekti ekzakte du citaĵojn. Eblas elekti duan "
 "citaĵontenante premita la Stir-klavon dum elektoklako de la celita citaĵo."
 
-#: ../gramps/plugins/view/citationlistview.py:420
-#: ../gramps/plugins/view/citationtreeview.py:678
+#: ../gramps/plugins/view/citationlistview.py:413
+#: ../gramps/plugins/view/citationtreeview.py:655
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -35776,46 +35758,46 @@ msgstr ""
 "La du elektitaj citaĵoj devas havi la saman fonton por plenumi kunfandon. Se "
 "oni volas kunfandi ĉi tiujn du citaĵojn, oni devas unue kunfandi la fontojn."
 
-#: ../gramps/plugins/view/citationtreeview.py:124
+#: ../gramps/plugins/view/citationtreeview.py:123
 msgid "Edit the selected citation or source"
 msgstr "Redaktu la elektitan citaĵon aŭ fonton"
 
-#: ../gramps/plugins/view/citationtreeview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:124
 msgid "Delete the selected citation or source"
 msgstr "Forigu la elektitan citaĵon aŭ fonton"
 
-#: ../gramps/plugins/view/citationtreeview.py:126
+#: ../gramps/plugins/view/citationtreeview.py:125
 msgid "Merge the selected citations or selected sources"
 msgstr "Kunfandu la elektitajn citaĵojn aŭ fontojn"
 
-#: ../gramps/plugins/view/citationtreeview.py:144
+#: ../gramps/plugins/view/citationtreeview.py:143
 msgid "Citation Tree View"
 msgstr "Citaĵ-arbvido"
 
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
 msgid "Add citation..."
 msgstr "Aldonu citaĵon..."
 
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
 msgid "Add source..."
 msgstr "Aldonu fonton..."
 
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:474
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse all Nodes"
 msgstr "Maletendu ĉiujn nodojn"
 
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:474
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand all Nodes"
 msgstr "Etendu ĉiujn nodojn"
 
-#: ../gramps/plugins/view/citationtreeview.py:651
+#: ../gramps/plugins/view/citationtreeview.py:628
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -35828,11 +35810,11 @@ msgstr ""
 "\n"
 "Por redakti la fonton necesas fermi la objekton."
 
-#: ../gramps/plugins/view/citationtreeview.py:690
+#: ../gramps/plugins/view/citationtreeview.py:667
 msgid "Cannot perform merge."
 msgstr "Ne eblas plenumi kunfandon."
 
-#: ../gramps/plugins/view/citationtreeview.py:691
+#: ../gramps/plugins/view/citationtreeview.py:668
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -35844,41 +35826,31 @@ msgstr "Ambaŭ objektoj devas esti samtipaj, aŭ ambaŭ fontoj, aŭ ambaŭ cita�
 msgid "Dashboard"
 msgstr "Panelo"
 
-#: ../gramps/plugins/view/eventview.py:97
+#: ../gramps/plugins/view/eventview.py:95
 msgid "Add a new event"
 msgstr "Aldonu novan eventon"
 
-#: ../gramps/plugins/view/eventview.py:98
+#: ../gramps/plugins/view/eventview.py:96
 msgid "Edit the selected event"
 msgstr "Redaktu la elektitan eventon"
 
-#: ../gramps/plugins/view/eventview.py:99
+#: ../gramps/plugins/view/eventview.py:97
 msgid "Delete the selected event"
 msgstr "Forigu la elektitan eventon"
 
-#: ../gramps/plugins/view/eventview.py:100
+#: ../gramps/plugins/view/eventview.py:98
 msgid "Merge the selected events"
 msgstr "Kunfandu la elektitajn eventojn"
 
-#: ../gramps/plugins/view/eventview.py:230
+#: ../gramps/plugins/view/eventview.py:228
 msgid "Event Filter Editor"
 msgstr "Eventfiltrila redaktilo"
 
-#: ../gramps/plugins/view/eventview.py:386
-#, fuzzy
-msgid "_Delete Event"
-msgstr "Forigu eventon (%s)"
-
 #: ../gramps/plugins/view/eventview.py:402
-#, python-brace-format
-msgid "Delete {type} [{gid}]?"
-msgstr ""
-
-#: ../gramps/plugins/view/eventview.py:487
 msgid "Cannot merge event objects."
 msgstr "Ne eblas kunfandi eventobjektojn."
 
-#: ../gramps/plugins/view/eventview.py:488
+#: ../gramps/plugins/view/eventview.py:403
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -35919,20 +35891,11 @@ msgstr "Igu patron aktiva persono"
 msgid "Make Mother Active Person"
 msgstr "Igu patrinon aktiva persono"
 
-#: ../gramps/plugins/view/familyview.py:372
-msgid "_Delete Family"
-msgstr "_Forigu familion"
-
-#: ../gramps/plugins/view/familyview.py:408
-#, python-format
-msgid "Family [%s]"
-msgstr "Familio [%s]"
-
-#: ../gramps/plugins/view/familyview.py:432
+#: ../gramps/plugins/view/familyview.py:396
 msgid "Cannot merge families."
 msgstr "Ne eblas kunfandi familiojn."
 
-#: ../gramps/plugins/view/familyview.py:433
+#: ../gramps/plugins/view/familyview.py:397
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -36111,19 +36074,19 @@ msgstr "Printu aŭ konservu la vidon de la ventumila grafikaĵo"
 msgid "Show children ring"
 msgstr "Montru gefilringon"
 
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 msgid "Select the person which is the reference for life ways"
 msgstr "Elektu la personon kiu estas la referenco por la vivlokoj"
 
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 msgid "reference _Person"
 msgstr "referenc_persono"
 
-#: ../gramps/plugins/view/geoclose.py:167
-#: ../gramps/plugins/view/geoevents.py:129
-#: ../gramps/plugins/view/geofamclose.py:165
+#: ../gramps/plugins/view/geoclose.py:166
+#: ../gramps/plugins/view/geoevents.py:131
+#: ../gramps/plugins/view/geofamclose.py:164
 #: ../gramps/plugins/view/geofamily.py:131
-#: ../gramps/plugins/view/geomoves.py:151
+#: ../gramps/plugins/view/geomoves.py:153
 #: ../gramps/plugins/view/geoperson.py:152
 #: ../gramps/plugins/view/geoplaces.py:134
 msgid "Print or save the Map"
@@ -36168,20 +36131,20 @@ msgstr ""
 msgid "Select the person which will be our reference."
 msgstr "Elektu la personon kiu estos nia referenco."
 
-#: ../gramps/plugins/view/geoclose.py:497
-#: ../gramps/plugins/view/geofamclose.py:581
-#: ../gramps/plugins/view/geofamily.py:260
-#: ../gramps/plugins/view/geomoves.py:363
-#: ../gramps/plugins/view/geoperson.py:407
+#: ../gramps/plugins/view/geoclose.py:500
+#: ../gramps/plugins/view/geofamclose.py:582
+#: ../gramps/plugins/view/geofamily.py:258
+#: ../gramps/plugins/view/geomoves.py:370
+#: ../gramps/plugins/view/geoperson.py:405
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:653
+#: ../gramps/plugins/view/geoclose.py:655
 msgid "Choose and bookmark the new reference person"
 msgstr "Elektu kaj metu legosignon al nova referencpersono"
 
-#: ../gramps/plugins/view/geoclose.py:676
+#: ../gramps/plugins/view/geoclose.py:679
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -36197,20 +36160,20 @@ msgstr ""
 "La valoro 1 sifnicas ĉirkaŭ 4.6 mejloj aŭ 7,5 km.\n"
 "La valoro estas en dekonoj de grado."
 
-#: ../gramps/plugins/view/geoclose.py:687
-#: ../gramps/plugins/view/geofamclose.py:875
+#: ../gramps/plugins/view/geoclose.py:688
+#: ../gramps/plugins/view/geofamclose.py:872
 msgid "The selection parameters"
 msgstr "La elektoparametroj"
 
-#: ../gramps/plugins/view/geoevents.py:161
+#: ../gramps/plugins/view/geoevents.py:165
 msgid "Events places map"
 msgstr "Mapo de eventlokoj"
 
-#: ../gramps/plugins/view/geoevents.py:186
+#: ../gramps/plugins/view/geoevents.py:190
 msgid "GeoEvents"
 msgstr "GeoEvento"
 
-#: ../gramps/plugins/view/geoevents.py:309
+#: ../gramps/plugins/view/geoevents.py:310
 msgid "incomplete or unreferenced event ?"
 msgstr "ĉu nekompleta aŭ nereferencita evento ?"
 
@@ -36230,60 +36193,60 @@ msgstr ""
 "ĉiujn konatajn lokojn kun koordinatoj. Oni povas ŝanĝi la markilkoloron "
 "depende de la loktipo. Oni povas uzi la filtradon."
 
-#: ../gramps/plugins/view/geoevents.py:412
-#: ../gramps/plugins/view/geoevents.py:443
+#: ../gramps/plugins/view/geoevents.py:410
+#: ../gramps/plugins/view/geoevents.py:441
 msgid "Bookmark this event"
 msgstr "Metu legosignon al ĉi tiu evento"
 
-#: ../gramps/plugins/view/geoevents.py:458
+#: ../gramps/plugins/view/geoevents.py:456
 msgid "Show all events"
 msgstr "Montru ĉiujn eventojn"
 
-#: ../gramps/plugins/view/geoevents.py:462
-#: ../gramps/plugins/view/geoplaces.py:553
+#: ../gramps/plugins/view/geoevents.py:460
+#: ../gramps/plugins/view/geoplaces.py:549
 msgid "Centering on Place"
 msgstr "Encentrigas lokon"
 
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 msgid "Select the family which is the reference for life ways"
 msgstr "Elektu la familion kiu estas la referenco por la vivlokoj"
 
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geoperson.py:152
 msgid "reference _Family"
 msgstr "referenc_familio"
 
-#: ../gramps/plugins/view/geofamclose.py:221
+#: ../gramps/plugins/view/geofamclose.py:220
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid "Have these two families been able to meet?"
 msgstr "Ĉu ĉi tiuj du familioj povis renkontiĝi?"
 
-#: ../gramps/plugins/view/geofamclose.py:259
+#: ../gramps/plugins/view/geofamclose.py:258
 msgid "GeoFamClose"
 msgstr "GeoFamClose"
 
-#: ../gramps/plugins/view/geofamclose.py:302
-#: ../gramps/plugins/view/geofamily.py:344
+#: ../gramps/plugins/view/geofamclose.py:301
+#: ../gramps/plugins/view/geofamily.py:343
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(gramps_id)s : %(father)s kaj %(mother)s"
 
-#: ../gramps/plugins/view/geofamclose.py:352
+#: ../gramps/plugins/view/geofamclose.py:351
 #, python-format
 msgid "Family reference : %s"
 msgstr "Familireferenco : %s"
 
-#: ../gramps/plugins/view/geofamclose.py:355
-#: ../gramps/plugins/view/geofamclose.py:358
+#: ../gramps/plugins/view/geofamclose.py:354
+#: ../gramps/plugins/view/geofamclose.py:357
 #, python-format
 msgid "The other family : %s"
 msgstr "La alia familio : %s"
 
-#: ../gramps/plugins/view/geofamclose.py:365
+#: ../gramps/plugins/view/geofamclose.py:364
 msgid "You must choose one reference family."
 msgstr "Oni devas elekti unu referencfamilion."
 
-#: ../gramps/plugins/view/geofamclose.py:367
+#: ../gramps/plugins/view/geofamclose.py:366
 msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
@@ -36291,35 +36254,35 @@ msgstr ""
 "Iru al la famili-vido kaj elektu la familiojn kiujn oni volas kompari. "
 "Revenu al ĉi tiu vido kaj uzu la historion."
 
-#: ../gramps/plugins/view/geofamclose.py:693
-#: ../gramps/plugins/view/geofamily.py:399
+#: ../gramps/plugins/view/geofamclose.py:692
+#: ../gramps/plugins/view/geofamily.py:398
 #, python-format
 msgid "Father : %(id)s : %(name)s"
 msgstr "Patro : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:702
-#: ../gramps/plugins/view/geofamily.py:408
+#: ../gramps/plugins/view/geofamclose.py:701
+#: ../gramps/plugins/view/geofamily.py:407
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
 msgstr "Patrino : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:714
+#: ../gramps/plugins/view/geofamclose.py:713
 #: ../gramps/plugins/view/geofamily.py:420
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Gefilo : %(id)s - %(index)d : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:724
-#: ../gramps/plugins/view/geofamily.py:429
+#: ../gramps/plugins/view/geofamclose.py:722
+#: ../gramps/plugins/view/geofamily.py:428
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Persono : %(id)s %(name)s ne havas familion"
 
-#: ../gramps/plugins/view/geofamclose.py:841
+#: ../gramps/plugins/view/geofamclose.py:838
 msgid "Choose and bookmark the new reference family"
 msgstr "Elektu kaj metu legosignon al nova referencfamilio"
 
-#: ../gramps/plugins/view/geofamclose.py:864
+#: ../gramps/plugins/view/geofamclose.py:862
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -36343,7 +36306,7 @@ msgstr "Mapo de famililokoj"
 msgid "GeoFamily"
 msgstr "GeoFamilio"
 
-#: ../gramps/plugins/view/geofamily.py:372
+#: ../gramps/plugins/view/geofamily.py:371
 #, python-format
 msgid "Family places for %s"
 msgstr "Famililokoj por %s"
@@ -36437,32 +36400,35 @@ msgstr "Ĉiuj lokoj rilataj al eventoj"
 msgid "A view showing all the event places of the database."
 msgstr "Vido kiu montras ĉiujn eventlokojn de la datumbazo."
 
-#: ../gramps/plugins/view/geomoves.py:208
-msgid "Descendance of the active person."
+#: ../gramps/plugins/view/geomoves.py:210
+#, fuzzy
+#| msgid "Descendance of the active person."
+msgid "Descendants of the active person."
 msgstr "Praidaro de aktiva persono."
 
-#: ../gramps/plugins/view/geomoves.py:239
+#: ../gramps/plugins/view/geomoves.py:240
 msgid "GeoMoves"
 msgstr "GeoMoves"
 
-#: ../gramps/plugins/view/geomoves.py:561
-#, python-format
-msgid "All descendance for %s"
+#: ../gramps/plugins/view/geomoves.py:573
+#, fuzzy, python-format
+#| msgid "All descendance for %s"
+msgid "All descendants for %s"
 msgstr "Ĉiuj praidoj de %s"
 
-#: ../gramps/plugins/view/geomoves.py:701
+#: ../gramps/plugins/view/geomoves.py:715
 msgid "Bookmark this person"
 msgstr "Metu legosignon al ĉi tiu persono"
 
-#: ../gramps/plugins/view/geomoves.py:733
+#: ../gramps/plugins/view/geomoves.py:747
 msgid "The maximum number of generations.\n"
 msgstr "La maksimuma nombro de generacioj.\n"
 
-#: ../gramps/plugins/view/geomoves.py:740
+#: ../gramps/plugins/view/geomoves.py:754
 msgid "Time in milliseconds between drawing two generations.\n"
 msgstr "Tempo en milisekundoj inter la desegnado de du generacioj.\n"
 
-#: ../gramps/plugins/view/geomoves.py:746
+#: ../gramps/plugins/view/geomoves.py:761
 msgid "The parameters for moves"
 msgstr "La parametroj por translokiĝoj"
 
@@ -36474,24 +36440,24 @@ msgstr "Mapo de la personlokoj"
 msgid "GeoPerson"
 msgstr "GeoPersono"
 
-#: ../gramps/plugins/view/geoperson.py:386
+#: ../gramps/plugins/view/geoperson.py:384
 #, python-format
 msgid "Person places for %s"
 msgstr "Personlokoj por %s"
 
-#: ../gramps/plugins/view/geoperson.py:586
+#: ../gramps/plugins/view/geoperson.py:583
 msgid "Animate"
 msgstr "Movo"
 
-#: ../gramps/plugins/view/geoperson.py:609
+#: ../gramps/plugins/view/geoperson.py:607
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Movrapido en milisekundoj (granda valoro signifas pli malrapida)"
 
-#: ../gramps/plugins/view/geoperson.py:617
+#: ../gramps/plugins/view/geoperson.py:612
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Kiom da paŝoj inter du markiloj en granda movo?"
 
-#: ../gramps/plugins/view/geoperson.py:624
+#: ../gramps/plugins/view/geoperson.py:617
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -36499,24 +36465,24 @@ msgstr ""
 "La minimuma latitudo/longitudo por elekti grandan movon.\n"
 "La valoroj estas en dekonoj de grado."
 
-#: ../gramps/plugins/view/geoperson.py:631
+#: ../gramps/plugins/view/geoperson.py:622
 msgid "The animation parameters"
 msgstr "La movparametroj"
 
-#: ../gramps/plugins/view/geoplaces.py:208
+#: ../gramps/plugins/view/geoplaces.py:209
 msgid "Places map"
 msgstr "Mapo de lokoj"
 
-#: ../gramps/plugins/view/geoplaces.py:237
+#: ../gramps/plugins/view/geoplaces.py:238
 msgid "GeoPlaces"
 msgstr "GeoLokoj"
 
-#: ../gramps/plugins/view/geoplaces.py:412
-#: ../gramps/plugins/view/geoplaces.py:425
+#: ../gramps/plugins/view/geoplaces.py:410
+#: ../gramps/plugins/view/geoplaces.py:423
 msgid "Selecting all places"
 msgstr "Elektas ĉiujn lokojn"
 
-#: ../gramps/plugins/view/geoplaces.py:437
+#: ../gramps/plugins/view/geoplaces.py:435
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
@@ -36526,7 +36492,7 @@ msgstr ""
 "ĉiujn konatajn lokojn kun koordinatoj. Oni povas ŝanĝi la markilkoloron "
 "depende de la loktipo. Oni povas uzi la filtradon."
 
-#: ../gramps/plugins/view/geoplaces.py:452
+#: ../gramps/plugins/view/geoplaces.py:450
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
@@ -36537,74 +36503,74 @@ msgstr ""
 "sur la mapo. Oni povas ŝanĝi la markilkoloron depende de la loktipo. Oni "
 "povas uzi la filtradon."
 
-#: ../gramps/plugins/view/geoplaces.py:467
+#: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
 msgstr "La lokonomo en la stata breto estas malebligita."
 
-#: ../gramps/plugins/view/geoplaces.py:472
+#: ../gramps/plugins/view/geoplaces.py:468
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr "Oni atingis la maksimuman nombron de lokoj (%d)."
 
-#: ../gramps/plugins/view/geoplaces.py:475
+#: ../gramps/plugins/view/geoplaces.py:471
 msgid "Some information are missing."
 msgstr "Mankas kelkaj informoj."
 
-#: ../gramps/plugins/view/geoplaces.py:477
+#: ../gramps/plugins/view/geoplaces.py:473
 msgid "Please, use filtering to reduce this number."
 msgstr "Uzu la filtrilon por malgrandigi ĉi tiun nombron."
 
-#: ../gramps/plugins/view/geoplaces.py:479
+#: ../gramps/plugins/view/geoplaces.py:475
 msgid "You can modify this value in the geography option."
 msgstr "Oni povas modifi ĉi tiun valoron en la geografia opcio."
 
-#: ../gramps/plugins/view/geoplaces.py:481
+#: ../gramps/plugins/view/geoplaces.py:477
 msgid "In this case, it may take time to show all markers."
 msgstr "En ĉi tiu kazo, povus bezoni iom da tempo por montri ĉiun markilojn."
 
-#: ../gramps/plugins/view/geoplaces.py:511
-#: ../gramps/plugins/view/geoplaces.py:534
+#: ../gramps/plugins/view/geoplaces.py:507
+#: ../gramps/plugins/view/geoplaces.py:530
 msgid "Bookmark this place"
 msgstr "Metu legosignon al ĉi tiu loko"
 
-#: ../gramps/plugins/view/geoplaces.py:549
+#: ../gramps/plugins/view/geoplaces.py:545
 msgid "Show all places"
 msgstr "Montru ĉiujn lokojn"
 
-#: ../gramps/plugins/view/geoplaces.py:660
+#: ../gramps/plugins/view/geoplaces.py:634
 #, fuzzy
 msgid "Custom places name"
 msgstr "Kompleta loknomo"
 
-#: ../gramps/plugins/view/geoplaces.py:669
+#: ../gramps/plugins/view/geoplaces.py:642
 msgid "The places marker color"
 msgstr "La koloro de la lokmarkiloj"
 
-#: ../gramps/plugins/view/mediaview.py:113
+#: ../gramps/plugins/view/mediaview.py:112
 msgid "Edit the selected media object"
 msgstr "Redaktu la elektitan aŭdvidean objekton"
 
-#: ../gramps/plugins/view/mediaview.py:114
+#: ../gramps/plugins/view/mediaview.py:113
 msgid "Delete the selected media object"
 msgstr "Forigu la elektitan aŭdvidean objekton"
 
-#: ../gramps/plugins/view/mediaview.py:115
+#: ../gramps/plugins/view/mediaview.py:114
 msgid "Merge the selected media objects"
 msgstr "Kunfandu la elektitajn aŭdvideajn objektojn"
 
-#: ../gramps/plugins/view/mediaview.py:295
+#: ../gramps/plugins/view/mediaview.py:294
 msgid "Media Filter Editor"
 msgstr "Redaktilo de aŭdvidaĵfiltrilo"
 
-#: ../gramps/plugins/view/mediaview.py:386
+#: ../gramps/plugins/view/mediaview.py:385
 msgid "View in the default viewer"
 msgstr "Montru per defaŭlta vidigilo"
 
-#: ../gramps/plugins/view/mediaview.py:490
+#: ../gramps/plugins/view/mediaview.py:480
 msgid "Cannot merge media objects."
 msgstr "Ne eblis kunfandi aŭdvideajn objektojn."
 
-#: ../gramps/plugins/view/mediaview.py:491
+#: ../gramps/plugins/view/mediaview.py:481
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -36614,23 +36580,23 @@ msgstr ""
 "duan objektontenante premita la Stir-klavon dum elektoklako de la celita "
 "objekto."
 
-#: ../gramps/plugins/view/noteview.py:95
+#: ../gramps/plugins/view/noteview.py:94
 msgid "Delete the selected note"
 msgstr "Forigu la elektitan noton"
 
-#: ../gramps/plugins/view/noteview.py:96
+#: ../gramps/plugins/view/noteview.py:95
 msgid "Merge the selected notes"
 msgstr "Kunfandu la elektitajn notojn"
 
-#: ../gramps/plugins/view/noteview.py:188
+#: ../gramps/plugins/view/noteview.py:187
 msgid "Note Filter Editor"
 msgstr "Redaktilo de notfiltrilo"
 
-#: ../gramps/plugins/view/noteview.py:357
+#: ../gramps/plugins/view/noteview.py:351
 msgid "Cannot merge notes."
 msgstr "Ne eblas kunfandi notojn."
 
-#: ../gramps/plugins/view/noteview.py:358
+#: ../gramps/plugins/view/noteview.py:352
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -36982,11 +36948,11 @@ msgstr "Forigu la elektitajn deponejojn"
 msgid "Repository Filter Editor"
 msgstr "Deponejfiltrila redaktilo"
 
-#: ../gramps/plugins/view/repoview.py:363
+#: ../gramps/plugins/view/repoview.py:358
 msgid "Cannot merge repositories."
 msgstr "Ne eblas kunfandi deponejojn"
 
-#: ../gramps/plugins/view/repoview.py:364
+#: ../gramps/plugins/view/repoview.py:359
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -37012,11 +36978,11 @@ msgstr "Kunfandu la elektitajn fontojn"
 msgid "Source Filter Editor"
 msgstr "Fontfiltrila redaktilo"
 
-#: ../gramps/plugins/view/sourceview.py:348
+#: ../gramps/plugins/view/sourceview.py:336
 msgid "Cannot merge sources."
 msgstr "Ne eblas kunfandi fontojn."
 
-#: ../gramps/plugins/view/sourceview.py:349
+#: ../gramps/plugins/view/sourceview.py:337
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
@@ -38913,6 +38879,60 @@ msgstr "Nebrasko"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Neniu stilfolio"
+
+#, python-format
+#~ msgid "Delete Citation (%s)"
+#~ msgstr "Forigu citaĵon (%s)"
+
+#, python-format
+#~ msgid "Delete Event (%s)"
+#~ msgstr "Forigu eventon (%s)"
+
+#~ msgid "Remove Media Object"
+#~ msgstr "Forigu aŭdvidean objekton"
+
+#, python-format
+#~ msgid "Delete Note (%s)"
+#~ msgstr "Forigu noton (%s)"
+
+#, python-format
+#~ msgid "Delete Place (%s)"
+#~ msgstr "Forigu lokon (%s)"
+
+#, python-format
+#~ msgid "Delete Repository (%s)"
+#~ msgstr "Forigu deponejon (%s)"
+
+#, python-format
+#~ msgid "Delete Source (%s)"
+#~ msgstr "Forigu fonton (%s)"
+
+#~ msgid ""
+#~ "More than one item has been selected for deletion. Select the option "
+#~ "indicating how to delete the items:"
+#~ msgstr ""
+#~ "Oni elektis pli ol unu elementon por forigo. Elektu la opcion montrantan "
+#~ "kiel forigi la elementojn:"
+
+#~ msgid "Delete All"
+#~ msgstr "Forigu ĉiujn"
+
+#~ msgid "Confirm Each Delete"
+#~ msgstr "Konfirmu ĉiun forigon"
+
+#~ msgid "_Delete Person"
+#~ msgstr "_Forigu personon"
+
+#, fuzzy
+#~ msgid "_Delete Event"
+#~ msgstr "Forigu eventon (%s)"
+
+#~ msgid "_Delete Family"
+#~ msgstr "_Forigu familion"
+
+#, python-format
+#~ msgid "Family [%s]"
+#~ msgstr "Familio [%s]"
 
 #~ msgid "Common"
 #~ msgstr "Komunuza"

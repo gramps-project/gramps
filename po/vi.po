@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VIETNAMESE 4.2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 22:46+0000\n"
+"POT-Creation-Date: 2022-03-05 23:23+0000\n"
 "PO-Revision-Date: 2022-03-01 00:39+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
-"Language-Team: Vietnamese <https://hosted.weblate.org/projects/"
-"gramps-project/gramps/vi/>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/gramps-"
+"project/gramps/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -220,10 +220,16 @@ msgid "Sweden"
 msgstr "Thủy điển "
 
 #: ../data/holidays.xml:508
+#, fuzzy
+#| msgid "Turkish"
+msgid "Turkey"
+msgstr "Tiếng Thổ Nhĩ Kỳ "
+
+#: ../data/holidays.xml:536
 msgid "Ukraine"
 msgstr "Ukrain"
 
-#: ../data/holidays.xml:535
+#: ../data/holidays.xml:563
 msgid "United States of America"
 msgstr "Lễ hội của Mỹ "
 
@@ -1592,7 +1598,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
 #: ../gramps/gui/glade/editmedia.glade:289
 #: ../gramps/gui/glade/editmediaref.glade:670
-#: ../gramps/plugins/view/mediaview.py:97
+#: ../gramps/plugins/view/mediaview.py:96
 msgid "Path"
 msgstr "Đường dẫn "
 
@@ -1712,8 +1718,8 @@ msgstr "Khóa bởi: %s "
 #: ../gramps/gen/utils/unknown.py:115 ../gramps/gen/utils/unknown.py:117
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:127
 #: ../gramps/gen/utils/unknown.py:132 ../gramps/gui/clipboard.py:185
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:173
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:191
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:174
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:192
 #: ../gramps/gui/editors/editmedia.py:178
 #: ../gramps/gui/editors/editmediaref.py:146
 #: ../gramps/plugins/gramplet/persondetails.py:214
@@ -1728,9 +1734,9 @@ msgstr "Khóa bởi: %s "
 #: ../gramps/plugins/importer/importcsv.py:389
 #: ../gramps/plugins/importer/importcsv.py:905
 #: ../gramps/plugins/lib/libprogen.py:1058
-#: ../gramps/plugins/lib/maps/geography.py:828
-#: ../gramps/plugins/lib/maps/geography.py:838
-#: ../gramps/plugins/lib/maps/geography.py:839
+#: ../gramps/plugins/lib/maps/geography.py:846
+#: ../gramps/plugins/lib/maps/geography.py:856
+#: ../gramps/plugins/lib/maps/geography.py:857
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/descendreport.py:322
@@ -1761,13 +1767,13 @@ msgstr "Khóa bởi: %s "
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:100
-#: ../gramps/plugins/view/geoclose.py:607
-#: ../gramps/plugins/view/geofamclose.py:359
-#: ../gramps/plugins/view/geofamclose.py:796
-#: ../gramps/plugins/view/geofamily.py:521
-#: ../gramps/plugins/view/geomoves.py:666
-#: ../gramps/plugins/view/geoperson.py:545
-#: ../gramps/plugins/view/geoplaces.py:593
+#: ../gramps/plugins/view/geoclose.py:609
+#: ../gramps/plugins/view/geofamclose.py:358
+#: ../gramps/plugins/view/geofamclose.py:793
+#: ../gramps/plugins/view/geofamily.py:519
+#: ../gramps/plugins/view/geomoves.py:680
+#: ../gramps/plugins/view/geoperson.py:542
+#: ../gramps/plugins/view/geoplaces.py:588
 #: ../gramps/plugins/view/relview.py:595 ../gramps/plugins/view/relview.py:1173
 #: ../gramps/plugins/view/relview.py:1228
 #: ../gramps/plugins/webreport/basepage.py:2124
@@ -1952,8 +1958,8 @@ msgstr "Các tuỳ chọn hợp lệ là: "
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:463 ../gramps/cli/plug/__init__.py:553
 #: ../gramps/plugins/drawreport/descendtree.py:358
-#: ../gramps/plugins/drawreport/fanchart.py:364
-#: ../gramps/plugins/drawreport/fanchart.py:380
+#: ../gramps/plugins/drawreport/fanchart.py:387
+#: ../gramps/plugins/drawreport/fanchart.py:403
 #: ../gramps/plugins/gramplet/persondetails.py:238
 #: ../gramps/plugins/gramplet/whatsnext.py:371
 #: ../gramps/plugins/gramplet/whatsnext.py:393
@@ -2045,27 +2051,27 @@ msgstr ""
 "báo cáo lỗi đến %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:248
+#: ../gramps/gen/config.py:247
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Nhập %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:259
+#: ../gramps/gen/config.py:258
 msgid "Missing Given Name"
 msgstr "Thiếu tên "
 
-#: ../gramps/gen/config.py:260
+#: ../gramps/gen/config.py:259
 msgid "Missing Record"
 msgstr "Thiếu biểu ghi "
 
-#: ../gramps/gen/config.py:261
+#: ../gramps/gen/config.py:260
 msgid "Missing Surname"
 msgstr "Thiếu họ "
 
-#: ../gramps/gen/config.py:268 ../gramps/gen/config.py:270
+#: ../gramps/gen/config.py:267 ../gramps/gen/config.py:269
 msgid "[Living]"
 msgstr "[Living]"
 
-#: ../gramps/gen/config.py:269
+#: ../gramps/gen/config.py:268
 msgid "Private Record"
 msgstr "Biểu ghi riêng tư "
 
@@ -2073,7 +2079,7 @@ msgstr "Biểu ghi riêng tư "
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:330 ../gramps/gen/datehandler/_datestrings.py:79
+#: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
 msgid "|January"
 msgstr "Tháng một"
@@ -3033,15 +3039,15 @@ msgstr "Thêm con vào gia đình "
 msgid "Remove child from family"
 msgstr "Xóa bỏ con khỏi gia đình "
 
-#: ../gramps/gen/db/base.py:1912 ../gramps/gen/db/base.py:1916
+#: ../gramps/gen/db/base.py:1908 ../gramps/gen/db/base.py:1912
 msgid "Remove Family"
 msgstr "Xóa gia đình "
 
-#: ../gramps/gen/db/base.py:1958
+#: ../gramps/gen/db/base.py:1952
 msgid "Remove father from family"
 msgstr "Xóa bỏ cha khỏi gia đình "
 
-#: ../gramps/gen/db/base.py:1960
+#: ../gramps/gen/db/base.py:1954
 msgid "Remove mother from family"
 msgstr "Xóa bỏ mẹ khỏi gia đình "
 
@@ -3809,11 +3815,11 @@ msgid "Miscellaneous filters"
 msgstr "Các bộ lọc linh tinh "
 
 #: ../gramps/gen/filters/rules/_rule.py:56 ../gramps/gui/glade/rule.glade:950
-#: ../gramps/plugins/view/geoclose.py:619
-#: ../gramps/plugins/view/geofamclose.py:808
-#: ../gramps/plugins/view/geofamily.py:534
-#: ../gramps/plugins/view/geomoves.py:679
-#: ../gramps/plugins/view/geoperson.py:556
+#: ../gramps/plugins/view/geoclose.py:621
+#: ../gramps/plugins/view/geofamclose.py:805
+#: ../gramps/plugins/view/geofamily.py:532
+#: ../gramps/plugins/view/geomoves.py:693
+#: ../gramps/plugins/view/geoperson.py:553
 msgid "No description"
 msgstr "Không có mô tả "
 
@@ -4488,7 +4494,7 @@ msgstr "Sự kiện gia đình: "
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:83
 #: ../gramps/gui/selectors/selectevent.py:67
 #: ../gramps/plugins/gramplet/events.py:95
-#: ../gramps/plugins/view/eventview.py:87
+#: ../gramps/plugins/view/eventview.py:85
 msgid "Main Participants"
 msgstr "Người tham gia chính "
 
@@ -6486,19 +6492,19 @@ msgstr "Địa chỉ "
 #: ../gramps/gen/lib/reporef.py:110 ../gramps/gen/lib/src.py:133
 #: ../gramps/gen/lib/srcattribute.py:74 ../gramps/gen/lib/url.py:92
 #: ../gramps/gen/proxy/private.py:831
-#: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
-#: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:80
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:90
-#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:56
-#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:66
+#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:57
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/notetab.py:79
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:69
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:70
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:70
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
-#: ../gramps/gui/editors/editfamily.py:136
+#: ../gramps/gui/editors/editfamily.py:137
 #: ../gramps/gui/glade/editaddress.glade:297
 #: ../gramps/gui/glade/editattribute.glade:153
 #: ../gramps/gui/glade/editchildref.glade:180
@@ -6523,13 +6529,13 @@ msgstr "Địa chỉ "
 #: ../gramps/gui/glade/editurl.glade:156
 #: ../gramps/plugins/importer/importprogen.glade:108
 #: ../gramps/plugins/importer/importprogen.glade:244
-#: ../gramps/plugins/lib/libpersonview.py:110
+#: ../gramps/plugins/lib/libpersonview.py:108
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/view/citationlistview.py:102
-#: ../gramps/plugins/view/citationtreeview.py:97
-#: ../gramps/plugins/view/eventview.py:84
+#: ../gramps/plugins/view/citationlistview.py:101
+#: ../gramps/plugins/view/citationtreeview.py:96
+#: ../gramps/plugins/view/eventview.py:82
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/mediaview.py:98 ../gramps/plugins/view/noteview.py:81
 #: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
@@ -6574,7 +6580,7 @@ msgstr "Trích"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:272
 #: ../gramps/plugins/textreport/tagreport.py:489
-#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
+#: ../gramps/plugins/view/noteview.py:109 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/basepage.py:1381
 #: ../gramps/plugins/webreport/basepage.py:2380
@@ -6642,10 +6648,10 @@ msgstr "Ghi chú "
 #: ../gramps/plugins/textreport/tagreport.py:588
 #: ../gramps/plugins/textreport/tagreport.py:833
 #: ../gramps/plugins/tool/sortevents.py:54
-#: ../gramps/plugins/view/citationlistview.py:100
-#: ../gramps/plugins/view/citationtreeview.py:95
-#: ../gramps/plugins/view/eventview.py:82
-#: ../gramps/plugins/view/mediaview.py:98
+#: ../gramps/plugins/view/citationlistview.py:99
+#: ../gramps/plugins/view/citationtreeview.py:94
+#: ../gramps/plugins/view/eventview.py:80
+#: ../gramps/plugins/view/mediaview.py:97
 #: ../gramps/plugins/webreport/basepage.py:777
 #: ../gramps/plugins/webreport/basepage.py:1024
 #: ../gramps/plugins/webreport/basepage.py:1061
@@ -6662,7 +6668,7 @@ msgstr "Ngày "
 #: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
-#: ../gramps/plugins/view/geoplaces.py:602
+#: ../gramps/plugins/view/geoplaces.py:594
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1236
 #: ../gramps/plugins/webreport/basepage.py:2899
@@ -6674,7 +6680,7 @@ msgstr "Đường "
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:610
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
-#: ../gramps/plugins/view/geoplaces.py:599
+#: ../gramps/plugins/view/geoplaces.py:592
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1237
 #: ../gramps/plugins/webreport/basepage.py:2900
@@ -6686,7 +6692,7 @@ msgstr "Địa điểm "
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:613
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
-#: ../gramps/plugins/view/geoplaces.py:650
+#: ../gramps/plugins/view/geoplaces.py:626
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1238
 #: ../gramps/plugins/webreport/basepage.py:2901
@@ -6698,8 +6704,8 @@ msgstr "Thành phố "
 #: ../gramps/gen/lib/placetype.py:67
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:151
-#: ../gramps/plugins/view/geoplaces.py:632
+#: ../gramps/plugins/lib/maps/placeselection.py:148
+#: ../gramps/plugins/view/geoplaces.py:614
 #: ../gramps/plugins/webreport/basepage.py:1240
 #: ../gramps/plugins/webreport/basepage.py:2904
 #: ../gramps/plugins/webreport/basepage.py:2970
@@ -6710,8 +6716,8 @@ msgstr "Quận "
 #: ../gramps/gen/lib/placetype.py:66
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:150
-#: ../gramps/plugins/view/geoplaces.py:629
+#: ../gramps/plugins/lib/maps/placeselection.py:147
+#: ../gramps/plugins/view/geoplaces.py:612
 msgid "State"
 msgstr "Tiểu bang "
 
@@ -6720,8 +6726,8 @@ msgstr "Tiểu bang "
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:149
-#: ../gramps/plugins/view/geoplaces.py:626
+#: ../gramps/plugins/lib/maps/placeselection.py:146
+#: ../gramps/plugins/view/geoplaces.py:610
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1242
 #: ../gramps/plugins/webreport/basepage.py:2909
@@ -6777,7 +6783,7 @@ msgstr "Giá trị "
 #: ../gramps/gen/lib/srcmediatype.py:57 ../gramps/gen/lib/urltype.py:48
 #: ../gramps/gui/autocomp.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:74
-#: ../gramps/plugins/view/geoplaces.py:596
+#: ../gramps/plugins/view/geoplaces.py:590
 msgid "Custom"
 msgstr "Custom"
 
@@ -6800,7 +6806,7 @@ msgstr "Caste"
 #: ../gramps/plugins/textreport/placereport.py:226
 #: ../gramps/plugins/textreport/placereport.py:303
 #: ../gramps/plugins/tool/sortevents.py:57
-#: ../gramps/plugins/view/eventview.py:79
+#: ../gramps/plugins/view/eventview.py:77
 #: ../gramps/plugins/webreport/basepage.py:779
 #: ../gramps/plugins/webreport/basepage.py:1027
 #: ../gramps/plugins/webreport/basepage.py:2455
@@ -6817,7 +6823,7 @@ msgstr "Số nhận diện (ID)"
 msgid "National Origin"
 msgstr "Quốc tịch gốc "
 
-#: ../gramps/gen/lib/attrtype.py:69 ../gramps/plugins/lib/libpersonview.py:108
+#: ../gramps/gen/lib/attrtype.py:69 ../gramps/plugins/lib/libpersonview.py:106
 msgid "Number of Children"
 msgstr "Số con "
 
@@ -6999,16 +7005,23 @@ msgstr "Trang "
 
 #: ../gramps/gen/lib/citation.py:112
 #: ../gramps/plugins/importer/importprogen.glade:261
-#: ../gramps/plugins/view/citationlistview.py:101
-#: ../gramps/plugins/view/citationtreeview.py:96
+#: ../gramps/plugins/view/citationlistview.py:100
+#: ../gramps/plugins/view/citationtreeview.py:95
 #: ../gramps/plugins/webreport/basepage.py:2588
 msgid "Confidence"
 msgstr "Mật "
 
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
 #: ../gramps/gui/clipboard.py:770 ../gramps/gui/configure.py:661
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:91
+#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:56
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:66
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
-#: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:69
+#: ../gramps/gui/editors/editfamily.py:136 ../gramps/gui/editors/editlink.py:99
+#: ../gramps/gui/editors/editsource.py:86
 #: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -7044,7 +7057,7 @@ msgstr "Nguồn "
 #: ../gramps/plugins/quickview/references.py:93
 #: ../gramps/plugins/textreport/tagreport.py:559
 #: ../gramps/plugins/tool/reorderids.glade:848
-#: ../gramps/plugins/view/mediaview.py:129
+#: ../gramps/plugins/view/mediaview.py:128
 #: ../gramps/plugins/view/view.gpr.py:82 ../gramps/plugins/view/view.gpr.py:90
 #: ../gramps/plugins/webreport/basepage.py:1743
 #: ../gramps/plugins/webreport/basepage.py:1812
@@ -7082,16 +7095,16 @@ msgstr "Thay đổi lần cuối"
 #: ../gramps/gui/glade/editperson.glade:683
 #: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:527
-#: ../gramps/plugins/lib/libpersonview.py:111
+#: ../gramps/plugins/lib/libpersonview.py:109
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/indivcomplete.py:551
 #: ../gramps/plugins/tool/notrelated.py:129
-#: ../gramps/plugins/view/citationlistview.py:103
-#: ../gramps/plugins/view/citationtreeview.py:98
-#: ../gramps/plugins/view/eventview.py:85
+#: ../gramps/plugins/view/citationlistview.py:102
+#: ../gramps/plugins/view/citationtreeview.py:97
+#: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/view/mediaview.py:100
-#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:98
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:98
 #: ../gramps/plugins/view/sourceview.py:88
 #: ../gramps/plugins/webreport/basepage.py:2987
 #: ../gramps/plugins/webreport/event.py:432
@@ -7265,7 +7278,7 @@ msgstr "Sự kiện "
 #: ../gramps/plugins/tool/removespaces.py:182
 #: ../gramps/plugins/tool/reorderids.glade:799
 #: ../gramps/plugins/tool/sortevents.py:58
-#: ../gramps/plugins/view/eventview.py:83
+#: ../gramps/plugins/view/eventview.py:81
 #: ../gramps/plugins/webreport/basepage.py:778
 #: ../gramps/plugins/webreport/basepage.py:1026
 #: ../gramps/plugins/webreport/basepage.py:1063
@@ -7343,7 +7356,7 @@ msgstr "Sự kiện cuộc đời"
 #: ../gramps/gui/configure.py:655
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:561 ../gramps/gui/editors/editlink.py:93
+#: ../gramps/gui/editors/editfamily.py:562 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/grampsgui.py:56
 #: ../gramps/plugins/export/exportcsv.py:506
@@ -7398,8 +7411,8 @@ msgstr "Cư dân "
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gui/glade/mergedata.glade:523
 #: ../gramps/gui/glade/mergedata.glade:610
-#: ../gramps/plugins/lib/maps/placeselection.py:152
-#: ../gramps/plugins/lib/maps/placeselection.py:203
+#: ../gramps/plugins/lib/maps/placeselection.py:149
+#: ../gramps/plugins/lib/maps/placeselection.py:200
 msgid "Other"
 msgstr "Khác "
 
@@ -7506,7 +7519,7 @@ msgid "Nobility Title"
 msgstr "Chức danh quí tộc "
 
 #: ../gramps/gen/lib/eventtype.py:189
-#: ../gramps/plugins/lib/libpersonview.py:107
+#: ../gramps/plugins/lib/libpersonview.py:105
 msgid "Number of Marriages"
 msgstr "Số lần kết hôn "
 
@@ -7881,7 +7894,7 @@ msgstr "Con cái "
 #: ../gramps/plugins/quickview/filterbyname.py:97
 #: ../gramps/plugins/quickview/filterbyname.py:122
 #: ../gramps/plugins/textreport/tagreport.py:324
-#: ../gramps/plugins/view/eventview.py:123
+#: ../gramps/plugins/view/eventview.py:121
 #: ../gramps/plugins/view/view.gpr.py:37 ../gramps/plugins/view/view.gpr.py:45
 #: ../gramps/plugins/webreport/basepage.py:1739
 #: ../gramps/plugins/webreport/basepage.py:1809
@@ -7959,8 +7972,8 @@ msgstr "Kết hôn dân sự "
 #: ../gramps/plugins/textreport/tagreport.py:666
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
-#: ../gramps/plugins/view/eventview.py:81
-#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/eventview.py:79
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/basepage.py:1060
 #: ../gramps/plugins/webreport/basepage.py:1379
@@ -8084,7 +8097,7 @@ msgid "Location"
 msgstr "Địa điểm "
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
-#: ../gramps/plugins/view/geoplaces.py:647
+#: ../gramps/plugins/view/geoplaces.py:624
 msgid "Parish"
 msgstr "Nhà thờ "
 
@@ -8110,7 +8123,7 @@ msgid "Media ref"
 msgstr "Tham chiếu TL đa phương tiện "
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
-#: ../gramps/plugins/view/geoplaces.py:638
+#: ../gramps/plugins/view/geoplaces.py:618
 msgid "Region"
 msgstr "Vùng"
 
@@ -8143,7 +8156,7 @@ msgstr "Vùng"
 #: ../gramps/plugins/gramplet/locations.py:85
 #: ../gramps/plugins/gramplet/placedetails.py:125
 #: ../gramps/plugins/importer/importcsv.py:242
-#: ../gramps/plugins/lib/libpersonview.py:98
+#: ../gramps/plugins/lib/libpersonview.py:96
 #: ../gramps/plugins/lib/libplaceview.py:85
 #: ../gramps/plugins/quickview/filterbyname.py:306
 #: ../gramps/plugins/textreport/indivcomplete.py:933
@@ -8210,7 +8223,7 @@ msgstr "Hậu tố "
 #: ../gramps/plugins/textreport/tagreport.py:424
 #: ../gramps/plugins/textreport/tagreport.py:576
 #: ../gramps/plugins/textreport/tagreport.py:746
-#: ../gramps/plugins/view/mediaview.py:94
+#: ../gramps/plugins/view/mediaview.py:93
 #: ../gramps/plugins/view/sourceview.py:82
 #: ../gramps/plugins/webreport/basepage.py:3111
 msgid "Title"
@@ -8526,7 +8539,7 @@ msgstr "Cá nhân "
 #: ../gramps/plugins/drawreport/statisticschart.py:344
 #: ../gramps/plugins/export/exportcsv.py:356
 #: ../gramps/plugins/importer/importcsv.py:172
-#: ../gramps/plugins/lib/libpersonview.py:100
+#: ../gramps/plugins/lib/libpersonview.py:98
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:934
 #: ../gramps/plugins/webreport/person.py:1637
@@ -8673,53 +8686,53 @@ msgstr "Ngôn nữa"
 msgid "Place ref"
 msgstr "Thao chiếu địa điểm"
 
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:635
+#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:616
 #: ../gramps/plugins/webreport/basepage.py:2908
 msgid "Province"
 msgstr "Tỉnh "
 
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:641
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:620
 msgid "Department"
 msgstr "Phòng"
 
-#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:605
+#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:596
 msgid "Neighborhood"
 msgstr "cạnh bên"
 
-#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:644
+#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:622
 msgid "District"
 msgstr "Quận"
 
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:608
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:598
 msgid "Borough"
 msgstr "Phố"
 
-#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:656
+#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:630
 msgid "Municipality"
 msgstr "Thành phố tự trị"
 
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:653
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:628
 msgid "Town"
 msgstr "Thành phố"
 
-#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:611
+#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:600
 msgid "Village"
 msgstr "Xã"
 
-#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:614
+#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:602
 msgid "Hamlet"
 msgstr "Ấp"
 
-#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:617
+#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:604
 msgid "Farm"
 msgstr "Trang trại"
 
-#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:620
+#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:606
 msgid "Building"
 msgstr "Tòa nhà"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
-#: ../gramps/plugins/view/geoplaces.py:623
+#: ../gramps/plugins/view/geoplaces.py:608
 #: ../gramps/plugins/webreport/basepage.py:3109
 #: ../gramps/plugins/webreport/source.py:169
 msgid "Number"
@@ -9038,9 +9051,9 @@ msgstr "Cha mạ không thể là cha hay mẹ "
 #: ../gramps/gen/merge/mergefamilyquery.py:103
 #: ../gramps/gen/merge/mergefamilyquery.py:114
 #: ../gramps/gen/merge/mergepersonquery.py:55
-#: ../gramps/gen/merge/test/merge_ref_test.py:1899
-#: ../gramps/gen/merge/test/merge_ref_test.py:1923
-#: ../gramps/gen/merge/test/merge_ref_test.py:1947
+#: ../gramps/gen/merge/test/merge_ref_test.py:2054
+#: ../gramps/gen/merge/test/merge_ref_test.py:2078
+#: ../gramps/gen/merge/test/merge_ref_test.py:2102
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -9069,7 +9082,7 @@ msgstr ""
 "Bạn đời không hòa được. Để hòa những người này, bạn trước hết phải phá mối "
 "liên kết của họ. "
 
-#: ../gramps/gen/merge/mergepersonquery.py:119
+#: ../gramps/gen/merge/mergepersonquery.py:121
 msgid "Merge Person"
 msgstr "Hòa người "
 
@@ -9083,7 +9096,7 @@ msgstr "Hòa địa điểm "
 msgid "Merge Repositories"
 msgstr "Hòa kho tư liệu "
 
-#: ../gramps/gen/merge/mergesourcequery.py:62
+#: ../gramps/gen/merge/mergesourcequery.py:61
 msgid "Merge Source"
 msgstr "Hòa nguồn "
 
@@ -11290,8 +11303,8 @@ msgstr "Kéo và buông cột để thay đổi thứ tự "
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1973
 #: ../gramps/gui/configure.py:1997 ../gramps/gui/configure.py:2023
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1787
-#: ../gramps/plugins/lib/maps/geography.py:1022
-#: ../gramps/plugins/lib/maps/geography.py:1362
+#: ../gramps/plugins/lib/maps/geography.py:1041
+#: ../gramps/plugins/lib/maps/geography.py:1377
 msgid "_Apply"
 msgstr "_Áp dụng "
 
@@ -11338,7 +11351,7 @@ msgstr "Hiển thị trình soạn thảo tên "
 #: ../gramps/gui/viewmanager.py:1651 ../gramps/gui/views/bookmarks.py:298
 #: ../gramps/gui/views/tags.py:495 ../gramps/gui/widgets/grampletbar.py:657
 #: ../gramps/gui/widgets/grampletpane.py:239
-#: ../gramps/plugins/lib/maps/placeselection.py:120
+#: ../gramps/plugins/lib/maps/placeselection.py:117
 #: ../gramps/plugins/tool/dumpgenderstats.py:85
 msgid "_Close"
 msgstr "_Close"
@@ -11703,12 +11716,12 @@ msgstr "Thí dụ "
 #: ../gramps/gui/configure.py:1074
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:147
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:314
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:316
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:129
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:122
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
-#: ../gramps/gui/editors/editfamily.py:195 ../gramps/gui/grampsgui.py:56
+#: ../gramps/gui/editors/editfamily.py:196 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/plug/report/_bookdialog.py:665 ../gramps/gui/views/tags.py:487
 #: ../gramps/gui/widgets/fanchart.py:2022
 #: ../gramps/gui/widgets/fanchart.py:2064
@@ -11719,7 +11732,7 @@ msgstr "_Thêm"
 #: ../gramps/gui/configure.py:1077
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:149
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:155
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:315
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:317
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:131
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:123
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:130
@@ -11738,7 +11751,7 @@ msgstr "_Sửa "
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:132
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:124
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
-#: ../gramps/gui/editors/editfamily.py:198
+#: ../gramps/gui/editors/editfamily.py:199
 #: ../gramps/gui/plug/report/_bookdialog.py:634
 #: ../gramps/gui/views/bookmarks.py:294 ../gramps/gui/views/tags.py:489
 msgid "_Remove"
@@ -12333,12 +12346,12 @@ msgstr "Chọn thư mục chứa tập tin đa phương tiện "
 #: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1786 ../gramps/gui/views/listview.py:1068
+#: ../gramps/gui/viewmanager.py:1786 ../gramps/gui/views/listview.py:1151
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/tags.py:711
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
-#: ../gramps/plugins/lib/maps/geography.py:1021
-#: ../gramps/plugins/lib/maps/geography.py:1361
+#: ../gramps/plugins/lib/maps/geography.py:1040
+#: ../gramps/plugins/lib/maps/geography.py:1376
 #: ../gramps/plugins/tool/check.py:777 ../gramps/plugins/tool/eventcmp.py:398
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:327
@@ -12876,12 +12889,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dialog.py:434 ../gramps/gui/dialog.py:516
+#: ../gramps/gui/dialog.py:434 ../gramps/gui/dialog.py:534
 #: ../gramps/gui/utils.py:309
 msgid "Attempt to force closing the dialog"
 msgstr "Đang cố gắng đóng hội thoại "
 
-#: ../gramps/gui/dialog.py:435 ../gramps/gui/dialog.py:517
+#: ../gramps/gui/dialog.py:435 ../gramps/gui/dialog.py:535
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -13045,7 +13058,7 @@ msgstr "Di chuyển địa chỉ đã chọn xuống "
 msgid "Postal"
 msgstr "Mã bưu điện "
 
-#: ../gramps/gui/editors/displaytabs/addrembedlist.py:84
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:85
 msgid "_Addresses"
 msgstr "_Địa chỉ "
 
@@ -13074,7 +13087,7 @@ msgstr "Di chuyển thông số chọn lên trên "
 msgid "Move the selected attribute downwards"
 msgstr "Di chuyển thông số đã chọn xuống "
 
-#: ../gramps/gui/editors/displaytabs/attrembedlist.py:75
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:76
 msgid "_Attributes"
 msgstr "_Thông số "
@@ -13112,18 +13125,18 @@ msgstr "_Thông số "
 #: ../gramps/gui/views/bookmarks.py:281
 #: ../gramps/gui/views/navigationview.py:344
 #: ../gramps/plugins/gramplet/locations.py:88
-#: ../gramps/plugins/lib/libpersonview.py:99
+#: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/lib/libplaceview.py:86
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:199
 #: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:575
-#: ../gramps/plugins/view/citationlistview.py:99
-#: ../gramps/plugins/view/citationtreeview.py:94
-#: ../gramps/plugins/view/eventview.py:80
+#: ../gramps/plugins/view/citationlistview.py:98
+#: ../gramps/plugins/view/citationtreeview.py:93
+#: ../gramps/plugins/view/eventview.py:78
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/mediaview.py:94 ../gramps/plugins/view/noteview.py:79
 #: ../gramps/plugins/view/relview.py:729 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
@@ -13209,7 +13222,7 @@ msgid "Remove the existing citation"
 msgstr "Bỏ trích dẫn hiện có "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
-#: ../gramps/plugins/view/citationlistview.py:127
+#: ../gramps/plugins/view/citationlistview.py:126
 msgid "Edit the selected citation"
 msgstr "Sửa một trích dẫn được chọn "
 
@@ -13249,15 +13262,15 @@ msgstr "_Trích dẫn nguồn"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:186
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:260
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:281
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:267
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:269
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:334
-#: ../gramps/plugins/view/citationtreeview.py:590
-#: ../gramps/plugins/view/citationtreeview.py:633
+#: ../gramps/plugins/view/citationtreeview.py:589
+#: ../gramps/plugins/view/citationtreeview.py:610
 msgid "Cannot share this reference"
 msgstr "Không thể chia sẻ tham chiếu này "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:196
-#: ../gramps/plugins/view/citationtreeview.py:641
+#: ../gramps/plugins/view/citationtreeview.py:618
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -13300,12 +13313,12 @@ msgstr "Chuyển sự kiện đã chọn xuống thấp "
 msgid "Role"
 msgstr "Vai "
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:98
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:99
 msgid "_Events"
 msgstr "_Sự kiện "
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:247
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:348
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:249
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:350
 msgid ""
 "This event reference cannot be edited at this time. Either the associated "
 "event is already being edited or another event reference that is associated "
@@ -13319,8 +13332,8 @@ msgstr ""
 "\n"
 "Để sửa tham chiếu sự kiện này, bạn cần đóng sự kiện. "
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:281
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:347
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:283
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:349
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:355
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 #: ../gramps/plugins/drawreport/ancestortree.py:1103
@@ -13328,11 +13341,11 @@ msgstr ""
 msgid "Cannot edit this reference"
 msgstr "Không thể sửa tham chiếu này "
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:324
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:326
 msgid "Cannot change Person"
 msgstr "Không thể thay người "
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:325
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:327
 msgid "You cannot change Person events in the Family Editor"
 msgstr "Bạn không thể thay sự kiện người trong trình chỉnh sửa gia đình "
 
@@ -13353,7 +13366,7 @@ msgid "_View"
 msgstr "_Xem"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
-#: ../gramps/plugins/view/mediaview.py:402
+#: ../gramps/plugins/view/mediaview.py:401
 msgid "Open Containing _Folder"
 msgstr "Mở thư mục chứa "
 
@@ -13382,7 +13395,7 @@ msgstr ""
 "Để sửa tham chiếu sự kiện này, bạn cần đóng đối tượng đa phương tiện. "
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:578
-#: ../gramps/plugins/view/mediaview.py:195
+#: ../gramps/plugins/view/mediaview.py:194
 msgid "Drag Media Object"
 msgstr "Kéo đối tượng đa phương tiện "
 
@@ -13406,7 +13419,7 @@ msgstr "Di chuyển lệnh LDS lên "
 msgid "Move the selected LDS ordinance downwards"
 msgstr "Di chuyển lệnh LDS xuống "
 
-#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:71
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:72
 msgid "_LDS"
 msgstr "_LDS "
 
@@ -13482,7 +13495,7 @@ msgid "Remove the existing note"
 msgstr "Bỏ ghi chú đang có "
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:68
-#: ../gramps/plugins/view/noteview.py:94
+#: ../gramps/plugins/view/noteview.py:93
 msgid "Edit the selected note"
 msgstr "Sửa chữa ghi chú đang có "
 
@@ -13504,7 +13517,7 @@ msgstr "Di chuyển ghi chú đang có xuống "
 #: ../gramps/gui/glade/editmediaref.glade:190
 #: ../gramps/gui/glade/editmediaref.glade:503
 #: ../gramps/gui/selectors/selectnote.py:71
-#: ../gramps/plugins/view/noteview.py:79
+#: ../gramps/plugins/view/noteview.py:78
 msgid "Preview"
 msgstr "Xem trước "
 
@@ -13569,11 +13582,11 @@ msgstr "Di chuyển một hiệp hội được chọn lên "
 msgid "Move the selected association downwards"
 msgstr "Chuyển một hiệp hội được chọn xuống "
 
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:76
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:77
 msgid "_Associations"
 msgstr "_Hiệp hội "
 
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:138
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:139
 #: ../gramps/plugins/lib/libprogen.py:1469
 msgid "Godfather"
 msgstr "Cha nuôi "
@@ -13834,11 +13847,6 @@ msgstr "Thêm Xóa trích dẫn (%s) "
 msgid "Edit Citation (%s)"
 msgstr "Sửa trích dẫn (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:376
-#, python-format
-msgid "Delete Citation (%s)"
-msgstr "Xóa trích dẫn (%s) "
-
 #: ../gramps/gui/editors/editdate.py:77 ../gramps/gui/editors/editdate.py:86
 msgid "Regular"
 msgstr "Thông thường "
@@ -13906,15 +13914,15 @@ msgid "New Event"
 msgstr "Sự kiện mới "
 
 #: ../gramps/gui/editors/editevent.py:230
-#: ../gramps/plugins/view/geoclose.py:630
-#: ../gramps/plugins/view/geoevents.py:400
-#: ../gramps/plugins/view/geoevents.py:433
-#: ../gramps/plugins/view/geofamclose.py:818
-#: ../gramps/plugins/view/geofamily.py:487
-#: ../gramps/plugins/view/geomoves.py:689
-#: ../gramps/plugins/view/geoperson.py:506
-#: ../gramps/plugins/view/geoperson.py:526
-#: ../gramps/plugins/view/geoperson.py:566
+#: ../gramps/plugins/view/geoclose.py:632
+#: ../gramps/plugins/view/geoevents.py:398
+#: ../gramps/plugins/view/geoevents.py:431
+#: ../gramps/plugins/view/geofamclose.py:815
+#: ../gramps/plugins/view/geofamily.py:485
+#: ../gramps/plugins/view/geomoves.py:703
+#: ../gramps/plugins/view/geoperson.py:503
+#: ../gramps/plugins/view/geoperson.py:523
+#: ../gramps/plugins/view/geoperson.py:563
 msgid "Edit Event"
 msgstr "Sửa sự kiện "
 
@@ -13947,11 +13955,6 @@ msgstr "Thêm sự kiện (%s)"
 #, python-format
 msgid "Edit Event (%s)"
 msgstr "Sửa sự kiện (%s)"
-
-#: ../gramps/gui/editors/editevent.py:338
-#, python-format
-msgid "Delete Event (%s)"
-msgstr "Xóa sự kiện (%s) "
 
 #: ../gramps/gui/editors/editeventref.py:57
 msgctxt "manual"
@@ -14024,7 +14027,7 @@ msgstr "Mẫu hệ "
 #: ../gramps/gui/selectors/selectperson.py:93
 #: ../gramps/plugins/gramplet/children.py:94
 #: ../gramps/plugins/gramplet/children.py:193
-#: ../gramps/plugins/lib/libpersonview.py:101
+#: ../gramps/plugins/lib/libpersonview.py:99
 #: ../gramps/plugins/quickview/filterbyname.py:154
 #: ../gramps/plugins/quickview/filterbyname.py:234
 #: ../gramps/plugins/quickview/filterbyname.py:282
@@ -14045,7 +14048,7 @@ msgstr "Ngày sinh "
 #: ../gramps/gui/selectors/selectperson.py:95
 #: ../gramps/plugins/gramplet/children.py:96
 #: ../gramps/plugins/gramplet/children.py:195
-#: ../gramps/plugins/lib/libpersonview.py:103
+#: ../gramps/plugins/lib/libpersonview.py:101
 #: ../gramps/plugins/quickview/lineage.py:61
 #: ../gramps/plugins/quickview/lineage.py:93
 #: ../gramps/plugins/webreport/basepage.py:476
@@ -14054,44 +14057,44 @@ msgstr "Ngày mất "
 
 #: ../gramps/gui/editors/editfamily.py:131
 #: ../gramps/gui/selectors/selectperson.py:94
-#: ../gramps/plugins/lib/libpersonview.py:102
+#: ../gramps/plugins/lib/libpersonview.py:100
 msgid "Birth Place"
 msgstr "Nơi sinh "
 
 #: ../gramps/gui/editors/editfamily.py:132
 #: ../gramps/gui/selectors/selectperson.py:96
-#: ../gramps/plugins/lib/libpersonview.py:104
+#: ../gramps/plugins/lib/libpersonview.py:102
 msgid "Death Place"
 msgstr "Nơi mất "
 
-#: ../gramps/gui/editors/editfamily.py:145
+#: ../gramps/gui/editors/editfamily.py:146
 msgid "Chil_dren"
 msgstr "Con_cái "
 
-#: ../gramps/gui/editors/editfamily.py:194
+#: ../gramps/gui/editors/editfamily.py:195
 msgid "Edit child"
 msgstr "Sửa con "
 
-#: ../gramps/gui/editors/editfamily.py:196
+#: ../gramps/gui/editors/editfamily.py:197
 msgid "Add an existing child"
 msgstr "Thêm một con đang có "
 
-#: ../gramps/gui/editors/editfamily.py:197
+#: ../gramps/gui/editors/editfamily.py:198
 msgid "Edit relationship"
 msgstr "Chỉnh sửa quan hệ "
 
-#: ../gramps/gui/editors/editfamily.py:267
-#: ../gramps/gui/editors/editfamily.py:282
+#: ../gramps/gui/editors/editfamily.py:268
+#: ../gramps/gui/editors/editfamily.py:283
 #: ../gramps/gui/selectors/selectperson.py:67
 #: ../gramps/plugins/view/relview.py:1750
 msgid "Select Child"
 msgstr "Chọn con "
 
-#: ../gramps/gui/editors/editfamily.py:417
+#: ../gramps/gui/editors/editfamily.py:418
 msgid "Adding parents to a person"
 msgstr "Thêm cha mẹ cho một người "
 
-#: ../gramps/gui/editors/editfamily.py:418
+#: ../gramps/gui/editors/editfamily.py:419
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -14102,11 +14105,11 @@ msgstr ""
 "chỉ nút chọn cha mẹ hiện diện khi bạn tạo một gia đình mới. Các trường còn "
 "lại sẽ có sau khi bạn đã cố gắng chọn một cha mẹ. "
 
-#: ../gramps/gui/editors/editfamily.py:523
+#: ../gramps/gui/editors/editfamily.py:524
 msgid "Family has changed"
 msgstr "Gia đình đã thay đổi "
 
-#: ../gramps/gui/editors/editfamily.py:524
+#: ../gramps/gui/editors/editfamily.py:525
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -14121,62 +14124,62 @@ msgstr ""
 ".Để đảm bảo là thông tin hiện là đúng, số liệu hiển thị đã được cập nhật. "
 "Vài sự sửa chữa bạn thực hiện có thể mất."
 
-#: ../gramps/gui/editors/editfamily.py:529
+#: ../gramps/gui/editors/editfamily.py:530
 #: ../gramps/plugins/importer/importcsv.py:230
-#: ../gramps/plugins/view/familyview.py:387
+#: ../gramps/plugins/view/familyview.py:370
 msgid "family"
 msgstr "gia đình "
 
-#: ../gramps/gui/editors/editfamily.py:560
-#: ../gramps/gui/editors/editfamily.py:563
+#: ../gramps/gui/editors/editfamily.py:561
+#: ../gramps/gui/editors/editfamily.py:564
 msgid "New Family"
 msgstr "Gia đình mới "
 
-#: ../gramps/gui/editors/editfamily.py:567
-#: ../gramps/gui/editors/editfamily.py:1185
-#: ../gramps/plugins/view/geofamily.py:479
+#: ../gramps/gui/editors/editfamily.py:568
+#: ../gramps/gui/editors/editfamily.py:1186
+#: ../gramps/plugins/view/geofamily.py:477
 msgid "Edit Family"
 msgstr "Sửa gia đình "
 
-#: ../gramps/gui/editors/editfamily.py:598
+#: ../gramps/gui/editors/editfamily.py:599
 msgid "Select a person as the mother"
 msgstr "Chọn một người là mẹ "
 
-#: ../gramps/gui/editors/editfamily.py:599
+#: ../gramps/gui/editors/editfamily.py:600
 msgid "Add a new person as the mother"
 msgstr "Thêm một người như là mẹ "
 
-#: ../gramps/gui/editors/editfamily.py:600
+#: ../gramps/gui/editors/editfamily.py:601
 msgid "Remove the person as the mother"
 msgstr "Bỏ một người là mẹ "
 
-#: ../gramps/gui/editors/editfamily.py:613
+#: ../gramps/gui/editors/editfamily.py:614
 msgid "Select a person as the father"
 msgstr "Chọn một người là cha "
 
-#: ../gramps/gui/editors/editfamily.py:614
+#: ../gramps/gui/editors/editfamily.py:615
 msgid "Add a new person as the father"
 msgstr "Thêm một người như là cha "
 
-#: ../gramps/gui/editors/editfamily.py:615
+#: ../gramps/gui/editors/editfamily.py:616
 msgid "Remove the person as the father"
 msgstr "Bỏ một người như là cha "
 
-#: ../gramps/gui/editors/editfamily.py:885
+#: ../gramps/gui/editors/editfamily.py:886
 #: ../gramps/gui/selectors/selectperson.py:65
 msgid "Select Mother"
 msgstr "Chọn mẹ "
 
-#: ../gramps/gui/editors/editfamily.py:930
+#: ../gramps/gui/editors/editfamily.py:931
 #: ../gramps/gui/selectors/selectperson.py:63
 msgid "Select Father"
 msgstr "Chọn cha "
 
-#: ../gramps/gui/editors/editfamily.py:954
+#: ../gramps/gui/editors/editfamily.py:955
 msgid "Duplicate Family"
 msgstr "Sao gia đình "
 
-#: ../gramps/gui/editors/editfamily.py:955
+#: ../gramps/gui/editors/editfamily.py:956
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -14187,8 +14190,8 @@ msgstr ""
 "chọn một gia đình đang tồn tại. "
 
 #. Translators: needed for French, ignore otherwise
-#: ../gramps/gui/editors/editfamily.py:996
-#: ../gramps/gui/editors/editfamily.py:1003
+#: ../gramps/gui/editors/editfamily.py:997
+#: ../gramps/gui/editors/editfamily.py:1004
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 #: ../gramps/gui/plug/report/_graphreportdialog.py:154
@@ -14224,44 +14227,44 @@ msgstr ""
 msgid "%s:"
 msgstr "%s:"
 
-#: ../gramps/gui/editors/editfamily.py:1005
+#: ../gramps/gui/editors/editfamily.py:1006
 #, python-format
 msgid "Edit %s"
 msgstr "Sửa %s"
 
-#: ../gramps/gui/editors/editfamily.py:1114
+#: ../gramps/gui/editors/editfamily.py:1115
 msgid "A father cannot be his own child"
 msgstr "Một người cha không thể là con của mình "
 
-#: ../gramps/gui/editors/editfamily.py:1115
+#: ../gramps/gui/editors/editfamily.py:1116
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s được liệt kê vừa là cha vừa là con của gia đình."
 
-#: ../gramps/gui/editors/editfamily.py:1125
+#: ../gramps/gui/editors/editfamily.py:1126
 msgid "A mother cannot be her own child"
 msgstr "Một người mẹ không thể là con của chính mình"
 
-#: ../gramps/gui/editors/editfamily.py:1126
+#: ../gramps/gui/editors/editfamily.py:1127
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s được kê như vừa là mẹ vừa là con của gia đình."
 
-#: ../gramps/gui/editors/editfamily.py:1134
+#: ../gramps/gui/editors/editfamily.py:1135
 msgid "Cannot save family"
 msgstr "Không thể lưu gia đình "
 
-#: ../gramps/gui/editors/editfamily.py:1135
+#: ../gramps/gui/editors/editfamily.py:1136
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "Không có số liệu tồn tại cho gia đình này. Xin nhập vào số liệu hay hủy bỏ "
 "sửa chữa. "
 
-#: ../gramps/gui/editors/editfamily.py:1143
+#: ../gramps/gui/editors/editfamily.py:1144
 msgid "Cannot save family. ID already exists."
 msgstr "Không thể lưu gia đình. Số ID đã có. "
 
-#: ../gramps/gui/editors/editfamily.py:1144
+#: ../gramps/gui/editors/editfamily.py:1145
 #: ../gramps/gui/editors/editnote.py:328
 #: ../gramps/gui/editors/editreference.py:295
 #, python-format
@@ -14274,7 +14277,7 @@ msgstr ""
 "này đã được dùng. Xin nhập một ID khách hay để trống để có số ID còn trống "
 "tiếp theo. "
 
-#: ../gramps/gui/editors/editfamily.py:1159
+#: ../gramps/gui/editors/editfamily.py:1160
 msgid "Add Family"
 msgstr "Thêm gia đình "
 
@@ -14382,10 +14385,6 @@ msgstr "Thêm đối tượng đa phương tiện (%s) "
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Sửa đối tượng đa phương tiện (%s) "
-
-#: ../gramps/gui/editors/editmedia.py:372
-msgid "Remove Media Object"
-msgstr "Bỏ đối tượng đa phương tiện "
 
 #: ../gramps/gui/editors/editmediaref.py:72
 msgctxt "manual"
@@ -14518,11 +14517,6 @@ msgstr "Không thể lưu ghi chú. ID đã tồn tại. "
 msgid "Add Note"
 msgstr "Thêm ghi chú "
 
-#: ../gramps/gui/editors/editnote.py:361
-#, python-format
-msgid "Delete Note (%s)"
-msgstr "Xóa bỏ ghi chú (%s)"
-
 #: ../gramps/gui/editors/editperson.py:157
 #, python-format
 msgid "Person: %(name)s"
@@ -14543,13 +14537,13 @@ msgid "Editing_information_about_people"
 msgstr "Sửa_thông_tin_về_người"
 
 #: ../gramps/gui/editors/editperson.py:602
-#: ../gramps/plugins/view/geofamily.py:483
+#: ../gramps/plugins/view/geofamily.py:481
 msgid "Edit Person"
 msgstr "Sửa người "
 
 #: ../gramps/gui/editors/editperson.py:645
-#: ../gramps/plugins/view/mediaview.py:386
-#: ../gramps/plugins/view/mediaview.py:402
+#: ../gramps/plugins/view/mediaview.py:385
+#: ../gramps/plugins/view/mediaview.py:401
 msgid "View"
 msgstr "Xem "
 
@@ -14694,9 +14688,9 @@ msgstr ""
 "(cú pháp: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:256
-#: ../gramps/plugins/lib/maps/geography.py:916
-#: ../gramps/plugins/view/geoplaces.py:499
-#: ../gramps/plugins/view/geoplaces.py:524
+#: ../gramps/plugins/lib/maps/geography.py:935
+#: ../gramps/plugins/view/geoplaces.py:495
+#: ../gramps/plugins/view/geoplaces.py:520
 msgid "Edit Place"
 msgstr "Sửa nơi "
 
@@ -14723,11 +14717,6 @@ msgstr "Thêm nơi (%s) "
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Sửa nơi (%s) "
-
-#: ../gramps/gui/editors/editplace.py:401
-#, python-format
-msgid "Delete Place (%s)"
-msgstr "Xóa nơi (%s) "
 
 #: ../gramps/gui/editors/editplaceformat.py:49
 #, fuzzy
@@ -14846,11 +14835,6 @@ msgstr "Thêm kho (%s) "
 msgid "Edit Repository (%s)"
 msgstr "Sửa kho (%s) "
 
-#: ../gramps/gui/editors/editrepository.py:222
-#, python-format
-msgid "Delete Repository (%s)"
-msgstr "Xóa kho (%s) "
-
 #: ../gramps/gui/editors/editsource.py:64
 msgctxt "manual"
 msgid "New_Source_dialog"
@@ -14885,11 +14869,6 @@ msgstr "Thêm nguồn (%s) "
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Sửa nguồn (%s) "
-
-#: ../gramps/gui/editors/editsource.py:243
-#, python-format
-msgid "Delete Source (%s)"
-msgstr "Xóa nguồn (%s) "
 
 #: ../gramps/gui/editors/edittaglist.py:48
 msgctxt "manual"
@@ -15156,8 +15135,8 @@ msgid "Select an existing source"
 msgstr "Chọn một nguồn đang có sẵn"
 
 #: ../gramps/gui/editors/objectentries.py:346
-#: ../gramps/plugins/view/citationlistview.py:125
-#: ../gramps/plugins/view/citationtreeview.py:122
+#: ../gramps/plugins/view/citationlistview.py:124
+#: ../gramps/plugins/view/citationtreeview.py:121
 #: ../gramps/plugins/view/sourceview.py:98
 msgid "Add a new source"
 msgstr "Thêm một nguồn "
@@ -15186,7 +15165,7 @@ msgid "Select an existing media object"
 msgstr "Chọn một đối tượng đa phương tiện đang có "
 
 #: ../gramps/gui/editors/objectentries.py:392
-#: ../gramps/plugins/view/mediaview.py:112
+#: ../gramps/plugins/view/mediaview.py:111
 msgid "Add a new media object"
 msgstr "Thêm một đối tượng đa phương tiện mới "
 
@@ -15209,7 +15188,7 @@ msgid "Select an existing note"
 msgstr "Chọn một ghi chú đang có "
 
 #: ../gramps/gui/editors/objectentries.py:439
-#: ../gramps/plugins/view/noteview.py:93
+#: ../gramps/plugins/view/noteview.py:92
 msgid "Add a new note"
 msgstr "Thêm một ghi chú mới "
 
@@ -15247,8 +15226,8 @@ msgstr "%s không là "
 msgid "%s does not contain"
 msgstr "%s không chứa "
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1202
-#: ../gramps/gui/views/listview.py:1222 ../gramps/plugins/gramplet/leak.py:193
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1279
+#: ../gramps/gui/views/listview.py:1299 ../gramps/plugins/gramplet/leak.py:193
 #: ../gramps/plugins/gramplet/leak.py:200
 msgid "Updating display..."
 msgstr "Cập nhật hiển thị..."
@@ -15270,7 +15249,7 @@ msgstr "Trích:"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
 #: ../gramps/plugins/gramplet/citations.py:87
 #: ../gramps/plugins/textreport/tagreport.py:827
-#: ../gramps/plugins/view/citationlistview.py:98
+#: ../gramps/plugins/view/citationlistview.py:97
 msgid "Volume/Page"
 msgstr "Quyển/Trang "
 
@@ -15422,30 +15401,31 @@ msgid "Configure currently selected item"
 msgstr "Thiết đặt mục chọn hiện tại "
 
 #: ../gramps/gui/glade/book.glade:540 ../gramps/gui/glade/dbman.glade:266
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/gui/views/listview.py:561
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -15586,7 +15566,7 @@ msgstr ""
 msgid "Cancel the rest of the operations"
 msgstr "Loại bỏ phần hoạt động còn lại "
 
-#: ../gramps/gui/glade/dialog.glade:433 ../gramps/gui/views/listview.py:572
+#: ../gramps/gui/glade/dialog.glade:433 ../gramps/gui/views/listview.py:666
 #: ../gramps/plugins/tool/reorderids.glade:21
 msgid "_No"
 msgstr "_Không"
@@ -15596,7 +15576,7 @@ msgstr "_Không"
 msgid "Do not apply the operation to this item"
 msgstr "Đừng áp dụng hoạt động cho mục hành"
 
-#: ../gramps/gui/glade/dialog.glade:449 ../gramps/gui/views/listview.py:572
+#: ../gramps/gui/glade/dialog.glade:449 ../gramps/gui/views/listview.py:666
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr "_Yes"
@@ -15633,7 +15613,7 @@ msgstr "Đóng_mà không lưu "
 
 #: ../gramps/gui/glade/dialog.glade:873
 #: ../gramps/gui/plug/report/_bookdialog.py:637
-#: ../gramps/gui/views/listview.py:1069
+#: ../gramps/gui/views/listview.py:1152
 #: ../gramps/gui/widgets/grampletpane.py:590
 #: ../gramps/plugins/tool/eventcmp.py:399
 msgid "_Save"
@@ -16954,6 +16934,7 @@ msgid "Click to delete gramplet from view"
 msgstr "Nhấp để xóa gramplet khỏi hiển thị "
 
 #: ../gramps/gui/glade/grampletpane.glade:144
+#: ../gramps/gui/views/listview.py:591
 msgid "Delete"
 msgstr "Xóa "
 
@@ -17151,7 +17132,7 @@ msgid "Note 2"
 msgstr "Ghi chú 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1073
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1156
 msgid "Format:"
 msgstr "Mẫu: "
 
@@ -17487,7 +17468,7 @@ msgid "Alignment"
 msgstr "Sắp xếp "
 
 #: ../gramps/gui/glade/styleeditor.glade:586
-#: ../gramps/plugins/drawreport/fanchart.py:706
+#: ../gramps/plugins/drawreport/fanchart.py:730
 msgid "Background color"
 msgstr "Màu nên "
 
@@ -17654,35 +17635,35 @@ msgid "_Display on startup"
 msgstr "_Hiện khi khởi động "
 
 #: ../gramps/gui/glade/tipofday.glade:102
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:291
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:181
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:323
-#: ../gramps/plugins/view/eventview.py:196
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:180
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:322
+#: ../gramps/plugins/view/eventview.py:194
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:154
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:67
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:67
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:70
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:261
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:154
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:260
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:658
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:167
@@ -18229,7 +18210,7 @@ msgstr "và "
 
 #: ../gramps/gui/merge/mergefamily.py:227
 #: ../gramps/gui/merge/mergeperson.py:351
-#: ../gramps/plugins/lib/libpersonview.py:559
+#: ../gramps/plugins/lib/libpersonview.py:492
 msgid "Cannot merge people"
 msgstr "Không thể hòa người "
 
@@ -18300,7 +18281,7 @@ msgstr "Bạn đời "
 #: ../gramps/gui/selectors/selectperson.py:97
 #: ../gramps/gui/widgets/reorderfam.py:102
 #: ../gramps/plugins/gramplet/children.py:98
-#: ../gramps/plugins/lib/libpersonview.py:105
+#: ../gramps/plugins/lib/libpersonview.py:103
 #: ../gramps/plugins/textreport/familygroup.py:566
 #: ../gramps/plugins/view/relview.py:1578
 msgid "Spouse"
@@ -19120,7 +19101,7 @@ msgstr "Kiểu thức "
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 #: ../gramps/plugins/drawreport/calendarreport.py:463
 #: ../gramps/plugins/drawreport/descendtree.py:1579
-#: ../gramps/plugins/drawreport/fanchart.py:687
+#: ../gramps/plugins/drawreport/fanchart.py:710
 #: ../gramps/plugins/drawreport/statisticschart.py:1008
 #: ../gramps/plugins/drawreport/timeline.py:414
 #: ../gramps/plugins/graph/gvfamilylines.py:121
@@ -19349,7 +19330,7 @@ msgid "Select Source or Citation"
 msgstr "Chọn nguồn trích dẫn"
 
 #: ../gramps/gui/selectors/selectcitation.py:71
-#: ../gramps/plugins/view/citationtreeview.py:93
+#: ../gramps/plugins/view/citationtreeview.py:92
 msgid "Source: Title or Citation: Volume/Page"
 msgstr "Nguồn: Tiêu đề hay Trích dẫn: Quyển/trang"
 
@@ -19546,7 +19527,7 @@ msgstr "Lỗi ở chương trình bên ngoài"
 msgid "File %s does not exist"
 msgstr "Không có tập tin  %s"
 
-#: ../gramps/gui/utils.py:605
+#: ../gramps/gui/utils.py:607
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -19564,7 +19545,7 @@ msgstr ""
 "Để chỉnh trích dẫn, hãy đóng trình chỉnh sửa nguồn  và mở riêng một trình "
 "chỉnh sửa trích dẫn"
 
-#: ../gramps/gui/utils.py:618
+#: ../gramps/gui/utils.py:620
 msgid "Cannot open new citation editor"
 msgstr "Không thể mở trình sửa chữa trích dẫn mới"
 
@@ -19756,22 +19737,22 @@ msgstr "Bookmarks"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
-#: ../gramps/plugins/lib/libpersonview.py:205
+#: ../gramps/plugins/lib/libpersonview.py:203
 #: ../gramps/plugins/lib/libplaceview.py:290
-#: ../gramps/plugins/view/citationlistview.py:180
-#: ../gramps/plugins/view/citationtreeview.py:322
-#: ../gramps/plugins/view/eventview.py:195
+#: ../gramps/plugins/view/citationlistview.py:179
+#: ../gramps/plugins/view/citationtreeview.py:321
+#: ../gramps/plugins/view/eventview.py:193
 #: ../gramps/plugins/view/familyview.py:153
 #: ../gramps/plugins/view/fanchartview.py:183
-#: ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geoclose.py:109
 #: ../gramps/plugins/view/geoevents.py:100
-#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geofamclose.py:107
 #: ../gramps/plugins/view/geofamily.py:100
-#: ../gramps/plugins/view/geomoves.py:107
+#: ../gramps/plugins/view/geomoves.py:109
 #: ../gramps/plugins/view/geoperson.py:108
 #: ../gramps/plugins/view/geoplaces.py:103
-#: ../gramps/plugins/view/mediaview.py:260
-#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/mediaview.py:259
+#: ../gramps/plugins/view/noteview.py:152
 #: ../gramps/plugins/view/pedigreeview.py:689
 #: ../gramps/plugins/view/relview.py:433 ../gramps/plugins/view/repoview.py:166
 #: ../gramps/plugins/view/sourceview.py:152
@@ -19782,44 +19763,45 @@ msgstr "Sắp xếp ghi chú "
 msgid "Cannot bookmark this reference"
 msgstr "Không thể đánh dấu tham chiếu này "
 
-#: ../gramps/gui/views/listview.py:439
+#: ../gramps/gui/views/listview.py:441
 msgid "Active object not visible"
 msgstr "Đối tượng hiện hành không thấy "
 
-#: ../gramps/gui/views/listview.py:449
+#: ../gramps/gui/views/listview.py:451
 #: ../gramps/gui/views/navigationview.py:256
-#: ../gramps/plugins/lib/maps/geography.py:229
-#: ../gramps/plugins/lib/maps/geography.py:246
+#: ../gramps/plugins/lib/maps/geography.py:233
+#: ../gramps/plugins/lib/maps/geography.py:250
 #: ../gramps/plugins/view/familyview.py:347
 msgid "Could Not Set a Bookmark"
 msgstr "Không thể định đánh dấu "
 
-#: ../gramps/gui/views/listview.py:450
+#: ../gramps/gui/views/listview.py:452
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Đánh dấu không thể đặt được vì không có gì được chọn. "
 
-#: ../gramps/gui/views/listview.py:542
-#: ../gramps/plugins/lib/libpersonview.py:523
-#: ../gramps/plugins/view/eventview.py:459
+#: ../gramps/gui/views/listview.py:578 ../gramps/plugins/view/eventview.py:384
+#, python-brace-format
+msgid "Delete {type} [{gid}]?"
+msgstr "Xóa bỏ {type} [{gid}]?"
+
+#: ../gramps/gui/views/listview.py:585 ../gramps/gui/views/listview.py:661
+msgid "Deleting item will remove it from the database."
+msgstr "Xóa mục này sẽ bỏ nó ra khỏi CSDL. "
+
+#: ../gramps/gui/views/listview.py:612
+#: ../gramps/plugins/gramplet/givennamegramplet.py:70
+#: ../gramps/plugins/gramplet/recordsgramplet.py:50
+#: ../gramps/plugins/gramplet/statsgramplet.py:71
+#: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
+msgid "Processing..."
+msgstr "Đang xử lý... "
+
+#: ../gramps/gui/views/listview.py:625
 msgid "Multiple Selection Delete"
 msgstr "Lựa chọn đa mục được xóa bỏ"
 
-#: ../gramps/gui/views/listview.py:543
-msgid ""
-"More than one item has been selected for deletion. Select the option "
-"indicating how to delete the items:"
-msgstr ""
-"Có nhiều hơn một mục được chọn để xóa. Chọn tùy chọn cho thấy các xóa chúng:"
-
-#: ../gramps/gui/views/listview.py:545
-msgid "Delete All"
-msgstr "Xóa hết"
-
-#: ../gramps/gui/views/listview.py:546
-msgid "Confirm Each Delete"
-msgstr "Xác nhận từng mục xóa"
-
-#: ../gramps/gui/views/listview.py:561
+#: ../gramps/gui/views/listview.py:657
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -19827,35 +19809,30 @@ msgstr ""
 "Mục này hiện đang được dùng. Xóa nó sẽ loại nó khỏi CSDL và tất cả các mục "
 "khác tham chiếu đến nó. "
 
-#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/eventview.py:409
-#: ../gramps/plugins/view/familyview.py:394
-msgid "Deleting item will remove it from the database."
-msgstr "Xóa mục này sẽ bỏ nó ra khỏi CSDL. "
-
-#: ../gramps/gui/views/listview.py:571
-#: ../gramps/plugins/lib/libpersonview.py:469
-#: ../gramps/plugins/view/familyview.py:387
+#: ../gramps/gui/views/listview.py:665
+#: ../gramps/plugins/lib/libpersonview.py:448
+#: ../gramps/plugins/view/familyview.py:370
 #, python-format
 msgid "Delete %s?"
 msgstr "Xóa bỏ %s? "
 
-#: ../gramps/gui/views/listview.py:620
+#: ../gramps/gui/views/listview.py:703
 msgid "Column clicked, sorting..."
 msgstr "Cột được nhấp, đang sắp xếp..."
 
-#: ../gramps/gui/views/listview.py:1065
+#: ../gramps/gui/views/listview.py:1148
 msgid "Export View as Spreadsheet"
 msgstr "Xuất Hiển thị dạng bảng tính "
 
-#: ../gramps/gui/views/listview.py:1078
+#: ../gramps/gui/views/listview.py:1161
 msgid "CSV"
 msgstr "CVS "
 
-#: ../gramps/gui/views/listview.py:1079
+#: ../gramps/gui/views/listview.py:1162
 msgid "OpenDocument Spreadsheet"
 msgstr "Bảng tính OpenDocument "
 
-#: ../gramps/gui/views/listview.py:1270
+#: ../gramps/gui/views/listview.py:1347
 msgid "Columns"
 msgstr "Cột "
 
@@ -19865,8 +19842,8 @@ msgid "%s has been bookmarked"
 msgstr "%s đã được đánh dấu "
 
 #: ../gramps/gui/views/navigationview.py:257
-#: ../gramps/plugins/lib/maps/geography.py:230
-#: ../gramps/plugins/lib/maps/geography.py:247
+#: ../gramps/plugins/lib/maps/geography.py:234
+#: ../gramps/plugins/lib/maps/geography.py:251
 #: ../gramps/plugins/view/familyview.py:348
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Đánh dấu không thể định được vì không có mục nào được chọn. "
@@ -20377,14 +20354,14 @@ msgstr "Tạo tài liệu bằng văn bản thường (.txt). "
 #: ../gramps/plugins/docgen/docgen.gpr.py:55
 #: ../gramps/plugins/view/fanchartview.py:164
 #: ../gramps/plugins/view/fanchartview.py:227
-#: ../gramps/plugins/view/geoclose.py:91 ../gramps/plugins/view/geoclose.py:167
+#: ../gramps/plugins/view/geoclose.py:90 ../gramps/plugins/view/geoclose.py:166
 #: ../gramps/plugins/view/geoevents.py:81
-#: ../gramps/plugins/view/geoevents.py:129
-#: ../gramps/plugins/view/geofamclose.py:89
-#: ../gramps/plugins/view/geofamclose.py:165
+#: ../gramps/plugins/view/geoevents.py:131
+#: ../gramps/plugins/view/geofamclose.py:88
+#: ../gramps/plugins/view/geofamclose.py:164
 #: ../gramps/plugins/view/geofamily.py:81
 #: ../gramps/plugins/view/geofamily.py:131
-#: ../gramps/plugins/view/geomoves.py:88 ../gramps/plugins/view/geomoves.py:151
+#: ../gramps/plugins/view/geomoves.py:90 ../gramps/plugins/view/geomoves.py:153
 #: ../gramps/plugins/view/geoperson.py:89
 #: ../gramps/plugins/view/geoplaces.py:84
 #: ../gramps/plugins/view/geoplaces.py:134
@@ -20539,48 +20516,48 @@ msgstr ""
 msgid "Could not open %s"
 msgstr "Không mở được %s "
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:348
+#: ../gramps/plugins/docgen/svgdrawdoc.py:349
 msgid "SVG background color"
 msgstr "Chọn màu nền SVG"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:350
+#: ../gramps/plugins/docgen/svgdrawdoc.py:351
 msgid "transparent background"
 msgstr "Nền trong suốt"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:351
-#: ../gramps/plugins/drawreport/fanchart.py:707
+#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/drawreport/fanchart.py:731
 msgid "white"
 msgstr "trắng "
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "black"
 msgstr "đen"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:353
+#: ../gramps/plugins/docgen/svgdrawdoc.py:354
 msgid "red"
 msgstr "đỏ"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:354
+#: ../gramps/plugins/docgen/svgdrawdoc.py:355
 msgid "green"
 msgstr "xanh"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:355
+#: ../gramps/plugins/docgen/svgdrawdoc.py:356
 msgid "blue"
 msgstr "xanh"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:356
+#: ../gramps/plugins/docgen/svgdrawdoc.py:357
 msgid "cyan"
 msgstr "xanh"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:357
+#: ../gramps/plugins/docgen/svgdrawdoc.py:358
 msgid "magenta"
 msgstr "xám"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:358
+#: ../gramps/plugins/docgen/svgdrawdoc.py:359
 msgid "yellow"
 msgstr "vàng"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:359
+#: ../gramps/plugins/docgen/svgdrawdoc.py:360
 msgid "The color, if any, of the SVG background"
 msgstr "Màu nếu xco1, của màu nền SVG "
 
@@ -20596,7 +20573,7 @@ msgstr "Biểu đồ tổ tiên cho %s "
 #: ../gramps/plugins/drawreport/ancestortree.py:364
 #: ../gramps/plugins/drawreport/calendarreport.py:114
 #: ../gramps/plugins/drawreport/descendtree.py:695
-#: ../gramps/plugins/drawreport/fanchart.py:194
+#: ../gramps/plugins/drawreport/fanchart.py:195
 #: ../gramps/plugins/graph/gvhourglass.py:110
 #: ../gramps/plugins/graph/gvrelgraph.py:185
 #: ../gramps/plugins/textreport/ancestorreport.py:117
@@ -20627,7 +20604,7 @@ msgstr "Đang in cây... "
 
 #: ../gramps/plugins/drawreport/ancestortree.py:801
 #: ../gramps/plugins/drawreport/calendarreport.py:473
-#: ../gramps/plugins/drawreport/fanchart.py:689
+#: ../gramps/plugins/drawreport/fanchart.py:712
 #: ../gramps/plugins/graph/gvhourglass.py:368
 #: ../gramps/plugins/graph/gvrelgraph.py:811
 #: ../gramps/plugins/textreport/ancestorreport.py:290
@@ -20655,7 +20632,7 @@ msgstr "Hoặc chỉ hiện người trung tâm hoặc tất cả anh em của n
 
 #: ../gramps/plugins/drawreport/ancestortree.py:812
 #: ../gramps/plugins/drawreport/descendtree.py:1544
-#: ../gramps/plugins/drawreport/fanchart.py:693
+#: ../gramps/plugins/drawreport/fanchart.py:716
 #: ../gramps/plugins/textreport/ancestorreport.py:294
 #: ../gramps/plugins/textreport/descendreport.py:537
 #: ../gramps/plugins/textreport/detancestralreport.py:840
@@ -20812,7 +20789,7 @@ msgstr "Có đưa trang trống vào không "
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/calendarreport.py:491
 #: ../gramps/plugins/drawreport/descendtree.py:1645
-#: ../gramps/plugins/drawreport/fanchart.py:730
+#: ../gramps/plugins/drawreport/fanchart.py:754
 #: ../gramps/plugins/drawreport/statisticschart.py:1072
 #: ../gramps/plugins/drawreport/timeline.py:435
 #: ../gramps/plugins/graph/gvfamilylines.py:170
@@ -20991,7 +20968,7 @@ msgstr "Các thế hệ hộp rỗng cho những tổ tiên không biết "
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1057
 #: ../gramps/plugins/drawreport/descendtree.py:1787
-#: ../gramps/plugins/drawreport/fanchart.py:771
+#: ../gramps/plugins/drawreport/fanchart.py:795
 #: ../gramps/plugins/drawreport/timeline.py:480
 #: ../gramps/plugins/textreport/alphabeticalindex.py:120
 #: ../gramps/plugins/textreport/ancestorreport.py:386
@@ -21019,7 +20996,7 @@ msgstr "Kiểu chính dùng coh hiển thị ghi chú."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1076
 #: ../gramps/plugins/drawreport/descendtree.py:1778
-#: ../gramps/plugins/drawreport/fanchart.py:761
+#: ../gramps/plugins/drawreport/fanchart.py:785
 #: ../gramps/plugins/drawreport/statisticschart.py:1157
 #: ../gramps/plugins/drawreport/timeline.py:498
 #: ../gramps/plugins/textreport/alphabeticalindex.py:103
@@ -21108,7 +21085,7 @@ msgid "Select filter to restrict people that appear on calendar"
 msgstr "Chọn bộ lọc để hạn chế người có trên lịch "
 
 #: ../gramps/plugins/drawreport/calendarreport.py:474
-#: ../gramps/plugins/drawreport/fanchart.py:690
+#: ../gramps/plugins/drawreport/fanchart.py:713
 #: ../gramps/plugins/graph/gvrelgraph.py:812
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:523
@@ -21553,12 +21530,12 @@ msgstr "Biểu đồ đường thời gian sống "
 msgid "Produces a timeline chart."
 msgstr "Tạo biểu đồ đường thời gian sống "
 
-#: ../gramps/plugins/drawreport/fanchart.py:256
+#: ../gramps/plugins/drawreport/fanchart.py:274
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "%(generations)d Biểu đồ thế hệ cho %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:271
+#: ../gramps/plugins/drawreport/fanchart.py:289
 #, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
@@ -21567,7 +21544,7 @@ msgstr ""
 "%(generations)d Biểu đồ quạt cho thế hệ cho\n"
 "%(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:694
+#: ../gramps/plugins/drawreport/fanchart.py:717
 #: ../gramps/plugins/textreport/ancestorreport.py:296
 #: ../gramps/plugins/textreport/descendreport.py:538
 #: ../gramps/plugins/textreport/detancestralreport.py:841
@@ -21575,69 +21552,77 @@ msgstr ""
 msgid "The number of generations to include in the report"
 msgstr "Số thế hệ đưa vào biểu đồ "
 
-#: ../gramps/plugins/drawreport/fanchart.py:698
+#: ../gramps/plugins/drawreport/fanchart.py:721
 msgid "Type of graph"
 msgstr "Loại biểu đồ "
 
-#: ../gramps/plugins/drawreport/fanchart.py:699
+#: ../gramps/plugins/drawreport/fanchart.py:722
 msgid "full circle"
 msgstr "nguyên hình tròn "
 
-#: ../gramps/plugins/drawreport/fanchart.py:700
+#: ../gramps/plugins/drawreport/fanchart.py:723
 msgid "half circle"
 msgstr "nửa hình tròn "
 
-#: ../gramps/plugins/drawreport/fanchart.py:701
+#: ../gramps/plugins/drawreport/fanchart.py:724
+msgid "overhang"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/fanchart.py:725
 msgid "quarter circle"
 msgstr "một phần tư hình tròn "
 
-#: ../gramps/plugins/drawreport/fanchart.py:702
-msgid "The form of the graph: full circle, half circle, or quarter circle."
+#: ../gramps/plugins/drawreport/fanchart.py:726
+#, fuzzy
+#| msgid "The form of the graph: full circle, half circle, or quarter circle."
+msgid ""
+"The form of the graph: full circle, half circle, half circle with overhang "
+"or quarter circle."
 msgstr "kiểu biểu đồ: nguyên hình tròn, nửa hình, hay 1/4 hình. "
 
-#: ../gramps/plugins/drawreport/fanchart.py:708
+#: ../gramps/plugins/drawreport/fanchart.py:732
 msgid "generation dependent"
 msgstr "tùy thuộc vào thế hệ "
 
-#: ../gramps/plugins/drawreport/fanchart.py:709
+#: ../gramps/plugins/drawreport/fanchart.py:733
 msgid "Background color is either white or generation dependent"
 msgstr "Màu nên hoặc là màu trắng hay tùy vào thế hệ "
 
-#: ../gramps/plugins/drawreport/fanchart.py:713
+#: ../gramps/plugins/drawreport/fanchart.py:737
 msgid "Orientation of radial texts"
 msgstr "Chiều văn bản vòng "
 
-#: ../gramps/plugins/drawreport/fanchart.py:715
+#: ../gramps/plugins/drawreport/fanchart.py:739
 msgid "upright"
 msgstr "thẳng đứng "
 
-#: ../gramps/plugins/drawreport/fanchart.py:716
+#: ../gramps/plugins/drawreport/fanchart.py:740
 msgid "roundabout"
 msgstr "vòng "
 
-#: ../gramps/plugins/drawreport/fanchart.py:717
+#: ../gramps/plugins/drawreport/fanchart.py:741
 msgid "Print radial texts upright or roundabout"
 msgstr "In văn bản hình tròn chiều đứng hay vòng "
 
-#: ../gramps/plugins/drawreport/fanchart.py:719
+#: ../gramps/plugins/drawreport/fanchart.py:743
 msgid "Draw empty boxes"
 msgstr "Tạo hộp trống"
 
-#: ../gramps/plugins/drawreport/fanchart.py:720
+#: ../gramps/plugins/drawreport/fanchart.py:744
 msgid "Draw the background although there is no information"
 msgstr "Vẽ màu nền dù không có thông tin"
 
-#: ../gramps/plugins/drawreport/fanchart.py:724
+#: ../gramps/plugins/drawreport/fanchart.py:748
 msgid "Use one font style for all generations"
 msgstr "Dùng một kiểu font cho mọi thế hệ"
 
-#: ../gramps/plugins/drawreport/fanchart.py:726
+#: ../gramps/plugins/drawreport/fanchart.py:750
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
 "Bạn có thể tùy biến font chữ và màu cho mỗi thế hệ trong trình chỉnh kiểu"
 
-#: ../gramps/plugins/drawreport/fanchart.py:782
+#: ../gramps/plugins/drawreport/fanchart.py:806
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
 msgstr "Kiểu dùng hiện văn bản cho thế hệ \"%d\""
@@ -22676,16 +22661,6 @@ msgstr "Nhấp đúp một tên người để đọc chi tiết "
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
 msgstr "Không có cây gia đình nào được tải lên. "
-
-#: ../gramps/plugins/gramplet/givennamegramplet.py:70
-#: ../gramps/plugins/gramplet/recordsgramplet.py:50
-#: ../gramps/plugins/gramplet/statsgramplet.py:71
-#: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
-#: ../gramps/plugins/lib/libpersonview.py:513
-#: ../gramps/plugins/view/eventview.py:431
-msgid "Processing..."
-msgstr "Đang xử lý... "
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:150
 msgid "Total unique given names"
@@ -29978,69 +29953,69 @@ msgstr "Bà cũng có quan hệ với %(spouse)s%(endnotes)s."
 msgid "Also relationship with %(spouse)s%(endnotes)s."
 msgstr "Cũng có quan hệ với %(spouse)s%(endnotes)s."
 
-#: ../gramps/plugins/lib/libpersonview.py:106
+#: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Number of Parents"
 msgstr "Số ba mẹ."
 
-#: ../gramps/plugins/lib/libpersonview.py:109
+#: ../gramps/plugins/lib/libpersonview.py:107
 msgid "Number of To Do Notes"
 msgstr "Số ghi chú Việc Cần Làm"
 
-#: ../gramps/plugins/lib/libpersonview.py:112
+#: ../gramps/plugins/lib/libpersonview.py:110
 #: ../gramps/plugins/lib/libplaceview.py:94
-#: ../gramps/plugins/view/citationlistview.py:104
-#: ../gramps/plugins/view/citationtreeview.py:99
-#: ../gramps/plugins/view/eventview.py:86
+#: ../gramps/plugins/view/citationlistview.py:103
+#: ../gramps/plugins/view/citationtreeview.py:98
+#: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/familyview.py:86
-#: ../gramps/plugins/view/mediaview.py:101
-#: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:99
+#: ../gramps/plugins/view/mediaview.py:100
+#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:89
 msgid "Last Changed"
 msgstr "Thay đổi lần cuối"
 
-#: ../gramps/plugins/lib/libpersonview.py:124
+#: ../gramps/plugins/lib/libpersonview.py:122
 msgid "Add a new person"
 msgstr "Thêm người mới"
 
-#: ../gramps/plugins/lib/libpersonview.py:125
+#: ../gramps/plugins/lib/libpersonview.py:123
 msgid "Edit the selected person"
 msgstr "Sửa người được chọn "
 
-#: ../gramps/plugins/lib/libpersonview.py:126
+#: ../gramps/plugins/lib/libpersonview.py:124
 msgid "Delete the selected person"
 msgstr "Xóa người được chọn"
 
-#: ../gramps/plugins/lib/libpersonview.py:127
+#: ../gramps/plugins/lib/libpersonview.py:125
 msgid "Merge the selected persons"
 msgstr "Nhập chung người được chọn"
 
-#: ../gramps/plugins/lib/libpersonview.py:186
+#: ../gramps/plugins/lib/libpersonview.py:184
 #: ../gramps/plugins/lib/libplaceview.py:271
-#: ../gramps/plugins/view/citationlistview.py:161
-#: ../gramps/plugins/view/citationtreeview.py:303
-#: ../gramps/plugins/view/eventview.py:176
+#: ../gramps/plugins/view/citationlistview.py:160
+#: ../gramps/plugins/view/citationtreeview.py:302
+#: ../gramps/plugins/view/eventview.py:174
 #: ../gramps/plugins/view/familyview.py:134
-#: ../gramps/plugins/view/mediaview.py:241
-#: ../gramps/plugins/view/noteview.py:134
+#: ../gramps/plugins/view/mediaview.py:240
+#: ../gramps/plugins/view/noteview.py:133
 #: ../gramps/plugins/view/repoview.py:147
 #: ../gramps/plugins/view/sourceview.py:133
 msgid "Export View..."
 msgstr "Xuất hiển thị..."
 
-#: ../gramps/plugins/lib/libpersonview.py:194
+#: ../gramps/plugins/lib/libpersonview.py:192
 #: ../gramps/plugins/lib/libplaceview.py:279
-#: ../gramps/plugins/view/citationlistview.py:169
-#: ../gramps/plugins/view/citationtreeview.py:311
-#: ../gramps/plugins/view/eventview.py:184
+#: ../gramps/plugins/view/citationlistview.py:168
+#: ../gramps/plugins/view/citationtreeview.py:310
+#: ../gramps/plugins/view/eventview.py:182
 #: ../gramps/plugins/view/familyview.py:142
 #: ../gramps/plugins/view/fanchartview.py:172
-#: ../gramps/plugins/view/geoclose.py:99 ../gramps/plugins/view/geoevents.py:89
-#: ../gramps/plugins/view/geofamclose.py:97
-#: ../gramps/plugins/view/geofamily.py:89 ../gramps/plugins/view/geomoves.py:96
+#: ../gramps/plugins/view/geoclose.py:98 ../gramps/plugins/view/geoevents.py:89
+#: ../gramps/plugins/view/geofamclose.py:96
+#: ../gramps/plugins/view/geofamily.py:89 ../gramps/plugins/view/geomoves.py:98
 #: ../gramps/plugins/view/geoperson.py:97
 #: ../gramps/plugins/view/geoplaces.py:92
-#: ../gramps/plugins/view/mediaview.py:249
-#: ../gramps/plugins/view/noteview.py:142
+#: ../gramps/plugins/view/mediaview.py:248
+#: ../gramps/plugins/view/noteview.py:141
 #: ../gramps/plugins/view/pedigreeview.py:678
 #: ../gramps/plugins/view/relview.py:370 ../gramps/plugins/view/relview.py:422
 #: ../gramps/plugins/view/repoview.py:155
@@ -30048,43 +30023,43 @@ msgstr "Xuất hiển thị..."
 msgid "_Add Bookmark"
 msgstr "_Thêm đánh dấu "
 
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:291
 #: ../gramps/plugins/lib/libplaceview.py:334
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:181
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:323
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:196
-#: ../gramps/plugins/view/eventview.py:239
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:180
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:322
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:194
+#: ../gramps/plugins/view/eventview.py:237
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:154
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/familyview.py:279
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:67
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:67
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:70
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:261
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:154
-#: ../gramps/plugins/view/noteview.py:197
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:260
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/noteview.py:196
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/pedigreeview.py:658
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:167
@@ -30096,15 +30071,15 @@ msgstr "_Thêm đánh dấu "
 msgid "_Back"
 msgstr "_Trở lại "
 
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:658
@@ -30114,30 +30089,30 @@ msgstr "_Trở lại "
 msgid "_Home"
 msgstr "_Trang chủ"
 
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -30147,30 +30122,30 @@ msgstr "_Trang chủ"
 msgid "_Add..."
 msgstr "_Thêm... "
 
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -30180,22 +30155,22 @@ msgstr "_Thêm... "
 msgid "_Merge..."
 msgstr "_Hòa chung..."
 
-#: ../gramps/plugins/lib/libpersonview.py:245
-#: ../gramps/plugins/lib/libpersonview.py:403
+#: ../gramps/plugins/lib/libpersonview.py:243
+#: ../gramps/plugins/lib/libpersonview.py:401
 #: ../gramps/plugins/lib/libplaceview.py:324
 #: ../gramps/plugins/lib/libplaceview.py:459
-#: ../gramps/plugins/view/citationlistview.py:214
-#: ../gramps/plugins/view/citationlistview.py:343
-#: ../gramps/plugins/view/citationtreeview.py:364
-#: ../gramps/plugins/view/citationtreeview.py:527
-#: ../gramps/plugins/view/eventview.py:229
-#: ../gramps/plugins/view/eventview.py:358
+#: ../gramps/plugins/view/citationlistview.py:213
+#: ../gramps/plugins/view/citationlistview.py:342
+#: ../gramps/plugins/view/citationtreeview.py:363
+#: ../gramps/plugins/view/citationtreeview.py:526
+#: ../gramps/plugins/view/eventview.py:227
+#: ../gramps/plugins/view/eventview.py:356
 #: ../gramps/plugins/view/familyview.py:187
 #: ../gramps/plugins/view/familyview.py:328
-#: ../gramps/plugins/view/mediaview.py:294
-#: ../gramps/plugins/view/mediaview.py:448
-#: ../gramps/plugins/view/noteview.py:187
-#: ../gramps/plugins/view/noteview.py:316
+#: ../gramps/plugins/view/mediaview.py:293
+#: ../gramps/plugins/view/mediaview.py:447
+#: ../gramps/plugins/view/noteview.py:186
+#: ../gramps/plugins/view/noteview.py:315
 #: ../gramps/plugins/view/repoview.py:200
 #: ../gramps/plugins/view/repoview.py:329
 #: ../gramps/plugins/view/sourceview.py:186
@@ -30204,114 +30179,110 @@ msgctxt "action"
 msgid "_Edit..."
 msgstr "_Sửa..."
 
-#: ../gramps/plugins/lib/libpersonview.py:246
+#: ../gramps/plugins/lib/libpersonview.py:244
 #: ../gramps/plugins/view/pedigreeview.py:690
 #: ../gramps/plugins/view/relview.py:391
 msgid "Person Filter Editor"
 msgstr "Trình sửa bộ lọc người "
 
-#: ../gramps/plugins/lib/libpersonview.py:246
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:244
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/view/pedigreeview.py:1668
 msgid "Set _Home Person"
 msgstr "Đặt người gốc "
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434
 msgid "Go to the home person"
 msgstr "Đi đến người mặc định "
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:373
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:210
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the next object in the history"
 msgstr "Đi đến đối tượng kế tiếp trong lịch sử "
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:373
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:210
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the previous object in the history"
 msgstr "Đi đến đối tượng trước trong lịch sử "
 
-#: ../gramps/plugins/lib/libpersonview.py:303
+#: ../gramps/plugins/lib/libpersonview.py:301
 #: ../gramps/plugins/lib/libplaceview.py:364
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/eventview.py:269
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/eventview.py:267
 #: ../gramps/plugins/view/familyview.py:227
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/noteview.py:227 ../gramps/plugins/view/relview.py:391
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/noteview.py:226 ../gramps/plugins/view/relview.py:391
 #: ../gramps/plugins/view/relview.py:477 ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/sourceview.py:226
 msgid "Edit..."
 msgstr "Sửa... "
 
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
 #, fuzzy
 msgid "Forward"
 msgstr "_Chuyển "
 
-#: ../gramps/plugins/lib/libpersonview.py:454
-msgid "_Delete Person"
-msgstr "_Xóa người "
-
-#: ../gramps/plugins/lib/libpersonview.py:473
+#: ../gramps/plugins/lib/libpersonview.py:452
 msgid "Deleting the person will remove the person from the database."
 msgstr "Xóa người ngày sẽ bỏ người đó ra khỏi CSDL"
 
-#: ../gramps/plugins/lib/libpersonview.py:496
+#: ../gramps/plugins/lib/libpersonview.py:459
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Xóa người (%s)  "
 
-#: ../gramps/plugins/lib/libpersonview.py:560
+#: ../gramps/plugins/lib/libpersonview.py:493
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -30371,11 +30342,11 @@ msgstr ""
 msgid "Select a Map Service"
 msgstr "Chọn một dịch vụ Gản đồ "
 
-#: ../gramps/plugins/lib/libplaceview.py:508
+#: ../gramps/plugins/lib/libplaceview.py:510
 msgid "Cannot delete place."
 msgstr "Không thể xóa địa điểm."
 
-#: ../gramps/plugins/lib/libplaceview.py:509
+#: ../gramps/plugins/lib/libplaceview.py:511
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -30383,12 +30354,12 @@ msgstr ""
 "Địa điểm này được tham chiếu bởi một địa điểm khác. Trước hết loại bỏ địa "
 "điểm nó chứa."
 
-#: ../gramps/plugins/lib/libplaceview.py:550
-#: ../gramps/plugins/lib/libplaceview.py:558
+#: ../gramps/plugins/lib/libplaceview.py:533
+#: ../gramps/plugins/lib/libplaceview.py:541
 msgid "Cannot merge places."
 msgstr "Không nhập chung địa điểm được."
 
-#: ../gramps/plugins/lib/libplaceview.py:551
+#: ../gramps/plugins/lib/libplaceview.py:534
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -30397,7 +30368,7 @@ msgstr ""
 "Chính xác cần có hai nơi được chọn để nhập chung. Nơi thứ hai có thể được "
 "chọn bằng cách nhấn Control đồng thời nhấp vào nơi muốn chọn. "
 
-#: ../gramps/plugins/lib/libplaceview.py:559
+#: ../gramps/plugins/lib/libplaceview.py:542
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr "Hòa các địa điểm này tạo ra vòng lặp trong cấp độ địa điểm."
 
@@ -30665,11 +30636,11 @@ msgstr "Bên trái dưới "
 msgid "Bottom Right"
 msgstr "Bên phải dưới "
 
-#: ../gramps/plugins/lib/maps/geography.py:158
+#: ../gramps/plugins/lib/maps/geography.py:160
 msgid "Tile path"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:159
+#: ../gramps/plugins/lib/maps/geography.py:161
 #, python-format
 msgid ""
 "The tile directory doesn't exist anymore:\n"
@@ -30678,85 +30649,85 @@ msgid ""
 "Configure the view for the tile path and restart gramps."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:378
+#: ../gramps/plugins/lib/maps/geography.py:398
 msgid "Remove cross hair"
 msgstr "Bỏ lằn chéo "
 
-#: ../gramps/plugins/lib/maps/geography.py:380
+#: ../gramps/plugins/lib/maps/geography.py:400
 msgid "Add cross hair"
 msgstr "Thêm lằn chéo "
 
-#: ../gramps/plugins/lib/maps/geography.py:387
+#: ../gramps/plugins/lib/maps/geography.py:407
 msgid "Unlock zoom and position"
 msgstr "Bỏ khóa phóng to và vị trí"
 
-#: ../gramps/plugins/lib/maps/geography.py:389
+#: ../gramps/plugins/lib/maps/geography.py:409
 msgid "Lock zoom and position"
 msgstr "Khóa phóng to và vị trí "
 
-#: ../gramps/plugins/lib/maps/geography.py:396
+#: ../gramps/plugins/lib/maps/geography.py:416
 msgid "Add place"
 msgstr "Thêm nơi "
 
-#: ../gramps/plugins/lib/maps/geography.py:401
+#: ../gramps/plugins/lib/maps/geography.py:421
 msgid "Link place"
 msgstr "Liên kêt địa điểm "
 
-#: ../gramps/plugins/lib/maps/geography.py:406
+#: ../gramps/plugins/lib/maps/geography.py:426
 msgid "Add place from kml"
 msgstr "Thêm địa điểm từ kml"
 
-#: ../gramps/plugins/lib/maps/geography.py:411
+#: ../gramps/plugins/lib/maps/geography.py:431
 msgid "Center here"
 msgstr "Điểm giữa ở đây "
 
-#: ../gramps/plugins/lib/maps/geography.py:424
+#: ../gramps/plugins/lib/maps/geography.py:444
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Thay thế '%(map)s' by =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:440
+#: ../gramps/plugins/lib/maps/geography.py:460
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
 msgstr "Tải lại tất cả tiêu đề thấy được cho '%(map)s'."
 
-#: ../gramps/plugins/lib/maps/geography.py:449
+#: ../gramps/plugins/lib/maps/geography.py:469
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr "Xóa bỏ '%(map)s' trong lớp bộ nhớ. "
 
-#: ../gramps/plugins/lib/maps/geography.py:876
+#: ../gramps/plugins/lib/maps/geography.py:895
 msgid "You can't use the print functionality"
 msgstr "Bạn không thể dùng chức năng in. "
 
-#: ../gramps/plugins/lib/maps/geography.py:877
+#: ../gramps/plugins/lib/maps/geography.py:896
 msgid "Your Gtk version is too old."
 msgstr "Bản Gtk của bạn cũ quá. "
 
-#: ../gramps/plugins/lib/maps/geography.py:920
-#: ../gramps/plugins/view/geoclose.py:635
-#: ../gramps/plugins/view/geoevents.py:405
-#: ../gramps/plugins/view/geoevents.py:437
-#: ../gramps/plugins/view/geofamclose.py:823
-#: ../gramps/plugins/view/geofamily.py:491
-#: ../gramps/plugins/view/geomoves.py:694
-#: ../gramps/plugins/view/geoperson.py:511
-#: ../gramps/plugins/view/geoperson.py:531
-#: ../gramps/plugins/view/geoperson.py:570
-#: ../gramps/plugins/view/geoplaces.py:504
-#: ../gramps/plugins/view/geoplaces.py:528
+#: ../gramps/plugins/lib/maps/geography.py:939
+#: ../gramps/plugins/view/geoclose.py:637
+#: ../gramps/plugins/view/geoevents.py:403
+#: ../gramps/plugins/view/geoevents.py:435
+#: ../gramps/plugins/view/geofamclose.py:820
+#: ../gramps/plugins/view/geofamily.py:489
+#: ../gramps/plugins/view/geomoves.py:708
+#: ../gramps/plugins/view/geoperson.py:508
+#: ../gramps/plugins/view/geoperson.py:528
+#: ../gramps/plugins/view/geoperson.py:567
+#: ../gramps/plugins/view/geoplaces.py:500
+#: ../gramps/plugins/view/geoplaces.py:524
 msgid "Center on this place"
 msgstr "Đặt điểm giữa tại nơi này "
 
-#: ../gramps/plugins/lib/maps/geography.py:1018
+#: ../gramps/plugins/lib/maps/geography.py:1037
 msgid "Select a kml file used to add places"
 msgstr "Chọn một tập tin kml dùng để thêm địa điểm"
 
-#: ../gramps/plugins/lib/maps/geography.py:1098
+#: ../gramps/plugins/lib/maps/geography.py:1117
 msgid "You have at least two places with the same title."
 msgstr "Bạn có ít nhất hai địa điểm có cùng tên gọi. "
 
-#: ../gramps/plugins/lib/maps/geography.py:1099
+#: ../gramps/plugins/lib/maps/geography.py:1118
 #, python-format
 msgid ""
 "The title of the places is:\n"
@@ -30773,19 +30744,19 @@ msgstr ""
 "\n"
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1253
+#: ../gramps/plugins/lib/maps/geography.py:1272
 msgid "Nothing for this view."
 msgstr "Không có gì để xem. "
 
-#: ../gramps/plugins/lib/maps/geography.py:1254
+#: ../gramps/plugins/lib/maps/geography.py:1273
 msgid "Specific parameters"
 msgstr "Thông số đặc biệt "
 
-#: ../gramps/plugins/lib/maps/geography.py:1272
+#: ../gramps/plugins/lib/maps/geography.py:1291
 msgid "Where to save the tiles for offline mode."
 msgstr "Lưu tile ở đâu khi không trực tuyến. "
 
-#: ../gramps/plugins/lib/maps/geography.py:1278
+#: ../gramps/plugins/lib/maps/geography.py:1298
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -30796,15 +30767,15 @@ msgstr ""
 "Hãy cẩn thận! vì nếu bạn không có kết nối internet, bạn sẽ không có bản đồ "
 "nào. "
 
-#: ../gramps/plugins/lib/maps/geography.py:1283
+#: ../gramps/plugins/lib/maps/geography.py:1303
 msgid "Zoom used when centering"
 msgstr "Phóng to được dùng khi gom giữa ảnh. "
 
-#: ../gramps/plugins/lib/maps/geography.py:1286
+#: ../gramps/plugins/lib/maps/geography.py:1306
 msgid "The maximum number of places to show"
 msgstr "Số địa điểm tối đa hiển thị"
 
-#: ../gramps/plugins/lib/maps/geography.py:1290
+#: ../gramps/plugins/lib/maps/geography.py:1310
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
@@ -30814,7 +30785,7 @@ msgstr ""
 "Hoặc là chúng ta chọn + và - từ bàn phím nếu chúng ta chọn mục này,\n"
 "hoặc là chúng ta dùng các ký tự từ bàn phím."
 
-#: ../gramps/plugins/lib/maps/geography.py:1298
+#: ../gramps/plugins/lib/maps/geography.py:1318
 msgid ""
 "If you want to use a specific map provider, You can set the following field "
 "to the provider's url.\n"
@@ -30825,25 +30796,25 @@ msgid ""
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1312
+#: ../gramps/plugins/lib/maps/geography.py:1333
 #, fuzzy
 msgid "Personal map"
 msgstr "Cá nhân"
 
-#: ../gramps/plugins/lib/maps/geography.py:1318
+#: ../gramps/plugins/lib/maps/geography.py:1337
 msgid "The map"
 msgstr "Bản đồ "
 
-#: ../gramps/plugins/lib/maps/geography.py:1358
+#: ../gramps/plugins/lib/maps/geography.py:1373
 msgid "Select tile cache directory for offline mode"
 msgstr "Chọn lớp ở thư mục bộ đệm cho trạng thái ngoại tuyến"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:139
+#: ../gramps/plugins/lib/maps/osmgps.py:137
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Không thể tạo tu mục nhớ tạm tile %s "
 
-#: ../gramps/plugins/lib/maps/osmgps.py:143
+#: ../gramps/plugins/lib/maps/osmgps.py:141
 #, python-format
 msgid ""
 "You must verify and change the tiles cache\n"
@@ -30860,18 +30831,18 @@ msgid ""
 "The next errors will be normal"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/osmgps.py:183
+#: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Không tạo được thư mục tile bộ nhớ đệm '%s' "
 
+#: ../gramps/plugins/lib/maps/placeselection.py:115
 #: ../gramps/plugins/lib/maps/placeselection.py:118
-#: ../gramps/plugins/lib/maps/placeselection.py:121
 msgid "Place Selection in a region"
 msgstr "Chọn vị trí ở một miền"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:122
+#: ../gramps/plugins/lib/maps/placeselection.py:119
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
@@ -30879,37 +30850,37 @@ msgstr ""
 "Chọn độ của lựa chọn.\n"
 "Trên bản đồ bạn phải thấy một vòng tròn hay bán nguyêt tuỳ vào vĩ tuyến. "
 
-#: ../gramps/plugins/lib/maps/placeselection.py:125
+#: ../gramps/plugins/lib/maps/placeselection.py:122
 msgid ""
 "\n"
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:128
+#: ../gramps/plugins/lib/maps/placeselection.py:125
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:165
+#: ../gramps/plugins/lib/maps/placeselection.py:162
 msgid "The green values in the row correspond to the current place values."
 msgstr "Giá trị xanh ở hàng tương ứng với giá trị địa điểm hiện tại. "
 
-#: ../gramps/plugins/lib/maps/placeselection.py:223
+#: ../gramps/plugins/lib/maps/placeselection.py:220
 msgid "New place with empty fields"
 msgstr "Nơi mơi với trường rỗng "
 
-#: ../gramps/plugins/lib/maps/placeselection.py:298
+#: ../gramps/plugins/lib/maps/placeselection.py:295
 msgid "you have a wrong latitude for:"
 msgstr "Bạn có một kinh tuyến sai cho:"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:300
-#: ../gramps/plugins/lib/maps/placeselection.py:310
+#: ../gramps/plugins/lib/maps/placeselection.py:297
+#: ../gramps/plugins/lib/maps/placeselection.py:307
 msgid "Please, correct this before linking"
 msgstr "Vui lòng chỉnh sửa chỗ này trước khi nối"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:308
+#: ../gramps/plugins/lib/maps/placeselection.py:305
 msgid "you have a wrong longitude for:"
 msgstr "Bạn có một vĩ tuyến sai cho:"
 
@@ -31731,7 +31702,7 @@ msgstr "Tính toán quan hệ catalan"
 #: ../gramps/plugins/rel/relplugins.gpr.py:289
 #: ../gramps/plugins/rel/relplugins.gpr.py:303
 #: ../gramps/plugins/rel/relplugins.gpr.py:316
-#: ../gramps/plugins/rel/relplugins.gpr.py:330
+#: ../gramps/plugins/rel/relplugins.gpr.py:346
 msgid "Calculates relationships between people"
 msgstr "Tính quan hệ giữa hai người "
 
@@ -31813,7 +31784,19 @@ msgstr "Tính quan hệ Sloven "
 msgid "Swedish Relationship Calculator"
 msgstr "Tính quan hệ Thuỵ Điển "
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:329
+#: ../gramps/plugins/rel/relplugins.gpr.py:330
+#, fuzzy
+#| msgid "Danish Relationship Calculator"
+msgid "Turkish Relationship Calculator"
+msgstr "Tính quan hệ Đan Mạch"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:331
+#, fuzzy
+#| msgid "Calculates relationships between people"
+msgid "Calculates relationship between people"
+msgstr "Tính quan hệ giữa hai người "
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:345
 msgid "Ukrainian Relationship Calculator"
 msgstr "Tính quan hệ kiểu Croatia "
 
@@ -35454,65 +35437,65 @@ msgstr "Ngay sinh bằng ngày kết hôn"
 msgid "Death equals marriage"
 msgstr "Chết bằng hôn nhân"
 
-#: ../gramps/plugins/view/citationlistview.py:105
+#: ../gramps/plugins/view/citationlistview.py:104
 msgid "Source: Title"
 msgstr "Nguồn: tiêu đề"
 
-#: ../gramps/plugins/view/citationlistview.py:106
+#: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: ID"
 msgstr "Nguồn: ID"
 
-#: ../gramps/plugins/view/citationlistview.py:107
-#: ../gramps/plugins/view/citationtreeview.py:100
+#: ../gramps/plugins/view/citationlistview.py:106
+#: ../gramps/plugins/view/citationtreeview.py:99
 msgid "Source: Author"
 msgstr "Nguồn: Tác giả"
 
-#: ../gramps/plugins/view/citationlistview.py:108
-#: ../gramps/plugins/view/citationtreeview.py:101
+#: ../gramps/plugins/view/citationlistview.py:107
+#: ../gramps/plugins/view/citationtreeview.py:100
 msgid "Source: Abbreviation"
 msgstr "Nguồn: Viết tắt "
 
-#: ../gramps/plugins/view/citationlistview.py:109
-#: ../gramps/plugins/view/citationtreeview.py:102
+#: ../gramps/plugins/view/citationlistview.py:108
+#: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Publication Information"
 msgstr "Ngồn: Thông tin ấn hành"
 
-#: ../gramps/plugins/view/citationlistview.py:110
+#: ../gramps/plugins/view/citationlistview.py:109
 msgid "Source: Private"
 msgstr "Nguồn: Riêng tư"
 
-#: ../gramps/plugins/view/citationlistview.py:111
+#: ../gramps/plugins/view/citationlistview.py:110
 msgid "Source: Last Changed"
 msgstr "Nguồn: Thay đổi lần cuối"
 
-#: ../gramps/plugins/view/citationlistview.py:124
-#: ../gramps/plugins/view/citationtreeview.py:121
+#: ../gramps/plugins/view/citationlistview.py:123
+#: ../gramps/plugins/view/citationtreeview.py:120
 msgid "Add a new citation and a new source"
 msgstr "Thêm trích dẫn mới và một nguồn mới "
 
-#: ../gramps/plugins/view/citationlistview.py:126
-#: ../gramps/plugins/view/citationtreeview.py:123
+#: ../gramps/plugins/view/citationlistview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:122
 msgid "Add a new citation to an existing source"
 msgstr "Thêm một trích dẫn mới vào một nguồn đang có "
 
-#: ../gramps/plugins/view/citationlistview.py:128
+#: ../gramps/plugins/view/citationlistview.py:127
 msgid "Delete the selected citation"
 msgstr "Xóa trích dẫn đã chọn "
 
-#: ../gramps/plugins/view/citationlistview.py:129
+#: ../gramps/plugins/view/citationlistview.py:128
 msgid "Merge the selected citations"
 msgstr "Hoà chung trích dẫn được chọn"
 
-#: ../gramps/plugins/view/citationlistview.py:143
+#: ../gramps/plugins/view/citationlistview.py:142
 msgid "Citation View"
 msgstr "Xem trích dẫn "
 
-#: ../gramps/plugins/view/citationlistview.py:215
-#: ../gramps/plugins/view/citationtreeview.py:365
+#: ../gramps/plugins/view/citationlistview.py:214
+#: ../gramps/plugins/view/citationtreeview.py:364
 msgid "Citation Filter Editor"
 msgstr "Trình soạn thảo bộ lọc đoạn trích"
 
-#: ../gramps/plugins/view/citationlistview.py:395
+#: ../gramps/plugins/view/citationlistview.py:388
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -35526,15 +35509,15 @@ msgstr ""
 "\n"
 "Để sửa trích dẫn này, bạn cần đóng đối tượng lại. "
 
-#: ../gramps/plugins/view/citationlistview.py:408
-#: ../gramps/plugins/view/citationlistview.py:419
-#: ../gramps/plugins/view/citationtreeview.py:664
-#: ../gramps/plugins/view/citationtreeview.py:677
+#: ../gramps/plugins/view/citationlistview.py:401
+#: ../gramps/plugins/view/citationlistview.py:412
+#: ../gramps/plugins/view/citationtreeview.py:641
+#: ../gramps/plugins/view/citationtreeview.py:654
 msgid "Cannot merge citations."
 msgstr "Không thể hoà chung trích dẫn."
 
-#: ../gramps/plugins/view/citationlistview.py:409
-#: ../gramps/plugins/view/citationtreeview.py:665
+#: ../gramps/plugins/view/citationlistview.py:402
+#: ../gramps/plugins/view/citationtreeview.py:642
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -35544,8 +35527,8 @@ msgstr ""
 "thứ hai có thể được chọn bằng cách nhấn phím control đồng thời nhấp vào "
 "trích dẫn muốn nhập. "
 
-#: ../gramps/plugins/view/citationlistview.py:420
-#: ../gramps/plugins/view/citationtreeview.py:678
+#: ../gramps/plugins/view/citationlistview.py:413
+#: ../gramps/plugins/view/citationtreeview.py:655
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -35553,46 +35536,46 @@ msgstr ""
 "Hai trích dẫn được chọn phải có cùng nguồn để tạo ra sự hoà trộn. Nếu bạn "
 "muốn trộn hai trích dẫn, thì bản phải trộn nguồn trước. "
 
-#: ../gramps/plugins/view/citationtreeview.py:124
+#: ../gramps/plugins/view/citationtreeview.py:123
 msgid "Edit the selected citation or source"
 msgstr "Sửa một trích dẫn hay nguồn được chọn "
 
-#: ../gramps/plugins/view/citationtreeview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:124
 msgid "Delete the selected citation or source"
 msgstr "Xóa trích dẫn hay nguồn được chọn "
 
-#: ../gramps/plugins/view/citationtreeview.py:126
+#: ../gramps/plugins/view/citationtreeview.py:125
 msgid "Merge the selected citations or selected sources"
 msgstr "Hoà các trích dẫn đã chọn hay các nguồn đã chọn "
 
-#: ../gramps/plugins/view/citationtreeview.py:144
+#: ../gramps/plugins/view/citationtreeview.py:143
 msgid "Citation Tree View"
 msgstr "Xem cây trích dẫn "
 
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
 msgid "Add citation..."
 msgstr "Thêm trích dẫn..."
 
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
 msgid "Add source..."
 msgstr "Thêm nguồn ..."
 
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:474
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse all Nodes"
 msgstr "Thu nhỏ mọi nút "
 
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:474
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand all Nodes"
 msgstr "Mở rộng mọi nút "
 
-#: ../gramps/plugins/view/citationtreeview.py:651
+#: ../gramps/plugins/view/citationtreeview.py:628
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -35605,11 +35588,11 @@ msgstr ""
 "\n"
 "Để sửa nguồn này, bạn cần đóng nguồn. "
 
-#: ../gramps/plugins/view/citationtreeview.py:690
+#: ../gramps/plugins/view/citationtreeview.py:667
 msgid "Cannot perform merge."
 msgstr "Không thể hoà chung.  "
 
-#: ../gramps/plugins/view/citationtreeview.py:691
+#: ../gramps/plugins/view/citationtreeview.py:668
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -35623,40 +35606,31 @@ msgstr ""
 msgid "Dashboard"
 msgstr "Bảng điều khiển"
 
-#: ../gramps/plugins/view/eventview.py:97
+#: ../gramps/plugins/view/eventview.py:95
 msgid "Add a new event"
 msgstr "Thêm sự kiện mới "
 
-#: ../gramps/plugins/view/eventview.py:98
+#: ../gramps/plugins/view/eventview.py:96
 msgid "Edit the selected event"
 msgstr "Sửa sự kiện chọn "
 
-#: ../gramps/plugins/view/eventview.py:99
+#: ../gramps/plugins/view/eventview.py:97
 msgid "Delete the selected event"
 msgstr "Xóa sự kiện chọn "
 
-#: ../gramps/plugins/view/eventview.py:100
+#: ../gramps/plugins/view/eventview.py:98
 msgid "Merge the selected events"
 msgstr "Nhập sự kiện chọn "
 
-#: ../gramps/plugins/view/eventview.py:230
+#: ../gramps/plugins/view/eventview.py:228
 msgid "Event Filter Editor"
 msgstr "Trình sửa bộ lọc sự kiện "
 
-#: ../gramps/plugins/view/eventview.py:386
-msgid "_Delete Event"
-msgstr "_Xóa sự kiện"
-
 #: ../gramps/plugins/view/eventview.py:402
-#, python-brace-format
-msgid "Delete {type} [{gid}]?"
-msgstr "Xóa bỏ {type} [{gid}]?"
-
-#: ../gramps/plugins/view/eventview.py:487
 msgid "Cannot merge event objects."
 msgstr "Không thể nhập đối tượng sự kiện. "
 
-#: ../gramps/plugins/view/eventview.py:488
+#: ../gramps/plugins/view/eventview.py:403
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -35698,20 +35672,11 @@ msgstr "Đặt cha là người chính "
 msgid "Make Mother Active Person"
 msgstr "Đặt mẹ là người chính "
 
-#: ../gramps/plugins/view/familyview.py:372
-msgid "_Delete Family"
-msgstr "_Xóa gia đình"
-
-#: ../gramps/plugins/view/familyview.py:408
-#, python-format
-msgid "Family [%s]"
-msgstr "Gia đình [%s]"
-
-#: ../gramps/plugins/view/familyview.py:432
+#: ../gramps/plugins/view/familyview.py:396
 msgid "Cannot merge families."
 msgstr "Không thể nhập gia đình. "
 
-#: ../gramps/plugins/view/familyview.py:433
+#: ../gramps/plugins/view/familyview.py:397
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -35891,19 +35856,19 @@ msgstr "In hay lưu Hiển thị Đồ thị hình quạt"
 msgid "Show children ring"
 msgstr "Vòng trẻ con"
 
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 msgid "Select the person which is the reference for life ways"
 msgstr "Chọn người tham chiếu cho cách sống"
 
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 msgid "reference _Person"
 msgstr "Người_tham_chiếu"
 
-#: ../gramps/plugins/view/geoclose.py:167
-#: ../gramps/plugins/view/geoevents.py:129
-#: ../gramps/plugins/view/geofamclose.py:165
+#: ../gramps/plugins/view/geoclose.py:166
+#: ../gramps/plugins/view/geoevents.py:131
+#: ../gramps/plugins/view/geofamclose.py:164
 #: ../gramps/plugins/view/geofamily.py:131
-#: ../gramps/plugins/view/geomoves.py:151
+#: ../gramps/plugins/view/geomoves.py:153
 #: ../gramps/plugins/view/geoperson.py:152
 #: ../gramps/plugins/view/geoplaces.py:134
 msgid "Print or save the Map"
@@ -35948,20 +35913,20 @@ msgstr ""
 msgid "Select the person which will be our reference."
 msgstr "Chọn người làm tham chiếu cho chúng tôi"
 
-#: ../gramps/plugins/view/geoclose.py:497
-#: ../gramps/plugins/view/geofamclose.py:581
-#: ../gramps/plugins/view/geofamily.py:260
-#: ../gramps/plugins/view/geomoves.py:363
-#: ../gramps/plugins/view/geoperson.py:407
+#: ../gramps/plugins/view/geoclose.py:500
+#: ../gramps/plugins/view/geofamclose.py:582
+#: ../gramps/plugins/view/geofamily.py:258
+#: ../gramps/plugins/view/geomoves.py:370
+#: ../gramps/plugins/view/geoperson.py:405
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:653
+#: ../gramps/plugins/view/geoclose.py:655
 msgid "Choose and bookmark the new reference person"
 msgstr "Chọn và đánh dấu người tham chiếu mới"
 
-#: ../gramps/plugins/view/geoclose.py:676
+#: ../gramps/plugins/view/geoclose.py:679
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -35977,20 +35942,20 @@ msgstr ""
 "Giá trị bằng 1 có nghĩa khoảng 4.6 dặm hay là 7.5 kms.\n"
 "Giá trị bằng 1/10 của 1 độ."
 
-#: ../gramps/plugins/view/geoclose.py:687
-#: ../gramps/plugins/view/geofamclose.py:875
+#: ../gramps/plugins/view/geoclose.py:688
+#: ../gramps/plugins/view/geofamclose.py:872
 msgid "The selection parameters"
 msgstr "Chọn thông số"
 
-#: ../gramps/plugins/view/geoevents.py:161
+#: ../gramps/plugins/view/geoevents.py:165
 msgid "Events places map"
 msgstr "Bản đồ sự kiện "
 
-#: ../gramps/plugins/view/geoevents.py:186
+#: ../gramps/plugins/view/geoevents.py:190
 msgid "GeoEvents"
 msgstr "GeoEvents"
 
-#: ../gramps/plugins/view/geoevents.py:309
+#: ../gramps/plugins/view/geoevents.py:310
 msgid "incomplete or unreferenced event ?"
 msgstr "không hoàn chỉnh hay sự kiện không tham chiếu? "
 
@@ -36010,60 +35975,60 @@ msgstr ""
 "địa điểm được biết ở một tọa độ. Bạn có thể chọn màu dấu tùy vào nơi đó. Bạn "
 "có thể dùng bộ lọc."
 
-#: ../gramps/plugins/view/geoevents.py:412
-#: ../gramps/plugins/view/geoevents.py:443
+#: ../gramps/plugins/view/geoevents.py:410
+#: ../gramps/plugins/view/geoevents.py:441
 msgid "Bookmark this event"
 msgstr "Đánh dấu sự kiện này"
 
-#: ../gramps/plugins/view/geoevents.py:458
+#: ../gramps/plugins/view/geoevents.py:456
 msgid "Show all events"
 msgstr "Hiển thị tât cả sự kiện "
 
-#: ../gramps/plugins/view/geoevents.py:462
-#: ../gramps/plugins/view/geoplaces.py:553
+#: ../gramps/plugins/view/geoevents.py:460
+#: ../gramps/plugins/view/geoplaces.py:549
 msgid "Centering on Place"
 msgstr "Tập trung vào nơi này "
 
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 msgid "Select the family which is the reference for life ways"
 msgstr "Chọn gia đình tham chiếu cho cách sống"
 
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geoperson.py:152
 msgid "reference _Family"
 msgstr "Gia_đình_tham_chiếu"
 
-#: ../gramps/plugins/view/geofamclose.py:221
+#: ../gramps/plugins/view/geofamclose.py:220
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid "Have these two families been able to meet?"
 msgstr "Hai gia đình này có thể gặp nhau không?"
 
-#: ../gramps/plugins/view/geofamclose.py:259
+#: ../gramps/plugins/view/geofamclose.py:258
 msgid "GeoFamClose"
 msgstr "GeoFamClose"
 
-#: ../gramps/plugins/view/geofamclose.py:302
-#: ../gramps/plugins/view/geofamily.py:344
+#: ../gramps/plugins/view/geofamclose.py:301
+#: ../gramps/plugins/view/geofamily.py:343
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(gramps_id)s : %(father)s và %(mother)s"
 
-#: ../gramps/plugins/view/geofamclose.py:352
+#: ../gramps/plugins/view/geofamclose.py:351
 #, python-format
 msgid "Family reference : %s"
 msgstr "Tham chiếu gia đình: %s "
 
-#: ../gramps/plugins/view/geofamclose.py:355
-#: ../gramps/plugins/view/geofamclose.py:358
+#: ../gramps/plugins/view/geofamclose.py:354
+#: ../gramps/plugins/view/geofamclose.py:357
 #, python-format
 msgid "The other family : %s"
 msgstr "gia đình kia: %s"
 
-#: ../gramps/plugins/view/geofamclose.py:365
+#: ../gramps/plugins/view/geofamclose.py:364
 msgid "You must choose one reference family."
 msgstr "Bạn phải chọn một gia đình tham chiếu."
 
-#: ../gramps/plugins/view/geofamclose.py:367
+#: ../gramps/plugins/view/geofamclose.py:366
 msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
@@ -36071,35 +36036,35 @@ msgstr ""
 "Đến hiển thị gia đình và chọn các gia đình bạn muốn so sánh. Quay lại hiển "
 "thị này và sử dụng lịch sử."
 
-#: ../gramps/plugins/view/geofamclose.py:693
-#: ../gramps/plugins/view/geofamily.py:399
+#: ../gramps/plugins/view/geofamclose.py:692
+#: ../gramps/plugins/view/geofamily.py:398
 #, python-format
 msgid "Father : %(id)s : %(name)s"
 msgstr "Cha: %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:702
-#: ../gramps/plugins/view/geofamily.py:408
+#: ../gramps/plugins/view/geofamclose.py:701
+#: ../gramps/plugins/view/geofamily.py:407
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
 msgstr "Mẹ : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:714
+#: ../gramps/plugins/view/geofamclose.py:713
 #: ../gramps/plugins/view/geofamily.py:420
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Con : %(id)s - %(index)d : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:724
-#: ../gramps/plugins/view/geofamily.py:429
+#: ../gramps/plugins/view/geofamclose.py:722
+#: ../gramps/plugins/view/geofamily.py:428
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Người : %(id)s %(name)s không có gia đình. "
 
-#: ../gramps/plugins/view/geofamclose.py:841
+#: ../gramps/plugins/view/geofamclose.py:838
 msgid "Choose and bookmark the new reference family"
 msgstr "Chọn và đánh dấu gia đình tham chiếu mới"
 
-#: ../gramps/plugins/view/geofamclose.py:864
+#: ../gramps/plugins/view/geofamclose.py:862
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -36123,7 +36088,7 @@ msgstr "Bản đồ địa điểm gia đình "
 msgid "GeoFamily"
 msgstr "GeoFamily"
 
-#: ../gramps/plugins/view/geofamily.py:372
+#: ../gramps/plugins/view/geofamily.py:371
 #, python-format
 msgid "Family places for %s"
 msgstr "Địa điểm gia đình cho %s"
@@ -36217,32 +36182,35 @@ msgstr "Mọi địa điểm liên quan đến các sự kiện"
 msgid "A view showing all the event places of the database."
 msgstr "Hiển thị cho thấy tât cả các vị trí sự kiện trong CSDL. "
 
-#: ../gramps/plugins/view/geomoves.py:208
-msgid "Descendance of the active person."
+#: ../gramps/plugins/view/geomoves.py:210
+#, fuzzy
+#| msgid "Descendance of the active person."
+msgid "Descendants of the active person."
 msgstr "Hậu duệ của một người đang xem"
 
-#: ../gramps/plugins/view/geomoves.py:239
+#: ../gramps/plugins/view/geomoves.py:240
 msgid "GeoMoves"
 msgstr "GeoMoves"
 
-#: ../gramps/plugins/view/geomoves.py:561
-#, python-format
-msgid "All descendance for %s"
+#: ../gramps/plugins/view/geomoves.py:573
+#, fuzzy, python-format
+#| msgid "All descendance for %s"
+msgid "All descendants for %s"
 msgstr "Tất cả hậu duệ của %s "
 
-#: ../gramps/plugins/view/geomoves.py:701
+#: ../gramps/plugins/view/geomoves.py:715
 msgid "Bookmark this person"
 msgstr "Đánh dấu người này"
 
-#: ../gramps/plugins/view/geomoves.py:733
+#: ../gramps/plugins/view/geomoves.py:747
 msgid "The maximum number of generations.\n"
 msgstr "Số thế hệ tối đa.\n"
 
-#: ../gramps/plugins/view/geomoves.py:740
+#: ../gramps/plugins/view/geomoves.py:754
 msgid "Time in milliseconds between drawing two generations.\n"
 msgstr "Thời gian tính bằng 1/1000 giây giữa khi vẽ hai thế hệ.\n"
 
-#: ../gramps/plugins/view/geomoves.py:746
+#: ../gramps/plugins/view/geomoves.py:761
 msgid "The parameters for moves"
 msgstr "Thông số cho di chuyển"
 
@@ -36254,25 +36222,25 @@ msgstr "Bản đồ địa điểm người "
 msgid "GeoPerson"
 msgstr "GeoPerson"
 
-#: ../gramps/plugins/view/geoperson.py:386
+#: ../gramps/plugins/view/geoperson.py:384
 #, python-format
 msgid "Person places for %s"
 msgstr "Địa điểm của một người cho %s"
 
-#: ../gramps/plugins/view/geoperson.py:586
+#: ../gramps/plugins/view/geoperson.py:583
 msgid "Animate"
 msgstr "Hoạt hóa "
 
-#: ../gramps/plugins/view/geoperson.py:609
+#: ../gramps/plugins/view/geoperson.py:607
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr ""
 "Tốc độ hoạt hóa bằng 1/1000 giây (giá trị lớn hơn thì hoạt hóa chậm hơn) "
 
-#: ../gramps/plugins/view/geoperson.py:617
+#: ../gramps/plugins/view/geoperson.py:612
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Có bao nhiêu bước giữa hai dấu ghi khi chúng ta di chuyển lớn? "
 
-#: ../gramps/plugins/view/geoperson.py:624
+#: ../gramps/plugins/view/geoperson.py:617
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -36280,24 +36248,24 @@ msgstr ""
 "Vĩ độ/kinh độ tối thiểu để chọn di chuyển lớn.\n"
 "Giá trị là 1/10 của độ. "
 
-#: ../gramps/plugins/view/geoperson.py:631
+#: ../gramps/plugins/view/geoperson.py:622
 msgid "The animation parameters"
 msgstr "Thông số hoạt hóa "
 
-#: ../gramps/plugins/view/geoplaces.py:208
+#: ../gramps/plugins/view/geoplaces.py:209
 msgid "Places map"
 msgstr "Bản đồ địa điểm"
 
-#: ../gramps/plugins/view/geoplaces.py:237
+#: ../gramps/plugins/view/geoplaces.py:238
 msgid "GeoPlaces"
 msgstr "GeoPlaces"
 
-#: ../gramps/plugins/view/geoplaces.py:412
-#: ../gramps/plugins/view/geoplaces.py:425
+#: ../gramps/plugins/view/geoplaces.py:410
+#: ../gramps/plugins/view/geoplaces.py:423
 msgid "Selecting all places"
 msgstr "Chọn mọi địa điểm"
 
-#: ../gramps/plugins/view/geoplaces.py:437
+#: ../gramps/plugins/view/geoplaces.py:435
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
@@ -36307,7 +36275,7 @@ msgstr ""
 "địa điểm được biết ở một tọa độ. Bạn có thể chọn màu dấu tùy vào nơi đó. Bạn "
 "có thể dùng bộ lọc."
 
-#: ../gramps/plugins/view/geoplaces.py:452
+#: ../gramps/plugins/view/geoplaces.py:450
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
@@ -36317,74 +36285,74 @@ msgstr ""
 "địa điểm được biết cùng tọa độ. Bạn có thể dùng lịch sử để di chuyển trên "
 "bản đồ. Bản có thể chọn màu dấu tùy vào nơi đó. Bạn có thể dùng bộ lọc."
 
-#: ../gramps/plugins/view/geoplaces.py:467
+#: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
 msgstr "Tên địa điểm trong dòng trạng thái được vô hiệu. "
 
-#: ../gramps/plugins/view/geoplaces.py:472
+#: ../gramps/plugins/view/geoplaces.py:468
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr "Số tối đa địa điểm đã đạt (%d)."
 
-#: ../gramps/plugins/view/geoplaces.py:475
+#: ../gramps/plugins/view/geoplaces.py:471
 msgid "Some information are missing."
 msgstr "Có thông tin bị mất."
 
-#: ../gramps/plugins/view/geoplaces.py:477
+#: ../gramps/plugins/view/geoplaces.py:473
 msgid "Please, use filtering to reduce this number."
 msgstr "Vui lòng dùng bộ lọc để giảm số lượng. "
 
-#: ../gramps/plugins/view/geoplaces.py:479
+#: ../gramps/plugins/view/geoplaces.py:475
 msgid "You can modify this value in the geography option."
 msgstr "Bạn có thể chỉnh sửa giá trị này trong phần chọn về bản đồ"
 
-#: ../gramps/plugins/view/geoplaces.py:481
+#: ../gramps/plugins/view/geoplaces.py:477
 msgid "In this case, it may take time to show all markers."
 msgstr "Trong trường hợp này, có thể mất thời gian để hiện tất cả dấu."
 
-#: ../gramps/plugins/view/geoplaces.py:511
-#: ../gramps/plugins/view/geoplaces.py:534
+#: ../gramps/plugins/view/geoplaces.py:507
+#: ../gramps/plugins/view/geoplaces.py:530
 msgid "Bookmark this place"
 msgstr "Đánh dấu địa điểm này"
 
-#: ../gramps/plugins/view/geoplaces.py:549
+#: ../gramps/plugins/view/geoplaces.py:545
 msgid "Show all places"
 msgstr "Hiện tất cả các địa điểm "
 
-#: ../gramps/plugins/view/geoplaces.py:660
+#: ../gramps/plugins/view/geoplaces.py:634
 #, fuzzy
 msgid "Custom places name"
 msgstr "Tên địa điểm đầy đủ "
 
-#: ../gramps/plugins/view/geoplaces.py:669
+#: ../gramps/plugins/view/geoplaces.py:642
 msgid "The places marker color"
 msgstr "Màu chỉ địa điểm"
 
-#: ../gramps/plugins/view/mediaview.py:113
+#: ../gramps/plugins/view/mediaview.py:112
 msgid "Edit the selected media object"
 msgstr "Chỉnh sửa đối tượng đa phương tiện "
 
-#: ../gramps/plugins/view/mediaview.py:114
+#: ../gramps/plugins/view/mediaview.py:113
 msgid "Delete the selected media object"
 msgstr "Xóa đối tượng đa phương tiện đã chọn "
 
-#: ../gramps/plugins/view/mediaview.py:115
+#: ../gramps/plugins/view/mediaview.py:114
 msgid "Merge the selected media objects"
 msgstr "Nhập đối tượng đa phương tiện đã chọn "
 
-#: ../gramps/plugins/view/mediaview.py:295
+#: ../gramps/plugins/view/mediaview.py:294
 msgid "Media Filter Editor"
 msgstr "Trình sửa bộ lọc đa phương tiện "
 
-#: ../gramps/plugins/view/mediaview.py:386
+#: ../gramps/plugins/view/mediaview.py:385
 msgid "View in the default viewer"
 msgstr "Xem ở chế độ hiển thị mặc định "
 
-#: ../gramps/plugins/view/mediaview.py:490
+#: ../gramps/plugins/view/mediaview.py:480
 msgid "Cannot merge media objects."
 msgstr "Không thể nhập đối tượng đa phương tiện. "
 
-#: ../gramps/plugins/view/mediaview.py:491
+#: ../gramps/plugins/view/mediaview.py:481
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -36394,23 +36362,23 @@ msgstr ""
 "chúng. Đối tượng thứ hai có thể được chọn bằng cách nhấn nút Control trong "
 "khi kích chuột vào đối tượng muốn nhập. "
 
-#: ../gramps/plugins/view/noteview.py:95
+#: ../gramps/plugins/view/noteview.py:94
 msgid "Delete the selected note"
 msgstr "Xóa ghi chú được chọn "
 
-#: ../gramps/plugins/view/noteview.py:96
+#: ../gramps/plugins/view/noteview.py:95
 msgid "Merge the selected notes"
 msgstr "Nhập ghi chú được chọn "
 
-#: ../gramps/plugins/view/noteview.py:188
+#: ../gramps/plugins/view/noteview.py:187
 msgid "Note Filter Editor"
 msgstr "Trình sửa bộ lọc ghi chú "
 
-#: ../gramps/plugins/view/noteview.py:357
+#: ../gramps/plugins/view/noteview.py:351
 msgid "Cannot merge notes."
 msgstr "Không thể nhập ghi chú. "
 
-#: ../gramps/plugins/view/noteview.py:358
+#: ../gramps/plugins/view/noteview.py:352
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -36761,11 +36729,11 @@ msgstr "Thêm kho đã chọn "
 msgid "Repository Filter Editor"
 msgstr "Trình sửa bộ lọc kho "
 
-#: ../gramps/plugins/view/repoview.py:363
+#: ../gramps/plugins/view/repoview.py:358
 msgid "Cannot merge repositories."
 msgstr "Không thể trộn chung kho. "
 
-#: ../gramps/plugins/view/repoview.py:364
+#: ../gramps/plugins/view/repoview.py:359
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -36790,11 +36758,11 @@ msgstr "Nhập nguồn được chọn "
 msgid "Source Filter Editor"
 msgstr "Trình chỉnh sửa bộ lọc nguồn "
 
-#: ../gramps/plugins/view/sourceview.py:348
+#: ../gramps/plugins/view/sourceview.py:336
 msgid "Cannot merge sources."
 msgstr "Không thể nhập nguồn. "
 
-#: ../gramps/plugins/view/sourceview.py:349
+#: ../gramps/plugins/view/sourceview.py:337
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
@@ -38692,6 +38660,59 @@ msgstr "Nebraska "
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Không có style sheet "
+
+#, python-format
+#~ msgid "Delete Citation (%s)"
+#~ msgstr "Xóa trích dẫn (%s) "
+
+#, python-format
+#~ msgid "Delete Event (%s)"
+#~ msgstr "Xóa sự kiện (%s) "
+
+#~ msgid "Remove Media Object"
+#~ msgstr "Bỏ đối tượng đa phương tiện "
+
+#, python-format
+#~ msgid "Delete Note (%s)"
+#~ msgstr "Xóa bỏ ghi chú (%s)"
+
+#, python-format
+#~ msgid "Delete Place (%s)"
+#~ msgstr "Xóa nơi (%s) "
+
+#, python-format
+#~ msgid "Delete Repository (%s)"
+#~ msgstr "Xóa kho (%s) "
+
+#, python-format
+#~ msgid "Delete Source (%s)"
+#~ msgstr "Xóa nguồn (%s) "
+
+#~ msgid ""
+#~ "More than one item has been selected for deletion. Select the option "
+#~ "indicating how to delete the items:"
+#~ msgstr ""
+#~ "Có nhiều hơn một mục được chọn để xóa. Chọn tùy chọn cho thấy các xóa "
+#~ "chúng:"
+
+#~ msgid "Delete All"
+#~ msgstr "Xóa hết"
+
+#~ msgid "Confirm Each Delete"
+#~ msgstr "Xác nhận từng mục xóa"
+
+#~ msgid "_Delete Person"
+#~ msgstr "_Xóa người "
+
+#~ msgid "_Delete Event"
+#~ msgstr "_Xóa sự kiện"
+
+#~ msgid "_Delete Family"
+#~ msgstr "_Xóa gia đình"
+
+#, python-format
+#~ msgid "Family [%s]"
+#~ msgstr "Gia đình [%s]"
 
 #~ msgid "Common"
 #~ msgstr "Thông thường "

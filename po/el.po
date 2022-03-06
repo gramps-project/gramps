@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 22:46+0000\n"
+"POT-Creation-Date: 2022-03-05 23:23+0000\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/gramps-project/"
@@ -219,10 +219,16 @@ msgstr "Σουηδία"
 
 #: ../data/holidays.xml:508
 #, fuzzy
+#| msgid "Turkish"
+msgid "Turkey"
+msgstr "Τουρκικά"
+
+#: ../data/holidays.xml:536
+#, fuzzy
 msgid "Ukraine"
 msgstr "Ουκρανικά"
 
-#: ../data/holidays.xml:535
+#: ../data/holidays.xml:563
 msgid "United States of America"
 msgstr "Ηνωμένες Πολιτείες της Αμερικής"
 
@@ -1669,7 +1675,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
 #: ../gramps/gui/glade/editmedia.glade:289
 #: ../gramps/gui/glade/editmediaref.glade:670
-#: ../gramps/plugins/view/mediaview.py:97
+#: ../gramps/plugins/view/mediaview.py:96
 msgid "Path"
 msgstr "Διαδρομή"
 
@@ -1793,8 +1799,8 @@ msgstr "Κλειδωμένο από %s"
 #: ../gramps/gen/utils/unknown.py:115 ../gramps/gen/utils/unknown.py:117
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:127
 #: ../gramps/gen/utils/unknown.py:132 ../gramps/gui/clipboard.py:185
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:173
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:191
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:174
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:192
 #: ../gramps/gui/editors/editmedia.py:178
 #: ../gramps/gui/editors/editmediaref.py:146
 #: ../gramps/plugins/gramplet/persondetails.py:214
@@ -1809,9 +1815,9 @@ msgstr "Κλειδωμένο από %s"
 #: ../gramps/plugins/importer/importcsv.py:389
 #: ../gramps/plugins/importer/importcsv.py:905
 #: ../gramps/plugins/lib/libprogen.py:1058
-#: ../gramps/plugins/lib/maps/geography.py:828
-#: ../gramps/plugins/lib/maps/geography.py:838
-#: ../gramps/plugins/lib/maps/geography.py:839
+#: ../gramps/plugins/lib/maps/geography.py:846
+#: ../gramps/plugins/lib/maps/geography.py:856
+#: ../gramps/plugins/lib/maps/geography.py:857
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/descendreport.py:322
@@ -1842,13 +1848,13 @@ msgstr "Κλειδωμένο από %s"
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:100
-#: ../gramps/plugins/view/geoclose.py:607
-#: ../gramps/plugins/view/geofamclose.py:359
-#: ../gramps/plugins/view/geofamclose.py:796
-#: ../gramps/plugins/view/geofamily.py:521
-#: ../gramps/plugins/view/geomoves.py:666
-#: ../gramps/plugins/view/geoperson.py:545
-#: ../gramps/plugins/view/geoplaces.py:593
+#: ../gramps/plugins/view/geoclose.py:609
+#: ../gramps/plugins/view/geofamclose.py:358
+#: ../gramps/plugins/view/geofamclose.py:793
+#: ../gramps/plugins/view/geofamily.py:519
+#: ../gramps/plugins/view/geomoves.py:680
+#: ../gramps/plugins/view/geoperson.py:542
+#: ../gramps/plugins/view/geoplaces.py:588
 #: ../gramps/plugins/view/relview.py:595 ../gramps/plugins/view/relview.py:1173
 #: ../gramps/plugins/view/relview.py:1228
 #: ../gramps/plugins/webreport/basepage.py:2124
@@ -2036,8 +2042,8 @@ msgstr "   Οι έγκυρες επιλογές είναι:"
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/cli/plug/__init__.py:463 ../gramps/cli/plug/__init__.py:553
 #: ../gramps/plugins/drawreport/descendtree.py:358
-#: ../gramps/plugins/drawreport/fanchart.py:364
-#: ../gramps/plugins/drawreport/fanchart.py:380
+#: ../gramps/plugins/drawreport/fanchart.py:387
+#: ../gramps/plugins/drawreport/fanchart.py:403
 #: ../gramps/plugins/gramplet/persondetails.py:238
 #: ../gramps/plugins/gramplet/whatsnext.py:371
 #: ../gramps/plugins/gramplet/whatsnext.py:393
@@ -2133,28 +2139,28 @@ msgstr ""
 "(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:248
+#: ../gramps/gen/config.py:247
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Εισήχθη την %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:259
+#: ../gramps/gen/config.py:258
 msgid "Missing Given Name"
 msgstr "Λείπει το όνομα"
 
-#: ../gramps/gen/config.py:260
+#: ../gramps/gen/config.py:259
 msgid "Missing Record"
 msgstr "Λείπει η εγγραφή"
 
-#: ../gramps/gen/config.py:261
+#: ../gramps/gen/config.py:260
 msgid "Missing Surname"
 msgstr "Λείπει το επώνυμο"
 
-#: ../gramps/gen/config.py:268 ../gramps/gen/config.py:270
+#: ../gramps/gen/config.py:267 ../gramps/gen/config.py:269
 #, fuzzy
 msgid "[Living]"
 msgstr "Εν ζωή"
 
-#: ../gramps/gen/config.py:269
+#: ../gramps/gen/config.py:268
 msgid "Private Record"
 msgstr "Εγγραφή με τον χαρακτηρισμό 'προσωπική'"
 
@@ -2162,7 +2168,7 @@ msgstr "Εγγραφή με τον χαρακτηρισμό 'προσωπική'
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:330 ../gramps/gen/datehandler/_datestrings.py:79
+#: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
 msgid "|January"
 msgstr "Ιανουάριος"
@@ -3162,15 +3168,15 @@ msgstr "Προσθήκη τέκνου σε οικογένεια"
 msgid "Remove child from family"
 msgstr "Αφαίρεση τέκνου από οικογένεια"
 
-#: ../gramps/gen/db/base.py:1912 ../gramps/gen/db/base.py:1916
+#: ../gramps/gen/db/base.py:1908 ../gramps/gen/db/base.py:1912
 msgid "Remove Family"
 msgstr "Αφαίρεση οικογένειας"
 
-#: ../gramps/gen/db/base.py:1958
+#: ../gramps/gen/db/base.py:1952
 msgid "Remove father from family"
 msgstr "Αφαίρεση πατέρα από οικογένεια"
 
-#: ../gramps/gen/db/base.py:1960
+#: ../gramps/gen/db/base.py:1954
 msgid "Remove mother from family"
 msgstr "Αφαίρεση μητέρας από οικογένεια"
 
@@ -3960,11 +3966,11 @@ msgid "Miscellaneous filters"
 msgstr "Διάφορα φίλτρα"
 
 #: ../gramps/gen/filters/rules/_rule.py:56 ../gramps/gui/glade/rule.glade:950
-#: ../gramps/plugins/view/geoclose.py:619
-#: ../gramps/plugins/view/geofamclose.py:808
-#: ../gramps/plugins/view/geofamily.py:534
-#: ../gramps/plugins/view/geomoves.py:679
-#: ../gramps/plugins/view/geoperson.py:556
+#: ../gramps/plugins/view/geoclose.py:621
+#: ../gramps/plugins/view/geofamclose.py:805
+#: ../gramps/plugins/view/geofamily.py:532
+#: ../gramps/plugins/view/geomoves.py:693
+#: ../gramps/plugins/view/geoperson.py:553
 msgid "No description"
 msgstr "Χωρίς περιγραφή"
 
@@ -4701,7 +4707,7 @@ msgstr "Οικογενειακό συμβάν:"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:83
 #: ../gramps/gui/selectors/selectevent.py:67
 #: ../gramps/plugins/gramplet/events.py:95
-#: ../gramps/plugins/view/eventview.py:87
+#: ../gramps/plugins/view/eventview.py:85
 msgid "Main Participants"
 msgstr "Κύριοι συμμετέχοντες"
 
@@ -6869,19 +6875,19 @@ msgstr "Διεύθυνση"
 #: ../gramps/gen/lib/reporef.py:110 ../gramps/gen/lib/src.py:133
 #: ../gramps/gen/lib/srcattribute.py:74 ../gramps/gen/lib/url.py:92
 #: ../gramps/gen/proxy/private.py:831
-#: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
-#: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:80
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:87
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:90
-#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:56
-#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:66
+#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:57
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:67
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/notetab.py:79
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:69
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:70
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:70
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:68
-#: ../gramps/gui/editors/editfamily.py:136
+#: ../gramps/gui/editors/editfamily.py:137
 #: ../gramps/gui/glade/editaddress.glade:297
 #: ../gramps/gui/glade/editattribute.glade:153
 #: ../gramps/gui/glade/editchildref.glade:180
@@ -6906,13 +6912,13 @@ msgstr "Διεύθυνση"
 #: ../gramps/gui/glade/editurl.glade:156
 #: ../gramps/plugins/importer/importprogen.glade:108
 #: ../gramps/plugins/importer/importprogen.glade:244
-#: ../gramps/plugins/lib/libpersonview.py:110
+#: ../gramps/plugins/lib/libpersonview.py:108
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/view/citationlistview.py:102
-#: ../gramps/plugins/view/citationtreeview.py:97
-#: ../gramps/plugins/view/eventview.py:84
+#: ../gramps/plugins/view/citationlistview.py:101
+#: ../gramps/plugins/view/citationtreeview.py:96
+#: ../gramps/plugins/view/eventview.py:82
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/mediaview.py:98 ../gramps/plugins/view/noteview.py:81
 #: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
@@ -6957,7 +6963,7 @@ msgstr "Παραπομπές"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:272
 #: ../gramps/plugins/textreport/tagreport.py:489
-#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
+#: ../gramps/plugins/view/noteview.py:109 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/basepage.py:1381
 #: ../gramps/plugins/webreport/basepage.py:2380
@@ -7025,10 +7031,10 @@ msgstr "Σημειώσεις"
 #: ../gramps/plugins/textreport/tagreport.py:588
 #: ../gramps/plugins/textreport/tagreport.py:833
 #: ../gramps/plugins/tool/sortevents.py:54
-#: ../gramps/plugins/view/citationlistview.py:100
-#: ../gramps/plugins/view/citationtreeview.py:95
-#: ../gramps/plugins/view/eventview.py:82
-#: ../gramps/plugins/view/mediaview.py:98
+#: ../gramps/plugins/view/citationlistview.py:99
+#: ../gramps/plugins/view/citationtreeview.py:94
+#: ../gramps/plugins/view/eventview.py:80
+#: ../gramps/plugins/view/mediaview.py:97
 #: ../gramps/plugins/webreport/basepage.py:777
 #: ../gramps/plugins/webreport/basepage.py:1024
 #: ../gramps/plugins/webreport/basepage.py:1061
@@ -7045,7 +7051,7 @@ msgstr "Ημερομηνία"
 #: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
-#: ../gramps/plugins/view/geoplaces.py:602
+#: ../gramps/plugins/view/geoplaces.py:594
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1236
 #: ../gramps/plugins/webreport/basepage.py:2899
@@ -7057,7 +7063,7 @@ msgstr "Οδός"
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:610
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
-#: ../gramps/plugins/view/geoplaces.py:599
+#: ../gramps/plugins/view/geoplaces.py:592
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1237
 #: ../gramps/plugins/webreport/basepage.py:2900
@@ -7069,7 +7075,7 @@ msgstr "Περιοχή"
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:613
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
-#: ../gramps/plugins/view/geoplaces.py:650
+#: ../gramps/plugins/view/geoplaces.py:626
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1238
 #: ../gramps/plugins/webreport/basepage.py:2901
@@ -7081,8 +7087,8 @@ msgstr "Πόλη"
 #: ../gramps/gen/lib/placetype.py:67
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:151
-#: ../gramps/plugins/view/geoplaces.py:632
+#: ../gramps/plugins/lib/maps/placeselection.py:148
+#: ../gramps/plugins/view/geoplaces.py:614
 #: ../gramps/plugins/webreport/basepage.py:1240
 #: ../gramps/plugins/webreport/basepage.py:2904
 #: ../gramps/plugins/webreport/basepage.py:2970
@@ -7093,8 +7099,8 @@ msgstr "Νομός"
 #: ../gramps/gen/lib/placetype.py:66
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:150
-#: ../gramps/plugins/view/geoplaces.py:629
+#: ../gramps/plugins/lib/maps/placeselection.py:147
+#: ../gramps/plugins/view/geoplaces.py:612
 msgid "State"
 msgstr "Περιφέρεια"
 
@@ -7103,8 +7109,8 @@ msgstr "Περιφέρεια"
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:312
-#: ../gramps/plugins/lib/maps/placeselection.py:149
-#: ../gramps/plugins/view/geoplaces.py:626
+#: ../gramps/plugins/lib/maps/placeselection.py:146
+#: ../gramps/plugins/view/geoplaces.py:610
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1242
 #: ../gramps/plugins/webreport/basepage.py:2909
@@ -7160,7 +7166,7 @@ msgstr "Τιμή"
 #: ../gramps/gen/lib/srcmediatype.py:57 ../gramps/gen/lib/urltype.py:48
 #: ../gramps/gui/autocomp.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:74
-#: ../gramps/plugins/view/geoplaces.py:596
+#: ../gramps/plugins/view/geoplaces.py:590
 msgid "Custom"
 msgstr "Προσαρμοσμένο"
 
@@ -7183,7 +7189,7 @@ msgstr "Κάστα"
 #: ../gramps/plugins/textreport/placereport.py:226
 #: ../gramps/plugins/textreport/placereport.py:303
 #: ../gramps/plugins/tool/sortevents.py:57
-#: ../gramps/plugins/view/eventview.py:79
+#: ../gramps/plugins/view/eventview.py:77
 #: ../gramps/plugins/webreport/basepage.py:779
 #: ../gramps/plugins/webreport/basepage.py:1027
 #: ../gramps/plugins/webreport/basepage.py:2455
@@ -7200,7 +7206,7 @@ msgstr "Αναγνωριστικός Αριθμός"
 msgid "National Origin"
 msgstr "Εθνική προέλευση"
 
-#: ../gramps/gen/lib/attrtype.py:69 ../gramps/plugins/lib/libpersonview.py:108
+#: ../gramps/gen/lib/attrtype.py:69 ../gramps/plugins/lib/libpersonview.py:106
 msgid "Number of Children"
 msgstr "Αριθμός τέκνων"
 
@@ -7382,16 +7388,23 @@ msgstr "Σελίδα"
 
 #: ../gramps/gen/lib/citation.py:112
 #: ../gramps/plugins/importer/importprogen.glade:261
-#: ../gramps/plugins/view/citationlistview.py:101
-#: ../gramps/plugins/view/citationtreeview.py:96
+#: ../gramps/plugins/view/citationlistview.py:100
+#: ../gramps/plugins/view/citationtreeview.py:95
 #: ../gramps/plugins/webreport/basepage.py:2588
 msgid "Confidence"
 msgstr "Επίπεδο αξιοπιστίας"
 
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
 #: ../gramps/gui/clipboard.py:770 ../gramps/gui/configure.py:661
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:79
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:64
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:91
+#: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:56
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:66
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
-#: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:69
+#: ../gramps/gui/editors/editfamily.py:136 ../gramps/gui/editors/editlink.py:99
+#: ../gramps/gui/editors/editsource.py:86
 #: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -7427,7 +7440,7 @@ msgstr "Πηγή"
 #: ../gramps/plugins/quickview/references.py:93
 #: ../gramps/plugins/textreport/tagreport.py:559
 #: ../gramps/plugins/tool/reorderids.glade:848
-#: ../gramps/plugins/view/mediaview.py:129
+#: ../gramps/plugins/view/mediaview.py:128
 #: ../gramps/plugins/view/view.gpr.py:82 ../gramps/plugins/view/view.gpr.py:90
 #: ../gramps/plugins/webreport/basepage.py:1743
 #: ../gramps/plugins/webreport/basepage.py:1812
@@ -7467,16 +7480,16 @@ msgstr "Τροποποιήθηκε"
 #: ../gramps/gui/glade/editperson.glade:683
 #: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:527
-#: ../gramps/plugins/lib/libpersonview.py:111
+#: ../gramps/plugins/lib/libpersonview.py:109
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/indivcomplete.py:551
 #: ../gramps/plugins/tool/notrelated.py:129
-#: ../gramps/plugins/view/citationlistview.py:103
-#: ../gramps/plugins/view/citationtreeview.py:98
-#: ../gramps/plugins/view/eventview.py:85
+#: ../gramps/plugins/view/citationlistview.py:102
+#: ../gramps/plugins/view/citationtreeview.py:97
+#: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:85
-#: ../gramps/plugins/view/mediaview.py:100
-#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:98
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:98
 #: ../gramps/plugins/view/sourceview.py:88
 #: ../gramps/plugins/webreport/basepage.py:2987
 #: ../gramps/plugins/webreport/event.py:432
@@ -7657,7 +7670,7 @@ msgstr "Συμβάν"
 #: ../gramps/plugins/tool/removespaces.py:182
 #: ../gramps/plugins/tool/reorderids.glade:799
 #: ../gramps/plugins/tool/sortevents.py:58
-#: ../gramps/plugins/view/eventview.py:83
+#: ../gramps/plugins/view/eventview.py:81
 #: ../gramps/plugins/webreport/basepage.py:778
 #: ../gramps/plugins/webreport/basepage.py:1026
 #: ../gramps/plugins/webreport/basepage.py:1063
@@ -7737,7 +7750,7 @@ msgstr "Συμβάντα"
 #: ../gramps/gui/configure.py:655
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:561 ../gramps/gui/editors/editlink.py:93
+#: ../gramps/gui/editors/editfamily.py:562 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/grampsgui.py:56
 #: ../gramps/plugins/export/exportcsv.py:506
@@ -7794,8 +7807,8 @@ msgstr "Κατοικία"
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gui/glade/mergedata.glade:523
 #: ../gramps/gui/glade/mergedata.glade:610
-#: ../gramps/plugins/lib/maps/placeselection.py:152
-#: ../gramps/plugins/lib/maps/placeselection.py:203
+#: ../gramps/plugins/lib/maps/placeselection.py:149
+#: ../gramps/plugins/lib/maps/placeselection.py:200
 msgid "Other"
 msgstr "Άλλο"
 
@@ -7903,7 +7916,7 @@ msgid "Nobility Title"
 msgstr "Τίτλος ευγενείας"
 
 #: ../gramps/gen/lib/eventtype.py:189
-#: ../gramps/plugins/lib/libpersonview.py:107
+#: ../gramps/plugins/lib/libpersonview.py:105
 msgid "Number of Marriages"
 msgstr "Πλήθος γάμων"
 
@@ -8283,7 +8296,7 @@ msgstr "Τέκνα"
 #: ../gramps/plugins/quickview/filterbyname.py:97
 #: ../gramps/plugins/quickview/filterbyname.py:122
 #: ../gramps/plugins/textreport/tagreport.py:324
-#: ../gramps/plugins/view/eventview.py:123
+#: ../gramps/plugins/view/eventview.py:121
 #: ../gramps/plugins/view/view.gpr.py:37 ../gramps/plugins/view/view.gpr.py:45
 #: ../gramps/plugins/webreport/basepage.py:1739
 #: ../gramps/plugins/webreport/basepage.py:1809
@@ -8362,8 +8375,8 @@ msgstr "Πολιτική ένωση ζεύγους"
 #: ../gramps/plugins/textreport/tagreport.py:666
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
-#: ../gramps/plugins/view/eventview.py:81
-#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/eventview.py:79
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/basepage.py:1060
 #: ../gramps/plugins/webreport/basepage.py:1379
@@ -8503,7 +8516,7 @@ msgid "Location"
 msgstr "Τοποθεσία"
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
-#: ../gramps/plugins/view/geoplaces.py:647
+#: ../gramps/plugins/view/geoplaces.py:624
 msgid "Parish"
 msgstr "Ενορία"
 
@@ -8529,7 +8542,7 @@ msgid "Media ref"
 msgstr "Αναφ. Μέσων"
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
-#: ../gramps/plugins/view/geoplaces.py:638
+#: ../gramps/plugins/view/geoplaces.py:618
 #, fuzzy
 msgid "Region"
 msgstr "Θρήσκευμα"
@@ -8563,7 +8576,7 @@ msgstr "Θρήσκευμα"
 #: ../gramps/plugins/gramplet/locations.py:85
 #: ../gramps/plugins/gramplet/placedetails.py:125
 #: ../gramps/plugins/importer/importcsv.py:242
-#: ../gramps/plugins/lib/libpersonview.py:98
+#: ../gramps/plugins/lib/libpersonview.py:96
 #: ../gramps/plugins/lib/libplaceview.py:85
 #: ../gramps/plugins/quickview/filterbyname.py:306
 #: ../gramps/plugins/textreport/indivcomplete.py:933
@@ -8630,7 +8643,7 @@ msgstr "Κατάληξη"
 #: ../gramps/plugins/textreport/tagreport.py:424
 #: ../gramps/plugins/textreport/tagreport.py:576
 #: ../gramps/plugins/textreport/tagreport.py:746
-#: ../gramps/plugins/view/mediaview.py:94
+#: ../gramps/plugins/view/mediaview.py:93
 #: ../gramps/plugins/view/sourceview.py:82
 #: ../gramps/plugins/webreport/basepage.py:3111
 msgid "Title"
@@ -8952,7 +8965,7 @@ msgstr "Άτομο"
 #: ../gramps/plugins/drawreport/statisticschart.py:344
 #: ../gramps/plugins/export/exportcsv.py:356
 #: ../gramps/plugins/importer/importcsv.py:172
-#: ../gramps/plugins/lib/libpersonview.py:100
+#: ../gramps/plugins/lib/libpersonview.py:98
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:934
 #: ../gramps/plugins/webreport/person.py:1637
@@ -9107,57 +9120,57 @@ msgstr ""
 msgid "Place ref"
 msgstr "Ομαδοποίηση τοποθεσιών"
 
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:635
+#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:616
 #: ../gramps/plugins/webreport/basepage.py:2908
 #, fuzzy
 msgid "Province"
 msgstr "Περιφέρεια/Επαρχία"
 
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:641
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:620
 #, fuzzy
 msgid "Department"
 msgstr "Συνταξιοδότηση"
 
-#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:605
+#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:596
 msgid "Neighborhood"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:644
+#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:622
 msgid "District"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:608
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:598
 msgid "Borough"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:656
+#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:630
 #, fuzzy
 msgid "Municipality"
 msgstr "Περιοχή"
 
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:653
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:628
 msgid "Town"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:611
+#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:600
 msgid "Village"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:614
+#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:602
 msgid "Hamlet"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:617
+#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:604
 msgid "Farm"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:620
+#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:606
 #, fuzzy
 msgid "Building"
 msgstr "Δημιουργία προβολής"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
-#: ../gramps/plugins/view/geoplaces.py:623
+#: ../gramps/plugins/view/geoplaces.py:608
 #: ../gramps/plugins/webreport/basepage.py:3109
 #: ../gramps/plugins/webreport/source.py:169
 msgid "Number"
@@ -9487,9 +9500,9 @@ msgstr "Ένας γονέας πρέπει να είναι είτε πατέρα
 #: ../gramps/gen/merge/mergefamilyquery.py:103
 #: ../gramps/gen/merge/mergefamilyquery.py:114
 #: ../gramps/gen/merge/mergepersonquery.py:55
-#: ../gramps/gen/merge/test/merge_ref_test.py:1899
-#: ../gramps/gen/merge/test/merge_ref_test.py:1923
-#: ../gramps/gen/merge/test/merge_ref_test.py:1947
+#: ../gramps/gen/merge/test/merge_ref_test.py:2054
+#: ../gramps/gen/merge/test/merge_ref_test.py:2078
+#: ../gramps/gen/merge/test/merge_ref_test.py:2102
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -9518,7 +9531,7 @@ msgstr ""
 "Οι σύζυγοι δε γίνεται να συγχωνευθούν. Για να συγχωνεύσετε αυτά τα δύο άτομα "
 "θα πρέπει πρώτα να καταργήσετε τη σχέση μεταξύ τους."
 
-#: ../gramps/gen/merge/mergepersonquery.py:119
+#: ../gramps/gen/merge/mergepersonquery.py:121
 msgid "Merge Person"
 msgstr "Συγχώνευση ατόμου"
 
@@ -9532,7 +9545,7 @@ msgstr "Συγχώνευση τοποθεσιών"
 msgid "Merge Repositories"
 msgstr "Συγχώνευση αποθετηρίων"
 
-#: ../gramps/gen/merge/mergesourcequery.py:62
+#: ../gramps/gen/merge/mergesourcequery.py:61
 msgid "Merge Source"
 msgstr "Συγχώνευση πηγής"
 
@@ -11794,8 +11807,8 @@ msgstr "Σύρετε και αφήστε τις στήλες για να αλλ�
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1973
 #: ../gramps/gui/configure.py:1997 ../gramps/gui/configure.py:2023
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1787
-#: ../gramps/plugins/lib/maps/geography.py:1022
-#: ../gramps/plugins/lib/maps/geography.py:1362
+#: ../gramps/plugins/lib/maps/geography.py:1041
+#: ../gramps/plugins/lib/maps/geography.py:1377
 msgid "_Apply"
 msgstr "_Εφαρμογή"
 
@@ -11843,7 +11856,7 @@ msgstr "Εμφάνιση επεξεργασίας ονομάτων"
 #: ../gramps/gui/viewmanager.py:1651 ../gramps/gui/views/bookmarks.py:298
 #: ../gramps/gui/views/tags.py:495 ../gramps/gui/widgets/grampletbar.py:657
 #: ../gramps/gui/widgets/grampletpane.py:239
-#: ../gramps/plugins/lib/maps/placeselection.py:120
+#: ../gramps/plugins/lib/maps/placeselection.py:117
 #: ../gramps/plugins/tool/dumpgenderstats.py:85
 #, fuzzy
 msgid "_Close"
@@ -12227,12 +12240,12 @@ msgstr "Παράδειγμα"
 #: ../gramps/gui/configure.py:1074
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:147
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:314
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:316
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:129
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:122
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
-#: ../gramps/gui/editors/editfamily.py:195 ../gramps/gui/grampsgui.py:56
+#: ../gramps/gui/editors/editfamily.py:196 ../gramps/gui/grampsgui.py:56
 #: ../gramps/gui/plug/report/_bookdialog.py:665 ../gramps/gui/views/tags.py:487
 #: ../gramps/gui/widgets/fanchart.py:2022
 #: ../gramps/gui/widgets/fanchart.py:2064
@@ -12244,7 +12257,7 @@ msgstr "_Προσθήκη..."
 #: ../gramps/gui/configure.py:1077
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:149
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:155
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:315
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:317
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:131
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:123
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:130
@@ -12263,7 +12276,7 @@ msgstr "_Επεξεργασία"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:132
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:124
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
-#: ../gramps/gui/editors/editfamily.py:198
+#: ../gramps/gui/editors/editfamily.py:199
 #: ../gramps/gui/plug/report/_bookdialog.py:634
 #: ../gramps/gui/views/bookmarks.py:294 ../gramps/gui/views/tags.py:489
 msgid "_Remove"
@@ -12880,12 +12893,12 @@ msgstr "Επιλογή καταλόγου μέσων"
 #: ../gramps/gui/plug/_guioptions.py:1745 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1786 ../gramps/gui/views/listview.py:1068
+#: ../gramps/gui/viewmanager.py:1786 ../gramps/gui/views/listview.py:1151
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/tags.py:711
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
-#: ../gramps/plugins/lib/maps/geography.py:1021
-#: ../gramps/plugins/lib/maps/geography.py:1361
+#: ../gramps/plugins/lib/maps/geography.py:1040
+#: ../gramps/plugins/lib/maps/geography.py:1376
 #: ../gramps/plugins/tool/check.py:777 ../gramps/plugins/tool/eventcmp.py:398
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:327
@@ -13447,12 +13460,12 @@ msgstr ""
 "%s"
 
 # ή "Προσπάθεια να επιβληθεί κλείσιμο του παραθύρου"
-#: ../gramps/gui/dialog.py:434 ../gramps/gui/dialog.py:516
+#: ../gramps/gui/dialog.py:434 ../gramps/gui/dialog.py:534
 #: ../gramps/gui/utils.py:309
 msgid "Attempt to force closing the dialog"
 msgstr "Βεβιασμένη προσπάθεια κλεισίματος παραθύρου"
 
-#: ../gramps/gui/dialog.py:435 ../gramps/gui/dialog.py:517
+#: ../gramps/gui/dialog.py:435 ../gramps/gui/dialog.py:535
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -13622,7 +13635,7 @@ msgstr "Μετακίνηση της επιλεγμένης διεύθυνσης 
 msgid "Postal"
 msgstr "Ταχυδρομικός κώδικας"
 
-#: ../gramps/gui/editors/displaytabs/addrembedlist.py:84
+#: ../gramps/gui/editors/displaytabs/addrembedlist.py:85
 msgid "_Addresses"
 msgstr "_Διευθύνσεις"
 
@@ -13651,7 +13664,7 @@ msgstr "Μετακίνηση του επιλεγμένου χαρακτηρισ�
 msgid "Move the selected attribute downwards"
 msgstr "Μετακίνηση του επιλεγμένου χαρακτηριστικού προς τα κάτω"
 
-#: ../gramps/gui/editors/displaytabs/attrembedlist.py:75
+#: ../gramps/gui/editors/displaytabs/attrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:76
 msgid "_Attributes"
 msgstr "_Χαρακτηριστικά"
@@ -13691,18 +13704,18 @@ msgstr "_Χαρακτηριστικά"
 #: ../gramps/gui/views/bookmarks.py:281
 #: ../gramps/gui/views/navigationview.py:344
 #: ../gramps/plugins/gramplet/locations.py:88
-#: ../gramps/plugins/lib/libpersonview.py:99
+#: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/lib/libplaceview.py:86
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:199
 #: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:575
-#: ../gramps/plugins/view/citationlistview.py:99
-#: ../gramps/plugins/view/citationtreeview.py:94
-#: ../gramps/plugins/view/eventview.py:80
+#: ../gramps/plugins/view/citationlistview.py:98
+#: ../gramps/plugins/view/citationtreeview.py:93
+#: ../gramps/plugins/view/eventview.py:78
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/mediaview.py:94 ../gramps/plugins/view/noteview.py:79
 #: ../gramps/plugins/view/relview.py:729 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
@@ -13788,7 +13801,7 @@ msgid "Remove the existing citation"
 msgstr "Αφαίρεση της υφιστάμενης παραπομπής"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:71
-#: ../gramps/plugins/view/citationlistview.py:127
+#: ../gramps/plugins/view/citationlistview.py:126
 msgid "Edit the selected citation"
 msgstr "Επεξεργασία της επιλεγμένης παραπομπής"
 
@@ -13828,15 +13841,15 @@ msgstr "_Παραπομπές"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:186
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:260
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:281
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:267
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:269
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:334
-#: ../gramps/plugins/view/citationtreeview.py:590
-#: ../gramps/plugins/view/citationtreeview.py:633
+#: ../gramps/plugins/view/citationtreeview.py:589
+#: ../gramps/plugins/view/citationtreeview.py:610
 msgid "Cannot share this reference"
 msgstr "Αδύνατη η κοινή χρήση αυτής της αναφοράς"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:196
-#: ../gramps/plugins/view/citationtreeview.py:641
+#: ../gramps/plugins/view/citationtreeview.py:618
 msgid ""
 "This citation cannot be created at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -13880,12 +13893,12 @@ msgstr "Μετακίνηση του επιλεγμένου συμβάντος π
 msgid "Role"
 msgstr "Ρόλος"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:98
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:99
 msgid "_Events"
 msgstr "_Συμβάντα"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:247
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:348
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:249
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:350
 msgid ""
 "This event reference cannot be edited at this time. Either the associated "
 "event is already being edited or another event reference that is associated "
@@ -13901,8 +13914,8 @@ msgstr ""
 "Για να επεξεργαστείτε αυτήν την αναφορά σε συμβάν, πρέπει να κλείσετε το "
 "συμβάν."
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:281
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:347
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:283
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:349
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:355
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 #: ../gramps/plugins/drawreport/ancestortree.py:1103
@@ -13910,11 +13923,11 @@ msgstr ""
 msgid "Cannot edit this reference"
 msgstr "Αδύνατη η επεξεργασία αυτής της αναφοράς"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:324
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:326
 msgid "Cannot change Person"
 msgstr "Αδύνατη η αλλαγή ατόμου"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:325
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:327
 msgid "You cannot change Person events in the Family Editor"
 msgstr ""
 "Αδύνατη η αλλαγή ατομικών συμβάντων κατά την επεξεργασία της οικογένειας"
@@ -13936,7 +13949,7 @@ msgid "_View"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
-#: ../gramps/plugins/view/mediaview.py:402
+#: ../gramps/plugins/view/mediaview.py:401
 msgid "Open Containing _Folder"
 msgstr "Άνοιγμα _φακέλου που το περιέχει"
 
@@ -13968,7 +13981,7 @@ msgstr ""
 "αντικείμενο μέσων."
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:578
-#: ../gramps/plugins/view/mediaview.py:195
+#: ../gramps/plugins/view/mediaview.py:194
 msgid "Drag Media Object"
 msgstr "Σύρετε ένα αντικείμενο μέσων"
 
@@ -13992,7 +14005,7 @@ msgstr "Μετακίνηση της επιλεγμένης τελετής LDS π
 msgid "Move the selected LDS ordinance downwards"
 msgstr "Μετακίνηση της επιλεγμένης τελετής LDS προς τα κάτω"
 
-#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:71
+#: ../gramps/gui/editors/displaytabs/ldsembedlist.py:72
 msgid "_LDS"
 msgstr "_LDS"
 
@@ -14069,7 +14082,7 @@ msgid "Remove the existing note"
 msgstr "Αφαίρεση της υφιστάμενης σημείωσης"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:68
-#: ../gramps/plugins/view/noteview.py:94
+#: ../gramps/plugins/view/noteview.py:93
 msgid "Edit the selected note"
 msgstr "Επεξεργασία της επιλεγμένης σημείωσης"
 
@@ -14091,7 +14104,7 @@ msgstr "Μετακίνηση της επιλεγμένης σημείωσης π
 #: ../gramps/gui/glade/editmediaref.glade:190
 #: ../gramps/gui/glade/editmediaref.glade:503
 #: ../gramps/gui/selectors/selectnote.py:71
-#: ../gramps/plugins/view/noteview.py:79
+#: ../gramps/plugins/view/noteview.py:78
 msgid "Preview"
 msgstr "Προεπισκόπηση"
 
@@ -14157,11 +14170,11 @@ msgstr "Μετακίνηση του επιλεγμένου συσχετισμο�
 msgid "Move the selected association downwards"
 msgstr "Μετακίνηση του επιλεγμένου συσχετισμού προς τα κάτω"
 
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:76
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:77
 msgid "_Associations"
 msgstr "_Συσχετισμοί"
 
-#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:138
+#: ../gramps/gui/editors/displaytabs/personrefembedlist.py:139
 #: ../gramps/plugins/lib/libprogen.py:1469
 msgid "Godfather"
 msgstr "Νονός"
@@ -14434,11 +14447,6 @@ msgstr "Προσθήκη παραπομπής (%s)"
 msgid "Edit Citation (%s)"
 msgstr "Επεξεργασία παραπομπής (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:376
-#, python-format
-msgid "Delete Citation (%s)"
-msgstr "Διαγραφή παραπομπής (%s)"
-
 #: ../gramps/gui/editors/editdate.py:77 ../gramps/gui/editors/editdate.py:86
 msgid "Regular"
 msgstr "Κανονική"
@@ -14508,15 +14516,15 @@ msgid "New Event"
 msgstr "Νέο συμβάν"
 
 #: ../gramps/gui/editors/editevent.py:230
-#: ../gramps/plugins/view/geoclose.py:630
-#: ../gramps/plugins/view/geoevents.py:400
-#: ../gramps/plugins/view/geoevents.py:433
-#: ../gramps/plugins/view/geofamclose.py:818
-#: ../gramps/plugins/view/geofamily.py:487
-#: ../gramps/plugins/view/geomoves.py:689
-#: ../gramps/plugins/view/geoperson.py:506
-#: ../gramps/plugins/view/geoperson.py:526
-#: ../gramps/plugins/view/geoperson.py:566
+#: ../gramps/plugins/view/geoclose.py:632
+#: ../gramps/plugins/view/geoevents.py:398
+#: ../gramps/plugins/view/geoevents.py:431
+#: ../gramps/plugins/view/geofamclose.py:815
+#: ../gramps/plugins/view/geofamily.py:485
+#: ../gramps/plugins/view/geomoves.py:703
+#: ../gramps/plugins/view/geoperson.py:503
+#: ../gramps/plugins/view/geoperson.py:523
+#: ../gramps/plugins/view/geoperson.py:563
 msgid "Edit Event"
 msgstr "Επεξεργασία συμβάντος"
 
@@ -14549,11 +14557,6 @@ msgstr "Προσθήκη συμβάντος (%s)"
 #, python-format
 msgid "Edit Event (%s)"
 msgstr "Επεξεργασία συμβάντος (%s)"
-
-#: ../gramps/gui/editors/editevent.py:338
-#, python-format
-msgid "Delete Event (%s)"
-msgstr "Διαγραφή συμβάντος (%s)"
 
 #: ../gramps/gui/editors/editeventref.py:57
 #, fuzzy
@@ -14629,7 +14632,7 @@ msgstr "Μητρική"
 #: ../gramps/gui/selectors/selectperson.py:93
 #: ../gramps/plugins/gramplet/children.py:94
 #: ../gramps/plugins/gramplet/children.py:193
-#: ../gramps/plugins/lib/libpersonview.py:101
+#: ../gramps/plugins/lib/libpersonview.py:99
 #: ../gramps/plugins/quickview/filterbyname.py:154
 #: ../gramps/plugins/quickview/filterbyname.py:234
 #: ../gramps/plugins/quickview/filterbyname.py:282
@@ -14650,7 +14653,7 @@ msgstr "Ημερομηνία γέννησης"
 #: ../gramps/gui/selectors/selectperson.py:95
 #: ../gramps/plugins/gramplet/children.py:96
 #: ../gramps/plugins/gramplet/children.py:195
-#: ../gramps/plugins/lib/libpersonview.py:103
+#: ../gramps/plugins/lib/libpersonview.py:101
 #: ../gramps/plugins/quickview/lineage.py:61
 #: ../gramps/plugins/quickview/lineage.py:93
 #: ../gramps/plugins/webreport/basepage.py:476
@@ -14659,44 +14662,44 @@ msgstr "Ημερομηνία θανάτου"
 
 #: ../gramps/gui/editors/editfamily.py:131
 #: ../gramps/gui/selectors/selectperson.py:94
-#: ../gramps/plugins/lib/libpersonview.py:102
+#: ../gramps/plugins/lib/libpersonview.py:100
 msgid "Birth Place"
 msgstr "Τόπος γέννησης"
 
 #: ../gramps/gui/editors/editfamily.py:132
 #: ../gramps/gui/selectors/selectperson.py:96
-#: ../gramps/plugins/lib/libpersonview.py:104
+#: ../gramps/plugins/lib/libpersonview.py:102
 msgid "Death Place"
 msgstr "Τόπος θανάτου"
 
-#: ../gramps/gui/editors/editfamily.py:145
+#: ../gramps/gui/editors/editfamily.py:146
 msgid "Chil_dren"
 msgstr "_Τέκνα"
 
-#: ../gramps/gui/editors/editfamily.py:194
+#: ../gramps/gui/editors/editfamily.py:195
 msgid "Edit child"
 msgstr "Επεξεργασία τέκνου"
 
-#: ../gramps/gui/editors/editfamily.py:196
+#: ../gramps/gui/editors/editfamily.py:197
 msgid "Add an existing child"
 msgstr "Προσθήκη υφιστάμενου τέκνου"
 
-#: ../gramps/gui/editors/editfamily.py:197
+#: ../gramps/gui/editors/editfamily.py:198
 msgid "Edit relationship"
 msgstr "Επεξεργασία σχέσης"
 
-#: ../gramps/gui/editors/editfamily.py:267
-#: ../gramps/gui/editors/editfamily.py:282
+#: ../gramps/gui/editors/editfamily.py:268
+#: ../gramps/gui/editors/editfamily.py:283
 #: ../gramps/gui/selectors/selectperson.py:67
 #: ../gramps/plugins/view/relview.py:1750
 msgid "Select Child"
 msgstr "Επιλογή τέκνου"
 
-#: ../gramps/gui/editors/editfamily.py:417
+#: ../gramps/gui/editors/editfamily.py:418
 msgid "Adding parents to a person"
 msgstr "Προσθήκη γονέων σε άτομο"
 
-#: ../gramps/gui/editors/editfamily.py:418
+#: ../gramps/gui/editors/editfamily.py:419
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -14709,11 +14712,11 @@ msgstr ""
 "οικογένειας. Τα υπόλοιπα πεδία θα είναι διαθέσιμα μετά την επιλογή ενός "
 "γονέα."
 
-#: ../gramps/gui/editors/editfamily.py:523
+#: ../gramps/gui/editors/editfamily.py:524
 msgid "Family has changed"
 msgstr "Η οικογένεια έχει τροποποιηθεί"
 
-#: ../gramps/gui/editors/editfamily.py:524
+#: ../gramps/gui/editors/editfamily.py:525
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -14730,62 +14733,62 @@ msgstr ""
 "προβαλλόμενα δεδομένα έχουν ανανεωθεί. Κάποιο μέρος από την επεξεργασία που "
 "κάνατε μπορεί να έχει χαθεί."
 
-#: ../gramps/gui/editors/editfamily.py:529
+#: ../gramps/gui/editors/editfamily.py:530
 #: ../gramps/plugins/importer/importcsv.py:230
-#: ../gramps/plugins/view/familyview.py:387
+#: ../gramps/plugins/view/familyview.py:370
 msgid "family"
 msgstr "οικογένεια"
 
-#: ../gramps/gui/editors/editfamily.py:560
-#: ../gramps/gui/editors/editfamily.py:563
+#: ../gramps/gui/editors/editfamily.py:561
+#: ../gramps/gui/editors/editfamily.py:564
 msgid "New Family"
 msgstr "Νέα οικογένεια"
 
-#: ../gramps/gui/editors/editfamily.py:567
-#: ../gramps/gui/editors/editfamily.py:1185
-#: ../gramps/plugins/view/geofamily.py:479
+#: ../gramps/gui/editors/editfamily.py:568
+#: ../gramps/gui/editors/editfamily.py:1186
+#: ../gramps/plugins/view/geofamily.py:477
 msgid "Edit Family"
 msgstr "Επεξεργασία οικογένειας"
 
-#: ../gramps/gui/editors/editfamily.py:598
+#: ../gramps/gui/editors/editfamily.py:599
 msgid "Select a person as the mother"
 msgstr "Επιλογή ατόμου ως μητέρα"
 
-#: ../gramps/gui/editors/editfamily.py:599
+#: ../gramps/gui/editors/editfamily.py:600
 msgid "Add a new person as the mother"
 msgstr "Προσθήκη νέου ατόμου ως μητέρα"
 
-#: ../gramps/gui/editors/editfamily.py:600
+#: ../gramps/gui/editors/editfamily.py:601
 msgid "Remove the person as the mother"
 msgstr "Αφαίρεση ατόμου ως μητέρα"
 
-#: ../gramps/gui/editors/editfamily.py:613
+#: ../gramps/gui/editors/editfamily.py:614
 msgid "Select a person as the father"
 msgstr "Επιλογή ατόμου ως πατέρα"
 
-#: ../gramps/gui/editors/editfamily.py:614
+#: ../gramps/gui/editors/editfamily.py:615
 msgid "Add a new person as the father"
 msgstr "Προσθήκη νέου ατόμου ως πατέρας"
 
-#: ../gramps/gui/editors/editfamily.py:615
+#: ../gramps/gui/editors/editfamily.py:616
 msgid "Remove the person as the father"
 msgstr "Αφαίρεση ατόμου ως πατέρα"
 
-#: ../gramps/gui/editors/editfamily.py:885
+#: ../gramps/gui/editors/editfamily.py:886
 #: ../gramps/gui/selectors/selectperson.py:65
 msgid "Select Mother"
 msgstr "Επιλογή της μητέρας"
 
-#: ../gramps/gui/editors/editfamily.py:930
+#: ../gramps/gui/editors/editfamily.py:931
 #: ../gramps/gui/selectors/selectperson.py:63
 msgid "Select Father"
 msgstr "Επιλογή του πατέρα"
 
-#: ../gramps/gui/editors/editfamily.py:954
+#: ../gramps/gui/editors/editfamily.py:955
 msgid "Duplicate Family"
 msgstr "Διπλότυπη οικογένεια"
 
-#: ../gramps/gui/editors/editfamily.py:955
+#: ../gramps/gui/editors/editfamily.py:956
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -14797,8 +14800,8 @@ msgstr ""
 "υπάρχουσα οικογένεια."
 
 #. Translators: needed for French, ignore otherwise
-#: ../gramps/gui/editors/editfamily.py:996
-#: ../gramps/gui/editors/editfamily.py:1003
+#: ../gramps/gui/editors/editfamily.py:997
+#: ../gramps/gui/editors/editfamily.py:1004
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 #: ../gramps/gui/plug/report/_graphreportdialog.py:154
@@ -14834,44 +14837,44 @@ msgstr ""
 msgid "%s:"
 msgstr ""
 
-#: ../gramps/gui/editors/editfamily.py:1005
+#: ../gramps/gui/editors/editfamily.py:1006
 #, python-format
 msgid "Edit %s"
 msgstr "Επεξεργασία %s"
 
-#: ../gramps/gui/editors/editfamily.py:1114
+#: ../gramps/gui/editors/editfamily.py:1115
 msgid "A father cannot be his own child"
 msgstr "Ένας πατέρας δεν μπορεί να είναι το δικό του τέκνο"
 
-#: ../gramps/gui/editors/editfamily.py:1115
+#: ../gramps/gui/editors/editfamily.py:1116
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "Ο %s εμφανίζεται ταυτόχρονα ως πατέρας και τέκνο της οικογένειας."
 
-#: ../gramps/gui/editors/editfamily.py:1125
+#: ../gramps/gui/editors/editfamily.py:1126
 msgid "A mother cannot be her own child"
 msgstr "Μια μητέρα δεν μπορεί να είναι το δικό της τέκνο"
 
-#: ../gramps/gui/editors/editfamily.py:1126
+#: ../gramps/gui/editors/editfamily.py:1127
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "Η %s εμφανίζεται ταυτόχρονα ως μητέρα και τέκνο της οικογένειας."
 
-#: ../gramps/gui/editors/editfamily.py:1134
+#: ../gramps/gui/editors/editfamily.py:1135
 msgid "Cannot save family"
 msgstr "Αδυναμία αποθήκευσης οικογένειας"
 
-#: ../gramps/gui/editors/editfamily.py:1135
+#: ../gramps/gui/editors/editfamily.py:1136
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "Δεν υπάρχουν δεδομένα για αυτήν την οικογένεια. Παρακαλούμε να εισάγετε "
 "ειδάλλως ακυρώστε την επεξεργασία."
 
-#: ../gramps/gui/editors/editfamily.py:1143
+#: ../gramps/gui/editors/editfamily.py:1144
 msgid "Cannot save family. ID already exists."
 msgstr "Αδυναμία αποθήκευσης οικογένειας. Ο ΑΑ υπάρχει ήδη."
 
-#: ../gramps/gui/editors/editfamily.py:1144
+#: ../gramps/gui/editors/editfamily.py:1145
 #: ../gramps/gui/editors/editnote.py:328
 #: ../gramps/gui/editors/editreference.py:295
 #, python-format
@@ -14884,7 +14887,7 @@ msgstr ""
 "τιμή αυτή χρησιμοποιείται ήδη. Παρακαλούμε εισάγετε έναν διαφορετικό ΑΑ ή "
 "αφήστε κενό ώστε να ληφθεί ο επόμενος διαθέσιμος ΑΑ."
 
-#: ../gramps/gui/editors/editfamily.py:1159
+#: ../gramps/gui/editors/editfamily.py:1160
 msgid "Add Family"
 msgstr "Προσθήκη οικογένειας"
 
@@ -14999,10 +15002,6 @@ msgstr "Προσθήκη νέου αντικειμένου μέσων (%s)"
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Επεξεργασία αντικειμένου μέσων (%s)"
-
-#: ../gramps/gui/editors/editmedia.py:372
-msgid "Remove Media Object"
-msgstr "Αφαίρεση αντικειμένου μέσων"
 
 #: ../gramps/gui/editors/editmediaref.py:72
 #, fuzzy
@@ -15141,11 +15140,6 @@ msgstr "Αδύνατη η αποθήκευση της σημείωσης. Ο Α�
 msgid "Add Note"
 msgstr "Προσθήκη σημείωσης"
 
-#: ../gramps/gui/editors/editnote.py:361
-#, python-format
-msgid "Delete Note (%s)"
-msgstr "Διαγραφή σημείωσης (%s)"
-
 #: ../gramps/gui/editors/editperson.py:157
 #, python-format
 msgid "Person: %(name)s"
@@ -15167,13 +15161,13 @@ msgid "Editing_information_about_people"
 msgstr "Επεξεργασία_πληροφοριών_περί_συμβάντων"
 
 #: ../gramps/gui/editors/editperson.py:602
-#: ../gramps/plugins/view/geofamily.py:483
+#: ../gramps/plugins/view/geofamily.py:481
 msgid "Edit Person"
 msgstr "Επεξεργασία ατόμου"
 
 #: ../gramps/gui/editors/editperson.py:645
-#: ../gramps/plugins/view/mediaview.py:386
-#: ../gramps/plugins/view/mediaview.py:402
+#: ../gramps/plugins/view/mediaview.py:385
+#: ../gramps/plugins/view/mediaview.py:401
 msgid "View"
 msgstr "Προβολή"
 
@@ -15320,9 +15314,9 @@ msgid ""
 msgstr "Άκυρο γεωγραφικό μήκος (syntax: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:256
-#: ../gramps/plugins/lib/maps/geography.py:916
-#: ../gramps/plugins/view/geoplaces.py:499
-#: ../gramps/plugins/view/geoplaces.py:524
+#: ../gramps/plugins/lib/maps/geography.py:935
+#: ../gramps/plugins/view/geoplaces.py:495
+#: ../gramps/plugins/view/geoplaces.py:520
 msgid "Edit Place"
 msgstr "Επεξεργασία τοποθεσίας"
 
@@ -15352,11 +15346,6 @@ msgstr "Προσθήκη τοποθεσίας (%s)"
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Επεξεργασία τοποθεσίας (%s)"
-
-#: ../gramps/gui/editors/editplace.py:401
-#, python-format
-msgid "Delete Place (%s)"
-msgstr "Διαγραφή τοποθεσίας (%s)"
 
 #: ../gramps/gui/editors/editplaceformat.py:49
 #, fuzzy
@@ -15485,11 +15474,6 @@ msgstr "Προσθήκη αποθετηρίου (%s)"
 msgid "Edit Repository (%s)"
 msgstr "Επεξεργασία αποθετηρίου (%s)"
 
-#: ../gramps/gui/editors/editrepository.py:222
-#, python-format
-msgid "Delete Repository (%s)"
-msgstr "Διαγραφή αποθετηρίου (%s)"
-
 #: ../gramps/gui/editors/editsource.py:64
 #, fuzzy
 msgctxt "manual"
@@ -15527,11 +15511,6 @@ msgstr "Προσθήκη πηγής (%s)"
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Επεξεργασία πηγής (%s)"
-
-#: ../gramps/gui/editors/editsource.py:243
-#, python-format
-msgid "Delete Source (%s)"
-msgstr "Διαγραφή πηγής (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
 #, fuzzy
@@ -15820,8 +15799,8 @@ msgid "Select an existing source"
 msgstr "Επιλογή υφιστάμενης σημείωσης"
 
 #: ../gramps/gui/editors/objectentries.py:346
-#: ../gramps/plugins/view/citationlistview.py:125
-#: ../gramps/plugins/view/citationtreeview.py:122
+#: ../gramps/plugins/view/citationlistview.py:124
+#: ../gramps/plugins/view/citationtreeview.py:121
 #: ../gramps/plugins/view/sourceview.py:98
 msgid "Add a new source"
 msgstr "Προσθήκη μιας νέας πηγής"
@@ -15852,7 +15831,7 @@ msgid "Select an existing media object"
 msgstr "Επιλογή υφιστάμενου αντικειμένου μέσων"
 
 #: ../gramps/gui/editors/objectentries.py:392
-#: ../gramps/plugins/view/mediaview.py:112
+#: ../gramps/plugins/view/mediaview.py:111
 msgid "Add a new media object"
 msgstr "Προσθήκη νέου αντικειμένου μέσων"
 
@@ -15876,7 +15855,7 @@ msgid "Select an existing note"
 msgstr "Επιλογή υφιστάμενης σημείωσης"
 
 #: ../gramps/gui/editors/objectentries.py:439
-#: ../gramps/plugins/view/noteview.py:93
+#: ../gramps/plugins/view/noteview.py:92
 msgid "Add a new note"
 msgstr "Προσθήκη νέας σημείωσης"
 
@@ -15915,8 +15894,8 @@ msgstr "%s δεν είναι"
 msgid "%s does not contain"
 msgstr "%s δεν περιέχει"
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1202
-#: ../gramps/gui/views/listview.py:1222 ../gramps/plugins/gramplet/leak.py:193
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1279
+#: ../gramps/gui/views/listview.py:1299 ../gramps/plugins/gramplet/leak.py:193
 #: ../gramps/plugins/gramplet/leak.py:200
 msgid "Updating display..."
 msgstr "Ανανέωση απεικόνισης..."
@@ -15940,7 +15919,7 @@ msgstr "Παραπομπή"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
 #: ../gramps/plugins/gramplet/citations.py:87
 #: ../gramps/plugins/textreport/tagreport.py:827
-#: ../gramps/plugins/view/citationlistview.py:98
+#: ../gramps/plugins/view/citationlistview.py:97
 msgid "Volume/Page"
 msgstr "Τόμος/Σελίδα"
 
@@ -16095,30 +16074,31 @@ msgid "Configure currently selected item"
 msgstr "Παραμετροποίηση τρεχόντως επιλεγμένου αντικειμένου"
 
 #: ../gramps/gui/glade/book.glade:540 ../gramps/gui/glade/dbman.glade:266
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/gui/views/listview.py:561
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -16264,7 +16244,7 @@ msgstr ""
 msgid "Cancel the rest of the operations"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:433 ../gramps/gui/views/listview.py:572
+#: ../gramps/gui/glade/dialog.glade:433 ../gramps/gui/views/listview.py:666
 #: ../gramps/plugins/tool/reorderids.glade:21
 #, fuzzy
 msgid "_No"
@@ -16275,7 +16255,7 @@ msgstr "Όχι"
 msgid "Do not apply the operation to this item"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:449 ../gramps/gui/views/listview.py:572
+#: ../gramps/gui/glade/dialog.glade:449 ../gramps/gui/views/listview.py:666
 #: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr ""
@@ -16311,7 +16291,7 @@ msgstr "Κλείσιμο _χωρίς αποθήκευση"
 
 #: ../gramps/gui/glade/dialog.glade:873
 #: ../gramps/gui/plug/report/_bookdialog.py:637
-#: ../gramps/gui/views/listview.py:1069
+#: ../gramps/gui/views/listview.py:1152
 #: ../gramps/gui/widgets/grampletpane.py:590
 #: ../gramps/plugins/tool/eventcmp.py:399
 #, fuzzy
@@ -17715,6 +17695,7 @@ msgid "Click to delete gramplet from view"
 msgstr "Κάντε κλικ για να καταργήσετε το gramplet από την προβολή"
 
 #: ../gramps/gui/glade/grampletpane.glade:144
+#: ../gramps/gui/views/listview.py:591
 msgid "Delete"
 msgstr "Διαγραφή"
 
@@ -17928,7 +17909,7 @@ msgid "Note 2"
 msgstr "Σημείωση"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1073
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1156
 msgid "Format:"
 msgstr "Μορφή:"
 
@@ -18283,7 +18264,7 @@ msgid "Alignment"
 msgstr "<b>Στοίχιση</b>"
 
 #: ../gramps/gui/glade/styleeditor.glade:586
-#: ../gramps/plugins/drawreport/fanchart.py:706
+#: ../gramps/plugins/drawreport/fanchart.py:730
 msgid "Background color"
 msgstr "Χρώμα φόντου"
 
@@ -18465,35 +18446,35 @@ msgid "_Display on startup"
 msgstr "_Εμφάνιση κατά την εκκίνηση"
 
 #: ../gramps/gui/glade/tipofday.glade:102
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:291
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:181
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:323
-#: ../gramps/plugins/view/eventview.py:196
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:180
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:322
+#: ../gramps/plugins/view/eventview.py:194
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:154
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:67
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:67
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:70
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:261
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:154
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:260
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:658
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:167
@@ -19061,7 +19042,7 @@ msgstr "και"
 
 #: ../gramps/gui/merge/mergefamily.py:227
 #: ../gramps/gui/merge/mergeperson.py:351
-#: ../gramps/plugins/lib/libpersonview.py:559
+#: ../gramps/plugins/lib/libpersonview.py:492
 msgid "Cannot merge people"
 msgstr "Αδύνατη η συγχώνευση των ατόμων"
 
@@ -19133,7 +19114,7 @@ msgstr "Σύζυγοι"
 #: ../gramps/gui/selectors/selectperson.py:97
 #: ../gramps/gui/widgets/reorderfam.py:102
 #: ../gramps/plugins/gramplet/children.py:98
-#: ../gramps/plugins/lib/libpersonview.py:105
+#: ../gramps/plugins/lib/libpersonview.py:103
 #: ../gramps/plugins/textreport/familygroup.py:566
 #: ../gramps/plugins/view/relview.py:1578
 msgid "Spouse"
@@ -19972,7 +19953,7 @@ msgstr "Πρότυπο"
 #: ../gramps/plugins/drawreport/ancestortree.py:843
 #: ../gramps/plugins/drawreport/calendarreport.py:463
 #: ../gramps/plugins/drawreport/descendtree.py:1579
-#: ../gramps/plugins/drawreport/fanchart.py:687
+#: ../gramps/plugins/drawreport/fanchart.py:710
 #: ../gramps/plugins/drawreport/statisticschart.py:1008
 #: ../gramps/plugins/drawreport/timeline.py:414
 #: ../gramps/plugins/graph/gvfamilylines.py:121
@@ -20210,7 +20191,7 @@ msgid "Select Source or Citation"
 msgstr "Επιλογή πηγής ή παραπομπής"
 
 #: ../gramps/gui/selectors/selectcitation.py:71
-#: ../gramps/plugins/view/citationtreeview.py:93
+#: ../gramps/plugins/view/citationtreeview.py:92
 #, fuzzy
 msgid "Source: Title or Citation: Volume/Page"
 msgstr "Πηγή ή παραπομπή"
@@ -20416,7 +20397,7 @@ msgstr ""
 msgid "File %s does not exist"
 msgstr "Το αρχείο %s δεν υπάρχει"
 
-#: ../gramps/gui/utils.py:605
+#: ../gramps/gui/utils.py:607
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -20435,7 +20416,7 @@ msgstr ""
 "Για να επεξεργαστείτε την παραπομπή, κλείστε την επεξεργασία πηγής και "
 "ανοίξτε μόνον την επεξεργασία παραπομπής."
 
-#: ../gramps/gui/utils.py:618
+#: ../gramps/gui/utils.py:620
 msgid "Cannot open new citation editor"
 msgstr "Αδύνατο το άνοιγμα νέας επεξεργασίας παραπομπής."
 
@@ -20632,22 +20613,22 @@ msgstr "Σελιδοδείκτες"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
-#: ../gramps/plugins/lib/libpersonview.py:205
+#: ../gramps/plugins/lib/libpersonview.py:203
 #: ../gramps/plugins/lib/libplaceview.py:290
-#: ../gramps/plugins/view/citationlistview.py:180
-#: ../gramps/plugins/view/citationtreeview.py:322
-#: ../gramps/plugins/view/eventview.py:195
+#: ../gramps/plugins/view/citationlistview.py:179
+#: ../gramps/plugins/view/citationtreeview.py:321
+#: ../gramps/plugins/view/eventview.py:193
 #: ../gramps/plugins/view/familyview.py:153
 #: ../gramps/plugins/view/fanchartview.py:183
-#: ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geoclose.py:109
 #: ../gramps/plugins/view/geoevents.py:100
-#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geofamclose.py:107
 #: ../gramps/plugins/view/geofamily.py:100
-#: ../gramps/plugins/view/geomoves.py:107
+#: ../gramps/plugins/view/geomoves.py:109
 #: ../gramps/plugins/view/geoperson.py:108
 #: ../gramps/plugins/view/geoplaces.py:103
-#: ../gramps/plugins/view/mediaview.py:260
-#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/mediaview.py:259
+#: ../gramps/plugins/view/noteview.py:152
 #: ../gramps/plugins/view/pedigreeview.py:689
 #: ../gramps/plugins/view/relview.py:433 ../gramps/plugins/view/repoview.py:166
 #: ../gramps/plugins/view/sourceview.py:152
@@ -20659,48 +20640,46 @@ msgstr "Οργάνωση Σελιδοδεικτών"
 msgid "Cannot bookmark this reference"
 msgstr "Αδύνατη η κοινή χρήση αυτής της αναφοράς"
 
-#: ../gramps/gui/views/listview.py:439
+#: ../gramps/gui/views/listview.py:441
 msgid "Active object not visible"
 msgstr "Ενεργό αντικείμενο μη-ορατό"
 
-#: ../gramps/gui/views/listview.py:449
+#: ../gramps/gui/views/listview.py:451
 #: ../gramps/gui/views/navigationview.py:256
-#: ../gramps/plugins/lib/maps/geography.py:229
-#: ../gramps/plugins/lib/maps/geography.py:246
+#: ../gramps/plugins/lib/maps/geography.py:233
+#: ../gramps/plugins/lib/maps/geography.py:250
 #: ../gramps/plugins/view/familyview.py:347
 msgid "Could Not Set a Bookmark"
 msgstr "Αδυναμία προσθήκης σελιδοδείκτη"
 
-#: ../gramps/gui/views/listview.py:450
+#: ../gramps/gui/views/listview.py:452
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Αδυναμία προσθήκης σελιδοδείκτη επειδή τίποτε δεν έχει επιλεγεί."
 
-#: ../gramps/gui/views/listview.py:542
-#: ../gramps/plugins/lib/libpersonview.py:523
-#: ../gramps/plugins/view/eventview.py:459
+#: ../gramps/gui/views/listview.py:578 ../gramps/plugins/view/eventview.py:384
+#, python-brace-format
+msgid "Delete {type} [{gid}]?"
+msgstr ""
+
+#: ../gramps/gui/views/listview.py:585 ../gramps/gui/views/listview.py:661
+msgid "Deleting item will remove it from the database."
+msgstr "Η διαγραφή του αντικειμένου θα το αφαιρέσει από τη βάση δεδομένων."
+
+#: ../gramps/gui/views/listview.py:612
+#: ../gramps/plugins/gramplet/givennamegramplet.py:70
+#: ../gramps/plugins/gramplet/recordsgramplet.py:50
+#: ../gramps/plugins/gramplet/statsgramplet.py:71
+#: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
+msgid "Processing..."
+msgstr "Γίνεται επεξεργασία..."
+
+#: ../gramps/gui/views/listview.py:625
 #, fuzzy
 msgid "Multiple Selection Delete"
 msgstr "Αναλυτική επιλογή"
 
-#: ../gramps/gui/views/listview.py:543
-#, fuzzy
-msgid ""
-"More than one item has been selected for deletion. Select the option "
-"indicating how to delete the items:"
-msgstr ""
-"Περισσότερα από ένα αντικείμενα έχουν επιλεγεί για διαγραφή. Να ερωτηθείτε "
-"για το καθένα ξεχωριστά;"
-
-#: ../gramps/gui/views/listview.py:545
-#, fuzzy
-msgid "Delete All"
-msgstr "_Επιλογή όλων"
-
-#: ../gramps/gui/views/listview.py:546
-msgid "Confirm Each Delete"
-msgstr ""
-
-#: ../gramps/gui/views/listview.py:561
+#: ../gramps/gui/views/listview.py:657
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -20708,35 +20687,30 @@ msgstr ""
 "Το αντικείμενο αυτό βρίσκεται σε χρήση. Η διαγραφή του θα αφαιρέσει από τη "
 "βάση δεδομένων και όλες τις εγγραφές που αναφέρονται σε αυτό."
 
-#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/eventview.py:409
-#: ../gramps/plugins/view/familyview.py:394
-msgid "Deleting item will remove it from the database."
-msgstr "Η διαγραφή του αντικειμένου θα το αφαιρέσει από τη βάση δεδομένων."
-
-#: ../gramps/gui/views/listview.py:571
-#: ../gramps/plugins/lib/libpersonview.py:469
-#: ../gramps/plugins/view/familyview.py:387
+#: ../gramps/gui/views/listview.py:665
+#: ../gramps/plugins/lib/libpersonview.py:448
+#: ../gramps/plugins/view/familyview.py:370
 #, python-format
 msgid "Delete %s?"
 msgstr "Διαγραφή του %s;"
 
-#: ../gramps/gui/views/listview.py:620
+#: ../gramps/gui/views/listview.py:703
 msgid "Column clicked, sorting..."
 msgstr "Κλικ στην στήλη, ταξινόμηση..."
 
-#: ../gramps/gui/views/listview.py:1065
+#: ../gramps/gui/views/listview.py:1148
 msgid "Export View as Spreadsheet"
 msgstr "Προβολή εξαγωγής ως λογιστικού φύλλου"
 
-#: ../gramps/gui/views/listview.py:1078
+#: ../gramps/gui/views/listview.py:1161
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1079
+#: ../gramps/gui/views/listview.py:1162
 msgid "OpenDocument Spreadsheet"
 msgstr "Φύλλο εργασίας OpenDocument"
 
-#: ../gramps/gui/views/listview.py:1270
+#: ../gramps/gui/views/listview.py:1347
 msgid "Columns"
 msgstr "Στήλες"
 
@@ -20746,8 +20720,8 @@ msgid "%s has been bookmarked"
 msgstr "%s ορίστηκε ως σελιδοδείκτης"
 
 #: ../gramps/gui/views/navigationview.py:257
-#: ../gramps/plugins/lib/maps/geography.py:230
-#: ../gramps/plugins/lib/maps/geography.py:247
+#: ../gramps/plugins/lib/maps/geography.py:234
+#: ../gramps/plugins/lib/maps/geography.py:251
 #: ../gramps/plugins/view/familyview.py:348
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Αδυναμία προσθήκης σελιδοδείκτη επειδή κανείς δεν έχει επιλεγεί."
@@ -21273,14 +21247,14 @@ msgstr "Δημιουργία εγγράφων σε μορφή απλού κει�
 #: ../gramps/plugins/docgen/docgen.gpr.py:55
 #: ../gramps/plugins/view/fanchartview.py:164
 #: ../gramps/plugins/view/fanchartview.py:227
-#: ../gramps/plugins/view/geoclose.py:91 ../gramps/plugins/view/geoclose.py:167
+#: ../gramps/plugins/view/geoclose.py:90 ../gramps/plugins/view/geoclose.py:166
 #: ../gramps/plugins/view/geoevents.py:81
-#: ../gramps/plugins/view/geoevents.py:129
-#: ../gramps/plugins/view/geofamclose.py:89
-#: ../gramps/plugins/view/geofamclose.py:165
+#: ../gramps/plugins/view/geoevents.py:131
+#: ../gramps/plugins/view/geofamclose.py:88
+#: ../gramps/plugins/view/geofamclose.py:164
 #: ../gramps/plugins/view/geofamily.py:81
 #: ../gramps/plugins/view/geofamily.py:131
-#: ../gramps/plugins/view/geomoves.py:88 ../gramps/plugins/view/geomoves.py:151
+#: ../gramps/plugins/view/geomoves.py:90 ../gramps/plugins/view/geomoves.py:153
 #: ../gramps/plugins/view/geoperson.py:89
 #: ../gramps/plugins/view/geoplaces.py:84
 #: ../gramps/plugins/view/geoplaces.py:134
@@ -21437,52 +21411,52 @@ msgstr ""
 msgid "Could not open %s"
 msgstr "Δεν ήταν δυνατόν να ανοίξει το %s"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:348
+#: ../gramps/plugins/docgen/svgdrawdoc.py:349
 #, fuzzy
 msgid "SVG background color"
 msgstr "Επιλογή χρώματος φόντου"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:350
+#: ../gramps/plugins/docgen/svgdrawdoc.py:351
 msgid "transparent background"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:351
-#: ../gramps/plugins/drawreport/fanchart.py:707
+#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/drawreport/fanchart.py:731
 msgid "white"
 msgstr "λευκό"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "black"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:353
+#: ../gramps/plugins/docgen/svgdrawdoc.py:354
 #, fuzzy
 msgid "red"
 msgstr "Έγγαμοι"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:354
+#: ../gramps/plugins/docgen/svgdrawdoc.py:355
 #, fuzzy
 msgid "green"
 msgstr "Πτυχίο ή Δίπλωμα"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:355
+#: ../gramps/plugins/docgen/svgdrawdoc.py:356
 msgid "blue"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:356
+#: ../gramps/plugins/docgen/svgdrawdoc.py:357
 msgid "cyan"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:357
+#: ../gramps/plugins/docgen/svgdrawdoc.py:358
 #, fuzzy
 msgid "magenta"
 msgstr "Εικόνα"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:358
+#: ../gramps/plugins/docgen/svgdrawdoc.py:359
 msgid "yellow"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:359
+#: ../gramps/plugins/docgen/svgdrawdoc.py:360
 msgid "The color, if any, of the SVG background"
 msgstr ""
 
@@ -21498,7 +21472,7 @@ msgstr "Δέντρο προγόνων του/της %s"
 #: ../gramps/plugins/drawreport/ancestortree.py:364
 #: ../gramps/plugins/drawreport/calendarreport.py:114
 #: ../gramps/plugins/drawreport/descendtree.py:695
-#: ../gramps/plugins/drawreport/fanchart.py:194
+#: ../gramps/plugins/drawreport/fanchart.py:195
 #: ../gramps/plugins/graph/gvhourglass.py:110
 #: ../gramps/plugins/graph/gvrelgraph.py:185
 #: ../gramps/plugins/textreport/ancestorreport.py:117
@@ -21529,7 +21503,7 @@ msgstr "Εκτύπωση του δέντρου..."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:801
 #: ../gramps/plugins/drawreport/calendarreport.py:473
-#: ../gramps/plugins/drawreport/fanchart.py:689
+#: ../gramps/plugins/drawreport/fanchart.py:712
 #: ../gramps/plugins/graph/gvhourglass.py:368
 #: ../gramps/plugins/graph/gvrelgraph.py:811
 #: ../gramps/plugins/textreport/ancestorreport.py:290
@@ -21558,7 +21532,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:812
 #: ../gramps/plugins/drawreport/descendtree.py:1544
-#: ../gramps/plugins/drawreport/fanchart.py:693
+#: ../gramps/plugins/drawreport/fanchart.py:716
 #: ../gramps/plugins/textreport/ancestorreport.py:294
 #: ../gramps/plugins/textreport/descendreport.py:537
 #: ../gramps/plugins/textreport/detancestralreport.py:840
@@ -21717,7 +21691,7 @@ msgstr "Να συμπεριληφθούν ή όχι κενές σελίδες."
 #: ../gramps/plugins/drawreport/ancestortree.py:903
 #: ../gramps/plugins/drawreport/calendarreport.py:491
 #: ../gramps/plugins/drawreport/descendtree.py:1645
-#: ../gramps/plugins/drawreport/fanchart.py:730
+#: ../gramps/plugins/drawreport/fanchart.py:754
 #: ../gramps/plugins/drawreport/statisticschart.py:1072
 #: ../gramps/plugins/drawreport/timeline.py:435
 #: ../gramps/plugins/graph/gvfamilylines.py:170
@@ -21900,7 +21874,7 @@ msgstr " γενιές από άδεια πλαίσια για αγνώστους
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1057
 #: ../gramps/plugins/drawreport/descendtree.py:1787
-#: ../gramps/plugins/drawreport/fanchart.py:771
+#: ../gramps/plugins/drawreport/fanchart.py:795
 #: ../gramps/plugins/drawreport/timeline.py:480
 #: ../gramps/plugins/textreport/alphabeticalindex.py:120
 #: ../gramps/plugins/textreport/ancestorreport.py:386
@@ -21928,7 +21902,7 @@ msgstr "Το βασικό πρότυπο που χρησιμοποιείται �
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1076
 #: ../gramps/plugins/drawreport/descendtree.py:1778
-#: ../gramps/plugins/drawreport/fanchart.py:761
+#: ../gramps/plugins/drawreport/fanchart.py:785
 #: ../gramps/plugins/drawreport/statisticschart.py:1157
 #: ../gramps/plugins/drawreport/timeline.py:498
 #: ../gramps/plugins/textreport/alphabeticalindex.py:103
@@ -22022,7 +21996,7 @@ msgstr ""
 "Επιλογή φίλτρου για τον περιορισμό των ατόμων που εμφανίζονται στο ημερολόγιο"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:474
-#: ../gramps/plugins/drawreport/fanchart.py:690
+#: ../gramps/plugins/drawreport/fanchart.py:713
 #: ../gramps/plugins/graph/gvrelgraph.py:812
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:523
@@ -22486,19 +22460,19 @@ msgstr "Διάγραμμα χρονολογίου"
 msgid "Produces a timeline chart."
 msgstr "Παράγει ένα διάγραμμα χρονολογίου."
 
-#: ../gramps/plugins/drawreport/fanchart.py:256
+#: ../gramps/plugins/drawreport/fanchart.py:274
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "Διάγραμμα βεντάλιας %(generations)d γενεών του(ης): %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:271
+#: ../gramps/plugins/drawreport/fanchart.py:289
 #, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
 msgstr "Γενεά %(generations)d - Διάγραμμα βεντάλιας του(ης) %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:694
+#: ../gramps/plugins/drawreport/fanchart.py:717
 #: ../gramps/plugins/textreport/ancestorreport.py:296
 #: ../gramps/plugins/textreport/descendreport.py:538
 #: ../gramps/plugins/textreport/detancestralreport.py:841
@@ -22506,70 +22480,78 @@ msgstr "Γενεά %(generations)d - Διάγραμμα βεντάλιας το�
 msgid "The number of generations to include in the report"
 msgstr "Πόσες γενιές να συμπεριληφθούν στην αναφορά"
 
-#: ../gramps/plugins/drawreport/fanchart.py:698
+#: ../gramps/plugins/drawreport/fanchart.py:721
 msgid "Type of graph"
 msgstr "Τύπος γραφήματος"
 
-#: ../gramps/plugins/drawreport/fanchart.py:699
+#: ../gramps/plugins/drawreport/fanchart.py:722
 msgid "full circle"
 msgstr "κύκλος"
 
-#: ../gramps/plugins/drawreport/fanchart.py:700
+#: ../gramps/plugins/drawreport/fanchart.py:723
 msgid "half circle"
 msgstr "ημικύκλιο"
 
-#: ../gramps/plugins/drawreport/fanchart.py:701
+#: ../gramps/plugins/drawreport/fanchart.py:724
+msgid "overhang"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/fanchart.py:725
 msgid "quarter circle"
 msgstr "τεταρτημόριο"
 
-#: ../gramps/plugins/drawreport/fanchart.py:702
-msgid "The form of the graph: full circle, half circle, or quarter circle."
+#: ../gramps/plugins/drawreport/fanchart.py:726
+#, fuzzy
+#| msgid "The form of the graph: full circle, half circle, or quarter circle."
+msgid ""
+"The form of the graph: full circle, half circle, half circle with overhang "
+"or quarter circle."
 msgstr "Η μορφή του γραφήματος: κύκλος, ημικύκλιο ή τεταρτημόριο."
 
-#: ../gramps/plugins/drawreport/fanchart.py:708
+#: ../gramps/plugins/drawreport/fanchart.py:732
 msgid "generation dependent"
 msgstr "αναλόγως της γενεάς"
 
-#: ../gramps/plugins/drawreport/fanchart.py:709
+#: ../gramps/plugins/drawreport/fanchart.py:733
 msgid "Background color is either white or generation dependent"
 msgstr "Χρώμα φόντου είτε λευκό, είτε αναλόγως της γενεάς"
 
-#: ../gramps/plugins/drawreport/fanchart.py:713
+#: ../gramps/plugins/drawreport/fanchart.py:737
 msgid "Orientation of radial texts"
 msgstr "Προσανατολισμός ακτινωτού κειμένου"
 
-#: ../gramps/plugins/drawreport/fanchart.py:715
+#: ../gramps/plugins/drawreport/fanchart.py:739
 msgid "upright"
 msgstr "σε ευθεία"
 
-#: ../gramps/plugins/drawreport/fanchart.py:716
+#: ../gramps/plugins/drawreport/fanchart.py:740
 msgid "roundabout"
 msgstr "καμπυλωτά"
 
-#: ../gramps/plugins/drawreport/fanchart.py:717
+#: ../gramps/plugins/drawreport/fanchart.py:741
 msgid "Print radial texts upright or roundabout"
 msgstr "Εκτύπωση ακτινωτού κειμένου σε ευθεία ή καμπυλωτά"
 
-#: ../gramps/plugins/drawreport/fanchart.py:719
+#: ../gramps/plugins/drawreport/fanchart.py:743
 msgid "Draw empty boxes"
 msgstr "Σχεδίαση κενών πλαισίων"
 
-#: ../gramps/plugins/drawreport/fanchart.py:720
+#: ../gramps/plugins/drawreport/fanchart.py:744
 msgid "Draw the background although there is no information"
 msgstr "Να σχεδιάζεται το φόντο ακόμα και όταν δεν υπάρχει πληροφορία"
 
-#: ../gramps/plugins/drawreport/fanchart.py:724
+#: ../gramps/plugins/drawreport/fanchart.py:748
 msgid "Use one font style for all generations"
 msgstr "Χρήση μιας πρότυπης γραμματοσειράς για όλες τις γενεές"
 
-#: ../gramps/plugins/drawreport/fanchart.py:726
+#: ../gramps/plugins/drawreport/fanchart.py:750
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
 "Μπορείτε να προσαρμόσετε τη γραμματοσειρά και το χρώμα για κάθε γενεά μέσα "
 "από την επεξεργασία προτύπων (στυλ)"
 
-#: ../gramps/plugins/drawreport/fanchart.py:782
+#: ../gramps/plugins/drawreport/fanchart.py:806
 #, fuzzy, python-format
 msgid "The style used for the text display of generation \"%d\""
 msgstr ""
@@ -23606,16 +23588,6 @@ msgstr "Διπλό-κλικ στο όνομα για λεπτομέρειες"
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
 msgstr "Δεν φορτώθηκε κανένα οικογενειακό δέντρο."
-
-#: ../gramps/plugins/gramplet/givennamegramplet.py:70
-#: ../gramps/plugins/gramplet/recordsgramplet.py:50
-#: ../gramps/plugins/gramplet/statsgramplet.py:71
-#: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
-#: ../gramps/plugins/lib/libpersonview.py:513
-#: ../gramps/plugins/view/eventview.py:431
-msgid "Processing..."
-msgstr "Γίνεται επεξεργασία..."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:150
 msgid "Total unique given names"
@@ -31226,72 +31198,72 @@ msgstr "Είχε επίσης σχέση με τον(ην) %(spouse)s%(endnotes)
 msgid "Also relationship with %(spouse)s%(endnotes)s."
 msgstr "Επίσης σχέση με τον(ην) %(spouse)s%(endnotes)s."
 
-#: ../gramps/plugins/lib/libpersonview.py:106
+#: ../gramps/plugins/lib/libpersonview.py:104
 #, fuzzy
 msgid "Number of Parents"
 msgstr "Πλήθος γάμων"
 
-#: ../gramps/plugins/lib/libpersonview.py:109
+#: ../gramps/plugins/lib/libpersonview.py:107
 #, fuzzy
 msgid "Number of To Do Notes"
 msgstr "Επόμενη σημείωση Προς Εκτέλεση"
 
-#: ../gramps/plugins/lib/libpersonview.py:112
+#: ../gramps/plugins/lib/libpersonview.py:110
 #: ../gramps/plugins/lib/libplaceview.py:94
-#: ../gramps/plugins/view/citationlistview.py:104
-#: ../gramps/plugins/view/citationtreeview.py:99
-#: ../gramps/plugins/view/eventview.py:86
+#: ../gramps/plugins/view/citationlistview.py:103
+#: ../gramps/plugins/view/citationtreeview.py:98
+#: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/familyview.py:86
-#: ../gramps/plugins/view/mediaview.py:101
-#: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:99
+#: ../gramps/plugins/view/mediaview.py:100
+#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:89
 msgid "Last Changed"
 msgstr "Τροποποιήθηκε"
 
-#: ../gramps/plugins/lib/libpersonview.py:124
+#: ../gramps/plugins/lib/libpersonview.py:122
 msgid "Add a new person"
 msgstr "Προσθήκη νέου ατόμου"
 
-#: ../gramps/plugins/lib/libpersonview.py:125
+#: ../gramps/plugins/lib/libpersonview.py:123
 msgid "Edit the selected person"
 msgstr "Επεξεργασία του επιλεγμένου ατόμου"
 
-#: ../gramps/plugins/lib/libpersonview.py:126
+#: ../gramps/plugins/lib/libpersonview.py:124
 #, fuzzy
 msgid "Delete the selected person"
 msgstr "Διαγραφή της επιλεγμένης τοποθεσίας"
 
-#: ../gramps/plugins/lib/libpersonview.py:127
+#: ../gramps/plugins/lib/libpersonview.py:125
 msgid "Merge the selected persons"
 msgstr "Συγχώνευση των επιλεγμένων ατόμων"
 
-#: ../gramps/plugins/lib/libpersonview.py:186
+#: ../gramps/plugins/lib/libpersonview.py:184
 #: ../gramps/plugins/lib/libplaceview.py:271
-#: ../gramps/plugins/view/citationlistview.py:161
-#: ../gramps/plugins/view/citationtreeview.py:303
-#: ../gramps/plugins/view/eventview.py:176
+#: ../gramps/plugins/view/citationlistview.py:160
+#: ../gramps/plugins/view/citationtreeview.py:302
+#: ../gramps/plugins/view/eventview.py:174
 #: ../gramps/plugins/view/familyview.py:134
-#: ../gramps/plugins/view/mediaview.py:241
-#: ../gramps/plugins/view/noteview.py:134
+#: ../gramps/plugins/view/mediaview.py:240
+#: ../gramps/plugins/view/noteview.py:133
 #: ../gramps/plugins/view/repoview.py:147
 #: ../gramps/plugins/view/sourceview.py:133
 msgid "Export View..."
 msgstr "Εξαγωγή ως λογιστικό φύλλο..."
 
-#: ../gramps/plugins/lib/libpersonview.py:194
+#: ../gramps/plugins/lib/libpersonview.py:192
 #: ../gramps/plugins/lib/libplaceview.py:279
-#: ../gramps/plugins/view/citationlistview.py:169
-#: ../gramps/plugins/view/citationtreeview.py:311
-#: ../gramps/plugins/view/eventview.py:184
+#: ../gramps/plugins/view/citationlistview.py:168
+#: ../gramps/plugins/view/citationtreeview.py:310
+#: ../gramps/plugins/view/eventview.py:182
 #: ../gramps/plugins/view/familyview.py:142
 #: ../gramps/plugins/view/fanchartview.py:172
-#: ../gramps/plugins/view/geoclose.py:99 ../gramps/plugins/view/geoevents.py:89
-#: ../gramps/plugins/view/geofamclose.py:97
-#: ../gramps/plugins/view/geofamily.py:89 ../gramps/plugins/view/geomoves.py:96
+#: ../gramps/plugins/view/geoclose.py:98 ../gramps/plugins/view/geoevents.py:89
+#: ../gramps/plugins/view/geofamclose.py:96
+#: ../gramps/plugins/view/geofamily.py:89 ../gramps/plugins/view/geomoves.py:98
 #: ../gramps/plugins/view/geoperson.py:97
 #: ../gramps/plugins/view/geoplaces.py:92
-#: ../gramps/plugins/view/mediaview.py:249
-#: ../gramps/plugins/view/noteview.py:142
+#: ../gramps/plugins/view/mediaview.py:248
+#: ../gramps/plugins/view/noteview.py:141
 #: ../gramps/plugins/view/pedigreeview.py:678
 #: ../gramps/plugins/view/relview.py:370 ../gramps/plugins/view/relview.py:422
 #: ../gramps/plugins/view/repoview.py:155
@@ -31299,43 +31271,43 @@ msgstr "Εξαγωγή ως λογιστικό φύλλο..."
 msgid "_Add Bookmark"
 msgstr "_Προσθήκη σελιδοδείκτη"
 
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:291
 #: ../gramps/plugins/lib/libplaceview.py:334
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:181
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:323
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:196
-#: ../gramps/plugins/view/eventview.py:239
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:180
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:322
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:194
+#: ../gramps/plugins/view/eventview.py:237
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:154
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/familyview.py:279
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:67
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:67
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:70
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:261
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:154
-#: ../gramps/plugins/view/noteview.py:197
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:260
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:153
+#: ../gramps/plugins/view/noteview.py:196
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/pedigreeview.py:658
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:167
@@ -31347,15 +31319,15 @@ msgstr "_Προσθήκη σελιδοδείκτη"
 msgid "_Back"
 msgstr "_Πίσω"
 
-#: ../gramps/plugins/lib/libpersonview.py:206
-#: ../gramps/plugins/lib/libpersonview.py:260
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:204
+#: ../gramps/plugins/lib/libpersonview.py:258
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/view/fanchartview.py:144
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:71 ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:69
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:68 ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoclose.py:70 ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geofamclose.py:68
+#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geomoves.py:70 ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:69
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:658
@@ -31365,30 +31337,30 @@ msgstr "_Πίσω"
 msgid "_Home"
 msgstr "_Βάση"
 
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -31398,30 +31370,30 @@ msgstr "_Βάση"
 msgid "_Add..."
 msgstr "_Προσθήκη..."
 
-#: ../gramps/plugins/lib/libpersonview.py:226
-#: ../gramps/plugins/lib/libpersonview.py:303
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:224
+#: ../gramps/plugins/lib/libpersonview.py:301
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:305
 #: ../gramps/plugins/lib/libplaceview.py:364
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:195
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:210
-#: ../gramps/plugins/view/eventview.py:269
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:194
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:208
+#: ../gramps/plugins/view/eventview.py:267
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:168
 #: ../gramps/plugins/view/familyview.py:227
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:275
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:168
-#: ../gramps/plugins/view/noteview.py:227
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:274
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:167
+#: ../gramps/plugins/view/noteview.py:226
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:181
 #: ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/repoview.py:292
@@ -31431,22 +31403,22 @@ msgstr "_Προσθήκη..."
 msgid "_Merge..."
 msgstr "_Συγχώνευση…"
 
-#: ../gramps/plugins/lib/libpersonview.py:245
-#: ../gramps/plugins/lib/libpersonview.py:403
+#: ../gramps/plugins/lib/libpersonview.py:243
+#: ../gramps/plugins/lib/libpersonview.py:401
 #: ../gramps/plugins/lib/libplaceview.py:324
 #: ../gramps/plugins/lib/libplaceview.py:459
-#: ../gramps/plugins/view/citationlistview.py:214
-#: ../gramps/plugins/view/citationlistview.py:343
-#: ../gramps/plugins/view/citationtreeview.py:364
-#: ../gramps/plugins/view/citationtreeview.py:527
-#: ../gramps/plugins/view/eventview.py:229
-#: ../gramps/plugins/view/eventview.py:358
+#: ../gramps/plugins/view/citationlistview.py:213
+#: ../gramps/plugins/view/citationlistview.py:342
+#: ../gramps/plugins/view/citationtreeview.py:363
+#: ../gramps/plugins/view/citationtreeview.py:526
+#: ../gramps/plugins/view/eventview.py:227
+#: ../gramps/plugins/view/eventview.py:356
 #: ../gramps/plugins/view/familyview.py:187
 #: ../gramps/plugins/view/familyview.py:328
-#: ../gramps/plugins/view/mediaview.py:294
-#: ../gramps/plugins/view/mediaview.py:448
-#: ../gramps/plugins/view/noteview.py:187
-#: ../gramps/plugins/view/noteview.py:316
+#: ../gramps/plugins/view/mediaview.py:293
+#: ../gramps/plugins/view/mediaview.py:447
+#: ../gramps/plugins/view/noteview.py:186
+#: ../gramps/plugins/view/noteview.py:315
 #: ../gramps/plugins/view/repoview.py:200
 #: ../gramps/plugins/view/repoview.py:329
 #: ../gramps/plugins/view/sourceview.py:186
@@ -31455,114 +31427,110 @@ msgctxt "action"
 msgid "_Edit..."
 msgstr "_Επεξεργασία..."
 
-#: ../gramps/plugins/lib/libpersonview.py:246
+#: ../gramps/plugins/lib/libpersonview.py:244
 #: ../gramps/plugins/view/pedigreeview.py:690
 #: ../gramps/plugins/view/relview.py:391
 msgid "Person Filter Editor"
 msgstr "Επεξεργαστής ατομικών φίλτρων"
 
-#: ../gramps/plugins/lib/libpersonview.py:246
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:244
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/view/pedigreeview.py:1668
 msgid "Set _Home Person"
 msgstr "Ορισμός _ατόμου βάσης"
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
-#: ../gramps/plugins/view/geofamclose.py:109
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geoclose.py:110
+#: ../gramps/plugins/view/geofamclose.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434
 msgid "Go to the home person"
 msgstr "Πήγαινε στο άτομο βάσης"
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:373
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:210
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the next object in the history"
 msgstr "Πήγαινε στο επόμενο αντικείμενο στο ιστορικό"
 
-#: ../gramps/plugins/lib/libpersonview.py:260
+#: ../gramps/plugins/lib/libpersonview.py:258
 #: ../gramps/plugins/lib/libplaceview.py:334
-#: ../gramps/plugins/view/citationlistview.py:224
-#: ../gramps/plugins/view/citationtreeview.py:374
-#: ../gramps/plugins/view/eventview.py:239
+#: ../gramps/plugins/view/citationlistview.py:223
+#: ../gramps/plugins/view/citationtreeview.py:373
+#: ../gramps/plugins/view/eventview.py:237
 #: ../gramps/plugins/view/familyview.py:197
 #: ../gramps/plugins/view/fanchartview.py:184
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:101
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geofamily.py:101
-#: ../gramps/plugins/view/geomoves.py:108
+#: ../gramps/plugins/view/geomoves.py:110
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/geoplaces.py:104
-#: ../gramps/plugins/view/mediaview.py:304
-#: ../gramps/plugins/view/noteview.py:197
+#: ../gramps/plugins/view/mediaview.py:303
+#: ../gramps/plugins/view/noteview.py:196
 #: ../gramps/plugins/view/pedigreeview.py:699
 #: ../gramps/plugins/view/relview.py:434 ../gramps/plugins/view/repoview.py:210
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "Go to the previous object in the history"
 msgstr "Πήγαινε στο προηγούμενο αντικείμενο στο ιστορικό"
 
-#: ../gramps/plugins/lib/libpersonview.py:303
+#: ../gramps/plugins/lib/libpersonview.py:301
 #: ../gramps/plugins/lib/libplaceview.py:364
-#: ../gramps/plugins/view/citationlistview.py:254
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/eventview.py:269
+#: ../gramps/plugins/view/citationlistview.py:253
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/eventview.py:267
 #: ../gramps/plugins/view/familyview.py:227
-#: ../gramps/plugins/view/mediaview.py:334
-#: ../gramps/plugins/view/noteview.py:227 ../gramps/plugins/view/relview.py:391
+#: ../gramps/plugins/view/mediaview.py:333
+#: ../gramps/plugins/view/noteview.py:226 ../gramps/plugins/view/relview.py:391
 #: ../gramps/plugins/view/relview.py:477 ../gramps/plugins/view/repoview.py:240
 #: ../gramps/plugins/view/sourceview.py:226
 msgid "Edit..."
 msgstr "Επεξεργασία..."
 
-#: ../gramps/plugins/lib/libpersonview.py:355
+#: ../gramps/plugins/lib/libpersonview.py:353
 #: ../gramps/plugins/lib/libplaceview.py:417
-#: ../gramps/plugins/view/citationlistview.py:306
-#: ../gramps/plugins/view/citationtreeview.py:475
-#: ../gramps/plugins/view/eventview.py:321
+#: ../gramps/plugins/view/citationlistview.py:305
+#: ../gramps/plugins/view/citationtreeview.py:474
+#: ../gramps/plugins/view/eventview.py:319
 #: ../gramps/plugins/view/familyview.py:279
-#: ../gramps/plugins/view/mediaview.py:402
-#: ../gramps/plugins/view/noteview.py:279
+#: ../gramps/plugins/view/mediaview.py:401
+#: ../gramps/plugins/view/noteview.py:278
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
 #, fuzzy
 msgid "Forward"
 msgstr "_Μπροστά"
 
-#: ../gramps/plugins/lib/libpersonview.py:454
-msgid "_Delete Person"
-msgstr "_Διαγραφή ατόμου"
-
-#: ../gramps/plugins/lib/libpersonview.py:473
+#: ../gramps/plugins/lib/libpersonview.py:452
 msgid "Deleting the person will remove the person from the database."
 msgstr "Η διαγραφή του ατόμου θα το αφαιρέσει από τη βάση δεδομένων."
 
-#: ../gramps/plugins/lib/libpersonview.py:496
+#: ../gramps/plugins/lib/libpersonview.py:459
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Διαγραφή ατόμου (%s)"
 
-#: ../gramps/plugins/lib/libpersonview.py:560
+#: ../gramps/plugins/lib/libpersonview.py:493
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -31625,23 +31593,23 @@ msgstr ""
 msgid "Select a Map Service"
 msgstr "Επιλέξτε μια χαρτογραφική υπηρεσία"
 
-#: ../gramps/plugins/lib/libplaceview.py:508
+#: ../gramps/plugins/lib/libplaceview.py:510
 #, fuzzy
 msgid "Cannot delete place."
 msgstr "Αδυναμία συγχώνευσης των τοποθεσιών."
 
-#: ../gramps/plugins/lib/libplaceview.py:509
+#: ../gramps/plugins/lib/libplaceview.py:511
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
 msgstr ""
 
-#: ../gramps/plugins/lib/libplaceview.py:550
-#: ../gramps/plugins/lib/libplaceview.py:558
+#: ../gramps/plugins/lib/libplaceview.py:533
+#: ../gramps/plugins/lib/libplaceview.py:541
 msgid "Cannot merge places."
 msgstr "Αδυναμία συγχώνευσης των τοποθεσιών."
 
-#: ../gramps/plugins/lib/libplaceview.py:551
+#: ../gramps/plugins/lib/libplaceview.py:534
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -31651,7 +31619,7 @@ msgstr ""
 "συγχώνευση. Η δεύτερη τοποθεσία μπορεί να επιλεγεί κρατώντας πατημένο το "
 "πλήκτρο Control (Ctrl) ενώ κάνετε κλικ στην επιθυμητή τοποθεσία."
 
-#: ../gramps/plugins/lib/libplaceview.py:559
+#: ../gramps/plugins/lib/libplaceview.py:542
 msgid "Merging these places would create a cycle in the place hierarchy."
 msgstr ""
 
@@ -31940,11 +31908,11 @@ msgstr "Κάτω αριστερά"
 msgid "Bottom Right"
 msgstr "Κάτω δεξιά"
 
-#: ../gramps/plugins/lib/maps/geography.py:158
+#: ../gramps/plugins/lib/maps/geography.py:160
 msgid "Tile path"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:159
+#: ../gramps/plugins/lib/maps/geography.py:161
 #, python-format
 msgid ""
 "The tile directory doesn't exist anymore:\n"
@@ -31953,87 +31921,87 @@ msgid ""
 "Configure the view for the tile path and restart gramps."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:378
+#: ../gramps/plugins/lib/maps/geography.py:398
 msgid "Remove cross hair"
 msgstr "Αφαίρεση στόχαστρου (δείκτη)"
 
-#: ../gramps/plugins/lib/maps/geography.py:380
+#: ../gramps/plugins/lib/maps/geography.py:400
 msgid "Add cross hair"
 msgstr "Προσθήκη στόχαστρου (δείκτη)"
 
-#: ../gramps/plugins/lib/maps/geography.py:387
+#: ../gramps/plugins/lib/maps/geography.py:407
 msgid "Unlock zoom and position"
 msgstr "Ξεκλείδωμα επεστίασης και θέσης"
 
-#: ../gramps/plugins/lib/maps/geography.py:389
+#: ../gramps/plugins/lib/maps/geography.py:409
 msgid "Lock zoom and position"
 msgstr "Κλείδωμα επεστίασης και θέσης"
 
-#: ../gramps/plugins/lib/maps/geography.py:396
+#: ../gramps/plugins/lib/maps/geography.py:416
 msgid "Add place"
 msgstr "Προσθήκη τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:401
+#: ../gramps/plugins/lib/maps/geography.py:421
 msgid "Link place"
 msgstr "Σύνδεση τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:406
+#: ../gramps/plugins/lib/maps/geography.py:426
 #, fuzzy
 msgid "Add place from kml"
 msgstr "Προσθήκη τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:411
+#: ../gramps/plugins/lib/maps/geography.py:431
 msgid "Center here"
 msgstr "Κέντρο εδώ"
 
-#: ../gramps/plugins/lib/maps/geography.py:424
+#: ../gramps/plugins/lib/maps/geography.py:444
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Αντικατάσταση '%(map)s' με =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:440
+#: ../gramps/plugins/lib/maps/geography.py:460
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:449
+#: ../gramps/plugins/lib/maps/geography.py:469
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:876
+#: ../gramps/plugins/lib/maps/geography.py:895
 msgid "You can't use the print functionality"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:877
+#: ../gramps/plugins/lib/maps/geography.py:896
 msgid "Your Gtk version is too old."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:920
-#: ../gramps/plugins/view/geoclose.py:635
-#: ../gramps/plugins/view/geoevents.py:405
-#: ../gramps/plugins/view/geoevents.py:437
-#: ../gramps/plugins/view/geofamclose.py:823
-#: ../gramps/plugins/view/geofamily.py:491
-#: ../gramps/plugins/view/geomoves.py:694
-#: ../gramps/plugins/view/geoperson.py:511
-#: ../gramps/plugins/view/geoperson.py:531
-#: ../gramps/plugins/view/geoperson.py:570
-#: ../gramps/plugins/view/geoplaces.py:504
-#: ../gramps/plugins/view/geoplaces.py:528
+#: ../gramps/plugins/lib/maps/geography.py:939
+#: ../gramps/plugins/view/geoclose.py:637
+#: ../gramps/plugins/view/geoevents.py:403
+#: ../gramps/plugins/view/geoevents.py:435
+#: ../gramps/plugins/view/geofamclose.py:820
+#: ../gramps/plugins/view/geofamily.py:489
+#: ../gramps/plugins/view/geomoves.py:708
+#: ../gramps/plugins/view/geoperson.py:508
+#: ../gramps/plugins/view/geoperson.py:528
+#: ../gramps/plugins/view/geoperson.py:567
+#: ../gramps/plugins/view/geoplaces.py:500
+#: ../gramps/plugins/view/geoplaces.py:524
 msgid "Center on this place"
 msgstr "Κέντρο σε αυτό το σημείο"
 
-#: ../gramps/plugins/lib/maps/geography.py:1018
+#: ../gramps/plugins/lib/maps/geography.py:1037
 #, fuzzy
 msgid "Select a kml file used to add places"
 msgstr "Επιλογή υφιστάμενης τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:1098
+#: ../gramps/plugins/lib/maps/geography.py:1117
 msgid "You have at least two places with the same title."
 msgstr "Έχετε τουλάχιστον δύο τοποθεσίες με τον ίδιο τίτλο."
 
-#: ../gramps/plugins/lib/maps/geography.py:1099
+#: ../gramps/plugins/lib/maps/geography.py:1118
 #, fuzzy, python-format
 msgid ""
 "The title of the places is:\n"
@@ -32050,19 +32018,19 @@ msgstr ""
 "\n"
 "<b>Το αίτημά σας δεν μπορεί να εκτελεστεί</b>.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1253
+#: ../gramps/plugins/lib/maps/geography.py:1272
 msgid "Nothing for this view."
 msgstr "Τίποτε για αυτήν την προβολή"
 
-#: ../gramps/plugins/lib/maps/geography.py:1254
+#: ../gramps/plugins/lib/maps/geography.py:1273
 msgid "Specific parameters"
 msgstr "Συγκεκριμένες παράμετροι"
 
-#: ../gramps/plugins/lib/maps/geography.py:1272
+#: ../gramps/plugins/lib/maps/geography.py:1291
 msgid "Where to save the tiles for offline mode."
 msgstr "Που να αποθηκευτούν τα πλακίδια για χρήση εκτός σύνδεσης."
 
-#: ../gramps/plugins/lib/maps/geography.py:1278
+#: ../gramps/plugins/lib/maps/geography.py:1298
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -32073,22 +32041,22 @@ msgstr ""
 "Προσοχή! Χωρίς σύνδεση στο διαδίκτυο δε θα μπορείτε να\n"
 "δείτε τους χάρτες."
 
-#: ../gramps/plugins/lib/maps/geography.py:1283
+#: ../gramps/plugins/lib/maps/geography.py:1303
 msgid "Zoom used when centering"
 msgstr "Χρήση επεστίασης κατά το κεντράρισμα"
 
-#: ../gramps/plugins/lib/maps/geography.py:1286
+#: ../gramps/plugins/lib/maps/geography.py:1306
 msgid "The maximum number of places to show"
 msgstr "Μέγιστος αριθμός τοποθεσιών προς εμφάνιση"
 
-#: ../gramps/plugins/lib/maps/geography.py:1290
+#: ../gramps/plugins/lib/maps/geography.py:1310
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1298
+#: ../gramps/plugins/lib/maps/geography.py:1318
 msgid ""
 "If you want to use a specific map provider, You can set the following field "
 "to the provider's url.\n"
@@ -32099,26 +32067,26 @@ msgid ""
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1312
+#: ../gramps/plugins/lib/maps/geography.py:1333
 #, fuzzy
 msgid "Personal map"
 msgstr "Προσωπικό"
 
-#: ../gramps/plugins/lib/maps/geography.py:1318
+#: ../gramps/plugins/lib/maps/geography.py:1337
 msgid "The map"
 msgstr "Ο χάρτης"
 
-#: ../gramps/plugins/lib/maps/geography.py:1358
+#: ../gramps/plugins/lib/maps/geography.py:1373
 #, fuzzy
 msgid "Select tile cache directory for offline mode"
 msgstr "Που να αποθηκευτούν τα πλακίδια για χρήση εκτός σύνδεσης."
 
-#: ../gramps/plugins/lib/maps/osmgps.py:139
+#: ../gramps/plugins/lib/maps/osmgps.py:137
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Αδυναμία δημιουργίας καταλόγου κρυφής μνήμης %s των πλακιδίων"
 
-#: ../gramps/plugins/lib/maps/osmgps.py:143
+#: ../gramps/plugins/lib/maps/osmgps.py:141
 #, python-format
 msgid ""
 "You must verify and change the tiles cache\n"
@@ -32135,19 +32103,19 @@ msgid ""
 "The next errors will be normal"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/osmgps.py:183
+#: ../gramps/plugins/lib/maps/osmgps.py:181
 #: ../gramps/plugins/lib/maps/osmgps.py:245
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr ""
 "Αδυναμία δημιουργίας καταλόγου κρυφής μνήμης των πλακιδίων για το '%s' ."
 
+#: ../gramps/plugins/lib/maps/placeselection.py:115
 #: ../gramps/plugins/lib/maps/placeselection.py:118
-#: ../gramps/plugins/lib/maps/placeselection.py:121
 msgid "Place Selection in a region"
 msgstr "Επιλογή τοποθεσίας σε μια περιοχή"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:122
+#: ../gramps/plugins/lib/maps/placeselection.py:119
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
@@ -32156,39 +32124,39 @@ msgstr ""
 "Θα πρέπει να βλέπετε στον χάρτη έναν κύκλο ή ένα οβάλ, αναλόγως του "
 "γεωγραφικού πλάτους."
 
-#: ../gramps/plugins/lib/maps/placeselection.py:125
+#: ../gramps/plugins/lib/maps/placeselection.py:122
 msgid ""
 "\n"
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:128
+#: ../gramps/plugins/lib/maps/placeselection.py:125
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:165
+#: ../gramps/plugins/lib/maps/placeselection.py:162
 msgid "The green values in the row correspond to the current place values."
 msgstr ""
 "Οι πράσινες τιμές στη γραμμή αντιπροσωπεύουν τις τρέχουσες τιμές της "
 "τοποθεσίας."
 
-#: ../gramps/plugins/lib/maps/placeselection.py:223
+#: ../gramps/plugins/lib/maps/placeselection.py:220
 msgid "New place with empty fields"
 msgstr "Νέα τοποθεσία με κενά πεδία"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:298
+#: ../gramps/plugins/lib/maps/placeselection.py:295
 msgid "you have a wrong latitude for:"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:300
-#: ../gramps/plugins/lib/maps/placeselection.py:310
+#: ../gramps/plugins/lib/maps/placeselection.py:297
+#: ../gramps/plugins/lib/maps/placeselection.py:307
 msgid "Please, correct this before linking"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/placeselection.py:308
+#: ../gramps/plugins/lib/maps/placeselection.py:305
 msgid "you have a wrong longitude for:"
 msgstr ""
 
@@ -33027,7 +32995,7 @@ msgstr "Καταλανικός υπολογιστής συγγενείας "
 #: ../gramps/plugins/rel/relplugins.gpr.py:289
 #: ../gramps/plugins/rel/relplugins.gpr.py:303
 #: ../gramps/plugins/rel/relplugins.gpr.py:316
-#: ../gramps/plugins/rel/relplugins.gpr.py:330
+#: ../gramps/plugins/rel/relplugins.gpr.py:346
 msgid "Calculates relationships between people"
 msgstr "Υπολογίζει τη συγγένεια μεταξύ δύο ατόμων"
 
@@ -33110,7 +33078,19 @@ msgstr "Σλοβένικος υπολογιστής συγγενείας "
 msgid "Swedish Relationship Calculator"
 msgstr "Σουηδικός υπολογιστής συγγενείας "
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:329
+#: ../gramps/plugins/rel/relplugins.gpr.py:330
+#, fuzzy
+#| msgid "Danish Relationship Calculator"
+msgid "Turkish Relationship Calculator"
+msgstr "Δανέζικος υπολογιστής συγγενείας "
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:331
+#, fuzzy
+#| msgid "Calculates relationships between people"
+msgid "Calculates relationship between people"
+msgstr "Υπολογίζει τη συγγένεια μεταξύ δύο ατόμων"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:345
 #, fuzzy
 msgid "Ukrainian Relationship Calculator"
 msgstr "Κροατικός υπολογιστής συγγενείας "
@@ -36899,65 +36879,65 @@ msgstr "Συντομότερος γάμος"
 msgid "Death equals marriage"
 msgstr "Γάμος σε μεγάλη ηλικία"
 
-#: ../gramps/plugins/view/citationlistview.py:105
+#: ../gramps/plugins/view/citationlistview.py:104
 msgid "Source: Title"
 msgstr "Πηγή: τίτλος"
 
-#: ../gramps/plugins/view/citationlistview.py:106
+#: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: ID"
 msgstr "Πηγή: ΑΑ"
 
-#: ../gramps/plugins/view/citationlistview.py:107
-#: ../gramps/plugins/view/citationtreeview.py:100
+#: ../gramps/plugins/view/citationlistview.py:106
+#: ../gramps/plugins/view/citationtreeview.py:99
 msgid "Source: Author"
 msgstr "Πηγή: συγγραφέας"
 
-#: ../gramps/plugins/view/citationlistview.py:108
-#: ../gramps/plugins/view/citationtreeview.py:101
+#: ../gramps/plugins/view/citationlistview.py:107
+#: ../gramps/plugins/view/citationtreeview.py:100
 msgid "Source: Abbreviation"
 msgstr "Πηγή: συντομογραφία"
 
-#: ../gramps/plugins/view/citationlistview.py:109
-#: ../gramps/plugins/view/citationtreeview.py:102
+#: ../gramps/plugins/view/citationlistview.py:108
+#: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Publication Information"
 msgstr "Πηγή: πληροφορίες έκδοσης"
 
-#: ../gramps/plugins/view/citationlistview.py:110
+#: ../gramps/plugins/view/citationlistview.py:109
 msgid "Source: Private"
 msgstr "Πηγή: Προσωπική"
 
-#: ../gramps/plugins/view/citationlistview.py:111
+#: ../gramps/plugins/view/citationlistview.py:110
 msgid "Source: Last Changed"
 msgstr "Πηγή: Τροποποιήθηκε"
 
-#: ../gramps/plugins/view/citationlistview.py:124
-#: ../gramps/plugins/view/citationtreeview.py:121
+#: ../gramps/plugins/view/citationlistview.py:123
+#: ../gramps/plugins/view/citationtreeview.py:120
 msgid "Add a new citation and a new source"
 msgstr "Προσθήκη νέας παραπομπής και νέας πηγής"
 
-#: ../gramps/plugins/view/citationlistview.py:126
-#: ../gramps/plugins/view/citationtreeview.py:123
+#: ../gramps/plugins/view/citationlistview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:122
 msgid "Add a new citation to an existing source"
 msgstr "Προσθήκη νέας παραπομπής σε υφιστάμενη πηγή "
 
-#: ../gramps/plugins/view/citationlistview.py:128
+#: ../gramps/plugins/view/citationlistview.py:127
 msgid "Delete the selected citation"
 msgstr "Διαγραφή της επιλεγμένης παραπομπής"
 
-#: ../gramps/plugins/view/citationlistview.py:129
+#: ../gramps/plugins/view/citationlistview.py:128
 msgid "Merge the selected citations"
 msgstr "Συγχώνευση των επιλεγμένων παραπομπών"
 
-#: ../gramps/plugins/view/citationlistview.py:143
+#: ../gramps/plugins/view/citationlistview.py:142
 msgid "Citation View"
 msgstr "Προβολή παραπομπών"
 
-#: ../gramps/plugins/view/citationlistview.py:215
-#: ../gramps/plugins/view/citationtreeview.py:365
+#: ../gramps/plugins/view/citationlistview.py:214
+#: ../gramps/plugins/view/citationtreeview.py:364
 msgid "Citation Filter Editor"
 msgstr "Επεξεργαστής φίλτρων παραπομπών"
 
-#: ../gramps/plugins/view/citationlistview.py:395
+#: ../gramps/plugins/view/citationlistview.py:388
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -36972,15 +36952,15 @@ msgstr ""
 "\n"
 "Για να επεξεργαστείτε αυτήν την παραπομπή, πρέπει να κλείσετε το αντικείμενο."
 
-#: ../gramps/plugins/view/citationlistview.py:408
-#: ../gramps/plugins/view/citationlistview.py:419
-#: ../gramps/plugins/view/citationtreeview.py:664
-#: ../gramps/plugins/view/citationtreeview.py:677
+#: ../gramps/plugins/view/citationlistview.py:401
+#: ../gramps/plugins/view/citationlistview.py:412
+#: ../gramps/plugins/view/citationtreeview.py:641
+#: ../gramps/plugins/view/citationtreeview.py:654
 msgid "Cannot merge citations."
 msgstr "Αδύνατη η συγχώνευση των παραπομπών."
 
-#: ../gramps/plugins/view/citationlistview.py:409
-#: ../gramps/plugins/view/citationtreeview.py:665
+#: ../gramps/plugins/view/citationlistview.py:402
+#: ../gramps/plugins/view/citationtreeview.py:642
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation "
 "can be selected by holding down the control key while clicking on the "
@@ -36990,8 +36970,8 @@ msgstr ""
 "συγχώνευση. Η δεύτερη παραπομπή μπορεί να επιλεγεί κρατώντας πατημένο το "
 "πλήκτρο Control (Ctrl) και κάνοντας κλικ στην επιθυμητή παραπομπή."
 
-#: ../gramps/plugins/view/citationlistview.py:420
-#: ../gramps/plugins/view/citationtreeview.py:678
+#: ../gramps/plugins/view/citationlistview.py:413
+#: ../gramps/plugins/view/citationtreeview.py:655
 msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
@@ -37000,46 +36980,46 @@ msgstr ""
 "παραπομπές να έχουν την ίδια πηγή. Εφόσον επιθυμείτε να συγχωνεύσετε αυτές "
 "τις παραπομπές, θα πρέπει πρώτα να συγχωνεύσετε τις πηγές."
 
-#: ../gramps/plugins/view/citationtreeview.py:124
+#: ../gramps/plugins/view/citationtreeview.py:123
 msgid "Edit the selected citation or source"
 msgstr "Επεξεργασία της επιλεγμένης παραπομπής ή πηγής"
 
-#: ../gramps/plugins/view/citationtreeview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:124
 msgid "Delete the selected citation or source"
 msgstr "Διαγραφή της επιλεγμένης παραπομπής ή πηγής"
 
-#: ../gramps/plugins/view/citationtreeview.py:126
+#: ../gramps/plugins/view/citationtreeview.py:125
 msgid "Merge the selected citations or selected sources"
 msgstr "Συγχώνευση των επιλεγμένων παραπομπών ή πηγών"
 
-#: ../gramps/plugins/view/citationtreeview.py:144
+#: ../gramps/plugins/view/citationtreeview.py:143
 msgid "Citation Tree View"
 msgstr "Ομαδοποίηση παραπομπών"
 
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
+#: ../gramps/plugins/view/citationtreeview.py:474
 msgid "Add citation..."
 msgstr "Προσθήκη παραπομπής..."
 
-#: ../gramps/plugins/view/citationtreeview.py:337
-#: ../gramps/plugins/view/citationtreeview.py:400
+#: ../gramps/plugins/view/citationtreeview.py:336
+#: ../gramps/plugins/view/citationtreeview.py:399
 msgid "Add source..."
 msgstr "Προσθήκη πηγής..."
 
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:474
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse all Nodes"
 msgstr "Σύμπτυξη όλων των κόμβων"
 
-#: ../gramps/plugins/view/citationtreeview.py:475
+#: ../gramps/plugins/view/citationtreeview.py:474
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand all Nodes"
 msgstr "Ανάπτυξη όλων των κόμβων"
 
-#: ../gramps/plugins/view/citationtreeview.py:651
+#: ../gramps/plugins/view/citationtreeview.py:628
 msgid ""
 "This source cannot be edited at this time. Either the associated Source "
 "object is already being edited, or another citation associated with the same "
@@ -37053,11 +37033,11 @@ msgstr ""
 "\n"
 "Για να επεξεργαστείτε αυτήν την πηγή, πρέπει να κλείσετε το αντικείμενο."
 
-#: ../gramps/plugins/view/citationtreeview.py:690
+#: ../gramps/plugins/view/citationtreeview.py:667
 msgid "Cannot perform merge."
 msgstr "Αδύνατη η συγχώνευση."
 
-#: ../gramps/plugins/view/citationtreeview.py:691
+#: ../gramps/plugins/view/citationtreeview.py:668
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
@@ -37071,41 +37051,31 @@ msgstr ""
 msgid "Dashboard"
 msgstr "Μικροεφαρμογές"
 
-#: ../gramps/plugins/view/eventview.py:97
+#: ../gramps/plugins/view/eventview.py:95
 msgid "Add a new event"
 msgstr "Προσθήκη ενός νέου συμβάντος"
 
-#: ../gramps/plugins/view/eventview.py:98
+#: ../gramps/plugins/view/eventview.py:96
 msgid "Edit the selected event"
 msgstr "Επεξεργασία του επιλεγμένου συμβάντος"
 
-#: ../gramps/plugins/view/eventview.py:99
+#: ../gramps/plugins/view/eventview.py:97
 msgid "Delete the selected event"
 msgstr "Διαγραφή του επιλεγμένου συμβάντος"
 
-#: ../gramps/plugins/view/eventview.py:100
+#: ../gramps/plugins/view/eventview.py:98
 msgid "Merge the selected events"
 msgstr "Συγχώνευση επιλεγμένων γεγονότων"
 
-#: ../gramps/plugins/view/eventview.py:230
+#: ../gramps/plugins/view/eventview.py:228
 msgid "Event Filter Editor"
 msgstr "Επεξεργαστής φίλτρων συμβάντων"
 
-#: ../gramps/plugins/view/eventview.py:386
-#, fuzzy
-msgid "_Delete Event"
-msgstr "Διαγραφή συμβάντος (%s)"
-
 #: ../gramps/plugins/view/eventview.py:402
-#, python-brace-format
-msgid "Delete {type} [{gid}]?"
-msgstr ""
-
-#: ../gramps/plugins/view/eventview.py:487
 msgid "Cannot merge event objects."
 msgstr "Αδυναμία συγχώνευσης συμβάντων."
 
-#: ../gramps/plugins/view/eventview.py:488
+#: ../gramps/plugins/view/eventview.py:403
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -37147,21 +37117,11 @@ msgstr "Ενεργοποίηση του πατέρα"
 msgid "Make Mother Active Person"
 msgstr "Ενεργοποίηση της μητέρας"
 
-#: ../gramps/plugins/view/familyview.py:372
-#, fuzzy
-msgid "_Delete Family"
-msgstr "Επιλογή οικογένειας"
-
-#: ../gramps/plugins/view/familyview.py:408
-#, fuzzy, python-format
-msgid "Family [%s]"
-msgstr "Οικογένεια του(ης)%s"
-
-#: ../gramps/plugins/view/familyview.py:432
+#: ../gramps/plugins/view/familyview.py:396
 msgid "Cannot merge families."
 msgstr "Αδύνατη η συγχώνευση των οικογενειών."
 
-#: ../gramps/plugins/view/familyview.py:433
+#: ../gramps/plugins/view/familyview.py:397
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
@@ -37345,19 +37305,19 @@ msgstr "Εκτύπωση ή αποθήκευση της Προβολής Βεν�
 msgid "Show children ring"
 msgstr "Να εμφανίζεται ο δακτύλιος των τέκνων"
 
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 msgid "Select the person which is the reference for life ways"
 msgstr "Επιλέξτε το άτομο αναφοράς για τις περιόδους της ζωής"
 
-#: ../gramps/plugins/view/geoclose.py:111
+#: ../gramps/plugins/view/geoclose.py:110
 msgid "reference _Person"
 msgstr "αναφορά του ατόμου"
 
-#: ../gramps/plugins/view/geoclose.py:167
-#: ../gramps/plugins/view/geoevents.py:129
-#: ../gramps/plugins/view/geofamclose.py:165
+#: ../gramps/plugins/view/geoclose.py:166
+#: ../gramps/plugins/view/geoevents.py:131
+#: ../gramps/plugins/view/geofamclose.py:164
 #: ../gramps/plugins/view/geofamily.py:131
-#: ../gramps/plugins/view/geomoves.py:151
+#: ../gramps/plugins/view/geomoves.py:153
 #: ../gramps/plugins/view/geoperson.py:152
 #: ../gramps/plugins/view/geoplaces.py:134
 #, fuzzy
@@ -37403,21 +37363,21 @@ msgstr ""
 msgid "Select the person which will be our reference."
 msgstr "Επιλέξτε το άτομο αναφοράς."
 
-#: ../gramps/plugins/view/geoclose.py:497
-#: ../gramps/plugins/view/geofamclose.py:581
-#: ../gramps/plugins/view/geofamily.py:260
-#: ../gramps/plugins/view/geomoves.py:363
-#: ../gramps/plugins/view/geoperson.py:407
+#: ../gramps/plugins/view/geoclose.py:500
+#: ../gramps/plugins/view/geofamclose.py:582
+#: ../gramps/plugins/view/geofamily.py:258
+#: ../gramps/plugins/view/geomoves.py:370
+#: ../gramps/plugins/view/geoperson.py:405
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:653
+#: ../gramps/plugins/view/geoclose.py:655
 #, fuzzy
 msgid "Choose and bookmark the new reference person"
 msgstr "Αποφασίστε το άτομο αναφοράς"
 
-#: ../gramps/plugins/view/geoclose.py:676
+#: ../gramps/plugins/view/geoclose.py:679
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -37433,20 +37393,20 @@ msgstr ""
 "Η τιμή 1 αντιστοιχεί σε περίπου 4,6 μίλια ή 7,5 χλμ.\n"
 "Η μονάδα είναι σε δέκατα του βαθμού."
 
-#: ../gramps/plugins/view/geoclose.py:687
-#: ../gramps/plugins/view/geofamclose.py:875
+#: ../gramps/plugins/view/geoclose.py:688
+#: ../gramps/plugins/view/geofamclose.py:872
 msgid "The selection parameters"
 msgstr "Παράμετροι επιλογής"
 
-#: ../gramps/plugins/view/geoevents.py:161
+#: ../gramps/plugins/view/geoevents.py:165
 msgid "Events places map"
 msgstr "Χάρτης τοποθεσιών συμβάντων"
 
-#: ../gramps/plugins/view/geoevents.py:186
+#: ../gramps/plugins/view/geoevents.py:190
 msgid "GeoEvents"
 msgstr "ΓεωΣυμβάντα"
 
-#: ../gramps/plugins/view/geoevents.py:309
+#: ../gramps/plugins/view/geoevents.py:310
 msgid "incomplete or unreferenced event ?"
 msgstr "ανολοκλήρωτο ή άνευ-αναφοράς συμβάν;"
 
@@ -37463,63 +37423,63 @@ msgid ""
 "use filtering."
 msgstr ""
 
-#: ../gramps/plugins/view/geoevents.py:412
-#: ../gramps/plugins/view/geoevents.py:443
+#: ../gramps/plugins/view/geoevents.py:410
+#: ../gramps/plugins/view/geoevents.py:441
 #, fuzzy
 msgid "Bookmark this event"
 msgstr "Ταξινόμηση συμβάντων"
 
-#: ../gramps/plugins/view/geoevents.py:458
+#: ../gramps/plugins/view/geoevents.py:456
 msgid "Show all events"
 msgstr "Προβολή όλων των συμβάντων"
 
-#: ../gramps/plugins/view/geoevents.py:462
-#: ../gramps/plugins/view/geoplaces.py:553
+#: ../gramps/plugins/view/geoevents.py:460
+#: ../gramps/plugins/view/geoplaces.py:549
 msgid "Centering on Place"
 msgstr "Επικέντρωση σε αυτό το μέρος"
 
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 msgid "Select the family which is the reference for life ways"
 msgstr "Επιλέξτε την οικογένεια αναφοράς για τις περιόδους της ζωής"
 
-#: ../gramps/plugins/view/geofamclose.py:109
+#: ../gramps/plugins/view/geofamclose.py:108
 #: ../gramps/plugins/view/geoperson.py:152
 msgid "reference _Family"
 msgstr "Οικογένεια αναφοράς"
 
-#: ../gramps/plugins/view/geofamclose.py:221
+#: ../gramps/plugins/view/geofamclose.py:220
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid "Have these two families been able to meet?"
 msgstr "Έχουν συναντηθεί αυτές οι δύο οικογένειες;"
 
-#: ../gramps/plugins/view/geofamclose.py:259
+#: ../gramps/plugins/view/geofamclose.py:258
 msgid "GeoFamClose"
 msgstr "ΓεωΓειτνίασηΟικογένειας"
 
-#: ../gramps/plugins/view/geofamclose.py:302
-#: ../gramps/plugins/view/geofamily.py:344
+#: ../gramps/plugins/view/geofamclose.py:301
+#: ../gramps/plugins/view/geofamily.py:343
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(gramps_id)s : %(father)s and %(mother)s"
 
 # για...
 # Λείπει κάτι;
-#: ../gramps/plugins/view/geofamclose.py:352
+#: ../gramps/plugins/view/geofamclose.py:351
 #, python-format
 msgid "Family reference : %s"
 msgstr "Αναφορά οικογενείας: %s"
 
-#: ../gramps/plugins/view/geofamclose.py:355
-#: ../gramps/plugins/view/geofamclose.py:358
+#: ../gramps/plugins/view/geofamclose.py:354
+#: ../gramps/plugins/view/geofamclose.py:357
 #, python-format
 msgid "The other family : %s"
 msgstr "Η άλλη οικογένεια: %s"
 
-#: ../gramps/plugins/view/geofamclose.py:365
+#: ../gramps/plugins/view/geofamclose.py:364
 msgid "You must choose one reference family."
 msgstr "Πρέπει να επιλέξετε μία οικογένεια αναφοράς."
 
-#: ../gramps/plugins/view/geofamclose.py:367
+#: ../gramps/plugins/view/geofamclose.py:366
 msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
@@ -37528,36 +37488,36 @@ msgstr ""
 "να συγκρίνετε. Επιστρέψτε σε αυτήν την προβολή και χρησιμοποιήστε το "
 "ιστορικό."
 
-#: ../gramps/plugins/view/geofamclose.py:693
-#: ../gramps/plugins/view/geofamily.py:399
+#: ../gramps/plugins/view/geofamclose.py:692
+#: ../gramps/plugins/view/geofamily.py:398
 #, python-format
 msgid "Father : %(id)s : %(name)s"
 msgstr "Πατέρας : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:702
-#: ../gramps/plugins/view/geofamily.py:408
+#: ../gramps/plugins/view/geofamclose.py:701
+#: ../gramps/plugins/view/geofamily.py:407
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
 msgstr "Μητέρα : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:714
+#: ../gramps/plugins/view/geofamclose.py:713
 #: ../gramps/plugins/view/geofamily.py:420
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Τέκνο : %(id)s - %(index)d : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:724
-#: ../gramps/plugins/view/geofamily.py:429
+#: ../gramps/plugins/view/geofamclose.py:722
+#: ../gramps/plugins/view/geofamily.py:428
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Άτομο : %(id)s %(name)s δεν έχει οικογένεια."
 
-#: ../gramps/plugins/view/geofamclose.py:841
+#: ../gramps/plugins/view/geofamclose.py:838
 #, fuzzy
 msgid "Choose and bookmark the new reference family"
 msgstr "Επιλέξτε την οικογένεια αναφοράς"
 
-#: ../gramps/plugins/view/geofamclose.py:864
+#: ../gramps/plugins/view/geofamclose.py:862
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -37581,7 +37541,7 @@ msgstr "Χάρτης οικογενειακών τοποθεσιών"
 msgid "GeoFamily"
 msgstr "ΓεωΟικογένεια"
 
-#: ../gramps/plugins/view/geofamily.py:372
+#: ../gramps/plugins/view/geofamily.py:371
 #, python-format
 msgid "Family places for %s"
 msgstr "Οικογενειακές τοποθεσίες για %s"
@@ -37681,34 +37641,37 @@ msgid "A view showing all the event places of the database."
 msgstr ""
 "Προβολή που απεικονίζει όλες τις τοποθεσίες συμβάντων της βάσης δεδομένων."
 
-#: ../gramps/plugins/view/geomoves.py:208
-msgid "Descendance of the active person."
+#: ../gramps/plugins/view/geomoves.py:210
+#, fuzzy
+#| msgid "Descendance of the active person."
+msgid "Descendants of the active person."
 msgstr "Απόγονοι του ενεργού ατόμου."
 
-#: ../gramps/plugins/view/geomoves.py:239
+#: ../gramps/plugins/view/geomoves.py:240
 msgid "GeoMoves"
 msgstr "ΓεωΜετακινήσεις"
 
-#: ../gramps/plugins/view/geomoves.py:561
-#, python-format
-msgid "All descendance for %s"
+#: ../gramps/plugins/view/geomoves.py:573
+#, fuzzy, python-format
+#| msgid "All descendance for %s"
+msgid "All descendants for %s"
 msgstr "Όλοι οι απόγονοι του(ης) %s"
 
-#: ../gramps/plugins/view/geomoves.py:701
+#: ../gramps/plugins/view/geomoves.py:715
 #, fuzzy
 msgid "Bookmark this person"
 msgstr "Αρχείο καταγραφής αυτής της συνεδρίας"
 
-#: ../gramps/plugins/view/geomoves.py:733
+#: ../gramps/plugins/view/geomoves.py:747
 msgid "The maximum number of generations.\n"
 msgstr "Ο μέγιστος αριθμός γενεών.\n"
 
-#: ../gramps/plugins/view/geomoves.py:740
+#: ../gramps/plugins/view/geomoves.py:754
 msgid "Time in milliseconds between drawing two generations.\n"
 msgstr ""
 "Χρόνος σε χιλιοστά του δευτερολέπτου ανάμεσα στη σχεδίαση δύο γενεών.\n"
 
-#: ../gramps/plugins/view/geomoves.py:746
+#: ../gramps/plugins/view/geomoves.py:761
 msgid "The parameters for moves"
 msgstr "Η παράμετρος για μετακινήσεις"
 
@@ -37720,25 +37683,25 @@ msgstr "Χάρτης τοποθεσιών ατόμων"
 msgid "GeoPerson"
 msgstr "ΓεωΆτομο"
 
-#: ../gramps/plugins/view/geoperson.py:386
+#: ../gramps/plugins/view/geoperson.py:384
 #, python-format
 msgid "Person places for %s"
 msgstr "Ατομικές τοποθεσίες του %s"
 
 # κινούμενο σχέδιο;;; τι εννοεί;
-#: ../gramps/plugins/view/geoperson.py:586
+#: ../gramps/plugins/view/geoperson.py:583
 msgid "Animate"
 msgstr "Κίνηση (σχεδίου)"
 
-#: ../gramps/plugins/view/geoperson.py:609
+#: ../gramps/plugins/view/geoperson.py:607
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Ταχύτητα αναπαραγωγής σε μιλιδευτερόλεπτα (μεγάλη τιμή σημαίνει αργά)"
 
-#: ../gramps/plugins/view/geoperson.py:617
+#: ../gramps/plugins/view/geoperson.py:612
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Πόσα βήματα μεταξύ δύο δεικτών στην περίπτωση μεγάλης μετακίνησης;"
 
-#: ../gramps/plugins/view/geoperson.py:624
+#: ../gramps/plugins/view/geoperson.py:617
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -37746,110 +37709,110 @@ msgstr ""
 "Ελάχιστο γεαωγραφικό πλάτος/μήκος για μεγάλη μετακίνηση\n"
 "Η τιμή είναι στο ένα δέκατο της μοίρας."
 
-#: ../gramps/plugins/view/geoperson.py:631
+#: ../gramps/plugins/view/geoperson.py:622
 msgid "The animation parameters"
 msgstr "Παράμετροι κινουμένου σχεδίου"
 
-#: ../gramps/plugins/view/geoplaces.py:208
+#: ../gramps/plugins/view/geoplaces.py:209
 #, fuzzy
 msgid "Places map"
 msgstr "Χάρτης τοποθεσιών"
 
-#: ../gramps/plugins/view/geoplaces.py:237
+#: ../gramps/plugins/view/geoplaces.py:238
 msgid "GeoPlaces"
 msgstr "ΓεωΤοποθεσίες"
 
-#: ../gramps/plugins/view/geoplaces.py:412
-#: ../gramps/plugins/view/geoplaces.py:425
+#: ../gramps/plugins/view/geoplaces.py:410
+#: ../gramps/plugins/view/geoplaces.py:423
 #, fuzzy
 msgid "Selecting all places"
 msgstr "Επιλογή ατόμου"
 
-#: ../gramps/plugins/view/geoplaces.py:437
+#: ../gramps/plugins/view/geoplaces.py:435
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:452
+#: ../gramps/plugins/view/geoplaces.py:450
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:467
+#: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
 msgstr "Η ονομασία τοποθεσίας στη γραμμή κατάστασης είναι απενεργοποιημένη."
 
-#: ../gramps/plugins/view/geoplaces.py:472
+#: ../gramps/plugins/view/geoplaces.py:468
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr "Έχει συμπληρωθεί ο μέγιστος αριθμός τοποθεσιών (%d)."
 
-#: ../gramps/plugins/view/geoplaces.py:475
+#: ../gramps/plugins/view/geoplaces.py:471
 msgid "Some information are missing."
 msgstr "Λείπουν ορισμένες πληροφορίες."
 
-#: ../gramps/plugins/view/geoplaces.py:477
+#: ../gramps/plugins/view/geoplaces.py:473
 msgid "Please, use filtering to reduce this number."
 msgstr "Παρακαλούμε, χρησιμοποιήστε φιλτράρισμα για να μειώσετε τον αριθμό."
 
-#: ../gramps/plugins/view/geoplaces.py:479
+#: ../gramps/plugins/view/geoplaces.py:475
 msgid "You can modify this value in the geography option."
 msgstr "Μπορείτε να τροποποιήσετε αυτήν την τιμή στην επιλογή γεωγραφία."
 
-#: ../gramps/plugins/view/geoplaces.py:481
+#: ../gramps/plugins/view/geoplaces.py:477
 msgid "In this case, it may take time to show all markers."
 msgstr ""
 "Στην περίπτωση αυτή, μπορεί να χρειαστεί κάποιος χρόνος για την εμφάνιση "
 "όλων των δεικτών."
 
-#: ../gramps/plugins/view/geoplaces.py:511
-#: ../gramps/plugins/view/geoplaces.py:534
+#: ../gramps/plugins/view/geoplaces.py:507
+#: ../gramps/plugins/view/geoplaces.py:530
 #, fuzzy
 msgid "Bookmark this place"
 msgstr "Τόπος βάπτισης"
 
-#: ../gramps/plugins/view/geoplaces.py:549
+#: ../gramps/plugins/view/geoplaces.py:545
 msgid "Show all places"
 msgstr "Εμφάνιση όλων των τοποθεσιών"
 
-#: ../gramps/plugins/view/geoplaces.py:660
+#: ../gramps/plugins/view/geoplaces.py:634
 #, fuzzy
 msgid "Custom places name"
 msgstr "Πλήρες επώνυμο:"
 
-#: ../gramps/plugins/view/geoplaces.py:669
+#: ../gramps/plugins/view/geoplaces.py:642
 msgid "The places marker color"
 msgstr ""
 
-#: ../gramps/plugins/view/mediaview.py:113
+#: ../gramps/plugins/view/mediaview.py:112
 msgid "Edit the selected media object"
 msgstr "Επεξεργασία του επιλεγμένου αντικειμένου μέσων"
 
-#: ../gramps/plugins/view/mediaview.py:114
+#: ../gramps/plugins/view/mediaview.py:113
 msgid "Delete the selected media object"
 msgstr "Διαγραφή του επιλεγμένου αντικειμένου μέσων"
 
-#: ../gramps/plugins/view/mediaview.py:115
+#: ../gramps/plugins/view/mediaview.py:114
 msgid "Merge the selected media objects"
 msgstr "Συγχώνευση του επιλεγμένου αντικειμένου μέσων"
 
-#: ../gramps/plugins/view/mediaview.py:295
+#: ../gramps/plugins/view/mediaview.py:294
 msgid "Media Filter Editor"
 msgstr "Επεξεργαστής φίλτρων μέσων"
 
-#: ../gramps/plugins/view/mediaview.py:386
+#: ../gramps/plugins/view/mediaview.py:385
 msgid "View in the default viewer"
 msgstr "Προβολή στην προεπιλεγμένη εφαρμογή εμφάνισης εικόνων"
 
-#: ../gramps/plugins/view/mediaview.py:490
+#: ../gramps/plugins/view/mediaview.py:480
 msgid "Cannot merge media objects."
 msgstr "Αδύνατη η συγχώνευση αντικειμένων μέσων."
 
-#: ../gramps/plugins/view/mediaview.py:491
+#: ../gramps/plugins/view/mediaview.py:481
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -37859,23 +37822,23 @@ msgstr ""
 "συγχώνευση. Το δεύτερο αντικείμενο μπορεί να επιλεγεί κρατώντας πατημένο το "
 "πλήκτρο Control (Ctrl) και κάνοντας κλικ στο επιθυμητό αντικείμενο."
 
-#: ../gramps/plugins/view/noteview.py:95
+#: ../gramps/plugins/view/noteview.py:94
 msgid "Delete the selected note"
 msgstr "Διαγραφή της επιλεγμένης σημείωσης"
 
-#: ../gramps/plugins/view/noteview.py:96
+#: ../gramps/plugins/view/noteview.py:95
 msgid "Merge the selected notes"
 msgstr "Συγχώνευση των επιλεγμένων σημειώσεων"
 
-#: ../gramps/plugins/view/noteview.py:188
+#: ../gramps/plugins/view/noteview.py:187
 msgid "Note Filter Editor"
 msgstr "Επεξεργαστής φίλτρων σημείωσης"
 
-#: ../gramps/plugins/view/noteview.py:357
+#: ../gramps/plugins/view/noteview.py:351
 msgid "Cannot merge notes."
 msgstr "Αδύνατη η συγχώνευση των σημειώσεων"
 
-#: ../gramps/plugins/view/noteview.py:358
+#: ../gramps/plugins/view/noteview.py:352
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
@@ -38231,11 +38194,11 @@ msgstr "Συγχώνευση των επιλεγμένων αποθετηρίω�
 msgid "Repository Filter Editor"
 msgstr "Επεξεργαστής φίλτρων αποθετηρίων"
 
-#: ../gramps/plugins/view/repoview.py:363
+#: ../gramps/plugins/view/repoview.py:358
 msgid "Cannot merge repositories."
 msgstr "Αδύνατη η συγχώνευση των αποθετηρίων."
 
-#: ../gramps/plugins/view/repoview.py:364
+#: ../gramps/plugins/view/repoview.py:359
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
@@ -38261,11 +38224,11 @@ msgstr "Συγχώνευση των επιλεγμένων πηγών"
 msgid "Source Filter Editor"
 msgstr "Επεξεργαστής φίλτρων πηγής"
 
-#: ../gramps/plugins/view/sourceview.py:348
+#: ../gramps/plugins/view/sourceview.py:336
 msgid "Cannot merge sources."
 msgstr "Αδυναμία συγχώνευσης πηγών."
 
-#: ../gramps/plugins/view/sourceview.py:349
+#: ../gramps/plugins/view/sourceview.py:337
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
@@ -40204,6 +40167,60 @@ msgstr "Αποχρώσεις καφέ-γκρι"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Χωρίς χρωματικό θέμα"
+
+#, python-format
+#~ msgid "Delete Citation (%s)"
+#~ msgstr "Διαγραφή παραπομπής (%s)"
+
+#, python-format
+#~ msgid "Delete Event (%s)"
+#~ msgstr "Διαγραφή συμβάντος (%s)"
+
+#~ msgid "Remove Media Object"
+#~ msgstr "Αφαίρεση αντικειμένου μέσων"
+
+#, python-format
+#~ msgid "Delete Note (%s)"
+#~ msgstr "Διαγραφή σημείωσης (%s)"
+
+#, python-format
+#~ msgid "Delete Place (%s)"
+#~ msgstr "Διαγραφή τοποθεσίας (%s)"
+
+#, python-format
+#~ msgid "Delete Repository (%s)"
+#~ msgstr "Διαγραφή αποθετηρίου (%s)"
+
+#, python-format
+#~ msgid "Delete Source (%s)"
+#~ msgstr "Διαγραφή πηγής (%s)"
+
+#, fuzzy
+#~ msgid ""
+#~ "More than one item has been selected for deletion. Select the option "
+#~ "indicating how to delete the items:"
+#~ msgstr ""
+#~ "Περισσότερα από ένα αντικείμενα έχουν επιλεγεί για διαγραφή. Να "
+#~ "ερωτηθείτε για το καθένα ξεχωριστά;"
+
+#, fuzzy
+#~ msgid "Delete All"
+#~ msgstr "_Επιλογή όλων"
+
+#~ msgid "_Delete Person"
+#~ msgstr "_Διαγραφή ατόμου"
+
+#, fuzzy
+#~ msgid "_Delete Event"
+#~ msgstr "Διαγραφή συμβάντος (%s)"
+
+#, fuzzy
+#~ msgid "_Delete Family"
+#~ msgstr "Επιλογή οικογένειας"
+
+#, fuzzy, python-format
+#~ msgid "Family [%s]"
+#~ msgstr "Οικογένεια του(ης)%s"
 
 #~ msgid "Common"
 #~ msgstr "Κοινό"
