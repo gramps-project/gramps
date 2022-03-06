@@ -3214,7 +3214,6 @@ msgstr "Número de fontes"
 msgid "Number of citations"
 msgstr "Número de citações"
 
-# Primeira ocorrência de "marriage". A tradução já efectuada (nos comentários não escrevo segundo o novo acordo ;) ) usava Matrimónio, o que está obviamente certíssimo. Apenas mudei porque já em outros locais mais abaixo era utilizada a palavra Casamento, fica mais coerente com as abreviaturas (c.c. = casou com) e com os verbos que vão ter que ser utilizados (e.g. "Há quanto tempo estavão casados", etc).
 #: ../gramps/gen/db/generic.py:2420
 #: ../gramps/plugins/webreport/statistics.py:154
 #: ../gramps/plugins/webreport/statistics.py:204
@@ -33260,7 +33259,6 @@ msgstr "Número de famílias: %d"
 msgid "Event Information"
 msgstr "Informação do evento"
 
-# Primeira ocorrência de "marriage". A tradução já efectuada (nos comentários não escrevo segundo o novo acordo ;) ) usava Matrimónio, o que está obviamente certíssimo. Apenas mudei porque já em outros locais mais abaixo era utilizada a palavra Casamento, fica mais coerente com as abreviaturas (c.c. = casou com) e com os verbos que vão ter que ser utilizados (e.g. "Há quanto tempo estavão casados", etc).
 #: ../gramps/plugins/textreport/summary.py:234
 #, python-format
 msgid "Number of events: %d"
