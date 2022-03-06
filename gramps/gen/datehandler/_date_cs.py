@@ -50,6 +50,12 @@ class DateParserCZ(DateParser):
     Converts a text string into a Date object
     """
 
+    modifier_to_int = {
+        'před': Date.MOD_BEFORE,
+        'kolem': Date.MOD_ABOUT,
+        'po': Date.MOD_AFTER,
+    }
+
     quality_to_int = {
         'přibližně'  : Date.QUAL_ESTIMATED,
         'odhadem'    : Date.QUAL_ESTIMATED,
