@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-05 23:23+0000\n"
-"PO-Revision-Date: 2022-02-27 21:30+0000\n"
+"PO-Revision-Date: 2022-03-06 06:53+0000\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../Gramps/gramps\n"
@@ -223,8 +223,6 @@ msgid "Sweden"
 msgstr "Ruotsi"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
 msgstr "turkki"
 
@@ -21630,19 +21628,19 @@ msgstr "puoliympyrä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:724
 msgid "overhang"
-msgstr ""
+msgstr "puoliympyrä ylityksellä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:725
 msgid "quarter circle"
 msgstr "neljännesympyrä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:726
-#, fuzzy
-#| msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgid ""
 "The form of the graph: full circle, half circle, half circle with overhang "
 "or quarter circle."
-msgstr "Kaavion muoto: ympyrä, puoli- tai neljännesympyrä."
+msgstr ""
+"Kuvaajan muoto: täysympyrä, puoliympyrä, puoliympyrä ylityksellä tai "
+"neljännesympyrä."
 
 #: ../gramps/plugins/drawreport/fanchart.py:732
 msgid "generation dependent"
@@ -31850,14 +31848,10 @@ msgid "Swedish Relationship Calculator"
 msgstr "Ruotsalaisten suhdelaskin"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:330
-#, fuzzy
-#| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
-msgstr "Tanskalaisten suhdelaskin"
+msgstr "Turkkilainen suhdelaskin"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:331
-#, fuzzy
-#| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
 msgstr "Laskee henkilöiden väliset suhteet"
 
@@ -36265,8 +36259,6 @@ msgid "A view showing all the event places of the database."
 msgstr "Näyttää kaikki tapahtumapaikat tietokannassa."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
-#| msgid "Descendance of the active person."
 msgid "Descendants of the active person."
 msgstr "Aktiivisen henkilön jälkeläiset."
 
@@ -36275,8 +36267,7 @@ msgid "GeoMoves"
 msgstr "Karttaliikkeet"
 
 #: ../gramps/plugins/view/geomoves.py:573
-#, fuzzy, python-format
-#| msgid "All descendance for %s"
+#, python-format
 msgid "All descendants for %s"
 msgstr "Jälkeläiset henkilölle %s"
 
