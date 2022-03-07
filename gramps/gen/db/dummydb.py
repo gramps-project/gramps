@@ -157,15 +157,16 @@ def wrapper(method):
         This 'wrapped' method logs the original function that was called, and
         where it was called from.
         """
-        class_name = args[0].__class__.__name__
-        func_name = method.__name__
-        frame = inspect.currentframe()
-        c_frame = frame.f_back
-        c_code = c_frame.f_code
-        LOG.debug('calling %s.%s()... from file %s, line %s in %s',
-                  class_name, func_name, c_code.co_filename, c_frame.f_lineno,
-                  c_code.co_name)
-        return method(*args, **keywargs)
+        if __debug__ and LOG.isEnabledFor(logging.DEBUG):
+            class_name = args[0].__class__.__name__
+            func_name = method.__name__
+            frame = inspect.currentframe()
+            c_frame = frame.f_back
+            c_code = c_frame.f_code
+            LOG.debug('calling %s.%s()... from file %s, line %s in %s',
+                      class_name, func_name, c_code.co_filename,
+                      c_frame.f_lineno, c_code.co_name)
+            return method(*args, **keywargs)
     return wrapped
 
 
