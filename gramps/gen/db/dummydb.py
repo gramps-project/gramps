@@ -166,7 +166,7 @@ def wrapper(method):
             LOG.debug('calling %s.%s()... from file %s, line %s in %s',
                       class_name, func_name, c_code.co_filename,
                       c_frame.f_lineno, c_code.co_name)
-            return method(*args, **keywargs)
+        return method(*args, **keywargs)
     return wrapped
 
 
