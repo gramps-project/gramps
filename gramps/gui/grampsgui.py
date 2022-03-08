@@ -300,10 +300,12 @@ UIDEFAULT = (
       </section>
     </submenu>
   </section></menu>
+
   <object class="GtkMenu"  id="OpenBtnMenu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
   </object>
+
   <object class="GtkToolbar" id="ToolBar">
     <property name="hexpand">1</property>
     <property name="toolbar-style">GTK_TOOLBAR_ICONS</property>
@@ -405,38 +407,11 @@ UIDEFAULT = (
      </child>
     <placeholder id='AfterTools'>
     </placeholder>
-    <child groups="PP1 PP2">
-      <object class="GtkSeparatorToolItem"/>
-    </child>
-    <child groups="PP1">
-      <object class="GtkToolButton" id="Addons">
-        <property name="icon-name">gramps-plugin-manager</property>
-        <property name="action-name">win.PluginStatus</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open Plugin Manager</property>
-        <property name="label" translatable="yes">Plugins</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
-    <child groups="PP2">
-      <object class="GtkToolButton" id="Preferences">
-        <property name="icon-name">gramps-preferences</property>
-        <property name="action-name">app.preferences</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open Preferences</property>
-        <property name="label" translatable="yes">Preferences</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
   </object>
+
   <menu id="Popup">
   </menu>
+
 </interface>
 ''')
 
@@ -513,6 +488,7 @@ except ImportError:
 def _display_gtk_gettext_message(parent=None):
     """
     Display a GTK-translations-missing message to the user.
+
     Note: the warning dialog below will likely have wrong stock icons!
     """
     LOG.warning("GTK translations missing, GUI will be broken, "
@@ -573,6 +549,7 @@ def _display_translator_message(parent=None):
 class Gramps:
     """
     Main class corresponding to a running gramps process.
+
     There can be only one instance of this class per gramps application
     process. It may spawn several windows and control several databases.
     """
@@ -708,15 +685,8 @@ class GrampsApplication(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
         self.uimanager = UIManager(self, UIDEFAULT)
-        s_show = []
         if not is_quartz():
-            s_show.append('OSX')
-        if config.get('interface.toolbar-plugin'):
-            s_show.append('PP1')
-        if config.get('interface.toolbar-preference'):
-            s_show.append('PP2')
-        if s_show:
-            self.uimanager.show_groups = s_show
+            self.uimanager.show_groups = ['OSX']
         self.uimanager.update_menu(init=True)
 
         if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):

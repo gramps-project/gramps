@@ -383,7 +383,7 @@ class MediaView(ListView):
     </placeholder>
 ''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
         '''
-    <placeholder id='AfterTools'>
+    <placeholder id='MoreButtons'>
     <child>
       <object class="GtkToolButton">
         <property name="icon-name">gramps-viewmedia</property>
@@ -441,6 +441,10 @@ class MediaView(ListView):
       </section>
       <section>
         <placeholder id='QuickReport'>
+        </placeholder>
+      </section>
+      <section>
+        <placeholder id='AfterTools'>
         </placeholder>
       </section>
     </menu>
