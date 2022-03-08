@@ -83,7 +83,6 @@ _LOG = logging.getLogger("maps.geography")
 #
 # -------------------------------------------------------------------------
 _ = glocale.translation.sgettext
-GEOGRAPHY_PATH = os.path.join(HOME_DIR, "maps")
 
 # -------------------------------------------------------------------------
 #
@@ -116,7 +115,7 @@ class GeoGraphyView(OsmGps, NavigationView):
     """
     # settings in the config file
     CONFIGSETTINGS = (
-        ('geography.path', GEOGRAPHY_PATH),
+        ('geography.path', constants.GEOGRAPHY_PATH),
 
         ('geography.zoom', 10),
         ('geography.zoom_when_center', 12),
@@ -147,7 +146,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.lock = config.get("geography.lock")
         tile_path = config.get('geography.path')
         if tile_path == "":
-            config.set('geography.path', GEOGRAPHY_PATH)
+            config.set('geography.path', constants.GEOGRAPHY_PATH)
         else:
             # verify is the path always exists
             if os.path.exists(tile_path) and os.path.isdir(tile_path):
@@ -1374,7 +1373,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         if self.path_entry.get_text().strip():
             config.set('geography.path', self.path_entry.get_text())
         else:
-            config.set('geography.path', GEOGRAPHY_PATH)
+            config.set('geography.path', constants.GEOGRAPHY_PATH)
 
     def select_tilepath(self, *obj):
         """
