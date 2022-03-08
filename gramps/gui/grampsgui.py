@@ -379,19 +379,6 @@ UIDEFAULT = (
     </child>
     <placeholder id="MoreButtons">
     </placeholder>
-    <child groups='RO'>
-      <object class="GtkToolButton" id="Reports">
-        <property name="icon-name">gramps-reports</property>
-        <property name="action-name">win.Reports</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open the reports dialog</property>
-        <property name="label" translatable="yes">_Reports</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
     <placeholder id='AfterTools'>
     </placeholder>
   </object>

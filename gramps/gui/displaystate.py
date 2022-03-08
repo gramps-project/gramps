@@ -397,6 +397,10 @@ TOOL_UI = '''  <child>
 '''
 
 TOOLS = {
+'reports': ('gramps-reports',
+            'win.Reports',
+            _('Open the reports dialog'),
+            _('Reports')),
 'tools': ('gramps-tools',
           'win.Tools',
           _('Open the tools dialog'),
