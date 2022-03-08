@@ -50,7 +50,7 @@ LOG = logging.getLogger(".NarrativeWeb")
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 # define all possible web page filename extensions
-_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
+_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.cgi']
 # used to select secured web site or not
 HTTP = "http://"
 HTTPS = "https://"
@@ -384,6 +384,40 @@ _EVENTMAP = set([EventType.MARRIAGE, EventType.MARR_ALT,
 _NARRATIVESCREEN = "narrative-screen.css"
 _NARRATIVEPRINT = "narrative-print.css"
 
+HOLIDAYS_ASSOC = [
+    # LANG INDEX HOLIDAY_NAME
+    ("be", 0, 'Bulgaria'),
+    ("ca", 1, 'Canada'),
+    ("cs", 2, 'Czech Republic'),
+    ("cl", 3, 'Chile'),
+    ("zh", 4, 'China'),
+    ("hr", 5, 'Croatia'),
+    ("en", 13, 'United States of America'), # must be here. should be en_US
+    ("en_GB", 6, 'England'),
+    ("fi", 7, 'Finland'),
+    ("fr_FR", 8, 'France'),
+    ("de", 9, 'Germany'),
+    ("ja", 10, 'Japan'),
+    ("sk", 11, 'Slovakia'),
+    ("sv", 12, 'Sweden'),
+    ("he", 14, 'Jewish Holidays'),
+    ("en_NZ", 15, 'New Zealand'),
+    ("uk", 16, 'Ukraine'),
+    ("sr_RS", 17, 'Serbia'),
+    ("sr_RS@latin", 18, 'Serbia (Latin)'),
+]
+
+def do_we_have_holidays(lang):
+    """
+    Associate an index for the holidays depending on the LANG
+    """
+    for lng, idx, dummy_name in HOLIDAYS_ASSOC:
+        if lng == lang: # i.e. en_US
+            return idx
+        if lng[:2] == lang: # i.e. en_US[:2] => en
+            return idx
+    return None
+
 def sort_people(dbase, handle_list, rlocale=glocale):
     """
     will sort the database people by surname
@@ -455,12 +489,13 @@ def sort_event_types(dbase, event_types, event_handle_list, rlocale):
     @param: event_types -- a dict of event types
     @param: event_handle_list -- all event handles in this database
     """
-    event_dict = dict((evt_type, list()) for evt_type in event_types)
+    rts = rlocale.translation.sgettext
+    event_dict = dict((rts(evt_type), list()) for evt_type in event_types)
 
     for event_handle in event_handle_list:
 
         event = dbase.get_event_from_handle(event_handle)
-        event_type = rlocale.translation.sgettext(event.get_type().xml_str())
+        event_type = rts(event.get_type().xml_str())
 
         # add (gramps_id, date, handle) from this event
         if event_type in event_dict:
@@ -670,6 +705,7 @@ def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     @param: handle_list -- One of a handle list for either person or
                            place handles or an evt types list
     @param: key         -- Either a person, place, or event type
+    @param: rlocale     -- The locale to use
 
     The first letter (or letters if there is a contraction) are extracted from
     all the objects in the handle list. There may be duplicates, and there may
@@ -721,6 +757,10 @@ def get_index_letter(letter, index_list, rlocale=glocale):
     the letter provided. See the discussion in get_first_letters above.
     Continuing the example, if letter is Å and index_list is A, then this would
     return A.
+
+    @param: letter     -- The letter to find in the index_list
+    @param: index_list -- The list of all first letters in use
+    @param: rlocale    -- The locale to use
     """
     for index in index_list:
         if not primary_difference(letter, index, rlocale):
@@ -737,6 +777,7 @@ def alphabet_navigation(index_list, rlocale=glocale):
     SurnameListPage, PlaceListPage, and EventList
 
     @param: index_list -- a dictionary of either letters or words
+    @param: rlocale    -- The locale to use
     """
     sorted_set = defaultdict(int)
 

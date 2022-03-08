@@ -85,21 +85,24 @@ class FamilyPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.family_dict = defaultdict(set)
         self.familymappages = None
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Family tab, namely the family
         index and the individual family pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Family]")
         for item in self.report.obj_dict[Family].items():
@@ -107,27 +110,29 @@ class FamilyPages(BasePage):
 
         message = _("Creating family pages...")
         index = 1
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Family]) + 1
                                  ) as step:
             for family_handle in self.report.obj_dict[Family]:
                 step()
                 index += 1
-                self.familypage(self.report, title, family_handle)
+                self.familypage(self.report, the_lang, the_title, family_handle)
             step()
-            self.familylistpage(self.report, title,
+            self.familylistpage(self.report, the_lang, the_title,
                                 self.report.obj_dict[Family].keys())
 
-    def familylistpage(self, report, title, fam_list):
+    def familylistpage(self, report, the_lang, the_title, fam_list):
         """
         Create a family index
 
-        @param: report   -- The instance of the main report class for
-                            this report
-        @param: title    -- Is the title of the web page
-        @param: fam_list -- The handle for the place to add
+        @param: report    -- The instance of the main report class for
+                             this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
+        @param: fam_list  -- The handle for the place to add
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         output_file, sio = self.report.create_file("families")
         result = self.write_header(self._("Families"))
@@ -308,19 +313,21 @@ class FamilyPages(BasePage):
         # and close the file
         self.xhtml_writer(familieslistpage, output_file, sio, ldatec)
 
-    def familypage(self, report, title, family_handle):
+    def familypage(self, report, the_lang, the_title, family_handle):
         """
         Create a family page
 
         @param: report        -- The instance of the main report class for
                                  this report
-        @param: title         -- Is the title of the web page
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         @param: family_handle -- The handle for the family to add
         """
         family = report.database.get_family_from_handle(family_handle)
         if not family:
             return
-        BasePage.__init__(self, report, title, family.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          family.get_gramps_id())
         ldatec = family.get_change_time()
 
         self.bibli = Bibliography()
@@ -354,6 +361,16 @@ class FamilyPages(BasePage):
                     Html('sup') + (Html('small') +
                                    self.get_citation_links(
                                        family.get_citation_list())))
+            # Tags
+            tags = self.show_tags(family)
+            if tags and self.report.inc_tags:
+                trow = Html("table", class_='tags') + (Html("tr") + (
+                    Html("td", self._("Tags") + self._(":"),
+                         class_="ColumnAttribute", inline=True),
+                    Html("td", tags,
+                         class_="ColumnValue", inline=True),
+                    ))
+                relationshipdetail += trow
 
             # display relationships
             families = self.display_family_relationships(family, None)
@@ -386,33 +403,41 @@ class FamilyPages(BasePage):
             # for use in family map pages...
             if self.report.options["familymappages"]:
                 name_format = self.report.options['name_format']
-                fhandle = mhandle = father = mother = None
-                relationshipdetail += Html("h4", _("Family map"), inline=True)
-                mapdetail = Html("br")
-                fhandle = family.get_father_handle()
-                for handle, dummy_url in self.report.fam_link.items():
-                    if fhandle == handle:
-                        father = self.r_db.get_person_from_handle(fhandle)
-                        break
-                if father:
-                    primary_name = father.get_primary_name()
-                    name = Name(primary_name)
-                    name.set_display_as(name_format)
-                    fname = html_escape(_nd.display_name(name))
-                    mapdetail += self.family_map_link_for_parent(fhandle, fname)
-                mapdetail += Html("br")
-                mhandle = family.get_mother_handle()
-                for handle, dummy_url in self.report.fam_link.items():
-                    if mhandle == handle:
-                        mother = self.r_db.get_person_from_handle(mhandle)
-                        break
-                if mother:
-                    primary_name = mother.get_primary_name()
-                    name = Name(primary_name)
-                    name.set_display_as(name_format)
-                    mname = html_escape(_nd.display_name(name))
-                    mapdetail += self.family_map_link_for_parent(mhandle, mname)
-                relationshipdetail += mapdetail
+                father = mother = None
+                with self.create_toggle("map") as h4_head:
+                    relationshipdetail += h4_head
+                    h4_head += self._("Family Map")
+                    disp = "none" if self.report.options['toggle'] else "block"
+                    with Html("div", style="display:%s" % disp,
+                              id="toggle_map") as toggle:
+                        relationshipdetail += toggle
+                        mapdetail = Html("br")
+                        fhdle = family.get_father_handle()
+                        for handle, dummy_url in self.report.fam_link.items():
+                            if fhdle == handle:
+                                father = self.r_db.get_person_from_handle(fhdle)
+                                break
+                        if father:
+                            primary_name = father.get_primary_name()
+                            name = Name(primary_name)
+                            name.set_display_as(name_format)
+                            fname = html_escape(_nd.display_name(name))
+                            mapdetail += self.family_map_link_for_parent(fhdle,
+                                                                         fname)
+                        mapdetail += Html("br")
+                        mhdle = family.get_mother_handle()
+                        for handle, dummy_url in self.report.fam_link.items():
+                            if mhdle == handle:
+                                mother = self.r_db.get_person_from_handle(mhdle)
+                                break
+                        if mother:
+                            primary_name = mother.get_primary_name()
+                            name = Name(primary_name)
+                            name.set_display_as(name_format)
+                            mname = html_escape(_nd.display_name(name))
+                            mapdetail += self.family_map_link_for_parent(mhdle,
+                                                                         mname)
+                        toggle += mapdetail
 
             # source references
             srcrefs = self.display_ind_sources(family)

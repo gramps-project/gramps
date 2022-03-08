@@ -366,7 +366,7 @@ reports.addcli(TestDynamic, "tool_verify",
                "--options", "name=verify")
 
 txt_list = ["6 media objects were referenced, but not found",
-            "References to 6 media objects were kept"]
+            "References to 6 missing media objects were kept"]
 reports.addcli(TestDynamic, "tool_check",
                out_does_contain(txt_list),
                [None],

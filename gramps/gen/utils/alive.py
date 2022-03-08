@@ -142,6 +142,8 @@ class ProbablyAlive:
             # person died more than MAX after current year
             if death_date.is_valid():
                 birth_date = death_date.copy_offset_ymd(year=-self.MAX_AGE_PROB_ALIVE)
+            else:
+                birth_date = death_date
             explain = _("death date")
 
         if not death_date and birth_date:

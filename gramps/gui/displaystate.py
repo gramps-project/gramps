@@ -382,6 +382,31 @@ class WarnHandler(RotateHandler):
         top.run()
         top.destroy()
 
+TOOL_UI = '''  <child>
+    <object class="GtkToolButton">
+      <property name="icon-name">%s</property>
+      <property name="action-name">%s</property>
+      <property name="tooltip_text" translatable="yes">%s</property>
+      <property name="label" translatable="yes">%s</property>
+      <property name="use-underline">True</property>
+    </object>
+    <packing>
+      <property name="homogeneous">False</property>
+    </packing>
+  </child>
+'''
+
+TOOLS = {
+'plugin': ('gramps-plugin-manager',
+           'win.PluginStatus',
+           _('Open Plugin Manager'),
+           _('Plugins')),
+'preference': ('gramps-preferences',
+                'app.preferences',
+                _('Open Preferences'),
+                _('Preferences')),
+}
+
 class DisplayState(Callback):
 
     __signals__ = {
@@ -393,6 +418,7 @@ class DisplayState(Callback):
         'update-available' : (list, ),
         'autobackup' : None,
         'font-changed' : None,
+        'toolbar-changed' : None,
         }
 
     #nav_type to message
@@ -446,6 +472,7 @@ class DisplayState(Callback):
         # This call has been moved one level up,
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
+        self.connect('toolbar-changed', self.set_toolbar)
 
         if DEV_VERSION or VERSION_QUALIFIER:
             ver_btn = status.get_version_btn()
@@ -456,6 +483,15 @@ class DisplayState(Callback):
                 msg = VERSION_QUALIFIER[1:]
             ver_btn.connect('clicked', self.__develop_warn, msg)
             ver_btn.show()
+
+    def set_toolbar(self):
+        ui = '<placeholder id="AfterTools">\n'
+        for key in TOOLS.keys():
+            if config.get('interface.toolbar-' + key):
+                ui += TOOL_UI % TOOLS[key]
+        ui += '</placeholder>'
+        self.uimanager.add_ui_from_string([ui])
+        self.uimanager.update_menu()
 
     def set_backup_timer(self):
         """
@@ -538,7 +574,10 @@ class DisplayState(Callback):
             history.push(handle)
 
     def set_sensitive(self, state):
-        self.window.set_sensitive(state)
+        tbar = self.uimanager.get_widget('ToolBar')
+        tbar.set_sensitive(state)
+        self.viewmanager.hpane.set_sensitive(state)
+        self.uimanager.enable_all_actions(state)
 
     def db_changed(self, db):
         db.connect('long-op-start', self.progress_monitor.add_op)

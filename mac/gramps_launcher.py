@@ -24,6 +24,7 @@ environ['GTK_PATH'] = bundle_res
 environ['PANGO_RC_FILE'] = join(bundle_etc, 'pango', 'pangorc')
 environ['PANGO_SYSCONFDIR'] = bundle_etc
 environ['PANGO_LIBDIR'] = bundle_lib
+environ['GIO_MODULE_DIR'] = join(bundle_lib, 'gio', 'modules')
 environ['GDK_PIXBUF_MODULE_FILE'] = join(bundle_lib, 'gdk-pixbuf-2.0',
                                                 '2.10.0', 'loaders.cache')
 environ['GI_TYPELIB_PATH'] = join(bundle_lib, 'girepository-1.0')
@@ -40,6 +41,8 @@ environ['USERPROFILE'] = environ['HOME']
 environ['APPDATA'] = join(environ['HOME'], 'Library', 'Application Support')
 environ['PATH'] = join(bundle_contents, 'MacOS') + ':' + environ['PATH']
 
+if __name__ == '__main__':
+    __file__ = 'gramps_launcher.py'
 import gramps.grampsapp as app
 app.main()
 

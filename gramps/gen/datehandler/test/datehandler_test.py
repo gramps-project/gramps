@@ -5,6 +5,8 @@
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2022       Jan Skarvall
+# Copyright (C) 2022       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,9 +48,10 @@ if '-v' in sys.argv or '--verbose' in sys.argv:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ...config import config
 from ...lib import Date, DateError
-from .. import parser as _dp
-from .. import displayer as _dd
+from ...utils.grampslocale import GrampsLocale, _LOCALE_NAMES
+from .. import LANG_TO_PARSER
 
 #-------------------------------------------------------------------------
 #
@@ -56,14 +59,31 @@ from .. import displayer as _dd
 #
 #-------------------------------------------------------------------------
 class DateHandlerTest(unittest.TestCase):
-    def base_case(self, test_date):
-        datestr = _dd.display(test_date)
-        new_date = _dp.parse(datestr)
 
-        self.assertTrue(test_date.is_equal(new_date),
-                "{} -> {}\n{} -> {}".format(
-                    test_date, new_date,
-                    test_date.__dict__, new_date.__dict__))
+    def setUp(self):
+        config.set('preferences.date-format', 0)
+
+    def __base_test_all_languages(self, dates):
+
+        languages = [lang for lang in LANG_TO_PARSER.keys()
+                          if lang in _LOCALE_NAMES.keys()]
+        for language in languages:
+            with self.subTest(lang=language):
+                self.__test_language(language, dates)
+
+    def __test_language(self, language, dates):
+
+        locale = GrampsLocale(lang=language)
+        displayer = locale.date_displayer
+        parser = locale.date_parser
+        for test_date in dates:
+            datestr = displayer.display(test_date)
+            new_date = parser.parse(datestr)
+            with self.subTest(date=datestr):
+                self.assertTrue(test_date.is_equal(new_date),
+                                "{} -> {}\n{} -> {}".format(
+                                    test_date, new_date,
+                                    test_date.__dict__, new_date.__dict__))
 
     def test_simple(self):
 
@@ -75,7 +95,7 @@ class DateHandlerTest(unittest.TestCase):
                     for modifier in (Date.MOD_NONE, Date.MOD_BEFORE,
                                      Date.MOD_AFTER, Date.MOD_ABOUT):
                         for slash1 in (False,True):
-                            for month in range(1, 13):
+                            for month in (2, 6, 12):
                                 for day in (5, 27):
                                     d = Date()
                                     d.set(quality, modifier, calendar,
@@ -83,9 +103,7 @@ class DateHandlerTest(unittest.TestCase):
                                           "Text comment",
                                           newyear)
                                     dates.append(d)
-
-        for test_date in dates:
-            self.base_case(test_date)
+        self.__base_test_all_languages(dates)
 
     def test_span(self):
 
@@ -96,7 +114,7 @@ class DateHandlerTest(unittest.TestCase):
             for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
                 for slash1 in (False, True):
                     for slash2 in (False, True):
-                        for month in range(1, 13):
+                        for month in (2, 6, 12):
                             for day in (5, 27):
                                 d = Date()
                                 d.set(quality, modifier, calendar,
@@ -122,11 +140,11 @@ class DateHandlerTest(unittest.TestCase):
                                        32-day, 13-month, 1876, slash2),
                                       "Text comment")
                                 dates.append(d)
-
-        for test_date in dates:
-            self.base_case(test_date)
+        self.__base_test_all_languages(dates)
 
     def test_textual(self):
+
+        dates = []
         calendar = Date.CAL_GREGORIAN
         modifier = Date.MOD_TEXTONLY
         for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED,
@@ -134,7 +152,8 @@ class DateHandlerTest(unittest.TestCase):
             test_date = Date()
             test_date.set(quality, modifier, calendar, Date.EMPTY,
                           "This is a textual date")
-            self.base_case(test_date)
+            dates.append(test_date)
+        self.__base_test_all_languages(dates)
 
     def test_too_few_arguments(self):
         dateval = (4, 7, 1789, False)

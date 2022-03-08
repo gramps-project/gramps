@@ -77,14 +77,14 @@ class Span:
         self.precision = 2
         self.negative = False
         if self.valid:
-            if self.date1.calendar != Date.CAL_GREGORIAN:
-                self.date1 = self.date1.to_calendar("gregorian")
-            if self.date2.calendar != Date.CAL_GREGORIAN:
-                self.date2 = self.date2.to_calendar("gregorian")
             if self.date1.sortval < self.date2.sortval:
                 self.date1 = date2
                 self.date2 = date1
                 self.negative = True
+            if self.date1.calendar != Date.CAL_GREGORIAN:
+                self.date1 = self.date1.to_calendar("gregorian")
+            if self.date2.calendar != Date.CAL_GREGORIAN:
+                self.date2 = self.date2.to_calendar("gregorian")
             if self.date1.get_modifier() == Date.MOD_NONE:
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     val = self.date1.sortval - self.date2.sortval
@@ -423,23 +423,23 @@ class Span:
         retval = ""
         detail = 0
         if diff_tuple[0] != 0:
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} year", "{number_of} years",
                                diff_tuple[0]
                               ).format(number_of=diff_tuple[0])
             detail += 1
         if self.precision == detail:
             if diff_tuple[1] >= 6: # round up years
-                # translators: leave all/any {...} untranslated
+                # Translators: leave all/any {...} untranslated
                 retval = ngettext("{number_of} year", "{number_of} years",
                                   diff_tuple[0] + 1
                                  ).format(number_of=diff_tuple[0] + 1)
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} month", "{number_of} months",
                                diff_tuple[1]
                               ).format(number_of=diff_tuple[1])
@@ -448,9 +448,9 @@ class Span:
             return retval
         if diff_tuple[2] != 0:
             if retval != "":
-                # translators: needed for Arabic, ignore otherwise
+                # Translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            # translators: leave all/any {...} untranslated
+            # Translators: leave all/any {...} untranslated
             retval += ngettext("{number_of} day", "{number_of} days",
                                diff_tuple[2]
                               ).format(number_of=diff_tuple[2])

@@ -133,10 +133,10 @@ class FamilyGroup(Report):
             if self.include_attrs:
                 for attr in event.get_attribute_list():
                     if descr:
-                        # translators: needed for Arabic, ignore otherwise
+                        # Translators: needed for Arabic, ignore otherwise
                         descr += self._("; ")
                     attr_type = self._get_type(attr.get_type())
-                    # translators: needed for French, ignore otherwise
+                    # Translators: needed for French, ignore otherwise
                     descr += self._("%(str1)s: %(str2)s"
                                    ) % {'str1' : self._(attr_type),
                                         'str2' : attr.get_value()}
@@ -287,7 +287,7 @@ class FamilyGroup(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-    def dump_parent(self, title, person_handle):
+    def dump_parent(self, table_name, person_handle):
 
         if not person_handle and not self.missing_info:
             return
@@ -297,16 +297,12 @@ class FamilyGroup(Report):
             person = self.db.get_person_from_handle(person_handle)
         name = self._name_display.display(person)
 
-        self.doc.start_table(title, 'FGR-ParentTable')
+        self.doc.start_table(table_name, 'FGR-ParentTable')
         self.doc.start_row()
         self.doc.start_cell('FGR-ParentHead', 3)
         self.doc.start_paragraph('FGR-ParentName')
         mark = utils.get_person_mark(self.db, person)
-        # translators: needed for French, ignore otherwise
-        self.doc.write_text(self._("%(str1)s: %(str2)s"
-                                  ) % {'str1' : title,
-                                       'str2' : name},
-                            mark)
+        self.doc.write_text(name, mark)
         if self.gramps_ids:
             gid = person.get_gramps_id()
             if gid:
@@ -403,11 +399,11 @@ class FamilyGroup(Report):
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead', 3)
             self.doc.start_paragraph('FGR-ParentName')
-            header = self._("Marriage")
+            relationship_type = self._get_type(family.get_relationship())
+            header = self._("Relationship: %s") % self._(relationship_type)
             if self.gramps_ids:
                 header += " (%s)" % family.get_gramps_id()
-            # translators: needed for French, ignore otherwise
-            self.doc.write_text(self._("%s:") % header)
+            self.doc.write_text(header)
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
@@ -624,7 +620,7 @@ class FamilyGroup(Report):
         self.doc.write_text('', mark)
         self.doc.end_paragraph()
 
-        self.dump_parent(self._("Husband"), family.get_father_handle())
+        self.dump_parent('Parent1', family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
 
@@ -633,7 +629,7 @@ class FamilyGroup(Report):
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
 
-        self.dump_parent(self._("Wife"), family.get_mother_handle())
+        self.dump_parent('Parent2', family.get_mother_handle())
 
         length = len(family.get_child_ref_list())
         if length > 0:

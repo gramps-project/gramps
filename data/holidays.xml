@@ -81,6 +81,23 @@
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Boxing Day" value="*/12/26" type="national" />
   </country>
+  <country name="Catalonia">
+    <date name="Any Nou (estatal)" value="*/1/1" type="religious" />
+     <date name="Reis (estatal)" value="*/1/6" type="religious" />
+     <date name="Festa del Treball (estatal)" value="*/5/1" type="secular" />
+     <date name="Sant Joan (a Catalunya)" value="*/6/24" type="religious" />
+     <date name="Mare de Déu d'Agost (estatal)" value="*/8/15" type="religious" />
+     <date name="Diada Nacional de Catalunya" value="*/9/11" type="national" />
+     <date name="Festa Nacional d'Espanya (estatal)" value="*/10/12" type="religious" />
+     <date name="Tots Sants" value="*/11/1" type="religious" />
+     <date name="Dia de la Constitució (estatal)" value="*/12/6" type="secular" />
+     <date name="La Immaculada (estatal)" value="*/12/8" type="religious" />
+     <date name="Nadal (estatal)" value="*/12/25" type="religious" />
+     <date name="Sant Esteve" value="*/12/26" type="religious" />
+     <date name="Easter" value="> easter(y)" type="religious" />
+     <date name="Divendres Sant (estatal)" value="> easter(y)" offset="-2" type="religious" />
+     <date name="Dilluns de Pasqua Florida" value="> easter(y)" offset="1" type="religious" />
+  </country>
   <country name="Chile">
     <date name="Año nuevo" value="*/1/1" type="national" />
     <date name="Viernes Santo" value="2007/4/6" type="religious" />
@@ -368,6 +385,20 @@
     <date name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
     <date name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
   </country>
+  <country name="Italy">
+    <date name="Capodanno" value="*/1/1" type="national" />
+    <date name="Epifania" value="*/1/6" type="religious" />
+    <date name="Pasqua" type="religious" value="> easter(y)"  />
+    <date name="Pasquetta" type="religious" value="> easter(y)" offset="1" />
+    <date name="Festa della Liberazione" value="*/4/25" type="national" />
+    <date name="Festa dei lavoratori" value="*/5/1" type="national" />
+    <date name="Festa della Repubblica" value="*/6/2" type="national" />
+    <date name="Ferragosto" value="*/8/15" type="national" />
+    <date name="Tutti i santi" value="*/11/1" type="religious" />
+    <date name="Immacolata Concezione" value="*/12/8" type="religious" />
+    <date name="Natale" value="*/12/25" type="religious" />
+    <date name="Santo Stefano" value="*/12/26" type="religious" />
+  </country>
   <country name="New Zealand">
     <date value="*/1/1" type="national" name="New Year's Day"/>
     <date value="*/1/2" type="national" name="Day After New Year's Day"/>
@@ -387,12 +418,15 @@
   <country name="Russia">
     <date value="*/1/7" type="religious" name="Рождество Христово" />
     <date value="*/1/19" type="religious" name="Крещение Господне" />
-    <date value="*/2/23" type="national" name="День защитника" />
+    <date value="*/2/23" type="national" name="День Защитника Отечества" />
     <date value="*/3/8" type="national" name="Международный женский день" />
-    <date value="*/5/1" type="national" name="День труда" />
+    <date value="*/4/12" type="national" name="День Космонавтики" />
+    <date value="*/5/1" type="national" name="Праздник Весны и Труда" />
     <date value="*/5/9" type="national" name="День Победы" />
     <date value="*/6/1" type="national" name="День защиты детей" />
     <date value="*/6/12" type="national" name="День России" />
+    <date value="*/6/22" type="national" name="День памяти и скорби" />
+    <date value="*/-4/sun/jul" type="national" name="День ВМФ" />
     <date value="*/9/1" type="national" name="День знаний" />
     <date value="*/11/4" type="national" name="День народного единства" />
     <date value="*/12/31" offset="+2" type="national" name="Новый год" />
@@ -470,6 +504,34 @@
     <date name="Midsommardagen" value="*/jun/20" offset="sat" type="religious" if="(y>=1953)" />
     <date name="Midsommardagen" value="*/jun/24" type="religious" if="not(y>=1953)"  />
     <date name="Fars dag" value="*/2/sun/nov" type="national" />
+  </country>
+  <country name="Turkey">
+    <date value="*/1/1" type="national" name="Yılbaşı" />
+    <date value="*/3/8" type="secular" name="Dünya Kadınlar Günü" />
+    <date value="*/3/21" type="secular" name="Nevruz" />
+    <date value="*/4/22" type="secular" name="Dünya Günü" />
+    <date value="*/4/23" type="national" name="Ulusal Egemenlik ve Çocuk Bayramı" />
+    <date value="*/5/1" type="national" name="Emek ve Dayanışma Günü" />
+    <date value="*/5/5" type="secular" name="Hıdrellez" />
+    <date value="*/5/13" type="secular" name="Türk Dil Bayramı" />
+    <date value="*/5/19" type="national" name="Atatürk'ü Anma, Gençlik ve Spor Bayramı" />
+    <date value="*/5/28" type="secular" name="Tarihî Türk Evlerini Koruma Haftası" />
+    <date value="*/7/15" type="national" name="Demokrasi ve Millî Birlik Günü" />
+    <date value="*/8/30" type="national" name="Zafer Bayramı" />
+    <date value="*/10/29" type="national" name="Cumhuriyet Bayramı" />
+    <date value="*/11/10" type="secular" name="Atatürk’ü Anma Günü" />
+    <date value="*/11/24" type="secular" name="Öğretmenler Günü" />
+    <date value="*/12/5" type="secular" name="Kadın Hakları Günü" />
+    <date value="2021/05/13" type="religious" name="Ramazan Bayramı" />
+    <date value="2021/07/20" type="religious" name="Kurban Bayramı" />
+    <date value="2022/05/02" type="religious" name="Ramazan Bayramı" />
+    <date value="2022/07/09" type="religious" name="Kurban Bayramı" />
+    <date value="2023/04/21" type="religious" name="Ramazan Bayramı" />
+    <date value="2023/06/28" type="religious" name="Kurban Bayramı" />
+    <date value="2024/04/10" type="religious" name="Ramazan Bayramı" />
+    <date value="2024/06/16" type="religious" name="Kurban Bayramı" />
+    <date value="2025/03/30" type="religious" name="Ramazan Bayramı" />
+    <date value="2025/06/06" type="religious" name="Kurban Bayramı" />
   </country>
   <country name="Ukraine">
     <date value="*/1/1" type="national" name="Новий Рік"/>

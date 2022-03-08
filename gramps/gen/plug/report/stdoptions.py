@@ -65,6 +65,22 @@ def add_localization_option(menu, category):
     menu.add_option(category, "trans", trans)
     return trans
 
+def add_extra_localization_option(menu, category, name, optname):
+    """
+    Insert an option for localizing the report into a different locale
+    than the default one
+    """
+
+    trans = EnumeratedListOption(_(name),
+                                 glocale.DEFAULT_TRANSLATION_STR)
+    trans.add_item(glocale.DEFAULT_TRANSLATION_STR, _("Default"))
+    languages = glocale.get_language_dict()
+    for language in sorted(languages, key=glocale.sort_key):
+        trans.add_item(languages[language], language)
+    trans.set_help(_("The additional translation to be used for the report."))
+    menu.add_option(category, optname, trans)
+    return trans
+
 def add_name_format_option(menu, category):
     """
     Insert an option for changing the report's name format to a
@@ -300,6 +316,24 @@ def run_date_format_option(report, menu):
         warning(format_to_be + 1)
         format_to_be = 0 # ISO always exists
     report._ldd.set_format(format_to_be)
+
+def add_tags_option(menu, category):
+    """
+    Insert an option for deciding whether to include tags
+    in the report
+
+    :param menu: The menu the options should be added to.
+    :type menu: :class:`.Menu`
+    :param category: A label that describes the category that the option
+        belongs to, e.g. "Report Options"
+    :type category: string
+    """
+
+    include_tags = EnumeratedListOption(_('Tags'), 0)
+    include_tags.add_item(0, _('Do not include'))
+    include_tags.add_item(1, _('Include'))
+    include_tags.set_help(_("Whether to include tags"))
+    menu.add_option(category, 'inc_tags', include_tags)
 
 def add_gramps_id_option(menu, category, ownline=False):
     """

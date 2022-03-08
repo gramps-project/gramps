@@ -45,7 +45,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 #-------------------------------------------------------------------------
 class AttrEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 3
+    _HANDLE_COL = 4
     _DND_TYPE = DdTargets.ATTRIBUTE
 
     _MSG = {
@@ -61,7 +61,8 @@ class AttrEmbedList(EmbeddedList):
     _column_names = [
         (_('Type'), 0, 250, TEXT_COL, -1, None),
         (_('Value'), 1, 200, TEXT_COL, -1, None),
-        (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
+        (_('Source'), 2, 30, ICON_COL, -1, 'gramps-source'),
+        (_('Private'), 3, 30, ICON_COL, -1, 'gramps-lock'),
         ]
 
     def __init__(self, dbstate, uistate, track, data):
@@ -89,7 +90,7 @@ class AttrEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1, 2), (1, 0), (1, 1))
+        return ((1, 2), (1, 3), (1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
         pname = ''

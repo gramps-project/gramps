@@ -49,7 +49,7 @@ UICATEGORY = '''      <section id="ViewsInCatagory">
         %s
       </section>
     '''
-UICATAGORYBAR = '''    <placeholder id='ViewsInCategoryBar'>
+UICATEGORYBAR = '''    <placeholder id='ViewsInCategoryBar'>
         %s
       </placeholder>
     '''
@@ -195,7 +195,7 @@ class Navigator:
             if len(cat_views) > 1:
                 #allow for switching views in a category
                 self.ui_category[cat_num] = [UICATEGORY % uimenuitems,
-                                             UICATAGORYBAR % uibaritems]
+                                             UICATEGORYBAR % uibaritems]
 
         for pdata in plugman.get_reg_sidebars():
             module = plugman.load_plugin(pdata)

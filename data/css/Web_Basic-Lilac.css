@@ -164,6 +164,7 @@ a[href]:hover, a[href]:active {
 ----------------------------------------------------- */
 div#nav, #subnavigation {
     border: solid 1px #E0E0E9; /* needed by IE7 */
+    position: relative;
 }
 #subnavigation ul {
     overflow: hidden;
@@ -200,6 +201,35 @@ div#nav ul li.CurrentSection a {
 }
 #subnavigation ul li.CurrentSection a {
     background-color: #FAFAFF;
+}
+div#nav li.lang {
+    font-size: smaller;
+    font-family: sans-serif;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    font-weight: bold;
+}
+div#nav li.lang:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+div#nav ul.lang {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+    padding: 2px;
+    background-color: #E0E0E9;
+    top: -1em;
+    font-size: larger;
+    font-family: sans-serif;
+}
+div#nav ul.lang:hover {
+    float: initial;
+}
+div#nav ul.lang li {
+    float: none;
+    padding: 1px 2px;
 }
 
 /* Alphabet Navigation
@@ -318,6 +348,21 @@ div#nav::after {
 
     .content {
         padding: 0em 0.5em;
+    }
+    .lang {
+        position: relative;
+    }
+    .lang > .lang {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    .lang:hover > .lang {
+        display: block;
     }
 }
 
@@ -675,7 +720,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow-x: auto;
 }
 .subsection p {
     margin: 0px;
@@ -686,6 +731,10 @@ div#SourceDetail {
 #families table.infolist td.ColumnValue.Child table.infolist tr:hover,
 table.relationships tr:hover {
     background-color: #B4B4CB;
+}
+div.content table.tags {
+    text-align: left;
+    width: auto;
 }
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
@@ -708,6 +757,12 @@ div#families table.attrlist td.ColumnType {
 #indivgallery {
     background-color: white;
 }
+#indivgallery a {
+    color: black;
+    text-decoration: none;
+    word-wrap: break-word;
+    display: block;
+}
 #gallery .gallerycell {
     float: left;
     width: 130px;
@@ -724,7 +779,8 @@ div#families table.attrlist td.ColumnType {
 }
 #indivgallery .thumbnail {
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     font-size: smaller;
     text-align: center;
     margin: 0.8em 0.5em;
@@ -795,6 +851,14 @@ i + div.grampsstylednote p {
 div.grampsstylednote p {
     padding-bottom: 0.6em;
 }
+div.grampsstylednote a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #2E2E61;
+}
+div.grampsstylednote a:visited {
+    color: red;
+}
 
 /* Subsection : References
 ----------------------------------------------------- */
@@ -813,8 +877,34 @@ a.family_map {
 
 /* Subsection : Source References
 ----------------------------------------------------- */
-#sourcerefs ol li ol {
-    list-style-type: lower-alpha;
+#sourcerefs ol#srcr {
+    counter-reset: itema;
+    list-style-type: none;
+    display: block;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr {
+    counter-reset: itemb;
+    list-style-type: none;
+}
+#sourcerefs ol#srcr > li::before {
+    content: counter(itema);
+}
+#sourcerefs ol#citr > li::before {
+    content: counter(itema)counter(itemb, lower-alpha);
+}
+#sourcerefs ol#srcr > li {
+    counter-increment: itema;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr > li {
+    counter-increment: itemb;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr ul {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
 }
 
 /* Subsection : Pedigree
@@ -1044,4 +1134,44 @@ body#fullyearlinked #YearGlance tbody td .date {
 body#fullyearlinked #YearGlance tbody td:hover .date {
     border-radius: 45px;
     border: 5px solid;
+}
+h4 button.icon {
+    width: 0.9em;
+    border: 0px solid;
+    padding: 0;
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: transform 200ms ease-out 0s;
+    background: transparent;
+}
+h4 button.icon-close {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+h4 button.icon-open {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}
+svg {
+  fill: #2E2E61;
+}
+/* Go to the top of the page */
+#gototop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 999;
+  border: none;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+#gototop:hover {
+  background-color: #E0E0E9;
 }

@@ -77,16 +77,14 @@ class DbTxn(defaultdict):
             self.db.transaction_abort(self)
 
         elapsed_time = time.time() - self.start_time
-        if __debug__:
-            caller_frame = inspect.stack()[1]
+        if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
+            frame = inspect.currentframe()
+            c_frame = frame.f_back
+            c_code = c_frame.f_code
             _LOG.debug("    **** DbTxn %s exited. Called from file %s, "
-                       "line %s, in %s **** %.2f seconds" %
-                       ((hex(id(self)),)+
-                        (os.path.split(caller_frame[1])[1],)+
-                        tuple(caller_frame[i] for i in range(2, 4))+
-                        (elapsed_time,)
-                       )
-                      )
+                       "line %s, in %s **** %.2f seconds",
+                       hex(id(self)), c_code.co_filename, c_frame.f_lineno,
+                       c_code.co_name, elapsed_time)
 
         return False
 
@@ -124,7 +122,7 @@ class DbTxn(defaultdict):
         """
 
         # Conditional on __debug__ because all that frame stuff may be slow
-        if __debug__:
+        if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
             caller_frame = inspect.stack()[1]
             # If the call comes from gramps.gen.db.generic.DbGenericTxn.__init__
             # then it is just a dummy redirect, so we need to go back another

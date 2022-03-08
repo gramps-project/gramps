@@ -49,8 +49,9 @@ import logging
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (PlaceType, Place, PlaceName)
+from gramps.gen.lib import (PlaceType, Place, PlaceName, Media)
 from gramps.gen.plug.report import Bibliography
+from gramps.gen.mime import is_image_type
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.location import get_main_location
@@ -90,12 +91,14 @@ class PlacePages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.place_dict = defaultdict(set)
         self.placemappages = None
         self.mapservice = None
@@ -107,18 +110,48 @@ class PlacePages(BasePage):
         # Place needs to display coordinates?
         self.display_coordinates = report.options["coordinates"]
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Place tab, namely the place
         index and the individual place pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Place]")
         for item in self.report.obj_dict[Place].items():
             LOG.debug("    %s", str(item))
         message = _("Creating place pages")
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        if self.report.options['inc_uplaces']:
+            place_count = len(self.r_db.get_place_handles())
+        else:
+            place_count = len(self.report.obj_dict[Place])
+        with self.r_user.progress(progress_title, message,
+                                  place_count + 1
+                                 ) as step:
+            if self.report.options['inc_uplaces']:
+                # add unused place
+                place_list = self.r_db.get_place_handles()
+                for place_ref in place_list:
+                    if place_ref not in self.report.obj_dict[Place]:
+                        place = self.r_db.get_place_from_handle(place_ref)
+                        if place:
+                            place_name = place.get_title()
+                            p_fname = self.report.build_url_fname(place_ref,
+                                                                  "plc",
+                                                                  False,
+                                                                  init=True)
+                            p_fname += self.ext
+                            plc_dict = (p_fname, place_name,
+                                        place.gramps_id, None)
+                            self.report.obj_dict[Place][place_ref] = plc_dict
+                            p_name = _pd.display(self.r_db, place)
+                            plc_dict = (place_ref, p_name,
+                                        place.gramps_id, None)
+                            self.report.obj_dict[PlaceName][p_name] = plc_dict
+
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Place]) + 1
                                  ) as step:
             index = 1
@@ -126,19 +159,21 @@ class PlacePages(BasePage):
                 step()
                 p_handle = self.report.obj_dict[PlaceName][place_name]
                 index += 1
-                self.placepage(self.report, title, p_handle[0], place_name)
+                self.placepage(self.report, the_lang, the_title, p_handle[0],
+                               place_name)
             step()
-            self.placelistpage(self.report, title)
+        self.placelistpage(self.report, the_lang, the_title)
 
-    def placelistpage(self, report, title):
+    def placelistpage(self, report, the_lang, the_title):
         """
         Create a place index
 
-        @param: report        -- The instance of the main report class for
-                                 this report
-        @param: title         -- Is the title of the web page
+        @param: report        -- The instance of the main report class
+                                 for this report
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         output_file, sio = self.report.create_file("places")
         result = self.write_header(self._("Places"))
@@ -283,19 +318,22 @@ class PlacePages(BasePage):
         # and close the file
         self.xhtml_writer(placelistpage, output_file, sio, ldatec)
 
-    def placepage(self, report, title, place_handle, place_name):
+    def placepage(self, report, the_lang, the_title, place_handle, place_name):
         """
         Create a place page
 
-        @param: report            -- The instance of the main report class for
-                                     this report
-        @param: title             -- Is the title of the web page
+        @param: report       -- The instance of the main report class
+                                for this report
+        @param: the_lang     -- The lang to process
+        @param: the_title    -- The title page related to the language
         @param: place_handle -- The handle for the place to add
+        @param: place_name   -- The alternate place name
         """
         place = report.database.get_place_from_handle(place_handle)
         if not place:
-            return None
-        BasePage.__init__(self, report, title, place.get_gramps_id())
+            return
+        BasePage.__init__(self, report, the_lang, the_title,
+                          place.get_gramps_id())
         self.bibli = Bibliography()
         ldatec = place.get_change_time()
         apname = _pd.display(self.r_db, place)
@@ -316,12 +354,13 @@ class PlacePages(BasePage):
         with Html("div", class_="content", id="PlaceDetail") as placedetail:
             outerwrapper += placedetail
 
+            media_list = place.get_media_list()
             if self.create_media:
-                media_list = place.get_media_list()
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
                                                              place)
                 if thumbnail is not None:
-                    placedetail += thumbnail
+                    if media_list[0].ref in self.report.obj_dict[Media]:
+                        placedetail += thumbnail
 
             # add section title
             placedetail += Html("h3",
@@ -339,7 +378,9 @@ class PlacePages(BasePage):
                     self.dump_place(place, table)
 
             # place gallery
-            if self.create_media:
+            if self.create_media and not self.report.options['inc_uplaces']:
+                # Don't diplay media for unused places. It generates
+                # "page not found" if they are not collected in pass 1.
                 placegallery = self.disp_add_img_as_gallery(media_list, place)
                 if placegallery is not None:
                     placedetail += placegallery
@@ -365,7 +406,10 @@ class PlacePages(BasePage):
                     placetitle = place_name
 
                     # add narrative-maps CSS...
-                    fname = "/".join(["css", "narrative-maps.css"])
+                    if the_lang and not self.usecms:
+                        fname = "/".join(["..", "css", "narrative-maps.css"])
+                    else:
+                        fname = "/".join(["css", "narrative-maps.css"])
                     url = self.report.build_url_fname(fname, None, self.uplink)
                     head += Html("link", href=url, type="text/css",
                                  media="screen", rel="stylesheet")
@@ -378,11 +422,6 @@ class PlacePages(BasePage):
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
                     else: # OpenStreetMap, Stamen...
-                        url = self.secure_mode
-                        url += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                                "css/bootstrap.min.css")
-                        head += Html("link", href=url, type="text/javascript",
-                                     rel="stylesheet")
                         src_js = self.secure_mode
                         src_js += ("ajax.googleapis.com/ajax/libs/jquery/1.9.1/"
                                    "jquery.min.js")
@@ -394,11 +433,6 @@ class PlacePages(BasePage):
                         url = "https://openlayers.org/en/latest/css/ol.css"
                         head += Html("link", href=url, type="text/css",
                                      rel="stylesheet")
-                        src_js = self.secure_mode
-                        src_js += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
-                                   "js/bootstrap.min.js")
-                        head += Html("script", type="text/javascript",
-                                     src=src_js, inline=True)
 
                     # section title
                     placedetail += Html("h4", self._("Place Map"), inline=True)
@@ -426,9 +460,13 @@ class PlacePages(BasePage):
                     tooltip += Html("div", id="tooltip-content")
 
             # source references
-            srcrefs = self.display_ind_sources(place)
-            if srcrefs is not None:
-                placedetail += srcrefs
+            if not self.report.options['inc_uplaces']:
+                # We can't display source reference when we display
+                # unused places. These info are not in the collected objects.
+                # This is to avoid "page not found" errors.
+                srcrefs = self.display_ind_sources(place)
+                if srcrefs is not None:
+                    placedetail += srcrefs
 
             # References list
             ref_list = self.display_bkref_list(Place, place_handle)
@@ -442,6 +480,26 @@ class PlacePages(BasePage):
                     latitude, longitude = conv_lat_lon(place.get_latitude(),
                                                        place.get_longitude(),
                                                        "D.D8")
+                    tracelife = " "
+                    if self.create_media and media_list:
+                        for fmedia in media_list:
+                            photo_hdle = fmedia.get_reference_handle()
+                            photo = self.r_db.get_media_from_handle(photo_hdle)
+                            mime_type = photo.get_mime_type()
+                            descr = photo.get_description()
+
+                            if mime_type and is_image_type(mime_type):
+                                uplnk = self.uplink
+                                (pth,
+                                 dummy_) = self.report.prepare_copy_media(photo)
+                                srbuf = self.report.build_url_fname
+                                newpath = srbuf(pth, image=True, uplink=uplnk)
+                                imglnk = self.media_link(photo_hdle, newpath,
+                                                         descr, uplink=uplnk,
+                                                         usedescr=False)
+                                if photo_hdle in self.report.obj_dict[Media]:
+                                    tracelife += str(imglnk)
+                                break # We show only the first image
                     scripts = Html()
                     if self.mapservice == "Google":
                         with Html("script", type="text/javascript",
@@ -453,7 +511,7 @@ class PlacePages(BasePage):
                             jsc += MARKERS % ([[plce,
                                                 latitude,
                                                 longitude,
-                                                1, ""]],
+                                                1, tracelife]],
                                               latitude, longitude,
                                               10)
                     elif self.mapservice == "OpenStreetMap":
@@ -462,7 +520,7 @@ class PlacePages(BasePage):
                             jsc += MARKER_PATH % marker_path
                             jsc += OSM_MARKERS % ([[float(longitude),
                                                     float(latitude),
-                                                    placetitle, ""]],
+                                                    placetitle, tracelife]],
                                                   longitude, latitude, 10)
                             jsc += OPENLAYER
                     else: # STAMEN
@@ -471,7 +529,7 @@ class PlacePages(BasePage):
                             jsc += MARKER_PATH % marker_path
                             jsc += STAMEN_MARKERS % ([[float(longitude),
                                                        float(latitude),
-                                                       placetitle, ""]],
+                                                       placetitle, tracelife]],
                                                      self.stamenopts,
                                                      longitude, latitude, 10)
                             jsc += OPENLAYER
@@ -485,10 +543,6 @@ class PlacePages(BasePage):
         # send page out for processing
         # and close the file
         if place_name == apname: # store only the primary named page
-            if place in self.report.visited: # only the first time
-                self.report.close_file(output_file, sio, None)
-                return None
-            self.report.visited.append(place)
             self.xhtml_writer(placepage, output_file, sio, ldatec)
 
 def get_first_letters(place_list, rlocale=glocale):

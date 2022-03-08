@@ -68,14 +68,16 @@ class StatisticsPage(BasePage):
     """
     Create one page for statistics
     """
-    def __init__(self, report, title, step):
+    def __init__(self, report, the_lang, the_title, step):
         """
         @param: report        -- The instance of the main report class
                                  for this report
-        @param: title         -- Is the title of the web page
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
+        @param: step          -- Use to continue the progess bar
         """
         import os
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         self.bibli = Bibliography()
         self.uplink = False
         self.report = report
@@ -103,7 +105,7 @@ class StatisticsPage(BasePage):
                 chars += os.path.getsize(fullname)
                 length = len(str(chars))
                 if chars <= 999999:
-                    mbytes = _("less than 1")
+                    mbytes = self._("less than 1")
                 else:
                     mbytes = str(chars)[:(length-6)]
             except OSError:
@@ -229,6 +231,8 @@ class StatisticsPage(BasePage):
         """
         This function return the number of males, females and unknown gender
         from a person list.
+
+        @param: person_list -- The list to process
         """
         males = 0
         females = 0

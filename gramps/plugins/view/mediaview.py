@@ -54,12 +54,11 @@ from gramps.gui.views.treemodels import MediaModel
 from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path, relative_path, media_path_full,
                                    create_checksum)
-from gramps.gen.utils.db import get_media_referents
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
 from gramps.gen.lib import Media
 from gramps.gen.db import DbTxn
-from gramps.gui.editors import EditMedia, DeleteMediaQuery
+from gramps.gui.editors import EditMedia
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.filters.sidebar import MediaSidebarFilter
 from gramps.gui.merge import MergeMedia
@@ -169,7 +168,10 @@ class MediaView(ListView):
         """
         if not sel_data:
             return
+
         files = sel_data.get_uris()
+        photo = None
+
         for file in files:
             protocol, site, mfile, j, k, l = urlparse(file)
             if protocol == "file":
@@ -191,6 +193,10 @@ class MediaView(ListView):
                 photo.set_description(root)
                 with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
                     self.dbstate.db.add_media(photo, trans)
+
+        if photo:
+            self.uistate.set_active(photo.handle, "Media")
+
         widget.emit_stop_by_name('drag_data_received')
 
     def define_actions(self):
@@ -449,18 +455,9 @@ class MediaView(ListView):
             pass
 
     def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        """
-        Remove the selected objects from the database after getting
-        user verification.
-        """
-        the_lists = get_media_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_media_from_handle(handle)
-        query = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
-        is_used = any(the_lists)
-        return (query, is_used, object)
+        handles = self.selected_handles()
+        ht_list = [('Media', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def edit(self, *obj):
         """

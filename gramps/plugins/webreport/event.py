@@ -85,23 +85,27 @@ class EventPages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.event_handle_list = []
         self.event_types = []
         self.event_dict = defaultdict(set)
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Event tab, namely the event
         index and the individual event pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
+        BasePage.__init__(self, self.report, the_lang, the_title)
         LOG.debug("obj_dict[Event]")
         for item in self.report.obj_dict[Event].items():
             LOG.debug("    %s", str(item))
@@ -111,29 +115,32 @@ class EventPages(BasePage):
             event = self.r_db.get_event_from_handle(event_handle)
             event_types.append(self._(event.get_type().xml_str()))
         message = _("Creating event pages")
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(event_handle_list) + 1
                                  ) as step:
             index = 1
             for event_handle in event_handle_list:
                 step()
                 index += 1
-                self.eventpage(self.report, title, event_handle)
+                self.eventpage(self.report, the_lang, the_title, event_handle)
             step()
-        self.eventlistpage(self.report, title, event_types,
+        self.eventlistpage(self.report, the_lang, the_title, event_types,
                            event_handle_list)
 
-    def eventlistpage(self, report, title, event_types, event_handle_list):
+    def eventlistpage(self, report, the_lang, the_title,
+                      event_types, event_handle_list):
         """
         Will create the event list page
 
         @param: report            -- The instance of the main report class for
                                      this report
-        @param: title             -- Is the title of the web page
+        @param: the_lang          -- The lang to process
+        @param: the_title         -- The title page related to the language
         @param: event_types       -- A list of the type in the events database
         @param: event_handle_list -- A list of event handles
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
         ldatec = 0
         prev_letter = " "
 
@@ -185,6 +192,7 @@ class EventPages(BasePage):
                 table += tbody
 
                 # separate events by their type and then thier event handles
+                savevtyp = " "
                 for (evt_type,
                      data_list) in sort_event_types(self.r_db,
                                                     event_types,
@@ -233,6 +241,10 @@ class EventPages(BasePage):
                                     letter = get_index_letter(
                                         self._(str(evt_type)[0].capitalize()),
                                         index_list, self.rlocale)
+                                    if letter != savevtyp:
+                                        savevtyp = letter
+                                    else:
+                                        letter = "&nbsp;"
                                 else:
                                     letter = "&nbsp;"
 
@@ -339,17 +351,19 @@ class EventPages(BasePage):
         # return hyperlink to its caller
         return Html("a", grampsid, href=url, title=grampsid, inline=True)
 
-    def eventpage(self, report, title, event_handle):
+    def eventpage(self, report, the_lang, the_title, event_handle):
         """
         Creates the individual event page
 
         @param: report       -- The instance of the main report class for
                                 this report
-        @param: title        -- Is the title of the web page
+        @param: the_lang     -- The lang to process
+        @param: the_title    -- The title page related to the language
         @param: event_handle -- The event handle for the database
         """
         event = report.database.get_event_from_handle(event_handle)
-        BasePage.__init__(self, report, title, event.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          event.get_gramps_id())
         if not event:
             return
 
@@ -410,6 +424,17 @@ class EventPages(BasePage):
                             Html('td', data, class_="Column" + colclass)
                             )
                         tbody += trow
+
+                # Tags
+                tags = self.show_tags(event)
+                if tags and self.report.inc_tags:
+                    trow = Html("tr") + (
+                        Html("td", self._("Tags"),
+                             class_="ColumnAttribute", inline=True),
+                        Html("td", tags,
+                             class_="ColumnValue", inline=True)
+                        )
+                    table += trow
 
             # Narrative subsection
             notelist = event.get_note_list()

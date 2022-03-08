@@ -83,35 +83,37 @@ class DateParserNL(DateParser):
     month_to_int["xbris"] = 12
 
     modifier_to_int = {
-        'voor'    : Date.MOD_BEFORE,
-        'na'      : Date.MOD_AFTER,
-        'tegen'   : Date.MOD_ABOUT,
-        'om'      : Date.MOD_ABOUT,
-        'rond'    : Date.MOD_ABOUT,
-        'circa'   : Date.MOD_ABOUT,
-        'ca.'     : Date.MOD_ABOUT,
+        'voor'       : Date.MOD_BEFORE,
+        'na'         : Date.MOD_AFTER,
+        'ca.'        : Date.MOD_ABOUT,
+        'circa'      : Date.MOD_ABOUT,
+        'om'         : Date.MOD_ABOUT,
+        'omstreeks'  : Date.MOD_ABOUT,
+        'ongeveer'   : Date.MOD_ABOUT,
+        'rond'       : Date.MOD_ABOUT,
+        'tegen'      : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        'gregoriaans'    : Date.CAL_GREGORIAN,
-        'greg.'          : Date.CAL_GREGORIAN,
-        'juliaans'       : Date.CAL_JULIAN,
-        'jul.'           : Date.CAL_JULIAN,
-        'hebreeuws'      : Date.CAL_HEBREW,
-        'hebr.'          : Date.CAL_HEBREW,
-        'islamitisch'      : Date.CAL_ISLAMIC,
-        'isl.'           : Date.CAL_ISLAMIC,
-        'franse republiek': Date.CAL_FRENCH,
-        'fran.'         : Date.CAL_FRENCH,
-        'persisch'       : Date.CAL_PERSIAN,
-        'zweeds'          : Date.CAL_SWEDISH,
-        'z'               : Date.CAL_SWEDISH,
+        'gregoriaans'         : Date.CAL_GREGORIAN,
+        'greg.'               : Date.CAL_GREGORIAN,
+        'juliaans'            : Date.CAL_JULIAN,
+        'jul.'                : Date.CAL_JULIAN,
+        'hebreeuws'           : Date.CAL_HEBREW,
+        'hebr.'               : Date.CAL_HEBREW,
+        'islamitisch'         : Date.CAL_ISLAMIC,
+        'isl.'                : Date.CAL_ISLAMIC,
+        'frans republiekeins' : Date.CAL_FRENCH,
+        'fran.'               : Date.CAL_FRENCH,
+        'persisch'            : Date.CAL_PERSIAN,
+        'zweeds'              : Date.CAL_SWEDISH,
+        'z'                   : Date.CAL_SWEDISH,
         }
 
     quality_to_int = {
-        'geschat' : Date.QUAL_ESTIMATED,
+        'geschat'   : Date.QUAL_ESTIMATED,
         'gesch.'    : Date.QUAL_ESTIMATED,
-        'berekend' : Date.QUAL_CALCULATED,
+        'berekend'  : Date.QUAL_CALCULATED,
         'ber.'      : Date.QUAL_CALCULATED,
         }
 
@@ -147,17 +149,17 @@ class DateDisplayNL(DateDisplay):
 
     calendar = (
         "", "juliaans", "hebreeuws",
-        "franse republiek", "persisch", "islamitisch",
+        "frans republikeins", "persisch", "islamitisch",
         "zweeds" )
 
-    _mod_str = ("", "voor ", "na ", "rond ", "", "", "")
+    _mod_str = ("", "voor ", "na ", "omstreeks ", "", "", "")
 
     _qual_str = ("", "geschat ", "berekend ")
 
     _bce_str = "%s v. Chr."
 
     formats = (
-        "JJJJ-MM-DD (ISO)", "Numerisch DD/MM/JJ", "Maand Dag, Jaar",
+        "JJJJ-MM-DD (ISO)", "Numeriek DD/MM/JJJJ", "Maand Dag, Jaar",
         "Mnd. Dag Jaar", "Dag Maand Jaar", "Dag Mnd. Jaar"
         )
         # this definition must agree with its "_display_gregorian" method

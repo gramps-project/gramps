@@ -42,6 +42,8 @@ from ..const import PLUGINS_DIR, USER_PLUGINS
 from ..constfunc import win, get_env_var
 from ..config import config
 from .dbconst import DBLOGNAME, DBLOCKFN, DBBACKEND
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -69,13 +71,15 @@ def make_database(plugin_id):
         if mod:
             database = getattr(mod, pdata.databaseclass)
             db = database()
-            import inspect
-            caller_frame = inspect.stack()[1]
-            _LOG.debug("Database class instance created Class:%s instance:%s. "
-                       "Called from File %s, line %s, in %s"
-                       % ((db.__class__.__name__, hex(id(db)))
-                          + (os.path.split(caller_frame[1])[1],)
-                          + tuple(caller_frame[i] for i in range(2, 4))))
+            if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
+                import inspect
+                frame = inspect.currentframe()
+                c_frame = frame.f_back
+                c_code = c_frame.f_code
+                _LOG.debug("Database class instance created Class:%s instance:%s. "
+                           "Called from File %s, line %s, in %s",
+                           db.__class__.__name__, hex(id(db)), c_code.co_filename,
+                           c_frame.f_lineno, c_code.co_name)
             return db
         else:
             raise Exception("can't load database backend: '%s'" % plugin_id)
@@ -209,8 +213,8 @@ def write_lock_file(name):
         if win():
             user = get_env_var('USERNAME')
             host = get_env_var('USERDOMAIN')
-            if host is None:
-                host = ""
+            if not user:
+                user = _("Unknown")
         else:
             host = os.uname()[1]
             # An ugly workaround for os.getlogin() issue with Konsole

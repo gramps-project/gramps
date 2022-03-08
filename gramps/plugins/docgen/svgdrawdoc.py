@@ -31,7 +31,7 @@ SVG document generator.
 #
 #-------------------------------------------------------------------------
 from io import StringIO
-
+from xml.sax.saxutils import escape
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -128,7 +128,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         self.buffer.write(
             '<text ' +
             'x="%4.2f" y="%4.2f" ' % (xpos, ypos) +
-            'transform="rotate(%d %4.2f %4.2f)" ' % (angle, centerx, centery) +
+            'transform="rotate(%4.2f %4.2f %4.2f)" ' % (angle, centerx,
+                                                        centery) +
             'style="fill:#%02x%02x%02x; '% font.get_color()
             )
         if font.get_bold():
@@ -147,7 +148,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             linex = xpos + (width - self.string_width(font, line)) / 2
             self.buffer.write(
                 '<tspan x="%4.2f" dy="%d">' % (linex, size) +
-                line +
+                escape(line) +
                 '</tspan>'
                 )
         self.buffer.write('</text>\n')
@@ -273,7 +274,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     self.buffer.write(' font-family:serif;')
                 self.buffer.write(
                     '">' +
-                    line +
+                    escape(line) +
                     '</text>\n'
                     )
 
@@ -307,7 +308,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             self.buffer.write('font-family:serif;')
         self.buffer.write(
             '">' +
-            text +
+            escape(text) +
             '</text>\n'
             )
 

@@ -87,7 +87,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         None,
         (_('Age'), EventRefModel.COL_SORTAGE[0], 60, TEXT_COL, -1, None),
         None,
-        (_('Private'), EventRefModel.COL_PRIVATE[0], 30, ICON_COL, -1, 'gramps-lock')
+        (_('Private'), EventRefModel.COL_PRIVATE[0], 30, ICON_COL, -1, 'gramps-lock'),
+        (_('Source'), EventRefModel.COL_HAS_SOURCE[0], 30, ICON_COL, -1, 'gramps-source'),
         ]
 
     def __init__(self, dbstate, uistate, track, obj, build_model=EventRefModel, **kwargs):
@@ -196,6 +197,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 (1, 3),  # date
                 (1, 4),  # place
                 (1, 6),  # main participants
+                (1, 13), # has source
                 (1, 12), # private
                 (1, 5),  # role
                 (1, 2),  # gramps id

@@ -25,16 +25,10 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
-from math import pi
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.lifeway")
+from math import pi
+import cairo
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -42,7 +36,6 @@ _LOG = logging.getLogger("maps.lifeway")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
-import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +56,12 @@ try:
 except:
     raise
 
-# pylint: disable=unused-argument
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.lifeway")
 
 class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -122,16 +120,16 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
             for point in lifeway[0]:
                 conv_pt1 = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
                 coord_x1, coord_y1 = gpsmap.convert_geographic_to_screen(
-                                                                       conv_pt1)
+                    conv_pt1)
                 conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0]+rds,
                                                           point[1])
                 coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(
-                                                                       conv_pt2)
+                    conv_pt2)
                 coy = abs(coord_y2-coord_y1)
                 conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0],
                                                           point[1]+rds)
                 coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(
-                                                                       conv_pt2)
+                    conv_pt2)
                 cox = abs(coord_x2-coord_x1)
                 cox = cox if cox > 1.2 else 1.2
                 coy = coy if coy > 1.2 else 1.2
@@ -192,7 +190,8 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         When we press a button.
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
 GObject.type_register(LifeWayLayer)
-

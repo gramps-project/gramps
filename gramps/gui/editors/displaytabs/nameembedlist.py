@@ -75,7 +75,7 @@ class NameEmbedList(GroupEmbeddedList):
         None,
         None,
         (_('Group As'), NameModel.COL_GROUPAS[0],100, TEXT_COL, -1, None),
-        (_('Source'), NameModel.COL_HASSOURCE[0],60, TEXT_COL, -1, None),
+        (_('Source'), NameModel.COL_HASSOURCE[0],30, ICON_COL, -1, "gramps-source"),
         (_('Notes Preview'), NameModel.COL_NOTEPREVIEW[0], 250, TEXT_COL, -1, None),
         (_('Private'), NameModel.COL_PRIVATE[0], 30, ICON_COL, -1, 'gramps-lock')
         ]
@@ -114,7 +114,7 @@ class NameEmbedList(GroupEmbeddedList):
         The columns to show as a tuple of tuples containing
         tuples (show/noshow, model column)
         """
-        return ((1, 0), (1, 7), (1, 1), (1, 4), (1, 5), (1, 6))
+        return ((1, 0), (1, 5), (1, 7), (1, 1), (1, 4), (1, 6))
 
     def get_popup_menu_items(self):
         if self._tmpgroup == self._WORKGROUP:

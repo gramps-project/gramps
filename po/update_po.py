@@ -312,9 +312,9 @@ def extract_xml():
 
     for input_file in ['../data/holidays.xml',
                       '../data/tips.xml',
-                      '../data/gramps.xml.in',
-                      '../data/gramps.appdata.xml.in',
-                      '../data/gramps.desktop.in']:
+                      '../data/org.gramps_project.Gramps.xml.in',
+                      '../data/org.gramps_project.Gramps.appdata.xml.in',
+                      '../data/org.gramps_project.Gramps.desktop.in']:
         os.system(('GETTEXTDATADIR=. %(xgettext)s -F -j '
                    '-o gramps.pot --from-code=UTF-8 %(inputfile)s')
              % {'xgettext': xgettextCmd,
@@ -423,8 +423,9 @@ def retrieve():
     listing('python.txt', ['.py', '.py.in'])
 
     # additional keywords must always be kept in sync with those in genpot.sh
-    os.system('''%(xgettext)s -F -c -j --directory=./ -d gramps '''
-              '''-L Python -o gramps.pot --files-from=python.txt '''
+    os.system('''%(xgettext)s -F --add-comments=Translators -j '''
+              '''--directory=./ -d gramps -L Python '''
+              '''-o gramps.pot --files-from=python.txt '''
               '''--debug --keyword=_ --keyword=ngettext '''
               '''--keyword=_T_ --keyword=trans_text:1,2c '''
               '''--keyword=_:1,2c --keyword=_T_:1,2c '''
@@ -437,8 +438,8 @@ def retrieve():
     # C format header (.h extension)
     for h in headers():
         print ('xgettext for %s' % h)
-        os.system('''%(xgettext)s -F --add-comments -j -o gramps.pot '''
-                  '''--keyword=N_ --from-code=UTF-8 %(head)s'''
+        os.system('''%(xgettext)s -F --add-comments=Translators -j '''
+                  '''-o gramps.pot --keyword=N_ --from-code=UTF-8 %(head)s'''
                   % {'xgettext': xgettextCmd, 'head': h}
                   )
     clean()

@@ -215,12 +215,12 @@ def available_updates():
                 LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
                         format(lang=lang, url=URL, err=err))
                 fp = None
-        if fp and fp.getcode() == 200: # ok
+        if fp and (fp.getcode() == 200 or fp.file):
             break
 
     pmgr = BasePluginManager.get_instance()
     addon_update_list = []
-    if fp and fp.getcode() == 200:
+    if fp and (fp.getcode() == 200 or fp.file):
         lines = list(fp.readlines())
         count = 0
         for line in lines:
@@ -282,7 +282,8 @@ def load_addon_file(path, callback=None):
     import tarfile
     if (path.startswith("http://") or
         path.startswith("https://") or
-        path.startswith("ftp://")):
+        path.startswith("ftp://") or
+        path.startswith("file://")):
         try:
             fp = urlopen_maybe_no_check_cert(path)
         except:
@@ -291,7 +292,7 @@ def load_addon_file(path, callback=None):
             return False
     else:
         try:
-            fp = open(path)
+            fp = open(path, 'rb')
         except:
             if callback:
                 callback(_("Unable to open '%s'") % path)

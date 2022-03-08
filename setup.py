@@ -29,8 +29,8 @@ Gramps distutils module.
 #check python version first
 import sys
 
-if sys.version_info < (3, 2):
-    raise SystemExit("Gramps requires Python 3.2 or later.")
+if sys.version_info < (3, 5):
+    raise SystemExit("Gramps requires Python 3.5 or later.")
 
 from distutils import log
 from setuptools import setup
@@ -163,9 +163,9 @@ def build_intl(build_cmd):
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
 
-    merge_files = (('data/gramps.desktop', 'share/applications', '--desktop'),
-                   ('data/gramps.xml', 'share/mime/packages', '--xml'),
-                   ('data/gramps.appdata.xml', 'share/metainfo', '--xml'))
+    merge_files = (('data/org.gramps_project.Gramps.desktop', 'share/applications', '--desktop'),
+                   ('data/org.gramps_project.Gramps.xml', 'share/mime/packages', '--xml'),
+                   ('data/org.gramps_project.Gramps.appdata.xml', 'share/metainfo', '--xml'))
 
     for filename, target, option in merge_files:
         filenamelocal = convert_path(filename)
@@ -219,7 +219,9 @@ class test(Command):
             raise RuntimeError("No build directory. Run `python setup.py build` before trying to run tests.")
         os.environ['GRAMPS_RESOURCES'] = '.'
         all_tests = unittest.TestLoader().discover('.', pattern='*_test.py')
-        unittest.TextTestRunner(verbosity=self.verbose).run(all_tests)
+        result = unittest.TextTestRunner(verbosity=self.verbose).run(all_tests)
+        if not result.wasSuccessful():
+            raise SystemExit('ERROR: Unit test failure.')
 
 #-------------------------------------------------------------------------
 #
@@ -349,11 +351,6 @@ data_files_core.append(('share/gramps/css', CSS_FILES))
 data_files_core.append(('share/gramps/css/swanky-purse', SWANKY_PURSE))
 data_files_core.append(('share/gramps/css/swanky-purse/images', SWANKY_IMG))
 
-PNG_FILES = glob.glob(os.path.join('data', '*.png'))
-SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
-data_files_core.append(('share/icons/gnome/48x48/mimetypes', PNG_FILES))
-data_files_core.append(('share/icons/gnome/scalable/mimetypes', SVG_FILES))
-
 DTD_FILES = glob.glob(os.path.join('data', '*.dtd'))
 RNG_FILES = glob.glob(os.path.join('data', '*.rng'))
 XML_FILES = glob.glob(os.path.join('data', '*.xml'))
@@ -375,16 +372,24 @@ data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_22))
 data_files_gui.append(('share/gramps/images/hicolor/24x24/actions', ICON_24))
 data_files_gui.append(('share/gramps/images/hicolor/48x48/actions', ICON_48))
 data_files_gui.append(('share/gramps/images/hicolor/scalable/actions', ICON_SC))
-APP_16 = os.path.join(THEME, '16x16', 'apps', 'gramps.png')
-APP_22 = os.path.join(THEME, '22x22', 'apps', 'gramps.png')
-APP_24 = os.path.join(THEME, '24x24', 'apps', 'gramps.png')
-APP_48 = os.path.join(THEME, '48x48', 'apps', 'gramps.png')
-APP_SC = os.path.join(THEME, 'scalable', 'apps', 'gramps.svg')
+APP_16 = os.path.join(THEME, '16x16', 'apps', 'org.gramps_project.Gramps.png')
+APP_22 = os.path.join(THEME, '22x22', 'apps', 'org.gramps_project.Gramps.png')
+APP_24 = os.path.join(THEME, '24x24', 'apps', 'org.gramps_project.Gramps.png')
+APP_48 = os.path.join(THEME, '48x48', 'apps', 'org.gramps_project.Gramps.png')
+APP_128 = os.path.join(THEME, '128x128', 'apps', 'org.gramps_project.Gramps.png')
+APP_256 = os.path.join(THEME, '256x256', 'apps', 'org.gramps_project.Gramps.png')
+APP_SC = os.path.join(THEME, 'scalable', 'apps', 'org.gramps_project.Gramps.svg')
 data_files_gui.append(('share/icons/hicolor/16x16/apps', [APP_16]))
 data_files_gui.append(('share/icons/hicolor/22x22/apps', [APP_22]))
 data_files_gui.append(('share/icons/hicolor/24x24/apps', [APP_24]))
 data_files_gui.append(('share/icons/hicolor/48x48/apps', [APP_48]))
+data_files_gui.append(('share/icons/hicolor/128x128/apps', [APP_128]))
+data_files_gui.append(('share/icons/hicolor/256x256/apps', [APP_256]))
 data_files_gui.append(('share/icons/hicolor/scalable/apps', [APP_SC]))
+MIME_48 = glob.glob(os.path.join(THEME, '48x48', 'mimetypes', '*.png'))
+MIME_SC = glob.glob(os.path.join(THEME, 'scalable', 'mimetypes', '*.svg'))
+data_files_gui.append(('share/icons/hicolor/48x48/mimetypes', MIME_48))
+data_files_gui.append(('share/icons/hicolor/scalable/mimetypes', MIME_SC))
 
 data_files = data_files_core + data_files_gui
 
@@ -446,6 +451,7 @@ setup(name = 'gramps',
           "Natural Language :: Finnish",
           "Natural Language :: French",
           "Natural Language :: German",
+          "Natural Language :: German (Austrian)",
           "Natural Language :: Greek",
           "Natural Language :: Hebrew",
           "Natural Language :: Hungarian",

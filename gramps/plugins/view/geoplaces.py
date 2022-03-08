@@ -23,33 +23,30 @@
 """
 Geography for places
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import time
 import operator
-from gi.repository import Gdk
-KEY_TAB = Gdk.KEY_Tab
-from gi.repository import Gtk
 from collections import defaultdict
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("GeoGraphy.geoplaces")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import Gdk
+from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.lib import EventType
 from gramps.gen.lib import PlaceType
 from gramps.gen.config import config
@@ -60,11 +57,14 @@ from gramps.plugins.lib.maps.geography import GeoGraphyView
 from gramps.plugins.lib.maps import constants
 from gramps.gui.utils import ProgressMeter
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+KEY_TAB = Gdk.KEY_Tab
+_ = glocale.translation.gettext
+_LOG = logging.getLogger("GeoGraphy.geoplaces")
 
 _UI_DEF = [
     '''
@@ -154,11 +154,12 @@ _UI_DEF = [
 # pylint: disable=unused-variable
 # pylint: disable=unused-argument
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # GeoView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GeoPlaces(GeoGraphyView):
     """
     The view used to render places map.
@@ -207,9 +208,9 @@ class GeoPlaces(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.window_name = _('Places map')
         GeoGraphyView.__init__(self, self.window_name,
-                                      pdata, dbstate, uistate,
-                                      PlaceBookmarks,
-                                      nav_group)
+                               pdata, dbstate, uistate,
+                               PlaceBookmarks,
+                               nav_group)
         self.dbstate = dbstate
         self.uistate = uistate
         self.place_list = []
@@ -267,8 +268,14 @@ class GeoPlaces(GeoGraphyView):
         """
         Rebuild the tree with the given places handle as the root.
         """
+        if self.osm is None:
+            return
         self.places_found = []
-        self.build_tree()
+        active = self.uistate.get_active('Place')
+        if active:
+            self._createmap(active)
+        else:
+            self._createmap(None)
 
     def show_all_places(self, menu, event, lat, lon):
         """
@@ -284,13 +291,7 @@ class GeoPlaces(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
-        if not self.dbstate.is_open():
-            return
-        active = self.uistate.get_active('Place')
-        if active:
-            self._createmap(active)
-        else:
-            self._createmap(None)
+        pass
 
     def _create_one_place(self, place):
         """
@@ -314,24 +315,25 @@ class GeoPlaces(GeoGraphyView):
                 try:
                     colour = (str(place.get_type()),
                               self.plc_custom_color[str(place.get_type())])
-                except:
+                except Exception:
                     colour = self.plc_color[PlaceType.CUSTOM + 1]
             self._append_to_places_list(descr, None, "",
                                         latitude, longitude,
                                         None, None,
                                         EventType.UNKNOWN,
-                                        None, # person.gramps_id
+                                        None,  # person.gramps_id
                                         place.gramps_id,
-                                        None, # event.gramps_id
-                                        None, # family.gramps_id
-                                        color=colour
-                                       )
+                                        None,  # event.gramps_id
+                                        None,  # family.gramps_id
+                                        color=colour)
 
     def _createmap(self, place_x):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
+        if self.osm is None:
+            return
         dbstate = self.dbstate
         self.place_list = []
         self.places_found = []
@@ -382,7 +384,7 @@ class GeoPlaces(GeoGraphyView):
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 0'07" with pixbuf optimization
         # base "villes de france" : 38101 places :
-        # gramps 3.4 python 2.7 (draw_markers are estimated when moving the map)
+        # gramps 3.4 python 2.7 (draw_markers is estimated when moving the map)
         # 38101 places: createmap: 04'32";
         #               create_markers: 0'04"; draw markers: N/A :: 0'03"
         # 65598 places: createmap: 10'03";
@@ -393,13 +395,13 @@ class GeoPlaces(GeoGraphyView):
         # 65598 places: createmap: 08'48";
         #               create_markers: 0'01"; draw markers: 0'07"
         _LOG.debug("%s", time.strftime("start createmap : "
-                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
+                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
         self.custom_places()
         if self.show_all:
             self.show_all = False
             try:
                 places_handle = dbstate.db.get_place_handles()
-            except:
+            except Exception:
                 return
             progress = ProgressMeter(self.window_name,
                                      can_cancel=False,
@@ -412,7 +414,7 @@ class GeoPlaces(GeoGraphyView):
                 progress.step()
             progress.close()
         elif self.generic_filter:
-            user=self.uistate.viewmanager.user
+            user = self.uistate.viewmanager.user
             place_list = self.generic_filter.apply(dbstate.db, user=user)
             progress = ProgressMeter(self.window_name,
                                      can_cancel=False,
@@ -426,55 +428,53 @@ class GeoPlaces(GeoGraphyView):
             progress.close()
             # reset completely the filter. It will be recreated next time.
             self.generic_filter = None
-        elif place_x != None:
+        elif place_x is not None:
             place = dbstate.db.get_place_from_handle(place_x)
             self._create_one_place(place)
             self.message_layer.add_message(
-                 _("Right click on the map and select 'show all places'"
-                   " to show all known places with coordinates. "
-                   "You can change the markers color depending on place type. "
-                   "You can use filtering."))
+                _("Right click on the map and select 'show all places'"
+                  " to show all known places with coordinates. "
+                  "You can change the markers color depending on place type. "
+                  "You can use filtering."))
             if place.get_latitude() != "" and place.get_longitude() != "":
                 latitude, longitude = conv_lat_lon(place.get_latitude(),
                                                    place.get_longitude(),
                                                    "D.D8")
                 if latitude and longitude:
+                    zwc = int(config.get("geography.zoom_when_center"))
                     self.osm.set_center_and_zoom(float(latitude),
                                                  float(longitude),
-                                                 int(config.get(
-                                                 "geography.zoom_when_center")))
+                                                 zwc)
         else:
             self.message_layer.add_message(
-                 _("Right click on the map and select 'show all places'"
-                   " to show all known places with coordinates. "
-                   "You can use the history to navigate on the map. "
-                   "You can change the markers color depending on place type. "
-                   "You can use filtering."))
+                _("Right click on the map and select 'show all places'"
+                  " to show all known places with coordinates. "
+                  "You can use the history to navigate on the map. "
+                  "You can change the markers color depending on place type. "
+                  "You can use filtering."))
         _LOG.debug(" stop createmap.")
         _LOG.debug("%s", time.strftime("begin sort : "
-                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
-        self.sort = sorted(self.place_list,
-                           key=operator.itemgetter(0)
-                          )
+                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        self.sort = sorted(self.place_list, key=operator.itemgetter(0))
         _LOG.debug("%s", time.strftime("  end sort : "
-                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
-        if self.nbmarkers > 500: # performance issue. Is it the good value ?
+                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        if self.nbmarkers > 500:  # performance issue. Is it the good value ?
             self.message_layer.add_message(
-                 _("The place name in the status bar is disabled."))
+                _("The place name in the status bar is disabled."))
             self.no_show_places_in_status_bar = True
         if self.nbplaces >= self._config.get("geography.max_places"):
             self.message_layer.set_font_attributes(None, None, "red")
             self.message_layer.add_message(
-                 _("The maximum number of places is reached (%d).") %
-                   self._config.get("geography.max_places"))
+                _("The maximum number of places is reached (%d).") %
+                self._config.get("geography.max_places"))
             self.message_layer.add_message(
-                 _("Some information are missing."))
+                _("Some information are missing."))
             self.message_layer.add_message(
-                 _("Please, use filtering to reduce this number."))
+                _("Please, use filtering to reduce this number."))
             self.message_layer.add_message(
-                 _("You can modify this value in the geography option."))
+                _("You can modify this value in the geography option."))
             self.message_layer.add_message(
-                 _("In this case, it may take time to show all markers."))
+                _("In this case, it may take time to show all markers."))
 
         self._create_markers()
 
@@ -585,82 +585,59 @@ class GeoPlaces(GeoGraphyView):
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
-        configdialog.add_color(grid,
-                _("Unknown"),
-                1, 'geography.color.unknown', col=1)
-        configdialog.add_color(grid,
-                _("Custom"),
-                2, 'geography.color.custom', col=1)
-        configdialog.add_color(grid,
-                _("Locality"),
-                3, 'geography.color.locality', col=1)
-        configdialog.add_color(grid,
-                _("Street"),
-                4, 'geography.color.street', col=1)
-        configdialog.add_color(grid,
-                _("Neighborhood"),
-                5, 'geography.color.neighborhood', col=1)
-        configdialog.add_color(grid,
-                _("Borough"),
-                6, 'geography.color.borough', col=1)
-        configdialog.add_color(grid,
-                _("Village"),
-                7, 'geography.color.village', col=1)
-        configdialog.add_color(grid,
-                _("Hamlet"),
-                8, 'geography.color.hamlet', col=1)
-        configdialog.add_color(grid,
-                _("Farm"),
-                9, 'geography.color.farm', col=1)
-        configdialog.add_color(grid,
-                _("Building"),
-                10, 'geography.color.building', col=1)
-        configdialog.add_color(grid,
-                _("Number"),
-                11, 'geography.color.number', col=1)
-        configdialog.add_color(grid,
-                _("Country"),
-                1, 'geography.color.country', col=4)
-        configdialog.add_color(grid,
-                _("State"),
-                2, 'geography.color.state', col=4)
-        configdialog.add_color(grid,
-                _("County"),
-                3, 'geography.color.county', col=4)
-        configdialog.add_color(grid,
-                _("Province"),
-                4, 'geography.color.province', col=4)
-        configdialog.add_color(grid,
-                _("Region"),
-                5, 'geography.color.region', col=4)
-        configdialog.add_color(grid,
-                _("Department"),
-                6, 'geography.color.department', col=4)
-        configdialog.add_color(grid,
-                _("District"),
-                7, 'geography.color.district', col=4)
-        configdialog.add_color(grid,
-                _("Parish"),
-                8, 'geography.color.parish', col=4)
-        configdialog.add_color(grid,
-                _("City"),
-                9, 'geography.color.city', col=4)
-        configdialog.add_color(grid,
-                _("Town"),
-                10, 'geography.color.town', col=4)
-        configdialog.add_color(grid,
-                _("Municipality"),
-                11, 'geography.color.municipality', col=4)
+        configdialog.add_color(grid, _("Unknown"),
+                               1, 'geography.color.unknown', col=1)
+        configdialog.add_color(grid, _("Custom"),
+                               2, 'geography.color.custom', col=1)
+        configdialog.add_color(grid, _("Locality"),
+                               3, 'geography.color.locality', col=1)
+        configdialog.add_color(grid, _("Street"),
+                               4, 'geography.color.street', col=1)
+        configdialog.add_color(grid, _("Neighborhood"),
+                               5, 'geography.color.neighborhood', col=1)
+        configdialog.add_color(grid, _("Borough"),
+                               6, 'geography.color.borough', col=1)
+        configdialog.add_color(grid, _("Village"),
+                               7, 'geography.color.village', col=1)
+        configdialog.add_color(grid, _("Hamlet"),
+                               8, 'geography.color.hamlet', col=1)
+        configdialog.add_color(grid, _("Farm"),
+                               9, 'geography.color.farm', col=1)
+        configdialog.add_color(grid, _("Building"),
+                               10, 'geography.color.building', col=1)
+        configdialog.add_color(grid, _("Number"),
+                               11, 'geography.color.number', col=1)
+        configdialog.add_color(grid, _("Country"),
+                               1, 'geography.color.country', col=4)
+        configdialog.add_color(grid, _("State"),
+                               2, 'geography.color.state', col=4)
+        configdialog.add_color(grid, _("County"),
+                               3, 'geography.color.county', col=4)
+        configdialog.add_color(grid, _("Province"),
+                               4, 'geography.color.province', col=4)
+        configdialog.add_color(grid, _("Region"),
+                               5, 'geography.color.region', col=4)
+        configdialog.add_color(grid, _("Department"),
+                               6, 'geography.color.department', col=4)
+        configdialog.add_color(grid, _("District"),
+                               7, 'geography.color.district', col=4)
+        configdialog.add_color(grid, _("Parish"),
+                               8, 'geography.color.parish', col=4)
+        configdialog.add_color(grid, _("City"),
+                               9, 'geography.color.city', col=4)
+        configdialog.add_color(grid, _("Town"),
+                               10, 'geography.color.town', col=4)
+        configdialog.add_color(grid, _("Municipality"),
+                               11, 'geography.color.municipality', col=4)
         self.custom_places()
         if len(self.plc_custom_color) > 0:
             configdialog.add_text(grid, _("Custom places name"), 12)
             start = 13
             for color in self.plc_custom_color.keys():
                 cust_col = 'geography.color.' + color.lower()
-                row = start if start % 2 else start -1
-                column = 1 if start %2 else 4
-                configdialog.add_color(grid, color,
-                        row, cust_col, col=column)
+                row = start if start % 2 else start - 1
+                column = 1 if start % 2 else 4
+                configdialog.add_color(grid, color, row, cust_col, col=column)
                 start += 1
         return _('The places marker color'), grid
 
@@ -675,7 +652,7 @@ class GeoPlaces(GeoGraphyView):
                 cust_col = 'geography.color.' + str(place.get_type()).lower()
                 try:
                     color = self._config.get(cust_col)
-                except:
+                except Exception:
                     color = '#008b00'
                     self._config.register(cust_col, color)
                 if str(place.get_type()) not in self.plc_custom_color.keys():

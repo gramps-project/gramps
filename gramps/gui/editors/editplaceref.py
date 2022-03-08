@@ -181,9 +181,14 @@ class EditPlaceRef(EditReference):
 
     def set_latlongitude(self, value):
         try:
-            coma = value.index(', ')
-            longitude = value[coma+2:].strip().replace(',','.')
-            latitude = value[:coma].strip().replace(',','.')
+            # Bug 12349, 12374
+            parts = value.split(', ')
+            if len(parts) == 2:
+                latitude = parts[0].strip().replace(',', '.')
+                longitude = parts[1].strip().replace(',', '.')
+            else:
+                latitude, longitude = value.split(',')
+
             self.longitude.set_text(longitude)
             self.latitude.set_text(latitude)
             self.top.get_object("lat_entry").validate(force=True)
@@ -199,12 +204,12 @@ class EditPlaceRef(EditReference):
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(
-                # translators: translate the "S" too (and the "or" of course)
+                # Translators: translate the "S" too (and the "or" of course)
                 _('Invalid latitude\n(syntax: '
                   '18\u00b09\'48.21"S, -18.2412 or -18:9:48.21)'))
         elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
             return ValidationError(
-                # translators: translate the "E" too (and the "or" of course)
+                # Translators: translate the "E" too (and the "or" of course)
                 _('Invalid longitude\n(syntax: '
                   '18\u00b09\'48.21"E, -18.2412 or -18:9:48.21)'))
 

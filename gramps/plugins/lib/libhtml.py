@@ -30,7 +30,6 @@ This module exports the Html class
 #------------------------------------------------------------------------
 # Python modules
 #------------------------------------------------------------------------
-import re
 
 #------------------------------------------------------------------------
 #
@@ -114,10 +113,10 @@ class Html(list):
         """
         Build and return an XML declaration statement
 
-        :type  version: decimal number
-        :param version: version of XML to be used. Defaults to 1.0
-        :type  encoding: string
-        :param encoding: encoding method to be used. Defaults to "UTF-8"
+        :type  version:    decimal number
+        :param version:    version of XML to be used. Defaults to 1.0
+        :type  encoding:   string
+        :param encoding:   encoding method to be used. Defaults to "UTF-8"
         :type  standalone: string
         :param standalone: "yes" or "no".  Defaults to "no"
         """
@@ -132,16 +131,16 @@ class Html(list):
         """
         Build and return a DOCTYPE statement
 
-        :type  name: string
-        :param name: name of this DOCTYPE. Defaults to "html"
-        :type  public: string
-        :param public: class of this DOCTYPE. Defaults to 'PUBLIC
+        :type  name:        string
+        :param name:        name of this DOCTYPE. Defaults to "html"
+        :type  public:      string
+        :param public:      class of this DOCTYPE. Defaults to 'PUBLIC
         :type  external_id: string
         :param external_id: external identifier of this DOCTYPE.
                             Defaults to XHTML 1.0 STRICT
-        :type  args: object
-        :param args: 0 or more positional parameters to be added to this
-                     DOCTYPE.
+        :type  args:        object
+        :param args:        0 or more positional parameters to be added to
+                            this DOCTYPE.
         """
         return (
             '<!DOCTYPE %s %s %s' % (
@@ -152,38 +151,40 @@ class Html(list):
             ).rstrip() + '>'
 #
     @staticmethod
-    def html(xmlns=_XMLNS, lang='en', *args, **keywargs):
+    def html(xmlns=_XMLNS, lang='en', php_session=None, *args, **keywargs):
         """
         Build and return a properly-formated <html> object
 
         :type  xmlns: string
-        :param xmlns: XML namespace string. Default = 'http://www.w3.org/1999/xhtml'
-        :type  lang: string
-        :param lang: language to be used. Defaul = 'en'
-        :rtype:   reference to new Html instance
-        :returns:  reference to the newly-created Html instances for <html> object
+        :param xmlns: XML namespace string.
+                      Default = 'http://www.w3.org/1999/xhtml'
+        :type  lang:  string
+        :param lang:  language to be used. Defaul = 'en'
+        :rtype:       reference to new Html instance
+        :php_session: If we need to have a php session start
+        :returns:     reference to the newly-created Html instances
+                      for <html> object
         """
-        return Html('html',
-            indent=False,
-            xmlns=xmlns,
-            attr='xml:lang="%s" lang="%s"' % ((lang,)*2),
-            *args, **keywargs
-            )
+        return Html('html', indent=False, xmlns=xmlns,
+                    attr='xml:lang="%s" lang="%s"' % ((lang,)*2),
+                    php=php_session,
+                    *args, **keywargs)
 #
     @staticmethod
     def head(title=None, encoding='utf-8', html5=True, *args, **keywargs):
         """
         Build and return a properly-formated <head> object
 
-        :type  title: string or None
-        :param title: title for HTML page. Default=None. If None no
-                    title tag is written
+        :type  title:    string or None
+        :param title:    title for HTML page. Default=None. If None no
+                         title tag is written
         :type  encoding: string
         :param encoding: encoding to be used. Default = 'utf-8'
-        :param html5: generate html5 syntax. Default = True. Set to False
-                      if pre-html5 syntax required
-        :rtype:  reference to new Html instance
-        :returns: reference to the newly-created Html instances for <head> object
+        :param html5:    generate html5 syntax. Default = True. Set to False
+                         if pre-html5 syntax required
+        :rtype:          reference to new Html instance
+        :returns:        reference to the newly-created Html instances
+                         for <head> object
         """
 
         head = Html('head', *args, **keywargs)
@@ -199,39 +200,38 @@ class Html(list):
         return head
 #
     @staticmethod
-    def page(title=None, encoding='utf-8', lang='en', html5=True, cms=False, *args, **keywargs):
+    def page(title=None, encoding='utf-8', lang='en', html5=True, cms=False,
+             php_session=None, *args, **keywargs):
         """
         This function prepares a new Html class based page and returns
 
-        :type  title: string
-        :param title: title for HTML page. Default=None
+        :type  title:    string
+        :param title:    title for HTML page. Default=None
         :type  encoding: string
         :param encoding: encoding to be used. Default = 'utf-8'
-        :type  lang: string
-        :param lang: language to be used. Defaul = 'en'
-        :param html5: generate html5 syntax. Default = True. Set to False
-                      if pre-html5 syntax required
-        :rtype:   three object references
-        :returns:  references to the newly-created Html instances for
-                  page, head and body
+        :type  lang:     string
+        :param lang:     language to be used. Defaul = 'en'
+        :param html5:    generate html5 syntax. Default = True. Set to False
+                         if pre-html5 syntax required
+        :rtype:          three object references
+        :php_session:    the note to include before all html code
+        :returns:        references to the newly-created Html instances for
+                         page, head and body
         """
-        page = Html.html(lang=lang, *args, **keywargs)
+        page = Html.html(lang=lang, php_session=php_session,
+                         *args, **keywargs)
         if html5:
             page.addDOCTYPE(external_id=_HTML5)
         else:
             page.addXML(encoding=encoding)
             page.addDOCTYPE(external_id=_XHTML10_STRICT)
 #
-        head = Html.head(title=title,
-               encoding=encoding,
-               lang=lang,
-               html5=html5,
-               indent=False,
-               *args, **keywargs
-               )
+        head = Html.head(title=title, encoding=encoding, lang=lang,
+                         html5=html5, indent=False, *args, **keywargs)
 #
         if cms:
-            body = Html('div', class_ = "body", indent=False, *args, **keywargs)
+            body = Html('div', class_="body", indent=False,
+                        *args, **keywargs)
         else:
             body = Html('body', indent=False, *args, **keywargs)
         page += (head, body)
@@ -241,34 +241,37 @@ class Html(list):
         """
         Class Constructor: Returns a new instance of the Html class
 
-        :type  tag: string
-        :param tag: The HTML tag. Default is 'html'
-        :type  args: optional positional parameters
-        :param args: 0 more positional arguments to be inserted between
-                     opening and closing HTML tags.
-        :type  indent: boolean or None
-        :param indent: True  ==> indent this object with respect to its parent
-                       False ==> do not indent this object
-                       None  ==> no indent for this object (use eg for pre tag)
-                       Defaults to True
-        :type  inline: boolean
-        :param inline: True  ==> instructs the write() method to output this
-                                 object and any child objects as a single string
-                       False ==> output this object and its contents one string
-                                 at a time
-                       Defaults to False
-        :type  close: boolean or None
-        :param close: True  ==> this tag should be closed normally
-                                e.g. <tag>...</tag>
-                      False ==> this tag should be automatically closed
-                                e.g. <tag />
-                      None  ==> do not provide any closing for this tag
+        :type  tag:      string
+        :param tag:      The HTML tag. Default is 'html'
+        :type  args:     optional positional parameters
+        :param args:     0 more positional arguments to be inserted between
+                         opening and closing HTML tags.
+        :type  indent:   boolean or None
+        :param indent:   True  ==> indent this object with respect to its
+                                   parent
+                         False ==> do not indent this object
+                         None  ==> no indent for this object
+                                   (use eg for pre tag)
+                         Defaults to True
+        :type  inline:   boolean
+        :param inline:   True  ==> instructs the write() method to output
+                                   this object and any child objects as a
+                                   single string
+                         False ==> output this object and its contents one
+                                   string at a time
+                         Defaults to False
+        :type  close:    boolean or None
+        :param close:    True  ==> this tag should be closed normally
+                                   e.g. <tag>...</tag>
+                         False ==> this tag should be automatically closed
+                                   e.g. <tag />
+                         None  ==> do not provide any closing for this tag
         :type  keywargs: optional keyword parameters
         :param keywargs: 0 or more keyword=argument pairs that should be
                          copied into the opening tag as keyword="argument"
                          attributes
-        :rtype:   object reference
-        :returns:  reference to the newly-created Html instance
+        :rtype:          object reference
+        :returns:        reference to the newly-created Html instance
 
         For full usage of the Html class with examples, please see the wiki
         page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
@@ -284,16 +287,19 @@ class Html(list):
 #       Keywords we don't recognize are saved for later
 #       addition to the opening tag as attributes.
 #
+        phpnote = None
         for keyw, arg in sorted(keywargs.items()):
             if (keyw in ['indent', 'close', 'inline'] and
-               arg in [True, False, None]):
+                    arg in [True, False, None]):
                 setattr(self, keyw, arg)
-            elif keyw == 'attr':                        # pass attributes along
+            elif keyw == 'attr':                      # pass attributes along
                 attr += ' ' + arg
-            elif keyw[-1] == '_':                       # avoid Python conflicts
-                attr += ' %s="%s"' % (keyw[:-1], arg)   # pass keyword arg along
+            elif keyw == 'php':                       # php init session
+                phpnote = arg
+            elif keyw[-1] == '_':                     # avoid Python conflicts
+                attr += ' %s="%s"' % (keyw[:-1], arg) # pass keyword arg along
             else:
-                attr += ' %s="%s"' % (keyw, arg)        # pass keyword arg along
+                attr += ' %s="%s"' % (keyw, arg)      # pass keyword arg along
 #
         if tag[0] == '<':               # if caller provided preformatted tag?
             self[0:] = [tag]            #   add it in
@@ -301,7 +307,13 @@ class Html(list):
         else:
             if tag in _START_CLOSE:     # if tag in special list
                 self.close = False      #   it needs no closing tag
-            begin = '<%s%s%s>' % (      # build opening tag with attributes
+            if phpnote:
+                # We need to insert php code before the html tag
+                # This is used to initiate a php session.
+                htmlhead = phpnote + '<%s%s%s>'
+            else:
+                htmlhead = '<%s%s%s>'
+            begin = htmlhead % (        # build opening tag with attributes
                 tag,
                 attr,
                 ('' if self.close is not False else ' /')
@@ -310,7 +322,7 @@ class Html(list):
             # Use slice syntax since we don't override slicing
             self[0:] = [begin] + list(args)         # add beginning tag
             if self.close:                          # if need closing tab
-                self[len(self):] = ['</%s>' % tag]         #   add it on the end
+                self[len(self):] = ['</%s>' % tag]  # add it on the end
 #
     def __add(self, value):
         """
@@ -320,8 +332,8 @@ class Html(list):
         :type  value: object
         :param value: object to be added
 
-        :rtype:  object reference
-        :returns: reference to object with new value added
+        :rtype:       object reference
+        :returns:     reference to object with new value added
         """
         if (isinstance(value, Html) or not hasattr(value, '__iter__') or
                 isinstance(value, str)):
@@ -346,11 +358,11 @@ class Html(list):
 
         :type  cur_value: object
         :param cur_value: value of object to be replaced
-        :type  value: object
-        :param value: replacement value
+        :type  value:     object
+        :param value:     replacement value
 
-        :rtype:  object reference
-        :returns: reference to object with new value added
+        :rtype:           object reference
+        :returns:         reference to object with new value added
         """
         self[self.index(cur_value)] = value
 #
@@ -360,8 +372,8 @@ class Html(list):
         :type  value: object
         :param value: object to be removed
 
-        :rtype:  object reference
-        :returns: reference to object with value removed
+        :rtype:       object reference
+        :returns:     reference to object with value removed
         """
         del self[self.index(value)]
         return self
@@ -372,7 +384,7 @@ class Html(list):
         """
         Returns string representation
 
-        :rtype:  string
+        :rtype:   string
         :returns: string representation of object
         """
         return '%s'*len(self) % tuple(self[:])
@@ -382,9 +394,9 @@ class Html(list):
         Iterator function: returns a generator that performs an
         insertion-order tree traversal and yields each item found.
         """
-        for item in self[:]:                    # loop through all list elements
+        for item in self[:]:               # loop through all list elements
             if isinstance(item, Html):     # if nested list found
-                for sub_item in item:           #     recurse
+                for sub_item in item:      #     recurse
                     yield sub_item
             else:
                 yield item
@@ -393,26 +405,26 @@ class Html(list):
 #
     def write(self, method=print, indent='\t', tabs=''):
         """
-        Output function: performs an insertion-order tree traversal
-        and calls supplied method for each item found.
+        Output function: performs an insertion-order tree traversal and
+                         calls supplied method for each item found.
 
-        :type  method: function reference
-        :param method: function to call with each item found
-        :type  indent: string
-        :param indenf: string to use for indentation. Default = '\t' (tab)
-        :type  tabs: string
-        :param tabs: starting indentation
+        :type  method:   function reference
+        :param method:   function to call with each item found
+        :type  indent:   string
+        :param indenf:   string to use for indentation. Default = '\t' (tab)
+        :type  tabs:     string
+        :param tabs:     starting indentation
         """
         if self.indent is None:
             tabs = ''
         elif self.indent:
             tabs += indent
-        if self.inline:                         # if inline, write all list and
-            method(str('%s%s' % (tabs, self)))       # nested list elements
+        if self.inline:                        # if inline, write all list and
+            method(str('%s%s' % (tabs, self))) # nested list elements
 #
         else:
-            for item in self[:]:                # else write one at a time
-                if isinstance(item, Html):      # recurse if nested Html class
+            for item in self[:]:               # else write one at a time
+                if isinstance(item, Html):     # recurse if nested Html class
                     item.write(method=method, indent=indent, tabs=tabs)
                 else:
                     method(str('%s%s' % (tabs, item)))  # else write the line
@@ -421,10 +433,10 @@ class Html(list):
         """
         Add an XML statement to the start of the list for this object
 
-        :type  version: decimal number
-        :param version: version of XML to be used. Defaults to 1.0
-        :type  encoding: string
-        :param encoding: encoding method to be used. Defaults to "UTF-8"
+        :type  version:    decimal number
+        :param version:    version of XML to be used. Defaults to 1.0
+        :type  encoding:   string
+        :param encoding:   encoding method to be used. Defaults to "UTF-8"
         :type  standalone: string
         :param standalone: "yes" or "no".  Defaults to "no"
         """
@@ -436,30 +448,30 @@ class Html(list):
         self[0:0] = [xmldecl]
 #
     def addDOCTYPE(self, name='html', public='PUBLIC',
-            external_id=_HTML5, *args):
+                   external_id=_HTML5, *args):
         """
         Add a DOCTYPE statement to the start of the list
 
-        :type  name: string
-        :param name: name of this DOCTYPE. Defaults to "html"
+        :type  name:        string
+        :param name:        name of this DOCTYPE. Defaults to "html"
         :type  external_id: string
         :param external_id: external identifier of this DOCTYPE.
                             Defaults to XHTML 1.0 STRICT
-        :type  args: object
-        :param args: 0 or more positional parameters to be added to this
-                     DOCTYPE.
+        :type  args:        object
+        :param args:        0 or more positional parameters to be added
+                            to this DOCTYPE.
         """
         doctype = (
-            '<!DOCTYPE %s %s %s%s' % (
-                name,
-                ('' if external_id ==_HTML5 else public),
-                external_id,
-                ' %s'*len(args) % args
-                )
+            '<!DOCTYPE %s %s %s%s' % (name,
+                                      ('' if external_id == _HTML5
+                                       else public),
+                                      external_id,
+                                      ' %s'*len(args) % args)
             ).rstrip() + '>'
         # Note: DOCTYPE declaration must follow XML declaration
 
-        if len(self) and self[0][:6] == '<?xml ':
+        #if len(self) and self[0][:6] == '<?xml ':
+        if self[0][:6] == '<?xml ':
             self[1:1] = [doctype]
         else:
             self[0:0] = [doctype]
@@ -468,7 +480,7 @@ class Html(list):
         """
         Returns HTML tag for this object
 
-        :rtype:  string
+        :rtype:   string
         :returns: HTML tag
         """
         return self[0].split()[0].strip('< >')
@@ -496,7 +508,7 @@ class Html(list):
         """
         Returns HTML attributes for this object
 
-        :rtype:  string
+        :rtype:   string
         :returns: HTML attributes
         """
         attr = self[0].strip('<!?/>').split(None, 1)
@@ -520,20 +532,16 @@ class Html(list):
         """
         Removes HTML attributes for this object
         """
-        self[0] = '<' + self.tag + (
-
-                # Set correct closing delimiter(s)
-
-                ' />' if self.close is False else '>'
-                )
+        self[0] = '<' + self.tag + (# Set correct closing delimiter(s)
+            ' />' if self.close is False else '>')
 #
-    attr = property(__getattr,  __setattr, __delattr)
+    attr = property(__getattr, __setattr, __delattr)
 #
     def __getinside(self):
         """
         Returns list of items between opening and closing tags
 
-        :rtype:  list
+        :rtype:   list
         :returns: list of items between opening and closing HTML tags
         """
         return self[1:-1]

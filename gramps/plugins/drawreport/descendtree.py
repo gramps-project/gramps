@@ -354,7 +354,7 @@ class TitleC(DescendantTitleBase):
                 for kid in family.get_child_ref_list()]
 
         #ok we have the children.  Make a title off of them
-        # translators: needed for Arabic, ignore otherwise
+        # Translators: needed for Arabic, ignore otherwise
         cousin_names = self._(', ').join(self._get_names(kids, self._nd))
 
         self.text = self._(
@@ -1066,8 +1066,8 @@ class MakeReport:
     def __reverse_family_group(self):
         """ go through the n-1 to 0 cols of boxes looking for families
         (parents with children) that may need to be moved. """
-        for x_col in range(len(self.cols)-1, -1, -1):
-            box = self.cols[x_col][0]   #The first person in this col
+        for col in reversed(self.cols):
+            box = col[0]   #The first person in this col
             while box:
                 left_group, right_group = self.__next_family_group(box)
                 if not left_group:
@@ -1696,7 +1696,7 @@ class DescendTreeOptions(MenuReportOptions):
         repldisp = TextOption(
             _("Replace Display Format:\n'Replace this'/' with this'"),
             [])
-        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
+        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A."))
         menu.add_option(category_name, "replace_list", repldisp)
 
         self.usenote = BooleanOption(_('Include a note'), False)

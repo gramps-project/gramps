@@ -271,6 +271,7 @@ class BirthdayReport(Report):
             for person_handle in people:
                 step()
                 person = self.database.get_person_from_handle(person_handle)
+                short_name = self.get_name(person)
                 birth_ref = person.get_birth_ref()
                 birth_date = None
                 if birth_ref:
@@ -334,7 +335,7 @@ class BirthdayReport(Report):
                                 'person'   : short_name,
                                 'relation' : comment}
                         else:
-                            # translators: leave all/any {...} untranslated
+                            # Translators: leave all/any {...} untranslated
                             text = ngettext('* {year}{person}{dead}, {age}{relation}',
                                             '* {year}{person}{dead}, {age}{relation}',
                                             nyears).format(year=yeartxt,
@@ -403,7 +404,7 @@ class BirthdayReport(Report):
                                                          'spouse' : spouse_name,
                                                          'person' : short_name}
                                             else:
-                                                # translators: leave all/any {...} untranslated
+                                                # Translators: leave all/any {...} untranslated
                                                 text = ngettext("⚭ {year}{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
                                                                 "⚭ {year}{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
                                                                 nyears).format(year=yeartxt, spouse=spouse_name, deadtxt2=deadtxt2, person=short_name, deadtxt1=deadtxt1, nyears=nyears)

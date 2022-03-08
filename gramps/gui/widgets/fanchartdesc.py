@@ -555,8 +555,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         if not (generation is None) and generation > 0:
             selected = self.personpos_at_angle(generation, rads, btype)
         elif generation == -2:
-            for idx in range(len(self.angle[generation])):
-                start, stop, dummy_state = self.angle[generation][idx]
+            for idx, (start, stop, dummy) in enumerate(self.angle[generation]):
                 if self.radian_in_bounds(start, raw_rads, stop):
                     selected = idx
                     break

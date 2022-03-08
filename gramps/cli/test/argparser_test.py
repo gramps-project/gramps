@@ -22,20 +22,8 @@
 """ Unittest for argparser.py """
 
 import unittest
+from unittest.mock import Mock
 from ..argparser import ArgParser
-import sys
-
-try:
-    if sys.version_info < (3,3):
-        from mock import Mock
-    else:
-        from unittest.mock import Mock
-
-    MOCKING = True
-
-except:
-    MOCKING = False
-    print ("Mocking disabled", sys.exc_info()[0:2])
 
 class TestArgParser(unittest.TestCase):
     def setUp(self):
@@ -53,9 +41,21 @@ class TestArgParser(unittest.TestCase):
         assert bad, ap.__dict__
 
     def test_y_shortopt_sets_auto_accept(self):
-        bad,ap = self.triggers_option_error('-y')
-        assert not bad, ap.errors
-        assert ap.auto_accept
+        bad, ap = self.triggers_option_error('-y')
+
+        self.assertFalse(bad)
+
+        expected_errors = [(
+            'Error parsing the arguments',
+            'Error parsing the arguments: [ -y ] \n' +
+            'To use in the command-line mode, supply at least one input file to process.'
+        )]
+        self.assertEqual(
+            expected_errors,
+            ap.errors
+        )
+
+        self.assertTrue(ap.auto_accept)
 
     def test_yes_longopt_sets_auto_accept(self):
         bad,ap = self.triggers_option_error('--yes')
@@ -79,6 +79,24 @@ class TestArgParser(unittest.TestCase):
     def test_auto_accept_unset_by_default(self):
         ap = self.create_parser()
         assert not ap.auto_accept
+
+    def test_exception(self):
+        argument_parser = self.create_parser("-O")
+
+        expected_errors = [(
+            'Error parsing the arguments',
+            'option -O requires argument\n'
+            'Error parsing the arguments: [ -O ] \n'
+            'Type gramps --help for an overview of commands, or read the manual pages.'
+        )]
+        self.assertEqual(
+            expected_errors,
+            argument_parser.errors
+        )
+
+    def test_option_with_multiple_arguments(self):
+        argument_parser = self.create_parser('-l', 'family_tree_name')
+        self.assertEqual(argument_parser.database_names, ['family_tree_name'])
 
 if __name__ == "__main__":
     unittest.main()

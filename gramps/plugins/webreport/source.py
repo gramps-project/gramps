@@ -79,50 +79,55 @@ class SourcePages(BasePage):
     The base class 'BasePage' is initialised once for each page that is
     displayed.
     """
-    def __init__(self, report):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for
-                          this report
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title="")
+        BasePage.__init__(self, report, the_lang, the_title)
         self.source_dict = defaultdict(set)
         self.navigation = None
         self.citationreferents = None
 
-    def display_pages(self, title):
+    def display_pages(self, the_lang, the_title):
         """
         Generate and output the pages under the Sources tab, namely the sources
         index and the individual sources pages.
 
-        @param: title -- Is the title of the web page
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
         LOG.debug("obj_dict[Source]")
         for item in self.report.obj_dict[Source].items():
             LOG.debug("    %s", str(item))
         message = _("Creating source pages")
-        with self.r_user.progress(_("Narrated Web Site Report"), message,
+        progress_title = self.report.pgrs_title(the_lang)
+        with self.r_user.progress(progress_title, message,
                                   len(self.report.obj_dict[Source]) + 1
                                  ) as step:
-            self.sourcelistpage(self.report, title,
+            self.sourcelistpage(self.report, the_lang, the_title,
                                 self.report.obj_dict[Source].keys())
 
             index = 1
             for source_handle in self.report.obj_dict[Source]:
                 step()
                 index += 1
-                self.sourcepage(self.report, title, source_handle)
+                self.sourcepage(self.report, the_lang, the_title, source_handle)
 
-    def sourcelistpage(self, report, title, source_handles):
+    def sourcelistpage(self, report, the_lang, the_title, source_handles):
         """
         Generate and output the Sources index page.
 
         @param: report         -- The instance of the main report class for
                                   this report
-        @param: title          -- Is the title of the web page
+        @param: the_lang       -- The lang to process
+        @param: the_title      -- The title page related to the language
         @param: source_handles -- A list of the handles of the sources to be
                                   displayed
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         source_dict = {}
 
@@ -202,17 +207,19 @@ class SourcePages(BasePage):
         # and close the file
         self.xhtml_writer(sourcelistpage, output_file, sio, 0)
 
-    def sourcepage(self, report, title, source_handle):
+    def sourcepage(self, report, the_lang, the_title, source_handle):
         """
         Generate and output an individual Source page.
 
         @param: report        -- The instance of the main report class
                                  for this report
-        @param: title         -- Is the title of the web page
+        @param: the_lang      -- The lang to process
+        @param: the_title     -- The title page related to the language
         @param: source_handle -- The handle of the source to be output
         """
         source = report.database.get_source_from_handle(source_handle)
-        BasePage.__init__(self, report, title, source.get_gramps_id())
+        BasePage.__init__(self, report, the_lang, the_title,
+                          source.get_gramps_id())
         if not source:
             return
 
@@ -271,6 +278,17 @@ class SourcePages(BasePage):
                             Html("td", value, class_="ColumnValue", inline=True)
                         )
                         tbody += trow
+
+            # Tags
+            tags = self.show_tags(source)
+            if tags and self.report.inc_tags:
+                trow = Html("tr") + (
+                    Html("td", self._("Tags"),
+                         class_="ColumnAttribute", inline=True),
+                    Html("td", tags,
+                         class_="ColumnValue", inline=True)
+                    )
+                tbody += trow
 
             # Source notes
             notelist = self.display_note_list(source.get_note_list(), Source)

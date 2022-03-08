@@ -28,8 +28,8 @@ Provide merge capabilities for citations.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..lib import (Person, Family, Event, Place,
-        Media, Repository, Citation, Source)
+from ..lib import (Person, Family, Event, Place, Media, Repository,
+                   Citation, Source, Note)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -105,6 +105,12 @@ class MergeCitationQuery:
                     source.replace_citation_references(old_handle,
                                                            new_handle)
                     self.database.commit_source(source, trans)
+                elif class_name == Note.__name__:
+                    note = self.database.get_note_from_handle(handle)
+                    assert(note.has_handle_reference('Citation', old_handle))
+                    note.replace_handle_reference(
+                        'Citation', old_handle, new_handle)
+                    self.database.commit_note(note, trans)
                 else:
                     raise MergeError("Encounter an object of type %s that has "
                             "a citation reference." % class_name)

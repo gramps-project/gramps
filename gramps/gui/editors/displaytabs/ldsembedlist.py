@@ -44,7 +44,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 #-------------------------------------------------------------------------
 class LdsEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 6
+    _HANDLE_COL = 7
 #    _DND_TYPE = DdTargets.ADDRESS
 
     _MSG = {
@@ -62,8 +62,9 @@ class LdsEmbedList(EmbeddedList):
         (_('Date'),    1, 150, MARKUP_COL, -1, None),
         (_('Status'),  3, 75, TEXT_COL, -1, None),
         (_('Temple'),  2, 200, TEXT_COL, -1, None),
-        (_('Place'),   3, 100, TEXT_COL, -1, None),
-        (_('Private'), 5,  30, ICON_COL, -1, 'gramps-lock')
+        (_('Place'),   4, 100, TEXT_COL, -1, None),
+        (_('Source'),  5,  30, ICON_COL, -1, 'gramps-source'),
+        (_('Private'), 6,  30, ICON_COL, -1, 'gramps-lock'),
         ]
 
     def __init__(self, dbstate, uistate, track, data):
@@ -82,7 +83,7 @@ class LdsEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1, 5), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
+        return ((1, 5), (1, 6), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
     def add_button_clicked(self, obj):
         try:

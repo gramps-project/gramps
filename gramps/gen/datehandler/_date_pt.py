@@ -91,11 +91,13 @@ class DateParserPT(DateParser):
 
     quality_to_int = {
         'estimado'   : Date.QUAL_ESTIMATED,
+        'estimada'   : Date.QUAL_ESTIMATED,
         'est.'       : Date.QUAL_ESTIMATED,
         'est'        : Date.QUAL_ESTIMATED,
         'calc.'      : Date.QUAL_CALCULATED,
         'calc'       : Date.QUAL_CALCULATED,
         'calculado'  : Date.QUAL_CALCULATED,
+        'calculada'  : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):

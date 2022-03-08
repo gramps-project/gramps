@@ -373,7 +373,7 @@ class ReportDialog(ManagedWindow):
         for (text, widget) in self.widgets:
             widget.set_hexpand(True)
             if text:
-                # translators: needed for French, ignore otherwise
+                # Translators: needed for French, ignore otherwise
                 text_widget = Gtk.Label(label=_("%s:") % text)
                 text_widget.set_halign(Gtk.Align.START)
                 grid.attach(text_widget, 1, row, 1, 1)

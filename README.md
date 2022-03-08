@@ -1,5 +1,9 @@
-The Gramps Project ( https://gramps-project.org ) [![Build Status](https://travis-ci.org/gramps-project/gramps.svg?branch=master)](https://travis-ci.org/gramps-project/gramps)[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=master)](https://codecov.io/github/gramps-project/gramps?branch=master)
+The Gramps Project ( https://gramps-project.org )
 ===================
+[![GitHub CI](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml/badge.svg?event=push&branch=master)](https://github.com/gramps-project/gramps/actions/workflows/gramps-ci.yml?query=branch%3Amaster)
+[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=master)](https://app.codecov.io/gh/gramps-project/gramps/branch/master)
+[![Translation status](https://hosted.weblate.org/widgets/gramps-project/-/gramps/svg-badge.svg)](https://hosted.weblate.org/engage/gramps-project)
+
 We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
 
 Please read the **COPYING** file first.
@@ -10,7 +14,7 @@ Requirements
 ============
 The following packages **MUST** be installed in order for Gramps to work:
 
-* **Python** 3.3 or greater - The programming language used by Gramps. https://www.python.org/
+* **Python** 3.5 or greater - The programming language used by Gramps. https://www.python.org/
 * **GTK** 3.12 or greater - A cross-platform widget toolkit for creating graphical user interfaces. http://www.gtk.org/
 * **pygobject** 3.12 or greater - Python Bindings for GLib/GObject/GIO/GTK+ https://wiki.gnome.org/Projects/PyGObject
 
@@ -22,7 +26,6 @@ The following three packages with GObject Introspection bindings (the gi package
 * **pangocairo** - Allows you to use Pango with Cairo http://www.pango.org/
 
 * **librsvg2** - (SVG icon view) a library to render SVG files using cairo. http://live.gnome.org/LibRsvg
-* **xdg-utils** - Desktop integration utilities from freedesktop.org
 * **bsddb3** - Python bindings for Oracle Berkeley DB https://pypi.python.org/pypi/bsddb3/
 * **sqlite3** - Python bindings for SQLite Database library
 
@@ -34,7 +37,7 @@ to your language:
  Translation of GTK elements to your language, with
  xx your language code; e.g. for Dutch you need
  language-pack-gnome-nl. The translation of the
- Gramps strings is included with the gramps source.
+ Gramps strings is included with the Gramps source.
 
 
 The following packages are **STRONGLY RECOMMENDED** to be installed:
@@ -45,7 +48,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
  but the Python bindings for this must also be present, so gir1.2-osmgpsmap-1.0.
  Without this the GeoView will not be active, see
- https://gramps-project.org/wiki/index.php?title=Gramps_5.0_Wiki_Manual_-_Categories#Geography_Category
+ https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Categories#Geography_Category
 
 * **Graphviz**
 
@@ -63,27 +66,27 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  sorting is done through built-in libraries. PyICU is
  fairly widely available through the package managers of
  distributions. See http://pyicu.osafoundation.org/
- (These are Python bindings for the ICU package. 
- https://pypi.python.org/pypi/PyICU/)
+ (These are Python bindings for the ICU package
+ https://pypi.python.org/pypi/PyICU/).
 
 * **Ghostscript**
 
-  Used by Graphviz reports to help create PDF's
+  Used by Graphviz reports to help create PDF files.
 
 The following packages are optional:
 ------------------------------------
-* **gtkspell** 
+* **gtkspell**
 
  Enable spell checking in the notes. Gtkspell depends on
  enchant. A version of gtkspell with gobject introspection
- is needed, so minimally version 3.0.0
+ is needed, so minimally version 3.0.0.
 
 * **rcs**
 
  The GNU Revision Control System (RCS) can be used to manage
  multiple revisions of your family trees. See info at
- https://gramps-project.org/wiki/index.php?title=Gramps_5.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
- Only rcs is needed, NO python bindings are required
+ https://gramps-project.org/wiki/index.php?title=Gramps_5.1_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
+ Only rcs is needed, NO python bindings are required.
 
 * **PIL**
 
@@ -91,7 +94,7 @@ The following packages are optional:
  images and also to convert non-JPG images to
  JPG so as to include them in LaTeX output.
  (For Python3 a different source may be needed,
- python-imaging or python-pillow or python3-pillow)
+ python-imaging or python-pillow or python3-pillow).
 
 * **GExiv2**
 
@@ -101,7 +104,7 @@ The following packages are optional:
 
 * **ttf-freefont**
 
- More font support in the reports
+ Provides genealogical symbols and more fonts for reports
 
 * **geocodeglib**
 
@@ -119,6 +122,24 @@ The following packages are optional:
 
  Python bindings of fontconfig are required for displaying
  genealogical symbols
+
+* **magic**
+
+ Python magic bindings required to have better performances with image
+ processing.
+ If this module is not available, we continue to use Gdk.
+ This avoid to load the image in memory. This is a real improvement
+ when we have many big images.
+ Used in odfdoc, rtfdoc and webreport and tested with png, gif, jpeg, bmp, tiff
+ #
+ #            file size     with magic  without (Gdk)   ratio
+ # example 1 :     256k        0.00080        0.00575       7
+ # example 2 :      21M        0.00171        0.55860     326
+
+ Debian, Ubuntu, ... : python3-magic
+ Fedora, Redhat, ... : python3-magic
+ openSUSE            : python-magic
+ ArchLinux           : python-magic
 
 Optional packages required by Third-party Addons
 ------------------------------------------------
@@ -142,6 +163,9 @@ Prerequistes required for the following Addons to work:
 
 No longer needed:
 -----------------
+* Since Gramps 5.2:
+   **xdg-utils**
+
 * Since Gramps 4.2:
    **gir-webkit**
 
@@ -163,3 +187,12 @@ The User Manual is maintained on the Gramps website:
 
 * https://www.gramps-project.org/wiki/index.php?title=User_manual
 
+Issue Tracker
+-------------
+Gramps bug and issue tracker can be found [here](https://gramps-project.org/bugs/my_view_page.php).
+
+Translation
+-------------
+Gramps uses Hosted Weblate for its translations:
+
+* https://hosted.weblate.org/engage/gramps-project

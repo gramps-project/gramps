@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.gramps_project.Gramps</id>
+  <name>Gramps</name>
+  <summary>Manage genealogical information, perform genealogical research and analysis</summary>
+  <description>
+    <p>Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.</p>
+    <p>It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events.</p>
+    <p>All of your research is kept organized, searchable and as precise as you need it to be.</p>
+  </description>
+
+  <developer_name>Gramps Development Team</developer_name>
+  <project_license>GPL-2.0-or-later</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+
+  <url type="homepage">https://gramps-project.org/</url>
+  <url type="bugtracker">https://gramps-project.org/bugs/</url>
+  <url type="help">https://gramps-project.org/wiki/index.php?title=Main_page</url>
+  <url type="translate">https://www.gramps-project.org/wiki/index.php?title=Translating_Gramps</url>
+
+  <screenshots>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/5/5f/AppData1.png</image>
+    </screenshot>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/6/68/AppData2.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/e/e9/AppData3.png</image>
+    </screenshot>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/6/68/AppData4.png</image>
+    </screenshot>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/5/50/AppData5.png</image>
+    </screenshot>
+  </screenshots>
+
+  <launchable type="desktop-id">org.gramps_project.Gramps.desktop</launchable>
+  <provides>
+    <binary>gramps</binary>
+  </provides>
+
+  <translation type="gettext">gramps</translation>
+
+  <content_rating type="oars-1.1" />
+
+  <releases>
+    <release date="2020-08-12" version="5.1.3" />
+    <release date="2020-01-10" version="5.1.2" />
+    <release date="2019-09-15" version="5.1.1" />
+    <release date="2019-08-21" version="5.1.0" />
+    <release date="2019-08-18" version="5.0.2" />
+    <release date="2018-12-20" version="5.0.1" />
+    <release date="2018-07-24" version="5.0.0" />
+  </releases>
+
+</component>

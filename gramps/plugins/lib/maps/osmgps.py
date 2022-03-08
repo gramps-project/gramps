@@ -20,37 +20,41 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import os
 from math import pi, sin, atanh, floor
 
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Set up logging
 #
-#------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import time
 import logging
-_LOG = logging.getLogger("maps.osmgps")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from gramps.plugins.lib.maps import constants
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import VERSION_DIR
+from gramps.gen.config import config
+from gramps.gui.dialog import ErrorDialog
+from gramps.gen.constfunc import get_env_var
 from .dummylayer import DummyLayer
 from .dummynogps import DummyMapNoGpsPoint
 from .selectionlayer import SelectionLayer
@@ -59,18 +63,15 @@ from .markerlayer import MarkerLayer
 from .datelayer import DateLayer
 from .messagelayer import MessageLayer
 from .kmllayer import KmlLayer
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-from gramps.gen.config import config
-from gramps.gui.dialog import ErrorDialog
-from gramps.gen.constfunc import get_env_var
-from gramps.gen.const import VERSION_DIR
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # OsmGps
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+_LOG = logging.getLogger("maps.osmgps")
+_ = glocale.translation.sgettext
 
 try:
     import gi
@@ -78,10 +79,6 @@ try:
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
-
-# pylint: disable=unused-argument
-# pylint: disable=no-member
-# pylint: disable=maybe-no-member
 
 def lon2pixel(zoom, longitude, size):
     """
@@ -125,6 +122,7 @@ class OsmGps:
         self.current_map = None
         self.places_found = None
         self.uistate = uistate
+        self.zoom = config.get("geography.zoom")
 
     def build_widget(self):
         """
@@ -182,7 +180,7 @@ class OsmGps:
             except:
                 ErrorDialog(_("Can't create "
                               "tiles cache directory for '%s'.") %
-                              constants.MAP_TITLE[map_type],
+                            constants.MAP_TITLE[map_type],
                             parent=self.uistate.window)
         config.set("geography.map_service", map_type)
         self.current_map = map_type
@@ -190,15 +188,14 @@ class OsmGps:
         if 0:
             self.osm = DummyMapNoGpsPoint()
         else:
-            if http_proxy:
-                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                         proxy_uri=http_proxy,
-                                         map_source=constants.MAP_TYPE[
-                                                                      map_type])
+            if map_type == constants.PERSONAL:
+                self.osm = osmgpsmap.Map(repo_uri=map_source)
             else:
-                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                         map_source=constants.MAP_TYPE[
-                                                                      map_type])
+                self.osm = osmgpsmap.Map(
+                    map_source=constants.MAP_TYPE[map_type])
+            if http_proxy:
+                self.osm.set_property("proxy_uri", http_proxy)
+            self.osm.set_property("tile_cache", tiles_path)
         self.osm.props.tile_cache = osmgpsmap.MAP_CACHE_AUTO
         current_map = osmgpsmap.MapOsd(show_dpad=False, show_zoom=True)
         self.end_selection = None
@@ -247,19 +244,21 @@ class OsmGps:
             except:
                 ErrorDialog(_("Can't create "
                               "tiles cache directory for '%s'.") %
-                              constants.MAP_TITLE[self.current_map],
+                            constants.MAP_TITLE[self.current_map],
                             parent=self.uistate.window)
         http_proxy = get_env_var('http_proxy')
         if 0:
             self.osm = DummyMapNoGpsPoint()
         else:
-            if http_proxy:
-                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                         proxy_uri=http_proxy,
-                                         repo_uri=map_source)
+            map_type = int(config.get("geography.map_service"))
+            if map_type == constants.PERSONAL:
+                self.osm = osmgpsmap.Map(repo_uri=map_source)
             else:
-                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                         repo_uri=map_source)
+                self.osm = osmgpsmap.Map(
+                    map_source=constants.MAP_TYPE[map_type])
+            if http_proxy:
+                self.osm.set_property("proxy_uri", http_proxy)
+            self.osm.set_property("tile_cache", tiles_path)
         self.osm.props.tile_cache = osmgpsmap.MAP_CACHE_AUTO
         current_map = osmgpsmap.MapOsd(show_dpad=False, show_zoom=True)
         self.end_selection = None
@@ -330,8 +329,9 @@ class OsmGps:
         arg is mandatory because this function is also called by
         the checkbox button
         """
+        dummy_arg = arg
         config.set('geography.use-keypad',
-                         self._config.get('geography.use-keypad'))
+                   self._config.get('geography.use-keypad'))
         if config.get('geography.use-keypad'):
             self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN,
                                            Gdk.keyval_from_name("KP_Add"))
@@ -449,6 +449,7 @@ class OsmGps:
         """
         save the zoom and the position
         """
+        dummy_zoom = zoom
         config.set("geography.zoom", self.osm.props.zoom)
         self.save_center(self.osm.props.latitude, self.osm.props.longitude)
 
@@ -465,7 +466,7 @@ class OsmGps:
             if layer:
                 self.osm.layer_remove(layer)
             self.selection_layer = self.add_selection_layer()
-            if self.end_selection == None:
+            if self.end_selection is None:
                 self.selection_layer.add_rectangle(self.begin_selection,
                                                    current)
             else:
@@ -501,6 +502,8 @@ class OsmGps:
         """
         Zoom when in zone selection
         """
+        dummy_osm = osm
+        dummy_evt = event
         if self.end_selection is not None:
             self._autozoom()
         return True
@@ -545,28 +548,28 @@ class OsmGps:
             return mark_selected
         oldplace = ""
         _LOG.debug("%s", time.strftime("start is_there_a_place_here : "
-                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
+                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
         for mark in self.places_found:
             # as we are not precise with our hand, reduce the precision
             # depending on the zoom.
             if mark[0] != oldplace:
                 oldplace = mark[0]
                 precision = {
-                              1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f',
-                              4 : '%3.1f', 5 : '%3.2f', 6 : '%3.2f',
-                              7 : '%3.2f', 8 : '%3.3f', 9 : '%3.3f',
-                             10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
-                             13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f',
-                             16 : '%3.4f', 17 : '%3.4f', 18 : '%3.4f'
-                             }.get(config.get("geography.zoom"), '%3.1f')
+                    1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f',
+                    4 : '%3.1f', 5 : '%3.2f', 6 : '%3.2f',
+                    7 : '%3.2f', 8 : '%3.3f', 9 : '%3.3f',
+                    10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
+                    13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f',
+                    16 : '%3.4f', 17 : '%3.4f', 18 : '%3.4f'
+                    }.get(config.get("geography.zoom"), '%3.1f')
                 shift = {
-                          1 : 5.0, 2 : 5.0, 3 : 3.0,
-                          4 : 1.0, 5 : 0.5, 6 : 0.3, 7 : 0.15,
-                          8 : 0.06, 9 : 0.03, 10 : 0.015,
-                         11 : 0.005, 12 : 0.003, 13 : 0.001,
-                         14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
-                         17 : 0.0001, 18 : 0.0001
-                         }.get(config.get("geography.zoom"), 5.0)
+                    1 : 5.0, 2 : 5.0, 3 : 3.0,
+                    4 : 1.0, 5 : 0.5, 6 : 0.3, 7 : 0.15,
+                    8 : 0.06, 9 : 0.03, 10 : 0.015,
+                    11 : 0.005, 12 : 0.003, 13 : 0.001,
+                    14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
+                    17 : 0.0001, 18 : 0.0001
+                    }.get(config.get("geography.zoom"), 5.0)
                 latp = precision % lat
                 lonp = precision % lon
                 mlatp = precision % float(mark[1])
@@ -581,7 +584,7 @@ class OsmGps:
                 if latok and lonok:
                     mark_selected.append(mark)
         _LOG.debug("%s", time.strftime("  end is_there_a_place_here : "
-                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
+                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
         return mark_selected
 
     def build_nav_menu(self, osm, event, lat, lon):

@@ -25,15 +25,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.messagelayer")
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -64,9 +57,12 @@ try:
 except:
     raise
 
-# pylint: disable=unused-variable
-# pylint: disable=unused-argument
-# pylint: disable=no-member
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.messagelayer")
 
 class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -120,8 +116,8 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         Draw all the messages
         """
         ctx.save()
-        font_size = "%s %d" % (self.font, self.size)
-        font = Pango.FontDescription(font_size)
+        #font_size = "%s %d" % (self.font, self.size)
+        #font = Pango.FontDescription(font_size)
         descr = Pango.font_description_from_string(self.font)
         descr.set_size(self.size * Pango.SCALE)
         color = Gdk.color_parse(self.color)
@@ -152,7 +148,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         render the layer
         """
-        pass
+        dummy_map = gpsmap
 
     def do_busy(self):
         """
@@ -164,7 +160,8 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         When we press a button.
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
 GObject.type_register(MessageLayer)
-

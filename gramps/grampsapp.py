@@ -102,7 +102,7 @@ except:
 # code. That unfortunately initializes GrampsLocale, so it has its own
 # logging setup during initialization.
 #-------------------------------------------------------------------------
-"""Setup basic logging support."""
+"""Set up basic logging support."""
 
 # Setup a formatter
 form = logging.Formatter(fmt="%(asctime)s.%(msecs).03d: %(levelname)s: "
@@ -127,15 +127,32 @@ if win():
         elif not os.path.isdir(HOME_DIR):
             os.makedirs(HOME_DIR)
         sys.stdout = sys.stderr = open(logfile, "w", encoding='utf-8')
-stderrh = logging.StreamHandler(sys.stderr)
-stderrh.setFormatter(form)
-stderrh.setLevel(logging.DEBUG)
+# macOS sets stderr to /dev/null when running without a terminal,
+# e.g. if Gramps.app is lauched by double-clicking on it in
+# finder. Write to a file instead.
+if mac() and not sys.stdin.isatty():
+    from tempfile import gettempdir
 
-# Setup the base level logger, this one gets
-# everything.
-l = logging.getLogger()
-l.setLevel(logging.WARNING)
-l.addHandler(stderrh)
+    log_file_name = 'gramps-' + str(os.getpid()) + '.log'
+    log_file_path = os.path.join(gettempdir(), log_file_name)
+    log_file_handler = logging.FileHandler(log_file_path, mode='a',
+                                           encoding='utf-8')
+    log_file_handler.setFormatter(form)
+    log_file_handler.setLevel(logging.DEBUG)
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.WARNING)
+    logger.addHandler(log_file_handler)
+else:
+    stderrh = logging.StreamHandler(sys.stderr)
+    stderrh.setFormatter(form)
+    stderrh.setLevel(logging.DEBUG)
+
+    # Setup the base level logger, this one gets
+    # everything.
+    l = logging.getLogger()
+    l.setLevel(logging.WARNING)
+    l.addHandler(stderrh)
 
 
 def exc_hook(err_type, value, t_b):
@@ -167,10 +184,10 @@ from .gen.mime import mime_type_is_defined
 #
 #-------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (3, 3, 0, '', 0)
+MIN_PYTHON_VERSION = (3, 5, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(_("Your Python version does not meet the "
-             "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
+             "requirements. At least Python %(v1)d.%(v2)d.%(v3)d is needed to"
              " start Gramps.\n\n"
              "Gramps will terminate now.") % {
              'v1': MIN_PYTHON_VERSION[0],
@@ -397,7 +414,7 @@ def show_settings():
     for folder in sys.path:
         print("   ", folder)
     print('')
-    print("Non-python dependencies:")
+    print("Non-Python dependencies:")
     print("------------------------")
     print(' Graphviz  : %s' % dotversion_str)
     print(' Ghostscr. : %s' % gsversion_str)
@@ -428,15 +445,15 @@ def run():
         error += [(_("Configuration error:"), str(msg))]
         return error
     except msg:
-        LOG.error("Error reading configuration.", exc_info=True)
-        return [(_("Error reading configuration"), str(msg))]
+        LOG.error("Could not read configuration.", exc_info=True)
+        return [(_("Could not read configuration"), str(msg))]
 
     if not mime_type_is_defined(APP_GRAMPS):
         error += [(_("Configuration error:"),
-                    _("A definition for the MIME-type %s could not "
+                    _("A definition for the media type %s could not "
                       "be found \n\n Possibly the installation of Gramps "
-                      "was incomplete. Make sure the MIME-types "
-                      "of Gramps are properly installed.")
+                      "was incomplete. Make sure something to handle the "
+                      "media types of Gramps is installed.")
                     % APP_GRAMPS)]
 
     # we start with parsing the arguments to determine if we have a cli or a
@@ -480,7 +497,7 @@ def run():
         LOG.debug('environment: LANGUAGE is not defined')
 
     if argpars.need_gui():
-        LOG.debug("A GUI is needed, set it up")
+        LOG.debug("A GUI is needed. Set one up.")
         try:
             from .gui.grampsgui import startgramps
             # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)

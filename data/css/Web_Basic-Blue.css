@@ -254,6 +254,7 @@ p#user_header {
 div#nav, #subnavigation {
     border: solid 1px #EEE; /* needed by IE7 */
     background-color: #13A926;
+    position: relative;
 }
 #subnavigation ul {
     overflow: hidden;
@@ -290,6 +291,33 @@ div#nav ul li.CurrentSection a {
 }
 #nav ul li.CurrentSection a:hover {
     background-color: #903;
+}
+div#nav li.lang {
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: .5em;
+}
+div#nav li.lang:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+div#nav ul.lang {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+    background-color: #EEE;
+    border-bottom: solid 1px #999;
+    padding: 2px 1px;
+    top: -1em;
+}
+div#nav ul.lang:hover {
+    float: initial;
+}
+div#nav ul.lang li {
+    float: none;
+    font-size: larger;
+    padding: 0px;
 }
 
 /* Webcal
@@ -469,6 +497,21 @@ div#nav::after {
 
     .content {
         padding: 0em 0.5em;
+    }
+    .lang {
+        position: relative;
+    }
+    .lang > .lang {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    .lang:hover > .lang {
+        display: block;
     }
 }
 
@@ -651,6 +694,10 @@ div#RelationshipList, div#RelationshipDetail {
 }
 div#RelationshipDetail div#FamilyDetail table.infolist tbody tr td {
     border: none;
+}
+div.content table.tags {
+    text-align: left;
+    width: auto;
 }
 
 /* Places
@@ -1393,7 +1440,8 @@ div.Residence table.infolist tr td {
 #indivgallery .thumbnail {
     margin: 0;
     float: left;
-    width: 130px;
+    width: 160px;
+    height: 220px;
     text-align: center;
     background-color: white;
 }
@@ -1492,18 +1540,34 @@ div#References {
 
 /* Subsections : Source References
 ----------------------------------------------------- */
-div#sourcerefs {
-    padding: 0;
-    margin: 0 auto;
+#sourcerefs ol#srcr {
+    counter-reset: itema;
+    list-style-type: none;
+    display: block;
+    margin-top: .1em;
 }
-div#sourcerefs ol {
-    list-style-type: decimal;
+#sourcerefs ol#citr {
+    counter-reset: itemb;
+    list-style-type: none;
 }
-div#sourcerefs ol li ol {
-    list-style-type: lower-alpha;
+#sourcerefs ol#srcr > li::before {
+    content: counter(itema);
 }
-div#sourcerefs ol li a {
-    text-decoration: none;
+#sourcerefs ol#citr > li::before {
+    content: counter(itema)counter(itemb, lower-alpha);
+}
+#sourcerefs ol#srcr > li {
+    counter-increment: itema;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr > li {
+    counter-increment: itemb;
+    margin-top: .1em;
+}
+#sourcerefs ol#citr ul {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
 }
 
 /* Subsections : Summary Area
@@ -1834,4 +1898,44 @@ body#fullyearlinked #YearGlance tbody td .date {
 body#fullyearlinked #YearGlance tbody td:hover .date {
     border-radius: 45px;
     border: 5px solid;
+}
+h4 button.icon {
+    width: 0.9em;
+    border: 0px solid;
+    padding: 0;
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: transform 200ms ease-out 0s;
+    background: transparent;
+}
+h4 button.icon-close {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
+}
+h4 button.icon-open {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}
+svg {
+  fill: #13A926;
+}
+/* Go to the top of the page */
+#gototop {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 999;
+  border: none;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+#gototop:hover {
+  background-color: #BCEAF6;
 }

@@ -29,7 +29,6 @@ Provide the database state class
 #
 #------------------------------------------------------------------------
 import sys
-import os
 import logging
 import inspect
 
@@ -86,12 +85,15 @@ class DbState(Callback):
         This replaces tests on DbState.open, DbState.db, DbState.db.is_open()
         and DbState.db.db_is_open all of which are deprecated.
         """
-        class_name = self.__class__.__name__
-        func_name = "is_open"
-        caller_frame = inspect.stack()[1]
-        _LOG.debug('calling %s.%s()... from file %s, line %s in %s',
-                  class_name, func_name, os.path.split(caller_frame[1])[1],
-                  caller_frame[2], caller_frame[3])
+        if __debug__ and _LOG.isEnabledFor(logging.DEBUG):
+            class_name = self.__class__.__name__
+            func_name = "is_open"
+            frame = inspect.currentframe()
+            c_frame = frame.f_back
+            c_code = c_frame.f_code
+            _LOG.debug('calling %s.%s()... from file %s, line %s in %s',
+                       class_name, func_name, c_code.co_filename,
+                       c_frame.f_lineno, c_code.co_name)
         return (self.db is not None) and self.db.is_open()
 
     def change_database(self, database):

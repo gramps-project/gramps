@@ -67,12 +67,14 @@ class DownloadPage(BasePage):
     """
     This class is responsible for displaying information about the Download page
     """
-    def __init__(self, report, title):
+    def __init__(self, report, the_lang, the_title):
         """
-        @param: report -- The instance of the main report class for this report
-        @param: title  -- Is the title of the web page
+        @param: report    -- The instance of the main report class
+                             for this report
+        @param: the_lang  -- The lang to process
+        @param: the_title -- The title page related to the language
         """
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, the_lang, the_title)
 
         # do NOT include a Download Page
         if not self.report.inc_download:
@@ -140,10 +142,10 @@ class DownloadPage(BasePage):
                                 dwnld += 1
                                 trow = Html("tr", id='Row01')
                                 tbody += trow
-
+                                fname_lnk = "../" + fname if the_lang else fname
                                 dldescrx = dldescr[fnamex]
                                 tcell = Html("td", class_="ColumnFilename") + (
-                                    Html("a", fname, href=fname,
+                                    Html("a", fname, href=fname_lnk,
                                          title=html_escape(dldescrx))
                                 )
                                 trow += tcell
@@ -163,20 +165,21 @@ class DownloadPage(BasePage):
                                     last_mod = datetime.datetime.fromtimestamp(
                                         modified)
                                     tcell += last_mod
-                                    # copy the file
-                                    self.report.copy_file(dlfname[fnamex],
-                                                          fname)
+                                    # copy the file only once
+                                    if not os.path.exists(fname):
+                                        self.report.copy_file(dlfname[fnamex],
+                                                              fname)
                                 else:
                                     tcell += self._("Cannot open file")
 
                     if not dwnld:
                         # We have several files to download
                         # but all file names are empty
-                        dldescrx = _("No file to download")
+                        dldescrx = self._("No file to download")
                         trow = Html("tr", id='Row01')
                         tbody += trow
                         tcell = Html("td", class_="ColumnFilename",
-                                     colspan=3) + Html("h2", dldescrx)
+                                     colspan=3) + Html("h4", dldescrx)
                         trow += tcell
             # clear line for proper styling
             # create footer section

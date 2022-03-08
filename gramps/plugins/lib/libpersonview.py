@@ -46,12 +46,10 @@ _LOG = logging.getLogger(".gui.personview")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Person, Surname
-from gramps.gen.db import DbTxn
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.uimanager import ActionGroup
-from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
+from gramps.gui.dialog import ErrorDialog
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.config import config
@@ -443,27 +441,8 @@ class BasePersonView(ListView):
         Remove a person from the database.
         """
         handles = self.selected_handles()
-        if len(handles) == 1:
-            person = self._lookup_person(handles[0])
-            msg1 = self._message1_format(person)
-            msg2 = self._message2_format(person)
-            msg2 = "%s %s" % (msg2, data_recover_msg)
-            # This gets person to delete self.active_person:
-            QuestionDialog(msg1,
-                           msg2,
-                           _('_Delete Person'),
-                           self.delete_person_response,
-                           parent=self.uistate.window)
-        else:
-            # Ask to delete; option to cancel, delete rest
-            # This gets person to delete from parameter
-            MultiSelectDialog(self._message1_format,
-                              self._message2_format,
-                              handles,
-                              self._lookup_person,
-                              yes_func=self.delete_person_response,
-                              multi_yes_func=self.delete_multi_person_response,
-                              parent=self.uistate.window)
+        ht_list = [('Person', hndl) for hndl in handles]
+        self.remove_selected_objects(ht_list)
 
     def _message1_format(self, person):
         return _('Delete %s?') % (name_displayer.display(person) +
@@ -473,65 +452,19 @@ class BasePersonView(ListView):
         return _('Deleting the person will remove the person '
                  'from the database.')
 
-    def _lookup_person(self, handle):
+    def _message3_format(self, person):
         """
-        Get the next person from handle.
+        Transaction label format
+        """
+        return _("Delete Person (%s)") % name_displayer.display(person)
+
+    def remove_object_from_handle(self, _obj_type, handle,
+                                  trans, in_use_prompt=False, parent=None):
+        """
+        deletes a single object from database
         """
         person = self.dbstate.db.get_person_from_handle(handle)
-        self.active_person = person
-        return person
-
-    def delete_person_response(self, person=None):
-        """
-        Deletes the person from the database.
-        """
-        # set the busy cursor, so the user knows that we are working
-        self.uistate.set_busy_cursor(True)
-
-        # create the transaction
-        with DbTxn('', self.dbstate.db) as trans:
-
-            # create name to save
-            person = self.active_person
-            active_name = _("Delete Person (%s)") % name_displayer.display(person)
-
-            # delete the person from the database
-            # Above will emit person-delete, which removes the person via
-            # callback to the model, so row delete is signaled
-            self.dbstate.db.delete_person_from_database(person, trans)
-            trans.set_description(active_name)
-
-        self.uistate.set_busy_cursor(False)
-
-    def delete_multi_person_response(self, handles=None):
-        """
-        Deletes multiple persons from the database.
-        """
-        # set the busy cursor, so the user knows that we are working
-        self.uistate.set_busy_cursor(True)
-        self.uistate.progress.show()
-        self.uistate.push_message(self.dbstate, _("Processing..."))
-        hndl_cnt = len(handles) / 100
-        self.dbstate.db.disable_signals()
-
-        # create the transaction
-        with DbTxn('', self.dbstate.db) as trans:
-            for (indx, handle) in enumerate(handles):
-                person = self.dbstate.db.get_person_from_handle(handle)
-                self.dbstate.db.delete_person_from_database(person, trans)
-                self.uistate.pulse_progressbar(indx / hndl_cnt)
-            trans.set_description(_("Multiple Selection Delete"))
-
-        self.dbstate.db.enable_signals()
-        self.dbstate.db.request_rebuild()
-        self.uistate.progress.hide()
-        self.uistate.set_busy_cursor(False)
-
-    def remove_object_from_handle(self, handle):
-        """
-        The remove_selected_objects method is not called in this view.
-        """
-        pass
+        self.dbstate.db.delete_person_from_database(person, trans)
 
     def define_actions(self):
         """

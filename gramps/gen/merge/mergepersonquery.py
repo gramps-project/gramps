@@ -31,8 +31,8 @@ Provide merge capabilities for persons.
 #-------------------------------------------------------------------------
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from ..errors import MergeError
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -49,11 +49,12 @@ class MergePersonQuery:
         self.titanic = titanic
         if self.check_for_spouse(self.phoenix, self.titanic):
             raise MergeError(_("Spouses cannot be merged. To merge these "
-                "people, you must first break the relationship between them."))
+                               "people, you must first break the relationship"
+                               " between them."))
         if self.check_for_child(self.phoenix, self.titanic):
             raise MergeError(_("A parent and child cannot be merged. To merge "
-                "these people, you must first break the relationship between "
-                "them."))
+                               "these people, you must first break the relatio"
+                               "nship between them."))
 
     def check_for_spouse(self, person1, person2):
         """Return if person1 and person2 are spouses of eachother."""
@@ -80,12 +81,12 @@ class MergePersonQuery:
         main_family.merge(family)
         for childref in family.get_child_ref_list():
             child = self.database.get_person_from_handle(
-                    childref.get_reference_handle())
+                childref.get_reference_handle())
             if main_family_handle in child.parent_family_list:
                 child.remove_handle_references('Family', [family_handle])
             else:
                 child.replace_handle_reference('Family', family_handle,
-                    main_family_handle)
+                                               main_family_handle)
             self.database.commit_person(child, trans)
         if self.phoenix:
             self.phoenix.remove_family_handle(family_handle)
@@ -99,14 +100,16 @@ class MergePersonQuery:
                 spouse.remove_family_handle(family_handle)
                 self.database.commit_person(spouse, trans)
         # replace the family in lds ordinances
-        for (dummy, person_handle) in self.database.find_backlink_handles(
-                family_handle, ['Person']):
-            if person_handle == old_handle:
+        for (ref_obj, ref_handle) in self.database.find_backlink_handles(
+                family_handle, ['Person', 'Note']):
+            if ref_handle == old_handle:
                 continue
-            person = self.database.get_person_from_handle(person_handle)
-            person.replace_handle_reference('Family', family_handle,
-                                            main_family_handle)
-            self.database.commit_person(person, trans)
+            obj = self.database.method(
+                "get_%s_from_handle", ref_obj)(ref_handle)
+            assert obj.has_handle_reference('Family', family_handle)
+            obj.replace_handle_reference('Family', family_handle,
+                                         main_family_handle)
+            self.database.method("commit_%s", ref_obj)(obj, trans)
         self.database.remove_family(family_handle, trans)
         self.database.commit_family(main_family, trans)
 
@@ -132,18 +135,21 @@ class MergePersonQuery:
         self.phoenix.merge(self.titanic)
         self.database.commit_person(self.phoenix, trans)
 
-        for (dummy, person_handle) in self.database.find_backlink_handles(
-                old_handle, ['Person']):
-            person = self.database.get_person_from_handle(person_handle)
-            assert person.has_handle_reference('Person', old_handle)
-            person.replace_handle_reference('Person', old_handle, new_handle)
-            if person_handle != old_handle:
-                self.database.commit_person(person, trans)
+        for (ref_obj, handle) in self.database.find_backlink_handles(
+                old_handle, ['Person', 'Note']):
+            obj = self.database.method(
+                "get_%s_from_handle", ref_obj)(handle)
+            assert obj.has_handle_reference('Person', old_handle)
+            obj.replace_handle_reference(
+                'Person', old_handle, new_handle)
+            if handle != old_handle:
+                self.database.method("commit_%s", ref_obj)(obj, trans)
 
         for family_handle in self.phoenix.get_parent_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             if family.has_handle_reference('Person', old_handle):
-                family.replace_handle_reference('Person', old_handle,new_handle)
+                family.replace_handle_reference('Person', old_handle,
+                                                new_handle)
                 self.database.commit_family(family, trans)
 
         family_merge_guard = False
@@ -182,7 +188,10 @@ class MergePersonQuery:
                 self.database.commit_family(family, trans)
             parent_list.append(parents)
 
-        if self.database.get_default_handle() == old_handle:
-            self.database.set_default_person_handle(None)
+        hp_hdl = self.database.get_default_handle()
+        if (hp_hdl in (self.phoenix.get_handle(), self.titanic.get_handle())
+                and hp_hdl != self.phoenix.get_handle()):
+            self.database.set_default_person_handle(self.phoenix.get_handle())
+
         self.database.remove_person(old_handle, trans)
         return family_merge_ok

@@ -94,7 +94,13 @@ class SummaryReport(Report):
 
         self.summarize_people()
         self.summarize_families()
+        self.summarize_events()
+        self.summarize_places()
+        self.summarize_sources()
+        self.summarize_citations()
+        self.summarize_repositories()
         self.summarize_media()
+        self.summarize_notes()
 
     def summarize_people(self):
         """
@@ -216,6 +222,71 @@ class SummaryReport(Report):
                                   ) % self.__db.get_number_of_families())
         self.doc.end_paragraph()
 
+    def summarize_events(self):
+        """
+        Write a summary of all the events in the database.
+        """
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(self._("Event Information"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Number of events: %d"
+                                  ) % self.__db.get_number_of_events())
+        self.doc.end_paragraph()
+
+    def summarize_places(self):
+        """
+        Write a summary of all the places in the database.
+        """
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(self._("Place Information"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Number of places: %d"
+                                  ) % self.__db.get_number_of_places())
+        self.doc.end_paragraph()
+
+    def summarize_sources(self):
+        """
+        Write a summary of all the sources in the database.
+        """
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(self._("Source Information"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Number of sources: %d"
+                                  ) % self.__db.get_number_of_sources())
+        self.doc.end_paragraph()
+
+    def summarize_citations(self):
+        """
+        Write a summary of all the citations in the database.
+        """
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(self._("Citation Information"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Number of citations: %d"
+                                  ) % self.__db.get_number_of_citations())
+        self.doc.end_paragraph()
+
+    def summarize_repositories(self):
+        """
+        Write a summary of all the repositories in the database.
+        """
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(self._("Repository Information"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Number of repositories: %d"
+                                  ) % self.__db.get_number_of_repositories())
+        self.doc.end_paragraph()
+
     def summarize_media(self):
         """
         Write a summary of all the media in the database.
@@ -262,6 +333,19 @@ class SummaryReport(Report):
                 self.doc.start_paragraph("SR-Normal")
                 self.doc.write_text(media_path)
                 self.doc.end_paragraph()
+
+    def summarize_notes(self):
+        """
+        Write a summary of all the notes in the database.
+        """
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(self._("Note Information"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Number of notes: %d"
+                                  ) % self.__db.get_number_of_notes())
+        self.doc.end_paragraph()
 
 #------------------------------------------------------------------------
 #

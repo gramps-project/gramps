@@ -113,6 +113,10 @@ else:
     _GS_CMD = where_is("gs")
 
 
+def esc(id_txt):
+    return id_txt.replace('"', '\\"')
+
+
 #------------------------------------------------------------------------------
 #
 # GVOptions
@@ -253,13 +257,6 @@ class GVOptions:
                            "horizontal graphs, this corresponds to spacing "
                            "between columns."))
         menu.add_option(category, "ranksep", ranksep)
-
-        use_subgraphs = BooleanOption(_('Use subgraphs'), True)
-        use_subgraphs.set_help(_("Subgraphs can help Graphviz position "
-                                 "spouses together, but with non-trivial "
-                                 "graphs will result in longer lines and "
-                                 "larger graphs."))
-        menu.add_option(category, "usesubgraphs", use_subgraphs)
 
         ################################
         category = _("Note")
@@ -446,7 +443,6 @@ class GVDocBase(BaseDoc, GVDoc):
         self.ranksep = get_option('ranksep').get_value()
         self.ratio = get_option('ratio').get_value()
         self.vpages = get_option('v_pages').get_value()
-        self.usesubgraphs = get_option('usesubgraphs').get_value()
         self.spline = get_option('spline').get_value()
         self.node_ports = get_option('node_ports').get_value()
 
@@ -575,7 +571,7 @@ class GVDocBase(BaseDoc, GVDoc):
             text += ' URL="%s"' % url
 
         text += " ]"
-        self.write('  "%s" %s;\n' % (node_id, text))
+        self.write('  "%s" %s;\n' % (esc(node_id), text))
 
     def add_link(self, id1, id2, style="", head="", tail="", comment=""):
         """
@@ -583,7 +579,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.add_link().
         """
-        self.write('  "%s" -> "%s"' % (id1, id2))
+        self.write('  "%s" -> "%s"' % (esc(id1), esc(id2)))
 
         if style or head or tail:
             self.write(' [')
@@ -635,7 +631,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.add_samerank().
         """
-        self.write('  {rank=same "%s" "%s"}\n' % (id1, id2))
+        self.write('  {rank=same "%s" "%s"}\n' % (esc(id1), esc(id2)))
 
     def rewrite_label(self, id, label):
         """
@@ -643,7 +639,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.rewrite_label().
         """
-        self.write('  "%s" [label = "%s"]\n' % (id, label))
+        self.write('  "%s" [label = "%s"]\n' % (esc(id), label))
 
     def start_subgraph(self, graph_id):
         """ Implement GVDocBase.start_subgraph() """

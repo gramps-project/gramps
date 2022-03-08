@@ -186,10 +186,41 @@ class EditPlace(EditPrimary):
             self.db.readonly)
 
     def set_latlongitude(self, value):
+        """
+        This method is useful for directly copying the coordinates
+        of openstreetmap, googlemaps, and perhaps other if they
+        provide coordinates like it is define in conv_lat_lon
+        (see gramps/gen/utils/place.py)
+
+        To copy the coordinates:
+
+        - openstreetmap:
+         1 - choose the place where you want to save the coordinates.
+         2 - right click on this place
+         3 - select "show address"
+         4 - On the left side of the map, copy the coordinates of
+             "Result from internal"
+         5 - In the latlon field of the edit place window of gramps,
+             type <CTRL> V
+
+        - googlemap:
+         1 - choose the place where you want to save the coordinates.
+         2 - right click on this place
+         3 - select the coordinates at the top of the popup window.
+             They are automaticaly copied.
+         4 - In the latlon field of the edit place window of gramps,
+             type <CTRL> V
+
+        """
         try:
-            coma = value.index(', ')
-            longitude = value[coma+2:].strip().replace(',','.')
-            latitude = value[:coma].strip().replace(',','.')
+            # Bug 12349, 12374
+            parts = value.split(', ')
+            if len(parts) == 2:
+                latitude = parts[0].strip().replace(',', '.')
+                longitude = parts[1].strip().replace(',', '.')
+            else:
+                latitude, longitude = value.split(',')
+
             self.longitude.set_text(longitude)
             self.latitude.set_text(latitude)
             self.top.get_object("lat_entry").validate(force=True)
@@ -205,12 +236,12 @@ class EditPlace(EditPrimary):
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(
-                # translators: translate the "S" too (and the "or" of course)
+                # Translators: translate the "S" too (and the "or" of course)
                 _('Invalid latitude\n(syntax: '
                   '18\u00b09\'48.21"S, -18.2412 or -18:9:48.21)'))
         elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
             return ValidationError(
-                # translators: translate the "E" too (and the "or" of course)
+                # Translators: translate the "E" too (and the "or" of course)
                 _('Invalid longitude\n(syntax: '
                   '18\u00b09\'48.21"E, -18.2412 or -18:9:48.21)'))
 
@@ -348,44 +379,3 @@ class EditPlace(EditPrimary):
         self._do_close()
         if self.callback:
             self.callback(self.obj)
-
-#-------------------------------------------------------------------------
-#
-# DeletePlaceQuery
-#
-#-------------------------------------------------------------------------
-class DeletePlaceQuery:
-
-    def __init__(self, dbstate, uistate, place, person_list, family_list,
-                 event_list):
-        self.db = dbstate.db
-        self.uistate = uistate
-        self.obj = place
-        self.person_list = person_list
-        self.family_list = family_list
-        self.event_list = event_list
-
-    def query_response(self):
-        place_title = place_displayer.display(self.db, self.obj)
-        with DbTxn(_("Delete Place (%s)") % place_title, self.db) as trans:
-            self.db.disable_signals()
-
-            place_handle = self.obj.get_handle()
-
-            for handle in self.person_list:
-                person = self.db.get_person_from_handle(handle)
-                person.remove_handle_references('Place', place_handle)
-                self.db.commit_person(person, trans)
-
-            for handle in self.family_list:
-                family = self.db.get_family_from_handle(handle)
-                family.remove_handle_references('Place', place_handle)
-                self.db.commit_family(family, trans)
-
-            for handle in self.event_list:
-                event = self.db.get_event_from_handle(handle)
-                event.remove_handle_references('Place', place_handle)
-                self.db.commit_event(event, trans)
-
-            self.db.enable_signals()
-            self.db.remove_place(place_handle, trans)

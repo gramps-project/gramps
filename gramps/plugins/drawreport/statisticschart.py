@@ -1022,8 +1022,7 @@ class StatisticsChartOptions(MenuReportOptions):
 
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE)
-        for item_idx in range(len(_options.opt_sorts)):
-            item = _options.opt_sorts[item_idx]
+        for item_idx, item in enumerate(_options.opt_sorts):
             sortby.add_item(item_idx, item[2])
         sortby.set_help(_("Select how the statistical data is sorted."))
         add_option("sortby", sortby)
@@ -1051,9 +1050,8 @@ class StatisticsChartOptions(MenuReportOptions):
 
         gender = EnumeratedListOption(_('Genders included'),
                                       Person.UNKNOWN)
-        for item_idx in range(len(_options.opt_genders)):
-            item = _options.opt_genders[item_idx]
-            gender.add_item(item[0], item[2])
+        for first, second, third in _options.opt_genders:
+            gender.add_item(first, third)
         gender.set_help(_("Select which genders are included into "
                           "statistics."))
         add_option("gender", gender)

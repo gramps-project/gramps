@@ -131,7 +131,7 @@ def run(database, document, person):
 
     document.has_data = matches > 0
     sdoc.paragraph(
-        # translators: leave all/any {...} untranslated
+        # Translators: leave all/any {...} untranslated
         ngettext("There is {number_of} person "
                      "with a matching name, or alternate name.\n",
                  "There are {number_of} people "
@@ -176,7 +176,7 @@ def run_given(database, document, person):
 
     document.has_data = matches > 0
     sdoc.paragraph(
-        # translators: leave all/any {...} untranslated
+        # Translators: leave all/any {...} untranslated
         ngettext("There is {number_of} person "
                      "with a matching name, or alternate name.\n",
                  "There are {number_of} people "

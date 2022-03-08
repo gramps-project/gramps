@@ -23,31 +23,28 @@
 """
 Geography for events
 """
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import operator
-from gi.repository import Gdk
-KEY_TAB = Gdk.KEY_Tab
-from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # set up logging
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("GeoGraphy.geoevents")
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps Modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+from gi.repository import Gdk
+from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.lib import EventType
 from gramps.gen.config import config
 from gramps.gen.datehandler import displayer
@@ -58,11 +55,14 @@ from gramps.gui.views.bookmarks import EventBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 from gramps.gui.utils import ProgressMeter
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+KEY_TAB = Gdk.KEY_Tab
+_LOG = logging.getLogger("GeoGraphy.geoevents")
+_ = glocale.translation.gettext
 
 _UI_DEF = ['''
       <placeholder id="CommonGo">
@@ -78,7 +78,7 @@ _UI_DEF = ['''
       </section>
       </placeholder>
     ''',
-    '''
+           '''
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.PrintView</attribute>
@@ -86,7 +86,7 @@ _UI_DEF = ['''
         </item>
       </section>
     ''',
-    '''
+           '''
       <section id="AddEditBook">
         <item>
           <attribute name="action">win.AddBook</attribute>
@@ -98,13 +98,14 @@ _UI_DEF = ['''
         </item>
       </section>
     ''' % _('Organize Bookmarks'),  # Following are the Toolbar items
-    '''
+           '''
     <placeholder id='CommonNavigation'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">Go to the previous object in the history</property>
+        <property name="tooltip_text"
+         translatable="yes">Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>
@@ -116,7 +117,8 @@ _UI_DEF = ['''
       <object class="GtkToolButton">
         <property name="icon-name">go-next</property>
         <property name="action-name">win.Forward</property>
-        <property name="tooltip_text" translatable="yes">Go to the next object in the history</property>
+        <property name="tooltip_text"
+         translatable="yes">Go to the next object in the history</property>
         <property name="label" translatable="yes">_Forward</property>
         <property name="use-underline">True</property>
       </object>
@@ -126,13 +128,14 @@ _UI_DEF = ['''
     </child>
     </placeholder>
     ''',
-    '''
+           '''
     <placeholder id='BarCommonEdit'>
     <child groups='RO'>
       <object class="GtkToolButton">
         <property name="icon-name">document-print</property>
         <property name="action-name">win.PrintView</property>
-        <property name="tooltip_text" translatable="yes">Print or save the Map</property>
+        <property name="tooltip_text"
+         translatable="yes">Print or save the Map</property>
         <property name="label" translatable="yes">Print...</property>
         <property name="use-underline">True</property>
        </object>
@@ -147,11 +150,12 @@ _UI_DEF = ['''
 # pylint: disable=no-member
 # pylint: disable=maybe-no-member
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # GeoView
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class GeoEvents(GeoGraphyView):
     """
     The view used to render events map.
@@ -160,9 +164,9 @@ class GeoEvents(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.window_name = _('Events places map')
         GeoGraphyView.__init__(self, self.window_name,
-                                      pdata, dbstate, uistate,
-                                      EventBookmarks,
-                                      nav_group)
+                               pdata, dbstate, uistate,
+                               EventBookmarks,
+                               nav_group)
         self.dbstate = dbstate
         self.uistate = uistate
         self.place_list = []
@@ -216,6 +220,8 @@ class GeoEvents(GeoGraphyView):
         """
         Rebuild the tree with the given events handle as the root.
         """
+        if self.osm is None:
+            return
         self.places_found = []
         self.build_tree()
 
@@ -232,6 +238,8 @@ class GeoEvents(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
+        if self.osm is None:
+            return
         if not self.dbstate.is_open():
             return
         active = self.uistate.get_active('Event')
@@ -268,9 +276,8 @@ class GeoEvents(GeoGraphyView):
                     person_list = [
                         dbstate.db.get_person_from_handle(ref_handle)
                         for (ref_type, ref_handle) in
-                            dbstate.db.find_backlink_handles(event.handle)
-                                if ref_type == 'Person'
-                                  ]
+                        dbstate.db.find_backlink_handles(event.handle)
+                        if ref_type == 'Person']
                     if person_list:
                         for person in person_list:
                             if descr2 == "":
@@ -283,24 +290,22 @@ class GeoEvents(GeoGraphyView):
                         family_list = [
                             dbstate.db.get_family_from_handle(ref_handle)
                             for (ref_type, ref_handle) in
-                                dbstate.db.find_backlink_handles(event.handle)
-                                    if ref_type == 'Family'
-                                      ]
+                            dbstate.db.find_backlink_handles(event.handle)
+                            if ref_type == 'Family']
                         if family_list:
                             for family in family_list:
                                 father = mother = None
                                 hdle = family.get_father_handle()
                                 if hdle:
                                     father = dbstate.db.get_person_from_handle(
-                                                                           hdle)
+                                        hdle)
                                 hdle = family.get_mother_handle()
                                 if hdle:
                                     mother = dbstate.db.get_person_from_handle(
-                                                                           hdle)
+                                        hdle)
                                 descr2 = ("%(father)s - %(mother)s") % {
                    'father': _nd.display(father) if father is not None else "?",
-                   'mother': _nd.display(mother) if mother is not None else "?"
-                                              }
+                   'mother': _nd.display(mother) if mother is not None else "?"}
                         else:
                             descr2 = _("incomplete or unreferenced event ?")
                     self._append_to_places_list(descr1, None,
@@ -309,17 +314,18 @@ class GeoEvents(GeoGraphyView):
                                                 descr2,
                                                 eventyear,
                                                 event.get_type(),
-                                                None, # person.gramps_id
+                                                None,  # person.gramps_id
                                                 place.gramps_id,
                                                 event.gramps_id,
-                                                None
-                                                )
+                                                None)
 
     def _createmap(self, obj):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
+        if self.osm is None:
+            return
         dbstate = self.dbstate
         self.place_list = []
         self.places_found = []
@@ -348,7 +354,7 @@ class GeoEvents(GeoGraphyView):
                 progress.step()
             progress.close()
         elif self.generic_filter:
-            user=self.uistate.viewmanager.user
+            user = self.uistate.viewmanager.user
             events_list = self.generic_filter.apply(dbstate.db, user=user)
             progress = ProgressMeter(self.window_name,
                                      can_cancel=False,
@@ -365,14 +371,12 @@ class GeoEvents(GeoGraphyView):
                 event = dbstate.db.get_event_from_handle(obj)
                 self._createmap_for_one_event(event)
             self.message_layer.add_message(
-                 _("Right click on the map and select 'show all events'"
-                   " to show all known events with coordinates. "
-                   "You can use the history to navigate on the map. "
-                   "You can use filtering."))
-        self.sort = sorted(self.place_list,
-                           key=operator.itemgetter(3, 4, 6)
-                          )
-        if self.nbmarkers > 500: # performance issue. Is it the good value ?
+                _("Right click on the map and select 'show all events'"
+                  " to show all known events with coordinates. "
+                  "You can use the history to navigate on the map. "
+                  "You can use filtering."))
+        self.sort = sorted(self.place_list, key=operator.itemgetter(3, 4, 6))
+        if self.nbmarkers > 500:  # performance issue. Is it the good value ?
             self.no_show_places_in_status_bar = True
         self._create_markers()
 

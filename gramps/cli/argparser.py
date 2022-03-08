@@ -48,13 +48,13 @@ from glob import glob
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import (LONGOPTS, SHORTOPTS, USER_PLUGINS, VERSION_DIR,
-                              HOME_DIR, TEMP_DIR, THUMB_DIR, ENV_DIR, USER_CSS)
+                              HOME_DIR, THUMB_DIR, ENV_DIR, USER_CSS)
 from gramps.gen.utils.cast import get_type_converter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 _HELP = _("""
-Usage: gramps.py [OPTION...]
+Usage: gramps [OPTION...]
   --load-modules=MODULE1,MODULE2,...     Dynamic modules to load
 
 Help options
@@ -242,30 +242,20 @@ class ArgParser:
         try:
             options, leftargs = getopt.getopt(self.args[1:],
                                               SHORTOPTS, LONGOPTS)
-        except getopt.GetoptError as msg:
-            # Extract the arguments in the list.
-            # The % operator replaces the list elements
-            # with repr() of the list elements
-            # which is OK for latin characters,
-            # but not for non latin characters in list elements
-            cliargs = "[ "
-            for arg in range(len(self.args) - 1):
-                cliargs += self.args[arg + 1] + " "
-            cliargs += "]"
-            # Must first do str() of the msg object.
-            msg = str(msg)
-            self.errors += [(_('Error parsing the arguments'),
-                             msg + '\n' +
-                             _("Error parsing the arguments: %s \n"
-                               "Type gramps --help for an overview of "
-                               "commands, or read the manual pages."
-                              ) % cliargs)]
+        except getopt.GetoptError as getopt_error:
+            self.errors.append(
+                self.construct_error(
+                    "Type gramps --help for an overview of "
+                    "commands, or read the manual pages.",
+                    error=getopt_error
+                )
+            )
+
             return
 
         # Some args can work on a list of databases:
         if leftargs:
-            for opt_ix in range(len(options)):
-                option, value = options[opt_ix]
+            for option, value in options:
                 if option in ['-L', '-l', '-t']:
                     self.database_names = leftargs
                     leftargs = []
@@ -278,8 +268,7 @@ class ArgParser:
                    ) % leftargs[0],
                   file=sys.stderr)
             #see if force open is on
-            for opt_ix in range(len(options)):
-                option, value = options[opt_ix]
+            for option, value in options:
                 if option in ('-u', '--force-unlock'):
                     self.force_unlock = True
                     break
@@ -288,8 +277,7 @@ class ArgParser:
         # Go over all given option and place them into appropriate lists
         cleandbg = []
         need_to_quit = False
-        for opt_ix in range(len(options)):
-            option, value = options[opt_ix]
+        for opt_ix, (option, value) in enumerate(options):
             if option in ['-O', '--open']:
                 self.open = value
             elif option in ['-C', '--create']:
@@ -354,10 +342,9 @@ class ArgParser:
                 from gramps.gen.config import config
                 print(_("Gramps config settings from %s:"
                        ) % config.filename)
-                for sect in config.data:
-                    for setting in config.data[sect]:
-                        print("%s.%s=%s" % (sect, setting,
-                                            repr(config.data[sect][setting])))
+                for sect, settings in config.data.items():
+                    for settings_index, setting in settings.items():
+                        print("%s.%s=%s" % (sect, settings_index, repr(value)))
                     print()
                 sys.exit(0)
             elif option in ['-c', '--config']:
@@ -383,7 +370,7 @@ class ArgParser:
                                 converter = get_type_converter(setting_value)
                                 new_value = converter(new_value)
                             config.set(cfg_name, new_value)
-                            # translators: indent "New" to match "Current"
+                            # Translators: indent "New" to match "Current"
                             print(_("    New Gramps config setting: "
                                     "%(name)s:%(value)s"
                                    ) % {'name'  : cfg_name,
@@ -436,7 +423,6 @@ class ArgParser:
                     for fil in glob(os.path.join(HOME_DIR, "*.zip")):
                         os.remove(fil)
                 if 'E' in value:  # Everything else
-                    rmtree(TEMP_DIR)
                     rmtree(THUMB_DIR)
                     rmtree(USER_CSS)
                     rmtree(ENV_DIR)
@@ -459,21 +445,32 @@ class ArgParser:
                          or self.list_more
                          or self.list_table
                          or self.help)):
-            # Extract and convert to unicode the arguments in the list.
-            # The % operator replaces the list elements with repr() of
-            # the list elements, which is OK for latin characters
-            # but not for non-latin characters in list elements
-            cliargs = "[ "
-            for arg in range(len(self.args) - 1):
-                cliargs += self.args[arg + 1] + ' '
-            cliargs += "]"
-            self.errors += [(_('Error parsing the arguments'),
-                             _("Error parsing the arguments: %s \n"
-                               "To use in the command-line mode, supply at "
-                               "least one input file to process."
-                              ) % cliargs)]
+            self.errors.append(
+                self.construct_error(
+                    "To use in the command-line mode, supply at "
+                    "least one input file to process."
+                )
+            )
+
         if need_to_quit:
             sys.exit(0)
+
+    def construct_error(self, suggestion_message, error=None):
+        # Extract the arguments in the list.
+        cli_args = "[ %s ]" % " ".join(self.args[1:])
+
+        # The % operator replaces the list elements
+        # with repr() of the list elements
+        # which is OK for latin characters,
+        # but not for non latin characters in list elements
+        error_message = "Error parsing the arguments: %s \n"
+        translated_message = _(error_message + suggestion_message) % cli_args
+
+        if error:
+            translated_message = str(error) + '\n' + translated_message
+
+        return _('Error parsing the arguments'), translated_message
+
 
     #-------------------------------------------------------------------------
     # Determine the need for GUI

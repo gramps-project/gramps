@@ -54,8 +54,8 @@ class DateParserJA(DateParser):
     converted, the text string is assigned.
     """
 
-    # modifiers before the date
-    modifier_to_int = {
+    # modifiers after the date
+    modifier_after_to_int = {
         '以前' : Date.MOD_BEFORE,
         '以降' : Date.MOD_AFTER,
         '頃'   : Date.MOD_ABOUT,
@@ -68,6 +68,7 @@ class DateParserJA(DateParser):
         'およそ'    : Date.QUAL_ESTIMATED,
         'ごろ'      : Date.QUAL_ESTIMATED,
         '位'      : Date.QUAL_ESTIMATED,
+        'の見積り'  : Date.QUAL_ESTIMATED,
         '計算上'  : Date.QUAL_CALCULATED,
         }
 
@@ -163,16 +164,20 @@ class DateParserJA(DateParser):
         })
 
         _span_1 = ['から', '~', '〜']
-        _span_2 = ['まで', '']
+        _span_2 = ['まで']
         _range_1 = ['から', 'と', '~', '〜']
         _range_2 = ['までの間', 'の間']
-        self._span = re.compile(r"(?P<start>.+)(%s)(?P<stop>\d+)(%s)" %
+        self._span = re.compile(r"(?P<start>.+)(%s)(?P<stop>.+)(%s)" %
                                 ('|'.join(_span_1), '|'.join(_span_2)),
                                 re.IGNORECASE)
         self._range = re.compile(r"(?P<start>.+)(%s)(?P<stop>.+)(%s)" %
                                  ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
         self._numeric = re.compile(r"((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
+        self._cal = re.compile(r"(.*?)\s*\(%s\)\s*(.*)" % self._cal_str,
+                               re.IGNORECASE)
+        self._qual = re.compile(r"(.*?)\s*%s\s*(.*)" % self._qual_str,
+                                re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
