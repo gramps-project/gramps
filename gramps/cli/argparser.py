@@ -48,7 +48,7 @@ from glob import glob
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import (LONGOPTS, SHORTOPTS, USER_PLUGINS, VERSION_DIR,
-                              HOME_DIR, THUMB_DIR, ENV_DIR, USER_CSS)
+                              HOME_DIR, THUMB_DIR, USER_CSS)
 from gramps.gen.utils.cast import get_type_converter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -425,7 +425,6 @@ class ArgParser:
                 if 'E' in value:  # Everything else
                     rmtree(THUMB_DIR)
                     rmtree(USER_CSS)
-                    rmtree(ENV_DIR)
                     rmtree(os.path.join(HOME_DIR, "maps"))
                     for fil in glob(os.path.join(HOME_DIR, "*")):
                         if os.path.isfile(fil):
