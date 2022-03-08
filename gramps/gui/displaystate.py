@@ -397,6 +397,10 @@ TOOL_UI = '''  <child>
 '''
 
 TOOLS = {
+'tools': ('gramps-tools',
+          'win.Tools',
+          _('Open the tools dialog'),
+          _('Tools')),
 'plugin': ('gramps-plugin-manager',
            'win.PluginStatus',
            _('Open Plugin Manager'),

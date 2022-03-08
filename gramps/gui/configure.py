@@ -1625,6 +1625,14 @@ class GrampsPreferences(ConfigureDialog):
                       "Requires Gramps restart to apply."))
 
         row += 1
+        # Show Tools Icon:
+        self.add_checkbox(
+           grid, _("Show Tools icon on toolbar"),
+           row, 'interface.toolbar-tools', start=1, stop=3,
+           tooltip=_("Show or hide the Tools icon on the toolbar."),
+           extra_callback=self.cb_toolbar_changed)
+
+        row += 1
         # Show Plugins Icon:
         self.add_checkbox(
            grid, _("Show Plugins icon on toolbar"),

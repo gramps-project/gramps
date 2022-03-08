@@ -392,19 +392,6 @@ UIDEFAULT = (
         <property name="homogeneous">False</property>
       </packing>
      </child>
-    <child groups='RW'>
-      <object class="GtkToolButton" id="Tools">
-        <property name="icon-name">gramps-tools</property>
-        <property name="action-name">win.Tools</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open the tools dialog</property>
-        <property name="label" translatable="yes">_Tools</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
     <placeholder id='AfterTools'>
     </placeholder>
   </object>
