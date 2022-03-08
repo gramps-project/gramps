@@ -343,19 +343,6 @@ UIDEFAULT = (
     </placeholder>
     <placeholder id='TagTool'>
     </placeholder>
-    <child groups='RW'>
-      <object class="GtkToolButton" id="Clipboard">
-        <property name="icon-name">edit-paste</property>
-        <property name="action-name">win.Clipboard</property>
-        <property name="tooltip_text" translatable="yes">'''
-    '''Open the Clipboard dialog</property>
-        <property name="label" translatable="yes">Clip_board</property>
-        <property name="use-underline">True</property>
-      </object>
-      <packing>
-        <property name="homogeneous">False</property>
-      </packing>
-     </child>
     <child>
       <object class="GtkSeparatorToolItem"/>
     </child>

@@ -1627,6 +1627,14 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         # Show Tools Icon:
         self.add_checkbox(
+           grid, _("Show Clipboard icon on toolbar"),
+           row, 'interface.toolbar-clipboard', start=1, stop=3,
+           tooltip=_("Show or hide the Clipboard icon on the toolbar."),
+           extra_callback=self.cb_toolbar_changed)
+
+        row += 1
+        # Show Tools Icon:
+        self.add_checkbox(
            grid, _("Show Reports icon on toolbar"),
            row, 'interface.toolbar-reports', start=1, stop=3,
            tooltip=_("Show or hide the Reports icon on the toolbar."),

@@ -397,6 +397,10 @@ TOOL_UI = '''  <child>
 '''
 
 TOOLS = {
+'clipboard': ('edit-paste',
+              'win.Clipboard',
+              _('Open the Clipboard dialog'),
+              _('Clip_board')),
 'reports': ('gramps-reports',
             'win.Reports',
             _('Open the reports dialog'),
