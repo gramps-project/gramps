@@ -592,6 +592,12 @@ gramps/plugins/test/imports_test.py
 gramps/plugins/test/reports_test.py
 gramps/plugins/test/tools_test.py
 #
+# Thumbnailers
+#
+gramps/plugins/thumbnailer/__init__.py
+gramps/plugins/thumbnailer/gnomethumb.py
+gramps/plugins/thumbnailer/imagethumb.py
+#
 # Development tools
 #
 gramps/plugins/tool/__init__.py

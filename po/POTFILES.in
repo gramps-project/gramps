@@ -713,6 +713,7 @@ gramps/plugins/textreport/summary.py
 gramps/plugins/textreport/tableofcontents.py
 gramps/plugins/textreport/tagreport.py
 gramps/plugins/textreport/textplugins.gpr.py
+gramps/plugins/thumbnailer/thumb.gpr.py
 gramps/plugins/tool/changenames.glade
 gramps/plugins/tool/changenames.py
 gramps/plugins/tool/changetypes.glade

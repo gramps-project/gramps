@@ -163,11 +163,6 @@ PLUGINS_DIR = os.path.join(ROOT_DIR, "plugins")
 
 USE_TIPS = False
 
-if sys.platform == 'win32':
-    USE_THUMBNAILER = False
-else:
-    USE_THUMBNAILER = True
-
 #-------------------------------------------------------------------------
 #
 # Paths to data files.
@@ -254,6 +249,8 @@ DOCUMENTERS = [
 #-------------------------------------------------------------------------
 THUMBSCALE = 96.0
 THUMBSCALE_LARGE = 180.0
+SIZE_NORMAL = 0
+SIZE_LARGE = 1
 XMLFILE = "data.gramps"
 NO_SURNAME = "(%s)" % _("none", "surname")
 NO_GIVEN = "(%s)" % _("none", "given-name")

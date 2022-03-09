@@ -448,6 +448,11 @@ class BasePluginManager:
         """
         return self.__pgr.database_plugins()
 
+    def get_reg_thumbnailers(self):
+        """ Return list of registered thumbnailers.
+        """
+        return self.__pgr.thumbnailer_plugins()
+
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
         return self.__external_opt_dict

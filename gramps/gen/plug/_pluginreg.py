@@ -73,8 +73,10 @@ GRAMPLET = 10
 SIDEBAR = 11
 DATABASE = 12
 RULE = 13
+THUMBNAILER = 14
 PTYPE = [REPORT, QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
-         MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE, RULE]
+         MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE, RULE,
+         THUMBNAILER]
 PTYPE_STR = {
         REPORT: _('Report') ,
         QUICKREPORT: _('Quickreport'),
@@ -89,7 +91,8 @@ PTYPE_STR = {
         GRAMPLET: _('Gramplet'),
         SIDEBAR: _('Sidebar'),
         DATABASE: _('Database'),
-        RULE: _('Rule')
+        RULE: _('Rule'),
+        THUMBNAILER: _('Thumbnailer'),
         }
 
 #possible report categories
@@ -371,6 +374,11 @@ class PluginData:
        The class (Person, Event, Media, etc.) the rule applies to.
     .. attribute:: ruleclass
        The exact class name of the rule; ex: HasSourceParameter
+
+    Attributes for THUMBNAILER plugins
+
+    .. attribute:: thumbnailer
+       The exact class name of the thumbnailer
     """
 
     def __init__(self):
@@ -452,6 +460,8 @@ class PluginData:
         #RULE attr
         self._ruleclass = None
         self._namespace = None
+        #THUMBNAILER attr
+        self._thumbnailer = None
 
     def _set_id(self, id):
        self._id = id
@@ -948,10 +958,10 @@ class PluginData:
     sidebarclass = property(_get_sidebarclass, _set_sidebarclass)
     menu_label = property(_get_menu_label, _set_menu_label)
 
-    #VIEW and SIDEBAR attributes
+    #VIEW, SIDEBAR and THUMBNAILER attributes
     def _set_order(self, order):
-        if not self._ptype in (VIEW, SIDEBAR):
-            raise ValueError('order may only be set for VIEW and SIDEBAR plugins')
+        if not self._ptype in (VIEW, SIDEBAR, THUMBNAILER):
+            raise ValueError('order may only be set for VIEW/SIDEBAR/THUMBNAILER plugins')
         self._order = order
 
     def _get_order(self):
@@ -1019,6 +1029,17 @@ class PluginData:
     ruleclass = property(_get_ruleclass, _set_ruleclass)
     namespace = property(_get_namespace, _set_namespace)
 
+    #THUMBNAILER attr
+    def _set_thumbnailer(self, data):
+        if self._ptype != THUMBNAILER:
+            raise ValueError('thumbnailer may only be set for THUMBNAILER plugins')
+        self._thumbnailer = data
+
+    def _get_thumbnailer(self):
+        return self._thumbnailer
+
+    thumbnailer = property(_get_thumbnailer, _set_thumbnailer)
+
 def newplugin():
     """
     Function to create a new plugindata object, add it to list of
@@ -1072,6 +1093,7 @@ def make_environment(**kwargs):
         'RELCALC': RELCALC,
         'GRAMPLET': GRAMPLET,
         'SIDEBAR': SIDEBAR,
+        'THUMBNAILER': THUMBNAILER,
         'CATEGORY_TEXT': CATEGORY_TEXT,
         'CATEGORY_DRAW': CATEGORY_DRAW,
         'CATEGORY_CODE': CATEGORY_CODE,
@@ -1388,6 +1410,12 @@ class PluginRegister:
         Return a list of :class:`PluginData` that are of type RULE
         """
         return self.type_plugins(RULE)
+
+    def thumbnailer_plugins(self):
+        """
+        Return a list of :class:`PluginData` that are of type THUMBNAILER
+        """
+        return self.type_plugins(THUMBNAILER)
 
     def filter_load_on_reg(self):
         """
