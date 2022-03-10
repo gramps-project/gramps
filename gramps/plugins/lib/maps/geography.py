@@ -48,6 +48,7 @@ from gi.repository import OsmGpsMap as osmgpsmap
 # Gramps Modules
 #
 # -------------------------------------------------------------------------
+from gramps.gen.db import DbTxn
 from gramps.gen.lib import EventType, Place, PlaceRef, PlaceName
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
@@ -1049,7 +1050,8 @@ class GeoGraphyView(OsmGps, NavigationView):
             if val:
                 kmlfile = Kml(val)
                 points = kmlfile.add_points()
-                for place in points:
+                kml.destroy()
+                def init_place(place):
                     (name, coords) = place
                     latlong = coords.pop()
                     (lat, lon) = latlong
@@ -1060,11 +1062,37 @@ class GeoGraphyView(OsmGps, NavigationView):
                     new_place.set_title(name)
                     new_place.set_latitude(str(lat))
                     new_place.set_longitude(str(lon))
-                    try:
-                        EditPlace(self.dbstate, self.uistate, [], new_place)
-                    except WindowActiveError:
-                        pass
-        kml.destroy()
+                    return new_place
+
+                nb_pts = len(points)
+                if nb_pts > 5:
+                    from gramps.gui.dialog import WarningDialog
+                    ngettext = glocale.translation.ngettext
+                    warn_msg = _("You will need to edit each place manually "
+                                 "to add place type, ...\n")
+                    warn_msg += ngettext("You have {places_nb} place to edit.",
+                                         "You have {places_nb} places to edit.",
+                                         nb_pts).format(places_nb=nb_pts)
+                    WarningDialog(
+                        _('You have more than 5 places in this kml file.'),
+                        warn_msg, parent=self.uistate.window)
+                    with DbTxn("Add Places from Kml",
+                               self.dbstate.db) as trans:
+                        # add places without editing them. You need to
+                        # manually edit them to add place type, enclosing...
+                        for place in points:
+                            n_place = init_place(place)
+                            self.dbstate.db.add_place(n_place, trans)
+                else:
+                    for place in points:
+                        n_place = init_place(place)
+                        try:
+                            EditPlace(self.dbstate, self.uistate, [],
+                                      n_place)
+                        except WindowActiveError:
+                            pass
+            else:
+                kml.destroy()
 
     def place_exists(self, place_name):
         """
