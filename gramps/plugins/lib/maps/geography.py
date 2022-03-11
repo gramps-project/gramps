@@ -183,7 +183,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.place_list_ref = []
         self.select_fct = None
         self.geo_mainmap = None
-        self.reloadtiles = None
         theme = Gtk.IconTheme.get_default()
         self.geo_mainmap = theme.load_surface('gramps-geo-mainmap', 48, 1,
                                               None, 0)
@@ -208,8 +207,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.menu = None
         self.mark = None
         self.path_entry = None
-        self.changemap = None
-        self.clearmap = None
         self.nbplaces = 0
         self.nbmarkers = 0
         self.place_without_coordinates = []
@@ -401,7 +398,6 @@ class GeoGraphyView(OsmGps, NavigationView):
             title = _('Add cross hair')
         add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.config_crosshair, event, lat, lon)
-        add_item.show()
         menu.append(add_item)
 
         if config.get("geography.lock"):
@@ -411,73 +407,59 @@ class GeoGraphyView(OsmGps, NavigationView):
         add_item = Gtk.MenuItem(label=title)
         add_item.connect("activate", self.config_zoom_and_position,
                          event, lat, lon)
-        add_item.show()
         menu.append(add_item)
 
         add_item = Gtk.MenuItem(label=_("Add place"))
         add_item.connect("activate", self.add_place, event, lat, lon)
-        add_item.show()
         menu.append(add_item)
 
         add_item = Gtk.MenuItem(label=_("Link place"))
         add_item.connect("activate", self.link_place, event, lat, lon)
-        add_item.show()
         menu.append(add_item)
 
         add_item = Gtk.MenuItem(label=_("Add place from kml"))
         add_item.connect("activate", self.add_place_from_kml, event, lat, lon)
-        add_item.show()
         menu.append(add_item)
 
         add_item = Gtk.MenuItem(label=_("Center here"))
         add_item.connect("activate", self.set_center, event, lat, lon)
-        add_item.show()
         menu.append(add_item)
 
         # Add specific module menu
         self.add_specific_menu(menu, event, lat, lon)
         # Add a separator line
-        add_item = Gtk.MenuItem()
-        add_item.show()
-        menu.append(add_item)
+        menu.append(Gtk.SeparatorMenuItem())
 
         map_name = constants.MAP_TITLE[config.get("geography.map_service")]
         title = _("Replace '%(map)s' by =>") % {'map': map_name}
         add_item = Gtk.MenuItem(label=title)
-        add_item.show()
         menu.append(add_item)
 
-        self.changemap = Gtk.Menu()
-        changemap = self.changemap
-        changemap.show()
+        changemap = Gtk.Menu()
         add_item.set_submenu(changemap)
         # show in the map menu all available providers
         for my_map in constants.MAP_TYPE:
-            changemapitem = Gtk.MenuItem(label=constants.MAP_TITLE[my_map])
-            changemapitem.show()
+            changemapitem = Gtk.CheckMenuItem(label=constants.MAP_TITLE[my_map])
+            changemapitem.set_active(constants.MAP_TITLE[my_map] == map_name)
             changemapitem.connect("activate", self.change_map, my_map)
             changemap.append(changemapitem)
 
         reload_text = _("Reload all visible tiles for '%(map)s'.") % {
-            'map': map_name}
-        self.reloadtiles = Gtk.MenuItem(label=reload_text)
-        reloadtiles = self.reloadtiles
+            'map' : map_name}
+        reloadtiles = Gtk.MenuItem(label=reload_text)
         reloadtiles.connect("activate", self.reload_visible_tiles)
 
-        reloadtiles.show()
         menu.append(reloadtiles)
 
         clear_text = _("Clear the '%(map)s' tiles cache.") % {
-            'map': map_name}
-        self.clearmap = Gtk.MenuItem(label=clear_text)
-        clearmap = self.clearmap
+            'map' : map_name}
+        clearmap = Gtk.MenuItem(label=clear_text)
         clearmap.connect("activate", self.clear_map,
                          constants.TILES_PATH[config.get(
                              "geography.map_service")])
 
-        clearmap.show()
         menu.append(clearmap)
-        menu.show()
+        menu.show_all()
         menu.popup(None, None, None,
                    None, event.button, event.time)
         return 1

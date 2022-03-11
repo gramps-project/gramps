@@ -577,12 +577,9 @@ class GeoPerson(GeoGraphyView):
         """
         Add specific entry to the navigation menu.
         """
-        add_item = Gtk.MenuItem()
-        add_item.show()
-        menu.append(add_item)
+        menu.append(Gtk.SeparatorMenuItem())
         add_item = Gtk.MenuItem(label=_("Animate"))
         add_item.connect("activate", self.animate, self.sort, 0, 0)
-        add_item.show()
         menu.append(add_item)
         return
 
