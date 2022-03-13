@@ -37,7 +37,7 @@ import time
 #
 #------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".ImportVCard")
+LOG = logging.getLogger(".ImportvCard")
 
 #-------------------------------------------------------------------------
 #
@@ -60,7 +60,7 @@ from gramps.gen.utils.libformatting import ImportInfo
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, user):
-    """Function called by Gramps to import data on persons in VCard format."""
+    """Function called by Gramps to import data on persons in vCard format."""
     parser = VCardParser(database)
     try:
         with OpenFileOrStdin(filename) as filehandle:
@@ -71,7 +71,7 @@ def importData(database, filename, user):
     except GrampsImportError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
-    ## a "VCARD import report" happens in VCardParser so this is not needed:
+    ## a "vCard import report" happens in vCardParser so this is not needed:
     ## (but the imports_test.py unittest currently requires it, so here it is)
     return ImportInfo({_("Results"): _("done")})
 
@@ -132,7 +132,7 @@ def fitin(prototype, receiver, element):
 #
 #-------------------------------------------------------------------------
 class VCardParser:
-    """Class to read data in VCard format from a file."""
+    """Class to read data in vCard format from a file."""
     DATE_RE = re.compile(r'^(\d{4}-\d{1,2}-\d{1,2})|(?:(\d{4})-?(\d\d)-?(\d\d))')
     GROUP_RE = re.compile(r'^(?:[-0-9A-Za-z]+\.)?(.+)$')  # see RFC 2425 sec5.8.2
     ESCAPE_CHAR = '\\'
@@ -155,7 +155,7 @@ class VCardParser:
 
     @staticmethod
     def unesc(data):
-        """Remove VCard escape sequences."""
+        """Remove vCard escape sequences."""
         if type(data) == type('string'):
             for char in reversed(VCardParser.TOBE_ESCAPED):
                 data = data.replace(VCardParser.ESCAPE_CHAR + char, char)
@@ -163,7 +163,7 @@ class VCardParser:
         elif type(data) == type([]):
             return list(map(VCardParser.unesc, data))
         else:
-            raise TypeError("VCard unescaping is not implemented for "
+            raise TypeError("vCard unescaping is not implemented for "
                               "data type %s." % str(type(data)))
 
     @staticmethod
@@ -200,7 +200,7 @@ class VCardParser:
 
     def __get_next_line(self, filehandle):
         """
-        Read and return the line with the next property of the VCard.
+        Read and return the line with the next property of the vCard.
 
         Also if it spans multiple lines (RFC 2425 sec.5.8.1).
         """
@@ -251,9 +251,9 @@ class VCardParser:
                       ).format(number_of=tym)
         LOG.debug(msg)
         if self.number_of_errors == 0:
-            message = _("VCARD import report: No errors detected")
+            message = _("vCard import report: No errors detected")
         else:
-            message = _("VCARD import report: %s errors detected\n") % \
+            message = _("vCard import report: %s errors detected\n") % \
                 self.number_of_errors
         if hasattr(user.uistate, 'window'):
             parent_window = user.uistate.window
@@ -311,11 +311,11 @@ class VCardParser:
             elif property_name == "EMAIL":
                 self.add_email(fields, line_parts[1])
             elif property_name == "X-GENDER" or property_name == "GENDER":
-                # VCard 3.0 only has X-GENDER, GENDER is 4.0 syntax,
+                # vCard 3.0 only has X-GENDER, GENDER is 4.0 syntax,
                 # but we want to be robust here.
                 self.add_gender(fields, line_parts[1])
             elif property_name == "PRODID":
-                # Included cause VCards made by Gramps have this prop.
+                # Included cause vCards made by Gramps have this prop.
                 pass
             else:
                 self.__add_msg(_("Token >%(token)s< unknown. line skipped: %(line)s") %
@@ -329,30 +329,30 @@ class VCardParser:
         self.person = None
 
     def next_person(self):
-        """A VCard for another person is started."""
+        """A vCard for another person is started."""
         if self.person is not None:
             self.finish_person()
             self.__add_msg(_("BEGIN property not properly closed by END "
-                           "property, Gramps can't cope with nested VCards."),
+                           "property, Gramps can't cope with nested vCards."),
                            self.line_num - 1)
         self.person = Person()
         self.formatted_name = ''
         self.name_parts = ''
 
     def check_version(self, fields, data):
-        """Check the version of the VCard, only version 3.0 is supported."""
+        """Check the version of the vCard, only version 3.0 is supported."""
         self.version = data
         if self.version != "3.0":
-            raise GrampsImportError(_("Import of VCards version %s is "
+            raise GrampsImportError(_("Import of vCards version %s is "
                     "not supported by Gramps.") % self.version)
 
     def add_formatted_name(self, fields, data):
-        """Read the FN property of a VCard."""
+        """Read the FN property of a vCard."""
         if not self.formatted_name:
             self.formatted_name = self.unesc(str(data)).strip()
 
     def add_name_parts(self, fields, data):
-        """Read the N property of a VCard."""
+        """Read the N property of a vCard."""
         if not self.name_parts:
             self.name_parts = data.strip()
 
@@ -363,16 +363,16 @@ class VCardParser:
         Returns True on success, False on failure.
         """
         if not self.name_parts.strip():
-            self.__add_msg(_("VCard is malformed missing the compulsory N "
+            self.__add_msg(_("The vCard is malformed. It is missing the compulsory N "
                            "property, so there is no name; skip it."),
                            self.line_num - 1)
             return False
         if not self.formatted_name:
-            self.__add_msg(_("VCard is malformed missing the compulsory FN "
+            self.__add_msg(_("The vCard is malformed. It is missing the compulsory FN "
                            "property, get name from N alone."), self.line_num - 1)
         data_fields = self.split_unescaped(self.name_parts, ';')
         if len(data_fields) != 5:
-            self.__add_msg(_("VCard is malformed wrong number of name "
+            self.__add_msg(_("The vCard is malformed. Wrong number of name "
                            "components."), self.line_num - 1)
 
         name = Name()
@@ -453,7 +453,7 @@ class VCardParser:
         return
 
     def add_nicknames(self, fields, data):
-        """Read the NICKNAME property of a VCard."""
+        """Read the NICKNAME property of a vCard."""
         for nick in self.split_unescaped(data, ','):
             nickname = nick.strip()
             if nickname:
@@ -462,12 +462,12 @@ class VCardParser:
                 self.person.add_alternate_name(name)
 
     def add_sortas(self, fields, data):
-        """Read the SORT-STRING property of a VCard."""
+        """Read the SORT-STRING property of a vCard."""
         # TODO
         pass
 
     def add_address(self, fields, data):
-        """Read the ADR property of a VCard."""
+        """Read the ADR property of a vCard."""
         data_fields = self.split_unescaped(data, ';')
         data_fields = [x.strip() for x in self.unesc(data_fields)]
         if ''.join(data_fields):
@@ -489,7 +489,7 @@ class VCardParser:
             self.person.add_address(addr)
 
     def add_phone(self, fields, data):
-        """Read the TEL property of a VCard."""
+        """Read the TEL property of a vCard."""
         tel = data.strip()
         if tel:
             addr = Address()
@@ -497,7 +497,7 @@ class VCardParser:
             self.person.add_address(addr)
 
     def add_birthday(self, fields, data):
-        """Read the BDAY property of a VCard."""
+        """Read the BDAY property of a vCard."""
         date_str = data.strip()
         date_match = VCardParser.DATE_RE.match(date_str)
         date = Date()
@@ -538,7 +538,7 @@ class VCardParser:
         self.person.set_birth_ref(event_ref)
 
     def add_occupation(self, fields, data):
-        """Read the ROLE property of a VCard."""
+        """Read the ROLE property of a vCard."""
         occupation = data.strip()
         if occupation:
             event = Event()
@@ -551,7 +551,7 @@ class VCardParser:
             self.person.add_event_ref(event_ref)
 
     def add_url(self, fields, data):
-        """Read the URL property of a VCard."""
+        """Read the URL property of a vCard."""
         href = data.strip()
         if href:
             url = Url()
@@ -559,7 +559,7 @@ class VCardParser:
             self.person.add_url(url)
 
     def add_email(self, fields, data):
-        """Read the EMAIL property of a VCard."""
+        """Read the EMAIL property of a vCard."""
         email = data.strip()
         if email:
             url = Url()
@@ -568,7 +568,7 @@ class VCardParser:
             self.person.add_url(url)
 
     def add_gender(self, fields, data):
-        """Read the GENDER property of a VCard."""
+        """Read the GENDER property of a vCard."""
         gender_value = data.strip()
         if gender_value:
             gender_value = gender_value.upper()
