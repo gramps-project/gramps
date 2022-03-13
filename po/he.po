@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-05 23:23+0000\n"
-"PO-Revision-Date: 2022-03-06 17:46+0000\n"
+"PO-Revision-Date: 2022-03-07 19:04+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -215,10 +215,8 @@ msgid "Sweden"
 msgstr "שוודיה"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "טורקית"
+msgstr "טורקיה"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -253,8 +251,8 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"התכנה מספקת יכולות לתעד פרטים רבים בחיי אדם, כמו גם את קשרי־הגומלין המורכבים "
-"בין אנשים שונים, מקומות ואירועים."
+"התכנה מספקת יכולות תעוד פרטים רבים בחיי אדם, כך גם קשרי־גומלין מורכבים בין "
+"אנשים שונים, מקומות ואירועים."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
 msgid ""
@@ -450,10 +448,10 @@ msgid ""
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
-"<b>מחשבון קשרי־גומלין<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים "
-"(בקשרי דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון "
-"קשר...'. מחשבון קשרי־הגומלין ידווח על מערכת היחסים המדויקת וגם על כול האבות "
-"הקדמונים המשותפים."
+"<b>מחשבון קשרי־גומלין<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים ("
+"קרבת דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון קשר־"
+"גומלין...'. מחשבון קשרי־הגומלין ידווח על מערכת היחסים המדויקת וגם על כול "
+"האבות הקדמונים המשותפים."
 
 #: ../data/tips.xml:30
 msgid ""
@@ -493,9 +491,10 @@ msgid ""
 "a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>דוחות גרמפס<br/></b>גרמפס מציע מגוון רחב של דוחות. הדוחות והתרשימים "
-"הגרפיים יכולים להציג קשרים מורכבים בקלות ודו־השיח 'דוחות מילוליים' שימושיים "
-"במיוחד אם ברצונכם לשלוח את תוצאות אילן היוחסין לחברי המשפחה באמצעות דואר "
-"אלקטרוני. אם תרצו לייצור אתר מרשתת מאילן היוחסין, אזי קיים דו־שיח גם עבור זה."
+"הגרפיים יכולים להציג קשרי־גומלין מורכבים בקלות ודו־השיח 'דוחות מילוליים' "
+"שימושיים במיוחד אם ברצונכם לשלוח את תוצאות אילן היוחסין לחברי המשפחה באמצעות "
+"דואר אלקטרוני. אם תרצו לייצור אתר מרשתת מאילן היוחסין, אזי קיים דו־שיח גם "
+"עבור זה."
 
 #: ../data/tips.xml:36
 msgid ""
@@ -507,8 +506,8 @@ msgid ""
 msgstr ""
 "<b>הקמת אילן יוחסין חדש<br/></b> דרך טובה להקמת אילן יוחסין חדש היא על־ידי "
 "הזנת כול בני המשפחה למאגר הנתונים ‏ (מתפריט 'עריכה > הוספה...'או הקשה על "
-"'הוספת אדם חדש' מתצוגת אנשים). לאחר מכן, מעבר לתצוגת קשרי־הגומלין ליצירת "
-"קשרים בין אנשים."
+"'הוספת אדם חדש' מתצוגת אנשים). לאחר מכן, מעבר למצג קשרי־הגומלין ליצירת קשרים "
+"בין אנשים."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -617,9 +616,9 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>עריכת קשרי־הגומלין הורה־צאצא<br/></b>ניתן לערוך את הקשר של צאצא להוריו על־"
-"ידי הקשה כפולה על הצאצא בעורך המשפחה. מערכות יחסים יכולות להיות מהסוגים: "
-"אימוץ, לידה, אומנה, ללא, נתמך, צאצא חורג ולא ידוע."
+"<b>עריכת קשרי־הגומלין הורה־צאצא<br/></b>ניתן לערוך קשרי צאצא להוריו על־ידי "
+"הקשה כפולה על הצאצא בעורך המשפחה. מערכות יחסים יכולות להיות מהסוגים: אימוץ, "
+"לידה, אומנה, ללא, נתמך, צאצא חורג ולא ידוע."
 
 #: ../data/tips.xml:58
 msgid ""
@@ -4918,7 +4917,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "נתיב קישרי גומלין בין <אדם> ואנשים התואמים ל <מסנן>"
+msgstr "נתיב קשרי־גומלין בין <אדם> ואנשים התואמים ל <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:134
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
@@ -4936,9 +4935,9 @@ msgid ""
 "necessarily the shortest path."
 msgstr ""
 "חיפוש במסד הנתונים החל מאדם שצוין ואחזור כול האנשים שבין אותו אדם לקבוצה של "
-"אנשי יעד שהוגדרו במסנן.  פעולה זו תפיק קבוצה של נתיבי קשרי־גומלין (כולל קשרי "
-"נישואין) בין האדם שצוין לבין אנשי היעד.  כול נתיב שיתקבל אינו בהכרח הנתיב "
-"הקצר ביותר."
+"אנשי יעד שהוגדרו במסנן.  פעולה זו תפיק קבוצה של נתיבי קשרי־גומלין (כולל קרבת "
+"חיתון) בין האדם שצוין לבין אנשי היעד.  כול נתיב שיתקבל אינו בהכרח הנתיב הקצר "
+"ביותר."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:152
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:164
@@ -4968,7 +4967,7 @@ msgstr "אנשים מנותקים"
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
-msgstr "שליפת אנשים ללא קשרי משפחה לאף אדם אחר במסד הנתונים"
+msgstr "שליפת אנשים ללא קשרי־גומלין משפחתיים לכול אדם אחר במסד הנתונים"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:44
 msgid "Everyone"
@@ -8953,7 +8952,8 @@ msgstr "מיזוג הערות"
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
-msgstr "לא ניתן למזג בני זוג. על מנת למזג אותם יש צורך לבטל את הקשר ביניהם."
+msgstr ""
+"לא ניתן למזג בני זוג. על מנת למזג אותם יש צורך לבטל את קשרי־הגומלין ביניהם."
 
 #: ../gramps/gen/merge/mergepersonquery.py:121
 msgid "Merge Person"
@@ -10099,12 +10099,12 @@ msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"קיימים בעץ יותר %d דורות שנסרקו.\n"
-"יתכן שהתפספסו קשרים"
+"נסרקו יותר מ־%d דורות לאחור.\n"
+"יתכן שהתפספסו קשרי־גומלין"
 
 #: ../gramps/gen/relationship.py:1406
 msgid "Relationship loop detected:"
-msgstr "זוהה מקום מעגלי:"
+msgstr "זוהה קשר־גומלין מעגלי:"
 
 #: ../gramps/gen/relationship.py:1407
 #, python-format
@@ -10786,23 +10786,23 @@ msgstr "נמוך מאוד"
 
 #: ../gramps/gen/utils/string.py:65
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "קשר חוקי או על פי המשפט המקובל בין בעל ואישה"
+msgstr "קשר־גומלין חוקי או על פי המשפט המקובל בין בעל ואישה"
 
 #: ../gramps/gen/utils/string.py:67
 msgid "No legal or common-law relationship between man and woman"
-msgstr "אין קשר חוקי בין בעל ואישה"
+msgstr "אין קשר־גומלין חוקי או על פי המשפט המקובל, בין בעל ואישה"
 
 #: ../gramps/gen/utils/string.py:69
 msgid "An established relationship between members of the same sex"
-msgstr "קשר ממוסד בין אנשים מאותו מגדר"
+msgstr "קשר־גומלין ממוסד בין אנשים מאותו מגדר"
 
 #: ../gramps/gen/utils/string.py:71
 msgid "Unknown relationship between a man and woman"
-msgstr "קשר לא ידוע בין גבר לאישה"
+msgstr "קשר־גומלין לא ידוע בין גבר לאישה"
 
 #: ../gramps/gen/utils/string.py:73
 msgid "An unspecified relationship between a man and woman"
-msgstr "קשר לא מוגדר בין גבר לאישה"
+msgstr "קשר־גומלין לא מוגדר בין גבר לאישה"
 
 #: ../gramps/gen/utils/string.py:77
 msgid ""
@@ -11627,7 +11627,7 @@ msgstr "ניחוש שם משפחה"
 
 #: ../gramps/gui/configure.py:1373
 msgid "Default family relationship"
-msgstr "קשר משפחה ברירת מחדל"
+msgstr "קשר־גומלין משפחתי ברירת מחדל"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
@@ -15816,8 +15816,8 @@ msgid ""
 "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
 "details."
 msgstr ""
-"סוג קשרי־גומלין, לדוגמה, 'נשואים', 'לא נשואים'. לפרטים נוספים נא להשתמש "
-"באירועים."
+"סוג קשרי־גומלין, לדוגמה, 'נשואים', 'לא נשואים'. נא להשתמש באירועים לפרטים "
+"נוספים."
 
 #: ../gramps/gui/glade/editfamily.glade:733
 #: ../gramps/gui/glade/editmedia.glade:360
@@ -17960,7 +17960,7 @@ msgid ""
 msgstr ""
 "האנשים מוזגו.\n"
 "עם זאת, המשפחות במיזוג זה היו מורכבות מדי כדי לטפל בהן באופן אוטומטי.  מומלץ "
-"לעבור לתצוגת ' קשרי־גומלין ' ולבדוק אם יש צורך במיזוג ידני נוסף של משפחות."
+"לעבור למצג ' קשרי־גומלין ' ולבדוק אם נדרש מיזוג משפחות נוסף באופן ידני."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
@@ -19834,7 +19834,7 @@ msgstr "מצב התקדמות"
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "דו־שיח_סדור_קשרי־גומלין_מחדש"
+msgstr "דו־שיח_סידור_קשרי־גומלין_מחדש"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -21197,12 +21197,10 @@ msgid "quarter circle"
 msgstr "רבע מעגל"
 
 #: ../gramps/plugins/drawreport/fanchart.py:726
-#, fuzzy
-#| msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgid ""
 "The form of the graph: full circle, half circle, half circle with overhang "
 "or quarter circle."
-msgstr "צורת התרשים: עיגול מלא, חצי עיגול או רבע עיגול."
+msgstr "צורת התרשים: עיגול מלא, חצי עיגול עם שלוחה, או רבע עיגול."
 
 #: ../gramps/plugins/drawreport/fanchart.py:732
 msgid "generation dependent"
@@ -23610,10 +23608,10 @@ msgstr ""
 "כעת ניתן להתחיל להזין את נתוני ה'משפחה הראשונה', זה נעשה על ידי הזנת נתוני "
 "ה'אדם' הראשון.\n"
 "\n"
-"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־"
-"[+]) תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
+"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־[+])"
+" תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
 "נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
-"למצג קישרי־גומלין.\n"
+"למצג קשרי־גומלין.\n"
 "\n"
 "עם הקמת רשומת אדם ראשונה זו, כול אפשרויות התפריט ותפקודי הסמלים יהפכו "
 "לזמינים. שווה להקדיש זמן מה, למעבר באמצעות סמן העכבר, מעל הסמלים. כאשר הסמן "
@@ -24404,15 +24402,15 @@ msgstr "הכללת מספרי ניפוי תקלים קשרי־גומלין"
 #: ../gramps/plugins/graph/gvrelgraph.py:935
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "האם לכלול 'Ga' ו־'Gb' גם כן, לניפוי תקלות מחשבון קשרים"
+msgstr "האם לכלול 'Ga' ו־'Gb' גם כן, לניפוי תקלות מחשבון קשרי־גומלין"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:963
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "מציין קשרי־גומלין שאינם מלידה בקו מקווקו"
+msgstr "סימון קשרי־גומלין שאינם מ'לידה' בקו מקווקו"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:964
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "קשרים שלא מלידה יסומנו בתרשים על־ידי קו מקווקו."
+msgstr "קשרי־גומלין שלא מלידה יסומנו בתרשים בקו מקווקו."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:968
 msgid "Show family nodes"
@@ -28588,8 +28586,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היתה במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב־%(place)s"
-"%(endnotes)s."
+"הייתה במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -28598,8 +28596,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"מערכת יחסים ללא נישואין עם %(spouse)s %(partial_date)s ב־%(place)s"
-"%(endnotes)s."
+"מערכת יחסים ללא נישואין עם %(spouse)s %(partial_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1114
 #: ../gramps/plugins/lib/libnarrate.py:1137
@@ -28617,8 +28615,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"מערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב־%(place)s"
-"%(endnotes)s."
+"מערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1121
 #, python-format
@@ -28626,8 +28624,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s ב־"
-"%(place)s%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1122
 #, python-format
@@ -28644,8 +28642,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב־"
-"%(place)s%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1126
 #, python-format
@@ -28653,8 +28651,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s ב־%(place)s"
-"%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -28671,8 +28669,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב־%(place)s"
-"%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -28680,8 +28678,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s ב־%(partial_date)s ב־"
-"%(place)s%(endnotes)s."
+"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s ב־%(partial_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
@@ -28698,8 +28696,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב־%(place)s"
-"%(endnotes)s."
+"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s "
+"ב־%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1144
 #, python-format
@@ -28707,8 +28705,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s"
-"%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s "
+"ב־%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
@@ -28725,8 +28723,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s "
+"%(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
@@ -30966,7 +30964,7 @@ msgstr "קרבה לאדם הבית"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:111
 msgid "Display all relationships between person and home person."
-msgstr "הצגת כול הקשרים בין האדם והאדם הבית."
+msgstr "הצגת כול קשרי־הגומלין בין האדם והאדם הבית."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:131
 msgid "Display filtered data"
@@ -31163,39 +31161,39 @@ msgstr "חישוב קשרי־גומלין בין אנשים"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:48
 msgid "Czech Relationship Calculator"
-msgstr "מחשבון יחסים צ'כי"
+msgstr "מחשבון קשרי־גומלין צ'כי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:61
 msgid "Danish Relationship Calculator"
-msgstr "מחשבון יחסים דני"
+msgstr "מחשבון קשרי־גומלין דני"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:77
 msgid "German Relationship Calculator"
-msgstr "מחשבון יחסים גרמני"
+msgstr "מחשבון קשרי־גומלין גרמני"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
 msgid "Austrian Relationship Calculator"
-msgstr "מחשבון יחסי־גומלין אוסטרי"
+msgstr "מחשבון קשרי־גומלין אוסטרי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
-msgstr "מחשבון יחסים ספרדי"
+msgstr "מחשבון קשרי־גומלין ספרדי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:121
 msgid "Finnish Relationship Calculator"
-msgstr "מחשבון יחסים פיני"
+msgstr "מחשבון קשרי־גומלין פיני"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:136
 msgid "French Relationship Calculator"
-msgstr "מחשבון יחסים צרפתי"
+msgstr "מחשבון קשרי־גומלין צרפתי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:153
 msgid "Croatian Relationship Calculator"
-msgstr "מחשבון יחסים קרואטי"
+msgstr "מחשבון קשרי־גומלין קרואטי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:167
 msgid "Hungarian Relationship Calculator"
-msgstr "מחשבון יחסים הונגרי"
+msgstr "מחשבון קשרי־גומלין הונגרי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:180
 msgid "Icelandic Relationship Calculator"
@@ -31203,55 +31201,51 @@ msgstr "מחשבון קשרי־גומלין איסלנדי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:193
 msgid "Italian Relationship Calculator"
-msgstr "מחשבון יחסים איטלקי"
+msgstr "מחשבון קשרי־גומלין איטלקי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:206
 msgid "Dutch Relationship Calculator"
-msgstr "מחשבון יחסים הולנדי"
+msgstr "מחשבון קשרי־גומלין הולנדי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:223
 msgid "Norwegian Relationship Calculator"
-msgstr "מחשבון יחסים נורבגי"
+msgstr "מחשבון קשרי־גומלין נורבגי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:240
 msgid "Polish Relationship Calculator"
-msgstr "מחשבון יחסים פולני"
+msgstr "מחשבון קשרי־גומלין פולני"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:256
 msgid "Portuguese Relationship Calculator"
-msgstr "מחשבון יחסים פורטוגזי"
+msgstr "מחשבון קשרי־גומלין פורטוגזי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:272
 msgid "Russian Relationship Calculator"
-msgstr "מחשבון יחסים רוסי"
+msgstr "מחשבון קשרי־גומלין רוסי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:288
 msgid "Slovak Relationship Calculator"
-msgstr "מחשבון יחסים סלובקי"
+msgstr "מחשבון קשרי־גומלין סלובקי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:302
 msgid "Slovenian Relationship Calculator"
-msgstr "מחשבון יחסים סלובני"
+msgstr "מחשבון קשרי־גומלין סלובני"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:315
 msgid "Swedish Relationship Calculator"
-msgstr "מחשבון יחסים שוודי"
+msgstr "מחשבון קשרי־גומלין שוודי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:330
-#, fuzzy
-#| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
-msgstr "מחשבון יחסים דני"
+msgstr "מחשבון קשרי־גומלין טורקי"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:331
-#, fuzzy
-#| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
 msgstr "חישוב קשרי־גומלין בין אנשים"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:345
 msgid "Ukrainian Relationship Calculator"
-msgstr "מחשבון יחסים אוקראיני"
+msgstr "מחשבון קשרי־גומלין אוקראיני"
 
 #: ../gramps/plugins/sidebar/dropdownsidebar.py:164
 msgid "Click to select a view"
@@ -31690,7 +31684,7 @@ msgstr "בני זוג: %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:618
 #, python-format
 msgid "Relationship with: %s"
-msgstr "בקשר עם: %s"
+msgstr "קשרי־גומלין עם: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:835
 msgid "Sosa-Stradonitz number"
@@ -33024,7 +33018,7 @@ msgstr "איתור משפחות ריקות"
 
 #: ../gramps/plugins/tool/check.py:1026
 msgid "Looking for broken parent relationships"
-msgstr "איתור רשומות יחסי הורים שבורות"
+msgstr "איתור קשרי־גומלין הוריים פגומים"
 
 #: ../gramps/plugins/tool/check.py:1065
 msgid "Looking for event problems"
@@ -35608,20 +35602,17 @@ msgid "A view showing all the event places of the database."
 msgstr "תצוגת כול האירועים בעץ המשפחה."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
-#| msgid "Descendance of the active person."
 msgid "Descendants of the active person."
-msgstr "צאצאים של האדם הפעיל."
+msgstr "צאצאי האדם הפעיל."
 
 #: ../gramps/plugins/view/geomoves.py:240
 msgid "GeoMoves"
 msgstr "גאו־העברה"
 
 #: ../gramps/plugins/view/geomoves.py:573
-#, fuzzy, python-format
-#| msgid "All descendance for %s"
+#, python-format
 msgid "All descendants for %s"
-msgstr "כול הצאצאים של %s"
+msgstr "כול צאצאי %s"
 
 #: ../gramps/plugins/view/geomoves.py:715
 msgid "Bookmark this person"
@@ -36511,7 +36502,7 @@ msgid ""
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
 "עמוד זה מכיל מפתח של כול המשפחות/קשרי־הגומלין במסד הנתונים, ממוין לפי שם "
-"משפחה. הקשה על שם של אדם תוביל לעמוד המשפחה/קשר- גומלין."
+"משפחה. הקשה על שם של אדם תוביל לעמוד המשפחה/קשר־גומלין."
 
 #: ../gramps/plugins/webreport/family.py:239
 msgid "Families beginning with letter "
