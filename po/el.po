@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-05 23:23+0000\n"
+"POT-Creation-Date: 2022-03-12 23:08+0000\n"
 "PO-Revision-Date: 2021-05-22 18:06+0000\n"
 "Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/gramps-project/"
@@ -372,9 +372,9 @@ msgid ""
 "Filter Editor\". There you can name your filter and add and combine rules "
 "using the many preset rules. For example, you can define a filter to find "
 "all adopted people in the family tree. People without a birth date mentioned "
-"can also be filtered. To get the results save your filter and select it at "
-"the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is "
-"not visible, select View &gt; Filter."
+"can also be filtered. To get the results save your filter. Then select this "
+"filter in the Filter field on Sidebar, then click Find button. If the "
+"Sidebar is not visible, select View &gt; Sidebar."
 msgstr ""
 "<b>Φιλτράρισμα ατόμων</b><br/>Στην προβολή 'Άτομα' μπορείτε να 'φιλτράρετε' "
 "ανθρώπους βασισμένοι σε διάφορα κριτήρια. Για να ορίσετε ένα νέο φίλτρο "
@@ -389,10 +389,16 @@ msgstr ""
 "ορατή, επιλέξτε Προβολή &gt; Καρτέλες πλευρικές φίλτρου."
 
 #: ../data/tips.xml:16
+#, fuzzy
+#| msgid ""
+#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
+#| "'invert' option. For instance, by inverting the 'People with children' "
+#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-"'invert' option. For instance, by inverting the 'People with children' "
-"filter you can select all people without children."
+"'invert' option \"Return values that do not match the filter rules\". For "
+"instance, by inverting the 'People with children' filter you can select all "
+"people without children."
 msgstr ""
 "<b>Αντεστραμμένα φίλτρα</b><br/>Τα αποτελέσματα ενός φίλτρου μπορούν εύκολα "
 "να αντιστραφούν χρησιμοποιώντας την επιλογή 'Αντιστροφή των αποτελεσμάτων'. "
@@ -511,7 +517,7 @@ msgid ""
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View &gt; Configure View..."
-"\""
+"\"."
 msgstr ""
 "<b>Ορίστε τις προτιμήσεις σας</b><br/>Στο μενού &quot;Επεξεργασία &gt; "
 "Προτιμήσεις...&quot; μπορείτε να τροποποιήσετε μια σειρά από ρυθμίσεις όπως "
@@ -567,8 +573,8 @@ msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
 "guess or an estimate. For instance, \"about 1908\" is a valid entry for a "
-"birth date in Gramps. Click the Date button next to the date field and see "
-"the Gramps Manual to learn more."
+"birth date in Gramps. Click the \"Invoke date editor\" button next to the "
+"date field. See the Gramps Manual to learn more."
 msgstr ""
 "<b>Δεν είστε σίγουροι για μια ημερομηνία;</b><br/>Εάν δεν είστε σίγουροι για "
 "μια ημερομηνία, το Gramps σας επιτρέπει να εισάγετε μια πλειάδα από "
@@ -579,9 +585,9 @@ msgstr ""
 #: ../data/tips.xml:42
 #, fuzzy
 msgid ""
-"<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-"Possible Duplicate People...\" allows you to locate (and merge) entries of "
-"the same person entered more than once in the database."
+"<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
+"&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
+"entries of the same person entered more than once in the database."
 msgstr ""
 "<b>Διπλότυπες καταχωρήσεις</b><br/>Το εργαλείο στο μενού &quot;Εργαλεία &gt; "
 "Τροποποίηση του οικογενειακού δέντρου &gt; Εύρεση πιθανών διπλοτύπων "
@@ -592,12 +598,12 @@ msgstr ""
 #: ../data/tips.xml:44
 #, fuzzy
 msgid ""
-"<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge...\" "
-"allows you to combine separately listed people into one. Select the second "
-"entry by holding the Control key as you click. This is very useful for "
-"combining two databases with overlapping people, or combining erroneously "
-"entered differing names for one individual. This also works for the Places, "
-"Sources and Repositories views."
+"<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
+"combine separately listed people into one. Select the second entry by "
+"holding the Control key as you click. This is very useful for combining two "
+"databases with overlapping people, or combining erroneously entered "
+"differing names for one individual. Merging is available in all list views "
+"for all primary object types."
 msgstr ""
 "<b>Συγχώνευση καταχωρήσεων</b><br/>Η λειτουργία της συγχώνευσης σας "
 "επιτρέπει να συνδυάσετε άτομα διαφορετικών καταχωρήσεων σε ένα. Επιλέξτε τη "
@@ -745,7 +751,7 @@ msgid ""
 "documentation to testing development versions and helping with the web site. "
 "Start by subscribing to the Gramps developers mailing list, gramps-devel, "
 "and introducing yourself. Subscription information can be found at \"Help "
-"&gt; Gramps Mailing Lists\""
+"&gt; Gramps Mailing Lists\"."
 msgstr ""
 "<b>Συνεισφέροντας στο Gramps</b><br/>Θέλετε να βοηθήσετε το Gramps αλλά δε "
 "γνωρίζετε προγραμματισμό; Κανένα πρόβλημα! Ένα μεγάλο εγχείρημα όπως το "
@@ -959,9 +965,14 @@ msgstr ""
 "ιστοσελίδων που έχουν φτιαχτεί με αυτό."
 
 #: ../data/tips.xml:94
+#, fuzzy
+#| msgid ""
+#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
+#| "Gramps is to use the Gramps bug tracking system at https://gramps-project."
+#| "org/bugs/"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
-"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
 "<b>Αναφορά σφαλμάτων του Gramps</b><br/>Ο καλύτερος τρόπος να αναφέρετε "
 "κάποιο σφάλμα του Gramps, είναι να χρησιμοποιήσετε το σύστημα εντοπισμού "
@@ -969,9 +980,13 @@ msgstr ""
 "https://gramps-project.org/bugs/"
 
 #: ../data/tips.xml:96
+#, fuzzy
+#| msgid ""
+#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
+#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-"project.org/"
+"project.org/."
 msgstr ""
 "<b>Η ιστοσελίδα του Gramps</b><br/>Η ιστοσελίδα του Gramps βρίσκεται στην "
 "ηλεκτρονική διεύθυνση http://gramps-project.org/"
@@ -1009,7 +1024,7 @@ msgstr ""
 #: ../data/tips.xml:102
 #, fuzzy
 msgid ""
-"<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
+"<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
@@ -1024,10 +1039,10 @@ msgstr ""
 #: ../data/tips.xml:104
 #, fuzzy
 msgid ""
-"<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
-"Report...\", allows you to collect a variety of reports into a single "
-"document. This single report is easier to distribute than multiple reports, "
-"especially when printed."
+"<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
+"allows you to collect a variety of reports into a single document. This "
+"single report is easier to distribute than multiple reports, especially when "
+"printed."
 msgstr ""
 "<b>Αναφορές βιβλίου</b><br/>Η αναφορά βιβλίου στο μενού &quot;Αναφορές &gt; "
 "Βιβλία &gt; Αναφορά βιβλίου...&quot;, σας επιτρέπει να συγκεντρώσετε μια "
@@ -1040,7 +1055,7 @@ msgstr ""
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
-"\"Help &gt; Gramps Mailing Lists\""
+"\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
 "<b>Ανακοινώσεις Gramps</b><br/>Θα σας ενδιέφερε να ενημερώνεστε όταν βγαίνει "
 "μια νέα έκδοση του Gramps; Γραφτείτε στη λίστα ηλεκτρονικού ταχυδρομείου των "
@@ -1102,10 +1117,15 @@ msgstr ""
 "επανεκκινήστε το Gramps."
 
 #: ../data/tips.xml:116
+#, fuzzy
+#| msgid ""
+#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
+#| "translations can easily be added with little development effort. If you "
+#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
-"interested in participating please email gramps-devel@lists.sf.net"
+"interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
 "<b>Μεταφραστές Gramps</b><br/>Το Gramps έχει σχεδιαστεί έτσι ώστε να μπορούν "
 "να προστεθούν εύκολα νέες μεταφράσεις του προγράμματος με ελάχιστη "
@@ -1650,7 +1670,7 @@ msgstr "    Νέα ρύθμιση παραμέτρων του Gramps: %s:%s"
 msgid "Gramps: no such config setting: '%s'"
 msgstr "Gramps: δεν υπάρχει ρύθμιση παραμέτρων αυτού του τύπου: '%s'"
 
-#: ../gramps/cli/argparser.py:473
+#: ../gramps/cli/argparser.py:472
 msgid "Error parsing the arguments"
 msgstr "Σφάλμα κατά την ανάλυση των παραμέτρων"
 
@@ -1815,9 +1835,9 @@ msgstr "Κλειδωμένο από %s"
 #: ../gramps/plugins/importer/importcsv.py:389
 #: ../gramps/plugins/importer/importcsv.py:905
 #: ../gramps/plugins/lib/libprogen.py:1058
-#: ../gramps/plugins/lib/maps/geography.py:846
-#: ../gramps/plugins/lib/maps/geography.py:856
-#: ../gramps/plugins/lib/maps/geography.py:857
+#: ../gramps/plugins/lib/maps/geography.py:829
+#: ../gramps/plugins/lib/maps/geography.py:839
+#: ../gramps/plugins/lib/maps/geography.py:840
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/descendreport.py:322
@@ -1854,7 +1874,7 @@ msgstr "Κλειδωμένο από %s"
 #: ../gramps/plugins/view/geofamily.py:519
 #: ../gramps/plugins/view/geomoves.py:680
 #: ../gramps/plugins/view/geoperson.py:542
-#: ../gramps/plugins/view/geoplaces.py:588
+#: ../gramps/plugins/view/geoplaces.py:583
 #: ../gramps/plugins/view/relview.py:595 ../gramps/plugins/view/relview.py:1173
 #: ../gramps/plugins/view/relview.py:1228
 #: ../gramps/plugins/webreport/basepage.py:2124
@@ -1877,14 +1897,14 @@ msgid "ERROR: %s"
 msgstr "ΣΦΑΛΜΑ: %s"
 
 #: ../gramps/cli/grampscli.py:102 ../gramps/cli/user.py:200
-#: ../gramps/gui/dialog.py:295
+#: ../gramps/gui/dialog.py:296
 msgid "Low level database corruption detected"
 msgstr "Ανιχνεύθηκε φθορά χαμηλού επιπέδου της βάσης δεδομένων"
 
 # Family Tree Manager
 # Διαχείριση Οικογενειακού Δέντρου
 #: ../gramps/cli/grampscli.py:104 ../gramps/cli/user.py:201
-#: ../gramps/gui/dialog.py:296
+#: ../gramps/gui/dialog.py:297
 #, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
@@ -1900,7 +1920,7 @@ msgid "Read only database"
 msgstr "Βάση δεδομένων μόνον ανάγνωσης"
 
 #: ../gramps/cli/grampscli.py:150 ../gramps/gui/dbloader.py:162
-#: ../gramps/gui/dbloader.py:478
+#: ../gramps/gui/dbloader.py:484
 msgid "You do not have write access to the selected file."
 msgstr "Δεν έχετε δικαίωμα εγγραφής στο επιλεγμένο αρχείο."
 
@@ -1910,7 +1930,7 @@ msgid "Cannot open database"
 msgstr "Αδύνατο το άνοιγμα της βάσης δεδομένων"
 
 #: ../gramps/cli/grampscli.py:181 ../gramps/gui/dbloader.py:232
-#: ../gramps/gui/dbloader.py:435
+#: ../gramps/gui/dbloader.py:441
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Αδύνατο το άνοιγμα του αρχείου: %s"
@@ -2116,12 +2136,12 @@ msgstr "Αποτυχία εγγραφής αναφοράς."
 msgid "Failed to make '%s' report."
 msgstr "Αποτυχία εγγραφής αναφοράς."
 
-#: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:281
+#: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:282
 msgid "Error detected in database"
 msgstr "Ανιχνεύθηκε σφάλμα στη βάση δεδομένων"
 
 # εργαλείο «Έλεγχος και επιδιόρθωση βάσης δεδομένων»
-#: ../gramps/cli/user.py:218 ../gramps/gui/dialog.py:282
+#: ../gramps/cli/user.py:218 ../gramps/gui/dialog.py:283
 #, fuzzy, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
@@ -2173,7 +2193,7 @@ msgctxt "localized lexeme inflections"
 msgid "|January"
 msgstr "Ιανουάριος"
 
-#: ../gramps/gen/const.py:230
+#: ../gramps/gen/const.py:228
 #, fuzzy
 msgid ""
 "Gramps\n"
@@ -2183,19 +2203,19 @@ msgstr ""
 "Το Gramps (Genealogical Research και Analysis Management Programming System) "
 "είναι ένα πρόγραμμα προσωπικής γενεαλογίας."
 
-#: ../gramps/gen/const.py:260
+#: ../gramps/gen/const.py:258
 #, fuzzy
 msgctxt "surname"
 msgid "none"
 msgstr "άγνωστο επώνυμο"
 
-#: ../gramps/gen/const.py:261
+#: ../gramps/gen/const.py:259
 #, fuzzy
 msgctxt "given-name"
 msgid "none"
 msgstr "όνομα (βαπτιστικό)"
 
-#: ../gramps/gen/const.py:265 ../gramps/plugins/gramplet/todo.py:202
+#: ../gramps/gen/const.py:263 ../gramps/plugins/gramplet/todo.py:202
 #: ../gramps/plugins/webreport/basepage.py:200
 #: ../gramps/plugins/webreport/family.py:368
 #: ../gramps/plugins/webreport/person.py:713
@@ -2444,7 +2464,7 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "from" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:429
+#: ../gramps/gen/datehandler/_datedisplay.py:432
 msgctxt "from-date"
 msgid ""
 msgstr ""
@@ -2452,13 +2472,13 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "to" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:434
+#: ../gramps/gen/datehandler/_datedisplay.py:437
 #, fuzzy
 msgctxt "to-date"
 msgid ""
 msgstr "ημερομηνία"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:435
+#: ../gramps/gen/datehandler/_datedisplay.py:438
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
@@ -2466,7 +2486,7 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "between <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "between" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:454
+#: ../gramps/gen/datehandler/_datedisplay.py:457
 #, fuzzy
 msgctxt "between-date"
 msgid ""
@@ -2475,13 +2495,13 @@ msgstr "μεταξύ"
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "and" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:459
+#: ../gramps/gen/datehandler/_datedisplay.py:462
 #, fuzzy
 msgctxt "and-date"
 msgid ""
 msgstr "ημερομηνία"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:460
+#: ../gramps/gen/datehandler/_datedisplay.py:463
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
@@ -2490,7 +2510,7 @@ msgstr ""
 #. Translators: If there is no special inflection for
 #. "before <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:493
+#: ../gramps/gen/datehandler/_datedisplay.py:496
 #, fuzzy
 msgctxt "before-date"
 msgid ""
@@ -2499,7 +2519,7 @@ msgstr "πριν"
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:498
+#: ../gramps/gen/datehandler/_datedisplay.py:501
 #, fuzzy
 msgctxt "after-date"
 msgid ""
@@ -2508,7 +2528,7 @@ msgstr "μετά"
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:503
+#: ../gramps/gen/datehandler/_datedisplay.py:506
 #, fuzzy
 msgctxt "about-date"
 msgid ""
@@ -2517,7 +2537,7 @@ msgstr "γύρω στο/στις"
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:508
+#: ../gramps/gen/datehandler/_datedisplay.py:511
 #, fuzzy
 msgctxt "estimated-date"
 msgid ""
@@ -2526,37 +2546,37 @@ msgstr "εκτιμώμενη"
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:513
+#: ../gramps/gen/datehandler/_datedisplay.py:516
 #, fuzzy
 msgctxt "calculated-date"
 msgid ""
 msgstr "υπολογισμένη"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:532
+#: ../gramps/gen/datehandler/_datedisplay.py:535
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:651
+#: ../gramps/gen/datehandler/_datedisplay.py:654
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:677
+#: ../gramps/gen/datehandler/_datedisplay.py:680
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:703
+#: ../gramps/gen/datehandler/_datedisplay.py:706
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:729
+#: ../gramps/gen/datehandler/_datedisplay.py:732
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr ""
@@ -6857,8 +6877,8 @@ msgstr "Αντιστοιχίζει πηγές με την ένδειξη 'προ
 #: ../gramps/gui/configure.py:607 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:138
-#: ../gramps/plugins/lib/libgedcom.py:5656
-#: ../gramps/plugins/lib/libgedcom.py:5823
+#: ../gramps/plugins/lib/libgedcom.py:5660
+#: ../gramps/plugins/lib/libgedcom.py:5827
 #: ../gramps/plugins/textreport/familygroup.py:348
 #: ../gramps/plugins/webreport/addressbooklist.py:114
 msgid "Address"
@@ -6935,6 +6955,7 @@ msgstr "Προσωπικό"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:828
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:842
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:856
+#: ../gramps/plugins/importer/importxml.py:281
 #: ../gramps/plugins/textreport/tagreport.py:810
 #: ../gramps/plugins/view/view.gpr.py:283
 #: ../gramps/plugins/view/view.gpr.py:291
@@ -6959,6 +6980,7 @@ msgstr "Παραπομπές"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:772
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:778
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:786
+#: ../gramps/plugins/importer/importxml.py:279
 #: ../gramps/plugins/quickview/filterbyname.py:112
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:272
@@ -7051,7 +7073,7 @@ msgstr "Ημερομηνία"
 #: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
-#: ../gramps/plugins/view/geoplaces.py:594
+#: ../gramps/plugins/view/geoplaces.py:589
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1236
 #: ../gramps/plugins/webreport/basepage.py:2899
@@ -7063,7 +7085,7 @@ msgstr "Οδός"
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:610
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
-#: ../gramps/plugins/view/geoplaces.py:592
+#: ../gramps/plugins/view/geoplaces.py:587
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1237
 #: ../gramps/plugins/webreport/basepage.py:2900
@@ -7075,7 +7097,7 @@ msgstr "Περιοχή"
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:613
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
-#: ../gramps/plugins/view/geoplaces.py:626
+#: ../gramps/plugins/view/geoplaces.py:621
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1238
 #: ../gramps/plugins/webreport/basepage.py:2901
@@ -7088,7 +7110,7 @@ msgstr "Πόλη"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/gui/views/treemodels/placemodel.py:312
 #: ../gramps/plugins/lib/maps/placeselection.py:148
-#: ../gramps/plugins/view/geoplaces.py:614
+#: ../gramps/plugins/view/geoplaces.py:609
 #: ../gramps/plugins/webreport/basepage.py:1240
 #: ../gramps/plugins/webreport/basepage.py:2904
 #: ../gramps/plugins/webreport/basepage.py:2970
@@ -7100,7 +7122,7 @@ msgstr "Νομός"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
 #: ../gramps/gui/views/treemodels/placemodel.py:312
 #: ../gramps/plugins/lib/maps/placeselection.py:147
-#: ../gramps/plugins/view/geoplaces.py:612
+#: ../gramps/plugins/view/geoplaces.py:607
 msgid "State"
 msgstr "Περιφέρεια"
 
@@ -7110,7 +7132,7 @@ msgstr "Περιφέρεια"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:312
 #: ../gramps/plugins/lib/maps/placeselection.py:146
-#: ../gramps/plugins/view/geoplaces.py:610
+#: ../gramps/plugins/view/geoplaces.py:605
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1242
 #: ../gramps/plugins/webreport/basepage.py:2909
@@ -7131,10 +7153,10 @@ msgstr "Ταχυδρομικός κώδικας"
 #: ../gramps/gui/configure.py:625
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:78
 #: ../gramps/plugins/export/exportgedcom.py:788
-#: ../gramps/plugins/export/exportgedcom.py:1162
+#: ../gramps/plugins/export/exportgedcom.py:1167
 #: ../gramps/plugins/gramplet/repositorydetails.py:126
-#: ../gramps/plugins/lib/libgedcom.py:4143
-#: ../gramps/plugins/lib/libgedcom.py:5920
+#: ../gramps/plugins/lib/libgedcom.py:4147
+#: ../gramps/plugins/lib/libgedcom.py:5924
 #: ../gramps/plugins/webreport/basepage.py:1243
 msgid "Phone"
 msgstr "Τηλέφωνο"
@@ -7166,7 +7188,7 @@ msgstr "Τιμή"
 #: ../gramps/gen/lib/srcmediatype.py:57 ../gramps/gen/lib/urltype.py:48
 #: ../gramps/gui/autocomp.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:74
-#: ../gramps/plugins/view/geoplaces.py:590
+#: ../gramps/plugins/view/geoplaces.py:585
 msgid "Custom"
 msgstr "Προσαρμοσμένο"
 
@@ -7337,6 +7359,7 @@ msgstr "Ανατρεφόμενο τέκνο"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
 #: ../gramps/plugins/importer/importprogen.glade:209
 #: ../gramps/plugins/importer/importprogen.glade:739
+#: ../gramps/plugins/importer/importxml.py:252
 #: ../gramps/plugins/lib/libprogen.py:936
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
 #: ../gramps/plugins/quickview/references.py:89
@@ -7412,6 +7435,7 @@ msgstr "Επίπεδο αξιοπιστίας"
 #: ../gramps/plugins/importer/importcsv.py:173
 #: ../gramps/plugins/importer/importprogen.glade:52
 #: ../gramps/plugins/importer/importprogen.glade:724
+#: ../gramps/plugins/importer/importxml.py:246
 #: ../gramps/plugins/lib/libprogen.py:883
 #: ../gramps/plugins/quickview/filterbyname.py:195
 #: ../gramps/plugins/quickview/filterbyname.py:258
@@ -7480,6 +7504,7 @@ msgstr "Τροποποιήθηκε"
 #: ../gramps/gui/glade/editperson.glade:683
 #: ../gramps/gui/selectors/selectnote.py:74
 #: ../gramps/plugins/importer/importprogen.glade:527
+#: ../gramps/plugins/importer/importxml.py:280
 #: ../gramps/plugins/lib/libpersonview.py:109
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/indivcomplete.py:551
@@ -7627,6 +7652,7 @@ msgstr "κείμενομόνον"
 #: ../gramps/gui/grampsgui.py:56
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/importer/importprogen.glade:696
+#: ../gramps/plugins/importer/importxml.py:247
 #: ../gramps/plugins/quickview/filterbyname.py:175
 #: ../gramps/plugins/quickview/filterbyname.py:246
 #: ../gramps/plugins/quickview/quickview.gpr.py:204
@@ -7658,6 +7684,7 @@ msgstr "Συμβάν"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/importer/importcsv.py:240
 #: ../gramps/plugins/importer/importprogen.glade:710
+#: ../gramps/plugins/importer/importxml.py:249
 #: ../gramps/plugins/quickview/filterbyname.py:185
 #: ../gramps/plugins/quickview/filterbyname.py:252
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -7759,6 +7786,7 @@ msgstr "Συμβάντα"
 #: ../gramps/plugins/importer/importprogen.glade:682
 #: ../gramps/plugins/importer/importprogen.glade:1256
 #: ../gramps/plugins/importer/importprogen.glade:1345
+#: ../gramps/plugins/importer/importxml.py:245
 #: ../gramps/plugins/quickview/all_events.py:83
 #: ../gramps/plugins/quickview/all_relations.py:270
 #: ../gramps/plugins/quickview/filterbyname.py:165
@@ -8293,6 +8321,7 @@ msgstr "Τέκνα"
 #: ../gramps/gen/lib/family.py:165 ../gramps/gui/merge/mergeperson.py:206
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:478
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:492
+#: ../gramps/plugins/importer/importxml.py:275
 #: ../gramps/plugins/quickview/filterbyname.py:97
 #: ../gramps/plugins/quickview/filterbyname.py:122
 #: ../gramps/plugins/textreport/tagreport.py:324
@@ -8516,7 +8545,7 @@ msgid "Location"
 msgstr "Τοποθεσία"
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
-#: ../gramps/plugins/view/geoplaces.py:624
+#: ../gramps/plugins/view/geoplaces.py:619
 msgid "Parish"
 msgstr "Ενορία"
 
@@ -8542,7 +8571,7 @@ msgid "Media ref"
 msgstr "Αναφ. Μέσων"
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
-#: ../gramps/plugins/view/geoplaces.py:618
+#: ../gramps/plugins/view/geoplaces.py:613
 #, fuzzy
 msgid "Region"
 msgstr "Θρήσκευμα"
@@ -8782,6 +8811,7 @@ msgstr "Επώνυμο συζύγου"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:112
 #: ../gramps/plugins/importer/importcsv.py:174
 #: ../gramps/plugins/importer/importprogen.glade:753
+#: ../gramps/plugins/importer/importxml.py:251
 #: ../gramps/plugins/quickview/filterbyname.py:225
 #: ../gramps/plugins/quickview/filterbyname.py:276
 #: ../gramps/plugins/quickview/quickview.gpr.py:208
@@ -8996,6 +9026,7 @@ msgstr "Σημείωση αναφοράς συμβάντος"
 #: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:300
 #: ../gramps/plugins/graph/gvhourglass.py:434
 #: ../gramps/plugins/graph/gvrelgraph.py:958
+#: ../gramps/plugins/importer/importxml.py:273
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
 #: ../gramps/plugins/textreport/indivcomplete.py:643
@@ -9065,7 +9096,7 @@ msgstr "Γεωγραφικό μήκος"
 msgid "Latitude"
 msgstr "Γεωγραφικό πλάτος"
 
-#: ../gramps/gen/lib/place.py:150
+#: ../gramps/gen/lib/place.py:150 ../gramps/plugins/importer/importxml.py:277
 #: ../gramps/plugins/quickview/filterbyname.py:100
 #: ../gramps/plugins/quickview/filterbyname.py:125
 #: ../gramps/plugins/textreport/tagreport.py:407
@@ -9120,57 +9151,57 @@ msgstr ""
 msgid "Place ref"
 msgstr "Ομαδοποίηση τοποθεσιών"
 
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:616
+#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:611
 #: ../gramps/plugins/webreport/basepage.py:2908
 #, fuzzy
 msgid "Province"
 msgstr "Περιφέρεια/Επαρχία"
 
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:620
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:615
 #, fuzzy
 msgid "Department"
 msgstr "Συνταξιοδότηση"
 
-#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:596
+#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:591
 msgid "Neighborhood"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:622
+#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:617
 msgid "District"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:598
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:593
 msgid "Borough"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:630
+#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:625
 #, fuzzy
 msgid "Municipality"
 msgstr "Περιοχή"
 
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:628
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:623
 msgid "Town"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:600
+#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:595
 msgid "Village"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:602
+#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:597
 msgid "Hamlet"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:604
+#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:599
 msgid "Farm"
 msgstr ""
 
-#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:606
+#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:601
 #, fuzzy
 msgid "Building"
 msgstr "Δημιουργία προβολής"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:95
-#: ../gramps/plugins/view/geoplaces.py:608
+#: ../gramps/plugins/view/geoplaces.py:603
 #: ../gramps/plugins/webreport/basepage.py:3109
 #: ../gramps/plugins/webreport/source.py:169
 msgid "Number"
@@ -9182,6 +9213,7 @@ msgstr "Αριθμός"
 #: ../gramps/gui/editors/editrepository.py:79
 #: ../gramps/gui/editors/filtereditor.py:300 ../gramps/gui/grampsgui.py:56
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
+#: ../gramps/plugins/importer/importxml.py:250
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
 #: ../gramps/plugins/tool/reorderids.glade:835
@@ -9261,7 +9293,8 @@ msgstr "Πληροφορίες έκδοσης"
 msgid "Abbreviation"
 msgstr "Συντομογραφία"
 
-#: ../gramps/gen/lib/src.py:127 ../gramps/plugins/quickview/filterbyname.py:106
+#: ../gramps/gen/lib/src.py:127 ../gramps/plugins/importer/importxml.py:278
+#: ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
 #: ../gramps/plugins/textreport/tagreport.py:643
 #: ../gramps/plugins/view/repoview.py:129
@@ -9500,9 +9533,9 @@ msgstr "Ένας γονέας πρέπει να είναι είτε πατέρα
 #: ../gramps/gen/merge/mergefamilyquery.py:103
 #: ../gramps/gen/merge/mergefamilyquery.py:114
 #: ../gramps/gen/merge/mergepersonquery.py:55
-#: ../gramps/gen/merge/test/merge_ref_test.py:2054
-#: ../gramps/gen/merge/test/merge_ref_test.py:2078
-#: ../gramps/gen/merge/test/merge_ref_test.py:2102
+#: ../gramps/gen/merge/test/merge_ref_test.py:2042
+#: ../gramps/gen/merge/test/merge_ref_test.py:2066
+#: ../gramps/gen/merge/test/merge_ref_test.py:2090
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -9556,8 +9589,8 @@ msgstr "Συγχώνευση πηγής"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
-#: ../gramps/plugins/lib/libgedcom.py:5453
-#: ../gramps/plugins/lib/libgedcom.py:6761
+#: ../gramps/plugins/lib/libgedcom.py:5457
+#: ../gramps/plugins/lib/libgedcom.py:6776
 #: ../gramps/plugins/textreport/indivcomplete.py:665
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:789
@@ -9734,7 +9767,7 @@ msgstr "Το αρχείο %s είναι ήδη ανοικτό, πρώτα κλε
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
 #: ../gramps/plugins/export/exportftree.py:136
-#: ../gramps/plugins/export/exportgedcom.py:1597
+#: ../gramps/plugins/export/exportgedcom.py:1607
 #: ../gramps/plugins/export/exportgeneweb.py:109
 #: ../gramps/plugins/export/exportgeneweb.py:113
 #: ../gramps/plugins/export/exportvcalendar.py:123
@@ -11807,8 +11840,8 @@ msgstr "Σύρετε και αφήστε τις στήλες για να αλλ�
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1973
 #: ../gramps/gui/configure.py:1997 ../gramps/gui/configure.py:2023
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1787
-#: ../gramps/plugins/lib/maps/geography.py:1041
-#: ../gramps/plugins/lib/maps/geography.py:1377
+#: ../gramps/plugins/lib/maps/geography.py:1024
+#: ../gramps/plugins/lib/maps/geography.py:1387
 msgid "_Apply"
 msgstr "_Εφαρμογή"
 
@@ -11841,8 +11874,8 @@ msgid "Display Name Editor"
 msgstr "Εμφάνιση επεξεργασίας ονομάτων"
 
 #: ../gramps/gui/configure.py:116 ../gramps/gui/configure.py:189
-#: ../gramps/gui/dialog.py:261 ../gramps/gui/dialog.py:307
-#: ../gramps/gui/dialog.py:333 ../gramps/gui/glade/book.glade:466
+#: ../gramps/gui/dialog.py:262 ../gramps/gui/dialog.py:308
+#: ../gramps/gui/dialog.py:334 ../gramps/gui/glade/book.glade:466
 #: ../gramps/gui/glade/book.glade:556 ../gramps/gui/glade/clipboard.glade:71
 #: ../gramps/gui/glade/dialog.glade:20 ../gramps/gui/glade/dialog.glade:141
 #: ../gramps/gui/glade/displaystate.glade:23
@@ -12041,7 +12074,7 @@ msgstr ""
 msgid "ID Formats"
 msgstr "Μορφοποίηση ΑΑ"
 
-#: ../gramps/gui/configure.py:667
+#: ../gramps/gui/configure.py:667 ../gramps/plugins/importer/importxml.py:248
 msgid "Media Object"
 msgstr "Αντικείμενο μέσων"
 
@@ -12897,8 +12930,8 @@ msgstr "Επιλογή καταλόγου μέσων"
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/tags.py:711
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/importer/importprogen.glade:1714
-#: ../gramps/plugins/lib/maps/geography.py:1040
-#: ../gramps/plugins/lib/maps/geography.py:1376
+#: ../gramps/plugins/lib/maps/geography.py:1023
+#: ../gramps/plugins/lib/maps/geography.py:1386
 #: ../gramps/plugins/tool/check.py:777 ../gramps/plugins/tool/eventcmp.py:398
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:327
@@ -13051,7 +13084,13 @@ msgstr "Ιουδαϊκό Πάσχα"
 msgid "Import Family Tree"
 msgstr "Gramps: Εισαγωγή οικογενειακού δέντρου"
 
-#: ../gramps/gui/dbloader.py:436
+#: ../gramps/gui/dbloader.py:387
+#, fuzzy
+#| msgid "All files"
+msgid "All supported files"
+msgstr "Όλα τα αρχεία"
+
+#: ../gramps/gui/dbloader.py:442
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -13064,29 +13103,29 @@ msgstr ""
 "Οι έγκυρες μορφές είναι: βάση δεδομένων Gramps, XML Gramps, πακέτο Gramps, "
 "GEDCOM και άλλες."
 
-#: ../gramps/gui/dbloader.py:459 ../gramps/gui/dbloader.py:466
+#: ../gramps/gui/dbloader.py:465 ../gramps/gui/dbloader.py:472
 #: ../gramps/plugins/webreport/download.py:173
 msgid "Cannot open file"
 msgstr "Αδύνατο το άνοιγμα του αρχείου"
 
-#: ../gramps/gui/dbloader.py:460
+#: ../gramps/gui/dbloader.py:466
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Το επιλεγμένο είναι κατάλογος και όχι αρχείο.\n"
 
-#: ../gramps/gui/dbloader.py:467
+#: ../gramps/gui/dbloader.py:473
 msgid "You do not have read access to the selected file."
 msgstr "Δεν έχετε δικαίωμα ανάγνωσης στο επιλεγμένο αρχείο."
 
-#: ../gramps/gui/dbloader.py:477
+#: ../gramps/gui/dbloader.py:483
 msgid "Cannot create file"
 msgstr "Αδύνατη η δημιουργία του αρχείου"
 
-#: ../gramps/gui/dbloader.py:500
+#: ../gramps/gui/dbloader.py:506
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Αδύνατη η εισαγωγή του αρχείου: %s"
 
-#: ../gramps/gui/dbloader.py:501
+#: ../gramps/gui/dbloader.py:507
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -13460,12 +13499,12 @@ msgstr ""
 "%s"
 
 # ή "Προσπάθεια να επιβληθεί κλείσιμο του παραθύρου"
-#: ../gramps/gui/dialog.py:434 ../gramps/gui/dialog.py:534
+#: ../gramps/gui/dialog.py:460 ../gramps/gui/dialog.py:560
 #: ../gramps/gui/utils.py:309
 msgid "Attempt to force closing the dialog"
 msgstr "Βεβιασμένη προσπάθεια κλεισίματος παραθύρου"
 
-#: ../gramps/gui/dialog.py:435 ../gramps/gui/dialog.py:535
+#: ../gramps/gui/dialog.py:461 ../gramps/gui/dialog.py:561
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -14292,7 +14331,7 @@ msgid "Move the selected surname downwards"
 msgstr "Μετακίνηση του επιλεγμένου επωνύμου προς τα κάτω"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:81
-#: ../gramps/plugins/lib/libgedcom.py:712
+#: ../gramps/plugins/lib/libgedcom.py:714
 msgid "Origin"
 msgstr "Προέλευση"
 
@@ -14823,6 +14862,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/statsgramplet.py:189
 #: ../gramps/plugins/gramplet/statsgramplet.py:194
 #: ../gramps/plugins/gramplet/statsgramplet.py:198
+#: ../gramps/plugins/importer/importxml.py:286
 #: ../gramps/plugins/textreport/indivcomplete.py:931
 #: ../gramps/plugins/textreport/indivcomplete.py:933
 #: ../gramps/plugins/textreport/indivcomplete.py:934
@@ -15314,7 +15354,7 @@ msgid ""
 msgstr "Άκυρο γεωγραφικό μήκος (syntax: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:256
-#: ../gramps/plugins/lib/maps/geography.py:935
+#: ../gramps/plugins/lib/maps/geography.py:918
 #: ../gramps/plugins/view/geoplaces.py:495
 #: ../gramps/plugins/view/geoplaces.py:520
 msgid "Edit Place"
@@ -17388,6 +17428,7 @@ msgid "Full title of this place."
 msgstr "Πλήρες όνομα τοποθεσίας."
 
 #: ../gramps/gui/glade/editplace.glade:179
+#: ../gramps/gui/glade/editplaceref.glade:460
 #, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
@@ -17405,6 +17446,7 @@ msgstr ""
 "Τοποθεσία."
 
 #: ../gramps/gui/glade/editplace.glade:194
+#: ../gramps/gui/glade/editplaceref.glade:475
 #, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
@@ -17449,7 +17491,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:380
 #: ../gramps/gui/glade/editplaceref.glade:397
 #, fuzzy
-msgid "What type of place this is. Eg 'Country', 'City', ... ."
+msgid "What type of place this is. Eg 'Country', 'City', ..."
 msgstr "Ο τύπος του συμβάντος. Π.χ. ταφή, βάπτιση, αποφοίτηση..."
 
 #: ../gramps/gui/glade/editplace.glade:443
@@ -17520,39 +17562,6 @@ msgstr ""
 "<b>Σημείωση:</b> Όλες οι αλλαγές στις διαμοιραζόμενες πληροφορίες αυτής της "
 "πηγής θα αντανακλώνται στην ίδια την πηγή και σε κάθε αντικείμενο στο οποίο "
 "γίνεται αναφορά σε αυτήν."
-
-#: ../gramps/gui/glade/editplaceref.glade:460
-msgid ""
-"Latitude (position above the Equator) of the place in decimal or degree "
-"notation. \n"
-"Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92\n"
-"You can set these values via the Geography View by searching the place, or "
-"via a map service in the place view."
-msgstr ""
-"Γεωγραφικό πλάτος (θέση πάνω από τον Ισημερινό) της τοποθεσίας εκφρασμένο σε "
-"μοίρες.\n"
-"Π.χ. έγκυρες τιμές είναι 12.0154, 50°52′21.92″N, N50°52′21.92″ ή "
-"50:52:21.92\n"
-"Μπορείτε να ορίσετε αυτές τις τιμές μέσω της προβολής Γεωγραφία αναζητώντας "
-"την τοποθεσία ή μέσω κάποιας χαρτογραφικής υπηρεσίας από την προβολή "
-"Τοποθεσία."
-
-#: ../gramps/gui/glade/editplaceref.glade:475
-msgid ""
-"Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
-"place in decimal or degree notation. \n"
-"Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or "
-"124:52:21.92\n"
-"You can set these values via the Geography View by searching the place, or "
-"via a map service in the place view."
-msgstr ""
-"Γεωγραφικό πλάτος (σχετική θέση ως προς τον μεσημβρινό του Γκρήνουιτς) της "
-"τοποθεσίας εκφρασμένο σε μοίρες.\n"
-"Π.χ. έγκυρες τιμές είναι -124.3647, 124°52′21.92″E, E124°52′21.92″ or "
-"124:52:21.92\n"
-"Μπορείτε να ορίσετε αυτές τις τιμές μέσω της προβολής Γεωγραφία αναζητώντας "
-"την τοποθεσία ή μέσω κάποιας χαρτογραφικής υπηρεσίας από την προβολή "
-"Τοποθεσία."
 
 #: ../gramps/gui/glade/editreporef.glade:127
 msgid "_Media Type:"
@@ -20646,8 +20655,8 @@ msgstr "Ενεργό αντικείμενο μη-ορατό"
 
 #: ../gramps/gui/views/listview.py:451
 #: ../gramps/gui/views/navigationview.py:256
-#: ../gramps/plugins/lib/maps/geography.py:233
-#: ../gramps/plugins/lib/maps/geography.py:250
+#: ../gramps/plugins/lib/maps/geography.py:231
+#: ../gramps/plugins/lib/maps/geography.py:248
 #: ../gramps/plugins/view/familyview.py:347
 msgid "Could Not Set a Bookmark"
 msgstr "Αδυναμία προσθήκης σελιδοδείκτη"
@@ -20720,8 +20729,8 @@ msgid "%s has been bookmarked"
 msgstr "%s ορίστηκε ως σελιδοδείκτης"
 
 #: ../gramps/gui/views/navigationview.py:257
-#: ../gramps/plugins/lib/maps/geography.py:234
-#: ../gramps/plugins/lib/maps/geography.py:251
+#: ../gramps/plugins/lib/maps/geography.py:232
+#: ../gramps/plugins/lib/maps/geography.py:249
 #: ../gramps/plugins/view/familyview.py:348
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Αδυναμία προσθήκης σελιδοδείκτη επειδή κανείς δεν έχει επιλεγεί."
@@ -22889,7 +22898,7 @@ msgid "Sorted by %s"
 msgstr "Ταξινομημένα κατά %s"
 
 #: ../gramps/plugins/drawreport/timeline.py:312
-#: ../gramps/plugins/lib/libgedcom.py:7901
+#: ../gramps/plugins/lib/libgedcom.py:7916
 msgid "No Date Information"
 msgstr "Δεν υπάρχει καμμία πληροφορία για την ημερομηνία"
 
@@ -23155,11 +23164,11 @@ msgid "Writing individuals"
 msgstr "Εγγραφή ατόμων"
 
 #: ../gramps/plugins/export/exportgedcom.py:790
-#: ../gramps/plugins/export/exportgedcom.py:1072
-#: ../gramps/plugins/export/exportgedcom.py:1164
-#: ../gramps/plugins/lib/libgedcom.py:4158
-#: ../gramps/plugins/lib/libgedcom.py:5932
-#: ../gramps/plugins/lib/libgedcom.py:7062
+#: ../gramps/plugins/export/exportgedcom.py:1077
+#: ../gramps/plugins/export/exportgedcom.py:1169
+#: ../gramps/plugins/lib/libgedcom.py:4162
+#: ../gramps/plugins/lib/libgedcom.py:5936
+#: ../gramps/plugins/lib/libgedcom.py:7077
 #, fuzzy
 msgid "FAX"
 msgstr "Συχνές Ερωτήσεις"
@@ -23173,30 +23182,30 @@ msgstr "Εγγραφή οικογενειών"
 msgid "Writing sources"
 msgstr "Εγγραφή πηγών"
 
-#: ../gramps/plugins/export/exportgedcom.py:1006
+#: ../gramps/plugins/export/exportgedcom.py:1011
 msgid "Writing notes"
 msgstr "Εγγραφή σημειώσεων"
 
-#: ../gramps/plugins/export/exportgedcom.py:1049
+#: ../gramps/plugins/export/exportgedcom.py:1054
 msgid "Writing repositories"
 msgstr "Εγγραφή εποθετηρίων"
 
-#: ../gramps/plugins/export/exportgedcom.py:1166
-#: ../gramps/plugins/lib/libgedcom.py:5944
+#: ../gramps/plugins/export/exportgedcom.py:1171
+#: ../gramps/plugins/lib/libgedcom.py:5948
 msgid "EMAIL"
 msgstr ""
 
-#: ../gramps/plugins/export/exportgedcom.py:1168
-#: ../gramps/plugins/lib/libgedcom.py:5956
+#: ../gramps/plugins/export/exportgedcom.py:1173
+#: ../gramps/plugins/lib/libgedcom.py:5960
 msgid "WWW"
 msgstr ""
 
-#: ../gramps/plugins/export/exportgedcom.py:1426
+#: ../gramps/plugins/export/exportgedcom.py:1436
 #, fuzzy
 msgid "Writing media"
 msgstr "Εγγραφή σημειώσεων"
 
-#: ../gramps/plugins/export/exportgedcom.py:1600
+#: ../gramps/plugins/export/exportgedcom.py:1610
 msgid "GEDCOM Export failed"
 msgstr "Η εξαγωγή σε GEDCOM απέτυχε"
 
@@ -24774,6 +24783,7 @@ msgid "Unique surnames"
 msgstr "Υφιστάμενα επώνυμα"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:179
+#: ../gramps/plugins/importer/importxml.py:276
 #: ../gramps/plugins/textreport/summary.py:299
 #: ../gramps/plugins/webreport/statistics.py:139
 msgid "Media Objects"
@@ -24865,11 +24875,11 @@ msgstr ""
 msgid "Unattached"
 msgstr "Αποκομμένο"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:102
+#: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "Intro"
 msgstr "Εισαγωγή"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:104
+#: ../gramps/plugins/gramplet/welcomegramplet.py:115
 msgid ""
 "Gramps is a software package designed for genealogical research. Although "
 "similar to other genealogical programs, Gramps offers some unique and "
@@ -24881,15 +24891,15 @@ msgstr ""
 "ισχυρά και ενίοτε μοναδικά χαρακτηριστικά.\n"
 "\n"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:107
+#: ../gramps/plugins/gramplet/welcomegramplet.py:118
 msgid "Home Page"
 msgstr "Αρχική σελίδα"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:109
+#: ../gramps/plugins/gramplet/welcomegramplet.py:120
 msgid "Who makes Gramps?"
 msgstr "Ποιός φτιάχνει το Gramps;"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:110
+#: ../gramps/plugins/gramplet/welcomegramplet.py:121
 msgid ""
 "Gramps is created by genealogists for genealogists, organized in the Gramps "
 "Project. Gramps is an Open Source Software package, which means you are free "
@@ -24906,36 +24916,30 @@ msgstr ""
 "χρήση.\n"
 "\n"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:117
+#: ../gramps/plugins/gramplet/welcomegramplet.py:128
 msgid ""
 "There is an active community of users available on the mailing lists and "
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:119
+#: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Gramps online manual"
 msgstr "Διαδικτυακό εγχειρίδιο του Gramps"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:121
-#, fuzzy
-msgctxt "locale_suffix"
-msgid ""
-msgstr "κατάληξη"
-
-#: ../gramps/plugins/gramplet/welcomegramplet.py:122
+#: ../gramps/plugins/gramplet/welcomegramplet.py:132
 msgid "Ask questions on gramps-users mailing list"
 msgstr "Θέστε ερωτήματα στη λίστα ηλεκτρονικού ταχυδρομείου των χρηστών-Gramps"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:125
+#: ../gramps/plugins/gramplet/welcomegramplet.py:135
 msgid "Gramps Discourse Forum"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:127
+#: ../gramps/plugins/gramplet/welcomegramplet.py:137
 msgid "Getting Started"
 msgstr "Για να ξεκινήσετε"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:128
+#: ../gramps/plugins/gramplet/welcomegramplet.py:138
 #, fuzzy
 #| msgid ""
 #| "The first thing you must do is to create a new Family Tree. To create a "
@@ -24963,17 +24967,17 @@ msgstr ""
 "πληροφορίες στους παραπάνω συνδέσμους.\n"
 "\n"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:137
+#: ../gramps/plugins/gramplet/welcomegramplet.py:147
 msgid "Start with Genealogy and Gramps"
 msgstr "Ξεκίνημα με το Gramps και τη γενεαλογία"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:140
+#: ../gramps/plugins/gramplet/welcomegramplet.py:149
 #, fuzzy
 #| msgid "Every family"
 msgid "Enter your first Family"
 msgstr "Όλες οι οικογένειες"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:141
+#: ../gramps/plugins/gramplet/welcomegramplet.py:150
 msgid ""
 "You will now want to start entering your first Family and that starts with "
 "the first Person.\n"
@@ -25000,18 +25004,18 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:162
+#: ../gramps/plugins/gramplet/welcomegramplet.py:171
 #, fuzzy
 #| msgid "Open an existing database"
 msgid "Entering and editing data (brief)"
 msgstr "Άνοιγμα υφιστάμενης βάσης δεδομένων"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:165
+#: ../gramps/plugins/gramplet/welcomegramplet.py:174
 #, fuzzy
 msgid "Importing a Family Tree"
 msgstr "Gramps: Εισαγωγή οικογενειακού δέντρου"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:166
+#: ../gramps/plugins/gramplet/welcomegramplet.py:175
 msgid ""
 "To import a Family Tree from another program first create a GEDCOM (or other "
 "data) file from the previous program.\n"
@@ -25021,15 +25025,15 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:170
+#: ../gramps/plugins/gramplet/welcomegramplet.py:179
 msgid "Import from another genealogy program"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:173
+#: ../gramps/plugins/gramplet/welcomegramplet.py:181
 msgid "Dashboard View"
 msgstr "Προβολή Μικροεφαρμογές"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:174
+#: ../gramps/plugins/gramplet/welcomegramplet.py:182
 #, fuzzy
 msgid ""
 "You are currently reading from the \"Dashboard\" view, where you can add "
@@ -25055,20 +25059,20 @@ msgstr ""
 "και να επιπλέει σαν ξεχωριστό παράθυρο (κλείνοντας το παράθυρο το επαναφέρει "
 "στην αρχική του θέση)."
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:184
+#: ../gramps/plugins/gramplet/welcomegramplet.py:192
 #, fuzzy
 #| msgid "Gramps View"
 msgid "Gramps View Categories"
 msgstr "Προβολή Gramps"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:187
-#: ../gramps/plugins/gramplet/welcomegramplet.py:192
+#: ../gramps/plugins/gramplet/welcomegramplet.py:194
+#: ../gramps/plugins/gramplet/welcomegramplet.py:199
 #, fuzzy
 #| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
 msgstr "Προσθήκη gramplet"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:188
+#: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
 "There many Addons or \"Gramplets\" that are available to assist you in data "
 "entry and visualizing your family tree. Many of these tools are already "
@@ -25076,13 +25080,13 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:194
+#: ../gramps/plugins/gramplet/welcomegramplet.py:201
 #, fuzzy
 #| msgid "Entire Database"
 msgid "Example Database"
 msgstr "Ολόκληρη η βάση δεδομένων"
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:195
+#: ../gramps/plugins/gramplet/welcomegramplet.py:202
 msgid ""
 "Want to see Gramps in use. Create and Import the Example database.\n"
 "\n"
@@ -25096,7 +25100,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/welcomegramplet.py:201
+#: ../gramps/plugins/gramplet/welcomegramplet.py:208
 #, fuzzy
 #| msgid "Example"
 msgid "Example.gramps"
@@ -25894,9 +25898,13 @@ msgid "Gramps package (portable XML)"
 msgstr "Πακέτο Gramps (φορητό XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:92
+#, fuzzy
+#| msgid ""
+#| "Import data from a Gramps package (an archived XML Family Tree together "
+#| "with the media object files.)"
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
-"the media object files.)"
+"the media object files)."
 msgstr ""
 "Εισαγωγή δεδομένων από ένα πακέτο Gramps [μία συμπιεσμένη βάση δεδομένων XML "
 "μαζί με τα αρχεία από διάφορα μέσα (φωτογραφίες κλπ)]"
@@ -26381,7 +26389,7 @@ msgid "Change Name"
 msgstr "Αλλαγή ο_νόματος αρχείου"
 
 #: ../gramps/plugins/importer/importgeneweb.py:90
-#: ../gramps/plugins/lib/libgedcom.py:697
+#: ../gramps/plugins/lib/libgedcom.py:699
 msgid "Circumcision"
 msgstr ""
 
@@ -26395,7 +26403,7 @@ msgid "Dotation"
 msgstr "Παραπομπή"
 
 #: ../gramps/plugins/importer/importgeneweb.py:101
-#: ../gramps/plugins/lib/libgedcom.py:703
+#: ../gramps/plugins/lib/libgedcom.py:705
 #, fuzzy
 msgid "Excommunication"
 msgstr "Εκπαίδευση"
@@ -26406,7 +26414,7 @@ msgid "LDS Family Link"
 msgstr "Σύνδεσμοι οικογενείας"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
-#: ../gramps/plugins/lib/libgedcom.py:705
+#: ../gramps/plugins/lib/libgedcom.py:707
 #, fuzzy
 msgid "Funeral"
 msgstr "Γενικά"
@@ -26538,8 +26546,8 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgrdb.py:61
 #: ../gramps/plugins/importer/importprogen.py:189
-#: ../gramps/plugins/importer/importxml.py:440
-#: ../gramps/plugins/importer/importxml.py:443
+#: ../gramps/plugins/importer/importxml.py:435
+#: ../gramps/plugins/importer/importxml.py:438
 #, python-format
 msgid "%s could not be opened"
 msgstr "αδύνατο το άνοιγμα του %s"
@@ -26760,7 +26768,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:1595
 msgid ""
 "Use death information\n"
-"as death cause event."
+"as cause of death event."
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1598
@@ -26908,106 +26916,56 @@ msgstr ""
 "Το αρχείο είναι πιθανότατα είτε κατεστραμμένο είτε πρόκειται για μη έγκυρη "
 "βάση δεδομένων Gramps."
 
-#: ../gramps/plugins/importer/importxml.py:245
-#, python-format
-msgid "  %(id)s - %(text)s with %(id2)s\n"
+#: ../gramps/plugins/importer/importxml.py:255
+#, fuzzy, python-brace-format
+#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+msgid "  {id1} - {text} with {id2}"
 msgstr "  %(id)s - %(text)s με %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:251
-#, python-format
-msgid "  Family %(id)s with %(id2)s\n"
-msgstr "  Οικογένεια %(id)s με %(id2)s\n"
+#: ../gramps/plugins/importer/importxml.py:262
+#, python-brace-format
+msgid "  {obj} {id1} with {id2}"
+msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:254
-#, python-format
-msgid "  Source %(id)s with %(id2)s\n"
-msgstr "  Πηγή %(id)s με %(id2)s\n"
-
-#: ../gramps/plugins/importer/importxml.py:257
-#, python-format
-msgid "  Event %(id)s with %(id2)s\n"
-msgstr "  Συμβάν %(id)s με %(id2)s\n"
-
-#: ../gramps/plugins/importer/importxml.py:260
-#, python-format
-msgid "  Media Object %(id)s with %(id2)s\n"
-msgstr "  Αντικείμενο μέσων %(id)s με %(id2)s\n"
-
-#: ../gramps/plugins/importer/importxml.py:263
-#, python-format
-msgid "  Place %(id)s with %(id2)s\n"
-msgstr "  Τοποθεσία %(id)s με %(id2)s\n"
-
-#: ../gramps/plugins/importer/importxml.py:266
-#, python-format
-msgid "  Repository %(id)s with %(id2)s\n"
-msgstr "  Αποθετήριο %(id)s με %(id2)s\n"
-
-#: ../gramps/plugins/importer/importxml.py:269
-#, python-format
-msgid "  Note %(id)s with %(id2)s\n"
-msgstr "  Σημείωση %(id)s με %(id2)s\n"
+#: ../gramps/plugins/importer/importxml.py:272
+#: ../gramps/plugins/quickview/filterbyname.py:91
+#: ../gramps/plugins/quickview/filterbyname.py:116
+#: ../gramps/plugins/textreport/tagreport.py:147
+#: ../gramps/plugins/view/view.gpr.py:197
+#: ../gramps/plugins/view/view.gpr.py:205
+#: ../gramps/plugins/view/view.gpr.py:214
+#: ../gramps/plugins/webreport/updates.py:98
+msgid "People"
+msgstr "Άτομα"
 
 #: ../gramps/plugins/importer/importxml.py:274
-#, python-format
-msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Παραπομπή %(id)s με %(id2)s\n"
-
-#: ../gramps/plugins/importer/importxml.py:282
-#, python-format
-msgid "  People: %d\n"
-msgstr "  Άτομα: %d\n"
+#: ../gramps/plugins/quickview/filterbyname.py:103
+#: ../gramps/plugins/quickview/filterbyname.py:128
+#: ../gramps/plugins/view/sourceview.py:115
+#: ../gramps/plugins/view/view.gpr.py:267
+#: ../gramps/plugins/view/view.gpr.py:275
+#: ../gramps/plugins/view/view.gpr.py:306
+#: ../gramps/plugins/webreport/basepage.py:780
+#: ../gramps/plugins/webreport/basepage.py:1065
+#: ../gramps/plugins/webreport/basepage.py:1247
+#: ../gramps/plugins/webreport/basepage.py:1382
+#: ../gramps/plugins/webreport/basepage.py:1741
+#: ../gramps/plugins/webreport/basepage.py:1800
+#: ../gramps/plugins/webreport/basepage.py:1923
+#: ../gramps/plugins/webreport/person.py:1395
+#: ../gramps/plugins/webreport/source.py:135
+#: ../gramps/plugins/webreport/source.py:234
+#: ../gramps/plugins/webreport/updates.py:126
+msgid "Sources"
+msgstr "Πηγές"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, python-format
-msgid "  Families: %d\n"
-msgstr "  Οικογένειες: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:284
-#, python-format
-msgid "  Sources: %d\n"
-msgstr "  Πηγές: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:285
-#, python-format
-msgid "  Events: %d\n"
-msgstr "  Συμβάντα: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:286
-#, python-format
-msgid "  Media Objects: %d\n"
-msgstr "  Αντικείμενα μέσων: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:287
-#, python-format
-msgid "  Places: %d\n"
-msgstr "  Τοποθεσίες: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:288
-#, python-format
-msgid "  Repositories: %d\n"
-msgstr "  Αποθετήρια: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:289
-#, python-format
-msgid "  Notes: %d\n"
-msgstr "  Σημειώσεις: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:290
-#, python-format
-msgid "  Tags: %d\n"
-msgstr "  Ετικέτες: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:291
-#, python-format
-msgid "  Citations: %d\n"
-msgstr "  Παραπομπές: %d\n"
-
-#: ../gramps/plugins/importer/importxml.py:293
-msgid "Number of new objects imported:\n"
+#, fuzzy
+#| msgid "Number of new objects imported:\n"
+msgid "Number of new objects imported:"
 msgstr "Αριθμός νέων αντικειμένων που εισήχθηκαν:\n"
 
-#: ../gramps/plugins/importer/importxml.py:302
+#: ../gramps/plugins/importer/importxml.py:297
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -27024,7 +26982,7 @@ msgid ""
 "their typifying attribute was set to 'Unknown'.\n"
 "The breakdown per category is depicted by the\n"
 "number in parentheses. Where possible these\n"
-"'Unknown' objects are referenced by note %(unknown)s.\n"
+"'Unknown' objects are referenced by note %(unknown)s."
 msgstr ""
 "\n"
 " Το εισαγώμενο αρχείο δεν είναι αυτοτελές.\n"
@@ -27034,13 +26992,20 @@ msgstr ""
 "εντός παρενθέσεων. Όπου είναι δυνατόν, στα 'Άγνωστα'\n"
 "αυτά αντικείμενα γίνεται αναφορά με σημείωση %(unknown)s.\n"
 
-#: ../gramps/plugins/importer/importxml.py:310
+#: ../gramps/plugins/importer/importxml.py:307
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "Media objects with relative paths have been\n"
+#| "imported. These paths are considered relative to\n"
+#| "the media directory you can set in the preferences,\n"
+#| "or, if not set, relative to the user's directory.\n"
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
 "imported. These paths are considered relative to\n"
 "the media directory you can set in the preferences,\n"
-"or, if not set, relative to the user's directory.\n"
+"or, if not set, relative to the user's directory."
 msgstr ""
 "\n"
 "Έχουν εισαχθεί αντικείμενα μέσων με σχετικές διαδρομές.\n"
@@ -27049,7 +27014,7 @@ msgstr ""
 "ή, εφόσον δεν έχει οριστεί, σχετικές με τον κατάλογο του\n"
 "χρήστη.\n"
 
-#: ../gramps/plugins/importer/importxml.py:321
+#: ../gramps/plugins/importer/importxml.py:317
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -27057,33 +27022,33 @@ msgstr ""
 #| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
-"Objects that are candidates to be merged:\n"
+"Objects that are candidates to be merged:"
 msgstr ""
 "\n"
 "\n"
 "Αντικείμενα υποψήφια προς συγχώνευση:\n"
 
-#: ../gramps/plugins/importer/importxml.py:809
-#: ../gramps/plugins/importer/importxml.py:1289
-#: ../gramps/plugins/importer/importxml.py:1561
-#: ../gramps/plugins/importer/importxml.py:1982
+#: ../gramps/plugins/importer/importxml.py:804
+#: ../gramps/plugins/importer/importxml.py:1284
+#: ../gramps/plugins/importer/importxml.py:1556
+#: ../gramps/plugins/importer/importxml.py:1977
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr ""
 "Το αρχείο Gramps XML που προσπαθείτε να εισάγετε είναι κακοδιατυπωμένο."
 
-#: ../gramps/plugins/importer/importxml.py:810
+#: ../gramps/plugins/importer/importxml.py:805
 msgid "Attributes that link the data together are missing."
 msgstr "Τα χαρακτηριστικά που συνδέουν τα δεδομένα απουσιάζουν."
 
-#: ../gramps/plugins/importer/importxml.py:919
+#: ../gramps/plugins/importer/importxml.py:914
 msgid "Gramps XML import"
 msgstr "Εισαγωγή Gramps XML"
 
-#: ../gramps/plugins/importer/importxml.py:953
+#: ../gramps/plugins/importer/importxml.py:948
 msgid "Could not change media path"
 msgstr "Αδύνατη η αλλαγή της διαδρομής μέσων"
 
-#: ../gramps/plugins/importer/importxml.py:954
+#: ../gramps/plugins/importer/importxml.py:949
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -27096,7 +27061,7 @@ msgstr ""
 "διατηρηθεί. Αντιγράψτε τα αρχεία στον σωστό κατάλογο ή αλλάξτε τη διαδρομή "
 "μέσων από τις Προτιμήσεις."
 
-#: ../gramps/plugins/importer/importxml.py:1013
+#: ../gramps/plugins/importer/importxml.py:1008
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -27108,11 +27073,11 @@ msgstr ""
 "\n"
 "Το αρχείο δεν θα εισαχθεί.."
 
-#: ../gramps/plugins/importer/importxml.py:1016
+#: ../gramps/plugins/importer/importxml.py:1011
 msgid "Import file misses Gramps version"
 msgstr "Ο αριθμός έκδοσης του Gramps λείπει από το εισαγώμενο αρχείο"
 
-#: ../gramps/plugins/importer/importxml.py:1018
+#: ../gramps/plugins/importer/importxml.py:1013
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -27124,7 +27089,7 @@ msgstr ""
 "δεν θα εισαχθεί. Κάνετε αναβάθμιση του Gramps στην τελευταία του έκδοση και "
 "ξαναπροσπαθήστε."
 
-#: ../gramps/plugins/importer/importxml.py:1026
+#: ../gramps/plugins/importer/importxml.py:1021
 #, fuzzy, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -27145,11 +27110,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "για περισσότερες πληροφορίες."
 
-#: ../gramps/plugins/importer/importxml.py:1037
+#: ../gramps/plugins/importer/importxml.py:1032
 msgid "The file will not be imported"
 msgstr "Το αρχείο δεν θα εισαχθεί"
 
-#: ../gramps/plugins/importer/importxml.py:1039
+#: ../gramps/plugins/importer/importxml.py:1034
 #, fuzzy, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -27173,25 +27138,25 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "για περισσότερες πληροφορίες."
 
-#: ../gramps/plugins/importer/importxml.py:1052
+#: ../gramps/plugins/importer/importxml.py:1047
 msgid "Old xml file"
 msgstr "Παλαιό αρχείο xml"
 
-#: ../gramps/plugins/importer/importxml.py:1207
-#: ../gramps/plugins/importer/importxml.py:2705
+#: ../gramps/plugins/importer/importxml.py:1202
+#: ../gramps/plugins/importer/importxml.py:2700
 #, python-format
 msgid "Witness name: %s"
 msgstr "Όνομα μάρτυρα: %s"
 
-#: ../gramps/plugins/importer/importxml.py:1290
+#: ../gramps/plugins/importer/importxml.py:1285
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Κάθε αναφορά σε συμβάν πρέπει να έχει ένα χαρακτηριστικό 'hlink'."
 
-#: ../gramps/plugins/importer/importxml.py:1562
+#: ../gramps/plugins/importer/importxml.py:1557
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Κάθε αναφορά σε άτομο πρέπει να έχει ένα χαρακτηριστικό 'hlink'."
 
-#: ../gramps/plugins/importer/importxml.py:1751
+#: ../gramps/plugins/importer/importxml.py:1746
 #, python-format
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -27200,31 +27165,31 @@ msgstr ""
 "Η ομάδα των οικογενειακών σας δέντρων με όνομα \"%(key)s\" μαζί με "
 "\"%(parent)s\", δεν έχει αλλάξει την ομαδοποίηση σε \"%(value)s\"."
 
-#: ../gramps/plugins/importer/importxml.py:1754
+#: ../gramps/plugins/importer/importxml.py:1749
 msgid "Gramps ignored a name grouping"
 msgstr "Η ομαδοποίηση των ονομάτων αγνοήθηκε"
 
-#: ../gramps/plugins/importer/importxml.py:1813
+#: ../gramps/plugins/importer/importxml.py:1808
 msgid "Unknown when imported"
 msgstr "Άγνωστο πότε εισήχθη"
 
-#: ../gramps/plugins/importer/importxml.py:1983
+#: ../gramps/plugins/importer/importxml.py:1978
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Κάθε αναφορά σε σημείωση πρέπει να έχει ένα χαρακτηριστικό 'hlink'."
 
 #. Translators: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
-#: ../gramps/plugins/importer/importxml.py:2523
+#: ../gramps/plugins/importer/importxml.py:2518
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:2575
+#: ../gramps/plugins/importer/importxml.py:2570
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Σχόλιο μάρτυρα: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3228
+#: ../gramps/plugins/importer/importxml.py:3223
 #, fuzzy, python-format
 msgctxt "father"
 msgid ""
@@ -27234,7 +27199,7 @@ msgstr ""
 "Σφάλμα: η αναφορά πατέρας '%(father)s' της οικογένειας '%(family)s' δεν "
 "υπάρχει. Η αναφορά αυτή έχει προστεθεί."
 
-#: ../gramps/plugins/importer/importxml.py:3244
+#: ../gramps/plugins/importer/importxml.py:3239
 #, fuzzy, python-format
 msgctxt "mother"
 msgid ""
@@ -27244,7 +27209,7 @@ msgstr ""
 "Σφάλμα: η αναφορά μητέρα '%(mother)s' της οικογένειας '%(family)s' δεν "
 "υπάρχει. Η αναφορά αυτή έχει προστεθεί."
 
-#: ../gramps/plugins/importer/importxml.py:3266
+#: ../gramps/plugins/importer/importxml.py:3261
 #, fuzzy, python-format
 msgctxt "child"
 msgid ""
@@ -27261,130 +27226,130 @@ msgid ""
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:698
+#: ../gramps/plugins/lib/libgedcom.py:700
 #, fuzzy
 msgid "Common Law Marriage"
 msgstr "Γάμος σε μεγάλη ηλικία"
 
-#: ../gramps/plugins/lib/libgedcom.py:699
+#: ../gramps/plugins/lib/libgedcom.py:701
 #: ../gramps/plugins/webreport/narrativeweb.py:1956
 #: ../gramps/plugins/webreport/webcal.py:1744
 msgid "Destination"
 msgstr "Αποθήκευση σε"
 
 # Μορμόνοι
-#: ../gramps/plugins/lib/libgedcom.py:700
+#: ../gramps/plugins/lib/libgedcom.py:702
 #, fuzzy
 msgid "DNA"
 msgstr "DNS"
 
-#: ../gramps/plugins/lib/libgedcom.py:701
+#: ../gramps/plugins/lib/libgedcom.py:703
 #, fuzzy
 msgid "Cause of Death"
 msgstr "Αιτία θανάτου"
 
 # Μορμόνοι
-#: ../gramps/plugins/lib/libgedcom.py:702
+#: ../gramps/plugins/lib/libgedcom.py:704
 #, fuzzy
 msgid "Employment"
 msgstr "Endowment (Μορμόνοι)"
 
-#: ../gramps/plugins/lib/libgedcom.py:704
+#: ../gramps/plugins/lib/libgedcom.py:706
 #, fuzzy
 msgid "Eye Color"
 msgstr "Χρώμα"
 
-#: ../gramps/plugins/lib/libgedcom.py:706
+#: ../gramps/plugins/lib/libgedcom.py:708
 #, fuzzy
 msgid "Height"
 msgstr "_Ύψος:"
 
-#: ../gramps/plugins/lib/libgedcom.py:707
-msgid "Initiatory (LDS)"
-msgstr ""
-
-#: ../gramps/plugins/lib/libgedcom.py:708
-#, fuzzy
-msgid "Military ID"
-msgstr "Στρατιωτική θητεία"
-
 #: ../gramps/plugins/lib/libgedcom.py:709
-msgid "Mission (LDS)"
+msgid "Initiatory (LDS)"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:710
 #, fuzzy
+msgid "Military ID"
+msgstr "Στρατιωτική θητεία"
+
+#: ../gramps/plugins/lib/libgedcom.py:711
+msgid "Mission (LDS)"
+msgstr ""
+
+#: ../gramps/plugins/lib/libgedcom.py:712
+#, fuzzy
 msgid "Namesake"
 msgstr "_Ονόματα"
 
-#: ../gramps/plugins/lib/libgedcom.py:711
+#: ../gramps/plugins/lib/libgedcom.py:713
 #, fuzzy
 msgid "Ordinance"
 msgstr "Τελετή:"
 
-#: ../gramps/plugins/lib/libgedcom.py:713
+#: ../gramps/plugins/lib/libgedcom.py:715
 #, fuzzy
 msgid "Separation"
 msgstr "Ενημερώθηκε"
 
-#: ../gramps/plugins/lib/libgedcom.py:714
+#: ../gramps/plugins/lib/libgedcom.py:716
 #, fuzzy
 msgid "Weight"
 msgstr "_Δεξιά"
 
-#: ../gramps/plugins/lib/libgedcom.py:926
+#: ../gramps/plugins/lib/libgedcom.py:928
 #, fuzzy
 msgid "Line ignored "
 msgstr "BLOB αγνοήθηκε"
 
-#: ../gramps/plugins/lib/libgedcom.py:1540
+#: ../gramps/plugins/lib/libgedcom.py:1542
 #, python-format
 msgid "Illegal character%s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:1820
+#: ../gramps/plugins/lib/libgedcom.py:1822
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 "Το αρχείο GEDCOM είναι κατεστραμμένο. Εμφανίζεται να είναι περικομμένο."
 
-#: ../gramps/plugins/lib/libgedcom.py:1904
+#: ../gramps/plugins/lib/libgedcom.py:1906
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Εισαγωγή από GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2740
-#: ../gramps/plugins/lib/libgedcom.py:3197
+#: ../gramps/plugins/lib/libgedcom.py:2744
+#: ../gramps/plugins/lib/libgedcom.py:3201
 msgid "GEDCOM import"
 msgstr "Εισαγωγή GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:2768
+#: ../gramps/plugins/lib/libgedcom.py:2772
 msgid "GEDCOM import report: No errors detected"
 msgstr "Αναφορά εισαγωγής GEDCOM: Δεν ανιχνεύθηκαν σφάλματα"
 
-#: ../gramps/plugins/lib/libgedcom.py:2770
+#: ../gramps/plugins/lib/libgedcom.py:2774
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Αναφορά εισαγωγής GEDCOM: Ανιχνεύθηκαν %s σφάλματα"
 
-#: ../gramps/plugins/lib/libgedcom.py:3090
-#: ../gramps/plugins/lib/libgedcom.py:3115
-#: ../gramps/plugins/lib/libgedcom.py:3128
+#: ../gramps/plugins/lib/libgedcom.py:3094
+#: ../gramps/plugins/lib/libgedcom.py:3119
+#: ../gramps/plugins/lib/libgedcom.py:3132
 msgid "Line ignored as not understood"
 msgstr "Η γραμμή αγνοήθηκε ως μη κατανοητή"
 
-#: ../gramps/plugins/lib/libgedcom.py:3117
+#: ../gramps/plugins/lib/libgedcom.py:3121
 msgid "Tag recognized but not supported"
 msgstr "Η ετικέτα αναγνωρίστηκε αλλά δεν υποστηρίζεται"
 
-#: ../gramps/plugins/lib/libgedcom.py:3153
+#: ../gramps/plugins/lib/libgedcom.py:3157
 msgid "Skipped subordinate line"
 msgstr "Η ακόλουθη γραμμή αγνοήθηκε"
 
-#: ../gramps/plugins/lib/libgedcom.py:3186
+#: ../gramps/plugins/lib/libgedcom.py:3190
 msgid "Records not imported into "
 msgstr "Οι εγγραφές δεν έχουν εισαχθεί στο"
 
-#: ../gramps/plugins/lib/libgedcom.py:3225
+#: ../gramps/plugins/lib/libgedcom.py:3229
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -27393,7 +27358,7 @@ msgstr ""
 "Σφάλμα: %(msg)s  '%(gramps_id)s' (εισαγωγή ως @%(xref)s@) απουσιάζει από το "
 "αρχείο GEDCOM. Εγγραφή εκ συνθέσεως."
 
-#: ../gramps/plugins/lib/libgedcom.py:3234
+#: ../gramps/plugins/lib/libgedcom.py:3238
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -27402,7 +27367,7 @@ msgstr ""
 "Σφάλμα: %(msg)s '%(gramps_id)s' (εισαγωγή ως @%(xref)s@) απουσιάζει από το "
 "αρχείο GEDCOM. Δημιουργήθηκε εγγραφή με τύπο χαρακτηριστικού 'Άγνωστο'."
 
-#: ../gramps/plugins/lib/libgedcom.py:3278
+#: ../gramps/plugins/lib/libgedcom.py:3282
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -27413,7 +27378,7 @@ msgstr ""
 "%(person)s (εισαγωγή ως %(orig_person)s) δεν αποτελεί μέλος της αναφερόμενης "
 "οικογένειας. Η αναφορά οικογένειας αφαιρέθηκε από αυτό το άτομο"
 
-#: ../gramps/plugins/lib/libgedcom.py:3356
+#: ../gramps/plugins/lib/libgedcom.py:3360
 #, python-format
 msgid ""
 "\n"
@@ -27430,178 +27395,178 @@ msgstr ""
 "Όπου είναι δυνατόν, τα 'Άγνωστα' αυτά αντικείμενα\n"
 "αναφέρονται με σημείωση %(unknown)s.\n"
 
-#: ../gramps/plugins/lib/libgedcom.py:3430
+#: ../gramps/plugins/lib/libgedcom.py:3434
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "'%s' αγνοήθηκε από το ADDR"
 
-#: ../gramps/plugins/lib/libgedcom.py:3451
+#: ../gramps/plugins/lib/libgedcom.py:3455
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
 # Μορμόνοι
-#: ../gramps/plugins/lib/libgedcom.py:3480
+#: ../gramps/plugins/lib/libgedcom.py:3484
 #, fuzzy
 msgid "(Submitter):"
 msgstr "Submitted"
 
-#: ../gramps/plugins/lib/libgedcom.py:3504
-#: ../gramps/plugins/lib/libgedcom.py:7318
+#: ../gramps/plugins/lib/libgedcom.py:3508
+#: ../gramps/plugins/lib/libgedcom.py:7333
 msgid "GEDCOM data"
 msgstr "Δεδομένα GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:3549
+#: ../gramps/plugins/lib/libgedcom.py:3553
 msgid "Unknown tag"
 msgstr "Άγνωστη ετικέτα"
 
-#: ../gramps/plugins/lib/libgedcom.py:3551
-#: ../gramps/plugins/lib/libgedcom.py:3565
+#: ../gramps/plugins/lib/libgedcom.py:3555
 #: ../gramps/plugins/lib/libgedcom.py:3569
-#: ../gramps/plugins/lib/libgedcom.py:3590
+#: ../gramps/plugins/lib/libgedcom.py:3573
+#: ../gramps/plugins/lib/libgedcom.py:3594
 msgid "Top Level"
 msgstr "Μέγιστο επίπεδο"
 
-#: ../gramps/plugins/lib/libgedcom.py:3665
+#: ../gramps/plugins/lib/libgedcom.py:3669
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (άτομο) ΑΑ Gramps%s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3793
+#: ../gramps/plugins/lib/libgedcom.py:3797
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:5024
+#: ../gramps/plugins/lib/libgedcom.py:5028
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (οικογένεια) ΑΑ Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5395
-#: ../gramps/plugins/lib/libgedcom.py:6751
+#: ../gramps/plugins/lib/libgedcom.py:5399
+#: ../gramps/plugins/lib/libgedcom.py:6766
 msgid "Filename omitted"
 msgstr "Το όνομα αρχείου παραλείφθηκε"
 
-#: ../gramps/plugins/lib/libgedcom.py:5429
-#: ../gramps/plugins/lib/libgedcom.py:6804
+#: ../gramps/plugins/lib/libgedcom.py:5433
+#: ../gramps/plugins/lib/libgedcom.py:6819
 #, python-format
 msgid "Could not import %s"
 msgstr "Αδύνατη η εισαγωγή του %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5495
-#: ../gramps/plugins/lib/libgedcom.py:6891
+#: ../gramps/plugins/lib/libgedcom.py:5499
+#: ../gramps/plugins/lib/libgedcom.py:6906
 #, fuzzy
 msgid "Media-Type"
 msgstr "Τύπος _μέσου:"
 
-#: ../gramps/plugins/lib/libgedcom.py:5519
-#: ../gramps/plugins/lib/libgedcom.py:6793
+#: ../gramps/plugins/lib/libgedcom.py:5523
+#: ../gramps/plugins/lib/libgedcom.py:6808
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:5658
+#: ../gramps/plugins/lib/libgedcom.py:5662
 msgid "A second PLAC ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:5797
+#: ../gramps/plugins/lib/libgedcom.py:5801
 #, fuzzy
 msgid "Detail"
 msgstr "Λεπτομέρειες"
 
-#: ../gramps/plugins/lib/libgedcom.py:5810
+#: ../gramps/plugins/lib/libgedcom.py:5814
 msgid "Location already populated; ADDR ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6211
-#: ../gramps/plugins/lib/libgedcom.py:7099
+#: ../gramps/plugins/lib/libgedcom.py:6215
+#: ../gramps/plugins/lib/libgedcom.py:7114
 msgid "Warn: ADDR overwritten"
 msgstr "Προσοχή: ADDR επανεγγράφη"
 
-#: ../gramps/plugins/lib/libgedcom.py:6376
+#: ../gramps/plugins/lib/libgedcom.py:6380
 #, fuzzy
 msgid "Citation Justification"
 msgstr "<b>Πληροφορίες παραπομπής</b>"
 
-#: ../gramps/plugins/lib/libgedcom.py:6403
+#: ../gramps/plugins/lib/libgedcom.py:6418
 msgid "REFN ignored"
 msgstr "REFN αγνοήθηκε"
 
-#: ../gramps/plugins/lib/libgedcom.py:6502
+#: ../gramps/plugins/lib/libgedcom.py:6517
 #, python-format
 msgid "No title - ID %s"
 msgstr "Χωρίς τίτλο - ΑΑ %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6507
+#: ../gramps/plugins/lib/libgedcom.py:6522
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (πηγή) ΑΑ Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6769
+#: ../gramps/plugins/lib/libgedcom.py:6784
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (αντικείμενο πολυμέσων) ΑΑ Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6987
+#: ../gramps/plugins/lib/libgedcom.py:7002
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (αποθετήριο) ΑΑ Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7048
-#: ../gramps/plugins/lib/libgedcom.py:8060
+#: ../gramps/plugins/lib/libgedcom.py:7063
+#: ../gramps/plugins/lib/libgedcom.py:8075
 msgid "Only one phone number supported"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7234
+#: ../gramps/plugins/lib/libgedcom.py:7249
 #, fuzzy
 msgid "HEAD (header)"
 msgstr "Κεφαλίδα (header)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7255
+#: ../gramps/plugins/lib/libgedcom.py:7270
 msgid "Approved system identification"
 msgstr "Εγκεκριμένο σύστημα ταυτοποίησης"
 
-#: ../gramps/plugins/lib/libgedcom.py:7267
+#: ../gramps/plugins/lib/libgedcom.py:7282
 #, fuzzy
 msgid "Generated By"
 msgstr "Δημιουργήθηκε από"
 
-#: ../gramps/plugins/lib/libgedcom.py:7283
+#: ../gramps/plugins/lib/libgedcom.py:7298
 msgid "Name of software product"
 msgstr "Όνομα προϊόντος λογισμικού"
 
-#: ../gramps/plugins/lib/libgedcom.py:7297
+#: ../gramps/plugins/lib/libgedcom.py:7312
 msgid "Version number of software product"
 msgstr "Αριθμός έκδοσης προϊόντος λογισμικού"
 
-#: ../gramps/plugins/lib/libgedcom.py:7315
+#: ../gramps/plugins/lib/libgedcom.py:7330
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Εταιρεία που παρήγαγε το προϊόν: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7337
+#: ../gramps/plugins/lib/libgedcom.py:7352
 msgid "Name of source data"
 msgstr "Όνομα των πηγαίων δεδομένων"
 
-#: ../gramps/plugins/lib/libgedcom.py:7354
+#: ../gramps/plugins/lib/libgedcom.py:7369
 msgid "Copyright of source data"
 msgstr "Πνευματική ιδιοκτησία των πηγαίων δεδομένων"
 
-#: ../gramps/plugins/lib/libgedcom.py:7371
+#: ../gramps/plugins/lib/libgedcom.py:7386
 msgid "Publication date of source data"
 msgstr "Ημερομηνία έκδοσης των πηγαίων δεδομένων"
 
-#: ../gramps/plugins/lib/libgedcom.py:7385
+#: ../gramps/plugins/lib/libgedcom.py:7400
 #, python-format
 msgid "Import from %s"
 msgstr "Εισαγωγή από %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7424
+#: ../gramps/plugins/lib/libgedcom.py:7439
 msgid "Submission record identifier"
 msgstr "Αναγνωριστικό υποβολής της εγγραφής"
 
-#: ../gramps/plugins/lib/libgedcom.py:7437
+#: ../gramps/plugins/lib/libgedcom.py:7452
 msgid "Language of GEDCOM text"
 msgstr "Γλώσσα του κειμένου GEDCOM "
 
-#: ../gramps/plugins/lib/libgedcom.py:7459
+#: ../gramps/plugins/lib/libgedcom.py:7474
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -27610,86 +27575,86 @@ msgstr ""
 "Εισαγωγή αρχείου GEDCOM %(filename)s με DEST=%(by)s, θα μπορούσε να "
 "προξενήσει σφάλματα στη βάση δεδομένων!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7462
+#: ../gramps/plugins/lib/libgedcom.py:7477
 msgid "Look for nameless events."
 msgstr "Έρευνα για συμβάντα χωρίς όνομα."
 
-#: ../gramps/plugins/lib/libgedcom.py:7485
+#: ../gramps/plugins/lib/libgedcom.py:7500
 msgid "Character set"
 msgstr "Κωδικοποίηση χαρακτήρων"
 
-#: ../gramps/plugins/lib/libgedcom.py:7490
+#: ../gramps/plugins/lib/libgedcom.py:7505
 msgid "Character set and version"
 msgstr "Κωδικοποίηση χαρακτήρων και έκδοση"
 
-#: ../gramps/plugins/lib/libgedcom.py:7507
+#: ../gramps/plugins/lib/libgedcom.py:7522
 msgid "GEDCOM version not supported"
 msgstr "Μη υποστηριζόμενη έκδοση GEDCOM "
 
-#: ../gramps/plugins/lib/libgedcom.py:7511
+#: ../gramps/plugins/lib/libgedcom.py:7526
 msgid "GEDCOM version"
 msgstr "Έκδοση GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7520
+#: ../gramps/plugins/lib/libgedcom.py:7535
 msgid "GEDCOM FORM should be in uppercase"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7523
+#: ../gramps/plugins/lib/libgedcom.py:7538
 #, fuzzy
 msgid "GEDCOM FORM not supported"
 msgstr "Μη υποστηριζόμενη φόρμα GEDCOM "
 
-#: ../gramps/plugins/lib/libgedcom.py:7526
+#: ../gramps/plugins/lib/libgedcom.py:7541
 msgid "GEDCOM form"
 msgstr "Φόρμα GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7577
+#: ../gramps/plugins/lib/libgedcom.py:7592
 msgid "Creation date of GEDCOM"
 msgstr "Ημερομηνία δημιουργίας του GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7582
+#: ../gramps/plugins/lib/libgedcom.py:7597
 msgid "Creation date and time of GEDCOM"
 msgstr "Ημερομηνία και χρόνος δημιουργίας του GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7623
-#: ../gramps/plugins/lib/libgedcom.py:7665
+#: ../gramps/plugins/lib/libgedcom.py:7638
+#: ../gramps/plugins/lib/libgedcom.py:7680
 msgid "Empty note ignored"
 msgstr "Κενή σημείωση αγνοήθηκε"
 
-#: ../gramps/plugins/lib/libgedcom.py:7682
+#: ../gramps/plugins/lib/libgedcom.py:7697
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE ΑΑ Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7733
+#: ../gramps/plugins/lib/libgedcom.py:7748
 msgid "Submission: Submitter"
 msgstr "Υποβολή: Το άτομο που υπέβαλλε"
 
-#: ../gramps/plugins/lib/libgedcom.py:7735
+#: ../gramps/plugins/lib/libgedcom.py:7750
 msgid "Submission: Family file"
 msgstr "Υποβολή: Οικογενειακό αρχείο"
 
-#: ../gramps/plugins/lib/libgedcom.py:7737
+#: ../gramps/plugins/lib/libgedcom.py:7752
 msgid "Submission: Temple code"
 msgstr "Υποβολή: Κωδικός ναού (LDS)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7739
+#: ../gramps/plugins/lib/libgedcom.py:7754
 msgid "Submission: Generations of ancestors"
 msgstr "Υποβολή: Γενεές προγόνων"
 
-#: ../gramps/plugins/lib/libgedcom.py:7741
+#: ../gramps/plugins/lib/libgedcom.py:7756
 msgid "Submission: Generations of descendants"
 msgstr "Υποβολή: Γενεές απογόνων"
 
-#: ../gramps/plugins/lib/libgedcom.py:7743
+#: ../gramps/plugins/lib/libgedcom.py:7758
 msgid "Submission: Ordinance process flag"
 msgstr "Υποβολή: Σήμανση τελετής (LDS)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7998
+#: ../gramps/plugins/lib/libgedcom.py:8013
 msgid "Invalid temple code"
 msgstr "Άκυρος κωδικός ναού"
 
-#: ../gramps/plugins/lib/libgedcom.py:8094
+#: ../gramps/plugins/lib/libgedcom.py:8109
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -27697,7 +27662,7 @@ msgstr ""
 "Το αρχείο GEDCOM είναι κατεστραμμένο. Εμφανίζεται να έχει κωδικοποίηση "
 "χαρακτήρων UTF16, όμως απουσιάζει ο δείκτης BOM. "
 
-#: ../gramps/plugins/lib/libgedcom.py:8097
+#: ../gramps/plugins/lib/libgedcom.py:8112
 msgid "Your GEDCOM file is empty."
 msgstr "Το αρχείο GEDCOM  είναι κενό."
 
@@ -31908,11 +31873,11 @@ msgstr "Κάτω αριστερά"
 msgid "Bottom Right"
 msgstr "Κάτω δεξιά"
 
-#: ../gramps/plugins/lib/maps/geography.py:160
+#: ../gramps/plugins/lib/maps/geography.py:161
 msgid "Tile path"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:161
+#: ../gramps/plugins/lib/maps/geography.py:162
 #, python-format
 msgid ""
 "The tile directory doesn't exist anymore:\n"
@@ -31921,63 +31886,63 @@ msgid ""
 "Configure the view for the tile path and restart gramps."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:398
+#: ../gramps/plugins/lib/maps/geography.py:396
 msgid "Remove cross hair"
 msgstr "Αφαίρεση στόχαστρου (δείκτη)"
 
-#: ../gramps/plugins/lib/maps/geography.py:400
+#: ../gramps/plugins/lib/maps/geography.py:398
 msgid "Add cross hair"
 msgstr "Προσθήκη στόχαστρου (δείκτη)"
 
-#: ../gramps/plugins/lib/maps/geography.py:407
+#: ../gramps/plugins/lib/maps/geography.py:404
 msgid "Unlock zoom and position"
 msgstr "Ξεκλείδωμα επεστίασης και θέσης"
 
-#: ../gramps/plugins/lib/maps/geography.py:409
+#: ../gramps/plugins/lib/maps/geography.py:406
 msgid "Lock zoom and position"
 msgstr "Κλείδωμα επεστίασης και θέσης"
 
-#: ../gramps/plugins/lib/maps/geography.py:416
+#: ../gramps/plugins/lib/maps/geography.py:412
 msgid "Add place"
 msgstr "Προσθήκη τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:421
+#: ../gramps/plugins/lib/maps/geography.py:416
 msgid "Link place"
 msgstr "Σύνδεση τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:426
+#: ../gramps/plugins/lib/maps/geography.py:420
 #, fuzzy
 msgid "Add place from kml"
 msgstr "Προσθήκη τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:431
+#: ../gramps/plugins/lib/maps/geography.py:424
 msgid "Center here"
 msgstr "Κέντρο εδώ"
 
-#: ../gramps/plugins/lib/maps/geography.py:444
+#: ../gramps/plugins/lib/maps/geography.py:434
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Αντικατάσταση '%(map)s' με =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:460
+#: ../gramps/plugins/lib/maps/geography.py:447
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:469
+#: ../gramps/plugins/lib/maps/geography.py:454
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:895
+#: ../gramps/plugins/lib/maps/geography.py:878
 msgid "You can't use the print functionality"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:896
+#: ../gramps/plugins/lib/maps/geography.py:879
 msgid "Your Gtk version is too old."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:939
+#: ../gramps/plugins/lib/maps/geography.py:922
 #: ../gramps/plugins/view/geoclose.py:637
 #: ../gramps/plugins/view/geoevents.py:403
 #: ../gramps/plugins/view/geoevents.py:435
@@ -31992,16 +31957,33 @@ msgstr ""
 msgid "Center on this place"
 msgstr "Κέντρο σε αυτό το σημείο"
 
-#: ../gramps/plugins/lib/maps/geography.py:1037
+#: ../gramps/plugins/lib/maps/geography.py:1020
 #, fuzzy
 msgid "Select a kml file used to add places"
 msgstr "Επιλογή υφιστάμενης τοποθεσίας"
 
-#: ../gramps/plugins/lib/maps/geography.py:1117
+#: ../gramps/plugins/lib/maps/geography.py:1053
+msgid "You will need to edit each place manually to add place type, ...\n"
+msgstr ""
+
+#: ../gramps/plugins/lib/maps/geography.py:1055
+#, python-brace-format
+msgid "You have {places_nb} place to edit."
+msgid_plural "You have {places_nb} places to edit."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../gramps/plugins/lib/maps/geography.py:1059
+#, fuzzy
+#| msgid "You have at least two places with the same title."
+msgid "You have more than 5 places in this kml file."
+msgstr "Έχετε τουλάχιστον δύο τοποθεσίες με τον ίδιο τίτλο."
+
+#: ../gramps/plugins/lib/maps/geography.py:1127
 msgid "You have at least two places with the same title."
 msgstr "Έχετε τουλάχιστον δύο τοποθεσίες με τον ίδιο τίτλο."
 
-#: ../gramps/plugins/lib/maps/geography.py:1118
+#: ../gramps/plugins/lib/maps/geography.py:1128
 #, fuzzy, python-format
 msgid ""
 "The title of the places is:\n"
@@ -32018,19 +32000,19 @@ msgstr ""
 "\n"
 "<b>Το αίτημά σας δεν μπορεί να εκτελεστεί</b>.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1272
+#: ../gramps/plugins/lib/maps/geography.py:1282
 msgid "Nothing for this view."
 msgstr "Τίποτε για αυτήν την προβολή"
 
-#: ../gramps/plugins/lib/maps/geography.py:1273
+#: ../gramps/plugins/lib/maps/geography.py:1283
 msgid "Specific parameters"
 msgstr "Συγκεκριμένες παράμετροι"
 
-#: ../gramps/plugins/lib/maps/geography.py:1291
+#: ../gramps/plugins/lib/maps/geography.py:1301
 msgid "Where to save the tiles for offline mode."
 msgstr "Που να αποθηκευτούν τα πλακίδια για χρήση εκτός σύνδεσης."
 
-#: ../gramps/plugins/lib/maps/geography.py:1298
+#: ../gramps/plugins/lib/maps/geography.py:1308
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -32041,22 +32023,22 @@ msgstr ""
 "Προσοχή! Χωρίς σύνδεση στο διαδίκτυο δε θα μπορείτε να\n"
 "δείτε τους χάρτες."
 
-#: ../gramps/plugins/lib/maps/geography.py:1303
+#: ../gramps/plugins/lib/maps/geography.py:1313
 msgid "Zoom used when centering"
 msgstr "Χρήση επεστίασης κατά το κεντράρισμα"
 
-#: ../gramps/plugins/lib/maps/geography.py:1306
+#: ../gramps/plugins/lib/maps/geography.py:1316
 msgid "The maximum number of places to show"
 msgstr "Μέγιστος αριθμός τοποθεσιών προς εμφάνιση"
 
-#: ../gramps/plugins/lib/maps/geography.py:1310
+#: ../gramps/plugins/lib/maps/geography.py:1320
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1318
+#: ../gramps/plugins/lib/maps/geography.py:1328
 msgid ""
 "If you want to use a specific map provider, You can set the following field "
 "to the provider's url.\n"
@@ -32067,16 +32049,16 @@ msgid ""
 "http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1333
+#: ../gramps/plugins/lib/maps/geography.py:1343
 #, fuzzy
 msgid "Personal map"
 msgstr "Προσωπικό"
 
-#: ../gramps/plugins/lib/maps/geography.py:1337
+#: ../gramps/plugins/lib/maps/geography.py:1347
 msgid "The map"
 msgstr "Ο χάρτης"
 
-#: ../gramps/plugins/lib/maps/geography.py:1373
+#: ../gramps/plugins/lib/maps/geography.py:1383
 #, fuzzy
 msgid "Select tile cache directory for offline mode"
 msgstr "Που να αποθηκευτούν τα πλακίδια για χρήση εκτός σύνδεσης."
@@ -32546,36 +32528,6 @@ msgstr "Σύνολο"
 #: ../gramps/plugins/tool/reorderids.glade:1401
 msgid "Object"
 msgstr "Αντικείμενο"
-
-#: ../gramps/plugins/quickview/filterbyname.py:91
-#: ../gramps/plugins/quickview/filterbyname.py:116
-#: ../gramps/plugins/textreport/tagreport.py:147
-#: ../gramps/plugins/view/view.gpr.py:197
-#: ../gramps/plugins/view/view.gpr.py:205
-#: ../gramps/plugins/view/view.gpr.py:214
-#: ../gramps/plugins/webreport/updates.py:98
-msgid "People"
-msgstr "Άτομα"
-
-#: ../gramps/plugins/quickview/filterbyname.py:103
-#: ../gramps/plugins/quickview/filterbyname.py:128
-#: ../gramps/plugins/view/sourceview.py:115
-#: ../gramps/plugins/view/view.gpr.py:267
-#: ../gramps/plugins/view/view.gpr.py:275
-#: ../gramps/plugins/view/view.gpr.py:306
-#: ../gramps/plugins/webreport/basepage.py:780
-#: ../gramps/plugins/webreport/basepage.py:1065
-#: ../gramps/plugins/webreport/basepage.py:1247
-#: ../gramps/plugins/webreport/basepage.py:1382
-#: ../gramps/plugins/webreport/basepage.py:1741
-#: ../gramps/plugins/webreport/basepage.py:1800
-#: ../gramps/plugins/webreport/basepage.py:1923
-#: ../gramps/plugins/webreport/person.py:1395
-#: ../gramps/plugins/webreport/source.py:135
-#: ../gramps/plugins/webreport/source.py:234
-#: ../gramps/plugins/webreport/updates.py:126
-msgid "Sources"
-msgstr "Πηγές"
 
 #: ../gramps/plugins/quickview/filterbyname.py:146
 #: ../gramps/plugins/quickview/filterbyname.py:148
@@ -33202,7 +33154,7 @@ msgstr "Εμφανιζόμενες συγγένειες του(ης) %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:334
 #, fuzzy, python-format
-msgid "* %(person)s, birth%(relation)s"
+msgid "* %(person)s, birth %(relation)s"
 msgstr "%(person)s, γέννηση%(relation)s"
 
 #. Translators: leave all/any {...} untranslated
@@ -37372,12 +37324,12 @@ msgstr "Επιλέξτε το άτομο αναφοράς."
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:655
+#: ../gramps/plugins/view/geoclose.py:653
 #, fuzzy
 msgid "Choose and bookmark the new reference person"
 msgstr "Αποφασίστε το άτομο αναφοράς"
 
-#: ../gramps/plugins/view/geoclose.py:679
+#: ../gramps/plugins/view/geoclose.py:676
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -37393,8 +37345,8 @@ msgstr ""
 "Η τιμή 1 αντιστοιχεί σε περίπου 4,6 μίλια ή 7,5 χλμ.\n"
 "Η μονάδα είναι σε δέκατα του βαθμού."
 
-#: ../gramps/plugins/view/geoclose.py:688
-#: ../gramps/plugins/view/geofamclose.py:872
+#: ../gramps/plugins/view/geoclose.py:685
+#: ../gramps/plugins/view/geofamclose.py:869
 msgid "The selection parameters"
 msgstr "Παράμετροι επιλογής"
 
@@ -37429,12 +37381,12 @@ msgstr ""
 msgid "Bookmark this event"
 msgstr "Ταξινόμηση συμβάντων"
 
-#: ../gramps/plugins/view/geoevents.py:456
+#: ../gramps/plugins/view/geoevents.py:454
 msgid "Show all events"
 msgstr "Προβολή όλων των συμβάντων"
 
-#: ../gramps/plugins/view/geoevents.py:460
-#: ../gramps/plugins/view/geoplaces.py:549
+#: ../gramps/plugins/view/geoevents.py:457
+#: ../gramps/plugins/view/geoplaces.py:547
 msgid "Centering on Place"
 msgstr "Επικέντρωση σε αυτό το μέρος"
 
@@ -37512,12 +37464,12 @@ msgstr "Τέκνο : %(id)s - %(index)d : %(name)s"
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Άτομο : %(id)s %(name)s δεν έχει οικογένεια."
 
-#: ../gramps/plugins/view/geofamclose.py:838
+#: ../gramps/plugins/view/geofamclose.py:836
 #, fuzzy
 msgid "Choose and bookmark the new reference family"
 msgstr "Επιλέξτε την οικογένεια αναφοράς"
 
-#: ../gramps/plugins/view/geofamclose.py:862
+#: ../gramps/plugins/view/geofamclose.py:859
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -37689,19 +37641,19 @@ msgid "Person places for %s"
 msgstr "Ατομικές τοποθεσίες του %s"
 
 # κινούμενο σχέδιο;;; τι εννοεί;
-#: ../gramps/plugins/view/geoperson.py:583
+#: ../gramps/plugins/view/geoperson.py:581
 msgid "Animate"
 msgstr "Κίνηση (σχεδίου)"
 
-#: ../gramps/plugins/view/geoperson.py:607
+#: ../gramps/plugins/view/geoperson.py:604
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Ταχύτητα αναπαραγωγής σε μιλιδευτερόλεπτα (μεγάλη τιμή σημαίνει αργά)"
 
-#: ../gramps/plugins/view/geoperson.py:612
+#: ../gramps/plugins/view/geoperson.py:609
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Πόσα βήματα μεταξύ δύο δεικτών στην περίπτωση μεγάλης μετακίνησης;"
 
-#: ../gramps/plugins/view/geoperson.py:617
+#: ../gramps/plugins/view/geoperson.py:614
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -37709,7 +37661,7 @@ msgstr ""
 "Ελάχιστο γεαωγραφικό πλάτος/μήκος για μεγάλη μετακίνηση\n"
 "Η τιμή είναι στο ένα δέκατο της μοίρας."
 
-#: ../gramps/plugins/view/geoperson.py:622
+#: ../gramps/plugins/view/geoperson.py:619
 msgid "The animation parameters"
 msgstr "Παράμετροι κινουμένου σχεδίου"
 
@@ -37775,16 +37727,16 @@ msgstr ""
 msgid "Bookmark this place"
 msgstr "Τόπος βάπτισης"
 
-#: ../gramps/plugins/view/geoplaces.py:545
+#: ../gramps/plugins/view/geoplaces.py:544
 msgid "Show all places"
 msgstr "Εμφάνιση όλων των τοποθεσιών"
 
-#: ../gramps/plugins/view/geoplaces.py:634
+#: ../gramps/plugins/view/geoplaces.py:629
 #, fuzzy
 msgid "Custom places name"
 msgstr "Πλήρες επώνυμο:"
 
-#: ../gramps/plugins/view/geoplaces.py:642
+#: ../gramps/plugins/view/geoplaces.py:637
 msgid "The places marker color"
 msgstr ""
 
@@ -38370,8 +38322,6 @@ msgstr "Αφήγηση"
 #: ../gramps/plugins/webreport/basepage.py:1239
 #: ../gramps/plugins/webreport/basepage.py:2905
 #: ../gramps/plugins/webreport/basepage.py:2971
-#: ../gramps/plugins/webreport/place.py:220
-#: ../gramps/plugins/webreport/place.py:232
 msgid "State/ Province"
 msgstr "Περιφέρεια/Επαρχία"
 
@@ -39729,9 +39679,18 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
-msgctxt "Place Name "
-msgid " Name"
-msgstr "Τοπωνύμιο"
+#, fuzzy
+#| msgid "Name"
+msgctxt "Place Name"
+msgid "Name"
+msgstr "Όνομα"
+
+#: ../gramps/plugins/webreport/place.py:220
+#: ../gramps/plugins/webreport/place.py:232
+#, fuzzy
+#| msgid "State/Province:"
+msgid "State/Province"
+msgstr "Περιφέρεια/Επαρχία:"
 
 #: ../gramps/plugins/webreport/place.py:272
 #, python-format
@@ -39757,9 +39716,11 @@ msgstr ""
 "για να μεταβείτε στη σελίδα του."
 
 #: ../gramps/plugins/webreport/repository.py:173
-msgctxt "Repository "
+#, fuzzy
+#| msgid "Name"
+msgctxt "Repository"
 msgid "Name"
-msgstr "Όνομα αποθετηρίου"
+msgstr "Όνομα"
 
 #: ../gramps/plugins/webreport/source.py:105
 msgid "Creating source pages"
@@ -39829,11 +39790,17 @@ msgstr "Επώνυμα που ξεκινούν με το γράμμα %s"
 
 # "ευρετηριασμένο κατάλογο" ή "παραγραφοποιημένο κατάλογο"
 #: ../gramps/plugins/webreport/thumbnail.py:121
+#, fuzzy
+#| msgid ""
+#| "This page displays a indexed list of all the media objects in this "
+#| "database.  It is sorted by media title.  There is an index of all the "
+#| "media objects in this database.  Clicking on a thumbnail will take you to "
+#| "that image&#8217;s page."
 msgid ""
-"This page displays a indexed list of all the media objects in this "
-"database.  It is sorted by media title.  There is an index of all the media "
-"objects in this database.  Clicking on a thumbnail will take you to that "
-"image&#8217;s page."
+"This page displays a indexed list of all the media objects in this database. "
+"It is sorted by media title. There is an index of all the media objects in "
+"this database. Clicking on a thumbnail will take you to that image&#8217;s "
+"page."
 msgstr ""
 "Η σελίδα αυτή εμφανίζει έναν ευρετηριασμένο κατάλογο όλων των αντικειμένων "
 "μέσων της βάσης δεδομένων, ταξινομημένων κατά τίτλο.Υπάρχει ευρετήριο όλων "
@@ -40167,6 +40134,123 @@ msgstr "Αποχρώσεις καφέ-γκρι"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Χωρίς χρωματικό θέμα"
+
+#~ msgid ""
+#~ "Latitude (position above the Equator) of the place in decimal or degree "
+#~ "notation. \n"
+#~ "Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or "
+#~ "50:52:21.92\n"
+#~ "You can set these values via the Geography View by searching the place, "
+#~ "or via a map service in the place view."
+#~ msgstr ""
+#~ "Γεωγραφικό πλάτος (θέση πάνω από τον Ισημερινό) της τοποθεσίας εκφρασμένο "
+#~ "σε μοίρες.\n"
+#~ "Π.χ. έγκυρες τιμές είναι 12.0154, 50°52′21.92″N, N50°52′21.92″ ή "
+#~ "50:52:21.92\n"
+#~ "Μπορείτε να ορίσετε αυτές τις τιμές μέσω της προβολής Γεωγραφία "
+#~ "αναζητώντας την τοποθεσία ή μέσω κάποιας χαρτογραφικής υπηρεσίας από την "
+#~ "προβολή Τοποθεσία."
+
+#~ msgid ""
+#~ "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
+#~ "place in decimal or degree notation. \n"
+#~ "Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or "
+#~ "124:52:21.92\n"
+#~ "You can set these values via the Geography View by searching the place, "
+#~ "or via a map service in the place view."
+#~ msgstr ""
+#~ "Γεωγραφικό πλάτος (σχετική θέση ως προς τον μεσημβρινό του Γκρήνουιτς) "
+#~ "της τοποθεσίας εκφρασμένο σε μοίρες.\n"
+#~ "Π.χ. έγκυρες τιμές είναι -124.3647, 124°52′21.92″E, E124°52′21.92″ or "
+#~ "124:52:21.92\n"
+#~ "Μπορείτε να ορίσετε αυτές τις τιμές μέσω της προβολής Γεωγραφία "
+#~ "αναζητώντας την τοποθεσία ή μέσω κάποιας χαρτογραφικής υπηρεσίας από την "
+#~ "προβολή Τοποθεσία."
+
+#, fuzzy
+#~ msgctxt "locale_suffix"
+#~ msgid ""
+#~ msgstr "κατάληξη"
+
+#, python-format
+#~ msgid "  Family %(id)s with %(id2)s\n"
+#~ msgstr "  Οικογένεια %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  Source %(id)s with %(id2)s\n"
+#~ msgstr "  Πηγή %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  Event %(id)s with %(id2)s\n"
+#~ msgstr "  Συμβάν %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  Media Object %(id)s with %(id2)s\n"
+#~ msgstr "  Αντικείμενο μέσων %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  Place %(id)s with %(id2)s\n"
+#~ msgstr "  Τοποθεσία %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  Repository %(id)s with %(id2)s\n"
+#~ msgstr "  Αποθετήριο %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  Note %(id)s with %(id2)s\n"
+#~ msgstr "  Σημείωση %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  Citation %(id)s with %(id2)s\n"
+#~ msgstr "  Παραπομπή %(id)s με %(id2)s\n"
+
+#, python-format
+#~ msgid "  People: %d\n"
+#~ msgstr "  Άτομα: %d\n"
+
+#, python-format
+#~ msgid "  Families: %d\n"
+#~ msgstr "  Οικογένειες: %d\n"
+
+#, python-format
+#~ msgid "  Sources: %d\n"
+#~ msgstr "  Πηγές: %d\n"
+
+#, python-format
+#~ msgid "  Events: %d\n"
+#~ msgstr "  Συμβάντα: %d\n"
+
+#, python-format
+#~ msgid "  Media Objects: %d\n"
+#~ msgstr "  Αντικείμενα μέσων: %d\n"
+
+#, python-format
+#~ msgid "  Places: %d\n"
+#~ msgstr "  Τοποθεσίες: %d\n"
+
+#, python-format
+#~ msgid "  Repositories: %d\n"
+#~ msgstr "  Αποθετήρια: %d\n"
+
+#, python-format
+#~ msgid "  Notes: %d\n"
+#~ msgstr "  Σημειώσεις: %d\n"
+
+#, python-format
+#~ msgid "  Tags: %d\n"
+#~ msgstr "  Ετικέτες: %d\n"
+
+#, python-format
+#~ msgid "  Citations: %d\n"
+#~ msgstr "  Παραπομπές: %d\n"
+
+#~ msgctxt "Place Name "
+#~ msgid " Name"
+#~ msgstr "Τοπωνύμιο"
+
+#~ msgctxt "Repository "
+#~ msgid "Name"
+#~ msgstr "Όνομα αποθετηρίου"
 
 #, python-format
 #~ msgid "Delete Citation (%s)"
@@ -42463,9 +42547,6 @@ msgstr "Χωρίς χρωματικό θέμα"
 
 #~ msgid "window1"
 #~ msgstr "Παράθυρο 1"
-
-#~ msgid "State/Province:"
-#~ msgstr "Περιφέρεια/Επαρχία:"
 
 #~ msgid "ZIP/Postal code:"
 #~ msgstr "ZIP/Ταχυδρομικός Κωδικός:"
