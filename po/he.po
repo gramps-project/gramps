@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-05 23:23+0000\n"
-"PO-Revision-Date: 2022-03-07 19:04+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2022-03-11 00:27+0000\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -259,7 +259,7 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"תוצאות עבודת המחקר נשמרות באופן מאורגן בכול עת, הן ניתנות לחיפוש ומדויקות."
+"תוצאות עבודת המחקר נשמרות באופן מאורגן בכל עת, הן ניתנות לחיפוש ומדויקות."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
 msgid "Gramps Development Team"
@@ -271,7 +271,9 @@ msgstr "מערכת גנאלוגית"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "גנאלוגיה;היסטוריה משפחתית;מחקר;אילן יוחסין;ג'דקום;"
+msgstr ""
+"גנאלוגיה;היסטוריה משפחתית;מחקר;אילן יוחסין;ג'דקום;ג׳דקום;Genealogy;Family "
+"History;Research;Family Tree;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -281,7 +283,7 @@ msgstr "מסד הנתונים של גרמפס"
 #: ../gramps/plugins/export/export.gpr.py:76
 #: ../gramps/plugins/importer/import.gpr.py:54
 msgid "GEDCOM"
-msgstr "ג׳דקום"
+msgstr "GEDCOM"
 
 #: ../data/org.gramps_project.Gramps.xml.in:20
 msgid "Gramps package"
@@ -293,7 +295,7 @@ msgstr "מסד נתונים גרמפס XML"
 
 #: ../data/org.gramps_project.Gramps.xml.in:32
 msgid "GeneWeb source file"
-msgstr "קובץ מקור ג׳נה־ווב"
+msgstr "קובץ מקור GeneWeb"
 
 #: ../data/tips.xml:4
 msgid ""
@@ -448,8 +450,8 @@ msgid ""
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
-"<b>מחשבון קשרי־גומלין<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים ("
-"קרבת דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון קשר־"
+"<b>מחשבון קשרי־גומלין<br/></b> כדי לבדוק אם שני אנשים במסד הנתונים קשורים "
+"(קרבת דם, לא נישואין) ניתן להשתמש בכלי מתפריט 'כלים > עזרים > מחשבון קשר־"
 "גומלין...'. מחשבון קשרי־הגומלין ידווח על מערכת היחסים המדויקת וגם על כול "
 "האבות הקדמונים המשותפים."
 
@@ -1059,7 +1061,7 @@ msgid ""
 "Tree instead."
 msgstr ""
 "שגיאה: הזנת אילן היוחסין '%s' לא קיים.\n"
-"אם ג'דקום, Gramps-xml או grdb, במקום זאת, נא להשתמש באפשרות i- כדי לייבא "
+"אם GEDCOM‏, Gramps-xml או grdb, במקום זאת, נא להשתמש באפשרות i- כדי לייבא "
 "לאילן היוחסין."
 
 #: ../gramps/cli/arghandler.py:255
@@ -8898,7 +8900,7 @@ msgstr "עמוד הבית"
 
 #: ../gramps/gen/lib/urltype.py:51
 msgid "Web Search"
-msgstr "חיפוש מרשתת"
+msgstr "חיפוש ברשת"
 
 #: ../gramps/gen/lib/urltype.py:52
 msgid "FTP"
@@ -9037,7 +9039,7 @@ msgstr "יצירת Doc"
 
 #: ../gramps/gen/plug/_pluginreg.py:85
 msgid "Plugin lib"
-msgstr "ספרית מתקעים"
+msgstr "ספריית התוספים"
 
 #: ../gramps/gen/plug/_pluginreg.py:86
 msgid "Map service"
@@ -9082,7 +9084,7 @@ msgstr "שונות"
 #: ../gramps/gen/plug/_pluginreg.py:1209
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "שגיאה: קריאת רישום מתקע %(filename)s כשלה"
+msgstr "שגיאה: קריאת רישום התוסף %(filename)s כשלה"
 
 #: ../gramps/gen/plug/_pluginreg.py:1187
 #, python-format
@@ -9090,7 +9092,7 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
-"אזהרה: למתקע %(plugin_name)s אין תרגום לאף אחת מהשפות המוגדרות במערכת, במקום "
+"אזהרה: לתוסף %(plugin_name)s אין תרגום לאף אחת מהשפות המוגדרות במערכת, במקום "
 "זאת, יעשה שימוש באנגלית"
 
 #: ../gramps/gen/plug/_pluginreg.py:1224
@@ -9390,7 +9392,7 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
-"משפיע על ריווח הצמתים ושינוי סילום התרשים.\n"
+"משפיע על ריווח הצמתים ושינוי קנה מידת התרשים.\n"
 "אם התרשים קטן מאזור ההדפסה:\n"
 "  דחיסה לא תשנה את מרווח הצמתים. \n"
 "  מילוי יגביר את מרווח הצמתים כך שיתאים לאזור ההדפסה ברוחב ובגובה.\n"
@@ -11468,7 +11470,7 @@ msgstr "דיכוי אזהרה בעת יצוא לג'דקום, לגבי חוקר �
 
 #: ../gramps/gui/configure.py:833
 msgid "Show plugin status dialog on plugin load error"
-msgstr "הצגת דו־שיח מצב מתקעים עם שגיאת טעינת מתקע"
+msgstr "הצגת דו־שיח מצב תוסף עם שגיאה בטעינת התוסף"
 
 #: ../gramps/gui/configure.py:836
 msgid "Warnings"
@@ -12036,7 +12038,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
-msgstr "הוספת 'מקור' ברירת מחדל בעת יבוא קובץ ג'דקום"
+msgstr "הוספת 'מקור' ברירת מחדל בעת ייבוא קובץ GEDCOM"
 
 #: ../gramps/gui/configure.py:1929 ../gramps/gui/dbloader.py:380
 msgid "Import"
@@ -14945,7 +14947,7 @@ msgstr "לא מכיל %s"
 #: ../gramps/gui/views/listview.py:1299 ../gramps/plugins/gramplet/leak.py:193
 #: ../gramps/plugins/gramplet/leak.py:200
 msgid "Updating display..."
-msgstr "מעדכן מצג..."
+msgstr "המצג מתעדכן..."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:103
 #: ../gramps/gui/glade/editcitation.glade:263
@@ -15682,7 +15684,7 @@ msgstr "הע_רת מלל:"
 
 #: ../gramps/gui/glade/editevent.glade:29
 msgid "Close window without changes"
-msgstr "סגירת חלון בלי שינוים"
+msgstr "סגירת חלון בלי שינויים"
 
 #: ../gramps/gui/glade/editevent.glade:96
 #: ../gramps/gui/glade/editeventref.glade:223
@@ -17488,7 +17490,7 @@ msgstr "_ניווט"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Plugin Manager"
-msgstr "_מנהל מתקעים"
+msgstr "_מנהל התוספים"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Preferences..."
@@ -18079,7 +18081,7 @@ msgstr "גלוי"
 
 #: ../gramps/gui/plug/_windows.py:97
 msgid "Plugin Manager"
-msgstr "מנהל מתקעים"
+msgstr "מנהל התוספים"
 
 #: ../gramps/gui/plug/_windows.py:144 ../gramps/gui/plug/_windows.py:198
 msgid "Info"
@@ -18095,7 +18097,7 @@ msgstr "טעינה"
 
 #: ../gramps/gui/plug/_windows.py:161
 msgid "Registered Plugins"
-msgstr "מתקעים רשומים"
+msgstr "תוספים רשומים"
 
 #: ../gramps/gui/plug/_windows.py:174
 msgid "Loaded"
@@ -18113,7 +18115,7 @@ msgstr "הודעה"
 
 #: ../gramps/gui/plug/_windows.py:216
 msgid "Loaded Plugins"
-msgstr "מתקעים שנטענו"
+msgstr "תוספים שנטענו"
 
 #: ../gramps/gui/plug/_windows.py:235
 msgid "Addon Name"
@@ -18187,7 +18189,7 @@ msgstr "אישור"
 
 #: ../gramps/gui/plug/_windows.py:619
 msgid "Plugin name"
-msgstr "שם מתקע"
+msgstr "שם התוסף"
 
 #: ../gramps/gui/plug/_windows.py:621
 msgid "Version"
@@ -18208,7 +18210,7 @@ msgstr "מידע מפורט"
 
 #: ../gramps/gui/plug/_windows.py:686
 msgid "Plugin Error"
-msgstr "שגיאת מתקע"
+msgstr "שגיאת תוסף"
 
 #: ../gramps/gui/plug/_windows.py:751
 msgid "_Execute"
@@ -19195,7 +19197,7 @@ msgstr "אין אילן יוחסין"
 
 #: ../gramps/gui/viewmanager.py:562
 msgid "Registering plugins..."
-msgstr "רישום מתקעים..."
+msgstr "התוספים נרשמים..."
 
 #: ../gramps/gui/viewmanager.py:570
 msgid "Ready"
@@ -19286,7 +19288,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1568
 msgid "Failed Loading Plugin"
-msgstr "כשל בטעינת המתקע"
+msgstr "טעינת התוסף נכשלה"
 
 #: ../gramps/gui/viewmanager.py:1569
 #, python-format
@@ -21656,29 +21658,29 @@ msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
-"ג'דקום משמש להעברת נתונים בין תוכניות גנאלוגיות. רוב התכנות הגנאלוגיות יקבלו "
-"קובץ ג'דקום כקלט."
+"‏GEDCOM משמש להעברת נתונים בין תכניות גנאלוגיות. רוב התכנות הגנאלוגיות יקבלו "
+"קובץ GEDCOM כקלט."
 
 #: ../gramps/plugins/export/export.gpr.py:87
 msgid "GEDCOM export options"
-msgstr "אפשרויות ייצוא כקובץ ג׳דקום"
+msgstr "אפשרויות ייצוא כקובץ GEDCOM"
 
 #: ../gramps/plugins/export/export.gpr.py:98
 #: ../gramps/plugins/importer/import.gpr.py:73
 msgid "GeneWeb"
-msgstr "ג׳נה־ווב"
+msgstr "‏GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:99
 msgid "_GeneWeb"
-msgstr "קוב_ץ ג׳נה־ווב"
+msgstr "קוב_ץ GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:100
 msgid "GeneWeb is a web based genealogy program."
-msgstr "ג׳נה־ווב היא תכנית גנאלוגיה מבוססת רשת."
+msgstr "‏GeneWeb היא תכנית גנאלוגיה מבוססת רשת."
 
 #: ../gramps/plugins/export/export.gpr.py:108
 msgid "GeneWeb export options"
-msgstr "אפשרויות ייצוא כקובץ ג׳נה־ווב"
+msgstr "אפשרויות ייצוא כקובץ GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:119
 msgid "Gramps XML Package (family tree and media)"
@@ -21873,7 +21875,7 @@ msgstr "כתיבת מדיה"
 
 #: ../gramps/plugins/export/exportgedcom.py:1600
 msgid "GEDCOM Export failed"
-msgstr "יצוא ג'דקום כשל"
+msgstr "הייצוא כקובץ GEDCOM נכשל"
 
 #: ../gramps/plugins/export/exportgeneweb.py:97
 msgid "No families matched by selected filter"
@@ -23608,8 +23610,8 @@ msgstr ""
 "כעת ניתן להתחיל להזין את נתוני ה'משפחה הראשונה', זה נעשה על ידי הזנת נתוני "
 "ה'אדם' הראשון.\n"
 "\n"
-"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־[+])"
-" תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
+"ממצג 'אנשים', מהתפריט, לחיצה על 'הוספה', לאחר מכן 'אדם' (או שימוש בסמל ה־"
+"[+]) תפתח את חלון הזנת פרטי 'אדם'. הזנת המידע הבסיסי ושמירת הרשומה תייצר את "
 "נקודת המוצא לאילן־היוחסין. להרחבת הנתונים יש לבחור ברשומת 'אדם' זה ומעבר "
 "למצג קשרי־גומלין.\n"
 "\n"
@@ -24453,7 +24455,7 @@ msgstr "ייבוא נתונים מקובץ CSV"
 
 #: ../gramps/plugins/importer/import.gpr.py:74
 msgid "Import data from GeneWeb files"
-msgstr "ייבוא נתונים מקובץ ג׳נה־ווב"
+msgstr "ייבוא נתונים מקובץ GeneWeb"
 
 #: ../gramps/plugins/importer/import.gpr.py:91
 msgid "Gramps package (portable XML)"
@@ -24493,7 +24495,7 @@ msgstr "פרן-ג'ן"
 
 #: ../gramps/plugins/importer/import.gpr.py:150
 msgid "Import data from Pro-Gen files"
-msgstr "ייבוא נתונים מקובץ פרו־ג׳ן"
+msgstr "ייבוא נתונים מקובץ Pro-Gen"
 
 #: ../gramps/plugins/importer/import.gpr.py:168
 msgid "Import data from vCard files"
@@ -24847,7 +24849,7 @@ msgstr "גרמפס - קידוד ג'דקום"
 
 #: ../gramps/plugins/importer/importgedcom.glade:77
 msgid "GEDCOM Encoding"
-msgstr "קידוד ג'דקום"
+msgstr "קידוד GEDCOM"
 
 #: ../gramps/plugins/importer/importgedcom.glade:97
 msgid ""
@@ -24856,9 +24858,9 @@ msgid ""
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
-"קובץ הג'דקום הזדהה בשימוש בקידוד ANSEL. לפעמים, זה קורה בטעות במידה והנתונים "
-"המיובאים מכילים תווים יוצאי דופן, נא לבטל את הייבוא ולעקוף את ערכת התווים על־"
-"ידי בחירת קידוד אחר להלן."
+"קובץ ה־GEDCOM הזדהה בשימוש בקידוד ANSEL. לפעמים, זה קורה בטעות במידה "
+"והנתונים המיובאים מכילים תווים יוצאי דופן, נא לבטל את הייבוא ולעקוף את ערכת "
+"התווים על־ידי בחירת קידוד אחר להלן."
 
 #: ../gramps/plugins/importer/importgedcom.glade:125
 msgid "Encoding: "
@@ -24866,7 +24868,7 @@ msgstr "קידוד: "
 
 #: ../gramps/plugins/importer/importgedcom.py:132
 msgid "Invalid GEDCOM file"
-msgstr "קובץ ג'דקום לא תקין"
+msgstr "קובץ GEDCOM לא תקין"
 
 #: ../gramps/plugins/importer/importgedcom.py:133
 #, python-format
@@ -24875,7 +24877,7 @@ msgstr "לא ניתן לייבא את %s"
 
 #: ../gramps/plugins/importer/importgedcom.py:150
 msgid "Error reading GEDCOM file"
-msgstr "שגיאה בקריאת קובץ ג'דקום"
+msgstr "שגיאה בקריאת קובץ GEDCOM"
 
 #: ../gramps/plugins/importer/importgeneweb.py:80
 msgid "Accomplishment"
@@ -24967,7 +24969,7 @@ msgstr "בניפרד"
 
 #: ../gramps/plugins/importer/importgeneweb.py:197
 msgid "GeneWeb import"
-msgstr "ייבוא מקובץ ג׳נה־ווב"
+msgstr "ייבוא מקובץ GeneWeb"
 
 #: ../gramps/plugins/importer/importgeneweb.py:912
 #, python-brace-format
@@ -25327,7 +25329,7 @@ msgstr "ייבוא_מתכנית_גנאלוגיה_אחרת"
 #: ../gramps/plugins/importer/importprogen.py:121
 #, python-format
 msgid "Import from Pro-Gen (%s)"
-msgstr "ייבוא מקובץ פרו־ג׳ן (%s)"
+msgstr "ייבוא מקובץ Pro-Gen‏ (%s)"
 
 #: ../gramps/plugins/importer/importprogen.py:186
 #: ../gramps/plugins/lib/libprogen.py:492
@@ -25338,7 +25340,7 @@ msgstr "שגיאת נתוני פרן-ג'ן"
 #: ../gramps/plugins/importer/importprogen.py:458
 #: ../gramps/plugins/importer/importprogen.py:466
 msgid "Import Pro-Gen"
-msgstr "ייבוא מקובץ פרו־ג׳ן"
+msgstr "ייבוא מקובץ Pro-Gen"
 
 #: ../gramps/plugins/importer/importvcard.py:228
 #, python-format
@@ -25827,17 +25829,17 @@ msgstr "תו לא חוקי %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr "קובץ ג'דקום לא תקין. נראה שהוא קוצץ."
+msgstr "קובץ GEDCOM לא תקין. נראה שהוא קוצץ."
 
 #: ../gramps/plugins/lib/libgedcom.py:1904
 #, python-format
 msgid "Import from GEDCOM (%s)"
-msgstr "ייבוא מקובץ ג׳דקום (%s)"
+msgstr "ייבוא מקובץ GEDCOM‏ (%s)"
 
 #: ../gramps/plugins/lib/libgedcom.py:2740
 #: ../gramps/plugins/lib/libgedcom.py:3197
 msgid "GEDCOM import"
-msgstr "ייבוא מקובץ ג׳דקום"
+msgstr "ייבוא מקובץ GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:2768
 msgid "GEDCOM import report: No errors detected"
@@ -25927,7 +25929,7 @@ msgstr "(מגיש/ה):"
 #: ../gramps/plugins/lib/libgedcom.py:3504
 #: ../gramps/plugins/lib/libgedcom.py:7318
 msgid "GEDCOM data"
-msgstr "נתוני ג'דקום"
+msgstr "נתוני GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:3549
 msgid "Unknown tag"
@@ -26098,31 +26100,31 @@ msgstr "ערכת תווים וגרסה"
 
 #: ../gramps/plugins/lib/libgedcom.py:7507
 msgid "GEDCOM version not supported"
-msgstr "גרסת ג'דקום לא נתמכת"
+msgstr "גרסת GEDCOM לא נתמכת"
 
 #: ../gramps/plugins/lib/libgedcom.py:7511
 msgid "GEDCOM version"
-msgstr "גרסת ג'דקום"
+msgstr "גרסת GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7520
 msgid "GEDCOM FORM should be in uppercase"
-msgstr "טופס ג'דקום צריך להיכתב באותיות רישיות"
+msgstr "טופס GEDCOM צריך להיכתב באותיות רישיות"
 
 #: ../gramps/plugins/lib/libgedcom.py:7523
 msgid "GEDCOM FORM not supported"
-msgstr "טופס ג'דקום לא נתמכת"
+msgstr "טופס GEDCOM לא נתמך"
 
 #: ../gramps/plugins/lib/libgedcom.py:7526
 msgid "GEDCOM form"
-msgstr "טופס ג'דקום"
+msgstr "טופס GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7577
 msgid "Creation date of GEDCOM"
-msgstr "תאריך יצירת ג'דקום"
+msgstr "תאריך יצירת GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7582
 msgid "Creation date and time of GEDCOM"
-msgstr "תאריך ושעת יצירת ג'דקום"
+msgstr "תאריך ושעת יצירת GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7623
 #: ../gramps/plugins/lib/libgedcom.py:7665
@@ -26167,11 +26169,11 @@ msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
-"קובץ ה ג'דקום פגום. נראה שהקובץ מקודד בסדרת תווים UTF16 אבל חסר את סמן ה BOM."
+"קובץ ה־GEDCOM פגום. נראה שהקובץ מקודד בסדרת תווים UTF16 אבל חסר את סמן ה BOM."
 
 #: ../gramps/plugins/lib/libgedcom.py:8097
 msgid "Your GEDCOM file is empty."
-msgstr "קובץ ג'דקום ריק."
+msgstr "קובץ ה־GEDCOM ריק."
 
 #: ../gramps/plugins/lib/libhtmlconst.py:51
 msgid "Unicode UTF-8 (recommended)"
@@ -28586,8 +28588,8 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"הייתה במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s "
-"ב־%(place)s%(endnotes)s."
+"הייתה במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב־%(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1113
 #: ../gramps/plugins/lib/libnarrate.py:1136
@@ -28596,8 +28598,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"מערכת יחסים ללא נישואין עם %(spouse)s %(partial_date)s "
-"ב־%(place)s%(endnotes)s."
+"מערכת יחסים ללא נישואין עם %(spouse)s %(partial_date)s ב־%(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1114
 #: ../gramps/plugins/lib/libnarrate.py:1137
@@ -28615,8 +28617,8 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"מערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s "
-"ב־%(place)s%(endnotes)s."
+"מערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב־%(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1121
 #, python-format
@@ -28624,8 +28626,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s "
-"ב־%(place)s%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s ב־"
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1122
 #, python-format
@@ -28642,8 +28644,8 @@ msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s "
-"ב־%(place)s%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב־"
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1126
 #, python-format
@@ -28651,8 +28653,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s "
-"ב־%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s ב־%(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
@@ -28669,8 +28671,8 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s "
-"ב־%(place)s%(endnotes)s."
+"היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s ב־%(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1131
 #, python-format
@@ -28678,8 +28680,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s ב־%(partial_date)s "
-"ב־%(place)s%(endnotes)s."
+"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s ב־%(partial_date)s ב־"
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
@@ -28696,8 +28698,8 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s "
-"ב־%(place)s%(endnotes)s."
+"הייתה גם במערכת יחסים ללא נישואין עם %(spouse)s %(modified_date)s ב־%(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1144
 #, python-format
@@ -28705,8 +28707,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s "
-"ב־%(partial_date)s%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(partial_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
@@ -28723,8 +28725,8 @@ msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
-"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"אדם זה היה במערכת יחסים ללא נישואין גם עם %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1149
 #, python-format
@@ -29805,7 +29807,7 @@ msgstr "ספריה שתשמש את קיירו לחילול מסמכים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:54
 msgid "Provides GEDCOM processing functionality"
-msgstr "אספקת פונקציונליות לעיבוד ג'דקום‏"
+msgstr "אספקת פונקציונליות לעיבוד קובצי GEDCOM"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:71
 msgid "Provides recursive routines for reports"
@@ -29849,7 +29851,7 @@ msgstr "אספקת התשתית הנדרשת למצג רשימות אנשים."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:247
 msgid "Provides common functionality for Pro-Gen import"
-msgstr "אספקת פונקציונליות נפוצה לייבוא פרו־ג׳ן"
+msgstr "אספקת פונקציונליות נפוצה לייבוא קובצי Pro-Gen"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:265
 msgid "Provides the Base needed for the List Place views."
@@ -29877,7 +29879,7 @@ msgstr "לא קובץ DEF (נכון): %(dname)s"
 #: ../gramps/plugins/lib/libprogen.py:498
 #: ../gramps/plugins/lib/libprogen.py:732
 msgid "Import from Pro-Gen"
-msgstr "ייבוא מפרו־ג׳ן"
+msgstr "ייבוא מקובץ Pro-Gen"
 
 #: ../gramps/plugins/lib/libprogen.py:498
 msgid "Initializing."
@@ -29885,11 +29887,11 @@ msgstr "אתחול."
 
 #: ../gramps/plugins/lib/libprogen.py:515
 msgid "Not a supported Pro-Gen import file language"
-msgstr "אין שפת ייבוא פרו־ג׳ן נתמכת"
+msgstr "אין שפת ייבוא Pro-Gen נתמכת"
 
 #: ../gramps/plugins/lib/libprogen.py:531
 msgid "Pro-Gen import"
-msgstr "ייבוא פרו־ג׳ן"
+msgstr "ייבוא מקובץ Pro-Gen"
 
 #: ../gramps/plugins/lib/libprogen.py:539
 msgid "Saving."
@@ -29897,7 +29899,7 @@ msgstr "שמירה..."
 
 #: ../gramps/plugins/lib/libprogen.py:929
 msgid "Pro-Gen Import"
-msgstr "ייבוא פרו־ג׳ן"
+msgstr "ייבוא מקובץ Pro-Gen"
 
 #: ../gramps/plugins/lib/libprogen.py:1138
 #, python-format
@@ -33379,7 +33381,7 @@ msgstr "תאריכי דור"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
 msgid "Date Test Plugin"
-msgstr "מתקע בדיקת תאריכים"
+msgstr "תוסף לבדיקת תאריכים"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
 msgid "Pass"
@@ -37729,7 +37731,7 @@ msgstr "%(spouse)s ו־%(person)s"
 #, python-format
 msgctxt "the \"WebCal\" will be the potential-email Subject"
 msgid "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr "%(html_email_author_start)sווב-כאל%(html_email_author_end)s"
+msgstr "%(html_email_author_start)sWe%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1580
 #, python-format
@@ -38035,12 +38037,10 @@ msgstr "ללא עמוד סגנון"
 #~ msgstr "נפוץ"
 
 #, fuzzy
-#~| msgid "Common"
 #~ msgid "Name|Common"
 #~ msgstr "נפוץ"
 
 #, fuzzy
-#~| msgid "suffix"
 #~ msgid "locale_suffix|"
 #~ msgstr "סיומת"
 
