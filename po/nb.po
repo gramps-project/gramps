@@ -8,7 +8,7 @@
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
 # Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2016.
-# Allan Nordhøy <epost@anotheragency.no>, 2021.
+# Allan Nordhøy <epost@anotheragency.no>, 2021, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Mihle <MihleGaming@gmail.com>, 2021.
 # Para <ahh-produktivitet@tutanota.com>, 2022.
@@ -17,16 +17,16 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-12 23:08+0000\n"
-"PO-Revision-Date: 2022-01-10 22:09+0000\n"
-"Last-Translator: Para <ahh-produktivitet@tutanota.com>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/nb_NO/>\n"
+"PO-Revision-Date: 2022-03-13 22:44+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.12-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -2398,7 +2398,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:432
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "fra"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2406,7 +2406,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:437
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr "til"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:438
 #, python-brace-format
@@ -2420,7 +2420,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:457
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "til"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2428,7 +2428,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:462
 msgctxt "and-date"
 msgid ""
-msgstr ""
+msgstr "og"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:463
 #, python-brace-format
@@ -2443,7 +2443,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr "før"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2451,7 +2451,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr "etter"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2459,23 +2459,25 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:506
 msgctxt "about-date"
 msgid ""
-msgstr ""
+msgstr "om"
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:511
+#, fuzzy
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr "anslagsvis"
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
 #. Otherwise, translate to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:516
+#, fuzzy
 msgctxt "calculated-date"
 msgid ""
-msgstr ""
+msgstr "beregnet til å være"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:535
 #, python-brace-format
@@ -10731,7 +10733,7 @@ msgstr "ungarsk"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonesisk"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -11675,6 +11677,9 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"Forvalgte Gramps-ID-formater inneholder en innledende bokstav, fulgt av en "
+"nummerstrent. «I%04d» oppretter ID-er fra !0000 til !9999. Storedatabaser "
+"kan trenge større ID-er. «!%06d« oppretter ID-er fra I000000 til I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -11905,7 +11910,7 @@ msgstr "Aktiverer automatisk generering av stedtittel med spesifisert format."
 
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
-msgstr ""
+msgstr "Egendefinerte navnevisningsvalg er unike for hvert familietre."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
@@ -11975,12 +11980,13 @@ msgid "Default family relationship"
 msgstr "Standard familierelasjon"
 
 #: ../gramps/gui/configure.py:1379
+#, fuzzy
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Skjul LDS-fane i person- og familieredigerere"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Krever omstart"
 
 #: ../gramps/gui/configure.py:1388
 #, fuzzy
@@ -11990,7 +11996,7 @@ msgstr "Databasen"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Vilkår for teksterstatning"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -12073,7 +12079,7 @@ msgstr "Maksimalt antall generasjoner for slektsforhold"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Grenser"
 
 #: ../gramps/gui/configure.py:1575
 #, fuzzy
@@ -12201,6 +12207,8 @@ msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Skriv inn høyde i piksler. Når flere etternavn skrives inn vil disse vises i "
+"en boks. Denne innstillingen velger størrelse på den boksen."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -24079,6 +24087,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"Det er en aktiv gemenskap av brukere på e-postlisten og Discourse-forumet du "
+"kan dele idéer og teknikker med.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Gramps online manual"
@@ -24090,7 +24101,7 @@ msgstr "Still spørsmål på e-postlisten gramps-users"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:135
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Gramps Discourse-forum"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:137
 msgid "Getting Started"
@@ -24240,6 +24251,7 @@ msgid "Example Database"
 msgstr "Hele databasen"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:202
+#, fuzzy
 msgid ""
 "Want to see Gramps in use. Create and Import the Example database.\n"
 "\n"
@@ -24252,6 +24264,15 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
+"Vil du teste Gramps? Opprett og importer eksempeldatabasen.\n"
+"\n"
+"Opprett et nytt familietre som beskrevet ovenfor. Du kan kalle familietreet "
+"«EKSEMPEL».\n"
+"\n"
+"Importer Gramps-filen «example.gramps».\n"
+"\n"
+"Følg instruksen for plassering av filen lagret med Gramps-programmet.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:208
 #, fuzzy
@@ -25920,10 +25941,13 @@ msgid "Token >%(token)s< unknown. line skipped: %(line)s"
 msgstr "Token >%(token)s< ukjent. hoppet over linje: %(line)s"
 
 #: ../gramps/plugins/importer/importvcard.py:335
+#, fuzzy
 msgid ""
 "BEGIN property not properly closed by END property, Gramps can't cope with "
 "nested VCards."
 msgstr ""
+"BEGIN-egenskap avsluttes ikke av en END-egenskap. Gramps kan ikke håndtere "
+"nøstede vCard."
 
 #: ../gramps/plugins/importer/importvcard.py:346
 #, python-format
@@ -30689,7 +30713,7 @@ msgstr "Nederst til høyre"
 
 #: ../gramps/plugins/lib/maps/geography.py:161
 msgid "Tile path"
-msgstr ""
+msgstr "Flis-sti"
 
 #: ../gramps/plugins/lib/maps/geography.py:162
 #, python-format
@@ -30782,8 +30806,8 @@ msgstr ""
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du har {places_nb} sted å redigere."
+msgstr[1] "Du har {places_nb} steder å redigere."
 
 #: ../gramps/plugins/lib/maps/geography.py:1059
 #, fuzzy
@@ -30932,12 +30956,17 @@ msgid ""
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"I følgende tabell kan du ha:\n"
+" - en grønn rad som har med et valgt sted å gjøre."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:125
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+" - en rød rad som har med geokodingsresultat å gjøre."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:162
 msgid "The green values in the row correspond to the current place values."
@@ -36177,6 +36206,7 @@ msgid "OsmGpsMap module not loaded."
 msgstr "Modulen OsmGpsMap er ikke lastet."
 
 #: ../gramps/plugins/view/geography.gpr.py:68
+#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "Try to install:\n"
@@ -36187,6 +36217,14 @@ msgid ""
 "To build it for Gramps see the Wiki (<F1>)\n"
 " and search for 'build from source'"
 msgstr ""
+"Geografiinfo vil ikke være tilgjengelig.\n"
+"Prøv å installere:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 for fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 for openSuse\n"
+" ...\n"
+"For å bygge det for Gramps kan du sjekke wiki-en (<F1>)\n"
+" og søke etter «build from source»"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
@@ -36349,18 +36387,26 @@ msgid "Selecting all places"
 msgstr "Velger alle steder"
 
 #: ../gramps/plugins/view/geoplaces.py:435
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
+"Høyreklikk på kartet og velg «vis alle steder» for å vise alle kjente steder "
+"med koordinater. Du kan endre markørfargen avhengig av stedstype. Du kan "
+"bruke filtrering."
 
 #: ../gramps/plugins/view/geoplaces.py:450
+#, fuzzy
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
+"Høyreklikk på kartet og vel «vis alle steder» for å vise alle kjente steder "
+"med koordinater. Du kan bruke historikken til å navigere på kartet. Du kan "
+"endre markørfarger avhengig av stedstype. Du kan bruke filtrering."
 
 #: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
@@ -36403,7 +36449,7 @@ msgstr "Fullstendig stedsnavn"
 
 #: ../gramps/plugins/view/geoplaces.py:637
 msgid "The places marker color"
-msgstr ""
+msgstr "Stedsmarkørfargen"
 
 #: ../gramps/plugins/view/mediaview.py:112
 msgid "Edit the selected media object"
@@ -37492,19 +37538,19 @@ msgstr "Ekstra sider"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2089
 msgid "Extra page name"
-msgstr "Ekstra side navn"
+msgstr "Navn på ekstra side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2092
 msgid "Your extra page name like it is shown in the menubar"
-msgstr ""
+msgstr "Navn på din ekstra side, slik vist i menyfeltet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2097
 msgid "Your extra page path"
-msgstr ""
+msgstr "Sti til din ekstra side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2100
 msgid "Your extra page path without extension"
-msgstr ""
+msgstr "Sti til din ekstra side, uten filendelse"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
 msgid "Do we use multiple translations?"
@@ -37516,6 +37562,9 @@ msgid ""
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Hvorvidt forteller-vev skal vises på flere språk.\n"
+"Sjekk oversettelsesfanen for å legge til nye språk til det som er forvalget "
+"som er definert i neste felt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Sort all children in birth order"
@@ -37649,10 +37698,13 @@ msgid "PHP user session"
 msgstr "PHP-brukerøkt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2216
+#, fuzzy
 msgid ""
 "A note to use for starting the php session.\n"
 "This option will be available only if the .php file extension is selected."
 msgstr ""
+"En notis å bruke for start av PHP-økt.\n"
+"Dette valget er kun tilgjengelig hvis .php-filendelse er valgt."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2227
 msgid "Images Generation"
