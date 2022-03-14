@@ -326,7 +326,7 @@ register('utf8.cremated-symbol', "⚱")
 register('utf8.killed-symbol', "x")
 
 if __debug__: # enable a simple CLI test to see if the datestrings exist
-    register('test.january', _("|January", "localized lexeme inflections"))
+    register('test.january', _("January", "localized lexeme inflections"))
 
 #---------------------------------------------------------------
 #
