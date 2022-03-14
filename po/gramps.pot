@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-14 18:07+0000\n"
+"POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1628,9 +1628,13 @@ msgstr ""
 msgid "Private Record"
 msgstr ""
 
-#: ../gramps/gen/config.py:329
+#. Translators: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection to be used in your localized
+#. DateDisplayer code!
+#: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
-msgid "|January"
+msgid "January"
 msgstr ""
 
 #: ../gramps/gen/const.py:228
@@ -2004,15 +2008,6 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:422
 msgid "today"
-msgstr ""
-
-#. Translators: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:79
-msgctxt "localized lexeme inflections"
-msgid "January"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:80
@@ -14073,13 +14068,16 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:608
 msgid ""
-"Interpret the contents of string fields as regular expressions.\n"
-"A decimal point will match any character. A question mark will match zero or "
-"one occurences of the previous character or group. An asterisk will match "
-"zero or more occurences. A plus sign will match one or more occurences. Use "
-"parentheses to group expressions. Specify alternatives using a vertical bar. "
-"A caret will match the start of a line. A dollar sign will match the end of "
-"a line."
+"Interpret the contents of string fields as regular expressions:\n"
+".\tA decimal point will match any character.\n"
+"?\tA question mark will match zero or one occurences of the previous "
+"character or group.\n"
+"*\tAn asterisk will match zero or more occurences.\n"
+"+\tA plus sign will match one or more occurences.\n"
+"()\tUse parentheses to group expressions.\n"
+"|\tSpecify alternatives using a vertical bar.\n"
+"^\tA caret will match the start of a line.\n"
+"$\tA dollar sign will match the end of a line."
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:637
@@ -17371,26 +17369,33 @@ msgstr ""
 msgid ""
 "The data will be exported as follows:\n"
 "\n"
-"Format:\t%s\n"
-"\n"
-"Press Apply to proceed, Back to revisit your options, or Cancel to abort"
+"Format:\t%s"
 msgstr ""
 
-#: ../gramps/gui/plug/export/_exportassistant.py:465
+#: ../gramps/gui/plug/export/_exportassistant.py:455
+#: ../gramps/gui/plug/export/_exportassistant.py:470
+msgid ""
+"Press Cancel to abort, Back to revisit your options, or Apply to proceed"
+msgstr ""
+
+#: ../gramps/gui/plug/export/_exportassistant.py:466
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
 "Format:\t%(format)s\n"
 "Name:\t%(name)s\n"
-"Folder:\t%(folder)s\n"
-"\n"
-"Press Apply to proceed, Go Back to revisit your options, or Cancel to abort"
+"Folder:\t%(folder)s"
+msgstr ""
+
+#: ../gramps/gui/plug/export/_exportassistant.py:468
+msgctxt "name"
+msgid "format"
 msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
 msgid ""
-"The selected file and folder to save to cannot be created or found.\n"
+"The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
