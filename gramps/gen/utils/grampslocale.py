@@ -1194,7 +1194,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         return gettext.GNUTranslations.ngettext(self, singular, plural, num)
 
-    def sgettext(self, msgid, context='', sep='|'):
+    def sgettext(self, msgid, context=''):
         """
         Strip the context used for resolving translation ambiguities.
 
@@ -1214,11 +1214,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         if '\x04' in msgid: # Deferred translation
             context, msgid = msgid.split('\x04')
-        msgval = self.gettext(msgid, context)
-        if msgval == msgid:
-            sep_idx = msgid.rfind(sep)
-            msgval = msgid[sep_idx+1:]
-        return msgval
+        return self.gettext(msgid, context)
 
     def lexgettext(self, msgid, context=''):
         """
@@ -1274,14 +1270,10 @@ class GrampsNullTranslations(gettext.NullTranslations):
         else:
             return gettext.NullTranslations.gettext(self, msgid)
 
-    def sgettext(self, msgid, context='', sep='|'):
+    def sgettext(self, msgid, context=''):
         if '\x04' in msgid: # Deferred translation
             context, msgid = msgid.split('\x04')
-        msgval = self.gettext(msgid, context)
-        if msgval == msgid:
-            sep_idx = msgid.rfind(sep)
-            msgval = msgid[sep_idx+1:]
-        return msgval
+        return self.gettext(msgid, context)
 
     lexgettext = sgettext
 

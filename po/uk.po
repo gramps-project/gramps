@@ -2211,7 +2211,7 @@ msgstr "Приватний запис"
 #. DateDisplayer code!
 #: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
-msgid "|January"
+msgid "January"
 msgstr "N=січень|G=січня"
 
 #: ../gramps/gen/const.py:228
@@ -2592,57 +2592,57 @@ msgstr "сьогодні"
 
 #: ../gramps/gen/datehandler/_datestrings.py:80
 msgctxt "localized lexeme inflections"
-msgid "|February"
+msgid "February"
 msgstr "N=лютий|G=лютого"
 
 #: ../gramps/gen/datehandler/_datestrings.py:81
 msgctxt "localized lexeme inflections"
-msgid "|March"
+msgid "March"
 msgstr "N=березень|G=березня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:82
 msgctxt "localized lexeme inflections"
-msgid "|April"
+msgid "April"
 msgstr "N=квітень|G=квітня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgctxt "localized lexeme inflections"
-msgid "|May"
+msgid "May"
 msgstr "N=травень|G=травня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgctxt "localized lexeme inflections"
-msgid "|June"
+msgid "June"
 msgstr "N=червень|G=червня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgctxt "localized lexeme inflections"
-msgid "|July"
+msgid "July"
 msgstr "N=липень|G=липня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgctxt "localized lexeme inflections"
-msgid "|August"
+msgid "August"
 msgstr "N=серпень|G=серпня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgctxt "localized lexeme inflections"
-msgid "|September"
+msgid "September"
 msgstr "N=вересень|G=вересня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgctxt "localized lexeme inflections"
-msgid "|October"
+msgid "October"
 msgstr "N=жовтень|G=жовтня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
-msgid "|November"
+msgid "November"
 msgstr "N=листопад|G=листопада"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
-msgid "|December"
+msgid "December"
 msgstr "N=грудень|G=грудня"
 
 #. Translators: see
@@ -2651,62 +2651,62 @@ msgstr "N=грудень|G=грудня"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jan"
+msgid "Jan"
 msgstr "січ."
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Feb"
+msgid "Feb"
 msgstr "лют."
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Mar"
+msgid "Mar"
 msgstr "бер."
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Apr"
+msgid "Apr"
 msgstr "квіт."
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections - short month form"
-msgid "|May"
+msgid "May"
 msgstr "трав."
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jun"
+msgid "Jun"
 msgstr "черв."
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jul"
+msgid "Jul"
 msgstr "лип."
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Aug"
+msgid "Aug"
 msgstr "серп."
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Sep"
+msgid "Sep"
 msgstr "вер."
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Oct"
+msgid "Oct"
 msgstr "жовт."
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Nov"
+msgid "Nov"
 msgstr "лист."
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Dec"
+msgid "Dec"
 msgstr "груд."
 
 #. Translators: see
@@ -2715,62 +2715,62 @@ msgstr "груд."
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "alternative month names for January"
-msgid "|"
+msgid ""
 msgstr "січ|січ.|січень|січню|січні|i"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "alternative month names for February"
-msgid "|"
+msgid ""
 msgstr "лют|лют.|лютий|лютому|ii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "alternative month names for March"
-msgid "|"
+msgid ""
 msgstr "бер|бер.|березень|березню|березні|iii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "alternative month names for April"
-msgid "|"
+msgid ""
 msgstr "квіт|квіт.|квітень|квітню|квітні|iv"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "alternative month names for May"
-msgid "|"
+msgid ""
 msgstr "трав|трав.|травень|травню|травні|v"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "alternative month names for June"
-msgid "|"
+msgid ""
 msgstr "черв|черв.|червень|червню|червні|vi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgctxt "alternative month names for July"
-msgid "|"
+msgid ""
 msgstr "лип|лип.|липень|липню|липні|vii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgctxt "alternative month names for August"
-msgid "|"
+msgid ""
 msgstr "серп|серп.|серпень|серпню|серпні|viii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgctxt "alternative month names for September"
-msgid "|"
+msgid ""
 msgstr "вер|вер.|вересень|вересню|вересні|ix"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgctxt "alternative month names for October"
-msgid "|"
+msgid ""
 msgstr "жовт|жовт.|жовтень|жовтню|жовтні|x"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgctxt "alternative month names for November"
-msgid "|"
+msgid ""
 msgstr "лист|листю|листопад|листопаду|листопаді|xi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgctxt "alternative month names for December"
-msgid "|"
+msgid ""
 msgstr "груд|груд.|грудень|грудню|грудні|xii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609

@@ -2133,7 +2133,7 @@ msgstr "Privatan zapis"
 #. DateDisplayer code!
 #: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
-msgid "|January"
+msgid "January"
 msgstr "N=siječanj|G=siječnja"
 
 #: ../gramps/gen/const.py:228
@@ -2516,57 +2516,57 @@ msgstr "danas"
 
 #: ../gramps/gen/datehandler/_datestrings.py:80
 msgctxt "localized lexeme inflections"
-msgid "|February"
+msgid "February"
 msgstr "N=veljača|G=veljače"
 
 #: ../gramps/gen/datehandler/_datestrings.py:81
 msgctxt "localized lexeme inflections"
-msgid "|March"
+msgid "March"
 msgstr "N=ožujak|G=ožujka"
 
 #: ../gramps/gen/datehandler/_datestrings.py:82
 msgctxt "localized lexeme inflections"
-msgid "|April"
+msgid "April"
 msgstr "N=travanj|G=travnja"
 
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgctxt "localized lexeme inflections"
-msgid "|May"
+msgid "May"
 msgstr "N=svibanj|G=svibnja"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgctxt "localized lexeme inflections"
-msgid "|June"
+msgid "June"
 msgstr "N=lipanj|G=lipnja"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgctxt "localized lexeme inflections"
-msgid "|July"
+msgid "July"
 msgstr "N=srpanj|G=srpnja"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgctxt "localized lexeme inflections"
-msgid "|August"
+msgid "August"
 msgstr "N=kolovoz|G=kolovoza"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgctxt "localized lexeme inflections"
-msgid "|September"
+msgid "September"
 msgstr "N=rujan|G=rujna"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgctxt "localized lexeme inflections"
-msgid "|October"
+msgid "October"
 msgstr "N=listopad|G=listopada"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
-msgid "|November"
+msgid "November"
 msgstr "N=studeni|G=studenog"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
-msgid "|December"
+msgid "December"
 msgstr "N=prosinac|G=prosinca"
 
 #. Translators: see
@@ -2575,62 +2575,62 @@ msgstr "N=prosinac|G=prosinca"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jan"
+msgid "Jan"
 msgstr "sij."
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Feb"
+msgid "Feb"
 msgstr "velj."
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Mar"
+msgid "Mar"
 msgstr "ožu."
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Apr"
+msgid "Apr"
 msgstr "tra."
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections - short month form"
-msgid "|May"
+msgid "May"
 msgstr "svi."
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jun"
+msgid "Jun"
 msgstr "lip."
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jul"
+msgid "Jul"
 msgstr "srp."
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Aug"
+msgid "Aug"
 msgstr "kol."
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Sep"
+msgid "Sep"
 msgstr "ruj."
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Oct"
+msgid "Oct"
 msgstr "lis."
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Nov"
+msgid "Nov"
 msgstr "stu."
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Dec"
+msgid "Dec"
 msgstr "pro."
 
 #. Translators: see
@@ -2639,62 +2639,62 @@ msgstr "pro."
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "alternative month names for January"
-msgid "|"
+msgid ""
 msgstr "januar|I|i"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "alternative month names for February"
-msgid "|"
+msgid ""
 msgstr "februar|II|ii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "alternative month names for March"
-msgid "|"
+msgid ""
 msgstr "mart|III|iii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "alternative month names for April"
-msgid "|"
+msgid ""
 msgstr "april|IV|iv"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "alternative month names for May"
-msgid "|"
+msgid ""
 msgstr "maj|V|v"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "alternative month names for June"
-msgid "|"
+msgid ""
 msgstr "jun|VI|vi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgctxt "alternative month names for July"
-msgid "|"
+msgid ""
 msgstr "juli|VII|vii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgctxt "alternative month names for August"
-msgid "|"
+msgid ""
 msgstr "august|VIII|viii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgctxt "alternative month names for September"
-msgid "|"
+msgid ""
 msgstr "septembar|IX|ix"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgctxt "alternative month names for October"
-msgid "|"
+msgid ""
 msgstr "oktobar|X|x"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgctxt "alternative month names for November"
-msgid "|"
+msgid ""
 msgstr "novembar|XI|xi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgctxt "alternative month names for December"
-msgid "|"
+msgid ""
 msgstr "decembar|XII|xii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609

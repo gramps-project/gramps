@@ -1686,7 +1686,7 @@ msgstr "プライベートレコード"
 #: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 #, fuzzy
 msgctxt "localized lexeme inflections"
-msgid "|January"
+msgid "January"
 msgstr "地域による語彙屈折変化||一月"
 
 #: ../gramps/gen/const.py:228
@@ -2067,57 +2067,57 @@ msgstr "本日"
 
 #: ../gramps/gen/datehandler/_datestrings.py:80
 msgctxt "localized lexeme inflections"
-msgid "|February"
+msgid "February"
 msgstr "二月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:81
 msgctxt "localized lexeme inflections"
-msgid "|March"
+msgid "March"
 msgstr "三月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:82
 msgctxt "localized lexeme inflections"
-msgid "|April"
+msgid "April"
 msgstr "四月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgctxt "localized lexeme inflections"
-msgid "|May"
+msgid "May"
 msgstr "五月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgctxt "localized lexeme inflections"
-msgid "|June"
+msgid "June"
 msgstr "六月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgctxt "localized lexeme inflections"
-msgid "|July"
+msgid "July"
 msgstr "七月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgctxt "localized lexeme inflections"
-msgid "|August"
+msgid "August"
 msgstr "八月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgctxt "localized lexeme inflections"
-msgid "|September"
+msgid "September"
 msgstr "九月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgctxt "localized lexeme inflections"
-msgid "|October"
+msgid "October"
 msgstr "十月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
-msgid "|November"
+msgid "November"
 msgstr "十一月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
-msgid "|December"
+msgid "December"
 msgstr "十二月"
 
 #. Translators: see
@@ -2126,62 +2126,62 @@ msgstr "十二月"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jan"
+msgid "Jan"
 msgstr "1月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Feb"
+msgid "Feb"
 msgstr "2月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Mar"
+msgid "Mar"
 msgstr "3月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Apr"
+msgid "Apr"
 msgstr "4月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections - short month form"
-msgid "|May"
+msgid "May"
 msgstr "5月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jun"
+msgid "Jun"
 msgstr "6月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jul"
+msgid "Jul"
 msgstr "7月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Aug"
+msgid "Aug"
 msgstr "8月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Sep"
+msgid "Sep"
 msgstr "9月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Oct"
+msgid "Oct"
 msgstr "10月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Nov"
+msgid "Nov"
 msgstr "11月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Dec"
+msgid "Dec"
 msgstr "12月"
 
 #. Translators: see
@@ -2190,62 +2190,62 @@ msgstr "12月"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "alternative month names for January"
-msgid "|"
+msgid ""
 msgstr "睦月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "alternative month names for February"
-msgid "|"
+msgid ""
 msgstr "如月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "alternative month names for March"
-msgid "|"
+msgid ""
 msgstr "弥生"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "alternative month names for April"
-msgid "|"
+msgid ""
 msgstr "卯月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "alternative month names for May"
-msgid "|"
+msgid ""
 msgstr "皐月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "alternative month names for June"
-msgid "|"
+msgid ""
 msgstr "水無月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgctxt "alternative month names for July"
-msgid "|"
+msgid ""
 msgstr "文月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgctxt "alternative month names for August"
-msgid "|"
+msgid ""
 msgstr "葉月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgctxt "alternative month names for September"
-msgid "|"
+msgid ""
 msgstr "長月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgctxt "alternative month names for October"
-msgid "|"
+msgid ""
 msgstr "神無月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgctxt "alternative month names for November"
-msgid "|"
+msgid ""
 msgstr "霜月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgctxt "alternative month names for December"
-msgid "|"
+msgid ""
 msgstr "師走"
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609

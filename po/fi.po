@@ -2076,7 +2076,7 @@ msgstr "Yksityinen tietue"
 #. DateDisplayer code!
 #: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
-msgid "|January"
+msgid "January"
 msgstr ""
 "N=tammikuu|G=tammikuun|IN=tammikuussa|P=tammikuuta|IL=tammikuuhun|"
 "E=tammikuusta"
@@ -2496,7 +2496,7 @@ msgstr "tänään"
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:80
 msgctxt "localized lexeme inflections"
-msgid "|February"
+msgid "February"
 msgstr ""
 "N=helmikuu|G=helmikuun|IN=helmikuussa|P=helmikuuta|IL=helmikuuhun|"
 "E=helmikuusta"
@@ -2504,7 +2504,7 @@ msgstr ""
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:81
 msgctxt "localized lexeme inflections"
-msgid "|March"
+msgid "March"
 msgstr ""
 "N=maaliskuu|G=maaliskuun|IN=maaliskuussa|P=maaliskuuta|IL=maaliskuuhun|"
 "E=maaliskuusta"
@@ -2512,7 +2512,7 @@ msgstr ""
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:82
 msgctxt "localized lexeme inflections"
-msgid "|April"
+msgid "April"
 msgstr ""
 "N=huhtikuu|G=huhtikuun|IN=huhtikuussa|P=huhtikuuta|IL=huhtikuuhun|"
 "E=huhtikuusta"
@@ -2520,7 +2520,7 @@ msgstr ""
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgctxt "localized lexeme inflections"
-msgid "|May"
+msgid "May"
 msgstr ""
 "N=toukokuu|G=toukokuun|IN=toukokuussa|P=toukokuuta|IL=toukokuuhun|"
 "E=toukokuusta"
@@ -2528,14 +2528,14 @@ msgstr ""
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgctxt "localized lexeme inflections"
-msgid "|June"
+msgid "June"
 msgstr ""
 "N=kesäkuu|G=kesäkuun|IN=kesäkuussa|P=kesäkuuta|IL=kesäkuuhun|E=kesäkuusta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgctxt "localized lexeme inflections"
-msgid "|July"
+msgid "July"
 msgstr ""
 "N=heinäkuu|G=heinäkuun|IN=heinäkuussa|P=heinäkuuta|IL=heinäkuuhun|"
 "E=heinäkuusta"
@@ -2543,27 +2543,27 @@ msgstr ""
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgctxt "localized lexeme inflections"
-msgid "|August"
+msgid "August"
 msgstr "N=elokuu|G=elokuun|IN=elokuussa|P=elokuuta|IL=elokuuhun|E=elokuusta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgctxt "localized lexeme inflections"
-msgid "|September"
+msgid "September"
 msgstr ""
 "N=syyskuu|G=syyskuun|IN=syyskuussa|P=syyskuuta|IL=syyskuuhun|E=syyskuusta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgctxt "localized lexeme inflections"
-msgid "|October"
+msgid "October"
 msgstr ""
 "N=lokakuu|G=lokakuun|IN=lokakuussa|P=lokakuuta|IL=lokakuuhun|E=lokakuusta"
 
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgctxt "localized lexeme inflections"
-msgid "|November"
+msgid "November"
 msgstr ""
 "N=marraskuu|G=marraskuun|IN=marraskuussa|P=marraskuuta|IL=marraskuuhun|"
 "E=marraskuusta"
@@ -2571,7 +2571,7 @@ msgstr ""
 # älä muuta
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgctxt "localized lexeme inflections"
-msgid "|December"
+msgid "December"
 msgstr ""
 "N=joulukuu|G=joulukuun|IN=joulukuussa|P=joulukuuta|IL=joulukuuhun|"
 "E=joulukuusta"
@@ -2582,62 +2582,62 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jan"
+msgid "Jan"
 msgstr "Tammi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Feb"
+msgid "Feb"
 msgstr "Helmi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Mar"
+msgid "Mar"
 msgstr "Maali"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Apr"
+msgid "Apr"
 msgstr "Huhti"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections - short month form"
-msgid "|May"
+msgid "May"
 msgstr "Touko"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jun"
+msgid "Jun"
 msgstr "Kesäk"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Jul"
+msgid "Jul"
 msgstr "Heinä"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Aug"
+msgid "Aug"
 msgstr "Eloku"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Sep"
+msgid "Sep"
 msgstr "Syysk"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Oct"
+msgid "Oct"
 msgstr "Lokak"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Nov"
+msgid "Nov"
 msgstr "Marra"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgctxt "localized lexeme inflections - short month form"
-msgid "|Dec"
+msgid "Dec"
 msgstr "Joulu"
 
 #. Translators: see
@@ -2646,62 +2646,62 @@ msgstr "Joulu"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "alternative month names for January"
-msgid "|"
+msgid ""
 msgstr "Tammikuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "alternative month names for February"
-msgid "|"
+msgid ""
 msgstr "Helmikuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "alternative month names for March"
-msgid "|"
+msgid ""
 msgstr "Maaliskuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "alternative month names for April"
-msgid "|"
+msgid ""
 msgstr "Huhtikuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "alternative month names for May"
-msgid "|"
+msgid ""
 msgstr "Toukokuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "alternative month names for June"
-msgid "|"
+msgid ""
 msgstr "Kesäkuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgctxt "alternative month names for July"
-msgid "|"
+msgid ""
 msgstr "Heinäkuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgctxt "alternative month names for August"
-msgid "|"
+msgid ""
 msgstr "Elokuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgctxt "alternative month names for September"
-msgid "|"
+msgid ""
 msgstr "Syyskuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgctxt "alternative month names for October"
-msgid "|"
+msgid ""
 msgstr "Lokakuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgctxt "alternative month names for November"
-msgid "|"
+msgid ""
 msgstr "Marraskuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgctxt "alternative month names for December"
-msgid "|"
+msgid ""
 msgstr "Joulukuu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
