@@ -34,6 +34,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get install gir1.2-pango-1.0
         sudo apt-get install gir1.2-gtk-3.0
         sudo apt-get install xdg-utils
