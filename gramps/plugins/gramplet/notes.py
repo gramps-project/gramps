@@ -62,7 +62,10 @@ class Notes(Gramplet):
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
         self.page = Gtk.Label()
-        hbox.pack_end(self.page, False, False, 10)
+        self.page.set_halign(Gtk.Align.START)
+        hbox.pack_start(self.page, True, True, 10)
+        self.ntype = Gtk.Label()
+        hbox.pack_start(self.ntype, False, False, 10)
 
         scrolledwindow = Gtk.ScrolledWindow()
         scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
@@ -86,6 +89,7 @@ class Notes(Gramplet):
         self.texteditor.set_text(StyledText())
         self.note_list = obj.get_note_list()
         self.page.set_text('')
+        self.ntype.set_text('')
         if len(self.note_list) > 0:
             self.set_has_data(True)
             if len(self.note_list) > 1:
@@ -109,6 +113,7 @@ class Notes(Gramplet):
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         self.texteditor.set_text(note.get_styledtext())
+        self.ntype.set_text(str(note.get_type()))
         self.page.set_text(_('%(current)d of %(total)d') %
                            {'current': self.current + 1,
                             'total': len(self.note_list)})
