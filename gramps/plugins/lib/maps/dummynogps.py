@@ -25,15 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.dummynogps")
 
 #-------------------------------------------------------------------------
 #
@@ -46,13 +38,20 @@ _LOG = logging.getLogger("maps.dummynogps")
 # osmGpsMap
 #
 #-------------------------------------------------------------------------
-
+from gi.repository import GObject
 try:
     import gi
     gi.require_version('OsmGpsMap', '1.0')
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.dummynogps")
 
 class DummyMapNoGpsPoint(osmgpsmap.Map):
     """ . """
@@ -61,4 +60,3 @@ class DummyMapNoGpsPoint(osmgpsmap.Map):
         pass
 
 GObject.type_register(DummyMapNoGpsPoint)
-

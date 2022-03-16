@@ -47,10 +47,10 @@ from gramps.gen.utils.lds import TEMPLES
 #-------------------------------------------------------------------------
 class LdsModel(Gtk.ListStore):
 
-    _HANDLE_COL = 5
+    _HANDLE_COL = 6
 
     def __init__(self, lds_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, str, bool, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, bool, bool, object)
 
         for lds_ord in lds_list:
             self.append(row=[
@@ -59,6 +59,7 @@ class LdsModel(Gtk.ListStore):
                 lds_ord.status2str(),
                 TEMPLES.name(lds_ord.get_temple()),
                 place_displayer.display_event(db, lds_ord),
+                lds_ord.has_citations(),
                 lds_ord.get_privacy(),
                 lds_ord,
                 ])

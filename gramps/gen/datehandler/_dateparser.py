@@ -308,13 +308,13 @@ class DateParser:
 
     _langs = set()
     def __init_prefix_tables(self):
+        ds = self._ds = DateStrings(self._locale)
         lang = self._locale.lang
         if lang in DateParser._langs:
             log.debug("Prefix tables for {} already built".format(lang))
             return
         else:
             DateParser._langs.add(lang)
-        ds = self._ds = DateStrings(self._locale)
         log.debug("Begin building parser prefix tables for {}".format(lang))
         _build_prefix_table(DateParser.month_to_int,
             _generate_variants(
@@ -481,7 +481,7 @@ class DateParser:
                                   % self._smon_str, re.IGNORECASE)
         self._numeric = re.compile(
             r"((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
-        self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)-(\d+)\s*$")
+        self._iso = re.compile(r"(\d+)(/(\d+))?-(\d+)(-(\d+))?\s*$")
         self._isotimestamp = re.compile(
             r"^\s*?(\d{4})([01]\d)([0123]\d)(?:(?:[012]\d[0-5]\d[0-5]\d)|"
             r"(?:\s+[012]\d:[0-5]\d(?::[0-5]\d)?))?\s*?$")
@@ -630,7 +630,7 @@ class DateParser:
             groups = match.groups()
             y = self._get_int(groups[0])
             m = self._get_int(groups[3])
-            d = self._get_int(groups[4])
+            d = self._get_int(groups[5])
             if groups[2] and julian_valid((d, m, y + 1)):
                 return (d, m, y + 1, True) # slash year
             if check is None or check((d, m, y)):

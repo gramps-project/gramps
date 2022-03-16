@@ -22,6 +22,15 @@
 """
 NoteBase class for Gramps.
 """
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+import logging
+
+LOG = logging.getLogger(".note")
+
 
 #-------------------------------------------------------------------------
 #
@@ -131,6 +140,25 @@ class NoteBase:
                 return True
 
         return False
+
+    def remove_note_references(self, handle_list):
+        """
+        Remove the specified handles from the list of note handles, and all
+        secondary child objects.
+
+        :param citation_handle_list: The list of note handles to be removed
+        :type handle: list
+        """
+        LOG.debug('enter remove_note handle: %s self: %s note_list: %s',
+                  handle_list, self, self.note_list)
+        for handle in handle_list:
+            if handle in self.note_list:
+                LOG.debug('remove handle %s from note_list %s',
+                          handle, self.note_list)
+                self.note_list.remove(handle)
+        LOG.debug('get_note_child_list %s', self.get_note_child_list())
+        for item in self.get_note_child_list():
+            item.remove_note_references(handle_list)
 
     def set_note_list(self, note_list):
         """

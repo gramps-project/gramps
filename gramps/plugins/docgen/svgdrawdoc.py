@@ -128,7 +128,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         self.buffer.write(
             '<text ' +
             'x="%4.2f" y="%4.2f" ' % (xpos, ypos) +
-            'transform="rotate(%d %4.2f %4.2f)" ' % (angle, centerx, centery) +
+            'transform="rotate(%4.2f %4.2f %4.2f)" ' % (angle, centerx,
+                                                        centery) +
             'style="fill:#%02x%02x%02x; '% font.get_color()
             )
         if font.get_bold():

@@ -25,15 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.dummylayer")
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +38,7 @@ _LOG = logging.getLogger("maps.dummylayer")
 # osmGpsMap
 #
 #-------------------------------------------------------------------------
-
+from gi.repository import GObject
 try:
     import gi
     gi.require_version('OsmGpsMap', '1.0')
@@ -54,7 +46,12 @@ try:
 except:
     raise
 
-# pylint: disable=unused-argument
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.dummylayer")
 
 class DummyLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -88,7 +85,8 @@ class DummyLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Someone press a button
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
 GObject.type_register(DummyLayer)
-

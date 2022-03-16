@@ -134,7 +134,7 @@ else:
              category = ("Geography", _("Geography")),
              viewclass = 'GeoMoves',
              #order = START,
-             stock_icon = 'geo-show-family',
+             stock_icon = 'geo-show-family-down',
       )
 
     register(VIEW,

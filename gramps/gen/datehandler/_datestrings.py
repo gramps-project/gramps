@@ -76,36 +76,36 @@ class DateStrings:
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("|January", "localized lexeme inflections"),
-            _("|February", "localized lexeme inflections"),
-            _("|March", "localized lexeme inflections"),
-            _("|April", "localized lexeme inflections"),
-            _("|May", "localized lexeme inflections"),
-            _("|June", "localized lexeme inflections"),
-            _("|July", "localized lexeme inflections"),
-            _("|August", "localized lexeme inflections"),
-            _("|September", "localized lexeme inflections"),
-            _("|October", "localized lexeme inflections"),
-            _("|November", "localized lexeme inflections"),
-            _("|December", "localized lexeme inflections") )
+            _("January", "localized lexeme inflections"),
+            _("February", "localized lexeme inflections"),
+            _("March", "localized lexeme inflections"),
+            _("April", "localized lexeme inflections"),
+            _("May", "localized lexeme inflections"),
+            _("June", "localized lexeme inflections"),
+            _("July", "localized lexeme inflections"),
+            _("August", "localized lexeme inflections"),
+            _("September", "localized lexeme inflections"),
+            _("October", "localized lexeme inflections"),
+            _("November", "localized lexeme inflections"),
+            _("December", "localized lexeme inflections") )
 
         self.short_months = ( "",
             # Translators: see
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to select proper inflection to be used in your localized
             # DateDisplayer code!
-            _("|Jan", "localized lexeme inflections - short month form"),
-            _("|Feb", "localized lexeme inflections - short month form"),
-            _("|Mar", "localized lexeme inflections - short month form"),
-            _("|Apr", "localized lexeme inflections - short month form"),
-            _("|May", "localized lexeme inflections - short month form"),
-            _("|Jun", "localized lexeme inflections - short month form"),
-            _("|Jul", "localized lexeme inflections - short month form"),
-            _("|Aug", "localized lexeme inflections - short month form"),
-            _("|Sep", "localized lexeme inflections - short month form"),
-            _("|Oct", "localized lexeme inflections - short month form"),
-            _("|Nov", "localized lexeme inflections - short month form"),
-            _("|Dec", "localized lexeme inflections - short month form") )
+            _("Jan", "localized lexeme inflections - short month form"),
+            _("Feb", "localized lexeme inflections - short month form"),
+            _("Mar", "localized lexeme inflections - short month form"),
+            _("Apr", "localized lexeme inflections - short month form"),
+            _("May", "localized lexeme inflections - short month form"),
+            _("Jun", "localized lexeme inflections - short month form"),
+            _("Jul", "localized lexeme inflections - short month form"),
+            _("Aug", "localized lexeme inflections - short month form"),
+            _("Sep", "localized lexeme inflections - short month form"),
+            _("Oct", "localized lexeme inflections - short month form"),
+            _("Nov", "localized lexeme inflections - short month form"),
+            _("Dec", "localized lexeme inflections - short month form") )
 
         _ = locale.translation.sgettext
         self.alt_long_months = ( "",
@@ -113,18 +113,18 @@ class DateStrings:
             # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
             # to learn how to add proper alternatives to be recognized in your localized
             # DateParser code!
-            _("|", "alternative month names for January"),
-            _("|", "alternative month names for February"),
-            _("|", "alternative month names for March"),
-            _("|", "alternative month names for April"),
-            _("|", "alternative month names for May"),
-            _("|", "alternative month names for June"),
-            _("|", "alternative month names for July"),
-            _("|", "alternative month names for August"),
-            _("|", "alternative month names for September"),
-            _("|", "alternative month names for October"),
-            _("|", "alternative month names for November"),
-            _("|", "alternative month names for December") )
+            _("", "alternative month names for January"),
+            _("", "alternative month names for February"),
+            _("", "alternative month names for March"),
+            _("", "alternative month names for April"),
+            _("", "alternative month names for May"),
+            _("", "alternative month names for June"),
+            _("", "alternative month names for July"),
+            _("", "alternative month names for August"),
+            _("", "alternative month names for September"),
+            _("", "alternative month names for October"),
+            _("", "alternative month names for November"),
+            _("", "alternative month names for December") )
 
         self.calendar = (
 # Must appear in the order indexed by Date.CAL_... numeric constants

@@ -5,6 +5,7 @@
 # Copyright (C) 2009 Benny Malengier
 # Copyright (C) 2011 Nick Hall
 # Copyright (C) 2011 Tim G L Lyons
+# Copyright (C) 2020 Matthias Kemmer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -770,6 +771,20 @@ register(GRAMPLET,
          gramplet = 'MediaNotes',
          gramplet_title=_("Notes"),
          navtypes=["Media"],
+         )
+
+register(GRAMPLET,
+         id="Note Notes",
+         name=_("Notes"),
+         description = _("Gramplet showing the selected note"),
+         version="1.0.0",
+         gramps_target_version=MODULE_VERSION,
+         status = STABLE,
+         fname="notes.py",
+         height=200,
+         gramplet = 'NoteNotes',
+         gramplet_title=_("Notes"),
+         navtypes=["Note"],
          )
 
 register(GRAMPLET,

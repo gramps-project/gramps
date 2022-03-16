@@ -359,11 +359,11 @@ class KinshipOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", self.__pid)
 
-        maxdescend = NumberOption(_("Max Descendant Generations"), 2, 1, 20)
+        maxdescend = NumberOption(_("Max Descendant Generations"), 2, 1, 50)
         maxdescend.set_help(_("The maximum number of descendant generations"))
         menu.add_option(category_name, "maxdescend", maxdescend)
 
-        maxascend = NumberOption(_("Max Ancestor Generations"), 2, 1, 20)
+        maxascend = NumberOption(_("Max Ancestor Generations"), 2, 1, 50)
         maxascend.set_help(_("The maximum number of ancestor generations"))
         menu.add_option(category_name, "maxascend", maxascend)
 

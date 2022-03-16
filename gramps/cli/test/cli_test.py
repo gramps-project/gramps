@@ -26,7 +26,6 @@ import unittest
 import re
 import subprocess
 
-from gramps.gen.const import TEMP_DIR
 from gramps.gen.dbstate import DbState
 from gramps.test.test_util import Gramps
 
@@ -113,34 +112,6 @@ class Test(unittest.TestCase):
         g = re.search("INDI", content)
         self.assertTrue(g, "found 'INDI' in output file")
 
-    # this verifies that files in the temporary "import dir"
-    # get cleaned before (and after) running a CLI
-    # (eg cleanout stale files from prior crash-runs)
-    def test3_files_in_import_dir(self):
-        ddir = os.path.join(TEMP_DIR, "import_dbdir")
-        try:
-            os.makedirs(ddir)
-        except:
-            pass
-        bogofiles = [os.path.join(ddir, fn) for fn in ("family.db", "lock")]
-        for fn in bogofiles:
-            with open(fn, "w") as f:
-                f.write("garbage")
-
-        # ~same as test 2
-        ifile = min1r
-        ofile = out_ged
-        gcmd = [sys.executable, "Gramps.py", "-i", ifile, "-e", ofile]
-        process = subprocess.Popen(gcmd,
-                                   stdin=subprocess.PIPE,
-                                   stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE)
-        result_str, err_str = process.communicate()
-        self.assertEqual(process.returncode, 0,
-                         "executed CLI command %r" % gcmd)
-
-        for fn in bogofiles:
-            self.assertFalse(os.path.exists(fn))
 
 class UnicodeTest(unittest.TestCase):
 

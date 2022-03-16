@@ -25,15 +25,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.datelayer")
+import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +34,7 @@ _LOG = logging.getLogger("maps.datelayer")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
-import cairo
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -58,12 +51,17 @@ from gramps.gen.config import config
 
 try:
     import gi
-    gi.require_version('OsmGpsMap', '1.0')
     from gi.repository import OsmGpsMap as osmgpsmap
+    gi.require_version('OsmGpsMap', '1.0')
 except:
     raise
 
-# pylint: disable=unused-argument
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.datelayer")
 
 class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -117,6 +115,7 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Draw the two extreme dates
         """
+        dummy_map = gpsmap
         ctx.select_font_face(self.font,
                              cairo.FONT_SLANT_NORMAL,
                              cairo.FONT_WEIGHT_NORMAL)
@@ -150,7 +149,8 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         When we press a button.
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
 GObject.type_register(DateLayer)
-

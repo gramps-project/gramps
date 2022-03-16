@@ -216,8 +216,8 @@ class PlacePages(BasePage):
                         Html("th", label, class_=colclass, inline=True)
                         for (label, colclass) in [
                             [self._("Letter"), "ColumnLetter"],
-                            [self._(" Name", "Place Name "), "ColumnName"],
-                            [self._("State/ Province"), "ColumnState"],
+                            [self._("Name", "Place Name"), "ColumnName"],
+                            [self._("State/Province"), "ColumnState"],
                             [self._("Country"), "ColumnCountry"],
                             [self._("Latitude"), "ColumnLatitude"],
                             [self._("Longitude"), "ColumnLongitude"]
@@ -228,8 +228,8 @@ class PlacePages(BasePage):
                         Html("th", label, class_=colclass, inline=True)
                         for (label, colclass) in [
                             [self._("Letter"), "ColumnLetter"],
-                            [self._(" Name", "Place Name "), "ColumnName"],
-                            [self._("State/ Province"), "ColumnState"],
+                            [self._("Name", "Place Name"), "ColumnName"],
+                            [self._("State/Province"), "ColumnState"],
                             [self._("Country"), "ColumnCountry"]
                         ]
                     )

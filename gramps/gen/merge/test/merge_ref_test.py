@@ -29,11 +29,12 @@ from io import BytesIO
 import difflib
 import copy
 import lxml.etree as ET
+import tempfile
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.test.test_util import Gramps
 from gramps.gen.user import User
-from gramps.gen.const import DATA_DIR, USER_PLUGINS, TEMP_DIR
+from gramps.gen.const import DATA_DIR, USER_PLUGINS
 from gramps.version import VERSION
 from gramps.gen.lib import Name, Surname
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -104,53 +105,43 @@ class BaseMergeCheck(unittest.TestCase):
 
     def check_results(self, input_doc, expect_doc, result_str, err_str,
                       test_error_str=''):
-        input_file = os.path.join(TEMP_DIR, "merge_test_input.gramps")
-        try:
-            os.remove(input_file)
-        except OSError:
-            pass
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            input_file = os.path.join(tmpdirname, "merge_test_input.gramps")
 
-        if err_str:
-            if test_error_str:
-                self.assertIn(test_error_str, err_str)
-                return
-            else:
-                if "Traceback (most recent call last):" in err_str:
-                    inp = self.canonicalize(input_doc)
-                    inpt = open(input_file, mode='wb')
-                    inpt.write(inp)
-                    inpt.close()
-                    raise Exception(err_str)
-        result = self.canonicalize(result_str)
-        result_file = os.path.join(TEMP_DIR, "merge_test_result.gramps")
-        try:
-            os.remove(result_file)
-        except OSError:
-            pass
-        expect = self.canonicalize(expect_doc)
-        expect_file = os.path.join(TEMP_DIR, "merge_test_expected.gramps")
-        try:
-            os.remove(expect_file)
-        except OSError:
-            pass
-        if result != expect:
-            res = open(result_file, mode='wb')
-            res.write(result)
-            res.close()
-            eres = open(expect_file, mode='wb')
-            eres.write(expect)
-            eres.close()
-            inp = self.canonicalize(input_doc)
-            inpt = open(input_file, mode='wb')
-            inpt.write(inp)
-            inpt.close()
-            result = result.decode('utf-8')
-            expect = expect.decode('utf-8')
-            diff = difflib.ndiff(result, expect)
-            msg = ""
-            for line in diff:
-                msg += line
-            self.fail(msg)
+            if err_str:
+                if test_error_str:
+                    self.assertIn(test_error_str, err_str)
+                    return
+                else:
+                    if "Traceback (most recent call last):" in err_str:
+                        inp = self.canonicalize(input_doc)
+                        inpt = open(input_file, mode='wb')
+                        inpt.write(inp)
+                        inpt.close()
+                        raise Exception(err_str)
+            result = self.canonicalize(result_str)
+            result_file = os.path.join(tmpdirname, "merge_test_result.gramps")
+            expect = self.canonicalize(expect_doc)
+            expect_file = os.path.join(tmpdirname, "merge_test_expected.gramps")
+
+            if result != expect:
+                res = open(result_file, mode='wb')
+                res.write(result)
+                res.close()
+                eres = open(expect_file, mode='wb')
+                eres.write(expect)
+                eres.close()
+                inp = self.canonicalize(input_doc)
+                inpt = open(input_file, mode='wb')
+                inpt.write(inp)
+                inpt.close()
+                result = result.decode('utf-8')
+                expect = expect.decode('utf-8')
+                diff = difflib.ndiff(result, expect)
+                msg = ""
+                for line in diff:
+                    msg += line
+                self.fail(msg)
 
     def do_family_case(self, phoenix_id, titanic_id, father_h, mother_h,
                        input_doc, expect_doc, test_error_str=''):
@@ -180,15 +171,12 @@ class BaseMergeCheck(unittest.TestCase):
             msg = '\n***** result:\n' + result_str + \
                 '\n***** expect:\n' + expect_str
             inp = self.canonicalize(input_doc)
-            input_file = os.path.join(TEMP_DIR, "merge_test_input.gramps")
-            try:
-                os.remove(input_file)
-            except OSError:
-                pass
-            inpt = open(input_file, mode='wb')
-            inpt.write(inp)
-            inpt.close()
-            self.fail(msg)
+            with tempfile.TemporaryDirectory() as tmpdirname:
+                input_file = os.path.join(tmpdirname, "merge_test_input.gramps")
+                inpt = open(input_file, mode='wb')
+                inpt.write(inp)
+                inpt.close()
+                self.fail(msg)
 
 
 #-------------------------------------------------------------------------
@@ -258,6 +246,7 @@ class PersonCheck(BaseMergeCheck):
           </source>
           <source handle="_s0001" id="S0001">
             <stitle>Source 1</stitle>
+            <reporef hlink="_r0001" medium="Electronic"/>
           </source>
         </sources>
         <places>
@@ -278,9 +267,40 @@ class PersonCheck(BaseMergeCheck):
             <file src="image1.jpg" mime="image/jpeg" description="Image 1"/>
           </object>
         </objects>
+        <repositories>
+          <repository handle="_r0000" id="R0000">
+            <rname>New York Public Library</rname>
+            <type>Library</type>
+          </repository>
+          <repository handle="_r0001" id="R0001">
+            <rname>Aunt Martha's Attic</rname>
+            <type>Collection</type>
+          </repository>
+        </repositories>
         <notes>
           <note handle="_n0000" id="N0000" type="Event Note">
-            <text>Note 0</text>
+            <text>Note 0.</text>
+            <style name="link" value="gramps://Citation/handle/c0001">
+              <range start="0" end="1"/>
+            </style>
+            <style name="link" value="gramps://Event/handle/e0001">
+              <range start="1" end="2"/>
+            </style>
+            <style name="link" value="gramps://Media/handle/o0001">
+              <range start="2" end="3"/>
+            </style>
+            <style name="link" value="gramps://Note/handle/n0001">
+              <range start="3" end="4"/>
+            </style>
+            <style name="link" value="gramps://Place/handle/p0001">
+              <range start="4" end="5"/>
+            </style>
+            <style name="link" value="gramps://Repository/handle/r0001">
+              <range start="5" end="6"/>
+            </style>
+            <style name="link" value="gramps://Source/handle/s0001">
+              <range start="6" end="7"/>
+            </style>
           </note>
           <note handle="_n0001" id="N0001" type="Event Note">
             <text>Note 1</text>
@@ -291,7 +311,8 @@ class PersonCheck(BaseMergeCheck):
                                        encoding='utf-8'))
 
     def test_event_merge(self):
-        """Merge two events"""
+        """Merge two events.  Also checks that Event link in note is updated.
+        """
         expect = ET.fromstring(self.basedoc, parser=self.parser)
         eventref = expect.xpath("//g:person[@handle='_i0001']/g:eventref",
                                 namespaces={"g": NS_G})[0]
@@ -299,6 +320,8 @@ class PersonCheck(BaseMergeCheck):
         event = expect.xpath("//g:event[@handle='_e0001']",
                              namespaces={"g": NS_G})[0]
         event.getparent().remove(event)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[1]
+        notetag.attrib['value'] = "gramps://Event/handle/e0000"
         self.do_case('E0000', 'E0001', self.basedoc, expect)
         #print(str(ET.tostring(expect, pretty_print=True), 'utf-8'))
 
@@ -313,6 +336,8 @@ class PersonCheck(BaseMergeCheck):
         placeobj.getparent().remove(placeobj)
         placeobj = expect.xpath("//g:placeobj[@handle='_p0000']",
                                 namespaces={"g": NS_G})[0]
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[4]
+        notetag.attrib['value'] = "gramps://Place/handle/p0000"
         ET.SubElement(placeobj, NSP + 'pname', value='Place 1')
         self.do_case('P0000', 'P0001', self.basedoc, expect)
 
@@ -325,6 +350,8 @@ class PersonCheck(BaseMergeCheck):
         citation = expect.xpath("//g:citation[@handle='_c0001']",
                                 namespaces={"g": NS_G})[0]
         citation.getparent().remove(citation)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Citation/handle/c0000"
         self.do_case('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
@@ -336,6 +363,8 @@ class PersonCheck(BaseMergeCheck):
         object_ = expect.xpath("//g:object[@handle='_o0001']",
                                namespaces={"g": NS_G})[0]
         object_.getparent().remove(object_)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[2]
+        notetag.attrib['value'] = "gramps://Media/handle/o0000"
         self.do_case('O0000', 'O0001', self.basedoc, expect)
 
     def test_note_merge(self):
@@ -346,8 +375,23 @@ class PersonCheck(BaseMergeCheck):
         noteref.attrib['hlink'] = '_n0000'
         note = expect.xpath("//g:note[@handle='_n0001']",
                             namespaces={"g": NS_G})[0]
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[3]
+        notetag.attrib['value'] = "gramps://Note/handle/n0000"
         note.getparent().remove(note)
         self.do_case('N0000', 'N0001', self.basedoc, expect)
+
+    def test_repository_merge(self):
+        """Merge two repository objects"""
+        expect = ET.fromstring(self.basedoc, parser=self.parser)
+        reporef = expect.xpath("//g:source[@handle='_s0001']/g:reporef",
+                               namespaces={"g": NS_G})[0]
+        reporef.attrib['hlink'] = '_r0000'
+        object_ = expect.xpath("//g:repository[@handle='_r0001']",
+                               namespaces={"g": NS_G})[0]
+        object_.getparent().remove(object_)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[5]
+        notetag.attrib['value'] = "gramps://Repository/handle/r0000"
+        self.do_case('R0000', 'R0001', self.basedoc, expect)
 
 
 #-------------------------------------------------------------------------
@@ -1226,6 +1270,14 @@ class PersonPersonCheck(BaseMergeCheck):
             </name>
           </person>
         </people>
+        <notes>
+          <note handle="_n0000" id="N0000" type="Person Note">
+            <text>Note 0.</text>
+            <style name="link" value="gramps://Person/handle/i0001">
+              <range start="0" end="1"/>
+            </style>
+          </note>
+        </notes>
         </database>"""
         self.basedoc = bytes(bytearray(self.base_str + base_str,
                                        encoding='utf-8'))
@@ -1256,6 +1308,8 @@ class PersonPersonCheck(BaseMergeCheck):
         person = expect.xpath("//g:person[@handle='_i0001']",
                               namespaces={"g": NS_G})[0]
         person.getparent().remove(person)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         input_doc = ET.tostring(input_ctxt)
         self.do_case('I0000', 'I0001', input_doc, expect)
 
@@ -1286,6 +1340,8 @@ class PersonPersonCheck(BaseMergeCheck):
         person = expect.xpath("//g:person[@handle='_i0001']",
                               namespaces={"g": NS_G})[0]
         person.getparent().remove(person)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         input_doc = ET.tostring(input_ctxt)
         self.do_case('I0000', 'I0001', input_doc, expect)
 
@@ -1309,6 +1365,8 @@ class PersonPersonCheck(BaseMergeCheck):
         person = expect.xpath("//g:person[@handle='_i0001']",
                               namespaces={"g": NS_G})[0]
         person.getparent().remove(person)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         input_doc = ET.tostring(input_ctxt)
         self.do_case('I0000', 'I0001', input_doc, expect)
 
@@ -1422,6 +1480,26 @@ class FamilyPersonCheck(BaseMergeCheck):
             <rel type="Unknown"/>
           </family>
         </families>
+        <notes>
+          <note handle="_n0000" id="N0000" type="Person Note">
+            <text>Note 0</text>
+            <style name="link" value="gramps://Person/handle/i0002">
+              <range start="0" end="2"/>
+            </style>
+          </note>
+          <note handle="_n0001" id="N0001" type="Family Note">
+            <text>Note 1</text>
+            <style name="link" value="gramps://Family/handle/f0001">
+              <range start="0" end="4"/>
+            </style>
+          </note>
+          <note handle="_n0003" id="N0003" type="Person Note">
+            <text>Note 0</text>
+            <style name="link" value="gramps://Person/handle/i0003">
+              <range start="0" end="2"/>
+            </style>
+          </note>
+        </notes>
         </database>"""
         self.basedoc = bytes(bytearray(self.base_str + base_str,
                                        encoding='utf-8'))
@@ -1439,6 +1517,9 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
         self.do_case('I0000', 'I0002', self.basedoc, expect)
 
@@ -1467,6 +1548,9 @@ class FamilyPersonCheck(BaseMergeCheck):
         father = expect.xpath("//g:family[@handle='_f0001']/g:father",
                               namespaces={"g": NS_G})[0]
         father.attrib['hlink'] = '_i0000'
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
         input_doc = ET.tostring(input_ctxt)
         self.do_case('I0000', 'I0002', input_doc, expect)
@@ -1501,6 +1585,9 @@ class FamilyPersonCheck(BaseMergeCheck):
         ET.SubElement(family, NSP + 'rel', type='Married')
         ET.SubElement(family, NSP + 'father', hlink='_i0000')
         ET.SubElement(family, NSP + 'mother', hlink='_i0003')
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
 
         persons = input_ctxt.xpath("//g:person",
@@ -1547,7 +1634,13 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
@@ -1583,6 +1676,12 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         persons[2].getparent().remove(persons[2])
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
@@ -1615,6 +1714,12 @@ class FamilyPersonCheck(BaseMergeCheck):
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
         persons[3].getparent().remove(persons[3])
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
+        notetag = expect.xpath("//g:note[@handle='_n0003']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0001"
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
@@ -1655,7 +1760,13 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         families = expect.xpath("//g:family",
                                 namespaces={"g": NS_G})
         families[1].getparent().remove(families[1])
@@ -1695,7 +1806,13 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         families = expect.xpath("//g:family",
                                 namespaces={"g": NS_G})
         families[1].getparent().remove(families[1])
@@ -1733,7 +1850,13 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         families = expect.xpath("//g:family",
                                 namespaces={"g": NS_G})
         families[1].getparent().remove(families[1])
@@ -1776,7 +1899,13 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         families = expect.xpath("//g:family",
                                 namespaces={"g": NS_G})
         families[1].getparent().remove(families[1])
@@ -1817,7 +1946,13 @@ class FamilyPersonCheck(BaseMergeCheck):
         parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
                                  namespaces={"g": NS_G})[0]
         attr.addnext(parentref)  # restore order of elements
+        notetag = expect.xpath("//g:note[@handle='_n0000']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Person/handle/i0000"
         persons[2].getparent().remove(persons[2])
+        notetag = expect.xpath("//g:note[@handle='_n0001']/g:style",
+                               namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         families = expect.xpath("//g:family",
                                 namespaces={"g": NS_G})
         families[1].getparent().remove(families[1])
@@ -1879,6 +2014,14 @@ class FamilyMergeCheck(BaseMergeCheck):
             <mother hlink="_i0003"/>
           </family>
         </families>
+        <notes>
+          <note handle="_n0000" id="N0000" type="Family Note">
+            <text>Note 0.</text>
+            <style name="link" value="gramps://Family/handle/f0001">
+              <range start="0" end="1"/>
+            </style>
+          </note>
+        </notes>
         </database>"""
         self.basedoc = bytes(bytearray(self.base_str + base_str,
                                        encoding='utf-8'))
@@ -1974,6 +2117,8 @@ class FamilyMergeCheck(BaseMergeCheck):
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
                             self.basedoc, expect)
 
@@ -2004,6 +2149,8 @@ class FamilyMergeCheck(BaseMergeCheck):
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         father = expect.xpath("//g:family[@handle='_f0000']/g:father",
                               namespaces={"g": NS_G})[0]
         father.attrib['hlink'] = '_i0002'
@@ -2036,6 +2183,8 @@ class FamilyMergeCheck(BaseMergeCheck):
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         input_doc = ET.tostring(input_ctxt)
         self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
                             input_doc, expect)
@@ -2068,6 +2217,8 @@ class FamilyMergeCheck(BaseMergeCheck):
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         family = expect.xpath("//g:family[@handle='_f0000']",
                               namespaces={"g": NS_G})[0]
         mother = ET.SubElement(family, NSP + 'mother', hlink='_i0003')
@@ -2115,6 +2266,8 @@ class FamilyMergeCheck(BaseMergeCheck):
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         childof = expect.xpath("//g:person[@handle='_i0004']/g:childof",
                                namespaces={"g": NS_G})[0]
         childof.attrib['hlink'] = '_f0000'
@@ -2167,6 +2320,8 @@ class FamilyMergeCheck(BaseMergeCheck):
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         childof = expect.xpath("//g:person[@handle='_i0004']/g:childof",
                                namespaces={"g": NS_G})[1]
         childof.getparent().remove(childof)
@@ -2214,6 +2369,8 @@ class FamilyMergeCheck(BaseMergeCheck):
         family = expect.xpath("//g:family[@handle='_f0001']",
                               namespaces={"g": NS_G})[0]
         family.getparent().remove(family)
+        notetag = expect.xpath("//g:style", namespaces={"g": NS_G})[0]
+        notetag.attrib['value'] = "gramps://Family/handle/f0000"
         sealedto = expect.xpath("//g:sealed_to",
                                 namespaces={"g": NS_G})[0]
         sealedto.attrib['hlink'] = '_f0000'

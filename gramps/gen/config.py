@@ -178,7 +178,6 @@ register('export.proxy-order',
 register('geography.center-lon', 0.0)
 register('geography.lock', False)
 register('geography.center-lat', 0.0)
-register('geography.map', "person")
 register('geography.map_service', 1)
 register('geography.zoom', 0)
 register('geography.zoom_when_center', 12)
@@ -313,12 +312,21 @@ register('plugin.hiddenplugins', [])
 register('plugin.addonplugins', [])
 
 register('utf8.in-use', False)
-register('utf8.available-fonts', [])
-register('utf8.selected-font', "")
-register('utf8.death-symbol', 13)
+register('utf8.selected-font', '')
+register('utf8.death-symbol', 2)
+register('utf8.birth-symbol', "*")
+register('utf8.baptism-symbol', "~")
+register('utf8.marriage-symbol', "oo")
+register('utf8.engaged-symbol', "o")
+register('utf8.divorce-symbol', "o|o")
+register('utf8.partner-symbol', "o-o")
+register('utf8.dead-symbol', "✝")
+register('utf8.buried-symbol', "[]")
+register('utf8.cremated-symbol', "⚱")
+register('utf8.killed-symbol', "x")
 
 if __debug__: # enable a simple CLI test to see if the datestrings exist
-    register('test.january', _("|January", "localized lexeme inflections"))
+    register('test.january', _("January", "localized lexeme inflections"))
 
 #---------------------------------------------------------------
 #

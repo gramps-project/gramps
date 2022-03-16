@@ -26,15 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from math import pi
-from gi.repository import GObject
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.selectionlayer")
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +39,7 @@ _LOG = logging.getLogger("maps.selectionlayer")
 # osmGpsMap
 #
 #-------------------------------------------------------------------------
-
+from gi.repository import GObject
 try:
     import gi
     gi.require_version('OsmGpsMap', '1.0')
@@ -55,7 +47,12 @@ try:
 except:
     raise
 
-# pylint: disable=unused-argument
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+_LOG = logging.getLogger("maps.selectionlayer")
 
 class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -87,9 +84,9 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         for circle in self.circles:
             top_left = osmgpsmap.MapPoint.new_degrees(circle[1] + circle[0],
-                                                   circle[2] - circle[0])
+                                                      circle[2] - circle[0])
             bottom_right = osmgpsmap.MapPoint.new_degrees(circle[1] - circle[0],
-                                                       circle[2] + circle[0])
+                                                          circle[2] + circle[0])
             center = osmgpsmap.MapPoint.new_degrees(circle[1], circle[2])
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
             crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
@@ -141,7 +138,8 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Someone press a button
         """
+        dummy_map = gpsmap
+        dummy_evt = gdkeventbutton
         return False
 
 GObject.type_register(SelectionLayer)
-

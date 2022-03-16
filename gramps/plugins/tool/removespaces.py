@@ -235,7 +235,7 @@ class RemoveSpaces(ManagedWindow):
         mess: text to add
         """
         if nll == 0:
-            self.tooltip = _("Name:")
+            self.tooltip = _("Name:", 'place')
             self.tooltip += " "
             self.tooltip += mess
         elif nll == 1:

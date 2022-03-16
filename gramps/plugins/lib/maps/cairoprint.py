@@ -34,10 +34,6 @@ from gi.repository import Gtk
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
 
-# pylint: disable=no-member
-# pylint: disable=maybe-no-member
-# pylint: disable=unused-argument
-
 #------------------------------------------------------------------------
 #
 # CairoPrintSave class
@@ -132,6 +128,9 @@ class CairoPrintSave:
     def on_draw_page(self, operation, context, page_nr):
         """Draw a page on a Cairo context.
         """
+        dummy_op = operation
+        dummy_ct = context
+        dummy_pg = page_nr
         ctx = context.get_cairo_context()
         self.drawfunc(self.parent, ctx)
 
@@ -141,6 +140,9 @@ class CairoPrintSave:
            default application is set with gir 3.3.2 (typically evince not
            installed)!
         """
+        dummy_op = operation
+        dummy_ct = context
+        dummy_pr = preview
+        dummy_pa = parent
         operation.run(Gtk.PrintOperationAction.PREVIEW, None)
         return False
-

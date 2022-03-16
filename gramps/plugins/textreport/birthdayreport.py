@@ -331,7 +331,7 @@ class BirthdayReport(Report):
                         if self.showyear:
                             yeartxt = "(%s) " % year
                         if nyears == 0:
-                            text = self._('* %(person)s, birth%(relation)s') % {
+                            text = self._('* %(person)s, birth %(relation)s') % {
                                 'person'   : short_name,
                                 'relation' : comment}
                         else:

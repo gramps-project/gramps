@@ -66,6 +66,7 @@ class DateParserDa(DateParser):
     calendar_to_int = {
         'gregoriansk   '      : Date.CAL_GREGORIAN,
         'g'                   : Date.CAL_GREGORIAN,
+        'juliansk tidsregning': Date.CAL_JULIAN,
         'juliansk'            : Date.CAL_JULIAN,
         'j'                   : Date.CAL_JULIAN,
         'hebraisk'            : Date.CAL_HEBREW,
@@ -84,6 +85,7 @@ class DateParserDa(DateParser):
 
     quality_to_int = {
         'estimeret' : Date.QUAL_ESTIMATED,
+        'anslået'   : Date.QUAL_ESTIMATED,
         'beregnet'   : Date.QUAL_CALCULATED,
         }
 

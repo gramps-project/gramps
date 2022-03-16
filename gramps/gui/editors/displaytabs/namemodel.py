@@ -70,7 +70,7 @@ class NameModel(Gtk.TreeStore):
     COL_DATA = (2, object)
     COL_FONTWEIGHT = (3, int)
     COL_GROUPAS = (4, str)
-    COL_HASSOURCE = (5, str)
+    COL_HASSOURCE = (5, bool)
     COL_NOTEPREVIEW = (6, str)
     COL_PRIVATE = (7, bool)
 
@@ -109,7 +109,7 @@ class NameModel(Gtk.TreeStore):
                 (index, name),
                 self.colweight(index),
                 name.get_group_as(),
-                self.hassource(name),
+                name.has_citations(),
                 self.notepreview(name),
                 name.get_privacy(),
                ]
@@ -133,11 +133,6 @@ class NameModel(Gtk.TreeStore):
         self.remove(self.get_iter((self.DEFINDEX, 0)))
         self.insert(self.get_iter(self.DEFINDEX), 0,
                     row=self.row(self.DEFINDEX, defname))
-
-    def hassource(self, name):
-        if len(name.get_citation_list()):
-            return YES
-        return NO
 
     def notepreview(self, name):
         nlist = name.get_note_list()

@@ -505,6 +505,34 @@
     <date name="Midsommardagen" value="*/jun/24" type="religious" if="not(y>=1953)"  />
     <date name="Fars dag" value="*/2/sun/nov" type="national" />
   </country>
+  <country name="Turkey">
+    <date value="*/1/1" type="national" name="Yılbaşı" />
+    <date value="*/3/8" type="secular" name="Dünya Kadınlar Günü" />
+    <date value="*/3/21" type="secular" name="Nevruz" />
+    <date value="*/4/22" type="secular" name="Dünya Günü" />
+    <date value="*/4/23" type="national" name="Ulusal Egemenlik ve Çocuk Bayramı" />
+    <date value="*/5/1" type="national" name="Emek ve Dayanışma Günü" />
+    <date value="*/5/5" type="secular" name="Hıdrellez" />
+    <date value="*/5/13" type="secular" name="Türk Dil Bayramı" />
+    <date value="*/5/19" type="national" name="Atatürk'ü Anma, Gençlik ve Spor Bayramı" />
+    <date value="*/5/28" type="secular" name="Tarihî Türk Evlerini Koruma Haftası" />
+    <date value="*/7/15" type="national" name="Demokrasi ve Millî Birlik Günü" />
+    <date value="*/8/30" type="national" name="Zafer Bayramı" />
+    <date value="*/10/29" type="national" name="Cumhuriyet Bayramı" />
+    <date value="*/11/10" type="secular" name="Atatürk’ü Anma Günü" />
+    <date value="*/11/24" type="secular" name="Öğretmenler Günü" />
+    <date value="*/12/5" type="secular" name="Kadın Hakları Günü" />
+    <date value="2021/05/13" type="religious" name="Ramazan Bayramı" />
+    <date value="2021/07/20" type="religious" name="Kurban Bayramı" />
+    <date value="2022/05/02" type="religious" name="Ramazan Bayramı" />
+    <date value="2022/07/09" type="religious" name="Kurban Bayramı" />
+    <date value="2023/04/21" type="religious" name="Ramazan Bayramı" />
+    <date value="2023/06/28" type="religious" name="Kurban Bayramı" />
+    <date value="2024/04/10" type="religious" name="Ramazan Bayramı" />
+    <date value="2024/06/16" type="religious" name="Kurban Bayramı" />
+    <date value="2025/03/30" type="religious" name="Ramazan Bayramı" />
+    <date value="2025/06/06" type="religious" name="Kurban Bayramı" />
+  </country>
   <country name="Ukraine">
     <date value="*/1/1" type="national" name="Новий Рік"/>
     <date value="*/1/6" type="religious" name="Святий Вечір"/>

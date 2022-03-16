@@ -48,16 +48,14 @@ from gramps.gui.views.treemodels.citationtreemodel import CitationTreeModel
 from gramps.gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
 from gramps.gen.lib import Citation, Source
 from gramps.gui.views.listview import ListView
-from gramps.gen.utils.db import (get_source_and_citation_referents,
-                                get_citation_referents)
 from gramps.gui.views.bookmarks import CitationBookmarks
 from gramps.gen.errors import WindowActiveError, HandleError
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
-from gramps.gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
-    DeleteSrcQuery
+from gramps.gui.editors import EditCitation, EditSource
 from gramps.gui.filters.sidebar import SourceSidebarFilter
 from gramps.gui.merge import MergeCitation, MergeSource
+from gramps.plugins.lib.libsourceview import LibSourceView
 
 #-------------------------------------------------------------------------
 #
@@ -67,12 +65,13 @@ from gramps.gui.merge import MergeCitation, MergeSource
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
+
 #-------------------------------------------------------------------------
 #
 # PlaceTreeView
 #
 #-------------------------------------------------------------------------
-class CitationTreeView(ListView):
+class CitationTreeView(LibSourceView, ListView):
     """
     A hierarchical view of sources with citations below them.
     """
@@ -590,28 +589,6 @@ class CitationTreeView(ListView):
                 WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text(),
                               parent=self.uistate.window)
-#
-    def remove(self, *obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        # The handle will either be a Source handle or a Citation handle
-        source, citation = self.get_source_or_citation(handle)
-        if citation:
-            the_lists = get_citation_referents(handle, self.dbstate.db)
-            query = DeleteCitationQuery(self.dbstate, self.uistate, citation,
-                                        the_lists)
-            is_used = any(the_lists)
-            return (query, is_used, citation)
-        else:
-            the_lists = get_source_and_citation_referents(handle,
-                                                          self.dbstate.db)
-            LOG.debug('the_lists %s' % [the_lists])
-
-            query = DeleteSrcQuery(self.dbstate, self.uistate, source,
-                                   the_lists)
-            is_used = any(the_lists)
-            return (query, is_used, source)
 
     def edit(self, *obj):
         """

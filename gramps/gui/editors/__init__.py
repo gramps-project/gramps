@@ -23,25 +23,25 @@
 from .editaddress import EditAddress
 from .editattribute import EditAttribute, EditSrcAttribute
 from .editchildref import EditChildRef
-from .editcitation import EditCitation, DeleteCitationQuery
+from .editcitation import EditCitation
 from .editdate import EditDate
-from .editevent import EditEvent, DeleteEventQuery
+from .editevent import EditEvent
 from .editeventref import EditEventRef
 from .editfamily import EditFamily
 from .editldsord import EditLdsOrd, EditFamilyLdsOrd
 from .editlocation import EditLocation
-from .editmedia import EditMedia, DeleteMediaQuery
+from .editmedia import EditMedia
 from .editmediaref import EditMediaRef
 from .editname import EditName
-from .editnote import EditNote, DeleteNoteQuery
+from .editnote import EditNote
 from .editperson import EditPerson
 from .editpersonref import EditPersonRef
-from .editplace import EditPlace, DeletePlaceQuery
+from .editplace import EditPlace
 from .editplacename import EditPlaceName
 from .editplaceref import EditPlaceRef
-from .editrepository import EditRepository, DeleteRepositoryQuery
+from .editrepository import EditRepository
 from .editreporef import EditRepoRef
-from .editsource import EditSource, DeleteSrcQuery
+from .editsource import EditSource
 from .edittaglist import EditTagList
 from .editurl import EditUrl
 from .editlink import EditLink

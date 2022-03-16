@@ -1,7 +1,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011 Tim G L Lyons
+# Copyright (C) 2020 Matthias Kemmer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -369,3 +370,19 @@ class MediaNotes(Notes):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
+class NoteNotes(Notes):
+    """
+    Display a single note in NoteView.
+    """
+    def db_changed(self):
+        self.connect(self.dbstate.db, 'note-update', self.update)
+        self.connect_signal('Note', self.update)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Note')
+        if active_handle:
+            active = self.dbstate.db.get_note_from_handle(active_handle)
+            if active:
+                self.texteditor.set_text(active.get_styledtext())

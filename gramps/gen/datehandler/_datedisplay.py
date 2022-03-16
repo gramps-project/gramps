@@ -407,6 +407,9 @@ class DateDisplay:
         if date_val[0] == date_val[1] == 0:
             # No month and no day -> year
             value = year
+        elif date_val[0] == 0:
+            # No day -> yyyy-mm
+            value = "%s-%02d" % (year, date_val[1])
         else:
             value = "%s-%02d-%02d" % (year, date_val[1], date_val[0])
         if date_val[2] < 0:

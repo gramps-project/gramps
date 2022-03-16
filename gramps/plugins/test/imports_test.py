@@ -37,7 +37,7 @@ from gramps.gen.merge.diff import diff_dbs, to_struct
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.gen.user import User
-from gramps.gen.const import TEMP_DIR, DATA_DIR
+from gramps.gen.const import DATA_DIR
 from gramps.test.test_util import capture
 from gramps.plugins.export.exportxml import XmlWriter
 
@@ -212,8 +212,6 @@ def make_tst_function(tstfile, file_name):
         mockdtime.side_effect = mock_time
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
-        fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
-        fout = os.path.join(TEMP_DIR, (file_name + ".gramps"))
         if "_dfs" in tstfile:
             config.set('preferences.default-source', True)
             config.set('preferences.tag-on-import-format', "Imported")
@@ -223,11 +221,6 @@ def make_tst_function(tstfile, file_name):
             skp_imp_adds = True
             config.set('preferences.default-source', False)
             config.set('preferences.tag-on-import', False)
-        try:
-            os.remove(fres)
-            os.remove(fout)
-        except OSError:
-            pass
         #logger.info("\n**** %s ****", tstfile)
         set_det_id(True)
         with capture(None) as output:
@@ -251,27 +244,30 @@ def make_tst_function(tstfile, file_name):
         # Also we save the .gramps file from the import so user can perform
         # Diff himself for better context.
         if deltas:
-            writer = XmlWriter(self.database1, self.user,
-                               strip_photos=0, compress=0)
-            writer.write(fout)
-            hres = open(fres, mode='w', encoding='utf-8',
-                        errors='replace')
-            hres.write(self.msg)
-            hres.close()
-            # let's see if we have any allowed exception file
-            fdif = os.path.join(TEST_DIR, (file_name + ".difs"))
-            try:
-                hdif = open(fdif)
-                msg = hdif.read()
-                hdif.close()
-            except (FileNotFoundError, IOError):
-                msg = ""
-            # if exception file matches exactly, we are done.
-            if self.msg != msg:
-                self.msg = "\n****Captured Output****\n" + output[0] + \
-                    "\n****Captured Err****\n" + output[1] + \
-                    "\n****End Capture Err****\n" + self.msg
-                self.fail(self.msg)
+            with tempfile.TemporaryDirectory() as tmpdirname:
+                fres = os.path.join(tmpdirname, (file_name + ".difs"))
+                fout = os.path.join(tmpdirname, (file_name + ".gramps"))
+                writer = XmlWriter(self.database1, self.user,
+                                   strip_photos=0, compress=0)
+                writer.write(fout)
+                hres = open(fres, mode='w', encoding='utf-8',
+                            errors='replace')
+                hres.write(self.msg)
+                hres.close()
+                # let's see if we have any allowed exception file
+                fdif = os.path.join(TEST_DIR, (file_name + ".difs"))
+                try:
+                    hdif = open(fdif)
+                    msg = hdif.read()
+                    hdif.close()
+                except (FileNotFoundError, IOError):
+                    msg = ""
+                # if exception file matches exactly, we are done.
+                if self.msg != msg:
+                    self.msg = "\n****Captured Output****\n" + output[0] + \
+                        "\n****Captured Err****\n" + output[1] + \
+                        "\n****End Capture Err****\n" + self.msg
+                    self.fail(self.msg)
     return tst
 
 # let's see if we have a single file to run, example;
