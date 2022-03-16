@@ -77,7 +77,7 @@ from .utils import AvailableUpdates
 from .pluginmanager import GuiPluginManager
 from gramps.gen.relationship import get_relationship_calculator
 from .displaystate import DisplayState, RecentDocsMenu
-from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE,
+from gramps.gen.const import (USER_DATA, ICON, URL_BUGTRACKER, URL_HOMEPAGE,
                               URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING,
                               WIKI_EXTRAPLUGINS, URL_BUGHOME)
 from gramps.gen.constfunc import is_quartz
@@ -1799,7 +1799,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
                             _('_Apply'), Gtk.ResponseType.OK)
         mpath = path_entry.get_text()
         if not mpath:
-            mpath = HOME_DIR
+            mpath = USER_DATA
         fdialog.set_current_folder(os.path.dirname(mpath))
         fdialog.set_filename(os.path.join(mpath, "."))
         status = fdialog.run()

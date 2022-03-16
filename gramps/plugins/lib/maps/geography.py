@@ -55,7 +55,7 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.const import HOME_DIR
+from gramps.gen.const import USER_HOME
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
@@ -1023,7 +1023,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             transient_for=self.uistate.window)
         kml.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
                         _('_Apply'), Gtk.ResponseType.OK)
-        mpath = HOME_DIR
+        mpath = USER_HOME
         kml.set_current_folder(os.path.dirname(mpath))
         kml.set_filter(filtering)
 
@@ -1388,7 +1388,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                                  _('_Apply'), Gtk.ResponseType.OK)
         mpath = config.get('geography.path')
         if not mpath:
-            mpath = HOME_DIR
+            mpath = USER_HOME
         selected_dir.set_current_folder(os.path.dirname(mpath))
 
         status = selected_dir.run()

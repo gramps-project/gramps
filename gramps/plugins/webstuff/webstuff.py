@@ -24,7 +24,7 @@
 #------------------------------------------------
 import os
 import re
-from gramps.gen.const import VERSION_DIR, IMAGE_DIR, DATA_DIR, USER_CSS
+from gramps.gen.const import USER_DATA_VERSION, IMAGE_DIR, DATA_DIR, USER_CSS
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -218,10 +218,10 @@ def process_list(data):
         file = row[3]
         if file:
             dummy_path, filename = os.path.split(file)
-            # is there a override file in the VERSION_DIR/webstuff?
+            # is there a override file in the DATA_VERSION_DIR/webstuff?
             # eg, ~/.gramps/gramps34/webstuff/Web_Nebraska.css
             # if so, replace this one:
-            override = os.path.join(VERSION_DIR, "webstuff", filename)
+            override = os.path.join(USER_DATA_VERSION, "webstuff", filename)
             if os.path.exists(override):
                 row[3] = override
         retval.append(row)

@@ -59,7 +59,7 @@ LOG = logging.getLogger(".plug.report.options")
 # (do not import anything from 'gui' as this is in 'gen')
 #
 #-------------------------------------------------------------------------
-from ...const import HOME_DIR, REPORT_OPTIONS
+from ...const import USER_DATA, REPORT_OPTIONS
 from ...config import config
 from ..docgen import PAPER_PORTRAIT
 from .. import _options
@@ -739,7 +739,7 @@ class OptionHandler(_options.OptionHandler):
         # Get the first part of name, if it contains a comma:
         # (will just be module_name, if no comma)
         filename = "%s.xml" % self.module_name.split(",")[0]
-        return os.path.join(HOME_DIR, filename)
+        return os.path.join(USER_DATA, filename)
 
     def get_default_stylesheet_name(self):
         """ get the default stylesheet name """

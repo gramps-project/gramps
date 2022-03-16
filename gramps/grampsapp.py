@@ -50,7 +50,7 @@ if "-S" in sys.argv or "--safe" in sys.argv:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, ORIG_HOME_DIR
+from .gen.const import APP_GRAMPS, USER_DIRLIST, USER_DATA, ORIG_HOME_DIR
 from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
@@ -113,7 +113,7 @@ form = logging.Formatter(fmt="%(asctime)s.%(msecs).03d: %(levelname)s: "
 if win():
     # If running in GUI mode redirect stdout and stderr to log file
     if not sys.stdout:
-        logfile = os.path.join(HOME_DIR,
+        logfile = os.path.join(USER_DATA,
             "Gramps%s%s.log") % (VERSION_TUPLE[0],
             VERSION_TUPLE[1])
         # We now carry out the first step in build_user_paths(), to make sure
@@ -122,10 +122,10 @@ if win():
         # block, and any failure will be logged. However, if the creation of the
         # user directory fails here, there is no way to report the failure,
         # because stdout/stderr are not available, and neither is the logfile.
-        if os.path.islink(HOME_DIR):
+        if os.path.islink(USER_DATA):
             pass  # ok
-        elif not os.path.isdir(HOME_DIR):
-            os.makedirs(HOME_DIR)
+        elif not os.path.isdir(USER_DATA):
+            os.makedirs(USER_DATA)
         sys.stdout = sys.stderr = open(logfile, "w", encoding='utf-8')
 # macOS sets stderr to /dev/null when running without a terminal,
 # e.g. if Gramps.app is lauched by double-clicking on it in

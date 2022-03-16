@@ -29,7 +29,7 @@ import os
 import gi
 from gi.repository import OsmGpsMap as osmgpsmap
 from gramps.gen.lib import EventType
-from gramps.gen.const import HOME_DIR
+from gramps.gen.const import USER_CACHE
 
 gi.require_version('OsmGpsMap', '1.0')
 
@@ -38,7 +38,7 @@ gi.require_version('OsmGpsMap', '1.0')
 # Constants
 #
 #-------------------------------------------------------------------------
-GEOGRAPHY_PATH = os.path.join(HOME_DIR, "maps")
+GEOGRAPHY_PATH = os.path.join(USER_CACHE, "maps")
 
 ICONS = {
     EventType.BIRTH                : 'gramps-geo-birth',

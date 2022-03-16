@@ -37,7 +37,7 @@ try:
 except ImportError:
     USE_LOCK = False
 
-from .const import HOME_DIR, GRAMPS_LOCALE as glocale
+from .const import USER_DATA, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
@@ -45,7 +45,7 @@ _ = glocale.translation.gettext
 # Constants
 #
 #-------------------------------------------------------------------------
-GRAMPS_FILENAME = os.path.join(HOME_DIR, "recent-files-gramps.xml")
+GRAMPS_FILENAME = os.path.join(USER_DATA, "recent-files-gramps.xml")
 MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------

@@ -50,7 +50,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.const import HOME_DIR, URL_WIKISTRING, URL_MANUAL_PAGE
+from gramps.gen.const import USER_DATA, URL_WIKISTRING, URL_MANUAL_PAGE
 from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.name import NameDisplayError
@@ -2088,7 +2088,7 @@ class GrampsPreferences(ConfigureDialog):
                       _('_Apply'), Gtk.ResponseType.OK)
         dbpath = config.get('database.path')
         if not dbpath:
-            dbpath = os.path.join(HOME_DIR, 'grampsdb')
+            dbpath = os.path.join(USER_DATA, 'grampsdb')
         f.set_current_folder(os.path.dirname(dbpath))
 
         status = f.run()

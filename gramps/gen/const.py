@@ -34,6 +34,8 @@ import os
 import sys
 import uuid
 
+from gi.repository import GLib
+
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -113,22 +115,34 @@ if 'SAFEMODE' in os.environ:
     HOME_DIR = get_env_var('SAFEMODE')
 
 
-VERSION_DIR = os.path.join(
-    HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
+if (os.path.exists(HOME_DIR) or 'GRAMPSHOME' in os.environ
+        or 'SAFEMODE' in os.environ):
+    USER_DATA = HOME_DIR
+    USER_CONFIG = HOME_DIR
+    USER_CACHE = HOME_DIR
+else:
+    USER_DATA = os.path.join(GLib.get_user_data_dir(), 'gramps')
+    USER_CONFIG = os.path.join(GLib.get_user_config_dir(), 'gramps')
+    USER_CACHE = os.path.join(GLib.get_user_cache_dir(), 'gramps')
+
+VERSION_DIR_NAME = "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
+VERSION_DIR = os.path.join(USER_CONFIG, VERSION_DIR_NAME)
+USER_DATA_VERSION = os.path.join(USER_DATA, VERSION_DIR_NAME)
 
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
-REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
-TOOL_OPTIONS = os.path.join(HOME_DIR, "tool_options.xml")
-PLACE_FORMATS = os.path.join(HOME_DIR, "place_formats.xml")
+REPORT_OPTIONS = os.path.join(USER_CONFIG, "report_options.xml")
+TOOL_OPTIONS = os.path.join(USER_CONFIG, "tool_options.xml")
+PLACE_FORMATS = os.path.join(USER_CONFIG, "place_formats.xml")
 
-THUMB_DIR = os.path.join(HOME_DIR, "thumb")
+THUMB_DIR = os.path.join(USER_CACHE, "thumb")
 THUMB_NORMAL = os.path.join(THUMB_DIR, "normal")
 THUMB_LARGE = os.path.join(THUMB_DIR, "large")
-USER_PLUGINS = os.path.join(VERSION_DIR, "plugins")
-USER_CSS = os.path.join(HOME_DIR, "css")
+USER_PLUGINS = os.path.join(USER_DATA_VERSION, "plugins")
+USER_CSS = os.path.join(USER_DATA, "css")
 # dirs checked/made for each Gramps session
-USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, THUMB_DIR,
-                THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS, USER_CSS)
+USER_DIRLIST = (USER_HOME, USER_CACHE, USER_CONFIG, USER_DATA, VERSION_DIR,
+                USER_DATA_VERSION, THUMB_DIR, THUMB_NORMAL, THUMB_LARGE,
+                USER_PLUGINS, USER_CSS)
 
 
 #-------------------------------------------------------------------------
@@ -187,10 +201,13 @@ LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
 #-------------------------------------------------------------------------
 ENV = {
     "USER_HOME": USER_HOME,
-    "HOME_DIR": HOME_DIR,
+    "USER_CACHE": USER_CACHE,
+    "USER_CONFIG": USER_CONFIG,
+    "USER_DATA": USER_DATA,
     "VERSION": VERSION,
     "major_version": major_version,
     "VERSION_DIR": VERSION_DIR,
+    "USER_DATA_VERSION": USER_DATA_VERSION,
     "THUMB_DIR": THUMB_DIR,
     "THUMB_NORMAL": THUMB_NORMAL,
     "THUMB_LARGE": THUMB_LARGE,

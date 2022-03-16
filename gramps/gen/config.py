@@ -41,7 +41,7 @@ import logging
 # Gramps imports
 #
 #---------------------------------------------------------------
-from .const import HOME_DIR, USER_HOME, VERSION_DIR
+from .const import USER_CONFIG, USER_DATA, USER_HOME, VERSION_DIR
 from .utils.configmanager import ConfigManager
 from .const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -166,7 +166,7 @@ register('database.compress-backup', True)
 register('database.backup-path', USER_HOME)
 register('database.backup-on-exit', True)
 register('database.autobackup', 0)
-register('database.path', os.path.join(HOME_DIR, 'grampsdb'))
+register('database.path', os.path.join(USER_DATA, 'grampsdb'))
 register('database.host', '')
 register('database.port', '')
 
@@ -347,10 +347,10 @@ if __debug__: # enable a simple CLI test to see if the datestrings exist
 # we can tell by seeing if there is a key file for this version:
 if not os.path.exists(CONFIGMAN.filename):
     # If not, let's read old if there:
-    if os.path.exists(os.path.join(HOME_DIR, "keys.ini")):
+    if os.path.exists(os.path.join(USER_CONFIG, "keys.ini")):
         # read it in old style:
         logging.warning("Importing old key file 'keys.ini'...")
-        CONFIGMAN.load(os.path.join(HOME_DIR, "keys.ini"),
+        CONFIGMAN.load(os.path.join(USER_CONFIG, "keys.ini"),
                        oldstyle=True)
         logging.warning("Done importing old key file 'keys.ini'")
     # other version upgrades here...

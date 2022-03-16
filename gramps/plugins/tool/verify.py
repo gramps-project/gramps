@@ -62,7 +62,7 @@ from gi.repository import GObject
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gen.const import URL_MANUAL_PAGE, USER_DATA_VERSION
 from gramps.gen.lib import (ChildRefType, EventRoleType, EventType,
                             FamilyRelType, NameType, Person)
 from gramps.gen.lib.date import Today
@@ -595,7 +595,7 @@ class VerifyResults(ManagedWindow):
             db_filename = db_filename.encode('utf-8')
         md5sum = md5(db_filename)
         self.ignores_filename = os.path.join(
-            VERSION_DIR, md5sum.hexdigest() + os.path.extsep + 'vfm')
+            USER_DATA_VERSION, md5sum.hexdigest() + os.path.extsep + 'vfm')
 
     def load_ignored(self, db_filename):
         """ get ready to load the file with the previously-ignored people """

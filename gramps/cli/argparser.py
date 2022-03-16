@@ -48,7 +48,8 @@ from glob import glob
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import (LONGOPTS, SHORTOPTS, USER_PLUGINS, VERSION_DIR,
-                              HOME_DIR, THUMB_DIR, USER_CSS)
+                              USER_CACHE, USER_CONFIG, USER_DATA, THUMB_DIR,
+                              USER_CSS)
 from gramps.gen.utils.cast import get_type_converter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -417,16 +418,18 @@ class ArgParser:
                     if os.path.isfile(fil):
                         os.remove(fil)
                 if 'E' in value or 'X' in value:  # clear xml reports/tools
-                    for fil in glob(os.path.join(HOME_DIR, "*.xml")):
+                    for fil in glob(os.path.join(USER_DATA, "*.xml")):
                         os.remove(fil)
                 if 'E' in value or 'Z' in value:  # clear upgrade zips
-                    for fil in glob(os.path.join(HOME_DIR, "*.zip")):
+                    for fil in glob(os.path.join(USER_DATA, "*.zip")):
                         os.remove(fil)
                 if 'E' in value:  # Everything else
                     rmtree(THUMB_DIR)
                     rmtree(USER_CSS)
-                    rmtree(os.path.join(HOME_DIR, "maps"))
-                    for fil in glob(os.path.join(HOME_DIR, "*")):
+                    rmtree(os.path.join(USER_CACHE, "maps"))
+                    for fil in (glob(os.path.join(USER_CACHE, "*"))
+                              + glob(os.path.join(USER_CONFIG, "*"))
+                              + glob(os.path.join(USER_DATA, "*"))):
                         if os.path.isfile(fil):
                             os.remove(fil)
                 sys.exit(0)  # Done with Default
