@@ -44,7 +44,8 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import (Place, Source, Media, Note)
+from gramps.gen.lib import (Person, Place, Source, Media, Note)
+from .editperson import EditPerson
 from .editplace import EditPlace
 from .editsource import EditSource
 from .editmedia import EditMedia
@@ -53,6 +54,7 @@ from ..selectors import SelectorFactory
 from ..ddtargets import DdTargets
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -282,6 +284,53 @@ class ObjEntry:
                 self.add_edt.add(image)
                 self.add_edt.set_tooltip_text(self.ADD_STR)
         self._update_dnd_capability()
+
+class PersonEntry(ObjEntry):
+    """
+    Handles the selection of a existing or new Person. Supports Drag and Drop
+    to select a person.
+    """
+    EMPTY_TEXT = "<i>%s</i>" % _('To select a person, use drag-and-drop '
+                                 'or use the buttons')
+    EMPTY_TEXT_RED = "<i>%s</i>" % _('No person given, click button to select one')
+    EDIT_STR = _('Edit person')
+    SHARE_STR = _('Select an existing person')
+    ADD_STR = _('Add a new person')
+    DEL_STR = _('Remove person')
+    _DND_TYPE = DdTargets.PERSON_LINK
+    _DND_ICON = 'gramps-person'
+
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val,
+                 get_val, add_edt, share, skip=[]):
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val,
+                 get_val, add_edt, share)
+        self.skip = skip
+
+    def get_from_handle(self, handle):
+        """ return the object given the hande
+        """
+        return self.db.get_person_from_handle(handle)
+
+    def get_label(self, person):
+        person_name = name_displayer.display(person)
+        return "%s \u2068[%s]\u200e\u2069" % (person_name, person.gramps_id)
+
+    def call_editor(self, obj=None):
+        if obj is None:
+            person = Person()
+            func = self.obj_added
+        else:
+            person = obj
+            func = self.after_edit
+        try:
+            EditPerson(self.dbstate, self.uistate, self.track,
+                       person, func)
+        except WindowActiveError:
+            pass
+
+    def call_selector(self):
+        cls = SelectorFactory('Person')
+        return cls(self.dbstate, self.uistate, self.track, skip=self.skip)
 
 class PlaceEntry(ObjEntry):
     """
