@@ -1,3 +1,11 @@
+gramps (5.1.5-1) unstable; urgency=medium
+
+  * New release
+  * Update copyright file
+  * Drop patch, incorporated upstream
+
+ -- Ross Gammon <rossgammon@debian.org>  Sat, 12 Feb 2022 17:01:21 +0100
+
 gramps (5.1.4-1) unstable; urgency=medium
 
   * New release

@@ -314,13 +314,16 @@ def find_records(db, filter, top_size, callname,
         if mother is None:
             continue
 
-        name = StyledText(trans_text("%(father)s and %(mother)s")) % {
-                'father': _get_styled_primary_name(father, callname,
-                                                   trans_text=trans_text,
-                                                   name_format=name_format),
-                'mother': _get_styled_primary_name(mother, callname,
-                                                   trans_text=trans_text,
-                                                   name_format=name_format)}
+        father_name = _get_styled_primary_name(father, callname,
+                                               trans_text=trans_text,
+                                               name_format=name_format)
+        mother_name = _get_styled_primary_name(mother, callname,
+                                               trans_text=trans_text,
+                                               name_format=name_format)
+
+        name = StyledText(trans_text("%(father)s and %(mother)s"))
+        name = name.replace('%(father)s', father_name)
+        name = name.replace('%(mother)s', mother_name)
 
         if (living_mode == LivingProxyDb.MODE_INCLUDE_ALL
             or (not probably_alive(unfil_father, db) and
