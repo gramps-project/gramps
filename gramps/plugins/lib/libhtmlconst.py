@@ -68,34 +68,34 @@ _CHARACTER_SETS = [
 _CC = [
     '',
 
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/">'
+    '<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">'
     '<img alt="Creative Commons License - By attribution" '
     'title="Creative Commons License - By attribution" '
     'src="%(gif_fname)s" /></a>',
 
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/">'
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">'
     '<img alt="Creative Commons License - By attribution, No derivations" '
     'title="Creative Commons License - By attribution, No derivations" '
     'src="%(gif_fname)s" /></a>',
 
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/">'
+    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">'
     '<img alt="Creative Commons License - By attribution, Share-alike" '
     'title="Creative Commons License - By attribution, Share-alike" '
     'src="%(gif_fname)s" /></a>',
 
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/">'
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">'
     '<img alt="Creative Commons License - By attribution, Non-commercial" '
     'title="Creative Commons License - By attribution, Non-commercial" '
     'src="%(gif_fname)s" /></a>',
 
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">'
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">'
     '<img alt="Creative Commons License - By attribution, Non-commercial, '
     'No derivations" '
     'title="Creative Commons License - By attribution, Non-commercial, '
     'No derivations" '
     'src="%(gif_fname)s" /></a>',
 
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/">'
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">'
     '<img alt="Creative Commons License - By attribution, Non-commerical, '
     'Share-alike" '
     'title="Creative Commons License - By attribution, Non-commerical, '
