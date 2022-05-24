@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-03-11 00:27+0000\n"
+"PO-Revision-Date: 2022-03-24 10:54+0000\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -327,8 +327,8 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>הוספת תמונות<br/></b>ניתן להוסיף תמונה לכול גלריה או תצוגת מדיה בעזרת "
-"גרירה ושחרור שלה מתוך מנהל הקבצים או דפדפן המרשתת. למעשה, ניתן להוסיף כך כול "
+"<b>הוספת תמונות<br/></b>ניתן להוסיף תמונה לכל גלריה או תצוגת מדיה בעזרת "
+"גרירה ושחרור שלה מתוך מנהל הקבצים או דפדפן המרשתת. למעשה, ניתן להוסיף כך כל "
 "סוג קובץ. שימושי במיוחד עבור לסריקת מסמכים ומקורות דיגיטליים אחרים."
 
 #: ../data/tips.xml:10
@@ -393,10 +393,10 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>איתור אנשים<br/></b>כברירת מחדל, כול שם משפחה בתצוגת 'אנשים' מופיע פעם "
-"אחת בלבד. בהקשה על החץ שמשמאל לשם, הרשימה תתרחב ותציג את כול האנשים בשם "
-"משפחה זה. כדי לאתר שם משפחה מרשימה ארוכה, נא לבחור שם משפחה (לא אדם) ולהתחיל "
-"להקליד. הסמן ידלג לשם המשפחה הראשון התואם את האותיות שהוזנו."
+"<b>איתור אנשים<br/></b>כברירת מחדל, כל שם משפחה בתצוגת 'אנשים' מופיע פעם אחת "
+"בלבד. בהקשה על החץ שמשמאל לשם, הרשימה תתרחב ותציג את כל האנשים בשם משפחה זה. "
+"כדי לאתר שם משפחה מרשימה ארוכה, נא לבחור שם משפחה (לא אדם) ולהתחיל להקליד. "
+"הסמן ידלג לשם המשפחה הראשון התואם את האותיות שהוזנו."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -466,12 +466,12 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
-"<b>סאונדאקס יכולה לסייע במחקר המשפחתי<br/></b>סאונדאקס פותרת בעיה ארוכת שנים "
-"בגנאלוגיה, כיצד להתמודד עם וריאציות באיות שמות. גרמפלט סאונדאקס לוקחת שם "
-"משפחה ומחוללת דפוס מפושט ושווה ערך לשמות שנשמעים דומה. הכרת קודקס סאונדאקס "
-"לשמות משפחה מועילה מאוד בחקר קבצי מפקד אוכלוסין (מיקרופיש) ספריה או מתקני "
-"מחקר אחרים. להצגת קודקס שמות המשפחה במסד הנתונים, נא להוסיף את גרמפלט "
-"סאונדאקס."
+"<b>סאונד־אקס יכולה לסייע במחקר המשפחתי<br/></b>סאונד־אקס פותרת בעיה ארוכת "
+"שנים בגנאלוגיה, כיצד להתמודד עם וריאציות באיות שמות. גרמפלט סאונד־אקס לוקחת "
+"שם משפחה ומחוללת דפוס מפושט ושווה ערך לשמות שנשמעים דומה. הכרת קודקס "
+"סאונדאקס לשמות משפחה מועילה מאוד בחקר קבצי מפקד אוכלוסין (מיקרופיש) ספריה או "
+"מתקני מחקר אחרים. להצגת קודקס שמות המשפחה במסד הנתונים, נא להוסיף את גרמפלט "
+"סאונד־אקס."
 
 #: ../data/tips.xml:32
 msgid ""
@@ -517,7 +517,7 @@ msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
-"<b>למה זה משמש?<br/></b>לא ברור למה משמש כול לחצן? נא להחזיק את העכבר מעל "
+"<b>למה זה משמש?<br/></b>לא ברור למה משמש כל לחצן? נא להחזיק את העכבר מעל "
 "לחצן כלשהו ובועת המידע תופיע."
 
 #: ../data/tips.xml:40
@@ -567,7 +567,7 @@ msgid ""
 "toolbar or under the \"View\" menu."
 msgstr ""
 "<b>ארגון מצגים<br/></b>מצגים רבים יכולים להציג נתונים כעץ מדרגי או כרשימה "
-"שטוחה. ניתן להגדיר כול מצג ולהתאימו על פי העדפה אישית. ניתן לגשת להגדרות "
+"שטוחה. ניתן להגדיר כל מצג ולהתאימו על פי העדפה אישית. ניתן לגשת להגדרות "
 "מתפריט 'מצג'."
 
 #: ../data/tips.xml:48
@@ -765,8 +765,8 @@ msgid ""
 "see which individuals reference each source. You can use filters to group "
 "your sources."
 msgstr ""
-"<b>ניהול מקורות<br/></b>מצג ה'מקורות' מציג את רשימת כול המקורות בחלון בודד. "
-"מכאן ניתן לערוך את המקורות, למזג כפילויות ולראות אילו אנשים מפנים לכול מקור. "
+"<b>ניהול מקורות<br/></b>מצג \"מקורות\" מציג את רשימת כל המקורות בחלון בודד. "
+"מכאן ניתן לערוך את המקורות, למזג כפילויות ולראות אילו אנשים מפנים לכל מקור. "
 "ניתן להשתמש במסננים כדי לקבץ את המקורות."
 
 #: ../data/tips.xml:80
@@ -784,8 +784,8 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
-"<b>מצג מדיה<br/></b>תצוגת המדיה מציגה רשימה של כול המדיה שהוזנה במסד "
-"הנתונים. אלה יכולים להיות תמונות גרפיות, סרטוני וידאו, קליפי קול, גיליונות "
+"<b>מצג מדיה<br/></b>תצוגת המדיה מציגה רשימה של כל המדיה שהוזנה במסד הנתונים. "
+"אלה יכולים להיות תמונות גרפיות, סרטוני וידאו, קליפי קול, גיליונות "
 "אלקטרוניים, מסמכים ועוד."
 
 #: ../data/tips.xml:84
@@ -845,8 +845,8 @@ msgid ""
 "Web."
 msgstr ""
 "<b>יצירת אתר גנאלוגי<br/></b>ניתן בקלות לייצא את אילן היוחסין לעמוד מרשתת. "
-"כול שנדרש זה לבחור את מסד הנתונים כולו, קווי משפחה או אנשים מסוימים, לאוסף "
-"של דפי מרשתת המוכנים להעלאה לרשת העולמית."
+"כל שנדרש זה לבחור את מסד הנתונים כולו, קווי משפחה או אנשים מסוימים, לאוסף של "
+"דפי מרשתת המוכנים להעלאה לרשת העולמית."
 
 #: ../data/tips.xml:94
 msgid ""
@@ -932,8 +932,8 @@ msgid ""
 "copy of original documents."
 msgstr ""
 "<b>תיעוד מקורות<br/></b>מידע שנאסף על בני המשפחה הוא טוב באותה מידה כמו "
-"המקור שממנו הגיע. לכן חשוב לתעד את כול הפרטים על המקור ממנו המידע הגיע. כול "
-"אימת שניתן, רצוי לקבל עותק של מסמכים מקוריים."
+"המקור שממנו הגיע. לכן חשוב לתעד את כל הפרטים על המקור ממנו המידע הגיע. כל "
+"עוד ניתן, רצוי לקבל עותק של מסמכים מקוריים."
 
 #: ../data/tips.xml:110
 msgid ""
@@ -1942,8 +1942,8 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"אפשרות '%(optionname)s' לא תקינה. שימוש ב־'%(donottranslate)s' להצגת כול "
-"האפשרויות התקינות."
+"אפשרות '%(optionname)s' לא תקינה. אפשר להשתמש ב־'%(donottranslate)s' להצגת "
+"כל האפשרויות התקינות."
 
 #: ../gramps/cli/plug/__init__.py:669
 msgid "Failed to write report. "
@@ -3397,7 +3397,7 @@ msgid ""
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
 "אזהרה: משתנים מועטים מדי במסנן '%s'!\n"
-"מנסה לטעון בכול מקרה בתקווה שזה ישודרג."
+"מנסה לטעון בכל מקרה בתקווה שזה ישודרג."
 
 #: ../gramps/gen/filters/_filterparser.py:135
 #, python-format
@@ -4041,11 +4041,11 @@ msgstr "שליפת מובאות עם מקור עם מזהה גרמפס התאו�
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:44
 msgid "Every event"
-msgstr "כול אירוע"
+msgstr "כל אירוע"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
 msgid "Matches every event in the database"
-msgstr "שליפת כול אירוע במסד הנתונים"
+msgstr "שליפת כל אירוע ממסד הנתונים"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
 msgid "Events changed after <date time>"
@@ -4281,11 +4281,11 @@ msgstr "שליפת אירועים שמזהה גרמפס שלהם תאום לבי
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:377
 msgid "Every family"
-msgstr "כול משפחה"
+msgstr "כל משפחה"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 msgid "Matches every family in the database"
-msgstr "שליפת כול משפחה במסד הנתונים"
+msgstr "שליפת כל משפחה ממסד הנתונים"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:47
 msgid "Families changed after <date time>"
@@ -4629,7 +4629,7 @@ msgstr "משפחות עם צאצא כלשהו התואם ל<שם>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "שליפת משפחות שלצאצא כול שהו שם (חלקי) שצוין"
+msgstr "שליפת משפחות שלצאצא כלשהו יש שם (חלקי) שצוין"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
@@ -4641,11 +4641,11 @@ msgstr "משפחות עם אם התואמת ל<שם>"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:44
 msgid "Every media object"
-msgstr "כול אובייקט מדיה"
+msgstr "כל אובייקט מדיה"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:45
 msgid "Matches every media object in the database"
-msgstr "שליפת כול אובייקט מדיה במסד הנתונים"
+msgstr "שליפת כל אובייקט מדיה ממסד הנתונים"
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:45
 msgid "Media objects changed after <date time>"
@@ -4802,11 +4802,11 @@ msgstr "שליפת אובייקטי מדיה שמזהה גרמפס שלהם תא
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:44
 msgid "Every note"
-msgstr "כול הערה"
+msgstr "כל הערה"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:45
 msgid "Matches every note in the database"
-msgstr "שליפת כול הערה במסד הנתונים"
+msgstr "שליפת כל הערה ממסד הנתונים"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:47
 msgid "Notes changed after <date time>"
@@ -4957,7 +4957,7 @@ msgstr "איתור נתיבי קשרי־גומלין"
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:58
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:57
 msgid "Retrieving all sub-filter matches"
-msgstr "אחזור כול התאמות תתי־מסנן"
+msgstr "כל התאמות תתי־המסנן מאוחזרות"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:165
 msgid "Evaluating people"
@@ -4979,7 +4979,7 @@ msgstr "כולם"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:46
 msgid "Matches everyone in the database"
-msgstr "שליפת כול האנשים במסד הנתונים"
+msgstr "שליפת כל האנשים ממסד הנתונים"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:42
 msgid "Families with incomplete events"
@@ -5078,7 +5078,7 @@ msgstr "שליפת אנשים בעלי אב קדמן משותף <מסנן>"
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:49
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
-msgstr "שליפת אנשים בעלי אב קדמון משותף לכול אדם שהמסנן אחזר"
+msgstr "שליפת אנשים בעלי אב קדמון משותף לכל אדם שנמצא עם הסינון"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:49
 msgid "People with the <death data>"
@@ -5369,7 +5369,7 @@ msgstr "אנשים ללא מגדר"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:47
 msgid "Matches all people with unknown gender"
-msgstr "שליפת כול האנשים בעלי מגדר לא ידוע"
+msgstr "שליפת כל האנשים בעלי מגדר לא ידוע"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:43
 msgid "Adopted people"
@@ -5409,7 +5409,7 @@ msgstr "שליפת אָבוֹת קַדמוֹנִים של <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:49
 msgid "Matches people that are ancestors of anybody matched by a filter"
-msgstr "שליפת אנשים שהם אבות קדמונים של כול אדם התואם למסנן"
+msgstr "שליפת אנשים שהם אבות קדמונים של כל אדם התואם למסנן"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:45
 msgid "Bookmarked people"
@@ -5462,7 +5462,7 @@ msgstr "חברי צאצאי משפחה של <משפחה>"
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
-msgstr "שליפת אנשים שהם צאצאים או בני זוג של כול אחד התואם ל מסנן"
+msgstr "שליפת אנשים שהם צאצאים או בני זוג של כל אחד התואם לְמסנן"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:46
 msgid "Descendants of <person>"
@@ -5470,7 +5470,7 @@ msgstr "צאצאים של <אדם>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Matches all descendants for the specified person"
-msgstr "שליפת כול הצאצאים לאדם שצוין"
+msgstr "שליפת כל הצאצאים לאדם שצוין"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:47
 msgid "Descendants of <filter> match"
@@ -5478,7 +5478,7 @@ msgstr "שליפת צאצאים של <מסנן>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:49
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr "שליפת אנשים שהם צאצאים של כול אחד התואם למסנן"
+msgstr "שליפת אנשים שהם צאצאים של כל אחד התואם למסנן"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:47
 msgid "Duplicated ancestors of <person>"
@@ -5500,7 +5500,7 @@ msgstr "מגדר נקבה"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:47
 msgid "Matches all females"
-msgstr "שליפת כול האנשים במגדר נקבה"
+msgstr "שליפת כל האנשים במגדר נקבה"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:45
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:51
@@ -5562,7 +5562,7 @@ msgstr "מגדר זכר"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:47
 msgid "Matches all males"
-msgstr "שליפת כול האנשים במגדר זכר"
+msgstr "שליפת כל האנשים במגדר זכר"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:46
 msgid "Ancestors of <person> at least <N> generations away"
@@ -5782,7 +5782,7 @@ msgstr "אנשים התואמים ל<שם>"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:44
 msgid "Every place"
-msgstr "כול מקום"
+msgstr "כל מקום"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:45
 msgid "Matches every place in the database"
@@ -6070,7 +6070,7 @@ msgstr "המקום שנבחר מכיל קורדנ‏אטות שגויות. נא 
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
-msgstr "כול מאגר"
+msgstr "כל מאגר"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:45
 msgid "Matches every repository in the database"
@@ -6199,7 +6199,7 @@ msgstr "שליפת מאגרים שהוגדרו כפרטי"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:44
 msgid "Every source"
-msgstr "כול מקור"
+msgstr "כל מקור"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:45
 msgid "Matches every source in the database"
@@ -6792,15 +6792,11 @@ msgid "None"
 msgstr "ללא"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
 msgstr "לידה"
 
 #: ../gramps/gen/lib/childreftype.py:69
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
 msgstr "אימוץ"
@@ -9350,9 +9346,9 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"גראפוויז יכול ליצור תרשימים גדולים מאוד על־ידי פיזור התרשים על פני מערך "
+"גרף־וויז יכול ליצור תרשימים גדולים מאוד על־ידי פיזור התרשים על פני מערך "
 "עמודים מלבני. פעולה זו שולטת במספר העמודים במערך במאוזן. תקף רק עבור מסמכי "
-"dot ו־pdf באמצעות גראפוויז."
+"dot ו־pdf באמצעות גרף־וויז."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:175
 msgid "Number of Vertical Pages"
@@ -9364,9 +9360,9 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"גראפוויז יכול ליצור תרשימים גדולים מאוד על־ידי פיזור התרשים על פני מערך "
+"גרף־וויז יכול ליצור תרשימים גדולים מאוד על־ידי פיזור התרשים על פני מערך "
 "עמודים מלבני. פעולה זו שולטת במספר העמודים במערך במאוזן. תקף רק עבור מסמכי "
-"dot ו־pdf באמצעות גראפוויז."
+"dot ו־pdf באמצעות גרף־וויז."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "Paging Direction"
@@ -9863,7 +9859,7 @@ msgstr "תבנית שם"
 
 #: ../gramps/gen/plug/report/stdoptions.py:122
 msgid "Include data marked private"
-msgstr "הכללת נתונים המסומנים כ'פרטי'"
+msgstr "הכללת נתונים המסומנים כפרטיים"
 
 #: ../gramps/gen/plug/report/stdoptions.py:123
 msgid "Whether to include private data"
@@ -9891,7 +9887,7 @@ msgstr "שמות פרטיים הוחלפו ונתונים הוסרו"
 #: ../gramps/gen/plug/report/stdoptions.py:198
 msgctxt "'living people'"
 msgid "Complete names replaced, and data removed"
-msgstr "כול השמות הוחלפו ונתונים הוסרו"
+msgstr "כל השמות הוחלפו ונתונים הוסרו"
 
 #: ../gramps/gen/plug/report/stdoptions.py:201
 msgctxt "'living people'"
@@ -9987,7 +9983,7 @@ msgstr "אדם"
 #: ../gramps/plugins/textreport/summary.py:364
 #: ../gramps/plugins/tool/eventcmp.py:157
 msgid "Entire Database"
-msgstr "כול מסד הנתונים"
+msgstr "כל מסד הנתונים"
 
 #: ../gramps/gen/plug/report/utils.py:300
 #: ../gramps/gui/plug/export/_exportoptions.py:460
@@ -11132,7 +11128,7 @@ msgstr "נא לייצור מסננן מה%s שנבחר..."
 #: ../gramps/gui/columnorder.py:89
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr "מצג עץ: עמודה ראשונה '%s' לא ניתנת לשינוי"
+msgstr "מצג עץ: לא ניתן לשנות את העמודה הראשונה \"%s\""
 
 #: ../gramps/gui/columnorder.py:95
 msgid "Drag and drop the columns to change the order"
@@ -12005,15 +12001,15 @@ msgstr "גיבוי עץ המשפחה ביציאה לנתיב הגיבוי שצו
 
 #: ../gramps/gui/configure.py:1850
 msgid "Every 15 minutes"
-msgstr "כול 15 דקות"
+msgstr "כל רבע שעה"
 
 #: ../gramps/gui/configure.py:1851
 msgid "Every 30 minutes"
-msgstr "כול 30 דקות"
+msgstr "כל חצי שעה"
 
 #: ../gramps/gui/configure.py:1852
 msgid "Every hour"
-msgstr "כול שעה"
+msgstr "כל שעה"
 
 #: ../gramps/gui/configure.py:1857
 msgid "Autobackup"
@@ -12221,8 +12217,8 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"אם בחירתך תהיה להמשיך בייבוא כול היסטוריית הפעולות לשיח הזה תימחק. במיוחד, "
-"לא יהיה ניתן להשיג את הייבוא או כול שינוי שנעשה לפניו.\n"
+"אם בחירתך תהיה להמשיך בייבוא כל היסטוריית הפעולות לשיח הזה תימחק. במיוחד, לא "
+"יהיה ניתן להשיג את הייבוא או כל שינוי שנעשה לפניו.\n"
 "\n"
 "אם ייתכן סיכוי שיהיה ברצונך לבטל את הייבוא, נא לעצור כאן ולגבות את מסד "
 "הנתונים שלך תחילה."
@@ -12256,7 +12252,7 @@ msgstr "ביטול"
 
 #: ../gramps/gui/dbloader.py:253
 msgid "All files"
-msgstr "כול הקבצים"
+msgstr "כל הקבצים"
 
 #: ../gramps/gui/dbloader.py:301
 msgid "Automatically detected"
@@ -12457,7 +12453,7 @@ msgstr "לא ניתן לשנות את שם עץ המשפחה."
 
 #: ../gramps/gui/dbman.py:627
 msgid "Family Tree already exists, choose a unique name."
-msgstr "אילן יוחסין כבר קיים, נא לבחור שם יְחִידָאִי."
+msgstr "אילן היוחסין כבר קיים, נא לבחור שם יחידאי."
 
 #: ../gramps/gui/dbman.py:674
 msgid "Extracting archive..."
@@ -12474,7 +12470,7 @@ msgstr "הסרת אילן יוחסין '%s'?"
 
 #: ../gramps/gui/dbman.py:696
 msgid "Removing this Family Tree will permanently destroy the data."
-msgstr "הסרת אילן היוחסין תשמיד את כול הנתונים לצמיתות."
+msgstr "הסרת אילן היוחסין תשמיד את כל הנתונים לצמיתות."
 
 #: ../gramps/gui/dbman.py:698
 msgid "Remove Family Tree"
@@ -13117,7 +13113,7 @@ msgstr "לא ניתן לערוך הפניה זו"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:326
 msgid "Cannot change Person"
-msgstr "לא יכול לשנות אדם"
+msgstr "לא ניתן לשנות את האדם"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:327
 msgid "You cannot change Person events in the Family Editor"
@@ -14206,7 +14202,7 @@ msgstr "חזרה לעורך השמות"
 
 #: ../gramps/gui/editors/editname.py:413
 msgid "Group all people with the same name?"
-msgstr "קיבוץ כול האנשים בעלי שם זהה?"
+msgstr "לקבוץ את כל האנשים בעלי שם זהה?"
 
 #: ../gramps/gui/editors/editname.py:414
 #, python-format
@@ -14214,12 +14210,12 @@ msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
-"קיימת אפשרות לקיבוץ כול האנשים בשם %(surname)s עם השם %(group_name)s, או רק "
+"קיימת אפשרות לקיבוץ כל האנשים בשם %(surname)s עם השם %(group_name)s, או רק "
 "למפות שם מסוים זה."
 
 #: ../gramps/gui/editors/editname.py:419
 msgid "Group all"
-msgstr "קיבוץ הכל"
+msgstr "לקבץ הכול"
 
 #: ../gramps/gui/editors/editname.py:420
 msgid "Group this name only"
@@ -14524,7 +14520,7 @@ msgstr "לשמור את השינויים?"
 
 #: ../gramps/gui/editors/editprimary.py:245
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "אם תתבצע סגירה ללא שמירה, כול השינויים שנעשו יאבדו"
+msgstr "אם תתבצע סגירה ללא שמירה, כל השינויים שנעשו יאבדו"
 
 #: ../gramps/gui/editors/editreference.py:283
 #: ../gramps/gui/editors/editrepository.py:188
@@ -14749,7 +14745,7 @@ msgstr "גם אירועים בהם האדם הוא בן(ת) זוג"
 
 #: ../gramps/gui/editors/filtereditor.py:577
 msgid "Only include primary participants"
-msgstr "הכללת משתתפים עיקריים בלד"
+msgstr "הכללת משתתפים עיקריים בלבד"
 
 #: ../gramps/gui/editors/filtereditor.py:593
 #: ../gramps/gui/widgets/placewithin.py:73
@@ -14849,7 +14845,7 @@ msgid ""
 "This filter is currently being used as the base for other filters. Deleting "
 "this filter will result in removing all other filters that depend on it."
 msgstr ""
-"מסנן זה משמש כבסיס למסננים אחרים. מחיקת מסנן זה תסיר את כול המסננים האחרים "
+"מסנן זה משמש כבסיס למסננים אחרים. מחיקת מסנן זה תסיר את כל המסננים האחרים "
 "המבוססים עליו."
 
 #: ../gramps/gui/editors/filtereditor.py:1206
@@ -15115,7 +15111,7 @@ msgstr "המרה לנתיב יחסי"
 
 #: ../gramps/gui/glade/baseselector.glade:121
 msgid "Show all"
-msgstr "הצגת הכל"
+msgstr "להציג הכול"
 
 #: ../gramps/gui/glade/baseselector.glade:141
 #: ../gramps/gui/views/treemodels/treebasemodel.py:535
@@ -15201,7 +15197,7 @@ msgstr "_מחיקה"
 
 #: ../gramps/gui/glade/clipboard.glade:38
 msgid "Clear _All"
-msgstr "ניקוי _הכל"
+msgstr "לנקות ה_כול"
 
 #: ../gramps/gui/glade/configure.glade:78
 msgid "Format _name:"
@@ -15294,7 +15290,7 @@ msgstr "_הסרת אובייקט"
 
 #: ../gramps/gui/glade/dialog.glade:259
 msgid "Remove object and all references to it from the database"
-msgstr "הסרת אובייקט ואת כול ההפניות אליו ממסד הנתונים"
+msgstr "הסרת אובייקט ואת כל ההפניות אליו ממסד הנתונים"
 
 #: ../gramps/gui/glade/dialog.glade:270
 msgid "_Keep Reference"
@@ -15314,7 +15310,7 @@ msgstr "נא לבחור חלופה לקובץ החסר"
 
 #: ../gramps/gui/glade/dialog.glade:366
 msgid "_Use this selection for all missing media files"
-msgstr "_שימוש בבחירה זו לכול קבצי המדיה חסרים"
+msgstr "_שימוש בבחירה זו לכל קובצי המדיה החסרים"
 
 #: ../gramps/gui/glade/dialog.glade:370
 msgid ""
@@ -15322,7 +15318,7 @@ msgid ""
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
-"סימון תיבת סימון זו, יביא לכך שכול קבצי המדיה החסרים יטופלו באופן אוטומטי "
+"סימון תיבת סימון זו, יביא לכך שכל קבצי המדיה החסרים יטופלו באופן אוטומטי "
 "בהתאם לאפשרות הנוכחית שנבחרה. לא יוצגו תיבות דו־שיח נוספות עבור קבצי מדיה "
 "חסרים."
 
@@ -15655,7 +15651,7 @@ msgstr "מ_זהה יחודי:"
 
 #: ../gramps/gui/glade/editcitation.glade:240
 msgid "A unique ID to identify the citation"
-msgstr "מזהה יְחִידָאִי למובאה"
+msgstr "מזהה יחידאי למובאה"
 
 #: ../gramps/gui/glade/editcitation.glade:360
 #: ../gramps/gui/glade/editevent.glade:390
@@ -15783,7 +15779,7 @@ msgstr ""
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
 msgid "A unique ID to identify the event"
-msgstr "מזהה יְחִידָאִי לאירוע"
+msgstr "מזהה יחידאי לאירוע"
 
 #: ../gramps/gui/glade/editeventref.glade:85
 #: ../gramps/gui/glade/editplaceref.glade:86
@@ -15800,7 +15796,7 @@ msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
-"<b>הערה:</b> כול שינוי מידע באירוע משותף, ישתקף באירוע עצמו ובכול השותפים "
+"<b>הערה:</b> כל שינוי מידע באירוע משותף, ישתקף באירוע עצמו ובכל השותפים "
 "לאותו אירוע."
 
 #: ../gramps/gui/glade/editeventref.glade:624
@@ -15846,7 +15842,7 @@ msgstr "מידע קשר־גומלין"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
-msgstr "מזהה יְחִידָאִי למשפחה"
+msgstr "מזהה יחידאי למשפחה"
 
 #: ../gramps/gui/glade/editfamily.glade:698
 #: ../gramps/gui/glade/editname.glade:102
@@ -16000,7 +15996,7 @@ msgstr "תיקיה"
 
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
-msgstr "מזהה יְחִידָאִי לפריט המדיה."
+msgstr "מזהה יחידאי לפריט המדיה."
 
 #: ../gramps/gui/glade/editmedia.glade:346
 msgid ""
@@ -16063,7 +16059,7 @@ msgid ""
 "<b>Note:</b> Any changes in the shared media object information will be "
 "reflected in the media object itself."
 msgstr ""
-"<b>הערה:</b> כול שינוי מידע באובייקט מדיה משותף, ישתקף, באובייקט המדיה עצמו."
+"<b>הערה:</b> כל שינוי מידע באובייקט מדיה משותף, ישתקף, באובייקט המדיה עצמו."
 
 #: ../gramps/gui/glade/editmediaref.glade:488
 msgid "Double click image to view in an external viewer"
@@ -16233,7 +16229,7 @@ msgstr "סוג לסיווג ההערה."
 
 #: ../gramps/gui/glade/editnote.glade:179
 msgid "A unique ID to identify the note."
-msgstr "מזהה יְחִידָאִי להערה."
+msgstr "מזהה יחידאי להערה."
 
 #: ../gramps/gui/glade/editnote.glade:190
 msgid "_Preformatted"
@@ -16274,9 +16270,9 @@ msgid ""
 "the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
 "שימוש במספר שמות משפחה\n"
-"מצביע על כך ששם המשפחה מורכב מחלקים שונים. לכול שם משפחה יש קידומת משלו "
-"וקישור אפשרי לשם המשפחה הבא. לדוגמה, שם המשפחה רמון וקאג'אל ניתן לאחסן "
-"כרמון, שעבר בירושה מהאב, הקישור 'ו', ואת קאג'אל, שעבר בירושה מהאם."
+"מצביע על כך ששם המשפחה מורכב מחלקים שונים. לכל שם משפחה יש קידומת משלו "
+"וקישור אפשרי לשם המשפחה הבא. לדוגמה, שם המשפחה \"אלמוני־ראובני\" ניתן לאחסון "
+"בתור \"אלמוני\", שעבר בירושה מהאב, המקף (־), ו־\"ראובני\", שעבר בירושה מהאם."
 
 #: ../gramps/gui/glade/editperson.glade:399
 msgid "Set person as private data"
@@ -16284,7 +16280,7 @@ msgstr "הגדרת אדם כמידע פרטי"
 
 #: ../gramps/gui/glade/editperson.glade:450
 msgid "_Surname:"
-msgstr "_שם משפחה:"
+msgstr "שם _משפחה:"
 
 #: ../gramps/gui/glade/editperson.glade:466
 msgid ""
@@ -16295,7 +16291,7 @@ msgstr "קידומת חלופית לשם המשפחה שאינה משמשת למ
 #: ../gramps/gui/glade/editperson.glade:485
 msgid ""
 "Part of a person's name indicating the family to which the person belongs"
-msgstr "חלק משמו של אדם כולל המשפחה אילה הוא משתייך"
+msgstr "חלק משמו של אדם כולל המשפחה אליה הוא משתייך"
 
 #: ../gramps/gui/glade/editperson.glade:511
 msgid "Go to Name Editor to add more information about this name"
@@ -16317,7 +16313,7 @@ msgstr "מ_גדר:"
 
 #: ../gramps/gui/glade/editperson.glade:633
 msgid "A unique ID for the person."
-msgstr "מזהה יְחִידָאִי לאדם."
+msgstr "מזהה יחידאי לאדם."
 
 #: ../gramps/gui/glade/editperson.glade:708
 msgid "Preferred Name"
@@ -16342,7 +16338,7 @@ msgstr ""
 "תיאור השיוך, לדוגמה. הסנדק, חבר, ...\n"
 "\n"
 "הערה: נא להשתמש באירועים לקשרים הקשורים למסגרות זמן או לאירועים ספציפיים. "
-"ניתן לשתף אירועים בין אנשים, כאשר לכול אחד ניתן לציין את תפקידו באירוע."
+"ניתן לשתף אירועים בין אנשים, כאשר לכל אחד ניתן לציין את תפקידו באירוע."
 
 #: ../gramps/gui/glade/editpersonref.glade:176
 msgid ""
@@ -16424,7 +16420,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:267
 #: ../gramps/gui/glade/editplaceref.glade:496
 msgid "A unique ID to identify the place"
-msgstr "מזהה יְחִידָאִי למקום"
+msgstr "מזהה יחידאי למקום"
 
 #: ../gramps/gui/glade/editplace.glade:295
 #: ../gramps/gui/glade/editplaceref.glade:524
@@ -16493,7 +16489,7 @@ msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be "
 "reflected in the place itself, for places that it encloses."
 msgstr ""
-"<b>הערה:</b> כול שינוי במידע מקומות מכילים ישתקף במקום עצמו, עבור המקומות "
+"<b>הערה:</b> כל שינוי במידע מקומות מכילים ישתקף במקום עצמו, עבור המקומות "
 "המוכלים."
 
 #: ../gramps/gui/glade/editreporef.glade:127
@@ -16530,13 +16526,13 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>הערה:</b> כול שינוי במידע במאגרים המשותפים ישתקף במאגר עצמו, עבור כול "
+"<b>הערה:</b> כל שינוי במידע במאגרים המשותפים ישתקף במאגר עצמו, עבור כל "
 "המקומות שמפנים למאגר."
 
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr "מזהה יְחִידָאִי למאגר מידע."
+msgstr "מזהה יחידאי למאגר מידע."
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
@@ -16577,7 +16573,7 @@ msgstr "_קיצור:"
 
 #: ../gramps/gui/glade/editsource.glade:214
 msgid "A unique ID to identify the source"
-msgstr "מזהה יְחִידָאִי למקור"
+msgstr "מזהה יחידאי למקור"
 
 #: ../gramps/gui/glade/editurl.glade:96
 msgid "_Web address:"
@@ -17053,7 +17049,7 @@ msgstr "הערה: השינויים ישתקפו רק לאחר סגירת חלו�
 
 #: ../gramps/gui/glade/rule.glade:288
 msgid "All rules must apply"
-msgstr "כול הכללים חייבים לחול"
+msgstr "כל הכללים חייבים לחול"
 
 #: ../gramps/gui/glade/rule.glade:291
 msgid "At least one rule must apply"
@@ -17710,8 +17706,8 @@ msgid ""
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
-"נא לבדוק את המידע שלהלן ולתקן כול פרט שעשוי להיות שגוי וכן להסיר כול דבר "
-"שעדיף שלא יכללו בדוח התקל."
+"נא לבדוק את המידע שלהלן ולתקן כל פרט שעשוי להיות שגוי וכן להסיר כל דבר שעדיף "
+"שלא יכללו בדוח התקל."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:409
 #: ../gramps/gui/logger/_errorreportassistant.py:435
@@ -17728,7 +17724,7 @@ msgstr "מידע על המערכת שיסייע למפתחים לתקן את ה�
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occurred."
-msgstr "נא לספק מידע רב ככול האפשר על מה שנעשה בזמן שארעה השגיאה."
+msgstr "נא לספק מידע רב ככל האפשר על מה שנעשה בזמן שארעה השגיאה."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:482
 #: ../gramps/gui/logger/_errorreportassistant.py:507
@@ -17979,7 +17975,7 @@ msgid ""
 msgstr ""
 "האנשים מוזגו.\n"
 "עם זאת, המשפחות במיזוג זה היו מורכבות מדי כדי לטפל בהן באופן אוטומטי.  מומלץ "
-"לעבור למצג ' קשרי־גומלין ' ולבדוק אם נדרש מיזוג משפחות נוסף באופן ידני."
+"לעבור למצג קשרי הגומלין ולבדוק אם נדרש מיזוג משפחות נוסף באופן ידני."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
@@ -18148,11 +18144,11 @@ msgstr "התקנת תוסף"
 
 #: ../gramps/gui/plug/_windows.py:273
 msgid "Install All Addons"
-msgstr "התקנת כול התוספים"
+msgstr "התקנת כל התוספים"
 
 #: ../gramps/gui/plug/_windows.py:276
 msgid "Refresh Addon List"
-msgstr "רענון רשימת תוספים"
+msgstr "ריענון רשימת התוספים"
 
 #: ../gramps/gui/plug/_windows.py:289
 msgid "Reload"
@@ -18160,7 +18156,7 @@ msgstr "טעינה מחדש"
 
 #: ../gramps/gui/plug/_windows.py:316
 msgid "Refreshing Addon List"
-msgstr "רענון רשימת תוספים"
+msgstr "ריענון רשימת התוספים"
 
 #: ../gramps/gui/plug/_windows.py:318 ../gramps/gui/plug/_windows.py:323
 #: ../gramps/gui/plug/_windows.py:418
@@ -18181,7 +18177,7 @@ msgstr "מען URL לא ידועה"
 
 #: ../gramps/gui/plug/_windows.py:396
 msgid "Install all Addons"
-msgstr "התקנת כול התוספים"
+msgstr "התקנת כל התוספים"
 
 #: ../gramps/gui/plug/_windows.py:396
 msgid "Installing..."
@@ -18308,29 +18304,20 @@ msgid ""
 "\n"
 "Format:\t%s"
 msgstr ""
+"הנתונים יישמרו כך:\n"
+"\n"
+"תבנית:\t%s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
-#, fuzzy
-#| msgid ""
-#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"נא להקיש על 'החלה' כדי להמשיך, 'ביטול' כדי לנטוש או 'אחורה' כדי לבחון את "
-"האפשרויות."
+"יש ללחוץ על \"ביטול\" כדי לבטל, על \"חזרה\" כדי לעבור שוב על האפשרויות "
+"שבחרת, או על \"החלה\" כדי להמשיך"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
-#, fuzzy, python-format
-#| msgid ""
-#| "The data will be saved as follows:\n"
-#| "\n"
-#| "Format:\t%(format)s\n"
-#| "Name:\t%(name)s\n"
-#| "Folder:\t%(folder)s\n"
-#| "\n"
-#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
-#| "abort"
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -18338,36 +18325,26 @@ msgid ""
 "Name:\t%(name)s\n"
 "Folder:\t%(folder)s"
 msgstr ""
-"המידע ישמר בצורה הבאה:\n"
+"הנתונים יישמרו כך:\n"
 "\n"
 "תבנית:\t%(format)s\n"
 "שם:\t%(name)s\n"
-"תיקייה:\t%(folder)s\n"
-"\n"
-"נא להקיש 'החלה' על מנת להמשיך, 'חזרה' על מנת לשנות את האפשרויות, או 'ביטול' "
-"לנטישה"
+"תיקייה:\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
-#, fuzzy
-#| msgid "=format"
 msgctxt "name"
 msgid "format"
-msgstr "=תבנית"
+msgstr "תבנית"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
-#, fuzzy
-#| msgid ""
-#| "The selected file and folder to save to cannot be created or found.\n"
-#| "\n"
-#| "Press Back to return and select a valid filename."
 msgid ""
 "The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"הקובץ והתיקייה שנבחרו לשמירה, לא נמצאו או שלא ניתנים ליצירה.\n"
+"הקובץ והתיקייה שנבחרו לשמירה, לא נמצאו או שלא ניתן ליצור אותם.\n"
 "\n"
-"נא להקיש על 'חזרה' על מנת לבחור שם קובץ תקין."
+"נא ללחוץ על \"חזרה\" כדי לחזור ולבחור שם קובץ תקין."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:502
 msgid "Your data has been saved"
@@ -18421,15 +18398,15 @@ msgid ""
 "If you change your mind during this process, you can safely press the Cancel "
 "button at any time and your present database will still be intact."
 msgstr ""
-"בנסיבות רגילות אין צורך לשמור באופן ישיר את השינויים. כול השינויים המבוצעים "
+"בנסיבות רגילות אין צורך לשמור באופן ישיר את השינויים. כל השינויים המבוצעים "
 "נשמרים מיידית אל מסד הנתונים.\n"
 "\n"
 "תהליך זה יעזור לשמור עותק של הנתונים באחד מהתבניות הנתמכות. ניתן להשתמש בכך "
 "ליצירת עותק של הנתונים לגיבוי או על מנת להמירם לתבנית שתאפשר העברת הנתונים "
 "לתוכנה אחרת.\n"
 "\n"
-"ניתן להפסיק את התהליך בבטחה בכול עת תוך הקשה על מקש 'ביטול'. מסד הנתונים "
-"הנוכחי לא ינזק."
+"ניתן להפסיק את התהליך בבטחה בכל עת תוך הקשה על מקש 'ביטול'. מסד הנתונים "
+"הנוכחי לא יינזק."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:596
 msgid "Error exporting your Family Tree"
@@ -18555,11 +18532,11 @@ msgstr "נא לבחור במסנן אחר לעריכה"
 #: ../gramps/gui/plug/export/_exportoptions.py:714
 #: ../gramps/gui/plug/export/_exportoptions.py:738
 msgid "Include all selected people"
-msgstr "הכללת כול האנשים שנבחרו"
+msgstr "הכללת כל האנשים שנבחרו"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:728
 msgid "Include all selected notes"
-msgstr "הכללת כול ההערות שנבחרו"
+msgstr "הכללת כל ההערות שנבחרו"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:739
 msgid "Replace given names of living people"
@@ -18567,7 +18544,7 @@ msgstr "החלפת שמות פרטיים של אנשים חיים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:740
 msgid "Replace complete name of living people"
-msgstr "החלפת שמות לכול האנשים החיים"
+msgstr "החלפת שמות לכל האנשים החיים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:741
 msgid "Do not include living people"
@@ -18575,7 +18552,7 @@ msgstr "לא לכלול אנשים חיים"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:750
 msgid "Include all selected records"
-msgstr "הכללת כול הרשומות שנבחרו"
+msgstr "הכללת כל הרשומות שנבחרו"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:751
 msgid "Do not include records not linked to a selected person"
@@ -19000,8 +18977,8 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"התקדמות עם כלי זה ימחק את כול ההיסטוריה בשיח זה. במיוחד, לא ניתן יהיה להסיג "
-"את השינויים שנעשו באמצעות כלי זה או כול שינוי שנעשה לפניו.\n"
+"התקדמות עם כלי זה ימחק את כל ההיסטוריה בשיח זה. במיוחד, לא ניתן יהיה להסיג "
+"את השינויים שנעשו באמצעות כלי זה או כל שינוי שנעשה לפניו.\n"
 "\n"
 "אם יידרש להסיג את תוצאות ריצת כלי זה, נא לגבות את מסד הנתונים תחילה."
 
@@ -19483,8 +19460,8 @@ msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
 msgstr ""
-"פריט זה נמצא כעת בשימוש. מחיקה תגרום להסרתו ממסד הנתונים ומכול הפריטים "
-"האחרים המפנים אליו."
+"פריט זה נמצא כעת בשימוש. מחיקה תגרום להסרתו ממסד הנתונים ומכל הפריטים האחרים "
+"המפנים אליו."
 
 #: ../gramps/gui/views/listview.py:665
 #: ../gramps/plugins/lib/libpersonview.py:448
@@ -19640,7 +19617,7 @@ msgstr "למחוק תג '%s'?"
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
-msgstr "הגדרת התג תוסר. התג יוסר גם מכול הרשומות במסד הנתונים."
+msgstr "הגדרת התג תוסר. התג יוסר גם מכל הרשומות במסד הנתונים."
 
 #: ../gramps/gui/views/tags.py:596
 #, python-format
@@ -20231,7 +20208,7 @@ msgstr "צהוב"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:360
 msgid "The color, if any, of the SVG background"
-msgstr "הצבע, ככול שקיים, של רקע SVG"
+msgstr "הצבע, אם קיים, של רקע ה־SVG"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:115
 msgid "Ancestor Graph"
@@ -20377,7 +20354,7 @@ msgstr "הכללת מספרי עמוד"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
 msgid "Whether to print page numbers on each page."
-msgstr "האם להדפיס מספרי עמודים בכול עמוד."
+msgstr "האם להדפיס מספרי עמודים בכל עמוד."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:859
 #: ../gramps/plugins/drawreport/descendtree.py:1602
@@ -21056,7 +21033,7 @@ msgstr "תרשים בני דודים עבור [names of children]"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1599
 msgid "Whether to include page numbers on each page."
-msgstr "האם לכלול מספרי עמוד בכול עמוד."
+msgstr "האם לכלול מספרי עמוד בכל עמוד."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1660
 msgid ""
@@ -21277,12 +21254,12 @@ msgstr "ציור הרקע למרות שאין מידע"
 
 #: ../gramps/plugins/drawreport/fanchart.py:748
 msgid "Use one font style for all generations"
-msgstr "שימוש בגופן אחיד לכול הדורות"
+msgstr "שימוש בגופן אחיד לכל הדורות"
 
 #: ../gramps/plugins/drawreport/fanchart.py:750
 msgid ""
 "You can customize font and color for each generation in the style editor"
-msgstr "ניתן לתצר גופן וצבע לכול דור בעורך הסגנון"
+msgstr "אפשר להתאים אישית גופן וצבע לכל דור ודור בעורך הסגנונות"
 
 #: ../gramps/plugins/drawreport/fanchart.py:806
 #, python-format
@@ -21956,8 +21933,8 @@ msgid ""
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
 "נא להזין תאריך חוקי (כגון YYYY-MM-DD) ברשומה שלהלן והקשה על 'הרצה'. מהלך זה "
-"יחשב את הגילאים לכול אדם באילן היוחסין לתאריך שהוזן. לאחר מכן ניתן יהיה "
-"למיין לפי עמודת הגיל, הקשה כפולה על שורה תאפשר הצגה או עריכה."
+"יחשב את הגילאים לכל אדם באילן היוחסין לתאריך שהוזן. לאחר מכן ניתן יהיה למיין "
+"לפי עמודת הגיל, הקשה כפולה על שורה תאפשר הצגה או עריכה."
 
 #: ../gramps/plugins/gramplet/agestats.py:82
 #: ../gramps/plugins/gramplet/agestats.py:90
@@ -22046,8 +22023,7 @@ msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
-"נא להקיש כפולה על השורה להצגת דוח מהיר עם כול האנשים החולקים את התכונה "
-"שנבחרה."
+"נא להקיש כפולה על השורה להצגת דוח מהיר עם כל האנשים החולקים את התכונה שנבחרה."
 
 #: ../gramps/plugins/gramplet/attributes.py:56
 #: ../gramps/plugins/lib/libmetadata.py:172
@@ -22314,17 +22290,17 @@ msgstr "אין אילן יוחסין טעון."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:150
 msgid "Total unique given names"
-msgstr "סך־כול שמות פרטיים יחידאים"
+msgstr "סך־כל השמות הפרטיים היחידאיים"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:152
 msgid "Total given names showing"
-msgstr "סך־כול שמות פרטיים מוצגים"
+msgstr "סך־כל השמות הפרטיים שמוצגים"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:153
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:177
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:113
 msgid "Total people"
-msgstr "סך־כול אנשים"
+msgstr "סך־כל האנשים"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:46
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:54
@@ -22419,7 +22395,7 @@ msgstr "ענן שם פרטי"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:187
 msgid "Gramplet showing all given names as a text cloud"
-msgstr "גרמפלט להצגת כול השמות הפרטיים כענן מלל"
+msgstr "גרמפלט להצגת כל השמות הפרטיים כענן מלל"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:200
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:206
@@ -22449,7 +22425,7 @@ msgstr "לוג שיח"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:250
 msgid "Gramplet showing all activity for this session"
-msgstr "גרמפלט להצגת כול הפעילות לשיח זה"
+msgstr "גרמפלט להצגת כל הפעילות לשיח זה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:264
 msgid "Gramplet showing summary data of the Family Tree"
@@ -22462,7 +22438,7 @@ msgstr "ענן שמות משפחה"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:278
 msgid "Gramplet showing all surnames as a text cloud"
-msgstr "גרמפלט להצגת כול שמות המשפחה כענן מלל"
+msgstr "גרמפלט להצגת כל שמות המשפחה כענן מלל"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:291
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:298
@@ -23108,7 +23084,7 @@ msgstr "קואורדינטות גאוגרפיות לאירועים משפחתי�
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1352
 msgid "Gramplet showing the events for all the family"
-msgstr "גרמפלט להצגת אירועים לכול המשפחה"
+msgstr "גרמפלט להצגת אירועים לכל המשפחה"
 
 #: ../gramps/plugins/gramplet/leak.py:99
 msgid "Referrer"
@@ -23120,11 +23096,11 @@ msgstr "אובייקט שלא נאסף"
 
 #: ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
-msgstr "רענון"
+msgstr "ריענון"
 
 #: ../gramps/plugins/gramplet/leak.py:122
 msgid "Press Refresh to see initial results"
-msgstr "נא להקיש על רענון לצפ‎יה בתוצאות ראשוניות"
+msgstr "אפשר ללחוץ על \"ריענון\" כדי לצפ‎ות בתוצאות ראשוניות"
 
 #: ../gramps/plugins/gramplet/leak.py:158
 #, python-format
@@ -23255,11 +23231,11 @@ msgstr[1] " ‫{count_person} מ־ {max_count_person} אנשים ({percent} הו
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:279
 msgid "All generations"
-msgstr "כול הדורות"
+msgstr "כל הדורות"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:280
 msgid "Double-click to see all generations"
-msgstr "נא להקיש כפולה להצגת כול הדורות"
+msgstr "לחיצה כפולה להצגת כל הדורות"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:283
@@ -23429,7 +23405,7 @@ msgstr "מידע משפחתי"
 #: ../gramps/plugins/gramplet/statsgramplet.py:175
 #: ../gramps/plugins/webreport/statistics.py:135
 msgid "Unique surnames"
-msgstr "שמות משפחה יְחִידָאִיים"
+msgstr "שמות משפחה יחידאיים"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:179
 #: ../gramps/plugins/importer/importxml.py:276
@@ -23445,17 +23421,17 @@ msgstr "אנשים עם אובייקטי מדי"
 #: ../gramps/plugins/gramplet/statsgramplet.py:185
 #: ../gramps/plugins/webreport/statistics.py:141
 msgid "Total number of media object references"
-msgstr "סך־כול הפניות לאובייקטי מדיה"
+msgstr "סך־כל הפניות לאובייקטי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:189
 #: ../gramps/plugins/webreport/statistics.py:143
 msgid "Number of unique media objects"
-msgstr "מספר אובייקטי מדיה יְחִידָאִיים"
+msgstr "מספר אובייקטי מדיה יחידאיים"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:194
 #: ../gramps/plugins/webreport/statistics.py:145
 msgid "Total size of media objects"
-msgstr "סך־כול נפח אובייקטי מדיה"
+msgstr "סך־כל נפח אובייקטי מדיה"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:198
 #: ../gramps/plugins/textreport/summary.py:329
@@ -23489,11 +23465,11 @@ msgstr "גודל גופן מרבי"
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:174
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:111
 msgid "Total unique surnames"
-msgstr "סך־כול שמות משפחה יְחִידָאִים"
+msgstr "סך־כל שמות המשפחה היחידאיים"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:176
 msgid "Total surnames showing"
-msgstr "סך־כול שמות משפחה מוצגים"
+msgstr "סך־כל שמות המשפחה שמוצגים"
 
 #: ../gramps/plugins/gramplet/todo.py:60
 #: ../gramps/plugins/gramplet/todogramplet.py:60
@@ -24022,7 +23998,7 @@ msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"תרשימי משנה יכולים לעזור ל־ גראפויז למקם בני זוג יחד, אבל בתרשימים לא "
+"תרשימי משנה יכולים לעזור ל\"גרף־וויז\" למקם בני זוג יחד, אבל בתרשימים לא "
 "שגרתיים הדבר יביא לקווים ארוכים יותר ותרשימים גדולים יותר."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:192
@@ -24300,7 +24276,7 @@ msgid ""
 "that fathers are always on the left branch and mothers are on the right "
 "branch."
 msgstr ""
-"אילוץ סדר הפריסה Sosa/‏Sosa־סטראדונץ/אננטופל לכול האבות הקדמונים, כך שאבות "
+"אילוץ סדר הפריסה Sosa/‏Sosa־סטראדונץ/אננטופל לכל האבות הקדמונים, כך שאבות "
 "יופיעו תמיד בענף השמאלי ואימהות בענף הימני."
 
 #: ../gramps/plugins/graph/gvhourglass.py:443
@@ -24311,7 +24287,7 @@ msgstr "מספרי טבלת אָבוֹת קַדמוֹנִים גלויים"
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
 "informations."
-msgstr "הצגת מספר Sosa / ‏Sosa־סטראדונץ / אננטפל תחת כול המידע האחר."
+msgstr "הצגת מספר Sosa / ‏Sosa־סטראדונץ / אננטפל תחת כל המידע האחר."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:209
 #: ../gramps/plugins/textreport/indivcomplete.py:836
@@ -24338,7 +24314,7 @@ msgstr "תאריכים ו/או מקומות"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:867
 msgid "Do not include any dates or places"
-msgstr "לא לכלול כול מקום או תאריך"
+msgstr "לא לכלול תאריכים או מקומות כלל"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:868
 msgid "Include (birth, marriage, death) dates, but no places"
@@ -24374,7 +24350,7 @@ msgstr "האם לכלול תאריכים ו/או מקומות"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid "Show all family nodes"
-msgstr "הצגת כול צמתי המשפחה"
+msgstr "הצגת כל צמתי המשפחה"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:887
 msgid ""
@@ -24418,7 +24394,7 @@ msgstr "הכללת מקצוע"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:923
 msgid "Do not include any occupation"
-msgstr "לא לכלול כול מקצוע"
+msgstr "לא לכלול מקצועות כלל"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:924
 msgid "Include description of most recent occupation"
@@ -24426,7 +24402,7 @@ msgstr "הכללת תאור המקצוע האחרון"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:926
 msgid "Include date, description and place of all occupations"
-msgstr "הכללת תאריך, תיאור ומקום של כול המקצועות"
+msgstr "הכללת התאריך, התיאור והמקום של כל המקצועות"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:928
 msgid "Whether to include the last occupation"
@@ -25189,7 +25165,7 @@ msgid ""
 "to all Tag Text'."
 msgstr ""
 "העתקת מלל ברירת מחדל\n"
-"לכול תגי המלל."
+"לכל תגיות המלל."
 
 #: ../gramps/plugins/importer/importprogen.glade:1130
 msgid ""
@@ -25197,7 +25173,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "העתקת שם קובץ ברירת מחדל\n"
-"לכול תגי המלל הרגישים."
+"לכל תגיות המלל הרגישות."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
 msgid ""
@@ -25205,7 +25181,7 @@ msgid ""
 "to all sensitive Tag Text'."
 msgstr ""
 "העתקת תאריך ברירת מחדל\n"
-"לכול תגי המלל הרגישים."
+"לכל תגיות המלל הרגישות."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
@@ -25217,7 +25193,7 @@ msgid ""
 "all object tags."
 msgstr ""
 "אפשור/נטרול\n"
-"כול תגי האובייקטים."
+"כל תגיות האובייקטים."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
@@ -25578,7 +25554,7 @@ msgid ""
 "Preferences."
 msgstr ""
 "הקובץ שנפתח כולל את נתיב המדיה %s, המתנגש עם נתיב המדיה של אילן היוחסין "
-"לתוכו מיבאים. נתיב המדיה המקורי נשמר. נא להעתיק את הקבצים למחיצה נכונה או "
+"לתוכו מייבאים. נתיב המדיה המקורי נשמר. נא להעתיק את הקבצים למחיצה נכונה או "
 "לשנות את נתיב המדיה בהעדפות."
 
 #: ../gramps/plugins/importer/importxml.py:1008
@@ -25667,11 +25643,11 @@ msgstr "שם עד: %s"
 
 #: ../gramps/plugins/importer/importxml.py:1285
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "התכונה 'hlink' חייבת להימצא בכול הפנית אירוע."
+msgstr "התכונה 'hlink' חייבת להימצא בכל הפניית אירוע."
 
 #: ../gramps/plugins/importer/importxml.py:1557
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "התכונה 'hlink' חייבת להימצא בכול הפנית אדם."
+msgstr "התכונה 'hlink' חייבת להימצא בכל הפניית אדם."
 
 #: ../gramps/plugins/importer/importxml.py:1746
 #, python-format
@@ -25692,7 +25668,7 @@ msgstr "לא ידוע בזמן יובא"
 
 #: ../gramps/plugins/importer/importxml.py:1978
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "התכונה 'hlink' חייבת להימצא בכול הפנית הערה."
+msgstr "התכונה 'hlink' חייבת להימצא בכל הפניית הערה."
 
 #. Translators: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
@@ -30598,42 +30574,42 @@ msgstr "הערה הופכית"
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgctxt "Filtering_on"
 msgid "all people"
-msgstr "כול האנשים"
+msgstr "כל האנשים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:51
 msgctxt "Filtering_on"
 msgid "all families"
-msgstr "כול המשפחות"
+msgstr "כל המשפחות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
 msgctxt "Filtering_on"
 msgid "all events"
-msgstr "כול האירועים"
+msgstr "כל האירועים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:53
 msgctxt "Filtering_on"
 msgid "all places"
-msgstr "כול המקומות"
+msgstr "כל המקומות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:54
 msgctxt "Filtering_on"
 msgid "all sources"
-msgstr "כול המקורות"
+msgstr "כל המקורות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:55
 msgctxt "Filtering_on"
 msgid "all repositories"
-msgstr "כול המאגרים"
+msgstr "כל המאגרים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgctxt "Filtering_on"
 msgid "all media"
-msgstr "כול המדיה"
+msgstr "כל המדיה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgctxt "Filtering_on"
 msgid "all notes"
-msgstr "כול ההערות"
+msgstr "כל ההערות"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgctxt "Filtering_on"
@@ -30668,7 +30644,7 @@ msgstr "אנשים מנותקים"
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgctxt "Filtering_on"
 msgid "unique surnames"
-msgstr "שמות משפחה יְחִידָאִיים"
+msgstr "שמות משפחה יחידאיים"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
 msgctxt "Filtering_on"
@@ -30683,7 +30659,7 @@ msgstr "הפניות מדיה"
 #: ../gramps/plugins/quickview/filterbyname.py:70
 msgctxt "Filtering_on"
 msgid "unique media"
-msgstr "מדיה יְחִידָאִית"
+msgstr "מדיה יחידאית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:71
 msgctxt "Filtering_on"
@@ -30761,7 +30737,7 @@ msgstr "מדיה"
 
 #: ../gramps/plugins/quickview/filterbyname.py:381
 msgid "Unique Media"
-msgstr "מדיה יְחִידָאִית"
+msgstr "מדיה יחידאית"
 
 #: ../gramps/plugins/quickview/filterbyname.py:388
 msgid "Missing Media"
@@ -30913,7 +30889,7 @@ msgstr "הצגת אנשים בעלי אותה תכונה."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:75
 msgid "All Events"
-msgstr "כול האירועים"
+msgstr "כל האירועים"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:76
 msgid "Display a person's events, both personal and family."
@@ -30921,7 +30897,7 @@ msgstr "הצגת אירועים לאדם, כולל אירועים אישיים �
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:90
 msgid "All Family Events"
-msgstr "כול אירועי המשפחה"
+msgstr "כל אירועי המשפחה"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:91
 msgid "Display the family and family members events."
@@ -30933,7 +30909,7 @@ msgstr "קרבה לאדם הבית"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:111
 msgid "Display all relationships between person and home person."
-msgstr "הצגת כול קשרי־הגומלין בין האדם והאדם הבית."
+msgstr "הצגת כל קשרי־הגומלין בין האדם והאדם הבית."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:131
 msgid "Display filtered data"
@@ -31268,7 +31244,7 @@ msgstr "מפתח"
 #: ../gramps/plugins/textreport/alphabeticalindex.py:89
 #: ../gramps/plugins/textreport/tableofcontents.py:88
 msgid "Entire Book"
-msgstr "כול הספר"
+msgstr "כל הספר"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:197
 #, python-format
@@ -31285,11 +31261,11 @@ msgstr "מעבר עמוד בין דורות"
 #: ../gramps/plugins/textreport/detancestralreport.py:848
 #: ../gramps/plugins/textreport/detdescendantreport.py:1037
 msgid "Whether to start a new page after each generation."
-msgstr "האם להתחיל עמוד חדש אחרי כול דור."
+msgstr "האם להתחיל עמוד חדש אחרי כל דור."
 
 #: ../gramps/plugins/textreport/ancestorreport.py:306
 msgid "Add linebreak after each name"
-msgstr "הוספת מעבר עמוד אחרי כול שם"
+msgstr "הוספת מעבר עמוד אחרי כל שם"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:307
 msgid "Whether a line break should follow the name."
@@ -31980,7 +31956,7 @@ msgstr "הכללת נתיב לאדם המרכזי"
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
-msgstr "האם לכלול נתיב צאצאים מהדאם ההתחלתי לכול צאצא."
+msgstr "האם לכלול נתיב צאצאים מהאדם ההתחלתי לכל צאצא."
 
 #: ../gramps/plugins/textreport/endoflinereport.py:159
 #, python-format
@@ -31990,7 +31966,7 @@ msgstr "דוח סוף הקו עבור %s"
 #: ../gramps/plugins/textreport/endoflinereport.py:166
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "כול האָבוֹת קַדמוֹנִים של %s שחסר להם הורה"
+msgstr "כל האבות הקדמונים של %s שחסר להם הורה"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:308
 #: ../gramps/plugins/textreport/placereport.py:519
@@ -32046,7 +32022,7 @@ msgstr "רקורסיבי (מטה)"
 
 #: ../gramps/plugins/textreport/familygroup.py:722
 msgid "Create reports for all descendants of this family."
-msgstr "יצירת דוחות עבור כול הצאצאים של המשפחה."
+msgstr "יצירת דוחות לכל הצאצאים של המשפחה."
 
 #: ../gramps/plugins/textreport/familygroup.py:751
 msgid "Parent Marriage"
@@ -32118,7 +32094,7 @@ msgstr "מספר דורות (רקורסיבי בלבד)"
 
 #: ../gramps/plugins/textreport/familygroup.py:800
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "האם לכלול את הדורות בכול דוח (רקורסיבי בלבד)."
+msgstr "האם לכלול את הדורות בכל דוח (רקורסיבי בלבד)."
 
 #: ../gramps/plugins/textreport/familygroup.py:804
 msgid "Print fields for missing information"
@@ -32202,7 +32178,7 @@ msgstr "האם לצטט מקורות."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1143
 msgid "Include Tags"
-msgstr "כולל תגים"
+msgstr "לכלול תגיות"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1144
 msgid "Whether to include tags."
@@ -32323,7 +32299,7 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
-"סך־כול אָבוֹת קַדמוֹנִים בדורות %(second_generation)d עד %(last_generation)d הוא "
+"סך־כל האבות הקדמונים בדורות %(second_generation)d עד %(last_generation)d הוא "
 "%(count)d. %(percent)s"
 
 #: ../gramps/plugins/textreport/placereport.py:128
@@ -32346,7 +32322,7 @@ msgstr "מזהה: %s "
 #, python-format
 msgctxt "places"
 msgid "All Names: %s"
-msgstr "כול השמות: %s"
+msgstr "כל השמות: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:221
 msgid "Events that happened at this place"
@@ -32418,7 +32394,7 @@ msgstr "החלפת שם פרטי בשם פניה"
 
 #: ../gramps/plugins/textreport/recordsreport.py:236
 msgid "Underline call name in first names / add call name to first name"
-msgstr "סימון בקו תחתון שם פניה בשם פרטי / הוספת שם פניה לכול השמות הפרטיים"
+msgstr "סימון בקו תחתון שם פניה בשם פרטי / הוספת שם פניה לכל השמות הפרטיים"
 
 #: ../gramps/plugins/textreport/recordsreport.py:240
 msgid "Footer text"
@@ -32520,7 +32496,7 @@ msgstr "אנשים מנותקים: %d"
 #: ../gramps/plugins/textreport/summary.py:204
 #, python-format
 msgid "Unique surnames: %d"
-msgstr "שמות משפחה יְחִידָאִיים: %d"
+msgstr "שמות משפחה יחידאיים: %d"
 
 #: ../gramps/plugins/textreport/summary.py:208
 #, python-format
@@ -32580,12 +32556,12 @@ msgstr "מספר מאגרים: %d"
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
 msgid "Number of unique media objects: %d"
-msgstr "מספר אובייקטי מדיה יְחִידָאִיים: %d"
+msgstr "מספר אובייקטי מדיה יחידאיים: %d"
 
 #: ../gramps/plugins/textreport/summary.py:323
 #, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "סך־כול נפח אובייקטי המדיה: %s MB"
+msgstr "סך־כל נפח אובייקטי המדיה: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:342
 msgid "Note Information"
@@ -32662,7 +32638,7 @@ msgstr "דוח צאצאים"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:104
 msgid "Produces a list of descendants of the active person"
-msgstr "יצירת רשימת כול הצאצאים של האדם הפעיל"
+msgstr "יצירת רשימת כל הצאצאים של האדם הפעיל"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:125
 msgid "Detailed Ancestral Report"
@@ -32815,8 +32791,8 @@ msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
-"כלי זה ישנה את שמות כול האירועים מסוג אחד לסוג אחד. לאחר השלמת הריצה, לא "
-"ניתן להסיג הפעולה בפעולת הסגה הרגילה."
+"כלי זה ישנה את שמות כל האירועים מסוג אחד לסוג אחד. לאחר השלמת הריצה, לא ניתן "
+"להסיג הפעולה בפעולת הסגה הרגילה."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
@@ -33307,7 +33283,7 @@ msgstr "%d קישורים נכנסים פגומים תוקנו;\n"
 #: ../gramps/plugins/tool/rebuildrefmap.py:88
 #: ../gramps/plugins/tool/rebuildrefmap.py:91
 msgid "All reference maps have been rebuilt."
-msgstr "כול מפות הייחוס נבנו מחדש."
+msgstr "כל מפות הייחוס נבנו מחדש."
 
 #: ../gramps/plugins/tool/check.py:2784
 #, python-format
@@ -33559,7 +33535,7 @@ msgstr "התחלה"
 
 #: ../gramps/plugins/tool/findloop.py:95
 msgid "Looking for possible loop for each person"
-msgstr "איתור לולאות אפשריות לכול אדם"
+msgstr "איתור לולאות אפשריות לכל אדם"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
 msgctxt "manual"
@@ -33822,7 +33798,7 @@ msgstr "לא קשור"
 #: ../gramps/plugins/tool/notrelated.py:173
 #, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "כול האנשים במסד הנתונים קשורים ל־%s"
+msgstr "כל האנשים במסד הנתונים קשורים ל־%s"
 
 #. Translators: leave all/any {...} untranslated
 #. TRANS: no singular form needed, as rows is always > 1
@@ -33999,7 +33975,7 @@ msgstr "מפתחים משניים נבנו"
 
 #: ../gramps/plugins/tool/rebuild.py:83
 msgid "All secondary indexes have been rebuilt."
-msgstr "כול המפתחים המשניים נבנו מחדש."
+msgstr "כל המפתחים המשניים נבנו מחדש."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:82
 msgid "Rebuilding gender statistics for name gender guessing..."
@@ -34430,7 +34406,7 @@ msgstr "תיקון רישיות בשמות משפחה"
 #: ../gramps/plugins/tool/tools.gpr.py:39
 msgid ""
 "Searches the entire database and attempts to fix capitalization of the names."
-msgstr "חיפוש בכול רשומות מסד הנתונים בניסיון לתקן רישיות בשמות."
+msgstr "חיפוש בכל רשומות מסד הנתונים בניסיון לתקן רישיות בשמות."
 
 #: ../gramps/plugins/tool/tools.gpr.py:61
 msgid "Rename Event Types"
@@ -34438,7 +34414,7 @@ msgstr "שינוי שם סוג אירוע"
 
 #: ../gramps/plugins/tool/tools.gpr.py:62
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "אפשור שינוי כול האירועים בשם מסוים לשם חדש."
+msgstr "אפשור שינוי כל האירועים בשם מסוים לשם חדש."
 
 #: ../gramps/plugins/tool/tools.gpr.py:84
 msgid "Check and Repair Database"
@@ -34447,7 +34423,7 @@ msgstr "בדיקה ותיקון מסד נתונים"
 #: ../gramps/plugins/tool/tools.gpr.py:85
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "בדיקת מסד הנתונים לבעיות שְׁלֵמוּת, תיקון בעיות ככול שניתן"
+msgstr "בדיקת מסד הנתונים לבעיות שְׁלֵמוּת, תיקון בעיות ככל שניתן"
 
 #: ../gramps/plugins/tool/tools.gpr.py:107
 msgid "Compare Individual Events"
@@ -34469,7 +34445,7 @@ msgstr "חילוץ תיאור אירוע מנתוני האירוע"
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
-msgstr "חיפוש בכול רשומות מסד הנתונים לאיתור רשומות שעשויות לייצג את אותו אדם."
+msgstr "חיפוש בכל רשומות מסד הנתונים לאיתור רשומות שעשויות לייצג את אותו אדם."
 
 #: ../gramps/plugins/tool/tools.gpr.py:177
 msgid "Manages batch operations on media files"
@@ -34481,7 +34457,7 @@ msgstr "לא קשור"
 
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Find people who are not in any way related to the selected person"
-msgstr "איתור אנשים שאינם קשורים בדרך כול שהי לאדם שנבחר"
+msgstr "איתור אנשים שאינם קשורים בדרך כלשהי לאדם שנבחר"
 
 #: ../gramps/plugins/tool/tools.gpr.py:221
 msgid "Edit Database Owner Information"
@@ -34564,14 +34540,14 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Searches the entire database, looking for a possible loop."
-msgstr "חיפוש בכול רשומות מסד הנתונים לאיתור הפניות מעגליות אפשריות."
+msgstr "חיפוש בכל רשומות מסד הנתונים לאיתור הפניות מעגליות אפשריות."
 
 #: ../gramps/plugins/tool/tools.gpr.py:490
 msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"חיפוש בכול רשומות מסד הנתונים, איתור רווחים עוקבים או מובילים ברשומות מקומות "
+"חיפוש בכל רשומות מסד הנתונים, איתור רווחים עוקבים או מובילים ברשומות מקומות "
 "ואנשים. איתור פסיקים בשדות הקואורדינטות במקומות."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
@@ -34788,7 +34764,7 @@ msgstr "אם נפטרה"
 
 #: ../gramps/plugins/tool/verify.py:1648
 msgid "Large year span for all children"
-msgstr "טווח שנים גדול עבור כול הצאצאים"
+msgstr "טווח שנים גדול עבור כל הצאצאים"
 
 #: ../gramps/plugins/tool/verify.py:1675
 msgid "Large age differences between children"
@@ -34954,13 +34930,13 @@ msgstr "הוספת מקור..."
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse all Nodes"
-msgstr "כיווץ כול הצֹמֶתים"
+msgstr "כיווץ כל הצמתות"
 
 #: ../gramps/plugins/view/citationtreeview.py:474
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand all Nodes"
-msgstr "הרחבת כול הצֹמֶתים"
+msgstr "הרחבת כל הצמתות"
 
 #: ../gramps/plugins/view/citationtreeview.py:628
 msgid ""
@@ -35344,7 +35320,7 @@ msgstr "אירוע חלקי או ללא הפניה ?"
 #: ../gramps/plugins/view/geoevents.py:350
 #: ../gramps/plugins/view/geoevents.py:363
 msgid "Selecting all events"
-msgstr "נא לבחור כול האירועים"
+msgstr "בחירת כל האירועים"
 
 #: ../gramps/plugins/view/geoevents.py:374
 msgid ""
@@ -35352,7 +35328,7 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
-"הקשת עכבר ימנית על המפה ובחרת 'הצגת כול האירועים' כדי להציג את כול האירועים "
+"הקשת עכבר ימנית על המפה ובחירת \"הצגת כל האירועים\" כדי להציג את כל האירועים "
 "הידועים עבור קואורדינטות. ניתן להשתמש בהיסטוריה לנווט במפה. ניתן להשתמש "
 "בסינון."
 
@@ -35363,7 +35339,7 @@ msgstr "הוספת סימניה לאירוע זה"
 
 #: ../gramps/plugins/view/geoevents.py:454
 msgid "Show all events"
-msgstr "הצגת כול האירועים"
+msgstr "הצגת כל האירועים"
 
 #: ../gramps/plugins/view/geoevents.py:457
 #: ../gramps/plugins/view/geoplaces.py:547
@@ -35500,11 +35476,11 @@ msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
-msgstr "כול המקומות הידועים של אדם אחד"
+msgstr "כל המקומות הידועים של אדם אחד"
 
 #: ../gramps/plugins/view/geography.gpr.py:88
 msgid "A view showing the places visited by one person during his life."
-msgstr "מצג של כול המקומות בה ביקר אדם במהלך שנות חיו."
+msgstr "מצג של כל המקומות בה ביקר אדם במהלך שנות חיו."
 
 #: ../gramps/plugins/view/geography.gpr.py:96
 #: ../gramps/plugins/view/geography.gpr.py:113
@@ -35518,15 +35494,15 @@ msgstr "גאוגרפיה"
 
 #: ../gramps/plugins/view/geography.gpr.py:104
 msgid "All known places for one Family"
-msgstr "כול המקומות הידועים של משפחה אחת"
+msgstr "כל המקומות הידועים של משפחה אחת"
 
 #: ../gramps/plugins/view/geography.gpr.py:105
 msgid "A view showing the places visited by one family during all their life."
-msgstr "מצג של כול המקומות בה ביקרה משפחה אחת במשך כול שנות קיומה."
+msgstr "מצג כל המקומות בהם ביקרה משפחה אחת במשך כל שנות קיומה."
 
 #: ../gramps/plugins/view/geography.gpr.py:121
 msgid "Every residence or move for a person and any descendants"
-msgstr "כול מקום מגורים או מעבר של אדם ומי מצאצאיו"
+msgstr "כל מקום מגורים או מעבר של אדם ומי מצאצאיו"
 
 #: ../gramps/plugins/view/geography.gpr.py:123
 msgid ""
@@ -35534,8 +35510,8 @@ msgid ""
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"מצג להצגת כול המקומות בהם ביקרו כול האנשים במהלך חייהם.\n"
-"של האדם ולכול צאצאיו\n"
+"מצג להצגת כל המקומות בהם ביקרו כל האנשים במהלך חייהם.\n"
+"של האדם ולכל צאצאיו\n"
 "ניתן לראות גם את התאריכים המיוחסים לתקופה."
 
 #: ../gramps/plugins/view/geography.gpr.py:143
@@ -35543,32 +35519,32 @@ msgid ""
 "A view showing the places visited by all family's members during their life: "
 "have these two people been able to meet?"
 msgstr ""
-"מצג כול המקומות בה ביקרו כול בני המשפחה במשך שנות חייהם: האם שני אנשים אלו "
-"היו עשויים להיפגש?"
+"מצג כל המקומות בה ביקרו כל בני המשפחה במשך שנות חייהם: האם שני אנשים אלו היו "
+"עשויים להיפגש?"
 
 #: ../gramps/plugins/view/geography.gpr.py:161
 msgid ""
 "A view showing the places visited by two persons during their life: have "
 "these two people been able to meet?"
 msgstr ""
-"מצג כול המקומות בה ביקרו שני אנשים במשך שנות חייהם: האם שני אנשים אלו היו "
+"מצג כל המקומות בה ביקרו שני אנשים במשך שנות חייהם: האם שני אנשים אלו היו "
 "עשויים להיפגש?"
 
 #: ../gramps/plugins/view/geography.gpr.py:178
 msgid "All known Places"
-msgstr "כול המקומות הידועים"
+msgstr "כל המקומות הידועים"
 
 #: ../gramps/plugins/view/geography.gpr.py:179
 msgid "A view showing all places of the database."
-msgstr "תצוגת כול המקומות בעץ המשפחה."
+msgstr "תצוגת כל המקומות בעץ המשפחה."
 
 #: ../gramps/plugins/view/geography.gpr.py:194
 msgid "All places related to Events"
-msgstr "כול המקומות הקשורים לאירוע"
+msgstr "כל המקומות הקשורים לאירוע"
 
 #: ../gramps/plugins/view/geography.gpr.py:195
 msgid "A view showing all the event places of the database."
-msgstr "תצוגת כול האירועים בעץ המשפחה."
+msgstr "תצוגת כל האירועים בעץ המשפחה."
 
 #: ../gramps/plugins/view/geomoves.py:210
 msgid "Descendants of the active person."
@@ -35647,7 +35623,7 @@ msgstr "גאו־מקום"
 #: ../gramps/plugins/view/geoplaces.py:410
 #: ../gramps/plugins/view/geoplaces.py:423
 msgid "Selecting all places"
-msgstr "נא לבחור כול המקומות"
+msgstr "בחירת כל המקומות"
 
 #: ../gramps/plugins/view/geoplaces.py:435
 msgid ""
@@ -35655,8 +35631,9 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
-"נא להקיש ימנית על המפה ובחירת 'הצגת כול המקומות' להצגת המקומות הידועים בעלי "
-"קואורדינטות. ניתן לשנות את צבע הסמנים בהתאם לסוג המקום. ניתן להשתמש במסננים."
+"נא ללחוץ עם הלחצן הימני בעכבר על המפה ולבחור את \"הצגת כל המקומות\" כדי "
+"להציג את המקומות הידועים בעלי קואורדינטות. ניתן לשנות את צבע הסמנים בהתאם "
+"לסוג המקום. ניתן להשתמש במסננים."
 
 #: ../gramps/plugins/view/geoplaces.py:450
 msgid ""
@@ -35664,9 +35641,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
-"נא להקיש ימנית על המפה ובחירת 'הצגת כול המקומות' להצגת המקומות הידועים בעלי "
-"קואורדינטות. ניתן להשתמש בהיסטוריה לניווט במפה. ניתן לשנות את צבע הסמנים "
-"בהתאם לסוג המקום. ניתן להשתמש במסננים."
+"אפשר ללחוץ עם הלחצן הימני בעכבר על המפה ולבחור את \"הצגת כל המקומות\" כדי "
+"להציג את המקומות הידועים בעלי הקואורדינטות. ניתן להשתמש בהיסטוריה לניווט "
+"במפה. ניתן לשנות את צבע הסמנים בהתאם לסוג המקום. ניתן להשתמש במסננים."
 
 #: ../gramps/plugins/view/geoplaces.py:463
 msgid "The place name in the status bar is disabled."
@@ -35700,7 +35677,7 @@ msgstr "הוספת סימניה למקום זה"
 
 #: ../gramps/plugins/view/geoplaces.py:544
 msgid "Show all places"
-msgstr "הצגת כול מקומות"
+msgstr "הצגת כל המקומות"
 
 #: ../gramps/plugins/view/geoplaces.py:629
 msgid "Custom places name"
@@ -35902,11 +35879,11 @@ msgstr "מצג עץ מקום"
 
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Collapse this Entire Group"
-msgstr "כיווץ כול הקבוצה"
+msgstr "כיווץ כל הקבוצה"
 
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand this Entire Group"
-msgstr "הרחבת כול הקבוצה"
+msgstr "הרחבת כל הקבוצה"
 
 #: ../gramps/plugins/view/relview.py:370
 msgid "Organize Bookmarks..."
@@ -36155,11 +36132,11 @@ msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:38
 msgid "The view showing all the events"
-msgstr "מצג כול האירועים"
+msgstr "מצג כל האירועים"
 
 #: ../gramps/plugins/view/view.gpr.py:53
 msgid "The view showing all families"
-msgstr "מצג כול המשפחות"
+msgstr "מצג כל המשפחות"
 
 #: ../gramps/plugins/view/view.gpr.py:68
 msgid "The view showing Gramplets"
@@ -36167,11 +36144,11 @@ msgstr "מצג גרמפלטים"
 
 #: ../gramps/plugins/view/view.gpr.py:83
 msgid "The view showing all the media objects"
-msgstr "מצג כול אובייקטי המדיה"
+msgstr "מצג כל אובייקטי המדיה"
 
 #: ../gramps/plugins/view/view.gpr.py:98
 msgid "The view showing all the notes"
-msgstr "מצג כול ההערות"
+msgstr "מצג כל ההערות"
 
 #: ../gramps/plugins/view/view.gpr.py:113
 msgid "The view showing all relationships of the selected person"
@@ -36206,15 +36183,15 @@ msgstr "אנשים מקובצים"
 
 #: ../gramps/plugins/view/view.gpr.py:189
 msgid "The view showing all people in the Family Tree grouped per family name"
-msgstr "מצג כול האנשים בעץ המשפחה מקובצים לפי שם משפחה"
+msgstr "מצג כל האנשים בעץ המשפחה מקובצים לפי שם משפחה"
 
 #: ../gramps/plugins/view/view.gpr.py:206
 msgid "The view showing all people in the Family Tree in a flat list"
-msgstr "מצג כול האנשים בעץ המשפחה ברשימה שטוחה"
+msgstr "מצג כל האנשים בעץ המשפחה ברשימה שטוחה"
 
 #: ../gramps/plugins/view/view.gpr.py:222
 msgid "The view showing all the places of the Family Tree"
-msgstr "מצג כול המקומות בעץ המשפחה"
+msgstr "מצג כל המקומות בעץ המשפחה"
 
 #: ../gramps/plugins/view/view.gpr.py:236
 msgid "Place Tree"
@@ -36226,11 +36203,11 @@ msgstr "מצג להצגת מקומות בתבנית עץ."
 
 #: ../gramps/plugins/view/view.gpr.py:253
 msgid "The view showing all the repositories"
-msgstr "מצג כול המאגרים"
+msgstr "מצג כל המאגרים"
 
 #: ../gramps/plugins/view/view.gpr.py:268
 msgid "The view showing all the sources"
-msgstr "מצג כול המקורות"
+msgstr "מצג כל המקורות"
 
 #: ../gramps/plugins/view/view.gpr.py:284
 msgid "The view showing all the citations"
@@ -36735,7 +36712,7 @@ msgstr "הכללת עץ אָבוֹת קַדמוֹנִים"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2061
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr "האם לכלול את תרשים האָבוֹת קַדמוֹנִים לכול אדם"
+msgstr "האם לכלול את תרשים האבות הקדמונים לכל אדם"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2066
 msgid "Add previous/next"
@@ -37045,11 +37022,11 @@ msgstr "סוג הקידוד שימש בעמודי המרשתת"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2337
 msgid "Include link to active person on every page"
-msgstr "הכללת קישור לאדם הפעיל בכול עמוד"
+msgstr "הכללת קישור לאדם הפעיל בכל עמוד"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2339
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr "הכללת קישור לאדם הפעיל בכול עמוד (אם יש להם עמוד בית)"
+msgstr "הכללת קישור לאדם הפעיל בכל עמוד (אם יש לו עמוד בית)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2343
 msgid "Include a column for birth dates on the index pages"
@@ -37200,14 +37177,14 @@ msgstr "האם לכלול מפת מקום בעמודי 'מקם', כאשר קו �
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2454
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "הכללת עמוד מפת משפחה עם כול המקומות מוצגים על המפה"
+msgstr "הכללת עמוד מפת משפחה עם כל המקומות מוצגים על המפה"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2458
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
 msgstr ""
-"האם להוסיף עמוד מפה ייחודי המציג את כול המקומות. מאפשר מצג של תנועת המשפחה "
+"האם להוסיף עמוד מפה ייחודי המציג את כל המקומות. מאפשר מצג של תנועת המשפחה "
 "ברחבי הארץ/העולם."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2466
@@ -37383,7 +37360,7 @@ msgstr "יצירת עמודי אירוע בני יום אחד, במצג לוח־
 #: ../gramps/plugins/webreport/narrativeweb.py:2838
 #: ../gramps/plugins/webreport/webcal.py:1955
 msgid "Whether to create one day pages or not"
-msgstr "האם ליצור עמודי אירוע לכול יום"
+msgstr "האם ליצור עמודי אירוע לכל יום"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2842
 #: ../gramps/plugins/webreport/webcal.py:1959
@@ -37429,8 +37406,8 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"עמוד זה מכיל מפתח של כול האנשים במסד הנתונים, ממוין לפי שם משפחה. בחירת שם "
-"של אדם תוביל לעמוד האדם."
+"עמוד זה מכיל מפתח של כל האנשים במסד הנתונים, ממוין לפי שם משפחה. בחירת שם של "
+"אדם תוביל לעמוד האדם."
 
 #: ../gramps/plugins/webreport/person.py:263
 #: ../gramps/plugins/webreport/surname.py:95
@@ -37516,7 +37493,7 @@ msgid ""
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
-"עמוד זה מכיל מפתח של כול המקומות במסד הנתונים, ממוין לפי כותרת. הקשה על מקום "
+"עמוד זה מכיל מפתח של כל המקומות במסד הנתונים, ממוין לפי כותרת. הקשה על מקום "
 "תוביל לעמוד המקום."
 
 #: ../gramps/plugins/webreport/place.py:219
@@ -37549,7 +37526,7 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"עמוד זה מכיל מפתח של כול המאגרים מסוננים על פי כותרת. הקשה על כותרת המאגר "
+"עמוד זה מכיל מפתח של כל המאגרים מסוננים על פי כותרת. הקשה על כותרת המאגר "
 "תוביל לעמוד המאגרים."
 
 #: ../gramps/plugins/webreport/repository.py:173
@@ -37567,7 +37544,7 @@ msgid ""
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
-"עמוד זה מכיל מפתח של כול המקורות מסוננים על פי כותרת. הקשה על כותרת המקור "
+"עמוד זה מכיל מפתח של כל המקורות מסוננים על פי כותרת. הקשה על כותרת המקור "
 "תוביל לעמוד המקור."
 
 #: ../gramps/plugins/webreport/source.py:171
@@ -37594,7 +37571,7 @@ msgid ""
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"עמוד זה מכיל מפתח של כול האנשים במסד הנתונים בעלי שם משפחה %s. בחירת שם של "
+"עמוד זה מכיל מפתח של כל האנשים במסד הנתונים בעלי שם משפחה %s. בחירת שם של "
 "אדם תוביל לעמוד האדם."
 
 #: ../gramps/plugins/webreport/surnamelist.py:102
@@ -37607,7 +37584,7 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
-"עמוד זה מכיל מפתח של כול שמות המשפחה. בחירה בקישור תוביל לרשימת האנשים עם שם "
+"עמוד זה מכיל מפתח של כל שמות המשפחה. בחירה בקישור תוביל לרשימת האנשים עם שם "
 "משפחה המתאים."
 
 #: ../gramps/plugins/webreport/surnamelist.py:156
@@ -37642,7 +37619,7 @@ msgid ""
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
 "עמוד זה מכיל את האובייקטים שעודכנו לאחרונה במסד הנתונים ב־%(days)d הימים "
-"האחרונים ו־ %(nb)d עצמים לכול היותר לכול סוג עצם."
+"האחרונים ו־ %(nb)d עצמים לכל היותר לכל סוג עצם."
 
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
