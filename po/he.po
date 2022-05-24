@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-03-24 10:54+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2022-04-26 14:08+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -4065,7 +4065,7 @@ msgstr "אירועים המסומנים כפרטי"
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:43
 msgid "Matches events that are indicated as private"
-msgstr "שליפת אירועים שהוגדרו כפרטי"
+msgstr "שליפת אירועים שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
 #: ../gramps/gui/editors/filtereditor.py:107
@@ -4335,7 +4335,7 @@ msgstr "משפחות המסומנות כפרטי"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:43
 msgid "Matches families that are indicated as private"
-msgstr "שליפת משפחות שהוגדרו כפרטי"
+msgstr "שליפת משפחות שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:46
 msgid "Families having father with Id containing <text>"
@@ -4790,7 +4790,7 @@ msgstr "אובייקטי מדיה המסומנים כפרטיים"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:43
 msgid "Matches Media objects that are indicated as private"
-msgstr "שליפת אובייקטי מדיה שהוגדרו כפרטי"
+msgstr "שליפת אובייקטי מדיה שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:47
 msgid "Media objects with Id containing <text>"
@@ -4897,7 +4897,7 @@ msgstr "הערות המסומנות כפרטי"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:43
 msgid "Matches notes that are indicated as private"
-msgstr "שליפת הערות המוגדרים כפרטיים"
+msgstr "שליפת הערות המוגדרות כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:47
 msgid "Notes with Id containing <text>"
@@ -5704,7 +5704,7 @@ msgstr "אנשים המסומנים כפרטיים"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:43
 msgid "Matches people that are indicated as private"
-msgstr "שליפת אנשים שהוגדרו כפרטי"
+msgstr "שליפת אנשים שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:43
 msgid "People not marked private"
@@ -5712,7 +5712,7 @@ msgstr "אנשים שאינם מסומנים כפרטי"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:44
 msgid "Matches people that are not indicated as private"
-msgstr "שליפת אנשים שלא הוגדרו כפרטי"
+msgstr "שליפת אנשים שלא הוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:42
 msgid "People with incomplete events"
@@ -6035,7 +6035,7 @@ msgstr "מקומות המסומנים כפרטי"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:43
 msgid "Matches places that are indicated as private"
-msgstr "שליפת מקומות שהוגדרו כפרטי"
+msgstr "שליפת מקומות שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
 msgid "Places with Id containing <text>"
@@ -6195,7 +6195,7 @@ msgstr "מאגרים המסומנים כפרטי"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:43
 msgid "Matches repositories that are indicated as private"
-msgstr "שליפת מאגרים שהוגדרו כפרטי"
+msgstr "שליפת מאגרים שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:44
 msgid "Every source"
@@ -6347,7 +6347,7 @@ msgstr "מקורות מסומנים כפרטי"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:43
 msgid "Matches sources that are indicated as private"
-msgstr "שליפת מקורות שהוגדרו כפרטי"
+msgstr "שליפת מקורות שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/lib/address.py:97 ../gramps/gui/clipboard.py:298
 #: ../gramps/gui/configure.py:607 ../gramps/gui/editors/editaddress.py:167
@@ -10893,7 +10893,7 @@ msgstr "הטבלה/התנצרות"
 
 #: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2232
 msgid "Engaged"
-msgstr "התארסו"
+msgstr "אירוסין"
 
 #: ../gramps/gen/utils/symbols.py:99
 msgid "Unmarried partnership"
@@ -11155,7 +11155,7 @@ msgstr "שם עמודה"
 
 #: ../gramps/gui/configure.py:86
 msgid "Father's surname"
-msgstr "שם משפחה של האב"
+msgstr "שם משפחת האב"
 
 #: ../gramps/gui/configure.py:88
 msgid "Combination of mother's and father's surname"
@@ -11759,7 +11759,7 @@ msgstr "הצגת מידע שימושי באתחול גרמפס."
 
 #: ../gramps/gui/configure.py:1585
 msgid "Remember last Family Tree"
-msgstr "הסרת אילן־יוחסין אחרון"
+msgstr "לזכור את אילן־היוחסין האחרון שהיה בשימוש"
 
 #: ../gramps/gui/configure.py:1587
 msgid ""
@@ -11770,11 +11770,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1591
 msgid "Remember last view displayed"
-msgstr "זכירת המצג האחרון שהייתה בשימוש"
+msgstr "לזכור את המצג האחרון שהיה בשימוש"
 
 #: ../gramps/gui/configure.py:1593
 msgid "Remember last view displayed and open it next time."
-msgstr "זכירת המצג האחרון שהוצג ופתיחתו בפעם הבאה."
+msgstr "לזכור את המצג האחרון ולפתוח אותו בפעם הבאה."
 
 #: ../gramps/gui/configure.py:1596
 msgid "Enable spell checker"
@@ -11989,7 +11989,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
-msgstr "נתיב לגיבוי"
+msgstr "נתיב גיבוי"
 
 #: ../gramps/gui/configure.py:1842
 msgid "Backup on exit"
@@ -12042,7 +12042,7 @@ msgstr "רשומות תגים"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
-msgstr "הוספת תגית בייבוא"
+msgstr "הוספת תג בייבוא"
 
 #: ../gramps/gui/configure.py:1915
 msgid ""
@@ -12188,7 +12188,7 @@ msgstr "בן זוג"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr "נהרגו"
+msgstr "פטירה"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
@@ -12240,7 +12240,7 @@ msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
 msgstr ""
-"בוצע גיבוי,\n"
+"בוצע כבר גיבוי,\n"
 "נא לשדרג את אילן היוחסין"
 
 #: ../gramps/gui/dbloader.py:212 ../gramps/gui/glade/dialog.glade:701
@@ -12601,7 +12601,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:924
 msgid "Proceed, I have taken a backup"
-msgstr "נא להמשיך, נעשה גיבוי"
+msgstr "נא להמשיך, נעשה כבר גיבוי"
 
 #: ../gramps/gui/dbman.py:925
 msgid "Stop"
@@ -12760,8 +12760,8 @@ msgstr ""
 "4) לפגום בנתונים.\n"
 "5) לשמור נתונים במבנה שאינו תואם את הגרסה הרשמית.\n"
 "\n"
-"‏%(bold_start)sBACKUP%(bold_end)s את מסדי הנתונים הקיימים לפני פתיחתם בגרסה "
-"זו, נא לדאוג לייצא את הנתונים לקובץ XML מדי פעם."
+"‏נא %(bold_start)sלגבות%(bold_end)s את כל מסדי־הנתונים הקיימים לפני כל נסיון "
+"לפתוח אותם באמצעות גרסה זו, נא לייצא את הנתונים לקובץ XML מדי פעם."
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
@@ -14776,15 +14776,6 @@ msgid "Use regular expressions"
 msgstr "שימוש בביטוים רגילים"
 
 #: ../gramps/gui/editors/filtereditor.py:608
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -14797,11 +14788,15 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"פענוח תוכן שדות מחרוזות כביטויים רגילים.\n"
-"נקודה עשרונית, מתאים לכול תו. סימן שאלה, יתאים לאפס או לחזרה אחת של התו "
-"הקודם או הקבוצה הקודמת. כוכבית, תתאים לאפס או יותר חזרות. סימן חיבור, יתאים "
-"לאחד או יותר חזרות. סוגריים, משמשים לקיבוץ ביטויים. קו אנכי, למספר חלופות . "
-"התו ^, יתאים לתחילתה של שורה. סימן דולר יתאים לסוף השורה."
+"פענוח תוכן שדות מחרוזות כביטויים רגילים:\n"
+". נקודה עשרונית, תתאים לכול תו.\n"
+"? סימן שאלה, יתאים לאפס, או לחזרה אחת של התו הקודם או הקבוצה הקודמת.\n"
+"* כוכבית, תתאים לאפס, או יותר חזרות.\n"
+"+ סימן חיבור, יתאים לאחד או יותר חזרות.\n"
+"() סוגריים, משמשים לקיבוץ ביטויים.\n"
+"| קו אנכי, משמש למספר חלופות .\n"
+"^ חזקה, תתאים לתחילתה של שורה.\n"
+"$ סימן דולר, יתאים לסוף השורה."
 
 #: ../gramps/gui/editors/filtereditor.py:637
 msgid "Rule Name"
@@ -15834,7 +15829,7 @@ msgstr "אם/הורה2"
 #: ../gramps/gui/glade/editsource.glade:278
 #: ../gramps/gui/glade/editsource.glade:279
 msgid "Indicates if the record is private"
-msgstr "מציין אם הרשומה פרטית"
+msgstr "סמן 'רשומה פרטית'"
 
 #: ../gramps/gui/glade/editfamily.glade:653
 msgid "Relationship Information"
@@ -16067,7 +16062,7 @@ msgstr "נא להקיש כפולה על תמונה להצגה במציג פני�
 
 #: ../gramps/gui/glade/editmediaref.glade:533
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
-msgstr "סוג אובייקט מדיה כפי שצוין על־ידי המחשב, לדוגמה, תמונה, וידאו, ..."
+msgstr "סוג עצם מדיה כפי שמופיע במחשב, לדוגמה, תמונה, וידאו, ..."
 
 #: ../gramps/gui/glade/editmediaref.glade:650
 msgid "Select a file"
@@ -16276,7 +16271,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editperson.glade:399
 msgid "Set person as private data"
-msgstr "הגדרת אדם כמידע פרטי"
+msgstr "הגדרת ישות 'אדם' כמידע פרטי"
 
 #: ../gramps/gui/glade/editperson.glade:450
 msgid "_Surname:"
@@ -20072,7 +20067,7 @@ msgstr "מסמך SVG"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:204
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr "חילול מסמכים בתבנית גרפיקה וקטורית הניתנת לסילום (.svg)."
+msgstr "חילול מסמכים בתבנית גרפיקה וקטורית הניתנת לסילום (svg.)."
 
 #: ../gramps/plugins/docgen/gtkprint.glade:6
 msgid "Print Preview"
@@ -21555,7 +21550,7 @@ msgstr "תרשימים 1"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1106
 msgid "Include charts with indicated data."
-msgstr "האם לכלול תרשימים עם הנתונים שצוינו."
+msgstr "לכלול תרשימים עם הנתונים שצוינו."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1148
 #: ../gramps/plugins/textreport/placereport.py:602
@@ -23756,15 +23751,15 @@ msgstr "משך ההשהיה לפני עיבוד צאצאי אב קדמון"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:76
 msgid "Tag to indicate that a person is complete"
-msgstr "תג המציין כי אין עוד נישואין לאדם"
+msgstr "תג המציין כי אין עוד אירועי 'נישואין' לאדם"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:83
 msgid "Tag to indicate that a family is complete"
-msgstr "תג המציין כי אין עוד צאצאים במשפחה"
+msgstr "תג מצביע על כך שאין עוד צאצאים במשפחה"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:89
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr "תג המורה להתעלם מאדם או משפחה"
+msgstr "תג מצביע על כך שיש להתעלם מאדם או משפחה"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:164
 msgid "No Home Person set."
@@ -23951,7 +23946,7 @@ msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
-"אנשים ומשפחות שלא קשורים ישירות לאנשים בעלי עניין יוסרו בזמן קביעת 'קווי "
+"אנשים ומשפחות ללא קשור ישיר לאנשים שבמוקד העניין, יוסרו בזמן קביעת 'קווי "
 "משפחה'."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:145
@@ -24419,7 +24414,7 @@ msgstr "האם לכלול 'Ga' ו־'Gb' גם כן, לניפוי תקלות מח�
 
 #: ../gramps/plugins/graph/gvrelgraph.py:963
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "סימון קשרי־גומלין שאינם מ'לידה' בקו מקווקו"
+msgstr "מצביע על קשרי־גומלין שאינם מ'לידה', בקו מקווקו"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:964
 msgid "Non-birth relationships will show up as dotted lines in the graph."
@@ -31377,7 +31372,7 @@ msgstr "סמל פטירה"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:513
 msgid "This will show after name to indicate that person is dead"
-msgstr "יוצג בהמשך לשם לציין כי האדם נפטר"
+msgstr "מוצג בהמשך לשם, מצביע על כך שהאדם נפטר"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:520
 msgid "Show event year"
@@ -31946,7 +31941,9 @@ msgstr "הכללת סימון של המשכיות ('+') ברשימת הצאצא�
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
-msgstr "האם לכלול סימון ('+') לפני מספר צאצא ברשימת הצאצאים לסמן שיש המשכיות."
+msgstr ""
+"האם לכלול סימון ('+') לפני 'מספר צאצא' ברשימת הצאצאים להצביע על כך שקיימת "
+"המשכיות."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1155
 msgid "Include path to start-person"
@@ -32451,7 +32448,7 @@ msgstr "גודל תמונה"
 msgid ""
 "Size of the image in cm. A value of 0 indicates that the image should be fit "
 "to the page."
-msgstr "גודל התמונה בסנטימטרים. הערך 0 מציין התאמת התמונה לגודל העמוד."
+msgstr "גודל התמונה בסנטימטרים. הערך 0 מציין ששי להתאים את התמונה לגודל העמוד."
 
 #: ../gramps/plugins/textreport/summary.py:90
 #: ../gramps/plugins/textreport/textplugins.gpr.py:348
@@ -33789,11 +33786,11 @@ msgstr "לא_קשור"
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
-msgstr "לא קשורים ל־\"%s\""
+msgstr "ללא קישור ל־\"%s\""
 
 #: ../gramps/plugins/tool/notrelated.py:104
 msgid "NotRelated"
-msgstr "לא קשור"
+msgstr "ללא־קישור"
 
 #: ../gramps/plugins/tool/notrelated.py:173
 #, python-format
@@ -34453,7 +34450,7 @@ msgstr "ניהול פעולות אצווה בקובצי מדיה"
 
 #: ../gramps/plugins/tool/tools.gpr.py:198
 msgid "Not Related"
-msgstr "לא קשור"
+msgstr "ללא קישור"
 
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Find people who are not in any way related to the selected person"
