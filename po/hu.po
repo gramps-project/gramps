@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-02-10 20:54+0000\n"
+"PO-Revision-Date: 2022-05-03 11:12+0000\n"
 "Last-Translator: Mukli Krisztián <weblate@rejtettmail.eu.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -10806,7 +10806,7 @@ msgstr "magyar"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonéz"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -11749,6 +11749,11 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"A GRAMPS alapértelmezett azonosító formátuma egy egybetűs előtagból és az "
+"azt követő numerikus karakterláncból áll. Az \"I%04d\" az I0000 és I9999 "
+"közötti azonosítókat hoz létre. Nagy adatbázisok esetén nagyobb azonosítókra "
+"lehet szükség. \"I%06d\" az I000000-tól I999999-ig terjedő azonosítókat hoz "
+"létre.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -11977,6 +11982,7 @@ msgstr "Bekapcsolja az automatikus helynév létrehozást a megadott formátumba
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
+"Az egyéni névmegjelenítési lehetőségek minden egyes családfánál egyediek."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
@@ -12047,11 +12053,11 @@ msgstr "Alapértelmezett családi kapcsolat"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "LDS lap elrejtése a személy és család szerkesztőkben"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Újraindítást igényel"
 
 #: ../gramps/gui/configure.py:1388
 #, fuzzy
@@ -12061,7 +12067,7 @@ msgstr "_Adat"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Feltételes szöveghelyettesítések"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -12144,7 +12150,7 @@ msgstr "Kapcsolatok legnagyobb generációja"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Határok"
 
 #: ../gramps/gui/configure.py:1575
 #, fuzzy
@@ -12273,6 +12279,8 @@ msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Adja meg a magasságot pixelben. Több vezetéknév megadása esetén, a nevek egy "
+"dobozban jelennek meg. Ez a beállítás állítja be a doboz méretét."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -12454,6 +12462,9 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"Az alap relatív médiaútvonal az aktív családfára jellemző. Ez nem globális "
+"beállítás. Minden családfa egyedi relatív médiaútvonallal rendelkezhet, "
+"amely az adatbázisban tárolódik."
 
 #: ../gramps/gui/configure.py:1892
 #, fuzzy
@@ -12572,6 +12583,10 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"Ha be van jelölve, akkor a szabványos genealógiai szimbólumokat használja (a "
+"halál szimbóluma a felhasználó által választható).\n"
+"Ha nincs bejelölve, akkor az alsó panelen saját maga szabhatja testre a "
+"szimbólumokat."
 
 #: ../gramps/gui/configure.py:2094
 msgid ""
@@ -12611,11 +12626,11 @@ msgstr "Társ"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Megölték"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Alapértelmezett genealógiai szimbólumok cseréje"
 
 #: ../gramps/gui/configure.py:2253
 msgid ""
@@ -12623,6 +12638,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Bármilyen szöveget megadhat ehhez a mezőhöz.\n"
+"A fenti szimbólumlistából választhat szimbólumot.\n"
+"Csak akkor lesz látható, ha a betűtípus tartalmazza ezt a betűjelet."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -18843,6 +18861,9 @@ msgid ""
 "\n"
 "Format:\t%s"
 msgstr ""
+"Az adatok exportálása a következőképpen történik:\n"
+"\n"
+"Formátum: %s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
@@ -21799,7 +21820,7 @@ msgstr "félkör"
 
 #: ../gramps/plugins/drawreport/fanchart.py:724
 msgid "overhang"
-msgstr ""
+msgstr "túlnyúlás"
 
 #: ../gramps/plugins/drawreport/fanchart.py:725
 msgid "quarter circle"
@@ -24152,6 +24173,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"A levelezési listákon és a Discourse fórumon aktív felhasználói közösség áll "
+"rendelkezésre az ötletek és technikák megosztására.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Gramps online manual"
@@ -24163,7 +24187,7 @@ msgstr "Tegyen fel kérdéseket a Gramps felhasználók levelezőlistáján"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:135
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Gramps Discourse Fórum"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:137
 msgid "Getting Started"
@@ -24254,6 +24278,12 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"Egy családfa más programból történő importálásához először hozzon létre egy "
+"GEDCOM (vagy más adat) fájlt az előző programban.\n"
+"\n"
+"Miután létrehozott egy új Gramps adatbázisfájlt, használja a \"Családfák\" "
+"menü \"Importálás\" opcióját a GEDCOM adatok importálásához.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:179
 #, fuzzy
@@ -24306,6 +24336,10 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"Számos olyan kiegészítő vagy \"Gramplet\" áll rendelkezésre, amely segít az "
+"adatbevitelben és a családfa megjelenítésében. Ezek közül az eszközök közül "
+"sok már elérhető az Ön számára. Sok más is letölthető és telepíthető.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
 #, fuzzy
@@ -30879,7 +30913,7 @@ msgstr "Jobb alsó"
 
 #: ../gramps/plugins/lib/maps/geography.py:161
 msgid "Tile path"
-msgstr ""
+msgstr "Csempe útvonal"
 
 #: ../gramps/plugins/lib/maps/geography.py:162
 #, python-format
@@ -30889,6 +30923,11 @@ msgid ""
 "Trying to create a new one failed.\n"
 "Configure the view for the tile path and restart gramps."
 msgstr ""
+"A csempe könyvtár már nem létezik:\n"
+"%s\n"
+"Az új létrehozásának kísérlete sikertelen volt.\n"
+"Állítsa be a nézetet a csempe elérési útvonalához, és indítsa újra a gramps-"
+"ot."
 
 #: ../gramps/plugins/lib/maps/geography.py:396
 msgid "Remove cross hair"
@@ -30967,6 +31006,8 @@ msgstr "Kml fájl kiválasztása hely hozzáadásához"
 #: ../gramps/plugins/lib/maps/geography.py:1053
 msgid "You will need to edit each place manually to add place type, ...\n"
 msgstr ""
+"Minden egyes helyet kézzel kell szerkesztenie, hogy hozzáadja a hely "
+"típusát, ...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1055
 #, python-brace-format
