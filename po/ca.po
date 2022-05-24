@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-02-27 21:30+0000\n"
+"PO-Revision-Date: 2022-04-21 07:10+0000\n"
 "Last-Translator: Maite Guix <maite.guix@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -220,10 +220,8 @@ msgid "Sweden"
 msgstr "Suècia"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turc"
+msgstr "Turquia"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -368,16 +366,6 @@ msgstr ""
 "s'oblidi de gravar les converses!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter and select it at the bottom of the Filter Sidebar, then click "
-#| "Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -388,23 +376,18 @@ msgid ""
 "filter in the Filter field on Sidebar, then click Find button. If the "
 "Sidebar is not visible, select View &gt; Sidebar."
 msgstr ""
-"<b>Filtrar Persones</b><br/>A la Vista de Persones, es poden 'filtrar' "
-"individus segons criteris molt variats. Per definir un filtre nou, vagi a "
-"\"Edita &gt; Editor de Filtres de Persones\". Allà pot posar nom al seu "
-"filtre i afegir i combinar regles fent servir la multitud de regles "
+"<b>Filtrar Persones</b><br/>A la Vista de Persones, es poden «filtrar» "
+"individus segons criteris molt variats. Per definir un filtre nou, vagi a «"
+"Edita &gt; Editor de Filtres de Persones». Allà pot posar nom al seu filtre "
+"i afegir i combinar regles fent servir la multitud de regles "
 "predeterminades. Per exemple, es pot definir un filtre per localitzar totes "
 "les persones adoptades de l'arbre genealògic. També es poden filtrar les "
 "persones sense data de naixement coneguda. Per obtenir els resultats, desi "
-"el filtre, seleccioni'l al capdavall de la Barra Lateral de Filtres, i "
-"cliqui Aplicar. Si la Barra Lateral de Filtres no és visible, seleccioni "
-"Veure &gt; Filtre."
+"el filtre. A continuació, seleccioneu aquest filtre al camp Filtre de la "
+"barra lateral i feu clic al botó Cerca. Si la barra lateral no és visible, "
+"seleccioneu Visualitza &gt; Barra lateral."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -412,7 +395,8 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Filtratge Invers</b><br/>Els Filtres es poden invertir fàcilment amb "
-"l'opció 'invertir'. Per exemple, invertint el filtre de 'Persones amb fills' "
+"l'opció «invertir» que «Retorna els valors que no coincideixen amb les "
+"regles de filtre». Per exemple, invertint el filtre de «Persones amb fills» "
 "pot seleccionar totes les persones que no en tinguin."
 
 #: ../data/tips.xml:18
@@ -512,13 +496,6 @@ msgstr ""
 "SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -526,11 +503,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Fixar les Preferències</b><br/>\"Edita &gt; Preferències...\" li permet "
-"de modificar una colla de paràmetres, com ara el camí als fitxers "
-"audiovisuals, i li permet d'adaptar molts aspectes de la presentació de "
-"Gramps a les seves necessitats. Cada vista es pot configurar també per "
-"separat a \"Vista &gt; Configurar Vista...\""
+"<b>Fixar les Preferències</b><br/>«Edita &gt; Preferències...» li permet de "
+"modificar una colla de paràmetres, com ara el camí als fitxers audiovisuals, "
+"i li permet d'adaptar molts aspectes de la presentació de Gramps a les seves "
+"necessitats. Cada vista es pot configurar també per separat a «Vista &gt; "
+"Configurar Vista...»."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -570,13 +547,6 @@ msgstr ""
 "ratolí al damunt d'un botó i apareixerà un petit text d'ajuda."
 
 #: ../data/tips.xml:40
-#, fuzzy
-#| msgid ""
-#| "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-#| "occurred, Gramps allows you to enter a wide range of date formats based "
-#| "on a guess or an estimate. For instance, \"about 1908\" is a valid entry "
-#| "for a birth date in Gramps. Click the Date button next to the date field "
-#| "and see the Gramps Manual to learn more."
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -586,36 +556,23 @@ msgid ""
 msgstr ""
 "<b>No està segur d'una data?</b><br/>Si no està segur de la data en què va "
 "ocórrer un esdeveniment, Gramps li permet d'introduir una colla de formats "
-"de data basats en una suposició o estimació. Per exemple, \"al voltant de "
-"1908\" és una entrada vàlida per una data de naixement a Gramps. Cliqui el "
-"botó de Data del costat del camp de data i vegi el manual de Gramps per "
-"aprendre'n més."
+"de data basats en una suposició o estimació. Per exemple, «al voltant de "
+"1908» és una entrada vàlida per una data de naixement a Gramps. Cliqui el "
+"botó «Invocar l'editor de dates» del costat del camp de data. Consulti el "
+"manual de Gramps per a aprendre'n més."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-#| "Possible Duplicate People...\" allows you to locate (and merge) entries "
-#| "of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Entrades Duplicades</b><br/>\"Eines &gt; Procés de Base de Dades &gt; "
-"Trobar Persones Possiblement Duplicades...\" permet de localitzar (i "
-"combinar) entrades de la mateixa persona que s'hagin introduït més d'un cop "
-"a la base de dades."
+"<b>Entrades Duplicades</b><br/> L'eina «Eines &gt; Procés de l'arbre "
+"genealògic &gt; Trobar Persones Possiblement Duplicades...» permet de "
+"localitzar (i combinar) entrades de la mateixa persona que s'hagin introduït "
+"més d'un cop a la base de dades."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge..."
-#| "\" allows you to combine separately listed people into one. Select the "
-#| "second entry by holding the Control key as you click. This is very useful "
-#| "for combining two databases with overlapping people, or combining "
-#| "erroneously entered differing names for one individual. This also works "
-#| "for the Places, Sources and Repositories views."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -624,12 +581,13 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Combinar Entrades</b><br/>La funció \"Edita &gt; Comparar i Combinar...\" "
-"li permet de combinar persones llistades per separat en una de sola. "
-"Seleccioni la segona entrada mantenint premuda la tecla de Control mentre "
-"clica. Això és molt útil per combinar dues bases de dades que tinguin gent "
-"en comú, o combinar noms diferents introduïts erròniament per un sol "
-"individu. Això també funciona per les vistes de Llocs, Fonts i Repositoris."
+"<b>Combinar Entrades</b><br/>La funció «Edita &gt; Combinar...» li permet de "
+"combinar persones llistades per separat en una de sola. Seleccioni la segona "
+"entrada mantenint premuda la tecla de Control mentre clica. Això és molt "
+"útil per combinar dues bases de dades que tinguin gent en comú, o combinar "
+"noms diferents introduïts erròniament per un sol individu. La fusió està "
+"disponible a totes les visualitzacions de llista per a tots els tipus "
+"d'objectes principals."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -746,15 +704,6 @@ msgstr ""
 "Correu de Gramps\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -770,7 +719,7 @@ msgstr ""
 "documentació a provar versions de desenvolupament o ajudar amb el lloc web. "
 "Comenci subscrivint-se a la llista de distribució dels desenvolupadors de "
 "Gramps, gramps-devel, i presentant-se. Es pot trobar informació sobre "
-"subscripcions a \"Ajuda &gt; Llistes de Correu de Gramps\""
+"subscripcions a \"Ajuda &gt; Llistes de Correu de Gramps\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -958,30 +907,21 @@ msgstr ""
 "de pujar a un servidor web."
 
 #: ../data/tips.xml:94
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-project."
-#| "org/bugs/"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
 "<b>Informar d'Errors a Gramps</b><br/>La millor manera d'informar d'un error "
 "de programa a Gramps és fer servir el seu sistema de seguiment d'errors a "
-"https://gramps-project.org/bugs/"
+"https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
 msgstr ""
 "<b>La Pàgina Principal de Gramps</b><br/>La pàgina principal de Gramps és a "
-"http://gramps-project.org/"
+"http://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1013,47 +953,30 @@ msgstr ""
 "una font."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>Informes i Eines Addicionals</b><br/>Es poden afegir informes i eines "
-"addicionals a Gramps amb el sistema de \"Complements\". Vegi-ho a \"Ajuda "
-"&gt; Informes Addicionals/Eines\". Aquesta és la millor manera perquè els "
-"usuaris avançats experimentin i creïn noves funcionalitats."
+"<b>Informes i Eines Addicionals</b><br/>Es poden afegir informes addicionals "
+"i eines a Gramps amb el sistema de \"Complements\". Vegi-ho a \"Ajuda &gt; "
+"Informes Addicionals/Eines\". Aquesta és la millor manera perquè els usuaris "
+"avançats experimentin i creïn noves funcionalitats."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; "
-#| "Book Report...\", allows you to collect a variety of reports into a "
-#| "single document. This single report is easier to distribute than multiple "
-#| "reports, especially when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
 "allows you to collect a variety of reports into a single document. This "
 "single report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Informes de Llibre</b><br/>L'informe de Llibre, a \"Informes &gt; Llibres "
-"&gt; Informe de Llibre...\", li permet de recopilar un reguitzell d'informes "
-"en un sol document. Aquest informe únic és més fàcil de distribuir que "
-"informes múltiples, especialment quan s'imprimeix."
+"<b>Informes de Llibre</b><br/>L'informe de Llibre, a \"Informes &gt; "
+"Llibres...\" li permet de recopilar un reguitzell d'informes en un sol "
+"document. Aquest informe únic és més fàcil de distribuir que informes "
+"múltiples, especialment quan s'imprimeix."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1061,7 +984,7 @@ msgid ""
 msgstr ""
 "<b>Anuncis de Gramps</b><br/>Li interessa rebre una notificació quan surti "
 "una versió de Gramps? Apunti's a la llista de correu Gramps-announce a "
-"\"Ajuda &gt; Llistes de Correu de Gramps\""
+"\"Ajuda &gt; Llistes de Correu de Gramps\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1115,11 +1038,6 @@ msgstr ""
 "llengua predeterminada al sistema operatiu i torneu a engegar Gramps."
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
@@ -1128,7 +1046,7 @@ msgstr ""
 "<b>Traductors de Gramps</b><br/>Gramps ha estat dissenyat perquè s'hi puguin "
 "afegir fàcilment traduccions noves amb poc esforç de desenvolupament. Si "
 "està interessat en participar-hi, enviï si us plau un email a gramps-"
-"devel@lists.sf.net"
+"devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -7185,15 +7103,11 @@ msgid "None"
 msgstr "Cap"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
 msgstr "Naixement"
 
 #: ../gramps/gen/lib/childreftype.py:69
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
 msgstr "Adoptat"
@@ -9967,16 +9881,12 @@ msgid "Short"
 msgstr "Curt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Finding Surnames"
 msgid "Given Nickname Surname"
-msgstr "Buscant Cognoms"
+msgstr "Nom Sobrenom Cognom"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname Given Nickname"
-msgstr "Noms de Pila Iguals"
+msgstr "Cognom Nom Sobrenom"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Above"
@@ -10086,10 +9996,8 @@ msgid "Detail of information to be shown in a node."
 msgstr "Detall de la informació mostrada al node."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
-msgstr "Format de nom"
+msgstr "Format de Nom"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 #: ../gramps/gen/plug/report/stdoptions.py:94
@@ -10866,7 +10774,7 @@ msgstr "Hongarès"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonesi"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -11784,16 +11692,12 @@ msgid "Email"
 msgstr "Email"
 
 #: ../gramps/gui/configure.py:633
-#, fuzzy
-#| msgid ""
-#| "Enter information about yourself so people can contact you when you "
-#| "distribute your Family Tree"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
 "Introduïu informació vostra perquè la gent es pugui posar en contacte amb "
-"vostè quan distribuïu el vostre Arbre Genealògic"
+"vostè quan distribuïu el vostre Arbre Genealògic."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -11810,6 +11714,10 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"Formats d'identificació de Gramps predeterminats que contenen un prefix de "
+"lletra seguit d'una cadena numèrica. \"I%04d\" crea identificadors d'I0000 a "
+"I9999. Les bases de dades grans poden necessitar identificacions més grans. "
+"\"I%06d\" crea identificadors des de I000000 a I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -12008,10 +11916,8 @@ msgid "_Remove"
 msgstr "Esbo_rra"
 
 #: ../gramps/gui/configure.py:1173
-#, fuzzy
-#| msgid "Display as"
 msgid "Display Options"
-msgstr "Mostrar com a"
+msgstr "Mostrar Opcions"
 
 #: ../gramps/gui/configure.py:1189 ../gramps/gui/configure.py:1243
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -12027,10 +11933,8 @@ msgid "Edit"
 msgstr "Edita"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Format del lloc"
+msgstr "Format del lloc automàtic"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Enables automatic place title generation using specified format."
@@ -12041,16 +11945,16 @@ msgstr ""
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
+"Les opcions de visualització de noms personalitzades són úniques per a cada "
+"arbre genealògic."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
 msgstr "Considerar un pa/matronímic únic com a cognom"
 
 #: ../gramps/gui/configure.py:1274
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "Format de data"
+msgstr "Format de data *"
 
 #: ../gramps/gui/configure.py:1282
 msgid "Years"
@@ -12065,20 +11969,16 @@ msgid "Years, Months, Days"
 msgstr "Anys, Mesos, Dies"
 
 #: ../gramps/gui/configure.py:1297
-#, fuzzy
-#| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
-msgstr "Precisió de la visualització de l'edat (requereix tornar a engegar)"
+msgstr "Precisió de la visualització de l'edat *"
 
 #: ../gramps/gui/configure.py:1310
 msgid "Calendar on reports"
 msgstr "Calendari als informes"
 
 #: ../gramps/gui/configure.py:1323
-#, fuzzy
-#| msgid "Calendar on reports"
 msgid "Calendar on input"
-msgstr "Calendari als informes"
+msgstr "Calendari a l'entrada"
 
 #: ../gramps/gui/configure.py:1330
 msgid "Active person's name and ID"
@@ -12094,12 +11994,12 @@ msgid "Status bar"
 msgstr "Barra d'estat"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Opcions d'Informe"
+msgstr ""
+"\n"
+"Opcions d'Entrada"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -12111,21 +12011,19 @@ msgstr "Relació de família predeterminada"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Amaga la pestanya LDS en persona i editors familiars"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Cal reiniciar"
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "Database"
 msgid "Data"
-msgstr "Base de Dades"
+msgstr "Dades"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Substitucions de text condicionals"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -12164,16 +12062,12 @@ msgstr ""
 "s'engegui Gramps."
 
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Calculant línia temporal..."
+msgstr "Límits de càlcul"
 
 #: ../gramps/gui/configure.py:1534
-#, fuzzy
-#| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Data al voltant d'un rang"
+msgstr "Data amb interval d'anys «aproximadament»: (data ± #)"
 
 #: ../gramps/gui/configure.py:1538
 #, fuzzy
