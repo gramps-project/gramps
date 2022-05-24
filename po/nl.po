@@ -10,13 +10,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Milan <mobrcian@hotmail.com>, 2021.
 # Freek Olgers <freek@olgers.com>, 2022.
+# Niko Strijbol <strijbol.niko@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-02-27 21:30+0000\n"
-"Last-Translator: Freek Olgers <freek@olgers.com>\n"
+"PO-Revision-Date: 2022-04-08 21:08+0000\n"
+"Last-Translator: Niko Strijbol <strijbol.niko@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -219,10 +220,8 @@ msgid "Sweden"
 msgstr "Zweden"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turks"
+msgstr "Turkije"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -370,16 +369,6 @@ msgstr ""
 "horen. Vergeet niet om de gesprekken op te nemen!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter and select it at the bottom of the Filter Sidebar, then click "
-#| "Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -397,9 +386,9 @@ msgstr ""
 "ingestelde regels. U kunt bijvoorbeeld een filter definiëren om alle "
 "geadopteerde personen in de stamboom te vinden. Ook kunnen personen zonder "
 "geboortedatum gefilterd worden. Om resultaten te krijgen slaat u uw filter "
-"op, selecteert u deze onderaan de filterzijbalk en klikt u vervolgens op "
-"Toepassen. Als de filterzijbalk niet zichtbaar is, selecteer dan &quot;Beeld "
-"&gt;Zijbalk."
+"op. Vervolgens selecteert u deze filter in het veld Filter in de zijbalk, "
+"klikt u op de knop Vinden. Als de zijbalk niet zichtbaar is, selecteer dan "
+"&quot;Beeld &gt;Zijbalk."
 
 #: ../data/tips.xml:16
 #, fuzzy
@@ -516,13 +505,6 @@ msgstr ""
 "SoundEx-codes voor achternamen in uw database te bekijken."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -530,11 +512,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Uw voorkeuren instellen</b><br/>Via &quot;Bewerken &gt; Voorkeuren..."
-"&quot; kunt u een aantal instellingen wijzigen, zoals het pad naar uw "
-"mediabestanden, en kunt u veel aspecten van de Gramps-weergave aanpassen aan "
-"uw wensen. Elke afzonderlijke weergave kan ook worden geconfigureerd onder "
-"&quot;Beeld &gt; Configureren...&quot;"
+"<b>Uw voorkeuren instellen</b><br/>Via &quot;Bewerken &gt; "
+"Voorkeuren...&quot; kunt u een aantal instellingen wijzigen, zoals het pad "
+"naar uw mediabestanden, en kunt u veel aspecten van de Gramps-weergave "
+"aanpassen aan uw wensen. Elke afzonderlijke weergave kan ook worden "
+"geconfigureerd onder &quot;Beeld &gt; Configureren...&quot;."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -10842,7 +10824,7 @@ msgstr "Duits"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Duits (Oostenrijk)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -10890,7 +10872,7 @@ msgstr "Hongaars"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonesisch"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -12149,11 +12131,11 @@ msgstr "Standaard familierelatie"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "LDS-tabblad verbergen in bewerkers voor personen en gezinnen"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Vereist opnieuw opstarten"
 
 #: ../gramps/gui/configure.py:1388
 #, fuzzy
@@ -12163,7 +12145,7 @@ msgstr "Database"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Voorwaardelijk tekst vervangen"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -12247,7 +12229,7 @@ msgstr "Max. generaties voor verwantschappen"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Limieten"
 
 #: ../gramps/gui/configure.py:1575
 #, fuzzy
