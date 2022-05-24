@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 23:08+0000\n"
+"POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2022-03-04 22:09+0000\n"
 "Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/gramps-project/"
@@ -6443,25 +6443,17 @@ msgstr "肩書"
 msgid "None"
 msgstr "なし"
 
-#: ../gramps/gen/lib/childreftype.py:68 ../gramps/gen/lib/eventtype.py:165
-#: ../gramps/gen/utils/symbols.py:93 ../gramps/gui/configure.py:2230
-#: ../gramps/gui/merge/mergeperson.py:189
-#: ../gramps/plugins/export/exportvcalendar.py:151
-#: ../gramps/plugins/gramplet/ancestor.py:65
-#: ../gramps/plugins/gramplet/descendant.py:63
-#: ../gramps/plugins/importer/importprogen.glade:1472
-#: ../gramps/plugins/quickview/all_relations.py:270
-#: ../gramps/plugins/quickview/lineage.py:93
-#: ../gramps/plugins/textreport/familygroup.py:316
-#: ../gramps/plugins/textreport/familygroup.py:524
-#: ../gramps/plugins/textreport/familygroup.py:526
-#: ../gramps/plugins/textreport/tagreport.py:170
-#: ../gramps/plugins/webreport/person.py:231
-#: ../gramps/plugins/webreport/surname.py:142
+#: ../gramps/gen/lib/childreftype.py:68
+#, fuzzy
+#| msgid "Birth"
+msgctxt "relationship"
 msgid "Birth"
 msgstr "出生"
 
-#: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/lib/eventtype.py:164
+#: ../gramps/gen/lib/childreftype.py:69
+#, fuzzy
+#| msgid "Adopted"
+msgctxt "relationship"
 msgid "Adopted"
 msgstr "養子"
 
@@ -6957,6 +6949,27 @@ msgstr "住居"
 #: ../gramps/plugins/lib/maps/placeselection.py:200
 msgid "Other"
 msgstr "その他"
+
+#: ../gramps/gen/lib/eventtype.py:164
+msgid "Adopted"
+msgstr "養子"
+
+#: ../gramps/gen/lib/eventtype.py:165 ../gramps/gen/utils/symbols.py:93
+#: ../gramps/gui/configure.py:2230 ../gramps/gui/merge/mergeperson.py:189
+#: ../gramps/plugins/export/exportvcalendar.py:151
+#: ../gramps/plugins/gramplet/ancestor.py:65
+#: ../gramps/plugins/gramplet/descendant.py:63
+#: ../gramps/plugins/importer/importprogen.glade:1472
+#: ../gramps/plugins/quickview/all_relations.py:270
+#: ../gramps/plugins/quickview/lineage.py:93
+#: ../gramps/plugins/textreport/familygroup.py:316
+#: ../gramps/plugins/textreport/familygroup.py:524
+#: ../gramps/plugins/textreport/familygroup.py:526
+#: ../gramps/plugins/textreport/tagreport.py:170
+#: ../gramps/plugins/webreport/person.py:231
+#: ../gramps/plugins/webreport/surname.py:142
+msgid "Birth"
+msgstr "出生"
 
 #: ../gramps/gen/lib/eventtype.py:166 ../gramps/gui/configure.py:2236
 #: ../gramps/gui/merge/mergeperson.py:194
@@ -14439,13 +14452,16 @@ msgstr "正規表現を使用する"
 
 #: ../gramps/gui/editors/filtereditor.py:608
 msgid ""
-"Interpret the contents of string fields as regular expressions.\n"
-"A decimal point will match any character. A question mark will match zero or "
-"one occurences of the previous character or group. An asterisk will match "
-"zero or more occurences. A plus sign will match one or more occurences. Use "
-"parentheses to group expressions. Specify alternatives using a vertical bar. "
-"A caret will match the start of a line. A dollar sign will match the end of "
-"a line."
+"Interpret the contents of string fields as regular expressions:\n"
+".\tA decimal point will match any character.\n"
+"?\tA question mark will match zero or one occurences of the previous "
+"character or group.\n"
+"*\tAn asterisk will match zero or more occurences.\n"
+"+\tA plus sign will match one or more occurences.\n"
+"()\tUse parentheses to group expressions.\n"
+"|\tSpecify alternatives using a vertical bar.\n"
+"^\tA caret will match the start of a line.\n"
+"$\tA dollar sign will match the end of a line."
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:637
@@ -17855,27 +17871,32 @@ msgstr "サマリ"
 msgid ""
 "The data will be exported as follows:\n"
 "\n"
-"Format:\t%s\n"
-"\n"
-"Press Apply to proceed, Back to revisit your options, or Cancel to abort"
+"Format:\t%s"
 msgstr ""
-"データは下記のようにエクスポートされます:\n"
-"\n"
-"フォーマット:\t%s\n"
-"\n"
-"適用するには[継続]を押すか、[戻る]でオプション画面に戻るか、[中止]でキャンセ"
-"ルして下さい"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:465
-#, python-format
+#: ../gramps/gui/plug/export/_exportassistant.py:455
+#: ../gramps/gui/plug/export/_exportassistant.py:470
+msgid ""
+"Press Cancel to abort, Back to revisit your options, or Apply to proceed"
+msgstr ""
+
+#: ../gramps/gui/plug/export/_exportassistant.py:466
+#, fuzzy, python-format
+#| msgid ""
+#| "The data will be saved as follows:\n"
+#| "\n"
+#| "Format:\t%(format)s\n"
+#| "Name:\t%(name)s\n"
+#| "Folder:\t%(folder)s\n"
+#| "\n"
+#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
+#| "abort"
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
 "Format:\t%(format)s\n"
 "Name:\t%(name)s\n"
-"Folder:\t%(folder)s\n"
-"\n"
-"Press Apply to proceed, Go Back to revisit your options, or Cancel to abort"
+"Folder:\t%(folder)s"
 msgstr ""
 "データは下記のように保存されます:\n"
 "\n"
@@ -17886,9 +17907,21 @@ msgstr ""
 "適用するには[継続]を押すか、[戻る]でオプション画面に戻るか、[中止]でキャンセ"
 "ルして下さい"
 
+#: ../gramps/gui/plug/export/_exportassistant.py:468
+#, fuzzy
+#| msgid "=format"
+msgctxt "name"
+msgid "format"
+msgstr "=フォーマット"
+
 #: ../gramps/gui/plug/export/_exportassistant.py:475
+#, fuzzy
+#| msgid ""
+#| "The selected file and folder to save to cannot be created or found.\n"
+#| "\n"
+#| "Press Back to return and select a valid filename."
 msgid ""
-"The selected file and folder to save to cannot be created or found.\n"
+"The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
@@ -37298,6 +37331,26 @@ msgstr "ネブラスカ"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "スタイルシートなし"
+
+#, fuzzy
+#~ msgctxt "localized lexeme inflections"
+#~ msgid "|January"
+#~ msgstr "地域による語彙屈折変化||一月"
+
+#, python-format
+#~ msgid ""
+#~ "The data will be exported as follows:\n"
+#~ "\n"
+#~ "Format:\t%s\n"
+#~ "\n"
+#~ "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
+#~ msgstr ""
+#~ "データは下記のようにエクスポートされます:\n"
+#~ "\n"
+#~ "フォーマット:\t%s\n"
+#~ "\n"
+#~ "適用するには[継続]を押すか、[戻る]でオプション画面に戻るか、[中止]でキャン"
+#~ "セルして下さい"
 
 #, fuzzy
 #~ msgctxt "locale_suffix"
