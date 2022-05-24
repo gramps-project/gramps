@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-03-10 05:59+0000\n"
+"PO-Revision-Date: 2022-05-11 22:16+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2595,62 +2595,62 @@ msgstr "Dez"
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "alternative month names for January"
 msgid ""
-msgstr "Janeiro"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "alternative month names for February"
 msgid ""
-msgstr "Fevereiro"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "alternative month names for March"
 msgid ""
-msgstr "Março"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "alternative month names for April"
 msgid ""
-msgstr "Abril"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "alternative month names for May"
 msgid ""
-msgstr "Maio"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "alternative month names for June"
 msgid ""
-msgstr "Junho"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgctxt "alternative month names for July"
 msgid ""
-msgstr "Julho"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgctxt "alternative month names for August"
 msgid ""
-msgstr "Agosto"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgctxt "alternative month names for September"
 msgid ""
-msgstr "Setembro"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgctxt "alternative month names for October"
 msgid ""
-msgstr "Outubro"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgctxt "alternative month names for November"
 msgid ""
-msgstr "Novembro"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgctxt "alternative month names for December"
 msgid ""
-msgstr "Dezembro"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
@@ -6982,7 +6982,7 @@ msgstr "Referência de filhos"
 #: ../gramps/gen/lib/reporef.py:104 ../gramps/gen/lib/src.py:102
 #: ../gramps/gen/lib/tag.py:120
 msgid "Handle"
-msgstr "Puxador"
+msgstr "Identificador"
 
 #: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:75
 #: ../gramps/gui/configure.py:87
@@ -7002,18 +7002,14 @@ msgid "None"
 msgstr "Nenhum"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
 msgstr "Nascimento"
 
 #: ../gramps/gen/lib/childreftype.py:69
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Adoptado"
+msgstr "Adoptado(a)"
 
 #: ../gramps/gen/lib/childreftype.py:70
 msgid "Stepchild"
@@ -15078,15 +15074,6 @@ msgid "Use regular expressions"
 msgstr "Usar expressões regulares"
 
 #: ../gramps/gui/editors/filtereditor.py:608
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -15099,13 +15086,16 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"Interpretar o conteúdo de campos de cadeias como expressões regulares.\n"
-"Um ponto decimal serve como qualquer carácter. Um ponto de interrogação "
-"corresponde a 0 ou 1 ocorrências do carácter ou grupo anterior. Um asterisco "
-"corresponde a 0 ou mais ocorrências. Um sinal + corresponde a uma ou mais "
-"ocorrências. Use parênteses para agrupar expressões. Especifique "
-"alternativas usando uma barra vertical. Um sublinhado corresponde a um "
-"início de linha. Um símbolo $ corresponde a um fim de linha."
+"Interpretar o conteúdo de campos de cadeias como expressões regulares:\n"
+".   um ponto decimal serve como qualquer carácter;\n"
+"?  um ponto de interrogação corresponde a 0 ou 1 ocorrências do carácter ou "
+"grupo anterior;\n"
+"*  um asterisco corresponde a 0 ou mais ocorrências;\n"
+"+  um sinal + corresponde a uma ou mais ocorrências;\n"
+"() use parênteses para agrupar expressões;\n"
+"|   especifique alternativas usando uma barra vertical;\n"
+"^  um acento circunflexo corresponde a um início de linha;\n"
+"$  um cifrão corresponde a um fim de linha."
 
 #: ../gramps/gui/editors/filtereditor.py:637
 msgid "Rule Name"
@@ -18689,29 +18679,20 @@ msgid ""
 "\n"
 "Format:\t%s"
 msgstr ""
+"Os dados serão exportados como segue:\n"
+"\n"
+"Formato: %s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
-#, fuzzy
-#| msgid ""
-#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Clique em Aplicar para proceder, Cancelar para abortar, ou Recuar para rever "
-"as suas opções."
+"Clique em Cancelar para abortar, Recuar para rever as suas opções ou Aplicar "
+"para continuar"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
-#, fuzzy, python-format
-#| msgid ""
-#| "The data will be saved as follows:\n"
-#| "\n"
-#| "Format:\t%(format)s\n"
-#| "Name:\t%(name)s\n"
-#| "Folder:\t%(folder)s\n"
-#| "\n"
-#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
-#| "abort"
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -18719,37 +18700,27 @@ msgid ""
 "Name:\t%(name)s\n"
 "Folder:\t%(folder)s"
 msgstr ""
-"Os dados serão gravados da seguinte forma:\n"
+"Os dados serão gravados como segue:\n"
 "\n"
 "Formato:\t%(format)s\n"
 "Nome:\t\t%(name)s\n"
-"Pasta:\t\t%(folder)s\n"
-"\n"
-"Clique em Aplicar para prosseguir, Recuar para rever as suas opções ou "
-"Cancelar para abortar"
+"Pasta:\t\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
-#, fuzzy
-#| msgid "=format"
 msgctxt "name"
 msgid "format"
-msgstr "=formato"
+msgstr "formato"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
-#, fuzzy
-#| msgid ""
-#| "The selected file and folder to save to cannot be created or found.\n"
-#| "\n"
-#| "Press Back to return and select a valid filename."
 msgid ""
 "The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"O ficheiro e pasta seleccionados para gravar não puderam ser criados ou "
+"O ficheiro e pasta seleccionados para gravar não podem ser criados ou "
 "encontrados.\n"
 "\n"
-"Clique em Voltar e seleccione um nome de ficheiro válido."
+"Clique em Recuar e seleccione um nome de ficheiro válido."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:502
 msgid "Your data has been saved"
