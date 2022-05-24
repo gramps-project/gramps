@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps genealogy project.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 23:08+0000\n"
+"POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2021-06-07 12:32+0000\n"
 "Last-Translator: Dale Athanasias <dalegrind@hotmail.com>\n"
 "Language-Team: Irish <https://hosted.weblate.org/projects/gramps-project/"
@@ -6373,25 +6373,13 @@ msgstr ""
 msgid "None"
 msgstr "dada"
 
-#: ../gramps/gen/lib/childreftype.py:68 ../gramps/gen/lib/eventtype.py:165
-#: ../gramps/gen/utils/symbols.py:93 ../gramps/gui/configure.py:2230
-#: ../gramps/gui/merge/mergeperson.py:189
-#: ../gramps/plugins/export/exportvcalendar.py:151
-#: ../gramps/plugins/gramplet/ancestor.py:65
-#: ../gramps/plugins/gramplet/descendant.py:63
-#: ../gramps/plugins/importer/importprogen.glade:1472
-#: ../gramps/plugins/quickview/all_relations.py:270
-#: ../gramps/plugins/quickview/lineage.py:93
-#: ../gramps/plugins/textreport/familygroup.py:316
-#: ../gramps/plugins/textreport/familygroup.py:524
-#: ../gramps/plugins/textreport/familygroup.py:526
-#: ../gramps/plugins/textreport/tagreport.py:170
-#: ../gramps/plugins/webreport/person.py:231
-#: ../gramps/plugins/webreport/surname.py:142
+#: ../gramps/gen/lib/childreftype.py:68
+msgctxt "relationship"
 msgid "Birth"
 msgstr ""
 
-#: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/lib/eventtype.py:164
+#: ../gramps/gen/lib/childreftype.py:69
+msgctxt "relationship"
 msgid "Adopted"
 msgstr ""
 
@@ -6893,6 +6881,27 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/placeselection.py:149
 #: ../gramps/plugins/lib/maps/placeselection.py:200
 msgid "Other"
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:164
+msgid "Adopted"
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:165 ../gramps/gen/utils/symbols.py:93
+#: ../gramps/gui/configure.py:2230 ../gramps/gui/merge/mergeperson.py:189
+#: ../gramps/plugins/export/exportvcalendar.py:151
+#: ../gramps/plugins/gramplet/ancestor.py:65
+#: ../gramps/plugins/gramplet/descendant.py:63
+#: ../gramps/plugins/importer/importprogen.glade:1472
+#: ../gramps/plugins/quickview/all_relations.py:270
+#: ../gramps/plugins/quickview/lineage.py:93
+#: ../gramps/plugins/textreport/familygroup.py:316
+#: ../gramps/plugins/textreport/familygroup.py:524
+#: ../gramps/plugins/textreport/familygroup.py:526
+#: ../gramps/plugins/textreport/tagreport.py:170
+#: ../gramps/plugins/webreport/person.py:231
+#: ../gramps/plugins/webreport/surname.py:142
+msgid "Birth"
 msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:166 ../gramps/gui/configure.py:2236
@@ -14258,13 +14267,16 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:608
 msgid ""
-"Interpret the contents of string fields as regular expressions.\n"
-"A decimal point will match any character. A question mark will match zero or "
-"one occurences of the previous character or group. An asterisk will match "
-"zero or more occurences. A plus sign will match one or more occurences. Use "
-"parentheses to group expressions. Specify alternatives using a vertical bar. "
-"A caret will match the start of a line. A dollar sign will match the end of "
-"a line."
+"Interpret the contents of string fields as regular expressions:\n"
+".\tA decimal point will match any character.\n"
+"?\tA question mark will match zero or one occurences of the previous "
+"character or group.\n"
+"*\tAn asterisk will match zero or more occurences.\n"
+"+\tA plus sign will match one or more occurences.\n"
+"()\tUse parentheses to group expressions.\n"
+"|\tSpecify alternatives using a vertical bar.\n"
+"^\tA caret will match the start of a line.\n"
+"$\tA dollar sign will match the end of a line."
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:637
@@ -17621,26 +17633,34 @@ msgstr ""
 msgid ""
 "The data will be exported as follows:\n"
 "\n"
-"Format:\t%s\n"
-"\n"
-"Press Apply to proceed, Back to revisit your options, or Cancel to abort"
+"Format:\t%s"
 msgstr ""
 
-#: ../gramps/gui/plug/export/_exportassistant.py:465
+#: ../gramps/gui/plug/export/_exportassistant.py:455
+#: ../gramps/gui/plug/export/_exportassistant.py:470
+msgid ""
+"Press Cancel to abort, Back to revisit your options, or Apply to proceed"
+msgstr ""
+
+#: ../gramps/gui/plug/export/_exportassistant.py:466
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
 "Format:\t%(format)s\n"
 "Name:\t%(name)s\n"
-"Folder:\t%(folder)s\n"
-"\n"
-"Press Apply to proceed, Go Back to revisit your options, or Cancel to abort"
+"Folder:\t%(folder)s"
 msgstr ""
+
+#: ../gramps/gui/plug/export/_exportassistant.py:468
+#, fuzzy
+msgctxt "name"
+msgid "format"
+msgstr "Ionadaigh"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
 msgid ""
-"The selected file and folder to save to cannot be created or found.\n"
+"The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""

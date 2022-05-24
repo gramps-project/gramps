@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 23:08+0000\n"
+"POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2021-10-02 09:53+0000\n"
 "Last-Translator: Artem <Localizer_in_Russian@protonmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
@@ -7124,25 +7124,17 @@ msgstr "Указатель"
 msgid "None"
 msgstr "Нет"
 
-#: ../gramps/gen/lib/childreftype.py:68 ../gramps/gen/lib/eventtype.py:165
-#: ../gramps/gen/utils/symbols.py:93 ../gramps/gui/configure.py:2230
-#: ../gramps/gui/merge/mergeperson.py:189
-#: ../gramps/plugins/export/exportvcalendar.py:151
-#: ../gramps/plugins/gramplet/ancestor.py:65
-#: ../gramps/plugins/gramplet/descendant.py:63
-#: ../gramps/plugins/importer/importprogen.glade:1472
-#: ../gramps/plugins/quickview/all_relations.py:270
-#: ../gramps/plugins/quickview/lineage.py:93
-#: ../gramps/plugins/textreport/familygroup.py:316
-#: ../gramps/plugins/textreport/familygroup.py:524
-#: ../gramps/plugins/textreport/familygroup.py:526
-#: ../gramps/plugins/textreport/tagreport.py:170
-#: ../gramps/plugins/webreport/person.py:231
-#: ../gramps/plugins/webreport/surname.py:142
+#: ../gramps/gen/lib/childreftype.py:68
+#, fuzzy
+#| msgid "Birth"
+msgctxt "relationship"
 msgid "Birth"
 msgstr "Рождение"
 
-#: ../gramps/gen/lib/childreftype.py:69 ../gramps/gen/lib/eventtype.py:164
+#: ../gramps/gen/lib/childreftype.py:69
+#, fuzzy
+#| msgid "Adopted"
+msgctxt "relationship"
 msgid "Adopted"
 msgstr "Усыновлённый"
 
@@ -7642,6 +7634,27 @@ msgstr "Проживание"
 #: ../gramps/plugins/lib/maps/placeselection.py:200
 msgid "Other"
 msgstr "Иное"
+
+#: ../gramps/gen/lib/eventtype.py:164
+msgid "Adopted"
+msgstr "Усыновлённый"
+
+#: ../gramps/gen/lib/eventtype.py:165 ../gramps/gen/utils/symbols.py:93
+#: ../gramps/gui/configure.py:2230 ../gramps/gui/merge/mergeperson.py:189
+#: ../gramps/plugins/export/exportvcalendar.py:151
+#: ../gramps/plugins/gramplet/ancestor.py:65
+#: ../gramps/plugins/gramplet/descendant.py:63
+#: ../gramps/plugins/importer/importprogen.glade:1472
+#: ../gramps/plugins/quickview/all_relations.py:270
+#: ../gramps/plugins/quickview/lineage.py:93
+#: ../gramps/plugins/textreport/familygroup.py:316
+#: ../gramps/plugins/textreport/familygroup.py:524
+#: ../gramps/plugins/textreport/familygroup.py:526
+#: ../gramps/plugins/textreport/tagreport.py:170
+#: ../gramps/plugins/webreport/person.py:231
+#: ../gramps/plugins/webreport/surname.py:142
+msgid "Birth"
+msgstr "Рождение"
 
 #: ../gramps/gen/lib/eventtype.py:166 ../gramps/gui/configure.py:2236
 #: ../gramps/gui/merge/mergeperson.py:194
@@ -15249,14 +15262,26 @@ msgid "Use regular expressions"
 msgstr "Использовать регулярные выражения"
 
 #: ../gramps/gui/editors/filtereditor.py:608
+#, fuzzy
+#| msgid ""
+#| "Interpret the contents of string fields as regular expressions.\n"
+#| "A decimal point will match any character. A question mark will match zero "
+#| "or one occurences of the previous character or group. An asterisk will "
+#| "match zero or more occurences. A plus sign will match one or more "
+#| "occurences. Use parentheses to group expressions. Specify alternatives "
+#| "using a vertical bar. A caret will match the start of a line. A dollar "
+#| "sign will match the end of a line."
 msgid ""
-"Interpret the contents of string fields as regular expressions.\n"
-"A decimal point will match any character. A question mark will match zero or "
-"one occurences of the previous character or group. An asterisk will match "
-"zero or more occurences. A plus sign will match one or more occurences. Use "
-"parentheses to group expressions. Specify alternatives using a vertical bar. "
-"A caret will match the start of a line. A dollar sign will match the end of "
-"a line."
+"Interpret the contents of string fields as regular expressions:\n"
+".\tA decimal point will match any character.\n"
+"?\tA question mark will match zero or one occurences of the previous "
+"character or group.\n"
+"*\tAn asterisk will match zero or more occurences.\n"
+"+\tA plus sign will match one or more occurences.\n"
+"()\tUse parentheses to group expressions.\n"
+"|\tSpecify alternatives using a vertical bar.\n"
+"^\tA caret will match the start of a line.\n"
+"$\tA dollar sign will match the end of a line."
 msgstr ""
 "Использовать значения всех строковых полей в качестве регулярных выражений.\n"
 "Десятичная точка будет соответствовать любому символу.\n"
@@ -18846,27 +18871,37 @@ msgstr "Обзор"
 msgid ""
 "The data will be exported as follows:\n"
 "\n"
-"Format:\t%s\n"
-"\n"
-"Press Apply to proceed, Back to revisit your options, or Cancel to abort"
+"Format:\t%s"
 msgstr ""
-"Данные будут сохранены следующим образом:\n"
-"\n"
-"Формат:\t%s\n"
-"\n"
-"Нажмите «Применить» для продолжения, «Назад» для изменения параметров, или "
-"«Отмена» для отказа"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:465
-#, python-format
+#: ../gramps/gui/plug/export/_exportassistant.py:455
+#: ../gramps/gui/plug/export/_exportassistant.py:470
+#, fuzzy
+#| msgid ""
+#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
+msgid ""
+"Press Cancel to abort, Back to revisit your options, or Apply to proceed"
+msgstr ""
+"Нажмите «Применить» для продолжения, «Отмена» для отказа, или «Назад» для "
+"пересмотра возможностей."
+
+#: ../gramps/gui/plug/export/_exportassistant.py:466
+#, fuzzy, python-format
+#| msgid ""
+#| "The data will be saved as follows:\n"
+#| "\n"
+#| "Format:\t%(format)s\n"
+#| "Name:\t%(name)s\n"
+#| "Folder:\t%(folder)s\n"
+#| "\n"
+#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
+#| "abort"
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
 "Format:\t%(format)s\n"
 "Name:\t%(name)s\n"
-"Folder:\t%(folder)s\n"
-"\n"
-"Press Apply to proceed, Go Back to revisit your options, or Cancel to abort"
+"Folder:\t%(folder)s"
 msgstr ""
 "Данные будут сохранены следующим образом:\n"
 "\n"
@@ -18877,9 +18912,21 @@ msgstr ""
 "Нажмите «OK» для продолжения, «Отмена» для отказа, или «Назад» для изменения "
 "параметров"
 
+#: ../gramps/gui/plug/export/_exportassistant.py:468
+#, fuzzy
+#| msgid "=format"
+msgctxt "name"
+msgid "format"
+msgstr "=формат"
+
 #: ../gramps/gui/plug/export/_exportassistant.py:475
+#, fuzzy
+#| msgid ""
+#| "The selected file and folder to save to cannot be created or found.\n"
+#| "\n"
+#| "Press Back to return and select a valid filename."
 msgid ""
-"The selected file and folder to save to cannot be created or found.\n"
+"The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
@@ -39029,6 +39076,28 @@ msgstr "Небраска"
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
 msgstr "Страница без стиля"
+
+#, fuzzy
+#~| msgctxt "localized lexeme inflections"
+#~| msgid "January"
+#~ msgctxt "localized lexeme inflections"
+#~ msgid "|January"
+#~ msgstr "И=январь|Р=января|Т=январём|П=январе"
+
+#, python-format
+#~ msgid ""
+#~ "The data will be exported as follows:\n"
+#~ "\n"
+#~ "Format:\t%s\n"
+#~ "\n"
+#~ "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
+#~ msgstr ""
+#~ "Данные будут сохранены следующим образом:\n"
+#~ "\n"
+#~ "Формат:\t%s\n"
+#~ "\n"
+#~ "Нажмите «Применить» для продолжения, «Назад» для изменения параметров, "
+#~ "или «Отмена» для отказа"
 
 #~ msgid ""
 #~ "Latitude (position above the Equator) of the place in decimal or degree "
