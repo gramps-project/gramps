@@ -8,15 +8,15 @@
 # Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>, 2008,2009.
 # Krystian Safjan <ksafjan@gmail.com>, 2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# WaldiS <sto@tutanota.de>, 2021.
+# WaldiS <sto@tutanota.de>, 2021, 2022.
 # Michał Stojek <stojex@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-01-12 14:54+0000\n"
-"Last-Translator: Michał Stojek <stojex@gmail.com>\n"
+"PO-Revision-Date: 2022-05-14 13:01+0000\n"
+"Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -38,10 +38,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Kataloński"
+msgstr "Katalonia"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -196,10 +194,8 @@ msgid "8 of Hanuka"
 msgstr "8 dzień Chanuka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Pochyły"
+msgstr "Włochy"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -226,10 +222,8 @@ msgid "Sweden"
 msgstr "Szwedzki"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turecki"
+msgstr "Turcja"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -466,7 +460,6 @@ msgstr ""
 "także zdefiniować własny filtr aby ograniczyć ilość wyświetlanych danych."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -474,12 +467,12 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Narzędzia Gramps</b><br/>Gramps posiada bogatą kolekcję narzędzi. "
-"Pozwalają Ci one na wykonywanie różnych operacji takie jak sprawdzanie bazy "
-"pod kątem błędów i konsystencji danych, jak również dokonywanie analiz "
-"takich jak porównywanie zdarzeń, znajdowanie zduplikowanych osób, "
-"interaktywne przeglądanie przodków i inne. Wszystkie narzędzia dostępne są "
-"poprzez menu &quot;Narzędzia&quot;."
+"<b>Narzędzia Gramps</b><br/>Gramps zawiera bogaty zestaw narzędzi. Pozwalają "
+"one na wykonywanie operacji, takich jak sprawdzanie bazy danych pod kątem "
+"błędów i spójności. Istnieją narzędzia badawcze i analityczne, takie jak "
+"porównywanie zdarzeń, znajdowanie duplikatów, interaktywna przeglądarka "
+"potomków i wiele innych. Dostęp do wszystkich narzędzi można uzyskać z menu "
+"„Narzędzia”."
 
 #: ../data/tips.xml:28
 #, fuzzy
@@ -515,7 +508,6 @@ msgstr ""
 "nazwisk w bazie, dodaj Gramplet SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -523,11 +515,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Ustawianie swoich preferencji</b><br/>&quot;Edycja &gt; Preferencje..."
-"&quot; pozwolą Ci zmodyfikować sporą ilość ustawień, takich jak ścieżka do "
-"plików medialnych, czy dostosować wiele aspektów wyświetlania danych w "
-"Grampsie do swoich potrzeb. Każdy widok może być również konfigurowany w "
-"menu &quot;Widok &gt; Konfiguruj widok...&quot;"
+"<b>Ustawianie preferencji</b><br/> \"Edytuj &gt; Preferencje...\" pozwala na "
+"modyfikację wielu ustawień, takich jak ścieżka do plików multimedialnych, i "
+"umożliwia dostosowanie wielu aspektów prezentacji Gramps do Twoich potrzeb. "
+"Każdy oddzielny widok może być również skonfigurowany pod \"Widok &gt; "
+"Konfiguruj widok...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -545,7 +537,6 @@ msgstr ""
 "dołączyć do niej także taki raport."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -553,11 +544,11 @@ msgid ""
 "the People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Tworzenie nowego drzewa</b>:<br/> Dobrym początkiem na tworzenie nowego "
-"drzewa jest wprowadzenie wszystkich członków rodziny do bazy za pomocą "
-"widoku osób (użyj &quot;Edycja &gt; Dodaj...&quot; albo kliknij na przycisk "
-"Dodaj w widoku osób. Następnie przejdź do widoku relacji i utwórz relacje "
-"pomiędzy poszczególnymi osobami."
+"<b>Tworzenie nowego drzewa genealogicznego</b><br/>Dobrym sposobem na "
+"rozpoczęcie nowego drzewa genealogicznego jest wprowadzenie wszystkich "
+"członków rodziny do bazy danych za pomocą widoku Osoby (użyj polecenia "
+"\"Edytuj &gt; Dodaj...\" lub kliknij przycisk Dodaj nową osobę w widoku "
+"Osoby). Następnie przejdź do widoku relacji i utwórz relacje między osobami."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -568,13 +559,6 @@ msgstr ""
 "kursorem myszy nad ten przycisk, a pojawi się dymek z podpowiedzią."
 
 #: ../data/tips.xml:40
-#, fuzzy
-#| msgid ""
-#| "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-#| "occurred, Gramps allows you to enter a wide range of date formats based "
-#| "on a guess or an estimate. For instance, \"about 1908\" is a valid entry "
-#| "for a birth date in Gramps. Click the Date button next to the date field "
-#| "and see the Gramps Manual to learn more."
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -582,23 +566,22 @@ msgid ""
 "birth date in Gramps. Click the \"Invoke date editor\" button next to the "
 "date field. See the Gramps Manual to learn more."
 msgstr ""
-"<b>Niepewność co do daty?</b><br/>Jeśli jesteś niepewny co do daty danego "
-"zdarzenia (np. daty urodzin czy śmierci jakiejś osoby), Gramps pozwala Ci "
-"wprowadzić szeroki zakres dat bazując na przypuszczeniach albo "
-"oszacowaniach. Na przykład, \"około 1908\" jest dopuszczalną datą urodzin w "
-"programie Gramps. Kliknij na przycisk Data obok pola daty i zobacz wiki "
-"podręcznik Gramps po kompletny opis sposobów wprowadzania dat."
+"<b>Nie jesteś pewien daty? </b><br/>Jeśli nie jesteś pewien daty wydarzenia, "
+"Gramps pozwala na wprowadzenie szerokiego zakresu formatów dat opartych na "
+"domysłach lub szacunkach. Na przykład, \"około 1908\" jest poprawnym wpisem "
+"daty urodzenia w Gramps. Kliknij przycisk \"Wywołaj edytor daty\" znajdujący "
+"się obok pola daty. Aby dowiedzieć się więcej, zobacz Podręcznik Gramps."
 
 #: ../data/tips.xml:42
-#, fuzzy
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Podwójne wpisy</b><br/>&quot;Narzędzia &gt; Przetwarzanie danych &gt; "
-"Wyszukiwanie zduplikowanych osób&quot;pozwala na odnalezienie (i złączenie) "
-"wpisów dla tej samej osoby występujących więcej niż jeden raz w bazie danych."
+"<b>Duplikaty wpisów</b><br/>Narzędzie \"Narzędzia>Przetwarzanie drzewa "
+"genealogicznego >Znajdź możliwe duplikaty osób...\" umożliwia zlokalizowanie "
+"(i połączenie) wpisów tej samej osoby wprowadzonych więcej niż jeden raz do "
+"bazy danych."
 
 #: ../data/tips.xml:44
 #, fuzzy
@@ -632,17 +615,16 @@ msgstr ""
 "Widok&quot;."
 
 #: ../data/tips.xml:48
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
 "through the list using \"Go &gt; Forward\" and \"Go &gt; Back\" or the arrow "
 "buttons."
 msgstr ""
-"<b>Nawigacja wprzód i wstecz</b><br/>Gramps przechowuje listę poprzednio "
-"aktywnych obiektów takich jak osoby czy zdarzenia. Możesz się po niej "
-"poruszać w przód i w tył za pomocą &quot;Przejdź &gt; Do przodu&quot; oraz "
-"&quot;Przejdź &gt; Do tyłu&quot; lub przyciskami strzałek."
+"<b>Przewijanie do tyłu i do przodu</b><br/>Gramps utrzymuje listę aktywnych "
+"wcześniej obiektów, takich jak Osoby i Wydarzenia. Po liście można poruszać "
+"się do przodu i do tyłu, używając przycisków \"Idź &gt; Do przodu\" i \"Idź "
+"&gt; Do tyłu\" lub przycisków strzałek."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -738,7 +720,6 @@ msgstr ""
 "\"Pomoc &gt; Listy mailingowe Gramps\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -748,13 +729,13 @@ msgid ""
 "and introducing yourself. Subscription information can be found at \"Help "
 "&gt; Gramps Mailing Lists\"."
 msgstr ""
-"<b>Wkład w rozwój GRAMPS</b><br/>Chciałbyś pomóc w rozwoju programu, ale nie "
-"potrafisz programować? To nie problem, projekt taki jak Gramps potrzebuje "
-"ludzi z różnymi umiejętnościami. Wkład może być różny począwszy od pisania "
-"dokumentacji poprzez testowanie wersji rozwojowych aż do pomocy w tworzeniu "
-"strony internetowej. Rozpocznij subskrypcję listy mailingowej developerów "
-"gramps-devel i wciągnij się. Informacje o subskrypcji możesz znaleźć na "
-"&quot;Pomoc &gt; Listy mailingowe Gramps&quot;"
+"<b>Współtworzenie Gramps</b><br/>Chcesz pomóc w Gramps, ale nie potrafisz "
+"pisać programów? Nie ma problemu! Projekt tak duży jak Gramps wymaga ludzi o "
+"szerokim zakresie umiejętności. Wkład w projekt może być dowolny - od "
+"pisania dokumentacji po testowanie wersji rozwojowych i pomoc przy obsłudze "
+"strony internetowej. Zacznij od zapisania się na listę dyskusyjną "
+"deweloperów Gramps, gramps-devel, i przedstawienia się. Informacje o "
+"subskrypcji można znaleźć na stronie \"Help &gt; Gramps Mailing Lists\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -790,7 +771,6 @@ msgstr ""
 "do większości obiektów dostępnych w bazie."
 
 #: ../data/tips.xml:70
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -799,11 +779,12 @@ msgid ""
 "on the date button. The format of the date is set under \"Edit &gt; "
 "Preferences &gt; Display\"."
 msgstr ""
-"<b>Błędne daty</b><br/>Każdy czasami wprowadza daty w niewłaściwym formacie. "
-"Błędne daty będą wyświetlone na czerwonym tle lub z czerwoną kropką przy "
-"prawej krawędzi pola. Możesz poprawić datę używając okna wyboru daty "
-"otwieranego przez kliknięcie na przycisk daty. Format daty jest "
-"konfigurowalny w &quot; Edycja &gt; Preferencje &gt; Wyświetlanie &quot;."
+"<b>Nieprawidłowe daty</b><br/>Każdy czasami wprowadza daty w nieprawidłowym "
+"formacie. Nieprawidłowe formaty dat będą wyświetlane w Gramps z czerwonawym "
+"tłem lub czerwoną kropką przy prawej krawędzi pola. Datę można poprawić, "
+"korzystając z okna dialogowego Wybór daty, które można otworzyć, klikając "
+"przycisk Data. Format daty jest ustawiany w \"Edycja &gt; Preferencje &gt; "
+"Wyświetlanie\"."
 
 #: ../data/tips.xml:72
 #, fuzzy
@@ -878,17 +859,16 @@ msgstr ""
 "dokumenty, arkusze i inne."
 
 #: ../data/tips.xml:84
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
 "limited only by your imagination. Custom filters are created from \"Edit "
 "&gt; Person Filter Editor\"."
 msgstr ""
-"<b>Filtry</b><br/>Filtry pozwalają na ograniczenie ilości osób widzianych w "
-"Widoku osób. Dodatkowo, oprócz wielu standardowych filtrów, można utworzyć "
-"Własne filtry ograniczone jedynie Twoją wyobraźnią. Własne filtry mogą być "
-"utworzone z &quot;Edycja &gt; Edytor filtrów osób&quot;."
+"<b>Filtry</b><br/>Filtry pozwalają ograniczyć liczbę osób widocznych w "
+"widoku osób. Oprócz wielu wstępnie zdefiniowanych filtrów można tworzyć "
+"filtry niestandardowe, ograniczone jedynie wyobraźnią użytkownika. Filtry "
+"niestandardowe tworzy się w menu \"Edytuj > Edytor filtrów osób\"."
 
 #: ../data/tips.xml:86
 msgid ""
@@ -945,30 +925,21 @@ msgstr ""
 "gotowych do opublikowania w Internecie."
 
 #: ../data/tips.xml:94
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-project."
-#| "org/bugs/"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
-"<b>Zgłaszanie błędu w Gramps</b><br/>Najlepszym sposobem na zgłoszenie błędu "
-"w programie Gramps jest użycie bazy błędów Gramps znajdującej się pod "
-"adresem https://gramps-project.org/bugs/"
+"<b>Zgłaszanie błędów w Gramps</b><br/>Najlepszym sposobem zgłoszenia błędu w "
+"Gramps jest użycie systemu śledzenia błędów w Gramps na stronie https"
+"://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
 msgstr ""
-"<b>Strona domowa Gramps</b><br/>Strona domowa programu GRAMPS to http://"
-"gramps-project.org/"
+"<b>Strona główna Gramps</b><br/>Strona główna Gramps znajduje się pod "
+"adresem http://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1014,17 +985,16 @@ msgstr ""
 "funkcjonalność."
 
 #: ../data/tips.xml:104
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
 "allows you to collect a variety of reports into a single document. This "
 "single report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Raport książkowy</b><br/>Raport książkowy, &quot;Raport &gt; Książka &gt; "
-"Raport Książkowy&quot;, pozwala użytkownikowi zebrać różne raporty w jeden "
-"dokument. Ten pojedynczy raport jest łatwiejszy do rozpowszechniania niż "
-"wiele raportów, w szczególności w formie drukowanej."
+"<b>Raporty książkowe</b><br/>Raport książkowy w sekcji \"Raporty "
+"&gt;Książki...\" umożliwia zebranie różnych raportów w jednym dokumencie. "
+"Taki pojedynczy raport jest łatwiejszy do rozpowszechniania niż raporty "
+"wielokrotne, zwłaszcza po wydrukowaniu."
 
 #: ../data/tips.xml:106
 #, fuzzy
@@ -1077,17 +1047,16 @@ msgstr ""
 "czyniąc ją żywą."
 
 #: ../data/tips.xml:114
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 40 languages. If Gramps supports your language and it is not being "
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>Nie znasz angielskiego</b><br/>Gramps został już na ponad 20 języków "
-"przez wolontariuszy. Jeśli chcesz, aby Gramps używał Twojego języka, a nie "
-"jest on aktualnie wyświetlany, ustaw właściwy sobie domyślny język na swoim "
-"systemie operacyjnym i ponownie uruchom Grampsa."
+"<b>Nie mówisz po angielsku? </b><br/> Wolontariusze przetłumaczyli Gramps na "
+"ponad 40 języków. Jeśli Gramps obsługuje Twój język, a nie jest on "
+"wyświetlany, ustaw domyślny język w swoim systemie operacyjnym i uruchom "
+"ponownie Gramps."
 
 #: ../data/tips.xml:116
 #, fuzzy
@@ -1863,15 +1832,14 @@ msgstr "Wykryto niskopoziomowe uszkodzenie bazy danych"
 
 #: ../gramps/cli/grampscli.py:104 ../gramps/cli/user.py:201
 #: ../gramps/gui/dialog.py:297
-#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying database. This can sometimes "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"GRAMPS wykrył problem z używanym przez niego systemem baz danych Berkeley. "
-"Ten problem może być naprawiony z poziomu menadżera drzew genealogicznych. "
-"Wybierz odpowiednią bazę i wciśnij przycisk Napraw"
+"Gramps wykrył problem w podstawowej bazie danych. Czasami można to naprawić "
+"za pomocą Menedżera drzewa genealogicznego. Wybierz bazę danych i kliknij "
+"przycisk Napraw"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:161
 msgid "Read only database"
@@ -6349,14 +6317,12 @@ msgstr ""
 "dd hh:mm:ss) albo w danym zakresie (jeśli druga data/czas jest podana)."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
-#, fuzzy
 msgid "Repository attribute:"
-msgstr "Magazyn ref"
+msgstr "Atrybut repozytorium:"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:47
-#, fuzzy
 msgid "Repositories with the attribute <attribute>"
-msgstr "Zdarzenia z atrybutem <atrybut>"
+msgstr "Repozytoria z atrybutem <attribute>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
 #, fuzzy
