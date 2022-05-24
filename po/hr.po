@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-03-11 00:27+0000\n"
+"PO-Revision-Date: 2022-03-31 22:08+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -361,16 +361,6 @@ msgstr ""
 "zanimljive obiteljske priče. Zabilježi sve tvoje razgovore!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter and select it at the bottom of the Filter Sidebar, then click "
-#| "Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -386,16 +376,11 @@ msgstr ""
 "filtra za osobe”. Tamo možeš odrediti ime filtra te dodati i kombinirati "
 "razna predodređena pravila. Na primjer, možeš odrediti filtar za "
 "pronalaženje sve usvojene osobe u rodoslovu. Osobe bez navedenog datuma "
-"rođenja također se mogu filtrirati. Za dobivanje rezultata, spremi filtar i "
-"odaberi ga na kraju bočne trake filtara, a zatim pritisni „Primijeni”. Ako "
-"bočna traka filtara nije vidljiva, odaberi „Pogled > Filtar”."
+"rođenja također se mogu filtrirati. Za dobivanje rezultata, spremi filtar. "
+"Zatim odaberi ovaj filtar u polju „Filtar” u bočnoj traci i pritisni gumb "
+"„Pronađi”. Ako bočna traka nije vidljiva, odaberi „Prikaz &gt; Bočna traka”."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -403,8 +388,8 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Obrnuto filtriranje</b><br/>Rezultat filtra se može obrnuti, upotrebom "
-"opcije za obrtanje. Naprimjer, obrtanjem filtra „Osobe s djecom”, možeš "
-"odabrati sve osobe bez djece."
+"opcije „Vrati vrijednosti, koje ne odgovaraju pravilima filtra”. Na primjer, "
+"obrtanjem filtra „Osobe s djecom”, možeš odabrati sve osobe bez djece."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -500,13 +485,6 @@ msgstr ""
 "programi > Izrada SoundEx kodova”."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -517,7 +495,7 @@ msgstr ""
 "<b>Podešavanje postavaka</b><br/>„Uredi > Postavke …” omogućuje promjenu u "
 "postavkama, npr. mijenjanje staze do medijskih datoteka ili prilagodbu "
 "načina prikaza podataka. Svaki pogled može biti zasebno prilagođen, "
-"korištenjem glavnog izbornika „Pogled > Podesi …”"
+"korištenjem glavnog izbornika „Pogled > Podesi …”."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -556,13 +534,6 @@ msgstr ""
 "pokazivač miša iznad gumba i pojavit će se info-oblačić."
 
 #: ../data/tips.xml:40
-#, fuzzy
-#| msgid ""
-#| "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-#| "occurred, Gramps allows you to enter a wide range of date formats based "
-#| "on a guess or an estimate. For instance, \"about 1908\" is a valid entry "
-#| "for a birth date in Gramps. Click the Date button next to the date field "
-#| "and see the Gramps Manual to learn more."
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -573,33 +544,20 @@ msgstr ""
 "<b>Ne znaš točan datum?</b><br/>Ako ne znaš točan datum, Gramps omogućuje "
 "upotrebu raznih formata datuma, zasnovanih na pretpostavkama ili procjenama. "
 "Na primjer, „oko 1908.” je valjani unos za datum rođenja u Grampsu. Pritisni "
-"gumb za postavljanje datuma pokraj polja datuma ili saznaj više u Grampsovom "
+"„Otvori uređivač datuma” pokraj polja datuma. Saznaj više u Grampsovom "
 "priručnik."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-#| "Possible Duplicate People...\" allows you to locate (and merge) entries "
-#| "of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Dupli unosi</b><br/>„Alati > Obrada baze podataka > Nađi moguće duple "
+"<b>Dupli unosi</b><br/>Alat „Alati > Obrada rodoslova > Nađi moguće duple "
 "osobe …”, omogućuje otkrivanje (i spajanje) zapisa istih osoba, koji su "
 "zabunom više puta upisani u bazu podataka."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge..."
-#| "\" allows you to combine separately listed people into one. Select the "
-#| "second entry by holding the Control key as you click. This is very useful "
-#| "for combining two databases with overlapping people, or combining "
-#| "erroneously entered differing names for one individual. This also works "
-#| "for the Places, Sources and Repositories views."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -608,11 +566,11 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Spajanje zapisa</b><br/>Funkcija „Uredi > Usporedi i spoji …” omogućuje "
-"spajanje podataka više osoba u jednu osobu. Prilikom odabira drugog unosa "
-"drži pritisnutu tipku CTRL. Ovo je korisno za spajanje dviju baza podataka s "
+"<b>Spajanje zapisa</b><br/>Funkcija „Uredi i spoji …” omogućuje spajanje "
+"podataka više osoba u jednu osobu. Prilikom odabira drugog unosa drži "
+"pritisnutu tipku CTRL. Ovo je korisno za spajanje dviju baza podataka s "
 "poklapajućim osobama ili za spajanje greškom upisanih imenima iste osobe. "
-"Spajanje je moguće i u pogledima „Mjesta”, „Izvori” i „Repozitoriji”."
+"Spajanje je dostupno u svim prikazima popisa za sve vrste primarnih objekata."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -727,15 +685,6 @@ msgstr ""
 "pretplatničke liste”."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -751,7 +700,7 @@ msgstr ""
 "provjeravanja razvojnih verzija ili pri pomoći oko web mjesta. Započni s "
 "prijavom na pretplatničku listu za programere programa Gramps (gramps-devel) "
 "i predstavi se. Sve potrebne informacije za prijavu mogu se naći pod „Pomoć "
-"> Gramps pretplatnička lista”"
+"> Gramps pretplatnička lista”."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -855,8 +804,8 @@ msgid ""
 "City, County or State."
 msgstr ""
 "<b>Upravljanje mjestima</b><br/>Pogled „Mjesta” prikazuje sva mjesta u bazi "
-"podataka. Podaci mogu biti svrstani prema različitim kriterijima kao npr. "
-"prema gradu, regiji (županiji), pokrajina, itd."
+"podataka. Podaci mogu biti svrstani prema različitim kriterijima kao što su "
+"grad, regija (županija) ili država."
 
 #: ../data/tips.xml:82
 msgid ""
@@ -932,30 +881,21 @@ msgstr ""
 "postavljanje u mrežu."
 
 #: ../data/tips.xml:94
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-project."
-#| "org/bugs/"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
 "<b>Prijava greške u Grampsu</b><br/>Najbolji način za prijavu greške u "
-"Grampsu je pomoću Grampsovog sustava za praćenje grešaka, na adresi: https://"
-"gramps-project.org/bugs/"
+"Grampsu je pomoću Grampsovog sustava za praćenje grešaka, na adresi: https"
+"://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
 msgstr ""
 "<b>Naslovnica web stranice Grampsa</b><br/>Naslovnica web stranice Grampsa "
-"se nalazi na adresi http://gramps-project.org/"
+"se nalazi na adresi http://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -985,12 +925,6 @@ msgstr ""
 "prijepisa onoga, što izgleda kao greška u dokumentu."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
@@ -998,34 +932,23 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Dodatni izvještaji i alati</b><br/>Dodatni izvještaji i alati mogu se "
-"dodati u Gramps pomoću sustava dodataka u glavnom izborniku „Pomoć > Dodatni "
-"izvještaji/alati”. To je najbolji način za napredne korisnike za "
+"dodati u Gramps pomoću sustava „Dodaci”. Nalaze se u izborniku „Pomoć > "
+"Dodatni izvještaji/alati”. To je najbolji način za napredne korisnike za "
 "eksprimentiranje i stvaranje novih funkcija."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; "
-#| "Book Report...\", allows you to collect a variety of reports into a "
-#| "single document. This single report is easier to distribute than multiple "
-#| "reports, especially when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
 "allows you to collect a variety of reports into a single document. This "
 "single report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod „Izvještaji > Knjige > "
-"Uredi knjige …”, omogućuje spajanje raznih izvještaja u jedan dokument. "
-"Mnogo je lakše slati jedan izvještaj nego više izvještaja, posebice kad se "
-"šalju u tiskanom obliku."
+"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod „Izvještaji > Knjige …”"
+", omogućuje spajanje raznih izvještaja u jedan dokument. Mnogo je lakše "
+"slati jedan izvještaj nego više izvještaja, posebice kad se šalju u tiskanom "
+"obliku."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1033,7 +956,7 @@ msgid ""
 msgstr ""
 "<b>Gramps obavijesti</b><br/>Ako želiš primati obavijesti o novim verzijama "
 "Grampsa, pretplati se na pretplatničku listu za Gramps-najave pomoću „Pomoć "
-"> Gramps pretplatnička lista”"
+"> Gramps pretplatničke liste”."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1086,19 +1009,14 @@ msgstr ""
 "svom sustavu i ponovo pokreni Gramps."
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"<b>Prevođenje programa</b><br/>Gramps je tako dizajniran, da omogućuje "
-"dodavati prijevode na jednostavan način. Ako želiš sudjelovati, pošalji nam "
-"e-poruku na gramps-devel@lists.sf.net"
+"<b>Gramps prevodioci</b><br/>Gramps je dizajniran tako da omogućuje "
+"dodavanje prijevoda na jednostavan način. Ako želiš sudjelovati, pošalji nam "
+"e-poruku na gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -6112,11 +6030,11 @@ msgstr "Regija:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "State:"
-msgstr "Pokrajina:"
+msgstr "Država:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "Country:"
-msgstr "Država:"
+msgstr "Zemlja:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:55
 msgid "ZIP/Postal Code:"
@@ -7019,15 +6937,11 @@ msgid "None"
 msgstr "Bez"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
 msgstr "Rođenje"
 
 #: ../gramps/gen/lib/childreftype.py:69
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
 msgstr "Posvojenje"
@@ -12565,10 +12479,8 @@ msgid "Import Family Tree"
 msgstr "Uvoz rodoslova"
 
 #: ../gramps/gui/dbloader.py:387
-#, fuzzy
-#| msgid "All files"
 msgid "All supported files"
-msgstr "Sve datoteke"
+msgstr "Sve podržane datoteke"
 
 #: ../gramps/gui/dbloader.py:442
 #, python-format
@@ -15097,15 +15009,6 @@ msgid "Use regular expressions"
 msgstr "Koristi regularne izraze"
 
 #: ../gramps/gui/editors/filtereditor.py:608
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -15118,12 +15021,15 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"Tumači sadržaj niza znakova u polju kao regularne izraza.\n"
-"Decimalna točka „.” označuje bilo koji znak. Upitnik „?” označuje niti jedno "
-"ili jedno pojavljivanje prijašnjeg znaka ili grupe znakova. Asteriks „*” "
-"označuje niti jedno ili više pojavljivanja. Plus „+” označuje jedno ili više "
-"pojavljivanja. Koristi zagrade „()” za grupiranje izraza. Zadaj alternative "
-"koristeći uspravnu crtu „|”. Znak za umetanje „^” označuje početak retka. "
+"Tumači sadržaj niza znakova u polju kao regularne izraza:\n"
+"Decimalna točka „.” označuje bilo koji znak.\n"
+"Upitnik „?” označuje niti jedno ili jedno pojavljivanje prijašnjeg znaka ili "
+"grupe znakova.\n"
+"Asteriks „*” označuje niti jedno ili više pojavljivanja.\n"
+"Plus „+” označuje jedno ili više pojavljivanja.\n"
+"Koristi zagrade „()” za grupiranje izraza.\n"
+"Zadaj alternative koristeći uspravnu crtu „|”.\n"
+"Znak za umetanje „^” označuje početak retka.\n"
 "Dolar „$” označuje kraj retka."
 
 #: ../gramps/gui/editors/filtereditor.py:637
@@ -16771,10 +16677,8 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:380
 #: ../gramps/gui/glade/editplaceref.glade:397
-#, fuzzy
-#| msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgid "What type of place this is. Eg 'Country', 'City', ..."
-msgstr "Vrsta mjesta, npr. „Država”, „Grad”, ..."
+msgstr "O kojoj se vrsti mjesta radi. Npr. „Država”, „Grad”, ..."
 
 #: ../gramps/gui/glade/editplace.glade:443
 #: ../gramps/gui/glade/editplaceref.glade:599
@@ -17444,7 +17348,7 @@ msgstr "Ko_mentar:"
 
 #: ../gramps/gui/glade/rule.glade:603
 msgid "Return values that do no_t match the filter rules"
-msgstr "Vraća vrijednos_ti, koje ne odgovaraju pravilima filtra"
+msgstr "Vrati vrijednos_ti, koje ne odgovaraju pravilima filtra"
 
 #: ../gramps/gui/glade/rule.glade:895
 msgid "Selected Rule"
@@ -18670,29 +18574,20 @@ msgid ""
 "\n"
 "Format:\t%s"
 msgstr ""
+"Podaci će se izvesti na sljedeći način:\n"
+"\n"
+"Format: %s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
-#, fuzzy
-#| msgid ""
-#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Pritisni gumb „U redu” za nastavak, „Odustani” za prekid ili „Natrag” za "
-"ispravljanje opcija."
+"Pritisni gumb „Odustani” za prekid, „Natrag” za ispravljanje opcija ili „U "
+"redu” za nastavljanje"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
-#, fuzzy, python-format
-#| msgid ""
-#| "The data will be saved as follows:\n"
-#| "\n"
-#| "Format:\t%(format)s\n"
-#| "Name:\t%(name)s\n"
-#| "Folder:\t%(folder)s\n"
-#| "\n"
-#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
-#| "abort"
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -18704,31 +18599,20 @@ msgstr ""
 "\n"
 "Format:\t%(format)s\n"
 "Ime:\t%(name)s\n"
-"Mapa:\t%(folder)s\n"
-"\n"
-"Pritisni gumb „U redu” za nastavak, „Natrag” za ispravljanje opcija ili "
-"„Odustani” za prekid"
+"Mapa:\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
-#, fuzzy
-#| msgid "=format"
 msgctxt "name"
 msgid "format"
-msgstr "=format"
+msgstr "format"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
-#, fuzzy
-#| msgid ""
-#| "The selected file and folder to save to cannot be created or found.\n"
-#| "\n"
-#| "Press Back to return and select a valid filename."
 msgid ""
 "The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"Odabrana datoteka, te mapa za njeno spremanje, ne mogu biti izrađene ili "
-"pronađene.\n"
+"Odabrana datoteka i mapa za spremanje se ne mogu izraditi ili pronaći.\n"
 "\n"
 "Pritisni gumb „Natrag” i odaberi ispravnu datoteku."
 
@@ -24930,15 +24814,11 @@ msgid "Gramps package (portable XML)"
 msgstr "Gramps paket (prijenosni XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:92
-#, fuzzy
-#| msgid ""
-#| "Import data from a Gramps package (an archived XML Family Tree together "
-#| "with the media object files.)"
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"Uvezi podatke iz Gramps paketa (arhivirani rodoslov u XML formatu, zajedno s "
+"Uvezi podatke iz Gramps paketa (arhivirani rodoslov u XML formatu zajedno s "
 "datotekama medijskih objekata)."
 
 #: ../gramps/plugins/importer/import.gpr.py:110
@@ -25757,16 +25637,12 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
-#, fuzzy
-#| msgid ""
-#| "Use death information\n"
-#| "as death cause event."
 msgid ""
 "Use death information\n"
 "as cause of death event."
 msgstr ""
 "Koristi informacije o smrti\n"
-"kao događaj za uzrok smrti."
+"kao uzrok događaja smrti."
 
 #: ../gramps/plugins/importer/importprogen.glade:1598
 msgid "(-cause)"
@@ -25916,15 +25792,14 @@ msgstr ""
 "Datoteka je ili oštećena ili se radi o neispravnoj Gramps bazi podataka."
 
 #: ../gramps/plugins/importer/importxml.py:255
-#, fuzzy, python-brace-format
-#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s – %(text)s sa %(id2)s\n"
+msgstr "  {id1} – {text} sa {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
 msgid "  {obj} {id1} with {id2}"
-msgstr ""
+msgstr "  {obj} {id1} sa {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:272
 #: ../gramps/plugins/quickview/filterbyname.py:91
@@ -25959,21 +25834,11 @@ msgid "Sources"
 msgstr "Izvori"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "Broj uvezenih novih objekata:\n"
+msgstr "Broj novo uvezenih objekata:"
 
 #: ../gramps/plugins/importer/importxml.py:297
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unknown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25989,16 +25854,9 @@ msgstr ""
 "njihova tipizirana svojstva su postavljena na „Nepoznato”.\n"
 "Raspodjela na kategorije je prikazana brojem u zagradama.\n"
 "Gdjegod moguće, objekti s oznakom „Nepoznato” su\n"
-"referencirani zabilješkom %(unknown)s.\n"
+"referencirani bilješkom %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:307
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Media objects with relative paths have been\n"
-#| "imported. These paths are considered relative to\n"
-#| "the media directory you can set in the preferences,\n"
-#| "or, if not set, relative to the user's directory.\n"
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -26010,19 +25868,15 @@ msgstr ""
 "Medijski objekti s relativnom stazom su uvezeni.\n"
 "Ove staze su relativne prema medijskom direktoriju\n"
 "kojeg možeš odrediti u postavkama, ili ako nije\n"
-"određen, su relativne prema korisničkom direktoriju.\n"
+"određen, su relativne prema korisničkom direktoriju."
 
 #: ../gramps/plugins/importer/importxml.py:317
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Objekti, koji su kandidati za spajanje:\n"
+"Objekti, koji su kandidati za spajanje:"
 
 #: ../gramps/plugins/importer/importxml.py:804
 #: ../gramps/plugins/importer/importxml.py:1284
@@ -30729,20 +30583,19 @@ msgstr "Odaberi kml datoteku, koja se koristi za dodavanje mjesta"
 #: ../gramps/plugins/lib/maps/geography.py:1053
 msgid "You will need to edit each place manually to add place type, ...\n"
 msgstr ""
+"Za dodavanje vrstu mjesta morat ćeš ručno urediti svako mjesto ručno, …\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1055
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Postoji {places_nb} mjesto koje se treba urediti."
+msgstr[1] "Postoje {places_nb} mjesta koja se trebaju urediti."
+msgstr[2] "Postoje {places_nb} mjesta koja se trebaju urediti."
 
 #: ../gramps/plugins/lib/maps/geography.py:1059
-#, fuzzy
-#| msgid "You have at least two places with the same title."
 msgid "You have more than 5 places in this kml file."
-msgstr "Imate najmanje dva mjesta s istim imenom."
+msgstr "Imaš više o pet mjesta u ovoj kml datoteci."
 
 #: ../gramps/plugins/lib/maps/geography.py:1127
 msgid "You have at least two places with the same title."
@@ -31915,10 +31768,9 @@ msgid "Relationships shown are to %s"
 msgstr "Prikazana su srodstva prema %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:334
-#, fuzzy, python-format
-#| msgid "* %(person)s, birth%(relation)s"
+#, python-format
 msgid "* %(person)s, birth %(relation)s"
-msgstr "* %(person)s, rođenje%(relation)s"
+msgstr "* %(person)s, rođenje %(relation)s"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:339
@@ -38219,18 +38071,14 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Ime"
 
 #: ../gramps/plugins/webreport/place.py:220
 #: ../gramps/plugins/webreport/place.py:232
-#, fuzzy
-#| msgid "State/ Province"
 msgid "State/Province"
-msgstr "Pokrajina"
+msgstr "Država/Pokrajina"
 
 #: ../gramps/plugins/webreport/place.py:272
 #, python-format
@@ -38256,8 +38104,6 @@ msgstr ""
 "spremišta."
 
 #: ../gramps/plugins/webreport/repository.py:173
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
 msgstr "Ime"
@@ -38325,12 +38171,6 @@ msgid "Surnames beginning with letter %s"
 msgstr "Prezimena koja počinju sa slovom %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
-#, fuzzy
-#| msgid ""
-#| "This page displays a indexed list of all the media objects in this "
-#| "database.  It is sorted by media title.  There is an index of all the "
-#| "media objects in this database.  Clicking on a thumbnail will take you to "
-#| "that image&#8217;s page."
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
@@ -38338,7 +38178,8 @@ msgid ""
 "page."
 msgstr ""
 "Ova stranica sadrži popis svih medijskih objekata u bazi podataka, svrstanih "
-"po nazivu. Klikom na sličicu, otvorit će se stranica te slike."
+"po nazivu. U ovoj bazi podataka postoji indeks svih medijskih objekata. "
+"Pritiskom na sličicu, otvorit će se stranica te slike."
 
 #: ../gramps/plugins/webreport/updates.py:78
 msgid "New and updated objects"
