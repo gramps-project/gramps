@@ -8,13 +8,14 @@
 # Pier Luigi Cinquantini <plcinquantini@gmail.com>, 2003, 2014, 2017, 2018.
 # Robin van der Vliet <info@robinvandervliet.com>, 2018.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Michael <moralesmike14@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-06-04 21:07+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2022-05-10 08:16+0000\n"
+"Last-Translator: Michael <moralesmike14@gmail.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/eo/>\n"
 "Language: eo\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -34,8 +35,6 @@ msgid "Canada"
 msgstr "Kanado"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
 msgstr "Kataluna"
 
@@ -192,10 +191,8 @@ msgid "8 of Hanuka"
 msgstr "8a de Ĥanuka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kursiva"
+msgstr "Italujo"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -222,10 +219,8 @@ msgid "Sweden"
 msgstr "Svedio"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turka"
+msgstr "Turkujo"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
