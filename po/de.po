@@ -31031,7 +31031,7 @@ msgstr "Du musst jeden Ort manuell bearbeiten, um den Ortstyp, ...\n"
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] "Du hast {places_nb} Platz zu bearbeiten."
+msgstr[0] "Du hast {places_nb} Ort zu bearbeiten."
 msgstr[1] "Du hast {places_nb} Orte zu bearbeiten."
 
 #: ../gramps/plugins/lib/maps/geography.py:1059
