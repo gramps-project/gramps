@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-04-30 18:53+0000\n"
+"PO-Revision-Date: 2022-05-28 21:15+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -344,10 +344,11 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>Ein Bild hinzufügen</b><br/>Ein Bild kann zu jeder Galerie oder "
-"Medienansicht durch das Ziehen von einer Dateiverwaltung zu einem Browser "
-"hinzugefügt werden. Aktuell kannst du jede Art von Datei auf diese Weise "
-"hinzufügen, hilfreich für Scans von Dokumenten und andere digitale Quellen."
+"<b>Bilder hinzufügen</b><br/>Ein Bild kann per Ziehen und Ablegen aus einem "
+"Dateimanager oder einem Webbrowser zu einer beliebigen Galerie oder der "
+"Medienansicht hinzugefügt werden. Auf diese Weise kannst du eigentlich jeden "
+"Dateityp hinzufügen, was für gescannte Dokumente und andere digitale Quellen "
+"nützlich ist."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -356,9 +357,8 @@ msgid ""
 "they do not have birth dates."
 msgstr ""
 "<b>Kinder in der Familie ordnen</b><br/>Die Reihenfolge der Kinder in einer "
-"Familie kann durch Drag &amp; Drop (Ziehen und Ablegen) bestimmt werden. "
-"Diese Reihenfolge bleibt auch dann erhalten, wenn sie keine Geburtsdaten "
-"haben."
+"Familie kann durch Ziehen und Ablegen festgelegt werden. Diese Reihenfolge "
+"bleibt auch dann erhalten, wenn die Kinder keine Geburtsdaten haben."
 
 #: ../data/tips.xml:12
 msgid ""
@@ -420,13 +420,13 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Personen lokalisieren</b><br/>Als Standard wird jeder Nachnamen in der "
-"Personenansicht nur einmal gelistet. Durch Klicken auf den Pfeil links neben "
-"einem Namen werden die Liste aufgeklappt und alle Personen mit diesem Namen "
-"angezeigt. Um einen Nachnamen aus einer langen Liste zu lokalisieren, wähle "
-"einen Nachnamen (keine Person) und beginne zu tippen. Die Ansicht springt "
-"zum ersten Nachnamen, der mit dem von dir eingegebenen Buchstaben "
-"übereinstimmt."
+"<b>Personen finden</b><br/>In der Standardeinstellung wird jeder Nachname in "
+"der Personenansicht nur einmal aufgeführt. Wenn du auf den Pfeil links neben "
+"einem Namen klickst, wird die Liste erweitert und zeigt alle Personen mit "
+"diesem Nachnamen an. Um einen beliebigen Nachnamen aus einer langen Liste zu "
+"finden, wähle einen Nachnamen (nicht eine Person) aus und beginne zu tippen. "
+"Die Ansicht springt zum ersten Familiennamen, der den von dir eingegebenen "
+"Buchstaben entspricht."
 
 #: ../data/tips.xml:20
 msgid ""
@@ -9588,7 +9588,7 @@ msgstr "Den angegebenen Bereich ausfüllen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:93
 msgid "Expand uniformly"
-msgstr "Gleichmäßig ausdehnen"
+msgstr "Gleichmäßig erweitern"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:95
 #: ../gramps/gen/plug/docgen/treedoc.py:89
@@ -9734,8 +9734,8 @@ msgid ""
 msgstr ""
 "Beeinflusst die Knotenabstände und die Skalierung des Diagramms.\n"
 "Wenn das Diagramm kleiner als der Druckbereich ist:\n"
-"  Durch Komprimieren wird der Knotenabstand nicht verändert.\n"
-"  Füllen vergrößert den Knotenabstand so, dass er sowohl in der Breite als "
+"  Durch Komprimieren wird der Knotenabstand nicht verändert. \n"
+"  Füllen vergrößert den Knotenabstand, so dass er sowohl in der Breite als "
 "auch in der Höhe in den Druckbereich passt.\n"
 "  Erweitern vergrößert die Knotenabstände gleichmäßig, um das "
 "Seitenverhältnis beizubehalten.\n"
@@ -11484,7 +11484,7 @@ msgstr "Baumansicht: erste Spalte \"%s\" kann nicht geändert werden"
 
 #: ../gramps/gui/columnorder.py:95
 msgid "Drag and drop the columns to change the order"
-msgstr "Ziehe die Spalten und lege sie ab, um die Reihenfolge zu ändern"
+msgstr "Durch Ziehen und Ablegen der Spalten kannst du die Reihenfolge ändern"
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1973
 #: ../gramps/gui/configure.py:1997 ../gramps/gui/configure.py:2023
@@ -12581,7 +12581,7 @@ msgid ""
 msgstr ""
 "Du kannst jeden beliebigen Text für dieses Feld eingeben.\n"
 "Du kannst ein Symbol aus der obigen Symbolliste ziehen und ablegen.\n"
-"Es wird nur sichtbar, wenn deine Schriftart diese Glyphe enthält."
+"Es wird nur sichtbar, wenn deine Schriftart dieses Zeichen enthält."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -15362,8 +15362,8 @@ msgstr "Quelle entfernen"
 #: ../gramps/gui/editors/objectentries.py:387
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
-"Um ein Medienobjekt auszuwählen, verwende ziehen und ablegen oder die "
-"Schaltflächen"
+"Um ein Medienobjekt auszuwählen, verwende Ziehen und Ablegen oder verwende "
+"die Schaltflächen"
 
 #: ../gramps/gui/editors/objectentries.py:389
 #: ../gramps/gui/plug/_guioptions.py:1117
@@ -15391,7 +15391,8 @@ msgstr "Medienobjekt entfernen"
 #: ../gramps/gui/editors/objectentries.py:434
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
-"Um eine Notiz auszuwählen, verwende ziehen und ablegen oder die Schaltflächen"
+"Um eine Notiz auszuwählen, verwende Ziehen und Ablegen oder verwende die "
+"Schaltflächen"
 
 #: ../gramps/gui/editors/objectentries.py:436
 #: ../gramps/gui/plug/_guioptions.py:1015
@@ -17139,11 +17140,11 @@ msgstr "Konfigurieren"
 
 #: ../gramps/gui/glade/grampletpane.glade:78
 msgid "Detach"
-msgstr "Lösen"
+msgstr "Ablösen"
 
 #: ../gramps/gui/glade/grampletpane.glade:96
 msgid "Click to expand/collapse"
-msgstr "Klicken zum Ein-/Ausklappen"
+msgstr "Zum Erweitern/Kollabieren klicken"
 
 #: ../gramps/gui/glade/grampletpane.glade:129
 msgid "Click to delete gramplet from view"
@@ -17200,7 +17201,7 @@ msgstr "Gramps-ID:"
 #: ../gramps/gui/glade/mergecitation.glade:455
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Notizen, Medienobjekte und Datenelemente werden von beiden Fundstellen "
+"Notizen, Medienobjekte und Datenelemente der beiden Fundstellen werden "
 "kombiniert."
 
 #: ../gramps/gui/glade/mergecitation.glade:471
@@ -17213,7 +17214,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergerepository.glade:414
 #: ../gramps/gui/glade/mergesource.glade:528
 msgid "Detailed Selection"
-msgstr "Detailauswahl"
+msgstr "Detaillierte Auswahl"
 
 #: ../gramps/gui/glade/mergedata.glade:42
 msgid "Merge and _edit"
@@ -20290,7 +20291,7 @@ msgstr "Datensatz ist öffentlich"
 
 #: ../gramps/gui/widgets/expandcollapsearrow.py:86
 msgid "Expand this section"
-msgstr "Diesen Abschnitt ausklappen"
+msgstr "Diesen Abschnitt erweitern"
 
 #: ../gramps/gui/widgets/expandcollapsearrow.py:90
 msgid "Collapse this section"
@@ -22445,7 +22446,8 @@ msgstr "Teil_von"
 #: ../gramps/plugins/export/exportcsv.py:340
 #, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr "CSV-Export unterstützt nur Hauptnachnamen, {count} ausgelassen"
+msgstr ""
+"CSV-Export unterstützt keine nicht-primären Nachnamen, {count} weggelassen"
 
 #: ../gramps/plugins/export/exportcsv.py:357
 msgid "Birth source"
@@ -22759,9 +22761,9 @@ msgid ""
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
-"Klicke zum Ausklappen/Einklappen der Person\n"
+"Zum Erweitern/Verkleinern der Person anklicken\n"
 "Rechtsklick für Optionen\n"
-"Klicke und ziehe im freien Bereich, um zu drehen"
+"Zum Drehen in den offenen Bereich klicken und ziehen"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:61
 #, python-format
@@ -32134,7 +32136,7 @@ msgstr "Kategorie"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Drop-down Sidebar"
-msgstr "Drop-down-Seitenleiste"
+msgstr "Ausklappbare Seitenleiste"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:49
 msgid "Selection of categories and views from drop-down lists"
@@ -32142,15 +32144,15 @@ msgstr "Auswahl von Kategorien und Ansichten aus Aufklapplisten"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:57
 msgid "Drop-Down"
-msgstr "Drop-down"
+msgstr "Aufklappen"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:63
 msgid "Expander Sidebar"
-msgstr "Aufklappende Seitenleiste"
+msgstr "Erweiterungs-Seitenleiste"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:64
 msgid "Selection of views from lists with expanders"
-msgstr "Auswahl von Ansichten aus sich aufklappenden Listen"
+msgstr "Auswahl von Ansichten aus Listen mit Erweiterungen"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:72
 msgid "Expander"
@@ -35944,7 +35946,7 @@ msgstr "Alle Knoten schließen"
 #: ../gramps/plugins/view/persontreeview.py:87
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand all Nodes"
-msgstr "Alle Knoten aufklappen"
+msgstr "Alle Knoten erweitern"
 
 #: ../gramps/plugins/view/citationtreeview.py:628
 msgid ""
@@ -36908,7 +36910,7 @@ msgstr "Diese komplette Gruppe einklappen"
 
 #: ../gramps/plugins/view/placetreeview.py:77
 msgid "Expand this Entire Group"
-msgstr "Diese komplette Gruppe ausklappen"
+msgstr "Diese gesamte Gruppe erweitern"
 
 #: ../gramps/plugins/view/relview.py:370
 msgid "Organize Bookmarks..."
@@ -37722,7 +37724,7 @@ msgstr "Überblenden  -- Nur WebKit Browser"
 #: ../gramps/plugins/webreport/narrativeweb.py:2035
 #: ../gramps/plugins/webreport/narrativeweb.py:2049
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr "Drop-down  -- Nur WebKit-Browser"
+msgstr "Aufklappen  -- Nur WebKit-Browser"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2037
 msgid "Navigation Menu Layout"
