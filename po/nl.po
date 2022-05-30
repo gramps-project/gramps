@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-22 11:14+0000\n"
+"PO-Revision-Date: 2022-05-31 21:14+0000\n"
 "Last-Translator: Stephan Paternotte <s.paternotte@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -741,10 +741,10 @@ msgid ""
 msgstr ""
 "<b>Zo, waar komt die naam vandaan?</b><br/>De naam Gramps werd door de vader "
 "van de oorspronkelijke ontwikkelaar, Don Allingham, voorgesteld. Het staat "
-"voor Genealogical Research and Analysis Management Program System. Het is "
-"een volledig genealogieprogramma waarmee u genealogische gegevens kunt "
-"opslaan, bewerken en onderzoeken. De back-end van de Gramps-database is zo "
-"robuust dat sommige gebruikers genealogieën beheren die honderdduizenden "
+"voor <i>Genealogical Research and Analysis Management Program System</i>. "
+"Het is een volledig genealogieprogramma waarmee u genealogische gegevens "
+"kunt opslaan, bewerken en onderzoeken. De back-end van de Gramps-database is "
+"zo robuust dat sommige gebruikers genealogieën beheren die honderdduizenden "
 "personen bevatten."
 
 #: ../data/tips.xml:68
@@ -2026,7 +2026,7 @@ msgstr "Onbekende optie: %s wordt genegeerd"
 
 #: ../gramps/cli/plug/__init__.py:624
 msgid "   Available options:"
-msgstr "  Beschikbare opties:"
+msgstr "   Beschikbare opties:"
 
 #: ../gramps/cli/plug/__init__.py:633
 msgid "(no help available)"
@@ -2034,7 +2034,7 @@ msgstr "(geen help beschikbaar)"
 
 #: ../gramps/cli/plug/__init__.py:641
 msgid "   Available values are:"
-msgstr "  Beschikbare waarden zijn:"
+msgstr "   Beschikbare waarden zijn:"
 
 #: ../gramps/cli/plug/__init__.py:652
 #, python-format
@@ -8284,7 +8284,7 @@ msgstr "MIME"
 
 #: ../gramps/gen/lib/media.py:149
 msgid "Checksum"
-msgstr "Checksum"
+msgstr "Controlegetal"
 
 #: ../gramps/gen/lib/mediaref.py:86 ../gramps/gui/clipboard.py:665
 msgid "Media ref"
@@ -9028,7 +9028,7 @@ msgstr "Elektronisch"
 
 #: ../gramps/gen/lib/srcmediatype.py:62
 msgid "Fiche"
-msgstr "Fiche"
+msgstr "Microfilm"
 
 #: ../gramps/gen/lib/srcmediatype.py:63
 msgid "Film"
@@ -16344,7 +16344,7 @@ msgstr "_Graafschap:"
 #: ../gramps/gui/glade/editlocation.glade:178
 msgid "Third level of place division. Eg., in the USA a county."
 msgstr ""
-"Derde niveau van de locatie-indeling. Bijvoorbeeld 'graafschap' in de VS"
+"Derde niveau van de locatie-indeling. Bijvoorbeeld 'graafschap' in de VS."
 
 #: ../gramps/gui/glade/editlocation.glade:192
 msgid "_State:"
@@ -18765,7 +18765,7 @@ msgstr "Er zijn geen add-ons geïnstalleerd."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:119
 msgid "Export Assistant"
-msgstr "Export Assistant"
+msgstr "Exportassistent"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:181
 msgid "Saving your data"
@@ -24510,12 +24510,12 @@ msgstr "Kleur opvulling"
 #: ../gramps/plugins/graph/gvfamilylines.py:78
 #: ../gramps/plugins/graph/gvrelgraph.py:77
 msgid "Descendants <- Ancestors"
-msgstr "Afstammelingen <-  Voorouders"
+msgstr "Afstammelingen <- Voorouders"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:79
 #: ../gramps/plugins/graph/gvrelgraph.py:78
 msgid "Descendants -> Ancestors"
-msgstr "Afstammelingen ->  Voorouders"
+msgstr "Afstammelingen -> Voorouders"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:80
 #: ../gramps/plugins/graph/gvrelgraph.py:79
@@ -24525,7 +24525,7 @@ msgstr "Afstammelingen <-> Voorouders"
 #: ../gramps/plugins/graph/gvfamilylines.py:81
 #: ../gramps/plugins/graph/gvrelgraph.py:80
 msgid "Descendants - Ancestors"
-msgstr "Afstammelingen  -  Voorouders"
+msgstr "Afstammelingen - Voorouders"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:125
 msgid "Follow parents to determine \"family lines\""
@@ -25622,7 +25622,7 @@ msgstr "Gescheiden"
 
 #: ../gramps/plugins/importer/importgeneweb.py:197
 msgid "GeneWeb import"
-msgstr "GeneWeb import"
+msgstr "GeneWeb importeren"
 
 #: ../gramps/plugins/importer/importgeneweb.py:912
 #, python-brace-format
@@ -26553,7 +26553,7 @@ msgstr "(Indiener):"
 #: ../gramps/plugins/lib/libgedcom.py:3508
 #: ../gramps/plugins/lib/libgedcom.py:7333
 msgid "GEDCOM data"
-msgstr "GEDCOM data"
+msgstr "GEDCOM-data"
 
 #: ../gramps/plugins/lib/libgedcom.py:3553
 msgid "Unknown tag"
@@ -27492,7 +27492,7 @@ msgstr "Overleden %(month_year)s in %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:350
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr "Overleden %(month_year)s in %(death_place)s (%(age)s)"
+msgstr "Overleden %(month_year)s in %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:356
 #, python-format
@@ -28004,7 +28004,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "He werd gedoopt op %(baptism_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Hij werd gedoopt op %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:598
 #, python-format
@@ -30665,7 +30665,7 @@ msgstr "Geen ondersteund Pro-Gen importtaalbestand"
 
 #: ../gramps/plugins/lib/libprogen.py:531
 msgid "Pro-Gen import"
-msgstr "Pro-Gen import"
+msgstr "Pro-Gen importeren"
 
 #: ../gramps/plugins/lib/libprogen.py:539
 msgid "Saving."
@@ -37403,7 +37403,7 @@ msgstr ""
 "Deze pagina bevat een index van alle media-objecten in de database, "
 "gesorteerd op titel. Als u op de titel klikt, gaat u naar de pagina van dat "
 "media-object. Als u afmetingen boven een afbeelding ziet, klikt u op de "
-"afbeelding om de volledige versie te zien. "
+"afbeelding om de volledige versie te zien.  "
 
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
