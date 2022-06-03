@@ -7,13 +7,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Milan <mobrcian@hotmail.com>, 2021, 2022.
 # Jose Riha <jose1711@gmail.com>, 2022.
+# Jano Svitok <jan.svitok@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-01-15 21:42+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2022-06-04 20:21+0000\n"
+"Last-Translator: Jano Svitok <jan.svitok@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
 "Language: sk\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -190,10 +191,8 @@ msgid "8 of Hanuka"
 msgstr "Chanuka (8. deň)"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kurzíva"
+msgstr "Taliansko"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -220,10 +219,8 @@ msgid "Sweden"
 msgstr "Švédsko"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turečtina"
+msgstr "Turecko"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -9509,7 +9506,7 @@ msgstr "%s sa nedá vytvoriť"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
-msgstr "Predvolené"
+msgstr "Predvolený"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
