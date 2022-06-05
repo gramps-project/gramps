@@ -217,7 +217,8 @@ class MetadataView(Gtk.TreeView):
     def __init__(self):
         Gtk.TreeView.__init__(self)
         self.sections = {}
-        titles = [(_('Key'), 0, 235),
+        titles = [(_('Namespace'), 0, 150),
+                  (_('Label'), 1, 150),
                   (_(' '), NOSORT, 60, COL_IMAGE),
                   (_('Value'), NOSORT, 325)]
 
@@ -271,8 +272,11 @@ class MetadataView(Gtk.TreeView):
                         self.__get_named_regions(metadata)
                         continue
 
+                    label = metadata.get_tag_label(key)
+                    namespace = self.__get_tag_namespace(key)
+
                     node = self.__add_section(section)
-                    self.model.add([key, None, human_value], node=node)
+                    self.model.add([namespace, label, None, human_value], node=node)
 
                     self.model.tree.expand_all()
                     retval = self.model.count > 0
@@ -286,7 +290,7 @@ class MetadataView(Gtk.TreeView):
         Add the section heading node to the model.
         """
         if section not in self.sections:
-            node = self.model.add([section, None, ''])
+            node = self.model.add([section, '', None, ''])
             self.sections[section] = node
         else:
             node = self.sections[section]
@@ -371,8 +375,11 @@ class MetadataView(Gtk.TreeView):
             region = (region_p1, region_p2, region_p3, region_p4)
             person_thumbnail = self.__get_thumbnail(region, THUMBNAIL_IMAGE_SIZE)
 
+            label = metadata.get_tag_label(region_name % i)
+            namespace = self.__get_tag_namespace(region_name % i)
+
             node = self.__add_section(PEOPLE)
-            self.model.add([region_name_display, person_thumbnail, name], node=node)
+            self.model.add([namespace, label, person_thumbnail, name], node=node)
 
             i += 1
 
@@ -404,3 +411,10 @@ class MetadataView(Gtk.TreeView):
         else:
             return (target_y * orig_x // orig_y, target_y)
 
+    def __get_tag_namespace(self, key):
+
+        x = key.split(".")
+        del x[-1]
+        namespace =  '.'.join(x)
+
+        return namespace
