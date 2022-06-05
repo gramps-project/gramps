@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-28 21:15+0000\n"
+"PO-Revision-Date: 2022-06-06 02:18+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -17240,7 +17240,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergedata.glade:564
 msgid "Title selection"
-msgstr "Auswahl des Titels"
+msgstr "Titelauswahl"
 
 #: ../gramps/gui/glade/mergedata.glade:576
 #: ../gramps/gui/glade/mergeplace.glade:179
@@ -17386,7 +17386,7 @@ msgid ""
 "of both persons will be combined."
 msgstr ""
 "Ereignisse, Medienobjekte, Adressen, Attribute, URLs, Notizen, Quellen und "
-"Schlagwörter beider Personen werden kombiniert."
+"Schlagwörter der beiden Personen werden kombiniert."
 
 #: ../gramps/gui/glade/mergeperson.glade:500
 msgid "Context Information"
@@ -17405,7 +17405,7 @@ msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
-"Alternative Namen, Quellen, URLs, Medienobjekte und Notizen beider Orte "
+"Alternative Namen, Quellen, URLs, Medienobjekte und Notizen der beiden Orte "
 "werden kombiniert."
 
 #: ../gramps/gui/glade/mergerepository.glade:97
@@ -17426,7 +17426,8 @@ msgstr "Aufbewahrungsort 2"
 
 #: ../gramps/gui/glade/mergerepository.glade:398
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Adressen, URLs und Notizen beider Aufbewahrungsorte werden kombiniert."
+msgstr ""
+"Adressen, URLs und Notizen der beiden Aufbewahrungsorte werden kombiniert."
 
 #: ../gramps/gui/glade/mergesource.glade:97
 msgid ""
