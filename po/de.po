@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-06-06 02:18+0000\n"
+"PO-Revision-Date: 2022-06-07 22:15+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -14751,7 +14751,7 @@ msgstr "Objekteigenschaften bearbeiten"
 
 #: ../gramps/gui/editors/editperson.py:688
 msgid "Make Active Person"
-msgstr "Als Aktive Person setzen"
+msgstr "Zur aktiven Person machen"
 
 #: ../gramps/gui/editors/editperson.py:688
 msgid "Make Home Person"
@@ -17442,12 +17442,12 @@ msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
-"Notizen, Medienobjekte, Daten und Aufbewahrungsortereferenzen werden von "
-"beiden Quellen kombiniert."
+"Notizen, Medienobjekte, Datenelemente und Aufbewahrungsortreferenzen aus "
+"beiden Quellen werden kombiniert."
 
 #: ../gramps/gui/glade/papermenu.glade:8
 msgid "Paper Settings"
-msgstr "Papieroptionen"
+msgstr "Papiereinstellungen"
 
 #: ../gramps/gui/glade/papermenu.glade:25
 msgid "Paper format"
@@ -17513,12 +17513,12 @@ msgstr "Metrisch"
 
 #: ../gramps/gui/glade/plugins.glade:44
 msgid "Perform selected action"
-msgstr "Gewählte Aktion durchführen"
+msgstr "Ausgewählte Aktion ausführen"
 
 #: ../gramps/gui/glade/plugins.glade:49
 #: ../gramps/plugins/gramplet/ageondategramplet.py:68
 msgid "Run"
-msgstr "Starten"
+msgstr "Ausführen."
 
 #: ../gramps/gui/glade/plugins.glade:139 ../gramps/gui/plug/_dialogs.py:292
 msgid "Select a report from those available on the left."
@@ -17531,19 +17531,19 @@ msgstr "Status:"
 
 #: ../gramps/gui/glade/plugins.glade:206
 msgid "Author's email:"
-msgstr "E-Mail-Adresse des Autors:"
+msgstr "Autor's E-Mail:"
 
 #: ../gramps/gui/glade/reorder.glade:87
 msgid "Parent relationships"
-msgstr "Eltern-Beziehungen"
+msgstr "Elternbeziehungen"
 
 #: ../gramps/gui/glade/reorder.glade:117 ../gramps/gui/glade/reorder.glade:260
 msgid "Arrow top"
-msgstr "Pfeil Oben"
+msgstr "Pfeil nach oben"
 
 #: ../gramps/gui/glade/reorder.glade:124
 msgid "Move parent up"
-msgstr "Eltern nach oben verschieben"
+msgstr "Elternteil nach oben verschieben"
 
 #: ../gramps/gui/glade/reorder.glade:147 ../gramps/gui/glade/reorder.glade:290
 msgid "Arrow bottom"
@@ -17551,7 +17551,7 @@ msgstr "Pfeil unten"
 
 #: ../gramps/gui/glade/reorder.glade:154
 msgid "Move parent down"
-msgstr "Eltern nach unten verschieben"
+msgstr "Elternteil nach unten verschieben"
 
 #: ../gramps/gui/glade/reorder.glade:205
 msgid "Family relationships"
@@ -19926,17 +19926,17 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"Das Zusatzmodul %(name)s wurde nicht geladen und meldete einen Fehler.\n"
+"Das Zusatzmodul %(name)s konnte nicht geladen werden und hat einen Fehler "
+"gemeldet.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Wenn du den Fehler nicht alleine beheben kannst, erstelle einen "
-"Fehlerbericht über %(gramps_bugtracker_url)s oder kontaktiere den "
-"Zusatzmodulautor (%(firstauthoremail)s).\n"
+"Wenn du den Fehler nicht selbst beheben kannst, kannst du einen Fehler unter "
+"%(gramps_bugtracker_url)s melden oder den Autor des Zusatzmoduls "
+"kontaktieren (%(firstauthoremail)s).\n"
 "\n"
-"Wenn du nicht willst, dass Gramps weiter versucht dieses Zusatzmodul zu "
-"laden, kannst du es in der Zusatzmodulverwaltung über das Hilfemenü "
-"verstecken."
+"Wenn du nicht möchtest, dass Gramps versucht, dieses Zusatzmodul erneut zu "
+"laden, kannst du es mit der Zusatzmodulverwaltung im Hilfe-Menü ausblenden."
 
 #: ../gramps/gui/viewmanager.py:1649
 msgid "Gramps XML Backup"
@@ -25806,13 +25806,13 @@ msgid ""
 "example this version), create a new empty database and import the Gramps XML "
 "into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
 msgstr ""
-"Die Datenbankversion wird von dieser Gramps-Version nicht unterstützt. Du "
-"solltest eine alte Version von Gramps 3.0.x verwenden und deine Datenbank in "
-"diese importieren. Dann solltest du deine Daten nach Gramps-XML exportieren. "
-"Dann solltest du auf die neuste Version von Gramps aktualisieren (zum "
-"Beispiel auf diese Version), eine neue leere Datenbank erstellen und die "
-"Gramps-XML Datei in diese importieren. Bitte schaue auch hier nach: "
-"%(gramps_wiki_migrate_two_to_three_url)s"
+"Die Datenbankversion wird von dieser Version von Gramps nicht unterstützt. "
+"Du solltest eine alte Kopie von Gramps in der Version 3.0.x verwenden und "
+"deine Datenbank in diese Version importieren. Anschließend solltest du eine "
+"Kopie deiner Daten nach Gramps XML ( Stammbaum) exportieren. Dann solltest "
+"du auf die neueste Version von Gramps aktualisieren (z.B. diese Version), "
+"eine neue leere Datenbank erstellen und das Gramps XML in diese Version "
+"importieren. Bitte beachte:%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.glade:49
 #: ../gramps/plugins/importer/importprogen.glade:70
@@ -37098,7 +37098,7 @@ msgstr "Startseite URL"
 
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Search URL"
-msgstr "Suche URL"
+msgstr "Such-URL"
 
 #: ../gramps/plugins/view/repoview.py:112
 msgid "Add a new repository"
