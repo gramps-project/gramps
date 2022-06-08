@@ -65,6 +65,8 @@ class NoteType(GrampsType):
     TODO = 25
     # indicate a note used as link in another note
     LINK = 26
+    # indicate note is proof summary or argument
+    PROOF = 27
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
@@ -74,6 +76,7 @@ class NoteType(GrampsType):
         (CUSTOM, _("Custom"), "Custom"),
         (GENERAL, _("General"), "General"),
         (RESEARCH, _("Research"), "Research"),
+        (PROOF, _("Proof Argument"), "Proof Argument"),
         (TRANSCRIPT, _("Transcript"), "Transcript"),
         (SOURCE_TEXT, _("Source text"), "Source text"),
         (CITATION, _('Citation'), "Citation"),
