@@ -373,6 +373,8 @@ class PluginData:
     .. attribute:: viewclass
        A class of type ViewCreator that holds the needed info of the
        view to be created: icon, viewclass that derives from pageview, ...
+    .. attribute:: stock_category_icon
+       The icon used for the view category if there is none
     .. attribute:: stock_icon
        The icon in the toolbar or sidebar used to select the view
 
@@ -482,6 +484,7 @@ class PluginData:
         self._orientation = None
         #VIEW attr
         self._viewclass = None
+        self._stock_category_icon = None
         self._stock_icon = None
         #SIDEBAR attr
         self._sidebarclass = None
@@ -1016,6 +1019,14 @@ class PluginData:
     def _get_viewclass(self):
         return self._viewclass
 
+    def _set_stock_category_icon(self, stock_category_icon):
+        if not self._ptype == VIEW:
+            raise ValueError('stock_category_icon may only be set for VIEW plugins')
+        self._stock_category_icon = stock_category_icon
+
+    def _get_stock_category_icon(self):
+        return self._stock_category_icon
+
     def _set_stock_icon(self, stock_icon):
         if not self._ptype == VIEW:
             raise ValueError('stock_icon may only be set for VIEW plugins')
@@ -1025,6 +1036,7 @@ class PluginData:
         return self._stock_icon
 
     viewclass = property(_get_viewclass, _set_viewclass)
+    stock_category_icon = property(_get_stock_category_icon, _set_stock_category_icon)
     stock_icon = property(_get_stock_icon, _set_stock_icon)
 
     #SIDEBAR attributes

@@ -173,6 +173,14 @@ class Navigator:
                     cat_name = page[0].category[1]
                     cat_icon = CATEGORY_ICON.get(page[0].category[0])
                     if cat_icon is None:
+                        try:
+                            cat_icon = page[0].stock_category_icon
+                        except AttributeError:
+                            try:
+                                cat_icon = page[0].stock_icon
+                            except AttributeError:
+                                cat_icon = 'gramps-view'
+                    if cat_icon is None:
                         cat_icon = 'gramps-view'
                     categories.append([cat_num, cat_name, cat_icon])
 
