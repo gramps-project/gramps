@@ -842,7 +842,8 @@ class ViewManager(CLIManager):
         hbox.add(Gtk.Label(label=pdata.name))
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
-        self.active_page.post_create()
+        if self.active_page:
+            self.active_page.post_create()
         if not self.file_loaded:
             self.uimanager.set_actions_visible(self.actiongroup, False)
             self.uimanager.set_actions_visible(self.readonlygroup, False)
