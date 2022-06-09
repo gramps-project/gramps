@@ -326,7 +326,7 @@ class ConfigManager:
                         # this could be a third-party setting; add it:
                         self.data[name][setting] = value
 
-    def save(self, filename = None):
+    def save(self, filename = None, comments = None):
         """
         Saves the current section/settings to an .ini file. Optional filename
         will override the default filename to save to, if given.
@@ -345,6 +345,14 @@ class ConfigManager:
                     key_file.write(";; Gramps key file\n")
                     key_file.write(";; Automatically created at %s" %
                                    time.strftime("%Y/%m/%d %H:%M:%S") + "\n\n")
+                    if comments:
+                        if not isinstance(comments, list):
+                            raise AttributeError("Comments should be a list")
+                        key_file.write("\n")
+                        for comment in comments:
+                            if not isinstance(comment, str):
+                                raise AttributeError("Comment should be a string")
+                            key_file.write(";; %s\n" % comment.strip("; \n"))
                     for section in sorted(self.data):
                         key_file.write("[%s]\n" % section)
                         for key in sorted(self.data[section]):

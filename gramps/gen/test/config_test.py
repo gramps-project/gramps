@@ -139,6 +139,19 @@ class CompleteCheck(unittest.TestCase):
         self.assertEqual(self.CM.get("section2.dict"), {'a': "apple", "b": "banana"})
         self.assertEqual(self.CM.get("section2.unicode"), "Raötröme")
 
+        self.assertRaises(AttributeError, self.CM.save, TEST2_INI, comments=123)
+        self.assertRaises(AttributeError, self.CM.save, TEST2_INI, comments={"key":"pair"})
+        self.assertRaises(AttributeError, self.CM.save, TEST2_INI, comments=[123])
+        self.assertRaises(AttributeError, self.CM.save, TEST2_INI, comments=["line1", 123])
+
+        self.CM.save(TEST2_INI, comments=["test comment1"])
+        self.CM.load(TEST2_INI)
+        self.assertEqual(self.CM.get("section.setting3"), "Another String")
+
+        self.CM.save(TEST2_INI, comments=["test comment1", "test comment2"])
+        self.CM.load(TEST2_INI)
+        self.assertEqual(self.CM.get("section.setting3"), "Another String")
+
 if __name__ == "__main__":
     unittest.main()
 
