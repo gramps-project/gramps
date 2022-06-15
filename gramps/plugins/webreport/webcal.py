@@ -1307,7 +1307,7 @@ class WebCalReport(Report):
                         age_at_death = age_at_death.format(dlocale=self.rlocale)
 
                 # determine birthday information???
-                if (self.birthday and birth_date is not Date()
+                if (self.birthday and birth_date != Date()
                         and birth_date.is_valid()):
                     birth_date = gregorian(birth_date)
 
