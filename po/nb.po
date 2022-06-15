@@ -10,15 +10,15 @@
 # Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2016.
 # Allan Nordhøy <epost@anotheragency.no>, 2021, 2022.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Mihle <MihleGaming@gmail.com>, 2021.
+# Mihle <MihleGaming@gmail.com>, 2021, 2022.
 # Para <ahh-produktivitet@tutanota.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-03-26 19:04+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2022-06-13 07:36+0000\n"
+"Last-Translator: Mihle <MihleGaming@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -38,10 +38,8 @@ msgid "Canada"
 msgstr "Canada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "katalansk"
+msgstr "Catalonia"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -197,10 +195,8 @@ msgid "8 of Hanuka"
 msgstr "Åttende dags hanukka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kursiv"
+msgstr "Italia"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -227,10 +223,8 @@ msgid "Sweden"
 msgstr "Sverige"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "tyrkisk"
+msgstr "Tyrkia"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -7075,8 +7069,6 @@ msgid "Birth"
 msgstr "Født"
 
 #: ../gramps/gen/lib/childreftype.py:69
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
 msgstr "Adoptert"
@@ -7499,10 +7491,8 @@ msgid "Informant"
 msgstr "Inndataformat"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
-#| msgid "parent2"
 msgid "Godparent"
-msgstr "forelder2"
+msgstr "Fadder"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
@@ -9967,8 +9957,6 @@ msgid "Detail of information to be shown in a node."
 msgstr "Informasjonsdetaljer for visning i en node."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
 msgstr "Navneformat"
 
@@ -11213,9 +11201,8 @@ msgid "Unmarried partnership"
 msgstr "Unmarried partnership"
 
 #: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2238
-#, fuzzy
 msgid "Buried"
-msgstr "Begravelse"
+msgstr "Begravd"
 
 #: ../gramps/gen/utils/symbols.py:102 ../gramps/gui/configure.py:2239
 msgid "Cremated/Funeral urn"
@@ -11893,10 +11880,8 @@ msgid "_Remove"
 msgstr "Fjern"
 
 #: ../gramps/gui/configure.py:1173
-#, fuzzy
-#| msgid "Display as"
 msgid "Display Options"
-msgstr "Vis som"
+msgstr "Visnings Instillinger"
 
 #: ../gramps/gui/configure.py:1189 ../gramps/gui/configure.py:1243
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11912,10 +11897,8 @@ msgid "Edit"
 msgstr "Rediger"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Stedsformat"
+msgstr "Automatiser Stedsformat"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Enables automatic place title generation using specified format."
@@ -12002,10 +11985,8 @@ msgid "* Requires Restart"
 msgstr "* Krever omstart"
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "Database"
 msgid "Data"
-msgstr "Databasen"
+msgstr "Data"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
@@ -12279,10 +12260,8 @@ msgid "Check for updated addons now"
 msgstr "Søk etter oppdateringer for programtillegg nå"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "Navn på Programtillegg"
+msgstr "Programtillegg"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -12561,7 +12540,7 @@ msgstr "Partner"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Drept"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
@@ -12650,10 +12629,8 @@ msgid "Import Family Tree"
 msgstr "Importere slektsdatabase"
 
 #: ../gramps/gui/dbloader.py:387
-#, fuzzy
-#| msgid "All files"
 msgid "All supported files"
-msgstr "Alle filer"
+msgstr "Alle støttede filer"
 
 #: ../gramps/gui/dbloader.py:442
 #, python-format
@@ -18844,11 +18821,9 @@ msgstr ""
 "Avbryt for å avbryte"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
-#, fuzzy
-#| msgid "=format"
 msgctxt "name"
 msgid "format"
-msgstr "=format"
+msgstr "format"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
 #, fuzzy
@@ -21767,7 +21742,7 @@ msgstr "Halvsirkel"
 
 #: ../gramps/plugins/drawreport/fanchart.py:724
 msgid "overhang"
-msgstr ""
+msgstr "overheng"
 
 #: ../gramps/plugins/drawreport/fanchart.py:725
 msgid "quarter circle"
@@ -24185,10 +24160,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Start med slektsforskning og Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:149
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "Alle familier"
+msgstr "Skriv inn din første familie"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:150
 msgid ""
@@ -32714,10 +32687,9 @@ msgid "The style used for the subtitle."
 msgstr "Stil som blir brukt på undertitler."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Relasjon:"
+msgstr "Relasjon: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -33252,28 +33224,22 @@ msgid "Number of families: %d"
 msgstr "Antall familier: %d"
 
 #: ../gramps/plugins/textreport/summary.py:230
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "Kontekstinformasjon"
+msgstr "Hendelse Informasjon"
 
 #: ../gramps/plugins/textreport/summary.py:234
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "Antall hendelser"
+msgstr "Antall hendelser: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "Stedsformat"
+msgstr "Sted Informasjon"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy, python-format
-#| msgid "Number of places"
+#, python-format
 msgid "Number of places: %d"
-msgstr "Antall steder"
+msgstr "Antall steder: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
 #, fuzzy
@@ -33282,10 +33248,9 @@ msgid "Source Information"
 msgstr "Delt informasjon"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Antall kilder"
+msgstr "Antall kilder: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
 #, fuzzy
@@ -33294,10 +33259,9 @@ msgid "Citation Information"
 msgstr "Publikasjonsinformasjon"
 
 #: ../gramps/plugins/textreport/summary.py:273
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Antall siteringer"
+msgstr "Antall siteringer: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
 #, fuzzy
@@ -33328,10 +33292,9 @@ msgid "Note Information"
 msgstr "Ingen datoinformasjon"
 
 #: ../gramps/plugins/textreport/summary.py:346
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Antall notater"
+msgstr "Antall notater: %d"
 
 #: ../gramps/plugins/textreport/summary.py:374
 msgid "Whether to count private data"
@@ -34303,7 +34266,7 @@ msgstr "Starter"
 
 #: ../gramps/plugins/tool/findloop.py:95
 msgid "Looking for possible loop for each person"
-msgstr ""
+msgstr "Ser etter mulig løkkefor hver person"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
 msgctxt "manual"
@@ -36002,9 +35965,8 @@ msgstr "Kvadrant"
 
 #: ../gramps/plugins/view/fanchartdescview.py:342
 #: ../gramps/plugins/view/fanchartview.py:430
-#, fuzzy
 msgid "Show gramps id"
-msgstr "Gramps id"
+msgstr "Vis gramps id"
 
 #: ../gramps/plugins/view/fanchartview.py:227
 msgid "Print or save the Fan Chart View"
@@ -37223,9 +37185,8 @@ msgid "MD5"
 msgstr "MD5"
 
 #: ../gramps/plugins/webreport/download.py:178
-#, fuzzy
 msgid "No file to download"
-msgstr "Beskrivelse for nedlasting"
+msgstr "Ingen fil å laste ned"
 
 #: ../gramps/plugins/webreport/event.py:117
 msgid "Creating event pages"
@@ -37441,8 +37402,6 @@ msgid "My Family Tree"
 msgstr "Mitt slektstre"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1965
-#, fuzzy
-#| msgid "Web site title"
 msgid "Website title"
 msgstr "Nettsidetittel"
 
@@ -38073,7 +38032,7 @@ msgstr "API-nøkkelen som ble brukt for Google Kart"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2483
 msgid "Toner"
-msgstr ""
+msgstr "Toner"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2484
 msgid "Terrain"
@@ -38365,8 +38324,6 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Navn"
