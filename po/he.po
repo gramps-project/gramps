@@ -32,7 +32,7 @@ msgstr "קנדה"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr "קטלאנית"
+msgstr "קטלאניה"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -251,8 +251,8 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"התוכנה מאפשרת לך לתעד פרטים רבים על החיים של אדם מסוים, כמו־גם קשרי גומלין "
-"מורכבים בין אנשים שונים, מקומות ואירועים."
+"התכנה מספקת יכולות תעוד של פרטים רבים בחיי אדם, כמו גם קשרי־גומלין מורכבים "
+"בין אנשים שונים, מקומות ואירועים."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
 msgid ""
@@ -1475,7 +1475,7 @@ msgstr "הגדרת ניפוי תקלים"
 #: ../gramps/cli/argparser.py:343
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr "הגדרות התצורה של גרמפס מתוך %s:‏"
+msgstr "הגדרות תצורת גרמפס מתוך %s:‏"
 
 #: ../gramps/cli/argparser.py:360
 #, python-format
@@ -3056,7 +3056,7 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
-"התחברות למסד הנתונים כשל.\n"
+"התחברות למסד הנתונים כשלה.\n"
 "\n"
 "‫%(message)s\n"
 "נא לבדוק את קובץ הגדרות ההתחברות:\n"
@@ -3518,7 +3518,7 @@ msgstr "מסננים כללים"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:82
 msgid "Wrong format of date-time"
-msgstr "תבנית תאריך–שעה שגויה"
+msgstr "תבנית תאריך – שעה שגויה"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:83
 #, python-format
@@ -3788,7 +3788,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
-msgstr "מובאות שסומנו כפרטיות"
+msgstr "מובאות שסומנו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:44
 msgid "Matches citations that are indicated as private"
