@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-06-07 22:15+0000\n"
+"PO-Revision-Date: 2022-06-13 07:36+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -14743,7 +14743,7 @@ msgstr "Person bearbeiten"
 #: ../gramps/plugins/view/mediaview.py:385
 #: ../gramps/plugins/view/mediaview.py:401
 msgid "View"
-msgstr "Ansicht"
+msgstr "Anzeigen"
 
 #: ../gramps/gui/editors/editperson.py:647
 msgid "Edit Object Properties"
@@ -17588,20 +17588,19 @@ msgstr "Den ausgewählten Filter löschen"
 #: ../gramps/gui/glade/rule.glade:256
 msgid "Note: changes take effect only after this window is closed"
 msgstr ""
-"Anmerkung: Änderungen werden erst wirksam, nachdem dieses Fenster "
-"geschlossen wurde"
+"Hinweis: Änderungen werden erst wirksam, wenn dieses Fenster geschlossen wird"
 
 #: ../gramps/gui/glade/rule.glade:288
 msgid "All rules must apply"
-msgstr "Alle Regeln müssen passen"
+msgstr "Alle Regeln müssen gelten"
 
 #: ../gramps/gui/glade/rule.glade:291
 msgid "At least one rule must apply"
-msgstr "Mindestens eine Regel muss passen"
+msgstr "Mindestens eine Regel muss gelten"
 
 #: ../gramps/gui/glade/rule.glade:294
 msgid "Exactly one rule must apply"
-msgstr "Genau eine Regel muss passen"
+msgstr "Es muss genau eine Regel gelten"
 
 #: ../gramps/gui/glade/rule.glade:413
 msgid "Add another rule to the filter"
@@ -17609,11 +17608,11 @@ msgstr "Eine weitere Regel zum Filter hinzufügen"
 
 #: ../gramps/gui/glade/rule.glade:447
 msgid "Edit the selected rule"
-msgstr "Die gewählte Regel bearbeiten"
+msgstr "Die ausgewählte Regel bearbeiten"
 
 #: ../gramps/gui/glade/rule.glade:481
 msgid "Delete the selected rule"
-msgstr "Die gewählte Regel löschen"
+msgstr "Die ausgewählte Regel löschen"
 
 #: ../gramps/gui/glade/rule.glade:521 ../gramps/gui/glade/styleeditor.glade:419
 #: ../gramps/plugins/tool/finddupes.glade:132
@@ -17640,7 +17639,7 @@ msgstr "Werte liefern, die nicht mit den Filterregeln übereinstimmen"
 
 #: ../gramps/gui/glade/rule.glade:895
 msgid "Selected Rule"
-msgstr "Gewählte Regel"
+msgstr "Ausgewählte Regel"
 
 #: ../gramps/gui/glade/styleeditor.glade:174
 msgid "Style sheet n_ame:"
@@ -17682,7 +17681,7 @@ msgstr "Kurs_iv"
 
 #: ../gramps/gui/glade/styleeditor.glade:466
 msgid "_Underline"
-msgstr "_Unterstrichen"
+msgstr "_Unterstreichen"
 
 #: ../gramps/gui/glade/styleeditor.glade:542
 msgid "Font options"
@@ -17715,11 +17714,11 @@ msgstr "Abstand"
 
 #: ../gramps/gui/glade/styleeditor.glade:709
 msgid "Abo_ve:"
-msgstr "Ob_en:"
+msgstr "Ü_ber:"
 
 #: ../gramps/gui/glade/styleeditor.glade:725
 msgid "Belo_w:"
-msgstr "Unte_n:"
+msgstr "Unte_r:"
 
 #: ../gramps/gui/glade/styleeditor.glade:769
 #: ../gramps/gui/glade/styleeditor.glade:1272
@@ -17729,7 +17728,7 @@ msgstr "Ränder"
 
 #: ../gramps/gui/glade/styleeditor.glade:856
 msgid "_Padding:"
-msgstr "_Abstand:"
+msgstr "_Füllung:"
 
 #: ../gramps/gui/glade/styleeditor.glade:910
 msgid "Indentation"
@@ -17777,7 +17776,7 @@ msgstr "Breite"
 
 #: ../gramps/gui/glade/styleeditor.glade:1177
 msgid "Column widths"
-msgstr "Spaltenbreite"
+msgstr "Spaltenbreiten"
 
 #: ../gramps/gui/glade/styleeditor.glade:1221
 msgid "%"
@@ -17821,7 +17820,7 @@ msgstr "Linie:"
 
 #: ../gramps/gui/glade/styleeditor.glade:1507
 msgid "Fill:"
-msgstr "Füllung:"
+msgstr "Füllen:"
 
 #: ../gramps/gui/glade/styleeditor.glade:1522
 msgid "Shadow"
@@ -17841,7 +17840,7 @@ msgstr "Schatten zeichnen"
 
 #: ../gramps/gui/glade/styleeditor.glade:1685
 msgid "Draw options"
-msgstr "Zeichnen-Optionen"
+msgstr "Zeichnungsoptionen"
 
 #: ../gramps/gui/glade/styleeditor.glade:1855
 msgid "Add a new style"
@@ -17857,7 +17856,7 @@ msgstr "Das ausgewählte Format löschen"
 
 #: ../gramps/gui/glade/tipofday.glade:25
 msgid "_Display on startup"
-msgstr "_Beim Starten anzeigen"
+msgstr "_Beim Start anzeigen"
 
 #: ../gramps/gui/glade/tipofday.glade:102
 #: ../gramps/plugins/lib/libpersonview.py:204
@@ -17896,11 +17895,11 @@ msgstr "_Beim Starten anzeigen"
 #: ../gramps/plugins/view/sourceview.py:153
 #: ../gramps/plugins/view/sourceview.py:196
 msgid "_Forward"
-msgstr "_Vor"
+msgstr "_Weiter"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "Gewählte _Erweiterungen installieren"
+msgstr "_Ausgewählte Zusatzmodule installieren"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:1083
@@ -17928,11 +17927,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
-msgstr "_Alles wählen"
+msgstr "Alle au_swählen"
 
 #: ../gramps/gui/glade/updateaddons.glade:120
 msgid "Select _None"
-msgstr "_Nichts wählen"
+msgstr "_Nichts auswählen"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Books..."
