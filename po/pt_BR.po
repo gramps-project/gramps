@@ -7,20 +7,22 @@
 # lcc <lcc@6zap.com>, 2009-2009.
 # André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2011, 2012, 2013, 2014.
 # Paulo Henrique Paiva de Moraes <paulohpmoraes@gmail.com>, 2016, 2017, 2018...
+# AL <andre.leopoldino+weblate@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-04-20 08:34-0300\n"
-"Last-Translator: Helder Geovane Gomes de Lima <he7d3r@gmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2022-06-13 07:36+0000\n"
+"Last-Translator: AL <andre.leopoldino+weblate@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.13-dev\n"
 "X-Poedit-Basepath: ../gramps-master/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -112,19 +114,19 @@ msgstr "7 de Pessach"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr "Shavuot"
+msgstr "Festa das Colheitas"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr "Rosh Ha'Shana"
+msgstr "Ano-Novo Judaico"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr "Rosh Ha'Shana 2"
+msgstr "Ano-Novo Judaico 2"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr "Yom Kippur"
+msgstr "Dia do Perdão"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
@@ -156,7 +158,7 @@ msgstr "7 de Sucot"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr "Simhat Tora"
+msgstr "Regozijo da Torá"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
@@ -273,9 +275,8 @@ msgstr ""
 "você desejar."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Sistema de genealogia Gramps"
+msgstr "Equipe de desenvolvimento do Gramps"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
 msgid "Genealogy System"
@@ -516,7 +517,6 @@ msgstr ""
 "de dados, adicione o gramplet SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -524,12 +524,12 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Definindo as suas preferências</b><br/>&quot;Editar &gt; Preferências..."
-"&quot; permite que você modifique uma grande quantidade de configurações "
-"tais como a localização dos seus arquivos de mídia, e deixa você ajustar "
-"vários aspectos da apresentação do Gramps de acordo com as suas "
+"<b>Definindo as suas preferências</b><br/>&quot;Editar &gt; "
+"Preferências...&quot; permite que você modifique uma grande quantidade de "
+"configurações tais como a localização dos seus arquivos de mídia, e deixa "
+"você ajustar vários aspectos da apresentação do Gramps de acordo com as suas "
 "necessidades. Cada modo de exibição também pode ser configurado "
-"separadamente em &quot;Exibir &gt; Configurar exibição...&quot;"
+"separadamente em &quot;Exibir &gt; Configurar exibição...&quot;."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -616,7 +616,6 @@ msgstr ""
 "de lugares, fontes de referência e repositórios."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
@@ -625,7 +624,7 @@ msgid ""
 msgstr ""
 "<b>Organizando as formas de exibição</b><br/>Muitas das formas de exibição "
 "podem apresentar seus dados seja como uma árvore hierárquica ou como uma "
-"lista simples. Cada exibição também pode ser configurada do jeito que você  "
+"lista simples. Cada exibição também pode ser configurada do jeito que você "
 "preferir. Procure à direita da barra de ferramentas superior ou no menu "
 "&quot;Exibir&quot;."
 
@@ -739,7 +738,6 @@ msgstr ""
 "Gramps&quot;."
 
 #: ../data/tips.xml:64
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -755,7 +753,7 @@ msgstr ""
 "documentação, testar versões em desenvolvimento e até mesmo ajudar com a "
 "página web. Comece inscrevendo-se na lista de discussão dos desenvolvedores "
 "do Gramps (gramps-devel) e se apresente. Informações sobre inscrição podem "
-"ser encontradas em &quot;Ajuda &gt; Listas de discussão do Gramps&quot;"
+"ser encontradas em &quot;Ajuda &gt; Listas de discussão do Gramps&quot;."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -962,16 +960,12 @@ msgstr ""
 "gramps-project.org/bugs/"
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
 msgstr ""
-"<b>A página web do Gramps</b><br/>A página web do Gramps localiza-se em "
-"http://gramps-project.org/"
+"<b>A página web do Gramps</b><br/>A página web do Gramps localiza-se em http"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1030,7 +1024,6 @@ msgstr ""
 "individuais, principalmente quando são impressos."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1038,7 +1031,7 @@ msgid ""
 msgstr ""
 "<b>Avisos do Gramps</b><br/>Está interessado em saber quando uma versão nova "
 "do Gramps for liberada? Junte-se à lista de discussão Gramps-announce em "
-"&quot;Ajuda &gt; Listas de discussão do Gramps&quot;"
+"&quot;Ajuda &gt; Listas de discussão do Gramps&quot;."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1092,11 +1085,6 @@ msgstr ""
 "Gramps."
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
@@ -1105,7 +1093,7 @@ msgstr ""
 "<b>Tradutores do Gramps</b><br/>O Gramps foi construído de tal forma que "
 "novas traduções podem ser facilmente adicionadas com pouco esforço de "
 "desenvolvimento. Se você está interessado em participar, por favor, mande um "
-"e-mail para gramps-devel@lists.sf.net"
+"e-mail para gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1757,7 +1745,7 @@ msgstr "Árvore genealógica \"%s\":"
 #: ../gramps/plugins/webreport/basepage.py:2636
 #, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr ""
+msgstr "%(str1)s: %(str2)s"
 
 #: ../gramps/cli/clidbman.py:274
 #, python-format
@@ -2089,8 +2077,9 @@ msgstr "   As opções válidas são:"
 #: ../gramps/plugins/textreport/descendreport.py:280
 #: ../gramps/plugins/textreport/descendreport.py:286
 #: ../gramps/plugins/textreport/placereport.py:195
+#, fuzzy
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:465 ../gramps/cli/plug/__init__.py:555
 #: ../gramps/cli/plug/__init__.py:635
@@ -2202,7 +2191,7 @@ msgstr "Registro privado"
 #: ../gramps/gen/config.py:329 ../gramps/gen/datehandler/_datestrings.py:79
 msgctxt "localized lexeme inflections"
 msgid "January"
-msgstr "Janeiro"
+msgstr "janeiro"
 
 #: ../gramps/gen/const.py:228
 msgid ""
@@ -10882,7 +10871,7 @@ msgstr "Húngaro"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonésio"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -12096,10 +12085,8 @@ msgid "Years, Months, Days"
 msgstr "Anos, meses, dias"
 
 #: ../gramps/gui/configure.py:1297
-#, fuzzy
-#| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
-msgstr "Precisão na exibição da idade (é necessário reiniciar)"
+msgstr "Precisão na exibição da idade"
 
 #: ../gramps/gui/configure.py:1310
 msgid "Calendar on reports"
@@ -12130,7 +12117,9 @@ msgstr "Barra de status"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Opções do relatório"
+msgstr ""
+"\n"
+"Opções de entrada"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -12146,17 +12135,17 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Necessita reiniciar o programa"
 
 #: ../gramps/gui/configure.py:1388
 #, fuzzy
 #| msgid "_Data"
 msgid "Data"
-msgstr "_Dados"
+msgstr "Dados"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Textos de substituição condicional"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -12198,7 +12187,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Calculando cronograma..."
+msgstr "Limites de cálculo"
 
 #: ../gramps/gui/configure.py:1534
 #, fuzzy
@@ -12240,13 +12229,13 @@ msgstr "Número máximo de gerações para parentescos"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Limites"
 
 #: ../gramps/gui/configure.py:1575
 #, fuzzy
 #| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "Citações de evento"
+msgstr "Configurações de ambiente"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
