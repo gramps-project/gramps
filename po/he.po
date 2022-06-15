@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-04-26 14:08+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"PO-Revision-Date: 2022-06-12 16:02+0000\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -32,7 +32,7 @@ msgstr "קנדה"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr "קטלנית"
+msgstr "קטלאנית"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -242,8 +242,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
-"גרמפס היא תכנה גנאלוגיות אינטואיטיבית הן לחובבי גנאלוגיה והן לגנאלוגים "
-"מקצועיים בזכות עושר ושלמות התכונות שלו."
+"גרמפס היא תוכנת גנאולוגיה שמיועדת לגנאולוגים חובבים ולגנאולוגים מקצועיים גם "
+"יחד, בזכות התכונות הרבות וממשק המשתמש הנוח."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
 msgid ""
@@ -251,8 +251,8 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"התכנה מספקת יכולות תעוד פרטים רבים בחיי אדם, כך גם קשרי־גומלין מורכבים בין "
-"אנשים שונים, מקומות ואירועים."
+"התוכנה מאפשרת לך לתעד פרטים רבים על החיים של אדם מסוים, כמו־גם קשרי גומלין "
+"מורכבים בין אנשים שונים, מקומות ואירועים."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
 msgid ""
@@ -1475,7 +1475,7 @@ msgstr "הגדרת ניפוי תקלים"
 #: ../gramps/cli/argparser.py:343
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr "הגדרות תצור גרמפס מ %s:"
+msgstr "הגדרות התצורה של גרמפס מתוך %s:‏"
 
 #: ../gramps/cli/argparser.py:360
 #, python-format
@@ -2586,7 +2586,7 @@ msgstr "עברי"
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgctxt "calendar"
 msgid "French Republican"
-msgstr "הרפובליקה הצרפתית"
+msgstr "מהפכתי־צרפתי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
 msgctxt "calendar"
@@ -2610,17 +2610,17 @@ msgstr "שוודי"
 #: ../gramps/gen/datehandler/_datestrings.py:146
 msgctxt "Hebrew month lexeme"
 msgid "Tishri"
-msgstr "תישרי"
+msgstr "תשרי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:147
 msgctxt "Hebrew month lexeme"
 msgid "Heshvan"
-msgstr "חשבן"
+msgstr "חשוון"
 
 #: ../gramps/gen/datehandler/_datestrings.py:148
 msgctxt "Hebrew month lexeme"
 msgid "Kislev"
-msgstr "כסליו"
+msgstr "כסלו"
 
 #: ../gramps/gen/datehandler/_datestrings.py:149
 msgctxt "Hebrew month lexeme"
@@ -2635,12 +2635,12 @@ msgstr "שבט"
 #: ../gramps/gen/datehandler/_datestrings.py:151
 msgctxt "Hebrew month lexeme"
 msgid "AdarI"
-msgstr "אדר א'"
+msgstr "אדר א׳"
 
 #: ../gramps/gen/datehandler/_datestrings.py:152
 msgctxt "Hebrew month lexeme"
 msgid "AdarII"
-msgstr "אדר ב'"
+msgstr "אדר ב׳"
 
 #: ../gramps/gen/datehandler/_datestrings.py:153
 msgctxt "Hebrew month lexeme"
@@ -2739,7 +2739,7 @@ msgstr "פרוקטידור"
 #: ../gramps/gen/datehandler/_datestrings.py:179
 msgctxt "French month lexeme"
 msgid "Extra"
-msgstr "אקסטרא"
+msgstr "אקסטרה"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2748,12 +2748,12 @@ msgstr "אקסטרא"
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr "מוהראם"
+msgstr "מוחָרָם"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr "סאפאר"
+msgstr "ס׳פר"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "Islamic month lexeme"
@@ -2768,32 +2768,32 @@ msgstr "רביע א־ת׳אני"
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr "ג'ומאדא אי־אולה"
+msgstr "ג׳ומאדא אל־אולא"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr "ג'ומאדא ט־טאניה"
+msgstr "ג׳ומאדא א־ת׳אנייה"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr "ראג'אב"
+msgstr "רג׳ב"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr "שאהאב"
+msgstr "שעבאן"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr "ראמאדן"
+msgstr "רמדאן"
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr "שאוואל"
+msgstr "שוואל"
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
 msgctxt "Islamic month lexeme"
@@ -2822,7 +2822,7 @@ msgstr "אורדיביהישט"
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr "קהורדאד"
+msgstr "ח׳ורדאד"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Persian month lexeme"
@@ -2926,7 +2926,7 @@ msgstr "יום שישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgid "Saturday"
-msgstr "שבת"
+msgstr "יום שבת"
 
 #: ../gramps/gen/datehandler/_datestrings.py:252
 msgid "Sun"
@@ -3744,11 +3744,11 @@ msgstr "כלל אחד מפנה לכלל אחר שמפנה חזרה לכלל הר
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
-msgstr "כול מובאה"
+msgstr "כל מובאה"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Matches every citation in the database"
-msgstr "שליפת כול המובאות במסד הנתונים"
+msgstr "שליפת כל המובאות במסד הנתונים"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:45
 #: ../gramps/gen/filters/rules/event/_changedsince.py:46
@@ -3788,7 +3788,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
-msgstr "מובאות המסומנות כ'פרטי'"
+msgstr "מובאות שסומנו כפרטיות"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:44
 msgid "Matches citations that are indicated as private"
@@ -3796,7 +3796,7 @@ msgstr "שליפת מובאות שהוגדרו כ'פרטי'"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 msgid "Citation attribute:"
-msgstr "תכונות מוּבָאָה:"
+msgstr "תכונות מובאה:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:44
@@ -3843,7 +3843,7 @@ msgstr "שליפת מובאות עם מספר מסוים של הערות"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:45
 msgid "Citation with <Id>"
-msgstr "מובאה עם <מזהה>"
+msgstr "מובאה עם <Id>"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:46
 msgid "Matches a citation with a specified Gramps ID"
@@ -3851,7 +3851,7 @@ msgstr "שליפת מובאה עם מזהה גרמפס שצוין"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
-msgstr "מובאות עם <מונה> הערות"
+msgstr "מובאות עם <count> הערות"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Matches citations having a certain number of notes"
@@ -3859,7 +3859,7 @@ msgstr "שליפת מובאות עם מספר מסוים של הערות"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:43
 msgid "Citations having notes containing <substring>"
-msgstr "מובאות עם הערות המכילות < מחרוזת משנה>"
+msgstr "מובאות עם הערות המכילות <substring>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Matches citations whose notes contain text matching a substring"
@@ -4118,7 +4118,7 @@ msgstr "מקום:"
 #: ../gramps/gui/glade/mergeevent.glade:311
 #: ../gramps/gui/glade/mergeevent.glade:327
 msgid "Description:"
-msgstr "תאור:"
+msgstr "תיאור:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:49
 msgid "Events with <data>"
@@ -37926,8 +37926,6 @@ msgid "No style sheet"
 msgstr "ללא עמוד סגנון"
 
 #, fuzzy
-#~| msgctxt "localized lexeme inflections"
-#~| msgid "January"
 #~ msgctxt "localized lexeme inflections"
 #~ msgid "|January"
 #~ msgstr "ינואר"
