@@ -1891,6 +1891,7 @@ class NavWebOptions(MenuReportOptions):
         self.__googleopts = None
         self.__googlemapkey = None
         self.__olv = None
+        self.googlemapkeyhelp = None
         self.__ancestortree = None
         self.__css = None
         self.__gallery = None
@@ -2491,8 +2492,23 @@ class NavWebOptions(MenuReportOptions):
         addopt("googleopts", self.__googleopts)
 
         self.__googlemapkey = StringOption(_("Google maps API key"), "")
-        self.__googlemapkey.set_help(_("The API key used for the Google maps"))
+        self.__googlemapkey.set_help(_("The API key used for the Google maps.\n"
+                                       "This key is mandatory and must be valid"
+                                      ))
+        if not config.is_set("paths.website-get-api-key"):
+            # The following will be used to change the URL if it changes without
+            # creating a patch. We will only need to change gramps.ini
+            config.register("paths.website-get-api-key",
+                "https://developers.google.com/maps/documentation/javascript/get-api-key")
+        keyvalue = config.get("paths.website-get-api-key")
+        self.googlemapkeyhelp = StringOption(_("How to get the API key"),
+                                             keyvalue)
+        self.googlemapkeyhelp.connect('value-changed', self.url_changed)
+        keytooltip = _("Copy and paste this value in your browser."
+                       "\nThe Google maps service must be selected.")
+        self.googlemapkeyhelp.set_help(keytooltip)
         addopt("googlemapkey", self.__googlemapkey)
+        addopt("googlemapkeyhelp", self.googlemapkeyhelp)
 
         stamenopts = [
             (_("Toner"), "toner"),
@@ -2840,8 +2856,18 @@ class NavWebOptions(MenuReportOptions):
 
         if (place_active or family_active) and mapservice_opts == "Google":
             self.__googlemapkey.set_available(True)
+            self.googlemapkeyhelp.set_available(True)
         else:
             self.__googlemapkey.set_available(False)
+            self.googlemapkeyhelp.set_available(False)
+
+    def url_changed(self):
+        """
+        This value must be changed only if the url is modified.
+        """
+        api_key_url = self.googlemapkeyhelp.get_value()
+        if api_key_url != "":
+            config.set("paths.website-get-api-key", api_key_url)
 
     def __add_calendar_options(self, menu):
         """
