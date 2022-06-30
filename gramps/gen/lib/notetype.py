@@ -66,7 +66,10 @@ class NoteType(GrampsType):
     # indicate a note used as link in another note
     LINK = 26
     # indicate note is proof summary or argument
-    PROOF = 27
+    PROOF_ARGUMENT = 27
+    # for description of family tree / database contents
+    # should really only be one per database
+    TREE_DESCRIPTION = 28
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
@@ -76,7 +79,6 @@ class NoteType(GrampsType):
         (CUSTOM, _("Custom"), "Custom"),
         (GENERAL, _("General"), "General"),
         (RESEARCH, _("Research"), "Research"),
-        (PROOF, _("Proof Argument"), "Proof Argument"),
         (TRANSCRIPT, _("Transcript"), "Transcript"),
         (SOURCE_TEXT, _("Source text"), "Source text"),
         (CITATION, _('Citation'), "Citation"),
@@ -84,6 +86,8 @@ class NoteType(GrampsType):
         (HTML_CODE, _("Html code"), "Html code"),
         (TODO, _("To Do", "notetype"), "To Do"),
         (LINK, _("Link", "notetype"), "Link"),
+        (PROOF_ARGUMENT, _("Proof Argument"), "Proof Argument"),
+        (TREE_DESCRIPTION, _("Tree Description"), "Tree Description"),
         ]
 
     _DATAMAPIGNORE = [
