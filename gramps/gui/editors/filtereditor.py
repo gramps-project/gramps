@@ -609,6 +609,7 @@ class EditRule(ManagedWindow):
                 pos += 1
 
             use_regex = None
+            use_case = None
             if class_obj.allow_regex:
                 use_regex = Gtk.CheckButton(label=_('Use regular expressions'))
                 tip = _('Interpret the contents of string fields as regular '
@@ -625,7 +626,13 @@ class EditRule(ManagedWindow):
                 use_regex.set_tooltip_text(tip)
                 grid.attach(use_regex, 1, pos, 1, 1)
 
-            self.page.append((class_obj, vallist, tlist, use_regex))
+                pos += 1
+                use_case = Gtk.CheckButton(label=_('Case sensitive'))
+                grid.attach(use_case, 1, pos, 1, 1)
+                use_regex.connect('toggled', self.regex_selection, use_case)
+                use_case.set_sensitive(False)
+
+            self.page.append((class_obj, vallist, tlist, use_regex, use_case))
 
             # put the grid into a scrollable area:
             scrolled_win = Gtk.ScrolledWindow()
@@ -684,12 +691,14 @@ class EditRule(ManagedWindow):
             page = self.class2page[self.active_rule.__class__]
             self.notebook.set_current_page(page)
             self.display_values(self.active_rule.__class__)
-            (class_obj, vallist, tlist, use_regex) = self.page[page]
+            (class_obj, vallist, tlist, use_regex, use_case) = self.page[page]
             r = list(self.active_rule.values())
             for i in range(0, min(len(tlist), len(r))):
                 tlist[i].set_text(r[i])
             if class_obj.allow_regex:
                 use_regex.set_active(self.active_rule.use_regex)
+                use_case.set_active(self.active_rule.use_case)
+                self.regex_selection()
 
         self.selection.connect('changed', self.on_node_selected)
         self.rname.connect('button-press-event', self._button_press)
@@ -705,6 +714,14 @@ class EditRule(ManagedWindow):
         self.get_widget('hpaned1').set_position(panepos)
         self.rname.restore_column_size()
         self.show()
+
+    def regex_selection(self, widget=None, use_case=None):
+        if use_case:
+            if widget and widget.get_active():
+                use_case.set_sensitive(True)
+            else:
+                use_case.set_active(False)
+                use_case.set_sensitive(False)
 
     def select_iter(self, data):
         """
@@ -787,10 +804,10 @@ class EditRule(ManagedWindow):
 
         try:
             page = self.notebook.get_current_page()
-            (class_obj, vallist, tlist, use_regex) = self.page[page]
+            (class_obj, vallist, tlist, use_regex, use_case) = self.page[page]
             value_list = [str(sclass.get_text()) for sclass in tlist]
             if class_obj.allow_regex:
-                new_rule = class_obj(value_list, use_regex.get_active())
+                new_rule = class_obj(value_list, use_regex.get_active(), use_case.get_active())
             else:
                 new_rule = class_obj(value_list)
 

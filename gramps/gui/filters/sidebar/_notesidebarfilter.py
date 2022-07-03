@@ -75,6 +75,7 @@ class NoteSidebarFilter(SidebarFilter):
             self.custom_types)
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.sensitive_regex = Gtk.CheckButton(label=_('Case sensitive'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -103,6 +104,7 @@ class NoteSidebarFilter(SidebarFilter):
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_regex_entry(self.filter_regex)
+        self.add_regex_case(self.sensitive_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
@@ -116,6 +118,7 @@ class NoteSidebarFilter(SidebarFilter):
         text = str(self.filter_text.get_text()).strip()
         ntype = self.note.get_type().xml_str()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
@@ -125,10 +128,10 @@ class NoteSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericNoteFilter()
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
-            rule = HasNote([text, ntype], use_regex=regex)
+            rule = HasNote([text, ntype], use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
             # check the Tag

@@ -78,6 +78,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.sensitive_regex = Gtk.CheckButton(label=_('Case sensitive'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -109,6 +110,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_regex_entry(self.filter_regex)
+        self.add_regex_case(self.sensitive_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
@@ -128,6 +130,7 @@ class RepoSidebarFilter(SidebarFilter):
         rtype = self.repo.get_type().xml_str()
         note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
@@ -138,14 +141,14 @@ class RepoSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericRepoFilter()
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
-            rule = HasRepo([title, rtype, address, url], use_regex=regex)
+            rule = HasRepo([title, rtype, address, url], use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
             if note:
-                rule = HasNoteRegexp([note], use_regex=regex)
+                rule = HasNoteRegexp([note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # check the Tag

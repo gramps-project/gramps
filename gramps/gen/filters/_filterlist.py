@@ -142,9 +142,9 @@ class FilterList:
                         file.write(' comment="%s"' % self.fix(comment))
                     file.write('>\n')
                     for rule in the_filter.get_rules():
-                        file.write('      <rule class="%s" use_regex="%s">'
+                        file.write('      <rule class="%s" use_regex="%s" use_case="%s">'
                                    '\n' % (rule.__class__.__name__,
-                                           rule.use_regex))
+                                           rule.use_regex, rule.use_case))
                         for value in list(rule.values()):
                             file.write('        <arg value="%s"/>'
                                        '\n' % self.fix(value))

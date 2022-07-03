@@ -52,6 +52,7 @@ class FilterParser(handler.ContentHandler):
         self.cname = None
         self.namespace = 'Person'
         self.use_regex = False
+        self.use_case = False
 
     def setDocumentLocator(self, locator):
         self.locator = locator
@@ -87,6 +88,10 @@ class FilterParser(handler.ContentHandler):
                 self.use_regex = attrs['use_regex'] == 'True'
             else:
                 self.use_regex = False
+            if 'use_case' in attrs:
+                self.use_case = attrs['use_case'] == 'True'
+            else:
+                self.use_case = False
             save_name = attrs['class']
             if save_name in old_names_2_class:
                 self.r = old_names_2_class[save_name]
@@ -120,7 +125,7 @@ class FilterParser(handler.ContentHandler):
                         "Trying to load with subset of arguments.")  %\
                         self.f.get_name())
                 nargs = len(self.r.labels)
-                rule = self.r(self.a[0:nargs], self.use_regex)
+                rule = self.r(self.a[0:nargs], self.use_regex, self.use_case)
                 self.f.add_rule(rule)
             else:
                 if len(self.r.labels) > len(self.a):
@@ -129,7 +134,7 @@ class FilterParser(handler.ContentHandler):
                             "will be upgraded.") %\
                             self.f.get_name())
                 try:
-                    rule = self.r(self.a, self.use_regex)
+                    rule = self.r(self.a, self.use_regex, self.use_case)
                 except AssertionError as msg:
                     print(msg)
                     print(_("ERROR: filter %s could not be correctly loaded. "

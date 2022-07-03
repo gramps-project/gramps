@@ -56,12 +56,13 @@ class Rule:
     description = _('No description')
     allow_regex = False
 
-    def __init__(self, arg, use_regex=False):
+    def __init__(self, arg, use_regex=False, use_case=False):
         self.list = []
         self.regex = []
         self.match_substring = self.__match_substring
         self.set_list(arg)
         self.use_regex = use_regex
+        self.use_case = use_case
         self.nrprepare = 0
 
     def is_empty(self):
@@ -84,7 +85,10 @@ class Rule:
                 for index, label in enumerate(self.labels):
                     if self.list[index]:
                         try:
-                            self.regex[index] = re.compile(self.list[index], re.I)
+                            if self.use_case:
+                                self.regex[index] = re.compile(self.list[index])
+                            else:
+                                self.regex[index] = re.compile(self.list[index], re.I)
                         except re.error:
                             self.regex[index] = re.compile('')
                 self.match_substring = self.match_regex

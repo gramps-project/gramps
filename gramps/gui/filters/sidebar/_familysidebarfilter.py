@@ -95,6 +95,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.sensitive_regex = Gtk.CheckButton(label=_('Case sensitive'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -128,6 +129,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_regex_entry(self.filter_regex)
+        self.add_regex_case(self.sensitive_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
@@ -149,6 +151,7 @@ class FamilySidebarFilter(SidebarFilter):
         etype = self.filter_event.get_type().xml_str()
         rtype = self.filter_family.get_relationship().xml_str()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         generic = self.generic.get_active() > 0
 
@@ -159,7 +162,7 @@ class FamilySidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericFamilyFilter()
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             if father:
@@ -169,10 +172,10 @@ class FamilySidebarFilter(SidebarFilter):
                 if not regex:
                     name_parts = father.split(sep=" ")
                     for name_part in name_parts:
-                        rule = RegExpFatherName([name_part], use_regex=regex)
+                        rule = RegExpFatherName([name_part], use_regex=regex, use_case=usecase)
                         generic_filter.add_rule(rule)
                 else:
-                    rule = RegExpFatherName([father], use_regex=regex)
+                    rule = RegExpFatherName([father], use_regex=regex, use_case=usecase)
                     generic_filter.add_rule(rule)
 
             if mother:
@@ -182,10 +185,10 @@ class FamilySidebarFilter(SidebarFilter):
                 if not regex:
                     name_parts = mother.split(sep=" ")
                     for name_part in name_parts:
-                        rule = RegExpMotherName([name_part], use_regex=regex)
+                        rule = RegExpMotherName([name_part], use_regex=regex, use_case=usecase)
                         generic_filter.add_rule(rule)
                 else:
-                    rule = RegExpMotherName([mother], use_regex=regex)
+                    rule = RegExpMotherName([mother], use_regex=regex, use_case=usecase)
                     generic_filter.add_rule(rule)
 
             if child:
@@ -195,22 +198,22 @@ class FamilySidebarFilter(SidebarFilter):
                 if not regex:
                     name_parts = child.split(sep=" ")
                     for name_part in name_parts:
-                        rule = RegExpChildName([name_part], use_regex=regex)
+                        rule = RegExpChildName([name_part], use_regex=regex, use_case=usecase)
                         generic_filter.add_rule(rule)
                 else:
-                    rule = RegExpChildName([child], use_regex=regex)
+                    rule = RegExpChildName([child], use_regex=regex, use_case=usecase)
                     generic_filter.add_rule(rule)
 
             if etype:
-                rule = HasEvent([etype, '', '', '', ''], use_regex=regex)
+                rule = HasEvent([etype, '', '', '', ''], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             if rtype:
-                rule = HasRelType([rtype], use_regex=regex)
+                rule = HasRelType([rtype], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             if note:
-                rule = HasNoteRegexp([note], use_regex=regex)
+                rule = HasNoteRegexp([note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # check the Tag

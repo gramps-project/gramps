@@ -74,6 +74,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_note = Gtk.Entry()
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.sensitive_regex = Gtk.CheckButton(label=_('Case sensitive'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -116,6 +117,9 @@ class CitationSidebarFilter(SidebarFilter):
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
+        self.add_entry(None, self.sensitive_regex)
+        self.filter_regex.connect('toggled', self.regex_selection)
+        self.regex_selection()
 
     def clear(self, obj):
         self.filter_src_id.set_text('')
@@ -145,6 +149,7 @@ class CitationSidebarFilter(SidebarFilter):
         conf = str(self.filter_conf.get_active())
         note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
@@ -156,26 +161,26 @@ class CitationSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericCitationFilter()
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
-            rule = HasCitation([page, date, conf], use_regex=regex)
+            rule = HasCitation([page, date, conf], use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
             if src_id:
-                rule = RegExpSourceIdOf([src_id], use_regex=regex)
+                rule = RegExpSourceIdOf([src_id], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             rule = HasSource([src_title, src_author, src_abbr, src_pub],
-                             use_regex=regex)
+                             use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
             if note:
-                rule = HasNoteRegexp([note], use_regex=regex)
+                rule = HasNoteRegexp([note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             if src_note:
-                rule = HasSourceNoteRegexp([src_note], use_regex=regex)
+                rule = HasSourceNoteRegexp([src_note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # check the Tag

@@ -78,6 +78,7 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.sensitive_regex = Gtk.CheckButton(label=_('Case sensitive'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -110,6 +111,7 @@ class EventSidebarFilter(SidebarFilter):
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_regex_entry(self.filter_regex)
+        self.add_regex_case(self.sensitive_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
@@ -130,6 +132,7 @@ class EventSidebarFilter(SidebarFilter):
         place = str(self.filter_place.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         generic = self.generic.get_active() > 0
         etype = self.filter_event.get_type().xml_str()
@@ -141,15 +144,15 @@ class EventSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericEventFilter()
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             rule = HasEvent([etype, date, place, desc, mainparts],
-                            use_regex=regex)
+                            use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
             if note:
-                rule = HasNoteRegexp([note], use_regex=regex)
+                rule = HasNoteRegexp([note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # check the Tag

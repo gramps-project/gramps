@@ -96,6 +96,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_gender.set_active(0)
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.sensitive_regex = Gtk.CheckButton(label=_('Case sensitive'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -141,6 +142,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_regex_entry(self.filter_regex)
+        self.add_regex_case(self.sensitive_regex)
 
     def clear(self, obj):
         self.filter_name.set_text('')
@@ -170,6 +172,7 @@ class PersonSidebarFilter(SidebarFilter):
         etype = self.filter_event.get_type().xml_str()
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         generic = self.generic.get_active() > 0
 
@@ -191,16 +194,16 @@ class PersonSidebarFilter(SidebarFilter):
                 if not regex:
                     name_parts = name.split(sep=" ")
                     for name_part in name_parts:
-                        rule = RegExpName([name_part], use_regex=regex)
+                        rule = RegExpName([name_part], use_regex=regex, use_case=usecase)
                         generic_filter.add_rule(rule)
                 else:
-                    rule = RegExpName([name], use_regex=regex)
+                    rule = RegExpName([name], use_regex=regex, use_case=usecase)
                     generic_filter.add_rule(rule)
 
             # if the id is not empty, choose either the regular expression
             # version or the normal text match
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # check the gender, and select the right rule based on gender
@@ -216,7 +219,7 @@ class PersonSidebarFilter(SidebarFilter):
 
             # Build an event filter if needed
             if etype:
-                rule = HasEvent([etype, '', '', '', '', '1'], use_regex=regex)
+                rule = HasEvent([etype, '', '', '', '', '1'], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # Build birth event filter if needed
@@ -234,7 +237,7 @@ class PersonSidebarFilter(SidebarFilter):
 
             # Build note filter if needed
             if note:
-                rule = HasNoteRegexp([note], use_regex=regex)
+                rule = HasNoteRegexp([note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             # check the Tag

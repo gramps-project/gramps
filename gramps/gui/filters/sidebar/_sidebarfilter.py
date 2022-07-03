@@ -124,7 +124,22 @@ class SidebarFilter(DbGUIElement):
     def add_regex_entry(self, widget):
         hbox = Gtk.Box()
         hbox.pack_start(widget, False, False, 12)
+        widget.connect('toggled', self.regex_selection)
         self.vbox.pack_start(hbox, False, False, 0)
+
+    def add_regex_case(self, widget):
+        hbox = Gtk.Box()
+        hbox.pack_start(widget, False, False, 12)
+        self.vbox.pack_start(hbox, False, False, 0)
+        self.regex_selection()
+
+    def regex_selection(self, widget=None):
+        if self.sensitive_regex:
+            if widget and widget.get_active():
+                self.sensitive_regex.set_sensitive(True)
+            else:
+                self.sensitive_regex.set_active(False)
+                self.sensitive_regex.set_sensitive(False)
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)

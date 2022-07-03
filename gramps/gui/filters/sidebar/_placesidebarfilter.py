@@ -85,6 +85,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_within = widgets.PlaceWithin(dbstate, uistate, [])
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
+        self.sensitive_regex = Gtk.CheckButton(label=_('Case sensitive'))
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
 
@@ -114,6 +115,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_regex_entry(self.filter_regex)
+        self.add_regex_case(self.sensitive_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')
@@ -135,6 +137,7 @@ class PlaceSidebarFilter(SidebarFilter):
         note = str(self.filter_note.get_text()).strip()
         within = self.filter_within.get_value()
         regex = self.filter_regex.get_active()
+        usecase = self.sensitive_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
@@ -145,18 +148,18 @@ class PlaceSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericPlaceFilter()
             if gid:
-                rule = RegExpIdOf([gid], use_regex=regex)
+                rule = RegExpIdOf([gid], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             if enclosed:
                 rule = IsEnclosedBy([enclosed, '0'])
                 generic_filter.add_rule(rule)
 
-            rule = HasData([name, ptype, code], use_regex=regex)
+            rule = HasData([name, ptype, code], use_regex=regex, use_case=usecase)
             generic_filter.add_rule(rule)
 
             if note:
-                rule = HasNoteRegexp([note], use_regex=regex)
+                rule = HasNoteRegexp([note], use_regex=regex, use_case=usecase)
                 generic_filter.add_rule(rule)
 
             if within and within[0] > 0 and self.dbstate.is_open():
