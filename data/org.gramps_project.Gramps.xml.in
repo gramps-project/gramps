@@ -6,16 +6,6 @@
     <comment>Gramps database</comment>
     <glob pattern="*.grdb"/>
   </mime-type>
-  <mime-type type="application/x-gedcom">
-    <comment>GEDCOM</comment>
-    <glob pattern="*.ged"/>
-    <glob pattern="*.gedcom"/>
-    <glob pattern="*.GED"/>
-    <glob pattern="*.GEDCOM"/>
-    <magic priority="80">
-      <match type="string" value="0 HEAD" offset="0:1"/>
-    </magic>
-  </mime-type>
   <mime-type type="application/x-gramps-package">
     <comment>Gramps package</comment>
     <glob pattern="*.gpkg"/>
