@@ -21,7 +21,6 @@
   <mime-type type="application/x-geneweb">
     <comment>GeneWeb source file</comment>
     <glob pattern="*.gw"/>
-    <glob pattern="*.GW"/>
     <magic priority="80">
       <match type="string" value="fam " offset="0:64"/>
     </magic>
