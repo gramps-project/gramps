@@ -549,7 +549,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             # These are cousins in different generations with the second person
             # being in a higher generation from the common ancestor than the
             # first person.
-            if Gb <= len(_LEVEL_NAME) and (Ga-Gb) < len(_removed_level):
+            if Gb <= len(_ordinal_level) and (Ga-Gb) < len(_removed_level):
                 rel_str = "%s neven%s (omhoog)" % (_ordinal_level[Gb-1],
                                                  _removed_level[Ga-Gb])
             else:
@@ -558,7 +558,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             # These are cousins in different generations with the second person
             # being in a lower generation from the common ancestor than the
             # first person.
-            if Ga <= len(_LEVEL_NAME) and (Gb-Ga) < len(_removed_level):
+            if Ga <= len(_ordinal_level) and (Gb-Ga) < len(_removed_level):
                 rel_str = "%s neven%s (omlaag)" % (_ordinal_level[Ga-1],
                                                    _removed_level[Gb-Ga])
             else:
