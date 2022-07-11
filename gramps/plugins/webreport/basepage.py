@@ -2873,9 +2873,17 @@ class BasePage: # pylint: disable=C1001
                 if self.reference_sort:
                     role = ""
                 elif role[1:2] == ':':
+                    # format of role is role_type:ISO date string
+                    if role.count(':') > 1:
+                        print("Invalid date :", role[2:], " for individual with ID:", gid,
+                              ". Please, use the 'verify the data' tool to correct this.")
+                        cal, role = role.split(':', 1)
+                    else:
+                        cal, role = role.split(':')
+
                     # cal is the original calendar
-                    cal, role = role.split(':')
-                    # conver ISO date to Date for translation.
+
+                    # convert ISO date to Date for translation.
                     # all modifiers are in english, so convert them
                     # to the local language
                     if len(role.split(' - ')) > 1:
