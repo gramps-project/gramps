@@ -447,10 +447,11 @@ class PlacePages(BasePage):
                                    "jquery.min.js")
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        src_js = "https://openlayers.org/en/latest/build/ol.js"
+                        olv = self.report.options['ol_version']
+                        src_js = "https://openlayers.org/en/%s/build/ol.js" % olv
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        url = "https://openlayers.org/en/latest/css/ol.css"
+                        url = "https://openlayers.org/en/%s/css/ol.css" % olv
                         head += Html("link", href=url, type="text/css",
                                      rel="stylesheet")
 
