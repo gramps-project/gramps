@@ -836,10 +836,24 @@ class PersonPages(BasePage):
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
             olv = self.report.options['ol_version']
-            src_js = "https://openlayers.org/en/%s/build/ol.js" % olv
+            build = "legacy"
+            if olv < "v7.0.0":
+                build = "build"
+            if olv == "latest":
+                build = "legacy"
+            src_js = ("https://openlayers.org/en/"
+                      "%(ver)s/%(bld)s/ol.js") % {"ver" : olv,
+                                                  "bld": build}
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-            url = "https://openlayers.org/en/%s/css/ol.css" % olv
+            css = "legacy"
+            if olv < "v7.0.0":
+                css = "css"
+            if olv == "latest":
+                css = "legacy"
+            url = ("https://openlayers.org/en/"
+                   "%(ver)s/%(css)s/ol.css") % {"ver" : olv,
+                                                "css": css}
             head += Html("link", href=url, type="text/css",
                          rel="stylesheet")
 
