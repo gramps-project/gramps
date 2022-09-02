@@ -25,3 +25,7 @@ ehthumbs.db
 
 # Glade temp files
 *~
+
+# Python metadata
+.venv*/
+
