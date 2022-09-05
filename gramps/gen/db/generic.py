@@ -592,15 +592,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.owner = self._get_metadata('researcher', default=Researcher())
 
         # Load bookmarks
-        self.bookmarks.set(self._get_metadata('bookmarks'))
-        self.family_bookmarks.set(self._get_metadata('family_bookmarks'))
-        self.event_bookmarks.set(self._get_metadata('event_bookmarks'))
-        self.source_bookmarks.set(self._get_metadata('source_bookmarks'))
-        self.citation_bookmarks.set(self._get_metadata('citation_bookmarks'))
-        self.repo_bookmarks.set(self._get_metadata('repo_bookmarks'))
-        self.media_bookmarks.set(self._get_metadata('media_bookmarks'))
-        self.place_bookmarks.set(self._get_metadata('place_bookmarks'))
-        self.note_bookmarks.set(self._get_metadata('note_bookmarks'))
+        self.bookmarks.load(self._get_metadata('bookmarks'))
+        self.family_bookmarks.load(self._get_metadata('family_bookmarks'))
+        self.event_bookmarks.load(self._get_metadata('event_bookmarks'))
+        self.source_bookmarks.load(self._get_metadata('source_bookmarks'))
+        self.citation_bookmarks.load(self._get_metadata('citation_bookmarks'))
+        self.repo_bookmarks.load(self._get_metadata('repo_bookmarks'))
+        self.media_bookmarks.load(self._get_metadata('media_bookmarks'))
+        self.place_bookmarks.load(self._get_metadata('place_bookmarks'))
+        self.note_bookmarks.load(self._get_metadata('note_bookmarks'))
 
         # Custom type values
         self.event_names = self._get_metadata('event_names', set())

@@ -63,6 +63,7 @@ from functools import wraps
 #
 #-------------------------------------------------------------------------
 from .base import DbReadBase
+from .bookmarks import DbBookmarks
 from .dbconst import DBLOGNAME
 from ..errors import HandleError
 from ..utils.callback import Callback
@@ -71,71 +72,6 @@ from ..const import GRAMPS_LOCALE as glocale
 
 LOG = logging.getLogger(DBLOGNAME)
 
-
-#-------------------------------------------------------------------------
-#
-# class DbBookmarks
-#
-#-------------------------------------------------------------------------
-class Bookmarks:
-    """
-    Dummy Bookmarks class. This needs to be defined here, because get is used to
-    return the bookmark.
-    """
-    def __init__(self, default=[]):
-        """
-        Initialise the bookmark, either with a copy of the passed list, or with
-        an empty list.
-        """
-        self.bookmarks = list(default) # want a copy (not an alias)
-
-    def set(self, new_list):
-        """
-        Set the bookmark to a new list
-        """
-        self.bookmarks = list(new_list)
-
-    def get(self):
-        """
-        Get the current bookmark list
-        """
-        return self.bookmarks
-
-    def append(self, item):
-        """
-        Append a bookmark to the list
-        """
-        self.bookmarks.append(item)
-
-    def append_list(self, blist):
-        """
-        Append a list of bookmarks to the bookmark
-        """
-        self.bookmarks += blist
-
-    def remove(self, item):
-        """
-        Remove an item from the bookmark
-        """
-        self.bookmarks.remove(item)
-
-    def pop(self, item):
-        """
-        Pop an item off the bookmark list, returning the popped item
-        """
-        return self.bookmarks.pop(item)
-
-    def insert(self, pos, item):
-        """
-        Insert an item at a specified place in thebookmark list
-        """
-        self.bookmarks.insert(pos, item)
-
-    def close(self):
-        """
-        Close the bookmark, deleting the data.
-        """
-        del self.bookmarks
 
 #-------------------------------------------------------------------------
 #
@@ -224,15 +160,15 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         self.db_is_open = False
         self.readonly = True
         self.name_formats = []
-        self.bookmarks = Bookmarks()
-        self.family_bookmarks = Bookmarks()
-        self.event_bookmarks = Bookmarks()
-        self.place_bookmarks = Bookmarks()
-        self.citation_bookmarks = Bookmarks()
-        self.source_bookmarks = Bookmarks()
-        self.repo_bookmarks = Bookmarks()
-        self.media_bookmarks = Bookmarks()
-        self.note_bookmarks = Bookmarks()
+        self.bookmarks = DbBookmarks()
+        self.family_bookmarks = DbBookmarks()
+        self.event_bookmarks = DbBookmarks()
+        self.place_bookmarks = DbBookmarks()
+        self.citation_bookmarks = DbBookmarks()
+        self.source_bookmarks = DbBookmarks()
+        self.repo_bookmarks = DbBookmarks()
+        self.media_bookmarks = DbBookmarks()
+        self.note_bookmarks = DbBookmarks()
         self.owner = Researcher()
 
     def get_feature(self, feature):
