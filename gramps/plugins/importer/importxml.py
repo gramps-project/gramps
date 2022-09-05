@@ -2217,6 +2217,8 @@ class GrampsParser(UpdateCallback):
             self.objref.add_citation(citation_handle)
         elif self.event:
             self.event.add_citation(citation_handle)
+        elif self.eventref:
+            self.eventref.add_citation(citation_handle)
         elif self.address:
             self.address.add_citation(citation_handle)
         elif self.name:

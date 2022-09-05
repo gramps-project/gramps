@@ -782,8 +782,9 @@ class GrampsXmlWriter(UpdateCallback):
             role_text = ""
 
         attribute_list = eventref.get_attribute_list()
+        citation_list = eventref.get_citation_list()
         note_list = eventref.get_note_list()
-        if len(attribute_list) + len(note_list) == 0:
+        if (len(citation_list) + len(attribute_list) + len(note_list) == 0):
             self.write_ref(
                 "eventref",
                 eventref.ref,
@@ -801,6 +802,8 @@ class GrampsXmlWriter(UpdateCallback):
             )
             self.write_attribute_list(attribute_list, index + 1)
             self.write_note_list(note_list, index + 1)
+            for citation_handle in citation_list:
+                self.write_ref("citationref", citation_handle, index+1)
             self.g.write("%s</eventref>\n" % sp)
 
     def dump_place_ref(self, placeref, index=1):

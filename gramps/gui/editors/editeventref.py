@@ -210,12 +210,27 @@ class EditEventRef(EditReference):
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
+        self.srcref_ref_list = CitationEmbedList(self.dbstate,
+                                                 self.uistate,
+                                                 self.track,
+                                                 self.source_ref.get_citation_list())
+        self._add_tab(notebook_ref, self.srcref_ref_list)
+        self.track_ref_for_deletion("srcref_ref_list")
+
         self.attr_list = EventAttrEmbedList(self.dbstate,
                                             self.uistate,
                                             self.track,
                                             self.source.get_attribute_list())
         self._add_tab(notebook, self.attr_list)
         self.track_ref_for_deletion("attr_list")
+
+        self.attr_ref_list = EventAttrEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source_ref.get_attribute_list())
+        self._add_tab(notebook_ref, self.attr_ref_list)
+        self.track_ref_for_deletion("attr_ref_list")
 
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
@@ -247,14 +262,6 @@ class EditEventRef(EditReference):
                              self.enable_warnbox)
         self._add_tab(notebook, self.backref_tab)
         self.track_ref_for_deletion("backref_tab")
-
-        self.attr_ref_list = EventAttrEmbedList(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            self.source_ref.get_attribute_list())
-        self._add_tab(notebook_ref, self.attr_ref_list)
-        self.track_ref_for_deletion("attr_ref_list")
 
         self._setup_notebook_tabs( notebook)
         self._setup_notebook_tabs( notebook_ref)

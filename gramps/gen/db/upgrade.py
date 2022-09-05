@@ -57,9 +57,63 @@ def gramps_upgrade_20(self):
 
     # uid and place upgrade code goes here
 
+    #----------------------------------------
+    # Modify Person
+    #----------------------------------------
+    # Add citation_list to person eventref objects
+    for person_handle in self.get_person_handles():
+        person = self.get_raw_person_data(person_handle)
+        (handle, gramps_id, gender, primary_name, alternate_names,
+         death_ref_index, birth_ref_index, event_ref_list, family_list,
+         parent_family_list, media_list, address_list, attribute_list,
+         urls, lds_seal_list, citation_list, note_list, change, tag_list,
+         private, person_ref_list) = person
+        if event_ref_list:
+            event_ref_list = upgrade_event_ref_list_20(event_ref_list)
+            new_person = (handle, gramps_id, gender, primary_name,
+                          alternate_names, death_ref_index,
+                          birth_ref_index, event_ref_list, family_list,
+                          parent_family_list, media_list, address_list,
+                          attribute_list, urls, lds_seal_list,
+                          citation_list, note_list, change, tag_list,
+                          private, person_ref_list)
+            self._commit_raw(new_person, PERSON_KEY)
+        self.update()
+
+    #----------------------------------------
+    # Modify Family
+    #----------------------------------------
+    # Add citation_list to family eventref objects
+    for family_handle in self.get_family_handles():
+        family = self.get_raw_family_data(family_handle)
+        (handle, gramps_id, father_handle, mother_handle,
+         child_ref_list, the_type, event_ref_list, media_list,
+         attribute_list, lds_seal_list, citation_list, note_list,
+         change, marker, private) = family
+        if event_ref_list:
+            event_ref_list = upgrade_event_ref_list_20(event_ref_list)
+            new_family = (handle, gramps_id, father_handle, mother_handle,
+                          child_ref_list, the_type, event_ref_list,
+                          media_list, attribute_list, lds_seal_list,
+                          citation_list, note_list, change, marker, private)
+            self._commit_raw(new_family, FAMILY_KEY)
+        self.update()
+
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.
     self._set_metadata('version', 20)
+
+
+def upgrade_event_ref_list_20(event_ref_list):
+    """
+    Insert citation_list into eventref objects
+    """
+    new_event_ref_list = []
+    for event_ref in event_ref_list:
+        (privacy, note_list, attribute_list, ref, role) = event_ref
+        new_event_ref = (privacy, [], note_list, attribute_list, ref, role)
+        new_event_ref_list.append((new_event_ref))
+    return new_event_ref_list
 
 
 def gramps_upgrade_19(self):

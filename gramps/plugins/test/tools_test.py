@@ -138,6 +138,7 @@ class ToolControl(unittest.TestCase):
                         "-y", "-a", "tool", "-p", "name=check")
         expect = ["7 broken child/family links were fixed",
                   "4 broken spouse/family links were fixed",
+                  "1 corrupted family relationship fixed",
                   "1 place alternate name fixed",
                   "10 media objects were referenced, but not found",
                   "References to 10 missing media objects were kept",
@@ -145,8 +146,8 @@ class ToolControl(unittest.TestCase):
                   "1 invalid birth event name was fixed",
                   "1 invalid death event name was fixed",
                   "2 places were referenced, but not found",
-                  "14 citations were referenced, but not found",
-                  "17 sources were referenced, but not found",
+                  "12 citations were referenced, but not found",
+                  "15 sources were referenced, but not found",
                   "9 Duplicated Gramps IDs fixed",
                   "7 empty objects removed",
                   "1 person objects",

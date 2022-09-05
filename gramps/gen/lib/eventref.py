@@ -38,7 +38,7 @@ from .attrbase import AttributeBase
 from .refbase import RefBase
 from .eventroletype import EventRoleType
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from .citationbase import IndirectCitationBase
+from .citationbase import CitationBase
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -48,7 +48,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
-               IndirectCitationBase, SecondaryObject):
+               CitationBase, SecondaryObject):
     """
     Event reference class.
 
@@ -61,6 +61,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         Create a new EventRef instance, copying from the source if present.
         """
         PrivacyBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         AttributeBase.__init__(self, source)
         RefBase.__init__(self, source)
@@ -75,6 +76,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         """
         return (
             PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
             NoteBase.serialize(self),
             AttributeBase.serialize(self),
             RefBase.serialize(self),
@@ -97,6 +99,10 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
                 "_class": {"enum": [cls.__name__]},
                 "private": {"type": "boolean",
                             "title": _("Private")},
+                "citation_list": {"type": "array",
+                                  "title": _("Citations"),
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
                                         "maxLength": 50},
@@ -115,8 +121,9 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, note_list, attribute_list, ref, role) = data
+        (privacy, citation_list, note_list, attribute_list, ref, role) = data
         PrivacyBase.unserialize(self, privacy)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
@@ -171,7 +178,8 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
                   objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = self.get_referenced_citation_handles() + \
+            self.get_referenced_note_handles()
         if self.ref:
             ret += [('Event', self.ref)]
         return ret
@@ -215,6 +223,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_note_list(acquisition)
 
     def get_role(self):
