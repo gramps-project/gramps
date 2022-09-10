@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-06-13 07:36+0000\n"
+"PO-Revision-Date: 2022-06-26 22:16+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -17669,7 +17669,7 @@ msgstr "Größe"
 #: ../gramps/gui/plug/report/_styleeditor.py:268
 msgctxt "point size"
 msgid "pt"
-msgstr "Pkt."
+msgstr "pt"
 
 #: ../gramps/gui/glade/styleeditor.glade:432
 msgid "_Bold"
@@ -17951,7 +17951,7 @@ msgstr "Verbindung zu einer aktuellen Datenbank"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "F_ull Screen"
-msgstr "Vollbild"
+msgstr "_Vollbild"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Gramps _Home Page"
@@ -17967,7 +17967,7 @@ msgstr "Sicherung erstellen..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Manage databases"
-msgstr "Stammbäume verwalten"
+msgstr "Datenbanken verwalten"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open _Recent"
@@ -17975,7 +17975,7 @@ msgstr "_Zuletzt geöffnet"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the Clipboard dialog"
-msgstr "Öffnet den Zwischenablagedialog"
+msgstr "Das Dialogfeld Zwischenablage öffnen"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the reports dialog"
@@ -17983,7 +17983,7 @@ msgstr "Öffnet den Berichtsdialog"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "Open the tools dialog"
-msgstr "Öffnet den Werkzeugdialog"
+msgstr "Den Werkzeugdialog öffnen"
 
 #: ../gramps/gui/grampsgui.py:56 ../gramps/gui/tipofday.py:67
 #: ../gramps/gui/tipofday.py:68 ../gramps/gui/tipofday.py:121
@@ -17996,7 +17996,7 @@ msgstr "Bearbeitungsverlauf"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Abandon Changes and Quit"
-msgstr "Änderungen _verwerfen und beenden"
+msgstr "Änderungen _aufgeben und beenden"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_About"
@@ -18016,11 +18016,11 @@ msgstr "_Exportieren..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Extra Reports/Tools"
-msgstr "_Weitere Berichte/Werkzeuge"
+msgstr "_Zusätzliche Berichte/Werkzeuge"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_FAQ"
-msgstr "Häufig gestellte _Fragen"
+msgstr "_FAQ"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Family Trees"
@@ -18028,7 +18028,7 @@ msgstr "_Stammbäume"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Go"
-msgstr "_Gehe zu"
+msgstr "_Gehe"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Import..."
@@ -18036,11 +18036,11 @@ msgstr "_Importieren..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Key Bindings"
-msgstr "Tastatur_kürzel"
+msgstr "_Tastenbelegungen"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Manage Family Trees..."
-msgstr "Stammbäume _verwalten..."
+msgstr "Sta_mmbäume verwalten..."
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Navigator"
@@ -18060,7 +18060,7 @@ msgstr "_Beenden"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Report a Bug"
-msgstr "_Programmfehler melden"
+msgstr "_Fehler melden"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Reports"
@@ -18068,7 +18068,7 @@ msgstr "Be_richte"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Toolbar"
-msgstr "_Werkzeugleiste"
+msgstr "Werkzeugleis_te"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Tools"
@@ -18091,8 +18091,8 @@ msgid ""
 "Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
-"Deine Version von gi (gnome-instrospection) scheint veraltet zu sein. Du "
-"benötigst eine Version mit der Funktion 'require_version' um Gramps zu "
+"Deine Version von gi (gnome-introspection) scheint zu alt zu sein. Du "
+"brauchst eine Version, die die Funktion 'require_version' hat, um Gramps zu "
 "starten"
 
 #: ../gramps/gui/grampsgui.py:437
@@ -18104,11 +18104,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Deine pygobject Version erfüllt nicht die Vorgaben.\n"
+"Deine pygobject Version entspricht nicht den Anforderungen.\n"
 "Mindestens pygobject %(major)d.%(feature)d.%(minor)d wird benötigt, um "
-"Gramps mit GUI zu starten.\n"
+"Gramps mit einer GUI zu starten.\n"
 "\n"
-"Gramps wird nun beendet."
+"Gramps wird jetzt beendet."
 
 #: ../gramps/gui/grampsgui.py:455
 msgid ""
@@ -18132,10 +18132,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Deine Gtk erfüllt nicht die Vorgaben.\n"
-"Mindestens %(major)d.%(minor)d wird benötigt, um Gramps mit GUI zu starten.\n"
+"Deine Gtk-Version entspricht nicht den Anforderungen.\n"
+"Es wird mindestens %(major)d.%(minor)d benötigt, um Gramps mit einer GUI zu "
+"starten.\n"
 "\n"
-"Gramps wird nun beendet."
+"Gramps wird jetzt beendet."
 
 #: ../gramps/gui/grampsgui.py:477
 msgid ""
@@ -18146,14 +18147,14 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "\n"
-"cairo Python Unterstützung nicht installiert. Installiere cairo für deine "
-"Python Version\n"
+"cairo python Unterstützung nicht installiert. Installiere cairo für deine "
+"Version von Python\n"
 "\n"
-"Gramps wird jetzt beendet."
+"Gramps wird jetzt beendet.."
 
 #: ../gramps/gui/grampsgui.py:497
 msgid "Gramps detected an incomplete GTK installation"
-msgstr "Gramps hat eine unvollständige GTK installation entdeckt"
+msgstr "Gramps hat eine unvollständige GTK-Installation entdeckt"
 
 #: ../gramps/gui/grampsgui.py:499
 #, python-format
@@ -18179,7 +18180,7 @@ msgstr "Fehler beim Analysieren von Argumenten"
 
 #: ../gramps/gui/grampsgui.py:632
 msgid "Gramps terminated because of no DISPLAY"
-msgstr "Gramps wurde wegen kein DISPLAY beendet"
+msgstr "Gramps abgebrochen, weil kein DISPLAY"
 
 #: ../gramps/gui/grampsgui.py:655 ../gramps/gui/grampsgui.py:729
 msgid ""
@@ -18203,11 +18204,11 @@ msgstr ""
 
 #: ../gramps/gui/logger/_errorreportassistant.py:97
 msgid "Error Report Assistant"
-msgstr "Fehlerberichtassistent"
+msgstr "Fehlerbericht-Assistent"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:259
 msgid "Report a bug"
-msgstr "Programmfehler melden"
+msgstr "Einen Fehler melden"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:266
 msgid ""
@@ -18296,7 +18297,8 @@ msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occurred."
 msgstr ""
-"Hier besteht die Möglichkeit zu beschreiben, wie der Fehler entstanden ist."
+"Hier hast du die Möglichkeit zu beschreiben, was du getan hast, als der "
+"Fehler auftrat."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:514
 msgid ""
@@ -18304,10 +18306,10 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
-"Bitte überprüfe, dass die Informationen richtig sind. Du musst dir keine "
-"Sorgen machen, wenn du die Details des Fehlers nicht verstehst. Vergewissere "
-"dich, dass nichts enthalten ist, was du nicht an die Entwickler senden "
-"willst."
+"Bitte überprüfe, ob die Informationen korrekt sind. Mach dir keine Sorgen, "
+"wenn du die Details der Fehlerinformationen nicht verstehst. Stelle nur "
+"sicher, dass sie nichts enthält, was du nicht an die Entwickler schicken "
+"möchtest."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:547
 #: ../gramps/gui/logger/_errorreportassistant.py:574
@@ -18319,26 +18321,26 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
 msgstr ""
-"Dies ist der komplette Fehlerbericht. Die nächste Seite des Assistenten wird "
-"dir helfen, einen Fehlerbericht auf der Gramps bug tracking Website zu "
-"erstellen (in Englisch)."
+"Dies ist der fertige Fehlerbericht. Die nächste Seite des Assistenten wird "
+"dir helfen, einen Fehler auf der Gramps Bug Tracking System Website zu "
+"melden."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:583
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
-"Verwende die zwei Schaltflächen unten, um damit erstens den Fehlerbericht in "
-"die Zwischenablage zu kopieren, und zweitens einen Browser zu öffnen, um "
-"darin einen Fehlerbericht auszufüllen auf "
+"Mit den beiden Schaltflächen unten kannst du den Fehlerbericht zunächst in "
+"die Zwischenablage kopieren und dann einen Webbrowser öffnen, um einen "
+"Fehlerbericht unter "
 
 #: ../gramps/gui/logger/_errorreportassistant.py:593
 msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
 msgstr ""
-"Verwende diese Schaltfläche, um einen Browser zu öffnen und einen "
-"Fehlerbericht im Gramps bug tracking system auszufüllen."
+"Verwende diese Schaltfläche, um einen Webbrowser zu starten und einen "
+"Fehlerbericht im Gramps-Fehlerverfolgungssystem einzureichen."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:616
 msgid ""
@@ -18360,18 +18362,18 @@ msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
-"Der letzte Schritt. Benutze die Schaltflächen auf der Seite, um den Browser "
-"zu starten und einen Fehlerbericht in dem Gramps bug tracking system "
-"auszufüllen."
+"Dies ist der letzte Schritt. Verwende die Schaltflächen auf dieser Seite, um "
+"einen Webbrowser zu starten und einen Fehlerbericht im Gramps "
+"Fehlerverfolgungssystem einzureichen."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:683
 msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
-"Gramps ist ein Open Source-Projekt. Sein Erfolg hängt von den Benutzern ab. "
-"Rückmeldungen der Benutzer sind wichtig. Danke, dass du dir für das "
-"Ausfüllen eines Fehlerberichts Zeit genommen hast."
+"Gramps ist ein Open-Source-Projekt. Sein Erfolg hängt von seinen Benutzern "
+"ab. Benutzer-Feedback ist wichtig. Danke, dass du dir die Zeit genommen "
+"hast, einen Fehlerbericht einzureichen."
 
 #: ../gramps/gui/logger/_errorview.py:46
 msgctxt "manual"
@@ -18384,7 +18386,7 @@ msgstr "Fehlerbericht"
 
 #: ../gramps/gui/logger/_errorview.py:134
 msgid "Gramps has experienced an unexpected error"
-msgstr "Gramps hat einen unerwarteten Fehler entdeckt"
+msgstr "In Gramps ist ein unerwarteter Fehler aufgetreten"
 
 #: ../gramps/gui/logger/_errorview.py:143
 msgid ""
@@ -18393,15 +18395,15 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
-"Deine Daten werden gesichert, es wird aber empfohlen, Gramps neu zu starten. "
-"Wenn du das Problem dem Gramps Team melden willst, klicke bitte auf Bericht "
-"und der Fehlerberichtsassistent wird dir helfen, einen Fehlerbericht zu "
-"erstellen."
+"Deine Daten sind sicher, aber es wäre ratsam, Gramps sofort neu zu starten. "
+"Wenn du das Problem an das Gramps-Team melden möchtest, klicke bitte auf "
+"Melden und der Assistent für Fehlerberichte wird dir helfen, einen "
+"Fehlerbericht zu erstellen."
 
 #: ../gramps/gui/logger/_errorview.py:152
 #: ../gramps/gui/logger/_errorview.py:167
 msgid "Error Detail"
-msgstr "Fehlerdetails"
+msgstr "Fehlerdetail"
 
 #: ../gramps/gui/makefilter.py:41
 #, python-format
@@ -18504,7 +18506,7 @@ msgstr "Eltern"
 #: ../gramps/gui/merge/mergeperson.py:245
 #: ../gramps/plugins/tool/findloop.py:120
 msgid "Family ID"
-msgstr "Familie-ID"
+msgstr "Familien-ID"
 
 #: ../gramps/gui/merge/mergeperson.py:236
 msgid "No parents found"
@@ -18515,7 +18517,7 @@ msgstr "Keine Eltern gefunden"
 #: ../gramps/plugins/textreport/kinshipreport.py:133
 #: ../gramps/plugins/view/pedigreeview.py:1776
 msgid "Spouses"
-msgstr "(Ehe-)Partner"
+msgstr "Ehegatten"
 
 #: ../gramps/gui/merge/mergeperson.py:249
 #: ../gramps/gui/selectors/selectperson.py:97
@@ -18525,11 +18527,11 @@ msgstr "(Ehe-)Partner"
 #: ../gramps/plugins/textreport/familygroup.py:566
 #: ../gramps/plugins/view/relview.py:1578
 msgid "Spouse"
-msgstr "Partner(in)"
+msgstr "Ehepartner"
 
 #: ../gramps/gui/merge/mergeperson.py:264
 msgid "No spouses or children found"
-msgstr "Keine (Ehe-)Partner oder Kinder gefunden"
+msgstr "Keine Ehegatten oder Kinder gefunden"
 
 #: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:568
 msgid "Warning"
@@ -18569,11 +18571,11 @@ msgstr "Quellen zusammenführen"
 
 #: ../gramps/gui/plug/_dialogs.py:291
 msgid "Report Selection"
-msgstr "Auswahl eines Berichts"
+msgstr "Auswahl des Berichts"
 
 #: ../gramps/gui/plug/_dialogs.py:293
 msgid "Generate selected report"
-msgstr "Ausgewählten Bericht erstellen"
+msgstr "Ausgewählten Bericht generieren"
 
 #: ../gramps/gui/plug/_dialogs.py:293
 msgid "_Generate"
@@ -18597,7 +18599,7 @@ msgstr "Ausgewähltes Werkzeug ausführen"
 
 #: ../gramps/gui/plug/_guioptions.py:83 ../gramps/gui/plug/_guioptions.py:166
 msgid "Select surname"
-msgstr "Nachnamen wählen"
+msgstr "Nachname auswählen"
 
 #: ../gramps/gui/plug/_guioptions.py:90
 #: ../gramps/plugins/quickview/filterbyname.py:354
@@ -18606,23 +18608,23 @@ msgstr "Anzahl"
 
 #: ../gramps/gui/plug/_guioptions.py:119
 msgid "Finding Surnames"
-msgstr "Finde Nachnamen"
+msgstr "Nachnamen Finden"
 
 #: ../gramps/gui/plug/_guioptions.py:120
 msgid "Finding surnames"
-msgstr "Finde Nachnamen"
+msgstr "Nachnamen finden"
 
 #: ../gramps/gui/plug/_guioptions.py:687
 msgid "Select a different person"
-msgstr "Eine andere Person wählen"
+msgstr "Eine andere Person auswählen"
 
 #: ../gramps/gui/plug/_guioptions.py:714
 msgid "Select a person for the report"
-msgstr "Eine Person für den Bericht wählen"
+msgstr "Eine Person für den Bericht auswählen"
 
 #: ../gramps/gui/plug/_guioptions.py:797
 msgid "Select a different family"
-msgstr "Eine andere Familie wählen"
+msgstr "Eine andere Familie auswählen"
 
 #: ../gramps/gui/plug/_guioptions.py:1254
 #, python-format
@@ -18632,7 +18634,7 @@ msgstr "Auch %s einbeziehen?"
 #: ../gramps/gui/plug/_guioptions.py:1256
 #: ../gramps/gui/selectors/selectperson.py:83
 msgid "Select Person"
-msgstr "Person wählen"
+msgstr "Person auswählen"
 
 #: ../gramps/gui/plug/_guioptions.py:1580
 #, python-format
@@ -18642,7 +18644,7 @@ msgstr "Farbe auswählen für %s"
 #: ../gramps/gui/plug/_guioptions.py:1743
 #: ../gramps/gui/plug/report/_reportdialog.py:452
 msgid "Save As"
-msgstr "Speichern als"
+msgstr "Speichern unter"
 
 #: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:441
 #: ../gramps/gui/plug/report/_bookdialog.py:638
@@ -18673,11 +18675,11 @@ msgstr "Info"
 
 #: ../gramps/gui/plug/_windows.py:147 ../gramps/gui/plug/_windows.py:201
 msgid "Hide/Unhide"
-msgstr "Verbergen/Aufdecken"
+msgstr "Ausblenden/Einblenden"
 
 #: ../gramps/gui/plug/_windows.py:155 ../gramps/gui/plug/_windows.py:210
 msgid "Load"
-msgstr "Lade"
+msgstr "Laden"
 
 #: ../gramps/gui/plug/_windows.py:161
 msgid "Registered Plugins"
@@ -18703,7 +18705,7 @@ msgstr "Geladene Zusatzmodule"
 
 #: ../gramps/gui/plug/_windows.py:235
 msgid "Addon Name"
-msgstr "Erweiterungsname"
+msgstr "Name der Erweiterung"
 
 #: ../gramps/gui/plug/_windows.py:250
 msgid "Path to Addon:"
@@ -18765,7 +18767,7 @@ msgstr "Erweiterung laden"
 #: ../gramps/gui/plug/_windows.py:498
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:188
 msgid "Fail"
-msgstr "Fehler"
+msgstr "Fehlschlag"
 
 #: ../gramps/gui/plug/_windows.py:513 ../gramps/gui/widgets/grampletbar.py:563
 msgid "OK"
@@ -18790,7 +18792,7 @@ msgstr "Dateiname"
 
 #: ../gramps/gui/plug/_windows.py:627
 msgid "Detailed Info"
-msgstr "Detaillierte Information"
+msgstr "Ausführliche Informationen"
 
 #: ../gramps/gui/plug/_windows.py:686
 msgid "Plugin Error"
@@ -18809,31 +18811,33 @@ msgstr "Hauptfenster"
 
 #: ../gramps/gui/plug/_windows.py:1180
 msgid "Downloading and installing selected addons..."
-msgstr "Herunterladen und installieren der gewählten Erweiterungen..."
+msgstr "Herunterladen und Installieren der ausgewählten Erweiterungen..."
 
 #: ../gramps/gui/plug/_windows.py:1215
 msgid "Installation Errors"
-msgstr "Installationsfehler"
+msgstr "Fehler bei der Installation"
 
 #: ../gramps/gui/plug/_windows.py:1216
 msgid "The following addons had errors: "
-msgstr "Die folgenden Erweiterungen hatten Fehler: "
+msgstr "Bei den folgenden Erweiterungen traten Fehler auf: "
 
 #: ../gramps/gui/plug/_windows.py:1222 ../gramps/gui/plug/_windows.py:1230
 msgid "Done downloading and installing addons"
-msgstr "Herunterladen und Installation der Erweiterungen abgeschlossen"
+msgstr "Fertig mit dem Herunterladen und Installieren von Erweiterungen"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/_windows.py:1224
 #, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "{number_of} Zusatzmodul wurde installiert."
-msgstr[1] "{number_of} Zusatzmodule wurden installiert."
+msgstr[0] "{number_of} Erweiterung wurde installiert."
+msgstr[1] "{number_of} Erweiterungen wurden installiert."
 
 #: ../gramps/gui/plug/_windows.py:1227
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
-msgstr "Wenn du eine 'Grampsansicht' hast, musst du Gramps neu starten."
+msgstr ""
+"Wenn du eine \"Gramps-Ansicht\" installiert hast, musst du Gramps neu "
+"starten."
 
 #: ../gramps/gui/plug/_windows.py:1231
 msgid "No addons were installed."
