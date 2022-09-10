@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-31 21:14+0000\n"
+"PO-Revision-Date: 2022-09-07 06:18+0000\n"
 "Last-Translator: Stephan Paternotte <s.paternotte@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2375,7 +2375,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:432
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2383,7 +2383,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:437
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #: ../gramps/gen/datehandler/_datedisplay.py:438
 #, python-brace-format
@@ -2396,7 +2396,7 @@ msgstr "{date_quality}van {date_start} tot {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:457
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2404,7 +2404,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:462
 msgctxt "and-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #: ../gramps/gen/datehandler/_datedisplay.py:463
 #, python-brace-format
@@ -2419,7 +2419,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2427,7 +2427,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2435,7 +2435,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:506
 msgctxt "about-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2443,7 +2443,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:511
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr " "
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
