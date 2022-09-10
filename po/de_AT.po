@@ -13,6 +13,7 @@
 # Christoph Eder <christoph.eder@phsalzburg.at>, 2020, 2021.
 # cedecode <christoph.eder@phsalzburg.at>, 2021, 2022.
 # Florian Demmer <fdemmer@gmail.com>, 2022.
+# David Straub <straub@protonmail.com>, 2022.
 #
 # changes de_AT:
 #
@@ -30,8 +31,8 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-01 22:13+0000\n"
-"Last-Translator: Florian Demmer <fdemmer@gmail.com>\n"
+"PO-Revision-Date: 2022-07-20 20:15+0000\n"
+"Last-Translator: David Straub <straub@protonmail.com>\n"
 "Language-Team: German (Austria) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/de_AT/>\n"
 "Language: de_AT\n"
@@ -39,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -20608,7 +20609,7 @@ msgstr ""
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
-msgstr "Fortschritt Informationen"
+msgstr "Fortschrittsanzeige"
 
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgctxt "manual"
