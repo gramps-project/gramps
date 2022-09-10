@@ -10,13 +10,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # WaldiS <sto@tutanota.de>, 2021, 2022.
 # Michał Stojek <stojex@gmail.com>, 2022.
+# Kamil K <kamil030201@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-14 13:01+0000\n"
-"Last-Translator: WaldiS <sto@tutanota.de>\n"
+"PO-Revision-Date: 2022-09-03 10:16+0000\n"
+"Last-Translator: Kamil K <kamil030201@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
 "Language: pl\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -11680,6 +11681,10 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"Domyślne formaty identyfikatorów Gramps zawierające przedrostek literowy, po "
+"którym następuje ciąg liczbowy. „I%04d” tworzy identyfikatory od I0000 do "
+"I9999. Duże bazy danych mogą wymagać większych identyfikatorów. \"I%06d\" "
+"tworzy identyfikatory od I000000 do I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -11911,6 +11916,8 @@ msgstr ""
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
 msgstr ""
+"Niestandardowe opcje wyświetlania nazw są unikatowe dla każdego drzewa "
+"genealogicznego."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
@@ -11981,11 +11988,11 @@ msgstr "Domyślne związki rodzinne"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Ukryj zakładkę LDS w edytorach osób i rodzin"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Wymaga ponownego uruchomienia"
 
 #: ../gramps/gui/configure.py:1388
 #, fuzzy
@@ -12079,7 +12086,7 @@ msgstr "Maks. ilość generacji dla związków rodzinnych"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Limity"
 
 #: ../gramps/gui/configure.py:1575
 #, fuzzy
@@ -12208,6 +12215,8 @@ msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Wprowadź wysokość w pikselach. W przypadku wprowadzenia wielu nazwisk "
+"nazwiska te są wyświetlane w ramce. To ustawienie określa rozmiar tej ramki."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -12215,6 +12224,9 @@ msgid ""
 "Addons and Plugins. The Plugin Manager has the complete list of installed "
 "Addons and Plugins and their activation status.\n"
 msgstr ""
+"Ustawienia konfiguracji, aby Gramps sprawdzał nowe lub zaktualizowane "
+"Dodatki i Wtyczki stron trzecich. Menedżer Wtyczek zawiera pełną listę "
+"zainstalowanych Dodatków i Wtyczek oraz ich status aktywacji.\n"
 
 #: ../gramps/gui/configure.py:1691
 msgid "Once a month"
@@ -12390,6 +12402,10 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"Podstawowa względna ścieżka multimediów jest specyficzna dla aktywnego "
+"drzewa genealogicznego. To nie jest globalne ustawienie. Każde drzewo "
+"genealogiczne może mieć unikatową względną ścieżkę multimediów, która jest "
+"przechowywana w bazie danych."
 
 #: ../gramps/gui/configure.py:1892
 #, fuzzy
@@ -12508,6 +12524,10 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"Jeśli zaznaczone, użyj standardowych symboli genealogicznych (symbol śmierci "
+"jest wybierany przez użytkownika).\n"
+"Jeśli nie jest zaznaczone, możesz użyć dolnego panelu, aby samodzielnie "
+"dostosować symbole."
 
 #: ../gramps/gui/configure.py:2094
 msgid ""
@@ -12547,11 +12567,11 @@ msgstr "Partner"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Zabity"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Zastępowanie domyślnych symboli genealogicznych"
 
 #: ../gramps/gui/configure.py:2253
 msgid ""
@@ -12559,6 +12579,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Możesz ustawić dowolny tekst dla tego pola.\n"
+"Możesz przeciągnąć i upuścić symbol z powyższej listy symboli.\n"
+"Będzie on widoczny tylko wtedy, gdy twoja czcionka zawiera ten glif."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -24188,6 +24211,9 @@ msgid ""
 "Discourse forum to share ideas and techniques.\n"
 "\n"
 msgstr ""
+"Na listach mailingowych i Forum dyskusyjnym dostępna jest aktywna "
+"społeczność użytkowników, którzy dzielą się pomysłami i technikami.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Gramps online manual"
@@ -24199,7 +24225,7 @@ msgstr "Zadaj pytanie na liście mailingowej gramps-users"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:135
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Forum Dyskusyjne Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:137
 msgid "Getting Started"
