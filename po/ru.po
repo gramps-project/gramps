@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-28 21:15+0000\n"
+"PO-Revision-Date: 2022-08-23 11:26+0000\n"
 "Last-Translator: Stanislav <bsv999@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ru/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -611,8 +611,8 @@ msgid ""
 msgstr ""
 "<b>Переход Назад и Вперёд<b><br/>Gramps отслеживает список предыдущих "
 "активных объектов, таких как Люди и События. Вы можете переходить вперёд или "
-"назад по списку, используя «Переход &gt; Вперёд» и «Переход &gt; Назад» или "
-"кнопки со стрелками."
+"назад по списку, используя кнопки «Переход &gt; Вперёд» и «Переход &gt; "
+"Назад» или кнопки со стрелками."
 
 #: ../data/tips.xml:50
 msgid ""
@@ -2669,37 +2669,37 @@ msgstr "|"
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
 msgid "Gregorian"
-msgstr "григорианский"
+msgstr "Григорианский"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:610
 msgctxt "calendar"
 msgid "Julian"
-msgstr "юлианский"
+msgstr "Юлианский"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:611
 msgctxt "calendar"
 msgid "Hebrew"
-msgstr "еврейский"
+msgstr "Еврейский"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgctxt "calendar"
 msgid "French Republican"
-msgstr "французский республиканский"
+msgstr "Французский республиканский"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
 msgctxt "calendar"
 msgid "Persian"
-msgstr "иранский"
+msgstr "Персидский"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:614
 msgctxt "calendar"
 msgid "Islamic"
-msgstr "исламский"
+msgstr "Исламский"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:615
 msgctxt "calendar"
 msgid "Swedish"
-msgstr "шведский"
+msgstr "Шведский"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -3489,7 +3489,7 @@ msgstr "Ошибка в файле '%s': не удалось загрузить.
 
 #: ../gramps/gen/display/place.py:74 ../gramps/gen/plug/docgen/treedoc.py:63
 msgid "Full"
-msgstr "Полная"
+msgstr "Полный"
 
 #: ../gramps/gen/filters/_filterparser.py:119
 #, python-format
@@ -7893,12 +7893,12 @@ msgstr "св."
 #: ../gramps/gen/lib/eventtype.py:249
 msgctxt "Marriage License abbreviation"
 msgid "m.lic."
-msgstr "св."
+msgstr "св.о браке."
 
 #: ../gramps/gen/lib/eventtype.py:250
 msgctxt "Marriage Contract abbreviation"
 msgid "m.con."
-msgstr "св."
+msgstr "бр.контр."
 
 #: ../gramps/gen/lib/eventtype.py:251
 msgctxt "Marriage Banns abbreviation"
@@ -11329,7 +11329,7 @@ msgstr "Том/Страница: %(pag)s -- %(sourcetext)s"
 
 #: ../gramps/gui/clipboard.py:533
 msgid "Event ref"
-msgstr "ссылка на событие"
+msgstr "Ссылка на событие"
 
 #: ../gramps/gui/clipboard.py:705
 msgid "Child ref"
@@ -11461,23 +11461,25 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Нижеследующие ключевые слова будут заменены соответствующими частями имени:"
-"<tt>\n"
+"Нижеследующие ключевые слова будут заменены соответствующими частями "
+"имени:<tt>\n"
 "  <b>Имя</b>         - личное имя                   <b>Фамилия</b>     - "
 "фамилии (с префиксом и связками)\n"
-"  <b>Титул</b>       - звание: «Др.», «Св.», ...    <b>Суффикс</b>     - "
-"например, «Мл.» или «III»\n"
-"  <b>Обиходное</b>   - бытовое или мирское имя   <b>Прозвище</b>\n"
+"  <b>Титул</b>       - звание (Др., Мис.)    <b>Суффикс</b>     - суффикс ("
+"Мл., Ст.)\n"
+"  <b>Обиходное</b>   - бытовое или мирское имя   <b>Прозвище</b> - прозвище, "
+"псевдоним\n"
 "  <b>Инициалы</b>    - начальные буквы имён         <b>Разговорное</b> - "
 "прозвище, или одно из имен\n"
+"  <b>Префикс</b>     - приставки («де», «ван», ...)\n"
+"Фамилии:\n"
 "  <b>Главное, Главное[пр], или …[фам] …[св]</b> - полностью главная фамилия, "
 "префикс, только фамилия, связка\n"
 "  <b>Отчество, Отчество[пр], или …[им] …[св]</b> - аналогично Главное… для "
 "отчества или матронима\n"
 "  <b>Семпрозвище</b> - семейное прозвище            <b>Неглавные</b>   - "
 "фамилии без главной+отчества\n"
-"  <b>Префикс</b>     - приставки («де», «ван», ...) <b>Безотчества</b> - "
-"фамилии без отчества/матронима\n"
+"<b>Безотчества</b> - фамилии без отчества/матронима\n"
 "  <b>Списокфо</b>    - фамилии и отчества (без префиксов и связок)\n"
 "</tt>\n"
 "Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
@@ -11488,9 +11490,9 @@ msgstr ""
 "<b>Пример</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
 "Underhills'\n"
 "     <i>Edwin Jose</i> - личное имя, <i>von der</i> - префикс, <i>Smith</i> "
-"and <i>Weston</i> - фамилии, \n"
-"     <i>and</i> - связка, <i>Wilson</i> - отчество, <i>Dr.</i> - титул, "
-"<i>Sr</i> - суффикс, <i>Ed</i> - прозвище, \n"
+"and <i>Weston</i> - Главная фамилия, \n"
+"     <i>and</i> - связка, <i>Wilson</i> - Отчество, <i>Dr.</i> - Титул, "
+"<i>Sr</i> - Суффикс, <i>Ed</i> - Прозвище, \n"
 "     <i>Underhills</i> - семейное прозвище, <i>Jose</i> - имя в быту.\n"
 
 #: ../gramps/gui/configure.py:148
@@ -11687,7 +11689,7 @@ msgstr "Фон для женатых"
 
 #: ../gramps/gui/configure.py:751
 msgid "Background for Unmarried"
-msgstr "Фон для не женатых"
+msgstr "Фон для неженатых"
 
 #: ../gramps/gui/configure.py:753
 msgid "Background for Civil union"
@@ -13950,7 +13952,7 @@ msgstr "Исправьте дату, или переключите с «{cur_mod
 #: ../gramps/gui/editors/editevent.py:64
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "Изменение информации о событиях"
+msgstr "Диалог_Новое_событие"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -14035,7 +14037,7 @@ msgstr "Добавить событие"
 #: ../gramps/gui/editors/editfamily.py:92
 msgctxt "manual"
 msgid "Family_Editor_dialog"
-msgstr "Изменение информации об отношениях"
+msgstr "Диалог_Редактор_семьи"
 
 #: ../gramps/gui/editors/editfamily.py:113
 msgid "Create a new person and add the child to the family"
@@ -14700,7 +14702,7 @@ msgstr "Выберите лицо или отмените правку"
 #: ../gramps/gui/editors/editplace.py:69
 msgctxt "manual"
 msgid "Place_Editor_dialog"
-msgstr "Редактирование информации о местах"
+msgstr "Диалог_Редактор_мест"
 
 #: ../gramps/gui/editors/editplace.py:91
 #: ../gramps/gui/glade/editplace.glade:357 ../gramps/gui/merge/mergeplace.py:55
@@ -14888,7 +14890,7 @@ msgstr "Редактирование хранилища (%s)"
 #: ../gramps/gui/editors/editsource.py:64
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "Редактирование информации об источниках"
+msgstr "Диалог_Новый_источник"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -31215,9 +31217,7 @@ msgstr "Между %(person)s и %(active_person)s нет прямого род�
 #: ../gramps/plugins/quickview/all_relations.py:151
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr ""
-"%(person)s и %(active_person)s имеют следующие родственные отношения через "
-"брак:"
+msgstr "%(person)s и %(active_person)s имеют следующие отношения через брак:"
 
 #: ../gramps/plugins/quickview/all_relations.py:205
 #, python-format
@@ -33617,7 +33617,7 @@ msgid ""
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
 "Ваше Семейное древо содержит дубликаты указателей в таблицах.\n"
-"Это плохо и может быть исправлено созданием резервной копии\n"
+" Это плохо и может быть исправлено созданием резервной копии\n"
 "Вашего Семейного древа и импортом этой копии в пустое\n"
 "Семейное древо. Остальные проверки пропущены, инструмент\n"
 "Проверка и Исправления необходимо запустить ещё раз на новом\n"
