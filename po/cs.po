@@ -4,7 +4,7 @@
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
 # Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2020, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Milan <mobrcian@hotmail.com>, 2021.
+# Milan <mobrcian@hotmail.com>, 2021, 2022.
 #
 # Common terms and translations:
 # ancestor        předek
@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-12-20 22:13+0000\n"
+"PO-Revision-Date: 2022-09-10 12:21+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -62,10 +62,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalánština"
+msgstr "Katalánsko"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -220,10 +218,8 @@ msgid "8 of Hanuka"
 msgstr "Chanuka, den 8"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kurzíva"
+msgstr "Itálie"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -250,10 +246,8 @@ msgid "Sweden"
 msgstr "Švédsko"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turečtina"
+msgstr "Turecko"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -613,19 +607,15 @@ msgstr ""
 "Gramps kde se můžete dozvědět více."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-#| "Possible Duplicate People...\" allows you to locate (and merge) entries "
-#| "of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Duplicitní záznamy</b><br/>\"Nástroje &gt; Zpracování rodokmenu &gt; "
-"Najít možné duplicitní osoby...\" vám dovolí nalézt (a sloučit) záznamy "
-"stejné osoby zadané do databáze více než jednou."
+"<b>Duplicitní záznamy</b><br/>\n"
+"Nástroj \"Nástroje &gt; Zpracování rodokmenu &gt; Najít možné duplicitní "
+"osoby...\" vám dovolí nalézt (a sloučit) záznamy stejné osoby zadané do "
+"databáze více než jednou."
 
 #: ../data/tips.xml:44
 #, fuzzy
@@ -980,16 +970,12 @@ msgstr ""
 "org/bugs/"
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
 msgstr ""
-"<b>Domovská stránka Gramps</b><br/>Domovskou stránku Gramps najdete na "
-"http://gramps-project.org/"
+"<b>Domovská stránka Gramps</b><br/>Domovskou stránku Gramps najdete na http"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1019,22 +1005,16 @@ msgstr ""
 "použít latinského 'sic' (takto) k potvrzení přesnosti přepisu."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>Další sestavy a nástroje</b><br/>Další sestavy a nástroje mohou být do "
-"Gramps přidány prostřednictvím systému \"Rozšíření\". Naleznete jej pod "
-"\"Nápověda &gt; Další sestavy/Nástroje\". Toto je nejlepší cesta jak umožnit "
-"pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
+"<br/><b>Další sestavy a nástroje</b><br/>Další sestavy a nástroje mohou být "
+"do Gramps přidány prostřednictvím systému \"Rozšíření\". Naleznete jej pod "
+"\"Nápověda &gt; Další sestavy/Nástroje\". Toto je nejlepší způsob jak "
+"umožnit pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
 
 #: ../data/tips.xml:104
 #, fuzzy
@@ -25941,10 +25921,9 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Soubor je pravděpodobně poškozen nebo není platnou databází Gramps."
 
 #: ../gramps/plugins/importer/importxml.py:255
-#, fuzzy, python-brace-format
-#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s - %(text)s s %(id2)s\n"
+msgstr "  {id1} - {text} s {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
@@ -25984,10 +25963,8 @@ msgid "Sources"
 msgstr "Prameny"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "Počet nově importovaných objektů:\n"
+msgstr "Počet nově importovaných objektů:"
 
 #: ../gramps/plugins/importer/importxml.py:297
 #, fuzzy, python-format
@@ -26038,16 +26015,12 @@ msgstr ""
 "není nastaven k domovskému adresáři uživatele.\n"
 
 #: ../gramps/plugins/importer/importxml.py:317
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Objekty, které jsou kandidáty pro sloučení:\n"
+"Objekty, které jsou kandidáty pro sloučení:"
 
 #: ../gramps/plugins/importer/importxml.py:804
 #: ../gramps/plugins/importer/importxml.py:1284
@@ -32566,10 +32539,9 @@ msgid "The style used for the subtitle."
 msgstr "Styl použitý pro podtitul."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Vztah:"
+msgstr "Vztah: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -38211,18 +38183,14 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
-msgstr "Jméno"
+msgstr "Název"
 
 #: ../gramps/plugins/webreport/place.py:220
 #: ../gramps/plugins/webreport/place.py:232
-#, fuzzy
-#| msgid "State/Province:"
 msgid "State/Province"
-msgstr "Kraj:"
+msgstr "Stát/kraj"
 
 #: ../gramps/plugins/webreport/place.py:272
 #, python-format
@@ -38247,11 +38215,9 @@ msgstr ""
 "Kliknutím na název archivu se zobrazí stránka tohoto archivu."
 
 #: ../gramps/plugins/webreport/repository.py:173
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
-msgstr "Jméno"
+msgstr "Název"
 
 #: ../gramps/plugins/webreport/source.py:105
 msgid "Creating source pages"
