@@ -34,13 +34,14 @@
 # Gil da Costa <gdacosta@sommier-colas.fr>, 2019.
 # Jean-Marc <m.balthazar@posteo.net>, 2021.
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
+# Translator <kvb@tuta.io>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-08-11 17:32+0000\n"
-"Last-Translator: Jean-Marc <m.balthazar@posteo.net>\n"
+"PO-Revision-Date: 2022-08-25 18:20+0000\n"
+"Last-Translator: Translator <kvb@tuta.io>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -48,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -59,10 +60,8 @@ msgid "Canada"
 msgstr "Canada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Catalan"
+msgstr "Catalogne"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -223,10 +222,8 @@ msgid "8 of Hanuka"
 msgstr "8e jour d'Hanoucca"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Italique"
+msgstr "Italie"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -256,10 +253,8 @@ msgid "Sweden"
 msgstr "Suède"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turque"
+msgstr "Turquie"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -436,11 +431,6 @@ msgstr ""
 "par Affichage &gt; Barre de filtre."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -448,8 +438,9 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Filtre inversé</b><br/>Les filtres peuvent facilement être inversés en "
-"utilisant l'option « Inverser les résultats&quot;. Par exemple, en inversant "
-"&quot;Individus avec enfants » vous obtenez tous les individus sans enfant."
+"utilisant l'option « Inverser les résultats », « Renvoie les valeurs qui ne "
+"correspondent pas au filtre ». Par exemple, en inversant &quot;Individus "
+"avec enfants » vous obtenez tous les individus sans enfant."
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml:18
@@ -551,13 +542,6 @@ msgstr ""
 "le Gramplet SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -565,11 +549,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Définir vos préférences</b><br/> « Édition &gt; Préférences...&quot; vous "
+"<b>Définir vos préférences</b><br/> « Édition &gt; Préférences… » vous "
 "permet de modifier des options de configuration, tel que le chemin vers vos "
 "fichiers media et d'ajuster selon vos besoins certains aspects liés à la "
 "représentation dans Gramps. Chaque vue séparée peut également être "
-"configurée sous &quot;Affichage &gt; Configuration... »"
+"configurée sous « Affichage &gt; Configuration… »."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -610,13 +594,6 @@ msgstr ""
 "simplement la souris au-dessus et une info-bulle s'affichera."
 
 #: ../data/tips.xml:40
-#, fuzzy
-#| msgid ""
-#| "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-#| "occurred, Gramps allows you to enter a wide range of date formats based "
-#| "on a guess or an estimate. For instance, \"about 1908\" is a valid entry "
-#| "for a birth date in Gramps. Click the Date button next to the date field "
-#| "and see the Gramps Manual to learn more."
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -626,17 +603,13 @@ msgid ""
 msgstr ""
 "<b>Pas sûr(e) d'une date ?</b><br/>Si vous n'êtes pas sûr(e) d'une date ou "
 "d'un évènement (naissance ou décès), Gramps vous permet d'entrer une "
-"multitude de dates basées sur une estimation ou un choix. Par exemple, "
-"« vers 1908 » est une entrée valide pour une date de naissance dans Gramps. "
-"Voir la section Édition des dates du manuel wiki de Gramps pour une "
-"description complète des options de date."
+"multitude de dates basées sur une estimation ou un choix. Par exemple, « "
+"vers 1908 » est une entrée valide pour une date de naissance dans Gramps. "
+"Sélectionnez « Ouvrir l'éditeur de date » à côté de la date. Consultez la "
+"section Édition des dates du manuel wiki de Gramps pour une description "
+"complète des options de date."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-#| "Possible Duplicate People...\" allows you to locate (and merge) entries "
-#| "of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
@@ -12925,10 +12898,8 @@ msgstr ""
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Calcul de la période..."
+msgstr "Limites des calculs"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1534
@@ -12978,14 +12949,12 @@ msgstr "Nb. max. de générations à parcourir entre 2 individus"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Limites"
 
 # trunk
 #: ../gramps/gui/configure.py:1575
-#, fuzzy
-#| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "Citations de l'évènement"
+msgstr "Paramètres de l'environnement"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
@@ -13001,10 +12970,8 @@ msgstr ""
 # objet sélectionné
 # Supprimer car efface
 #: ../gramps/gui/configure.py:1585
-#, fuzzy
-#| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
-msgstr "Supprimer l'arbre familial"
+msgstr "Se souvenir du dernier arbre familial"
 
 # https://gramps-project.org/bugs/view.php?id=11286
 #: ../gramps/gui/configure.py:1587
@@ -13028,16 +12995,12 @@ msgstr ""
 "l'ouvrir la prochaine fois."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
-msgstr "Activer le vérificateur orthographique"
+msgstr "Activer le correcteur d'orthographe"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Activer le vérificateur orthographique"
+msgstr "Activer le correcteur d'orthographe pour les notes."
 
 # master
 #: ../gramps/gui/configure.py:1607
@@ -13052,11 +13015,8 @@ msgstr ""
 
 # master
 #: ../gramps/gui/configure.py:1615
-#, fuzzy
-#| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
-msgstr ""
-"Afficher le texte des boutons du Navigateur (nécessite de relancer Gramps)"
+msgstr "Afficher le texte des boutons du Navigateur *"
 
 # master
 # https://gramps-project.org/bugs/view.php?id=11286
