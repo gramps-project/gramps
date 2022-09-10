@@ -11,13 +11,14 @@
 # Lajos Nemeséri <nemeseril@gmail.com>, 2021.
 # f3rr31 <5920873@disroot.org>, 2021.
 # Mukli Krisztián <weblate@rejtettmail.eu.org>, 2022.
+# Mark Munkacsi <markmunkacsi@protonmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.1.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-03 11:12+0000\n"
-"Last-Translator: Mukli Krisztián <weblate@rejtettmail.eu.org>\n"
+"PO-Revision-Date: 2022-09-03 10:16+0000\n"
+"Last-Translator: Mark Munkacsi <markmunkacsi@protonmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hu/>\n"
 "Language: hu\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -36,10 +37,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalán"
+msgstr "Katalónia"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -194,10 +193,8 @@ msgid "8 of Hanuka"
 msgstr "Hanukka 8"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Dölt"
+msgstr "Olasz"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -406,11 +403,6 @@ msgstr ""
 "nem látjuk, akkor jelöljük be a Nézet &gt; Szűrő menüpontot."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -418,7 +410,8 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Ellentett szűrés</b><br/>A szűrőket könnyedén megfordíthatjuk az "
-"'ellentett' opcióval. Például a 'Gyermekes emberek' szűrő ellentettjével a "
+"'ellentett' opcióval \"Értékek visszaadása amelyek nem illenek a szűrési "
+"feltételekre\". Például a 'Gyermekes emberek' szűrő ellentettjével a "
 "gyermektelen embereket választhatjuk ki."
 
 #: ../data/tips.xml:18
@@ -517,13 +510,6 @@ msgstr ""
 "grampletet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -531,11 +517,11 @@ msgid ""
 "Each separate view can also be configured under \"View &gt; Configure View..."
 "\"."
 msgstr ""
-"<b>Az ön beállításainak alkalmazása</b><br/>A „Szerkesztés -> "
-"Beállítások...” menüpont lehetővé teszi számos beállítás módosítását (mint "
-"például a média fájlok útvonala), valamint megengedi az ön igényei szerint "
-"finomítani a Gramps megjelenését. Minden külön nézet szintén állítható itt: "
-"„Nézet -> Nézet beállítása...”"
+"<b>Az ön beállításainak alkalmazása</b><br/>A „Szerkesztés -> Beállítások...”"
+" menüpont lehetővé teszi számos beállítás módosítását (mint például a média "
+"fájlok útvonala), valamint megengedi az ön igényei szerint finomítani a "
+"Gramps megjelenését. Minden külön nézet szintén állítható itt: „Nézet -> "
+"Nézet beállítása...”."
 
 #: ../data/tips.xml:34
 msgid ""
