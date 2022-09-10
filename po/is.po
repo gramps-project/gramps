@@ -3,15 +3,15 @@
 # Copyright (C) Icelandic translators of Gramps
 # This file is distributed under the same license as the GRAMPS package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017, 2018.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017, 2018, 2022.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-05-26 20:19+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2022-06-22 08:20+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/is/>\n"
 "Language: is\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -30,10 +30,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalónska"
+msgstr "Katalónía"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -188,10 +186,8 @@ msgid "8 of Hanuka"
 msgstr "8 í Hanukkah"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Skáletrað"
+msgstr "Ítalía"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -218,10 +214,8 @@ msgid "Sweden"
 msgstr "Svíþjóð"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Tyrkneska"
+msgstr "Tyrkland"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -400,11 +394,6 @@ msgstr ""
 "sýnilegt, veldu þá \"Skoða &gt; Hliðarspjald\"."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -412,8 +401,9 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Umhverfing á síun</b><br/>Einfalt er að snúa síun í andhverfu sína með "
-"því að virkja 'umhverfa' möguleikann. Til dæmis er hægt að snúa við síun á "
-"'Fólk með börn' til að velja alla sem ekki eiga börn."
+"því að virkja 'umhverfa' möguleikann. „Skila niðurstöðum sem eiga ekki við "
+"gefnar reglur síunnar“ Til dæmis er hægt að snúa við síun á 'Fólk með börn' "
+"til að velja alla sem ekki eiga börn."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -513,13 +503,6 @@ msgstr ""
 "kóða."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -531,7 +514,7 @@ msgstr ""
 "Kjörstillingar...\" geturðu breytt fjölmörgum stillingum, til dæmis slóðum á "
 "margmiðlunarskrár, auk ýmissa þátta í framsetningu Gramps og virkni. Einnig "
 "er hægt að stilla hverja sýn fyrir sig með því að fara í \"Skoða &gt; "
-"Stillingar...\""
+"Stillingar...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -9482,8 +9465,8 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Veldu leturgerð. Ef alþjóðlegir sérstafir birtast ekki, reyndu þá að nota "
-"letur eins og FreeSans. FreeSans má nálgast hér: http://www.nongnu.org/"
-"freefont/"
+"letur eins og FreeSans. Letrið FreeSans má nálgast hér: http://www.nongnu."
+"org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:156
 #: ../gramps/gui/widgets/styledtexteditor.py:78
@@ -11798,12 +11781,12 @@ msgid "Status bar"
 msgstr "Stöðustika"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Valkostir skýrslu"
+msgstr ""
+"\n"
+"Valkostir skýrslu"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -12141,12 +12124,12 @@ msgid "Database backend"
 msgstr "Gagnagrunnsbakendi"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Upplýsingar um gagnagrunn"
+msgstr ""
+"\n"
+"Upplýsingar um gagnagrunn"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12163,12 +12146,12 @@ msgid "Database path"
 msgstr "Tegund gagnagrunns"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Taka öryggisafrit þegar hætt er"
+msgstr ""
+"\n"
+"Sýsl með öryggisafrit"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12199,12 +12182,12 @@ msgid "Autobackup"
 msgstr "Sjálfvirk öryggisafritun"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Slóð á gagnagrunnsskrá ættartölu"
+msgstr ""
+"\n"
+"Slóð á gögn ættartölu"
 
 #: ../gramps/gui/configure.py:1870
 #, fuzzy
@@ -12236,12 +12219,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "GEDCOM innflutningur"
+msgstr ""
+"\n"
+"Innflutningur GEDCOM heimilda"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -16241,10 +16224,8 @@ msgid ""
 msgstr "Lýsandi nafn sem gefið er í stað eða til viðbótar opinberu eiginnafni."
 
 #: ../gramps/gui/glade/editname.glade:333
-#, fuzzy
-#| msgid "Given Name(s) "
 msgid "Given Name(s)"
-msgstr "Eiginnafn (nöfn) "
+msgstr "Eiginnafn (nöfn)"
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -18386,16 +18367,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
-#, fuzzy, python-format
-#| msgid ""
-#| "The data will be saved as follows:\n"
-#| "\n"
-#| "Format:\t%(format)s\n"
-#| "Name:\t%(name)s\n"
-#| "Folder:\t%(folder)s\n"
-#| "\n"
-#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
-#| "abort"
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -18407,10 +18379,7 @@ msgstr ""
 "\n"
 "Skráasnið:\t%(format)s\n"
 "Skráarheiti:\t%(name)s\n"
-"Mappa:\t%(folder)s\n"
-"\n"
-"Ýttu á Virkja til að halda áfram, Til baka til að endurskoða valkosti, eða "
-"Hætta við"
+"Mappa:\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
 #, fuzzy
@@ -19329,9 +19298,8 @@ msgid "Gramps had a problem the last time it was run."
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1037
-#, fuzzy
 msgid "Would you like to run the Check and Repair tool?"
-msgstr "Endilega keyrðu \"Athuga og gera við gagnagrunn\""
+msgstr "Viltu keyra \"Athuga og gera við gagnagrunn\" verkfærið?"
 
 #: ../gramps/gui/viewmanager.py:1183
 msgid "Autobackup..."
@@ -19633,7 +19601,7 @@ msgstr "Bæta við '%s' merki"
 #: ../gramps/gui/views/tags.py:255
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Fjarlægja '%s' merkið?"
+msgstr "Fjarlægja '%s' merkið"
 
 #: ../gramps/gui/views/tags.py:313
 msgid "Adding Tags"
@@ -21025,7 +20993,7 @@ msgstr "Stig maka"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=engir makar, 1=hafa maka með, 2=hafa með maka maka, o.s.frv."
+msgstr "0=engir makar, 1=hafa maka með, 2=hafa með maka makans, o.s.frv."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1554
 msgid "Start with the parent(s) of the selected first"
@@ -25490,10 +25458,9 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Skráin er hugsanlega skemmd eða er ekki gildur Gramps gagnagrunnur."
 
 #: ../gramps/plugins/importer/importxml.py:255
-#, fuzzy, python-brace-format
-#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s - %(text)s með %(id2)s\n"
+msgstr "  {id1} - {text} með {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
@@ -25533,10 +25500,8 @@ msgid "Sources"
 msgstr "Heimildir"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "Fjöldi nýrra hluta sem voru fluttir inn:\n"
+msgstr "Fjöldi nýrra hluta sem voru fluttir inn:"
 
 #: ../gramps/plugins/importer/importxml.py:297
 #, python-format
@@ -25560,18 +25525,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:317
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"\n"
-"Hlutir sem áætlað er að sameina:\n"
+"Hlutir sem áætlað er að sameina:"
 
 #: ../gramps/plugins/importer/importxml.py:804
 #: ../gramps/plugins/importer/importxml.py:1284
@@ -31930,10 +31889,9 @@ msgid "The style used for the subtitle."
 msgstr "Stíllinn sem notaður verður fyrir undirtitilinn."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Vensl:"
+msgstr "Vensl: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -36692,10 +36650,8 @@ msgid "Sort all children in birth order"
 msgstr "Raða börnum eftir fæðingarröð"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2135
-#, fuzzy
-#| msgid "Whether to display children in birth order or in entry order?"
 msgid "Whether to display children in birth order or in entry order."
-msgstr "Hvort birta eigi börn eftir fæðingarröð eða færsluröð?"
+msgstr "Hvort birta eigi börn eftir fæðingarröð eða færsluröð."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2139
 msgid "Do we display coordinates in the places list?"
