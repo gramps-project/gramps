@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-06-12 16:02+0000\n"
+"PO-Revision-Date: 2022-07-27 16:21+0000\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -2930,31 +2930,31 @@ msgstr "יום שבת"
 
 #: ../gramps/gen/datehandler/_datestrings.py:252
 msgid "Sun"
-msgstr "א'"
+msgstr "ראשון"
 
 #: ../gramps/gen/datehandler/_datestrings.py:253
 msgid "Mon"
-msgstr "ב'"
+msgstr "שני"
 
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgid "Tue"
-msgstr "ג'"
+msgstr "שלישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgid "Wed"
-msgstr "ד'"
+msgstr "רביעי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:256
 msgid "Thu"
-msgstr "ה'"
+msgstr "חמישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:257
 msgid "Fri"
-msgstr "ו'"
+msgstr "שישי"
 
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgid "Sat"
-msgstr "ש'"
+msgstr "שבת"
 
 #: ../gramps/gen/db/base.py:1816 ../gramps/gui/widgets/fanchart.py:2071
 msgid "Add child to family"
