@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-03-15 21:55+0000\n"
+"PO-Revision-Date: 2022-08-28 15:19+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -38,7 +38,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -11242,7 +11242,7 @@ msgstr "OS: %s"
 #: ../gramps/gui/clipboard.py:70
 msgctxt "manual"
 msgid "Using_the_Clipboard"
-msgstr "Använda urklipp"
+msgstr "Använda_urklipp"
 
 #: ../gramps/gui/clipboard.py:401
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
@@ -13742,7 +13742,7 @@ msgstr "Attributtypen kan inte vara tom"
 #: ../gramps/gui/editors/editchildref.py:66
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr "Barnreferens redigerare"
+msgstr "Barnreferensredigerare"
 
 #: ../gramps/gui/editors/editchildref.py:99
 #: ../gramps/gui/editors/editchildref.py:190
@@ -13752,7 +13752,7 @@ msgstr "Redigera barnreferens"
 #: ../gramps/gui/editors/editcitation.py:69
 msgctxt "manual"
 msgid "New_Citation_dialog"
-msgstr "Dialog för ny citering"
+msgstr "Dialogruta_för_ny_citering"
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -13865,7 +13865,7 @@ msgstr "Korrigera datumet eller byt från `{cur_mode}' till `{text_mode}'"
 #: ../gramps/gui/editors/editevent.py:64
 msgctxt "manual"
 msgid "New_Event_dialog"
-msgstr "Dialog för ny händelse"
+msgstr "Dialogruta_för_ny_händelse"
 
 #: ../gramps/gui/editors/editevent.py:98
 #: ../gramps/gui/editors/editeventref.py:265
@@ -14250,7 +14250,7 @@ msgstr "Lägg till familj"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "Redigera SDH-ceremoni"
+msgstr "Redigera_SDH-ceremoni"
 
 #: ../gramps/gui/editors/editldsord.py:158
 #: ../gramps/gui/editors/editldsord.py:315
@@ -14294,7 +14294,7 @@ msgstr "Redigera plats"
 #: ../gramps/gui/editors/editmedia.py:68
 msgctxt "manual"
 msgid "New_Media_dialog"
-msgstr "Dialog för nytt media"
+msgstr "Dialogruta_för_nytt_media"
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:412
@@ -14433,7 +14433,7 @@ msgstr "Gruppera endast detta namn"
 #: ../gramps/gui/editors/editnote.py:67
 msgctxt "manual"
 msgid "Editing_information_about_notes"
-msgstr "Redigera information om notiser"
+msgstr "Redigera_information_om_notiser"
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -14501,7 +14501,7 @@ msgstr "Ny person"
 #: ../gramps/gui/editors/editperson.py:242
 msgctxt "manual"
 msgid "Editing_information_about_people"
-msgstr "Redigera information om personer"
+msgstr "Redigera_information_om_personer"
 
 #: ../gramps/gui/editors/editperson.py:602
 #: ../gramps/plugins/view/geofamily.py:481
@@ -14805,7 +14805,7 @@ msgstr "Redigera arkivplats (%s)"
 #: ../gramps/gui/editors/editsource.py:64
 msgctxt "manual"
 msgid "New_Source_dialog"
-msgstr "Dialog för ny källa"
+msgstr "Dialogruta_för_ny_källa"
 
 #: ../gramps/gui/editors/editsource.py:88
 msgid "New Source"
@@ -14861,17 +14861,17 @@ msgstr "Internetadressredigerare"
 #: ../gramps/gui/editors/filtereditor.py:84
 msgctxt "manual"
 msgid "Add_Rule_dialog"
-msgstr "Dialog för lägg till regel"
+msgstr "Dialogruta_för_lägg_till_regel"
 
 #: ../gramps/gui/editors/filtereditor.py:85
 msgctxt "manual"
 msgid "Define_Filter_dialog"
-msgstr "Dialog för att definiera filter"
+msgstr "Dialogruta_för_att_definiera_filter"
 
 #: ../gramps/gui/editors/filtereditor.py:86
 msgctxt "manual"
 msgid "Custom_Filters"
-msgstr "Anpassade filter"
+msgstr "Anpassade_filter"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Person Filters"
@@ -15009,22 +15009,14 @@ msgid ""
 "$\tA dollar sign will match the end of a line."
 msgstr ""
 "Tolka innehållet i ett strängfält som ett reguljärt uttryck:\n"
-"\n"
 ".\tEn punkt kommer att matcha alla tecken.\n"
-"\n"
 "?\tEtt frågetecken kommer att matcha noll eller en förekomst av föregående "
 "tecken eller grupp.\n"
-"\n"
 "*\tEn asterisk kommer att matcha noll eller flera förekomster.\n"
-"\n"
 "+\tEtt plustecken kommer att matcha en eller flera förekomster.\n"
-"\n"
 "()\tAnvänd parenteser för att gruppera uttryck.\n"
-"\n"
 "|\tSpecificera alternativ genom att använda ett vertikalt streck.\n"
-"\n"
 "^\tEtt \"^\" kommer att matcha början på en rad.\n"
-"\n"
 "$\tEtt dollartecken kommer att matcha slutet på en rad."
 
 #: ../gramps/gui/editors/filtereditor.py:637
@@ -18139,7 +18131,7 @@ msgstr "Skapat %(year)4d/%(month)02d/%(day)02d"
 #: ../gramps/gui/merge/mergecitation.py:46
 msgctxt "manual"
 msgid "Merge_Citations"
-msgstr "Slå samman citeringar"
+msgstr "Slå_samman_citeringar"
 
 #: ../gramps/gui/merge/mergecitation.py:68
 #: ../gramps/plugins/tool/tools.gpr.py:442
@@ -18149,7 +18141,7 @@ msgstr "Slå samman citeringar"
 #: ../gramps/gui/merge/mergeevent.py:45
 msgctxt "manual"
 msgid "Merge_Events"
-msgstr "Slå samman händelser"
+msgstr "Slå_samman_händelser"
 
 #: ../gramps/gui/merge/mergeevent.py:67
 msgid "Merge Events"
@@ -18158,7 +18150,7 @@ msgstr "Slå samman händelser"
 #: ../gramps/gui/merge/mergefamily.py:46
 msgctxt "manual"
 msgid "Merge_Families"
-msgstr "Slå samman familjer"
+msgstr "Slå_samman_familjer"
 
 #: ../gramps/gui/merge/mergefamily.py:68
 msgid "Merge Families"
@@ -18180,12 +18172,12 @@ msgstr "Kan inte slå samman personer"
 #: ../gramps/gui/merge/mergemedia.py:44
 msgctxt "manual"
 msgid "Merge_Media_Objects"
-msgstr "Slå samman mediaobjekt"
+msgstr "Slå_samman_mediaobjekt"
 
 #: ../gramps/gui/merge/mergenote.py:44
 msgctxt "manual"
 msgid "Merge_Notes"
-msgstr "Slå samman notiser"
+msgstr "Slå_samman_notiser"
 
 #: ../gramps/gui/merge/mergenote.py:94
 msgid "flowed"
@@ -18198,7 +18190,7 @@ msgstr "förformaterad"
 #: ../gramps/gui/merge/mergeperson.py:58
 msgctxt "manual"
 msgid "Merge_People"
-msgstr "Slå samman personer"
+msgstr "Slå_samman_personer"
 
 #. Translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -18273,17 +18265,17 @@ msgstr ""
 #: ../gramps/gui/merge/mergeplace.py:53
 msgctxt "manual"
 msgid "Merge_Places"
-msgstr "Slå samman platser"
+msgstr "Slå_samman_platser"
 
 #: ../gramps/gui/merge/mergerepository.py:44
 msgctxt "manual"
 msgid "Merge_Repositories"
-msgstr "Slå samman arkivplatser"
+msgstr "Slå_samman_arkivplatser"
 
 #: ../gramps/gui/merge/mergesource.py:45
 msgctxt "manual"
 msgid "Merge_Sources"
-msgstr "Slå samman källor"
+msgstr "Slå_samman_källor"
 
 #: ../gramps/gui/merge/mergesource.py:67
 msgid "Merge Sources"
@@ -19198,7 +19190,7 @@ msgstr "Dokumentmallar"
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "Dialog för dokumentmallar"
+msgstr "Dialogruta_för_dokumentmallar"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
@@ -19321,7 +19313,7 @@ msgstr "Senaste ändring"
 #: ../gramps/gui/selectors/selectcitation.py:87
 msgctxt "manual"
 msgid "Select_Source_or_Citation_selector"
-msgstr "Välj selektor för källa eller citering"
+msgstr "Välj_väljare_för_källa_eller_citering"
 
 #: ../gramps/gui/selectors/selectevent.py:59
 msgid "Select Event"
@@ -19330,12 +19322,12 @@ msgstr "Välj händelse"
 #: ../gramps/gui/selectors/selectevent.py:79
 msgctxt "manual"
 msgid "Select_Event_selector"
-msgstr "Välj händelseselektor"
+msgstr "Välj_händelseväljare"
 
 #: ../gramps/gui/selectors/selectfamily.py:76
 msgctxt "manual"
 msgid "Select_Family_selector"
-msgstr "Välj familjeselektor"
+msgstr "Välj_familjeväljare"
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
@@ -19344,7 +19336,7 @@ msgstr "Välj notis"
 #: ../gramps/gui/selectors/selectnote.py:82
 msgctxt "manual"
 msgid "Select_Note_selector"
-msgstr "Välj notisselektor"
+msgstr "Välj_notisväljare"
 
 #: ../gramps/gui/selectors/selectobject.py:67
 msgid "Select Media Object"
@@ -19353,27 +19345,27 @@ msgstr "Välj mediaobjekt"
 #: ../gramps/gui/selectors/selectobject.py:108
 msgctxt "manual"
 msgid "Select_Media_Object_selector"
-msgstr "Välj mediaobjektselektor"
+msgstr "Välj_mediaobjektväljare"
 
 #: ../gramps/gui/selectors/selectperson.py:64
 msgctxt "manual"
 msgid "Select_Father_selector"
-msgstr "Välj farselektor"
+msgstr "Välj_farväljare"
 
 #: ../gramps/gui/selectors/selectperson.py:66
 msgctxt "manual"
 msgid "Select_Mother_selector"
-msgstr "Välj morselektor"
+msgstr "Välj_morväljare"
 
 #: ../gramps/gui/selectors/selectperson.py:68
 msgctxt "manual"
 msgid "Select_Child_selector"
-msgstr "Välj barnselektor"
+msgstr "Välj_barnväljare"
 
 #: ../gramps/gui/selectors/selectperson.py:70
 msgctxt "manual"
 msgid "Select_Person_selector"
-msgstr "Välj personselektor"
+msgstr "Välj_personväljare"
 
 #: ../gramps/gui/selectors/selectplace.py:60
 msgid "Select Place"
@@ -19382,7 +19374,7 @@ msgstr "Välj plats"
 #: ../gramps/gui/selectors/selectplace.py:90
 msgctxt "manual"
 msgid "Select_Place_selector"
-msgstr "Välj platsselektor"
+msgstr "Välj_platsväljare"
 
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
@@ -19391,7 +19383,7 @@ msgstr "Välj arkivplats"
 #: ../gramps/gui/selectors/selectrepository.py:75
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "Välj arkivplatsselektor"
+msgstr "Välj_arkivplatsväljare"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -19400,7 +19392,7 @@ msgstr "Välj källa"
 #: ../gramps/gui/selectors/selectsource.py:77
 msgctxt "manual"
 msgid "Select_Source_selector"
-msgstr "Välj källselektor"
+msgstr "Välj_källväljare"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19884,12 +19876,12 @@ msgstr "Ordna taggar..."
 #: ../gramps/gui/views/tags.py:112
 msgctxt "manual"
 msgid "Organize_Tags_Window"
-msgstr "Ordna taggfönster"
+msgstr "Ordna_taggfönster"
 
 #: ../gramps/gui/views/tags.py:113
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "Dialog för ny tagg"
+msgstr "Dialogruta_för_ny_tagg"
 
 #: ../gramps/gui/views/tags.py:250
 #, python-format
@@ -20173,7 +20165,7 @@ msgstr "Framåtskridande"
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "Dialog för att ordna om släktskap"
+msgstr "Dialogruta_för_att_ordna_om_släktskap"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -33222,7 +33214,7 @@ msgstr "_Godkänn ändringar och stäng"
 #: ../gramps/plugins/tool/changenames.py:64
 msgctxt "manual"
 msgid "Fix_Capitalization_of_Family_Names"
-msgstr "Normera stor bokstav för familjenamn"
+msgstr "Normera_stor_bokstav_för_familjenamn"
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -33836,7 +33828,7 @@ msgstr "_Redigerare för anpassade filter"
 #: ../gramps/plugins/tool/eventcmp.py:70
 msgctxt "manual"
 msgid "Compare_Individual_Events"
-msgstr "Jämför personliga händelser"
+msgstr "Jämför_personliga_händelser"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -33930,7 +33922,7 @@ msgstr "_Jämför"
 #: ../gramps/plugins/tool/finddupes.py:66
 msgctxt "manual"
 msgid "Find_Possible_Duplicate_People"
-msgstr "Hitta möjliga dubblerade personer"
+msgstr "Hitta_möjliga_dubblerade_personer"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
@@ -33998,7 +33990,7 @@ msgstr "Slå ihop personer"
 #: ../gramps/plugins/tool/findloop.py:58
 msgctxt "manual"
 msgid "Find_database_loop"
-msgstr "Hitta databasslinga"
+msgstr "Hitta_databasslinga"
 
 #: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465
@@ -34235,7 +34227,7 @@ msgstr "Ignorera datum och tillförlitlighet"
 #: ../gramps/plugins/tool/mergecitations.py:83
 msgctxt "manual"
 msgid "Merge_citations"
-msgstr "Slå samman citeringar"
+msgstr "Slå_samman_citeringar"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -34275,7 +34267,7 @@ msgstr "_Tagg"
 #: ../gramps/plugins/tool/notrelated.py:60
 msgctxt "manual"
 msgid "Not_Related"
-msgstr "Ej släkt"
+msgstr "Ej_släkt"
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
@@ -34364,7 +34356,7 @@ msgstr "Högerklicka för att kopiera från/till forskarinställningar"
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
 msgid "Edit_Database_Owner_Information"
-msgstr "Redigera information om databasägare"
+msgstr "Redigera_information_om_databasägare"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -34408,7 +34400,7 @@ msgstr ""
 #: ../gramps/plugins/tool/patchnames.py:63
 msgctxt "manual"
 msgid "Extract_Information_from_Names"
-msgstr "Extrahera information från namn"
+msgstr "Extrahera_information_från_namn"
 
 #: ../gramps/plugins/tool/patchnames.py:105
 msgid "Name and title extraction tool"
@@ -34725,7 +34717,7 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:64
 msgctxt "manual"
 msgid "Reorder_Gramps_ID"
-msgstr "Sortera om Gramps-ID:n"
+msgstr "Sortera_om_Gramps-ID:n"
 
 #: ../gramps/plugins/tool/reorderids.py:221
 #: ../gramps/plugins/tool/reorderids.py:444
@@ -35125,7 +35117,7 @@ msgstr "_Göm markerade"
 #: ../gramps/plugins/tool/verify.py:83
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "Verifiera data"
+msgstr "Verifiera_data"
 
 #: ../gramps/plugins/tool/verify.py:295
 msgid "Data Verify tool"
