@@ -5,13 +5,14 @@
 # Oleh Petriv, 2013.
 # qqqlb <qllb.ch@gmail.com>, 2021.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021, 2022.
+# Artem <artem@molotov.work>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-04-05 07:11+0000\n"
-"Last-Translator: Tymofii Lytvynenko <till.svit@gmail.com>\n"
+"PO-Revision-Date: 2022-07-25 22:56+0000\n"
+"Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/uk/>\n"
 "Language: uk\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -1585,8 +1586,8 @@ msgstr ""
 "\n"
 "Приклад використання Gramps з командного рядка\n"
 "\n"
-"1. Щоб імпортувати чотири бази даних (з визначенням формату за "
-"розширенням),\n"
+"1. Щоб імпортувати чотири бази даних (з визначенням формату за розширенням),"
+"\n"
 "а потім перевірити результат на наявність помилок, можна виконати:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
 "name=check. \n"
@@ -1603,8 +1604,8 @@ msgstr ""
 "\n"
 "4. Для збереження повідомлень про помилки, на попередньому прикладі, до "
 "файлів outfile та errfile, виконайте:\n"
-"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-"2>errfile\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>"
+"errfile\n"
 "\n"
 "5. Для імпорту трьох баз даних, та запуску Gramps в інтерактивному режимі "
 "для обробки результату:\n"
@@ -1633,11 +1634,11 @@ msgstr ""
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. І нарешті, для запуску програми в інтерактивному режимі, просто "
-"наберіть:\n"
+"11. І нарешті, для запуску програми в інтерактивному режимі, просто наберіть:"
+"\n"
 "gramps\n"
 "\n"
-"Зверніть увагу: ці приклади вказано для оболонки bash.\n"
+"Примітьте: ці приклади вказано для оболонки bash.\n"
 "Синтаксис може відрізнятись для інших командних оболонок та для Windows.\n"
 
 #: ../gramps/cli/argparser.py:267
@@ -9047,7 +9048,7 @@ msgstr "Газета"
 
 #: ../gramps/gen/lib/srcmediatype.py:68
 msgid "Photo"
-msgstr "Фото"
+msgstr "Світлина"
 
 #: ../gramps/gen/lib/srcmediatype.py:69
 msgid "Tombstone"
@@ -10257,7 +10258,7 @@ msgstr "Файл не існує"
 #: ../gramps/plugins/webreport/basepage.py:2320
 #: ../gramps/plugins/webreport/basepage.py:2328
 msgid "Could not add photo to page"
-msgstr "Не можу додати фото на сторінку"
+msgstr "Не вдалося додати світлину на сторінку"
 
 #: ../gramps/gen/plug/report/utils.py:288
 msgid "PERSON"
@@ -13939,11 +13940,10 @@ msgid ""
 "location of the information referenced within the source in the 'Volume/"
 "Page' field."
 msgstr ""
-"Джерело - це будь що (особисті свідчення, відео записи, фотографії, вирізки "
-"з газет, надмогильні плити ...) звідки можна видобути інформацію. Щоб "
-"створити цитату, спочатку оберіть джерело, а потім запишіть місце "
-"розташування інформації, на яку посилається джерело, у полі \"Розділ / "
-"Сторінка\"."
+"Джерело - це будь що (особисті свідчення, відео записи, світлини, вирізки з "
+"газет, надмогильні плити ...) звідки можна видобути інформацію. Щоб створити "
+"цитату, спочатку оберіть джерело, а потім запишіть місце розташування "
+"інформації, на яку посилається джерело, у полі \"Розділ / Сторінка\"."
 
 #: ../gramps/gui/editors/editcitation.py:322
 msgid "Cannot save citation. ID already exists."
@@ -16395,8 +16395,7 @@ msgstr "Унікальне ID для ідентифікації медіа об'
 msgid ""
 "A date associated with the media, eg., for a picture the date it is taken."
 msgstr ""
-"Дата, що асоціюється з цим об'єктом. Наприклад, для фото це може бути дата "
-"світлини."
+"Дата, що асоціюється з цим об'єктом. Наприклад, коли світлина була зроблена."
 
 #: ../gramps/gui/glade/editmediaref.glade:119
 msgid "_Corner 2:  X"
@@ -22709,8 +22708,8 @@ msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
 msgstr ""
-"  8. %(gramps_FAQ_html_start)s%(faq_section)sЯк додати фото до особи/джерела/"
-"події?%(html_end)s\n"
+"  8. %(gramps_FAQ_html_start)s%(faq_section)sЯк додати світлину до "
+"особи/джерела/події?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
@@ -32468,7 +32467,7 @@ msgstr "Чи додавати посилання на нащадків, до с�
 #: ../gramps/plugins/textreport/detdescendantreport.py:1116
 #: ../gramps/plugins/textreport/indivcomplete.py:1133
 msgid "Include Photo/Images from Gallery"
-msgstr "Включити Фото/Зображення з галереї"
+msgstr "Включити Світлину/Зображення з галереї"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:928
 #: ../gramps/plugins/textreport/detdescendantreport.py:1117
