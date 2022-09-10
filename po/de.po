@@ -20467,7 +20467,7 @@ msgstr ""
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
-msgstr "Fortschritt Informationen"
+msgstr "Fortschrittsanzeige"
 
 #: ../gramps/gui/widgets/reorderfam.py:63
 msgctxt "manual"
