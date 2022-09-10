@@ -9,21 +9,22 @@
 # Yin Hoe TAN <astyh83@gmail.com> 2014.
 # Anthony Fok (霍东灵) <foka@debian.org>, 2015.
 # Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021.
-#
+# poi <erbaotao@outlook.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-06-17 16:22+0800\n"
-"Last-Translator: Shixiong Tian <tiansworld@fedoraproject.org>\n"
-"Language-Team: Chinese (simplified)\n"
+"PO-Revision-Date: 2022-09-03 10:16+0000\n"
+"Last-Translator: poi <erbaotao@outlook.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -194,10 +195,8 @@ msgid "8 of Hanuka"
 msgstr "Hanuka 第八天"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "斜体"
+msgstr "意大利"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -224,10 +223,8 @@ msgid "Sweden"
 msgstr "瑞典"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "土耳其语"
+msgstr "土耳其"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
