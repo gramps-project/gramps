@@ -30,7 +30,7 @@
 # Frederic Chateaux, 2007-2008.
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2017.
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
-# Christophe <khrys63@gmail.com>, 2018.
+# Christophe <khrys63@gmail.com>, 2018, 2022.
 # Gil da Costa <gdacosta@sommier-colas.fr>, 2019.
 # Jean-Marc <m.balthazar@posteo.net>, 2021.
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
@@ -40,8 +40,8 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-08-25 18:20+0000\n"
-"Last-Translator: Translator <kvb@tuta.io>\n"
+"PO-Revision-Date: 2022-09-05 19:17+0000\n"
+"Last-Translator: khrys63 <khrys63@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2947,7 +2947,7 @@ msgstr "Hébraïque"
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgctxt "calendar"
 msgid "French Republican"
-msgstr "Républicain français"
+msgstr "Républicain"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
