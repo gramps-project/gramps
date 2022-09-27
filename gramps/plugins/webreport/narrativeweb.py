@@ -61,6 +61,7 @@ from decimal import getcontext
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import VERSION_DIR
 from gramps.gen.lib import (EventType, Name,
                             Person,
                             Family, Event, Place, PlaceName, Source,
@@ -2501,17 +2502,20 @@ class NavWebOptions(MenuReportOptions):
             config.register(openlayers, last_ok_version)
         openlayers = 'external_modules.openlayers_version'
         olv = config.get(openlayers)
+        inipath = os.path.join(VERSION_DIR, 'gramps.ini')
         olv = [
-            (_("in gramps.ini (%s)" % olv), olv),
-            (_("latest"), "latest"),
-            (_("last working version (%s)" % last_ok_version), last_ok_version)]
+            (_("in %(inipth)s (%(val)s)" % {'inipth': inipath,
+                                            'val': olv}), olv),
+            (_("latest"), "latest")]
         self.__olv = EnumeratedListOption(_("openlayers version to use"),
                                           olv[0][1])
         for trans, opt in olv:
             self.__olv.add_item(opt, trans)
         self.__olv.set_help(
-            _("You should use this option only if you "
-              "can't see the map in openstreetmap..."
+            _("You should use this option only if you can't see "
+              "the maps in your website for OpenStreetMap or Stamen maps"
+              "\nYou can change the value in the specified file."
+              " The option name to modify is openlayers_version."
               "\nSee OLDER VERSIONS in https://openlayers.org/"))
         addopt("ol_version", self.__olv)
 
