@@ -627,6 +627,10 @@ class DateParser:
             y = self._get_int(groups[0])
             m = self._get_int(groups[3])
             d = self._get_int(groups[4])
+            if d > 99:
+                yy = d
+                d = y
+                y = yy
             if groups[2] and julian_valid((d, m, y + 1)):
                 return (d, m, y + 1, True) # slash year
             if check is None or check((d, m, y)):
