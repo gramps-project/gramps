@@ -7,13 +7,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # PeterJPower <pekka.valta@kolumbus.fi>, 2021.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2022.
+# Jyri-Petteri Paloposki <jyri-petteri.paloposki@iki.fi>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-27 12:23+0000\n"
-"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
+"PO-Revision-Date: 2022-09-30 11:21+0000\n"
+"Last-Translator: Jyri-Petteri Paloposki <jyri-petteri.paloposki@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fi/>\n"
 "Language: fi\n"
@@ -90,27 +91,27 @@ msgstr "Pääsiäinen"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr "2. Pääsiäisestä"
+msgstr "2. pääsiäisestä"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr "3. Pääsiäisestä"
+msgstr "3. pääsiäisestä"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr "4. Pääsiäisestä"
+msgstr "4. pääsiäisestä"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr "5. Pääsiäisestä"
+msgstr "5. pääsiäisestä"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr "6. Pääsiäisestä"
+msgstr "6. pääsiäisestä"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr "7. Pääsiäisestä"
+msgstr "7. pääsiäisestä"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
@@ -134,27 +135,27 @@ msgstr "Sukkot"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr "2. Sukkot"
+msgstr "2. sukkotista"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr "3. Sukkot"
+msgstr "3. sukkotista"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr "4. Sukkot"
+msgstr "4. sukkotista"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr "5. Sukkot"
+msgstr "5. sukkotista"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr "6. Sukkot"
+msgstr "6. sukkotista"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr "7. Sukkot"
+msgstr "7. sukkotista"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
@@ -166,31 +167,31 @@ msgstr "Hanukka"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr "2. Hanukka"
+msgstr "2. hanukasta"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr "3. Hanukka"
+msgstr "3. hanukasta"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr "4. Hanukka"
+msgstr "4. hanukasta"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr "5. Hanukka"
+msgstr "5. hanukasta"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr "6. Hanukka"
+msgstr "6. hanukasta"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr "7. Hanukka"
+msgstr "7. hanukasta"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr "8. Hanukka"
+msgstr "8. hanukasta"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
