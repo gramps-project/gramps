@@ -8,13 +8,14 @@
 # André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2011, 2012, 2013, 2014.
 # Paulo Henrique Paiva de Moraes <paulohpmoraes@gmail.com>, 2016, 2017, 2018...
 # AL <andre.leopoldino+weblate@gmail.com>, 2022.
+# Luam Souza <luamsilva10@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-06-13 07:36+0000\n"
-"Last-Translator: AL <andre.leopoldino+weblate@gmail.com>\n"
+"PO-Revision-Date: 2022-09-24 12:17+0000\n"
+"Last-Translator: Luam Souza <luamsilva10@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-Basepath: ../gramps-master/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -35,10 +36,8 @@ msgid "Canada"
 msgstr "Canadá"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Catalão"
+msgstr "Catalunha"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -193,10 +192,8 @@ msgid "8 of Hanuka"
 msgstr "8 de Hanucá"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Itálico"
+msgstr "Itália"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -223,10 +220,8 @@ msgid "Sweden"
 msgstr "Suécia"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turco"
+msgstr "Turquia"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -309,7 +304,6 @@ msgid "GeneWeb source file"
 msgstr "Arquivo fonte GeneWeb"
 
 #: ../data/tips.xml:4
-#, fuzzy
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format \"between January 4, 2000 and March 20, 2003\". You can also indicate "
@@ -317,10 +311,10 @@ msgid ""
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
 "<b>Trabalhando com datas</b><br/>Um intervalo de datas pode ser fornecido "
-"usando o formato &quot;entre 4 de janeiro de 2000 e 20 de março de "
-"2003&quot;. Você também pode indicar o nível de confiança para a data, e até "
-"escolher entre sete calendários diferentes. Experimente o botão ao lado do "
-"campo de data no editor de eventos."
+"usando o formato \"entre 4 de janeiro de 2000 e 20 de março de 2003\". Você "
+"também pode indicar o nível de confiança para a data, e até escolher entre "
+"sete calendários diferentes. Experimente o botão ao lado do campo de data no "
+"Editor de Eventos."
 
 #: ../data/tips.xml:6
 msgid ""
@@ -774,7 +768,6 @@ msgstr ""
 "contém centenas de milhares de pessoas."
 
 #: ../data/tips.xml:68
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -785,9 +778,9 @@ msgstr ""
 "<b>Marcação de pessoas</b>: O menu Marcadores no topo da janela é um local "
 "conveniente para armazenar os nomes de pessoas frequentemente usados. Ao "
 "selecionar uma pessoa marcada, a mesma se tornará a pessoa ativa. Para criar "
-"um marcador para uma pessoa, torne-a a pessoa ativa e vá para &quot;"
-"Marcadores &gt; Adicionar marcador&quot;, ou pressione Ctrl+D. Você também "
-"pode marcar a maioria dos outros objetos."
+"um marcador para uma pessoa, torne-a a pessoa ativa e vá para \"Marcadores "
+"&gt; Adicionar marcado\" ou pressione Ctrl+D. Você também pode marcar a "
+"maioria dos outros objetos."
 
 #: ../data/tips.xml:70
 #, fuzzy
@@ -12048,10 +12041,8 @@ msgid "Edit"
 msgstr "Editar"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Formato do local"
+msgstr "Automatizar formato do local"
 
 #: ../gramps/gui/configure.py:1195
 #, fuzzy
@@ -12463,12 +12454,12 @@ msgid "Database backend"
 msgstr "Infraestrutura da base de dados"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Informações da base de dados"
+msgstr ""
+"\n"
+"Localização da base de dados"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12485,12 +12476,12 @@ msgid "Database path"
 msgstr "Tipo de base de dados"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Fazer cópia de segurança ao sair"
+msgstr ""
+"\n"
+"Gerenciamento de cópias de segurança"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12523,12 +12514,12 @@ msgid "Autobackup"
 msgstr "Cópia de segurança automática"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Localização da base de dados da árvore genealógica"
+msgstr ""
+"\n"
+"Localização das mídias da árvore genealógica"
 
 #: ../gramps/gui/configure.py:1870
 #, fuzzy
@@ -12566,12 +12557,12 @@ msgstr ""
 "Apague para definir o valor padrão."
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "Importação GEDCOM"
+msgstr ""
+"\n"
+"Importação GEDCOM"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -12699,7 +12690,7 @@ msgstr "Companheiro(a)"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Morto"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
@@ -19614,10 +19605,9 @@ msgid "Document Styles"
 msgstr "Estilos de documento"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:108
-#, fuzzy
 msgctxt "manual"
 msgid "Document_Styles_dialog"
-msgstr "Estilos de documento"
+msgstr "Diálogo_estilos_de_documento"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
@@ -19809,10 +19799,9 @@ msgid "Select Repository"
 msgstr "Selecionar repositório"
 
 #: ../gramps/gui/selectors/selectrepository.py:75
-#, fuzzy
 msgctxt "manual"
 msgid "Select_Repository_selector"
-msgstr "Selecionar repositório"
+msgstr "Seletor_selecionar_repositório"
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -20596,10 +20585,9 @@ msgid "Progress Information"
 msgstr "Informações do progresso"
 
 #: ../gramps/gui/widgets/reorderfam.py:63
-#, fuzzy
 msgctxt "manual"
 msgid "Reorder_Relationships_dialog"
-msgstr "Reordenar parentescos"
+msgstr "Diálogo_Reordenar_Parentescos"
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -37703,7 +37691,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/media.py:238
 msgctxt "Media "
 msgid " Name"
-msgstr "Nome"
+msgstr " Nome"
 
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Mime Type"
@@ -38962,6 +38950,9 @@ msgid ""
 "This page contains the last updated objects in the database in the last "
 "%(days)d days and for a maximum of %(nb)d objects per object type."
 msgstr ""
+"Esta página contém os últimos objetos atualizados na base de dados nos "
+"últimos %(days)d dias e por um máximos de %(nb)d objetos por tipo de "
+"extensão."
 
 #: ../gramps/plugins/webreport/webcal.py:193
 #: ../gramps/plugins/webreport/webcal.py:649
