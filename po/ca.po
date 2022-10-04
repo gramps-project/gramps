@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-04-21 07:10+0000\n"
+"PO-Revision-Date: 2022-09-17 19:16+0000\n"
 "Last-Translator: Maite Guix <maite.guix@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -9523,7 +9523,7 @@ msgstr "No s'ha pogut crear %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
-msgstr "Predeterminat"
+msgstr "Per defecte"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
