@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-17 19:16+0000\n"
+"PO-Revision-Date: 2022-10-10 18:01+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -12148,7 +12148,7 @@ msgstr "Rechtschreibprüfung einschalten"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Enable the spelling checker for notes."
-msgstr "Rechtschreibprüfung für Notizen einschalten"
+msgstr "Aktiviere die Rechtschreibprüfung für Notizen."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -18889,7 +18889,7 @@ msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
 "Drücke Abbrechen, um abzubrechen, Zurück, um deine Optionen erneut "
-"aufzurufen, oder Übernehmen, um fortzufahren."
+"aufzurufen, oder Übernehmen, um fortzufahren"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
 #, python-format
@@ -18950,7 +18950,7 @@ msgstr "Dateiname: %s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:514
 msgid "Saving failed"
-msgstr "Das Speichern ist gescheitert"
+msgstr "Speichern fehlgeschlagen"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:516
 msgid ""
@@ -18960,11 +18960,11 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"Beim Speichern deiner Daten trat ein Fehler auf. Bitte gehe zurück und "
-"versuche es noch einmal.\n"
+"Beim Speichern deiner Daten ist ein Fehler aufgetreten. Du kannst versuchen, "
+"den Export erneut zu starten.\n"
 "\n"
-"Anmerkung: Deine momentan geöffnete Datenbank ist sicher. Nur die Kopie "
-"deiner Daten konnte nicht gespeichert werden."
+"Hinweis: Deine aktuell geöffnete Datenbank ist sicher. Es war nur eine Kopie "
+"Ihrer Daten, die nicht gespeichert werden konnte."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:532
 msgid ""
@@ -18999,11 +18999,11 @@ msgstr "Fehler beim Exportieren deines Stammbaums"
 #: ../gramps/gui/plug/export/_exportassistant.py:604
 #: ../gramps/gui/plug/export/_exportassistant.py:638
 msgid "Please wait while your data is selected and exported"
-msgstr "Bitte warten, während deine Daten ausgewählt und exportiert werden"
+msgstr "Bitte warte, während deine Daten ausgewählt und exportiert werden"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:68
 msgid "Selecting Preview Data"
-msgstr "Vorschau-Daten auswählen"
+msgstr "Vorschaudaten auswählen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:69
 #: ../gramps/gui/plug/export/_exportoptions.py:72
@@ -19085,7 +19085,7 @@ msgstr "Hier klicken, um eine Vorschau nach dem Referenhzfilter zu sehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:401
 msgid "Hide order"
-msgstr "Reihenfolge verbergen"
+msgstr "Reihenfolge ausblenden"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:597
 msgid "Filtering private data"
@@ -19126,11 +19126,11 @@ msgstr "Alle ausgewählten Notizen einbeziehen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:739
 msgid "Replace given names of living people"
-msgstr "Vornamen noch lebender Personen ersetzen"
+msgstr "Vornamen lebender Personen ersetzen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:740
 msgid "Replace complete name of living people"
-msgstr "Vollständigen Namen noch lebender Personen ersetzen"
+msgstr "Vollständigen Namen lebender Personen ersetzen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:741
 msgid "Do not include living people"
@@ -19148,7 +19148,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportoptions.py:772
 msgid "Use Compression"
-msgstr "Verwende Komprimierung"
+msgstr "Komprimierung verwenden"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:98
 msgid "Web Connection"
@@ -19167,11 +19167,11 @@ msgstr "Schnellansicht"
 #: ../gramps/plugins/gramplet/ancestor.py:115
 #: ../gramps/plugins/gramplet/descendant.py:113
 msgid "Copy all"
-msgstr "Alles kopieren"
+msgstr "Kopiere alles"
 
 #: ../gramps/gui/plug/quick/_quicktable.py:161
 msgid "See data not in Filter"
-msgstr "Daten nicht im Filter ansehen"
+msgstr "Siehe Daten, die nicht im Filter sind"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:92
 msgid "Generate_Book_dialog"
@@ -19183,16 +19183,16 @@ msgstr "Verfügbare Bücher"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:247
 msgid "Discard Unsaved Changes"
-msgstr "Ungesicherte Änderungen verwerfen"
+msgstr "Nicht gespeicherte Änderungen verwerfen"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:248
 msgid "You have made changes which have not been saved."
-msgstr "Deine Änderungen wurden noch nicht gespeichert."
+msgstr "Du hast Änderungen vorgenommen, die nicht gespeichert wurden."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:249
 #: ../gramps/gui/plug/report/_bookdialog.py:750
 msgid "Proceed"
-msgstr "Fortsetzen"
+msgstr "Fortfahren"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:309
 msgid "Name of the book. MANDATORY"
@@ -19221,11 +19221,11 @@ msgstr "Artikelname"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:390
 msgid "Subject"
-msgstr "Betreff"
+msgstr "Thema"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:404
 msgid "Book selection list"
-msgstr "Liste zur Auswahl eines Buches"
+msgstr "Buchauswahlliste"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:456
 msgid "Different database"
@@ -19241,22 +19241,21 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Dieses Buch wurde beim Erstellen auf die erstellende Datenbank %s "
-"referenziert.\n"
+"Dieses Buch wurde mit den Verweisen auf die Datenbank %s erstellt.\n"
 "\n"
-"Die im Buch gespeicherten Referenzen auf die Hauptperson sind in DIESER "
-"Datenbank ungültig.\n"
+" Dadurch werden Verweise auf die im Buch gespeicherte zentrale Person "
+"ungültig.\n"
 "\n"
-"Deswegen wurde die Hauptperson für jeden Artikel auf die aktive Person "
-"dieser geöffneten Datenbank gesetzt."
+"Daher wird die zentrale Person für jeden Artikel auf die aktive Person der "
+"aktuell geöffneten Datenbank gesetzt."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:563
 msgid "No selected book item"
-msgstr "Kein gewähltes Buchelement"
+msgstr "Kein ausgewähltes Buchelement"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:564
 msgid "Please select a book item to configure."
-msgstr "Bitte ein Buchelement zum konfigurieren wählen."
+msgstr "Bitte wähle einen zu konfigurierenden Buchartikel aus."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:631
 #: ../gramps/gui/views/bookmarks.py:292 ../gramps/gui/views/tags.py:485
@@ -19270,17 +19269,17 @@ msgstr "_Runter"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:633
 msgid "Setup"
-msgstr "Einrichten"
+msgstr "Einrichtung"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:722
 #: ../gramps/gui/plug/report/_bookdialog.py:733
 msgid "No items"
-msgstr "Keine Elemente"
+msgstr "Keine Artikel"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:723
 #: ../gramps/gui/plug/report/_bookdialog.py:734
 msgid "This book has no items."
-msgstr "Dieses Buch besitzt keine Elemente."
+msgstr "Dieses Buch enthält keine Artikel."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:740
 msgid "No book name"
@@ -19320,7 +19319,7 @@ msgstr "Papieroptionen"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:149
 msgid "HTML Options"
-msgstr "HTML Optionen"
+msgstr "HTML-Optionen"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_graphreportdialog.py:154
@@ -19330,11 +19329,11 @@ msgstr "Ausgabeformat"
 #: ../gramps/gui/plug/report/_docreportdialog.py:194
 #: ../gramps/gui/plug/report/_graphreportdialog.py:162
 msgid "Open with default viewer"
-msgstr "Mit Standardbetrachter öffnen"
+msgstr "Mit Standard-Anzeigeprogramm öffnen"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 msgid "CSS file"
-msgstr "CSS Datei"
+msgstr "CSS-Datei"
 
 #: ../gramps/gui/plug/report/_papermenu.py:106
 msgid "Portrait"
