@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-21 09:16+0000\n"
+"PO-Revision-Date: 2022-10-10 18:01+0000\n"
 "Last-Translator: Bora Atıcı <boratici.acc@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/tr/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Language: tr\n"
 "X-Source-Language: C\n"
@@ -164,35 +164,35 @@ msgstr "Simha Tora"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr "Hanuka"
+msgstr "Işıklar Bayramı 1. Gün"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr "Hanuka 2"
+msgstr "Işıklar Bayramı 2. Gün"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr "Hanuka 3"
+msgstr "Işıklar Bayramı 3. Gün"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr "Hanuka 4"
+msgstr "Işıklar Bayramı 4. Gün"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr "Hanuka 5"
+msgstr "Işıklar Bayramı 5. Gün"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr "Hanuka 6"
+msgstr "Işıklar Bayramı 6. Gün"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr "Hanuka 7"
+msgstr "Işıklar Bayramı 7. Gün"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr "Hanuka 8"
+msgstr "Işıklar Bayramı 8. Gün"
 
 #: ../data/holidays.xml:388
 msgid "Italy"
