@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-06-13 07:36+0000\n"
+"PO-Revision-Date: 2022-10-10 18:01+0000\n"
 "Last-Translator: Mihle <MihleGaming@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -130,7 +130,6 @@ msgid "Yom Kippur"
 msgstr "Jom kippúr"
 
 #: ../data/holidays.xml:371
-#, fuzzy
 msgid "Sukot"
 msgstr "Løvhyttefesten"
 
@@ -541,9 +540,9 @@ msgid ""
 "the People View). Then go to the Relationship View and create relationships "
 "between people."
 msgstr ""
-"<b>Opprette ny slektsdatabase</b><br/>En god måte å starte et nytt slektstre "
-"på, er å legge inn alle medlemmene i familien inn i databasen (bruk &quot;"
-"Rediger &gt; Legg til&quot;, eller klikk på knappen Legg til på "
+"<b>Opprette et nytt slektstreet</b><br/>En god måte å starte et nytt "
+"slektstre på, er å legge inn alle medlemmene i familien inn i databasen ("
+"bruk &quot;Rediger &gt; Legg til&quot;, eller klikk på knappen Legg til på "
 "Verktøylinja). Gå så til Familievisningen og lag relasjoner mellom personene."
 
 #: ../data/tips.xml:38
@@ -1078,7 +1077,7 @@ msgid ""
 msgstr ""
 "<b>Gramps oversettere</b><br/>Gramps har blitt utviklet slik at nye "
 "oversettelser enkelt kan legges til. Hvis du er interessert i å bidra kan du "
-"sende en e-post til gramps-devel@lists.sf.net"
+"sende en e-post til gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -9838,10 +9837,8 @@ msgid "Short"
 msgstr "Kort"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Finding Surnames"
 msgid "Given Nickname Surname"
-msgstr "Finner etternavn"
+msgstr "Gitt Kallenavn Etternavn"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 #, fuzzy
@@ -11196,9 +11193,8 @@ msgid "Engaged"
 msgstr "Forlovelse"
 
 #: ../gramps/gen/utils/symbols.py:99
-#, fuzzy
 msgid "Unmarried partnership"
-msgstr "Unmarried partnership"
+msgstr "Ugift partnerskap"
 
 #: ../gramps/gen/utils/symbols.py:101 ../gramps/gui/configure.py:2238
 msgid "Buried"
@@ -11651,16 +11647,12 @@ msgid "Email"
 msgstr "E-post"
 
 #: ../gramps/gui/configure.py:633
-#, fuzzy
-#| msgid ""
-#| "Enter information about yourself so people can contact you when you "
-#| "distribute your Family Tree"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
 "Skriv inn informasjon om deg selv slik at folk kan kontakte deg når du "
-"distribuerer slektstreet ditt"
+"distribuerer slektstreet ditt."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -11913,10 +11905,8 @@ msgid "Consider single pa/matronymic as surname"
 msgstr "Ta hensyn til enkelt pa-/matronymikon som etternavn"
 
 #: ../gramps/gui/configure.py:1274
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "Datoformat"
+msgstr "Datoformat *"
 
 #: ../gramps/gui/configure.py:1282
 msgid "Years"
@@ -11960,12 +11950,12 @@ msgid "Status bar"
 msgstr "Statuslinje"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Innstillinger for rapporter"
+msgstr ""
+"\n"
+"Inndataalternativer"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -12028,10 +12018,8 @@ msgstr ""
 "Å endre dataformat vil ikke begynne å virke før Gramps startes neste gang."
 
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Beregner tidslinje..."
+msgstr "Beregningsgrenser"
 
 #: ../gramps/gui/configure.py:1534
 #, fuzzy
@@ -12112,16 +12100,12 @@ msgid "Remember last view displayed and open it next time."
 msgstr "Husk siste visning og åpne den neste gang."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "Skru på stavekontroll"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Skru på stavekontroll"
+msgstr "Skru på stavekontroll for notater."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12136,7 +12120,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
-msgstr "Vis tekst ved siden av navigatorknappene (krever omstart av Gramps)"
+msgstr "Vis tekstetikett ved siden av Navigator-knappene *"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
@@ -12191,10 +12175,8 @@ msgstr ""
 "vil vise <u><b>Understreket og fet dato</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1656
-#, fuzzy
-#| msgid "Multiple Surnames"
 msgid "Multiple surname box height"
-msgstr "Flere etternavn"
+msgstr "Flere etternavn boks høyde"
 
 #: ../gramps/gui/configure.py:1660
 msgid ""
@@ -12294,22 +12276,20 @@ msgid "update"
 msgstr "oppdatering"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
-#| msgid "Database version"
 msgid "Database Setting"
-msgstr "Databaseversjon"
+msgstr "Databaseinnstilling"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
 msgstr "Database-bakende"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Databaseinformasjon"
+msgstr ""
+"\n"
+"Databaseplassering"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12320,18 +12300,16 @@ msgid "Port"
 msgstr "Port"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
-#| msgid "Database Type"
 msgid "Database path"
-msgstr "Databasentype"
+msgstr "Databasebane"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Lag sikkerhetskopi ved avslutning"
+msgstr ""
+"\n"
+"Administrasjon av sikkerhetskopiering"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12364,18 +12342,18 @@ msgid "Autobackup"
 msgstr "Automatisk sikkerhetskopi"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Databasesti"
+msgstr ""
+"\n"
+"Slektstre Media bane"
 
 #: ../gramps/gui/configure.py:1870
 #, fuzzy
 #| msgid "Cannot set base media path"
 msgid "Base media path"
-msgstr "Kan ikke sette mediasti"
+msgstr "Grunleggende mediabane"
 
 #: ../gramps/gui/configure.py:1876
 msgid ""
@@ -12388,7 +12366,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Records"
 msgid "Tag Records"
-msgstr "Poster"
+msgstr "Etikett Poster"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
@@ -12403,16 +12381,16 @@ msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Angitt merkevil bli lagt til ved import.\n"
-"Tøm for å sette forvalgt verdi."
+"Spesifisert etikett vil bli lagt til ved import.\n"
+"Fjern for å angi standardverdi."
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "GEDCOM-import"
+msgstr ""
+"\n"
+"Kilde GEDCOM-import"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -12751,7 +12729,7 @@ msgstr "Innstilling"
 
 #: ../gramps/gui/dbman.py:200
 msgid "Family Trees"
-msgstr "Familietrær"
+msgstr "Slektstree"
 
 #: ../gramps/gui/dbman.py:381
 msgid "Family Tree name"
@@ -15479,13 +15457,12 @@ msgid "This updates the view with the current filter parameters."
 msgstr "Dette oppdaterer visningen med nåværende filterparameter."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:65
-#, fuzzy
 msgid ""
 "This resets the filter parameters to empty state.  The 'Find' button should "
 "be used to actually update the view to its defaults."
 msgstr ""
 "Dette tilbakestiller filterparameterne til en tom tilstand. «Finn»-knappen "
-"skal brukes til å faktisk oppdatere visningen til sitt forvalg."
+"skal brukes til å faktisk oppdatere visningen til standard."
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:88
 msgid "Reset"
@@ -16870,10 +16847,8 @@ msgstr "Kode som henger sammen med dette steder, f.eks. postnummer."
 
 #: ../gramps/gui/glade/editplace.glade:380
 #: ../gramps/gui/glade/editplaceref.glade:397
-#, fuzzy
-#| msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgid "What type of place this is. Eg 'Country', 'City', ..."
-msgstr "Hvilken type sted erdette. F.eks. 'Land', 'By', ... ."
+msgstr "Hvilken type sted er dette. F.eks. 'Land', 'By', ..."
 
 #: ../gramps/gui/glade/editplace.glade:443
 #: ../gramps/gui/glade/editplaceref.glade:599
@@ -17937,8 +17912,9 @@ msgid "_FAQ"
 msgstr "O_SS"
 
 #: ../gramps/gui/grampsgui.py:56
+#, fuzzy
 msgid "_Family Trees"
-msgstr "_Familietrær"
+msgstr "_Slektstre"
 
 #: ../gramps/gui/grampsgui.py:56
 msgid "_Go"
@@ -18736,10 +18712,9 @@ msgstr[0] "{number_of} programtillegg ble installert."
 msgstr[1] "{number_of} programtillegg ble installert."
 
 #: ../gramps/gui/plug/_windows.py:1227
-#, fuzzy
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
 msgstr ""
-"Hvis du har installert en «Grampsvisning», vil du måtte starte Gramps på ny."
+"Hvis du har installert en «Gramps View», vil du måtte starte Gramps på nytt."
 
 #: ../gramps/gui/plug/_windows.py:1231
 msgid "No addons were installed."
@@ -18790,8 +18765,8 @@ msgstr ""
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Klikk OK for å fortsette, Avbryt for å avbryte, eller Tilbake for å gå "
-"tilbake til opsjonene."
+"Trykk på Avbryt for å avbryte, Tilbake for å gå tilbake til alternativene "
+"dine, eller Bruk for å fortsette"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
 #, fuzzy, python-format
@@ -20282,7 +20257,6 @@ msgid "Gramplet Bar Help"
 msgstr "Grampsrad Hjelp"
 
 #: ../gramps/gui/widgets/grampletbar.py:521
-#, fuzzy
 msgid "About Gramplets"
 msgstr "Om Gramplets"
 
@@ -25042,16 +25016,12 @@ msgid "Gramps package (portable XML)"
 msgstr "Gramps-pakke (flyttbar XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:92
-#, fuzzy
-#| msgid ""
-#| "Import data from a Gramps package (an archived XML Family Tree together "
-#| "with the media object files.)"
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
 "Importere data fra en Gramps-pakke (en arkivert XML-slektsdatabase sammen "
-"med mediaobjektfiler.)"
+"med mediaobjektfiler)."
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
@@ -26026,10 +25996,9 @@ msgstr ""
 "Fila er sannsynligvis enten ødelagt eller ikke en gyldig Gramps-database."
 
 #: ../gramps/plugins/importer/importxml.py:255
-#, fuzzy, python-brace-format
-#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s - %(text)s med %(id2)s\n"
+msgstr "  {id1} - {text} med {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
@@ -26069,10 +26038,8 @@ msgid "Sources"
 msgstr "Kilder"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "Antall nye importerte objekter:\n"
+msgstr "Antall nye importerte objekter:"
 
 #: ../gramps/plugins/importer/importxml.py:297
 #, fuzzy, python-format
@@ -26094,12 +26061,12 @@ msgid ""
 "'Unknown' objects are referenced by note %(unknown)s."
 msgstr ""
 "\n"
-" Den importerte fila var ikke komplett.\n"
+"Den importerte fila var ikke komplett.\n"
 "For å rette på dette ble %(new)d objekter opprettet og\n"
 "de typiske egenskapene til disse ble satt til 'Ukjent'.\n"
 "Spesifikasjonene per kategori er vist ved numrene\n"
 "i parenteser. Der det er mulig lir disse 'Ukjent'-\n"
-"objektene referert til av notatet %(unknown)s.\n"
+"objektene referert til av notatet %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:307
 #, fuzzy
@@ -26121,19 +26088,15 @@ msgstr ""
 "importert. Disse stiene håndteres som relative til\n"
 "mediakatalogen du har angitt i innstillingene,\n"
 "eller, hvis angitt, relativt til hjemmekatalogen\n"
-"til brukeren.\n"
+"til brukeren."
 
 #: ../gramps/plugins/importer/importxml.py:317
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Objekter som er kandidater til å bli slått sammen:\n"
+"Objekter som er kandidater til å bli slått sammen:"
 
 #: ../gramps/plugins/importer/importxml.py:804
 #: ../gramps/plugins/importer/importxml.py:1284
@@ -30819,7 +30782,7 @@ msgstr "Velg en kml-fil som er brukt for å legge til steder"
 
 #: ../gramps/plugins/lib/maps/geography.py:1053
 msgid "You will need to edit each place manually to add place type, ...\n"
-msgstr ""
+msgstr "Du må redigere hvert sted manuelt for å legge til stedstype, ...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1055
 #, python-brace-format
@@ -33270,10 +33233,9 @@ msgid "Repository Information"
 msgstr "Relasjonsinformasjon"
 
 #: ../gramps/plugins/textreport/summary.py:286
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Antall oppbevaringssteder"
+msgstr "Antall oppbevaringssteder: %d"
 
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
@@ -34612,7 +34574,7 @@ msgstr "_E-post:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:383
 msgid "Right-click to copy from/to Researcher Preferences"
-msgstr ""
+msgstr "Høyreklikk for å kopiere fra/til Forsker-innstillinger"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgctxt "manual"
@@ -34805,7 +34767,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/removespaces.py:118
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr ""
+msgstr "Ser etter mulige felt med innledende eller etterfølgende mellomrom"
 
 #: ../gramps/plugins/tool/removespaces.py:135
 #: ../gramps/plugins/tool/removespaces.py:185
@@ -34947,6 +34909,8 @@ msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"Aktiver ID-omorganisering\n"
+"med Start/trinn-sekvens."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -35294,7 +35258,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Searches the entire database, looking for a possible loop."
-msgstr ""
+msgstr "Søker i hele databasen, ser etter mulige løkker."
 
 #: ../gramps/plugins/tool/tools.gpr.py:490
 msgid ""
@@ -35877,7 +35841,7 @@ msgstr "Bakgrunn"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:313
 msgid "Add global background colored gradient"
-msgstr ""
+msgstr "Legg til global bakgrunnsfarget gradient"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
@@ -36090,6 +36054,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
+"Høyreklikk på kartet og velg 'vis alle hendelser' for å vise alle kjente "
+"hendelser med koordinater. Du kan bruke historikken til å navigere på "
+"kartet. Du kan bruke filtrering."
 
 #: ../gramps/plugins/view/geoevents.py:410
 #: ../gramps/plugins/view/geoevents.py:441
@@ -37803,7 +37770,7 @@ msgstr "Beskrivelse for nedlasting"
 #: ../gramps/plugins/webreport/narrativeweb.py:2313
 #, python-format
 msgid "Family Tree #%c"
-msgstr "Familietre #%c"
+msgstr "Slektstre #%c"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2314
 msgid "Give a description for this file."
