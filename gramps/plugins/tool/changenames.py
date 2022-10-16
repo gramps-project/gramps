@@ -210,7 +210,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         self.progress.set_pass(_('Building display'),len(self.name_list))
         for name in self.name_list:
             handle = self.model.append()
-            self.model.set_value(handle,0,True)
+            self.model.set_value(handle,0,False)
             self.model.set_value(handle,1, name)
             namecap = self.name_cap(name)
             self.model.set_value(handle,2, namecap)
