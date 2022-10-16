@@ -25644,15 +25644,15 @@ msgstr "GEDCOM-versie"
 #. uppercase  (Note: Gramps is not a validator! prc)
 #: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "GEDCOM FORM should be in uppercase"
-msgstr "GEDCOM-FORMULIER moet in hoofdletters zijn"
+msgstr "GEDCOM-FORM moet in hoofdletters zijn"
 
 #: ../gramps/plugins/lib/libgedcom.py:7524
 msgid "GEDCOM FORM not supported"
-msgstr "GEDCOM-FORMULIER wordt niet ondersteund"
+msgstr "GEDCOM-FORM wordt niet ondersteund"
 
 #: ../gramps/plugins/lib/libgedcom.py:7527
 msgid "GEDCOM form"
-msgstr "GEDCOM-FORMULIER"
+msgstr "GEDCOM-FORM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7578
 msgid "Creation date of GEDCOM"
