@@ -61,6 +61,7 @@ from decimal import getcontext
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import VERSION_DIR
 from gramps.gen.lib import (EventType, Name,
                             Person,
                             Family, Event, Place, PlaceName, Source,
@@ -1876,6 +1877,7 @@ class NavWebOptions(MenuReportOptions):
         self.__stamenopts = None
         self.__googleopts = None
         self.__googlemapkey = None
+        self.__olv = None
         self.__ancestortree = None
         self.__css = None
         self.__gallery = None
@@ -2494,6 +2496,29 @@ class NavWebOptions(MenuReportOptions):
 
         self.__placemap_options()
 
+        openlayers = 'external_modules.openlayers_version'
+        last_ok_version = "v6.15.1"
+        if not config.is_set(openlayers):
+            config.register(openlayers, last_ok_version)
+        openlayers = 'external_modules.openlayers_version'
+        olv = config.get(openlayers)
+        inipath = os.path.join(VERSION_DIR, 'gramps.ini')
+        olv = [
+            (_("in %(inipth)s (%(val)s)" % {'inipth': inipath,
+                                            'val': olv}), olv),
+            (_("latest"), "latest")]
+        self.__olv = EnumeratedListOption(_("openlayers version to use"),
+                                          olv[0][1])
+        for trans, opt in olv:
+            self.__olv.add_item(opt, trans)
+        self.__olv.set_help(
+            _("You should use this option only if you can't see "
+              "the maps in your website for OpenStreetMap or Stamen maps"
+              "\nYou can change the value in the specified file."
+              " The option name to modify is openlayers_version."
+              "\nSee OLDER VERSIONS in https://openlayers.org/"))
+        addopt("ol_version", self.__olv)
+
     def __add_others_options(self, menu):
         """
         Options for the cms tab, web calendar inclusion, PHP ...
@@ -2790,8 +2815,12 @@ class NavWebOptions(MenuReportOptions):
 
         if family_active and mapservice_opts == "Google":
             self.__googleopts.set_available(True)
+            if self.__olv:
+                self.__olv.set_available(False)
         else:
             self.__googleopts.set_available(False)
+            if self.__olv:
+                self.__olv.set_available(True)
 
         if (place_active or family_active) and mapservice_opts == "Google":
             self.__googlemapkey.set_available(True)
