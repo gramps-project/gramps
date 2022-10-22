@@ -53,7 +53,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import get_thumbnail_image
 from ..utils import is_right_click, open_file_with_default_application
-from gramps.gen.utils.db import get_birth_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.lib import NoteType, Person, Surname
 from gramps.gen.db import DbTxn
 from .. import widgets
@@ -447,6 +447,14 @@ class EditPerson(EditPrimary):
         event = get_birth_or_fallback(self.dbstate.db, self.obj)
         return event.get_date_object() if event else None
 
+    def get_end_date(self):
+        """
+        Get the end date for a person, usually a death date, or
+        something close to death.
+        """
+        event = get_death_or_fallback(self.dbstate.db, self.obj)
+        return event.get_date_object() if event else None
+
     def _create_tabbed_pages(self):
         """
         Create the notebook tabs and insert them into the main window.
@@ -459,7 +467,8 @@ class EditPerson(EditPrimary):
             self.uistate,
             self.track,
             self.obj,
-            start_date=self.get_start_date())
+            start_date=self.get_start_date(),
+            end_date=self.get_end_date())
 
         self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")

@@ -60,6 +60,7 @@ from gramps.gen.proxy.cache import CacheProxyDb
 #-------------------------------------------------------------------------
 invalid_date_format = config.get('preferences.invalid-date-format')
 age_precision = config.get('preferences.age-display-precision')
+age_after_death = config.get('preferences.age-after-death')
 
 #-------------------------------------------------------------------------
 #
@@ -101,6 +102,7 @@ class EventRefModel(Gtk.TreeStore):
         @param kwargs: A dictionary of additional settings/values.
         """
         self.start_date = kwargs.get("start_date", None)
+        self.end_date = kwargs.get("end_date", None)
         typeobjs = (x[1] for x in self.COLS)
         Gtk.TreeStore.__init__(self, *typeobjs)
         self.db = CacheProxyDb(db)
@@ -181,6 +183,8 @@ class EventRefModel(Gtk.TreeStore):
             if (date == self.start_date and date.modifier == Date.MOD_NONE
                     and not (event.get_type().is_death_fallback() or
                              event.get_type() == EventType.DEATH)):
+                return ""
+            elif self.end_date and self.end_date < date and not age_after_death:
                 return ""
             else:
                 return (date - self.start_date).format(precision=age_precision)

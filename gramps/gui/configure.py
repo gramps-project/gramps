@@ -1344,6 +1344,12 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 2, row, 2, 1)
 
         row += 1
+        # Display ages for events after death
+        self.add_checkbox(
+            grid, _("Display ages for events after death *"),
+            row, 'preferences.age-after-death', start=2, stop=3)
+
+        row += 1
         # Calendar format on report:
         obox = Gtk.ComboBoxText()
         list(map(obox.append_text, Date.ui_calendar_names))
