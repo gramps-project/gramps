@@ -193,11 +193,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         self.build_tree()
 
-    def add_bookmark(self, menu):
+    def add_bookmark(self, menu, handle):
         """
         Add the place to the bookmark
         """
         dummy_menu = menu
+        dummy_hdle = handle
         mlist = self.selected_handles()
         if mlist:
             self.bookmarks.add(mlist[0])
