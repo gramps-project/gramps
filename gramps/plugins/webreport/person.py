@@ -1814,7 +1814,7 @@ class PersonPages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                for evt_ref in event_ref_list:
+                for evt_ref in sorted(event_ref_list, key=self.sort_by_event_date):
                     event = self.r_db.get_event_from_handle(evt_ref.ref)
                     if event:
 

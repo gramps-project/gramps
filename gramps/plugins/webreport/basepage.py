@@ -218,6 +218,17 @@ class BasePage:
         """
         pass
 
+    def sort_by_event_date(self, handle):
+        """ Used to sort events by date. """
+        event = self.r_db.get_event_from_handle(handle.ref)
+        date = event.get_date_object()
+        if date.get_year() > 0:
+            return date
+        else:
+            # if we have no date, we'll put the event at the
+            # end of the list
+            return Date(9999, 1, 1)
+
     def sort_on_name_and_grampsid(self, handle):
         """ Used to sort on name and gramps ID. """
         person = self.r_db.get_person_from_handle(handle)
