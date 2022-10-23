@@ -46,6 +46,7 @@ gender = {
     Person.MALE    : _("male"),
     Person.FEMALE  : _("female"),
     Person.UNKNOWN : _("unknown", "gender"),
+    Person.OTHER   : _("other", "gender"),
     }
 
 def format_gender(type):

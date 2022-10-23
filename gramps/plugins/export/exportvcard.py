@@ -260,6 +260,8 @@ class VCardWriter:
             gender_value = 'Male'
         elif gender == Person.FEMALE:
             gender_value = 'Female'
+        elif gender == Person.OTHER:
+            gender_value = 'Other'
         log.info("gender: %s -> %s" % (gender, gender_value))
         if gender_value:
             self.writeln("X-GENDER:%s" % (gender_value))

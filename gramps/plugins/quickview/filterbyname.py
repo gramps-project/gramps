@@ -57,6 +57,8 @@ fname_map = {'all': _('all', 'Filtering_on'),
              'all notes': _('all notes', 'Filtering_on'),
              'males': _('males', 'Filtering_on'),
              'females': _('females', 'Filtering_on'),
+             'people with other gender':
+                _('people with other gender', 'Filtering_on'),
              'people with unknown gender':
                 _('people with unknown gender', 'Filtering_on'),
              'incomplete names':
@@ -294,10 +296,18 @@ def run(database, document, filter_name, *args, **kwargs):
                          str(person.get_primary_name().get_type()))
                 matches += 1
 
+    elif (filter_name == 'people with other gender'):
+        stab.columns(_("Person"), _("Birth Date"), _("Name type"))
+        for person in database.iter_people():
+            if person.gender == Person.OTHER:
+                stab.row(person, sdb.birth_or_fallback(person),
+                         str(person.get_primary_name().get_type()))
+                matches += 1
+
     elif (filter_name == 'people with unknown gender'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
-            if person.gender not in [Person.FEMALE, Person.MALE]:
+            if person.gender == Person.UNKNOWN:
                 stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1

@@ -87,6 +87,7 @@ class StatisticsPage(BasePage):
         addressbookpage, dummy_head, dummy_body, outerwrapper = result
         (males,
          females,
+         others,
          unknown) = self.get_gender(report.database.iter_person_handles())
 
         step()
@@ -125,6 +126,8 @@ class StatisticsPage(BasePage):
                          "%d" % males, inline=True)
             sec1 += Html("br", self._("Females") + self.colon +
                          "%d" % females, inline=True)
+            sec1 += Html("br", self._("Individuals with other gender") +
+                         self.colon + "%d" % others, inline=True)
             sec1 += Html("br", self._("Individuals with unknown gender") +
                          self.colon + "%d" % unknown, inline=True)
         outerwrapper += sec1
@@ -173,6 +176,7 @@ class StatisticsPage(BasePage):
 
         (males,
          females,
+         others,
          unknown) = self.get_gender(self.report.bkref_dict[Person].keys())
 
         origin = " :<br/>" + report.filter.get_name(self.rlocale)
@@ -190,6 +194,8 @@ class StatisticsPage(BasePage):
                          "%d" % males, inline=True)
             sec5 += Html("br", self._("Females") + self.colon +
                          "%d" % females, inline=True)
+            sec5 += Html("br", self._("Individuals with other gender") +
+                         self.colon + "%d" % others, inline=True)
             sec5 += Html("br", self._("Individuals with unknown gender") +
                          self.colon + "%d" % unknown, inline=True)
         outerwrapper += sec5
@@ -229,13 +235,14 @@ class StatisticsPage(BasePage):
 
     def get_gender(self, person_list):
         """
-        This function return the number of males, females and unknown gender
-        from a person list.
+        This function return the number of males, females, others and unknown
+        gender from a person list.
 
         @param: person_list -- The list to process
         """
         males = 0
         females = 0
+        others = 0
         unknown = 0
         for person_handle in person_list:
             person = self.report.database.get_person_from_handle(person_handle)
@@ -244,6 +251,8 @@ class StatisticsPage(BasePage):
                 males += 1
             elif gender == Person.FEMALE:
                 females += 1
+            elif gender == Person.OTHER:
+                others += 1
             else:
                 unknown += 1
-        return (males, females, unknown)
+        return (males, females, others, unknown)

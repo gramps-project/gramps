@@ -512,14 +512,16 @@ class GedcomWriter(UpdateCallback):
         Write out the gender of the person to the file.
 
         If the gender is not male or female, simply do not output anything.
-        The only valid values are M (male) or F (female). So if the geneder is
-        unknown, we output nothing.
+        The only valid values are M (male), F (female) and X (other). So if
+        the gender is unknown, we output nothing.
 
         """
         if person.get_gender() == Person.MALE:
             self._writeln(1, "SEX", "M")
         elif person.get_gender() == Person.FEMALE:
             self._writeln(1, "SEX", "F")
+        elif person.get_gender() == Person.OTHER:
+            self._writeln(1, "SEX", "X")
 
     def _lds_ords(self, obj, level):
         """

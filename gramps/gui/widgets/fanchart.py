@@ -483,6 +483,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             color = self.colors[generation % len(self.colors)]
             if person.gender == Person.MALE:
                 color = [x*.9 for x in color]
+            elif person.gender == Person.OTHER:
+                color = [x*.8 for x in color]
         # now we set transparency data
         if self.filter and not self.filter.match(person.handle,
                                                  self.dbstate.db):

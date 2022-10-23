@@ -942,6 +942,8 @@ class IndivCompleteReport(Report):
             self.write_paragraph(self._("Male"))
         elif self.person.get_gender() == Person.FEMALE:
             self.write_paragraph(self._("Female"))
+        elif self.person.get_gender() == Person.OTHER:
+            self.write_paragraph(self._("Other"))
         else:
             self.write_paragraph(self._("Unknown"))
         self.write_paragraph(father, mark=fmark)

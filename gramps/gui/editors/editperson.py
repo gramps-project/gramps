@@ -339,7 +339,8 @@ class EditPerson(EditPrimary):
             (
             (_('female'), Person.FEMALE),
             (_('male'), Person.MALE),
-            (_('unknown'), Person.UNKNOWN)
+            (_('unknown', 'gender'), Person.UNKNOWN),
+            (_('other', 'gender'), Person.OTHER)
             ),
             self.db.readonly)
 
@@ -1110,4 +1111,5 @@ class GenderDialog(Gtk.MessageDialog):
 
         self.add_button(_('_Male'), Person.MALE)
         self.add_button(_('_Female'), Person.FEMALE)
+        self.add_button(_('_Other'), Person.OTHER)
         self.add_button(_('_Unknown'), Person.UNKNOWN)

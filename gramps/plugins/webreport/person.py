@@ -481,6 +481,7 @@ class PersonPages(BasePage):
         self.gender_map = {
             Person.MALE    : self._('male'),
             Person.FEMALE  : self._('female'),
+            Person.OTHER   : self._('other'),
             Person.UNKNOWN : self._('unknown'),
             }
 
@@ -1151,6 +1152,8 @@ class PersonPages(BasePage):
             divclass = "male"
         elif sex == Person.FEMALE:
             divclass = "female"
+        elif sex == Person.OTHER:
+            divclass = "other"
         else:
             divclass = "unknown"
 

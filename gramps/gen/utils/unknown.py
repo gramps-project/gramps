@@ -181,7 +181,7 @@ def add_personref_to_family(family, person):
                 (family.get_mother_handle() is None)):
             family.set_mother_handle(person_handle)
         else:
-            # This includes cases of Person.UNKNOWN
+            # This includes cases of Person.UNKNOWN and Person.OTHER
             if family.get_father_handle() is None:
                 family.set_father_handle(person_handle)
             else:

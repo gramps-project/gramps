@@ -112,6 +112,7 @@ class SummaryReport(Report):
         missing_bday = 0
         males = 0
         females = 0
+        others = 0
         unknowns = 0
         namelist = []
 
@@ -160,6 +161,8 @@ class SummaryReport(Report):
                 females += 1
             elif person.get_gender() == Person.MALE:
                 males += 1
+            elif person.get_gender() == Person.OTHER:
+                others += 1
             else:
                 unknowns += 1
 
@@ -179,6 +182,11 @@ class SummaryReport(Report):
 
         self.doc.start_paragraph("SR-Normal")
         self.doc.write_text(self._("Females: %d") % females)
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(self._("Individuals with other gender: %d"
+                                  ) % others)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")

@@ -98,7 +98,7 @@ class GenderStats:
             female += increment
             if female < 0:
                 female = 0
-        elif gender == Person.UNKNOWN:
+        elif gender in (Person.UNKNOWN, Person.OTHER):
             unknown += increment
             if unknown < 0:
                 unknown = 0

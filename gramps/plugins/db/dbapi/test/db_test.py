@@ -832,7 +832,7 @@ class DbPersonTest(unittest.TestCase):
             self.__add_person(Person.FEMALE, 'Mary', 'Baker', trans)
             self.__add_person(Person.FEMALE, 'Mary', 'Clark', trans)
             self.__add_person(Person.MALE, 'Mary', 'Davis', trans)
-            self.__add_person(Person.FEMALE, 'Mary', 'Evans', trans)
+            self.__add_person(Person.OTHER, 'Mary', 'Evans', trans)
 
     def tearDown(self):
         with DbTxn('Remove test objects', self.db) as trans:
@@ -859,11 +859,11 @@ class DbPersonTest(unittest.TestCase):
     def test_gender_stats(self):
         stats = self.db.genderStats
         self.assertEqual(stats.name_stats('John'), (3, 1, 1))
-        self.assertEqual(stats.name_stats('Mary'), (1, 4, 0))
+        self.assertEqual(stats.name_stats('Mary'), (1, 3, 1))
         self.db.save_gender_stats(stats)
         saved = self.db.get_gender_stats()
         self.assertEqual(saved['John'], (3, 1, 1))
-        self.assertEqual(saved['Mary'], (1, 4, 0))
+        self.assertEqual(saved['Mary'], (1, 3, 1))
 
 
 if __name__ == "__main__":

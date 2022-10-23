@@ -79,6 +79,7 @@ class StatsGramplet(Gramplet):
         missing_bday = 0
         males = 0
         females = 0
+        others = 0
         unknowns = 0
         bytes_cnt = 0
         notfound = []
@@ -132,6 +133,8 @@ class StatsGramplet(Gramplet):
                 females += 1
             elif person.get_gender() == Person.MALE:
                 males += 1
+            elif person.get_gender() == Person.OTHER:
+                others += 1
             else:
                 unknowns += 1
             if not cnt % _YIELD_INTERVAL:
@@ -148,6 +151,10 @@ class StatsGramplet(Gramplet):
         self.append_text("\n")
         self.link(_("%s:") % _("Females"), 'Filter', 'females')
         self.append_text(" %s" % females)
+        self.append_text("\n")
+        self.link(_("%s:") % _("Individuals with other gender"),
+                  'Filter', 'people with other gender')
+        self.append_text(" %s" % others)
         self.append_text("\n")
         self.link(_("%s:") % _("Individuals with unknown gender"),
                   'Filter', 'people with unknown gender')

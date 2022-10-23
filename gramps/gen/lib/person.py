@@ -73,6 +73,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     """
 
+    OTHER = 3
     UNKNOWN = 2
     MALE = 1
     FEMALE = 0
@@ -644,10 +645,12 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
                        - Person.MALE
                        - Person.FEMALE
+                       - Person.OTHER
                        - Person.UNKNOWN
         :type gender: int
         """
-        if gender not in (Person.MALE, Person.FEMALE, Person.UNKNOWN):
+        if gender not in (Person.MALE, Person.FEMALE, Person.OTHER,
+                          Person.UNKNOWN):
             raise ValueError('Attempt to assign invalid gender')
         self.__gender = gender
 
@@ -659,6 +662,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
                   - Person.MALE
                   - Person.FEMALE
+                  - Person.OTHER
                   - Person.UNKNOWN
         :rtype: int
         """

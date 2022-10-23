@@ -1057,9 +1057,7 @@ class UnknownGender(PersonRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        female = self.obj.get_gender() == Person.FEMALE
-        male = self.obj.get_gender() == Person.MALE
-        return not (male or female)
+        return self.obj.get_gender() == Person.UNKNOWN
 
     def get_message(self):
         """ return the rule's error message """

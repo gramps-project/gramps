@@ -61,7 +61,7 @@ _GLADE_FILE = "mergeperson.glade"
 # Translators: needed for French, ignore otherwise
 KEYVAL = _("%(key)s:\t%(value)s")
 
-sex = ( _("female"), _("male"), _("unknown") )
+sex = ( _("female"), _("male"), _("other"), _("unknown") )
 
 def name_of(person):
     """Return string with name and ID of a person."""

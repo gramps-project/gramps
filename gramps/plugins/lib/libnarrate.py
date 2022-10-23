@@ -1474,7 +1474,7 @@ class Narrator:
             'modified_date'       : bdate,
             }
 
-        gender = self.__person.get_gender()
+        gender = self.__get_gender()
 
         if bdate:
             if bdate_mod:
@@ -1591,7 +1591,7 @@ class Narrator:
             'month_year'          : ddate,
             }
 
-        gender = self.__person.get_gender()
+        gender = self.__get_gender()
 
         if ddate and ddate_mod:
             if dplace and self.__verbose:
@@ -1661,7 +1661,7 @@ class Narrator:
         else:
             name_index = _NAME_INDEX_EXCLUDE_NAME
 
-        gender = self.__person.get_gender()
+        gender = self.__get_gender()
 
         text = ""
 
@@ -1772,7 +1772,7 @@ class Narrator:
         else:
             name_index = _NAME_INDEX_EXCLUDE_NAME
 
-        gender = self.__person.get_gender()
+        gender = self.__get_gender()
 
         text = ""
 
@@ -1883,7 +1883,7 @@ class Narrator:
         else:
             name_index = _NAME_INDEX_EXCLUDE_NAME
 
-        gender = self.__person.get_gender()
+        gender = self.__get_gender()
 
         text = ""
 
@@ -2045,7 +2045,7 @@ class Narrator:
             elif dobj and dobj.get_day_valid():
                 date_full = 1
 
-        gender = self.__person.get_gender()
+        gender = self.__get_gender()
 
         # This would be much simpler, excepting for translation considerations
         # Currently support FamilyRelType's:
@@ -2214,7 +2214,7 @@ class Narrator:
         else:
             index = _NAME_INDEX_EXCLUDE_NAME
 
-        gender = self.__person.get_gender()
+        gender = self.__get_gender()
 
         text = ""
         if mother_name and father_name and self.__verbose:
@@ -2235,6 +2235,15 @@ class Narrator:
             text = text + " "
 
         return text
+
+    def __get_gender(self):
+        """
+        Return a gender to be used for translations.
+        """
+        gender = self.__person.get_gender()
+        if gender == Person.OTHER:
+            gender = Person.UNKNOWN
+        return gender
 
     def __get_age_at_death(self):
         """

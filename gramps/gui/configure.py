@@ -720,9 +720,10 @@ class GrampsPreferences(ConfigureDialog):
 
         color_type = {'Male': _('Colors for Male persons'),
                       'Female': _('Colors for Female persons'),
+                      'Other': _('Colors for people who are neither male nor female'),
                       'Unknown': _('Colors for Unknown persons'),
                       'Family': _('Colors for Family nodes'),
-                      'Other': _('Other colors')}
+                      'Misc': _('Other colors')}
 
         bg_alive_text = _('Background for Alive')
         bg_dead_text = _('Background for Dead')
@@ -741,6 +742,11 @@ class GrampsPreferences(ConfigureDialog):
             (bg_dead_text, 'female-dead', 2, 1, 'Female'),
             (brd_alive_text, 'border-female-alive', 1, 4, 'Female'),
             (brd_dead_text, 'border-female-dead', 2, 4, 'Female'),
+            # for other
+            (bg_alive_text, 'other-alive', 1, 1, 'Other'),
+            (bg_dead_text, 'other-dead', 2, 1, 'Other'),
+            (brd_alive_text, 'border-other-alive', 1, 4, 'Other'),
+            (brd_dead_text, 'border-other-dead', 2, 4, 'Other'),
             # for unknown
             (bg_alive_text, 'unknown-alive', 1, 1, 'Unknown'),
             (bg_dead_text, 'unknown-dead', 2, 1, 'Unknown'),
@@ -759,7 +765,7 @@ class GrampsPreferences(ConfigureDialog):
             (_('Border for Divorced'),
              'border-family-divorced', 7, 4, 'Family'),
             # for other
-            (_('Background for Home Person'), 'home-person', 1, 1, 'Other'),
+            (_('Background for Home Person'), 'home-person', 1, 1, 'Misc'),
             ]
 
         # prepare scrolled window for colors settings

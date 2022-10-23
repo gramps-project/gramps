@@ -51,6 +51,7 @@ from ._hasnickname import HasNickname
 from ._hasnote import HasNote
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from ._hasnoteregexp import HasNoteRegexp
+from ._hasothergender import HasOtherGender
 from ._hasrelationship import HasRelationship
 from ._hassourcecount import HasSourceCount
 from ._hassourceof import HasSourceOf
@@ -120,8 +121,9 @@ from ._hassoundexname import HasSoundexName
 editor_rule_list = [
     Everyone,
     IsFemale,
-    HasUnknownGender,
     IsMale,
+    HasOtherGender,
+    HasUnknownGender,
     IsDefaultPerson,
     IsBookmarked,
     HasAlternateName,

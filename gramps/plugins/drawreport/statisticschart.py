@@ -312,9 +312,10 @@ class _options:
         (SORT_KEY, "Item name", _("Item name"))
     ]
     opt_genders = [
-        (Person.UNKNOWN, "Both", _("Both")),
+        (Person.UNKNOWN, "All", _("All")),
         (Person.MALE, "Men", _("Men")),
-        (Person.FEMALE, "Women", _("Women"))
+        (Person.FEMALE, "Women", _("Women")),
+        (Person.OTHER, "Other", _("Other"))
     ]
 
 
@@ -419,6 +420,8 @@ class Extract:
             return [_T_("Men")]
         if person.gender == Person.FEMALE:
             return [_T_("Women")]
+        if person.gender == Person.OTHER:
+            return [_T_("Other")]
         return [_T_("Gender unknown")]
 
     def get_year(self, event):
@@ -794,6 +797,8 @@ class StatisticsChart(Report):
             genders = self._("Men")
         elif gender == Person.FEMALE:
             genders = self._("Women")
+        elif gender == Person.OTHER:
+            genders = self._("Other")
         else:
             genders = None
 

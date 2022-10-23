@@ -503,6 +503,8 @@ class FamilyGroup(Report):
             self.doc.write_text(index_str + self._("M", "acronym for male"))
         elif person.get_gender() == Person.FEMALE:
             self.doc.write_text(index_str + self._("F", "acronym for female"))
+        elif person.get_gender() == Person.OTHER:
+            self.doc.write_text(index_str + self._("X", "acronym for other"))
         else:
             self.doc.write_text(self._("%dU", "acronym for unknown") % index)
         self.doc.end_paragraph()

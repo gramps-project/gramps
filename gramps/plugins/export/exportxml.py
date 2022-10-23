@@ -521,6 +521,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_line("gender","M",index+1)
         elif person.get_gender() == Person.FEMALE:
             self.write_line("gender","F",index+1)
+        elif person.get_gender() == Person.OTHER:
+            self.write_line("gender","X",index+1)
         else:
             self.write_line("gender","U",index+1)
         self.dump_name(person.get_primary_name(),False,index+1)

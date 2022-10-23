@@ -181,6 +181,7 @@ gramps/gen/filters/rules/person/_hasnickname.py
 gramps/gen/filters/rules/person/_hasnote.py
 gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/person/_hasnoteregexp.py
+gramps/gen/filters/rules/person/_hasothergender.py
 gramps/gen/filters/rules/person/_hasrelationship.py
 gramps/gen/filters/rules/person/_hassoundexname.py
 gramps/gen/filters/rules/person/_hassourcecount.py

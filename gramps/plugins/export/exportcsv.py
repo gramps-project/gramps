@@ -396,6 +396,8 @@ class CSVWriter:
                         gender = gender_map[Person.MALE]
                     elif gender == Person.FEMALE:
                         gender = gender_map[Person.FEMALE]
+                    elif gender == Person.OTHER:
+                        gender = gender_map[Person.OTHER]
                     else:
                         gender = gender_map[Person.UNKNOWN]
                     # Birth:

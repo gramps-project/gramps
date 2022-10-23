@@ -2848,6 +2848,8 @@ class GrampsParser(UpdateCallback):
             self.person.set_gender (Person.MALE)
         elif t == "F":
             self.person.set_gender (Person.FEMALE)
+        elif t == "X":
+            self.person.set_gender (Person.OTHER)
         else:
             self.person.set_gender (Person.UNKNOWN)
 

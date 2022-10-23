@@ -292,6 +292,11 @@ class FamilyLinesOptions(MenuReportOptions):
         color_females.set_help(_('The color to use to display women.'))
         add_option('colorfemales', color_females)
 
+        color_other = ColorOption(_('Other'), '#94ef9e')
+        color_other.set_help(_('The color to use to display people who are '
+                               'neither men nor women.'))
+        add_option('colorother', color_other)
+
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
         color_unknown.set_help(_('The color to use '
                                  'when the gender is unknown.'))
@@ -378,6 +383,7 @@ class FamilyLinesReport(Report):
         self._gidlist = get_value('gidlist')
         self._colormales = get_value('colormales')
         self._colorfemales = get_value('colorfemales')
+        self._colorother = get_value('colorother')
         self._colorunknown = get_value('colorunknown')
         self._colorfamilies = get_value('colorfamilies')
         self._limitparents = get_value('limitparents')
@@ -806,6 +812,8 @@ class FamilyLinesReport(Report):
                 colour = self._colormales
             elif gender == Person.FEMALE:
                 colour = self._colorfemales
+            elif gender == Person.OTHER:
+                colour = self._colorother
 
             # see if we have surname colours that match this person
             surname = person.get_primary_name().get_surname()

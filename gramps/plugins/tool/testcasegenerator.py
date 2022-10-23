@@ -1364,8 +1364,11 @@ class TestcaseGenerator(tool.BatchTool):
         # Gender
         if gender is None:
             gender = _randint(0, 1)
-        if _randint(0, 10) == 1:  # Set some persons to unknown gender
-            pers.set_gender(Person.UNKNOWN)
+        if _randint(0, 10) == 1: # Set some persons to unknown and other gender
+            if _randint(0, 1) == 0:
+                pers.set_gender(Person.OTHER)
+            else:
+                pers.set_gender(Person.UNKNOWN)
         else:
             pers.set_gender(gender)
 

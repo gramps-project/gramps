@@ -597,6 +597,7 @@ QUALITY_MAP = {
 SEX_MAP = {
     'F' : Person.FEMALE,
     'M' : Person.MALE,
+    'X' : Person.OTHER,
 }
 
 FAMILYCONSTANTEVENTS = {

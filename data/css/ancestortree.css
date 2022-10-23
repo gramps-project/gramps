@@ -180,6 +180,10 @@ Females     Web_Gender_Female.png
 #treeContainer div.female span.unlinked {
     background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
 }
+#treeContainer div.other a,
+#treeContainer div.other span.unlinked {
+    background:url(../images/Web_Gender_Other.png) #94EF9E no-repeat top right;
+}
 #treeContainer div.unknown a,
 #treeContainer div.unknown span.unlinked {
     background-color: #000;

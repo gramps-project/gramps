@@ -577,6 +577,8 @@ class VCardParser:
                 gender = Person.MALE
             elif gender_value == 'F':
                 gender = Person.FEMALE
+            elif gender_value == 'O':
+                gender = Person.OTHER
             else:
                 return
             self.person.set_gender(gender)

@@ -95,7 +95,7 @@ class PeopleBaseModel(BaseModel):
     """
     Basic Model interface to handle the PersonViews
     """
-    _GENDER = [ _('female'), _('male'), _('unknown') ]
+    _GENDER = [ _('female'), _('male'), _('unknown'), _('other') ]
 
     def __init__(self, db):
         """

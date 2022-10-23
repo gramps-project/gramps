@@ -494,6 +494,13 @@ def color_graph_box(alive=False, gender=Person.MALE):
         else:
             return (config.get('colors.female-dead')[scheme],
                     config.get('colors.border-female-dead')[scheme])
+    elif gender == Person.OTHER:
+        if alive:
+            return (config.get('colors.other-alive')[scheme],
+                    config.get('colors.border-other-alive')[scheme])
+        else:
+            return (config.get('colors.other-dead')[scheme],
+                    config.get('colors.border-other-dead')[scheme])
     elif gender == Person.UNKNOWN:
         if alive:
             return (config.get('colors.unknown-alive')[scheme],

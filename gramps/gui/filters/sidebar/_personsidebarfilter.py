@@ -49,7 +49,7 @@ from gramps.gen.filters.rules.person import (RegExpName, RegExpIdOf, IsMale,
                                              IsFemale, HasUnknownGender,
                                              HasEvent, HasTag, HasBirth,
                                              HasDeath, HasNoteRegexp,
-                                             MatchesFilter)
+                                             MatchesFilter, HasOtherGender)
 
 def extract_text(entry_widget):
     """
@@ -91,7 +91,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_note = widgets.BasicEntry()
         self.filter_gender = Gtk.ComboBoxText()
         list(map(self.filter_gender.append_text,
-            [ _('any'), _('male'), _('female'), _('unknown') ]))
+            [ _('any'), _('male'), _('female'), _('other', 'gender'),
+              _('unknown', 'gender') ]))
         self.filter_gender.set_active(0)
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
@@ -208,6 +209,8 @@ class PersonSidebarFilter(SidebarFilter):
                     generic_filter.add_rule(IsMale([]))
                 elif gender == 2:
                     generic_filter.add_rule(IsFemale([]))
+                elif gender == 3:
+                    generic_filter.add_rule(HasOtherGender([]))
                 else:
                     generic_filter.add_rule(HasUnknownGender([]))
 

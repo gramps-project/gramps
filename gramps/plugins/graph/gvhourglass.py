@@ -112,6 +112,7 @@ class HourGlassReport(Report):
         self.colorize = menu.get_option_by_name('color').get_value()
         self.colors = {'male': menu.get_option_by_name('colormales').get_value(),
             'female': menu.get_option_by_name('colorfemales').get_value(),
+            'other': menu.get_option_by_name('colorother').get_value(),
             'unknown': menu.get_option_by_name('colorunknown').get_value(),
             'family': menu.get_option_by_name('colorfamilies').get_value()
         }
@@ -332,6 +333,8 @@ class HourGlassReport(Report):
                 color = self.colors['male']
             elif gender == person.FEMALE:
                 color = self.colors['female']
+            elif gender == person.OTHER:
+                color = self.colors['other']
             else:
                 color = self.colors['unknown']
         elif self.colorize == 'filled':
@@ -340,6 +343,8 @@ class HourGlassReport(Report):
                 fill = self.colors['male']
             elif gender == person.FEMALE:
                 fill = self.colors['female']
+            elif gender == person.OTHER:
+                fill = self.colors['other']
             else:
                 fill = self.colors['unknown']
         return(shape, style, color, fill)
@@ -425,6 +430,11 @@ class HourGlassOptions(MenuReportOptions):
         color_females = ColorOption(_('Females'), '#ffe0e0')
         color_females.set_help(_('The color to use to display women.'))
         menu.add_option(category_name, 'colorfemales', color_females)
+
+        color_other = ColorOption(_('Other'), '#94ef9e')
+        color_other.set_help(_('The color to use to display people who are '
+                               'neither men nor women.'))
+        menu.add_option(category_name, 'colorother', color_other)
 
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
         color_unknown.set_help(_('The color to use '

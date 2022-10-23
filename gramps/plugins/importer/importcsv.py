@@ -571,6 +571,8 @@ class CSVParser:
                 gender = Person.MALE
             elif gender == gender_map[Person.FEMALE].lower():
                 gender = Person.FEMALE
+            elif gender == gender_map[Person.OTHER].lower():
+                gender = Person.OTHER
             else:
                 gender = Person.UNKNOWN
             child.set_gender(gender)
@@ -720,6 +722,8 @@ class CSVParser:
                 gender = Person.MALE
             elif gender == gender_map[Person.FEMALE].lower():
                 gender = Person.FEMALE
+            elif gender == gender_map[Person.OTHER].lower():
+                gender = Person.OTHER
             else:
                 gender = Person.UNKNOWN
             person.set_gender(gender)

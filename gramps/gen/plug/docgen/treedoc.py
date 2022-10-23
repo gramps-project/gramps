@@ -434,7 +434,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
             self.write(level+1, 'male,\n')
         elif person.gender == Person.FEMALE:
             self.write(level+1, 'female,\n')
-        elif person.gender == Person.UNKNOWN:
+        elif person.gender in (Person.UNKNOWN, Person.OTHER):
             self.write(level+1, 'neuter,\n')
         name = person.get_primary_name()
         nick = name.get_nick_name()
