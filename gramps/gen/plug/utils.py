@@ -454,3 +454,24 @@ class OpenFileOrStdin:
         if self.filename != '-':
             self.filehandle.close()
         return False
+
+#-------------------------------------------------------------------------
+#
+# get_cite function
+#
+#-------------------------------------------------------------------------
+def get_cite():
+    """
+    Function that returns the active cite plugin.
+    """
+    plugman = BasePluginManager.get_instance()
+    for pdata in plugman.get_reg_cite():
+        if pdata.id != config.get('preferences.cite-plugin'):
+            continue
+        module = plugman.load_plugin(pdata)
+        if not module:
+            print("Error loading formatter '%s': skipping content"
+                  % pdata.name)
+            continue
+        cite = getattr(module, 'Formatter')()
+        return cite

@@ -1421,6 +1421,12 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 2, row, 2, 1)
 
         row += 1
+        lwidget = BasicLabel(_("%s: ") % _('Citation formatter'))
+        grid.attach(lwidget, 1, row, 1, 1)
+        obox = self.__create_cite_combo()
+        grid.attach(obox, 2, row, 2, 1)
+
+        row += 1
         label = self.add_text(
             grid, _("\nInput Options"), row,
             line_wrap=True, bold=True, start=0, stop=3)
@@ -1796,6 +1802,15 @@ class GrampsPreferences(ConfigureDialog):
             else:
                 widget.set_sensitive(True)
 
+    def cite_changed(self, obj):
+        """
+        Update Database Backend.
+        """
+        the_list = obj.get_model()
+        the_iter = obj.get_active_iter()
+        cite_choice = the_list.get_value(the_iter, 2)
+        config.set('preferences.cite-plugin', cite_choice)
+
     def add_famtree_panel(self, configdialog):
         """
         Config tab for family tree, backup and Media path settings.
@@ -1965,6 +1980,33 @@ class GrampsPreferences(ConfigureDialog):
         # set the default value as active in the combo
         obox.set_active(active)
         obox.connect('changed', self.database_backend_changed)
+        return obox
+
+    def __create_cite_combo(self):
+        """
+        Create cite selection widget.
+        """
+        backend_plugins = self.uistate.viewmanager._pmgr.get_reg_cite()
+        obox = Gtk.ComboBox()
+        cell = Gtk.CellRendererText()
+        obox.pack_start(cell, True)
+        obox.add_attribute(cell, 'text', 1)
+        # Build model:
+        model = Gtk.ListStore(GObject.TYPE_INT,
+                              GObject.TYPE_STRING,
+                              GObject.TYPE_STRING)
+        count = 0
+        active = 0
+        default = config.get('preferences.cite-plugin')
+        for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
+            if plugin.id == default:
+                active = count
+            model.append(row=[count, plugin.name, plugin.id])
+            count += 1
+        obox.set_model(model)
+        # set the default value as active in the combo
+        obox.set_active(active)
+        obox.connect('changed', self.cite_changed)
         return obox
 
     def set_mediapath(self, *obj):

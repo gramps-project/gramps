@@ -289,6 +289,7 @@ register('preferences.last-views', [])
 register('preferences.family-relation-type', 3) # UNKNOWN
 register('preferences.age-display-precision', 1)
 register('preferences.age-after-death', True)
+register('preferences.cite-plugin', 'cite-default')
 
 register('colors.scheme', 0)
 register('colors.male-alive', ['#b8cee6', '#1f344a'])

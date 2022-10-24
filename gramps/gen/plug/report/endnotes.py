@@ -43,6 +43,8 @@ _ = glocale.translation.gettext
 from ..docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from ...lib import NoteType, Citation
 from ...utils.string import conf_strings
+from ...config import config
+from ..utils import get_cite
 
 def add_endnote_styles(style_sheet):
     """
@@ -157,84 +159,27 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
     doc.end_paragraph()
 
     cindex = 0
-    for citation in bibliography.get_citation_list():
+    cite = get_cite()
+    for citation in cite.format(bibliography, database, elocale):
         cindex += 1
-        source = database.get_source_from_handle(citation.get_source_handle())
-        first = True
 
         doc.start_paragraph('Endnotes-Source', "%d." % cindex)
-        doc.write_text(_format_source_text(source, elocale), links=links)
+        doc.write_text(citation[0], links=links)
         doc.end_paragraph()
 
         if printnotes:
             _print_notes(source, database, doc,
                          'Endnotes-Source-Notes', links)
 
-        for key, ref in citation.get_ref_list():
+        for key, ref in citation[1]:
             # Translators: needed for French, ignore otherwise
             doc.start_paragraph('Endnotes-Ref', trans_text('%s:') % key)
-            doc.write_text(_format_ref_text(ref, key, elocale), links=links)
+            doc.write_text(ref, links=links)
             doc.end_paragraph()
 
             if printnotes:
                 _print_notes(ref, database, doc,
                              'Endnotes-Ref-Notes', links)
-
-def _format_source_text(source, elocale):
-    if not source: return ""
-
-    trans_text = elocale.translation.gettext
-    # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
-
-    src_txt = ""
-
-    if source.get_author():
-        src_txt += source.get_author()
-
-    if source.get_title():
-        if src_txt:
-            # Translators: needed for Arabic, ignore otherwise
-            src_txt += trans_text(', ')
-        # Translators: used in French+Russian, ignore otherwise
-        src_txt += trans_text('"%s"') % source.get_title()
-
-    if source.get_publication_info():
-        if src_txt:
-            # Translators: needed for Arabic, ignore otherwise
-            src_txt += trans_text(', ')
-        src_txt += source.get_publication_info()
-
-    if source.get_abbreviation():
-        if src_txt:
-            # Translators: needed for Arabic, ignore otherwise
-            src_txt += trans_text(', ')
-        src_txt += "(%s)" % source.get_abbreviation()
-
-    return src_txt
-
-def _format_ref_text(ref, key, elocale):
-    if not ref: return ""
-
-    ref_txt = ""
-
-    datepresent = False
-    date = ref.get_date_object()
-    if date is not None and not date.is_empty():
-        datepresent = True
-    if datepresent:
-        if ref.get_page():
-            ref_txt = "%s - %s" % (ref.get_page(), elocale.get_date(date))
-        else:
-            ref_txt = elocale.get_date(date)
-    else:
-        ref_txt = ref.get_page()
-
-    # Print only confidence level if it is not Normal
-    if ref.get_confidence_level() != Citation.CONF_NORMAL:
-        ref_txt += " [" + elocale.translation.gettext(
-                              conf_strings[ref.get_confidence_level()]) + "]"
-
-    return ref_txt
 
 def _print_notes(obj, db, doc, style, links):
     note_list = obj.get_note_list()

@@ -457,6 +457,10 @@ gramps/gui/widgets/validatedcomboentry.py
 #
 gramps/plugins/__init__.py
 #
+# plugins/cite directory
+#
+gramps/plugins/cite/__init__.py
+#
 # plugins/db/bsddb directory
 #
 gramps/plugins/db/bsddb/__init__.py

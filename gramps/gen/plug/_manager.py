@@ -458,6 +458,11 @@ class BasePluginManager:
         """
         return self.__pgr.thumbnailer_plugins()
 
+    def get_reg_cite(self):
+        """ Return list of registered cite plugins.
+        """
+        return self.__pgr.cite_plugins()
+
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
         return self.__external_opt_dict

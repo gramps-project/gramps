@@ -90,9 +90,10 @@ SIDEBAR = 11
 DATABASE = 12
 RULE = 13
 THUMBNAILER = 14
+CITE = 15
 PTYPE = [REPORT, QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
          MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE, RULE,
-         THUMBNAILER]
+         THUMBNAILER, CITE]
 PTYPE_STR = {
         REPORT: _('Report') ,
         QUICKREPORT: _('Quickreport'),
@@ -109,6 +110,7 @@ PTYPE_STR = {
         DATABASE: _('Database'),
         RULE: _('Rule'),
         THUMBNAILER: _('Thumbnailer'),
+        CITE: _('Citation formatter'),
         }
 
 #possible report categories
@@ -1201,6 +1203,7 @@ def make_environment(**kwargs):
         'GRAMPLET': GRAMPLET,
         'SIDEBAR': SIDEBAR,
         'THUMBNAILER': THUMBNAILER,
+        'CITE': CITE,
         'CATEGORY_TEXT': CATEGORY_TEXT,
         'CATEGORY_DRAW': CATEGORY_DRAW,
         'CATEGORY_CODE': CATEGORY_CODE,
@@ -1528,6 +1531,12 @@ class PluginRegister:
         Return a list of :class:`PluginData` that are of type THUMBNAILER
         """
         return self.type_plugins(THUMBNAILER)
+
+    def cite_plugins(self):
+        """
+        Return a list of :class:`PluginData` that are of type CITE
+        """
+        return self.type_plugins(CITE)
 
     def filter_load_on_reg(self):
         """
