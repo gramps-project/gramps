@@ -51,7 +51,7 @@ from gramps.gen.errors import GedcomError, GrampsImportError
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
         Date, DateError, Event, EventRef, EventRoleType, EventType,
         Family, FamilyRelType, Name, NameType, Note, Person, PersonRef,
-        Place, Source, LdsOrd)
+        Place, PlaceName ,Source, LdsOrd)
 from gramps.gen.db import DbTxn
 from html.entities import name2codepoint
 
@@ -960,6 +960,7 @@ class GeneWebParser:
             place = self.db.get_place_from_handle(self.pkeys[place_name])
         else:
             place = Place()
+            place.name = PlaceName(value=place_name)
             place.set_title(place_name)
             self.db.add_place(place,self.trans)
             self.db.commit_place(place,self.trans)
