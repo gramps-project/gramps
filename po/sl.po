@@ -5,13 +5,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # beernarrd <beernarrd@gmail.com>, 2021.
 # Igor Kriznar <ikriznar@gmail.com>, 2022.
+# Milan <mobrcian@hotmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-01-05 02:54+0000\n"
-"Last-Translator: Igor Kriznar <ikriznar@gmail.com>\n"
+"PO-Revision-Date: 2022-11-26 08:05+0000\n"
+"Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
 "Language: sl\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -10716,7 +10717,7 @@ msgstr "madžarščina"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonezijščina"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -11963,7 +11964,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Zahteva ponovni zagon"
 
 #: ../gramps/gui/configure.py:1388
 #, fuzzy
@@ -12525,7 +12526,7 @@ msgstr "Partner"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Ubit/a"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
@@ -25985,7 +25986,7 @@ msgstr "  %(id)s - %(text)s z %(id2)s\n"
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
 msgid "  {obj} {id1} with {id2}"
-msgstr ""
+msgstr "  {obj} {id1} s {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:272
 #: ../gramps/plugins/quickview/filterbyname.py:91
