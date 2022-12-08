@@ -346,7 +346,7 @@ class PlaceFormat(GenericFormat):
         return None
 
     def _default_format(self, place):
-        return _pd.display(self.database, place)
+        return _pd.display(self.database, place, place.event_date)
 
     def parse_format(self, database, place):
         """ Parse the place """
@@ -432,6 +432,8 @@ class EventFormat(GenericFormat):
             """ start formatting a place in this event """
             place_format = PlaceFormat(self.database, self.string_in)
             place = place_format.get_place(self.database, event)
+            if event and place:
+                place.event_date = event.get_date_object()
             return place_format.parse_format(self.database, place)
 
         def format_attrib():
@@ -889,6 +891,8 @@ class VariableParse:
         return the result """
         place_f = PlaceFormat(self.database, self._in)
         place = place_f.get_place(self.database, event)
+        if event and place:
+            place.event_date = event.get_date_object()
         if self.empty_item(place):
             return
         return place_f.parse_format(self.database, place)
