@@ -59,13 +59,14 @@
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
 # Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021.
 # Gianluca Boiano <morf3089@gmail.com>, 2021.
+# Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-12-09 06:50+0000\n"
-"Last-Translator: Gianluca Boiano <morf3089@gmail.com>\n"
+"PO-Revision-Date: 2022-11-26 08:05+0000\n"
+"Last-Translator: Alessandro Combatti <combatti.alessandro@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -73,7 +74,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -84,10 +85,8 @@ msgid "Canada"
 msgstr "Canada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Catalano"
+msgstr "Catalogna"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -242,10 +241,8 @@ msgid "8 of Hanuka"
 msgstr "8 di Chanukkà"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Corsivo"
+msgstr "Italia"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -272,10 +269,8 @@ msgid "Sweden"
 msgstr "Svezia"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turco"
+msgstr "Turchia"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -567,13 +562,6 @@ msgstr ""
 "gramplet SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -585,7 +573,7 @@ msgstr ""
 "di modificare varie impostazioni, come il percorso per i file multimediali, "
 "e di sistemare molti dettagli dell'aspetto di Gramps secondo le proprie "
 "necessità. Ogni vista può essere configurata separatamente da \"Visualizza "
-"&gt; Configura vista...\""
+"&gt; Configura vista...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -627,13 +615,6 @@ msgstr ""
 "tenere il puntatore del mouse sul pulsante e comparirà un suggerimento."
 
 #: ../data/tips.xml:40
-#, fuzzy
-#| msgid ""
-#| "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-#| "occurred, Gramps allows you to enter a wide range of date formats based "
-#| "on a guess or an estimate. For instance, \"about 1908\" is a valid entry "
-#| "for a birth date in Gramps. Click the Date button next to the date field "
-#| "and see the Gramps Manual to learn more."
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -644,23 +625,19 @@ msgstr ""
 "<b>Una data incerta?</b><br/>Se la data in cui un evento si è verificato non "
 "è certa, Gramps consente di inserire una vasta gamma di formati di data "
 "basati su supposizioni o stime. Per esempio, \"circa 1908\" è una valore "
-"valido per una data di nascita in Gramps. Fare clic sul pulsante Data "
-"accanto al campo data e controllare il manuale di Gramps per saperne di più."
+"valido per una data di nascita in Gramps. Fare clic sul pulsante \"Richiama "
+"l'editor di date\" accanto al campo data. Controllare il manuale di Gramps "
+"per saperne di più."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-#| "Possible Duplicate People...\" allows you to locate (and merge) entries "
-#| "of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Voci duplicate</b><br/>\"Strumenti &gt; Elaborazione database &gt; Trova "
-"possibili persone duplicate...\" consente di trovare (e fondere) voci della "
-"stessa persona inserite più volte nel database."
+"<b>Voci duplicate</b><br/>\"Strumenti &gt; Elaborazione albero genealogico "
+"&gt; Trova possibili persone duplicate...\" consente di trovare (e fondere) "
+"voci della stessa persona inserite più volte nel database."
 
 #: ../data/tips.xml:44
 #, fuzzy
@@ -805,15 +782,6 @@ msgstr ""
 "vedere le liste selezionando \"Aiuto &gt; Mailing list Gramps\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -829,7 +797,7 @@ msgstr ""
 "dalla scrittura della documentazione, alla verifica delle versioni di "
 "sviluppo, all'aiutare nella gestione del sito. Si inizia iscrivendosi alla "
 "lista degli sviluppatori (gramps-devel) e presentandosi; le informazioni per "
-"l'iscrizione possono essere reperite da \"Aiuto &gt; Mailing list Gramps\""
+"l'iscrizione possono essere reperite da \"Aiuto &gt; Mailing list Gramps\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -1022,30 +990,21 @@ msgstr ""
 "pronte per essere usate sul World Wide Web."
 
 #: ../data/tips.xml:94
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-project."
-#| "org/bugs/"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
 "<b>Segnalare bug in Gramps</b><br/>Il modo migliore per segnalare un bug in "
 "Gramps è utilizzare il sistema di gestione dei bug di Gramps all'indirizzo "
-"https://gramps-project.org/bugs/"
+"https://gramps-project.org/bugs/ ."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
 msgstr ""
 "<b>La pagina web di Gramps</b><br/>La pagina web di Gramps è http://gramps-"
-"project.org/"
+"project.org/ ."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1078,12 +1037,6 @@ msgstr ""
 "fonti."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
@@ -1091,18 +1044,12 @@ msgid ""
 "new functionality."
 msgstr ""
 "<b>Ulteriori resoconti e strumenti</b><br/>È possibile aggiungere a Gramps "
-"ulteriori strumenti e resoconti con il sistema dei \"componenti aggiuntivi"
-"\". Sono visibili tramite \"Aiuto &gt; Ulteriori resoconti/Strumenti\". "
-"Questo è il modo migliore per gli utenti avanzati per poter sperimentare e "
-"creare nuove funzionalità."
+"ulteriori resoconti e strumenti con il sistema dei \"componenti aggiuntivi\""
+". Sono visibili tramite \"Aiuto &gt; Ulteriori resoconti/Strumenti\". Questo "
+"è il modo migliore per gli utenti avanzati per poter sperimentare e creare "
+"nuove funzionalità."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; "
-#| "Book Report...\", allows you to collect a variety of reports into a "
-#| "single document. This single report is easier to distribute than multiple "
-#| "reports, especially when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
 "allows you to collect a variety of reports into a single document. This "
@@ -1110,16 +1057,11 @@ msgid ""
 "printed."
 msgstr ""
 "<b>Resoconto libro</b><br/>Il resoconto libro raggiungibile da \"Resoconti "
-"&gt; Libri &gt; Resoconto libro...\", permette agli utenti di raccogliere "
-"vari resoconti in un unico documento. Un unico resoconto è più semplice da "
-"distribuire che non diversi resoconti, specialmente quando viene stampato."
+"&gt; Libri...\", permette agli utenti di raccogliere vari resoconti in un "
+"unico documento. Un unico resoconto è più semplice da distribuire che non "
+"diversi resoconti, specialmente quando viene stampato."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1127,7 +1069,7 @@ msgid ""
 msgstr ""
 "<b>Annunci di Gramps</b><br/>Volete essere avvisati quando una nuova "
 "versione di Gramps viene rilasciata? Basta iscriversi alla mailing list "
-"gramps-announce tramite \"Aiuto &gt; Mailing list Gramps\""
+"gramps-announce tramite \"Aiuto &gt; Mailing list Gramps\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1183,11 +1125,6 @@ msgstr ""
 "Gramps."
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
@@ -1195,8 +1132,8 @@ msgid ""
 msgstr ""
 "<b>I traduttori di Gramps</b><br/>Gramps è stato progettato in modo che "
 "nuove traduzioni possano essere aggiunte facilmente, con minimo sforzo. Chi "
-"è interessato a contribuire può inviare un messaggio a gramps-devel@lists.sf."
-"net"
+"è interessato a contribuire può inviare un messaggio a gramps-devel@"
+"lists.sf.net ."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -1478,53 +1415,6 @@ msgid "Unknown action: %s."
 msgstr "Azione sconosciuta: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Usage: gramps.py [OPTION...]\n"
-#| "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#| "\n"
-#| "Help options\n"
-#| "  -?, --help                             Show this help message\n"
-#| "  --usage                                Display brief usage message\n"
-#| "\n"
-#| "Application options\n"
-#| "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#| "  -U, --username=USERNAME                Database username\n"
-#| "  -P, --password=PASSWORD                Database password\n"
-#| "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#| "Tree\n"
-#| "  -i, --import=FILENAME                  Import file\n"
-#| "  -e, --export=FILENAME                  Export file\n"
-#| "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#| "(use regular expressions)\n"
-#| "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#| "  -a, --action=ACTION                    Specify action\n"
-#| "  -p, --options=OPTIONS_STRING           Specify options\n"
-#| "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#| "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#| "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#| "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#| "delimited\n"
-#| "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#| "  -s, --show                             Show config settings\n"
-#| "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#| "Gramps\n"
-#| "  -y, --yes                              Don't ask to confirm dangerous "
-#| "actions (non-GUI mode only)\n"
-#| "  -q, --quiet                            Suppress progress indication "
-#| "output (non-GUI mode only)\n"
-#| "  -v, --version                          Show versions\n"
-#| "  -S, --safe                             Start Gramps in 'Safe mode'\n"
-#| "                                          (temporarily use default "
-#| "settings)\n"
-#| "  -D, --default=[APXFE]                  Reset settings to default;\n"
-#| "                 A - addons are cleared\n"
-#| "                 P - Preferences to default\n"
-#| "                 X - Books are cleared, reports and tool settings to "
-#| "default\n"
-#| "                 F - filters are cleared\n"
-#| "                 E - Everything is set to default or cleared\n"
 msgid ""
 "\n"
 "Usage: gramps [OPTION...]\n"
@@ -1571,13 +1461,13 @@ msgid ""
 "                 E - Everything is set to default or cleared\n"
 msgstr ""
 "\n"
-"Uso: gramps.py [OPZIONE...]\n"
+"Uso: gramps [OPZIONE...]\n"
 "  --load-modules=MODULO1,MODULO2,...     Moduli dinamici da caricare\n"
 "\n"
 "Opzioni di aiuto\n"
 "  -?, --help                             Mostra questo messaggio di aiuto\n"
-"  --usage                                Mostra informazioni concise "
-"sull'uso\n"
+"  --usage                                Mostra informazioni concise sull'"
+"uso\n"
 "\n"
 "Opzioni dell'applicazione\n"
 "  -O, --open=ALBERO_GENEALOGICO          Apri albero genealogico\n"
@@ -7219,11 +7109,9 @@ msgid "Birth"
 msgstr "Nascita"
 
 #: ../gramps/gen/lib/childreftype.py:69
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Adozione"
+msgstr "Adottato"
 
 #: ../gramps/gen/lib/childreftype.py:70
 msgid "Stepchild"
@@ -7643,9 +7531,8 @@ msgid "Informant"
 msgstr "Informatore/trice"
 
 #: ../gramps/gen/lib/eventroletype.py:64
-#, fuzzy
 msgid "Godparent"
-msgstr "Gramplet"
+msgstr "Padrino"
 
 #: ../gramps/gen/lib/eventtype.py:137
 msgid "Life Events"
@@ -9988,16 +9875,12 @@ msgid "Short"
 msgstr "Breve"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Given Name Cloud Gramplet"
 msgid "Given Nickname Surname"
-msgstr "Gramplet Nuvola dei nomi"
+msgstr "Nome Soprannome Cognome"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
-#, fuzzy
-#| msgid "Same Given Names"
 msgid "Surname Given Nickname"
-msgstr "Stesso nome"
+msgstr "Cognome Nome Soprannome"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:71
 msgid "Above"
@@ -10107,10 +9990,8 @@ msgid "Detail of information to be shown in a node."
 msgstr "Dettagli delle informazioni da mostrare in un nodo."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
-#| msgid "Name format"
 msgid "Name Format"
-msgstr "Formato nome"
+msgstr "Formato Nome"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 #: ../gramps/gen/plug/report/stdoptions.py:94
@@ -11785,16 +11666,12 @@ msgid "Email"
 msgstr "Email"
 
 #: ../gramps/gui/configure.py:633
-#, fuzzy
-#| msgid ""
-#| "Enter information about yourself so people can contact you when you "
-#| "distribute your Family Tree"
 msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
 "Inserire le proprie informazioni, così le persone possono contattarti quando "
-"distribuisci l'albero genealogico"
+"distribuisci l'albero genealogico."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -12095,11 +11972,12 @@ msgid "Status bar"
 msgstr "Barra di stato"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
 msgid ""
 "\n"
 "Input Options"
-msgstr "Includere i coniugi"
+msgstr ""
+"\n"
+"Opzioni Inserimento"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -12164,10 +12042,8 @@ msgstr ""
 "di Gramps."
 
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Calcolo linee temporali in corso..."
+msgstr "Limiti di calcolo"
 
 #: ../gramps/gui/configure.py:1534
 #, fuzzy
@@ -12254,10 +12130,8 @@ msgid "Enable spell checker"
 msgstr "Abilita controllo ortografico"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Abilita controllo ortografico"
+msgstr "Abilita controllo ortografico."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12430,12 +12304,12 @@ msgid "Database backend"
 msgstr "Motore database"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Informazioni sul database"
+msgstr ""
+"\n"
+"Posizione del Database"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12452,12 +12326,12 @@ msgid "Database path"
 msgstr "Riparazione database"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Copia di sicurezza in uscita"
+msgstr ""
+"\n"
+"Gestione della Copia di sicurezza"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12490,12 +12364,12 @@ msgid "Autobackup"
 msgstr "Copia di sicurezza automatica"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Percorso database albero genealogico"
+msgstr ""
+"\n"
+"Percorso degli Oggetti Multimediali dell' Albero Genealogico"
 
 #: ../gramps/gui/configure.py:1870
 #, fuzzy
@@ -12527,12 +12401,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "Importazione GEDCOM"
+msgstr ""
+"\n"
+"Importazione sorgente GEDCOM"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -18922,26 +18796,14 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
-#, fuzzy
-#| msgid ""
-#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Premere OK per proseguire, Annulla per interrompere o Indietro per rivedere "
-"le opzioni scelte."
+"Premere  Annulla per interrompere, Indietro per rivedere le opzioni scelte, "
+"oppure OK per proseguire"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
-#, fuzzy, python-format
-#| msgid ""
-#| "The data will be saved as follows:\n"
-#| "\n"
-#| "Format:\t%(format)s\n"
-#| "Name:\t%(name)s\n"
-#| "Folder:\t%(folder)s\n"
-#| "\n"
-#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
-#| "abort"
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -18953,10 +18815,7 @@ msgstr ""
 "\n"
 "Formato:\t%(format)s\n"
 "Nome:\t%(name)s\n"
-"Cartella:\t%(folder)s\n"
-"\n"
-"Premere Applica per proseguire, Indietro per rivedere le opzioni scelte o "
-"Annulla per interrompere"
+"Cartella:\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
 #, fuzzy
@@ -26196,10 +26055,9 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Probabilmente il file è rovinato o non è un database di Gramps valido."
 
 #: ../gramps/plugins/importer/importxml.py:255
-#, fuzzy, python-brace-format
-#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s - %(text)s con %(id2)s\n"
+msgstr "  {id1} - {text} con {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
@@ -26239,21 +26097,11 @@ msgid "Sources"
 msgstr "Fonti"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "Numero di nuovi oggetti importati:\n"
+msgstr "Numero dei nuovi oggetti importati:"
 
 #: ../gramps/plugins/importer/importxml.py:297
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unknown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -26269,16 +26117,9 @@ msgstr ""
 "ed il relativo attributo caratterizzante impostato a «Sconosciuto».\n"
 "La suddivisione per categoria è rappresentata dai numeri\n"
 "tra parentesi. Dove possibile, per questi oggetti di tipo\n"
-"«sconosciuto» esiste un riferimento dalla nota %(unknown)s.\n"
+"«sconosciuto» esiste un riferimento dalla nota %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:307
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Media objects with relative paths have been\n"
-#| "imported. These paths are considered relative to\n"
-#| "the media directory you can set in the preferences,\n"
-#| "or, if not set, relative to the user's directory.\n"
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -26290,19 +26131,15 @@ msgstr ""
 "Gli oggetti multimediali con percorso relativo sono stati\n"
 "importati. Questi percorsi sono considerati come relativi alla\n"
 "directory degli oggetti multimediali impostata nelle preferenze\n"
-"o, se non impostata, relativi alla directory dell'utente.\n"
+"o, se non impostata, relativi alla directory dell'utente."
 
 #: ../gramps/plugins/importer/importxml.py:317
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Oggetti candidati per la fusione:\n"
+"Oggetti candidati per la fusione:"
 
 #: ../gramps/plugins/importer/importxml.py:804
 #: ../gramps/plugins/importer/importxml.py:1284
@@ -33028,10 +32865,9 @@ msgid "The style used for the subtitle."
 msgstr "Lo stile usato per i sottotitoli."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Relazione:"
+msgstr "Relazione: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -33574,10 +33410,9 @@ msgid "Event Information"
 msgstr "Informazioni contestuali"
 
 #: ../gramps/plugins/textreport/summary.py:234
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "Numero di eventi"
+msgstr "Numero di eventi: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
 #, fuzzy
@@ -33586,10 +33421,9 @@ msgid "Place Information"
 msgstr "Formato luogo"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy, python-format
-#| msgid "Number of places"
+#, python-format
 msgid "Number of places: %d"
-msgstr "Numero di luoghi"
+msgstr "Numero di luoghi: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
 #, fuzzy
@@ -33598,10 +33432,9 @@ msgid "Source Information"
 msgstr "Informazioni condivise"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Numero di fonti"
+msgstr "Numero di fonti: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
 #, fuzzy
@@ -33610,10 +33443,9 @@ msgid "Citation Information"
 msgstr "Informazioni pubblicazione"
 
 #: ../gramps/plugins/textreport/summary.py:273
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Numero di citazioni"
+msgstr "Numero di citazioni: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
 #, fuzzy
@@ -33622,10 +33454,9 @@ msgid "Repository Information"
 msgstr "Informazioni relazione"
 
 #: ../gramps/plugins/textreport/summary.py:286
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Numero di depositi"
+msgstr "Numero di depositi: %d"
 
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
@@ -33644,10 +33475,9 @@ msgid "Note Information"
 msgstr "Nessuna informazione sulle date"
 
 #: ../gramps/plugins/textreport/summary.py:346
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Numero di note"
+msgstr "Numero di note: %d"
 
 #: ../gramps/plugins/textreport/summary.py:374
 msgid "Whether to count private data"
