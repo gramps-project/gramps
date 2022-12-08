@@ -11,13 +11,14 @@
 # Arnau <arnaullv at gmail dot com>, 2017.
 # jcreusand <joan.creusandreu@gmail.com>, 2021.
 # Maite Guix <maite.guix@gmail.com>, 2022.
+# Arnau Llovet Vidal <arnaullv@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-17 19:16+0000\n"
-"Last-Translator: Maite Guix <maite.guix@gmail.com>\n"
+"PO-Revision-Date: 2022-10-17 00:57+0000\n"
+"Last-Translator: Arnau Llovet Vidal <arnaullv@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/ca/>\n"
 "Language: ca\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7879,12 +7880,12 @@ msgstr "cau.def."
 #: ../gramps/gen/lib/eventtype.py:224
 msgctxt "Census abbreviation"
 msgid "cens."
-msgstr "cens."
+msgstr "cens"
 
 #: ../gramps/gen/lib/eventtype.py:225
 msgctxt "Christening abbreviation"
 msgid "chr."
-msgstr "cris."
+msgstr "bap."
 
 #: ../gramps/gen/lib/eventtype.py:226
 msgctxt "Confirmation abbreviation"
@@ -12067,19 +12068,15 @@ msgstr "Límits de càlcul"
 
 #: ../gramps/gui/configure.py:1534
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Data amb interval d'anys «aproximadament»: (data ± #)"
+msgstr "Data 'aproximada' d'un rang d'anys: (data ± #)"
 
 #: ../gramps/gui/configure.py:1538
-#, fuzzy
-#| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Data després d'un rang"
+msgstr "Data 'després' d'un rang d'anys:  (data + #)"
 
 #: ../gramps/gui/configure.py:1542
-#, fuzzy
-#| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
-msgstr "Data abans d'un rang"
+msgstr "Data 'abans' d'un rang d'anys:  (data - #)"
 
 #: ../gramps/gui/configure.py:1546
 msgid "Maximum age probably alive"
@@ -12103,27 +12100,23 @@ msgstr "Màxim de generacions per parentesc"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Límits"
 
 #: ../gramps/gui/configure.py:1575
-#, fuzzy
-#| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "Cites d'Esdeveniment"
+msgstr "Paràmetres de l'entorn"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
-msgstr "Mostrar Consell del Dia"
+msgstr "Mostra el Consell del Dia"
 
 #: ../gramps/gui/configure.py:1582
 msgid "Show useful information about using Gramps on startup."
-msgstr "Mostrar informació útil sobre l'ús de Gramps en engegar."
+msgstr "Mostra informació útil sobre l'ús de Gramps en engegar."
 
 #: ../gramps/gui/configure.py:1585
-#, fuzzy
-#| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
-msgstr "Esborra Arbre Genealògic"
+msgstr "Recorda el darrer Arbre Genealògic"
 
 #: ../gramps/gui/configure.py:1587
 msgid ""
@@ -12142,16 +12135,12 @@ msgid "Remember last view displayed and open it next time."
 msgstr "Recorda l'última vista mostrada i obrir-la la propera vegada."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
-msgstr "Activar correcció ortogràfica"
+msgstr "Habilita la correcció ortogràfica"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Activar correcció ortogràfica"
+msgstr "Activa la correcció ortogràfica per les notes."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12290,13 +12279,11 @@ msgstr "No demanar per complements que ja s'han notificat anteriorment"
 
 #: ../gramps/gui/configure.py:1732
 msgid "Check for updated addons now"
-msgstr "Comprova ara els complements actualitzats"
+msgstr "Comprova ara si hi ha actualitzacions dels complements"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "Nom de complement"
+msgstr "Complements"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -12327,25 +12314,23 @@ msgstr "nou"
 
 #: ../gramps/gui/configure.py:1765
 msgid "update"
-msgstr "actualitza"
+msgstr "actualització"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
-#| msgid "Database version"
 msgid "Database Setting"
-msgstr "Versió de base de dades"
+msgstr "Configuració de base de dades"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
 msgstr "Gestor de base de dades"
 
 #: ../gramps/gui/configure.py:1806
-#, fuzzy
-#| msgid "Database Information"
 msgid ""
 "\n"
 "Database Location"
-msgstr "Informació de la base de dades"
+msgstr ""
+"\n"
+"Ubicació de la base de dades"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12356,18 +12341,16 @@ msgid "Port"
 msgstr "Port"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
-#| msgid "Database Type"
 msgid "Database path"
-msgstr "Tipus de base de dades"
+msgstr "Camí de la base de dades"
 
 #: ../gramps/gui/configure.py:1831
-#, fuzzy
-#| msgid "Backup on exit"
 msgid ""
 "\n"
 "Backup Management"
-msgstr "Fer còpia de seguretat en sortir"
+msgstr ""
+"\n"
+"Gestió de Còpia de seguretat"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12400,12 +12383,12 @@ msgid "Autobackup"
 msgstr "Còpia de seguretat automàtica"
 
 #: ../gramps/gui/configure.py:1863
-#, fuzzy
-#| msgid "Family Tree Database path"
 msgid ""
 "\n"
 "Family Tree's Media path"
-msgstr "Camí de la Base de Dades d'Arbres Genealògics"
+msgstr ""
+"\n"
+"Camí dels audiovisuals dels Arbres Genealògics"
 
 #: ../gramps/gui/configure.py:1870
 #, fuzzy
@@ -12443,12 +12426,12 @@ msgstr ""
 "Esborreu-la per utilitzar el valor predeterminat."
 
 #: ../gramps/gui/configure.py:1921
-#, fuzzy
-#| msgid "GEDCOM import"
 msgid ""
 "\n"
 "Source GEDCOM import"
-msgstr "Importació GEDCOM"
+msgstr ""
+"\n"
+"Origen de l'importació GEDCOM"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -13169,7 +13152,7 @@ msgstr ""
 #: ../gramps/gui/editors/addmedia.py:70
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "Selecciona el selector de medis audiovisuals"
+msgstr "Selecciona_el_selector_de_medis_audiovisuals"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -15441,7 +15424,7 @@ msgstr "El %s no conté"
 #: ../gramps/gui/views/listview.py:1299 ../gramps/plugins/gramplet/leak.py:193
 #: ../gramps/plugins/gramplet/leak.py:200
 msgid "Updating display..."
-msgstr "Actualitzant visualització..."
+msgstr "S'està actualitzant la visualització..."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:103
 #: ../gramps/gui/glade/editcitation.glade:263
@@ -17884,7 +17867,7 @@ msgstr "Instal·la _Complements Seleccionats"
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:1083
 msgid "Available Gramps Updates for Addons"
-msgstr "Actualitzacions de Gramps per Complements Disponibles"
+msgstr "Hi ha actualitzacions disponibles de Complements de Gramps"
 
 #: ../gramps/gui/glade/updateaddons.glade:89
 msgid ""
@@ -18858,14 +18841,11 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
-#, fuzzy
-#| msgid ""
-#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Premi OK per continuar, Cancel·lar per avortar, o Enrere per revisar les "
-"opcions."
+"Prem Cancel·la per avortar, Enrere per revisar les teves opcions, o Aplica "
+"per procedir"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
 #, fuzzy, python-format
@@ -19978,7 +19958,7 @@ msgstr "Còpia de seguretat avortada"
 #: ../gramps/gui/views/bookmarks.py:69
 msgctxt "manual"
 msgid "Bookmarks"
-msgstr "Punts d'interès"
+msgstr "Adreces d'interès"
 
 #: ../gramps/gui/views/bookmarks.py:265 ../gramps/gui/views/bookmarks.py:275
 #: ../gramps/gui/views/bookmarks.py:371
@@ -26137,10 +26117,9 @@ msgstr ""
 "vàlida."
 
 #: ../gramps/plugins/importer/importxml.py:255
-#, fuzzy, python-brace-format
-#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s - %(text)s amb %(id2)s\n"
+msgstr "  {id1} - {text} amb {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
@@ -26180,21 +26159,11 @@ msgid "Sources"
 msgstr "Fonts"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "Nombre d'objectes nous importats:\n"
+msgstr "Nombre d'objectes nous importats:"
 
 #: ../gramps/plugins/importer/importxml.py:297
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unknown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -26210,16 +26179,9 @@ msgstr ""
 "el seu atribut tipificador s'ha posat a 'Desconegut'.\n"
 "La distribució per categoria es veu al nombre entre\n"
 "parèntesis. On ha estat possible, aquests objectes\n"
-"'Desconeguts' s'han referenciat per la nota %(unknown)s.\n"
+"'Desconeguts' s'han referenciat per la nota %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:307
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Media objects with relative paths have been\n"
-#| "imported. These paths are considered relative to\n"
-#| "the media directory you can set in the preferences,\n"
-#| "or, if not set, relative to the user's directory.\n"
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -26231,19 +26193,15 @@ msgstr ""
 "S'han importat objectes de medis amb camins\n"
 "relatius. Aquests camins es consideren relatius\n"
 "al directori de medis que es pot seleccionar a les\n"
-"preferències o, si no es diu res, relatius al directori d'usuari.\n"
+"preferències o, si no es diu res, relatius al directori d'usuari."
 
 #: ../gramps/plugins/importer/importxml.py:317
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Objectes que són candidats a ser combinats:\n"
+"Objectes que són candidats a ser combinats:"
 
 #: ../gramps/plugins/importer/importxml.py:804
 #: ../gramps/plugins/importer/importxml.py:1284
@@ -32880,10 +32838,9 @@ msgid "The style used for the subtitle."
 msgstr "L'estil que es fa servir per al subtítol."
 
 #: ../gramps/plugins/textreport/familygroup.py:403
-#, fuzzy, python-format
-#| msgid "Relationship:"
+#, python-format
 msgid "Relationship: %s"
-msgstr "Relació:"
+msgstr "Relació: %s"
 
 #: ../gramps/plugins/textreport/familygroup.py:503
 msgctxt "acronym for male"
@@ -33427,10 +33384,9 @@ msgid "Event Information"
 msgstr "Informació de Context"
 
 #: ../gramps/plugins/textreport/summary.py:234
-#, fuzzy, python-format
-#| msgid "Number of events"
+#, python-format
 msgid "Number of events: %d"
-msgstr "Nombre de esdeveniments"
+msgstr "Nombre d'esdeveniments: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
 #, fuzzy
@@ -33439,10 +33395,9 @@ msgid "Place Information"
 msgstr "Format del lloc"
 
 #: ../gramps/plugins/textreport/summary.py:247
-#, fuzzy, python-format
-#| msgid "Number of places"
+#, python-format
 msgid "Number of places: %d"
-msgstr "Nombre de llocs"
+msgstr "Nombre de llocs: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
 #, fuzzy
@@ -33451,10 +33406,9 @@ msgid "Source Information"
 msgstr "Informació Compartida"
 
 #: ../gramps/plugins/textreport/summary.py:260
-#, fuzzy, python-format
-#| msgid "Number of sources"
+#, python-format
 msgid "Number of sources: %d"
-msgstr "Nombre de fonts"
+msgstr "Nombre de fonts: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
 #, fuzzy
@@ -33463,10 +33417,9 @@ msgid "Citation Information"
 msgstr "Informació de Publicació"
 
 #: ../gramps/plugins/textreport/summary.py:273
-#, fuzzy, python-format
-#| msgid "Number of citations"
+#, python-format
 msgid "Number of citations: %d"
-msgstr "Nombre de cites"
+msgstr "Nombre de cites: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
 #, fuzzy
@@ -33475,10 +33428,9 @@ msgid "Repository Information"
 msgstr "Informació de relació"
 
 #: ../gramps/plugins/textreport/summary.py:286
-#, fuzzy, python-format
-#| msgid "Number of repositories"
+#, python-format
 msgid "Number of repositories: %d"
-msgstr "Nombre de repositoris"
+msgstr "Nombre de repositoris: %d"
 
 #: ../gramps/plugins/textreport/summary.py:318
 #, python-format
@@ -33497,10 +33449,9 @@ msgid "Note Information"
 msgstr "Sense Informació de Data"
 
 #: ../gramps/plugins/textreport/summary.py:346
-#, fuzzy, python-format
-#| msgid "Number of notes"
+#, python-format
 msgid "Number of notes: %d"
-msgstr "Nombre de notes"
+msgstr "Nombre de notes: %d"
 
 #: ../gramps/plugins/textreport/summary.py:374
 msgid "Whether to count private data"
@@ -38676,12 +38627,6 @@ msgid "Surnames beginning with letter %s"
 msgstr "Cognoms que comencin amb la lletra %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
-#, fuzzy
-#| msgid ""
-#| "This page displays a indexed list of all the media objects in this "
-#| "database.  It is sorted by media title.  There is an index of all the "
-#| "media objects in this database.  Clicking on a thumbnail will take you to "
-#| "that image&#8217;s page."
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
@@ -38689,9 +38634,9 @@ msgid ""
 "page."
 msgstr ""
 "Aquesta pàgina mostra una llista indexada de tots els objectes audiovisuals "
-"d'aquesta base de dades. Està  ordenada per títol. Hi ha un índex de tots "
-"els objectes audiovisuals d'aquesta base de dades. Si es clica en una imatge "
-"en miniatura, s'anirà a la pàgina d'aquesta imatge."
+"d'aquesta base de dades. Està ordenada per títol. Hi ha un índex de tots els "
+"objectes audiovisuals d'aquesta base de dades. Si es clica en una imatge en "
+"miniatura, s'anirà a la pàgina d'aquesta imatge."
 
 #: ../gramps/plugins/webreport/updates.py:78
 msgid "New and updated objects"
