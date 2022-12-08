@@ -57,7 +57,7 @@
 #
 # Marco Molteni <molter@gufi.org>, 2001-2002;.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022.
 # Gianluca Boiano <morf3089@gmail.com>, 2021.
 # Alessandro Combatti <combatti.alessandro@gmail.com>, 2022.
 msgid ""
@@ -65,8 +65,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-11-26 08:05+0000\n"
-"Last-Translator: Alessandro Combatti <combatti.alessandro@gmail.com>\n"
+"PO-Revision-Date: 2022-11-29 19:48+0000\n"
+"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/it/>\n"
 "Language: it\n"
@@ -449,11 +449,6 @@ msgstr ""
 "Visualizza &gt; Filtro."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -461,8 +456,9 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Inversione dei filtri</b><br/>I filtri possono essere facilmente "
-"invertiti con l'opzione «inverti». Per esempio, invertendo il filtro "
-"«Persone con figli» saranno selezionate tutte le persone senza figli."
+"invertiti con l'opzione di inversione »Restituisci i valori che non "
+"corrispondono alle regole del filtro». Per esempio, invertendo il filtro «"
+"Persone con figli» saranno selezionate tutte le persone senza figli."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -640,14 +636,6 @@ msgstr ""
 "voci della stessa persona inserite più volte nel database."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge..."
-#| "\" allows you to combine separately listed people into one. Select the "
-#| "second entry by holding the Control key as you click. This is very useful "
-#| "for combining two databases with overlapping people, or combining "
-#| "erroneously entered differing names for one individual. This also works "
-#| "for the Places, Sources and Repositories views."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -656,13 +644,13 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Fondere le voci</b><br/>La funzione \"Modifica &gt; Confronta e fondi..."
-"\" consente di combinare delle persone elencate separatamente in una sola "
-"voce. Seleziona la seconda voce tenendo premuto il pulsante Control mentre "
-"si fa clic. Questo è molto utile per combinare due database con persone "
-"ripetute, o per combinare lo stesso individuo inserito per errore con nomi "
-"diversi. La funzione è disponibile anche per le viste luoghi, fonti e "
-"depositi."
+"<b>Fondere le voci</b><br/>La funzione \"Modifica &gt; Fondi...\" consente "
+"di combinare delle persone elencate separatamente in una sola voce. "
+"Seleziona la seconda voce tenendo premuto il pulsante Control mentre si fa "
+"clic. Questo è molto utile per combinare due database con persone ripetute, "
+"o per combinare lo stesso individuo inserito per errore con nomi diversi. La "
+"fusione è disponibile in tutte le viste di elenchi per tutti i tipi di "
+"oggetti primari."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -996,7 +984,7 @@ msgid ""
 msgstr ""
 "<b>Segnalare bug in Gramps</b><br/>Il modo migliore per segnalare un bug in "
 "Gramps è utilizzare il sistema di gestione dei bug di Gramps all'indirizzo "
-"https://gramps-project.org/bugs/ ."
+"https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
 msgid ""
@@ -1004,7 +992,7 @@ msgid ""
 "project.org/."
 msgstr ""
 "<b>La pagina web di Gramps</b><br/>La pagina web di Gramps è http://gramps-"
-"project.org/ ."
+"project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1057,7 +1045,7 @@ msgid ""
 "printed."
 msgstr ""
 "<b>Resoconto libro</b><br/>Il resoconto libro raggiungibile da \"Resoconti "
-"&gt; Libri...\", permette agli utenti di raccogliere vari resoconti in un "
+"&gt; Libri...\" permette agli utenti di raccogliere vari resoconti in un "
 "unico documento. Un unico resoconto è più semplice da distribuire che non "
 "diversi resoconti, specialmente quando viene stampato."
 
@@ -1132,8 +1120,8 @@ msgid ""
 msgstr ""
 "<b>I traduttori di Gramps</b><br/>Gramps è stato progettato in modo che "
 "nuove traduzioni possano essere aggiunte facilmente, con minimo sforzo. Chi "
-"è interessato a contribuire può inviare un messaggio a gramps-devel@"
-"lists.sf.net ."
+"è interessato a contribuire può inviare un messaggio a gramps-devel@lists.sf."
+"net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -2275,7 +2263,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2285,7 +2273,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2295,7 +2283,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2305,7 +2293,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "and"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2315,7 +2303,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "before"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2325,7 +2313,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "after"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2335,7 +2323,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "about"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2345,7 +2333,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "estimated"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2355,7 +2343,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "calculated"
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:255
 #, python-brace-format
@@ -2370,7 +2358,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2380,7 +2368,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "to"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2390,7 +2378,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "between"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2400,7 +2388,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "and"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "before <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2410,7 +2398,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "before"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "after <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2420,7 +2408,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "after"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "about <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2430,7 +2418,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "about"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "estimated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2440,7 +2428,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "estimated"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If "calculated <Month>" needs a special inflection
 #. in your language, translate to "{short_month.f[X]} {year}"
@@ -2450,7 +2438,7 @@ msgstr "{short_month} {year}"
 #, python-brace-format
 msgctxt "calculated"
 msgid "{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. Translators: If there is no special inflection for
 #. "from <Month>" in your language, DON'T translate this.
@@ -2544,25 +2532,25 @@ msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:654
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr "{long_month} {day:d}, {year}"
+msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:680
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr "{short_month} {day:d}, {year}"
+msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:706
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr "{day:d} {long_month} {year}"
+msgstr ""
 
 #. Translators: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:732
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr "{day:d} {short_month} {year}"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:422
 msgid "today"
@@ -7102,8 +7090,6 @@ msgid "None"
 msgstr "Nessuno"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
 msgstr "Nascita"
@@ -7111,7 +7097,7 @@ msgstr "Nascita"
 #: ../gramps/gen/lib/childreftype.py:69
 msgctxt "relationship"
 msgid "Adopted"
-msgstr "Adottato"
+msgstr "Adozione"
 
 #: ../gramps/gen/lib/childreftype.py:70
 msgid "Stepchild"
@@ -9991,7 +9977,7 @@ msgstr "Dettagli delle informazioni da mostrare in un nodo."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Name Format"
-msgstr "Formato Nome"
+msgstr "Formato nome"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
 #: ../gramps/gen/plug/report/stdoptions.py:94
@@ -10729,7 +10715,7 @@ msgstr "Tedesco"
 
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "German (Austria)"
-msgstr ""
+msgstr "Tedesco (Austria)"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Greek"
@@ -11670,8 +11656,8 @@ msgid ""
 "Enter information about yourself so people can contact you when you "
 "distribute your Family Tree."
 msgstr ""
-"Inserire le proprie informazioni, così le persone possono contattarti quando "
-"distribuisci l'albero genealogico."
+"Inserire le proprie informazioni, così le persone possono avere un contatto "
+"quando l'albero genealogico viene distribuito."
 
 #: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:687
 msgid "ID Formats"
@@ -11887,10 +11873,8 @@ msgid "_Remove"
 msgstr "_Rimuovi"
 
 #: ../gramps/gui/configure.py:1173
-#, fuzzy
-#| msgid "Misc Options"
 msgid "Display Options"
-msgstr "Opzioni varie"
+msgstr "Opzioni di visualizzazione"
 
 #: ../gramps/gui/configure.py:1189 ../gramps/gui/configure.py:1243
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11906,10 +11890,8 @@ msgid "Edit"
 msgstr "Modifica"
 
 #: ../gramps/gui/configure.py:1192
-#, fuzzy
-#| msgid "Place format"
 msgid "Automate Place format"
-msgstr "Formato luogo"
+msgstr "Formato luogo automatico"
 
 #: ../gramps/gui/configure.py:1195
 msgid "Enables automatic place title generation using specified format."
@@ -11925,10 +11907,8 @@ msgid "Consider single pa/matronymic as surname"
 msgstr "Considera un singolo patronimico/matronimico come cognome"
 
 #: ../gramps/gui/configure.py:1274
-#, fuzzy
-#| msgid "Date format"
 msgid "Date format *"
-msgstr "Formato data"
+msgstr "Formato data *"
 
 #: ../gramps/gui/configure.py:1282
 msgid "Years"
@@ -11943,20 +11923,16 @@ msgid "Years, Months, Days"
 msgstr "Anni, mesi, giorni"
 
 #: ../gramps/gui/configure.py:1297
-#, fuzzy
-#| msgid "Age display precision (requires restart)"
 msgid "Age display precision *"
-msgstr "Precisione età visualizzata (richiede un riavvio)"
+msgstr "Precisione età visualizzata *"
 
 #: ../gramps/gui/configure.py:1310
 msgid "Calendar on reports"
 msgstr "Calendario nei resoconti"
 
 #: ../gramps/gui/configure.py:1323
-#, fuzzy
-#| msgid "Calendar on reports"
 msgid "Calendar on input"
-msgstr "Calendario nei resoconti"
+msgstr "Calendario per l'input"
 
 #: ../gramps/gui/configure.py:1330
 msgid "Active person's name and ID"
@@ -11977,7 +11953,7 @@ msgid ""
 "Input Options"
 msgstr ""
 "\n"
-"Opzioni Inserimento"
+"Opzioni di inserimento"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -11996,10 +11972,8 @@ msgid "* Requires Restart"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "_Data"
 msgid "Data"
-msgstr "_Dati"
+msgstr "Dati"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
@@ -12046,22 +12020,16 @@ msgid "Calculation limits"
 msgstr "Limiti di calcolo"
 
 #: ../gramps/gui/configure.py:1534
-#, fuzzy
-#| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Intervallo di anni per date \"circa\""
+msgstr "Intervallo di anni per date \"circa\" (data ± #):"
 
 #: ../gramps/gui/configure.py:1538
-#, fuzzy
-#| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Intervallo di anni per date \"dopo di\""
+msgstr "Intervallo di anni per date \"dopo di\"   (data + #):"
 
 #: ../gramps/gui/configure.py:1542
-#, fuzzy
-#| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
-msgstr "Intervallo di anni per date \"prima di\""
+msgstr "Intervallo di anni per date \"prima di\" (data - #):"
 
 #: ../gramps/gui/configure.py:1546
 msgid "Maximum age probably alive"
@@ -12088,10 +12056,8 @@ msgid "Limits"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1575
-#, fuzzy
-#| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "Citazioni eventi"
+msgstr "Impostazioni ambiente"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
@@ -12102,10 +12068,8 @@ msgid "Show useful information about using Gramps on startup."
 msgstr "Mostra informazioni utili sull'uso di Gramps all'avvio."
 
 #: ../gramps/gui/configure.py:1585
-#, fuzzy
-#| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
-msgstr "Rimuovi albero genealogico"
+msgstr "Ricorda l'ultimo albero genealogico"
 
 #: ../gramps/gui/configure.py:1587
 msgid ""
@@ -12124,14 +12088,12 @@ msgid "Remember last view displayed and open it next time."
 msgstr "Ricorda l'ultima vista mostrata e riaprila la prossima volta."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "Abilita controllo ortografico"
 
 #: ../gramps/gui/configure.py:1598
 msgid "Enable the spelling checker for notes."
-msgstr "Abilita controllo ortografico."
+msgstr "Abilita controllo ortografico per le note."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12143,10 +12105,8 @@ msgstr ""
 "Per compilarlo per Gramps consultare %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1615
-#, fuzzy
-#| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
-msgstr "Mostra testo vicino ai pulsanti del navigatore (richiede un riavvio)"
+msgstr "Mostra testo vicino ai pulsanti del navigatore *"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
@@ -12190,10 +12150,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/configure.py:1656
-#, fuzzy
-#| msgid "Multiple Surnames"
 msgid "Multiple surname box height"
-msgstr "Cognomi multipli"
+msgstr "Altezza casella cognomi multipli"
 
 #: ../gramps/gui/configure.py:1660
 msgid ""
@@ -12257,10 +12215,8 @@ msgid "Check for updated addons now"
 msgstr "Verifica immediata dei componenti aggiuntivi"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "Nome componente aggiuntivo"
+msgstr "Componenti aggiuntivi"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -12294,10 +12250,8 @@ msgid "update"
 msgstr "aggiorna"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
-#| msgid "Database version"
 msgid "Database Setting"
-msgstr "Versione del database"
+msgstr "Impostazioni del database"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
@@ -12309,7 +12263,7 @@ msgid ""
 "Database Location"
 msgstr ""
 "\n"
-"Posizione del Database"
+"Posizione del database"
 
 #: ../gramps/gui/configure.py:1812
 msgid "Host"
@@ -12320,10 +12274,8 @@ msgid "Port"
 msgstr "Porta"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
-#| msgid "Database Repair"
 msgid "Database path"
-msgstr "Riparazione database"
+msgstr "Percorso del database"
 
 #: ../gramps/gui/configure.py:1831
 msgid ""
@@ -12331,7 +12283,7 @@ msgid ""
 "Backup Management"
 msgstr ""
 "\n"
-"Gestione della Copia di sicurezza"
+"Gestione delle copie di sicurezza"
 
 #: ../gramps/gui/configure.py:1837
 msgid "Backup path"
@@ -12369,13 +12321,11 @@ msgid ""
 "Family Tree's Media path"
 msgstr ""
 "\n"
-"Percorso degli Oggetti Multimediali dell' Albero Genealogico"
+"Percorso degli oggetti multimediali dell'albero genealogico"
 
 #: ../gramps/gui/configure.py:1870
-#, fuzzy
-#| msgid "Cannot set base media path"
 msgid "Base media path"
-msgstr "Impossibile importare il percorso base per gli oggetti multimediali"
+msgstr "Percorso base per oggetti multimediali"
 
 #: ../gramps/gui/configure.py:1876
 msgid ""
@@ -12385,10 +12335,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
-#| msgid "Records"
 msgid "Tag Records"
-msgstr "Record"
+msgstr "Etichetta record"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
@@ -12406,7 +12354,7 @@ msgid ""
 "Source GEDCOM import"
 msgstr ""
 "\n"
-"Importazione sorgente GEDCOM"
+"Importazione fonte GEDCOM"
 
 #: ../gramps/gui/configure.py:1926
 msgid "Add default source on GEDCOM import"
@@ -12624,10 +12572,8 @@ msgid "Import Family Tree"
 msgstr "Importa albero genealogico"
 
 #: ../gramps/gui/dbloader.py:387
-#, fuzzy
-#| msgid "All files"
 msgid "All supported files"
-msgstr "Tutti i file"
+msgstr "Tutti i file supportati"
 
 #: ../gramps/gui/dbloader.py:442
 #, python-format
@@ -13180,10 +13126,8 @@ msgid "Move the selected address downwards"
 msgstr "Sposta in basso l'indirizzo selezionato"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:77
-#, fuzzy
-#| msgid "Postal Code"
 msgid "Postal"
-msgstr "Codice postale"
+msgstr "Postale"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:85
 msgid "_Addresses"
@@ -13870,10 +13814,9 @@ msgid "_Jump to"
 msgstr "_Vai a"
 
 #: ../gramps/gui/editors/editaddress.py:65
-#, fuzzy
 msgctxt "manual"
 msgid "Address_Editor_dialog"
-msgstr "Editor indirizzi"
+msgstr ""
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:167
@@ -13881,10 +13824,9 @@ msgid "Address Editor"
 msgstr "Editor indirizzi"
 
 #: ../gramps/gui/editors/editattribute.py:62
-#, fuzzy
 msgctxt "manual"
 msgid "Attribute_Editor_dialog"
-msgstr "Editor attributi"
+msgstr ""
 
 #: ../gramps/gui/editors/editattribute.py:94
 #: ../gramps/gui/editors/editattribute.py:137
@@ -13905,10 +13847,9 @@ msgid "The attribute type cannot be empty"
 msgstr "Il tipo dell'attributo non può essere vuoto"
 
 #: ../gramps/gui/editors/editchildref.py:66
-#, fuzzy
 msgctxt "manual"
 msgid "Child_Reference_Editor"
-msgstr "Editor riferimento figlio"
+msgstr ""
 
 #: ../gramps/gui/editors/editchildref.py:99
 #: ../gramps/gui/editors/editchildref.py:190
@@ -14091,10 +14032,9 @@ msgid "Edit Event (%s)"
 msgstr "Modifica evento (%s)"
 
 #: ../gramps/gui/editors/editeventref.py:57
-#, fuzzy
 msgctxt "manual"
 msgid "Event_Reference_Editor_dialog"
-msgstr "Editor riferimento evento"
+msgstr ""
 
 #: ../gramps/gui/editors/editeventref.py:77
 #: ../gramps/gui/editors/editeventref.py:268
@@ -14422,10 +14362,9 @@ msgid "Add Family"
 msgstr "Aggiunge famiglia"
 
 #: ../gramps/gui/editors/editldsord.py:67
-#, fuzzy
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "Editor ordinanza LDS"
+msgstr "Editor_ordinanza_LDS"
 
 #: ../gramps/gui/editors/editldsord.py:158
 #: ../gramps/gui/editors/editldsord.py:315
@@ -14450,10 +14389,9 @@ msgid "%(mother)s [%(gramps_id)s]"
 msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../gramps/gui/editors/editlink.py:49
-#, fuzzy
 msgctxt "manual"
 msgid "Link_Editor"
-msgstr "Editor collegamento"
+msgstr "Editor_collegamento"
 
 #: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:250
 msgid "Link Editor"
@@ -14530,10 +14468,9 @@ msgid "Edit Media Object (%s)"
 msgstr "Modifica oggetto multimediale (%s)"
 
 #: ../gramps/gui/editors/editmediaref.py:72
-#, fuzzy
 msgctxt "manual"
 msgid "Media_Reference_Editor_dialog"
-msgstr "Editor riferimento oggetto multimediale"
+msgstr "Edito_ riferimento_oggetto_multimediale"
 
 #: ../gramps/gui/editors/editmediaref.py:96
 #: ../gramps/gui/editors/editmediaref.py:415
@@ -14553,10 +14490,9 @@ msgid "Name Editor"
 msgstr "Editor nomi"
 
 #: ../gramps/gui/editors/editname.py:162
-#, fuzzy
 msgctxt "manual"
 msgid "Name_Editor"
-msgstr "Editor nomi"
+msgstr "Editor_nomi"
 
 #: ../gramps/gui/editors/editname.py:174
 #: ../gramps/gui/editors/editperson.py:318
@@ -14774,10 +14710,9 @@ msgid "_Unknown"
 msgstr "_Sconosciuto"
 
 #: ../gramps/gui/editors/editpersonref.py:67
-#, fuzzy
 msgctxt "manual"
 msgid "Person_Reference_Editor"
-msgstr "Editor riferimento persona"
+msgstr "Editor_riferimento_persona"
 
 #: ../gramps/gui/editors/editpersonref.py:93
 #: ../gramps/gui/editors/editpersonref.py:213
@@ -14878,10 +14813,9 @@ msgid "New"
 msgstr "Nuovo"
 
 #: ../gramps/gui/editors/editplacename.py:49
-#, fuzzy
 msgctxt "manual"
 msgid "Place_Name_Editor_dialog"
-msgstr "Editor nomi di luoghi"
+msgstr ""
 
 #: ../gramps/gui/editors/editplacename.py:101
 #: ../gramps/gui/editors/editplacename.py:134
@@ -16863,8 +16797,6 @@ msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:380
 #: ../gramps/gui/glade/editplaceref.glade:397
-#, fuzzy
-#| msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgid "What type of place this is. Eg 'Country', 'City', ..."
 msgstr "Di quale tipo di luogo si tratta. Ad es. «nazione», «città», ..."
 
@@ -18282,10 +18214,9 @@ msgstr ""
 "Grazie per il tempo dedicato a segnalare un problema."
 
 #: ../gramps/gui/logger/_errorview.py:46
-#, fuzzy
 msgctxt "manual"
 msgid "Error_Report"
-msgstr "Resoconto errori"
+msgstr "Resoconto_errori"
 
 #: ../gramps/gui/logger/_errorview.py:107
 msgid "Error Report"
@@ -18799,7 +18730,7 @@ msgstr ""
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Premere  Annulla per interrompere, Indietro per rivedere le opzioni scelte, "
+"Premere Annulla per interrompere, Indietro per rivedere le opzioni scelte, "
 "oppure OK per proseguire"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
@@ -18818,18 +18749,11 @@ msgstr ""
 "Cartella:\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
-#, fuzzy
-#| msgid "=format"
 msgctxt "name"
 msgid "format"
-msgstr "=formato"
+msgstr "formato"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
-#, fuzzy
-#| msgid ""
-#| "The selected file and folder to save to cannot be created or found.\n"
-#| "\n"
-#| "Press Back to return and select a valid filename."
 msgid ""
 "The selected file and folder to save cannot be created or found.\n"
 "\n"
@@ -18838,7 +18762,7 @@ msgstr ""
 "I file e cartelle selezionati per il salvataggio non possono essere creati o "
 "trovati.\n"
 "\n"
-"Premere Indietro per poter selezionare un nome di file valido."
+"Premere Indietro per tornare indietro e selezionare un nome di file valido."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:502
 msgid "Your data has been saved"
@@ -19440,10 +19364,9 @@ msgid "Style editor"
 msgstr "Editor stili"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:242
-#, fuzzy
 msgctxt "manual"
 msgid "Style_editor_dialog"
-msgstr "Editor nomi di luoghi"
+msgstr ""
 
 #: ../gramps/gui/plug/report/_styleeditor.py:352
 #: ../gramps/gui/plug/report/_styleeditor.py:380
@@ -20704,6 +20627,9 @@ msgid ""
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
+"La generazione di immagini JPG da immagini non-JPG in documenti LaTeX non "
+"sarà disponibile. Usate il gestore dei pacchetti per installare python-"
+"imaging o python-pillow o python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1182
 #, python-format
@@ -23321,10 +23247,8 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet che mostra le note di un oggetto multimediale"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:779
-#, fuzzy
-#| msgid "Gramplet showing the events for a person"
 msgid "Gramplet showing the selected note"
-msgstr "Gramplet che mostra gli eventi di una persona"
+msgstr "Gramplet che mostra la nota selezionata"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 msgid "Person Citations"
@@ -24148,14 +24072,6 @@ msgid "Getting Started"
 msgstr "Iniziare"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:138
-#, fuzzy
-#| msgid ""
-#| "The first thing you must do is to create a new Family Tree. To create a "
-#| "new Family Tree (sometimes called 'database') select \"Family Trees\" "
-#| "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#| "Family Tree. For more details, please read the information at the links "
-#| "above\n"
-#| "\n"
 msgid ""
 "The first time Gramps is started all of the Views are blank. There are very "
 "few menu options. A Family Tree is needed for any activity to happen.\n"
@@ -24167,12 +24083,17 @@ msgid ""
 "more details, please read the information at the links below.\n"
 "\n"
 msgstr ""
-"La prima cosa da fare è creare un nuovo albero genealogico. Per creare un "
-"nuovo albero genealogico (talvolta chiamato database) selezionare «Alberi "
-"genealogici» dal menu, scegliere «Gestisci alberi genealogici», premere "
-"«Nuovo» e dare un nome all'albero genealogico. Per maggiori informazioni "
-"consultare le informazioni raggiungibili dai collegamenti riportati "
-"precedentemente\n"
+"La prima volta che Gramps viene avviato tutte le viste sono vuote. Ci sono "
+"poche opzioni di menu. Per qualsiasi azione è necessario un albero "
+"genealogico.\n"
+"\n"
+"Per creare un nuovo albero genealogico (talvolta chiamato 'database') "
+"selezionare «Alberi genealogici» dal menu, scegliere «Gestisci alberi "
+"genealogici», premere «Nuovo» e dare un nome all'albero genealogico. Quindi «"
+"Carica albero genealogico» per rendere l'albero attivo e pronto ad accettare "
+"i dati inserendo la prima famiglia, o importando un albero genealogico. Per "
+"maggiori informazioni consultare le informazioni presso i collegamenti "
+"riportati di seguito.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:147
@@ -24180,10 +24101,8 @@ msgid "Start with Genealogy and Gramps"
 msgstr "Iniziare con la genealogia e Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:149
-#, fuzzy
-#| msgid "Every family"
 msgid "Enter your first Family"
-msgstr "Tutte le famiglie"
+msgstr "Inserire la prima famiglia"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:150
 msgid ""
@@ -24213,16 +24132,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:171
-#, fuzzy
-#| msgid "Open an existing database"
 msgid "Entering and editing data (brief)"
-msgstr "Apre un database esistente"
+msgstr "Inserire e modificare i dati (rapido)"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:174
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
-msgstr "Importa albero genealogico"
+msgstr "Importare un albero genealogico"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:175
 msgid ""
@@ -24235,10 +24150,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:179
-#, fuzzy
-#| msgid "Error from external program"
 msgid "Import from another genealogy program"
-msgstr "Errore dal programma esterno"
+msgstr "Importazione da un altro programma genealogico"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:181
 msgid "Dashboard View"
@@ -24268,17 +24181,13 @@ msgstr ""
 "quella di Gramps."
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:192
-#, fuzzy
-#| msgid "Gramps View"
 msgid "Gramps View Categories"
-msgstr "Vista Gramps"
+msgstr "Categoria della vista Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
 #: ../gramps/plugins/gramplet/welcomegramplet.py:199
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "Aggiungi gramplet"
+msgstr "Componenti aggiuntivi e gramplet"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -24289,10 +24198,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "Database completo"
+msgstr "Database di esempio"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:202
 msgid ""
@@ -24309,10 +24216,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:208
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Esempio"
+msgstr "Esempio.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -25034,22 +24939,16 @@ msgstr ""
 "Le famiglie appariranno come ellissi collegati ai genitori ed ai figli."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:973
-#, fuzzy
-#| msgid "Event groups"
 msgid "Parent grouping"
-msgstr "Gruppi di eventi"
+msgstr "Raggruppamento dei genitori"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:975
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents together"
-msgstr "Note genitori"
+msgstr "Genitori insieme"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:976
-#, fuzzy
-#| msgid "Parent Notes"
 msgid "Parents offset"
-msgstr "Note genitori"
+msgstr "Genitori separati"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:978
 msgid ""
@@ -25074,16 +24973,12 @@ msgid "Gramps package (portable XML)"
 msgstr "Pacchetto Gramps (XML portabile)"
 
 #: ../gramps/plugins/importer/import.gpr.py:92
-#, fuzzy
-#| msgid ""
-#| "Import data from a Gramps package (an archived XML Family Tree together "
-#| "with the media object files.)"
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
-"Importa dati da un pacchetto Gramps (un albero genealogico in formato XML "
-"aggregato ai file multimediali)."
+"Importa dati da un pacchetto Gramps (un albero genealogico archiviato in "
+"formato XML aggregato ai file multimediali)."
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
@@ -25894,10 +25789,6 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
-#, fuzzy
-#| msgid ""
-#| "Use death information\n"
-#| "as death cause event."
 msgid ""
 "Use death information\n"
 "as cause of death event."
@@ -26128,7 +26019,7 @@ msgid ""
 "or, if not set, relative to the user's directory."
 msgstr ""
 "\n"
-"Gli oggetti multimediali con percorso relativo sono stati\n"
+"Gli oggetti multimediali con percorsi relativi sono stati\n"
 "importati. Questi percorsi sono considerati come relativi alla\n"
 "directory degli oggetti multimediali impostata nelle preferenze\n"
 "o, se non impostata, relativi alla directory dell'utente."
@@ -30985,10 +30876,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1059
-#, fuzzy
-#| msgid "You have at least two places with the same title."
 msgid "You have more than 5 places in this kml file."
-msgstr "Ci sono almeno due posti con lo stesso titolo."
+msgstr "Ci sono più di cinque posti in questo file kml."
 
 #: ../gramps/plugins/lib/maps/geography.py:1127
 msgid "You have at least two places with the same title."
@@ -31991,10 +31880,8 @@ msgid "German Relationship Calculator"
 msgstr "Calcolatrice relazioni tedesca"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:92
-#, fuzzy
-#| msgid "Russian Relationship Calculator"
 msgid "Austrian Relationship Calculator"
-msgstr "Calcolatrice relazioni russa"
+msgstr "Calcolatrice relazioni austriaca"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:106
 msgid "Spanish Relationship Calculator"
@@ -32057,16 +31944,12 @@ msgid "Swedish Relationship Calculator"
 msgstr "Calcolatrice relazioni svedese"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:330
-#, fuzzy
-#| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
-msgstr "Calcolatrice relazioni danese"
+msgstr "Calcolatrice relazioni turca"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:331
-#, fuzzy
-#| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
-msgstr "Calcola le relazioni tra le persone"
+msgstr "Calcola relazione tra le persone"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:345
 msgid "Ukrainian Relationship Calculator"
@@ -32173,10 +32056,9 @@ msgid "Relationships shown are to %s"
 msgstr "Le relazioni mostrate sono relative a %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:334
-#, fuzzy, python-format
-#| msgid "* %(person)s, birth%(relation)s"
+#, python-format
 msgid "* %(person)s, birth %(relation)s"
-msgstr "* %(person)s, nascita%(relation)s"
+msgstr "* %(person)s, nascita %(relation)s"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:339
@@ -33404,10 +33286,8 @@ msgid "Number of families: %d"
 msgstr "Numero di famiglie: %d"
 
 #: ../gramps/plugins/textreport/summary.py:230
-#, fuzzy
-#| msgid "Context Information"
 msgid "Event Information"
-msgstr "Informazioni contestuali"
+msgstr "Informazioni evento"
 
 #: ../gramps/plugins/textreport/summary.py:234
 #, python-format
@@ -33415,10 +33295,8 @@ msgid "Number of events: %d"
 msgstr "Numero di eventi: %d"
 
 #: ../gramps/plugins/textreport/summary.py:243
-#, fuzzy
-#| msgid "Place format"
 msgid "Place Information"
-msgstr "Formato luogo"
+msgstr "Informazioni luogo"
 
 #: ../gramps/plugins/textreport/summary.py:247
 #, python-format
@@ -33426,10 +33304,8 @@ msgid "Number of places: %d"
 msgstr "Numero di luoghi: %d"
 
 #: ../gramps/plugins/textreport/summary.py:256
-#, fuzzy
-#| msgid "Shared Information"
 msgid "Source Information"
-msgstr "Informazioni condivise"
+msgstr "Informazioni fonte"
 
 #: ../gramps/plugins/textreport/summary.py:260
 #, python-format
@@ -33437,10 +33313,8 @@ msgid "Number of sources: %d"
 msgstr "Numero di fonti: %d"
 
 #: ../gramps/plugins/textreport/summary.py:269
-#, fuzzy
-#| msgid "Publication Information"
 msgid "Citation Information"
-msgstr "Informazioni pubblicazione"
+msgstr "Informazioni citazione"
 
 #: ../gramps/plugins/textreport/summary.py:273
 #, python-format
@@ -33448,10 +33322,8 @@ msgid "Number of citations: %d"
 msgstr "Numero di citazioni: %d"
 
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
-#| msgid "Relationship Information"
 msgid "Repository Information"
-msgstr "Informazioni relazione"
+msgstr "Informazioni deposito"
 
 #: ../gramps/plugins/textreport/summary.py:286
 #, python-format
@@ -33469,10 +33341,8 @@ msgid "Total size of media objects: %s MB"
 msgstr "Dimensione totale degli oggetti multimediali: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:342
-#, fuzzy
-#| msgid "No Date Information"
 msgid "Note Information"
-msgstr "Nessuna informazione sulle date"
+msgstr "Informazioni nota"
 
 #: ../gramps/plugins/textreport/summary.py:346
 #, python-format
@@ -35494,8 +35364,6 @@ msgstr "Riordina gli ID Gramps secondo le regole predefinite di Gramps."
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
 msgstr "Ordina eventi"
 
@@ -36540,18 +36408,15 @@ msgid "A view showing all the event places of the database."
 msgstr "Una vista che mostra tutti i luoghi degli eventi del database."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
-#| msgid "Descendance of the active person."
 msgid "Descendants of the active person."
-msgstr "Discendenza della persona attiva."
+msgstr "Discendenti della persona attiva."
 
 #: ../gramps/plugins/view/geomoves.py:240
 msgid "GeoMoves"
 msgstr "GeoSpostamenti"
 
 #: ../gramps/plugins/view/geomoves.py:573
-#, fuzzy, python-format
-#| msgid "All descendance for %s"
+#, python-format
 msgid "All descendants for %s"
 msgstr "Tutti i discendenti di %s"
 
@@ -38129,16 +37994,12 @@ msgid "Whether or not to include the place pages."
 msgstr "Indica se includere o meno le pagine dei luoghi."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2393
-#, fuzzy
-#| msgid "Include place pages"
 msgid "Include unused place pages"
-msgstr "Includere le pagine dei luoghi"
+msgstr "Includere le pagine non usate dei luoghi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2395
-#, fuzzy
-#| msgid "Whether or not to include the place pages."
 msgid "Whether or not to include the unused place pages."
-msgstr "Indica se includere o meno le pagine dei luoghi."
+msgstr "Indica se includere o meno le pagine non usate dei luoghi."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2398
 msgid "Include source pages"
@@ -38480,13 +38341,6 @@ msgid "Tracking %s"
 msgstr "Localizzazione di %s"
 
 #: ../gramps/plugins/webreport/person.py:882
-#, fuzzy
-#| msgid ""
-#| "This map page represents that person and any descendants with all of "
-#| "their event/ places. If you place your mouse over the marker it will "
-#| "display the place name. The markers and the Reference list are sorted in "
-#| "date order (if any?). Clicking on a place&#8217;s name in the Reference "
-#| "section will take you to that place&#8217;s page."
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/places. If you place your mouse over the marker it will display the "
@@ -38560,8 +38414,6 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Nome"
@@ -38569,7 +38421,7 @@ msgstr "Nome"
 #: ../gramps/plugins/webreport/place.py:220
 #: ../gramps/plugins/webreport/place.py:232
 msgid "State/Province"
-msgstr "Regione/Provincia"
+msgstr "Stato (federato)/Provincia"
 
 #: ../gramps/plugins/webreport/place.py:272
 #, python-format
@@ -38595,8 +38447,6 @@ msgstr ""
 "relativa pagina."
 
 #: ../gramps/plugins/webreport/repository.py:173
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
 msgstr "Nome"
@@ -38667,12 +38517,6 @@ msgid "Surnames beginning with letter %s"
 msgstr "Cognomi che iniziano con la lettera %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
-#, fuzzy
-#| msgid ""
-#| "This page displays a indexed list of all the media objects in this "
-#| "database.  It is sorted by media title.  There is an index of all the "
-#| "media objects in this database.  Clicking on a thumbnail will take you to "
-#| "that image&#8217;s page."
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
