@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-10 12:21+0000\n"
+"PO-Revision-Date: 2022-11-26 08:05+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sk/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7508,7 +7508,7 @@ msgstr "Požehnanie"
 
 #: ../gramps/gen/lib/eventtype.py:172
 msgid "Burial"
-msgstr "Pohreb"
+msgstr "Pochovanie"
 
 #: ../gramps/gen/lib/eventtype.py:173
 msgid "Cause Of Death"
@@ -11068,7 +11068,7 @@ msgstr "Nelegitímny"
 
 #: ../gramps/gen/utils/symbols.py:94
 msgid "Baptism/Christening"
-msgstr "Krst/Krstenie"
+msgstr "Krst"
 
 #: ../gramps/gen/utils/symbols.py:96 ../gramps/gui/configure.py:2232
 msgid "Engaged"
@@ -16000,7 +16000,7 @@ msgstr "Selektor"
 
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr "O aký typ udalosti ide. Napr. 'Pohreb', 'Promócia', ... ."
+msgstr "O aký typ udalosti ide. Napr. 'Pochovanie, 'Promócia', ... ."
 
 #: ../gramps/gui/glade/editevent.glade:326
 msgid ""
@@ -22157,15 +22157,15 @@ msgstr "Zdroj úmrtia"
 
 #: ../gramps/plugins/export/exportcsv.py:360
 msgid "Burial date"
-msgstr "Dátum pohrebu"
+msgstr "Dátum pochovania"
 
 #: ../gramps/plugins/export/exportcsv.py:360
 msgid "Burial place"
-msgstr "Miesto pohrebu"
+msgstr "Miesto pochovania"
 
 #: ../gramps/plugins/export/exportcsv.py:360
 msgid "Burial source"
-msgstr "Zdroj pohrebu"
+msgstr "Zdroj pochovania"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:236
@@ -24982,19 +24982,19 @@ msgstr "zdroj krstu"
 
 #: ../gramps/plugins/importer/importcsv.py:192
 msgid "burial place"
-msgstr "miesto pohrebu"
+msgstr "miesto pochovania"
 
 #: ../gramps/plugins/importer/importcsv.py:194
 msgid "burial place id"
-msgstr "id miesta pohrebu"
+msgstr "id miesta pochovania"
 
 #: ../gramps/plugins/importer/importcsv.py:196
 msgid "burial date"
-msgstr "dátum pohrebu"
+msgstr "dátum pochovania"
 
 #: ../gramps/plugins/importer/importcsv.py:198
 msgid "burial source"
-msgstr "zdroj pohrebu"
+msgstr "zdroj pochovania"
 
 #: ../gramps/plugins/importer/importcsv.py:200
 msgid "death place"
@@ -30779,7 +30779,7 @@ msgstr " farnosť"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " state"
-msgstr " kraj"
+msgstr " štát"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:150
 msgid "Latitude not within '54.55' to '69.05'\n"
@@ -35206,11 +35206,11 @@ msgstr "Úmrtie pred krstom"
 
 #: ../gramps/plugins/tool/verify.py:981
 msgid "Burial before birth"
-msgstr "Pohreb pred narodením"
+msgstr "Pochovanie pred narodením"
 
 #: ../gramps/plugins/tool/verify.py:997
 msgid "Burial before death"
-msgstr "Pohreb pred úmrtím"
+msgstr "Pochovanie pred úmrtím"
 
 #: ../gramps/plugins/tool/verify.py:1013
 msgid "Death before birth"
@@ -35218,7 +35218,7 @@ msgstr "Úmrtie pred narodením"
 
 #: ../gramps/plugins/tool/verify.py:1029
 msgid "Burial before baptism"
-msgstr "Pohreb pred krstom"
+msgstr "Pochovanie pred krstom"
 
 #: ../gramps/plugins/tool/verify.py:1052
 msgid "Old age at death"

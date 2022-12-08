@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-30 11:21+0000\n"
+"PO-Revision-Date: 2022-11-26 08:05+0000\n"
 "Last-Translator: Milan <mobrcian@hotmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -10715,7 +10715,7 @@ msgstr "Maďarština"
 
 #: ../gramps/gen/utils/grampslocale.py:90
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonéština"
 
 #: ../gramps/gen/utils/grampslocale.py:91
 msgid "Icelandic"
@@ -11656,6 +11656,9 @@ msgid ""
 "string. \"I%04d\" creates IDs from I0000 to I9999. Large databases may need "
 "larger IDs. \"I%06d\" creates IDs from I000000 to I999999.\n"
 msgstr ""
+"Výchozí formáty ID Gramps obsahující písmenný prefix následovaný číselným "
+"řetězcem. \"I%04d\" vytvoří ID od I0000 do I9999. Velké databáze mohou "
+"potřebovat větší ID. \"I%06d\" vytvoří ID od I000000 do I999999.\n"
 
 #: ../gramps/gui/configure.py:696
 msgid "Colors used for boxes in the graphical views"
@@ -11882,7 +11885,7 @@ msgstr "Povolit automatické vytváření titulku místa dle daného formátu."
 
 #: ../gramps/gui/configure.py:1252
 msgid "Custom name display options are unique to each family tree."
-msgstr ""
+msgstr "Vlastní možnosti zobrazení jmen jsou pro každý rodinný strom jedinečné."
 
 #: ../gramps/gui/configure.py:1260
 msgid "Consider single pa/matronymic as surname"
@@ -11957,7 +11960,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
-msgstr ""
+msgstr "* Vyžaduje restart"
 
 #: ../gramps/gui/configure.py:1388
 #, fuzzy
@@ -11967,7 +11970,7 @@ msgstr "_Data"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
-msgstr ""
+msgstr "Podmíněné nahrazení textu"
 
 #: ../gramps/gui/configure.py:1410
 msgid "Missing surname"
@@ -12049,7 +12052,7 @@ msgstr "Nejvyšší počet generací pro vztahy mezi osobami"
 
 #: ../gramps/gui/configure.py:1566
 msgid "Limits"
-msgstr ""
+msgstr "Limity"
 
 #: ../gramps/gui/configure.py:1575
 #, fuzzy
@@ -12515,11 +12518,11 @@ msgstr "Partner"
 
 #: ../gramps/gui/configure.py:2237
 msgid "Killed"
-msgstr ""
+msgstr "Zabitý"
 
 #: ../gramps/gui/configure.py:2241
 msgid "Default genealogy symbols replacement"
-msgstr ""
+msgstr "Nahrazení výchozích genealogických symbolů"
 
 #: ../gramps/gui/configure.py:2253
 msgid ""
@@ -24013,7 +24016,7 @@ msgstr "Otázky pokládejte do diskuzní skupiny gramps-users"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:135
 msgid "Gramps Discourse Forum"
-msgstr ""
+msgstr "Diskusní fórum Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:137
 msgid "Getting Started"
