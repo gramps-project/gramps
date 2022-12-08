@@ -3,13 +3,14 @@
 # Vlada Perić <vlada.peric@gmail.com>, 2008.
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2013—2014.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
+# Kristijan Fremen Velkovski <me@krisfremen.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-06-04 21:08+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2022-12-01 01:48+0000\n"
+"Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sr/>\n"
 "Language: sr\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -23802,7 +23803,7 @@ msgstr "Упута"
 
 #: ../gramps/plugins/gramplet/leak.py:103
 msgid "Uncollected object"
-msgstr "Неприкупљени предмети"
+msgstr "Неприкупљен предмет"
 
 #: ../gramps/plugins/gramplet/leak.py:112
 msgid "Refresh"
