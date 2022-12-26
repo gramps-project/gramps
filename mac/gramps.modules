@@ -13,7 +13,7 @@
 	      href="http://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
 	      href="https://pypi.python.org/packages/"/>
-  <repository type="git" name="github" href="git://github.com/"/>
+  <repository type="git" name="github" href="https://github.com/"/>
   <repository type="tarball" name="github-tarball" href="https://github.com/"/>
   <repository type="tarball" name="exiv2.org"
 	      href="http://www.exiv2.org/releases/"/>
