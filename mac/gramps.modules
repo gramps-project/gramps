@@ -101,7 +101,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <cmake id="exiv2" cmakeargs="-DEXIV2_ENABLE_PNG=ON">
-    <branch module="exiv2-0.27.4-Source.tar.gz" repo="exiv2.org"
+    <branch module="Exiv2/exiv2/releases/download/v0.27.4/exiv2-0.27.4-Source.tar.gz" repo="github-tarball"
             checkoutdir="exiv2-0.27.4-Source" version="0.27.4"
             hash="sha256:84366dba7c162af9a7603bcd6c16f40fe0e9af294ba2fd2f66ffffb9fbec904e"/>
   </cmake>
