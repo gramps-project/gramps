@@ -147,6 +147,7 @@ https://files.pythonhosted.org/packages/
         repo="oracle"
             hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef" >
       <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+      <patch file="berkeleydb-4.8-mutex.patch" strip='1'/>
     </branch>
   </autotools>
 
@@ -163,6 +164,7 @@ https://files.pythonhosted.org/packages/
             repo="oracle"
             hash="sha256:12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef">
       <patch file="berkeleydb-4.8-atomic.patch" strip='1'/>
+      <patch file="berkeleydb-4.8-mutex.patch" strip='1'/>
     </branch>
   </autotools>
 
