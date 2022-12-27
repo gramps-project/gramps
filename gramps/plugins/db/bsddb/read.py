@@ -41,12 +41,15 @@ from functools import partial
 try:
     from bsddb3 import db
 except:
-    # FIXME: make this more abstract to deal with other backends
-    class db:
-        DBRunRecoveryError = 0
-        DBAccessError = 0
-        DBPageNotFoundError = 0
-        DBInvalidArgError = 0
+    try:
+        from berkeleydb import db
+    except:
+        # FIXME: make this more abstract to deal with other backends
+        class db:
+            DBRunRecoveryError = 0
+            DBAccessError = 0
+            DBPageNotFoundError = 0
+            DBInvalidArgError = 0
 
 import re
 import logging

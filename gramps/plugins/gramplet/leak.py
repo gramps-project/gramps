@@ -184,10 +184,13 @@ class Leak(Gramplet):
         try:
             from bsddb3.db import DBError
         except:
-            class DBError(Exception):
-                """
-                Dummy.
-                """
+            try:
+                from berkeleydb.db import DBError
+            except:
+                class DBError(Exception):
+                    """
+                    Dummy.
+                    """
         self.parent = self.top.get_toplevel()
         progress = ProgressMeter(
             _('Updating display...'), '', parent=self.parent, can_cancel=True)

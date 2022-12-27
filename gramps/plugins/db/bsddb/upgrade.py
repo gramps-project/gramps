@@ -32,8 +32,10 @@ import os
 import re
 import time
 import logging
-from bsddb3 import db
-
+try:
+    from bsddb3 import db
+except:
+    from berkeleydb import db
 #-------------------------------------------------------------------------
 #
 # Gramps modules

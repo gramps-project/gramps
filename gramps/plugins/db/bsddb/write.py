@@ -40,8 +40,14 @@ import logging
 from sys import maxsize, getfilesystemencoding, version_info
 from ast import literal_eval as safe_eval
 
-from bsddb3 import dbshelve, db
-from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+try:
+    from bsddb3 import dbshelve, db
+except:
+    from berkeleydb import db, dbshelve
+try:
+    from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+except:
+    from berkeleydb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
 
 DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
 DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only

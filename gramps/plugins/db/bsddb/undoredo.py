@@ -36,12 +36,15 @@ from collections import deque
 try:
     from bsddb3 import db
 except:
+    try:
+        from berkeleydb import db
+    except:
     # FIXME: make this more abstract to deal with other backends
-    class db:
-        DBRunRecoveryError = 0
-        DBAccessError = 0
-        DBPageNotFoundError = 0
-        DBInvalidArgError = 0
+        class db:
+            DBRunRecoveryError = 0
+            DBAccessError = 0
+            DBPageNotFoundError = 0
+            DBInvalidArgError = 0
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext

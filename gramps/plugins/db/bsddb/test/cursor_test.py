@@ -23,8 +23,10 @@ import os
 import tempfile
 import shutil
 
-from bsddb3 import dbshelve, db
-
+try:
+    from bsddb3 import dbshelve, db
+except:
+    from berkeleydb import db, dbshelve
 from ..read import DbBsddbTreeCursor
 
 class Data:

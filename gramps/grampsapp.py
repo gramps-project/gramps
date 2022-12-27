@@ -325,9 +325,16 @@ def show_settings():
                                         .replace('(', '').replace(')', '')
         bsddb_location_str = bsddb.__file__
     except:
-        bsddb_str = 'not found'
-        bsddb_db_str = 'not found'
-        bsddb_location_str = 'not found'
+        try:
+            import berkeleydb as bsddb
+            bsddb_str = bsddb.__version__
+            bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
+                                                  .replace('(', '').replace(')', '')
+            bsddb_location_str = bsddb.__file__
+        except:
+            bsddb_str = 'not found'
+            bsddb_db_str = 'not found'
+            bsddb_location_str = 'not found'
 
     try:
         import sqlite3

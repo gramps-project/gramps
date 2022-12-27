@@ -218,7 +218,10 @@ class BSDDBTxn:
 # test code
 if __name__ == "__main__":
     print("1")
-    from bsddb3 import db, dbshelve
+    try:
+        from bsddb3 import db, dbshelve
+    except:
+        from berkeleydb import db, dbshelve
     print("2")
     x = db.DBEnv()
     print("3")

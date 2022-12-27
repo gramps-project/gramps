@@ -29,14 +29,17 @@ from pickle import dumps, loads
 try:
     from bsddb3 import db
 except:
+    try:
+        from berkeleydb import db
+    except:
     # FIXME: make this more abstract to deal with other backends
-    class db:
-        DB_RMW = 0
-        DB_FIRST = 0
-        DB_LAST = 0
-        DB_CURRENT = 0
-        DB_PREV = 0
-        DB_NEXT = 0
+        class db:
+            DB_RMW = 0
+            DB_FIRST = 0
+            DB_LAST = 0
+            DB_CURRENT = 0
+            DB_PREV = 0
+            DB_NEXT = 0
 
 #-------------------------------------------------------------------------
 #

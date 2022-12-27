@@ -22,8 +22,10 @@
 ## specific to bsddb
 
 import os
-from bsddb3 import dbshelve, db
-
+try:
+    from bsddb3 import dbshelve, db
+except:
+    from berkeleydb import db, dbshelve
 from gramps.gen.db import META, PERSON_TBL
 from  gramps.gen.db.dbconst import BDBVERSFN
 
