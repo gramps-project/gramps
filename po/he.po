@@ -4,14 +4,14 @@
 # First Translator: Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
 # Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>, 2019, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022.
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
 "PO-Revision-Date: 2023-01-12 17:26+0000\n"
-"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -3518,7 +3518,7 @@ msgstr "מסננים כללים"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:82
 msgid "Wrong format of date-time"
-msgstr "תבנית תאריך – שעה שגויה"
+msgstr "תבנית שגויה של תאריך־שעה"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:83
 #, python-format
