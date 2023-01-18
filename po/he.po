@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-12 17:26+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2023-01-16 17:49+0000\n"
+"Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
 "Language: he\n"
@@ -251,7 +251,7 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"התכנה מספקת יכולות תעוד של פרטים רבים בחיי אדם, כמו גם קשרי־גומלין מורכבים "
+"התוכנה מספקת יכולות תעוד של פרטים רבים בחיי אדם, כמו גם קשרי־גומלין מורכבים "
 "בין אנשים שונים, מקומות ואירועים."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
@@ -1008,7 +1008,7 @@ msgid ""
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
 "<b>קוד המקור של גרמפס<br/></b>גרמפס נכתב בשפת מחשב פייתון (Python) תוך שימוש "
-"בספריות GTK ו־GNOME עבור הממשק הגרפי. התכנה נתמכת בכול סביבת המחשוב שתכנות "
+"בספריות GTK ו־GNOME עבור הממשק הגרפי. התוכנה נתמכת בכול סביבת המחשוב שתכנות "
 "אלו הותאמו אליהן. גרמפס רץ על לינוקס, BSD, סולריס, וינדוס ומק OS X."
 
 #: ../data/tips.xml:124
@@ -1023,7 +1023,7 @@ msgstr ""
 "<b>תוכנת קוד פתוח<br/></b>מודל הפיתוח החינמי/חופשי ובקוד פתוח (FLOSS) "
 "שפירושם, שכול מתכנת יכול להרחיב את גרמפס שכן קוד המקור זמין בחינם וברישיון. "
 "לכן לא מדובר רק על 'בירה' בחינם, אלא גם בחופש ללמוד ולשנות את הכלי. למידע "
-"נוסף על תכנת קוד פתוח חפשו במרשתת על קרן התכנה החופשית ויוזמת הקוד הפתוח."
+"נוסף על תכנת קוד פתוח חפשו במרשתת על קרן התוכנה החופשית ויוזמת הקוד הפתוח."
 
 #: ../data/tips.xml:126
 msgid ""
@@ -1033,7 +1033,7 @@ msgid ""
 "rights and restrictions of this license."
 msgstr ""
 "<b>רישיון השימוש בגרמפס<br/></b>גרמפס חופשי לשימוש ומותר לחלוק אותו עם "
-"אחרים. התכנה מופצת בהפצה חופשיות במגבלות הרישיון הציבורי הכללי של גנו, נא "
+"אחרים. התוכנה מופצת בהפצה חופשיות במגבלות הרישיון הציבורי הכללי של גנו, נא "
 "לעיין ב־http://www.gnu.org/licenses/licenses.html#GPL לקריאה על הזכויות "
 "וההגבלות של רישיון זה."
 
@@ -3235,7 +3235,7 @@ msgstr ","
 
 #: ../gramps/gen/display/name.py:353
 msgid "Default format (defined by Gramps preferences)"
-msgstr "תבנית ברירת המחדל (הוגדר על־ידי העדפות התכנה)"
+msgstr "תבנית ברירת המחדל (הוגדר על־ידי העדפות התוכנה)"
 
 #: ../gramps/gen/display/name.py:355
 msgid "Surname, Given Suffix"
@@ -3518,7 +3518,7 @@ msgstr "מסננים כללים"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:82
 msgid "Wrong format of date-time"
-msgstr "תבנית שגויה של תאריך־שעה"
+msgstr "תבנית שגויה של תאריך – שעה"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:83
 #, python-format
