@@ -40,8 +40,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-11-26 08:05+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2022-12-14 10:47+0000\n"
+"Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/cs/>\n"
 "Language: cs\n"
@@ -1011,8 +1011,8 @@ msgid ""
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<br/><b>Další sestavy a nástroje</b><br/>Další sestavy a nástroje mohou být "
-"do Gramps přidány prostřednictvím systému \"Rozšíření\". Naleznete jej pod "
+"<b>Další sestavy a nástroje</b><br/>Další sestavy a nástroje mohou být do "
+"Gramps přidány prostřednictvím systému \"Rozšíření\". Naleznete jej pod "
 "\"Nápověda &gt; Další sestavy/Nástroje\". Toto je nejlepší způsob jak "
 "umožnit pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
 
@@ -2285,7 +2285,7 @@ msgstr "{long_month} {year}"
 #, python-brace-format
 msgctxt "from"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[D]} {year}"
+msgstr "{long_month} {year}"
 
 #. Translators: If "to <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2295,7 +2295,7 @@ msgstr "{long_month.f[D]} {year}"
 #, python-brace-format
 msgctxt "to"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[D]} {year}"
+msgstr "{long_month} {year}"
 
 #. Translators: If "between <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -2305,7 +2305,7 @@ msgstr "{long_month.f[D]} {year}"
 #, python-brace-format
 msgctxt "between"
 msgid "{long_month} {year}"
-msgstr "{long_month.f[O]} {year}"
+msgstr "{long_month.f[X]} {year}"
 
 #. Translators: If "and <Month>" needs a special inflection
 #. in your language, translate to "{long_month.f[X]} {year}"
@@ -11939,12 +11939,12 @@ msgid "Status bar"
 msgstr "Stavový řádek"
 
 #: ../gramps/gui/configure.py:1347
-#, fuzzy
-#| msgid "Report Options"
 msgid ""
 "\n"
 "Input Options"
-msgstr "Nastavení sestavy"
+msgstr ""
+"\n"
+"Nastavení sestavy"
 
 #: ../gramps/gui/configure.py:1360
 msgid "Surname guessing"
@@ -11956,17 +11956,15 @@ msgstr "Výchozí rodinný vztah"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr ""
+msgstr "Skrýt záložku SPD v editoru osoby a rodin"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
 msgstr "* Vyžaduje restart"
 
 #: ../gramps/gui/configure.py:1388
-#, fuzzy
-#| msgid "_Data"
 msgid "Data"
-msgstr "_Data"
+msgstr "Data"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
@@ -12007,28 +12005,20 @@ msgid ""
 msgstr "Změna formátu data se neprojeví dokud nebude Gramps znovu nastartován."
 
 #: ../gramps/gui/configure.py:1528
-#, fuzzy
-#| msgid "Calculating timeline..."
 msgid "Calculation limits"
-msgstr "Vypočítává se časová osa..."
+msgstr "Omezení výpočtu"
 
 #: ../gramps/gui/configure.py:1534
-#, fuzzy
-#| msgid "Date about range"
 msgid "Date 'about' year range: (date ± #)"
-msgstr "Přibližný rozsah data"
+msgstr "Rozsah přibližného data: (datum ± #)"
 
 #: ../gramps/gui/configure.py:1538
-#, fuzzy
-#| msgid "Date after range"
 msgid "Date 'after' year range:  (date + #)"
-msgstr "Datum překračující rozsah"
+msgstr "Rozsah data \"po\":  (datum + #)"
 
 #: ../gramps/gui/configure.py:1542
-#, fuzzy
-#| msgid "Date before range"
 msgid "Date 'before' year range: (date - #)"
-msgstr "Datum nižší než rozsah"
+msgstr "Rozsah data \"před\": (datum + #)"
 
 #: ../gramps/gui/configure.py:1546
 msgid "Maximum age probably alive"
@@ -12055,10 +12045,8 @@ msgid "Limits"
 msgstr "Limity"
 
 #: ../gramps/gui/configure.py:1575
-#, fuzzy
-#| msgid "Event Citations"
 msgid "Environment Settings"
-msgstr "Citace události"
+msgstr "Nastavení prostředí"
 
 #: ../gramps/gui/configure.py:1580
 msgid "Display Tip of the Day"
@@ -12069,17 +12057,15 @@ msgid "Show useful information about using Gramps on startup."
 msgstr "Zobrazit užitečné informace o používání Gramps při startu."
 
 #: ../gramps/gui/configure.py:1585
-#, fuzzy
-#| msgid "Remove Family Tree"
 msgid "Remember last Family Tree"
-msgstr "Odstranit rodokmen"
+msgstr "Pamatovat si poslední rodokmen"
 
 #: ../gramps/gui/configure.py:1587
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Neotevítat nabídku výběru rodokmenu při startu, ale použít poslední "
+"Neotevírat nabídku výběru rodokmenu při startu, ale použít poslední "
 "zpracovávaný."
 
 #: ../gramps/gui/configure.py:1591
@@ -12091,16 +12077,12 @@ msgid "Remember last view displayed and open it next time."
 msgstr "Zapamatovat poslední zobrazený pohled a zobrazit jej příště."
 
 #: ../gramps/gui/configure.py:1596
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable spell checker"
 msgstr "Povolit kontrolu pravopisu"
 
 #: ../gramps/gui/configure.py:1598
-#, fuzzy
-#| msgid "Enable spelling checker"
 msgid "Enable the spelling checker for notes."
-msgstr "Povolit kontrolu pravopisu"
+msgstr "Povolit kontrolu pravopisu v poznámkách."
 
 #: ../gramps/gui/configure.py:1607
 #, python-format
@@ -12112,10 +12094,8 @@ msgstr ""
 "Překladem modulu pro Gramps vás provede %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1615
-#, fuzzy
-#| msgid "Show text label beside Navigator buttons (requires restart)"
 msgid "Show text label beside Navigator buttons *"
-msgstr "Zobrazovat text vedle tlačítek Navigátoru (projeví se po restartu)"
+msgstr "Zobrazovat text vedle tlačítek Navigátoru *"
 
 #: ../gramps/gui/configure.py:1617
 msgid ""
@@ -12132,8 +12112,7 @@ msgstr "Ukázat tlačítko pro zavření v záložkách panelu grampletů"
 
 #: ../gramps/gui/configure.py:1627
 msgid "Show close button to simplify removing gramplets from bars."
-msgstr ""
-"Ukázat tlačítko pro zavření pro usnadnění odebírání grampletů z panelů."
+msgstr "Ukázat tlačítko uzavření pro usnadnění odebírání grampletů z panelů."
 
 #: ../gramps/gui/configure.py:1633
 msgid "Markup for invalid date format"
@@ -12171,16 +12150,16 @@ msgstr ""
 "zobrazí <u><b>Podtržený tučný datum</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1656
-#, fuzzy
-#| msgid "Multiple Surnames"
 msgid "Multiple surname box height"
-msgstr "Více příjmení"
+msgstr "Výška pole Více příjmení"
 
 #: ../gramps/gui/configure.py:1660
 msgid ""
 "Enter height in pixels. When multiple surnames are entered, these names "
 "display in a box. This setting sets the size of this box."
 msgstr ""
+"Zadajte výšku v bodech. Pokud je vloženo více příjmení, zobrazí se jména v "
+"poli. Toto nastavení určuje velikost pole."
 
 #: ../gramps/gui/configure.py:1680
 msgid ""
@@ -12238,10 +12217,8 @@ msgid "Check for updated addons now"
 msgstr "Zkontrolovat aktualizace rozšiření nyní"
 
 #: ../gramps/gui/configure.py:1738
-#, fuzzy
-#| msgid "Addon Name"
 msgid "Addons"
-msgstr "Název rozšíření"
+msgstr "Rozšíření"
 
 #: ../gramps/gui/configure.py:1744
 msgid "Checking Addons Failed"
@@ -12273,10 +12250,8 @@ msgid "update"
 msgstr "aktualizovat"
 
 #: ../gramps/gui/configure.py:1794
-#, fuzzy
-#| msgid "Database version"
 msgid "Database Setting"
-msgstr "Verze databáze"
+msgstr "Nastavení databáze"
 
 #: ../gramps/gui/configure.py:1799
 msgid "Database backend"
@@ -12299,10 +12274,8 @@ msgid "Port"
 msgstr "Port"
 
 #: ../gramps/gui/configure.py:1825
-#, fuzzy
-#| msgid "Database Type"
 msgid "Database path"
-msgstr "Typ databáze"
+msgstr "Cesta k databázi"
 
 #: ../gramps/gui/configure.py:1831
 msgid ""
@@ -12350,10 +12323,8 @@ msgstr ""
 "Cesta k médiím rodokmenu"
 
 #: ../gramps/gui/configure.py:1870
-#, fuzzy
-#| msgid "Cannot set base media path"
 msgid "Base media path"
-msgstr "Nelze nastavit cestu k médiím"
+msgstr "Výchozí cesta k médiím"
 
 #: ../gramps/gui/configure.py:1876
 msgid ""
@@ -12361,28 +12332,25 @@ msgid ""
 "not a global setting. Each family tree is able to have a unique relative "
 "media path that is stored with the database."
 msgstr ""
+"Výchozí relativní cesta k médiím je specifická pro aktivní rodokmen. Není to "
+"obecné nastavení. Každý rodokmen může mít unikátní relativní cestu k médiím "
+"uloženou v databázi."
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
-#| msgid "Records"
 msgid "Tag Records"
-msgstr "Záznamy"
+msgstr "Štítkovat záznamy"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
 msgstr "Při importu přidat štítek"
 
 #: ../gramps/gui/configure.py:1915
-#, fuzzy
-#| msgid ""
-#| "Specified tag will be added on import.\n"
-#| "Clear to set default value."
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Zadaný štítek bude přídán při importu.\n"
-"Smazat nastaví výchozí hodnotu."
+"Zadaný štítek bude přidán ke všem záznamům při importu.\n"
+"Smazání nastaví výchozí hodnotu."
 
 #: ../gramps/gui/configure.py:1921
 msgid ""
@@ -12479,6 +12447,9 @@ msgid ""
 "If not checked, you can use the lower panel to customize the symbols "
 "yourself."
 msgstr ""
+"Pokud je zaškrtnuto, jsou použity standardní genealogické symboly (symbol "
+"pro smrt je volitelný uživatelem).\n"
+"Pokud není zaškrtnuto, může si symboly přizpůsobit v panelu níže."
 
 #: ../gramps/gui/configure.py:2094
 msgid ""
@@ -12530,6 +12501,9 @@ msgid ""
 "You can drag and drop a symbol from the symbol list above.\n"
 "It will be visible only if your font contains this glyph."
 msgstr ""
+"Do tohoto pole může nastavit jakýkoli znak chcete.\n"
+"Můžete sem přetáhnout symbol ze seznamu výše.\n"
+"Bude viditelné pouze v případě kdy váš font danou značku obsahuje."
 
 #: ../gramps/gui/dbloader.py:116 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -18713,6 +18687,9 @@ msgid ""
 "\n"
 "Format:\t%s"
 msgstr ""
+"Data budou exportována takto:\n"
+"\n"
+"Formát:\t%s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
@@ -24106,6 +24083,12 @@ msgid ""
 "under the \"Family Trees\" menu to import the GEDCOM data.\n"
 "\n"
 msgstr ""
+"Chcete-li importovat rodokmen z jiného programu, vytvořte nejprve soubor "
+"GEDCOM (nebo jiná data) z předchozího programu.\n"
+"\n"
+"Po vytvoření nového souboru databáze Gramps použijte možnost \"Importovat\" "
+"v nabídce \"Rodokmeny\" pro import GEDCOM dat.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:179
 #, fuzzy
@@ -24159,6 +24142,10 @@ msgid ""
 "available to you. Many more are available to download and install.\n"
 "\n"
 msgstr ""
+"K dispozici je mnoho rozšíření nebo \"Grampletů\", které vám pomohou při "
+"zadávání dat a vizualizaci rodokmenu. Mnohé z těchto nástrojů již máte k "
+"dispozici. Mnoho dalších si můžete stáhnout a nainstalovat.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
 #, fuzzy
@@ -24179,6 +24166,15 @@ msgid ""
 "program.\n"
 "\n"
 msgstr ""
+"Chcete vidět Gramps v provozu. Vytvořte a importujte databázi Example.\n"
+"\n"
+"Vytvořte nový Rodokmen, jak je popsáno výše. Navrhujeme, abyste jej "
+"pojmenovali \"PŘÍKLAD\".\n"
+"\n"
+"Importujte soubor Gramps example.gramps.\n"
+"\n"
+"Postupujte podle pokynů pro umístění souboru uloženého s programem Gramps.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:208
 #, fuzzy
