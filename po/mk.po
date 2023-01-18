@@ -10,13 +10,14 @@
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Kristijan Fremen Velkovski <me@krisfremen.com>, 2022.
+# AND <andrejdam@protonmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-12-11 05:50+0000\n"
-"Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
+"PO-Revision-Date: 2023-01-05 22:47+0000\n"
+"Last-Translator: AND <andrejdam@protonmail.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
 "Language: mk\n"
@@ -24,245 +25,233 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: ../data/holidays.xml:3
-#, fuzzy
 msgid "Bulgaria"
-msgstr "Јулијански"
+msgstr "Бугарија"
 
 #: ../data/holidays.xml:52
-#, fuzzy
 msgid "Canada"
-msgstr "Календар"
+msgstr "Канада"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr ""
+msgstr "Каталонија"
 
 #: ../data/holidays.xml:101
-#, fuzzy
 msgid "Chile"
-msgstr "Дете"
+msgstr "Чиле"
 
 #: ../data/holidays.xml:124
-#, fuzzy
 msgid "China"
-msgstr "Микрофилм"
+msgstr "Кина"
 
 #: ../data/holidays.xml:127
-#, fuzzy
 msgid "Croatia"
-msgstr "Кремирање"
+msgstr "Хрватска"
 
 #: ../data/holidays.xml:143
-#, fuzzy
 msgid "Czech Republic"
-msgstr "Француски републиканец"
+msgstr "Чешка Република"
 
 #: ../data/holidays.xml:158
 msgid "England"
-msgstr ""
+msgstr "Англија"
 
 #: ../data/holidays.xml:188
 msgid "Finland"
-msgstr ""
+msgstr "Финска"
 
 #: ../data/holidays.xml:282
-#, fuzzy
 msgid "France"
-msgstr "Откажи"
+msgstr "Франција"
 
 #: ../data/holidays.xml:318
-#, fuzzy
 msgid "Germany"
-msgstr "Грегоријански"
+msgstr "Германија"
 
 #: ../data/holidays.xml:335
 msgid "Japan"
-msgstr ""
+msgstr "Јапонија"
 
 #: ../data/holidays.xml:358
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Еврејски празници"
 
 # основен
 #: ../data/holidays.xml:359
-#, fuzzy
 msgid "Purim"
-msgstr "Главен"
+msgstr "Пурим"
 
 #: ../data/holidays.xml:360
 msgid "Passover"
-msgstr ""
+msgstr "Пасха"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr ""
+msgstr "Втор ден од Пасха"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
-msgstr ""
+msgstr "Трети ден од Пасха"
 
 #: ../data/holidays.xml:363
 msgid "4 of Passover"
-msgstr ""
+msgstr "Четврти ден од Пасха"
 
 #: ../data/holidays.xml:364
 msgid "5 of Passover"
-msgstr ""
+msgstr "Петти ден од Пасха"
 
 #: ../data/holidays.xml:365
 msgid "6 of Passover"
-msgstr ""
+msgstr "Шести ден од Пасха"
 
 #: ../data/holidays.xml:366
 msgid "7 of Passover"
-msgstr ""
+msgstr "Седми ден од Пасха"
 
 #: ../data/holidays.xml:367
 msgid "Shavuot"
-msgstr ""
+msgstr "Шавуот"
 
 #: ../data/holidays.xml:368
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Рош Хашана"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Втор ден од Рош Хашана"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Јом Кипур"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr ""
+msgstr "Сукот"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
-msgstr ""
+msgstr "Втор ден од Сукот"
 
 #: ../data/holidays.xml:373
 msgid "3 of Sukot"
-msgstr ""
+msgstr "Трет ден од Сукот"
 
 #: ../data/holidays.xml:374
 msgid "4 of Sukot"
-msgstr ""
+msgstr "Четврти ден од Сукот"
 
 #: ../data/holidays.xml:375
 msgid "5 of Sukot"
-msgstr ""
+msgstr "Петти ден од Сукот"
 
 #: ../data/holidays.xml:376
 msgid "6 of Sukot"
-msgstr ""
+msgstr "Шести ден од Сукот"
 
 #: ../data/holidays.xml:377
 msgid "7 of Sukot"
-msgstr ""
+msgstr "Седми ден од Сукот"
 
 #: ../data/holidays.xml:378
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Симхат Тора"
 
 #: ../data/holidays.xml:379
 msgid "Hanuka"
-msgstr ""
+msgstr "Ханука"
 
 #: ../data/holidays.xml:380
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "Втор ден од Ханука"
 
 #: ../data/holidays.xml:381
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "Трет ден од Ханука"
 
 #: ../data/holidays.xml:382
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "Четврт ден од Ханука"
 
 #: ../data/holidays.xml:383
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "Петти ден од Ханука"
 
 #: ../data/holidays.xml:384
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "Шести ден од Ханука"
 
 #: ../data/holidays.xml:385
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "Седми ден од Ханука"
 
 #: ../data/holidays.xml:386
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "Осми ден од Ханука"
 
 #: ../data/holidays.xml:388
-#, fuzzy
 msgid "Italy"
-msgstr "_Закосено"
+msgstr "Италија"
 
 #: ../data/holidays.xml:402
-#, fuzzy
 msgid "New Zealand"
-msgstr "Нов настан"
+msgstr "Нов Зеланд"
 
 #: ../data/holidays.xml:418
 msgid "Russia"
 msgstr "Русија"
 
 #: ../data/holidays.xml:434
-#, fuzzy
 msgid "Serbia"
-msgstr "Персиски"
+msgstr "Србија"
 
 #: ../data/holidays.xml:449
-#, fuzzy
 msgid "Serbia (Latin)"
-msgstr "Персиски"
+msgstr "Србија (латинично)"
 
 #: ../data/holidays.xml:464
 msgid "Slovakia"
-msgstr ""
+msgstr "Словачка"
 
 #: ../data/holidays.xml:481 ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
-msgstr ""
+msgstr "Шведска"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "Турција"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
-msgstr ""
+msgstr "Украина"
 
 #: ../data/holidays.xml:563
 msgid "United States of America"
-msgstr ""
+msgstr "Соединети Американски Држави"
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:4
 #: ../data/org.gramps_project.Gramps.desktop.in:3
-#, fuzzy
 msgid "Gramps"
-msgstr "Графика"
+msgstr "Грампс (семејно дрво)"
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:5
 #: ../data/org.gramps_project.Gramps.desktop.in:6
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
-"Управува со генеалошки информации, извршува генеалошко истражување и "
-"објаснување"
+"Управувај со родословни информации, изведувај родословни истражувања и "
+"анализа"
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:7
 msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Грампс е родословен програм кој е воедно интуитивен за хобисти и со сите "
+"одлики за професионални родослови."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:8
 msgid ""
@@ -270,31 +259,32 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
+"Овозможува да се запишат многу детаљи од животот на поединците, како и за "
+"сложените односи меѓу разните луѓе, места и настани."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
 msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"Сето твое истражување се чува организирани, пребарливо, и толку прецизно "
+"колку што ти е потребно да биде."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "GRAMPS генеалошки систем"
+msgstr "Екипа која го развива GRAMPS"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
-#, fuzzy
 msgid "Genealogy System"
-msgstr "GRAMPS генеалошки систем"
+msgstr "Родословен систем"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Родословие;Семејна историја;Истражување;Семејно дрво;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
-#, fuzzy
 msgid "Gramps database"
-msgstr "Увези база на податоци"
+msgstr "GRAMPS-ова база на податоци"
 
 #: ../data/org.gramps_project.Gramps.xml.in:10
 #: ../gramps/plugins/export/export.gpr.py:76
@@ -323,31 +313,37 @@ msgid ""
 "the level of confidence in a date and even choose between seven different "
 "calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
+"<b>Работа со дати</b><br/>Може да се одреди опсег на дати преку користење на "
+"форматот: „меѓу 4-ти Јануари 2000 г. и 20-ти Март 2003 г.“. Можеш исто така "
+"да го назначиш и нивото на доверба во датата, па дури и да одбереш меѓу "
+"седум различни календари. Пробај го копчето веднаш до полето за внес на дата "
+"во Уредникот на настани."
 
 #: ../data/tips.xml:6
-#, fuzzy
 msgid ""
 "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, "
 "place or media entry will bring up a window to allow you to edit the object. "
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"Во најголемиот број случаи со двоен клик на името, изворот, местото или "
-"медиумот ќе се подигне прозорец што ви дозволува да го уредите тој објект. "
-"Забележете дека резултатот може да зависи од контекстот. На пример, во "
-"погледот Семејство кликнување на родителот или детето ќе подигне прозорец за "
-"уредување на врската."
+"<b?Уредување објекти</b><br/>Во повеќето случаи со двоен клик на името, "
+"изворот, местото или медиумот ќе се подигне прозорец што ви дозволува да го "
+"уредите тој објект. Забележете дека резултатот може да зависи од контекстот. "
+"На пример, во Семејниот поглед при кликнување на родителот или детето ќе "
+"подигне прозорец на Уредникот на врски."
 
 #: ../data/tips.xml:8
-#, fuzzy
 msgid ""
 "<b>Adding Images</b><br/>An image can be added to any gallery or the Media "
 "View by dragging and dropping it from a file manager or a web browser. "
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"Слика може да се додаде на галеријата или Медиумскиот поглед со влечење и "
-"оставање на сликата од управувачот на датотеката или веб-пребарувачот."
+"<b>Додавање слики</b><br/>Слика може да се додаде на галеријата или "
+"Медиумскиот поглед со влечење и оставање на сликата од управувачот на "
+"датотеката или веб-пребарувачот. Во суштина, на овој начин можеш да додадеш "
+"било кој вид на датотека, што е корисно за сканови од документи и други "
+"дигитални извори."
 
 #: ../data/tips.xml:10
 msgid ""
@@ -355,6 +351,9 @@ msgid ""
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
+"<b>Подредување на деца во семејство</b><br/>Родниот ред на децата во "
+"семејството може да се нагоди преку влечење и пуштање. Овој ред се зачувува "
+"дури и кога тие немаат датуми на раѓање."
 
 #: ../data/tips.xml:12
 #, fuzzy
