@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-12-08 09:47+0000\n"
+"PO-Revision-Date: 2022-12-11 05:50+0000\n"
 "Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
@@ -1136,9 +1136,9 @@ msgid "yes"
 msgstr "Пре_врти ознаки"
 
 #: ../gramps/cli/arghandler.py:300
-#, fuzzy, python-format
+#, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Отстрани постоечки извор"
+msgstr "Ќе препише преку постоечкиот фајл: %s"
 
 #: ../gramps/cli/arghandler.py:320
 #, python-format
@@ -1179,9 +1179,9 @@ msgid "\"%s\""
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:457
-#, fuzzy, python-format
+#, python-format
 msgid "Performing action: %s."
-msgstr "Изведи ја избраната опција"
+msgstr "Извршување на акција: %s."
 
 #: ../gramps/cli/arghandler.py:461 ../gramps/gen/plug/report/stdoptions.py:302
 #, python-format
@@ -1217,14 +1217,12 @@ msgid "Importing: file %(filename)s, format %(format)s."
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:541
-#, fuzzy
 msgid "Opened successfully!"
-msgstr "Операцијата е успешно завршена."
+msgstr "Успешно отварање!"
 
 #: ../gramps/cli/arghandler.py:555
-#, fuzzy
 msgid "Database is locked, cannot open it!"
-msgstr "Базата на податоци не е пренеслива"
+msgstr "Базата на податоци е затворена, не може да се отвори!"
 
 #: ../gramps/cli/arghandler.py:556
 #, python-format
@@ -1236,9 +1234,8 @@ msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:562
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Базата на податоци не е пренеслива"
+msgstr "Позадинска за базата на податоци не е достапна, не може да се отвори!"
 
 #: ../gramps/cli/arghandler.py:613 ../gramps/cli/arghandler.py:662
 #: ../gramps/cli/arghandler.py:709
@@ -1286,9 +1283,9 @@ msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:730
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s."
-msgstr "Кратенка"
+msgstr "Непозната акција: %s."
 
 #: ../gramps/cli/argparser.py:56
 msgid ""
