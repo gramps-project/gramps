@@ -65,6 +65,7 @@
 2 TYPE birth
 2 GIVN Amber Marie
 2 SURN Smith
+2 _RUFNAME Marie
 1 SEX F
 1 BIRT
 2 TYPE Birth of Amber Marie Smith
@@ -984,6 +985,7 @@
 2 GIVN Fake
 2 SPFX von
 2 SURN Person
+2 _RUFNAME Person
 2 NSFX I
 2 NPFX Fake person
 2 NICK Fake

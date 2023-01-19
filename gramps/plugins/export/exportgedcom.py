@@ -1304,6 +1304,7 @@ class GedcomWriter(UpdateCallback):
         suffix = name.get_suffix()
         title = name.get_title()
         nick = name.get_nick_name()
+        call = name.get_call_name()
         if nick.strip() == '':
             nick = attr_nick
 
@@ -1323,6 +1324,8 @@ class GedcomWriter(UpdateCallback):
             self._writeln(2, 'SPFX', surprefix)
         if surname:
             self._writeln(2, 'SURN', surname)
+        if call:
+            self._writeln(2, '_RUFNAME', call)
         if name.get_suffix():
             self._writeln(2, 'NSFX', suffix)
         if name.get_title():

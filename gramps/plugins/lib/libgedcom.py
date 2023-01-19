@@ -276,6 +276,7 @@ TOKEN__JUST = 135
 TOKEN__TEXT = 136
 TOKEN__DATE = 137
 TOKEN__APID = 138
+TOKEN__CALLNAME = 139
 
 TOKENS = {
     "_ADPN"           : TOKEN__ADPN,
@@ -316,6 +317,7 @@ TOKENS = {
     "_PRIMARY"        : TOKEN__PRIMARY,
     "_PRIV"           : TOKEN__PRIV,
     "_PUBLISHER"      : TOKEN_IGNORE,
+    "_RUFNAME"        : TOKEN__CALLNAME,
     "_SCBK"           : TOKEN_IGNORE,
     "_SCHEMA"         : TOKEN__SCHEMA,
     "_SSHOW"          : TOKEN_IGNORE,
@@ -2091,6 +2093,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_GIVN   : self.__name_givn,
             # NICK <NAME_PIECE_NICKNAME> {0:1}
             TOKEN_NICK   : self.__name_nick,
+            # _RUFNAME <NAME_PIECE_CALLNAME> {0:1}
+            TOKEN__CALLNAME: self.__name_call,
             # +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1}
             TOKEN_SPFX   : self.__name_spfx,
             # +1 SURN <NAME_PIECE_SURNAME> {0:1}
@@ -4422,6 +4426,19 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.name.set_nick_name(line.data.strip())
+        self.__skip_subordinate_levels(state.level + 1, state)
+
+    def __name_call(self, line, state):
+        """
+        This parses the inofficial _RUFNAME tag that indicates which part
+        of a person's given name is commonly used to address them.
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.name.set_call_name(line.data.strip())
         self.__skip_subordinate_levels(state.level + 1, state)
 
     def __name_aka(self, line, state):
