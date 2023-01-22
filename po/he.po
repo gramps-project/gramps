@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-16 17:49+0000\n"
+"PO-Revision-Date: 2023-01-28 03:46+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -19479,7 +19479,7 @@ msgstr "CSV"
 
 #: ../gramps/gui/views/listview.py:1162
 msgid "OpenDocument Spreadsheet"
-msgstr "גליון אלקטרוני אופן-דוקומנט"
+msgstr "גליון אלקטרוני אופן־דוקומנט"
 
 #: ../gramps/gui/views/listview.py:1347
 msgid "Columns"
@@ -26484,34 +26484,34 @@ msgstr "אדם זה פטירה ב־%(death_date)s ב־%(death_place)s בגיל %
 #: ../gramps/plugins/lib/libnarrate.py:208
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr "נפטר ב־%(death_date)s ב־%(death_place)s."
+msgstr "פטירה ב־%(death_date)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:209
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "נפטר ב־%(death_date)s ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה ב־%(death_date)s ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:212
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr "נפטרה ב־%(death_date)s ב־%(death_place)s."
+msgstr "פטירה ב־%(death_date)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:213
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "נפטרה ב־%(death_date)s ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה ב־%(death_date)s ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:217
 #: ../gramps/plugins/lib/libnarrate.py:250
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s."
-msgstr "נפטר ב־%(death_date)s ב־%(death_place)s."
+msgstr "פטירה ב־%(death_date)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:218
 #: ../gramps/plugins/lib/libnarrate.py:251
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s (%(age)s)."
-msgstr "נפטר %(death_date)s ב־%(death_place)s (%(age)s)."
+msgstr "פטירה %(death_date)s ב־%(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:224
 #, python-format
@@ -26562,22 +26562,22 @@ msgstr "אדם זה פטירה ב־%(death_date)s ב־%(death_place)s בגיל %
 #: ../gramps/plugins/lib/libnarrate.py:241
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s."
-msgstr "נפטר ב־%(death_date)s ב־%(death_place)s."
+msgstr "פטירה ב־%(death_date)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:242
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "נפטר %(death_date)s ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה %(death_date)s ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:245
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s."
-msgstr "נפטרה ב־%(death_date)s ב־%(death_place)s."
+msgstr "פטירה ב־%(death_date)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:246
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "נפטרה %(death_date)s ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה %(death_date)s ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:257
 #, python-format
@@ -26622,34 +26622,34 @@ msgstr "אדם זה פטירה ב־%(death_date)s בגיל %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:274
 #, python-format
 msgid "He died on %(death_date)s."
-msgstr "נפטר ב־%(death_date)s."
+msgstr "פטירה ב־%(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)s."
-msgstr "נפטר ב־%(death_date)s בגיל %(age)s."
+msgstr "פטירה ב־%(death_date)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:278
 #, python-format
 msgid "She died on %(death_date)s."
-msgstr "נפטרה ב־%(death_date)s."
+msgstr "פטירה ב־%(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:279
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)s."
-msgstr "נפטרה ב־%(death_date)s בגיל %(age)s."
+msgstr "פטירה ב־%(death_date)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:283
 #: ../gramps/plugins/lib/libnarrate.py:316
 #, python-format
 msgid "Died %(death_date)s."
-msgstr "נפטר %(death_date)s."
+msgstr "פטירה %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:284
 #: ../gramps/plugins/lib/libnarrate.py:317
 #, python-format
 msgid "Died %(death_date)s (%(age)s)."
-msgstr "נפטר %(death_date)s (%(age)s)."
+msgstr "פטירה %(death_date)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:290
 #, python-format
@@ -26694,22 +26694,22 @@ msgstr "אדם זה פטירה ב־%(death_date)s בגיל %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:307
 #, python-format
 msgid "He died %(death_date)s."
-msgstr "נפטר ב־%(death_date)s."
+msgstr "פטירה ב־%(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "נפטר %(death_date)s at the age of %(age)s."
+msgstr "פטירה %(death_date)s at the age of %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:311
 #, python-format
 msgid "She died %(death_date)s."
-msgstr "נפטרה ב־%(death_date)s."
+msgstr "פטירה ב־%(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
-msgstr "נפטרה ב־%(death_date)s בגיל %(age)s."
+msgstr "פטירה ב־%(death_date)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:323
 #, python-format
@@ -26763,32 +26763,32 @@ msgstr "אדם זה פטירה ב־%(month_year)s ב־%(death_place)s בגיל %
 #: ../gramps/plugins/lib/libnarrate.py:340
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "נפטר ב־%(month_year)s ב־%(death_place)s."
+msgstr "פטירה ב־%(month_year)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:341
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "נפטר ב־%(month_year)s ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה ב־%(month_year)s ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:344
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "נפטרה ב־%(month_year)s ב־%(death_place)s."
+msgstr "פטירה ב־%(month_year)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:345
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "נפטרה ב־%(month_year)s ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה ב־%(month_year)s ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:349
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s."
-msgstr "נפטר ב־%(month_year)s ב־%(death_place)s."
+msgstr "פטירה ב־%(month_year)s ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:350
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr "נפטר %(month_year)s ב־%(death_place)s (%(age)s)."
+msgstr "פטירה %(month_year)s ב־%(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:356
 #, python-format
@@ -26833,32 +26833,32 @@ msgstr "אדם זה פטירה ב־ %(month_year)s בגיל %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:373
 #, python-format
 msgid "He died in %(month_year)s."
-msgstr "נפטר ב־%(month_year)s."
+msgstr "פטירה ב־%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:374
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr "נפטר ב־%(month_year)s בגיל %(age)s."
+msgstr "פטירה ב־%(month_year)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:377
 #, python-format
 msgid "She died in %(month_year)s."
-msgstr "נפטרה ב־%(month_year)s."
+msgstr "פטירה ב־%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:378
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr "נפטרה ב־%(month_year)s בגיל %(age)s."
+msgstr "פטירה ב־%(month_year)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:382
 #, python-format
 msgid "Died %(month_year)s."
-msgstr "נפטר ב־%(month_year)s."
+msgstr "פטירה ב־%(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:383
 #, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr "נפטר %(month_year)s (%(age)s)."
+msgstr "פטירה %(month_year)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:389
 #, python-format
@@ -26903,32 +26903,32 @@ msgstr "אדם זה פטירה ב־%(death_place)s בגיל %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:407
 #, python-format
 msgid "He died in %(death_place)s."
-msgstr "נפטר ב־%(death_place)s."
+msgstr "פטירה ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:408
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
-msgstr "נפטר ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:411
 #, python-format
 msgid "She died in %(death_place)s."
-msgstr "נפטרה ב־%(death_place)s."
+msgstr "פטירה ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:412
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
-msgstr "נפטרה ב־%(death_place)s בגיל %(age)s."
+msgstr "פטירה ב־%(death_place)s בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:416
 #, python-format
 msgid "Died in %(death_place)s."
-msgstr "נפטר ב־%(death_place)s."
+msgstr "פטירה ב־%(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:417
 #, python-format
 msgid "Died in %(death_place)s (%(age)s)."
-msgstr "נפטר ב־%(death_place)s (%(age)s)."
+msgstr "פטירה ב־%(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:424
 #, python-format
@@ -26953,17 +26953,17 @@ msgstr "אדם זה פטירה בגיל %(age)s."
 #: ../gramps/plugins/lib/libnarrate.py:441
 #, python-format
 msgid "He died at the age of %(age)s."
-msgstr "נפטר בגיל %(age)s."
+msgstr "פטירה בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:445
 #, python-format
 msgid "She died at the age of %(age)s."
-msgstr "נפטרה בגיל %(age)s."
+msgstr "פטירה בגיל %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:450
 #, python-format
 msgid "Died (%(age)s)."
-msgstr "נפטר (%(age)s)."
+msgstr "פטירה (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:461
 #, python-format
@@ -34759,7 +34759,7 @@ msgstr "אב מת"
 
 #: ../gramps/plugins/tool/verify.py:1622
 msgid "Dead mother"
-msgstr "אם נפטרה"
+msgstr "אם פטירה"
 
 #: ../gramps/plugins/tool/verify.py:1648
 msgid "Large year span for all children"
@@ -37456,7 +37456,7 @@ msgstr "שם חיבה"
 
 #: ../gramps/plugins/webreport/person.py:1669
 msgid "Age at Death"
-msgstr "נפטר בגיל"
+msgstr "פטירה בגיל"
 
 #: ../gramps/plugins/webreport/person.py:1848
 msgid "Stepfather"
