@@ -8,7 +8,7 @@
 # Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>, 2008,2009.
 # Krystian Safjan <ksafjan@gmail.com>, 2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# WaldiS <sto@tutanota.de>, 2021, 2022.
+# WaldiS <sto@tutanota.de>, 2021, 2022, 2023.
 # Michał Stojek <stojex@gmail.com>, 2022.
 # Kamil K <kamil030201@gmail.com>, 2022.
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-12-24 19:48+0000\n"
+"PO-Revision-Date: 2023-01-28 03:46+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -393,20 +393,15 @@ msgstr ""
 "pomocą Widok &gt; Filtr."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
 "instance, by inverting the 'People with children' filter you can select all "
 "people without children."
 msgstr ""
-"<b>Odwracanie filtrowania</b><br/> Filtry mogą być łatwo zanegowane "
-"(odwrócone) za pomocą opcji 'odwróć'. Na przykład, aby znaleźć 'osoby z "
-"dziećmi' wystarczy wybrać filtr osoby bez dzieci i zastosować tę opcję."
+"<b>Odwrócone filtrowanie</b><br/>Filtry można łatwo odwrócić za pomocą opcji "
+"„odwróć” „Zwracaj wartości, które nie pasują do reguł filtra”. Na przykład, "
+"odwracając filtr „Osoby z dziećmi”, możesz wybrać wszystkie osoby bez dzieci."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -35021,14 +35016,14 @@ msgid "Clean input data"
 msgstr "Wyczyść dane wejściowe"
 
 #: ../gramps/plugins/tool/removespaces.py:108
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "or bad sign in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Przeszukuje całą bazę danych, szukając cytatów, które mają ten sam wolumin/"
-"stronę, datę i poufność."
+"Przeszukuj początkowe i/lub końcowe spacje dla osób i miejsc. Wyszukaj "
+"przecinek lub zły znak w polach współrzędnych.\n"
+"Kliknij dwukrotnie wiersz, aby edytować jego zawartość."
 
 #: ../gramps/plugins/tool/removespaces.py:118
 msgid "Looking for possible fields with leading or trailing spaces"
@@ -35060,9 +35055,8 @@ msgstr "etykietka narzędzia"
 #: ../gramps/plugins/tool/removespaces.py:275
 #: ../gramps/plugins/tool/removespaces.py:285
 #: ../gramps/plugins/tool/removespaces.py:297
-#, fuzzy
 msgid "leading and/or trailing spaces"
-msgstr "Usuń_poprzedzające_i_kończące_spacje"
+msgstr "początkowe i/lub końcowe spacje"
 
 #: ../gramps/plugins/tool/removespaces.py:282
 #: ../gramps/plugins/tool/removespaces.py:294
@@ -35177,15 +35171,16 @@ msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"Włącz zmianę kolejności ID\n"
+"z sekwencją Start / Krok."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
 msgstr "Start"
 
 #: ../gramps/plugins/tool/reorderids.glade:1488
-#, fuzzy
 msgid "Reorder ID start number."
-msgstr "Numer orientacji papieru."
+msgstr "Zmień początkowy numer ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1501
 msgid "Step"
@@ -35275,8 +35270,9 @@ msgid "Sort family events of the person"
 msgstr "Sortuj zdarzenia rodzinne osoby"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:91
+#, fuzzy
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr ""
+msgstr "Generowanie_Testów_dla_Osób_i_Rodzin"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:274
 #: ../gramps/plugins/tool/testcasegenerator.py:280
@@ -35298,12 +35294,12 @@ msgstr "Błąd danych Pro-Gen"
 #: ../gramps/plugins/tool/testcasegenerator.py:294
 #, fuzzy
 msgid "Generate dummy data"
-msgstr "Wygenerowane przez"
+msgstr "Generuj fikcyjne dane"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:299
 #, fuzzy
 msgid "Generate long names"
-msgstr "Generacje"
+msgstr "Generuj długie nazwy"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:304
 msgid "Add special characters"
@@ -35343,7 +35339,7 @@ msgstr "Generowanie błędów bazy danych"
 #: ../gramps/plugins/tool/testcasegenerator.py:394
 #, fuzzy
 msgid "Generating families"
-msgstr "Generuj linie rodzin"
+msgstr "Generowanie rodzin"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:470
 #: ../gramps/plugins/tool/testcasegenerator.py:506
@@ -35510,10 +35506,8 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
-#, fuzzy
-#| msgid "Sorts events"
 msgid "Sort events"
-msgstr "Sortuje zdarzenia"
+msgstr "Sortuj wydarzenia"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Verify the Data"
@@ -35553,8 +35547,9 @@ msgid "Dump Gender Statistics"
 msgstr "Przebuduj statystyki płci"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
+#, fuzzy
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr ""
+msgstr "Pozwala na odgadnięcie płci na podstawie imienia."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -35630,7 +35625,7 @@ msgstr "_Ukryj oznaczone"
 #, fuzzy
 msgctxt "manual"
 msgid "Verify_the_Data"
-msgstr "Weryfikacja poprawności danych..."
+msgstr "Weryfikacja_Danych"
 
 #: ../gramps/plugins/tool/verify.py:295
 msgid "Data Verify tool"
@@ -35793,7 +35788,7 @@ msgstr "Stary wiek ale nie zmarły"
 #: ../gramps/plugins/tool/verify.py:1806
 #, fuzzy
 msgid "Birth equals death"
-msgstr "Data urodzenia"
+msgstr "Narodziny równają się śmierci"
 
 #: ../gramps/plugins/tool/verify.py:1824
 #, fuzzy
@@ -36126,7 +36121,7 @@ msgstr "Tło"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:313
 msgid "Add global background colored gradient"
-msgstr ""
+msgstr "Dodaj globalny gradient w kolorze tła"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:317
 #: ../gramps/plugins/view/fanchartdescview.py:309
@@ -36338,6 +36333,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "use filtering."
 msgstr ""
+"Kliknij prawym przyciskiem myszy na mapie i wybierz „pokaż wszystkie "
+"wydarzenia”, aby wyświetlić wszystkie znane wydarzenia ze współrzędnymi. "
+"Możesz użyć historii do nawigacji po mapie. Możesz użyć filtrowania."
 
 #: ../gramps/plugins/view/geoevents.py:410
 #: ../gramps/plugins/view/geoevents.py:441
@@ -36515,16 +36513,15 @@ msgid "Every residence or move for a person and any descendants"
 msgstr "Wszystkie przemieszczenia dla jednej osoby i jej potomków"
 
 #: ../gramps/plugins/view/geography.gpr.py:123
-#, fuzzy
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"Widok pokazujący wszystkie miejsca odwiedzone przez wszystkie osoby podczas "
-"ich życia.\n"
-"To jest dla jednej osoby i jej potomków.\n"
-"Możesz zobaczyć daty odpowiadające temu okresowi."
+"Widok przedstawiający wszystkie miejsca odwiedzone przez wszystkie osoby w "
+"ciągu ich życia.\n"
+"Dotyczy to osoby i każdego potomka.\n"
+"Możesz zobaczyć daty odpowiadające okresowi."
 
 #: ../gramps/plugins/view/geography.gpr.py:143
 msgid ""
@@ -36569,8 +36566,7 @@ msgid "GeoMoves"
 msgstr "GeoMoves"
 
 #: ../gramps/plugins/view/geomoves.py:573
-#, fuzzy, python-format
-#| msgid "All descendance for %s"
+#, python-format
 msgid "All descendants for %s"
 msgstr "Wszyscy potomkowie dla %s"
 
@@ -36825,7 +36821,7 @@ msgstr "Lewo <-> Prawo"
 #: ../gramps/plugins/view/pedigreeview.py:1715
 #, fuzzy
 msgid "About Pedigree View"
-msgstr "Widok rodowodu"
+msgstr "Informacje o widoku rodowodu"
 
 #: ../gramps/plugins/view/pedigreeview.py:1926
 #: ../gramps/plugins/view/relview.py:391
@@ -37189,9 +37185,8 @@ msgid "Showing descendants through a fanchart"
 msgstr "Wyświetl potomków przez wykres wachlarzowy"
 
 #: ../gramps/plugins/view/view.gpr.py:175
-#, fuzzy
 msgid "Showing ascendants and descendants through a fanchart"
-msgstr "Wyświetl potomków przez wykres wachlarzowy"
+msgstr "Pokaż przodków i potomków na wykresie wachlarzowym"
 
 #: ../gramps/plugins/view/view.gpr.py:188
 msgid "Grouped People"
@@ -37761,13 +37756,12 @@ msgid "Whether to use http:// or https://"
 msgstr "Określenie, czy używać http:// czy https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2075
-#, fuzzy
 msgid "Toggle sections"
 msgstr "Wybór selekcji"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
 msgid "Check it if you want to open/close a section"
-msgstr ""
+msgstr "Zaznacz, jeśli chcesz otworzyć/zamknąć sekcję"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2086
 msgid "Extra pages"
@@ -37791,7 +37785,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
 msgid "Do we use multiple translations?"
-msgstr ""
+msgstr "Czy używamy wielu tłumaczeń?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2119
 msgid ""
@@ -37799,6 +37793,9 @@ msgid ""
 "See the translation tab to add new languages to the default one defined in "
 "the next field."
 msgstr ""
+"Jeśli chcesz, aby strona narracyjna była wyświetlana w wielu językach.\n"
+"Zobacz zakładkę tłumaczenia, aby dodać nowe języki do domyślnego "
+"zdefiniowanego w następnym polu."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2133
 msgid "Sort all children in birth order"
