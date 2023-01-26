@@ -9,15 +9,15 @@
 # Proof-reading: Dejan Vasilevski <getorudi@yahoo.com>, 2008
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# Kristijan Fremen Velkovski <me@krisfremen.com>, 2022.
+# Kristijan Fremen Velkovski <me@krisfremen.com>, 2022, 2023.
 # AND <andrejdam@protonmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-05 22:47+0000\n"
-"Last-Translator: AND <andrejdam@protonmail.com>\n"
+"PO-Revision-Date: 2023-01-28 03:46+0000\n"
+"Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
 "Language: mk\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -293,14 +293,12 @@ msgid "GEDCOM"
 msgstr "GEDCOM"
 
 #: ../data/org.gramps_project.Gramps.xml.in:20
-#, fuzzy
 msgid "Gramps package"
-msgstr "GRAMPS пакет"
+msgstr "Gramps пакет"
 
 #: ../data/org.gramps_project.Gramps.xml.in:24
-#, fuzzy
 msgid "Gramps XML database"
-msgstr "GRAMPS XML база на податоци"
+msgstr "Gramps XML база на податоци"
 
 #: ../data/org.gramps_project.Gramps.xml.in:32
 msgid "GeneWeb source file"
@@ -326,7 +324,7 @@ msgid ""
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b?Уредување објекти</b><br/>Во повеќето случаи со двоен клик на името, "
+"<b>Уредување објекти</b><br/>Во повеќето случаи со двоен клик на името, "
 "изворот, местото или медиумот ќе се подигне прозорец што ви дозволува да го "
 "уредите тој објект. Забележете дека резултатот може да зависи од контекстот. "
 "На пример, во Семејниот поглед при кликнување на родителот или детето ќе "
@@ -888,20 +886,21 @@ msgstr ""
 "на веб-страници подготвени за качување на интернет."
 
 #: ../data/tips.xml:94
-#, fuzzy
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
-"Најдобриот начин за да известите за бубачка во GRAMPS е да го употребите "
-"системот на GRAMPS за трагање на бубачки на https://gramps-project.org/bugs/"
+"<b>Известување за бубачки во Gramps</b><br/>Најдобриот начин за да известите "
+"за бубачки во Gramps е да го користите системот на Gramps за следење на "
+"бубачки на https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
-msgstr "Домашната страница на GRAMPS е на http://gramps-project.org/"
+msgstr ""
+"<b>Gramps Домашна страница</b><br/>Домашната страница на Gramps е на http"
+"://gramps-project.org/."
 
 #: ../data/tips.xml:98
 #, fuzzy
@@ -954,15 +953,14 @@ msgstr ""
 "повеќекратните извештаи, а особено за печатење."
 
 #: ../data/tips.xml:106
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "\"Help &gt; Gramps Mailing Lists\"."
 msgstr ""
-"Заинтересирани сте за известување за објавувањето на нова верзија на GRAMPS? "
-"Приклучете се на дописната листа на gramps-announce на http://lists."
-"sourceforge.net/lists/listinfo/gramps-announce"
+"<b>Gramps објавувања</b><br/>Заинтересирани сте да бидете известени за "
+"објавувањето на нова верзија на Gramps? Приклучете се на мејл листа на "
+"Gramps-announce на \"Помош &gt; Gramps Мејл листа\"."
 
 #: ../data/tips.xml:108
 #, fuzzy
@@ -1018,15 +1016,14 @@ msgstr ""
 "го GRAMPS."
 
 #: ../data/tips.xml:116
-#, fuzzy
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net."
 msgstr ""
-"GRAMPS е дизајниран така што нови преводи можат лесно да бидат додадени со "
-"мал напор. Ако сакате да учествувате, ве молиме испратете е-пошта на gramps-"
-"devel@lists.sf.net"
+"<b>Gramps преведувачи</b><br/>Gramps е дизајниран така што нови преводи "
+"можат лесно да бидат додадени со мал напор. Ако сакате да учествувате, ве "
+"молиме испратете е-мејл на gramps-devel@lists.sf.net"
 
 #: ../data/tips.xml:118
 #, fuzzy
@@ -1201,9 +1198,8 @@ msgid "Created empty Family Tree successfully"
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:517 ../gramps/cli/arghandler.py:543
-#, fuzzy
 msgid "Error opening the file."
-msgstr "Грешка при читање на GEDCOM датотека"
+msgstr "Грешка при отварање на фајлот."
 
 #: ../gramps/cli/arghandler.py:518 ../gramps/cli/arghandler.py:544
 #, fuzzy
@@ -1242,9 +1238,8 @@ msgid "Ignoring invalid options string."
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:637
-#, fuzzy
 msgid "Unknown report name."
-msgstr "Непознат пол"
+msgstr "Непознато име на извештај."
 
 #: ../gramps/cli/arghandler.py:639
 #, python-format
@@ -1262,9 +1257,8 @@ msgstr ""
 " Достапни имиња се:"
 
 #: ../gramps/cli/arghandler.py:685
-#, fuzzy
 msgid "Unknown tool name."
-msgstr "Непознат пол"
+msgstr "Непознато име на алатка."
 
 #: ../gramps/cli/arghandler.py:687
 #, python-format
@@ -1272,9 +1266,8 @@ msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:719
-#, fuzzy
 msgid "Unknown book name."
-msgstr "Непознат пол"
+msgstr "Непознато име на книга."
 
 #: ../gramps/cli/arghandler.py:721
 #, python-format
@@ -1405,9 +1398,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/cli/argparser.py:321
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "Кратенка"
+msgstr "Непозната акција: %s. Се игнорира."
 
 #: ../gramps/cli/argparser.py:331
 msgid "setup debugging"
@@ -33239,7 +33232,7 @@ msgstr "Стилот користен за приказно ниво %d."
 #: ../gramps/plugins/textreport/descendreport.py:609
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr "Стилот користен за степенот на брачен другар %d од екранот"
+msgstr "Стилот користен за покажување на %d степен на брачно ниво."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:216
 #, python-format
@@ -34583,7 +34576,7 @@ msgstr "Не се направени промени"
 
 #: ../gramps/plugins/tool/changenames.py:145
 msgid "No capitalization changes were detected."
-msgstr "Не се откриени промени со големи/мали букви"
+msgstr "Не се откриени промени со големи/мали букви."
 
 #: ../gramps/plugins/tool/changenames.py:199
 msgid "Original Name"
@@ -36323,7 +36316,7 @@ msgstr "Поправи во големи букви семејни имиња"
 msgid ""
 "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
-"Пребарува по целата база во обид за поправка на големи/мали букви на имињата"
+"Пребарува по целата база во обид за поправка на големи/мали букви на имињата."
 
 #: ../gramps/plugins/tool/tools.gpr.py:61
 #, fuzzy
@@ -36357,9 +36350,9 @@ msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
 msgstr ""
-"Помага при анализа на податоците со допуштање развој на сопствени филтри што "
-"можат да бидат додадени на базата со податоци за да се пронајдат слични "
-"настани."
+"Помага при анализа на податоците со допуштање развој на персонални филтри "
+"што можат да бидат аплицирани на базата со податоци за да се пронајдат "
+"слични настани"
 
 #: ../gramps/plugins/tool/tools.gpr.py:132
 msgid "Extracts event descriptions from the event data"
