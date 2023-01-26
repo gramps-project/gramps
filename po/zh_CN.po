@@ -10,13 +10,14 @@
 # Anthony Fok (霍东灵) <foka@debian.org>, 2015.
 # Shixiong Tian <tiansworld@fedoraproject.org>, 2020, 2021.
 # poi <erbaotao@outlook.com>, 2022.
+# 张子涵 <zhangzihanzhangzihan@live.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-03 10:16+0000\n"
-"Last-Translator: poi <erbaotao@outlook.com>\n"
+"PO-Revision-Date: 2023-01-28 03:46+0000\n"
+"Last-Translator: 张子涵 <zhangzihanzhangzihan@live.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 "X-Poedit-Bookmarks: 6522,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -36,10 +37,8 @@ msgid "Canada"
 msgstr "加拿大"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "加泰隆尼亚语"
+msgstr "加泰罗尼亚"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -269,9 +268,8 @@ msgid ""
 msgstr "您的研究内容会被准确而有条不紊的保存起来，方便搜索。"
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
-#, fuzzy
 msgid "Gramps Development Team"
-msgstr "Gramps 家谱系统"
+msgstr "Gramps 开发团队"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:4
 msgid "Genealogy System"
