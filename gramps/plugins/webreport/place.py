@@ -375,7 +375,18 @@ class PlacePages(BasePage):
             outerwrapper += placedetail
 
             media_list = place.get_media_list()
-            if self.create_media:
+            if media_list and self.create_media:
+                if self.the_lang and not self.usecms:
+                    fname = "/".join(["..", "css", "lightbox.css"])
+                    jsname = "/".join(["..", "css", "lightbox.js"])
+                else:
+                    fname = "/".join(["css", "lightbox.css"])
+                    jsname = "/".join(["css", "lightbox.js"])
+                url = self.report.build_url_fname(fname, None, self.uplink)
+                head += Html("link", href=url, type="text/css",
+                             media="screen", rel="stylesheet")
+                url = self.report.build_url_fname(jsname, None, self.uplink)
+                head += Html("script", src=url, type="text/javascript", inline=True)
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
                                                              place)
                 if thumbnail is not None:

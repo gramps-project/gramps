@@ -395,7 +395,6 @@ class EventPages(BasePage):
 
         ldatec = event.get_change_time()
         event_media_list = event.get_media_list()
-
         self.uplink = True
         subdirs = True
         evt_type = self._(event.get_type().xml_str())
@@ -404,7 +403,19 @@ class EventPages(BasePage):
 
         output_file, sio = self.report.create_file(event_handle, "evt")
         result = self.write_header(self._("Events"))
-        eventpage, dummy_head, dummy_body, outerwrapper = result
+        eventpage, head, dummy_body, outerwrapper = result
+        if event_media_list and self.create_media:
+            if self.the_lang and not self.usecms:
+                fname = "/".join(["..", "css", "lightbox.css"])
+                jsname = "/".join(["..", "css", "lightbox.js"])
+            else:
+                fname = "/".join(["css", "lightbox.css"])
+                jsname = "/".join(["css", "lightbox.js"])
+            url = self.report.build_url_fname(fname, None, self.uplink)
+            head += Html("link", href=url, type="text/css",
+                         media="screen", rel="stylesheet")
+            url = self.report.build_url_fname(jsname, None, self.uplink)
+            head += Html("script", src=url, type="text/javascript", inline=True)
 
         # start event detail division
         with Html("div", class_="content", id="EventDetail") as eventdetail:

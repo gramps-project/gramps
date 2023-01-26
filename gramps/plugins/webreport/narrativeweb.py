@@ -1150,6 +1150,12 @@ class NavWebReport(Report):
         fname = CSS["behaviour"]["filename"]
         self.copy_file(fname, "behaviour.css", "css")
 
+        # copy lightbox style sheet and javascript
+        fname = CSS["lightbox"]["filename"]
+        self.copy_file(fname, "lightbox.css", "css")
+        fname = CSS["lightbox_js"]["filename"]
+        self.copy_file(fname, "lightbox.js", "css")
+
         # copy Menu Layout Style Sheet if Blue or Visually is being
         # used as the stylesheet?
         if CSS[self.css]["navigation"]:

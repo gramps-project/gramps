@@ -510,7 +510,7 @@ class PersonPages(BasePage):
         output_file, sio = self.report.create_file(person.get_handle(), "ppl")
         self.uplink = True
         result = self.write_header(self.sort_name)
-        indivdetpage, dummy_head, dummy_body, outerwrapper = result
+        indivdetpage, head, dummy_body, outerwrapper = result
 
         # begin individualdetail division
         with Html("div", class_="content",
@@ -587,6 +587,18 @@ class PersonPages(BasePage):
                         media_list += event.get_media_list()
 
             # display additional images as gallery
+            if photo_list and self.create_media:
+                if self.the_lang and not self.usecms:
+                    fname = "/".join(["..", "css", "lightbox.css"])
+                    jsname = "/".join(["..", "css", "lightbox.js"])
+                else:
+                    fname = "/".join(["css", "lightbox.css"])
+                    jsname = "/".join(["css", "lightbox.js"])
+                url = self.report.build_url_fname(fname, None, self.uplink)
+                head += Html("link", href=url, type="text/css",
+                             media="screen", rel="stylesheet")
+                url = self.report.build_url_fname(jsname, None, self.uplink)
+                head += Html("script", src=url, type="text/javascript", inline=True)
             sect7 = self.disp_add_img_as_gallery(media_list, person)
             if sect7 is not None:
                 individualdetail += sect7
