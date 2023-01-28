@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-28 03:46+0000\n"
+"PO-Revision-Date: 2023-01-30 00:03+0000\n"
 "Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
@@ -1498,9 +1498,9 @@ msgstr "Семејно стебло \"%s\":"
 #: ../gramps/plugins/webreport/basepage.py:850
 #: ../gramps/plugins/webreport/basepage.py:2591
 #: ../gramps/plugins/webreport/basepage.py:2636
-#, fuzzy, python-format
+#, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr "%(date)s во %(place)s"
+msgstr "%(str1)s: %(str2)s"
 
 #: ../gramps/cli/clidbman.py:274
 #, fuzzy, python-format
@@ -1522,11 +1522,13 @@ msgid "Remove family tree warning"
 msgstr "Отстрани семејство"
 
 #: ../gramps/cli/clidbman.py:426
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
-msgstr "Дали сте сигурни дека сакате да ја избришете историјата за Врати?"
+msgstr ""
+"Дали сте сигурни дека сакате да го избришете семејното стебло со име\n"
+"\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:738
 #, fuzzy
@@ -1801,14 +1803,14 @@ msgstr ""
 
 #. Translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:416
-#, fuzzy, python-format
+#, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
-msgstr "%(father)s и %(mother)s"
+msgstr "%(id)s:\t%(father)s, %(mother)s"
 
 #: ../gramps/cli/plug/__init__.py:461
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown option: %s"
-msgstr "Неродена мајка"
+msgstr "Непозната опција: %s"
 
 #: ../gramps/cli/plug/__init__.py:462 ../gramps/cli/plug/__init__.py:552
 msgid "   Valid options are:"
@@ -27339,11 +27341,11 @@ msgstr "_Вид на медиум:"
 #: ../gramps/plugins/lib/libgedcom.py:5523
 #: ../gramps/plugins/lib/libgedcom.py:6808
 msgid "Multiple FILE in a single OBJE ignored"
-msgstr ""
+msgstr "Неколку ФАЈЛОВИ во еден ОБЈЕКТ игнорирани"
 
 #: ../gramps/plugins/lib/libgedcom.py:5662
 msgid "A second PLAC ignored"
-msgstr ""
+msgstr "Втор PLAC игнориран"
 
 #: ../gramps/plugins/lib/libgedcom.py:5801
 #, fuzzy
@@ -27352,7 +27354,7 @@ msgstr "Покажи подробности"
 
 #: ../gramps/plugins/lib/libgedcom.py:5814
 msgid "Location already populated; ADDR ignored"
-msgstr ""
+msgstr "Локацијата е веќе пополнета; ADDR игнорирана"
 
 #: ../gramps/plugins/lib/libgedcom.py:6215
 #: ../gramps/plugins/lib/libgedcom.py:7114
