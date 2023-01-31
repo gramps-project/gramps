@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-30 00:03+0000\n"
+"PO-Revision-Date: 2023-02-01 05:59+0000\n"
 "Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
@@ -1023,7 +1023,7 @@ msgid ""
 msgstr ""
 "<b>Gramps преведувачи</b><br/>Gramps е дизајниран така што нови преводи "
 "можат лесно да бидат додадени со мал напор. Ако сакате да учествувате, ве "
-"молиме испратете е-мејл на gramps-devel@lists.sf.net"
+"молиме испратете е-мејл на gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 #, fuzzy
@@ -1432,9 +1432,8 @@ msgid "Gramps: no such config setting: '%s'"
 msgstr ""
 
 #: ../gramps/cli/argparser.py:472
-#, fuzzy
 msgid "Error parsing the arguments"
-msgstr "Грешка при зачувување на стилизирана страница."
+msgstr "Грешка при парсирање на аргументите"
 
 #: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:166
 #: ../gramps/cli/clidbman.py:168 ../gramps/gui/clipboard.py:188
@@ -1693,9 +1692,8 @@ msgid "Family Tree does not exist, as it has been deleted."
 msgstr ""
 
 #: ../gramps/cli/grampscli.py:243
-#, fuzzy
 msgid "The database is locked."
-msgstr "Централно лице"
+msgstr "Базата на податоци е заклучена."
 
 #: ../gramps/cli/grampscli.py:244
 msgid ""
@@ -1741,9 +1739,8 @@ msgid "=format"
 msgstr "Форматирано"
 
 #: ../gramps/cli/plug/__init__.py:295
-#, fuzzy
 msgid "Output file format."
-msgstr "Излезен формат"
+msgstr "Излезен формат на фајл."
 
 #: ../gramps/cli/plug/__init__.py:296 ../gramps/cli/plug/__init__.py:297
 #, fuzzy
