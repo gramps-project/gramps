@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-02-01 05:59+0000\n"
+"PO-Revision-Date: 2023-02-01 12:12+0000\n"
 "Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
@@ -32999,9 +32999,9 @@ msgstr[1] ""
 " {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:443
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "%(person)s е во %(relationship)s на %(active_person)s."
+msgstr "✝ {person}, смрт {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:445
 #, python-brace-format
@@ -34867,11 +34867,11 @@ msgstr "Базата со податоци ги помина внатрешни�
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2458
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
-msgstr[0] "една прекината дете/семејство врска е поправена\n"
-msgstr[1] "една прекината дете/семејство врска е поправена\n"
+msgstr[0] "Поправена е {quantity} расипана врска за дете/семејство\n"
+msgstr[1] "Поправени се {quantity} расипани врски за дете/семејство\n"
 
 #: ../gramps/plugins/tool/check.py:2466
 msgid "Non existing child"
