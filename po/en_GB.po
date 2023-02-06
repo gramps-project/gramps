@@ -34,13 +34,14 @@
 #
 # Copyright (C)
 # Nick Hall <nick-h@gramps-project.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Andi Chandler <andi@gowling.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-02-25 21:42+0000\n"
-"Last-Translator: Nick Hall <nick-h@gramps-project.org>\n"
+"PO-Revision-Date: 2023-02-07 00:54+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
 "Language: en_GB\n"
@@ -48,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -243,10 +244,8 @@ msgid "Sweden"
 msgstr "Sweden"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Turkish"
+msgstr "Turkey"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
