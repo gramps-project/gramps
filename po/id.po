@@ -3,21 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Andika Triwidada <andika@gmail.com>, 2021, 2022.
+# Muhammad Reza Putra <muhammadreza.112209@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-02-22 19:36+0000\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/gramps-"
-"project/gramps/id/>\n"
+"PO-Revision-Date: 2023-02-08 10:38+0000\n"
+"Last-Translator: Muhammad Reza Putra <muhammadreza.112209@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/"
+"gramps-project/gramps/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -29,7 +30,7 @@ msgstr "Kanada"
 
 #: ../data/holidays.xml:84
 msgid "Catalonia"
-msgstr ""
+msgstr "Katalonia"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -185,7 +186,7 @@ msgstr ""
 
 #: ../data/holidays.xml:388
 msgid "Italy"
-msgstr ""
+msgstr "Italia"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -213,7 +214,7 @@ msgstr "Swedia"
 
 #: ../data/holidays.xml:508
 msgid "Turkey"
-msgstr ""
+msgstr "Turki"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -1775,16 +1776,16 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:669
 msgid "Failed to write report. "
-msgstr ""
+msgstr "Gagal menulis laporan. "
 
 #: ../gramps/cli/plug/__init__.py:818
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr ""
+msgstr "Gagal membuat laporan '%s'."
 
 #: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:282
 msgid "Error detected in database"
-msgstr ""
+msgstr "Kesalahan terdeteksi dalam database"
 
 #: ../gramps/cli/user.py:218 ../gramps/gui/dialog.py:283
 #, python-format
@@ -1803,7 +1804,7 @@ msgstr ""
 
 #: ../gramps/gen/config.py:258
 msgid "Missing Given Name"
-msgstr ""
+msgstr "Nama Depan Tidak Ada"
 
 #: ../gramps/gen/config.py:259
 msgid "Missing Record"
@@ -1811,7 +1812,7 @@ msgstr ""
 
 #: ../gramps/gen/config.py:260
 msgid "Missing Surname"
-msgstr ""
+msgstr "Nama Belakang"
 
 #: ../gramps/gen/config.py:267 ../gramps/gen/config.py:269
 msgid "[Living]"
@@ -2201,7 +2202,7 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:422
 msgid "today"
-msgstr ""
+msgstr "hari ini"
 
 #: ../gramps/gen/datehandler/_datestrings.py:80
 msgctxt "localized lexeme inflections"
@@ -2285,7 +2286,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgctxt "localized lexeme inflections - short month form"
 msgid "May"
-msgstr ""
+msgstr "Mei"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgctxt "localized lexeme inflections - short month form"
@@ -2389,7 +2390,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
 msgid "Gregorian"
-msgstr ""
+msgstr "Masehi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:610
 msgctxt "calendar"
@@ -2414,7 +2415,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:614
 msgctxt "calendar"
 msgid "Islamic"
-msgstr ""
+msgstr "Hijriah"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:615
 msgctxt "calendar"
@@ -2566,62 +2567,62 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgctxt "Islamic month lexeme"
 msgid "Muharram"
-msgstr ""
+msgstr "Muharram"
 
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgctxt "Islamic month lexeme"
 msgid "Safar"
-msgstr ""
+msgstr "Safar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgctxt "Islamic month lexeme"
 msgid "Rabi`al-Awwal"
-msgstr ""
+msgstr "Rabiul Awal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgctxt "Islamic month lexeme"
 msgid "Rabi`ath-Thani"
-msgstr ""
+msgstr "Rabiul Akhir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgctxt "Islamic month lexeme"
 msgid "Jumada l-Ula"
-msgstr ""
+msgstr "Jumadil Awal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgctxt "Islamic month lexeme"
 msgid "Jumada t-Tania"
-msgstr ""
+msgstr "Jumadil Akhir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr ""
+msgstr "Rajab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "Islamic month lexeme"
 msgid "Sha`ban"
-msgstr ""
+msgstr "Sya'ban"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgctxt "Islamic month lexeme"
 msgid "Ramadan"
-msgstr ""
+msgstr "Ramadan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
 msgctxt "Islamic month lexeme"
 msgid "Shawwal"
-msgstr ""
+msgstr "Syawal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Qa`da"
-msgstr ""
+msgstr "Dzulkaidah"
 
 #: ../gramps/gen/datehandler/_datestrings.py:199
 msgctxt "Islamic month lexeme"
 msgid "Dhu l-Hijja"
-msgstr ""
+msgstr "Dzulhijjah"
 
 #. Translators: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2692,14 +2693,14 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgctxt "date modifier"
 msgid "before "
-msgstr ""
+msgstr "sebelum "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgctxt "date modifier"
 msgid "after "
-msgstr ""
+msgstr "sesudah "
 
 #. Translators: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -2720,31 +2721,31 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgid "Sunday"
-msgstr ""
+msgstr "Minggu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:243
 msgid "Monday"
-msgstr ""
+msgstr "Senin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:244
 msgid "Tuesday"
-msgstr ""
+msgstr "Selasa"
 
 #: ../gramps/gen/datehandler/_datestrings.py:245
 msgid "Wednesday"
-msgstr ""
+msgstr "Rabu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:246
 msgid "Thursday"
-msgstr ""
+msgstr "Kamis"
 
 #: ../gramps/gen/datehandler/_datestrings.py:247
 msgid "Friday"
-msgstr ""
+msgstr "Jumat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:248
 msgid "Saturday"
-msgstr ""
+msgstr "Sabtu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:252
 msgid "Sun"
@@ -2776,23 +2777,23 @@ msgstr ""
 
 #: ../gramps/gen/db/base.py:1816 ../gramps/gui/widgets/fanchart.py:2071
 msgid "Add child to family"
-msgstr ""
+msgstr "Tambah anak ke keluarga"
 
 #: ../gramps/gen/db/base.py:1830 ../gramps/gen/db/base.py:1836
 msgid "Remove child from family"
-msgstr ""
+msgstr "Hapus anak dari keluarga"
 
 #: ../gramps/gen/db/base.py:1908 ../gramps/gen/db/base.py:1912
 msgid "Remove Family"
-msgstr ""
+msgstr "Hapus Keluarga"
 
 #: ../gramps/gen/db/base.py:1952
 msgid "Remove father from family"
-msgstr ""
+msgstr "Hapus ayah dari keluarga"
 
 #: ../gramps/gen/db/base.py:1954
 msgid "Remove mother from family"
-msgstr ""
+msgstr "Hapus ibu dari keluarga"
 
 #: ../gramps/gen/db/exceptions.py:91
 #, python-format
@@ -2881,42 +2882,42 @@ msgstr ""
 
 #: ../gramps/gen/db/generic.py:2416
 msgid "Number of people"
-msgstr ""
+msgstr "Jumlah orang"
 
 #: ../gramps/gen/db/generic.py:2417
 #: ../gramps/plugins/gramplet/statsgramplet.py:170
 #: ../gramps/plugins/webreport/statistics.py:133
 #: ../gramps/plugins/webreport/statistics.py:198
 msgid "Number of families"
-msgstr ""
+msgstr "Jumlah keluarga"
 
 #: ../gramps/gen/db/generic.py:2418
 #: ../gramps/plugins/webreport/statistics.py:161
 #: ../gramps/plugins/webreport/statistics.py:210
 msgid "Number of sources"
-msgstr ""
+msgstr "Jumlah sumber"
 
 #: ../gramps/gen/db/generic.py:2419
 #: ../gramps/plugins/webreport/statistics.py:165
 #: ../gramps/plugins/webreport/statistics.py:213
 msgid "Number of citations"
-msgstr ""
+msgstr "Jumlah kutipan"
 
 #: ../gramps/gen/db/generic.py:2420
 #: ../gramps/plugins/webreport/statistics.py:154
 #: ../gramps/plugins/webreport/statistics.py:204
 msgid "Number of events"
-msgstr ""
+msgstr "Jumlah peristiwa"
 
 #: ../gramps/gen/db/generic.py:2421
 msgid "Number of media"
-msgstr ""
+msgstr "Jumlah media"
 
 #: ../gramps/gen/db/generic.py:2422
 #: ../gramps/plugins/webreport/statistics.py:157
 #: ../gramps/plugins/webreport/statistics.py:207
 msgid "Number of places"
-msgstr ""
+msgstr "Jumlah tempat"
 
 #: ../gramps/gen/db/generic.py:2423
 #: ../gramps/plugins/webreport/statistics.py:169
@@ -2926,7 +2927,7 @@ msgstr ""
 
 #: ../gramps/gen/db/generic.py:2424
 msgid "Number of notes"
-msgstr ""
+msgstr "Jumlah catatan"
 
 #: ../gramps/gen/db/generic.py:2425
 msgid "Number of tags"
@@ -2999,7 +3000,7 @@ msgstr ""
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:707
 msgid ","
-msgstr ""
+msgstr ","
 
 #: ../gramps/gen/display/name.py:353
 msgid "Default format (defined by Gramps preferences)"
@@ -3038,7 +3039,7 @@ msgstr ""
 #: ../gramps/gen/display/name.py:578 ../gramps/gen/display/name.py:678
 msgctxt "Person"
 msgid "title"
-msgstr ""
+msgstr "gelar"
 
 #: ../gramps/gen/display/name.py:580 ../gramps/gen/display/name.py:680
 #: ../gramps/plugins/importer/importcsv.py:165
@@ -3065,11 +3066,11 @@ msgstr ""
 #: ../gramps/gen/display/name.py:589 ../gramps/gen/display/name.py:688
 msgctxt "Name"
 msgid "common"
-msgstr ""
+msgstr "umum"
 
 #: ../gramps/gen/display/name.py:593 ../gramps/gen/display/name.py:691
 msgid "initials"
-msgstr ""
+msgstr "inisial"
 
 #: ../gramps/gen/display/name.py:596 ../gramps/gen/display/name.py:693
 msgctxt "Name"
@@ -3325,13 +3326,13 @@ msgstr ""
 #: ../gramps/gui/glade/mergemedia.glade:278
 #: ../gramps/gui/glade/mergemedia.glade:294
 msgid "Date:"
-msgstr ""
+msgstr "Tanggal:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:51
 #: ../gramps/gui/glade/mergecitation.glade:278
 #: ../gramps/gui/glade/mergecitation.glade:294
 msgid "Confidence:"
-msgstr ""
+msgstr "Keyakinan:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
@@ -3426,7 +3427,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergenote.glade:212
 #: ../gramps/gui/glade/mergenote.glade:228
 msgid "Text:"
-msgstr ""
+msgstr "Teks:"
 
 #: ../gramps/gen/filters/rules/_hasnotesubstrbase.py:42
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:43
@@ -3494,7 +3495,7 @@ msgstr ""
 #: ../gramps/plugins/view/geomoves.py:693
 #: ../gramps/plugins/view/geoperson.py:553
 msgid "No description"
-msgstr ""
+msgstr "Tidak ada deskripsi"
 
 #: ../gramps/gen/filters/rules/_rule.py:94
 msgid "The filter definition contains a loop."
@@ -3568,7 +3569,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
 msgid "Value:"
-msgstr ""
+msgstr "Nilai:"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:47
 msgid "Citations with the attribute <attribute>"
@@ -3656,7 +3657,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:212
 #: ../gramps/gui/glade/mergesource.glade:228
 msgid "Title:"
-msgstr ""
+msgstr "Judul:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:49
 #: ../gramps/gui/glade/editcitation.glade:395
@@ -3666,7 +3667,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:261
 #: ../gramps/gui/glade/plugins.glade:190
 msgid "Author:"
-msgstr ""
+msgstr "Penulis:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gui/glade/mergedata.glade:825
@@ -3674,7 +3675,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:278
 #: ../gramps/gui/glade/mergesource.glade:294
 msgid "Abbreviation:"
-msgstr ""
+msgstr "Singkatan:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:51
 #: ../gramps/gui/glade/mergedata.glade:858
@@ -3682,7 +3683,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:311
 #: ../gramps/gui/glade/mergesource.glade:327
 msgid "Publication:"
-msgstr ""
+msgstr "Publikasi:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:52
 msgid "Sources matching parameters"
@@ -3865,7 +3866,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:278
 #: ../gramps/gui/glade/mergeevent.glade:294
 msgid "Place:"
-msgstr ""
+msgstr "Tempat:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:48
 #: ../gramps/gen/filters/rules/family/_hasevent.py:50
@@ -3876,7 +3877,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:311
 #: ../gramps/gui/glade/mergeevent.glade:327
 msgid "Description:"
-msgstr ""
+msgstr "Deskripsi:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:49
 msgid "Events with <data>"
@@ -4039,7 +4040,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:377
 msgid "Every family"
-msgstr ""
+msgstr "Setiap keluarga"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 msgid "Matches every family in the database"
@@ -8921,7 +8922,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
-msgstr ""
+msgstr "Bawaan"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
@@ -17681,7 +17682,7 @@ msgstr ""
 #: ../gramps/gui/plug/export/_exportoptions.py:197
 #: ../gramps/gui/plug/export/_exportoptions.py:394
 msgid "Change order"
-msgstr ""
+msgstr "Ubah urutan"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:202
 msgid "Calculate Previews"
@@ -17729,15 +17730,15 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportoptions.py:401
 msgid "Hide order"
-msgstr ""
+msgstr "Sembunyikan urutan"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:597
 msgid "Filtering private data"
-msgstr ""
+msgstr "Memfilter data pribadi"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:606
 msgid "Filtering living persons"
-msgstr ""
+msgstr "Memfilter orang yang masih hidup"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:623
 msgid "Applying selected person filter"
@@ -17790,11 +17791,11 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportoptions.py:772
 msgid "Use Compression"
-msgstr ""
+msgstr "Gunakan Kompresi"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:98
 msgid "Web Connection"
-msgstr ""
+msgstr "Koneksi Web"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:144
 #: ../gramps/gui/plug/quick/_textbufdoc.py:74
@@ -17803,13 +17804,13 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:217
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:224
 msgid "Quick View"
-msgstr ""
+msgstr "Tampilan Cepat"
 
 #: ../gramps/gui/plug/quick/_quicktable.py:134
 #: ../gramps/plugins/gramplet/ancestor.py:115
 #: ../gramps/plugins/gramplet/descendant.py:113
 msgid "Copy all"
-msgstr ""
+msgstr "Salin semua"
 
 #: ../gramps/gui/plug/quick/_quicktable.py:161
 msgid "See data not in Filter"
@@ -17821,32 +17822,32 @@ msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:172
 msgid "Available Books"
-msgstr ""
+msgstr "Buku yang Tersedia"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:247
 msgid "Discard Unsaved Changes"
-msgstr ""
+msgstr "Buang Perubahan yang Belum Disimpan"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:248
 msgid "You have made changes which have not been saved."
-msgstr ""
+msgstr "Anda telah membuat perubahan yang belum disimpan."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:249
 #: ../gramps/gui/plug/report/_bookdialog.py:750
 msgid "Proceed"
-msgstr ""
+msgstr "Lanjutkan"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:309
 msgid "Name of the book. MANDATORY"
-msgstr ""
+msgstr "Nama buku. WAJIB"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:331
 msgid "Manage Books"
-msgstr ""
+msgstr "Kelola Buku"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:372
 msgid "New Book"
-msgstr ""
+msgstr "Buku Baru"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:375
 msgid "_Available items"
@@ -17981,7 +17982,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/report/_reportdialog.py:143
 msgid "Configuration"
-msgstr ""
+msgstr "Konfigurasi"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:324
 #: ../gramps/gui/plug/report/_styleeditor.py:115
@@ -18098,7 +18099,7 @@ msgstr ""
 #: ../gramps/gui/plug/report/_styleeditor.py:192
 #: ../gramps/plugins/importer/importgedcom.glade:12
 msgid "default"
-msgstr ""
+msgstr "bawaan"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:96
 #: ../gramps/gui/plug/report/_styleeditor.py:125
@@ -18241,7 +18242,7 @@ msgstr ""
 
 #: ../gramps/gui/selectors/selectnote.py:64
 msgid "Select Note"
-msgstr ""
+msgstr "Pilih Catatan"
 
 #: ../gramps/gui/selectors/selectnote.py:82
 msgctxt "manual"
@@ -23747,7 +23748,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:240
 msgid "place"
-msgstr ""
+msgstr "tempat"
 
 #: ../gramps/plugins/importer/importcsv.py:241
 msgid "place id"
