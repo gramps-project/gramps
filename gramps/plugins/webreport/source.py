@@ -233,7 +233,7 @@ class SourcePages(BasePage):
         self.uplink = True
         result = self.write_header("%s - %s" % (self._('Sources'),
                                                 self.page_title))
-        sourcepage, dummy_head, dummy_body, outerwrapper = result
+        sourcepage, head, dummy_body, outerwrapper = result
 
         ldatec = 0
         # begin source detail division
@@ -242,6 +242,17 @@ class SourcePages(BasePage):
 
             media_list = source.get_media_list()
             if self.create_media and media_list:
+                if self.the_lang and not self.usecms:
+                    fname = "/".join(["..", "css", "lightbox.css"])
+                    jsname = "/".join(["..", "css", "lightbox.js"])
+                else:
+                    fname = "/".join(["css", "lightbox.css"])
+                    jsname = "/".join(["css", "lightbox.js"])
+                url = self.report.build_url_fname(fname, None, self.uplink)
+                head += Html("link", href=url, type="text/css",
+                             media="screen", rel="stylesheet")
+                url = self.report.build_url_fname(jsname, None, self.uplink)
+                head += Html("script", src=url, type="text/javascript", inline=True)
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
                                                              source)
                 if thumbnail is not None:

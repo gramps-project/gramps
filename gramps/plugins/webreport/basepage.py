@@ -2268,15 +2268,19 @@ class BasePage:
 
         # make referenced images have the same order as in media list:
         photolist_handles = {}
+        self.max_img = 0
         for mediaref in photolist:
             photolist_handles[mediaref.get_reference_handle()] = mediaref
+            photo_handle = mediaref.get_reference_handle()
+            photo = self.r_db.get_media_from_handle(photo_handle)
+            mime_type = photo.get_mime_type()
+            if "image" in mime_type:
+                self.max_img += 1
         photolist_ordered = []
         for photoref in copy.copy(object_.get_media_list()):
             if photoref.ref in photolist_handles:
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)
-        # and add any that are left (should there be any?)
-        photolist_ordered += photolist
 
         # begin individualgallery division and section title
         with Html("div", class_="subsection", id="indivgallery") as section:
@@ -2288,46 +2292,120 @@ class BasePage:
             with Html("div", style="display:%s" % disp,
                       id="toggle_media") as toggle:
                 section += toggle
-                displayed = []
-                for mediaref in photolist_ordered:
+                with Html("div", id="medias") as medias:
+                    displayed = []
+                    # Create the list of media for lightbox
+                    for mediaref in photolist_ordered:
+                        photo_handle = mediaref.get_reference_handle()
+                        photo = self.r_db.get_media_from_handle(photo_handle)
+                        if photo_handle in displayed:
+                            continue
+                        # get media description
+                        descr = photo.get_description()
+                        mime_type = photo.get_mime_type()
+                        if mime_type and "image" not in mime_type:
+                            try:
+                                # create thumbnail url
+                                # extension needs to be added as it is not
+                                # already there
+                                url_thumb = (self.report.build_url_fname(
+                                             photo_handle, "thumb", True,
+                                             image=True) + ".png")
+                                # begin hyperlink
+                                medias += self.media_link(photo_handle,
+                                                          url_thumb, descr,
+                                                          uplink=self.uplink,
+                                                          usedescr=True)
+                            except (IOError, OSError) as msg:
+                                self.r_user.warn(_("Could not add photo to page"),
+                                                 str(msg))
+                        elif not mime_type:
+                            try:
+                                # begin hyperlink
+                                medias += self.doc_link(photo_handle, descr,
+                                                        uplink=self.uplink)
+                            except (IOError, OSError) as msg:
+                                self.r_user.warn(_("Could not add photo to page"),
+                                                 str(msg))
+                # First part for lightbox
+                lightbox = 0
+                with Html("div", class_="MediaRow") as lightboxes_1:
+                    for mediaref in photolist_ordered:
+                        photo_handle = mediaref.get_reference_handle()
+                        photo = self.r_db.get_media_from_handle(photo_handle)
+                        mime_type = photo.get_mime_type()
+                        if mime_type and "image" in mime_type:
+                            with Html("div", class_="MediaColumn") as boxes:
+                                lightboxes_1 += boxes
+                                try:
+                                    url_thumb = (self.report.build_url_fname(
+                                                 photo_handle, "thumb",
+                                                 True, image=True) + ".png")
+                                    # begin hyperlink
+                                    lightbox += 1
+                                    boxes += Html("img", src=url_thumb,
+                                                  inline=True,
+                                                  onclick="openModal();currentSlide(%d)" % lightbox,
+                                                  class_="hover-shadow")
+                                except (IOError, OSError) as msg:
+                                    self.r_user.warn(_("Could not add photo to page"),
+                                                     str(msg))
+                # Second part for lightbox
+                lightbox = 0
+                with Html("div", id="MediaModal",
+                          class_="ModalClass") as lightboxes_2:
+                    lightboxes_2 += Html("span", "&times;",
+                                         onclick="closeModal()",
+                                         class_="MediaClose MediaCursor",
+                                         inline=True)
+                    with Html("div", class_="ModalContent") as lb_content:
+                        lightboxes_2 += lb_content
+                        lb_content += Html("a", "&#10094;",
+                                           class_="MediaPrev",
+                                           onclick="plusSlides(-1)")
+                        lb_content += Html("a", "&#10095;",
+                                           class_="MediaNext",
+                                           onclick="plusSlides(1)")
+                        for mediaref in photolist_ordered:
+                            photo_handle = mediaref.get_reference_handle()
+                            photo = self.r_db.get_media_from_handle(photo_handle)
+                            mime_type = photo.get_mime_type()
+                            if mime_type and "image" in mime_type:
+                                with Html("div", class_="MediaSlide") as box:
+                                    lb_content += box
+                                    lightbox += 1
+                                    image_number = "%d/%d - %s" % (lightbox,
+                                        self.max_img, photo.get_description())
+                                    box += Html("div", image_number,
+                                                class_="MediaNumber")
+                                    try:
+                                        thb_img = (
+                                            self.report.build_url_fname(
+                                                photo_handle, "img", True,
+                                                image=True) + self.ext)
+                                        fname_, ext = os.path.splitext(photo.get_path())
+                                        url_img = (self.report.build_url_fname(photo_handle,
+                                                                         "images",
+                                                                         True,
+                                                                         image=True) + ext)
 
-                    photo_handle = mediaref.get_reference_handle()
-                    photo = self.r_db.get_media_from_handle(photo_handle)
-
-                    if photo_handle in displayed:
-                        continue
-                    mime_type = photo.get_mime_type()
-
-                    # get media description
-                    descr = photo.get_description()
-
-                    if mime_type:
-                        try:
-                            # create thumbnail url
-                            # extension needs to be added as it is not
-                            # already there
-                            url = (self.report.build_url_fname(photo_handle,
-                                                               "thumb",
-                                                               True,
-                                                               image=True) +
-                                   ".png")
-                            # begin hyperlink
-                            toggle += self.media_link(photo_handle, url,
-                                                      descr,
-                                                      uplink=self.uplink,
-                                                      usedescr=True)
-                        except (IOError, OSError) as msg:
-                            self.r_user.warn(_("Could not add photo to page"),
-                                             str(msg))
-                    else:
-                        try:
-                            # begin hyperlink
-                            toggle += self.doc_link(photo_handle, descr,
-                                                    uplink=self.uplink)
-                        except (IOError, OSError) as msg:
-                            self.r_user.warn(_("Could not add photo to page"),
-                                             str(msg))
+                                        box += Html("a", href=thb_img) + (
+                                            Html("img", src=url_img,
+                                                 style="width:100%")
+                                            )
+                                    except (IOError, OSError) as msg:
+                                        self.r_user.warn(_("Could not add photo to page"),
+                                                         str(msg))
                     displayed.append(photo_handle)
+                if lightboxes_1:
+                    toggle += lightboxes_1
+                    toggle += lightboxes_2
+                    if lightbox < len(photolist):
+                        toggle += Html("h3",
+                                       self._("Other media: vidéos, pdfs..."),
+                                       inline=True)
+                if medias:
+                    toggle += medias
 
             # add fullclear for proper styling
             section += FULLCLEAR

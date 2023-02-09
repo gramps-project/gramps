@@ -390,7 +390,7 @@ class FamilyPages(BasePage):
 
         output_file, sio = self.report.create_file(family.get_handle(), "fam")
         result = self.write_header(family_name)
-        familydetailpage, dummy_head, dummy_body, outerwrapper = result
+        familydetailpage, head, dummy_body, outerwrapper = result
 
         # begin FamilyDetaill division
         with Html("div", class_="content",
@@ -400,6 +400,18 @@ class FamilyPages(BasePage):
             # family media list for initial thumbnail
             if self.create_media:
                 media_list = family.get_media_list()
+                if media_list:
+                    if self.the_lang and not self.usecms:
+                        fname = "/".join(["..", "css", "lightbox.css"])
+                        jsname = "/".join(["..", "css", "lightbox.js"])
+                    else:
+                        fname = "/".join(["css", "lightbox.css"])
+                        jsname = "/".join(["css", "lightbox.js"])
+                    url = self.report.build_url_fname(fname, None, self.uplink)
+                    head += Html("link", href=url, type="text/css",
+                                 media="screen", rel="stylesheet")
+                    url = self.report.build_url_fname(jsname, None, self.uplink)
+                    head += Html("script", src=url, type="text/javascript", inline=True)
                 # If Event pages are not being created, then we need to display
                 # the family event media here
                 if not self.inc_events:
@@ -429,7 +441,6 @@ class FamilyPages(BasePage):
                 relationshipdetail += families
 
             # display additional images as gallery
-            if self.create_media and media_list:
                 addgallery = self.disp_add_img_as_gallery(media_list, family)
                 if addgallery:
                     relationshipdetail += addgallery

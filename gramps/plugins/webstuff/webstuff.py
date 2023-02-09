@@ -107,6 +107,14 @@ def load_on_reg(dbstate, uistate, plugin):
         ["behaviour", 0, "Behaviour",
          path_css('behaviour.css'), None, [], []],
 
+        # media lightbox style sheet
+        ["lightbox", 0, "",
+         path_css('lightbox.css'), None, [], []],
+
+        # media lightbox javascript
+        ["lightbox_js", 0, "",
+         path_css('lightbox.js'), None, [], []],
+
         # NarrativeMap stylesheet/ image for NarrativeWeb place maps
         ["NarrativeMaps", 0, "",
          path_css("narrative-maps.css"), None, [], []],
