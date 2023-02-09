@@ -1538,12 +1538,16 @@ class BasePage:
         _meta3 = 'name="generator" content="%s %s %s"' % (
             PROGRAM_NAME, VERSION, URL_HOMEPAGE)
         _meta4 = 'name="author" content="%s"' % self.author
+        _meta5 = 'name="robots" content="noindex"'
+        _meta6 = 'name="googlebot" content="noindex"'
 
         # create additional meta tags
         meta = Html("meta", attr=_meta1) + (
             Html("meta", attr=_meta2, indent=False),
             Html("meta", attr=_meta3, indent=False),
-            Html("meta", attr=_meta4, indent=False)
+            Html("meta", attr=_meta4, indent=False),
+            Html("meta", attr=_meta5, indent=False),
+            Html("meta", attr=_meta6, indent=False)
         )
 
         # Link to _NARRATIVESCREEN  stylesheet
