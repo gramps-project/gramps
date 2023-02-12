@@ -10,6 +10,7 @@
 # Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017, 2018.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # Kaj Arne Mikkelsen <kmi@vgdata.dk>, 2021.
+# Jørn Hansen <joernh@gmail.com>, 2023.
 #
 # "Før reparationen udføres, forvis dig om at databasen virkelig
 # "ikke længere kan åbnes"
@@ -47,8 +48,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2021-06-04 11:36+0000\n"
-"Last-Translator: Kaj Arne Mikkelsen <kmi@vgdata.dk>\n"
+"PO-Revision-Date: 2023-02-13 11:35+0000\n"
+"Last-Translator: Jørn Hansen <joernh@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/da/>\n"
 "Language: da\n"
@@ -56,7 +57,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -68,10 +69,8 @@ msgid "Canada"
 msgstr "Canada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "Katalansk"
+msgstr "Catalonien"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -226,10 +225,8 @@ msgid "8 of Hanuka"
 msgstr "8 i Hanuka"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kursiv"
+msgstr "Italien"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -256,10 +253,8 @@ msgid "Sweden"
 msgstr "Sverige"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "Tyrkisk"
+msgstr "Tyrkiet"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
@@ -406,7 +401,6 @@ msgstr ""
 "Glem ikke at registrere indholdet i samtalerne!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -425,7 +419,7 @@ msgstr ""
 "personer med en beskrevet dødsårsag. For at se resultatet, gemmes filteret "
 "og vælges herefter i bunden af Filter-sidepanelet. Hvis panelet ikke er "
 "synlig, kan du ændre det ved at klikke på menupunktet &quot;Vis &gt; "
-"Filter&quot;"
+"Filter&quot;."
 
 #: ../data/tips.xml:16
 #, fuzzy
@@ -8136,7 +8130,7 @@ msgstr "Børn"
 #: ../gramps/plugins/webreport/person.py:1740
 #: ../gramps/plugins/webreport/updates.py:112
 msgid "Events"
-msgstr "Hændelser"
+msgstr "Begivenheder"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
@@ -9544,7 +9538,7 @@ msgstr "Kunne ikke danne %s"
 #: ../gramps/plugins/importer/importprogen.glade:380
 #: ../gramps/plugins/webreport/webcal.py:492
 msgid "Default"
-msgstr "Standard"
+msgstr "Udgangsværdi"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
