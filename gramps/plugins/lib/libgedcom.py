@@ -3304,7 +3304,7 @@ class GedcomParser(UpdateCallback):
                         family_handle not in father.get_family_handle_list():
                     father.add_family_handle(family_handle)
                     self.dbase.commit_person(father, self.trans)
-                    self.__add_msg("Error: family '%(family)s' (input as"
+                    self.__add_msg("Warning: family '%(family)s' (input as"
                                    " @%(orig_family)s@) father '%(father)s'"
                                    " (input as '%(orig_father)s') does not "
                                    "refer back to the family. Reference added."
@@ -3320,7 +3320,7 @@ class GedcomParser(UpdateCallback):
                         family_handle not in mother.get_family_handle_list():
                     mother.add_family_handle(family_handle)
                     self.dbase.commit_person(mother, self.trans)
-                    self.__add_msg("Error: family '%(family)s' (input as"
+                    self.__add_msg("Warning: family '%(family)s' (input as"
                                    " @%(orig_family)s@) mother '%(mother)s'"
                                    " (input as '%(orig_mother)s') does not "
                                    "refer back to the family. Reference added."
@@ -3341,7 +3341,7 @@ class GedcomParser(UpdateCallback):
                         # but no FAMC link from the child to the FAM.
                         child.add_parent_family_handle(family_handle)
                         self.dbase.commit_person(child, self.trans)
-                        self.__add_msg("Error: family '%(family)s' (input as"
+                        self.__add_msg("Warning: family '%(family)s' (input as"
                                        " @%(orig_family)s@) child '%(child)s'"
                                        " (input as '%(orig_child)s') does not "
                                        "refer back to the family. "
