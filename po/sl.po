@@ -6,22 +6,23 @@
 # beernarrd <beernarrd@gmail.com>, 2021.
 # Igor Kriznar <ikriznar@gmail.com>, 2022.
 # Milan <mobrcian@hotmail.com>, 2022.
+# Gregor Anželj <gregor.anzelj@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-11-26 08:05+0000\n"
-"Last-Translator: Milan <mobrcian@hotmail.com>\n"
+"PO-Revision-Date: 2023-02-15 19:39+0000\n"
+"Last-Translator: Gregor Anželj <gregor.anzelj@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 4.15-dev\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -32,10 +33,8 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: ../data/holidays.xml:84
-#, fuzzy
-#| msgid "Catalan"
 msgid "Catalonia"
-msgstr "katalonščina"
+msgstr "Katalonija"
 
 #: ../data/holidays.xml:101
 msgid "Chile"
@@ -190,10 +189,8 @@ msgid "8 of Hanuka"
 msgstr "Hanuka 8"
 
 #: ../data/holidays.xml:388
-#, fuzzy
-#| msgid "Italic"
 msgid "Italy"
-msgstr "Kurziva"
+msgstr "Italija"
 
 #: ../data/holidays.xml:402
 msgid "New Zealand"
@@ -220,10 +217,8 @@ msgid "Sweden"
 msgstr "Švedska"
 
 #: ../data/holidays.xml:508
-#, fuzzy
-#| msgid "Turkish"
 msgid "Turkey"
-msgstr "turščina"
+msgstr "Turčija"
 
 #: ../data/holidays.xml:536
 msgid "Ukraine"
