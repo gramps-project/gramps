@@ -3,7 +3,7 @@
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd at gmail.com>, 2007-2020.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
-# beernarrd <beernarrd@gmail.com>, 2021.
+# beernarrd <beernarrd@gmail.com>, 2021, 2023.
 # Igor Kriznar <ikriznar@gmail.com>, 2022.
 # Milan <mobrcian@hotmail.com>, 2022.
 # Gregor Anželj <gregor.anzelj@gmail.com>, 2023.
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-02-15 19:39+0000\n"
-"Last-Translator: Gregor Anželj <gregor.anzelj@gmail.com>\n"
+"PO-Revision-Date: 2023-02-17 06:37+0000\n"
+"Last-Translator: beernarrd <beernarrd@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
 "Language: sl\n"
