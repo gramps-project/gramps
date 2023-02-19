@@ -513,14 +513,18 @@ def sort_places(dbase, handle_list, rlocale=glocale):
     pname_sub = defaultdict(list)
 
     for place_name in handle_list.keys():
-        (hdle, pname, dummy_id, event) = handle_list[place_name]
+        cname = sname = None
+        if len(handle_list[place_name]) == 4:
+            (hdle, pname, dummy_id, event) = handle_list[place_name]
+        else:
+            (hdle, pname, cname,
+             sname, dummy_id, event) = handle_list[place_name]
         place = dbase.get_place_from_handle(hdle)
-        pname = _pd.display(dbase, place)
-        apname = _pd.display_event(dbase, event)
+        pname = _pd.display(dbase, place, fmt=0)
+        apname = _pd.display_event(dbase, event, fmt=0)
 
         pname_sub[pname].append(hdle)
-        if pname != apname:
-            pname_sub[apname].append(hdle)
+        pname_sub[apname].append((hdle, pname, cname, sname))
 
     sorted_lists = []
     temp_list = sorted(pname_sub, key=rlocale.sort_key)

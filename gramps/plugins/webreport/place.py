@@ -144,7 +144,7 @@ class PlacePages(BasePage):
                             plc_dict = (p_fname, place_name,
                                         place.gramps_id, None)
                             self.report.obj_dict[Place][place_ref] = plc_dict
-                            p_name = _pd.display(self.r_db, place)
+                            p_name = _pd.display(self.r_db, place, fmt=0)
                             plc_dict = (place_ref, p_name,
                                         place.gramps_id, None)
                             self.report.obj_dict[PlaceName][p_name] = plc_dict
@@ -163,13 +163,22 @@ class PlacePages(BasePage):
         self.placelistpage(self.report, the_lang, the_title)
 
 
-    def __output_place(self, ldatec, tbody,
-                       first_place, pname, place_handle, letter, bucket_link):
+    def __output_place(self, ldatec, tbody, first_place,
+                       pname, sname, cname, place_handle, letter, bucket_link):
         place = self.r_db.get_place_from_handle(place_handle)
         if place:
             if place.get_change_time() > ldatec:
                 ldatec = place.get_change_time()
+            nbrs = len(pname.split(','))
             plc_title = pname
+            if nbrs == 3:
+                plc_title = ", ".join(pname.split(',')[:1])
+            elif nbrs == 4:
+                plc_title = ", ".join(pname.split(',')[:2])
+            elif nbrs == 5:
+                plc_title = ", ".join(pname.split(',')[:3])
+            elif nbrs == 6:
+                plc_title = ", ".join(pname.split(',')[:4])
             main_location = get_main_location(self.r_db, place)
             if not plc_title or plc_title == " ":
                 letter = "&nbsp;"
@@ -195,10 +204,13 @@ class PlacePages(BasePage):
             trow.extend(Html("td", data or "&nbsp;", class_=colclass,
                              inline=True) for
                              (colclass, data) in [
-                                 ["ColumnState",
-                                  main_location.get(PlaceType.STATE, '')],
-                                 ["ColumnCountry",
-                                  main_location.get(PlaceType.COUNTRY, '')]])
+                                 # Use the two last field of a place
+                                 # We could have strange values if we
+                                 # have a placename like:
+                                 # city, province, country, mainland, planet...
+                                 # mainland and planet are custom types
+                                 ["ColumnState", sname],
+                                 ["ColumnCountry", cname]])
             if self.display_coordinates:
                 tcell1 = Html("td", class_="ColumnLatitude", inline=True)
                 tcell2 = Html("td", class_="ColumnLongitude", inline=True)
@@ -323,10 +335,25 @@ class PlacePages(BasePage):
                                                 self.rlocale)
                         first_place = True
                         for (pname, place_handle) in handle_list:
+                            if not pname:
+                                continue
+                            val = self.report.obj_dict[PlaceName][pname]
+                            nbelem = len(val)
+                            if nbelem == 4:
+                                place = self.r_db.get_place_from_handle(
+                                    place_handle)
+                                main_location = get_main_location(self.r_db,
+                                                                  place)
+                                sname = main_location.get(PlaceType.STATE, '')
+                                cname = main_location.get(PlaceType.COUNTRY, '')
+                            else:
+                                cname = val[3]
+                                sname = val[2]
                             (ldatec, first_place) \
                             = self.__output_place(ldatec,
-                                                  trow, first_place, pname,
-                                                  place_handle, bucket_letter,
+                                                  trow, first_place,
+                                                  pname, sname, cname,
+                                                  val[0], bucket_letter,
                                                   bucket_link)
 
         # add clearline for proper styling
@@ -356,7 +383,7 @@ class PlacePages(BasePage):
                           place.get_gramps_id())
         self.bibli = Bibliography()
         ldatec = place.get_change_time()
-        apname = _pd.display(self.r_db, place)
+        apname = _pd.display(self.r_db, place, fmt=0)
 
         if place_name == apname: # store only the primary named page
             output_file, sio = self.report.create_file(place_handle, "plc")

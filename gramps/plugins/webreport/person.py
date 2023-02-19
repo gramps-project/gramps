@@ -1703,14 +1703,14 @@ class PersonPages(BasePage):
                     birth = self.r_db.get_event_from_handle(birth_ref.ref)
                     if birth:
                         birth_date = birth.get_date_object()
-                        p_birth = _pd.display_event(self.r_db, birth)
+                        p_birth = _pd.display_event(self.r_db, birth, fmt=0)
 
                 death_ref = self.person.get_death_ref()
                 p_death = ""
                 if death_ref:
                     death = self.r_db.get_event_from_handle(death_ref.ref)
                     if death:
-                        p_death = _pd.display_event(self.r_db, death)
+                        p_death = _pd.display_event(self.r_db, death, fmt=0)
 
                 death_date = _find_death_date(self.r_db, self.person)
                 if birth_date and birth_date is not Date.EMPTY:

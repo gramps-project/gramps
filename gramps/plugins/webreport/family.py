@@ -441,6 +441,7 @@ class FamilyPages(BasePage):
                 relationshipdetail += families
 
             # display additional images as gallery
+            if self.create_media:
                 addgallery = self.disp_add_img_as_gallery(media_list, family)
                 if addgallery:
                     relationshipdetail += addgallery

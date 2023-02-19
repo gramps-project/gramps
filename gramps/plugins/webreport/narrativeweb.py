@@ -939,11 +939,20 @@ class NavWebReport(Report):
             else:
                 name = ""
         if config.get('preferences.place-auto'):
-            place_name = _pd.display_event(self._db, event)
-            pplace_name = _pd.display(self._db, place)
+            place_name = _pd.display_event(self._db, event, fmt=0)
+            if event:
+                cplace_name = place_name.split()[-1]
+                if len(place_name.split()) > 1:
+                    splace_name = place_name.split()[-2]
+                else:
+                    splace_name = cplace_name
+            else:
+                cplace_name = None
+                splace_name = None
         else:
             place_name = place.get_title()
-            pplace_name = place_name
+            cplace_name = place_name
+            splace_name = place_name
         if event:
             if self.reference_sort:
                 role_or_date = name
@@ -961,10 +970,8 @@ class NavWebReport(Report):
         self.obj_dict[Place][place_handle] = (place_fname, place_name,
                                               place.gramps_id, event)
         self.obj_dict[PlaceName][place_name] = (place_handle, place_name,
+                                                splace_name, cplace_name,
                                                 place.gramps_id, event)
-        if place_name != pplace_name:
-            self.obj_dict[PlaceName][pplace_name] = (place_handle, pplace_name,
-                                                     place.gramps_id, event)
         self.bkref_dict[Place][place_handle].add((bkref_class, bkref_handle,
                                                   role_or_date
                                                  ))
