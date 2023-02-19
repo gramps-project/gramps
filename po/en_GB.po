@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-02-07 00:54+0000\n"
+"PO-Revision-Date: 2023-02-20 13:35+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -390,16 +390,6 @@ msgstr ""
 "conversations!"
 
 #: ../data/tips.xml:14
-#, fuzzy
-#| msgid ""
-#| "<b>Filtering People</b><br/>In the People View, you can 'filter' "
-#| "individuals based on many criteria. To define a new filter go to \"Edit "
-#| "&gt; Person Filter Editor\". There you can name your filter and add and "
-#| "combine rules using the many preset rules. For example, you can define a "
-#| "filter to find all adopted people in the family tree. People without a "
-#| "birth date mentioned can also be filtered. To get the results save your "
-#| "filter and select it at the bottom of the Filter Sidebar, then click "
-#| "Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -415,16 +405,11 @@ msgstr ""
 "Filter Editor\". There you can name your filter and add and combine rules "
 "using the many preset rules. For example, you can define a filter to find "
 "all adopted people in the family tree. People without a birth date mentioned "
-"can also be filtered. To get the results save your filter and select it at "
-"the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is "
-"not visible, select View &gt; Filter."
+"can also be filtered. To get the results save your filter. Then select this "
+"filter in the Filter field on Sidebar, then click the Find button. If the "
+"Sidebar is not visible, select View &gt; Sidebar."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -432,8 +417,9 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-"'invert' option. For instance, by inverting the 'People with children' "
-"filter you can select all people without children."
+"'invert' option \"Return values that do not match the filter rules\". For "
+"instance, by inverting the 'People with children' filter you can select all "
+"people without children."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -530,13 +516,6 @@ msgstr ""
 "in your database, add the SoundEx Gramplet."
 
 #: ../data/tips.xml:32
-#, fuzzy
-#| msgid ""
-#| "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
-#| "modify a number of settings, such as the path to your media files, and "
-#| "allows you to adjust many aspects of the Gramps presentation to your "
-#| "needs. Each separate view can also be configured under \"View &gt; "
-#| "Configure View...\""
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -548,7 +527,7 @@ msgstr ""
 "modify a number of settings, such as the path to your media files, and "
 "allows you to adjust many aspects of the Gramps presentation to your needs. "
 "Each separate view can also be configured under \"View &gt; Configure View..."
-"\""
+"\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -587,13 +566,6 @@ msgstr ""
 "over a button and a tooltip will appear."
 
 #: ../data/tips.xml:40
-#, fuzzy
-#| msgid ""
-#| "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-#| "occurred, Gramps allows you to enter a wide range of date formats based "
-#| "on a guess or an estimate. For instance, \"about 1908\" is a valid entry "
-#| "for a birth date in Gramps. Click the Date button next to the date field "
-#| "and see the Gramps Manual to learn more."
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -604,33 +576,20 @@ msgstr ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
 "guess or an estimate. For instance, \"about 1908\" is a valid entry for a "
-"birth date in Gramps. Click the Date button next to the date field and see "
-"the Gramps Manual to learn more."
+"birth date in Gramps. Click the \"Invoke date editor\" button next to the "
+"date field. See the Gramps Manual to learn more."
 
 #: ../data/tips.xml:42
-#, fuzzy
-#| msgid ""
-#| "<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-#| "Possible Duplicate People...\" allows you to locate (and merge) entries "
-#| "of the same person entered more than once in the database."
 msgid ""
 "<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
 "&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
 "entries of the same person entered more than once in the database."
 msgstr ""
-"<b>Duplicate Entries</b><br/>\"Tools &gt; Database Processing &gt; Find "
-"Possible Duplicate People...\" allows you to locate (and merge) entries of "
-"the same person entered more than once in the database."
+"<b>Duplicate Entries</b><br/>The tool \"Tools &gt; Family Tree Processing "
+"&gt; Find Possible Duplicate People...\" allows you to locate (and merge) "
+"entries of the same person entered more than once in the database."
 
 #: ../data/tips.xml:44
-#, fuzzy
-#| msgid ""
-#| "<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge..."
-#| "\" allows you to combine separately listed people into one. Select the "
-#| "second entry by holding the Control key as you click. This is very useful "
-#| "for combining two databases with overlapping people, or combining "
-#| "erroneously entered differing names for one individual. This also works "
-#| "for the Places, Sources and Repositories views."
 msgid ""
 "<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
 "combine separately listed people into one. Select the second entry by "
@@ -639,12 +598,12 @@ msgid ""
 "differing names for one individual. Merging is available in all list views "
 "for all primary object types."
 msgstr ""
-"<b>Merging Entries</b><br/>The function \"Edit &gt; Compare and Merge...\" "
-"allows you to combine separately listed people into one. Select the second "
-"entry by holding the Control key as you click. This is very useful for "
-"combining two databases with overlapping people, or combining erroneously "
-"entered differing names for one individual. This also works for the Places, "
-"Sources and Repositories views."
+"<b>Merging Entries</b><br/>The function \"Edit &gt; Merge...\" allows you to "
+"combine separately listed people into one. Select the second entry by "
+"holding the Control key as you click. This is very useful for combining two "
+"databases with overlapping people, or combining erroneously entered "
+"differing names for one individual. Merging is available in all list views "
+"for all primary object types."
 
 #: ../data/tips.xml:46
 msgid ""
@@ -759,15 +718,6 @@ msgstr ""
 "by selecting \"Help &gt; Gramps Mailing Lists\"."
 
 #: ../data/tips.xml:64
-#, fuzzy
-#| msgid ""
-#| "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't "
-#| "write programs? Not a problem! A project as large as Gramps requires "
-#| "people with a wide variety of skills. Contributions can be anything from "
-#| "writing documentation to testing development versions and helping with "
-#| "the web site. Start by subscribing to the Gramps developers mailing list, "
-#| "gramps-devel, and introducing yourself. Subscription information can be "
-#| "found at \"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -783,7 +733,7 @@ msgstr ""
 "documentation to testing development versions and helping with the web site. "
 "Start by subscribing to the Gramps developers mailing list, gramps-devel, "
 "and introducing yourself. Subscription information can be found at \"Help "
-"&gt; Gramps Mailing Lists\""
+"&gt; Gramps Mailing Lists\"."
 
 #: ../data/tips.xml:66
 msgid ""
@@ -964,29 +914,20 @@ msgstr ""
 "Web."
 
 #: ../data/tips.xml:94
-#, fuzzy
-#| msgid ""
-#| "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in "
-#| "Gramps is to use the Gramps bug tracking system at https://gramps-project."
-#| "org/bugs/"
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 msgstr ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
-"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/."
 
 #: ../data/tips.xml:96
-#, fuzzy
-#| msgid ""
-#| "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-#| "project.org/"
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/."
 msgstr ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-"project.org/"
+"project.org/."
 
 #: ../data/tips.xml:98
 msgid ""
@@ -1017,47 +958,30 @@ msgstr ""
 "source."
 
 #: ../data/tips.xml:102
-#, fuzzy
-#| msgid ""
-#| "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added "
-#| "to Gramps with the \"Addon\" system. See them under \"Help &gt; Extra "
-#| "Reports/Tools\". This is the best way for advanced users to experiment "
-#| "and create new functionality."
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 msgstr ""
-"<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
+"<b>Extra Reports and Tools</b><br/>Extra reports and tools can be added to "
 "Gramps with the \"Addon\" system. See them under \"Help &gt; Extra Reports/"
 "Tools\". This is the best way for advanced users to experiment and create "
 "new functionality."
 
 #: ../data/tips.xml:104
-#, fuzzy
-#| msgid ""
-#| "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; "
-#| "Book Report...\", allows you to collect a variety of reports into a "
-#| "single document. This single report is easier to distribute than multiple "
-#| "reports, especially when printed."
 msgid ""
 "<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
 "allows you to collect a variety of reports into a single document. This "
 "single report is easier to distribute than multiple reports, especially when "
 "printed."
 msgstr ""
-"<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books &gt; Book "
-"Report...\", allows you to collect a variety of reports into a single "
-"document. This single report is easier to distribute than multiple reports, "
-"especially when printed."
+"<b>Book Reports</b><br/>The Book report under \"Reports &gt; Books...\" "
+"allows you to collect a variety of reports into a single document. This "
+"single report is easier to distribute than multiple reports, especially when "
+"printed."
 
 #: ../data/tips.xml:106
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-#| "version of Gramps is released? Join the Gramps-announce mailing list at "
-#| "\"Help &gt; Gramps Mailing Lists\""
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
@@ -1065,7 +989,7 @@ msgid ""
 msgstr ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
-"\"Help &gt; Gramps Mailing Lists\""
+"\"Help &gt; Gramps Mailing Lists\"."
 
 #: ../data/tips.xml:108
 msgid ""
@@ -1118,11 +1042,6 @@ msgstr ""
 "Gramps."
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
@@ -1130,7 +1049,7 @@ msgid ""
 msgstr ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
-"interested in participating please email gramps-devel@lists.sf.net"
+"interested in participating please email gramps-devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -7021,8 +6940,6 @@ msgid "Birth"
 msgstr "Birth"
 
 #: ../gramps/gen/lib/childreftype.py:69
-#, fuzzy
-#| msgid "Adopted"
 msgctxt "relationship"
 msgid "Adopted"
 msgstr "Adopted"
@@ -12532,10 +12449,8 @@ msgid "Import Family Tree"
 msgstr "Import Family Tree"
 
 #: ../gramps/gui/dbloader.py:387
-#, fuzzy
-#| msgid "All files"
 msgid "All supported files"
-msgstr "All files"
+msgstr "All supported files"
 
 #: ../gramps/gui/dbloader.py:442
 #, python-format
@@ -15058,15 +14973,6 @@ msgid "Use regular expressions"
 msgstr "Use regular expressions"
 
 #: ../gramps/gui/editors/filtereditor.py:608
-#, fuzzy
-#| msgid ""
-#| "Interpret the contents of string fields as regular expressions.\n"
-#| "A decimal point will match any character. A question mark will match zero "
-#| "or one occurences of the previous character or group. An asterisk will "
-#| "match zero or more occurences. A plus sign will match one or more "
-#| "occurences. Use parentheses to group expressions. Specify alternatives "
-#| "using a vertical bar. A caret will match the start of a line. A dollar "
-#| "sign will match the end of a line."
 msgid ""
 "Interpret the contents of string fields as regular expressions:\n"
 ".\tA decimal point will match any character.\n"
@@ -15079,13 +14985,16 @@ msgid ""
 "^\tA caret will match the start of a line.\n"
 "$\tA dollar sign will match the end of a line."
 msgstr ""
-"Interpret the contents of string fields as regular expressions.\n"
-"A decimal point will match any character. A question mark will match zero or "
-"one occurences of the previous character or group. An asterisk will match "
-"zero or more occurences. A plus sign will match one or more occurences. Use "
-"parentheses to group expressions. Specify alternatives using a vertical bar. "
-"A caret will match the start of a line. A dollar sign will match the end of "
-"a line."
+"Interpret the contents of string fields as regular expressions:\n"
+".\tA decimal point will match any character.\n"
+"?\tA question mark will match zero or one occurences of the previous "
+"character or group.\n"
+"*\tAn asterisk will match zero or more occurences.\n"
+"+\tA plus sign will match one or more occurences.\n"
+"()\tUse parentheses to group expressions.\n"
+"|\tSpecify alternatives using a vertical bar.\n"
+"^\tA caret will match the start of a line.\n"
+"$\tA dollar sign will match the end of a line."
 
 #: ../gramps/gui/editors/filtereditor.py:637
 msgid "Rule Name"
@@ -16747,10 +16656,8 @@ msgstr "Code associated with this place. Eg Country Code or Postal Code."
 
 #: ../gramps/gui/glade/editplace.glade:380
 #: ../gramps/gui/glade/editplaceref.glade:397
-#, fuzzy
-#| msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgid "What type of place this is. Eg 'Country', 'City', ..."
-msgstr "What type of place this is. Eg 'Country', 'City', ... ."
+msgstr "What type of place this is? e.g. 'Country', 'City', ..."
 
 #: ../gramps/gui/glade/editplace.glade:443
 #: ../gramps/gui/glade/editplaceref.glade:599
@@ -18655,28 +18562,19 @@ msgid ""
 "\n"
 "Format:\t%s"
 msgstr ""
+"The data will be exported as follows:\n"
+"\n"
+"Format:\t%s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:455
 #: ../gramps/gui/plug/export/_exportassistant.py:470
-#, fuzzy
-#| msgid ""
-#| "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgid ""
 "Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 msgstr ""
-"Press Apply to proceed, Cancel to abort, or Back to revisit your options."
+"Press Cancel to abort, Back to revisit your options, or Apply to proceed"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:466
-#, fuzzy, python-format
-#| msgid ""
-#| "The data will be saved as follows:\n"
-#| "\n"
-#| "Format:\t%(format)s\n"
-#| "Name:\t%(name)s\n"
-#| "Folder:\t%(folder)s\n"
-#| "\n"
-#| "Press Apply to proceed, Go Back to revisit your options, or Cancel to "
-#| "abort"
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -18688,29 +18586,20 @@ msgstr ""
 "\n"
 "Format:\t%(format)s\n"
 "Name:\t%(name)s\n"
-"Folder:\t%(folder)s\n"
-"\n"
-"Press Apply to proceed, Go Back to revisit your options, or Cancel to abort"
+"Folder:\t%(folder)s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:468
-#, fuzzy
-#| msgid "=format"
 msgctxt "name"
 msgid "format"
-msgstr "=format"
+msgstr "format"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
-#, fuzzy
-#| msgid ""
-#| "The selected file and folder to save to cannot be created or found.\n"
-#| "\n"
-#| "Press Back to return and select a valid filename."
 msgid ""
 "The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"The selected file and folder to save to cannot be created or found.\n"
+"The selected file and folder to save cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 
@@ -21606,19 +21495,19 @@ msgstr "half circle"
 
 #: ../gramps/plugins/drawreport/fanchart.py:724
 msgid "overhang"
-msgstr ""
+msgstr "overhang"
 
 #: ../gramps/plugins/drawreport/fanchart.py:725
 msgid "quarter circle"
 msgstr "quarter circle"
 
 #: ../gramps/plugins/drawreport/fanchart.py:726
-#, fuzzy
-#| msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgid ""
 "The form of the graph: full circle, half circle, half circle with overhang "
 "or quarter circle."
-msgstr "The form of the graph: full circle, half circle, or quarter circle."
+msgstr ""
+"The form of the graph: full circle, half circle, half circle with overhang "
+"or quarter circle."
 
 #: ../gramps/plugins/drawreport/fanchart.py:732
 msgid "generation dependent"
@@ -24911,16 +24800,12 @@ msgid "Gramps package (portable XML)"
 msgstr "Gramps package (portable XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:92
-#, fuzzy
-#| msgid ""
-#| "Import data from a Gramps package (an archived XML Family Tree together "
-#| "with the media object files.)"
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files)."
 msgstr ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
-"the media object files.)"
+"the media object files)."
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
@@ -25736,16 +25621,12 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1548
 #: ../gramps/plugins/importer/importprogen.glade:1595
-#, fuzzy
-#| msgid ""
-#| "Use death information\n"
-#| "as death cause event."
 msgid ""
 "Use death information\n"
 "as cause of death event."
 msgstr ""
 "Use death information\n"
-"as death cause event."
+"as cause of death event."
 
 #: ../gramps/plugins/importer/importprogen.glade:1598
 msgid "(-cause)"
@@ -25895,15 +25776,14 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "The file is probably either corrupt or not a valid Gramps database."
 
 #: ../gramps/plugins/importer/importxml.py:255
-#, fuzzy, python-brace-format
-#| msgid "  %(id)s - %(text)s with %(id2)s\n"
+#, python-brace-format
 msgid "  {id1} - {text} with {id2}"
-msgstr "  %(id)s - %(text)s with %(id2)s\n"
+msgstr "  {id1} - {text} with {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
 msgid "  {obj} {id1} with {id2}"
-msgstr ""
+msgstr "  {obj} {id1} with {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:272
 #: ../gramps/plugins/quickview/filterbyname.py:91
@@ -25938,21 +25818,11 @@ msgid "Sources"
 msgstr "Sources"
 
 #: ../gramps/plugins/importer/importxml.py:283
-#, fuzzy
-#| msgid "Number of new objects imported:\n"
 msgid "Number of new objects imported:"
-msgstr "Number of new objects imported:\n"
+msgstr "Number of new objects imported:"
 
 #: ../gramps/plugins/importer/importxml.py:297
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "The imported file was not self-contained.\n"
-#| "To correct for that, %(new)d objects were created and\n"
-#| "their typifying attribute was set to 'Unknown'.\n"
-#| "The breakdown per category is depicted by the\n"
-#| "number in parentheses. Where possible these\n"
-#| "'Unknown' objects are referenced by note %(unknown)s.\n"
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -25968,16 +25838,9 @@ msgstr ""
 "their typifying attribute was set to 'Unknown'.\n"
 "The breakdown per category is depicted by the\n"
 "number in parentheses. Where possible these\n"
-"'Unknown' objects are referenced by note %(unknown)s.\n"
+"'Unknown' objects are referenced by note %(unknown)s."
 
 #: ../gramps/plugins/importer/importxml.py:307
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Media objects with relative paths have been\n"
-#| "imported. These paths are considered relative to\n"
-#| "the media directory you can set in the preferences,\n"
-#| "or, if not set, relative to the user's directory.\n"
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -25989,19 +25852,15 @@ msgstr ""
 "Media objects with relative paths have been\n"
 "imported. These paths are considered relative to\n"
 "the media directory you can set in the preferences,\n"
-"or, if not set, relative to the user's directory.\n"
+"or, if not set, relative to the user's directory."
 
 #: ../gramps/plugins/importer/importxml.py:317
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Objects that are candidates to be merged:\n"
 msgid ""
 "\n"
 "Objects that are candidates to be merged:"
 msgstr ""
 "\n"
-"Objects that are candidates to be merged:\n"
+"Objects that are candidates to be merged:"
 
 #: ../gramps/plugins/importer/importxml.py:804
 #: ../gramps/plugins/importer/importxml.py:1284
@@ -30717,20 +30576,18 @@ msgstr "Select a kml file used to add places"
 
 #: ../gramps/plugins/lib/maps/geography.py:1053
 msgid "You will need to edit each place manually to add place type, ...\n"
-msgstr ""
+msgstr "You will need to edit each place manually to add place type, ...\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1055
 #, python-brace-format
 msgid "You have {places_nb} place to edit."
 msgid_plural "You have {places_nb} places to edit."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "You have {places_nb} place to edit."
+msgstr[1] "You have {places_nb} places to edit."
 
 #: ../gramps/plugins/lib/maps/geography.py:1059
-#, fuzzy
-#| msgid "You have at least two places with the same title."
 msgid "You have more than 5 places in this kml file."
-msgstr "You have at least two places with the same title."
+msgstr "You have more than 5 places in this kml file."
 
 #: ../gramps/plugins/lib/maps/geography.py:1127
 msgid "You have at least two places with the same title."
@@ -31789,16 +31646,12 @@ msgid "Swedish Relationship Calculator"
 msgstr "Swedish Relationship Calculator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:330
-#, fuzzy
-#| msgid "Danish Relationship Calculator"
 msgid "Turkish Relationship Calculator"
-msgstr "Danish Relationship Calculator"
+msgstr "Turkish Relationship Calculator"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:331
-#, fuzzy
-#| msgid "Calculates relationships between people"
 msgid "Calculates relationship between people"
-msgstr "Calculates relationships between people"
+msgstr "Calculates relationship between people"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:345
 msgid "Ukrainian Relationship Calculator"
@@ -31904,10 +31757,9 @@ msgid "Relationships shown are to %s"
 msgstr "Relationships shown are to %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:334
-#, fuzzy, python-format
-#| msgid "* %(person)s, birth%(relation)s"
+#, python-format
 msgid "* %(person)s, birth %(relation)s"
-msgstr "* %(person)s, birth%(relation)s"
+msgstr "* %(person)s, birth %(relation)s"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:339
@@ -36196,20 +36048,17 @@ msgid "A view showing all the event places of the database."
 msgstr "A view showing all the event places of the database."
 
 #: ../gramps/plugins/view/geomoves.py:210
-#, fuzzy
-#| msgid "Descendance of the active person."
 msgid "Descendants of the active person."
-msgstr "Descendance of the active person."
+msgstr "Descendants of the active person."
 
 #: ../gramps/plugins/view/geomoves.py:240
 msgid "GeoMoves"
 msgstr "GeoMoves"
 
 #: ../gramps/plugins/view/geomoves.py:573
-#, fuzzy, python-format
-#| msgid "All descendance for %s"
+#, python-format
 msgid "All descendants for %s"
-msgstr "All descendance for %s"
+msgstr "All descendants for %s"
 
 #: ../gramps/plugins/view/geomoves.py:715
 msgid "Bookmark this person"
@@ -38174,18 +38023,14 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
-#, fuzzy
-#| msgid "Name"
 msgctxt "Place Name"
 msgid "Name"
 msgstr "Name"
 
 #: ../gramps/plugins/webreport/place.py:220
 #: ../gramps/plugins/webreport/place.py:232
-#, fuzzy
-#| msgid "State/ Province"
 msgid "State/Province"
-msgstr "State/ Province"
+msgstr "State/Province"
 
 #: ../gramps/plugins/webreport/place.py:272
 #, python-format
@@ -38211,8 +38056,6 @@ msgstr ""
 "that repositories&#8217;s page."
 
 #: ../gramps/plugins/webreport/repository.py:173
-#, fuzzy
-#| msgid "Name"
 msgctxt "Repository"
 msgid "Name"
 msgstr "Name"
@@ -38283,22 +38126,16 @@ msgid "Surnames beginning with letter %s"
 msgstr "Surnames beginning with letter %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:121
-#, fuzzy
-#| msgid ""
-#| "This page displays a indexed list of all the media objects in this "
-#| "database.  It is sorted by media title.  There is an index of all the "
-#| "media objects in this database.  Clicking on a thumbnail will take you to "
-#| "that image&#8217;s page."
 msgid ""
 "This page displays a indexed list of all the media objects in this database. "
 "It is sorted by media title. There is an index of all the media objects in "
 "this database. Clicking on a thumbnail will take you to that image&#8217;s "
 "page."
 msgstr ""
-"This page displays a indexed list of all the media objects in this "
-"database.  It is sorted by media title.  There is an index of all the media "
-"objects in this database.  Clicking on a thumbnail will take you to that "
-"image&#8217;s page."
+"This page displays a indexed list of all the media objects in this database. "
+"It is sorted by media title. There is an index of all the media objects in "
+"this database. Clicking on a thumbnail will take you to that image&#8217;s "
+"page."
 
 #: ../gramps/plugins/webreport/updates.py:78
 msgid "New and updated objects"
