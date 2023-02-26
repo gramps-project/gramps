@@ -23194,7 +23194,7 @@ msgstr "Gramplete que muestra los metadatos de un objeto audiovisual"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:442
 msgid "GExiv2 module not loaded."
-msgstr "Ni se ha cargado el módulo GExiv2."
+msgstr "No se ha cargado el módulo GExiv2."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:443
 #, python-format
