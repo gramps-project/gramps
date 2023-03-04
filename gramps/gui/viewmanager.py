@@ -73,7 +73,7 @@ from gramps.gen.plug import REPORT
 from gramps.gen.plug.report._constants import standalone_categories
 from .plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
 from .plug.report import report, BookSelector
-from .utils import AvailableUpdates
+from .utils import (AvailableUpdates, Popup)
 from .pluginmanager import GuiPluginManager
 from gramps.gen.relationship import get_relationship_calculator
 from .displaystate import DisplayState, RecentDocsMenu
@@ -1209,6 +1209,10 @@ class ViewManager(CLIManager):
         if(self.dbstate.db.is_open() and
            self.dbstate.db.has_changed > self.prev_has_changed):
             self.prev_has_changed = self.dbstate.db.has_changed
+            message = _("Please, wait before closing gramps")
+            message = '<span size="larger" weight="bold">%s</span>' % message
+            pgr_title = _("Autobackup...")
+            popup = Popup(pgr_title, message, parent=self.window)
             self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
@@ -1218,6 +1222,7 @@ class ViewManager(CLIManager):
                 self.uistate.push_message(self.dbstate,
                                           _("Error saving backup data"))
             self.uistate.set_busy_cursor(False)
+            popup.destroy()
             self.uistate.progress.hide()
 
     def __backup(self):
@@ -1782,6 +1787,10 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             position = self.window.get_position() # crock
             window.hide()
             self.window.move(position[0], position[1])
+            message = _("Please, wait before closing gramps")
+            message = '<span size="larger" weight="bold">%s</span>' % message
+            pgr_title = _("Making backup...")
+            popup = Popup(pgr_title, message, parent=self.window)
             self.uistate.set_busy_cursor(True)
             self.uistate.pulse_progressbar(0)
             self.uistate.progress.show()
@@ -1796,6 +1805,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
                                    strip_photos=0, compress=1)
                 writer.write(filename)
             self.uistate.set_busy_cursor(False)
+            popup.destroy()
             self.uistate.progress.hide()
             self.uistate.push_message(self.dbstate,
                                       _("Backup saved to '%s'") % filename)

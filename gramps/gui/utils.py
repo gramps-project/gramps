@@ -101,6 +101,61 @@ class CLIDialog:
 
 #-------------------------------------------------------------------------
 #
+#  Popup class
+#
+#-------------------------------------------------------------------------
+
+class Popup:
+    """
+    Popup a message for Gramps.
+
+    The Popup is used to display a message
+    This class must be closed when no longer needed.
+
+    """
+
+    def __init__(self, title, message, parent=None):
+        """
+        Specify the title and the message to display.
+        """
+        from gi.repository import Gtk
+        self.__popup = None
+        if has_display():
+            self.__popup = Gtk.Dialog()
+            self.__popup.connect('delete_event', self.do_nothing)
+            self.__popup.set_title(title)
+            self.__popup.set_size_request(400, 100)
+            self.__popup.vbox.set_spacing(10)
+            self.__popup.vbox.set_border_width(24)
+            self.__mesg = Gtk.Label(label=message)
+            self.__mesg.set_use_markup(True)
+            self.__popup.vbox.add(self.__mesg)
+            if not parent:  # if we don't have an explicit parent,
+                            # try to find one
+                for win in Gtk.Window.list_toplevels():
+                    if win.is_active():
+                        parent = win
+                        break
+            # if we still don't have a parent, give up
+            if parent:
+                self.__popup.set_transient_for(parent)
+                self.__popup.set_modal(True)
+            self.__popup.show_all()
+        else: # This class is useful only in gui mode
+            return
+
+    def destroy(self):
+        if self.__popup:
+            self.__popup.destroy()
+
+    def do_nothing(self, widget, value):
+        """
+        Avoid to close the Popup
+        """
+        return True
+
+#-------------------------------------------------------------------------
+#
 #  Progress meter class
 #
 #-------------------------------------------------------------------------
