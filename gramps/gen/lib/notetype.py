@@ -65,6 +65,16 @@ class NoteType(GrampsType):
     TODO = 25
     # indicate a note used as link in another note
     LINK = 26
+    STRUCTURED_DATA = 27  # note contains json, yaml or similar data
+    STORY = 28
+    BIOGRAPHY = 29
+    NAME_ORIGIN = 30
+    RESEARCH_PLAN = 31
+    RESEARCH_REPORT = 32
+    TRANSLATION = 33
+    TRANSLITERATION = 34
+    EVIDENCE_ANALYSIS = 35
+    PROOF_ARGUMENT = 36
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
@@ -74,13 +84,23 @@ class NoteType(GrampsType):
         (CUSTOM, _("Custom"), "Custom"),
         (GENERAL, _("General"), "General"),
         (RESEARCH, _("Research"), "Research"),
+        (RESEARCH_PLAN, _("Research Plan"), "Research Plan"),
+        (RESEARCH_REPORT, _("Research Report"), "Research Report"),
         (TRANSCRIPT, _("Transcript"), "Transcript"),
         (SOURCE_TEXT, _("Source text"), "Source text"),
+        (TRANSLATION, _("Translation"), "Translation"),
+        (TRANSLITERATION, _("Transliteration"), "Transliteration"),
+        (EVIDENCE_ANALYSIS, _("Evidence Analysis"), "Evidence Analysis"),
+        (PROOF_ARGUMENT, _("Proof Argument"), "Proof Argument"),
         (CITATION, _('Citation'), "Citation"),
+        (STORY, _('Story'), "Story"),
+        (BIOGRAPHY, _("Biography"), "Biography"),
+        (NAME_ORIGIN, _("Name Origin"), "Name Origin"),
         (REPORT_TEXT, _("Report"), "Report"),
         (HTML_CODE, _("Html code"), "Html code"),
         (TODO, _("To Do", "notetype"), "To Do"),
         (LINK, _("Link", "notetype"), "Link"),
+        (STRUCTURED_DATA, _("Structured Data"), "Structured Data"),
         ]
 
     _DATAMAPIGNORE = [
