@@ -1163,6 +1163,12 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.uistate.emit('grampletbar-close-changed')
 
+    def cb_toolbar_changed(self, obj):
+        """
+        Called when the toolbar is changed.
+        """
+        self.uistate.emit('toolbar-changed')
+
     def add_data_panel(self, configdialog):
         """
         Config tab with user Appearance and format settings.
@@ -1617,6 +1623,46 @@ class GrampsPreferences(ConfigureDialog):
             tooltip=_("Show or hide text beside Navigator buttons "
                       "(People, Families, Events...).\n"
                       "Requires Gramps restart to apply."))
+
+        row += 1
+        # Show Tools Icon:
+        self.add_checkbox(
+           grid, _("Show Clipboard icon on toolbar"),
+           row, 'interface.toolbar-clipboard', start=1, stop=3,
+           tooltip=_("Show or hide the Clipboard icon on the toolbar."),
+           extra_callback=self.cb_toolbar_changed)
+
+        row += 1
+        # Show Tools Icon:
+        self.add_checkbox(
+           grid, _("Show Reports icon on toolbar"),
+           row, 'interface.toolbar-reports', start=1, stop=3,
+           tooltip=_("Show or hide the Reports icon on the toolbar."),
+           extra_callback=self.cb_toolbar_changed)
+
+        row += 1
+        # Show Tools Icon:
+        self.add_checkbox(
+           grid, _("Show Tools icon on toolbar"),
+           row, 'interface.toolbar-tools', start=1, stop=3,
+           tooltip=_("Show or hide the Tools icon on the toolbar."),
+           extra_callback=self.cb_toolbar_changed)
+
+        row += 1
+        # Show Plugins Icon:
+        self.add_checkbox(
+           grid, _("Show Plugins icon on toolbar"),
+           row, 'interface.toolbar-plugin', start=1, stop=3,
+           tooltip=_("Show or hide the Plugins icon on the toolbar."),
+           extra_callback=self.cb_toolbar_changed)
+
+        row += 1
+        # Show Preferences icon:
+        self.add_checkbox(
+           grid, _("Show Preferences icon on toolbar"),
+           row, 'interface.toolbar-preference', start=1, stop=3,
+           tooltip=_("Show or hide the Preferences icon on the toolbar."),
+           extra_callback=self.cb_toolbar_changed)
 
         row += 1
         # Gramplet bar close buttons:

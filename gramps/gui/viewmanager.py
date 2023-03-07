@@ -210,6 +210,7 @@ class ViewManager(CLIManager):
         # Set autobackup
         self.uistate.connect('autobackup', self.autobackup)
         self.uistate.set_backup_timer()
+        self.uistate.set_toolbar()
 
     def check_for_updates(self):
         """
