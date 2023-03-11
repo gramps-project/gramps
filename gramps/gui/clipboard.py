@@ -119,7 +119,7 @@ def map2class(target):
            'place-link': ClipPlace,
            'placeref': ClipPlaceRef,
            'note-link': ClipNote,
-           'tag': ClipTag,
+           'tag-link': ClipTag,
            'TEXT': ClipText}
     return _d_[target] if target in _d_ else None
 
@@ -146,7 +146,7 @@ OBJ2TARGET = {"Person": Gdk.atom_intern('person-link', False),
               'Media': Gdk.atom_intern('media', False),
               'Place': Gdk.atom_intern('place-link', False),
               'Note': Gdk.atom_intern('note-link', False),
-              "Tag": Gdk.atom_intern('tag', False)}
+              'Tag': Gdk.atom_intern('tag-link', False)}
 
 
 def obj2target(target):
@@ -447,7 +447,7 @@ class ClipTag(ClipHandleWrapper):
                 self._title = value.get_name()
                 self._value = value.get_color()
 
-            
+
 class ClipAttribute(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.ATTRIBUTE]
