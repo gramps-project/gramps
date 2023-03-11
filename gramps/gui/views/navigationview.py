@@ -75,7 +75,12 @@ class NavigationView(PageView):
 
     def __init__(self, title, pdata, state, uistate, bm_type, nav_group):
         PageView.__init__(self, title, pdata, state, uistate)
-        self.bookmarks = bm_type(self.dbstate, self.uistate, self.change_active)
+        if bm_type:
+            self.bookmarks = bm_type(
+                self.dbstate, self.uistate, self.change_active
+            )
+        else:
+            self.bookmarks = None
 
         self.fwd_action = None
         self.back_action = None
@@ -103,7 +108,8 @@ class NavigationView(PageView):
         Define menu actions.
         """
         PageView.define_actions(self)
-        self.bookmark_actions()
+        if self.bookmarks:
+            self.bookmark_actions()
         self.navigation_actions()
 
     def disable_action_group(self):
@@ -151,7 +157,8 @@ class NavigationView(PageView):
         Called when the page becomes active (displayed).
         """
         PageView.set_active(self)
-        self.bookmarks.display()
+        if self.bookmarks:
+            self.bookmarks.display()
 
         hobj = self.get_history()
         self.active_signal = hobj.connect('active-changed', self.goto_active)
@@ -166,7 +173,8 @@ class NavigationView(PageView):
         """
         if self.active:
             PageView.set_inactive(self)
-            self.bookmarks.undisplay()
+            if self.bookmarks:
+                self.bookmarks.undisplay()
             hobj = self.get_history()
             hobj.disconnect(self.active_signal)
             hobj.disconnect(self.mru_signal)

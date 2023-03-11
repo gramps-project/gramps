@@ -30,6 +30,7 @@ __all__ = ["MonitoredCheckbox", "MonitoredEntry",
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+import pickle
 import logging
 _LOG = logging.getLogger(".widgets.monitoredwidgets")
 
@@ -54,13 +55,13 @@ from ..autocomp import StandardCustomSelector, fill_entry
 from gramps.gen.datehandler import displayer, parser
 from gramps.gen.lib.date import Date, NextYear
 from gramps.gen.errors import ValidationError
+from gramps.gui.ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
 # constants
 #
 #------------------------------------------------------------------------
-
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
@@ -813,6 +814,8 @@ class MonitoredTagList:
         self.label = label
         self.label.set_halign(Gtk.Align.START)
         self.label.set_ellipsize(Pango.EllipsizeMode.END)
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [DdTargets.TAG_LINK.target()], Gdk.DragAction.COPY)
+        self.label.connect('drag_data_received', self.tag_dropped)
         image = Gtk.Image()
         image.set_from_icon_name('gramps-tag', Gtk.IconSize.MENU)
         button.set_image (image)
@@ -856,3 +859,19 @@ class MonitoredTagList:
                 self.set_list([item[0] for item in self.tag_list])
             return True
         return False
+
+    def tag_dropped(self, _dummy_widget, _dummy_context, _dummy_x,
+                    _dummy_y, data, _dummy_info, _dummy_time):
+        """
+        Add dropped tag if not in list.
+        """
+        if data and data.get_data():
+            (dnd_type, obj_id, handle, val) = pickle.loads(data.get_data())
+            for item in self.tag_list:
+                if item[0] == handle:
+                    return True
+            tag = self.db.get_tag_from_handle(handle)
+            self.tag_list.append((handle, tag.get_name()))
+            self._display()
+            self.set_list([item[0] for item in self.tag_list])
+        return True

@@ -369,6 +369,10 @@ def navigation_label(db, nav_type, handle):
             label = " ".join(label.split())
             if len(label) > 40:
                 label = label[:40] + "..."
+    elif nav_type == 'Tag':
+        obj = db.get_tag_from_handle(handle)
+        if obj:
+            return ('[%s] %s' % (_('Tag'), obj.get_name()), obj)
 
     if label and obj:
         label = '[%s] %s' % (obj.get_gramps_id(), label)

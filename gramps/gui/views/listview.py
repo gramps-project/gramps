@@ -781,7 +781,8 @@ class ListView(NavigationView):
             #force rebuild of the model on build of tree
             self.dirty = True
             self.build_tree()
-            self.bookmarks.redraw()
+            if self.bookmarks:
+                self.bookmarks.redraw()
         else:
             self.dirty = True
 
@@ -894,7 +895,8 @@ class ListView(NavigationView):
         if self.active:
             # Save the currently selected handles, if any:
             selected_ids = self.selected_handles()
-            self.bookmarks.redraw()
+            if self.bookmarks:
+                self.bookmarks.redraw()
             self.build_tree()
             # Reselect one, if it still exists after rebuild:
             nav_type = self.navigation_type()

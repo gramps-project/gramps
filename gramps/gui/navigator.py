@@ -68,6 +68,7 @@ CATEGORY_ICON = {
     'Media': 'gramps-media',
     'Notes': 'gramps-notes',
     'Citations': 'gramps-citation',
+    'Tags': 'gramps-tag'
 }
 
 #-------------------------------------------------------------------------

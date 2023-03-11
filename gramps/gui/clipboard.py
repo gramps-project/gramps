@@ -94,7 +94,8 @@ for (name, icon) in (("media", "gramps-media"),
                      ('source', 'gramps-source'),
                      ('citation', 'gramps-citation'),
                      ('text', 'gramps-font'),
-                     ('url', 'gramps-geo')):
+                     ('url', 'gramps-geo'),
+                     ('tag', 'gramps-tag')):
     ICONS[name] = theme.load_icon(icon, 16, 0)
 
 
@@ -118,6 +119,7 @@ def map2class(target):
            'place-link': ClipPlace,
            'placeref': ClipPlaceRef,
            'note-link': ClipNote,
+           'tag': ClipTag,
            'TEXT': ClipText}
     return _d_[target] if target in _d_ else None
 
@@ -131,7 +133,8 @@ def obj2class(target):
            'Event': ClipEvent,
            'Media': ClipMediaObj,
            'Place': ClipPlace,
-           'Note': ClipNote}
+           'Note': ClipNote,
+           'Tag': ClipTag}
     return _d_[target] if target in _d_ else None
 
 OBJ2TARGET = {"Person": Gdk.atom_intern('person-link', False),
@@ -142,7 +145,8 @@ OBJ2TARGET = {"Person": Gdk.atom_intern('person-link', False),
               'Event': Gdk.atom_intern('pevent', False),
               'Media': Gdk.atom_intern('media', False),
               'Place': Gdk.atom_intern('place-link', False),
-              'Note': Gdk.atom_intern('note-link', False)}
+              'Note': Gdk.atom_intern('note-link', False),
+              "Tag": Gdk.atom_intern('tag', False)}
 
 
 def obj2target(target):
@@ -280,7 +284,7 @@ class ClipObjWrapper(ClipWrapper):
             return False
 
         for (clname, handle) in self._obj.get_referenced_handles_recursively():
-            if obj2class(clname):  # a class we care about (not tag)
+            if obj2class(clname):  # a class we care about
                 if not clipdb.method("has_%s_handle", clname)(handle):
                     return False
 
@@ -424,6 +428,26 @@ class ClipUrl(ClipObjWrapper):
             self._value = self._obj.get_description()
 
 
+class ClipTag(ClipHandleWrapper):
+
+    DROP_TARGETS = [DdTargets.TAG_LINK]
+    DRAG_TARGET = DdTargets.TAG_LINK
+    ICON = ICONS['tag']
+
+    def __init__(self, obj):
+        super(ClipTag, self).__init__(obj)
+        self._type = _("Tag")
+        self._objclass = "Tag"
+        self.refresh()
+
+    def refresh(self):
+        if self._handle:
+            value = clipdb.get_tag_from_handle(self._handle)
+            if value:
+                self._title = value.get_name()
+                self._value = value.get_color()
+
+            
 class ClipAttribute(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.ATTRIBUTE]
@@ -993,7 +1017,9 @@ class ClipboardListView:
             'event-rebuild',
             'repository-update',
             'repository-rebuild',
-            'note-rebuild')
+            'note-rebuild',
+            'tag-update',
+            'tag-rebuild')
 
         for signal in db_signals:
             clipdb.connect(signal, self.refresh_objects)
@@ -1022,6 +1048,8 @@ class ClipboardListView:
                        gen_del_obj(self.delete_object, 'place-link'))
         clipdb.connect('note-delete',
                        gen_del_obj(self.delete_object, 'note-link'))
+        clipdb.connect('tag-delete',
+                       gen_del_obj(self.delete_object, 'tag'))
         # family-delete not needed, cannot be dragged!
 
         self.refresh_objects()
@@ -1087,6 +1115,7 @@ class ClipboardListView:
         self.register_wrapper_class(ClipChildRef)
         self.register_wrapper_class(ClipText)
         self.register_wrapper_class(ClipNote)
+        self.register_wrapper_class(ClipTag)
 
     def register_wrapper_class(self, wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:
@@ -1593,6 +1622,7 @@ class MultiTreeView(Gtk.TreeView):
         from .editors import (EditPerson, EditEvent, EditFamily, EditSource,
                               EditPlace, EditRepository, EditNote, EditMedia,
                               EditCitation)
+        from .views.tags import EditTag
         if obj2class(objclass):  # make sure it is an editable object
             if self.dbstate.db.method('has_%s_handle', objclass)(handle):
                 g_object = self.dbstate.db.method(

@@ -154,6 +154,7 @@ class _DdTargets:
         self.URL = _DdType(self, 'url')
         self.SURNAME = _DdType(self, 'surname')
         self.CITATION_LINK = _DdType(self, 'citation-link')
+        self.TAG_LINK = _DdType(self, 'tag')
 
         # List of all types that are used between
         # gramps widgets but should not be exported
@@ -185,7 +186,8 @@ class _DdTargets:
             self.SRCATTRIBUTE,
             self.URL,
             self.SURNAME,
-            self.CITATION_LINK
+            self.CITATION_LINK,
+            self.TAG_LINK,
         ]
 
         self.CHILD = _DdType(self, 'child')

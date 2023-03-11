@@ -307,3 +307,20 @@ category = ("Sources", _("Sources")),
 viewclass = 'CitationTreeView',
 stock_icon = 'gramps-tree-select',
   )
+
+register(
+    VIEW,
+    id="tagview",
+    name=_("Tags"),
+    description=_("The view showing all the tags"),
+    version="1.0",
+    gramps_target_version=MODULE_VERSION,
+    status=STABLE,
+    fname="tagview.py",
+    authors=["The Gramps project"],
+    authors_email=["http://gramps-project.org"],
+    category=("Tags", _("Tags")),
+    stock_icon="gramps-tag",
+    viewclass="TagView",
+    order=START,
+)
