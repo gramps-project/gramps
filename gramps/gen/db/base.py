@@ -30,9 +30,6 @@ from this class.
 # Python libraries
 #
 #-------------------------------------------------------------------------
-import re
-import time
-from operator import itemgetter
 import logging
 
 #-------------------------------------------------------------------------
@@ -42,13 +39,13 @@ import logging
 #-------------------------------------------------------------------------
 from ..db.dbconst import DBLOGNAME
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
 from .txn import DbTxn
-from .exceptions import DbTransactionCancel, DbException
+from .exceptions import DbTransactionCancel
 
 _LOG = logging.getLogger(DBLOGNAME)
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -1427,6 +1424,12 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_navigation_state(self, list_type, nav_type):
+        """
+        Return requested list for given navigation type.
+        """
+        raise NotImplementedError
+
     def requires_login(self):
         """
         Returns True for backends that require a login dialog, else False.
@@ -1750,6 +1753,12 @@ class DbWriteBase(DbReadBase):
         Set the default grouping name for a surname.
 
         Needs to be overridden in the derived class.
+        """
+        raise NotImplementedError
+
+    def set_navigation_state(self, list_type, nav_type, list_data):
+        """
+        Save navigation list for a given navigation type.
         """
         raise NotImplementedError
 

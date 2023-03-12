@@ -31,10 +31,7 @@ import re
 import os
 import logging
 import bisect
-import ast
-import sys
-import datetime
-import glob
+import json
 from pathlib import Path
 
 #------------------------------------------------------------------------
@@ -59,7 +56,6 @@ from ..lib.researcher import Researcher
 from ..lib import (Tag, Media, Person, Family, Source, Citation, Event,
                    Place, Repository, Note, NameOriginType)
 from ..lib.genderstats import GenderStats
-from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -779,12 +775,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         if table is None:
             return list(self.__tables.keys())
-        elif func is None:
+        if func is None:
             return self.__tables[table] # dict of functions
-        elif func in self.__tables[table].keys():
+        if func in self.__tables[table].keys():
             return self.__tables[table][func]
-        else:
-            return None
+        return None
 
     def _txn_begin(self):
         """
@@ -1265,8 +1260,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         data = self._get_raw_data(obj_key, handle)
         if data:
             return obj_class.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        raise HandleError('Handle %s not found' % handle)
 
     def get_event_from_handle(self, handle):
         return self._get_from_handle(EVENT_KEY, Event, handle)
@@ -2274,6 +2268,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    def get_navigation_state(self, list_type, nav_type):
+        list_data = self._get_metadata("%s-%s" % (list_type, nav_type.lower()), None)
+        if list_data:
+            return json.loads(list_data)
+        return []
+
+    def set_navigation_state(self, list_type, nav_type, list_data):
+        self._set_metadata("%s-%s" % (list_type, nav_type.lower()), json.dumps(list_data))
+
     def get_default_handle(self):
         return self._get_metadata("default-person-handle", None)
 
@@ -2281,8 +2284,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         handle = self.get_default_handle()
         if handle:
             return self.get_person_from_handle(handle)
-        else:
-            return None
+        return None
 
     def set_default_person_handle(self, handle):
         self._set_metadata("default-person-handle", handle)

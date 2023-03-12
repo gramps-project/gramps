@@ -1652,3 +1652,9 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         A name for this database on this computer.
         """
         return ""
+
+    def get_navigation_state(self, list_type, nav_type):
+        """
+        Return requested list for a given navigation type.
+        """
+        return []
