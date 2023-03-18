@@ -5426,7 +5426,7 @@ msgstr "Vindt de beginpersoon"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
 msgid "Descendant family members of <person>"
-msgstr "Afstammelingen van <persoon>"
+msgstr "Familie-afstammelingen van <persoon>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:51
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:48
