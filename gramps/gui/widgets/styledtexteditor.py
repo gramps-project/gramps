@@ -396,7 +396,7 @@ class StyledTextEditor(Gtk.TextView):
             simple_access = SimpleAccess(win_obj.dbstate.db)
             url = link_tag.data
             if url.startswith("gramps://"):
-                obj_class, prop, value = url[9:].split("/")
+                obj_class, prop, value = url[9:].split("/", 2)
                 display = simple_access.display(obj_class, prop, value) or url
         return display + ((_("\nCommand-Click to follow link") if mac() else
                            _("\nCtrl-Click to follow link"))
@@ -809,7 +809,7 @@ class StyledTextEditor(Gtk.TextView):
                 win_obj = find_parent_with_attr(self, attr="dbstate")
                 if win_obj:
                     # Edit the object:
-                    obj_class, prop, value = url[9:].split("/")
+                    obj_class, prop, value = url[9:].split("/", 2)
                     from ..editors import EditObject
                     EditObject(win_obj.dbstate,
                                win_obj.uistate,
