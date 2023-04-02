@@ -22,6 +22,7 @@
 """Custom widgets."""
 
 from .basicentry import *
+from .multientry import *
 from .buttons import *
 from .dateentry import *
 from .expandcollapsearrow import *

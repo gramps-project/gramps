@@ -67,12 +67,11 @@ DATABASE
 <!--    ************************************************************
 HEADER
 
-    A <header> consists of <created> (information about this
-    genealogical database) and <researcher> (information about the
-    person who created this genealogical database)
+    A <header> consists of <created> and several additional sections
+    with high level information about this genealogical database.
 -->
 
-<!ELEMENT header (created, researcher?, mediapath?)>
+<!ELEMENT header (created, origin?, comment?, tree?, researcher?, mediapath?)>
 
 <!ELEMENT created EMPTY>
 <!ATTLIST created
@@ -80,8 +79,40 @@ HEADER
         version  CDATA #REQUIRED
 >
 
+<!--
+PROVENANCE identifies the database used to generate this export.
+-->
+
+<!ELEMENT provenance (database-id, last-transaction-timestamp, comment>
+<!ELEMENT database-id                 (#PCDATA)>
+<!ELEMENT last-transaction-timestamp  (#PCDATA)>
+<!ELEMENT export-note                 (#PCDATA)>
+
+<!--
+TREE contains information about the tree.
+-->
+
+<!ELEMENT tree (name, copyright?, license?, description?,
+                contributors?)>
+<!ATTLIST tree
+        change   CDATA #REQUIRED
+>
+<!ELEMENT name           (#PCDATA)>
+<!ELEMENT copyright      (#PCDATA)>
+<!ELEMENT license        (#PCDATA)>
+<!ELEMENT description    (#PCDATA)>
+<!ELEMENT contributors   (#PCDATA)>
+
+<!--
+RESEARCHER
+-->
+
 <!ELEMENT researcher (resname?, resaddr?, reslocality?, rescity?, resstate?,
                       rescountry?, respostal?, resphone?, resemail?)>
+<!ATTLIST researcher
+        change      CDATA #REQUIRED
+        handle      IDREF #IMPLIED
+>
 <!ELEMENT resname        (#PCDATA)>
 <!ELEMENT resaddr        (#PCDATA)>
 <!ELEMENT reslocality    (#PCDATA)>

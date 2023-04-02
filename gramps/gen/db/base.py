@@ -1424,6 +1424,30 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_last_transaction_time(self):
+        """
+        Return timestamp of last database transaction.
+        """
+        raise NotImplementedError
+
+    def get_tree(self):
+        """
+        Return the tree.
+        """
+        raise NotImplementedError
+
+    def get_researcher_handle(self):
+        """
+        Return the researcher handle.
+        """
+        raise NotImplementedError
+
+    def get_researcher_person(self):
+        """
+        Return the researcher person object.
+        """
+        raise NotImplementedError
+
     def get_summary(self):
         """
         Returns dictionary of summary item.
@@ -2044,3 +2068,33 @@ class DbWriteBase(DbReadBase):
 
         person.birth_ref_index = birth_ref_index
         person.death_ref_index = death_ref_index
+
+    def set_tree(self, tree):
+        """
+        Set the tree information.
+        """
+        raise NotImplementedError
+
+    def set_tree_change(self, change):
+        """
+        Set the tree last change value.
+        """
+        raise NotImplementedError
+
+    def set_researcher_changed(self, change):
+        """
+        Set the researcher last change value.
+        """
+        raise NotImplementedError
+
+    def set_researcher_handle(self, handle):
+        """
+        Set the researcher handle.
+        """
+        raise NotImplementedError
+
+    def refresh_cached_tree_name(self):
+        """
+        Check and update tree name if changed.
+        """
+        raise NotImplementedError

@@ -19,11 +19,16 @@
         name="PersistentTreeView"
         title="Persistent TreeView"
         generic-name="resizable_treeview"/>
+    <glade-widget-class
+        name="MultiLineEntry"
+        title="Multi-Line Text Entry"
+        generic-name="multi_line_entry"/>
   </glade-widget-classes>
   <glade-widget-group name="GrampsWidgets" title="Gramps Widgets">
     <glade-widget-class-ref name="ValidatableMaskedEntry"/>
     <glade-widget-class-ref name="UndoableEntry"/>
     <glade-widget-class-ref name="StyledTextEditor"/>
     <glade-widget-class-ref name="PersistentTreeView"/>
+    <glade-widget-class-ref name="MultiLineEntry"/>
   </glade-widget-group>
 </glade-catalog>

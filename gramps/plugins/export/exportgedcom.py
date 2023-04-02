@@ -380,7 +380,11 @@ class GedcomWriter(UpdateCallback):
         self._writeln(2, "TIME", time_str)
         self._writeln(1, "SUBM", "@SUBM@")
         self._writeln(1, "FILE", filename, limit=255)
-        self._writeln(1, "COPR", "Copyright (c) %d %s." % (year, rname))
+        tree = self.dbase.get_tree()
+        if tree.get_copyright():
+            self._writeln(1, "COPR", tree.get_copyright())
+        else:
+            self._writeln(1, "COPR", "Copyright (c) %d %s." % (year, rname))
         self._writeln(1, "GEDC")
         self._writeln(2, "VERS", "5.5.1")
         self._writeln(2, "FORM", "LINEAGE-LINKED")

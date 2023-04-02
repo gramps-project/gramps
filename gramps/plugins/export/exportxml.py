@@ -8,7 +8,7 @@
 # Copyright (C) 2009       Douglas S. Blank
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010-2011  Nick Hall
-# Copyright (C) 2013  Benny Malengier
+# Copyright (C) 2013       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,18 +56,18 @@ LOG = logging.getLogger(".WriteXML")
 #
 # -------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-
-_ = glocale.translation.gettext
 from gramps.gen.const import URL_HOMEPAGE
+from gramps.gen.constfunc import win
+from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.gen.lib import Date, Person
 from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.db.exceptions import DbWriteFailure
-from gramps.version import VERSION
-from gramps.gen.constfunc import win
 from gramps.gui.plug.export import WriterOptionBox, WriterOptionBoxWithCompression
+from gramps.version import VERSION
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
 
-# -------------------------------------------------------------------------
+_ = glocale.translation.gettext
+
+#-------------------------------------------------------------------------
 #
 # Attempt to load the GZIP library. Some version of python do not seem
 # to be compiled with this available.
@@ -109,7 +109,8 @@ class GrampsXmlWriter(UpdateCallback):
     Writes a database to the XML file.
     """
 
-    def __init__(self, db, strip_photos=0, compress=1, version="unknown", user=None):
+    def __init__(self, db, strip_photos=0, compress=1, version="unknown",
+                 user=None, export_note=""):
         """
         Initialize, but does not write, an XML file.
 
@@ -128,6 +129,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.db = db
         self.strip_photos = strip_photos
         self.version = version
+        self.export_note = export_note
 
         self.status = None
 
@@ -225,6 +227,9 @@ class GrampsXmlWriter(UpdateCallback):
     def write_xml_data(self):
         date = time.localtime(time.time())
         owner = self.db.get_researcher()
+        owner_handle = self.db.get_researcher_handle()
+        self.db.refresh_cached_tree_name()
+        tree = self.db.get_tree()
 
         person_len = self.db.get_number_of_people()
         family_len = self.db.get_number_of_families()
@@ -271,16 +276,37 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write('    <created date="%04d-%02d-%02d"' % date[:3])
         self.g.write(' version="' + self.version + '"')
         self.g.write("/>\n")
-        self.g.write("    <researcher>\n")
-        self.write_line("resname", owner.get_name(), 3)
-        self.write_line("resaddr", owner.get_address(), 3)
-        self.write_line("reslocality", owner.get_locality(), 3)
-        self.write_line("rescity", owner.get_city(), 3)
-        self.write_line("resstate", owner.get_state(), 3)
-        self.write_line("rescountry", owner.get_country(), 3)
-        self.write_line("respostal", owner.get_postal_code(), 3)
-        self.write_line("resphone", owner.get_phone(), 3)
-        self.write_line("resemail", owner.get_email(), 3)
+        self.g.write("    <provenance>\n")
+        self.write_line("database-id", self.db.get_dbid(), 3)
+        self.write_line(
+            "last-transaction-timestamp",
+            self.db.get_last_transaction_time(),
+            3
+        )
+        self.write_line("export-note", self.export_note, 3)
+        self.g.write("    </provenance>\n")
+
+        self.g.write('    <tree change="%s">\n' % self.db.tree_change)
+        self.write_line("name", tree.get_name(), 3)
+        self.write_line("copyright", tree.get_copyright(), 3)
+        self.write_line("license", tree.get_license(), 3)
+        self.write_line("description", tree.get_description(), 3)
+        self.write_line("contributors", tree.get_contributors(), 3)
+        self.g.write("    </tree>\n")
+
+        self.g.write('    <researcher change="%s"' % self.db.owner_change)
+        if owner_handle:
+            self.g.write(' handle="_%s"' % owner_handle)
+        self.g.write(">\n")
+        self.write_line("resname", owner.get_name(),3)
+        self.write_line("resaddr", owner.get_address(),3)
+        self.write_line("reslocality", owner.get_locality(),3)
+        self.write_line("rescity", owner.get_city(),3)
+        self.write_line("resstate", owner.get_state(),3)
+        self.write_line("rescountry", owner.get_country(),3)
+        self.write_line("respostal", owner.get_postal_code(),3)
+        self.write_line("resphone", owner.get_phone(),3)
+        self.write_line("resemail", owner.get_email(),3)
         self.g.write("    </researcher>\n")
         self.write_metadata()
         self.g.write("  </header>\n")

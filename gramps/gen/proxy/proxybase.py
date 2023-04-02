@@ -145,6 +145,36 @@ class ProxyDbBase(DbReadBase):
         """
         return self.db.is_open()
 
+    def get_last_transaction_time(self):
+        """
+        Return the last transaction timestamp.
+        """
+        return self.db.get_last_transaction_time()
+
+    def get_tree(self):
+        """
+        Return the tree information.
+        """
+        return self.db.get_tree()
+
+    def get_researcher_handle(self):
+        """
+        Return the researcher handle.
+        """
+        return self.db.get_researcher_handle()
+
+    def get_researcher_person(self):
+        """
+        Return the researcher person.
+        """
+        return self.db.get_researcher_person()
+
+    def get_tree_metadata(self):
+        """
+        Return the tree metadata.
+        """
+        return self.db.get_tree_metadata()
+
     def get_researcher(self):
         """returns the Researcher instance, providing information about
         the owner of the database"""

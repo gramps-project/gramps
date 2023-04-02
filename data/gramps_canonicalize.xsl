@@ -22,7 +22,7 @@
 -->
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:g="http://gramps-project.org/xml/1.4.0/">
+    xmlns:g="http://gramps-project.org/xml/1.7.2/">
 
 <!--
     Transform a Gramps XML file into "canonical form", that is strip the
@@ -33,8 +33,7 @@
 
 <xsl:output method="xml"/>
 
-<xsl:param name="replace_handles"/>
-<xsl:key name="primary_obj" match="g:person|g:family|g:event|g:placeobj|g:source|g:repository|g:object|g:note|g:tag" use="@handle"/>
+<xsl:key name="primary_obj" match="g:person|g:family|g:event|g:placeobj|g:source|g:repository|g:object|g:note|g:tag|g:researcher" use="@handle"/>
 
 <xsl:template match="*|@*|text()">
     <xsl:copy>
@@ -45,7 +44,7 @@
 <xsl:template match="@change">
 </xsl:template>
 
-<xsl:template match="g:researcher">
+<xsl:template match="*[local-name()='provenance' or local-name()='tree' or local-name()='researcher']">
     <xsl:copy/>
 </xsl:template>
 
@@ -57,6 +56,7 @@
     </xsl:copy>
 </xsl:template>
 
+<xsl:param name="replace_handles"/>
 <xsl:template match="@handle">
     <xsl:choose>
         <xsl:when test="$replace_handles='ID'">

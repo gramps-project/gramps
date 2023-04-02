@@ -41,3 +41,7 @@ class UndoableBuffer(Gtk.TextBuffer):
 
 class PersistentTreeView(Gtk.TreeView):
     __gtype_name__ = "PersistentTreeView"
+
+
+class MultiLineEntry(Gtk.Box):
+    __gtype_name__ = "MultiLineEntry"
