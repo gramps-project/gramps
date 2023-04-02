@@ -171,16 +171,15 @@ def get_timeperiod(db, person):
 
     # no birth and death, look for another event date we can use
     for event_ref in person.get_primary_event_ref_list():
-        if event_ref:
-            event = db.get_event_from_handle(event_ref.ref)
-            if event:
-                event_date = event.get_date_object().to_calendar("gregorian")
-                if (
-                    event_date
-                    and event_date.get_valid()
-                    and not event_date.is_empty()
-                ):
-                    return event_date.get_year()
+        event = db.get_event_from_handle(event_ref.ref)
+        if event:
+            event_date = event.get_date_object().to_calendar("gregorian")
+            if (
+                event_date
+                and event_date.get_valid()
+                and not event_date.is_empty()
+            ):
+                return event_date.get_year()
     return None
 
 
@@ -225,16 +224,15 @@ def get_marriage_or_fallback(db, family, format=None):
 
     # now search the event list for fallbacks
     for event_ref in get_primary_event_ref_list(db, family):
-        if event_ref:
-            event = db.get_event_from_handle(event_ref.ref)
-            if (
-                event
-                and event.type.is_marriage_fallback()
-                and event_ref.role in PRIMARY_EVENT_ROLES
-            ):
-                if format:
-                    event.date.format = format
-                return event
+        event = db.get_event_from_handle(event_ref.ref)
+        if (
+            event
+            and event.type.is_marriage_fallback()
+            and event_ref.role in PRIMARY_EVENT_ROLES
+        ):
+            if format:
+                event.date.format = format
+            return event
     return None
 
 
@@ -251,16 +249,15 @@ def get_divorce_or_fallback(db, family, format=None):
 
     # now search the event list for fallbacks
     for event_ref in get_primary_event_ref_list(db, family):
-        if event_ref:
-            event = db.get_event_from_handle(event_ref.ref)
-            if (
-                event
-                and event.type.is_divorce_fallback()
-                and event_ref.role in PRIMARY_EVENT_ROLES
-            ):
-                if format:
-                    event.date.format = format
-                return event
+        event = db.get_event_from_handle(event_ref.ref)
+        if (
+            event
+            and event.type.is_divorce_fallback()
+            and event_ref.role in PRIMARY_EVENT_ROLES
+        ):
+            if format:
+                event.date.format = format
+            return event
     return None
 
 
