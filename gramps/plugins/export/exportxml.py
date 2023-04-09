@@ -8,7 +8,7 @@
 # Copyright (C) 2009       Douglas S. Blank
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010-2011  Nick Hall
-# Copyright (C) 2013  Benny Malengier
+# Copyright (C) 2013       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1102,16 +1102,19 @@ class GrampsXmlWriter(UpdateCallback):
                          (sp,conf_priv(attr),escxml(attr.get_type().xml_str()),
                          self.fix(attr.get_value()))
                          )
+            date = attr.get_date_object()
             citation_list = attr.get_citation_list()
             nlist = attr.get_note_list()
-            if (len(nlist)+len(citation_list)) == 0:
-                self.g.write('/>\n')
-            else:
+            if len(nlist) or len(citation_list) or (date and not date.is_empty()):
                 self.g.write('>\n')
+                if not date.is_empty():
+                    self.write_date(date, indent+1)
                 for citation_handle in citation_list:
                     self.write_ref("citationref", citation_handle, indent+1)
                 self.write_note_list(attr.get_note_list(),indent+1)
                 self.g.write('%s</attribute>\n' % sp)
+            else:
+                self.g.write('/>\n')                
 
     def write_srcattribute_list(self, list, indent=3):
         sp = '  ' * indent

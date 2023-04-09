@@ -18,52 +18,61 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#-------------------------------------------------------------------------
-#
-# Python classes
-#
-#-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from gi.repository import GObject, GLib
+"""AttrEmbedList"""
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+#
+# GTK classes
+#
+# -------------------------------------------------------------------------
+from gi.repository import GLib
+
+# -------------------------------------------------------------------------
 #
 # Gramps classes
 #
-#-------------------------------------------------------------------------
-from gramps.gen.lib import Attribute
+# -------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.errors import WindowActiveError
-from ...ddtargets import DdTargets
+from gramps.gen.lib import Attribute
+from gramps.gui.ddtargets import DdTargets
 from .attrmodel import AttrModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class AttrEmbedList(EmbeddedList):
+_ = glocale.translation.gettext
 
-    _HANDLE_COL = 4
+
+# -------------------------------------------------------------------------
+#
+# AttrEmbedList
+#
+# -------------------------------------------------------------------------
+class AttrEmbedList(EmbeddedList):
+    """
+    Class to handle embedded attribute lists.
+    """
+
+    _HANDLE_COL = 6
     _DND_TYPE = DdTargets.ATTRIBUTE
 
     _MSG = {
-        'add'   : _('Create and add a new attribute'),
-        'del'   : _('Remove the existing attribute'),
-        'edit'  : _('Edit the selected attribute'),
-        'up'    : _('Move the selected attribute upwards'),
-        'down'  : _('Move the selected attribute downwards'),
+        "add": _("Create and add a new attribute"),
+        "del": _("Remove the existing attribute"),
+        "edit": _("Edit the selected attribute"),
+        "up": _("Move the selected attribute upwards"),
+        "down": _("Move the selected attribute downwards"),
     }
 
-    #index = column in model. Value =
+    # index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 250, TEXT_COL, -1, None),
-        (_('Value'), 1, 200, TEXT_COL, -1, None),
-        (_('Source'), 2, 30, ICON_COL, -1, 'gramps-source'),
-        (_('Private'), 3, 30, ICON_COL, -1, 'gramps-lock'),
-        ]
+        (_("Type"), 0, 250, TEXT_COL, -1, None),
+        (_("Value"), 1, 200, TEXT_COL, -1, None),
+        (_("Date"), 5, 180, MARKUP_COL, -1, None),
+        (_("Source"), 3, 30, ICON_COL, -1, "gramps-source"),
+        (_("Private"), 4, 30, ICON_COL, -1, "gramps-lock"),
+        (_("Sorted date"), 5, 80, TEXT_COL, -1, None),
+    ]
 
     def __init__(self, dbstate, uistate, track, data):
         """
@@ -73,53 +82,99 @@ class AttrEmbedList(EmbeddedList):
             edit
         """
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'),
-                              AttrModel, move_buttons=True)
+        EmbeddedList.__init__(
+            self,
+            dbstate,
+            uistate,
+            track,
+            _("_Attributes"),
+            AttrModel,
+            move_buttons=True,
+        )
 
     def get_editor(self):
+        """
+        Return editor.
+        """
         from .. import EditAttribute
         return EditAttribute
 
     def get_user_values(self):
+        """
+        Return custom types.
+        """
         return self.dbstate.db.get_person_attribute_types()
 
     def get_icon_name(self):
-        return 'gramps-attribute'
+        """
+        Return icon name.
+        """
+        return "gramps-attribute"
 
     def get_data(self):
+        """
+        Return data.
+        """
         return self.data
 
     def column_order(self):
-        return ((1, 2), (1, 3), (1, 0), (1, 1))
+        """
+        Return column display order.
+        """
+        return ((1, 3), (1, 4), (1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
-        pname = ''
+        """
+        Handle add button click.
+        """
+        pname = ""
         attr = Attribute()
         try:
             self.get_editor()(
-                self.dbstate, self.uistate, self.track, attr,
-                pname, self.get_user_values(), self.add_callback)
+                self.dbstate,
+                self.uistate,
+                self.track,
+                attr,
+                pname,
+                self.get_user_values(),
+                self.add_callback,
+            )
         except WindowActiveError:
             pass
 
     def add_callback(self, name):
+        """
+        Post add handler.
+        """
         data = self.get_data()
         data.append(name)
         self.changed = True
         self.rebuild()
-        GLib.idle_add(self.tree.scroll_to_cell, len(data)-1)
+        GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
+        """
+        Handle edit button click.
+        """
         attr = self.get_selected()
         if attr:
-            pname = ''
+            pname = ""
             try:
                 self.get_editor()(
-                    self.dbstate, self.uistate, self.track, attr,
-                    pname, self.get_user_values(), self.edit_callback)
+                    self.dbstate,
+                    self.uistate,
+                    self.track,
+                    attr,
+                    pname,
+                    self.get_user_values(),
+                    self.edit_callback,
+                )
             except WindowActiveError:
                 pass
 
-    def edit_callback(self, name):
+    def edit_callback(self, _cb_name):
+        """
+        Post edit handler.
+        """
         self.changed = True
         self.rebuild()

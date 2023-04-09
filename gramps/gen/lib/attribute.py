@@ -25,25 +25,29 @@
 Attribute class for Gramps.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
 from .privacybase import PrivacyBase
 from .citationbase import CitationBase
+from .date import Date
+from .datebase import DateBase
 from .notebase import NoteBase
 from .attrtype import AttributeType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
+
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Root object for Attribute
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class AttributeRoot(SecondaryObject, PrivacyBase):
     """
     Provide a simple key/value pair for describing properties.
@@ -66,7 +70,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         PrivacyBase.__init__(self, source)
 
-        #type structure depends on inheriting classes
+        # type structure depends on inheriting classes
         self.type = None
         self.value = None
 
@@ -77,8 +81,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (PrivacyBase.serialize(self),
-                self.type.serialize(), self.value)
+        return (PrivacyBase.serialize(self), self.type.serialize(), self.value)
 
     def unserialize(self, data):
         """
@@ -149,11 +152,9 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         if self.type != other.type or self.value != other.value:
             return DIFFERENT
-        else:
-            if self.is_equal(other):
-                return IDENTICAL
-            else:
-                return EQUAL
+        if self.is_equal(other):
+            return IDENTICAL
+        return EQUAL
 
     def merge(self, acquisition):
         """
@@ -182,18 +183,23 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """Return the value of the Attribute instance."""
         return self.value
 
-#-------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
 #
 # Attribute for Person/Family/Media/MediaRef
 #
-#-------------------------------------------------------------------------
-class Attribute(AttributeRoot, CitationBase, NoteBase):
+# -------------------------------------------------------------------------
+class Attribute(AttributeRoot, DateBase, CitationBase, NoteBase):
+    """
+    Attribute supporting citations and notes for people and families.
+    """
 
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.
         """
         AttributeRoot.__init__(self, source)
+        DateBase.__init__(self, source)
         CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
 
@@ -203,23 +209,29 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         else:
             self.type = AttributeType()
             self.value = ""
+
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (PrivacyBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
-                self.type.serialize(), self.value)
+        return (
+            PrivacyBase.serialize(self),
+            CitationBase.serialize(self),
+            NoteBase.serialize(self),
+            DateBase.serialize(self),
+            self.type.serialize(),
+            self.value,
+        )
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, the_type, self.value) = data
+        (privacy, citation_list, note_list, date, the_type, self.value) = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
+        DateBase.unserialize(self, date)
         self.type.unserialize(the_type)
         return self
 
@@ -236,20 +248,24 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
             "title": _("Attribute"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean",
-                            "title": _("Private")},
-                "citation_list": {"type": "array",
-                                  "title": _("Citations"),
-                                  "items": {"type": "string",
-                                            "maxLength": 50}},
-                "note_list": {"type": "array",
-                              "items": {"type": "string",
-                                        "maxLength": 50},
-                              "title": _("Notes")},
+                "private": {"type": "boolean", "title": _("Private")},
+                "citation_list": {
+                    "type": "array",
+                    "title": _("Citations"),
+                    "items": {"type": "string", "maxLength": 50},
+                },
+                "note_list": {
+                    "type": "array",
+                    "items": {"type": "string", "maxLength": 50},
+                    "title": _("Notes"),
+                },
+                "date": {
+                    "oneOf": [{"type": "null"}, Date.get_schema()],
+                    "title": _("Date"),
+                },
                 "type": AttributeType.get_schema(),
-                "value": {"type": "string",
-                          "title": _("Value")}
-            }
+                "value": {"type": "string", "title": _("Value")},
+            },
         }
 
     def get_referenced_handles(self):
@@ -260,8 +276,10 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        return (
+            self.get_referenced_note_handles()
+            + self.get_referenced_citation_handles()
+        )
 
     def merge(self, acquisition):
         """

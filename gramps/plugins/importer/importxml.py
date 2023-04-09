@@ -28,24 +28,22 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
+import logging
 import os
+import re
 import sys
 import time
+from collections import abc
 from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
-from gramps.gen.const import URL_WIKISTRING
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-import re
-import logging
-from collections import abc
-LOG = logging.getLogger(".ImportXML")
 
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import URL_WIKISTRING
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.mime import get_type
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             ChildRefType, Citation, Date, DateError, Event,
@@ -76,6 +74,10 @@ from gramps.gen.config import config
 from gramps.plugins.lib import libgrampsxml
 from gramps.gen.plug.utils import version_str_to_tup
 from gramps.plugins.lib.libplaceimport import PlaceImport
+
+_ = glocale.translation.gettext
+
+LOG = logging.getLogger(".ImportXML")
 
 #-------------------------------------------------------------------------
 #
@@ -256,13 +258,12 @@ class ImportInfo:
                         id1=obj.gramps_id,
                         text=name_displayer.display(obj),
                         id2=sec_obj.gramps_id)
-        elif key == TAG_KEY:
-            pass # Tags can't be merged
-        else:
+        if key != TAG_KEY:
             return _("  {obj} {id1} with {id2}").format(
                 obj=key2string[key],
                 id1=obj.gramps_id,
                 id2=sec_obj.gramps_id)
+        return # Tags can't be merged
 
     def info_text(self):
         """
@@ -1030,7 +1031,7 @@ class GrampsParser(UpdateCallback):
                         'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
                         }
             raise GrampsImportError(_('The file will not be imported'), msg)
-        elif self.__xml_version < (1, 1, 0):
+        if self.__xml_version < (1, 1, 0):
             msg = _("The .gramps file you are importing was made by version "
                     "%(oldgramps)s of Gramps, while you are running a much "
                     "more recent version %(newgramps)s.\n\n"
@@ -1688,7 +1689,7 @@ class GrampsParser(UpdateCallback):
         self.place_name = PlaceName()
         self.place_name.set_value(attrs["value"])
         if "lang" in attrs:
-             self.place_name.set_language(attrs["lang"])
+            self.place_name.set_language(attrs["lang"])
         if self.place_names == 0:
             self.placeobj.set_name(self.place_name)
         else:
@@ -2332,6 +2333,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.object.get_date_object()
         elif self.address:
             date_value = self.address.get_date_object()
+        elif self.attribute:
+            date_value = self.attribute.get_date_object()
         elif self.name:
             date_value = self.name.get_date_object()
         elif self.event:
@@ -2424,6 +2427,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.object.get_date_object()
         elif self.address:
             date_value = self.address.get_date_object()
+        elif self.attribute:
+            date_value = self.attribute.get_date_object()
         elif self.name:
             date_value = self.name.get_date_object()
         elif self.event:
@@ -2528,6 +2533,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.object.get_date_object()
         elif self.address:
             date_value = self.address.get_date_object()
+        elif self.attribute:
+            date_value = self.attribute.get_date_object()
         elif self.name:
             date_value = self.name.get_date_object()
         elif self.event:
@@ -3271,8 +3278,7 @@ class GrampsParser(UpdateCallback):
 def append_value(orig, val):
     if orig:
         return "%s, %s" % (orig, val)
-    else:
-        return val
+    return val
 
 def build_place_title(loc):
     "Builds a title from a location"
@@ -3288,4 +3294,3 @@ def build_place_title(loc):
     if loc.country:
         value = append_value(value, loc.country)
     return value
-
