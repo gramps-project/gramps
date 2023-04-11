@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-03-02 23:43+0000\n"
+"PO-Revision-Date: 2023-04-06 20:12+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/en_GB/>\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2351,7 +2351,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:432
 msgctxt "from-date"
 msgid ""
-msgstr ""
+msgstr "from"
 
 #. Translators: If there is no special inflection for
 #. "to <Month>" in your language, DON'T translate this.
@@ -2359,7 +2359,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:437
 msgctxt "to-date"
 msgid ""
-msgstr ""
+msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:438
 #, python-brace-format
@@ -2372,7 +2372,7 @@ msgstr "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:457
 msgctxt "between-date"
 msgid ""
-msgstr ""
+msgstr "between"
 
 #. Translators: If there is no special inflection for
 #. "and <Month>" in your language, DON'T translate this.
@@ -2380,7 +2380,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:462
 msgctxt "and-date"
 msgid ""
-msgstr ""
+msgstr "and"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:463
 #, python-brace-format
@@ -2395,7 +2395,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 msgctxt "before-date"
 msgid ""
-msgstr ""
+msgstr "before"
 
 #. Translators: If there is no special inflection for
 #. "after <Month>" in your language, DON'T translate this.
@@ -2403,7 +2403,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 msgctxt "after-date"
 msgid ""
-msgstr ""
+msgstr "after"
 
 #. Translators: If there is no special inflection for
 #. "about <Month>" in your language, DON'T translate this.
@@ -2411,7 +2411,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:506
 msgctxt "about-date"
 msgid ""
-msgstr ""
+msgstr "about"
 
 #. Translators: If there is no special inflection for
 #. "estimated <Month>" in your language, DON'T translate this.
@@ -2419,7 +2419,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:511
 msgctxt "estimated-date"
 msgid ""
-msgstr ""
+msgstr "estimated"
 
 #. Translators: If there is no special inflection for
 #. "calculated <Month>" in your language, DON'T translate this.
@@ -2427,7 +2427,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:516
 msgctxt "calculated-date"
 msgid ""
-msgstr ""
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:535
 #, python-brace-format
@@ -36738,8 +36738,8 @@ msgid ""
 msgstr ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their surname, with one of the following: Address, Residence, or Web "
-"Links. Selecting the person&#8217;s name will take you to their individual "
-"Address Book page."
+"Links. Selecting the person's name will take you to their individual Address "
+"Book page."
 
 #: ../gramps/plugins/webreport/addressbooklist.py:113
 msgid "Full Name"
@@ -36950,8 +36950,8 @@ msgid ""
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
 "This page contains an index of all the families/ relationships in the "
-"database, sorted by their family name/ surname. Clicking on a person&#8217;s "
-"name will take you to their family/ relationship&#8217;s page."
+"database, sorted by their family name/ surname. Clicking on a person's name "
+"will take you to their family/relationship page."
 
 #: ../gramps/plugins/webreport/family.py:239
 msgid "Families beginning with letter "
@@ -37927,8 +37927,8 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "This page contains an index of all the individuals in the database, sorted "
-"by their last names. Selecting the person&#8217;s name will take you to that "
-"person&#8217;s individual page."
+"by their last names. Selecting the person's name will take you to that "
+"person's individual page."
 
 #: ../gramps/plugins/webreport/person.py:263
 #: ../gramps/plugins/webreport/surname.py:95
@@ -38016,8 +38016,7 @@ msgid ""
 "place&#8217;s page."
 msgstr ""
 "This page contains an index of all the places in the database, sorted by "
-"their title. Clicking on a place&#8217;s title will take you to that "
-"place&#8217;s page."
+"their title. Clicking on a place's title will take you to that place's page."
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
@@ -38097,8 +38096,8 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "This page contains an index of all the individuals in the database with the "
-"surname of %s. Selecting the person&#8217;s name will take you to that "
-"person&#8217;s individual page."
+"surname of %s. Selecting the person's name will take you to that person's "
+"individual page."
 
 #: ../gramps/plugins/webreport/surnamelist.py:102
 msgid "Surnames by person count"
