@@ -35,13 +35,14 @@
 # Jean-Marc <m.balthazar@posteo.net>, 2021.
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
 # Translator <kvb@tuta.io>, 2022.
+# Olivier Berten <olivier.berten@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-05 19:17+0000\n"
-"Last-Translator: khrys63 <khrys63@gmail.com>\n"
+"PO-Revision-Date: 2023-04-06 20:12+0000\n"
+"Last-Translator: Olivier Berten <olivier.berten@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -49,7 +50,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -7968,11 +7969,11 @@ msgstr "avant"
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "range"
-msgstr "étendu(e)"
+msgstr "entre ... et ..."
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "span"
-msgstr "incrémenté(e)"
+msgstr "du ... au ..."
 
 #: ../gramps/gen/lib/date.py:1873
 msgid "textonly"
