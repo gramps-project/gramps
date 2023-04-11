@@ -11,13 +11,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Kristijan Fremen Velkovski <me@krisfremen.com>, 2022, 2023.
 # AND <andrejdam@protonmail.com>, 2023.
+# "Kristijan \"Fremen\" Velkovski" <me@krisfremen.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-02-01 12:12+0000\n"
-"Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
+"PO-Revision-Date: 2023-04-09 00:48+0000\n"
+"Last-Translator: \"Kristijan \\\"Fremen\\\" Velkovski\" <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
 "Language: mk\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -419,13 +420,12 @@ msgstr ""
 "да ги прикаже сите поединци со тоа презиме."
 
 #: ../data/tips.xml:20
-#, fuzzy
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>Поглед Семејство</b>: Погледот Семејство се употребува за приказ на "
-"значајни семејни единици---родителите, сопружниците и децата на поединецот."
+"<b>Семеен Поглед</b><br/>Семеен поглед се употребува за приказ на значајни "
+"семејни единици---родителите, сопружниците и нивните децата."
 
 #: ../data/tips.xml:22
 msgid ""
@@ -1752,9 +1752,8 @@ msgid "Style name."
 msgstr "Име на стил."
 
 #: ../gramps/cli/plug/__init__.py:297
-#, fuzzy
 msgid "Paper size name."
-msgstr "Патронимско, Дадено име"
+msgstr "Име на големина на хартија."
 
 #: ../gramps/cli/plug/__init__.py:298 ../gramps/cli/plug/__init__.py:299
 #: ../gramps/cli/plug/__init__.py:301 ../gramps/cli/plug/__init__.py:303
@@ -1764,9 +1763,8 @@ msgid "=number"
 msgstr "Повикувачки број"
 
 #: ../gramps/cli/plug/__init__.py:298
-#, fuzzy
 msgid "Paper orientation number."
-msgstr "Број за идентификација"
+msgstr "Број за ориентација на хартијата."
 
 #: ../gramps/cli/plug/__init__.py:300
 msgid "Left paper margin"
@@ -40018,7 +40016,7 @@ msgstr "Забелешка"
 
 #: ../gramps/plugins/webreport/webcal.py:1920
 msgid "The note for the month of August"
-msgstr ""
+msgstr "Белешка за месец Август"
 
 #: ../gramps/plugins/webreport/webcal.py:1923
 #, fuzzy
