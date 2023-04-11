@@ -29,6 +29,29 @@ MODULE_VERSION="5.1"
 
 #------------------------------------------------------------------------
 #
+# Add UIDs
+#
+#------------------------------------------------------------------------
+
+register(TOOL,
+id = 'adduid',
+name = _("Add UIDs"),
+description = _("Searches the entire database for missing person UIDs,"
+                    "and adds those."),
+version = '1.0',
+gramps_target_version = MODULE_VERSION,
+status = STABLE,
+fname = 'adduids.py',
+authors = ["Enno Borgsteede"],
+authors_email = ["ennoborg@gmail.com"],
+category = TOOL_DBPROC,
+toolclass = 'AddUIDs',
+optionclass = 'AddUIDsOptions',
+tool_modes = [TOOL_MODE_GUI]
+  )
+
+#------------------------------------------------------------------------
+#
 # Fix Capitalization of Family Names
 #
 #------------------------------------------------------------------------
