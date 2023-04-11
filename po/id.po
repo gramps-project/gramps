@@ -5,13 +5,14 @@
 # Andika Triwidada <andika@gmail.com>, 2021, 2022.
 # Muhammad Reza Putra <muhammadreza.112209@gmail.com>, 2023.
 # Reza Almanda <rezaalmanda27@gmail.com>, 2023.
+# maarif s <tuttuldesign@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-03-15 01:45+0000\n"
-"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"PO-Revision-Date: 2023-04-06 20:12+0000\n"
+"Last-Translator: maarif s <tuttuldesign@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/id/>\n"
 "Language: id\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -83,7 +84,7 @@ msgstr "Paskah"
 
 #: ../data/holidays.xml:361
 msgid "2 of Passover"
-msgstr ""
+msgstr "2 meninggal"
 
 #: ../data/holidays.xml:362
 msgid "3 of Passover"
