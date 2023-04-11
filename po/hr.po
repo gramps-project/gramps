@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-16 17:49+0000\n"
+"PO-Revision-Date: 2023-04-09 00:48+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -262,8 +262,8 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
-"Sva tvoja istraživanja su sistematski uređena, daju se pretraživati, a o "
-"razini detalja ti odlučuješ."
+"Sva tvoja istraživanja su sistematski uređena, daju se pretraživati, a ti "
+"odlučuješ o razini detalja."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:12
 msgid "Gramps Development Team"
@@ -275,7 +275,8 @@ msgstr "Rodoslovni sustav"
 
 #: ../data/org.gramps_project.Gramps.desktop.in:12
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Genealogija;Povijest obitelji;Istraživanje;Rodoslov;GEDCOM;"
+msgstr ""
+"Genealogija;Povijest obitelji;Istraživanje;Rodoslov;Obiteljsko stablo;GEDCOM;"
 
 #: ../data/org.gramps_project.Gramps.xml.in:6
 msgid "Gramps database"
@@ -358,7 +359,7 @@ msgstr ""
 "rodbine mogu biti najvažniji izvor informacija. Oni često znaju stvari, koje "
 "nisu nigdje zabilježene. Mogu ti ispričati stvari, koje će otvoriti razne, "
 "do tada nepoznate smjerove istraživanja. U krajnjem slučaju, saznat ćeš "
-"zanimljive obiteljske priče. Zabilježi sve tvoje razgovore!"
+"zanimljive obiteljske priče. Zabilježi sve razgovore!"
 
 #: ../data/tips.xml:14
 msgid ""
@@ -542,9 +543,9 @@ msgid ""
 "date field. See the Gramps Manual to learn more."
 msgstr ""
 "<b>Ne znaš točan datum?</b><br/>Ako ne znaš točan datum, Gramps omogućuje "
-"upotrebu raznih formata datuma, zasnovanih na pretpostavkama ili procjenama. "
-"Na primjer, „oko 1908.” je valjani unos za datum rođenja u Grampsu. Pritisni "
-"„Otvori uređivač datuma” pokraj polja datuma. Saznaj više u Grampsovom "
+"upotrebu raznih formata datuma, zasnovanih na pogađanjima ili procjenama. Na "
+"primjer, „oko 1908.” je valjani unos za datum rođenja u Grampsu. Pritisni „"
+"Otvori uređivač datuma” pokraj polja datuma. Saznaj više u Grampsovom "
 "priručnik."
 
 #: ../data/tips.xml:42
@@ -1442,16 +1443,16 @@ msgstr ""
 "\n"
 "Primjer korištenja Grampsovog sučelja linijskih naredbi.\n"
 "\n"
-"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove "
-"formate)\n"
+"1. Za uvoz četiriju baza podataka (sufiks datoteke određuje njihove formate)"
+"\n"
 "i naknadnu provjeru rezultirajućih baza podataka, može se pisati:\n"
 "gramps -i datoteka1.ged -i datoteka2.gpkg -i ~/db3.gramps -i datoteka4.wft -"
 "a tool -p name=check.\n"
 "\n"
 "2. Za izričito određivanje formata u gornjem primjeru, pridodaj imena "
 "datoteka odgovarujućom -f opcijom:\n"
-"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/db3."
-"gramps -f gramps-xml -i datoteka4.wft -f wft -a tool -p name=check.\n"
+"gramps -i datoteka1.ged -f gedcom -i datoteka2.gpkg -f gramps-pkg -i ~/"
+"db3.gramps -f gramps-xml -i datoteka4.wft -f wft -a tool -p name=check.\n"
 "\n"
 "3. Za zapis baze podataka dobivene svim uvozima, pridodaj -e opciju\n"
 "(koristi -f ako ime datoteke ne dozvoljava Grampsu pogađanje formata):\n"
@@ -1469,8 +1470,8 @@ msgstr ""
 "6. Za otvaranje baze podataka i, na osnovi tih podataka, izradu izvještaja s "
 "vremenskom\n"
 "crtom u PDF formatu, te spremanje ispisa u datoteku „moja_kronologija.pdf”:\n"
-"gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,"
-"of=moja_kronologija.pdf\n"
+"gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,of=moja_kronologija"
+".pdf\n"
 "\n"
 "7. Za stvaranje sažetka baze podataka:\n"
 "gramps -O 'Rodoslov 1' -a report -p name=summary\n"
@@ -3218,50 +3219,44 @@ msgstr "Shemina inačica"
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"Osobe:            %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d sec\n"
+msgstr "Osobe:            %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:374
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"Obitelji:         %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d sec\n"
+msgstr "Obitelji:         %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:376
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"Događaji:         %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d sec\n"
+msgstr "Događaji:         %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:378
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"Medijski objekti: %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d sek\n"
+msgstr "Medijski objekti: %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:380
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"Mjesta:           %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d sec\n"
+msgstr "Mjesta:           %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:382
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"Repozitoriji:        %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d sec\n"
+"Repozitoriji:        %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:384
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr ""
-"Izvori:           %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d sec\n"
+msgstr "Izvori:           %(n1)6d nadograđeno sa %(n2)6d citata za %(n3)6d s\n"
 
 #: ../gramps/gen/db/upgrade.py:724
 msgid "Number of new objects upgraded:\n"
@@ -3285,7 +3280,7 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:737
 msgid "Upgrade Statistics"
-msgstr "Ažuriraj statistike"
+msgstr "Aktualiziraj statistiku"
 
 #. Translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:707
@@ -3585,7 +3580,7 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
-"Dozvoljen je samo ISO format za datum i vrijeme, u obliku yyyy-mm-dd hh:mm:"
+"Dozvoljen je samo ISO format za datum i vrijeme u obliku gggg-mm-dd hh:mm:"
 "ss, pri čemu vrijeme nije nužno zadati. %s ne odgovara formatu."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:49
@@ -3844,7 +3839,7 @@ msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke citata, koji su promijenjeni nakon navedenog datuma (yyyy-"
+"Pronalazi podatke citata koji su promijenjeni nakon navedenog datuma (gggg-"
 "mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
@@ -3853,7 +3848,7 @@ msgstr "Citati, označeni kao privatni"
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:44
 msgid "Matches citations that are indicated as private"
-msgstr "Pronalazi citate, koji su označeni kao privatni"
+msgstr "Pronalazi citate koji su označeni kao privatni"
 
 #: ../gramps/gen/filters/rules/citation/_hasattribute.py:46
 msgid "Citation attribute:"
@@ -4127,8 +4122,8 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Pronalazi podatke događaja, koji su promijenjeni nakon navedenog datuma "
-"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke događaja koji su promijenjeni nakon navedenog datuma (gggg-"
+"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:42
 msgid "Events marked private"
@@ -4374,8 +4369,8 @@ msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke obitelji, koji su promijenjeni nakon navedenog datuma "
-"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke obitelji koji su promijenjeni nakon navedenog datuma (gggg-"
+"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
@@ -4503,11 +4498,11 @@ msgstr "Pronalazi obitelji s određenom Gramps ID oznakom"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
-msgstr "Obitelji s <brojem> događaja CIK"
+msgstr "Obitelji s <brojem> CIK događaja"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:49
 msgid "Matches families with a certain number of LDS events"
-msgstr "Pronalazi obitelji s određenim brojem događaja CIK"
+msgstr "Pronalazi obitelji s određenim brojem CIK događaja"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:45
 msgid "Families having <count> notes"
@@ -4744,8 +4739,8 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Pronalazi medijske objekte, koji su promijenjeni nakon navedenog datuma "
-"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi medijske objekte koji su promijenjeni nakon navedenog datuma (gggg-"
+"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:44
 #: ../gramps/gui/editors/filtereditor.py:108
@@ -4912,8 +4907,8 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke zabilježaka, koji su promijenjeni nakon navedenog datuma "
-"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke zabilježaka koji su promijenjeni nakon navedenog datuma "
+"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:44
 msgid "Note with <Id>"
@@ -5015,8 +5010,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke osoba, koji su promijenjeni nakon navedenog datuma (yyyy-"
-"mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
+"Pronalazi podatke osoba koji su promijenjeni nakon navedenog datuma (gggg-mm-"
+"dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
 msgid "Relationship path between <person> and people matching <filter>"
@@ -5252,11 +5247,11 @@ msgstr "Pronalazi osobe s određenom Gramps ID oznakom"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "Osobe s <brojem> događaja CIK"
+msgstr "Osobe s <brojem> CIK događaja"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
-msgstr "Pronalazi osobe s određenim brojem događaja CIK"
+msgstr "Pronalazi osobe s određenim brojem CIK događaja"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:46
 msgid "Given name:"
@@ -5920,7 +5915,7 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke mjesta, koji su promijenjeni nakon navedenog datuma (yyyy-"
+"Pronalazi podatke mjesta koji su promijenjeni nakon navedenog datuma (gggg-"
 "mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
@@ -6218,8 +6213,8 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
-"Uspoređuje zapise repozitorija, koji su promijenjeni nakon navedenog datuma "
-"(yyyy-mm-dd hh:mm:ss) ili u razdoblju, ako je zadan jedan drugi datum/"
+"Uspoređuje zapise repozitorija koji su promijenjeni nakon navedenog datuma "
+"(gggg-mm-dd hh:mm:ss) ili u razdoblju, ako je zadan jedan drugi datum/"
 "vrijeme."
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:46
@@ -6354,7 +6349,7 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Pronalazi podatke izvora, koji su promijenjeni nakon navedenog datuma (yyyy-"
+"Pronalazi podatke izvora koji su promijenjeni nakon navedenog datuma (gggg-"
 "mm-dd hh:mm:ss) ili u razdoblju, ako je naveden i drugi datum/vrijeme."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
@@ -7960,7 +7955,7 @@ msgstr "Događaji"
 
 #: ../gramps/gen/lib/family.py:174 ../gramps/gen/lib/person.py:218
 msgid "LDS ordinances"
-msgstr "Uredbe CIK"
+msgstr "CIK obredi"
 
 #: ../gramps/gen/lib/familyreltype.py:47
 msgid "Married"
@@ -8120,7 +8115,7 @@ msgstr "Neodobreno"
 #: ../gramps/plugins/textreport/indivcomplete.py:706
 #: ../gramps/plugins/webreport/basepage.py:512
 msgid "LDS Ordinance"
-msgstr "Uredba CIK"
+msgstr "CIK obred"
 
 #: ../gramps/gen/lib/ldsord.py:190
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
@@ -10204,7 +10199,7 @@ msgstr "Obitelji predaka od %s"
 
 #: ../gramps/gen/plug/utils.py:249
 msgid "Updated"
-msgstr "Ažurirano"
+msgstr "Aktualizirano"
 
 #: ../gramps/gen/plug/utils.py:261
 msgctxt "updates"
@@ -11181,10 +11176,10 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Tvoja verzija Pythona ne zadovoljava postavljenim uvjetima. Za pokretanje "
-"Grampsa potrebna je barem verzija %(v1)d.%(v2)d.%(v3)d.\n"
+"Tvoja Pythona verzija ne zadovoljava uvjete. Za pokretanje Grampsa potrebna "
+"je barem verzija %(v1)d.%(v2)d.%(v3)d.\n"
 "\n"
-"Gramps će sada prekinuti."
+"Gramps će sada isključiti."
 
 #: ../gramps/grampsapp.py:445 ../gramps/grampsapp.py:452
 #: ../gramps/grampsapp.py:505
@@ -11849,7 +11844,7 @@ msgstr "Zadani obiteljski odnos"
 
 #: ../gramps/gui/configure.py:1379
 msgid "Hide LDS tab in person and family editors"
-msgstr "Sakrij LDS karticu u osobnim i obiteljskim uređivačima"
+msgstr "Sakrij CIK karticu u uređivačima osobe i obitelji"
 
 #: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1666
 msgid "* Requires Restart"
@@ -12083,11 +12078,11 @@ msgstr "Uvijek"
 
 #: ../gramps/gui/configure.py:1699
 msgid "Check for addon updates"
-msgstr "Potraži ažurirane dodatke"
+msgstr "Potraži aktualizirane dodatke"
 
 #: ../gramps/gui/configure.py:1705
 msgid "Updated addons only"
-msgstr "Samo ažurirani dodaci"
+msgstr "Samo aktualizirani dodaci"
 
 #: ../gramps/gui/configure.py:1706
 msgid "New addons only"
@@ -12095,7 +12090,7 @@ msgstr "Samo novi dodaci"
 
 #: ../gramps/gui/configure.py:1707
 msgid "New and updated addons"
-msgstr "Novi i ažurirani dodaci"
+msgstr "Novi i aktualizirani dodaci"
 
 #: ../gramps/gui/configure.py:1717
 msgid "What to check"
@@ -12107,11 +12102,11 @@ msgstr "Gdje provjeriti"
 
 #: ../gramps/gui/configure.py:1727
 msgid "Do not ask about previously notified addons"
-msgstr "Zanemari prethodno već ažurirane dodatke"
+msgstr "Zanemari prethodne obavijesti dodataka"
 
 #: ../gramps/gui/configure.py:1732
 msgid "Check for updated addons now"
-msgstr "Potraži ažurirane dodatke sada"
+msgstr "Traži aktualizirane dodatke sada"
 
 #: ../gramps/gui/configure.py:1738
 msgid "Addons"
@@ -12144,7 +12139,7 @@ msgstr "novo"
 
 #: ../gramps/gui/configure.py:1765
 msgid "update"
-msgstr "ažuriraj"
+msgstr "aktualiziranje"
 
 #: ../gramps/gui/configure.py:1794
 msgid "Database Setting"
@@ -12522,8 +12517,8 @@ msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
-"Ova datoteka ima pogrešno kodirani znakovni skup, zbog čega ne može biti "
-"ispravno uvezena. Ispravi kodiranje, te ponovi uvoz"
+"Ova datoteka netočno određuje skup znakova, zbog čega se ne može ispravno "
+"uvesti. Ispravi kodiranje, te je ponovo uvezi"
 
 #: ../gramps/gui/dbman.py:97
 #, python-format
@@ -12729,7 +12724,8 @@ msgstr "Otvaranje baze podataka „%s”"
 #: ../gramps/gui/dbman.py:797
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
 msgstr ""
-"Pokušaj konvertiranja baze podataka nije uspjeo. Možda je treba ažurirati."
+"Pokušaj konvertiranja baze podataka nije uspio. Možda se baze podataka treba "
+"aktualizirati."
 
 #: ../gramps/gui/dbman.py:808 ../gramps/gui/dbman.py:834
 #, python-format
@@ -13387,19 +13383,19 @@ msgstr "Stvori i dodaj novi obred CIK"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Remove the existing LDS ordinance"
-msgstr "Ukloni postojeći obred CIK"
+msgstr "Ukloni postojeći CIK obred"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Edit the selected LDS ordinance"
-msgstr "Uredi odabrani obred CIK"
+msgstr "Uredi odabrani CIK obred"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:54
 msgid "Move the selected LDS ordinance upwards"
-msgstr "Pomakni odabrani obred CIK prema gore"
+msgstr "Pomakni odabrani CIK obred prema gore"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:55
 msgid "Move the selected LDS ordinance downwards"
-msgstr "Pomakni odabrani obred CIK prema dolje"
+msgstr "Pomakni odabrani CIK obred prema dolje"
 
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:72
 msgid "_LDS"
@@ -14083,10 +14079,10 @@ msgid ""
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
 msgstr ""
-"Postoji mogućnost stvaranja višestrukih obitelji s istim roditeljima. Radi "
-"izbjegavanja te mogućnosti, dostupni su samo gumbi za odabir roditelja pri "
-"stvaranju nove obitelji. Ostala polja će biti dostupna nakon odabira "
-"roditelja."
+"Postoji mogućnost stvaranja višestrukih obitelji s istim roditeljima. Kako "
+"bi se taj problem izbjegao, dostupni su samo gumbi za biranje roditelja pri "
+"stvaranju nove obitelji. Ostala polja će biti dostupna nakon pokušaja "
+"biranja roditelja."
 
 #: ../gramps/gui/editors/editfamily.py:524
 msgid "Family has changed"
@@ -14257,7 +14253,7 @@ msgid ""
 "next available ID value."
 msgstr ""
 "Pokušavaš upotrijebiti Gramps ID oznaku %(id)s. Ova oznaka se već koristi. "
-"Upiši drugu ID oznaku ili ju ostavi praznom za dobivanje slijedeće dostupne "
+"Upiši drugu ID oznaku ili ju ostavi praznom za dobivanje sljedeće dostupne "
 "vrijednosti."
 
 #: ../gramps/gui/editors/editfamily.py:1160
@@ -14267,14 +14263,14 @@ msgstr "Dodaj obitelj"
 #: ../gramps/gui/editors/editldsord.py:67
 msgctxt "manual"
 msgid "LDS_Ordinance_Editor"
-msgstr "Uređivač_CIK_uredbi"
+msgstr "Uređivač_CIK_obreda"
 
 #: ../gramps/gui/editors/editldsord.py:158
 #: ../gramps/gui/editors/editldsord.py:315
 #: ../gramps/gui/editors/editldsord.py:352
 #: ../gramps/gui/editors/editldsord.py:443
 msgid "LDS Ordinance Editor"
-msgstr "Uređivač uredbi CIK"
+msgstr "Uređivač CIK obreda"
 
 #: ../gramps/gui/editors/editldsord.py:288
 #, python-format
@@ -14354,8 +14350,8 @@ msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
 "exist! Please enter a different path"
 msgstr ""
-"Pokušavaš upotrijebiti stazu: „%(path)s”. Ova staza ne postoji! Upiši drugu "
-"stazu"
+"Pokušavaš upotrijebiti stazu: „%(path)s”. Ova staza ne postoji! Upiši jednu "
+"drugu stazu"
 
 #: ../gramps/gui/editors/editmedia.py:326
 #: ../gramps/gui/editors/editmediaref.py:532
@@ -16112,11 +16108,11 @@ msgstr "Uredi popis etiketa"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
-msgstr "Uredbe:"
+msgstr "Obred:"
 
 #: ../gramps/gui/glade/editldsord.glade:192
 msgid "LDS _Temple:"
-msgstr "_Hram CIK:"
+msgstr "CIK _Hram:"
 
 #: ../gramps/gui/glade/editldsord.glade:223
 msgid "_Family:"
@@ -16599,7 +16595,7 @@ msgstr "Odaberi osobu koja ima vezu s trenutačno uređivanom osobom."
 msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
-msgstr "Koristi polja ispod za unos koordinata (zemljopisne širine i dužine),"
+msgstr "Koristi donja polja za unos koordinata (zemljopisne širine i dužine),"
 
 #: ../gramps/gui/glade/editplace.glade:122
 msgid "L_atitude:"
@@ -17029,8 +17025,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Događaji, id_zar, medijski objekti, svojstva, zabilješke, izvori i etikete "
-"obiju obitelji će biti spojene."
+"Događaji, id_obreda, medijski objekti, svojstva, zabilješke, izvori i "
+"etikete obiju obitelji će se sjediniti."
 
 #: ../gramps/gui/glade/mergemedia.glade:97
 msgid ""
@@ -17814,11 +17810,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Vaša inačica PyGObject-a ne zadovoljava postavljenim uvjetima.\n"
-"Inačica %(major)d.%(feature)d.%(minor)d je minimalno potrebna za pokretanje "
-"Grampsa.\n"
+"Tvoja PyGObject verzija ne zadovoljava uvjete.\n"
+"Za pokretanje Grampsa potrebna je barem pygobject verzija "
+"%(major)d.%(feature)d.%(minor)d.\n"
 "\n"
-"Gramps će sada prekinuti."
+"Gramps će sada isključiti."
 
 #: ../gramps/gui/grampsgui.py:455
 msgid ""
@@ -17843,10 +17839,10 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Vaša Gtk inačica ne zadovoljava postavljenim uvjetima.\n"
-"Inačica %(major)d.%(minor)d je minimalno potrebna za pokretanje Grampsa.\n"
+"Tvoja Gtk verzija ne zadovoljava uvjete.\n"
+"Za pokretanje Grampsa potrebna je barem verzija %(major)d.%(minor)d.\n"
 "\n"
-"Gramps će sada prekinuti."
+"Gramps će sada isključiti."
 
 #: ../gramps/gui/grampsgui.py:477
 msgid ""
@@ -25215,7 +25211,7 @@ msgid ""
 msgstr ""
 "Ova GEDCOM datoteka navodno koristi ANSEL kodiranje. Ponekad je to pogrešno "
 "naznačeno. Ako uvezeni podaci sadrže neobična i nečitljiva slova, vrati se "
-"unazad jedan korak i promijeni način kodiranja u jedan od dolje navedenih."
+"jedan korak unazad i promijeni način kodiranja u jedan od dolje navedenih."
 
 #: ../gramps/plugins/importer/importgedcom.glade:125
 msgid "Encoding: "
@@ -25275,7 +25271,7 @@ msgstr "Ekskomunikacija"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
 msgid "LDS Family Link"
-msgstr "Obiteljska poveznica CIK"
+msgstr "CIK obiteljska poveznica"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
 #: ../gramps/plugins/lib/libgedcom.py:707
@@ -25308,7 +25304,7 @@ msgstr "Vojno unapređenje"
 
 #: ../gramps/plugins/importer/importgeneweb.py:120
 msgid "LDS Seal to child"
-msgstr "Vječno vezanje s djetetom po CIK"
+msgstr "CIK vječno vezanje s djetetom"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
 msgid "Sold property"
@@ -25768,8 +25764,8 @@ msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
 msgstr ""
-"Datum {vcard_snippet} nije odgovarajućeg formata yyyy-mm-dd, datum je očuvan "
-"kao tekst."
+"Datum {vcard_snippet} ne odgovara formatu gggg-mm-dd, datum je očuvan kao "
+"tekst."
 
 #: ../gramps/plugins/importer/importxml.py:103
 #: ../gramps/plugins/tool/eventnames.py:137
@@ -26123,7 +26119,7 @@ msgstr "Imenjak"
 
 #: ../gramps/plugins/lib/libgedcom.py:713
 msgid "Ordinance"
-msgstr "Vjerski obred"
+msgstr "Obred"
 
 #: ../gramps/plugins/lib/libgedcom.py:715
 msgid "Separation"
@@ -26144,7 +26140,7 @@ msgstr "Nedopušteni slovni znak%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1822
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr "Vaša GEDCOM datoteka je oštećena. Čini se da je skraćena."
+msgstr "Tvoja GEDCOM datoteka je oštećena. Čini se da je skraćena."
 
 #: ../gramps/plugins/lib/libgedcom.py:1906
 #, python-format
@@ -26408,11 +26404,11 @@ msgstr "Traži bezimene događaje."
 
 #: ../gramps/plugins/lib/libgedcom.py:7500
 msgid "Character set"
-msgstr "Znakovni skup"
+msgstr "Skup znakova"
 
 #: ../gramps/plugins/lib/libgedcom.py:7505
 msgid "Character set and version"
-msgstr "Vrsta znakovnog skupa i inačica"
+msgstr "Skup znakova i inačica"
 
 #: ../gramps/plugins/lib/libgedcom.py:7522
 msgid "GEDCOM version not supported"
@@ -26474,7 +26470,7 @@ msgstr "Prijava: generacije potomaka"
 
 #: ../gramps/plugins/lib/libgedcom.py:7758
 msgid "Submission: Ordinance process flag"
-msgstr "Prijava: zastava vjerskog obreda"
+msgstr "Prijava: procesijska zastava obreda"
 
 #: ../gramps/plugins/lib/libgedcom.py:8013
 msgid "Invalid temple code"
@@ -26485,12 +26481,12 @@ msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
-"Vaša GEDCOM datoteka je oštećena. Čini se da datoteka koristi UTF-16 "
-"kodirani znakovni skup, ali joj nedostaju BOM oznake."
+"Tvoja je GEDCOM datoteka oštećena. Čini se da datoteka koristi UTF-16 "
+"kodirani skup znakova, ali joj nedostaju BOM oznake."
 
 #: ../gramps/plugins/lib/libgedcom.py:8112
 msgid "Your GEDCOM file is empty."
-msgstr "Vaša GEDCOM datoteka je prazna."
+msgstr "Tvoja je GEDCOM datoteka prazna."
 
 #: ../gramps/plugins/lib/libhtmlconst.py:51
 msgid "Unicode UTF-8 (recommended)"
@@ -30562,7 +30558,7 @@ msgstr "Ne možeš koristiti funkciju za ispis"
 
 #: ../gramps/plugins/lib/maps/geography.py:879
 msgid "Your Gtk version is too old."
-msgstr "Vaša Gtk inačica je zastarjela."
+msgstr "Tvoja Gtk verzija je pre stara."
 
 #: ../gramps/plugins/lib/maps/geography.py:922
 #: ../gramps/plugins/view/geoclose.py:637
@@ -33865,7 +33861,7 @@ msgstr "Alat za statistike o spolovima"
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:100
 msgid "Guess"
-msgstr "Pretpostavljeno"
+msgstr "Pogođanje"
 
 #: ../gramps/plugins/tool/eventcmp.glade:225
 msgid "_Filter:"
@@ -34528,19 +34524,19 @@ msgstr "Svi sekundarni indeksi su obnovljeni."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:82
 msgid "Rebuilding gender statistics for name gender guessing..."
-msgstr "Obnavljanje statistike o spolovima, za određivanje spola po imenu ..."
+msgstr "Obnavljanje statistike spolova za pogađanje spola po imenu ..."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:95
 msgid "Gender statistics rebuilt"
-msgstr "Statistike o spolovima obnovljene"
+msgstr "Statistika spolova obnovljena"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:96
 msgid "Gender statistics for name gender guessing have been rebuilt."
-msgstr "Statistike o spolovima za određivanje spola po imenu su obnovljene."
+msgstr "Statistika spolova za pogađanje spola po imenu su obnovljene."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:87
 msgid "Reference maps rebuilt"
-msgstr "Reference obnovljene"
+msgstr "Referentne karte su obnovljene"
 
 #: ../gramps/plugins/tool/relcalc.glade:90
 msgid "Select a person to determine the relationship"
@@ -34562,7 +34558,7 @@ msgstr "Srodstvo sa %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:175
 msgid "Relationship Calculator tool"
-msgstr "Alat za računjanje srodstva"
+msgstr "Alat za izračunavanje srodstva"
 
 #: ../gramps/plugins/tool/relcalc.py:207
 #, python-format
@@ -35038,19 +35034,19 @@ msgstr "Obnavlja sekundarne indekse"
 
 #: ../gramps/plugins/tool/tools.gpr.py:287
 msgid "Rebuild Reference Maps"
-msgstr "Obnovi reference"
+msgstr "Obnovi referentne karte"
 
 #: ../gramps/plugins/tool/tools.gpr.py:288
 msgid "Rebuilds reference maps"
-msgstr "Obnavlja reference"
+msgstr "Obnavlja referentne karte"
 
 #: ../gramps/plugins/tool/tools.gpr.py:309
 msgid "Rebuild Gender Statistics"
-msgstr "Obnovi statistike o spolovima"
+msgstr "Obnovi statistiku spolova"
 
 #: ../gramps/plugins/tool/tools.gpr.py:310
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr "Obnavlja statistike o spolovima, za određivanje spola po imenu ..."
+msgstr "Obnavlja statistiku spolova za pogađanje spola po imenu ..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:332
 msgid "Calculates the relationship between two people"
@@ -35107,7 +35103,7 @@ msgstr "Poništi statistike o spolovima"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr "Poništava statistike za određivanje spola po imenu."
+msgstr "Poništava statistiku za pogađanje spola po imenu."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -36910,7 +36906,7 @@ msgstr " [Pritisni za „Idi”]"
 
 #: ../gramps/plugins/webreport/basepage.py:2515
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr "Mormoni/uredbe CIK"
+msgstr "Mormonska crkva/ Obred CIK"
 
 #: ../gramps/plugins/webreport/basepage.py:2660
 #: ../gramps/plugins/webreport/basepage.py:2661
