@@ -8,20 +8,22 @@
 # 黃友誠 <grampscn@gmail.com>, 2009, 2010, 2011.
 # Yin Hoe TAN <astyh83@gmail.com> 2014.
 # Anthony Fok (霍東靈) <foka@debian.org>, 2015.
-#
+# Abel Cheung <abelcheung@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2015-03-18 17:31-0600\n"
-"Last-Translator: Anthony Fok <foka@debian.org>\n"
-"Language-Team: Chinese (Hong Kong) <(nothing)>\n"
+"PO-Revision-Date: 2023-04-11 06:47+0000\n"
+"Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
+"Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
+"projects/gramps-project/gramps/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -37145,9 +37147,8 @@ msgid ""
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
 msgstr ""
-"本頁包含資料庫中所有個體成員的索引，按照名字排列. 選擇成員，依照按照名字會將"
-"您指向他的個人頁面.選擇成員&#8217;s  姓名會指引您到他們的地址簿#8217;s 中的個"
-"人地址目錄頁面。"
+"本頁包含資料庫中所有個體成員按照姓氏排列的索引，並包括以下的資料之一：通訊地"
+"址、住址或網頁。選擇成員的名稱後，會將你引導向此成員的個人地址目錄頁面。"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:113
 msgid "Full Name"
@@ -37356,14 +37357,12 @@ msgid "Creating family pages..."
 msgstr "建立媒體頁面"
 
 #: ../gramps/plugins/webreport/family.py:148
-#, fuzzy
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
-msgstr ""
-"本頁包含資料庫中所有地點的索引，按照名稱排列. 選擇地點&#8217;s 按照名稱會將您"
-"引向&#8217;s 的頁面."
+msgstr "本頁包含資料庫中所有家庭及其他關係的索引，並按照家族名稱或姓氏排列。點選人名"
+"時，會將你引導向相關的家庭及其他關係的頁面."
 
 #: ../gramps/plugins/webreport/family.py:239
 #, fuzzy
@@ -38468,9 +38467,8 @@ msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
-msgstr ""
-"本頁包含資料庫中所有地點的索引，按照名稱排列。選擇地點&#8217;s 按照名稱會將您"
-"引向&#8217;s 的頁面。"
+msgstr "本頁包含資料庫中所有地點的索引，按照名稱排列。點選地點時，會將你引導向該地點"
+"的頁面。"
 
 #: ../gramps/plugins/webreport/place.py:219
 #: ../gramps/plugins/webreport/place.py:231
@@ -38554,9 +38552,8 @@ msgid ""
 "This page contains an index of all the individuals in the database with the "
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
-msgstr ""
-"本頁包含資料庫中所有個體的索引，按照姓 %s 排列. 選擇成員&#8217;s 按照姓會將您"
-"引向&#8217;s 的個體頁面."
+msgstr "本頁包含資料庫中所有姓氏為 %s "
+"的個人成員索引。點選人名時，會將你引導向該個人成員的頁面。"
 
 #: ../gramps/plugins/webreport/surnamelist.py:102
 msgid "Surnames by person count"
