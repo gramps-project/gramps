@@ -4,13 +4,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Andika Triwidada <andika@gmail.com>, 2021, 2022.
 # Muhammad Reza Putra <muhammadreza.112209@gmail.com>, 2023.
+# Reza Almanda <rezaalmanda27@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-02-08 10:38+0000\n"
-"Last-Translator: Muhammad Reza Putra <muhammadreza.112209@gmail.com>\n"
+"PO-Revision-Date: 2023-03-15 01:45+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/id/>\n"
 "Language: id\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -8807,7 +8808,7 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:228
 #: ../gramps/gui/widgets/grampletpane.py:987
 msgid "Gramplet"
-msgstr ""
+msgstr "Gramplet"
 
 #: ../gramps/gen/plug/_pluginreg.py:90
 msgid "Sidebar"
@@ -24201,7 +24202,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
 msgid "REFN"
-msgstr ""
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 msgid ""
@@ -27853,31 +27854,34 @@ msgstr ""
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
+"Orang ini memiliki hubungan dengan %(spouse)s %(modified_date)s%(endnotes)s ."
 
 #: ../gramps/plugins/lib/libnarrate.py:1275
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
+"Dia memiliki hubungan dengan %(spouse)s di %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1276
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Dia memiliki hubungan dengan %(spouse)s di %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1277
 #, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Dia memiliki hubungan dengan %(spouse)s %(modified_date)s%(endnotes)s ."
 
 #: ../gramps/plugins/lib/libnarrate.py:1280
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
+"Dia memiliki hubungan dengan %(spouse)s di %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1281
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Dia memiliki hubungan dengan %(spouse)s di %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1282
 #, python-format
@@ -36292,15 +36296,13 @@ msgstr "Basic-Lilac"
 
 #. Translators: Basic Peach style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:77
-#, fuzzy
 msgid "Basic-Peach"
-msgstr "Basic-Peach"
+msgstr "Dasar-Persik"
 
 #. Translators: Basic Spruce style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:81
-#, fuzzy
 msgid "Basic-Spruce"
-msgstr "Basic-Spruce"
+msgstr "Dasar-Cemara"
 
 #. Translators: Mainz style sheet with its images
 #: ../gramps/plugins/webstuff/webstuff.py:85
