@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-28 03:46+0000\n"
+"PO-Revision-Date: 2023-04-06 20:12+0000\n"
 "Last-Translator: WaldiS <sto@tutanota.de>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/pl/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
@@ -596,18 +596,16 @@ msgstr ""
 "jednej osoby. Działa także na widokach miejsc, źródeł i magazynów."
 
 #: ../data/tips.xml:46
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the \"View\" menu."
 msgstr ""
-"<b>Organizacja widoków</b><br/>Wiele z widoków może wyświetlać Twoje dane "
-"zarówno w postaci hierarchicznej jak i jako płaską listę. Każdy widok może "
-"być dodatkowo skonfigurowany w sposób który Ci będzie odpowiadał, wystarczy "
-"że spojrzysz na prawą część paska narzędzi u góry albo do menu &quot;"
-"Widok&quot;."
+"<b> Organizowanie widoków</b><br/>Wiele widoków może przedstawiać dane jako "
+"drzewo hierarchiczne lub jako prostą listę. Każdy widok można również "
+"skonfigurować tak, jak lubisz. Spójrz na prawo od górnego paska narzędzi lub "
+"w menu \"Widok\"."
 
 #: ../data/tips.xml:48
 msgid ""
@@ -782,18 +780,17 @@ msgstr ""
 "Wyświetlanie\"."
 
 #: ../data/tips.xml:72
-#, fuzzy
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "\"Person &gt; Edit Person &gt; Events\". There is a long list of preset "
 "event types. You can add your own event types by typing in the text field, "
 "they will be added to the available events, but not translated."
 msgstr ""
-"<b>Listowanie zdarzeń</b><br/>Zdarzenia są dodawane za pomocą edytora "
-"otwieranego przez &quot;Osoba &gt; Modyfikuj osobę &gt; Zdarzenia&quot;. "
-"Jest tam długa lista istniejących typów zdarzeń. Możesz dodawać własne "
-"wpisując je w polu tekstowym, będą one dodane do listy dostępnych zdarzeń, "
-"jednak nie będą tłumaczone."
+"<b>Zestawienie zdarzeń</b><br/>Zdarzenia dodaje się za pomocą edytora "
+"otwieranego przyciskiem \"Osoba &gt; Edycja osoby &gt; Zdarzenia\". Istnieje "
+"długa lista wstępnie ustawionych typów zdarzeń. Możesz dodać własne typy "
+"zdarzeń, wpisując je w polu tekstowym, zostaną one dodane do dostępnych "
+"zdarzeń, ale nie będą tłumaczone."
 
 #: ../data/tips.xml:74
 #, fuzzy
@@ -6320,9 +6317,8 @@ msgid "Repositories with the attribute <attribute>"
 msgstr "Repozytoria z atrybutem <attribute>"
 
 #: ../gramps/gen/filters/rules/repository/_hasattribute.py:48
-#, fuzzy
 msgid "Matches repositories with the attribute of a particular value"
-msgstr "Dopasowuje obiekty medialne z podanym atrybutem o określonej wartości"
+msgstr "Dopasowuje repozytoria z atrybutem o określonej wartości"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
@@ -6449,9 +6445,8 @@ msgstr ""
 "hh:mm:ss) albo w danym zakresie (jeśli druga data/czas jest podana)."
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:46
-#, fuzzy
 msgid "Source attribute:"
-msgstr "Atrybuty źródła"
+msgstr "Atrybut źródła:"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:47
 #, fuzzy
@@ -6459,9 +6454,8 @@ msgid "Sources with the attribute <attribute>"
 msgstr "Zdarzenia z atrybutem <atrybut>"
 
 #: ../gramps/gen/filters/rules/source/_hasattribute.py:48
-#, fuzzy
 msgid "Matches sources with the attribute of a particular value"
-msgstr "Dopasowuje obiekty medialne z podanym atrybutem o określonej wartości"
+msgstr "Dopasowuje źródła z atrybutem o określonej wartości"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
@@ -7032,11 +7026,9 @@ msgid "None"
 msgstr "Brak"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
-msgstr "Narodziny"
+msgstr "Urodziny"
 
 #: ../gramps/gen/lib/childreftype.py:69
 #, fuzzy
@@ -9822,10 +9814,8 @@ msgid "Short"
 msgstr "Krótki"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:67
-#, fuzzy
-#| msgid "Given Name Cloud Gramplet"
 msgid "Given Nickname Surname"
-msgstr "Gramplet Chmura imion"
+msgstr "Pseudonim Nazwisko"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 #, fuzzy
