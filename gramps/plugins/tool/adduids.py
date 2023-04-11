@@ -52,6 +52,7 @@ from gramps.gui.plug import tool
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
+from gramps.gen.utils.id import create_uid
 
 #-------------------------------------------------------------------------
 #
@@ -67,8 +68,9 @@ WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names')
 # AddUIDs
 #
 #-------------------------------------------------------------------------
-def generate_paf5_uid():
-    uid = str(uuid.uuid4()).replace('-', '').upper()
+def generate_paf5_uid(self, handle):
+    #uid = str(uuid.uuid4()).replace('-', '').upper()
+    uid = create_uid(self, handle)
     checksum = calculate_checksum(uid)
     return uid[:32] + checksum
 
@@ -212,7 +214,7 @@ class AddUIDs(tool.BatchTool, ManagedWindow):
 
                 if change:
                     #cursor.update(handle, person.serialize())
-                    uid = generate_paf5_uid()
+                    uid = generate_paf5_uid(self,handle)
                     attr = Attribute()
                     attr.set_type("_UID")
                     print(uid)
