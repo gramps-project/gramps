@@ -80,10 +80,11 @@ class DbGenericUndo(DbUndo):
     table_txn = "transactions"
     table_undo = "commits"
 
-    def __init__(self, grampsdb, path) -> None:
+    def __init__(self, grampsdb: DbWriteBase, path: Optional[str] = None) -> None:
         super(DbGenericUndo, self).__init__(grampsdb)
         self.path = path
         self._session_id: Optional[int] = None
+        self.undodb: List[bytes] = []
 
     @property
     def session_id(self) -> int:
@@ -100,8 +101,9 @@ class DbGenericUndo(DbUndo):
         """
         Open the backing storage.
         """
-        self._create_tables()
-    
+        if self.path:
+            self._create_tables()
+
     def _create_tables(self) -> None:
         """Create the tables if they don't exist yet."""
         with self._connect() as connection:
@@ -110,13 +112,13 @@ class DbGenericUndo(DbUndo):
                 f"""CREATE TABLE IF NOT EXISTS {self.table_undo} (
                     session INTEGER,
                     id INTEGER,
-                    obj_class STRING,
+                    obj_class TEXT,
                     trans_type INTEGER,
-                    obj_handle STRING,
-                    ref_handle STRING,
+                    obj_handle TEXT,
+                    ref_handle TEXT,
                     old_data BLOB,
                     new_data BLOB,
-                    json STRING,
+                    json TEXT,
                     timestamp INTEGER,
                     PRIMARY KEY (session, id)
                 )
@@ -133,7 +135,7 @@ class DbGenericUndo(DbUndo):
                 f"""CREATE TABLE IF NOT EXISTS {self.table_txn} (
                     id INTEGER PRIMARY KEY,
                     session INTEGER,
-                    description STRING,
+                    description TEXT,
                     timestamp INTEGER,
                     first INTEGER,
                     last INTEGER,
@@ -159,11 +161,14 @@ class DbGenericUndo(DbUndo):
         Close the backing storage.
         """
         pass
-        
+
     def append(self, value) -> None:
         """
         Add a new entry on the end.
         """
+        if not self.path:
+            self.undodb.append(value)
+            return
         (obj_type, trans_type, handle, old_data, new_data) = pickle.loads(value)
         if isinstance(handle, tuple):
             obj_handle, ref_handle = handle
@@ -201,6 +206,8 @@ class DbGenericUndo(DbUndo):
         self, transaction: DbTxn, undo: bool = False, redo: bool = False
         ) -> None:
         """Post-transaction commit processing."""
+        if not self.path:
+            return
         msg = transaction.get_description()
         if redo:
             msg = _("_Redo %s") % msg
@@ -231,6 +238,8 @@ class DbGenericUndo(DbUndo):
         """
         Returns an entry by index number.
         """
+        if not self.path:
+            return self.undodb[index]
         with self._connect() as connection:
             cursor = connection.cursor()
             cursor.execute(
@@ -254,11 +263,13 @@ class DbGenericUndo(DbUndo):
                 protocol=1
             )
             return blob_data
-    
+
     def __setitem__(self, index: int, value: bytes) -> None:
         """
         Set an entry to a value.
         """
+        if not self.path:
+            self.undodb[index] = value
         (obj_type, trans_type, handle, old_data, new_data) = pickle.loads(value)
         if isinstance(handle, tuple):
             obj_handle, ref_handle = handle
@@ -297,6 +308,8 @@ class DbGenericUndo(DbUndo):
         """
         Returns the number of entries.
         """
+        if not self.path:
+            return len(self.undodb)
         with self._connect() as connection:
             cursor = connection.cursor()
             cursor.execute(
@@ -352,7 +365,7 @@ class DbGenericUndo(DbUndo):
 
         if update_history and db.undo_history_callback:
             db.undo_history_callback()
-        
+
         self._after_commit(transaction, undo=False, redo=True)
 
         return True
@@ -823,7 +836,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         self._set_save_path(directory)
 
-        if self._directory:
+        if self._directory and self._directory != ":memory:":
             self.undolog = os.path.join(self._directory, DBUNDOFN)
         else:
             self.undolog = None
