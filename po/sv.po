@@ -23,13 +23,13 @@
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 # Pär Ekholm <pehlm@pekholm.org>, 2018, 2019, 2020.
 # Pär Ekholm <par.ekholm@pekholm.org>, 2021.
-# Pär Ekholm <github1@m.pekholm.org>, 2022.
+# Pär Ekholm <github1@m.pekholm.org>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-08-28 15:19+0000\n"
+"PO-Revision-Date: 2023-03-09 17:36+0000\n"
 "Last-Translator: Pär Ekholm <github1@m.pekholm.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sv/>\n"
@@ -38,7 +38,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1379,7 +1379,7 @@ msgstr ""
 "  -f, --format=FORMAT                    Ange format för släktträdet\n"
 "  -a, --action=HANDLING                    Ange handling\n"
 "  -p, --options=ALTERNATIV           Ange alternativ\n"
-"  -d, --debug=LOGGFILS_NAMN                Aktivera avlusningsfil\n"
+"  -d, --debug=LOGGFILS_NAMN                Aktivera felsökningsfil\n"
 "  -l [SLÄKTTRÄDS_MÖNSTER...]            Lists släktträd\n"
 "  -L [SLÄKTTRÄDS_MÖNSTER...]            Lista släktträd i detalj\n"
 "  -t [SLÄKTTRÄDS_MÖNSTER...]            Lista släktträd, avgränsad flik\n"
@@ -1541,7 +1541,7 @@ msgstr "Okänd åtgärd: %s. Ignorerar."
 
 #: ../gramps/cli/argparser.py:331
 msgid "setup debugging"
-msgstr "avlusningsinställning"
+msgstr "felsökningsinställning"
 
 #: ../gramps/cli/argparser.py:343
 #, python-format
@@ -24773,13 +24773,13 @@ msgstr "Huruvida ta med det sista yrket"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:932
 msgid "Include relationship debugging numbers also"
-msgstr "Ta även med släktskapsavlusningsnummer"
+msgstr "Ta även med felsökningsnummer för släktskap"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:935
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
-"Huruvida även ta med 'Ga' och 'Gb', för att avlusa släktskapsberäknaren"
+"Huruvida även ta med 'Ga' och 'Gb', för att felsöka släktskapsberäknaren"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:963
 msgid "Indicate non-birth relationships with dotted lines"
