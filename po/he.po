@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-01-28 03:46+0000\n"
+"PO-Revision-Date: 2023-04-06 20:12+0000\n"
 "Last-Translator: Avi Markovitz <avi.markovitz@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/he/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Poedit-Bookmarks: 1508,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../data/holidays.xml:3
@@ -251,8 +251,8 @@ msgid ""
 "individual as well as the complex relationships between various people, "
 "places and events."
 msgstr ""
-"התוכנה מספקת יכולות תעוד של פרטים רבים בחיי אדם, כמו גם קשרי־גומלין מורכבים "
-"בין אנשים שונים, מקומות ואירועים."
+"התוכנה מספקת יכולות לתעוד פרטי מידע רבים בחיי אדם, כמו גם קשרי־גומלין "
+"מורכבים בין אנשים שונים, מקומות ואירועים."
 
 #: ../data/org.gramps_project.Gramps.appdata.xml.in:9
 msgid ""
@@ -28453,7 +28453,7 @@ msgstr "אדם זה נישאגם ל־%(spouse)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1086
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr "הוא נישא גם ל־%(spouse)s ב־%(spouse)s%(endnotes)s."
+msgstr "הוא נישא גם ל־%(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1087
 #, python-format
@@ -28920,8 +28920,7 @@ msgstr "אדם זה היה במערכת יחסים ללא נישואין גם ע
 #: ../gramps/plugins/lib/libnarrate.py:1211
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
-"היה במערכת יחסים ללא נישואין גם עם %(spouse)s ב־%(spouse)s%(endnotes)s."
+msgstr "היה במערכת יחסים ללא נישואין גם עם %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1212
 #, python-format
@@ -29140,8 +29139,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1275
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"היה במערכת יחסים עם %(spouse)s ב־%(spouse)s ב־%(partial_date)s%(endnotes)s."
+msgstr "היה במערכת יחסים עם %(spouse)s ב־ %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1276
 #, python-format
@@ -29234,8 +29232,7 @@ msgstr "הייתה גם במערכת יחסים עם %(spouse)s ב־%(partial_da
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"הייתה גם במערכת יחסים עם %(spouse)s ב־%(spouse)s ב־%(full_date)s%(endnotes)s."
+msgstr "הייתה במערכת יחסים גם עם %(spouse)s ב־%(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1305
 #, python-format
