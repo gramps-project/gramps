@@ -7,7 +7,7 @@
 # Copyright (C) 2020 Juan Saavedra <jcsaaver@gmail.com>
 #
 #
-# Juan Saavedra <jcsaaver@gmail.com>, 2021.
+# Juan Saavedra <jcsaaver@gmail.com>, 2021, 2023.
 # Allan Nordhøy <epost@anotheragency.no>, 2021.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # S <sendoasojo@gmail.com>, 2021.
@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-12-05 17:47+0000\n"
-"Last-Translator: Hilario Coronado <hilariofm60@gmail.com>\n"
+"PO-Revision-Date: 2023-04-06 20:12+0000\n"
+"Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
 "Language: es\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -385,15 +385,15 @@ msgid ""
 "Sidebar is not visible, select View &gt; Sidebar."
 msgstr ""
 "<b>Filtrar personas</b><br/>En la vista de personas, puede 'filtrar' "
-"personas en función de muchos criterios. Para definir un nuevo filtro, vaya "
-"a \"Editar &gt; Editor de Filtros de personas\". Ahí puede dar nombre a su "
-"filtro y agregar y combinar reglas a partir de las muchas reglas "
+"personas en función de varios criterios. Para definir un nuevo filtro, vaya "
+"a \"Editar &gt; Editor de Filtros de Personas\". Ahí puede dar un nombre a "
+"su filtro y agregar y combinar reglas a partir de las muchas reglas "
 "predefinidas. Por ejemplo, puede definir un filtro que seleccione todas las "
 "personas adoptadas del árbol genealógico. O todas las personas sin fecha de "
-"nacimiento. Para obtener los resultados, guarde su filtro y selecciónelo en "
-"la parte inferior de la barra lateral de filtros, y luego haga clic en "
-"Buscar. Si la barra lateral de filtro no está visible, actívela con Ver &gt; "
-"Barra Lateral."
+"nacimiento. Para obtener los resultados, guarde su filtro. Después "
+"selecciónelo en la parte inferior de la barra lateral de Filtros, y luego "
+"haga clic en Buscar. Si la barra lateral de Filtro no está visible, actívela "
+"con Ver &gt; Barra Lateral."
 
 #: ../data/tips.xml:16
 msgid ""
@@ -427,7 +427,7 @@ msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>La vista de familia</b><br/>La vista de familia se utiliza para mostrar "
+"<b>La vista de Familias</b><br/>La vista de Familias se utiliza para mostrar "
 "una unidad familiar típica de dos padres con sus hijos."
 
 #: ../data/tips.xml:22
@@ -453,9 +453,9 @@ msgid ""
 msgstr ""
 "<b>¿Quién nació cuándo?</b><br/>Mediante \"Herramientas &gt; Análisis y "
 "Exploración &gt; Comparar eventos personales...\"; se pueden comparar los "
-"datos de personas de su base de datos. Esto es útil si, por ejemplo, desea "
+"datos de personas en su base de datos. Esto es útil si, por ejemplo, desea "
 "listar las fechas de nacimiento de todas las personas de su base de datos. "
-"Puede usar un filtro para limitar los resultados."
+"Puede usar un filtro personalizado para limitar los resultados."
 
 #: ../data/tips.xml:26
 msgid ""
@@ -465,10 +465,10 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the \"Tools\" menu."
 msgstr ""
-"<b>Herramientas de Gramps</b><br/>Gramps le proporciona un rico juego de "
+"<b>Herramientas de Gramps</b><br/>Gramps viene con un amplio juego de "
 "herramientas. Éstas le permiten realizar operaciones como buscar errores o "
 "problemas de consistencia en la base de datos. Hay herramientas de "
-"investigación o análisis como comparación de eventos, búsqueda de personas "
+"investigación y análisis, como comparación de eventos, búsqueda de personas "
 "duplicadas, navegador interactivo de descendientes y muchas otras. Se puede "
 "acceder a todas estas herramientas mediante el menú \"Herramientas\"."
 
@@ -499,10 +499,10 @@ msgstr ""
 "resuelve un problema persistente en genealogía: cómo manejar las variaciones "
 "ortográficas. El gramplete SoundEx toma un apellido y genera una forma "
 "simplificada que es equivalente para apellidos que suenan parecido. Conocer "
-"el Código SoundEx de un apellido es muy útil al investigar datos de censos "
-"(en microficha) en una biblioteca u otro local de investigación. Para ver "
-"los códigos SoundEx de los apellidos de su base de datos, agregue el "
-"Gramplete SoundEx."
+"el Código SoundEx de un apellido es muy útil al investigar datos de censos ("
+"en microficha) en una biblioteca u otro local de investigación. Para ver los "
+"códigos SoundEx de los apellidos de su base de datos, agregue el Gramplete "
+"SoundEx."
 
 #: ../data/tips.xml:32
 msgid ""
@@ -516,7 +516,7 @@ msgstr ""
 "permite modificar una serie de ajustes, como la ruta a sus archivos "
 "audiovisuales, y le permite ajustar a sus necesidades muchos aspectos de la "
 "presentación de Gramps. Cada vista separada puede configurarse también en "
-"\"View &gt; Configurar Vista...\"."
+"\"View &gt; Configurar...\"."
 
 #: ../data/tips.xml:34
 msgid ""
@@ -526,10 +526,10 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>Reportes de Gramps</b><br/>Gramps le ofrece una amplia gama de reportes. "
-"Los reportes gráficos y los diagramas pueden mostrar relaciones complejas "
+"<b>Reportes de Gramps</b><br/>Gramps ofrece una amplia gama de reportes. Los "
+"reportes gráficos y los diagramas pueden mostrar relaciones complejas "
 "fácilmente y los reportes de texto son especialmente útiles si desea enviar "
-"los resultados de su árbol genealógico a su parientes por correo "
+"los resultados de su árbol genealógico a sus parientes por correo "
 "electrónico. Si quiere crear un sitio web con su árbol genealógico, también "
 "hay un reporte especial para hacerlo."
 
@@ -543,10 +543,10 @@ msgid ""
 msgstr ""
 "<b>Comenzar un nuevo árbol genealógico</b><br/>Una buena manera de comenzar "
 "un nuevo árbol genealógico es introducir los miembros de la familia en la "
-"base de datos mediante la vista de personas (utilice \"Editar &gt; Agregar..."
-"\" o haga clic en el botón Agregar una nueva persona en la vista de "
-"personas). A continuación, vaya a la vista de relaciones y cree las "
-"relaciones entre personas."
+"base de datos mediante la vista de Personas (utilice \"Editar &gt; Agregar..."
+"\" o haga clic en el botón Agregar una nueva persona en la vista de Personas)"
+". A continuación, vaya a la vista de Relaciones y cree las relaciones entre "
+"personas."
 
 #: ../data/tips.xml:38
 msgid ""
@@ -568,8 +568,9 @@ msgstr ""
 "<b>¿No está seguro de una fecha?</b><br/>Si no está seguro de la fecha en "
 "que ocurrió un evento, Gramps le permite introducir una amplia gama de "
 "formatos basados en suposiciones o estimaciones. Por ejemplo, \"hacia 1908\" "
-"es una fecha de nacimiento válida para Gramps. Haga clic en el botón de "
-"fecha contiguo al campo de fecha y vea el manual de Gramps para saber más."
+"es una fecha de nacimiento válida para Gramps. Haga clic en el botón "
+"\"Invocar el editor de fechas\" contiguo al campo de fecha . Vea el manual "
+"de Gramps para saber más."
 
 #: ../data/tips.xml:42
 msgid ""
@@ -23194,7 +23195,7 @@ msgstr "Gramplete que muestra los metadatos de un objeto audiovisual"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:442
 msgid "GExiv2 module not loaded."
-msgstr "Ni se ha cargado el módulo GExiv2."
+msgstr "No se ha cargado el módulo GExiv2."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:443
 #, python-format
@@ -23202,8 +23203,8 @@ msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
-"No estará disponible La funcionalidad de metadatos de imágenes.\n"
-"Para construirlo para Gramps, vea %(gramps_wiki_build_gexiv2_url)s"
+"No estará disponible la funcionalidad de metadatos de imágenes.\n"
+"Para construirla para Gramps, vea %(gramps_wiki_build_gexiv2_url)s"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:456
 msgid "Person Residence"
