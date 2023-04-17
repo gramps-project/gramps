@@ -549,11 +549,26 @@ def color_graph_box(alive=False, gender=Person.MALE):
 
 # color functions. For hsv and hls values, use import colorsys !
 
+def name_to_hex(value):
+    """
+    Convert a named color to a 6 digit hexadecimal value to rgb.
+    """
+    if value[:1] != "#":
+        # We have color names like "green", "orange", "yellow",...
+        # We need to convert them to hex format
+        Color = Gdk.RGBA()
+        Color.parse(value)
+        value = "#%02x%02x%02x" % (int(Color.red * 255),
+                                   int(Color.green * 255),
+                                   int(Color.blue * 255))
+    return value
+
 def hex_to_rgb_float(value):
     """
     Convert a 6 or 12 digit hexademical value to rgb. Returns tuple of floats
     between 0 and 1.
     """
+    value = name_to_hex(value)
     value = value.lstrip('#')
     lenv = len(value)
     return tuple(int(value[i:i+lenv//3], 16)/16.0**(lenv//3)
@@ -563,6 +578,7 @@ def hex_to_rgb(value):
     """
     Convert a 6 or 12 digit hexadecimal value to rgb. Returns tuple of integers.
     """
+    value = name_to_hex(value)
     value = value.lstrip('#')
     lenv = len(value)
     return tuple(int(value[i:i+lenv//3], 16) for i in range(0, lenv, lenv//3))
