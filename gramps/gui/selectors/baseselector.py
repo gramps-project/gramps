@@ -25,6 +25,7 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import Pango
 
 #-------------------------------------------------------------------------
@@ -32,12 +33,19 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ..managedwindow import ManagedWindow
 from ..filters import SearchBar
 from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
+from ..utils import match_primary_mask
+from ..dialog import InputDialog
+
+# keyboard shortcut for direct ID input (see BaseSelector._direct_id_input)
+_OPEN = Gdk.keyval_from_name("o")
 
 #-------------------------------------------------------------------------
 #
@@ -55,11 +63,13 @@ class BaseSelector(ManagedWindow):
     IMAGE = 2
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
-                 show_search_bar = True, default=None):
+                 show_search_bar=True, default=None, direct_id_input=True):
         """Set up the dialog with the dbstate and uistate, track of parent
-            windows for ManagedWindow, initial filter for the model, skip with
-            set of handles to skip in the view, and search_bar to show the
-            SearchBar at the top or not.
+           windows for ManagedWindow, initial filter for the model, skip with
+           set of handles to skip in the view, and search_bar to show the
+           SearchBar at the top or not. direct_id_input enables a keyboard
+           shortcut to allow the user to directly input an object ID for this
+           selection.
         """
         self.filter = (2, filter, False)
 
@@ -92,9 +102,9 @@ class BaseSelector(ManagedWindow):
             self.glade.get_object('help'), self.WIKI_HELP_PAGE,
             self.WIKI_HELP_SEC)
 
-        # connect to signal for custom interactive-search
+        # connect to signal for shortcuts and custom interactive-search
         self.searchbox = InteractiveSearchBox(self.tree)
-        self.tree.connect('key-press-event', self.searchbox.treeview_keypress)
+        self.tree.connect('key-press-event', self._key_pressed)
 
         #add the search bar
         self.search_bar = SearchBar(dbstate, uistate, self.build_tree, apply_clear=self.apply_clear)
@@ -135,6 +145,9 @@ class BaseSelector(ManagedWindow):
 
         if default:
             self.goto_handle(default)
+
+        self.can_direct_id_input = direct_id_input
+        self.direct_id_selection = None
 
     def goto_handle(self, handle):
         """
@@ -209,6 +222,12 @@ class BaseSelector(ManagedWindow):
             if id_list and id_list[0]:
                 result = self.get_from_handle_func()(id_list[0])
             self.close()
+        elif val == Gtk.ResponseType.APPLY:
+            # user has invoked the direct selection dialog and typed a valid id,
+            # direct_id_input() has populated self.direct_id_selection and
+            # emitted an APPLY response to signal we're done.
+            result = self.direct_id_selection
+            self.close()
         elif val != Gtk.ResponseType.DELETE_EVENT:
             self.close()
         return result
@@ -238,6 +257,9 @@ class BaseSelector(ManagedWindow):
         raise NotImplementedError
 
     def get_from_handle_func(self):
+        assert False, "Must be defined in the subclass"
+
+    def get_from_gramps_id_func(self):
         assert False, "Must be defined in the subclass"
 
     def set_show_search_bar(self, value):
@@ -337,6 +359,29 @@ class BaseSelector(ManagedWindow):
             search=filter_info)
         self.tree.set_model(self.model)
         self.tree.grab_focus()
+
+    def direct_id_input(self):
+        """Handles "direct ID input" - in other words, directly accepts an
+           object ID from the user and selects it in the list.
+        """
+        id_input = InputDialog(_('Enter the object ID'), None,
+                               self.window).run()
+        if id_input is not None:
+            obj = self.get_from_gramps_id_func()(id_input)
+            if obj is not None:
+                # instead of selecting the object in the tree, we bypass the
+                # tree altogether, to avoid an expensive rebuild in case the
+                # selected object is not loaded
+                self.direct_id_selection = obj
+                self.window.response(Gtk.ResponseType.APPLY)
+
+    def _key_pressed(self, obj, event):
+        if self.can_direct_id_input and event.keyval in (_OPEN,) and \
+           match_primary_mask(event.get_state()):
+            self.direct_id_input()
+        else:
+            # fallback to "interactive search" if the event is not more specific
+            self.searchbox.treeview_keypress(obj, event)
 
     def clear_model(self):
         if self.model:
