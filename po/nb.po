@@ -8,7 +8,7 @@
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
 # Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2016.
-# Allan Nordhøy <epost@anotheragency.no>, 2021, 2022.
+# Allan Nordhøy <epost@anotheragency.no>, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Mihle <MihleGaming@gmail.com>, 2021, 2022.
 # Para <ahh-produktivitet@tutanota.com>, 2022.
@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-11-26 08:05+0000\n"
+"PO-Revision-Date: 2023-04-29 10:51+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -12371,26 +12371,20 @@ msgstr ""
 "relative medier lagret i databasen."
 
 #: ../gramps/gui/configure.py:1892
-#, fuzzy
-#| msgid "Records"
 msgid "Tag Records"
-msgstr "Etikett Poster"
+msgstr "Merkeoppføringer"
 
 #: ../gramps/gui/configure.py:1912
 msgid "Add tag on import"
 msgstr "Legg til merking ved import"
 
 #: ../gramps/gui/configure.py:1915
-#, fuzzy
-#| msgid ""
-#| "Specified tag will be added on import.\n"
-#| "Clear to set default value."
 msgid ""
 "Specified tag will be added to all records on import.\n"
 "Clear to set default value."
 msgstr ""
-"Spesifisert etikett vil bli lagt til ved import.\n"
-"Fjern for å angi standardverdi."
+"Angitt merke vil bli lagt til ved import.\n"
+"Tøm for å angi forvalgsverdi."
 
 #: ../gramps/gui/configure.py:1921
 msgid ""
@@ -15012,7 +15006,7 @@ msgstr "Rediger kilde (%s)"
 #: ../gramps/gui/editors/edittaglist.py:48
 msgctxt "manual"
 msgid "Tag_selection_dialog"
-msgstr "Behandler_for_valg_av_Merker"
+msgstr "Behandler_for_valg_av_merker"
 
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:127
@@ -16277,7 +16271,7 @@ msgstr "_Merker:"
 #: ../gramps/gui/glade/editfamily.glade:764
 #: ../gramps/gui/widgets/monitoredwidgets.py:819
 msgid "Edit the tag list"
-msgstr "Rediger merkelista"
+msgstr "Rediger merkelisten"
 
 #: ../gramps/gui/glade/editldsord.glade:180
 msgid "Ordinance:"
@@ -20065,31 +20059,31 @@ msgstr "Merk valgte rader"
 
 #: ../gramps/gui/views/tags.py:93
 msgid "New Tag..."
-msgstr "Nytt merke..."
+msgstr "Nytt merke ..."
 
 #: ../gramps/gui/views/tags.py:93
 msgid "Organize Tags..."
-msgstr "Organisere merker..."
+msgstr "Organiser merker …"
 
 #: ../gramps/gui/views/tags.py:112
 msgctxt "manual"
 msgid "Organize_Tags_Window"
-msgstr "Vindu_for_å_organisere_Merker"
+msgstr "Vindu_for_å_organisere_merker"
 
 #: ../gramps/gui/views/tags.py:113
 msgctxt "manual"
 msgid "New_Tag_dialog"
-msgstr "Behandler_for_nytt_Merke"
+msgstr "Behandler_for_nytt_merke"
 
 #: ../gramps/gui/views/tags.py:250
 #, python-format
 msgid "Add tag '%s'"
-msgstr "Legg til merke '%s'"
+msgstr "Legg til «%s»-merke"
 
 #: ../gramps/gui/views/tags.py:255
 #, python-format
 msgid "Remove tag '%s'"
-msgstr "Fjerne merke '%s'"
+msgstr "Fjern «%s»-merke"
 
 #: ../gramps/gui/views/tags.py:313
 msgid "Adding Tags"
@@ -20107,7 +20101,7 @@ msgstr "Fjerner merker"
 #: ../gramps/gui/views/tags.py:389 ../gramps/gui/views/tags.py:397
 #: ../gramps/gui/views/tags.py:465
 msgid "Organize Tags"
-msgstr "Organisere merker"
+msgstr "Organiser merker"
 
 #: ../gramps/gui/views/tags.py:416
 msgid "Change Tag Priority"
@@ -20116,7 +20110,7 @@ msgstr "Endre egenskap for merke"
 #: ../gramps/gui/views/tags.py:558
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Fjerne merke '%s'?"
+msgstr "Fjern «%s»-merke?"
 
 #: ../gramps/gui/views/tags.py:559
 msgid ""
@@ -20134,7 +20128,7 @@ msgstr "Slett merke (%s)"
 #: ../gramps/gui/views/tags.py:621
 #, python-format
 msgid "Tag: %s"
-msgstr ": Merke: %s"
+msgstr "Merke: %s"
 
 #: ../gramps/gui/views/tags.py:623
 msgid "New Tag"
@@ -25742,7 +25736,7 @@ msgid ""
 "Copy Default Filename\n"
 "to all sensitive Tag Text'."
 msgstr ""
-"Kopier Standard Filnavn\n"
+"Kopier forvalgt filnavn\n"
 "til alle sensitive merketekster."
 
 #: ../gramps/plugins/importer/importprogen.glade:1149
@@ -25750,8 +25744,8 @@ msgid ""
 "Copy Default Date\n"
 "to all sensitive Tag Text'."
 msgstr ""
-"Kopier Standard Dato\n"
-"til all sensitiv Merketekst '."
+"Kopier forvalgt dato\n"
+"til all sensitiv merketekst."
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
 msgid "  Objects"
@@ -25763,11 +25757,11 @@ msgid ""
 "all object tags."
 msgstr ""
 "Skru på/av\n"
-"alle objektetiketter."
+"alle objektmerker."
 
 #: ../gramps/plugins/importer/importprogen.glade:1198
 msgid "Tag Text"
-msgstr "Merke Tekst"
+msgstr "Merketekst"
 
 #: ../gramps/plugins/importer/importprogen.glade:1217
 msgid "Import Objects"
@@ -26027,7 +26021,7 @@ msgstr "  {id1} - {text} med {id2}"
 #: ../gramps/plugins/importer/importxml.py:262
 #, python-brace-format
 msgid "  {obj} {id1} with {id2}"
-msgstr ""
+msgstr "  {obj} {id1} med {id2}"
 
 #: ../gramps/plugins/importer/importxml.py:272
 #: ../gramps/plugins/quickview/filterbyname.py:91
@@ -32879,11 +32873,11 @@ msgstr "Henvise til kilder."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1143
 msgid "Include Tags"
-msgstr "Ta med Merker"
+msgstr "Ta med merker"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1144
 msgid "Whether to include tags."
-msgstr "Hvorvidt Merker skal tas med eller ikke."
+msgstr "Hvorvidt merker skal tas med eller ei."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1147
 msgid "Include Attributes"
