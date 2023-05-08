@@ -36,13 +36,14 @@
 # msansm1 <ronanbarbot@dizalch.fr>, 2021.
 # Translator <kvb@tuta.io>, 2022.
 # Olivier Berten <olivier.berten@gmail.com>, 2023.
+# jmichault <jmt.2000@free.fr>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-06 20:12+0000\n"
-"Last-Translator: Olivier Berten <olivier.berten@gmail.com>\n"
+"PO-Revision-Date: 2023-04-28 17:47+0000\n"
+"Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/fr/>\n"
 "Language: fr\n"
@@ -50,7 +51,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -1136,11 +1137,6 @@ msgstr ""
 "Gramps."
 
 #: ../data/tips.xml:116
-#, fuzzy
-#| msgid ""
-#| "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-#| "translations can easily be added with little development effort. If you "
-#| "are interested in participating please email gramps-devel@lists.sf.net"
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
@@ -1149,7 +1145,7 @@ msgstr ""
 "<b>Traducteurs de Gramps</b><br/>Gramps est prévu pour que toute nouvelle "
 "traduction puisse facilement être ajoutée avec un minimum d'effort. Si vous "
 "êtes intéressé(e) par la traduction, envoyez un message à la liste gramps-"
-"devel@lists.sf.net"
+"devel@lists.sf.net."
 
 #: ../data/tips.xml:118
 msgid ""
@@ -4368,7 +4364,7 @@ msgstr "Correspond aux citations dont une note contient une sous-chaîne"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:42
 msgid "Citations having notes containing <text>"
-msgstr "Citations avec une note de la source qui contient le <texte>."
+msgstr "Citations avec une note qui contient <texte>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
@@ -4457,7 +4453,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
 msgid "Citations having source notes containing <text>"
-msgstr "Citations avec une note de la source qui contient le <texte>."
+msgstr "Citations avec une note de la source qui contient <texte>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:53
