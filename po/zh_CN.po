@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2.0-dev\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-11 06:47+0000\n"
+"PO-Revision-Date: 2023-04-14 08:48+0000\n"
 "Last-Translator: linluoxue <linluomoxue@foxmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/zh_Hans/>\n"
@@ -123,7 +123,7 @@ msgstr "犹太教的新年"
 
 #: ../data/holidays.xml:369
 msgid "Rosh Ha'Shana 2"
-msgstr "Rosh Ha'Shana 2"
+msgstr "罗斯哈沙纳2"
 
 #: ../data/holidays.xml:370
 msgid "Yom Kippur"
@@ -131,7 +131,7 @@ msgstr "『犹太教』赎罪日"
 
 #: ../data/holidays.xml:371
 msgid "Sukot"
-msgstr "Sukot"
+msgstr "苏克特节"
 
 #: ../data/holidays.xml:372
 msgid "2 of Sukot"
@@ -2849,7 +2849,7 @@ msgstr "塔尼娅节"
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgctxt "Islamic month lexeme"
 msgid "Rajab"
-msgstr "Rajab"
+msgstr "拉贾布"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgctxt "Islamic month lexeme"
@@ -2893,12 +2893,12 @@ msgstr "鄂迪贝希特"
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgctxt "Persian month lexeme"
 msgid "Khordad"
-msgstr "Khordad"
+msgstr "霍达德"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgctxt "Persian month lexeme"
 msgid "Tir"
-msgstr "Tir"
+msgstr "射击"
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgctxt "Persian month lexeme"
