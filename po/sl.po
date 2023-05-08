@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-02-17 06:37+0000\n"
+"PO-Revision-Date: 2023-05-08 17:51+0000\n"
 "Last-Translator: beernarrd <beernarrd@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sl/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -362,7 +362,6 @@ msgstr ""
 "boste slišali nekaj odličnih zgodb. Ne pozabite pogovorov tudi posneti!"
 
 #: ../data/tips.xml:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to \"Edit &gt; Person "
@@ -374,19 +373,16 @@ msgid ""
 "Sidebar is not visible, select View &gt; Sidebar."
 msgstr ""
 "<b>Filtriranje po osebah</b><br/>V pogledu Osebe lahko filtrirate osebe po "
-"različnih kriterijih. Pojdite na Filter (desno od ikone Osebe) in izberite "
-"enega izmed mnogih prednastavljenih. Poiščete lahko na primer vse posvojene "
-"osebe v rodovniku. Prav tako tudi vse osebe brez navedenega rojstnega "
-"datuma. Za prikaz rezultatov shranite filter in ga izberite na stranski "
-"vrstici za filtre. Nato kliknite na Uporabi. Če stranska vrstica za filtre "
-"ni vidna, jo lahko prikažete s Pogled - Filter."
+"različnih kriterijih. Za določitev novega filtra pojdite na \"Uredi - "
+"Urejevalnik filtrov za osebe\", kjer boste lahko poimenovali svoj filter in "
+"kombinirali pravila s pomočjo mnogih vnaprej pripravljenih vnosov. "
+"Pripravite lahko na primer filter, s katerim boste našli vse posvojene "
+"otroke v rodovniku. Prav tako tudi vse osebe brez navedenega rojstnega "
+"datuma. Za prikaz rezultatov filter shranite. Nato ga izberite na stranski "
+"vrstici za filtre in kliknite gumb Najdi. Če stranska vrstica za filtre ni "
+"vidna, jo lahko vklopite v meniju Pogled - Stranska vrstica."
 
 #: ../data/tips.xml:16
-#, fuzzy
-#| msgid ""
-#| "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-#| "'invert' option. For instance, by inverting the 'People with children' "
-#| "filter you can select all people without children."
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
 "'invert' option \"Return values that do not match the filter rules\". For "
@@ -394,8 +390,8 @@ msgid ""
 "people without children."
 msgstr ""
 "<b>Obrnjeno filtriranje</b><br/>Filtre lahko enostavno obrnete s potrditvijo "
-"možnosti 'obrn'. Če npr. obrnete filter 'Osebe z otroki' bodo prikazane vse "
-"osebe brez otrok."
+"možnosti \"Prikaži vrednosti, ki ne ustrezajo pravilom filtra\". Če npr. "
+"obrnete filter 'Osebe z otroki' bodo prikazane vse osebe brez otrok."
 
 #: ../data/tips.xml:18
 msgid ""
@@ -434,7 +430,6 @@ msgstr ""
 "desno za izbiro njenega zakonca, sorojencev, otrok ali staršev."
 
 #: ../data/tips.xml:24
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under \"Tools &gt; Analysis and exploration "
 "&gt; Compare Individual Events...\" you can compare the data of individuals "
@@ -449,7 +444,6 @@ msgstr ""
 "filtre."
 
 #: ../data/tips.xml:26
-#, fuzzy
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -459,20 +453,20 @@ msgid ""
 msgstr ""
 "<b>Orodja Gramps</b><br/>Gramps prinaša bogat nabor orodij, ki omogočajo "
 "raznovrstne operacije: preverjanje morebitnih napak in nedoslednosti v "
-"zbirki podatkov, pa tudi orodja za iskanje in analizo, kot npr. primerjanje "
-"dogodkov, iskanje podvojenih vnosov ljudi, priročni brskalnik potomcev itd. "
-"Do teh orodij lahko pridemo preko menija Orodja."
+"zbirki podatkov. Na voljo so orodja za iskanje in analizo, kot so "
+"primerjanje dogodkov, iskanje podvojenih vnosov ljudi, priročni brskalnik "
+"potomcev ter mnogo drugih. Do teh orodij lahko pridemo preko menija \"Orodja"
+"\"."
 
 #: ../data/tips.xml:28
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under \"Tools &gt; "
 "Utilities &gt; Relationship Calculator...\". The exact relationship as well "
 "as all common ancestors are reported."
 msgstr ""
-"<b>Izračun sorodstva</b><br/>Orodje, ki se nahaja pod Orodja - Pripomočki - "
-"Računanje sorodstva vam omogoča preverjanje, če je kdo v družini z vami v "
+"<b>Izračun sorodstva</b><br/>Orodje, ki se nahaja pod \"Orodja - Pripomočki -"
+" Računanje sorodstva\" vam omogoča preverjanje, če je kdo v družini z vami v "
 "krvnem sorodstvu. Izpiše se natančno sorodstveno razmerje ter skupni "
 "predniki."
 
@@ -495,7 +489,6 @@ msgstr ""
 "SoundEx dodajte pripomoček SoundEx."
 
 #: ../data/tips.xml:32
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>\"Edit &gt; Preferences...\" lets you "
 "modify a number of settings, such as the path to your media files, and "
@@ -506,7 +499,7 @@ msgstr ""
 "<b>Prilagajanje nastavitev</b><br/>V meniju Uredi - Možnosti si lahko "
 "prilagodite veliko nastavitev, npr. pot do zunanjih datotek, in način, kako "
 "naj Gramps prikazuje vaše podatke. Vsak posamezen pogled lahko prilagodite "
-"pod &quot;Pogled - Nastavi pogled ...&quot;"
+"pod \"Pogled - Nastavi pogled ...\""
 
 #: ../data/tips.xml:34
 msgid ""
@@ -524,7 +517,6 @@ msgstr ""
 "za to."
 
 #: ../data/tips.xml:36
-#, fuzzy
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
