@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-09 00:48+0000\n"
+"PO-Revision-Date: 2023-05-06 09:51+0000\n"
 "Last-Translator: \"Kristijan \\\"Fremen\\\" Velkovski\" <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/mk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -355,7 +355,6 @@ msgstr ""
 "дури и кога тие немаат датуми на раѓање."
 
 #: ../data/tips.xml:12
-#, fuzzy
 msgid ""
 "<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can "
 "be your most important source of information. They usually know things about "
@@ -364,12 +363,11 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
-"<b>Зборувајте со роднините пред да биде многу доцна</b>: Вашите најстари "
+"<b>Зборувајте со роднините пред да биде многу доцна</b><br/>Вашите најстари "
 "роднини можат да бидат важен извор на информации. Тие обично знаат нешта за "
 "семејството што не се запишани. Можат да ви кажат ситници за луѓе коишто "
-"еден ден можеби ќе ве однесат во нов правец на истражување. Во најмала рака, "
-"ќе чуете некои неверојатни приказани. Не заборавајте да ги снимите "
-"разговорите!"
+"еден ден можеби ќе ве однесат во нов правец на истражување. Барем ќе чуете "
+"некои неверојатни приказани. Не заборавајте да ги снимите разговорите!"
 
 # избори=presets
 #: ../data/tips.xml:14
@@ -13385,10 +13383,9 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/editors/addmedia.py:70
-#, fuzzy
 msgctxt "manual"
 msgid "Select_a_media_selector"
-msgstr "Обедини места"
+msgstr "Select_a_media_selector"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -14186,9 +14183,8 @@ msgstr "Отстрани го одбраното лице"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:81
 #: ../gramps/plugins/lib/libgedcom.py:714
-#, fuzzy
 msgid "Origin"
-msgstr "Потекнувачко време"
+msgstr "Потекло"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:85
 #, fuzzy
@@ -14201,19 +14197,16 @@ msgid "Family Surnames"
 msgstr "Семејно име:"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:54
-#, fuzzy
 msgid "Create and add a new web address"
-msgstr "Создади и додади нов извор"
+msgstr "Создади и додади нова веб адреса"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:55
-#, fuzzy
 msgid "Remove the existing web address"
-msgstr "Отстрани постоечки извор"
+msgstr "Отстрани постоечка веб адреса"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:56
-#, fuzzy
 msgid "Edit the selected web address"
-msgstr "Уреди го одбраното лице"
+msgstr "Уреди ја одбраната веб адреса"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:57
 #, fuzzy
@@ -14231,9 +14224,8 @@ msgid "Jump to the selected web address"
 msgstr "Отстрани го одбраното лице"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:73
-#, fuzzy
 msgid "_Internet"
-msgstr "Интернет"
+msgstr "_Интернет"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:118
 #: ../gramps/gui/glade/editurl.glade:200
@@ -14243,10 +14235,9 @@ msgid "_Jump to"
 msgstr "Оди на татко"
 
 #: ../gramps/gui/editors/editaddress.py:65
-#, fuzzy
 msgctxt "manual"
 msgid "Address_Editor_dialog"
-msgstr "Уредувач на адреси"
+msgstr "Address_Editor_dialog"
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:167
@@ -34882,11 +34873,11 @@ msgstr "%s е отстранет од семејството на %s\n"
 
 #. Translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2484
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] "една прекината сопружник/семејство врска е поправена\n"
-msgstr[1] "една прекината сопружник/семејство врска е поправена\n"
+msgstr[0] "{quantity} прекината сопружник/семејство врска беше поправена\n"
+msgstr[1] "{quantity} прекинати сопружници/семејства врски беа поправени\n"
 
 #: ../gramps/plugins/tool/check.py:2492 ../gramps/plugins/tool/check.py:2520
 msgid "Non existing person"
@@ -39964,22 +39955,19 @@ msgstr "Забелешки за родител"
 
 #: ../gramps/plugins/webreport/webcal.py:1898
 msgid "The note for the month of March"
-msgstr ""
+msgstr "Белешка за месецот Март"
 
 #: ../gramps/plugins/webreport/webcal.py:1901
-#, fuzzy
 msgid "April Note"
-msgstr "Забелешка"
+msgstr "Април Белешка"
 
 #: ../gramps/plugins/webreport/webcal.py:1902
-#, fuzzy
 msgid "The note for the month of April"
-msgstr "Стилот употребен за насловот."
+msgstr "Белешка за месецот Април"
 
 #: ../gramps/plugins/webreport/webcal.py:1905
-#, fuzzy
 msgid "May Note"
-msgstr "Забелешка за семејство"
+msgstr "Мај Белешка"
 
 #: ../gramps/plugins/webreport/webcal.py:1906
 #, fuzzy
@@ -40081,9 +40069,8 @@ msgid "%s since death"
 msgstr ""
 
 #: ../gramps/plugins/webreport/webcal.py:2196
-#, fuzzy
 msgid "death"
-msgstr "Смрт"
+msgstr "смрт"
 
 #: ../gramps/plugins/webreport/webcal.py:2220
 #, python-brace-format
@@ -40149,7 +40136,7 @@ msgstr "Големина на маргини"
 #. Translators: Nebraska style sheet
 #: ../gramps/plugins/webstuff/webstuff.py:93
 msgid "Nebraska"
-msgstr ""
+msgstr "Небраска"
 
 #: ../gramps/plugins/webstuff/webstuff.py:144
 msgid "No style sheet"
