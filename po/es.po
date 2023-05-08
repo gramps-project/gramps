@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-06 20:12+0000\n"
+"PO-Revision-Date: 2023-05-04 03:52+0000\n"
 "Last-Translator: Juan Saavedra <jcsaaver@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/es/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -12061,7 +12061,7 @@ msgstr "* Requiere reinicio"
 
 #: ../gramps/gui/configure.py:1388
 msgid "Data"
-msgstr "_Datos"
+msgstr "Datos"
 
 #: ../gramps/gui/configure.py:1405
 msgid "Conditional Text Replacements"
@@ -19841,7 +19841,7 @@ msgstr "Falló la carga de la vista. Compruebe la salida de error."
 #: ../gramps/gui/viewmanager.py:956
 #: ../gramps/plugins/importer/importprogen.py:195
 msgid "Import Statistics"
-msgstr "Importar estadísticas"
+msgstr "Estadísticas de la Importación"
 
 #: ../gramps/gui/viewmanager.py:1032
 msgid "Read Only"
@@ -28057,8 +28057,8 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado el %(baptism_date)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado el %(baptism_date)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
@@ -28071,8 +28071,8 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada el %(baptism_date)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada el %(baptism_date)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
@@ -28119,7 +28119,7 @@ msgstr "%(female_name)s fue bautizado el %(baptism_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:615
 #, python-format
 msgid "She was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Fue bautizado el %(baptism_date)s%(endnotes)s."
+msgstr "Fue bautizada el %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:618
 #, python-format
@@ -28143,8 +28143,8 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado en %(month_year)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado en %(month_year)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
@@ -28157,8 +28157,8 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada en %(month_year)s en %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada en %(month_year)s en "
+"%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
@@ -28184,7 +28184,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:637
 #, python-format
 msgid "Baptized %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Bautizado/a el %(month_year)s en %(baptism_place)s%(endnotes)s."
+msgstr "Bautizado/a en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:642
 #, python-format
@@ -28385,8 +28385,8 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado el %(christening_date)s en %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado el %(christening_date)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:728
 #, python-format
@@ -28428,8 +28428,8 @@ msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Esta persona fue bautizada el %(christening_date)s en %(christening_place)s"
-"%(endnotes)s."
+"Esta persona fue bautizada el %(christening_date)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:738
 #, python-format
@@ -28467,7 +28467,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:752
 #, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr "Fue bautizado/a el %(christening_date)s%(endnotes)s."
+msgstr "Esta persona fue bautizada el %(christening_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:754
 #, python-format
@@ -28480,8 +28480,8 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s fue bautizado en %(month_year)s en %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s fue bautizado en %(month_year)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
@@ -28495,8 +28495,8 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s fue bautizada en %(month_year)s en %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s fue bautizada en %(month_year)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
@@ -28519,7 +28519,8 @@ msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Fue bautizado/a en %(month_year)s en %(christening_place)s%(endnotes)s."
+"Esta persona fue bautizada en %(month_year)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:770
 #, python-format
@@ -28554,7 +28555,7 @@ msgstr "%(unknown_gender_name)s fue bautizado/a en %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:784
 #, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr "Fue bautizado/a en %(month_year)s%(endnotes)s."
+msgstr "Esta persona fue bautizada en %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:786
 #, python-format
@@ -28606,7 +28607,8 @@ msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Fue bautizado/a %(modified_date)s en %(christening_place)s%(endnotes)s."
+"Esta persona fue bautizada %(modified_date)s en "
+"%(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:802
 #, python-format
