@@ -348,6 +348,16 @@ class FamilyView(ListView):
                 _("A bookmark could not be set because "
                   "no one was selected."), parent=self.uistate.window)
 
+    def get_handle_from_gramps_id(self, gid):
+        """
+        Return the handle of the family having the given Gramps ID.
+        """
+        obj = self.dbstate.db.get_family_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
+
     def add(self, *obj):
         family = Family()
         try:
