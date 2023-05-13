@@ -1344,6 +1344,8 @@ class GedcomWriter(UpdateCallback):
         """
 
         citation = self.dbase.get_citation_from_handle(citation_handle)
+        if citation is None: # removed by proxy
+            return
 
         src_handle = citation.get_reference_handle()
         if src_handle is None:
