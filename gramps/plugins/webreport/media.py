@@ -472,7 +472,13 @@ class MediaPages(BasePage):
                                 if orig_image_path != newpath:
                                     url = self.report.build_url_fname(
                                         newpath, None, self.uplink)
-                                s_width = 'width: %dpx;' % max_width
+                                regions = self.media_ref_rect_regions(media_handle)
+                                if regions:
+                                    s_width = 'width: %dpx;' % max_width
+                                elif width < max_width:
+                                    s_width = 'width: %dpx;' % width
+                                else:
+                                    s_width = 'width: %dpx;' % max_width
                                 mediadisplay += Html("a", href=url) + (
                                     Html("img", src=url,
                                          style=s_width,
