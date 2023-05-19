@@ -556,7 +556,11 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         self._empty = 0
         size = int(max(w_cm, h_cm) * float(150.0/2.54))
-        refname = "is%s" % os.path.basename(name)
+        cropsuffix = ""
+        if crop:
+            cropsuffix = "-%s" % "x".join([str(val) for val in crop])
+        refroot, refext = os.path.splitext(os.path.basename(name))
+        refname = "is%s%s%s" % (refroot, cropsuffix, refext)
 
         imdir = self._backend.datadirfull()
 
