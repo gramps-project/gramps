@@ -80,7 +80,7 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.datehandler import parser as _dp
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.utils.location import get_main_location
 from gramps.plugins.webreport.common import (_NAME_STYLE_DEFAULT, HTTP, HTTPS,
                                              add_birthdate, CSS, html_escape,
@@ -2961,7 +2961,8 @@ class BasePage:
             tbody += trow
 
         data = place.get_latitude()
-        v_lat, v_lon = conv_lat_lon(data, "0.0", "D.D8")
+        v_lat, v_lon = conv_lat_lon(data, "0.0",
+                                    coord_formats[self.report.options['coord_format']])
         if not v_lat:
             data += self._(":")
             # We use the same message as in:
@@ -2975,11 +2976,12 @@ class BasePage:
             trow = Html('tr') + (
                 Html("td", self._("Latitude"), class_="ColumnAttribute",
                      inline=True),
-                Html("td", data, class_="ColumnValue", inline=True)
+                Html("td", v_lat, class_="ColumnValue", inline=True)
             )
             tbody += trow
         data = place.get_longitude()
-        v_lat, v_lon = conv_lat_lon("0.0", data, "D.D8")
+        v_lat, v_lon = conv_lat_lon("0.0", data,
+                                    coord_formats[self.report.options['coord_format']])
         if not v_lon:
             data += self._(":")
             # We use the same message as in:
@@ -2993,7 +2995,7 @@ class BasePage:
             trow = Html('tr') + (
                 Html("td", self._("Longitude"), class_="ColumnAttribute",
                      inline=True),
-                Html("td", data, class_="ColumnValue", inline=True)
+                Html("td", v_lon, class_="ColumnValue", inline=True)
             )
             tbody += trow
 

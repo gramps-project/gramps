@@ -63,7 +63,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.plugins.lib.libhtml import Html
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.proxy import LivingProxyDb
 from gramps.gen.relationship import get_relationship_calculator
 
@@ -794,7 +794,8 @@ class PersonPages(BasePage):
             miny, maxy = Decimal(miny), Decimal(maxy)
             midy_ = str(Decimal((miny + maxy) /2))
 
-            midx_, midy_ = conv_lat_lon(midx_, midy_, "D.D8")
+            midx_, midy_ = conv_lat_lon(midx_, midy_,
+                                        coord_formats[self.report.options['coord_format']])
 
             # get the integer span of latitude and longitude
             dummy_spanx = int(maxx - minx)

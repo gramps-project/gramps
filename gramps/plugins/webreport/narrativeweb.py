@@ -2532,6 +2532,9 @@ class NavWebOptions(MenuReportOptions):
               "\nSee OLDER VERSIONS in https://openlayers.org/"))
         addopt("ol_version", self.__olv)
 
+        coord_format = stdoptions.add_coordinates_format_option(menu,
+                                                                category_name)
+
     def __add_others_options(self, menu):
         """
         Options for the cms tab, web calendar inclusion, PHP ...

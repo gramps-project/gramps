@@ -57,6 +57,7 @@ from gramps.gen.display.name import NameDisplayError
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.alive import update_constants
 from gramps.gen.utils.file import media_path
+from gramps.gen.utils.place import coord_formats
 from gramps.gen.utils.keyword import (get_keywords, get_translations,
                                       get_translation_from_keyword,
                                       get_keyword_from_translation)
@@ -1119,6 +1120,23 @@ class GrampsPreferences(ConfigureDialog):
         config.set('preferences.place-format', obj.get_active())
         self.uistate.emit('placeformat-changed')
 
+    def cb_coord_fmt_changed(self, obj):
+        """
+        Called when the coordinates format is changed.
+        """
+        config.set('preferences.coord-format', obj.get_active())
+        self.uistate.emit('placeformat-changed')  # Do we need to add a new signal ?
+
+    def cb_coord_fmt_rebuild(self):
+        """
+        Called to rebuild the coordinates format list.
+        """
+        model = Gtk.ListStore(str)
+        for fmt in coord_formats:
+            model.append([fmt])
+        self.cformat.set_model(model)
+        self.cformat.set_active(0)
+
     def cb_pa_sur_changed(self, *args):
         """
         Checkbox patronymic as surname changed, propagate to namedisplayer
@@ -1203,6 +1221,27 @@ class GrampsPreferences(ConfigureDialog):
         self.auto_title_changed(cb_widget)
         hbox.pack_start(self.pformat, True, True, 0)
         hbox.pack_start(self.fmt_btn, False, False, 0)
+        grid.attach(hbox, 2, row, 2, 1)
+
+        row += 1
+        # Coordinates display format:
+        self.cformat = Gtk.ComboBox()
+        self.cformat.set_hexpand(True)
+        renderer = Gtk.CellRendererText()
+        self.cformat.pack_start(renderer, True)
+        self.cformat.add_attribute(renderer, "text", 0)
+        self.cb_coord_fmt_rebuild()
+        if not config.is_set('preferences.coord-format'):
+            config.register('preferences.coord-format', 0)
+        active = config.get('preferences.coord-format')
+        self.cformat.set_active(active)
+        self.cformat.connect('changed', self.cb_coord_fmt_changed)
+        hbox = Gtk.Box()
+        lwidget = BasicLabel(_("%s: ") % _('Coordinates format'))
+        lwidget.set_use_underline(True)
+        lwidget.set_mnemonic_widget(self.cformat)
+        hbox.pack_start(self.cformat, True, True, 0)
+        grid.attach(lwidget, 1, row, 1, 1)
         grid.attach(hbox, 2, row, 2, 1)
 
         row += 1

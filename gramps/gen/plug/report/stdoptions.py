@@ -37,6 +37,7 @@ from ..menu import EnumeratedListOption, BooleanOption, NumberOption
 from ...proxy import PrivateProxyDb, LivingProxyDb
 from ...utils.grampslocale import GrampsLocale
 from ...const import GRAMPS_LOCALE as glocale
+from ...utils.place import coord_formats
 _ = glocale.translation.sgettext
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
@@ -376,3 +377,15 @@ def add_place_format_option(menu, category):
     place_format.set_help(_("Select the format to display places"))
     menu.add_option(category, "place_format", place_format)
     return place_format
+
+def add_coordinates_format_option(menu, category):
+    """
+    Insert an option for changing the report's coordinates format to a
+    report-specific format instead of the user's Edit=>Preferences choice
+    """
+    coord_format = EnumeratedListOption(_("Coordinates format"), -1)
+    for number, fmt in enumerate(coord_formats):
+        coord_format.add_item(number, fmt)
+    coord_format.set_help(_("Select the format to display coordinates"))
+    menu.add_option(category, "coord_format", coord_format)
+    return coord_format

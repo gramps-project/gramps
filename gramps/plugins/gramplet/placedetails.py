@@ -32,10 +32,11 @@ from gi.repository.GLib import markup_escape_text
 #-------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 _ = glocale.translation.gettext
 
 class PlaceDetails(Gramplet):
@@ -129,7 +130,7 @@ class PlaceDetails(Gramplet):
         self.display_separator()
         lat, lon = conv_lat_lon(place.get_latitude(),
                                 place.get_longitude(),
-                                format='DEG')
+                                format=coord_formats[config.get('preferences.coord-format')])
         if lat:
             self.add_row(_('Latitude'), lat)
         if lon:

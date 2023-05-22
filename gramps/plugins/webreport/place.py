@@ -53,7 +53,7 @@ from gramps.gen.lib import (PlaceType, Place, PlaceName, Media)
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.mime import is_image_type
 from gramps.plugins.lib.libhtml import Html
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, coord_formats
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as _pd
 
@@ -165,7 +165,9 @@ class PlacePages(BasePage):
 
     def __output_place(self, ldatec, tbody, first_place,
                        pname, sname, cname, place_handle, letter, bucket_link):
-        place = self.r_db.get_place_from_handle(place_handle)
+        place = None
+        if place_handle:
+            place = self.r_db.get_place_from_handle(place_handle)
         if place:
             if place.get_change_time() > ldatec:
                 ldatec = place.get_change_time()
@@ -217,7 +219,7 @@ class PlacePages(BasePage):
                 trow += tcell1, tcell2
                 if place.lat and place.long:
                     latitude, longitude = conv_lat_lon(place.lat, place.long,
-                                                       "DEG")
+                                                       coord_formats[self.report.options['coord_format']])
                     tcell1 += latitude
                     tcell2 += longitude
                 else:
@@ -339,16 +341,20 @@ class PlacePages(BasePage):
                                 continue
                             val = self.report.obj_dict[PlaceName][pname]
                             nbelem = len(val)
-                            if nbelem == 4:
+                            if nbelem > 3:
                                 place = self.r_db.get_place_from_handle(
                                     place_handle)
                                 main_location = get_main_location(self.r_db,
                                                                   place)
                                 sname = main_location.get(PlaceType.STATE, '')
                                 cname = main_location.get(PlaceType.COUNTRY, '')
-                            else:
+                            elif nbelem == 3:
                                 cname = val[3]
                                 sname = val[2]
+                            else:
+                                val = [""]
+                                cname = ""
+                                sname = ""
                             (ldatec, first_place) \
                             = self.__output_place(ldatec,
                                                   trow, first_place,
