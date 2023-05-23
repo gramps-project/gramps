@@ -57,7 +57,7 @@ from gramps.gen.display.name import NameDisplayError
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.alive import update_constants
 from gramps.gen.utils.file import media_path
-from gramps.gen.utils.place import coord_formats
+from gramps.gen.utils.place import coord_formats, coord_formats_desc
 from gramps.gen.utils.keyword import (get_keywords, get_translations,
                                       get_translation_from_keyword,
                                       get_keyword_from_translation)
@@ -1145,8 +1145,8 @@ class GrampsPreferences(ConfigureDialog):
         Called to rebuild the coordinates format list.
         """
         model = Gtk.ListStore(str)
-        for fmt in coord_formats:
-            model.append([fmt])
+        for number, fmt in enumerate(coord_formats):
+            model.append([fmt + '\t' + coord_formats_desc[number]])
         self.cformat.set_model(model)
         self.cformat.set_active(0)
 
@@ -1244,8 +1244,6 @@ class GrampsPreferences(ConfigureDialog):
         self.cformat.pack_start(renderer, True)
         self.cformat.add_attribute(renderer, "text", 0)
         self.cb_coord_fmt_rebuild()
-        if not config.is_set('preferences.coord-format'):
-            config.register('preferences.coord-format', 0)
         active = config.get('preferences.coord-format')
         self.cformat.set_active(active)
         self.cformat.connect('changed', self.cb_coord_fmt_changed)

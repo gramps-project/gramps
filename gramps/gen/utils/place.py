@@ -98,6 +98,13 @@ coord_formats = (
     # 'ISO-DMS'   ISO 6709 degree, minutes, seconds notation
     )
 
+coord_formats_desc = (
+    _("Degree, minutes, seconds notation"),
+    _("Degree, minutes, seconds notation with :"),
+    _("Degree notation, 4 decimals"),
+    _("Degree notation, 8 decimals (precision like ISO-DMS)"),
+    _("Output format for the Swedish coordinate system RT90"),
+    )
 
 #------------------
 #
