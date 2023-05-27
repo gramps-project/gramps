@@ -38,7 +38,7 @@ LOG = logging.getLogger(".grampsgui")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN
+from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN, SPLASH
 from gramps.gen.constfunc import has_display, lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -440,6 +440,20 @@ except ImportError:
             "Gramps will terminate now."))
     sys.exit(1)
 
+# Create splash screen
+try:
+    from gi.repository import Gtk, Gdk
+    splash = Gtk.Window()
+    splash.props.type_hint = Gdk.WindowTypeHint.SPLASHSCREEN
+    splash.set_decorated(False)
+    splash.set_position(Gtk.WindowPosition.CENTER)
+    splash.add(Gtk.Image().new_from_file(SPLASH))
+    splash.show_all()
+    while Gtk.events_pending():
+        Gtk.main_iteration()
+except:
+    print("Failed to create splash screen")
+
 #-------------------------------------------------------------------------
 #
 # Functions
@@ -710,3 +724,4 @@ class GrampsApplication(Gtk.Application):
         else:
             print('Gramps is already running.')
         self.window.present()
+        splash.destroy()
