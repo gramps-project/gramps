@@ -40,6 +40,7 @@ from .ldsordbase import LdsOrdBase
 from .urlbase import UrlBase
 from .tagbase import TagBase
 from .name import Name
+from .nametype import NameType
 from .eventref import EventRef
 from .personref import PersonRef
 from .attrtype import AttributeType
@@ -634,6 +635,18 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             if int(attr.type) == AttributeType.NICKNAME:
                 return attr.get_value()
         return ''
+
+    def get_maiden_name(self):
+        married_name = None
+        birth_name = None
+        for name in [self.get_primary_name()] + self.get_alternate_names():
+            if name.get_type() == NameType.BIRTH and name.get_surname():
+                birth_name   = name.get_surname()
+            elif name.get_type() == NameType.MARRIED and name.get_surname():
+                married_name = name.get_surname()
+        if birth_name and married_name and birth_name != married_name:
+            return birth_name
+        return None
 
     def set_gender(self, gender):
         """
