@@ -186,7 +186,7 @@ class NameFormat(GenericFormat):
                     common,                    # x
                     name.get_suffix,           # s
                     name.get_surname,          # l
-                    name.get_family_nick_name, # g
+                    name.get_family_nick_name  # g
                    ]
 
         return self.generic_format(name, code, upper, function)
@@ -823,7 +823,7 @@ class VariableParse:
     def is_a(self):
         """ check """
         return self._in.this == "$" and self._in.next is not None and \
-                              "näsijbBdDmMvVauetTpPG".find(self._in.next) != -1
+                              "nhsijbBdDmMvVauetTpPG".find(self._in.next) != -1
 
     def get_event_by_type(self, marriage, e_type):
         """ get an event from a type """
@@ -946,7 +946,8 @@ class VariableParse:
         if next_char == "n":
             #Person's name
             return self.__parse_name(self.friend.person, attrib_parse)
-        elif next_char == "ä":
+
+        elif next_char == "h":
             if self.empty_item(self.friend.person):
                 return
 #            print(self.friend.person.get_maiden_name())
