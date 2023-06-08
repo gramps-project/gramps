@@ -177,7 +177,7 @@ class NameFormat(GenericFormat):
             return (name.get_call_name() or
                     name.get_first_name().split(' ')[0])
 
-        code = "tfcnxslg"
+        code = "tfcnxslgp"
         upper = code.upper()
         function = [name.get_title,            # t
                     name.get_first_name,       # f
@@ -186,7 +186,8 @@ class NameFormat(GenericFormat):
                     common,                    # x
                     name.get_suffix,           # s
                     name.get_surname,          # l
-                    name.get_family_nick_name  # g
+                    name.get_family_nick_name, # g
+                    name.get_primary           # p
                    ]
 
         return self.generic_format(name, code, upper, function)

@@ -197,6 +197,18 @@ class SurnameBase:
                                                      'second': fsurn}
         return totalsurn.strip()
 
+    def get_primary(self):
+        """
+        Return a fully formatted primary surname
+        """
+        primary = self.get_primary_surname()
+        partsurn = primary.get_surname()
+        if primary.get_prefix():
+            fsurn = _('%(first)s %(second)s') % {'first': primary.get_prefix(),
+                                                 'second': partsurn}
+        else:
+            fsurn = partsurn
+        return fsurn.strip()
 
     def get_upper_surname(self):
         """Return a fully formatted surname capitalized"""
