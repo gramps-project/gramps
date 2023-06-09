@@ -145,7 +145,13 @@ class PlacePages(BasePage):
                                         place.gramps_id, None)
                             self.report.obj_dict[Place][place_ref] = plc_dict
                             p_name = _pd.display(self.r_db, place, fmt=0)
+                            cplace_name = p_name.split()[-1]
+                            if len(place_name.split()) > 1:
+                                splace_name = place_name.split()[-2]
+                            else:
+                                splace_name = cplace_name
                             plc_dict = (place_ref, p_name,
+                                        splace_name, cplace_name,
                                         place.gramps_id, None)
                             self.report.obj_dict[PlaceName][p_name] = plc_dict
 
@@ -157,8 +163,9 @@ class PlacePages(BasePage):
                 step()
                 p_handle = self.report.obj_dict[PlaceName][place_name]
                 index += 1
-                self.placepage(self.report, the_lang, the_title, p_handle[0],
-                               place_name)
+                if isinstance(p_handle, tuple):
+                    self.placepage(self.report, the_lang, the_title, p_handle[0],
+                                   place_name)
             step()
         self.placelistpage(self.report, the_lang, the_title)
 
@@ -341,9 +348,13 @@ class PlacePages(BasePage):
                                 continue
                             val = self.report.obj_dict[PlaceName][pname]
                             nbelem = len(val)
-                            if nbelem > 3:
-                                place = self.r_db.get_place_from_handle(
-                                    place_handle)
+                            if val and nbelem > 3:
+                                if isinstance(place_handle, tuple):
+                                    place = self.r_db.get_place_from_handle(
+                                        place_handle[0])
+                                else:
+                                    place = self.r_db.get_place_from_handle(
+                                        place_handle)
                                 main_location = get_main_location(self.r_db,
                                                                   place)
                                 sname = main_location.get(PlaceType.STATE, '')
@@ -391,8 +402,8 @@ class PlacePages(BasePage):
         ldatec = place.get_change_time()
         apname = _pd.display(self.r_db, place, fmt=0)
 
-        if place_name == apname: # store only the primary named page
-            output_file, sio = self.report.create_file(place_handle, "plc")
+        # if place_name:  # != apname: # store only the primary named page
+        output_file, sio = self.report.create_file(place_handle, "plc")
         self.uplink = True
         self.page_title = place_name
         (placepage, head, dummy_body,
@@ -619,6 +630,6 @@ class PlacePages(BasePage):
 
         # send page out for processing
         # and close the file
-        if place_name == apname: # store only the primary named page
-            self.xhtml_writer(placepage, output_file, sio, ldatec)
+        # if place_name:  # != apname: # store only the primary named page
+        self.xhtml_writer(placepage, output_file, sio, ldatec)
 

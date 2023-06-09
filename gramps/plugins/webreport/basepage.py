@@ -2974,7 +2974,7 @@ class BasePage:
         data = place.get_latitude()
         v_lat, v_lon = conv_lat_lon(data, "0.0",
                                     coord_formats[self.report.options['coord_format']])
-        if not v_lat:
+        if data and not v_lat:
             data += self._(":")
             # We use the same message as in:
             # gramps/gui/editors/editplace.py
@@ -2993,7 +2993,7 @@ class BasePage:
         data = place.get_longitude()
         v_lat, v_lon = conv_lat_lon("0.0", data,
                                     coord_formats[self.report.options['coord_format']])
-        if not v_lon:
+        if data and not v_lon:
             data += self._(":")
             # We use the same message as in:
             # gramps/gui/editors/editplace.py
