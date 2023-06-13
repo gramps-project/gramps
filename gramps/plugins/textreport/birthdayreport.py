@@ -104,6 +104,7 @@ class BirthdayReport(Report):
         self.filter_option = menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
         self.showyear = mgobn('showyear')
+        self.inc_gid = mgobn('inc_id')
         pid = mgobn('pid')
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
@@ -137,7 +138,11 @@ class BirthdayReport(Report):
                 surname_obj.set_surname(maiden_name)
         else:
             name = Name(primary_name)
-        return self._name_display.display_name(name)
+        if self.inc_gid:
+            return "%s (%s)" % (self._name_display.display_name(name),
+                                person.get_gramps_id())
+        else:
+            return self._name_display.display_name(name)
 
     def add_day_item(self, text, month, day, person=None):
         """ Add an item to a day. """
@@ -508,6 +513,8 @@ class BirthdayOptions(MenuReportOptions):
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the report"))
         menu.add_option(category_name, "alive", alive)
+
+        stdoptions.add_gramps_id_option(menu, category_name)
 
         deadtxt = StringOption(_("Dead Symbol"), _(_DEADTXT))
         deadtxt.set_help(_("This will show after name to indicate that person is dead"))
