@@ -12,13 +12,14 @@
 # Freek Olgers <freek@olgers.com>, 2022.
 # Niko Strijbol <strijbol.niko@gmail.com>, 2022.
 # Stephan Paternotte <s.paternotte@outlook.com>, 2022.
+# Stephan Paternotte <stephan@paternottes.net>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-09-07 06:18+0000\n"
-"Last-Translator: Stephan Paternotte <s.paternotte@outlook.com>\n"
+"PO-Revision-Date: 2023-06-18 06:50+0000\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/nl/>\n"
 "Language: nl\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3362,7 +3363,7 @@ msgstr "Standaardindeling (gedefinieerd door Gramps-voorkeuren)"
 
 #: ../gramps/gen/display/name.py:355
 msgid "Surname, Given Suffix"
-msgstr "Achternaam, Voornaam <achtervoegsel>"
+msgstr "Achternaam, Voornaam Achtervoegsel"
 
 #: ../gramps/gen/display/name.py:357 ../gramps/gen/utils/keyword.py:55
 #: ../gramps/gui/configure.py:864 ../gramps/gui/configure.py:866
@@ -3379,13 +3380,12 @@ msgstr "Voornaam"
 
 #: ../gramps/gen/display/name.py:359
 msgid "Given Surname Suffix"
-msgstr "Voornaam Achternaam <achtervoegsel>"
+msgstr "Voornaam Achternaam Achtervoegsel"
 
 #. Translators: long string, have a look at Preferences dialog
 #: ../gramps/gen/display/name.py:363
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr ""
-"Hoofdachternamen, Voornaam <patronymicum> <achtervoegsel> <voorvoegsel>"
+msgstr "Hoofdachternamen, Voornaam Patronymicum Achtervoegsel Voorvoegsel"
 
 #: ../gramps/gen/display/name.py:366
 msgid "Patronymic, Given"
@@ -5735,7 +5735,7 @@ msgid ""
 "generations away"
 msgstr ""
 "Vindt personen die voorouders zijn van een bepaalde persoon en die op een "
-"afstand van niet meer dan <N> generaties staan"
+"afstand van niet meer dan N generaties staan"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:52
 msgid "Ancestors of bookmarked people not more than <N> generations away"
@@ -5749,7 +5749,7 @@ msgid ""
 "generations away"
 msgstr ""
 "Vindt voorouders van personen met een bladwijzer die op een afstand van niet "
-"meer dan <N> generaties staan"
+"meer dan N generaties staan"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the Home Person not more than <N> generations away"
@@ -5760,8 +5760,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid "Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
-"Vindt voorouders van de beginpersoon die op een afstand van niet meer dan "
-"<N> generaties staan"
+"Vindt voorouders van de beginpersoon die op een afstand van niet meer dan N "
+"generaties staan"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
 msgid "Descendants of <person> not more than <N> generations away"
@@ -5774,7 +5774,7 @@ msgid ""
 "generations away"
 msgstr ""
 "Vindt afstammelingen van de beginpersoon die op een afstand van niet meer "
-"dan <N> generaties staan"
+"dan N generaties staan"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
@@ -5799,8 +5799,8 @@ msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Vindt voorouders van <persoon> die op een afstand van minstens <N> "
-"generaties staan"
+"Vindt voorouders van persoon die op een afstand van minstens N generaties "
+"staan"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:46
 msgid "Descendants of <person> at least <N> generations away"
@@ -5812,7 +5812,7 @@ msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Vindt afstammelingen van <persoon> die op een afstand van minstens <N> "
+"Vindt afstammelingen van persoon die op een afstand van minstens N "
 "generaties staan"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:47
@@ -8816,7 +8816,7 @@ msgstr "Breedtegraad"
 #: ../gramps/plugins/webreport/place.py:346
 #: ../gramps/plugins/webreport/updates.py:119
 msgid "Places"
-msgstr "Locaties"
+msgstr "Plaatsen"
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/plugins/textreport/indivcomplete.py:393
@@ -22021,7 +22021,7 @@ msgstr "Bepaalt welke personen in het verslag worden opgenomen."
 #: ../gramps/plugins/webreport/narrativeweb.py:1975
 #: ../gramps/plugins/webreport/webcal.py:1760
 msgid "Filter Person"
-msgstr "Persoonsfilter"
+msgstr "Persoon filteren"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1019
 #: ../gramps/plugins/textreport/birthdayreport.py:481
@@ -30483,8 +30483,8 @@ msgid ""
 "person."
 msgstr ""
 "Er moeten precies twee personen worden geselecteerd om een samenvoeging uit "
-"te voeren. Een tweede persoon kan worden geselecteerd door de <control>-"
-"toets ingedrukt te houden terwijl u op de gewenste persoon klikt."
+"te voeren. Een tweede persoon kan worden geselecteerd door de Ctrl-toets "
+"ingedrukt te houden terwijl u op de gewenste persoon klikt."
 
 #: ../gramps/plugins/lib/libplaceview.py:104
 msgid "Edit the selected place"
@@ -30562,8 +30562,8 @@ msgid ""
 "place."
 msgstr ""
 "Er moeten precies twee locaties worden geselecteerd om een samenvoeging uit "
-"te voeren. Een tweede locatie kan worden geselecteerd door de <control>-"
-"toets ingedrukt te houden terwijl u op de gewenste locatie klikt."
+"te voeren. Een tweede locatie kan worden geselecteerd door de Ctrl-toets "
+"ingedrukt te houden terwijl u op de gewenste locatie klikt."
 
 #: ../gramps/plugins/lib/libplaceview.py:542
 msgid "Merging these places would create a cycle in the place hierarchy."
@@ -35790,7 +35790,7 @@ msgid ""
 "desired citation."
 msgstr ""
 "Er moeten precies twee citaten worden geselecteerd om een samenvoeging uit "
-"te voeren. Een tweede citaat kan worden geselecteerd door de <control>-toets "
+"te voeren. Een tweede citaat kan worden geselecteerd door de Ctrl-toets "
 "ingedrukt te houden terwijl u op het gewenste citaat klikt."
 
 #: ../gramps/plugins/view/citationlistview.py:413
@@ -35906,8 +35906,7 @@ msgid ""
 msgstr ""
 "Er moeten precies twee gebeurtenissen worden geselecteerd om een "
 "samenvoeging uit te voeren. Een tweede object kan worden geselecteerd door "
-"de <control>-toets ingedrukt te houden terwijl u op de gewenste gebeurtenis "
-"klikt."
+"de Ctrl-toets ingedrukt te houden terwijl u op de gewenste gebeurtenis klikt."
 
 #: ../gramps/plugins/view/familyview.py:83
 msgid "Marriage Date"
@@ -35952,8 +35951,8 @@ msgid ""
 "desired family."
 msgstr ""
 "Er moeten precies twee gezinnen worden geselecteerd om een samenvoeging uit "
-"te voeren. U kunt een tweede gezin selecteren door de <control>-toets "
-"ingedrukt te houden terwijl u op het gewenste gezin klikt."
+"te voeren. U kunt een tweede gezin selecteren door de Ctrl-toets ingedrukt "
+"te houden terwijl u op het gewenste gezin klikt."
 
 #: ../gramps/plugins/view/fanchart2wayview.py:280
 msgid "Max ancestor generations"
@@ -36636,8 +36635,8 @@ msgid ""
 "desired object."
 msgstr ""
 "Er moeten precies twee media-objecten worden geselecteerd om samen te "
-"voegen. U kunt een tweede object selecteren door de <control>-toets "
-"ingedrukt te houden terwijl u op het gewenste object klikt."
+"voegen. U kunt een tweede object selecteren door de Ctrl-toets ingedrukt te "
+"houden terwijl u op het gewenste object klikt."
 
 #: ../gramps/plugins/view/noteview.py:94
 msgid "Delete the selected note"
@@ -36661,8 +36660,8 @@ msgid ""
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
 "Er moeten precies twee notities worden geselecteerd om een samenvoeging uit "
-"te voeren. U kunt een tweede notitie selecteren door de <control>-toets "
-"ingedrukt te houden terwijl u op de gewenste notitie klikt."
+"te voeren. U kunt een tweede notitie selecteren door de Ctrl-toets ingedrukt "
+"te houden terwijl u op de gewenste notitie klikt."
 
 #: ../gramps/plugins/view/pedigreeview.py:82
 msgctxt "short for born"
@@ -37017,9 +37016,8 @@ msgid ""
 "the desired repository."
 msgstr ""
 "Er moeten precies twee bibliotheken worden geselecteerd om een samenvoeging "
-"uit te voeren. Een tweede bibliotheek kan worden geselecteerd door de "
-"<control>-toets ingedrukt te houden terwijl u op de gewenste bibliotheek "
-"klikt."
+"uit te voeren. Een tweede bibliotheek kan worden geselecteerd door de Ctrl-"
+"toets ingedrukt te houden terwijl u op de gewenste bibliotheek klikt."
 
 #: ../gramps/plugins/view/sourceview.py:99
 msgid "Edit the selected source"
@@ -37048,7 +37046,7 @@ msgid ""
 "source."
 msgstr ""
 "Er moeten precies twee bronnen worden geselecteerd om een samenvoeging uit "
-"te voeren. Een tweede bron kan worden geselecteerd door de <control>-toets "
+"te voeren. Een tweede bron kan worden geselecteerd door de Ctrl-toets "
 "ingedrukt te houden terwijl u op de gewenste bron klikt."
 
 #: ../gramps/plugins/view/view.gpr.py:38
