@@ -6,14 +6,14 @@
 # lcc <lcc@6zap.com>, 2009-2009.
 # Frederico Muñoz <fsmunoz@gmail.com>, 2010-2011, 2013.
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2017, 2018, 2019.
-# Pedro Albuquerque <pmra@gmx.com>, 2021, 2022.
+# Pedro Albuquerque <pmra@gmx.com>, 2021, 2022, 2023.
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2022-05-11 22:16+0000\n"
+"PO-Revision-Date: 2023-06-01 06:48+0000\n"
 "Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
 "Language-Team: Portuguese (Portugal) <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/pt_PT/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -2595,62 +2595,62 @@ msgstr "Dez"
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgctxt "alternative month names for January"
 msgid ""
-msgstr ""
+msgstr "Janeiro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgctxt "alternative month names for February"
 msgid ""
-msgstr ""
+msgstr "Fevereiro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgctxt "alternative month names for March"
 msgid ""
-msgstr ""
+msgstr "Março"
 
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgctxt "alternative month names for April"
 msgid ""
-msgstr ""
+msgstr "Abril"
 
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgctxt "alternative month names for May"
 msgid ""
-msgstr ""
+msgstr "Maio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgctxt "alternative month names for June"
 msgid ""
-msgstr ""
+msgstr "Junho"
 
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgctxt "alternative month names for July"
 msgid ""
-msgstr ""
+msgstr "Julho"
 
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgctxt "alternative month names for August"
 msgid ""
-msgstr ""
+msgstr "Agosto"
 
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgctxt "alternative month names for September"
 msgid ""
-msgstr ""
+msgstr "Setembro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgctxt "alternative month names for October"
 msgid ""
-msgstr ""
+msgstr "Outubro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgctxt "alternative month names for November"
 msgid ""
-msgstr ""
+msgstr "Novembro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgctxt "alternative month names for December"
 msgid ""
-msgstr ""
+msgstr "Dezembro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgctxt "calendar"
