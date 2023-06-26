@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 5.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-09 00:48+0000\n"
+"PO-Revision-Date: 2023-06-26 04:42+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/hr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 
@@ -22134,7 +22134,7 @@ msgstr "Mjesto pogreba"
 
 #: ../gramps/plugins/export/exportcsv.py:360
 msgid "Burial source"
-msgstr "Izvor podataka o pogrebu"
+msgstr "Izvor pogreba"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:236
@@ -22667,7 +22667,7 @@ msgstr "Gramplet prikazuje izravne potomke aktivne osobe lepezastim dijagramom"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:148
 #: ../gramps/plugins/view/view.gpr.py:158
 msgid "Descendant Fan"
-msgstr "Lepezasti dijagram potomaka"
+msgstr "Lepeza potomaka"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:156
 #: ../gramps/plugins/view/fanchart2wayview.py:79
@@ -24953,7 +24953,7 @@ msgstr "datum pogreba"
 
 #: ../gramps/plugins/importer/importcsv.py:198
 msgid "burial source"
-msgstr "izvor podataka o pogrebu"
+msgstr "izvor pogreba"
 
 #: ../gramps/plugins/importer/importcsv.py:200
 msgid "death place"
