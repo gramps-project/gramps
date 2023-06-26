@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-06 20:12+0000\n"
+"PO-Revision-Date: 2023-05-18 18:50+0000\n"
 "Last-Translator: Medic Momcilo <momcilo@medic.rs>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/sr/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -6927,11 +6927,9 @@ msgid "None"
 msgstr "Ништа"
 
 #: ../gramps/gen/lib/childreftype.py:68
-#, fuzzy
-#| msgid "Birth"
 msgctxt "relationship"
 msgid "Birth"
-msgstr "Рођендан"
+msgstr "Рођење"
 
 #: ../gramps/gen/lib/childreftype.py:69
 #, fuzzy
@@ -7337,11 +7335,11 @@ msgstr "Главна"
 
 #: ../gramps/gen/lib/eventroletype.py:56
 msgid "Clergy"
-msgstr "Свештенство"
+msgstr "Свештенички"
 
 #: ../gramps/gen/lib/eventroletype.py:57
 msgid "Celebrant"
-msgstr "Мисник"
+msgstr "Слављеник"
 
 #: ../gramps/gen/lib/eventroletype.py:58
 msgid "Aide"
@@ -7362,7 +7360,7 @@ msgstr "Породица"
 
 #: ../gramps/gen/lib/eventroletype.py:63
 msgid "Informant"
-msgstr "Обавештајац"
+msgstr "Извештитељ"
 
 #: ../gramps/gen/lib/eventroletype.py:64
 #, fuzzy
@@ -7459,7 +7457,7 @@ msgstr "Усвојен"
 #: ../gramps/plugins/webreport/person.py:231
 #: ../gramps/plugins/webreport/surname.py:142
 msgid "Birth"
-msgstr "Рођендан"
+msgstr "Рођење"
 
 #: ../gramps/gen/lib/eventtype.py:166 ../gramps/gui/configure.py:2236
 #: ../gramps/gui/merge/mergeperson.py:194
@@ -16180,7 +16178,7 @@ msgstr "Напустите измене и затворите прозор"
 #: ../gramps/gui/glade/editfamily.glade:131
 #: ../gramps/gui/glade/editfamily.glade:385
 msgid "Birth:"
-msgstr "Рођендан:"
+msgstr "Рођење:"
 
 #: ../gramps/gui/glade/editfamily.glade:160
 msgid "Father/partner1"
