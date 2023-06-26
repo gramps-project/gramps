@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-03-25 10:41+0000\n"
+"PO-Revision-Date: 2023-06-26 04:41+0000\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/gramps-project/"
 "gramps/de/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 
 #: ../data/holidays.xml:3
 msgid "Bulgaria"
@@ -3445,7 +3445,7 @@ msgstr "Rufname"
 #: ../gramps/gen/display/name.py:589 ../gramps/gen/display/name.py:688
 msgctxt "Name"
 msgid "common"
-msgstr "Üblich"
+msgstr "üblich"
 
 #: ../gramps/gen/display/name.py:593 ../gramps/gen/display/name.py:691
 msgid "initials"
