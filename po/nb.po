@@ -12,13 +12,14 @@
 # Nick Hall <nick-h@gramps-project.org>, 2021.
 # Mihle <MihleGaming@gmail.com>, 2021, 2022.
 # Para <ahh-produktivitet@tutanota.com>, 2022.
+# Mikal Thunold-Olsen <mikal@thunold-olsen.no>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-14 21:35+0000\n"
-"PO-Revision-Date: 2023-04-29 10:51+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2023-06-18 06:50+0000\n"
+"Last-Translator: Mikal Thunold-Olsen <mikal@thunold-olsen.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "gramps-project/gramps/nb_NO/>\n"
 "Language: nb\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 "Generated-By: pygettext.py 1.4\n"
 
 #: ../data/holidays.xml:3
@@ -4116,7 +4117,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hastag.py:48
 #: ../gramps/gui/editors/filtereditor.py:578
 msgid "Tag:"
-msgstr "Merke:"
+msgstr "Etikett:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
@@ -4124,7 +4125,7 @@ msgstr "Siteringer med <merke>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
-msgstr "Samsvarer med siteringer med det spesielle merket"
+msgstr "Samsvarer siteringer med den spesielle etiketten"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:45
 msgid "Citations matching the <filter>"
@@ -24182,10 +24183,8 @@ msgid "Entering and editing data (brief)"
 msgstr "Åpne en eksisterende database"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:174
-#, fuzzy
-#| msgid "Import Family Tree"
 msgid "Importing a Family Tree"
-msgstr "Importere slektsdatabase"
+msgstr "Importere et slektstre"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:175
 msgid ""
@@ -24236,10 +24235,8 @@ msgstr "Gramps visning"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:194
 #: ../gramps/plugins/gramplet/welcomegramplet.py:199
-#, fuzzy
-#| msgid "Add a gramplet"
 msgid "Addons and \"Gramplets\""
-msgstr "Legge til en smågramps"
+msgstr "Tillegg og smågramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:195
 msgid ""
@@ -24250,10 +24247,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:201
-#, fuzzy
-#| msgid "Entire Database"
 msgid "Example Database"
-msgstr "Hele databasen"
+msgstr "Eksempeldatabase"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:202
 #, fuzzy
@@ -24280,10 +24275,8 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:208
-#, fuzzy
-#| msgid "Example"
 msgid "Example.gramps"
-msgstr "Eksempel"
+msgstr "Example.gramps"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
@@ -25841,9 +25834,8 @@ msgid "Diverse"
 msgstr "Diverse"
 
 #: ../gramps/plugins/importer/importprogen.glade:1526
-#, fuzzy
 msgid "REFN"
-msgstr "BRRN"
+msgstr "REFN"
 
 #: ../gramps/plugins/importer/importprogen.glade:1530
 #, fuzzy
