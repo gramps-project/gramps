@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
+  <header>
+    <created date="1999-12-25" version="5.1.2"/>
+    <researcher>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000200000002" change="1" id="E0000">
+      <type>Birth</type>
+      <dateval val="1970-01-01"/>
+      <place hlink="_0000000300000003"/>
+    </event>
+    <event handle="_0000000700000007" change="1" id="E0001">
+      <type>Birth</type>
+      <dateval val="1971-02-02"/>
+      <place hlink="_0000000800000008"/>
+    </event>
+    <event handle="_0000000b0000000b" change="1" id="E0002">
+      <type>Birth</type>
+      <dateval val="1995-03-03"/>
+      <place hlink="_0000000c0000000c"/>
+    </event>
+    <event handle="_0000001000000010" change="1" id="E0003">
+      <type>Birth</type>
+      <dateval val="1997-04-04"/>
+      <place hlink="_0000001100000011"/>
+    </event>
+    <event handle="_0000001200000012" change="1" id="E0004">
+      <type>Marriage</type>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1450677600" id="I0001">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>John</first>
+        <surname>Doe</surname>
+      </name>
+      <eventref hlink="_0000000200000002" role="Primary"/>
+      <parentin hlink="_0000000400000004"/>
+      <parentin hlink="_0000000500000005"/>
+      <uid>cd654532-0d1c-493c-9104-c0e7c4d08725</uid>
+    </person>
+    <person handle="_0000000600000006" change="1450677600" id="I0002">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Jane</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000000700000007" role="Primary"/>
+      <parentin hlink="_0000000400000004"/>
+      <noteref hlink="_0000000900000009"/>
+      <uid>e8c0a6d4-4123-4a22-9e9d-ebe5beb9df84</uid>
+    </person>
+    <person handle="_0000000a0000000a" change="1450677600" id="I0003">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Apple</first>
+        <surname>Doe</surname>
+      </name>
+      <eventref hlink="_0000000b0000000b" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+      <noteref hlink="_0000000d0000000d"/>
+      <uid>4bcb63e9-0afe-4d63-b557-3ee714eb0b74</uid>
+      <uid>f0f5d4a5-aafe-4c88-90aa-5abab7cd4334</uid>
+    </person>
+    <person handle="_0000000e0000000e" change="1450677600" id="I0004">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Brooklyn</first>
+        <surname>Doe</surname>
+      </name>
+      <eventref hlink="_0000001000000010" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+      <noteref hlink="_0000000f0000000f"/>
+      <uid>00000000-0000-0000-0000-000000000008</uid>
+    </person>
+  </people>
+  <families>
+    <family handle="_0000000400000004" change="1" id="F0001">
+      <rel type="Married"/>
+      <father hlink="_0000000100000001"/>
+      <mother hlink="_0000000600000006"/>
+      <eventref hlink="_0000001200000012" role="Family"/>
+      <childref hlink="_0000000a0000000a"/>
+      <childref hlink="_0000000e0000000e"/>
+      <uid>00000000-0000-0000-0000-000000000004</uid>
+      <uid>2c85ea7c-a8ad-4fa8-9f9c-1ac194d409a2</uid>
+    </family>
+    <family handle="_0000000500000005" change="1" id="F0002">
+      <rel type="Unknown"/>
+      <father hlink="_0000000100000001"/>
+      <uid>00000000-0000-0000-0000-000000000011</uid>
+    </family>
+  </families>
+  <places>
+    <placeobj handle="_0000000300000003" change="1" id="P0000" type="Unknown">
+      <ptitle>Boston, MA</ptitle>
+      <pname value="Boston, MA"/>
+    </placeobj>
+    <placeobj handle="_0000000800000008" change="1" id="P0001" type="Unknown">
+      <ptitle>New York, NY</ptitle>
+      <pname value="New York, NY"/>
+    </placeobj>
+    <placeobj handle="_0000000c0000000c" change="1" id="P0002" type="Unknown">
+      <ptitle>Los Angeles, CA</ptitle>
+      <pname value="Los Angeles, CA"/>
+    </placeobj>
+    <placeobj handle="_0000001100000011" change="1" id="P0003" type="Unknown">
+      <ptitle>Palo Alto, CA</ptitle>
+      <pname value="Palo Alto, CA"/>
+    </placeobj>
+  </places>
+  <notes>
+    <note handle="_0000000900000009" change="1" id="N0000" type="GEDCOM import">
+      <text>Records not imported into INDI (individual) Gramps ID I0002:
+
+Line ignored as not understood                                      Line    25: 1 _UID e8c0a6d441234a229e9debe5beb9
+</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="178"/>
+      </style>
+    </note>
+    <note handle="_0000000d0000000d" change="1" id="N0001" type="GEDCOM import">
+      <text>Records not imported into INDI (individual) Gramps ID I0003:
+
+Line ignored as not understood                                      Line    37: 1 _UID GWJ645C9-19X4-DF14-GQ3B-GQ3B594316C5
+</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="186"/>
+      </style>
+    </note>
+    <note handle="_0000000f0000000f" change="1" id="N0002" type="Person Note">
+      <text>383D1A75D933400DA595D638B098E8562BC7 missing _UID</text>
+    </note>
+  </notes>
+</database>

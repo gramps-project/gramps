@@ -121,7 +121,7 @@ from gramps.gen.lib import (
     MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
     RepoRef, Repository, RepositoryType, Researcher,
     Source, SourceMediaType, SrcAttribute,
-    Surname, Tag, Url, UrlType, PlaceType, PlaceRef, PlaceName)
+    Surname, Tag, Url, UrlType, PlaceType, PlaceRef, PlaceName, Uid)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path
@@ -1191,7 +1191,6 @@ _MAP_DATA = {
     TOKEN_NOTE    : GedLine.calc_note,
     TOKEN_NCHI    : GedLine.calc_nchi,
     TOKEN__STAT   : GedLine.calc_attr,
-    TOKEN__UID    : GedLine.calc_attr,
     TOKEN_AFN     : GedLine.calc_attr,
     TOKEN__FSFTID : GedLine.calc_attr, }
 
@@ -2016,6 +2015,7 @@ class GedcomParser(UpdateCallback):
         #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
         #     +2 TYPE <USER_REFERENCE_TYPE>               {0:1}
         #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 _UID <UID>                                 {0:M}
         #   +1 <<CHANGE_DATE>>                            {0:1}
 
         self.indi_parse_tbl = {
@@ -2083,7 +2083,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_WWW   : self.__person_www,
             TOKEN__TODO : self.__skip_record,
             TOKEN_TITL  : self.__person_titl,
-            TOKEN__PHOTO: self.__person_photo, }
+            TOKEN__PHOTO: self.__person_photo,
+            TOKEN__UID  : self.__person_uid,
+        }
         self.func_list.append(self.indi_parse_tbl)
 
         self.name_parse_tbl = {
@@ -2192,7 +2194,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_QUAY  : self.__ignore,
             # Not legal, but inserted by FamilyTreeBuilder
             TOKEN_RIN    : self.__event_rin,
-            TOKEN_ATTR   : self.__event_attr,   # FTB for _UID
+            TOKEN__UID   : self.__event_uid,    # FTB for _UID
             TOKEN_EMAIL  : self.__event_email,  # FTB for RESI events
             TOKEN_WWW    : self.__event_www,    # FTB for RESI events
             TOKEN_FAX    : self.__event_fax,    # legal...
@@ -2361,6 +2363,7 @@ class GedcomParser(UpdateCallback):
         #   +1 <<NOTE_STRUCTURE>>                         {0:M}
         #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
         #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        #   +1 _UID <UID>                                 {0:M}
         #   +1 <<CHANGE_DATE>>                            {0:1}
 
         self.family_func = {
@@ -2397,6 +2400,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RIN    : self.__family_cust_attr,
             TOKEN_SUBM   : self.__ignore,
             TOKEN_ATTR   : self.__family_attr,
+            TOKEN__UID   : self.__family_uid,
         }
         self.func_list.append(self.family_func)
 
@@ -2835,6 +2839,7 @@ class GedcomParser(UpdateCallback):
             intid = self.__find_from_handle(gramps_id, self.gid2id)
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
+            person.set_uid_list([])  # for new person, no uids, we add later
         return person
 
     def __find_or_create_family(self, gramps_id):
@@ -2853,6 +2858,7 @@ class GedcomParser(UpdateCallback):
             intid = self.__find_from_handle(gramps_id, self.fid2id)
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
+            family.set_uid_list([])  # for new family, no uids, we add later
         return family
 
     def __find_or_create_media(self, gramps_id):
@@ -3648,6 +3654,7 @@ class GedcomParser(UpdateCallback):
           +1 REFN <USER_REFERENCE_NUMBER> {0:M}
           +2 TYPE <USER_REFERENCE_TYPE> {0:1}
           +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+          +1 _UID <UID> {0:M}
           +1 <<CHANGE_DATE>> {0:1}
         """
 
@@ -3672,6 +3679,9 @@ class GedcomParser(UpdateCallback):
 
         self.__check_msgs(_("INDI (individual) Gramps ID %s") %
                           person.get_gramps_id(), state, person)
+        # make sure there is at least one uid
+        if not person.get_uid_list():
+            person.set_uid_list([Uid()])
         # commit the person to the database
         self.dbase.commit_person(person, self.trans, state.person.change)
 
@@ -3693,6 +3703,18 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__do_refn(line, state, state.person)
+
+    def __person_uid(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        try:
+            state.person.add_uid(Uid(line.data))
+        except ValueError:
+            self.__not_recognized(line, state)
 
     def __person_attr(self, line, state):
         """
@@ -5002,6 +5024,7 @@ class GedcomParser(UpdateCallback):
           +1 <<NOTE_STRUCTURE>>  {0:M}
           +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
           +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
+          +1 _UID <UID> {0:M}
           +1 <<CHANGE_DATE>>  {0:1}
         """
         # create a family
@@ -5044,6 +5067,9 @@ class GedcomParser(UpdateCallback):
 
         self.__check_msgs(_("FAM (family) Gramps ID %s") %
                           family.get_gramps_id(), state, family)
+        # make sure there is at least one uid
+        if not family.get_uid_list():
+            family.set_uid_list([Uid()])
         # commit family to database
         self.dbase.commit_family(family, self.trans, family.change)
 
@@ -5344,6 +5370,18 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__do_refn(line, state, state.family)
+
+    def __family_uid(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        try:
+            state.family.add_uid(Uid(line.data))
+        except ValueError:
+            self.__not_recognized(line, state)
 
     def __family_cust_attr(self, line, state):
         """
@@ -5921,14 +5959,17 @@ class GedcomParser(UpdateCallback):
         attr.set_value(line.data)
         state.event.add_attribute(attr)
 
-    def __event_attr(self, line, state):
+    def __event_uid(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
         """
-        state.event.add_attribute(line.data)
+        attr = Attribute()
+        attr.set_type("_UID")
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
 
     def __event_phon(self, line, state):
         """

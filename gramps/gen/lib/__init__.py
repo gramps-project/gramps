@@ -40,6 +40,7 @@ from .reporef import RepoRef
 from .surname import Surname
 from .url import Url
 from .childref import ChildRef
+from .uid import Uid
 
 # Primary objects
 from .primaryobj import PrimaryObject

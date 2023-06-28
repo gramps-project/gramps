@@ -86,6 +86,8 @@ class BaseMergeCheck(unittest.TestCase):
             doc = doctxt
         else:
             raise TypeError
+        for uid in doc.findall(".//g:uid", namespaces={"g": NS_G}):
+            uid.getparent().remove(uid)
         canonical_doc = self.transform(doc)
         result = ET.tostring(canonical_doc, pretty_print=True)
         #print(str(result, 'utf-8'))

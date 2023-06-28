@@ -48,6 +48,8 @@ from .ldsordbase import LdsOrdBase
 from .tagbase import TagBase
 from .childref import ChildRef
 from .familyreltype import FamilyRelType
+from .uid import Uid
+from .uidbase import UidBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -60,7 +62,7 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
-             PrimaryObject):
+             PrimaryObject, UidBase):
     """
     The Family record is the Gramps in-memory representation of the
     relationships between people. It contains all the information
@@ -97,6 +99,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         self.type = FamilyRelType()
         self.event_ref_list = []
         self.complete = 0
+        UidBase.__init__(self)
 
     def serialize(self):
         """
@@ -126,7 +129,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 LdsOrdBase.serialize(self),
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, TagBase.serialize(self), self.private)
+                self.change, TagBase.serialize(self), self.private,
+                UidBase.serialize(self))
 
     @classmethod
     def get_schema(cls):
@@ -187,7 +191,10 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                                        "maxLength": 50},
                              "title": _("Tags")},
                 "private": {"type": "boolean",
-                            "title": _("Private")}
+                            "title": _("Private")},
+                "uid_list": {"type": "array",
+                             "items": Uid.get_schema(),
+                             "title": _("Uid")}
             }
         }
 
@@ -199,7 +206,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, citation_list, note_list,
-         self.change, tag_list, self.private) = data
+         self.change, tag_list, self.private, uid_list) = data
 
         self.type = FamilyRelType()
         self.type.unserialize(the_type)
@@ -207,6 +214,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                                for er in event_ref_list]
         self.child_ref_list = [ChildRef().unserialize(cr)
                                for cr in child_ref_list]
+        UidBase.unserialize(self, uid_list)
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
@@ -411,6 +419,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
+        self._merge_uid_list(acquisition)
 
     def set_relationship(self, relationship_type):
         """

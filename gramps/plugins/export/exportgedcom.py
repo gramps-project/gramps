@@ -457,6 +457,7 @@ class GedcomWriter(UpdateCallback):
         self._photos(person.get_media_list(), 1)
         self._url_list(person, 1)
         self._note_references(person.get_note_list(), 1)
+        self._uids(person.get_uid_list(), 1)
         self._change(person.get_change_time(), 1)
 
     def _assoc(self, person, level):
@@ -843,6 +844,7 @@ class GedcomWriter(UpdateCallback):
         self._source_references(family.get_citation_list(), 1)
         self._photos(family.get_media_list(), 1)
         self._note_references(family.get_note_list(), 1)
+        self._uids(family.get_uid_list(), 1)
         self._change(family.get_change_time(), 1)
 
     def _family_child_list(self, child_ref_list):
@@ -1118,6 +1120,13 @@ class GedcomWriter(UpdateCallback):
             if event.get_description().strip() != "":
                 self._writeln(2, 'TYPE', event.get_description())
             self._dump_event_stats(event, event_ref)
+
+    def _uids(self, uid_list, level):
+        """
+        1 _UID <UID_HEX> {0:N}  # Uppercase HEX
+        """
+        for uid in uid_list:
+            self._writeln(level, "_UID", uid.gedcom_hex())
 
     def _change(self, timeval, level):
         """

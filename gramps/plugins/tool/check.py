@@ -845,7 +845,9 @@ class CheckIntegrity:
     def cleanup_empty_objects(self):
         # the position of the change column in the primary objects
         CHANGE_PERSON = 17
+        UID_PERSON = 21
         CHANGE_FAMILY = 12
+        UID_FAMILY = 15
         CHANGE_EVENT = 10
         CHANGE_SOURCE = 8
         CHANGE_CITATION = 9
@@ -866,10 +868,10 @@ class CheckIntegrity:
 
         _db = self.db
 
-        def _empty(empty, flag):
+        def _empty(empty, flag, uid_pos=None):
             ''' Closure for dispatch table, below '''
             def _fx(value):
-                return self._check_empty(value, empty, flag)
+                return self._check_empty(value, empty, flag, uid_pos)
             return _fx
 
         table = (
@@ -889,14 +891,14 @@ class CheckIntegrity:
              _db.get_person_cursor,
              _db.get_number_of_people,
              _('Looking for empty people records'),
-             _empty(empty_person_data, CHANGE_PERSON),
+             _empty(empty_person_data, CHANGE_PERSON, UID_PERSON),
              _db.remove_person),
             ('families',
              _db.get_family_from_handle,
              _db.get_family_cursor,
              _db.get_number_of_families,
              _('Looking for empty family records'),
-             _empty(empty_family_data, CHANGE_FAMILY),
+             _empty(empty_family_data, CHANGE_FAMILY, UID_FAMILY),
              _db.remove_family),
             ('events',
              _db.get_event_from_handle,
@@ -975,12 +977,17 @@ class CheckIntegrity:
             if len(self.empty_objects[the_type]) == 0:
                 logging.info('    OK: no empty %s found', the_type)
 
-    def _check_empty(self, data, empty_data, changepos):
+    def _check_empty(self, data, empty_data, changepos, uid_pos):
         """compare the data with the data of an empty object
-            change, handle and gramps_id are not compared """
-        if changepos is not None:
+            uid, change, handle and gramps_id are not compared """
+        if changepos is not None and uid_pos is None:
             return (data[2:changepos] == empty_data[2:changepos] and
                     data[changepos + 1:] == empty_data[changepos + 1:])
+        elif uid_pos:  # at the moment, if you have uid, you have change
+            # Note: for now uid is at end, so don't need to compare after that
+            return (data[2:changepos] == empty_data[2:changepos] and
+                    data[changepos + 1:uid_pos] ==
+                    empty_data[changepos + 1:uid_pos])
         else:
             return data[2:] == empty_data[2:]
 

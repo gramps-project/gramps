@@ -22,6 +22,7 @@
 
 import unittest
 import os
+from unittest.mock import patch
 
 from .. import (Person, Family, Event, Source, Place, Citation,
                 Repository, Media, Note, Tag)
@@ -33,23 +34,33 @@ from ...user import User
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
+
+def mock_urandom(*arg):
+    """ Mock the urandom used by Uid function
+    """
+    return (1234).to_bytes(16, byteorder='big')
+
+
 class BaseCheck:
     def test_from_json(self):
         data = to_json(self.object)
         obj = from_json(data)
         self.assertEqual(self.object.serialize(), obj.serialize())
 
+    @patch('os.urandom', mock_urandom)
     def test_from_empty_json(self):
         data = '{"_class": "%s"}' % self.cls.__name__
         obj = from_json(data)
         self.assertEqual(self.object.serialize(), obj.serialize())
 
 class PersonCheck(unittest.TestCase, BaseCheck):
+    @patch('os.urandom', mock_urandom)
     def setUp(self):
         self.cls = Person
         self.object = self.cls()
 
 class FamilyCheck(unittest.TestCase, BaseCheck):
+    @patch('os.urandom', mock_urandom)
     def setUp(self):
         self.cls = Family
         self.object = self.cls()

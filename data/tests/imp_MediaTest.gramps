@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
-    <created date="2019-03-05" version="5.0.2"/>
+    <created date="1999-12-25" version="5.1.2"/>
     <researcher>
     </researcher>
   </header>
@@ -36,6 +36,7 @@
       <objref hlink="_0000000e0000000e"/>
       <url  href="http:\\obje.form.on_person.org" type="Web Home"/>
       <noteref hlink="_0000001100000011"/>
+      <uid>00000000-0000-0000-0000-000000000002</uid>
     </person>
   </people>
   <citations>

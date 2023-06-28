@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
-    <created date="2019-07-30" version="5.0.2"/>
+    <created date="1999-12-25" version="5.1.2"/>
     <researcher>
       <resname>John A. Tester</resname>
     </researcher>
@@ -71,6 +71,7 @@
       <noteref hlink="_0000002100000021"/>
       <citationref hlink="_0000002000000020"/>
       <tagref hlink="_0000000500000005"/>
+      <uid>00000000-0000-0000-0000-000000000002</uid>
     </person>
     <person handle="_0000002600000026" change="1" id="I0002">
       <gender>F</gender>
@@ -85,6 +86,7 @@
       <noteref hlink="_0000002b0000002b"/>
       <citationref hlink="_0000002a0000002a"/>
       <tagref hlink="_0000000500000005"/>
+      <uid>00000000-0000-0000-0000-000000000004</uid>
     </person>
     <person handle="_0000002c0000002c" change="1" id="I0003">
       <gender>M</gender>
@@ -111,6 +113,7 @@
       <noteref hlink="_0000003800000038"/>
       <citationref hlink="_0000003700000037"/>
       <tagref hlink="_0000000500000005"/>
+      <uid>00000000-0000-0000-0000-000000000007</uid>
     </person>
     <person handle="_0000003500000035" change="1" id="I0004">
       <gender>U</gender>
@@ -121,6 +124,7 @@
       </name>
       <citationref hlink="_0000003a0000003a"/>
       <tagref hlink="_0000000500000005"/>
+      <uid>00000000-0000-0000-0000-000000000009</uid>
     </person>
   </people>
   <families>
@@ -136,6 +140,7 @@
       <citationref hlink="_0000003d0000003d"/>
       <citationref hlink="_0000004300000043"/>
       <tagref hlink="_0000000500000005"/>
+      <uid>00000000-0000-0000-0000-000000000006</uid>
     </family>
   </families>
   <citations>

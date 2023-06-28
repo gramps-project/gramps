@@ -34,7 +34,7 @@ import logging
 #
 #------------------------------------------------------------------------
 from gramps.cli.clidbman import NAME_FILE
-from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType
+from gramps.gen.lib import EventType, NameOriginType, Tag, MarkerType, Uid
 from gramps.gen.utils.file import create_checksum
 from gramps.gen.utils.id import create_id
 from gramps.gui.dialog import (InfoDialog)
@@ -49,14 +49,115 @@ LOG = logging.getLogger(".upgrade")
 
 def gramps_upgrade_20(self):
     """
-    Placeholder update.
+    Upgrade database from version 19 to 20.
     """
-    length = 0
+    length = self.get_number_of_people() + self.get_number_of_families()
     self.set_total(length)
     self._txn_begin()
-
-    # uid and place upgrade code goes here
-
+    # ---------------------------------
+    # Modify Person
+    # ---------------------------------
+    # Add uid to person.
+    for handle in self.get_person_handles():
+        data = self.get_raw_person_data(handle)
+        (hndl,             # 0
+         gramps_id,        # 1
+         gender,           # 2
+         primary_name,     # 3
+         alternate_names,  # 4
+         death_ref_index,  # 5
+         birth_ref_index,  # 6
+         event_ref_list,   # 7
+         family_list,      # 8
+         parent_fam_list,  # 9
+         media_list,       # 10
+         address_list,     # 11
+         attribute_list,   # 12
+         urls,             # 13
+         lds_ord_list,     # 14
+         citation_list,    # 15
+         note_list,        # 16
+         change,           # 17
+         tag_list,         # 18
+         private,          # 19
+         person_ref_list,  # 20
+         ) = data
+        uid_list = []
+        new_attr_list = []
+        for attr in attribute_list:
+            (_privacy, _citation_list, _note_list, attr_type, attr_data) = attr
+            (attr_type_type, attr_type_str) = attr_type
+            if attr_type_type == 0 and attr_type_str == "_UID":
+                # process a uid.
+                try:
+                    uid = Uid(attr_data).serialize()
+                    if uid not in uid_list:
+                        uid_list.append(uid)
+                except ValueError:
+                    new_attr_list.append(attr)
+            else:
+                new_attr_list.append(attr)
+        if not uid_list:  # if we don't have a uid, add one
+            uid_list.append(Uid().serialize())
+        new_data = (
+            hndl,             # 0
+            gramps_id,        # 1
+            gender,           # 2
+            primary_name,     # 3
+            alternate_names,  # 4
+            death_ref_index,  # 5
+            birth_ref_index,  # 6
+            event_ref_list,   # 7
+            family_list,      # 8
+            parent_fam_list,  # 9
+            media_list,       # 10
+            address_list,     # 11
+            new_attr_list,    # 12
+            urls,             # 13
+            lds_ord_list,     # 14
+            citation_list,    # 15
+            note_list,        # 16
+            change,           # 17
+            tag_list,         # 18
+            private,          # 19
+            person_ref_list,  # 20
+            uid_list,         # 21
+        )
+        self._commit_raw(new_data, PERSON_KEY)
+        self.update()
+    # ---------------------------------
+    # Modify Family
+    # ---------------------------------
+    # Add uid to family.
+    for handle in self.get_family_handles():
+        data = self.get_raw_family_data(handle)
+        (hndl, gramps_id, father_handle, mother_handle,
+         child_ref_list, the_type, event_ref_list, media_list,
+         attribute_list, lds_seal_list, citation_list, note_list,
+         change, tag_list, private) = data
+        uid_list = []
+        new_attr_list = []
+        for attr in attribute_list:
+            (_privacy, _citation_list, _note_list, attr_type, attr_data) = attr
+            (attr_type_type, attr_type_str) = attr_type
+            if attr_type_type == 0 and attr_type_str == "_UID":
+                # process a uid.
+                try:
+                    uid = Uid(attr_data).serialize()
+                    if uid not in uid_list:
+                        uid_list.append(uid)
+                except ValueError:
+                    new_attr_list.append(attr)
+            else:
+                new_attr_list.append(attr)
+        if not uid_list:  # if we don't have a uid, add one
+            uid_list.append(Uid().serialize())
+        new_data = (hndl, gramps_id, father_handle, mother_handle,
+                    child_ref_list, the_type, event_ref_list, media_list,
+                    new_attr_list, lds_seal_list, citation_list, note_list,
+                    change, tag_list, private, uid_list)
+        self._commit_raw(new_data, FAMILY_KEY)
+        self.update()
     self._txn_commit()
     # Bump up database version. Separate transaction to save metadata.
     self._set_metadata('version', 20)
